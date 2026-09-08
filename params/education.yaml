@@ -1,0 +1,30 @@
+# IB-ME 教学参数（纯文档记录）
+#
+# 本文件在运行时不被解析，不引入 PyYAML 依赖；代码中的权威定义是
+# src/ibme/lattice/params.py 中的 EDUCATION_PARAMS。此文件仅用于按
+# IMPLEMENTATION_SPEC.md §2 的要求记录参数来源与安全声明。
+#
+# security_claim: none
+name: education
+source: "IB-ME 项目自定的最小教学参数（n=8、素数 q=257），非论文推荐参数"
+debug_only: true
+security_claim: none
+expected_security_level: none
+fields:
+  security_parameter: 8   # 仅为标签，不对应任何安全等级
+  n: 8
+  m_matrix: 80            # = n + n*k，k = ceil(log2 q) = 9（MP12 结构 A = [A_bar | G]）
+  q: 257                  # 素数
+  s0: 4.0                 # trapgen 中 R 的离散高斯宽度（教学值）
+  s: 10.0                 # 签名/加密侧高斯宽度（教学值）
+  s_prime: 12.0           # 委派/扰动侧高斯宽度（教学值）
+  identity_bytes: 8
+  max_message_bytes: 32
+limitations:
+  - "维度远低于任何可证明安全的格参数，仅为了让纯 Python 功能测试秒级完成"
+  - "未运行任何 LWE/SIS 格安全估计器，没有安全等级结论"
+  - "不得用于任何安全声明、性能宣称或生产部署"
+  - "sample_pre 为简化实现，未达到证明级分布（见 src/ibme/lattice/trapdoor.py 的说明）"
+notes:
+  - "消息与身份长度仅为教学用途的上限，与论文实例化无关"
+  - "更接近实用的参数（competition 等）必须先完成参数估计，再单独成文件"
