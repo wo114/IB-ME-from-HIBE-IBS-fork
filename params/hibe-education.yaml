@@ -1,0 +1,43 @@
+# IB-ME HIBE 调试参数（纯文档记录）
+#
+# 本文件在运行时不被解析，不引入 PyYAML 依赖；代码中的权威定义是
+# src/ibme/hibe/abb10.py 中的 ABB10_DEBUG_PARAMS。此文件仅用于按
+# IMPLEMENTATION_SPEC.md §2 的要求记录参数来源与安全声明。
+#
+# security_claim: none
+name: hibe-abb10-debug
+source: "IB-ME 项目自定的 ABB10 两层 HIBE 调试参数（基于噪声预算启发式选参），非论文推荐参数"
+debug_only: true
+security_claim: none
+expected_security_level: none
+fields:
+  security_parameter: 8   # 仅为标签，不对应任何安全等级
+  n: 8
+  m_matrix: 168           # = m_bar(16) + n*k(152)，k = ceil(log2 q) = 19（MP12 结构 A = [A_bar | G]）
+  q: 524288               # 2^19
+  s0: 3.0                 # trapgen 中主陷门 R 的离散高斯宽度（调试值）
+  s: 1.0                  # 加密侧高斯噪声宽度 e1/e2（调试值）
+  s_prime: 1.0            # 原像采样误差宽度（调试值）
+  identity_bytes: 16
+  max_message_bytes: 32
+noise_budget: |
+  中心化分解位方差 1/2，α = sqrt(nk/2) ≈ 8.72：
+  - R1 主导行 std ≈ sqrt((nk/2)*s0^2 + s_prime^2) ≈ 26
+  - R2 主导行 std ≈ s0*α^2 ≈ 228
+  - 解密原像 x 主导行 std ≈ s0*α^3 ≈ 1990，||x||_2 ≈ 8e3（实测 6.7e3–1.0e4）
+  - 每比特解密噪声 e1 - <x, e2> 的 std ≈ 8e3
+  - 解码阈值 q/4 = 131072 ≈ 16σ（实测最差 trial 约 12.5σ）
+  均为启发式估计；原像采样为无扰动简化分布，不用于任何安全声明。
+rationale: |
+  lattice/params.py 的 EDUCATION_PARAMS (n=8, q=257) 噪声预算不足以支撑
+  LWE 解码（委派链范数远超 q/4），故 HIBE 层自带更大的调试模数 q=2^19。
+  该选择只保证功能正确性，未经任何格安全估计。
+limitations:
+  - "维度远低于任何可证明安全的格参数，仅为了让纯 Python 功能测试在秒级完成"
+  - "未运行任何 LWE/SIS 格安全估计器，没有安全等级结论"
+  - "不得用于任何安全声明、性能宣称或生产部署"
+  - "原像采样为 hibe 层零均值化的简化实现（无 MP12 扰动），分布未达证明级"
+  - "H(id) 为 ROM 风格 SHAKE-256 哈希矩阵，非 ABB10 论文标准模型构造；身份矩阵未与 mpk 绑定"
+notes:
+  - "参数权威定义在代码中；修改参数必须同步更新本文件与 abb10.py 模块 docstring 的噪声预算"
+  - "接近实用的参数必须先完成参数估计，再单独成文件并给出安全声明"
