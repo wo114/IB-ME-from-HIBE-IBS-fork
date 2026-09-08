@@ -1,0 +1,187 @@
+# IB-ME from HIBE + IBS：项目总体架构
+
+## 1. 项目目标
+
+本项目实现指导论文第三章的两层格基 HIBE + IBS 身份基匹配加密方案，并预留 Boyen–Li 增强隐私版本的接口。
+
+主线方案的解密条件为：
+
+$$
+\rho = rcv \quad\land\quad \phi = snd.
+$$
+
+其中 $\phi$ 是真实发送者身份，$\rho$ 是真实接收者身份，`rcv` 是加密时指定的接收者，`snd` 是解密时尝试的发送者。
+
+项目的安全口径必须分开：
+
+| 版本 | 组件 | 应声明的性质 |
+|---|---|---|
+| 基线版 | 两层匿名 HIBE + SIS-IBS | 正确性、原始隐私、强可认证性 |
+| 增强版 | 匿名 IBE + IBS + Ext + ReExt | Boyen–Li 增强隐私 |
+
+`978-3-031-51476-0_21` 是构造与实例化论文，不是现成代码库。基线版应以指导论文第三章为协议规范，增强版再参考 Boyen–Li 第 3、4、5 节。
+
+## 2. 总体分层
+
+```text
+应用层
+  └── CLI / Demo / Benchmark
+
+协议层
+  ├── IBMEBaseline
+  └── IBMEEnhanced（可选）
+
+原语层
+  ├── HIBEBackend
+  └── IBSBackend
+
+格工具层
+  ├── Zq 矩阵
+  ├── gadget 矩阵
+  ├── TrapGen / DelTrap / SamplePre
+  └── 离散高斯采样
+
+基础设施层
+  ├── 身份、消息、密文的规范编码
+  ├── SHAKE-256 域分隔哈希
+  ├── 安全随机数与测试随机数
+  └── 参数配置与版本管理
+```
+
+任何上层模块不得直接操作底层 Python 列表或自行实现序列化。矩阵、随机性和编码都必须经过基础设施层提供的接口。
+
+## 3. 推荐目录
+
+```text
+ibme/
+  pyproject.toml
+  README.md
+  ARCHITECTURE.md
+  IMPLEMENTATION_SPEC.md
+  DELEGATION_PROMPTS.md
+  src/ibme/
+    core/
+      types.py
+      encoding.py
+      hashing.py
+      randomness.py
+      errors.py
+    lattice/
+      params.py
+      modmat.py
+      gadget.py
+      gaussian.py
+      trapdoor.py
+    hibe/
+      api.py
+      abb10.py
+      mock.py
+    ibs/
+      api.py
+      sis_ibs.py
+      mock.py
+    protocol/
+      baseline.py
+      enhanced.py
+    cli.py
+  tests/
+    test_encoding.py
+    test_lattice_core.py
+    test_hibe_contract.py
+    test_ibs_contract.py
+    test_baseline_ibme.py
+    test_security_properties.py
+  experiments/
+    benchmark.py
+    parameter_sweep.py
+    test_vectors/
+  params/
+    education.yaml
+    competition.yaml
+```
+
+第一版使用 Python + SageMath。需要 Sage 的代码在 WSL 中使用环境 `/home/youzi/miniconda3/envs/sage` 运行。性能优化可另建 C++/Rust 后端，但不能改变 Python 参考实现的协议接口。
+
+## 4. 原语接口
+
+### HIBE
+
+```python
+class HIBEBackend(Protocol):
+    def setup(self, params) -> tuple[HIBEPublicKey, HIBEMasterSecret]: ...
+    def extract(self, msk, parent_id: bytes) -> HIBELevel1SecretKey: ...
+    def derive(self, sk_parent, child_id: bytes) -> HIBELevel2SecretKey: ...
+    def encrypt(self, pk, parent_id: bytes, child_id: bytes,
+                payload: bytes) -> HIBECiphertext: ...
+    def decrypt(self, sk_child, ct: HIBECiphertext) -> bytes | None: ...
+```
+
+身份顺序固定为 `(parent_id, child_id) = (rcv, phi)`。HIBE 密文不能明文携带身份，否则会破坏匿名性。
+
+### IBS
+
+```python
+class IBSBackend(Protocol):
+    def setup(self, params) -> tuple[IBSPublicKey, IBSMasterSecret]: ...
+    def key_extract(self, msk, identity: bytes) -> IBSSigningKey: ...
+    def sign(self, sk: IBSSigningKey, message: bytes) -> IBSSignature: ...
+    def verify(self, pk, identity: bytes, message: bytes,
+               signature: IBSSignature) -> bool: ...
+```
+
+签名密钥对象应保存规范化后的身份摘要，避免调用者在 `sign` 时误传另一个身份。
+
+## 5. 协议组合
+
+基线版加密过程：
+
+$$
+t\gets\mathsf{IBS.Sign}(sk_\phi,\mathsf{EncID}(rcv)\mathbin\Vert m),
+$$
+
+$$
+ct\gets\mathsf{HIBE.Enc}(hpk,rcv,\phi,\mathsf{EncSig}(t)\mathbin\Vert m).
+$$
+
+基线版解密先派生 $\mathsf{sk}_{\rho|snd}$ 并调用 HIBE 解密，再验证：
+
+$$
+\mathsf{IBS.Verify}(ipk,snd,\mathsf{EncID}(\rho)\mathbin\Vert m',t)=1.
+$$
+
+协议层只能依赖接口，不能读取 HIBE 或 IBS 的内部矩阵。
+
+## 6. 工程约束
+
+1. 身份、消息、签名都使用长度前缀和域分隔编码。
+2. 所有哈希使用 SHAKE-256，并区分 `HIBE-ID`、`IBS-H1`、`IBS-H2` 等域。
+3. 测试随机数可以固定种子，生产随机数必须来自系统 CSPRNG。
+4. 所有模 $q$ 系数使用统一的 `[0, q)` 表示；范数计算使用明确的整数或高精度实现。
+5. 不在代码中散落参数；所有参数从 `Params` 对象读取。
+6. 大文件使用混合加密，IB-ME 只封装对称密钥。
+7. 小参数只能用于功能调试，不能用于宣称安全等级。
+
+## 7. 集成顺序
+
+按以下顺序合并其他 AI 的工作：
+
+1. `core` 编码、哈希、类型和错误处理；
+2. `lattice` 矩阵、gadget、采样和陷门工具；
+3. `HIBEBackend`，先通过 mock，再接 ABB10；
+4. `IBSBackend`，先通过 mock，再接 SIS-IBS；
+5. 基线协议组合；
+6. 正确性、篡改、伪造和性能测试；
+7. 可选的增强隐私协议。
+
+每个阶段都必须保留一组可复现测试向量。
+
+## 8. 安全声明边界
+
+最终报告必须明确：
+
+- 方案是否在随机预言机模型中分析；
+- 使用的是教学参数还是经过格安全估计的参数；
+- 是否实现了完整的匿名 HIBE，而不是普通 HIBE 的功能替代品；
+- 是否实现了 Boyen–Li 的 `Ext`、`ReExt` 和身份熵条件。
+
+没有完成相应组件和证明映射时，不得使用“增强隐私”“达到 NIST Level X”或“标准模型安全”等表述。
