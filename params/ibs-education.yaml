@@ -1,0 +1,48 @@
+# IB-ME SIS-IBS 教学参数（纯文档记录）
+#
+# 本文件在运行时不被解析，不引入 PyYAML 依赖；代码中的权威定义是
+# src/ibme/ibs/sis_ibs.py 中的 IBS_EDUCATION_PARAMS。此文件仅用于按
+# IMPLEMENTATION_SPEC.md §2 的要求记录参数来源与安全声明。
+#
+# security_claim: none
+name: ibs-education
+source: "IB-ME 项目自定的最小教学参数；以 lattice/params.py 的 education 预设为基础，
+  仅修改 s_prime（见 delta），非论文推荐参数"
+debug_only: true
+security_claim: none
+expected_security_level: none
+base_preset: "src/ibme/lattice/params.py: EDUCATION_PARAMS (education)"
+delta:
+  s_prime: 12.0 -> 64.0
+  reason: >-
+    无扰动的简化采样链（lattice 的 sample_pre 模式 + ibs 模块的零均值
+    G-格陪集采样）使诚实签名的 ‖z‖ 实测落在 ~2.7e2–5.8e2 区间
+    （E[‖z‖²] ≈ 2.1e5；n=8、q=257、m_matrix=80、s0=4、s=10）。
+    原 s_prime=12 给出范数界 12·sqrt(152) ≈ 148，必然拒绝诚实签名；
+    s_prime=64 给出界 64·sqrt(152) ≈ 789，sign 在返回前自检范数、偶发
+    超界即重采样，故诚实签名必过验签；同时该界仍拒绝中心化代表元的
+    均匀向量（‖·‖ 可达 128·sqrt(152) ≈ 1578 > 789）。该宽松界不对应
+    论文构造 3.4.1 的渐近参数关系，只服务于功能调试。
+fields:
+  security_parameter: 8   # 仅为标签，不对应任何安全等级
+  n: 8
+  m_matrix: 80            # = m_bar + n·k，k = ceil(log2 q) = 9（A = [a_bar | G − a_bar·R_A]）
+  q: 257                  # 素数
+  s0: 4.0                 # trapgen 中 R_A 的离散高斯宽度（教学值，同 education）
+  s: 10.0                 # key_extract(sample_pre sigma_e) 与 sign(x) 的高斯宽度（教学值，同 education）
+  s_prime: 64.0           # 验签范数界参数 ‖z‖₂ ≤ s'·sqrt(m + n·k)（IBS 侧放宽值，见 delta）
+  identity_bytes: 8
+  max_message_bytes: 32
+norm_bound:
+  formula: "‖z‖₂ ≤ s_prime · sqrt(m + n·ceil(log2 q)) = s_prime · sqrt(F_id 列数)"
+  value: 64 * sqrt(152) ≈ 789.0
+  reference: "notes/ib-me-hibe-ibs-design.md §4.3"
+limitations:
+  - "维度远低于任何可证明安全的格参数，仅为了让纯 Python 功能测试秒级完成"
+  - "未运行任何 LWE/SIS 格安全估计器，没有安全等级结论"
+  - "不得用于任何安全声明、性能宣称或生产部署"
+  - "R̂_id 列采样与签名 z 均为无扰动的简化分布（sample_pre 模式 + 零均值陪集采样），未达证明级；s_prime 的放宽即源于此"
+  - "H1/H2 哈希到 Z_q 采用定长字节读取后取模，存在微小统计偏差（见 sis_ibs.py 模块说明）"
+notes:
+  - "mock 后端（src/ibme/ibs/mock.py）不使用任何格参数；本文件只描述 SIS-IBS 后端"
+  - "更接近实用的参数必须先完成参数估计，再单独成文件并标注 security_claim"
