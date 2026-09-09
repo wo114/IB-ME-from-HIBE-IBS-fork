@@ -14,8 +14,8 @@
 * P0 整改回归（abb10）：纯密文差分聚类攻击、已知明文单 bit 差分定位
   攻击必须失败（attack-oracle 风格）；密文结构逐比特独立（每 bit 一条
   LWE 样本）；v1 序列化一律拒绝；identity_bytes 作为最大长度强制；
-* 主 AI 裁定 pin（mock）：mock 后端不读取也不强制 identity_bytes，
-  保持"非空 bytes"语义（BASELINE_MOCK_PARAMS 冲突未解决前）。
+* identity_bytes 作为最大身份长度在 mock 与 abb10 两个后端同样强制
+  （主 AI 2026-09 P0 整改收尾裁定；mock 环境参数 identity_bytes=32）。
 
 安全声明：本文件使用教学/调试参数（security_claim: none）；测试通过
 不构成 LWE、SIS 或 HIBE/IB-ME 安全性证明。攻击回归测试的通过同样
@@ -27,6 +27,8 @@ from __future__ import annotations
 import math
 
 import pytest
+
+from dataclasses import replace as _dataclass_replace
 
 from ibme.core.encoding import encode_bytes
 from ibme.core.errors import (
@@ -47,8 +49,10 @@ WRONG_PHI = b"\xd1\xd2\xd3\xd4\xd5\xd6\xd7\xd8"
 
 SEED = b"hibe-contract-tests-v1"
 
+_MOCK_PARAMS = _dataclass_replace(EDUCATION_PARAMS, name="hibe-mock-debug", identity_bytes=32)
+
 _BACKENDS = {
-    "mock": lambda: (MockHIBE(), EDUCATION_PARAMS),
+    "mock": lambda: (MockHIBE(), _MOCK_PARAMS),
     "abb10": lambda: (ABB10HIBE(), ABB10_DEBUG_PARAMS),
 }
 
@@ -683,23 +687,37 @@ def test_abb10_identity_length_limit_enforced(env):
         )
 
 
-def test_mock_backend_keeps_nonempty_only_identity_semantics(env):
-    """主 AI 裁定 pin（2026-09，P0 整改期间）：mock 后端不读取也不强制
-    ``params.identity_bytes``，保持 SPEC §1 的"非空 bytes"语义。
+def test_mock_backend_enforces_identity_bytes(env):
+    """主 AI 裁定（2026-09，P0 整改收尾）：mock 后端同样强制
+    ``params.identity_bytes``（最大身份长度语义，SPEC §2），与 abb10
+    后端契约一致；协议层 BASELINE_MOCK_PARAMS.identity_bytes 已放宽到 64，
+    本文件 mock 环境参数为 32。
 
-    原因：protocol 层 BASELINE_MOCK_PARAMS.identity_bytes=8 小于 baseline
-    契约测试的身份长度（9–11B），强制会使禁改的 baseline 测试失败。
-    在该规范冲突由主 AI 解决之前，任何"顺手"给 mock 加上限的改动都会
-    在此被抓住。
+    超限身份必须在 extract/derive/encrypt 三个入口被拒绝；恰好等于上限
+    的身份必须全链路可用。
     """
     name, backend, params, pk, msk, sk1, sk2 = env
     if name != "mock":
-        pytest.skip("mock-only ruling pin")
-    assert params.identity_bytes < len(RCV)  # EDUCATION_PARAMS=8 < 10
+        pytest.skip("mock-only enforcement test")
+    limit = params.identity_bytes
+    assert limit >= len(RCV) and limit >= len(PHI)
+    over = b"z" * (limit + 1)
+    rng = DeterministicRandom(SEED + b":mock-limit")
+    with pytest.raises(EncodingError):
+        backend.extract(msk, over, rng=rng)
+    with pytest.raises(EncodingError):
+        backend.derive(sk1, over, rng=rng)
+    with pytest.raises(EncodingError):
+        backend.encrypt(pk, over, PHI, b"", rng=rng)
+    with pytest.raises(EncodingError):
+        backend.encrypt(pk, RCV, over, b"", rng=rng)
+    at_limit = b"y" * limit
+    sk1_limit = backend.extract(msk, at_limit, rng=rng)
+    sk2_limit = backend.derive(sk1_limit, PHI, rng=rng)
     ct = backend.encrypt(
-        pk, RCV, PHI, b"ruling", rng=DeterministicRandom(SEED + b":mock-rule")
+        pk, at_limit, PHI, b"ruling", rng=DeterministicRandom(SEED + b":mock-ok")
     )
     assert (
-        backend.decrypt(sk2, ct, rng=DeterministicRandom(SEED + b":mock-rule-d"))
+        backend.decrypt(sk2_limit, ct, rng=DeterministicRandom(SEED + b":mock-okd"))
         == b"ruling"
     )

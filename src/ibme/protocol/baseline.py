@@ -155,12 +155,14 @@ BASELINE_DEBUG_PARAMS = _dataclass_replace(
 #: **security_claim: none，仅调试**（见 ibme.ibs.sis_ibs 模块声明）。
 BASELINE_DEBUG_IBS_PARAMS = IBS_EDUCATION_PARAMS
 
-#: mock 组合（TEST-ONLY）用的参数：教育参数 + 同样的明文容量放宽。
-#: mock 后端只读取 ``max_message_bytes``，格参数值不参与运算。
+#: mock 组合（TEST-ONLY）用的参数：教育参数 + 明文容量与身份上限放宽。
+#: mock 后端读取 ``max_message_bytes`` 与 ``identity_bytes``（主 AI 冻结的
+#: 最大身份长度语义），格参数值不参与运算。
 BASELINE_MOCK_PARAMS = _dataclass_replace(
     EDUCATION_PARAMS,
     name="baseline-mock-debug",
     max_message_bytes=400,
+    identity_bytes=64,
 )
 
 #: ``decrypt`` 捕获并映射为 BOTTOM 的异常（core 冻结层次 + IBS 层内部错）。

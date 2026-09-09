@@ -90,26 +90,35 @@ def _check_seed(value: bytes, what: str) -> bytes:
 
 @dataclass(frozen=True)
 class MockHIBEPublicKey:
-    """TEST-ONLY mock 公钥：公开种子 + 消息上限。"""
+    """TEST-ONLY mock 公钥：公开种子 + 消息/身份上限。"""
 
     seed: bytes
     max_message_bytes: int
+    identity_bytes: int
 
     def to_bytes(self) -> bytes:
         _check_seed(self.seed, "MockHIBEPublicKey")
-        return _MAGIC_PK + encode_bytes(self.seed) + _u32be(self.max_message_bytes)
+        return (
+            _MAGIC_PK
+            + encode_bytes(self.seed)
+            + _u32be(self.max_message_bytes)
+            + _u32be(self.identity_bytes)
+        )
 
     @classmethod
     def from_bytes(cls, data: bytes) -> "MockHIBEPublicKey":
         raw = _strip_magic(data, _MAGIC_PK, "MockHIBEPublicKey")
         seed, off = _decode_field(raw, 0, "MockHIBEPublicKey")
         _check_seed(seed, "MockHIBEPublicKey")
-        if len(raw) - off != 4:
+        if len(raw) - off != 8:
             raise SerializationError("malformed MockHIBEPublicKey: bad trailer length")
-        limit = int.from_bytes(raw[off:], "big")
-        if limit < 1:
+        max_msg = int.from_bytes(raw[off : off + 4], "big")
+        ident = int.from_bytes(raw[off + 4 :], "big")
+        if max_msg < 1:
             raise SerializationError("malformed MockHIBEPublicKey: max_message_bytes < 1")
-        return cls(seed=seed, max_message_bytes=limit)
+        if ident < 1:
+            raise SerializationError("malformed MockHIBEPublicKey: identity_bytes < 1")
+        return cls(seed=seed, max_message_bytes=max_msg, identity_bytes=ident)
 
 
 @dataclass(frozen=True)
@@ -118,22 +127,31 @@ class MockHIBEMasterSecret:
 
     master: bytes
     max_message_bytes: int
+    identity_bytes: int
 
     def to_bytes(self) -> bytes:
         _check_seed(self.master, "MockHIBEMasterSecret")
-        return _MAGIC_MSK + encode_bytes(self.master) + _u32be(self.max_message_bytes)
+        return (
+            _MAGIC_MSK
+            + encode_bytes(self.master)
+            + _u32be(self.max_message_bytes)
+            + _u32be(self.identity_bytes)
+        )
 
     @classmethod
     def from_bytes(cls, data: bytes) -> "MockHIBEMasterSecret":
         raw = _strip_magic(data, _MAGIC_MSK, "MockHIBEMasterSecret")
         master, off = _decode_field(raw, 0, "MockHIBEMasterSecret")
         _check_seed(master, "MockHIBEMasterSecret")
-        if len(raw) - off != 4:
+        if len(raw) - off != 8:
             raise SerializationError("malformed MockHIBEMasterSecret: bad trailer length")
-        limit = int.from_bytes(raw[off:], "big")
-        if limit < 1:
+        max_msg = int.from_bytes(raw[off : off + 4], "big")
+        ident = int.from_bytes(raw[off + 4 :], "big")
+        if max_msg < 1:
             raise SerializationError("malformed MockHIBEMasterSecret: max_message_bytes < 1")
-        return cls(master=master, max_message_bytes=limit)
+        if ident < 1:
+            raise SerializationError("malformed MockHIBEMasterSecret: identity_bytes < 1")
+        return cls(master=master, max_message_bytes=max_msg, identity_bytes=ident)
 
 
 @dataclass(frozen=True)
@@ -143,6 +161,7 @@ class MockHIBELevel1SecretKey:
     identity: bytes
     pk_seed: bytes
     k1: bytes
+    identity_bytes: int
 
     def to_bytes(self) -> bytes:
         _check_seed(self.pk_seed, "MockHIBELevel1SecretKey")
@@ -152,6 +171,7 @@ class MockHIBELevel1SecretKey:
             + encode_bytes(self.identity)
             + encode_bytes(self.pk_seed)
             + encode_bytes(self.k1)
+            + _u32be(self.identity_bytes)
         )
 
     @classmethod
@@ -164,9 +184,16 @@ class MockHIBELevel1SecretKey:
         _check_seed(seed, "MockHIBELevel1SecretKey")
         k1, off = _decode_field(raw, off, "MockHIBELevel1SecretKey")
         _check_seed(k1, "MockHIBELevel1SecretKey")
-        if off != len(raw):
-            raise SerializationError("malformed MockHIBELevel1SecretKey: trailing bytes")
-        return cls(identity=ident, pk_seed=seed, k1=k1)
+        if len(raw) - off != 4:
+            raise SerializationError("malformed MockHIBELevel1SecretKey: bad trailer length")
+        limit = int.from_bytes(raw[off:], "big")
+        if limit < 1:
+            raise SerializationError("malformed MockHIBELevel1SecretKey: identity_bytes < 1")
+        if len(ident) > limit:
+            raise SerializationError(
+                "malformed MockHIBELevel1SecretKey: identity exceeds identity_bytes"
+            )
+        return cls(identity=ident, pk_seed=seed, k1=k1, identity_bytes=limit)
 
 
 @dataclass(frozen=True)
@@ -250,22 +277,36 @@ class MockHIBE:
             raise InvalidParameterError("rng.read() returned a wrong-length master seed")
         pk_seed = shake256(_DOM_PK, master, _SEED_LEN)
         return (
-            MockHIBEPublicKey(seed=pk_seed, max_message_bytes=params.max_message_bytes),
-            MockHIBEMasterSecret(master=master, max_message_bytes=params.max_message_bytes),
+            MockHIBEPublicKey(
+                seed=pk_seed,
+                max_message_bytes=params.max_message_bytes,
+                identity_bytes=params.identity_bytes,
+            ),
+            MockHIBEMasterSecret(
+                master=master,
+                max_message_bytes=params.max_message_bytes,
+                identity_bytes=params.identity_bytes,
+            ),
         )
 
     def extract(self, msk, parent_id: bytes, *, rng=None):
         if not isinstance(msk, MockHIBEMasterSecret):
             raise TypeError("extract expects a MockHIBEMasterSecret")
-        ident = validate_identity(parent_id, name="parent_id")
+        ident = validate_identity(
+            parent_id, name="parent_id", max_bytes=msk.identity_bytes
+        )
         k1 = shake256(_DOM_K1, msk.master + encode_bytes(ident), _SEED_LEN)
         pk_seed = shake256(_DOM_PK, msk.master, _SEED_LEN)
-        return MockHIBELevel1SecretKey(identity=ident, pk_seed=pk_seed, k1=k1)
+        return MockHIBELevel1SecretKey(
+            identity=ident, pk_seed=pk_seed, k1=k1, identity_bytes=msk.identity_bytes
+        )
 
     def derive(self, sk_parent, child_id: bytes, *, rng=None):
         if not isinstance(sk_parent, MockHIBELevel1SecretKey):
             raise TypeError("derive expects a MockHIBELevel1SecretKey")
-        phi = validate_identity(child_id, name="child_id")
+        phi = validate_identity(
+            child_id, name="child_id", max_bytes=sk_parent.identity_bytes
+        )
         k12 = _derive_k12(sk_parent.pk_seed, sk_parent.identity, phi)
         return MockHIBELevel2SecretKey(
             parent_identity=sk_parent.identity, child_identity=phi, k12=k12
@@ -274,8 +315,8 @@ class MockHIBE:
     def encrypt(self, pk, parent_id: bytes, child_id: bytes, payload: bytes, *, rng=None):
         if not isinstance(pk, MockHIBEPublicKey):
             raise TypeError("encrypt expects a MockHIBEPublicKey")
-        rcv = validate_identity(parent_id, name="parent_id")
-        phi = validate_identity(child_id, name="child_id")
+        rcv = validate_identity(parent_id, name="parent_id", max_bytes=pk.identity_bytes)
+        phi = validate_identity(child_id, name="child_id", max_bytes=pk.identity_bytes)
         message = validate_bytes(payload, name="payload")
         if len(message) > pk.max_message_bytes:
             raise InvalidParameterError(
