@@ -142,13 +142,16 @@ MAGIC_CIPHERTEXT = b"IBME:PROTO-CT:v1"
 # 参数预设（security_claim: none，仅调试）
 # ---------------------------------------------------------------------------
 
-#: HIBE 侧调试参数：ABB10 调试预设 + 扩大的明文容量。
+#: HIBE 侧调试参数：ABB10 调试预设 + 扩大的明文容量与身份上限。
 #: payload = 11B 域前缀 + 4B 长度 + SIS 签名(~322B) + 4B 长度 + 消息，
-#: 32B 消息时约 373B，取 400B 留出裕量。**security_claim: none，仅调试**。
+#: 32B 消息时约 373B，取 400B 留出裕量；identity_bytes 提到 32 以容纳
+#: 现实身份长度（含基准脚本与 CLI 的 16B 身份）。
+#: **security_claim: none，仅调试**。
 BASELINE_DEBUG_PARAMS = _dataclass_replace(
     ABB10_DEBUG_PARAMS,
     name="baseline-hibe-abb10-debug",
     max_message_bytes=400,
+    identity_bytes=32,
 )
 
 #: IBS 侧调试参数：直接复用 SIS-IBS 教学预设。
