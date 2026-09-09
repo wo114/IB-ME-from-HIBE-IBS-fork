@@ -24,27 +24,33 @@ k = ceil(log2 q)、nk = n·k、m = m_bar + nk）::
         于是 [-R2; I_nk] 是 B_full = [A | H(rcv) | H(rcv, phi)] 的陷门。
         第二层密钥 = (rcv, phi, A, u, R2)。
     encrypt(pk, rcv, phi, payload, rng):
-        B_full = [A | H(rcv) | H(rcv, phi)]；Regev 比特加密，全部比特共享
-        (s, e2)：s ← Z_q^n 均匀（公开随机量）、e1_j/e2 高斯（宽度
-        params.s）。加密明文是绑定身份的结构化串::
+        B_full = [A | H(rcv) | H(rcv, phi)]；Regev 比特加密，**每个比特 j
+        独立采样**（v2，P0 修复）s_j ← Z_q^n 均匀（公开随机量）、
+        e2^(j)/e1_j 高斯（宽度 params.s）。加密明文是绑定身份的结构化串::
             m = enc(rcv) || enc(phi) || enc(payload)
-            c2  = B_full^T·s + e2 ∈ Z_q^{m+2nk}
-            c1_j = u·s + e1_j + m_j·⌊q/2⌉
+            c2^(j) = B_full^T·s_j + e2^(j) ∈ Z_q^{m+2nk}
+            c1_j   = u·s_j + e1_j + m_j·⌊q/2⌉
+        逐比特独立随机性是结构性安全前提：v1 曾让全部比特共享同一
+        (s, e2)，于是 c1_j − c1_0 消去公共 u·s，差值按明文比特完美双簇
+        聚类，已知任一明文比特（如 uint32 长度前缀的高位 0）即可无密钥
+        恢复完整明文（含身份与消息）。密文格式因此升级为 v2，v1 密文
+        from_bytes 一律拒绝。
         身份放在 LWE 明文中而不是密文里：密文字节不含身份明文（匿名性
         的功能要求），语义上的不泄露依赖 LWE（教学参数下不做声明）。
     decrypt(sk2, ct, rng):
         解密方用自己的 (ρ, snd) 重算 B(ρ, snd)，用陷门 [-R2; I] 对 u 做
         零均值原像采样，取其前 m+2nk 个分量为短向量 x（B_full·x = u，
-        运行时验证），恢复::
-            v_j = c1_j - <x, c2> = m_j·⌊q/2⌉ + (e1_j - <x, e2>)，
+        运行时验证），逐比特恢复::
+            v_j = c1_j - <x, c2^(j)> = m_j·⌊q/2⌉ + (e1_j - <x, e2^(j)>)，
         以 q/4 为阈值解码出 m'，严格解析出 (rcv', phi', payload')，并与
         解密方身份做常数时间比较。任何失败——维度/模数不符、原像验证
         失败、解析错误、身份不匹配——返回 None。
 
-    身份绑定是必要的：所有比特共享 (s, e2)，不匹配身份下的解密噪声是
-    全局共享偏移（来自 ΔH·x_tail），比特要么整体"正确"要么整体翻转，
-    解码本身无法检测不匹配；只有显式的身份比对才能把不匹配映射为
-    BOTTOM (None)。
+    身份绑定仍然必要：不匹配身份下解密方自己的 B'·x = u 成立，但密文
+    的 c2^(j) 是在加密方的 B ≠ B' 下计算的，每比特偏移 (u − B·x)·s_j
+    含均匀分量；逐比特独立的 s_j 使各比特的偏离互不相关，解码输出本质
+    随机、严格解析几乎必然失败——但解析偶然"成功"无法排除，显式的
+    常数时间身份比对才把不匹配确定性地映射为 BOTTOM (None)。
 
 噪声预算（ABB10_DEBUG_PARAMS：n=8, q=2^19, k=19, nk=152, m_bar=16,
 σ0=3.0, σ_pre=1.0, σ_enc=1.0；中心化分解位 bits_c 的方差为 1/2，记
@@ -55,9 +61,13 @@ k = ceil(log2 q)、nk = n·k、m = m_bar + nk）::
   ``σ(R1 主导行) ≈ sqrt((nk/2)·σ0² + σ_pre²) ≈ 26``；
   ``σ(R2 主导行) ≈ σ0·α² ≈ 228``；
   ``σ(x  主导行) ≈ σ0·α³ ≈ 1990``，从而 ``||x||₂ ≈ 8·10³``。
-* 每比特解密噪声 ``e1_j - <x, e2>`` 的标准差 ≈ ``||x||₂·σ_enc ≈ 8·10³``；
-  解码阈值 ``q/4 = 131072 ≈ 16σ``，单比特解码失败概率（高斯尾近似）
-  低于 1e-57，多比特 payload 下仍可忽略。
+* 每比特解密噪声 ``e1_j - <x, e2^(j)>`` 的标准差 ≈ ``||x||₂·σ_enc ≈
+  8·10³``（v2 起每个比特有独立的 e2^(j)，噪声在比特间独立、量级与
+  v1 相同）；解码阈值 ``q/4 = 131072 ≈ 16σ``，单比特解码失败概率
+  （高斯尾近似）低于 1e-57，多比特 payload 下仍可忽略。
+* 密文尺寸（v2 的如实代价）：每个明文比特一条完整 LWE 样本，密文 =
+  ``bit_count × (m + 2nk + 1)`` 个 Z_q 系数（本参数下 473×3 = 1419
+  字节/比特）；encrypt 时间按比特数线性放大。基准口径由主 AI 统一重测。
 * 以上是启发式估计：原像采样是无扰动的简化分布（见
   :func:`_sample_pre_centered` 的说明与 lattice.trapdoor 的限制声明），
   因此本后端不得用于任何安全声明；教育参数 EDUCATION_PARAMS (q=257)
@@ -74,14 +84,20 @@ k = ceil(log2 q)、nk = n·k、m = m_bar + nk）::
 
 序列化格式（全部严格解析：magic、维度交叉验证、拒绝截断/追加）::
 
-    pk  : MAGIC || meta(40B: n,m_bar,q,max_msg,s0,s_enc,s_pre) || A || u
+    pk  : MAGIC || meta(44B: n,m_bar,q,identity_bytes,max_msg,s0,s_enc,s_pre)
+          || A || u
     msk : MAGIC || meta || Ā || R(shift 编码为 mod-q 矩阵)
     sk1 : MAGIC || meta || enc(rcv) || A || u || R1(shift 编码)
     sk2 : MAGIC || meta || enc(rcv) || enc(phi) || A || u || R2(shift 编码)
-    ct  : MAGIC || u32(bit_count) || c2 || c1 元素 (elem(q) 字节/个)
+    ct  : MAGIC || u32(bit_count) || u32(c2_len) || u32(q)
+          || c2 区（bit_count × c2_len 个 elem(q) 系数，bit 主序）
+          || c1 区（bit_count 个系数）
 
-ct 的加密明文是 ``enc(rcv) || enc(phi) || enc(payload)``，bit_count 是
-该明文的总比特数（即 len(c1)）。
+所有 magic 均为 v2（逐比特独立样本 + meta 携带 identity_bytes）：v1
+序列化（共享 c2 的旧密文、无 identity_bytes 的旧密钥）在 magic 比对处
+即被拒绝，绝不静默误解析。ct 的加密明文是
+``enc(rcv) || enc(phi) || enc(payload)``，bit_count 是该明文的总比特数
+（= len(c1) = len(c2)，每比特一条独立 LWE 样本）。
 
 短整数矩阵的 shift 编码：``v ∈ [-⌊q/2⌋, ⌊q/2⌋) ↔ (v + ⌊q/2⌋) mod q``，
 半开区间保证往返无歧义（避免 ±q/2 同余碰撞）。
@@ -126,11 +142,14 @@ __all__ = [
     "verify_level2_key",
 ]
 
-_MAGIC_PK = b"IBME:HIBE-ABB10:PK:v1"
-_MAGIC_MSK = b"IBME:HIBE-ABB10:MSK:v1"
-_MAGIC_SK1 = b"IBME:HIBE-ABB10:SK1:v1"
-_MAGIC_SK2 = b"IBME:HIBE-ABB10:SK2:v1"
-_MAGIC_CT = b"IBME:HIBE-ABB10:CT:v1"
+# v2（P0 修复版）：密文改为逐比特独立 LWE 样本，参数快照新增
+# identity_bytes 字段。所有 v1 序列化（含旧密文）在 from_bytes 一律拒绝，
+# 不得静默误解析。
+_MAGIC_PK = b"IBME:HIBE-ABB10:PK:v2"
+_MAGIC_MSK = b"IBME:HIBE-ABB10:MSK:v2"
+_MAGIC_SK1 = b"IBME:HIBE-ABB10:SK1:v2"
+_MAGIC_SK2 = b"IBME:HIBE-ABB10:SK2:v2"
+_MAGIC_CT = b"IBME:HIBE-ABB10:CT:v2"
 
 #: 层级标签：保证单身份与身份对的哈希输入无碰撞歧义（"L1"/"L2" 前缀
 #: 加长度前缀编码，任何不同输入串都不会产生相同的 SHAKE-256 输入）。
@@ -139,8 +158,9 @@ _LAYER2_TAG = b"L2"
 
 _U32 = 4
 _Q_LIMIT = 1 << 32
-# n, m_bar, q, max_message_bytes 为 uint32；s0, s_enc, s_pre 为 float64。
-_META_STRUCT = struct.Struct(">IIIIddd")
+# n, m_bar, q, identity_bytes, max_message_bytes 为 uint32；
+# s0, s_enc, s_pre 为 float64。
+_META_STRUCT = struct.Struct(">IIIIIddd")
 _META_SIZE = _META_STRUCT.size
 
 #: ABB10 调试参数预设（security_claim: none，仅调试）。
@@ -166,11 +186,16 @@ ABB10_DEBUG_PARAMS = Params(
 
 @dataclass(frozen=True)
 class _ParamsMeta:
-    """pk/sk 中内嵌的参数快照（从 Params 派生；序列化自描述）。"""
+    """pk/sk 中内嵌的参数快照（从 Params 派生；序列化自描述）。
+
+    ``identity_bytes`` 是身份的**最大**字节长度（主 AI 冻结语义，
+    IMPLEMENTATION_SPEC.md §2）：所有身份入口据此强制上限。
+    """
 
     n: int
     m_bar: int
     q: int
+    identity_bytes: int
     max_message_bytes: int
     s0: float
     s_enc: float
@@ -182,6 +207,7 @@ def _meta_from_params(params: Params) -> _ParamsMeta:
         n=params.n,
         m_bar=params.m_matrix - params.n * gadget_width(params.q),
         q=params.q,
+        identity_bytes=params.identity_bytes,
         max_message_bytes=params.max_message_bytes,
         s0=params.s0,
         s_enc=params.s,
@@ -191,18 +217,29 @@ def _meta_from_params(params: Params) -> _ParamsMeta:
 
 def _encode_meta(meta: _ParamsMeta) -> bytes:
     return _META_STRUCT.pack(
-        meta.n, meta.m_bar, meta.q, meta.max_message_bytes, meta.s0, meta.s_enc, meta.s_pre
+        meta.n,
+        meta.m_bar,
+        meta.q,
+        meta.identity_bytes,
+        meta.max_message_bytes,
+        meta.s0,
+        meta.s_enc,
+        meta.s_pre,
     )
 
 
 def _decode_meta(raw: bytes, offset: int) -> tuple[_ParamsMeta, int]:
     if len(raw) - offset < _META_SIZE:
         raise SerializationError("truncated parameter metadata")
-    n, m_bar, q, max_msg, s0, s_enc, s_pre = _META_STRUCT.unpack_from(raw, offset)
+    n, m_bar, q, identity_bytes, max_msg, s0, s_enc, s_pre = _META_STRUCT.unpack_from(
+        raw, offset
+    )
     if not 1 <= n < _Q_LIMIT or not 1 <= m_bar < _Q_LIMIT:
         raise SerializationError(f"invalid metadata dimensions n={n}, m_bar={m_bar}")
     if not 2 <= q < _Q_LIMIT:
         raise SerializationError(f"invalid metadata modulus q={q}")
+    if identity_bytes < 1:
+        raise SerializationError(f"invalid metadata identity_bytes={identity_bytes}")
     if max_msg < 1:
         raise SerializationError(f"invalid metadata max_message_bytes={max_msg}")
     for name, value in (("s0", s0), ("s_enc", s_enc), ("s_pre", s_pre)):
@@ -210,7 +247,14 @@ def _decode_meta(raw: bytes, offset: int) -> tuple[_ParamsMeta, int]:
             raise SerializationError(f"invalid metadata width {name}={value!r}")
     return (
         _ParamsMeta(
-            n=n, m_bar=m_bar, q=q, max_message_bytes=max_msg, s0=s0, s_enc=s_enc, s_pre=s_pre
+            n=n,
+            m_bar=m_bar,
+            q=q,
+            identity_bytes=identity_bytes,
+            max_message_bytes=max_msg,
+            s0=s0,
+            s_enc=s_enc,
+            s_pre=s_pre,
         ),
         offset + _META_SIZE,
     )
@@ -536,7 +580,9 @@ class ABB10Level1SecretKey:
     def __post_init__(self) -> None:
         if not isinstance(self.meta, _ParamsMeta):
             raise InvalidParameterError("meta must be an ABB10 parameter snapshot")
-        self_identity = validate_identity(self.identity, name="identity")
+        self_identity = validate_identity(
+            self.identity, name="identity", max_bytes=self.meta.identity_bytes
+        )
         object.__setattr__(self, "identity", self_identity)
         n, q = self.meta.n, self.meta.q
         m = self.meta.m_bar + n * gadget_width(q)
@@ -594,8 +640,14 @@ class ABB10Level2SecretKey:
     def __post_init__(self) -> None:
         if not isinstance(self.meta, _ParamsMeta):
             raise InvalidParameterError("meta must be an ABB10 parameter snapshot")
-        parent = validate_identity(self.parent_identity, name="parent_identity")
-        child = validate_identity(self.child_identity, name="child_identity")
+        parent = validate_identity(
+            self.parent_identity,
+            name="parent_identity",
+            max_bytes=self.meta.identity_bytes,
+        )
+        child = validate_identity(
+            self.child_identity, name="child_identity", max_bytes=self.meta.identity_bytes
+        )
         object.__setattr__(self, "parent_identity", parent)
         object.__setattr__(self, "child_identity", child)
         n, q = self.meta.n, self.meta.q
@@ -653,59 +705,118 @@ class ABB10Level2SecretKey:
 
 @dataclass(frozen=True)
 class ABB10Ciphertext:
-    """Regev 密文：每比特一个 c1 系数 + 共享的 c2 向量（不含身份明文）。"""
+    """逐比特独立 Regev 样本的密文（v2；不含身份明文）。
+
+    比特 j 的密文是自成一体的 LWE 样本：``c2[j] = B^T·s_j + e2^(j)`` 与
+    ``c1[j] = u·s_j + e1_j + bit_j·⌊q/2⌉``，其中 ``s_j`` 逐比特独立均匀
+    采样。**严禁退回所有比特共享 s/掩码的 v1 结构**：共享掩码下
+    ``c1_j − c1_0`` 消去公共 ``u·s``，差值按明文比特完美双簇聚类，已知
+    任一明文比特即可无密钥恢复完整明文（P0 密文泄漏，已由
+    tests/test_hibe_contract.py 的 attack-oracle 回归钉死）。
+
+    所有 c2 向量必须同模数、同长度（= 加密时 B_full 的列数）。
+    """
 
     c1: tuple[int, ...]
-    c2: ModVector
+    c2: tuple[ModVector, ...]
 
     def __post_init__(self) -> None:
-        if not isinstance(self.c2, ModVector):
-            raise InvalidParameterError("c2 must be a ModVector")
+        if not isinstance(self.c2, tuple) or not self.c2:
+            raise InvalidParameterError(
+                "c2 must be a non-empty tuple with one ModVector per bit"
+            )
+        reference = self.c2[0]
+        for vec in self.c2:
+            if not isinstance(vec, ModVector):
+                raise InvalidParameterError("c2 entries must be ModVector")
+            if vec.q != reference.q or vec.length != reference.length:
+                raise InvalidParameterError(
+                    "c2 vectors must share modulus and length (one LWE sample per bit)"
+                )
         if not isinstance(self.c1, tuple):
             raise InvalidParameterError("c1 must be a tuple of ints")
-        if len(self.c1) % 8 != 0:
-            raise InvalidParameterError("c1 must encode whole bytes (length % 8 == 0)")
+        if len(self.c1) != len(self.c2):
+            raise InvalidParameterError(
+                "c1 and c2 must have exactly one entry per plaintext bit"
+            )
+        if len(self.c1) < 8 or len(self.c1) % 8 != 0:
+            raise InvalidParameterError(
+                "c1 must encode at least one whole byte (length % 8 == 0)"
+            )
         for value in self.c1:
             if not isinstance(value, int) or isinstance(value, bool):
                 raise InvalidParameterError("c1 entries must be int")
-            if not 0 <= value < self.c2.q:
+            if not 0 <= value < reference.q:
                 raise InvalidParameterError("c1 entries must lie in [0, q)")
 
     def to_bytes(self) -> bytes:
-        elem = _elem_size(self.c2.q)
+        q = self.c2[0].q
+        elem = _elem_size(q)
+        c2_blob = b"".join(
+            value.to_bytes(elem, "big") for vec in self.c2 for value in vec
+        )
         c1_blob = b"".join(value.to_bytes(elem, "big") for value in self.c1)
         return (
             _MAGIC_CT
             + len(self.c1).to_bytes(_U32, "big")
-            + self.c2.to_bytes()
+            + self.c2[0].length.to_bytes(_U32, "big")
+            + q.to_bytes(_U32, "big")
+            + c2_blob
             + c1_blob
         )
 
     @classmethod
     def from_bytes(cls, data: bytes) -> "ABB10Ciphertext":
+        # v1（共享 c2 向量）的 magic 在 _strip_magic 处即被拒绝：旧格式
+        # 密文必须显式失败，绝不静默按新结构误解析。
         raw = _strip_magic(data, _MAGIC_CT, "ABB10Ciphertext")
-        if len(raw) < _U32:
-            raise SerializationError("ABB10Ciphertext: truncated bit-count field")
+        if len(raw) < 3 * _U32:
+            raise SerializationError("ABB10Ciphertext: truncated header")
         n_bits = int.from_bytes(raw[:_U32], "big")
-        if n_bits % 8 != 0:
-            raise SerializationError("ABB10Ciphertext: bit count must be a multiple of 8")
-        c2, off = _slice_vector(raw, _U32, "c2")
-        elem = _elem_size(c2.q)
-        expected = n_bits * elem
-        if len(raw) - off != expected:
+        c2_len = int.from_bytes(raw[_U32 : 2 * _U32], "big")
+        q = int.from_bytes(raw[2 * _U32 : 3 * _U32], "big")
+        if n_bits % 8 != 0 or n_bits < 8:
             raise SerializationError(
-                f"ABB10Ciphertext: c1 region must be {expected} bytes, got {len(raw) - off}"
+                "ABB10Ciphertext: bit count must be a positive multiple of 8"
             )
-        c1 = [
-            int.from_bytes(raw[off + i * elem : off + (i + 1) * elem], "big")
-            for i in range(n_bits)
-        ]
-        for value in c1:
-            if value >= c2.q:
+        if not 1 <= c2_len < _Q_LIMIT:
+            raise SerializationError(f"ABB10Ciphertext: invalid c2 length {c2_len}")
+        if not 2 <= q < _Q_LIMIT:
+            raise SerializationError(f"ABB10Ciphertext: invalid modulus {q}")
+        elem = _elem_size(q)
+        expected = n_bits * (c2_len + 1) * elem
+        if len(raw) - 3 * _U32 != expected:
+            raise SerializationError(
+                f"ABB10Ciphertext: coefficient region must be {expected} bytes, "
+                f"got {len(raw) - 3 * _U32}"
+            )
+        offset = 3 * _U32
+        # c2 区在前（每比特 c2_len 个系数，bit 主序），c1 区在后（每比特 1 个）。
+        c2 = []
+        for j in range(n_bits):
+            base = offset + j * c2_len * elem
+            entries = [
+                int.from_bytes(raw[base + i * elem : base + (i + 1) * elem], "big")
+                for i in range(c2_len)
+            ]
+            for value in entries:
+                if value >= q:
+                    raise SerializationError(
+                        f"ABB10Ciphertext: c2 entry {value} out of range [0, {q})"
+                    )
+            c2.append(ModVector(entries, q))
+        c1_base = offset + n_bits * c2_len * elem
+        c1 = []
+        for j in range(n_bits):
+            value = int.from_bytes(
+                raw[c1_base + j * elem : c1_base + (j + 1) * elem], "big"
+            )
+            if value >= q:
                 raise SerializationError(
-                    f"ABB10Ciphertext: c1 entry {value} out of range [0, {c2.q})"
+                    f"ABB10Ciphertext: c1 entry {value} out of range [0, {q})"
                 )
-        return cls(c1=tuple(c1), c2=c2)
+            c1.append(value)
+        return cls(c1=tuple(c1), c2=tuple(c2))
 
 
 # ---------------------------------------------------------------------------
@@ -740,8 +851,14 @@ class ABB10HIBE:
 
     身份顺序固定 ``(parent_id, child_id) = (rcv, phi)``；decrypt 失败返回
     ``None``；密文不含身份明文。所有随机性经 ``rng`` 注入（``None`` 表示
-    生产随机源）；均匀采样仅用于公开随机量（s、u），噪声与陷门采样均为
-    真离散高斯（复用 ibme.lattice 采样器）。
+    生产随机源）；均匀采样仅用于公开随机量（逐比特的 s_j 与 u），噪声与
+    陷门采样均为真离散高斯（复用 ibme.lattice 采样器）。
+
+    身份入口（extract/derive/encrypt 的身份参数，以及 sk 构造/反序列化）
+    一律以 ``Params.identity_bytes`` 为**最大**字节长度强制（主 AI 冻结
+    语义，IMPLEMENTATION_SPEC.md §2）；decrypt 无身份参数，其身份约束由
+    sk2 构造时的校验承载。v2 起 Regev 加密逐比特独立采样（见
+    :class:`ABB10Ciphertext`）。
     """
 
     def setup(self, params, *, rng=None):
@@ -761,7 +878,9 @@ class ABB10HIBE:
     def extract(self, msk, parent_id: bytes, *, rng=None):
         if not isinstance(msk, ABB10MasterSecret):
             raise TypeError("extract expects an ABB10MasterSecret")
-        ident = validate_identity(parent_id, name="parent_id")
+        ident = validate_identity(
+            parent_id, name="parent_id", max_bytes=msk.meta.identity_bytes
+        )
         rng = _require_rng(rng, "extract")
         meta = msk.meta
         n, q = meta.n, meta.q
@@ -775,7 +894,9 @@ class ABB10HIBE:
     def derive(self, sk_parent, child_id: bytes, *, rng=None):
         if not isinstance(sk_parent, ABB10Level1SecretKey):
             raise TypeError("derive expects an ABB10Level1SecretKey")
-        phi = validate_identity(child_id, name="child_id")
+        phi = validate_identity(
+            child_id, name="child_id", max_bytes=sk_parent.meta.identity_bytes
+        )
         rng = _require_rng(rng, "derive")
         meta = sk_parent.meta
         n, q = meta.n, meta.q
@@ -797,8 +918,9 @@ class ABB10HIBE:
     def encrypt(self, pk, parent_id: bytes, child_id: bytes, payload: bytes, *, rng=None):
         if not isinstance(pk, ABB10PublicKey):
             raise TypeError("encrypt expects an ABB10PublicKey")
-        rcv = validate_identity(parent_id, name="parent_id")
-        phi = validate_identity(child_id, name="child_id")
+        limit = pk.meta.identity_bytes
+        rcv = validate_identity(parent_id, name="parent_id", max_bytes=limit)
+        phi = validate_identity(child_id, name="child_id", max_bytes=limit)
         message = validate_bytes(payload, name="payload")
         if len(message) > pk.meta.max_message_bytes:
             raise InvalidParameterError(
@@ -814,19 +936,48 @@ class ABB10HIBE:
         )
         # 加密明文绑定身份对（解密方比对后才返回 payload；见模块 docstring）。
         plaintext = encode_bytes(rcv) + encode_bytes(phi) + encode_bytes(message)
-        # 公开随机量 s：均匀采样（非高斯，仅公开 LWE 秘密）。
-        s = ModVector([uniform_integer(rng, q) for _ in range(n)], q)
-        e2 = sample_vector_gaussian(b_full.cols, meta.s_enc, rng=rng)
-        c2 = b_full.transpose().matvec(s) + ModVector(e2, q)
-        us = pk.u.dot(s)
+        # P0 修复（v2）：逐比特独立 LWE 样本。每个比特 j 独立采样
+        #     s_j ← Z_q^n 均匀（公开随机量）、e2^(j)、e1_j 高斯（宽度 s_enc）：
+        #     c2^(j) = B_full^T·s_j + e2^(j)，c1_j = u·s_j + e1_j + bit_j·⌊q/2⌉。
+        # 严禁退回全部比特共享 s/掩码的 v1 结构（共享掩码的差分双簇聚类
+        # 可无密钥恢复明文，见 ABB10Ciphertext 与契约测试的 attack-oracle）。
+        # rng 消耗顺序固定：逐比特依次 s_j、e2^(j)、e1_j，保证固定 rng 可复现。
+        b_rows = b_full.to_lists()
+        cols_b = b_full.cols
+        u_list = pk.u.to_list()
         half = q // 2
-        c1 = []
+        c1: list[int] = []
+        c2_vectors: list[ModVector] = []
         for byte in plaintext:
             for shift in range(7, -1, -1):
                 bit = (byte >> shift) & 1
+                s = [uniform_integer(rng, q) for _ in range(n)]
+                e2 = sample_vector_gaussian(cols_b, meta.s_enc, rng=rng)
                 e1 = sample_integer_gaussian(meta.s_enc, rng=rng)
-                c1.append((us + e1 + bit * half) % q)
-        return ABB10Ciphertext(c1=tuple(c1), c2=c2)
+                # c2^(j) = Σ_t s_t·B_full[t, :] + e2^(j) (mod q)
+                terms = [
+                    [s_t * b_ij for b_ij in row] for s_t, row in zip(s, b_rows)
+                ]
+                c2_vectors.append(
+                    ModVector(
+                        [
+                            (total + noise) % q
+                            for total, noise in zip(
+                                (sum(group) for group in zip(*terms)), e2
+                            )
+                        ],
+                        q,
+                    )
+                )
+                c1.append(
+                    (
+                        sum(u_t * s_t for u_t, s_t in zip(u_list, s))
+                        + e1
+                        + bit * half
+                    )
+                    % q
+                )
+        return ABB10Ciphertext(c1=tuple(c1), c2=tuple(c2_vectors))
 
     def decrypt(self, sk_child, ct, *, rng=None):
         if not isinstance(sk_child, ABB10Level2SecretKey):
@@ -848,7 +999,9 @@ class ABB10HIBE:
                     )
                 )
             )
-            if ct.c2.q != q or ct.c2.length != b_full.cols:
+            # ct.c2 非空且各向量同模数/同长度（构造时已验证），这里只比对
+            # 与解密方 B_full 的一致性。
+            if ct.c2[0].q != q or ct.c2[0].length != b_full.cols:
                 return None
             td_full = Trapdoor(
                 a_bar=b_full, r=_neg_stack_identity(sk_child.r2, nk)
@@ -857,11 +1010,11 @@ class ABB10HIBE:
             x = ModVector(z[: b_full.cols], q)
             if b_full.matvec(x) != sk_child.u:
                 return None
-            dot = x.dot(ct.c2)
             quarter = q // 4
             out = bytearray(len(ct.c1) // 8)
             for idx, coefficient in enumerate(ct.c1):
-                value = (coefficient - dot) % q
+                # 逐比特独立的解密噪声：e1_j + bit_j·⌊q/2⌉ − x^T·e2^(j)。
+                value = (coefficient - x.dot(ct.c2[idx])) % q
                 if value > q // 2:
                     value -= q
                 if abs(value) > quarter:
