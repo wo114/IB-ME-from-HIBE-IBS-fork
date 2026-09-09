@@ -44,10 +44,10 @@ ciphertext_v2: |
   放大；序列化 magic 升级为 v2，v1 对象 from_bytes 一律拒绝。
 identity_bytes_semantics: |
   identity_bytes 是身份的最大字节长度（主 AI 冻结语义，SPEC §2）：
-  abb10 后端的 extract/derive/encrypt 身份入口及 sk 构造/反序列化均
-  强制该上限。mock 后端按主 AI 同期裁定不读取也不强制该字段（与
-  protocol 层 BASELINE_MOCK_PARAMS.identity_bytes=8 存在未解决的规范
-  冲突），保持"非空 bytes"语义。
+  ABB10_DEBUG_PARAMS 的独立后端入口及 sk 构造/反序列化均强制 16B 上限。
+  基线协议为容纳演示身份使用 BASELINE_DEBUG_PARAMS.identity_bytes=32；
+  mock 基线使用 BASELINE_MOCK_PARAMS.identity_bytes=64，mock 后端同样
+  强制上限。IBS 独立调用仍按其自身参数与调用方规范执行。
 limitations:
   - "维度远低于任何可证明安全的格参数，仅为了让纯 Python 功能测试在分钟级完成"
   - "未运行任何 LWE/SIS 格安全估计器，没有安全等级结论"

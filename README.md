@@ -54,3 +54,9 @@ M1（core/格工具）、M2（HIBE/IBS 原语）、M3（基线 IB-ME 组合 + CL
 - 功能测试与基准不替代任何安全性证明。
 
 后续里程碑：M4 增强隐私版（须记录 ROM 假设与身份熵条件）、全面审计（任务 G）。
+
+## M3 交付材料
+
+- [M3 代码审查与作品报告](docs/M3_CODE_REVIEW_AND_WORK_REPORT.md)：摘要、背景、设计、实现、测试、基准、贡献和限制；
+- [M3 方案流程图、算法说明与安全边界](docs/M3_FLOW_ALGORITHM_SECURITY.md)：Mermaid 流程图、算法公式和比赛统一安全口径；
+- [全国密码技术竞赛演示与答辩材料](docs/COMPETITION_DEMO_AND_DEFENSE.md)：CLI 演示命令、5 分钟讲解顺序和高频问答。

@@ -694,7 +694,7 @@ class TestCLIMockBackends:
         assert "BOTTOM" in capsys.readouterr().out
 
     def test_non_ascii_mock_flow(self, tmp_path):
-        """mock 路径同样接受 UTF-8 身份（mock state 的 identity_bytes=8：甲/乙各 3B）。"""
+        """mock 路径同样接受 UTF-8 身份（mock state 的 identity_bytes=64）。"""
         state = tmp_path / "state"
         message = "甲的明文".encode("utf-8")
         msg_file = tmp_path / "message.bin"
@@ -821,7 +821,7 @@ class TestCLIUtf8Identities:
         assert "BOTTOM" in capsys.readouterr().out
 
     def test_overlong_identity_is_parameter_error(self, tmp_path, capsys):
-        # education 真实预设 identity_bytes=16：超长身份必须是参数错误（退出码 2），不是崩溃
+        # education 真实预设 identity_bytes=32：超长身份必须是参数错误（退出码 2），不是崩溃
         state = tmp_path / "state"
         _run_cli(["setup", "--params", "education", "--state", str(state)])
         overlong = "a" * (BASELINE_DEBUG_PARAMS.identity_bytes + 1)
