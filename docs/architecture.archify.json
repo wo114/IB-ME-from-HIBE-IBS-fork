@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "IB-ME 系统架构：两层格基 HIBE + IBS",
+    "output": "ibme-architecture.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "views": [
+      {
+        "id": "encrypt-path",
+        "label": "加密主路径",
+        "focus": [
+          "cli",
+          "baseline",
+          "hibe",
+          "ibs",
+          "lattice",
+          "core"
+        ],
+        "note": "CLI 调用基线协议五算法，各层向下只依赖冻结接口。"
+      },
+      {
+        "id": "primitives",
+        "label": "原语与格工具",
+        "focus": [
+          "hibe",
+          "ibs",
+          "lattice",
+          "core"
+        ],
+        "note": "ABB10 HIBE 与 SIS-IBS 共享格工具层与 core 基础设施。"
+      },
+      {
+        "id": "m4-roadmap",
+        "label": "M4 增强隐私预留",
+        "focus": [
+          "enhanced",
+          "baseline"
+        ],
+        "note": "IBMEEnhanced 仅保留协议层接口位，Ext/ReExt 尚未实现。"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "cli",
+      "type": "frontend",
+      "label": "CLI 演示入口",
+      "sublabel": "src/ibme/cli.py",
+      "pos": [
+        80,
+        62
+      ],
+      "size": [
+        250,
+        64
+      ]
+    },
+    {
+      "id": "benchmark",
+      "type": "external",
+      "label": "性能基准",
+      "sublabel": "experiments/benchmark.py",
+      "pos": [
+        1060,
+        62
+      ],
+      "size": [
+        250,
+        64
+      ]
+    },
+    {
+      "id": "baseline",
+      "type": "backend",
+      "label": "IBMEBaseline 基线协议",
+      "sublabel": "src/ibme/protocol/baseline.py",
+      "tag": "HIBE + IBS 组合",
+      "pos": [
+        560,
+        200
+      ],
+      "size": [
+        260,
+        84
+      ]
+    },
+    {
+      "id": "enhanced",
+      "type": "backend",
+      "label": "IBMEEnhanced",
+      "sublabel": "Boyen–Li Ext / ReExt",
+      "tag": "M4 未实现",
+      "pos": [
+        1060,
+        196
+      ],
+      "size": [
+        250,
+        72
+      ]
+    },
+    {
+      "id": "hibe",
+      "type": "backend",
+      "label": "HIBEBackend：两层匿名 HIBE",
+      "sublabel": "src/ibme/hibe/abb10.py",
+      "tag": "mock 仅测试",
+      "pos": [
+        80,
+        358
+      ],
+      "size": [
+        280,
+        72
+      ]
+    },
+    {
+      "id": "ibs",
+      "type": "backend",
+      "label": "IBSBackend：SIS-IBS 签名",
+      "sublabel": "src/ibme/ibs/sis_ibs.py",
+      "tag": "mock 仅测试",
+      "pos": [
+        1050,
+        358
+      ],
+      "size": [
+        280,
+        72
+      ]
+    },
+    {
+      "id": "lattice",
+      "type": "backend",
+      "label": "格工具层 lattice",
+      "sublabel": "modmat · gadget · trapdoor · gaussian · params",
+      "pos": [
+        535,
+        504
+      ],
+      "size": [
+        300,
+        64
+      ]
+    },
+    {
+      "id": "core",
+      "type": "security",
+      "label": "core 基础设施",
+      "sublabel": "encoding · hashing · randomness · types · errors",
+      "tag": "SHAKE-256 域分隔",
+      "pos": [
+        535,
+        642
+      ],
+      "size": [
+        300,
+        72
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "应用层",
+      "wraps": [
+        "cli",
+        "benchmark"
+      ],
+      "pad": 22
+    },
+    {
+      "kind": "region",
+      "label": "协议层",
+      "wraps": [
+        "baseline",
+        "enhanced"
+      ],
+      "pad": 22
+    },
+    {
+      "kind": "region",
+      "label": "原语层",
+      "wraps": [
+        "hibe",
+        "ibs"
+      ],
+      "pad": 22
+    },
+    {
+      "kind": "region",
+      "label": "格工具层",
+      "wraps": [
+        "lattice"
+      ],
+      "pad": 22
+    },
+    {
+      "kind": "region",
+      "label": "基础设施层",
+      "wraps": [
+        "core"
+      ],
+      "pad": 22
+    }
+  ],
+  "connections": [
+    {
+      "id": "cli-to-baseline",
+      "from": "cli",
+      "to": "baseline",
+      "label": "五算法调用"
+    },
+    {
+      "id": "benchmark-to-baseline",
+      "from": "benchmark",
+      "to": "baseline",
+      "label": "基准驱动",
+      "variant": "dashed"
+    },
+    {
+      "id": "baseline-to-hibe",
+      "from": "baseline",
+      "to": "hibe",
+      "fromSide": "left",
+      "label": "Extract / Derive / Enc / Dec",
+      "variant": "emphasis"
+    },
+    {
+      "id": "baseline-to-ibs",
+      "from": "baseline",
+      "to": "ibs",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "via": [
+        [
+          690,
+          318
+        ],
+        [
+          1190,
+          318
+        ]
+      ],
+      "label": "KeyExtract / Sign / Verify",
+      "labelDy": 6,
+      "variant": "emphasis"
+    },
+    {
+      "id": "baseline-to-core",
+      "from": "baseline",
+      "to": "core",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "via": [
+        [
+          690,
+          300
+        ],
+        [
+          1380,
+          300
+        ],
+        [
+          1380,
+          770
+        ],
+        [
+          685,
+          770
+        ]
+      ],
+      "label": "EncID / EncSig 冻结编码",
+      "variant": "dashed"
+    },
+    {
+      "id": "hibe-to-lattice",
+      "from": "hibe",
+      "to": "lattice",
+      "label": "TrapGen / SamplePre"
+    },
+    {
+      "id": "ibs-to-lattice",
+      "from": "ibs",
+      "to": "lattice",
+      "label": "TrapGen / 高斯采样"
+    },
+    {
+      "id": "hibe-to-core",
+      "from": "hibe",
+      "to": "core",
+      "label": "SHAKE-256 哈希",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "via": [
+        [
+          220,
+          610
+        ],
+        [
+          480,
+          610
+        ],
+        [
+          480,
+          678
+        ]
+      ]
+    },
+    {
+      "id": "ibs-to-core",
+      "from": "ibs",
+      "to": "core",
+      "label": "哈希 / 随机数",
+      "fromSide": "bottom",
+      "toSide": "right",
+      "via": [
+        [
+          1190,
+          610
+        ],
+        [
+          890,
+          610
+        ],
+        [
+          890,
+          678
+        ]
+      ]
+    },
+    {
+      "id": "lattice-to-core",
+      "from": "lattice",
+      "to": "core",
+      "label": "errors 校验",
+      "labelAt": [
+        685,
+        605
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "分层契约",
+      "items": [
+        "上层只依赖下层冻结接口",
+        "协议层不读 HIBE/IBS 内部矩阵"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "密码原语",
+      "items": [
+        "ABB10 两层匿名 HIBE + SIS-IBS",
+        "mock 后端仅用于测试"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "安全口径",
+      "items": [
+        "教学参数（security_claim: none）",
+        "功能测试不替代安全证明",
+        "M4 增强隐私未实现"
+      ]
+    }
+  ]
+}
