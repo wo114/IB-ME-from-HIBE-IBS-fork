@@ -11,7 +11,9 @@ AGENTS.md §5 与 IMPLEMENTATION_SPEC.md §6 的协议测试表。覆盖：
   往返 + 畸形拒绝；
 * 固定 rng 全流程逐字节可复现；
 * SenderKey 身份绑定、密文不含身份明文、输入校验、BOTTOM 哨兵性质；
-* CLI 端到端（真实后端小消息 + mismatch→BOTTOM + 篡改→BOTTOM）。
+* CLI 端到端（真实后端小消息 + mismatch→BOTTOM + 篡改→BOTTOM）；
+* CLI 非 ASCII 身份（SPEC §1：CLI 接受 UTF-8，进算法前转字节）、
+  SHA-256 摘要派生的密钥文件名、state 元数据与超长身份参数错误。
 
 说明（与 M2 HIBE 契约测试一致的诚实口径）：ABB10 是 Regev 比特加密，
 对 c1 低阶字节的微小篡改落在解码容限内，可能解出**原**消息——这是
@@ -25,6 +27,8 @@ magic、c2 区）则严格断言 BOTTOM。
 
 from __future__ import annotations
 
+import hashlib
+import json
 import pickle
 import types
 
@@ -689,15 +693,146 @@ class TestCLIMockBackends:
         assert rc != 0
         assert "BOTTOM" in capsys.readouterr().out
 
+    def test_non_ascii_mock_flow(self, tmp_path):
+        """mock 路径同样接受 UTF-8 身份（mock state 的 identity_bytes=8：甲/乙各 3B）。"""
+        state = tmp_path / "state"
+        message = "甲的明文".encode("utf-8")
+        msg_file = tmp_path / "message.bin"
+        msg_file.write_bytes(message)
+        _run_cli(["setup", "--params", "education", "--state", str(state), "--mock"])
+        _run_cli(["issue-sender-key", "甲", "--state", str(state), "--mock"])
+        _run_cli(["issue-receiver-key", "乙", "--state", str(state), "--mock"])
+        ct_file = tmp_path / "ct.bin"
+        assert (
+            _run_cli(
+                ["encrypt", "--sender", "甲", "--receiver", "乙",
+                 "--state", str(state), "--in", str(msg_file), "--out", str(ct_file), "--mock"]
+            )
+            == 0
+        )
+        out_file = tmp_path / "recovered.bin"
+        assert (
+            _run_cli(
+                ["decrypt", "--receiver", "乙", "--sender", "甲",
+                 "--state", str(state), "--in", str(ct_file), "--out", str(out_file), "--mock"]
+            )
+            == 0
+        )
+        assert out_file.read_bytes() == message
+
 
 def test_cli_usage_errors(tmp_path, capsys):
     # 未知参数预设
     assert _run_cli(["setup", "--params", "nosuch", "--state", str(tmp_path)]) == 2
-    # 非法身份名（路径分隔符）
     state = tmp_path / "s2"
     assert _run_cli(["setup", "--params", "education", "--state", str(state)]) == 0
-    assert _run_cli(["issue-sender-key", "../evil", "--state", str(state)]) == 2
-    # 状态目录缺失时签发密钥
+    # 空身份与含控制字符（换行）的身份被拒绝
+    assert _run_cli(["issue-sender-key", "", "--state", str(state)]) == 2
+    assert _run_cli(["issue-sender-key", "bad\nname", "--state", str(state)]) == 2
+    assert "printable" in capsys.readouterr().err
+    # 状态目录缺失时签发密钥（无 state.json / msk）
     assert (
         _run_cli(["issue-sender-key", "Alice", "--state", str(tmp_path / "missing")]) == 2
     )
+    # 旧版 state 目录（无 state.json）被拒绝并提示重跑 setup
+    legacy = tmp_path / "legacy"
+    legacy.mkdir()
+    assert _run_cli(["issue-sender-key", "Alice", "--state", str(legacy)]) == 2
+    assert "setup" in capsys.readouterr().err
+
+
+def test_cli_setup_writes_state_meta_and_digest_filenames(tmp_path):
+    """state 元数据记录 identity_bytes；密钥文件名摘要派生、不含身份原文。"""
+    state = tmp_path / "state"
+    assert _run_cli(["setup", "--params", "education", "--state", str(state)]) == 0
+    meta = json.loads((state / "state.json").read_text(encoding="utf-8"))
+    assert meta["version"] == 1
+    assert meta["identity_bytes"] == BASELINE_DEBUG_PARAMS.identity_bytes == 16
+    # 路径穿越式身份现在合法（文件名不再内嵌身份原文，只含摘要）
+    assert _run_cli(["issue-sender-key", "../evil", "--state", str(state)]) == 0
+    digest = hashlib.sha256(b"../evil").hexdigest()[:16]
+    assert (state / f"sender-{digest}.bin").is_file()
+    for name in (p.name for p in state.iterdir()):
+        assert "evil" not in name and ".." not in name
+
+
+class TestCLIUtf8Identities:
+    """非 ASCII 身份（SPEC §1：CLI 接受 UTF-8 字符串，进算法前转字节串）。
+
+    education 真实预设的 identity_bytes=16（身份最大字节长度，SPEC §2）：
+    ``小明的钥匙``=15B、``米娅🔒``=10B、``卡罗尔``=9B 均合法。
+    """
+
+    SENDER = "小明的钥匙"  # 15 UTF-8 bytes
+    RECEIVER = "米娅🔒"  # 10 UTF-8 bytes
+
+    def test_non_ascii_end_to_end(self, tmp_path, capsys):
+        state = tmp_path / "state"
+        message = "中文消息🔐".encode("utf-8")
+        msg_file = tmp_path / "message.bin"
+        msg_file.write_bytes(message)
+        assert _run_cli(["setup", "--params", "education", "--state", str(state)]) == 0
+        assert _run_cli(["issue-sender-key", self.SENDER, "--state", str(state)]) == 0
+        assert _run_cli(["issue-receiver-key", self.RECEIVER, "--state", str(state)]) == 0
+        # 签发输出同时打印身份与其摘要的对应关系
+        captured = capsys.readouterr().out
+        digest = hashlib.sha256(self.SENDER.encode("utf-8")).hexdigest()[:16]
+        assert digest in captured and self.SENDER in captured
+        # 密钥文件名是摘要派生的，不内嵌身份原文
+        assert (state / f"sender-{digest}.bin").is_file()
+        ct_file = tmp_path / "ct.bin"
+        assert (
+            _run_cli(
+                ["encrypt", "--sender", self.SENDER, "--receiver", self.RECEIVER,
+                 "--state", str(state), "--in", str(msg_file), "--out", str(ct_file)]
+            )
+            == 0
+        )
+        out_file = tmp_path / "recovered.bin"
+        assert (
+            _run_cli(
+                ["decrypt", "--receiver", self.RECEIVER, "--sender", self.SENDER,
+                 "--state", str(state), "--in", str(ct_file), "--out", str(out_file)]
+            )
+            == 0
+        )
+        assert out_file.read_bytes() == message
+
+    def test_wrong_non_ascii_sender_bottom(self, tmp_path, capsys):
+        state = tmp_path / "state"
+        msg_file = tmp_path / "message.bin"
+        msg_file.write_bytes("错配检查".encode("utf-8"))
+        _run_cli(["setup", "--params", "education", "--state", str(state)])
+        _run_cli(["issue-sender-key", self.SENDER, "--state", str(state)])
+        _run_cli(["issue-receiver-key", self.RECEIVER, "--state", str(state)])
+        ct_file = tmp_path / "ct.bin"
+        _run_cli(
+            ["encrypt", "--sender", self.SENDER, "--receiver", self.RECEIVER,
+             "--state", str(state), "--in", str(msg_file), "--out", str(ct_file)]
+        )
+        capsys.readouterr()
+        rc = _run_cli(
+            ["decrypt", "--receiver", self.RECEIVER, "--sender", "卡罗尔",
+             "--state", str(state), "--in", str(ct_file)]
+        )
+        assert rc != 0
+        assert "BOTTOM" in capsys.readouterr().out
+
+    def test_overlong_identity_is_parameter_error(self, tmp_path, capsys):
+        # education 真实预设 identity_bytes=16：超长身份必须是参数错误（退出码 2），不是崩溃
+        state = tmp_path / "state"
+        _run_cli(["setup", "--params", "education", "--state", str(state)])
+        overlong = "a" * (BASELINE_DEBUG_PARAMS.identity_bytes + 1)
+        assert _run_cli(["issue-sender-key", overlong, "--state", str(state)]) == 2
+        assert _run_cli(["issue-receiver-key", overlong, "--state", str(state)]) == 2
+        msg_file = tmp_path / "m.bin"
+        msg_file.write_bytes(b"m")
+        # encrypt 侧同样拒绝（receiver 超长；校验先于任何密钥文件读取）
+        assert (
+            _run_cli(
+                ["encrypt", "--sender", "Alice", "--receiver", overlong,
+                 "--state", str(state), "--in", str(msg_file)]
+            )
+            == 2
+        )
+        assert "identity_bytes" in capsys.readouterr().err
