@@ -36,6 +36,8 @@ class Params:
 
 代码中不要用 `m` 同时表示消息和矩阵列数；矩阵列数统一叫 `m_matrix`，消息统一叫 `message`。
 
+`identity_bytes` 的语义（主 AI 冻结，2026-09 M3 审查后）：**身份的最大字节长度**（上限，不是固定长度）。HIBE 后端的所有身份入口（extract/derive/encrypt/decrypt 中的身份参数）必须以 `validate_identity(..., max_bytes=params.identity_bytes)` 强制执行；协议组合中每个身份都会流经 HIBE 层，因此该上限覆盖整个 IB-ME 路径。IBS 原语单独调用时依赖调用方先经过 HIBE 层规范化（在 IBS 模块文档中注明）。
+
 参数文件必须记录：来源论文、是否仅用于调试、预期安全级别、已知限制。没有完成安全估计的参数必须标注 `security_claim: none`。
 
 ## 3. 格基基础模块

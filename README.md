@@ -35,10 +35,22 @@ Core 编码/哈希/类型
     -> Enhanced privacy（可选）
 ```
 
-第一版建议使用 Python + SageMath；需要 Sage 的代码在 WSL 中使用：
+第一版使用 Python + SageMath；需要 Sage 的代码在 WSL 中使用：
 
 ```text
 /home/youzi/miniconda3/envs/sage
 ```
 
-当前目录只包含论文和设计文档，尚未包含方案实现代码。实现 AI 开始前，应先按规范建立 `src/ibme/`、`tests/` 和 `experiments/` 目录。
+## 当前进度与安全口径（2026-09 更新）
+
+M1（core/格工具）、M2（HIBE/IBS 原语）、M3（基线 IB-ME 组合 + CLI + 基准）已合并并通过功能测试：`python -m pytest -q`。目录 `src/ibme/`（core/lattice/hibe/ibs/protocol/cli）与 `experiments/`、`params/` 已包含实现代码。
+
+**当前状态是功能参考原型，不是可宣称安全级别的密码方案实现**，具体限制：
+
+- TrapGen/SamplePre 为简化采样链（无 MP12 扰动采样），未达证明级分布；
+- HIBE 身份矩阵与 IBS 的 H1/H2 是 SHAKE-256 的 ROM 风格工程哈希，HIBE 哈希未绑定 mpk，非标准模型构造；
+- 所有参数集均为极小教学参数（`security_claim: none`），未做任何 LWE/SIS 格安全估计；
+- Boyen–Li 增强隐私版（Ext/ReExt，M4）尚未实现，基线版只对应指导论文第三章的原始隐私与强可认证性口径；
+- 功能测试与基准不替代任何安全性证明。
+
+后续里程碑：M4 增强隐私版（须记录 ROM 假设与身份熵条件）、全面审计（任务 G）。

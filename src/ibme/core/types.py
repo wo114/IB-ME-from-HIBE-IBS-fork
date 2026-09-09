@@ -45,15 +45,33 @@ def validate_bytes(value: object, *, name: str = "value") -> bytes:
     return bytes(value)
 
 
-def validate_identity(value: object, *, name: str = "identity") -> Identity:
+def validate_identity(
+    value: object, *, name: str = "identity", max_bytes: int | None = None
+) -> Identity:
     """Validate and normalise an identity (non-empty byte string).
 
     Raises :class:`~ibme.core.errors.EncodingError` if ``value`` is not a
-    bytes-like object or is empty.
+    bytes-like object or is empty.  ``max_bytes`` (optional, main-AI frozen
+    M3 review extension) enforces ``Params.identity_bytes`` as the *maximum*
+    identity length: identities longer than ``max_bytes`` bytes are rejected.
+    ``max_bytes=None`` keeps the historical behaviour (non-empty check only);
+    callers that hold a ``Params`` object should pass its ``identity_bytes``.
     """
     ident = validate_bytes(value, name=name)
     if not ident:
         raise EncodingError(f"{name} must be non-empty bytes")
+    if max_bytes is not None:
+        if not isinstance(max_bytes, int) or isinstance(max_bytes, bool):
+            raise EncodingError(
+                f"max_bytes must be an int, got {type(max_bytes).__name__}"
+            )
+        if max_bytes < 1:
+            raise EncodingError(f"max_bytes must be >= 1, got {max_bytes}")
+        if len(ident) > max_bytes:
+            raise EncodingError(
+                f"{name} of {len(ident)} bytes exceeds max_bytes={max_bytes} "
+                "(Params.identity_bytes)"
+            )
     return ident
 
 

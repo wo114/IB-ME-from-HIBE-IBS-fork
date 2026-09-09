@@ -529,3 +529,24 @@ def test_identity_alias_is_bytes():
     value: Identity = validate_identity(b"trivial")
     assert isinstance(value, bytes)
     assert value == b"trivial"
+
+
+# ---------------------------------------------------------------------------
+# validate_identity max_bytes (main-AI frozen extension, M3 review)
+# ---------------------------------------------------------------------------
+
+class TestValidateIdentityMaxBytes:
+    def test_accepts_up_to_limit(self):
+        assert validate_identity(b"A" * 8, max_bytes=8) == b"A" * 8
+
+    def test_rejects_over_limit(self):
+        with pytest.raises(EncodingError, match="max_bytes=8"):
+            validate_identity(b"A" * 9, max_bytes=8)
+
+    def test_none_keeps_historical_behaviour(self):
+        assert validate_identity(b"x" * 100, max_bytes=None) == b"x" * 100
+
+    def test_rejects_bad_limit(self):
+        for bad in (0, -1, True, "8"):
+            with pytest.raises(EncodingError):
+                validate_identity(b"abc", max_bytes=bad)
