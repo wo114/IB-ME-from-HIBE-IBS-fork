@@ -967,3 +967,12 @@ class SisIBSBackend:
         except EncodingError:
             return False
         return f_id.matvec(ModVector(list(signature.z), pk.q)) == h2
+
+    def load_signature(self, pk, data: bytes) -> "SisSignature":
+        """从规范字节串重建 SisSignature（严格解析；主 AI 冻结的接口）。"""
+        pk = _require_sis_pk(pk)
+        if not isinstance(data, (bytes, bytearray, memoryview)):
+            raise SerializationError(
+                f"signature bytes expected, got {type(data).__name__}"
+            )
+        return SisSignature.from_bytes(bytes(data), pk)

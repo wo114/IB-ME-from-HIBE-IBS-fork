@@ -881,3 +881,11 @@ class ABB10HIBE:
             return payload
         except IBMEError:
             return None
+
+    def load_ciphertext(self, data: bytes) -> "ABB10Ciphertext":
+        """从规范字节串重建 ABB10Ciphertext（严格解析；主 AI 冻结的接口）。"""
+        if not isinstance(data, (bytes, bytearray, memoryview)):
+            raise SerializationError(
+                f"ciphertext bytes expected, got {type(data).__name__}"
+            )
+        return ABB10Ciphertext.from_bytes(bytes(data))

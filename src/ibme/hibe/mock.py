@@ -308,3 +308,11 @@ class MockHIBE:
         if not constant_time_equal(tag, ct.tag):
             return None
         return payload
+
+    def load_ciphertext(self, data: bytes) -> "MockHIBECiphertext":
+        """从规范字节串重建 MockHIBECiphertext（严格解析；主 AI 冻结的接口）。"""
+        if not isinstance(data, (bytes, bytearray, memoryview)):
+            raise SerializationError(
+                f"ciphertext bytes expected, got {type(data).__name__}"
+            )
+        return MockHIBECiphertext.from_bytes(bytes(data))

@@ -324,3 +324,15 @@ class MockIBSBackend:
             _SIG_DOMAIN, k_id + encode_bytes(ident) + encode_bytes(msg), _KEY_LEN
         )
         return constant_time_equal(expected, signature.tag)
+
+    def load_signature(self, pk, data: bytes) -> "MockSignature":
+        """从规范字节串重建 MockSignature（严格解析；主 AI 冻结的接口）。"""
+        if not isinstance(pk, MockPublicKey):
+            raise InvalidParameterError(
+                f"pk must be a MockPublicKey, got {type(pk).__name__}"
+            )
+        if not isinstance(data, (bytes, bytearray, memoryview)):
+            raise SerializationError(
+                f"signature bytes expected, got {type(data).__name__}"
+            )
+        return MockSignature.from_bytes(bytes(data))

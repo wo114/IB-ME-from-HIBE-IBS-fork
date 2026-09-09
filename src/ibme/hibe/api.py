@@ -140,3 +140,11 @@ class HIBEBackend(Protocol):
     ) -> bytes | None:
         """解密；任何失败返回 ``None``（BOTTOM），绝不返回部分结果。"""
         ...
+
+    def load_ciphertext(self, data: bytes) -> HIBECiphertext:
+        """从规范字节串重建本后端的密文对象（严格解析，拒绝畸形输入）。
+
+        主 AI 冻结（M3 前接口扩展）：协议层与 CLI 统一经由此方法重建
+        密文，不直接依赖各后端的具体密文类。
+        """
+        ...

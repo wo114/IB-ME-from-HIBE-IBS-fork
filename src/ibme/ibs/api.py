@@ -99,6 +99,16 @@ class IBSBackend(Protocol):
         signature: "IBSSignature",
     ) -> bool: ...
 
+    def load_signature(
+        self, pk: "IBSPublicKey", data: bytes
+    ) -> "IBSSignature":
+        """从规范字节串重建本后端的签名对象（严格解析，拒绝畸形输入）。
+
+        主 AI 冻结（M3 前接口扩展）：协议层与 CLI 统一经由此方法重建
+        签名，不直接依赖各后端的具体签名类（部分后端反序列化需要 pk）。
+        """
+        ...
+
 
 # ---------------------------------------------------------------------------
 # 对象基类
