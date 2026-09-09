@@ -747,7 +747,9 @@ def test_cli_setup_writes_state_meta_and_digest_filenames(tmp_path):
     assert _run_cli(["setup", "--params", "education", "--state", str(state)]) == 0
     meta = json.loads((state / "state.json").read_text(encoding="utf-8"))
     assert meta["version"] == 1
-    assert meta["identity_bytes"] == BASELINE_DEBUG_PARAMS.identity_bytes == 16
+    # identity_bytes 上限在 P0 整改后由 16 放宽到 32（容纳基准/CLI 身份），
+    # 断言只钉死 "state 元数据与预设一致"，不再硬编码具体数值。
+    assert meta["identity_bytes"] == BASELINE_DEBUG_PARAMS.identity_bytes == 32
     # 路径穿越式身份现在合法（文件名不再内嵌身份原文，只含摘要）
     assert _run_cli(["issue-sender-key", "../evil", "--state", str(state)]) == 0
     digest = hashlib.sha256(b"../evil").hexdigest()[:16]
@@ -759,7 +761,7 @@ def test_cli_setup_writes_state_meta_and_digest_filenames(tmp_path):
 class TestCLIUtf8Identities:
     """非 ASCII 身份（SPEC §1：CLI 接受 UTF-8 字符串，进算法前转字节串）。
 
-    education 真实预设的 identity_bytes=16（身份最大字节长度，SPEC §2）：
+    education 真实预设的 identity_bytes=32（身份最大字节长度，SPEC §2）：
     ``小明的钥匙``=15B、``米娅🔒``=10B、``卡罗尔``=9B 均合法。
     """
 
