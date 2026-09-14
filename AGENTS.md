@@ -88,11 +88,13 @@ git commit -m "<type>(<scope>): <简短说明>"
 7. 未实现 `Ext`、`ReExt` 和相应身份熵条件时，不得宣称 Boyen–Li 增强隐私。
 8. 未完成参数估计和安全证明映射时，不得宣称 NIST 安全等级或标准模型安全。
 
-如果需要 SageMath，必须在 WSL 的以下环境中运行：
+如果需要 SageMath，必须在 WSL 的以下 conda 环境中运行：
 
 ```text
-/home/zhang/miniconda3/envs/sage
+~/miniconda3/envs/sage
 ```
+
+该环境的绝对路径随机器（WSL 用户名）不同，因此文档与脚本一律使用 `~` 相对写法，不得把某一台机器的绝对路径写死——本仓库在队员之间以文件夹形式传递，写死的路径换一台机器就是错的。
 
 ## 5. 测试要求
 

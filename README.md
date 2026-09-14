@@ -38,8 +38,10 @@ Core 编码/哈希/类型
 第一版使用 Python + SageMath；需要 Sage 的代码在 WSL 中使用：
 
 ```text
-/home/zhang/miniconda3/envs/sage
+~/miniconda3/envs/sage
 ```
+
+（绝对路径随各自机器的 WSL 用户名不同，统一用 `~` 写法。）
 
 ## 当前进度与安全口径（2026-09 更新）
 
