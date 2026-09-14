@@ -100,7 +100,7 @@ ibme/
     competition.yaml
 ```
 
-第一版使用 Python + SageMath。需要 Sage 的代码在 WSL 中使用环境 `/home/youzi/miniconda3/envs/sage` 运行。性能优化可另建 C++/Rust 后端，但不能改变 Python 参考实现的协议接口。
+第一版使用 Python + SageMath。需要 Sage 的代码在 WSL 中使用环境 `/home/zhang/miniconda3/envs/sage` 运行。性能优化可另建 C++/Rust 后端，但不能改变 Python 参考实现的协议接口。
 
 ## 4. 原语接口
 

@@ -38,7 +38,7 @@ Core 编码/哈希/类型
 第一版使用 Python + SageMath；需要 Sage 的代码在 WSL 中使用：
 
 ```text
-/home/youzi/miniconda3/envs/sage
+/home/zhang/miniconda3/envs/sage
 ```
 
 ## 当前进度与安全口径（2026-09 更新）

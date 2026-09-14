@@ -109,7 +109,7 @@ $$
 \lVert z\rVert\leq s'\sqrt{m+n\lceil\log q\rceil}.
 $$
 
-这里的实现重点不是把高斯采样写成普通均匀随机数，而是保持 `TrapGen`、`DelTrap`、`SamplePre` 的离散高斯分布和范数界。可先用 Sage/Python 做正确性原型，再把采样和矩阵乘法移到 C++/Rust；WSL 中按项目要求使用 `/home/youzi/miniconda3/envs/sage` 环境运行 SageMath。
+这里的实现重点不是把高斯采样写成普通均匀随机数，而是保持 `TrapGen`、`DelTrap`、`SamplePre` 的离散高斯分布和范数界。可先用 Sage/Python 做正确性原型，再把采样和矩阵乘法移到 C++/Rust；WSL 中按项目要求使用 `/home/zhang/miniconda3/envs/sage` 环境运行 SageMath。
 
 ### 4.4 格基两层 HIBE 实例
 

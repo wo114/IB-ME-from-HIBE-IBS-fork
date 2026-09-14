@@ -161,7 +161,7 @@ $$
 - Windows 11，AMD64；
 - 纯 Python 参考实现；
 - 测试随机性使用 `DeterministicRandom`，生产路径默认使用系统 CSPRNG；
-- 如需运行 SageMath，按项目规则使用 WSL 环境 `/home/youzi/miniconda3/envs/sage`。
+- 如需运行 SageMath，按项目规则使用 WSL 环境 `/home/zhang/miniconda3/envs/sage`。
 
 ### 5.2 全量结果
 

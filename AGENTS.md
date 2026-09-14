@@ -91,7 +91,7 @@ git commit -m "<type>(<scope>): <简短说明>"
 如果需要 SageMath，必须在 WSL 的以下环境中运行：
 
 ```text
-/home/youzi/miniconda3/envs/sage
+/home/zhang/miniconda3/envs/sage
 ```
 
 ## 5. 测试要求
