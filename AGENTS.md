@@ -72,7 +72,7 @@ git bundle create ibme.bundle --all
 把生成的 `ibme.bundle` 发给对方，对方执行：
 
 ```text
-git pull /路径/ibme.bundle master
+git pull /路径/ibme.bundle main
 ```
 
 理由：
