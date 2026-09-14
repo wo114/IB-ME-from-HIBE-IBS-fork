@@ -18,3 +18,23 @@ build/
 .env
 .env.*
 !.env.example
+
+# CLI 演示与手动实验产物
+#
+# docs/COMPETITION_DEMO_AND_DEFENSE.md 与 IMPLEMENTATION_SPEC.md §7 的演示
+# 命令都在仓库根目录产出文件。这些产物此前全部未被忽略，后果有两条：
+#   1. state 目录里的 msk.bin 是 IB-ME 主私钥，会随仓库/文件夹一起外传；
+#   2. 真实后端一个密文约 4.7MB，演示一次就脏一次工作树——而 AGENTS.md
+#      的演示前检查清单第一条恰恰要求 `git status --short` 为空。
+*-state/
+*.ibme-ct
+demo-*.bin
+real-*.bin
+message.bin
+ciphertext.bin
+tampered*.bin
+recovered*.bin
+.pytest-tmp-*/
+
+# git bundle 交换文件（见 AGENTS.md 的队员交换流程）
+*.bundle
