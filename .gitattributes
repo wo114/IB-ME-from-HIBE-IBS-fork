@@ -1,0 +1,21 @@
+# 统一换行策略
+#
+# 本仓库以文件夹形式在队员之间传递，各人机器的 core.autocrlf 若不一致，
+# 同一份文件会在两边产生整文件级的假 diff（提交前工作树实测是 29 CRLF /
+# 22 LF / 2 mixed 的混合态）。这里把策略固定在仓库里，不依赖任何人的
+# 本地 git 配置。
+#
+# 索引中一律 LF；检出时也写 LF（而不是转成平台原生的 CRLF），因为项目
+# 同时在 Windows、Git Bash 和 WSL 下运行，LF 对三者都安全（将来加 .sh
+# 脚本时 CRLF 会直接让 bash 报错）。
+* text=auto eol=lf
+
+# 二进制文件：禁止任何换行转换与文本化 diff
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.pdf    binary
+*.pptx   binary
+*.bin    binary
+*.bundle binary
+*.pyc    binary
