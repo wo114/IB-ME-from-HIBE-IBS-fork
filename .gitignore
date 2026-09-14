@@ -38,3 +38,7 @@ recovered*.bin
 
 # git bundle 交换文件（见 AGENTS.md 的队员交换流程）
 *.bundle
+
+# 攻击复现脚本的中间产物（experiments/attacks/）
+isis_case.json
+isis_forged_z.json
