@@ -1,0 +1,134 @@
+{
+  "review_date": "2026-10-03",
+  "source_commit": "b15afd675b1c53029d9b8f8909569ccc7b060fa8",
+  "git_before_remote_sync": "9e5d086",
+  "remote": "https://github.com/youzi258/IB-ME-from-HIBE-IBS.git",
+  "remote_update_commits": [
+    "6ebeb1a",
+    "099364d",
+    "b15afd6"
+  ],
+  "remote_sync": "fast-forward; no cryptographic source changes",
+  "task_pdf_sha256": "3676D2F9CC76C070B38F03B29378971AE99B0BFA70B7AC01AD585D3EFC13302E",
+  "task_pdf_pages": 2,
+  "environment": {
+    "os": "Windows 11",
+    "python": "3.14.6",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "logical_processors": 24,
+    "physical_memory_bytes": 33778278400,
+    "sage_environment": "~/miniconda3/envs/sage (WSL)",
+    "sage_available_version": "10.9",
+    "sage_used_for_new_math_experiments": false
+  },
+  "parameters": {
+    "hibe": {
+      "n": 8,
+      "m": 168,
+      "q": 524288,
+      "gadget_bits": 19,
+      "gadget_columns": 152,
+      "s0": 3.0,
+      "s": 1.0,
+      "s_prime": 1.0,
+      "identity_bytes": 32,
+      "payload_limit_bytes": 400
+    },
+    "ibs": {
+      "n": 8,
+      "m": 80,
+      "q": 257,
+      "gadget_bits": 9,
+      "gadget_columns": 72,
+      "s0": 4.0,
+      "s": 10.0,
+      "s_prime": 64.0,
+      "configured_identity_bytes": 8,
+      "configured_message_bytes": 32,
+      "signature_dimension": 152
+    },
+    "security_claim": "none; teaching parameters; no new security estimate",
+    "model": "domain-separated SHAKE instantiation in ROM style; no complete ROM/QROM proof verified"
+  },
+  "full_suite": {
+    "command": "$env:PYTHONPATH = \"src\"; python -m pytest -q",
+    "exit_code": 0,
+    "passed": 333,
+    "skipped": 10,
+    "elapsed_seconds": 537.92,
+    "note": "Some audit work ran concurrently; duration is not a clean performance benchmark. Input sizes vary by test."
+  },
+  "public_parameter_forgery": {
+    "command": "python experiments/attacks/forge_ibs.py",
+    "exit_code": 0,
+    "primitive_repetitions": 1,
+    "protocol_repetitions": 1,
+    "primitive_identity": "Alice",
+    "primitive_identity_bytes": 5,
+    "primitive_message": "forged: never signed by Alice",
+    "primitive_message_bytes": 29,
+    "primitive_test_seed": "forge-demo",
+    "forged_norm_rounded": 185.81,
+    "acceptance_bound_rounded": 789.04,
+    "verify": true,
+    "sender_key_extracted_for_attack": false,
+    "protocol_message": "AUTHORIZED BY ALICE: release the funds",
+    "protocol_message_bytes": 38,
+    "protocol_sender_identity_bytes": 5,
+    "protocol_receiver_identity_bytes": 3,
+    "protocol_fixed_test_seeds": [
+      "e2e-ibs",
+      "e2e-setup",
+      "e2e-rk",
+      "e2e-enc",
+      "e2e-dec"
+    ],
+    "protocol_message_accepted": true,
+    "scope": "Attack on repository teaching implementation, not a break of the paper with valid parameters."
+  },
+  "ciphertext_tamper": {
+    "source_commit": "b15afd675b1c53029d9b8f8909569ccc7b060fa8",
+    "message_bytes": 1,
+    "sender_identity_bytes": 5,
+    "receiver_identity_bytes": 3,
+    "repetitions": 1,
+    "seed": "review-2026-10-03",
+    "ciphertext_bytes": 4109477,
+    "mutation": "last c1 coefficient + 1 modulo q; same decoding RNG",
+    "original_coefficient": 7276,
+    "changed_coefficient": 7277,
+    "different_ciphertext_bytes": 1,
+    "original_matches": true,
+    "tampered_matches": true,
+    "tampered_bottom": false,
+    "security_claim": "none"
+  },
+  "historical_benchmark": {
+    "source": "experiments/results/baseline-benchmark.json",
+    "generated_utc": "2026-09-09T11:57:54.279555+00:00",
+    "rerun_this_review": false,
+    "sender_identity_bytes": 15,
+    "receiver_identity_bytes": 17,
+    "message_bytes": 32,
+    "deterministic_experiment_randomness": true
+  },
+  "downloaded_source_sha256": {
+    "S1_Wang_2022_1718": "fa3a97cfe2db59f2f8208d45b76f3c14d289774cb4075e7946dd5051ae84c597",
+    "S4_ABB10_CRYPTO": "f12232770a19c612e5f430f94a556d74232ac08d9882e34367b60b3bbf205d11",
+    "S7_Chiku_2023_1435_revision_2026_07_06": "49a31c6b7cb7ac6df0d9fe965f19ebbd2580ff7a91580af292430cdb159abe6c",
+    "S13_Foo_Li_ACISP_2023": "845855b9b39fdcbbe61831d9d1c431dc8d898b5a6244863ff87b23171b1e45b8",
+    "S14_Sageloli_2023_489": "6b73e0a102b8c9393b31077aefae6dd1543f15d3f95d9dd6a60770c91dbdd7fc",
+    "S16_Tomita_Shikata_2024_1765_revision_2026_04_22": "4fb33baf2607a432b427751ffc8a58ff3270683f34e82ab20dc2eb714827531b"
+  },
+  "not_completed_this_review": [
+    "cryptographic code remediation",
+    "production/security parameters",
+    "new lattice-estimator runs",
+    "enhanced privacy implementation",
+    "CCA transformation",
+    "ring/module backends",
+    "historical full benchmark rerun",
+    "historical LLL attack rerun"
+  ],
+  "security_statement": "Tests do not replace security proofs. No security level is claimed."
+}
