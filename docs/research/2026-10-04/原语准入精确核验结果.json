@@ -1,0 +1,287 @@
+{
+  "schema_version": 1,
+  "security_claim": "none",
+  "method": "exact finite enumeration and modular/integer arithmetic",
+  "monte_carlo_repetitions": 0,
+  "scope": "proof-transcript consistency and algebra examples; no forgery attack",
+  "foo_li_fig9_branch_checks": {
+    "two_messages_same_identity": {
+      "queries": [
+        [
+          "id-A",
+          "m-0"
+        ],
+        [
+          "id-A",
+          "m-1"
+        ]
+      ],
+      "G2_fixed_identity_distribution": {
+        "00": "1/2",
+        "11": "1/2"
+      },
+      "G3_per_message_distribution": {
+        "00": "1/4",
+        "01": "1/4",
+        "10": "1/4",
+        "11": "1/4"
+      },
+      "G2_all_bits_equal_probability": "1",
+      "G3_all_bits_equal_probability": "1/2",
+      "bit_transcript_total_variation": "1/2"
+    },
+    "three_messages_same_identity": {
+      "queries": [
+        [
+          "id-A",
+          "m-0"
+        ],
+        [
+          "id-A",
+          "m-1"
+        ],
+        [
+          "id-A",
+          "m-2"
+        ]
+      ],
+      "G2_fixed_identity_distribution": {
+        "000": "1/2",
+        "111": "1/2"
+      },
+      "G3_per_message_distribution": {
+        "000": "1/8",
+        "001": "1/8",
+        "010": "1/8",
+        "011": "1/8",
+        "100": "1/8",
+        "101": "1/8",
+        "110": "1/8",
+        "111": "1/8"
+      },
+      "G2_all_bits_equal_probability": "1",
+      "G3_all_bits_equal_probability": "1/4",
+      "bit_transcript_total_variation": "3/4"
+    },
+    "repeated_same_message_control": {
+      "queries": [
+        [
+          "id-A",
+          "m-0"
+        ],
+        [
+          "id-A",
+          "m-0"
+        ]
+      ],
+      "G2_fixed_identity_distribution": {
+        "00": "1/2",
+        "11": "1/2"
+      },
+      "G3_per_message_distribution": {
+        "00": "1/2",
+        "11": "1/2"
+      },
+      "G2_all_bits_equal_probability": "1",
+      "G3_all_bits_equal_probability": "1",
+      "bit_transcript_total_variation": "0"
+    },
+    "different_identities_control": {
+      "queries": [
+        [
+          "id-A",
+          "m-0"
+        ],
+        [
+          "id-B",
+          "m-0"
+        ]
+      ],
+      "G2_fixed_identity_distribution": {
+        "00": "1/4",
+        "01": "1/4",
+        "10": "1/4",
+        "11": "1/4"
+      },
+      "G3_per_message_distribution": {
+        "00": "1/4",
+        "01": "1/4",
+        "10": "1/4",
+        "11": "1/4"
+      },
+      "G2_all_bits_equal_probability": "1/2",
+      "G3_all_bits_equal_probability": "1/2",
+      "bit_transcript_total_variation": "0"
+    }
+  },
+  "algebra_checks": {
+    "abb10_prefix_order": {
+      "q": 7,
+      "A": [
+        [
+          1,
+          2
+        ]
+      ],
+      "H1": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "H2": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "sequential_A_H1inv_H2inv": [
+        [
+          0,
+          1
+        ]
+      ],
+      "A_inverse_H2H1": [
+        [
+          0,
+          1
+        ]
+      ],
+      "A_inverse_H1H2": [
+        [
+          6,
+          3
+        ]
+      ],
+      "correct_order_agrees": true,
+      "reversed_order_differs": true
+    },
+    "abb10_full_basis": {
+      "q": 7,
+      "A": [
+        [
+          1,
+          0
+        ]
+      ],
+      "T_A": [
+        [
+          7,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "R": [
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "B": [
+        [
+          4,
+          0
+        ]
+      ],
+      "R_T_A": [
+        [
+          14,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "B_R_T_A_mod_q": [
+        [
+          0,
+          0
+        ]
+      ],
+      "target_determinant": 7,
+      "transformed_determinant": 14,
+      "sublattice_index": 2,
+      "missed_kernel_vector": [
+        [
+          7
+        ],
+        [
+          0
+        ]
+      ],
+      "B_missed_vector_mod_q": [
+        [
+          0
+        ]
+      ],
+      "first_basis_coefficient_required": "1/2"
+    },
+    "foo_li_mp12_sign_convention": {
+      "q": 7,
+      "A": [
+        [
+          1,
+          2
+        ]
+      ],
+      "R_plus": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "G": [
+        [
+          1,
+          2
+        ]
+      ],
+      "A_id_b": [
+        [
+          6,
+          4
+        ]
+      ],
+      "F": [
+        [
+          1,
+          2,
+          6,
+          4
+        ]
+      ],
+      "F_negative_stack_mod_q": [
+        [
+          1,
+          2
+        ]
+      ],
+      "F_positive_stack_mod_q": [
+        [
+          4,
+          6
+        ]
+      ]
+    }
+  }
+}

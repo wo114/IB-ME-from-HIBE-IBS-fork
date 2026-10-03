@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-04",
+  "repository": "https://github.com/youzi258/IB-ME-from-HIBE-IBS",
+  "working_branch": "main",
+  "starting_commit": "62184882fe77705c79d71a348f53e8c87f1904a4",
+  "cryptographic_code_baseline": "b15afd675b1c53029d9b8f8909569ccc7b060fa8",
+  "remote_at_start": "fetch succeeded; main/origin/main ahead=0 behind=0",
+  "scope": {
+    "generic_construction": "Wang two-level anonymous HIBE plus adaptively secure IBS; unchanged",
+    "excluded": "Boyen-Li enhanced privacy",
+    "cryptographic_code_changed": false,
+    "new_production_parameters": false,
+    "new_cryptographic_benchmark": false,
+    "new_security_estimate": false,
+    "new_production_keys": false,
+    "task_boundary": "ABB10 algorithm/parameter specification and Foo-Li implementation/proof admission review"
+  },
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "physical_cores": 24,
+    "logical_processors": 24,
+    "physical_memory_bytes": 33778278400,
+    "pdf_and_first_audit_python": "3.12.14",
+    "test_python": "3.14.6",
+    "pdf_reader": "pypdf, layout extraction",
+    "pdf_render": "pdf2image with bundled Poppler, 125/140 dpi source pages",
+    "sage_used": false
+  },
+  "source_manifest": "papers/manifest.json",
+  "source_files": [
+    {
+      "id": "abb10",
+      "file": "papers/2010_lattice_basis_delegation_agrawal.pdf",
+      "pages": 18,
+      "sha256": "f12232770a19c612e5f430f94a556d74232ac08d9882e34367b60b3bbf205d11",
+      "version": "18-page author-hosted proceedings-length PDF; full proofs of Theorems 3 and 4 absent",
+      "source_url": "https://crypto.stanford.edu/~dabo/pubs/papers/latticehibe.pdf"
+    },
+    {
+      "id": "foo_li",
+      "file": "papers/2023_tightly_secure_ibs_foo.pdf",
+      "pages": 22,
+      "sha256": "845855b9b39fdcbbe61831d9d1c431dc8d898b5a6244863ff87b23171b1e45b8",
+      "version": "Accepted Manuscript (AM), includes repository cover; printed page = PDF page - 1",
+      "source_url": "https://research-repository.griffith.edu.au/server/api/core/bitstreams/bea45f34-cb40-47b4-b6da-4bde6690f252/content"
+    },
+    {
+      "id": "mp12",
+      "file": "papers/2011_lattice_trapdoors_micciancio.pdf",
+      "pages": 41,
+      "sha256": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+      "version": "current ePrint PDF, title-page date 2011-09-14; metadata history only lists received 2011-09-18; no additional version number inferred",
+      "source_url": "https://eprint.iacr.org/2011/501.pdf"
+    }
+  ],
+  "proof_material_checks": [
+    {
+      "source": "abb10",
+      "locations": [
+        "PDF 10 Theorem 3",
+        "PDF 11 Theorem 4",
+        "https://crypto.stanford.edu/~xb//crypto10/",
+        "https://www.cse.iitm.ac.in/~shwetaag/research-all.html"
+      ],
+      "result": "18-page PDF defers proofs to full version; author material page full-version PDF label has no href; Agrawal link points to same Boyen page; no full proof version obtained this round",
+      "limitation": "not a claim that no complete version exists anywhere"
+    },
+    {
+      "source": "foo_li",
+      "locations": [
+        "PDF 13 Figure 2",
+        "PDF 14 Figure 3",
+        "PDF 17 Figures 9 and 10, Equation (5) paragraph"
+      ],
+      "finding": "G2 fixed-identity bit versus G3 independent per-message bit; two distinct messages have projected transcript total variation 1/2",
+      "decision": "hold first formal IBS adoption pending joint-distribution proof clarification",
+      "limitation": "not an actual signature forgery, not a claim the security theorem is false"
+    },
+    {
+      "source": "foo_li",
+      "locations": [
+        "PDF 12 section 3 widths",
+        "PDF 18 SIS extraction and Lemma 11",
+        "PDF 19 Lemmas 12 and 13"
+      ],
+      "finding": "reduction norm simplification, branch index and strong-forgery cases require clarification",
+      "project_bound": "beta_red <= 2*B_sig*sqrt(1+s1(R_star)^2), conditional on norm events and a valid extraction; nonzero and success probability still need proof"
+    },
+    {
+      "source": "mp12",
+      "locations": [
+        "PDF 14 Lemma 2.9",
+        "PDF 22 Definition 5.2",
+        "PDF 24 Algorithm 1",
+        "PDF 28 Algorithm 3",
+        "PDF 29 Algorithm 4"
+      ],
+      "finding": "Foo-Li plus convention maps to negative MP12 trapdoor; actual sampling requires covariance compensation and fresh perturbation; empirical discrete-Gaussian spectral constant cannot be used as certified constant"
+    }
+  ],
+  "audit_experiment": {
+    "command": "python experiments/research/primitive_gate_audit.py",
+    "results_file": "docs/research/2026-10-04/原语准入精确核验结果.json",
+    "method": "exact finite enumeration with fractions.Fraction; modular and integer arithmetic",
+    "random_repetitions": 0,
+    "lattice_sampler_runs": 0,
+    "rom_use": "modelled cached uniform branch bits only; no instantiated hash or QROM simulation",
+    "abstract_inputs": {
+      "identities": [
+        "id-A",
+        "id-B"
+      ],
+      "messages": [
+        "m-0",
+        "m-1",
+        "m-2"
+      ],
+      "ascii_identity_lengths": 4,
+      "ascii_message_lengths": 3,
+      "note": "labels index abstract queries, no cryptographic message encoding"
+    },
+    "algebra_parameters": {
+      "q": 7,
+      "n": 1,
+      "m": 2,
+      "foo_extension_w": 2,
+      "purpose": "algebra examples only, fail cryptographic parameter conditions"
+    },
+    "results": {
+      "two_message_bit_distance": "1/2",
+      "three_message_bit_distance": "3/4",
+      "repeated_message_control_distance": "0",
+      "different_identity_control_distance": "0",
+      "abb10_correct_matrix_order_verified": true,
+      "full_rank_transformed_set_sublattice_index": 2,
+      "mp12_negative_stack_verified": true
+    }
+  },
+  "teaching_parameters_unchanged": {
+    "hibe": {
+      "n": 8,
+      "m": 168,
+      "q": 524288
+    },
+    "ibs": {
+      "n": 8,
+      "m": 80,
+      "q": 257
+    }
+  },
+  "security_claim": "none; exact audit checks do not prove cryptographic security",
+  "verification": {
+    "pytest_command": "python -m pytest tests/test_primitive_gate_audit.py -q",
+    "pytest_result": "13 passed in 0.02s",
+    "full_legacy_suite_rerun": false,
+    "full_suite_reason": "no src/ibme or params changes",
+    "source_pdf_headers_pages_hashes": "passed for all 3 files",
+    "committed_result_matches_fresh_run": "passed; comparison uses serialized JSON semantics",
+    "local_links": "passed; 52 local links checked, zero missing targets; math excluded from link parsing",
+    "git_diff_check": "passed: working tree and staged diff; no whitespace errors"
+  },
+  "resolved_environment_failures": [
+    {
+      "check": "bundled Python -m pytest",
+      "result": "No module named pytest",
+      "resolution": "used existing project Python 3.14.6, all 13 tests passed; no packages installed"
+    },
+    {
+      "check": "pdftotext via bundled Poppler",
+      "result": "executable unavailable",
+      "resolution": "used pypdf layout extraction and rendered source-page visual checks"
+    }
+  ],
+  "unimplemented_and_known_limits": [
+    "ABB10 full BasisDel/SampleRwithBasis distribution proofs and finite constants not obtained",
+    "matrix-valued H to SHAKE instantiation and whole-composition QROM not established",
+    "Foo-Li joint game hop, SIS norm, seeded oracle budgets not closed",
+    "Wang plus Pan-Wagner fixed-user-key model pending next round",
+    "true Gaussian samplers, parameter estimates, authenticated ciphertext wrapper and formal backends not implemented",
+    "existing teaching implementation forgery and tamper examples remain; no security level claimed"
+  ],
+  "next_round": "Wang basic IBS plus Pan-Wagner adaptive transform, fixed user key and identity-salt reuse: define joint queries, compare proof, determine admission",
+  "modified_files": [
+    "README.md",
+    "docs/PROJECT_RESTART.md",
+    "docs/research/2026-10-03/原语选型第一轮核验.md",
+    "docs/research/2026-10-04/ABB10两层HIBE算法与参数规范.md",
+    "docs/research/2026-10-04/FooLiIBS接入与证明审查.md",
+    "docs/research/2026-10-04/第二轮选型结论与实现门槛.md",
+    "docs/research/2026-10-04/原语准入精确核验结果.json",
+    "docs/research/2026-10-04/第二轮核验记录.json",
+    "experiments/research/primitive_gate_audit.py",
+    "tests/test_primitive_gate_audit.py",
+    "papers/index.md",
+    "papers/manifest.json",
+    "papers/2010_lattice_basis_delegation_agrawal.pdf",
+    "papers/2023_tightly_secure_ibs_foo.pdf",
+    "papers/2011_lattice_trapdoors_micciancio.pdf"
+  ],
+  "cross_boundary_reason": "research documents, archived evidence and independent audit checks must be delivered together; no cryptographic module interfaces changed"
+}

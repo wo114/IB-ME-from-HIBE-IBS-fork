@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "archived_on": "2026-10-04",
+  "purpose": "fixed primary sources for the second primitive admission review",
+  "entries": [
+    {
+      "id": "abb10",
+      "file": "papers/2010_lattice_basis_delegation_agrawal.pdf",
+      "source_url": "https://crypto.stanford.edu/~dabo/pubs/papers/latticehibe.pdf",
+      "bytes": 269327,
+      "pages": 18,
+      "sha256": "f12232770a19c612e5f430f94a556d74232ac08d9882e34367b60b3bbf205d11",
+      "title": "Lattice Basis Delegation in Fixed Dimension and Shorter-Ciphertext Hierarchical IBE",
+      "authors": [
+        "Shweta Agrawal",
+        "Dan Boneh",
+        "Xavier Boyen"
+      ],
+      "publication": "CRYPTO 2010",
+      "year": 2010,
+      "version": "18-page author-hosted proceedings-length PDF; full proofs of Theorems 3 and 4 absent",
+      "metadata_url": "https://crypto.stanford.edu/~xb//crypto10/",
+      "archiving_method": "copied unchanged from verified 2026-10-03 research cache",
+      "tex_source": null,
+      "text_review_pages": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "visually_reviewed_pages_this_round": [
+        12,
+        13
+      ],
+      "pdf_header_valid": true
+    },
+    {
+      "id": "foo_li",
+      "file": "papers/2023_tightly_secure_ibs_foo.pdf",
+      "source_url": "https://research-repository.griffith.edu.au/server/api/core/bitstreams/bea45f34-cb40-47b4-b6da-4bde6690f252/content",
+      "bytes": 609601,
+      "pages": 22,
+      "sha256": "845855b9b39fdcbbe61831d9d1c431dc8d898b5a6244863ff87b23171b1e45b8",
+      "title": "Tightly Secure Lattice Identity-Based Signature in the Quantum Random Oracle Model",
+      "authors": [
+        "Ernest Foo",
+        "Qinyi Li"
+      ],
+      "publication": "ACISP 2023",
+      "year": 2023,
+      "doi": "10.1007/978-3-031-35486-1_17",
+      "version": "Accepted Manuscript (AM), includes repository cover; printed page = PDF page - 1",
+      "metadata_url": "https://hdl.handle.net/10072/424205",
+      "archiving_method": "copied unchanged from verified 2026-10-03 research cache",
+      "tex_source": null,
+      "text_review_pages": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "visually_reviewed_pages_this_round": [
+        13,
+        14,
+        17,
+        18,
+        19,
+        20
+      ],
+      "pdf_header_valid": true
+    },
+    {
+      "id": "mp12",
+      "file": "papers/2011_lattice_trapdoors_micciancio.pdf",
+      "source_url": "https://eprint.iacr.org/2011/501.pdf",
+      "bytes": 528318,
+      "pages": 41,
+      "sha256": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+      "title": "Trapdoors for Lattices: Simpler, Tighter, Faster, Smaller",
+      "authors": [
+        "Daniele Micciancio",
+        "Chris Peikert"
+      ],
+      "publication": "ePrint 2011/501; later EUROCRYPT 2012",
+      "year": 2011,
+      "version": "current ePrint PDF, title-page date 2011-09-14; metadata history only lists received 2011-09-18; no additional version number inferred",
+      "metadata_url": "https://eprint.iacr.org/2011/501",
+      "archiving_method": "downloaded from primary ePrint PDF on 2026-10-04",
+      "tex_source": null,
+      "text_review_pages": [
+        11,
+        12,
+        13,
+        14,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "visually_reviewed_pages_this_round": [
+        14,
+        28,
+        29
+      ],
+      "pdf_header_valid": true
+    }
+  ]
+}
