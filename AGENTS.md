@@ -6,6 +6,8 @@
 
 本仓库实现基于两层格基 HIBE 和 IBS 的身份基匹配加密（IB-ME）。
 
+2026-10-03 已确认重建范围：固定王老师的两层匿名 HIBE + IBS 通用构造，具体 HIBE、IBS 通过论文与参数核验后选择。不实施 Boyen–Li 增强隐私，不开发 Ext/ReExt 或增强隐私协议。普通隐私、加强认证、自我伪造防护和赛题篡改拒绝仍是目标。新工作进度见 `docs/PROJECT_RESTART.md`；旧报告中的增强版计划不再作为开发任务。
+
 - `ARCHITECTURE.md`：模块边界和总体设计；
 - `IMPLEMENTATION_SPEC.md`：唯一的接口和验收规范；
 - `DELEGATION_PROMPTS.md`：分模块交给其他 AI 的提示词；
@@ -102,7 +104,6 @@ git pull /路径/ibme.bundle main
 | HIBE | `src/ibme/hibe/`、HIBE contract tests |
 | IBS | `src/ibme/ibs/`、IBS contract tests |
 | 基线协议 | `src/ibme/protocol/baseline.py`、基线协议测试 |
-| 增强隐私 | `src/ibme/protocol/enhanced.py`、增强版测试 |
 | 审计和基准 | `tests/`、`experiments/`，以及审计报告 |
 
 需要跨边界修改时，先在交付信息中说明原因；不要为了绕过接口直接读取其他模块的内部矩阵、密钥或私有字段。
@@ -150,10 +151,10 @@ git pull /路径/ibme.bundle main
 依赖顺序为：
 
 ```text
-Core -> Lattice -> HIBE / IBS -> Baseline -> Audit -> Enhanced
+Core -> Lattice -> HIBE / IBS -> Baseline -> Audit / Benchmark
 ```
 
-Core 和 Lattice 在接口已冻结后可以并行；Baseline 必须等待 HIBE 和 IBS 的 contract tests 通过；Enhanced 必须等待 Baseline 完成。
+Core 和 Lattice 在接口已冻结后可以并行；Baseline 必须等待 HIBE 和 IBS 的 contract tests 通过。新原语实现还须提供与选定论文算法、定理和参数条件的对应表。
 
 ## 7. 安全报告口径
 

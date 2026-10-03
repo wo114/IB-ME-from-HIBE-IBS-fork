@@ -1,0 +1,165 @@
+{
+  "date": "2026-10-04",
+  "review_started_date": "2026-10-03",
+  "milestone": "G1 first-round primitive admission audit",
+  "starting_documentation_commit": "2a5ee2ed57b56c238e2e0b6cf01ac28a5d72b3a0",
+  "cryptographic_code_audit_base": "b15afd675b1c53029d9b8f8909569ccc7b060fa8",
+  "generic_construction_fixed": true,
+  "enhanced_privacy_in_scope": false,
+  "full_proofs_independently_rederived": false,
+  "new_cryptographic_tests": [],
+  "new_benchmarks": [],
+  "new_parameter_estimates": [],
+  "next_reading_priority": [
+    "ABB10 CRYPTO 2010 Section 4",
+    "Foo-Li ACISP 2023 Sections 3-5 and supporting sampling lemmas"
+  ],
+  "papers": [
+    {
+      "id": "P1",
+      "title": "Identity-based Matchmaking Encryption with Stronger Security and Instantiation on Lattices",
+      "url": "https://eprint.iacr.org/2022/1718",
+      "pdf_url": "https://eprint.iacr.org/2022/1718.pdf",
+      "revision": "2025-03-03",
+      "anchors": [
+        "Definitions 3,4,6,9,10",
+        "Construction 1",
+        "Theorem 4.2",
+        "Figure 4, Remark 2, Theorem 5.1"
+      ],
+      "evidence_pdf_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "status": "Relevant definitions, construction, theorem premises and basic IBS examined; not a full proof rederivation.",
+      "pdf_sha256": "fa3a97cfe2db59f2f8208d45b76f3c14d289774cb4075e7946dd5051ae84c597",
+      "pdf_pages": 21
+    },
+    {
+      "id": "P2",
+      "title": "Lattice Basis Delegation in Fixed Dimension and Shorter-Ciphertext Hierarchical IBE",
+      "url": "https://crypto.stanford.edu/~dabo/pubs/papers/latticehibe.pdf",
+      "pdf_url": "https://crypto.stanford.edu/~dabo/pubs/papers/latticehibe.pdf",
+      "revision": "Author PDF for CRYPTO 2010; no dated revision claim",
+      "anchors": [
+        "Section 2.1",
+        "Sections 4.1-4.3",
+        "Theorem 5",
+        "Section 5 is a separate construction"
+      ],
+      "evidence_pdf_pages": [
+        4,
+        5,
+        11,
+        12,
+        13,
+        14
+      ],
+      "status": "Classical ROM algorithm and theorem entry match checked; quantitative parameters, sampling and QROM adaptation remain open.",
+      "pdf_sha256": "f12232770a19c612e5f430f94a556d74232ac08d9882e34367b60b3bbf205d11",
+      "pdf_pages": 18
+    },
+    {
+      "id": "P3",
+      "title": "Short Identity-Based Signatures with Tight Security from Lattices",
+      "url": "https://eprint.iacr.org/2021/970",
+      "pdf_url": "https://eprint.iacr.org/2021/970.pdf",
+      "revision": "2021-12-03",
+      "anchors": [
+        "Figure 1",
+        "Sections 3.1-3.2",
+        "Figure 5",
+        "Theorem 2"
+      ],
+      "evidence_pdf_pages": [
+        8,
+        9,
+        12
+      ],
+      "status": "ROM transformation salts and fresh KeyExt in signing oracle checked; fixed-key reuse proof adaptation remains open.",
+      "pdf_sha256": "0aa96c6104a3f89d3db1157860695166336a53e1fb57e626fa8009832990f7af",
+      "pdf_pages": 30
+    },
+    {
+      "id": "P4",
+      "title": "Tightly Secure Lattice Identity-Based Signature in the Quantum Random Oracle Model",
+      "url": "https://research-repository.griffith.edu.au/server/api/core/bitstreams/bea45f34-cb40-47b4-b6da-4bde6690f252/content",
+      "pdf_url": "https://research-repository.griffith.edu.au/server/api/core/bitstreams/bea45f34-cb40-47b4-b6da-4bde6690f252/content",
+      "revision": "ACISP 2023 author PDF; no newer-version claim",
+      "anchors": [
+        "Section 2.5",
+        "Section 3",
+        "Figures 1-3",
+        "Section 4.1",
+        "Theorems 1,2"
+      ],
+      "evidence_pdf_pages": [
+        12,
+        13,
+        14,
+        20
+      ],
+      "status": "Secret seeds, deterministic consistency, signature format and theorem entries checked; full reduction and concrete parameter derivation remain open.",
+      "pdf_sha256": "845855b9b39fdcbbe61831d9d1c431dc8d898b5a6244863ff87b23171b1e45b8",
+      "pdf_pages": 22
+    },
+    {
+      "id": "P5",
+      "title": "Shorter and Faster Identity-Based Signatures with Tight Security in the (Q)ROM from Lattices",
+      "url": "https://eprint.iacr.org/2023/489",
+      "pdf_url": "https://eprint.iacr.org/2023/489.pdf",
+      "revision": "2023-05-26",
+      "anchors": [
+        "Figure 1",
+        "Section 5, Theorem 1",
+        "Sections 6,7, Theorems 2,3",
+        "Figures 5-8",
+        "Tables 2,4,6,7",
+        "Section 8.1",
+        "Appendix E"
+      ],
+      "evidence_pdf_pages": [
+        10,
+        15,
+        16,
+        17,
+        18,
+        19,
+        22,
+        23,
+        24,
+        27,
+        68
+      ],
+      "status": "Algorithm entries, query model, ternary structure and concrete cost tables checked; entire 72-page proof and parameter script not independently verified.",
+      "pdf_sha256": "6b73e0a102b8c9393b31077aefae6dd1543f15d3f95d9dd6a60770c91dbdd7fc",
+      "pdf_pages": 72
+    }
+  ],
+  "source_pages_visually_verified": {
+    "P3": [
+      12
+    ],
+    "P4": [
+      13
+    ],
+    "P5": [
+      27
+    ]
+  },
+  "not_approved_as_complete_backend": [
+    "Wang basic non-adaptive IBS alone",
+    "Pan-Wagner/Sageloli fixed-key reuse without proof adaptation",
+    "Latte without required anonymity and pseudorandomness mapping",
+    "ordinary IBE or ordinary signatures as HIBE/IBS replacements"
+  ],
+  "scope": "Literature and documentation milestone only; teaching parameters remain insecure and no security level is claimed."
+}

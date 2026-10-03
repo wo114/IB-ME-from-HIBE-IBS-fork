@@ -130,5 +130,14 @@
     "historical full benchmark rerun",
     "historical LLL attack rerun"
   ],
-  "security_statement": "Tests do not replace security proofs. No security level is claimed."
+  "security_statement": "Tests do not replace security proofs. No security level is claimed.",
+  "scope_revision": {
+    "date": "2026-10-04",
+    "authorization": "User confirmed Wang HIBE+IBS and excluded Boyen-Li enhanced privacy; authorized remote update.",
+    "generic_construction": "Wang et al. Construction 1, Theorem 4.2; 2-level anonymous HIBE + adaptively secure IBS",
+    "enhanced_privacy": "excluded from project scope, not an unfinished milestone",
+    "cryptographic_code_changed": false,
+    "original_tests_and_attacks_rerun": false,
+    "note": "All original audit fields remain historical records for source_commit; this revision is documentation and literature work."
+  }
 }

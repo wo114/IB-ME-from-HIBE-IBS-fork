@@ -4,7 +4,9 @@
 
 把 `ARCHITECTURE.md` 和 `IMPLEMENTATION_SPEC.md` 放在每个任务的上下文中。一个 AI 只负责一个边界，不允许为了方便直接重写其他模块。每个任务结束时必须提交测试、修改文件列表和限制说明。
 
-建议合并顺序：Core → Lattice → HIBE → IBS → Baseline → Tests/Benchmark → Enhanced。
+2026-10-03 重建范围已固定为王老师的 HIBE + IBS 通用构造，Boyen–Li 增强隐私不再开发。新任务先阅读 `docs/PROJECT_RESTART.md` 与对应原语核验记录；以下提示只有在具体论文算法与参数已冻结后才用于实现。
+
+建议合并顺序：Core → Lattice → HIBE → IBS → Baseline → Tests/Benchmark。
 
 ## 任务 A：基础设施
 
@@ -56,6 +58,7 @@ F_id=[A | H1(mpk,id)]，H1=A R_id + G，F_id*z=H2(mpk,id,message) mod q，
 签名密钥要绑定身份摘要；哈希使用 core 的域分隔接口；采样使用 lattice 的采样器。
 先通过 mock/contract tests，再运行真实格实现的正确性测试。
 不要修改 HIBE 或协议层。
+构造 3.4.1 的基本形式仅为非自适应安全；完整 IB-ME 后端必须落实选定的自适应转换或采用满足组合前提的另一套 IBS。H1 的可编程关系须区分真实算法与证明模拟，不能把公开可重算的短陷门当作用户秘密密钥。
 ```
 
 ## 任务 E：基线协议组合
@@ -69,15 +72,9 @@ F_id=[A | H1(mpk,id)]，H1=A R_id + G，F_id*z=H2(mpk,id,message) mod q，
 协议层不得访问 HIBE/IBS 内部矩阵，也不得把身份明文放入密文。
 ```
 
-## 任务 F：增强隐私版
+## 原任务 F 已取消
 
-```text
-只有 baseline 通过后才执行此任务。
-实现 Boyen–Li 风格的 Ext/ReExt 掩码层，放在 src/ibme/protocol/enhanced.py。
-明确标注 ROM 工程实例，使用 SHAKE-256 域分隔，不得声称标准模型安全。
-固定长度序列化后才能进行 XOR；如果底层密文变长，改用明确的 KEM/DEM 包装并说明与论文接口的差异。
-增加匹配、不匹配和身份猜测场景测试，记录身份熵条件。
-```
+团队决定不实施 Boyen–Li 增强隐私，不派发 Ext/ReExt 或 enhanced.py 任务。正常接口的错配拒绝、普通隐私、加强认证和密文完整性仍须完成。
 
 ## 任务 G：审计与基准
 
