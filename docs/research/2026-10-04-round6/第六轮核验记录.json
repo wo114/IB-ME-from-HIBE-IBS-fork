@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-04",
+  "round": 6,
+  "repository": "https://github.com/youzi258/IB-ME-from-HIBE-IBS",
+  "working_branch": "main",
+  "starting_commit": "8f1a89986f8af76868e3cb72df79d78fbc1666c9",
+  "remote_at_start": "fetch succeeded; main/origin/main ahead=0 behind=0; worktree initially clean",
+  "cryptographic_code_baseline": "b15afd675b1c53029d9b8f8909569ccc7b060fa8",
+  "scope": {
+    "generic_construction": "Wang two-level anonymous HIBE plus adaptive IBS",
+    "excluded": "Boyen-Li enhanced privacy; no Ext/ReExt",
+    "task_boundary": "Foo-Li fixed-key classical-ROM experiment, two conditional reductions, observable traces, SIS extraction and finite matrix-mass/conditional-entropy budgets",
+    "research_task_completed": true,
+    "proof_status": "WIP: conditional draft; no completed security theorem",
+    "formal_backend_admission": false,
+    "src_or_params_changed": false,
+    "frozen_interfaces_changed": false,
+    "new_production_keys": false,
+    "new_security_estimate": false,
+    "new_cryptographic_benchmark": false
+  },
+  "environment": {
+    "windows_os": "Windows-11-10.0.26200-SP0",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "physical_cores": 24,
+    "logical_processors": 24,
+    "physical_memory_bytes": 33778278400,
+    "windows_python": "3.14.6",
+    "pytest": "9.1.1",
+    "sage_environment": "~/miniconda3/envs/sage",
+    "wsl": {
+      "python": "3.13.14",
+      "sage": "10.9",
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+    },
+    "exact_arithmetic": "Python Fraction; Sage QQ and outward MPFI pi/exp",
+    "new_software_installed": false
+  },
+  "source_manifest": "papers/manifest.json",
+  "sources": [
+    {
+      "id": "foo_li",
+      "file": "papers/2023_tightly_secure_ibs_foo.pdf",
+      "sha256": "845855b9b39fdcbbe61831d9d1c431dc8d898b5a6244863ff87b23171b1e45b8",
+      "source_url": "https://research-repository.griffith.edu.au/server/api/core/bitstreams/bea45f34-cb40-47b4-b6da-4bde6690f252/content",
+      "original_file_unchanged": true,
+      "relevant_text_locations": {
+        "pages": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ],
+        "sections": [
+          "section 3 / Figures 1-3",
+          "Figures 7-10",
+          "Lemmas 11-13",
+          "section 5 / Figure 11"
+        ]
+      },
+      "review_method": "same archived text and previous-page visual checks; MP12 and Wang clauses additionally reread this round"
+    },
+    {
+      "id": "mp12",
+      "file": "papers/2011_lattice_trapdoors_micciancio.pdf",
+      "sha256": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+      "source_url": "https://eprint.iacr.org/2011/501.pdf",
+      "original_file_unchanged": true,
+      "relevant_text_locations": {
+        "pages": [
+          11,
+          12,
+          13,
+          14,
+          26,
+          27,
+          28,
+          29
+        ],
+        "sections": [
+          "section 2.3 / Poisson and smoothing",
+          "Lemmas 2.5-2.9",
+          "Theorem 5.5 / Algorithm 3",
+          "Algorithm 4 / Lemma 5.7"
+        ]
+      },
+      "review_method": "same archived text and previous-page visual checks; MP12 and Wang clauses additionally reread this round"
+    },
+    {
+      "id": "wang",
+      "file": "papers/2022_identity_matchmaking_wang.pdf",
+      "sha256": "fa3a97cfe2db59f2f8208d45b76f3c14d289774cb4075e7946dd5051ae84c597",
+      "source_url": "https://eprint.iacr.org/2022/1718.pdf",
+      "original_file_unchanged": true,
+      "relevant_text_locations": {
+        "pages": [
+          7,
+          10,
+          12,
+          13,
+          14,
+          15
+        ],
+        "sections": [
+          "Lemmas 2.1-2.2",
+          "Definition 6",
+          "Construction 1 / Lemma 4.2"
+        ]
+      },
+      "review_method": "same archived text and previous-page visual checks; MP12 and Wang clauses additionally reread this round"
+    }
+  ],
+  "online_check": {
+    "date": "2026-10-04",
+    "sources": [
+      "https://eprint.iacr.org/2011/501",
+      "https://eprint.iacr.org/2022/1718",
+      "https://link.springer.com/chapter/10.1007/978-3-031-35486-1_17"
+    ],
+    "scope": "primary metadata only this round; no new source PDF or erratum archived"
+  },
+  "admission": {
+    "candidate_status": "Foo-Li restored as independent proof-research candidate; not admitted as a formal IBS backend",
+    "experiment": "ordinary adaptive UF-CMA; one persistent full user key per identity; Key includes signing seed",
+    "source_model_extension": "full user-seed disclosure is explicitly a project experiment, not claimed proved by the original paper",
+    "classical_oracles": true,
+    "QROM_result": false,
+    "strong_UF_result": false,
+    "K": "max(1,Q_C+Q_S+Q_pub+1), including seed domains and final identity",
+    "candidate_loss": "coarse main term 2K after unifying two SIS reductions; conditional only",
+    "non_target_signatures": "honest deterministic SampleD with persistent key and oracle coins, before and after corruption",
+    "new_closed_arithmetic": "prime-q rank plus dual-theta/Markov bound; pointwise image masses and posterior maximum atom; no full parameter chain"
+  },
+  "audit_experiments": [
+    {
+      "command": "python experiments/research/foo_li_fixed_key_audit.py --output docs/research/2026-10-04-round6/foo-li-fixed-key-audit.json",
+      "file": "docs/research/2026-10-04-round6/foo-li-fixed-key-audit.json",
+      "sha256": "ec05be1e0eefe56566e6661555b4bb262324c7a7800947b228a49c385ba88b4e",
+      "identity_ascii_bytes": {
+        "A": 1,
+        "B": 1
+      },
+      "message_ascii_bytes": {
+        "first": 5,
+        "second": 6,
+        "fresh": 5
+      },
+      "method": "exact enumeration plus symbolic lazy-oracle labels; no random-oracle distribution simulated",
+      "seed_queries_modeled": "Hcal3 bookkeeping only; master-seed bridge not implemented",
+      "monte_carlo_repetitions": 0,
+      "gaussian_samples": 0,
+      "cryptographic_signatures_generated": 0,
+      "hand_chosen_algebra": {
+        "q": 7,
+        "n": 1,
+        "m": 2,
+        "w": 3,
+        "full_scheme_parameter_conditions_met": false
+      },
+      "results": {
+        "old_joint_bit_TV": "1/2",
+        "both_candidate_traces": "fixed bits, repeated signatures and pre-signing hash points preserved",
+        "other_user_sign_then_corrupt": "same key/seed/coin and exact deterministic call preserved",
+        "zero_tag_Ae_mod_q": 0,
+        "tagged_shortcut_Ae_mod_q": 6,
+        "conditional_prior_posterior_TV": "2/3"
+      },
+      "cryptographic_validity_checked": false
+    },
+    {
+      "command_inside_wsl": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.foo_li_matrix_mass_audit --output docs/research/2026-10-04-round6/foo-li-matrix-mass-audit.json",
+      "file": "docs/research/2026-10-04-round6/foo-li-matrix-mass-audit.json",
+      "sha256": "ccae8e1ebb2070883f02ead018510baae20489b8ac03c7a5ec7d7ca2e1c2b1ad",
+      "parameter_source": "hand-selected proof-arithmetic examples; no SIS hardness estimate or complete trapdoor/signature-width chain",
+      "cases": [
+        {
+          "parameters": {
+            "q": 17,
+            "n": 1,
+            "m": 32,
+            "s": "6",
+            "epsilon": "1/1099511627776",
+            "precision_bits": 192
+          },
+          "bad_matrix_approx_unclamped": 3.510791719753731e-08,
+          "security_claim": "none"
+        },
+        {
+          "parameters": {
+            "q": 257,
+            "n": 2,
+            "m": 128,
+            "s": "8",
+            "epsilon": "1/18446744073709551616",
+            "precision_bits": 192
+          },
+          "bad_matrix_approx_unclamped": 2.2598158059626607e-66,
+          "security_claim": "none"
+        },
+        {
+          "parameters": {
+            "q": 7,
+            "n": 1,
+            "m": 2,
+            "s": "1",
+            "epsilon": "1/16",
+            "precision_bits": 192
+          },
+          "bad_matrix_approx_unclamped": 128.29361286909682,
+          "security_claim": "none"
+        }
+      ],
+      "random_matrices_generated": 0,
+      "gaussian_samples": 0,
+      "signatures_generated": 0,
+      "monte_carlo_repetitions": 0,
+      "identity_length_bytes": null,
+      "message_length_bytes": null,
+      "ROM_used_in_arithmetic": false,
+      "rounding": "outward MPFI endpoints; exact rational operations; positive upper bounds may be enlarged to 2^-512 for compact serialization"
+    }
+  ],
+  "verification": {
+    "wsl_command": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest tests/test_foo_li_fixed_key_audit.py tests/test_foo_li_matrix_mass_audit.py tests/test_general_gadget_reference.py tests/test_gaussian_reference.py tests/test_fixed_key_transform_audit.py tests/test_primitive_gate_audit.py -q",
+    "wsl_result": "189 passed in 2.86s",
+    "new_checks": 61,
+    "previous_checks": 128,
+    "new_check_breakdown": {
+      "fixed_key_symbolic_and_algebra": 44,
+      "matrix_mass_sage": 17
+    },
+    "windows_command": "python -m pytest tests/test_foo_li_fixed_key_audit.py tests/test_foo_li_matrix_mass_audit.py tests/test_general_gadget_reference.py tests/test_gaussian_reference.py tests/test_fixed_key_transform_audit.py tests/test_primitive_gate_audit.py -q",
+    "windows_result": "77 passed, 3 skipped in 0.11s",
+    "sage_modules_skipped_only_on_windows": 3,
+    "sage_checks_executed_in_wsl": 112,
+    "failed_tests": [],
+    "full_legacy_suite_rerun": false,
+    "reason": "No production code or parameter changes; all research checks including Sage run",
+    "final_diff_check": "passed: git diff --check and git diff --cached --check for all 10 owned files",
+    "reproducibility_and_links": "passed: both result JSONs byte-identical on rerun; 3 source PDF hashes unchanged; 57 local Markdown links resolved after excluding code/math; 10-file delivery scope matched"
+  },
+  "teaching_parameters_unchanged": {
+    "hibe": {
+      "n": 8,
+      "m": 168,
+      "q": 524288
+    },
+    "ibs": {
+      "n": 8,
+      "m": 80,
+      "q": 257
+    }
+  },
+  "security_claim": "none; finite arithmetic and transcript checks do not prove IBS/HIBE/IBME security",
+  "remaining_work": [
+    "Finalize joint adaptive-slot coupling with g and latent branch bits",
+    "Prove hidden-seed bridge for full key disclosure and actual finite sampler random tapes",
+    "Implement and certify TrapGen, DelTrap, perturbation and full SampleD/SamplePre",
+    "Complete finite sampling/quality/abort/error budgets and SIS norm/hardness parameters",
+    "Strong UF, multiple key lifetimes and QROM not covered by this draft",
+    "Existing demo public forgery and ciphertext-tampering counterexamples remain"
+  ],
+  "delivery": {
+    "modified_files": [
+      "README.md",
+      "docs/PROJECT_RESTART.md",
+      "docs/research/2026-10-04-round6/FooLi固定密钥经典ROM条件归约草案.md",
+      "docs/research/2026-10-04-round6/foo-li-fixed-key-audit.json",
+      "docs/research/2026-10-04-round6/foo-li-matrix-mass-audit.json",
+      "docs/research/2026-10-04-round6/第六轮核验记录.json",
+      "experiments/research/foo_li_fixed_key_audit.py",
+      "experiments/research/foo_li_matrix_mass_audit.py",
+      "tests/test_foo_li_fixed_key_audit.py",
+      "tests/test_foo_li_matrix_mass_audit.py"
+    ],
+    "cross_boundary_reason": "Research report and indexes plus independently reproducible proof-audit scripts/tests; no primitive interface changes",
+    "commit_message": "feat(research): draft fixed-key Foo-Li ROM reductions",
+    "push_authorized_by_user": true,
+    "next_single_task": "Effective G-trapdoor TrapGen mathematical reference and public-matrix distribution/quality audit"
+  }
+}
