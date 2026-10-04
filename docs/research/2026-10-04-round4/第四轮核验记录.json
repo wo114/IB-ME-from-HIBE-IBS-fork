@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-04",
+  "repository": "https://github.com/youzi258/IB-ME-from-HIBE-IBS",
+  "working_branch": "main",
+  "starting_commit": "30db5d51bd5b954a8128fa5ad5318ab928505fd6",
+  "cryptographic_code_baseline": "b15afd675b1c53029d9b8f8909569ccc7b060fa8",
+  "remote_at_start": "fetch succeeded; main/origin/main ahead=0 behind=0",
+  "scope": {
+    "generic_construction": "Wang two-level anonymous HIBE plus adaptively secure IBS; unchanged",
+    "excluded": "Boyen-Li enhanced privacy",
+    "task_boundary": "finite-error one-dimensional and power-of-two gadget Gaussian mathematical reference sampling in the prescribed WSL conda Sage environment",
+    "reference_component_task_completed": true,
+    "formal_backend_admission": false,
+    "production_cryptographic_code_changed": false,
+    "frozen_interfaces_changed": false,
+    "new_production_parameters": false,
+    "new_security_estimate": false,
+    "new_cryptographic_benchmark": false,
+    "new_production_keys": false,
+    "fixed_key_reduction_status": "WIP: previous conditional A1-A4 assumptions and joint-distribution proof remain open"
+  },
+  "environment": {
+    "windows_os": "Microsoft Windows 11; 10.0.26200",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "physical_cores": 24,
+    "logical_processors": 24,
+    "physical_memory_bytes": 33778278400,
+    "wsl_distribution": "Ubuntu",
+    "wsl_platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "required_sage_environment": "~/miniconda3/envs/sage",
+    "invocation": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python",
+    "sage": "10.9",
+    "sage_python": "3.13.14",
+    "windows_python": "3.14.6",
+    "pytest": "9.1.1",
+    "interval_backend": "Sage RealIntervalField / MPFI; rational lower and upper endpoints via exact_rational()",
+    "independent_target_checks": "Sage RealField / MPFR at up to 320 bits, separately computed target weights",
+    "online_sage_reference_version": "10.8; used APIs verified on local Sage 10.9",
+    "pdf_python": "3.12.14",
+    "pdf_reader": "pypdf",
+    "pdf_render": "pdf2image and bundled Poppler; source-page visual review only",
+    "new_software_installed": false
+  },
+  "source_manifest": "papers/manifest.json",
+  "newly_archived_source_ids": [],
+  "source_review": [
+    {
+      "id": "mp12",
+      "file": "papers/2011_lattice_trapdoors_micciancio.pdf",
+      "sha256": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+      "metadata_url": "https://eprint.iacr.org/2011/501",
+      "metadata_checked_on": "2026-10-04",
+      "metadata_history": "received 2011-09-18; no additional revision inferred",
+      "text_review_pages": [11, 12, 17, 18, 19, 20, 21, 26, 27, 28],
+      "visually_reviewed_pages": [11, 18, 19],
+      "locations": ["section 2.3", "section 4.1 and Proposition 4.2", "section 4.2", "section 5.4 and Algorithm 3"],
+      "finding": "power-of-two parity recurrence is approximately spherical only with sufficiently balanced parity partition functions; general q and full perturbation/SamplePre require additional work",
+      "pdf_modified_or_redownloaded": false
+    },
+    {
+      "id": "wang",
+      "file": "papers/2022_identity_matchmaking_wang.pdf",
+      "sha256": "fa3a97cfe2db59f2f8208d45b76f3c14d289774cb4075e7946dd5051ae84c597",
+      "text_review_pages": [7],
+      "visually_reviewed_pages": [7],
+      "locations": ["Lemma 2.1", "Lemma 2.6"],
+      "finding": "Lemma 2.1 explicitly assumes prime q; the broader q>=2 sampler lemma alone does not remove this separate proof condition",
+      "pdf_modified_or_redownloaded": false
+    },
+    {
+      "id": "sage_interval_docs",
+      "urls": [
+        "https://doc.sagemath.org/html/en/reference/rings_numerical/sage/rings/real_mpfi.html",
+        "https://doc.sagemath.org/html/en/reference/rings_numerical/sage/rings/real_mpfr.html"
+      ],
+      "checked_on": "2026-10-04",
+      "finding": "use interval pi/exp and exact rational endpoints; approximate real-to-rational conversion is not used for certificates"
+    }
+  ],
+  "audit_experiment": {
+    "command_inside_wsl_project_directory": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.sampling_reference_audit --samples 8192 --output docs/research/2026-10-04-round4/sampling-reference-results.json",
+    "results_file": "docs/research/2026-10-04-round4/sampling-reference-results.json",
+    "results_sha256": "47d519e233903b9e7ca64a6f2a4fed4d4da394d3ca8aa9489b2cc3fd9292a5d7",
+    "method": "outward interval enclosures; exact rational CDF recurrence; exhaustive finite-box cosets; deterministic sampling diagnostics",
+    "parameter_source": "hand-selected mathematical research examples, not an estimated lattice-security parameter set",
+    "gaussian_convention": "exp(-pi*(x-center)^2/s^2); s=sqrt(2*pi)*sigma, discrete variance not assumed continuous variance",
+    "default_options": {"tail_bits": 80, "mass_bits": 128, "precision_bits": 192, "max_trials": 128, "max_radius": 512},
+    "scalar_parameters": [
+      {"case": "integer_center", "s": "3", "center": "0", "step": 1, "residue": 0},
+      {"case": "fractional_center", "s": "3", "center": "1/3", "step": 1, "residue": 0},
+      {"case": "half_integer_center", "s": "1", "center": "1/2", "step": 1, "residue": 0},
+      {"case": "narrow_even_coset", "s": "3/2", "center": "0", "step": 2, "residue": 0},
+      {"case": "narrow_odd_coset", "s": "3/2", "center": "0", "step": 2, "residue": 1}
+    ],
+    "samples_per_scalar_case": 8192,
+    "wide_gadget": {"q": 16, "n": 2, "k": 4, "s": "12", "syndrome": [0, 15], "vector_samples": 8192, "scalar_draws_per_vector": 8, "modular_failures": 0, "infinite_target_tv_upper_display_approx": 4.0574938163555703e-24},
+    "narrow_gadget": {
+      "q": 8, "n": 1, "k": 3, "s": "3/2",
+      "options": {"tail_bits": 40, "mass_bits": 96, "precision_bits": 160, "max_trials": 128},
+      "syndromes_exhaustively_enumerated": [0, 1, 2, 3, 4, 5, 6, 7],
+      "finite_box_tv_max_display_approx": 0.232145699156846,
+      "scope": "ideal uniform-ticket CDF recurrence versus spherical Gaussian conditioned on same finite box; abort excluded from PMF and separately budgeted",
+      "infinite_target_distance_claimed_from_finite_box": false
+    },
+    "entropy": {
+      "saved_experiments": "labelled DeterministicRandom test streams; seeds in results JSON; streams are not reset between samples",
+      "default_reference_calls": "Core SecureRandom public read(n)->bytes interface",
+      "certificate_assumption": "independent uniform random-source bytes; bounded rejection abort included as extra output symbol",
+      "constant_time": false,
+      "production_randomness_replaced": false
+    },
+    "rom_use": "none in the Gaussian construction or gadget mathematical experiment; deterministic test entropy uses SHAKE but is not an instantiated random-oracle proof",
+    "identity_length_bytes": null,
+    "message_length_bytes": null,
+    "input_length_note": "not applicable: no cryptographic identities, messages, keys or signatures are inputs or outputs",
+    "signatures_generated": 0,
+    "statistics_scope": "finite-table moments and observed histograms are diagnostics; exact rational certificates bound infinite targets separately"
+  },
+  "teaching_parameters_unchanged": {
+    "hibe": {"n": 8, "m": 168, "q": 524288},
+    "ibs": {"n": 8, "m": 80, "q": 257},
+    "security_claim": "none"
+  },
+  "security_claim": "none; sampling-distance bounds and functional tests do not prove SIS/LWE, HIBE/IBS or IBME security",
+  "verification": {
+    "wsl_pytest_command": "wsl --cd D:\\zcode_projects\\ibme -- bash -lc 'PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest tests/test_gaussian_reference.py tests/test_fixed_key_transform_audit.py tests/test_primitive_gate_audit.py -q'",
+    "wsl_pytest_result": "75 passed in 1.89s: 42 new sampling checks, 20 round-three and 13 round-two checks",
+    "windows_pytest_command": "python -m pytest tests/test_gaussian_reference.py tests/test_fixed_key_transform_audit.py tests/test_primitive_gate_audit.py -q",
+    "windows_pytest_result": "33 passed, 1 skipped in 0.04s; module-level Sage skip is intentional, all 42 sampling checks ran in WSL",
+    "independent_moment_test_samples": 12000,
+    "full_legacy_suite_rerun": false,
+    "full_suite_reason": "no src/ibme or params changes",
+    "source_pdf_headers_pages_hashes": "passed for all 5 archived PDFs; bytes, pages and SHA-256 agree with the unchanged manifest",
+    "committed_result_matches_fresh_run": "passed; fresh 8192-sample audit matches saved JSON after serialization, and saved SHA-256 matches this record",
+    "local_links": "passed; 46 local links in 3 touched Markdown files, zero missing targets; math excluded before parsing",
+    "git_diff_check": "passed for working tree and staged diff; no whitespace errors",
+    "production_paths_unchanged": "passed; git diff HEAD -- src/ibme params is empty"
+  },
+  "failures_and_resolutions": [
+    {
+      "stage": "environment probe",
+      "failure": "conda sage launcher rejected sage -python as unrecognized arguments",
+      "resolution": "use bin/python in the same prescribed conda environment to import Sage; no new installation"
+    },
+    {
+      "stage": "first sampling test run",
+      "result": "1 failed, 41 passed in 1.77s",
+      "failure": "test incorrectly expected the q=8,s=3/2,syndrome=0 finite-box distance to exceed 1%; independent enumeration gives about 0.8428%",
+      "resolution": "replace unsupported 1% threshold with a >0.5% lower bound witnessed by the independently computed zero-vector event; the finite-box TV enclosure must dominate that witness",
+      "final_status": "passed in the final 75-test run"
+    }
+  ],
+  "unimplemented_and_known_limits": [
+    "general-modulus gadget sampling is not implemented; Wang Lemma 2.1 prime-q condition is not covered by current power-of-two component",
+    "full valid G-trapdoor/tag, TrapGen, DelTrap, perturbation covariance, nonspherical integer Gaussian and SamplePre chain remain unimplemented",
+    "Gadget certificate is for extended output including abort, not the gadget law conditional on all draws surviving",
+    "reference sampling has resource guards, variable timing and bounded rejection abort; no production or side-channel security claim",
+    "bounds depend on correct Sage/MPFI interval arithmetic and ideal independent uniform bytes; deterministic samples do not validate those assumptions",
+    "WIP fixed-key reduction uniformity, good-trapdoor events, adaptive-slot coupling and batch UF-naCMA mapping remain open",
+    "formal security parameters, SIS/LWE work-factor estimation and authenticated ciphertext wrapper remain incomplete",
+    "previous public-forgery and ciphertext-tamper counterexamples remain valid",
+    "Foo-Li remains on hold; ABB10 complete delegation proof and finite parameter adaptation remain pending"
+  ],
+  "next_round": "one bounded general-q gadget reference task based on MP12 section 4.2, prioritizing prime q, with exact integer basis/Gram-Schmidt checks, squared-width encoding and uniform conditional-center error budgets; no formal backend replacement",
+  "modified_files": [
+    "README.md",
+    "docs/PROJECT_RESTART.md",
+    "docs/research/2026-10-04-round4/离散高斯与gadget陪集采样参考实现.md",
+    "docs/research/2026-10-04-round4/sampling-reference-results.json",
+    "docs/research/2026-10-04-round4/第四轮核验记录.json",
+    "experiments/research/gaussian_reference.py",
+    "experiments/research/sampling_reference_audit.py",
+    "tests/test_gaussian_reference.py"
+  ],
+  "cross_boundary_reason": "standalone research component, independent audit tests and progress documentation must be delivered together; no reads of other modules' private matrices or keys, and no frozen public protocol semantics changed"
+}
