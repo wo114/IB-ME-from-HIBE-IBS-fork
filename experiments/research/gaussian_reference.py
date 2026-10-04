@@ -103,6 +103,7 @@ class GaussianTable:
     tail_relative_upper: object
     quantization_tv_upper: object
     normalizer: object
+    s_squared: object = None
 
     @property
     def total_mass(self):
@@ -134,7 +135,8 @@ class GaussianTable:
         return self.support[bisect_right(self.cumulative, ticket)]
 
     def config_record(self):
-        return {"s": str(self.s), "center": str(self.center), "step": self.step,
+        width = {"s": str(self.s)} if self.s is not None else {"s_squared": str(self.s_squared)}
+        return {**width, "center": str(self.center), "step": self.step,
                 "residue": self.residue, "tail_bits": self.tail_bits,
                 "mass_bits": self.mass_bits, "precision_bits": self.precision_bits,
                 "max_trials": self.max_trials}
@@ -161,11 +163,37 @@ def build_gaussian_table(s, center=0, *, step=1, residue=0,
                          max_trials=128, max_radius=512):
     """Construct certified finite weights exp(-pi*(x-c)^2/s^2).
 
+    This legacy research entry point keeps its exact rational s convention and
+    serialized CDF fingerprints. Use build_gaussian_table_squared for a rational
+    s^2 whose square root is irrational; no rounded square root is required.
+    """
+    s = _rational(s, "s")
+    if s <= 0:
+        raise ValueError("s must be positive")
+    return _build_gaussian_table_squared(s*s, center, step=step, residue=residue,
+        tail_bits=tail_bits, mass_bits=mass_bits, precision_bits=precision_bits,
+        max_trials=max_trials, max_radius=max_radius, display_s=s)
+
+
+def build_gaussian_table_squared(s_squared, center=0, *, step=1, residue=0,
+                                 tail_bits=80, mass_bits=128, precision_bits=192,
+                                 max_trials=128, max_radius=512):
+    """Construct weights exp(-pi*(x-c)^2/s_squared) from exact rational s^2."""
+    return _build_gaussian_table_squared(s_squared, center, step=step, residue=residue,
+        tail_bits=tail_bits, mass_bits=mass_bits, precision_bits=precision_bits,
+        max_trials=max_trials, max_radius=max_radius)
+
+
+def _build_gaussian_table_squared(s_squared, center, *, step, residue,
+                                  tail_bits, mass_bits, precision_bits,
+                                  max_trials, max_radius, display_s=None):
+    """Shared interval construction; never approximate an irrational width.
+
     Interval pi/exp only: no symbolic-real or binary-float intermediates. Divide
     by the largest weight before integer quantization to avoid normalization
     underflow. Resource guards are part of this reference implementation's scope.
     """
-    s, center = _rational(s, "s"), _rational(center, "center")
+    s_squared, center = _rational(s_squared, "s_squared"), _rational(center, "center")
     step = _int(step, "step", minimum=1)
     residue = _int(residue, "residue") % step
     tail_bits = _int(tail_bits, "tail_bits", minimum=1, maximum=1024)
@@ -173,8 +201,8 @@ def build_gaussian_table(s, center=0, *, step=1, residue=0,
     precision_bits = _int(precision_bits, "precision_bits", minimum=64, maximum=4096)
     max_trials = _int(max_trials, "max_trials", minimum=1, maximum=4096)
     max_radius = _int(max_radius, "max_radius", minimum=0, maximum=4096)
-    if s <= 0 or not QQ(1)/64 <= s/step <= 64:
-        raise ValueError("Reference scope requires 1/64 <= s/step <= 64")
+    if s_squared <= 0 or not QQ(1)/4096 <= s_squared/step**2 <= 4096:
+        raise ValueError("Reference scope requires 1/4096 <= s_squared/step^2 <= 4096")
     field = RealIntervalField(precision_bits)
     pi = field.pi()
     t = (center - residue) / step
@@ -184,10 +212,10 @@ def build_gaussian_table(s, center=0, *, step=1, residue=0,
 
     def relative_weight(index):
         difference = (residue + step*index - center)**2 - d0_squared
-        return (-pi * field(difference / s**2)).exp()
+        return (-pi * field(difference / s_squared)).exp()
 
     def side_tail(first_index, distance_in_indices):
-        ratio = (-pi * field(step**2 * (2*distance_in_indices + 1) / s**2)).exp()
+        ratio = (-pi * field(step**2 * (2*distance_in_indices + 1) / s_squared)).exp()
         if interval_bounds(ratio)[1] >= 1:
             raise ValueError("Insufficient interval precision for geometric tail")
         return relative_weight(first_index) / (1 - ratio)
@@ -215,11 +243,11 @@ def build_gaussian_table(s, center=0, *, step=1, residue=0,
     lower_sum, upper_sum = sum(lowers, QQ(0)), sum(uppers, QQ(0))
     quant_tv = min(QQ(1), (upper_sum - QQ(total)/scale) / lower_sum)
     # Restore the true, infinite (unscaled) Gaussian partition function.
-    pivot_weight = (-pi * field(d0_squared / s**2)).exp()
+    pivot_weight = (-pi * field(d0_squared / s_squared)).exp()
     normalizer = field(lower_sum, upper_sum + tail_upper) * pivot_weight
-    return GaussianTable(s, center, step, residue, tail_bits, mass_bits, precision_bits,
+    return GaussianTable(display_s, center, step, residue, tail_bits, mass_bits, precision_bits,
         max_trials, radius, support, masses, tuple(accumulate(masses)), lowers, uppers,
-        tail_upper, quant_tv, normalizer)
+        tail_upper, quant_tv, normalizer, s_squared)
 
 
 class PowerOfTwoGadgetSampler:
