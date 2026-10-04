@@ -1,0 +1,304 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-04",
+  "round": 7,
+  "repository": "https://github.com/youzi258/IB-ME-from-HIBE-IBS",
+  "starting_commit": "73e8bded0e5200a5a3ef6e6234731d1fcfa8c127",
+  "remote_at_start": "fetch succeeded; main/origin/main ahead=0 behind=0; worktree initially clean",
+  "cryptographic_code_baseline": "b15afd675b1c53029d9b8f8909569ccc7b060fa8",
+  "scope": {
+    "user_priority": "Prioritize Foo-Li proof closure; do not dismiss the candidate or defer these logical gaps to component implementation",
+    "generic_construction": "Wang two-level anonymous HIBE plus adaptive IBS",
+    "excluded": "Boyen-Li enhanced privacy; no Ext/ReExt",
+    "completed_logical_work": [
+      "Hidden-master and uncorrupted-target seed-prefix classical-ROM coupling with full other-user state disclosure",
+      "Joint adaptive identity-slot/latent-branch coupling including hash-only identities and a new final identity",
+      "Complete modular SIS inequality with adaptive fresh-message nonzero extraction and finite-sampler transition costs",
+      "Uniform conditional-column quality bound and conservative asymptotic parameter family mapped to MP12"
+    ],
+    "proof_status": "Written modular classical-ROM ordinary UF-CMA theorem with explicit sampling contracts; requires independent review and finite implementation certificates",
+    "src_or_params_changed": false,
+    "formal_backend_admission": false,
+    "new_cryptographic_benchmark": false,
+    "new_security_estimate": false,
+    "old_counterexamples_remediated": false,
+    "cross_boundary_reason": "Research proof, reproducible finite controls, tests and project priority records; no primitive/protocol interface changes"
+  },
+  "environment": {
+    "windows_os": "Windows-11-10.0.26200-SP0",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "physical_cores": 24,
+    "logical_processors": 24,
+    "physical_memory_bytes": 33778278400,
+    "windows_python": "3.14.6",
+    "pytest": "9.1.1",
+    "sage_environment": "~/miniconda3/envs/sage",
+    "wsl": {
+      "python": "3.13.14",
+      "sage": "10.9",
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+    },
+    "exact_arithmetic": "Python Fraction; Sage QQ and outward MPFI pi/exp",
+    "new_software_installed": false
+  },
+  "sources": [
+    {
+      "id": "foo_li",
+      "file": "papers/2023_tightly_secure_ibs_foo.pdf",
+      "sha256": "845855b9b39fdcbbe61831d9d1c431dc8d898b5a6244863ff87b23171b1e45b8",
+      "source_url": "https://research-repository.griffith.edu.au/server/api/core/bitstreams/bea45f34-cb40-47b4-b6da-4bde6690f252/content",
+      "original_file_unchanged": true,
+      "relevant_text_locations": {
+        "pages": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ],
+        "sections": [
+          "section 3 / Figures 1-3",
+          "Figures 7-10",
+          "Lemmas 11-13",
+          "section 5 / Figure 11"
+        ]
+      },
+      "review_method": "same archived text and previous-page visual checks; MP12 and Wang clauses additionally reread this round"
+    },
+    {
+      "id": "mp12",
+      "file": "papers/2011_lattice_trapdoors_micciancio.pdf",
+      "sha256": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+      "source_url": "https://eprint.iacr.org/2011/501.pdf",
+      "original_file_unchanged": true,
+      "relevant_text_locations": {
+        "pages": [
+          11,
+          12,
+          13,
+          14,
+          26,
+          27,
+          28,
+          29
+        ],
+        "sections": [
+          "section 2.3 / Poisson and smoothing",
+          "Lemmas 2.5-2.9",
+          "Theorem 5.5 / Algorithm 3",
+          "Algorithm 4 / Lemma 5.7"
+        ]
+      },
+      "review_method": "same archived text and previous-page visual checks; MP12 and Wang clauses additionally reread this round"
+    },
+    {
+      "id": "wang",
+      "file": "papers/2022_identity_matchmaking_wang.pdf",
+      "sha256": "fa3a97cfe2db59f2f8208d45b76f3c14d289774cb4075e7946dd5051ae84c597",
+      "source_url": "https://eprint.iacr.org/2022/1718.pdf",
+      "original_file_unchanged": true,
+      "relevant_text_locations": {
+        "pages": [
+          7,
+          10,
+          12,
+          13,
+          14,
+          15
+        ],
+        "sections": [
+          "Lemmas 2.1-2.2",
+          "Definition 6",
+          "Construction 1 / Lemma 4.2"
+        ]
+      },
+      "review_method": "same archived text and previous-page visual checks; MP12 and Wang clauses additionally reread this round"
+    }
+  ],
+  "online_check": {
+    "date": "2026-10-04",
+    "sources": [
+      "https://eprint.iacr.org/2011/501",
+      "https://link.springer.com/chapter/10.1007/978-3-031-35486-1_17"
+    ],
+    "scope": "Primary metadata; proof uses unchanged archived MP12 PDF 12-13,22-29, Foo-Li PDF 10-13,20-21 and Wang PDF 10"
+  },
+  "audit_experiment": {
+    "command": "python experiments/research/foo_li_seed_slot_audit.py --output docs/research/2026-10-04-round7/foo-li-seed-slot-audit.json",
+    "file": "docs/research/2026-10-04-round7/foo-li-seed-slot-audit.json",
+    "sha256": "72c401bb2cc30b099c660d806f5cc20aea3bebb86891b43ed85775e667e4f585",
+    "byte_identical_on_rerun": true,
+    "method": "Exact exhaustive lazy-oracle bit branches and adaptive identity/latent-bit/guess assignments; no Monte Carlo",
+    "parameters": {
+      "seed_bits": 3,
+      "seed_space": 8,
+      "oracle_output_bits": 1,
+      "external_Hcal3_queries": 4,
+      "target_slots": 4
+    },
+    "identities_ascii_bytes": {
+      "target": 6,
+      "other": 5,
+      "A": 1,
+      "B": 1,
+      "C": 1,
+      "D": 1
+    },
+    "messages_ascii_bytes": {
+      "old": 3,
+      "fresh": 5
+    },
+    "monte_carlo_repetitions": 0,
+    "gaussian_samples": 0,
+    "real_signatures": 0,
+    "master_seed_oracles_exhaustively_simulated": false,
+    "results": {
+      "seed_control": {
+        "seed_space": 8,
+        "ell": 3,
+        "external_Hcal3_queries": 4,
+        "public_view_TV": "23/256",
+        "view_and_hidden_seed_TV": "45/256",
+        "ideal_prefix_hit_probability": "11/32",
+        "conservative_query_bound": "1/2",
+        "real_other_recomputation": "1",
+        "correct_ideal_other_recomputation": "1",
+        "wrong_ideal_other_recomputation": "1/2",
+        "wrong_all_signatures_TV": "1/2",
+        "real_total_probability": "1",
+        "ideal_total_probability": "1",
+        "real_leaf_states": 3152,
+        "ideal_leaf_states": 3840,
+        "model": "one-bit oracle and one-bit toy signing tape; not an IBS sampler",
+        "security_claim": "none"
+      },
+      "slot_control": {
+        "K": 4,
+        "full_reference_success": {
+          "same": "1/4",
+          "other": "3/4"
+        },
+        "correct_guess_joint": {
+          "same": "1/16",
+          "other": "3/16"
+        },
+        "after_target_Key_abort": {
+          "same": "1/16",
+          "other": "3/16"
+        },
+        "wrong_guess_abort_probability": "1/8",
+        "adaptive_final_slots": [
+          2,
+          4
+        ],
+        "hash_and_seed_only_identities_registered": true,
+        "final_never_seen_identity_registered": true,
+        "signature_validity_checked": false,
+        "security_claim": "none"
+      }
+    },
+    "cryptographic_signature_validity_checked": false,
+    "security_claim": "none"
+  },
+  "verification": {
+    "wsl_command": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest tests/test_foo_li_seed_slot_audit.py tests/test_foo_li_fixed_key_audit.py tests/test_foo_li_matrix_mass_audit.py tests/test_general_gadget_reference.py tests/test_gaussian_reference.py tests/test_fixed_key_transform_audit.py tests/test_primitive_gate_audit.py -q",
+    "wsl_result": "210 passed in 3.62s",
+    "new_checks": 21,
+    "previous_checks": 189,
+    "windows_command": "python -m pytest tests/test_foo_li_seed_slot_audit.py tests/test_foo_li_fixed_key_audit.py tests/test_foo_li_matrix_mass_audit.py tests/test_general_gadget_reference.py tests/test_gaussian_reference.py tests/test_fixed_key_transform_audit.py tests/test_primitive_gate_audit.py -q",
+    "windows_result": "98 passed, 3 skipped in 0.25s",
+    "sage_modules_skipped_only_on_windows": 3,
+    "sage_checks_executed_in_wsl": 112,
+    "failed_tests": [],
+    "full_legacy_suite_rerun": false,
+    "reason": "No production or parameter edits; all seven research modules including Sage executed",
+    "final_diff_check": "passed: git diff --check and git diff --cached --check for all 7 owned files",
+    "links_and_scope_check": "passed: 63 local Markdown links, balanced math delimiters, 7-file ownership scope, source/result hashes and byte-identical rerun"
+  },
+  "theoretical_parameter_family": {
+    "source": "Project conservative asymptotic construction; not a recommended finite parameter set",
+    "n": "lambda",
+    "q": "prime in [n^20,2*n^20]",
+    "w": "n*ceil(log2(q))",
+    "m": "4*w",
+    "m_bar": "3*w",
+    "master_gaussian_width": "n",
+    "delegation_width": "n^5",
+    "signing_width": "n^9",
+    "seed_bits": "n^2",
+    "smoothing_error": "2^-n",
+    "MP12_rounding_factor": "n",
+    "user_quality": "s*sqrt(m*w)",
+    "SIS_reduction_norm": "O(n^(31/2)*(log n)^(3/2))",
+    "claims": [
+      "Nonempty asymptotic sampling/norm conditions for sufficiently large n",
+      "Classical ordinary UF-CMA under the corresponding SIS assumption and MP12 sampling theorems"
+    ],
+    "not_claimed": [
+      "Practical security bits",
+      "A concrete finite backend",
+      "Original tight loss",
+      "Strong UF",
+      "QROM",
+      "Standard-model security"
+    ]
+  },
+  "teaching_parameters_unchanged": {
+    "hibe": {
+      "n": 8,
+      "m": 168,
+      "q": 524288
+    },
+    "ibs": {
+      "n": 8,
+      "m": 80,
+      "q": 257
+    }
+  },
+  "counterexample_disposition": {
+    "public_forgery": {
+      "evidence": "docs/research/2026-10-03/核验记录.json; experiments/attacks/forge_ibs.py",
+      "cause": "q=257, acceptance norm about 789, sparse public modular solution about 186",
+      "remediation": "Replace the simplified IBS by an instantiated/certified Foo-Li backend and valid finite parameters; retain public solve/LLL/honest signing regressions",
+      "fixed_this_round": false,
+      "rerun_this_round": false
+    },
+    "ciphertext_tamper": {
+      "evidence": "docs/research/2026-10-03/核验记录.json; src/ibme/protocol/baseline.py",
+      "cause": "Noise tolerance can preserve payload after coefficient change; message signature does not bind all ciphertext bytes",
+      "remediation": "Prove and version full-ciphertext authentication covering a receiver with its own secret key, then implement and test mutations/reassembly",
+      "fixed_this_round": false,
+      "rerun_this_round": false
+    }
+  },
+  "remaining_work": [
+    "Independent review of the new modular proof",
+    "Finite uniform perturbation/gadget/SampleD/DelTrap/TrapGen certificates and fixed tape lengths",
+    "Canonical encodings, uniform field-domain mapping and persistent key lifecycle implementation",
+    "Practical parameters, SIS attack estimate, byte sizes and performance",
+    "Formal Foo-Li backend and public forgery regressions",
+    "Complete authenticated ciphertext wrapper and receiver self-forgery/tampering regressions"
+  ],
+  "security_claim": "none for repository implementation; mathematical theorem assumes the stated SIS and sampling contracts; finite controls do not replace the proof",
+  "delivery": {
+    "modified_files": [
+      "README.md",
+      "docs/PROJECT_RESTART.md",
+      "docs/research/2026-10-04-round7/FooLi经典ROM证明补全与修复路线.md",
+      "docs/research/2026-10-04-round7/foo-li-seed-slot-audit.json",
+      "docs/research/2026-10-04-round7/第七轮核验记录.json",
+      "experiments/research/foo_li_seed_slot_audit.py",
+      "tests/test_foo_li_seed_slot_audit.py"
+    ],
+    "commit_message": "feat(research): close Foo-Li seed and target coupling",
+    "push_authorized_by_user": true,
+    "next_task": "Foo-Li MP12 non-spherical perturbation and full SampleD finite certificate mapping; implement dependencies according to the proof"
+  }
+}

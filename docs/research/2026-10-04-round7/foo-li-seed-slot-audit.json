@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "security_claim": "none",
+  "proof_scope": "finite controls for two written classical-ROM lemmas",
+  "seed_control": {
+    "seed_space": 8,
+    "ell": 3,
+    "external_Hcal3_queries": 4,
+    "public_view_TV": "23/256",
+    "view_and_hidden_seed_TV": "45/256",
+    "ideal_prefix_hit_probability": "11/32",
+    "conservative_query_bound": "1/2",
+    "real_other_recomputation": "1",
+    "correct_ideal_other_recomputation": "1",
+    "wrong_ideal_other_recomputation": "1/2",
+    "wrong_all_signatures_TV": "1/2",
+    "real_total_probability": "1",
+    "ideal_total_probability": "1",
+    "real_leaf_states": 3152,
+    "ideal_leaf_states": 3840,
+    "model": "one-bit oracle and one-bit toy signing tape; not an IBS sampler",
+    "security_claim": "none"
+  },
+  "slot_control": {
+    "K": 4,
+    "full_reference_success": {
+      "same": "1/4",
+      "other": "3/4"
+    },
+    "correct_guess_joint": {
+      "same": "1/16",
+      "other": "3/16"
+    },
+    "after_target_Key_abort": {
+      "same": "1/16",
+      "other": "3/16"
+    },
+    "wrong_guess_abort_probability": "1/8",
+    "adaptive_final_slots": [
+      2,
+      4
+    ],
+    "hash_and_seed_only_identities_registered": true,
+    "final_never_seen_identity_registered": true,
+    "signature_validity_checked": false,
+    "security_claim": "none"
+  },
+  "monte_carlo_repetitions": 0,
+  "gaussian_samples": 0,
+  "real_signatures": 0,
+  "limitations": [
+    "No TrapGen, DelTrap, perturbation or SampleD implemented",
+    "Finite seed control covers Hcal3 only; the two master domains are handled by the written lemma",
+    "Toy exhaustive controls are not a security proof or lattice parameter estimate",
+    "Full-key target corruption is excluded by ordinary UF; other users remain corruptible"
+  ]
+}
