@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-04",
+  "repository": "https://github.com/youzi258/IB-ME-from-HIBE-IBS",
+  "working_branch": "main",
+  "starting_commit": "c964c4241ef2290f4a57874ca1dc7348ddbd1e04",
+  "cryptographic_code_baseline": "b15afd675b1c53029d9b8f8909569ccc7b060fa8",
+  "remote_at_start": "fetch succeeded; main/origin/main ahead=0 behind=0",
+  "scope": {
+    "generic_construction": "Wang two-level anonymous HIBE plus adaptively secure IBS; unchanged",
+    "excluded": "Boyen-Li enhanced privacy",
+    "task_boundary": "Wang basic IBS plus Pan-Wagner ROM transform: fixed-key joint queries, proof adaptation, fields and admission review",
+    "review_task_completed": true,
+    "proof_draft_status": "WIP: conditional reduction, not a completed security proof",
+    "cryptographic_code_changed": false,
+    "new_production_parameters": false,
+    "new_security_estimate": false,
+    "new_cryptographic_benchmark": false,
+    "new_production_keys": false
+  },
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "physical_cores": 24,
+    "logical_processors": 24,
+    "physical_memory_bytes": 33778278400,
+    "pdf_python": "3.12.14",
+    "test_python": "3.14.6",
+    "pytest": "9.1.1",
+    "pdf_reader": "pypdf layout extraction",
+    "pdf_render": "pdf2image and bundled Poppler, 140 dpi source pages",
+    "sage_used": false
+  },
+  "source_manifest": "papers/manifest.json",
+  "newly_archived_source_ids": ["pan_wagner", "wang"],
+  "archiving_method": "copied unchanged from prior local research cache; ePrint metadata checked online; remote PDFs not redownloaded or byte-compared this round",
+  "source_review": [
+    {
+      "id": "pan_wagner",
+      "metadata_url": "https://eprint.iacr.org/2021/970",
+      "metadata_latest_revision_date": "2021-12-03",
+      "text_review_pages": [7, 8, 9, 10, 11, 12, 13],
+      "visually_reviewed_pages": [8, 12, 13],
+      "locations": ["Figure 1", "Figure 5", "Theorem 2", "section 3.2 proof"],
+      "finding": "Every Sig query in the security game freshly calls KeyExt; fixed identity salt makes literal G1 abort on a second same-user Sig, and independent precommitted identity programming cannot be reused"
+    },
+    {
+      "id": "wang",
+      "metadata_url": "https://eprint.iacr.org/2022/1718",
+      "metadata_latest_revision_date": "2025-03-03",
+      "text_review_pages": [7, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19],
+      "visually_reviewed_pages": [10, 16, 17, 18],
+      "locations": ["Lemma 2.6", "Definition 6", "Construction 1", "Lemma 4.2", "Figure 4", "Remark 2", "Theorem 5.1 and Figure 5"],
+      "finding": "Base IBS is non-adaptive; trapdoor-independent coset Gaussian is the prospective fixed-key joint-distribution bridge; finite uniform bounds and batch-game mapping still require proof"
+    }
+  ],
+  "admission": {
+    "preferred_research_candidate": "Wang basic SIS-IBS plus Pan-Wagner ROM transform",
+    "decision": "requires supplementary proof; mathematical reference work permitted, no formal IBS backend admission",
+    "source_theorem_claim": "no claim that either paper has been broken",
+    "proposed_experiment": "single master-public-key instance, one cached key per external identity lifetime, ordinary UF-CMA freshness",
+    "adaptive_corruption": "other identities may be corrupted after signing; final target may never be corrupted",
+    "conditional_reduction": "B0 for never-signed target; B1 guesses one target slot, pre-requests keys for every other slot and signatures for target only",
+    "K": "max(1,Q_C+Q_S)",
+    "loss": "at most K+1 outside base reduction and statistical errors, subject to draft assumptions; not tight",
+    "model": "classical ROM draft, no QROM or standard-model result",
+    "uncovered_key_lifecycles": "multiple independently issued keys for the same external identity, multi-instance attacks and rotation"
+  },
+  "audit_experiment": {
+    "command": "python experiments/research/fixed_key_transform_audit.py --output docs/research/2026-10-04-round3/固定密钥转换精确核验结果.json",
+    "results_file": "docs/research/2026-10-04-round3/固定密钥转换精确核验结果.json",
+    "method": "exact finite salt enumeration with Fraction and symbolic query-flow checks; no simulated cryptographic backend",
+    "monte_carlo_repetitions": 0,
+    "gaussian_samples": 0,
+    "signatures_generated": 0,
+    "rom_use": "finite salt transcripts and collision-excluded symbolic oracle labels; not an instantiated RO or QROM",
+    "input_lengths": {
+      "salt_alphabet_size": 4,
+      "salt_bits_for_enumeration": 2,
+      "symbolic_identities": ["A", "B"],
+      "symbolic_identity_ascii_bytes": 1,
+      "symbolic_messages": ["a-first", "b-first", "a-second", "a-new", "same", "m", "new"],
+      "symbolic_message_ascii_bytes": [7, 7, 8, 5, 4, 1, 3],
+      "encoding_note": "abstract labels only; no cryptographic identity or message encoding"
+    },
+    "budget_example": {
+      "source": "hand-selected tiny arithmetic illustration, not recommended security parameters",
+      "Q_C": 1,
+      "Q_S": 2,
+      "Q_1": 3,
+      "Q_2": 4,
+      "ell": 8,
+      "inner_id_bits": 8,
+      "inner_message_bits": 8,
+      "programming_bound": "17/256",
+      "collision_bound": "21/128",
+      "sum_unclamped": "59/256",
+      "sampler_and_base_reduction_errors_included": false
+    },
+    "results": {
+      "two_signature_salt_distance": "3/4",
+      "three_signature_salt_distance": "15/16",
+      "different_identity_control_distance": "0",
+      "cached_target_with_later_other_user_corruption": "query flow preserved",
+      "wrong_guess_corruption": "explicitly aborts",
+      "unused_precommit_excluded": true,
+      "alternative_final_identity_salt_checked": true,
+      "cryptographic_signature_validity_checked": false
+    }
+  },
+  "teaching_parameters_unchanged": {
+    "hibe": {"n": 8, "m": 168, "q": 524288},
+    "ibs": {"n": 8, "m": 80, "q": 257}
+  },
+  "security_claim": "none; exact and symbolic checks do not prove a cryptographic theorem",
+  "verification": {
+    "pytest_command": "python -m pytest tests/test_fixed_key_transform_audit.py tests/test_primitive_gate_audit.py -q",
+    "pytest_result": "33 passed in 0.04s: 20 new and 13 previous-round checks",
+    "full_legacy_suite_rerun": false,
+    "full_suite_reason": "no src/ibme or params changes",
+    "source_pdf_headers_pages_hashes": "passed for all 5 archived PDFs; bytes, pages and SHA-256 agree with manifest",
+    "committed_result_matches_fresh_run": "passed; comparison uses serialized JSON semantics",
+    "local_links": "passed; 55 local links in 6 touched Markdown files, zero missing targets; math excluded before parsing",
+    "git_diff_check": "passed for working tree and staged diff; no whitespace errors"
+  },
+  "unimplemented_and_known_limits": [
+    "WIP fixed-key reduction: uniform conditional SamplePre bounds, good-key events, adaptive-slot coupling and batch UF-naCMA mapping not closed",
+    "multiple keys per identity and multiple public-key instances not covered",
+    "finite salt/hash/sampler/base-reduction error allocation and SIS work-factor estimates not completed",
+    "true Gaussian/perturbation samplers, parameter profiles and formal HIBE/IBS backends not implemented",
+    "authenticated ciphertext wrapper and full byte-tamper rejection remain unimplemented",
+    "previous public-forgery and ciphertext-tamper counterexamples remain valid",
+    "Foo-Li remains on hold; ABB10 complete delegation proof and finite parameters remain pending"
+  ],
+  "next_round": "MP12/Wang finite-error sampling reference foundation: one-dimensional discrete Gaussian and gadget-coset sampling in WSL conda ~/miniconda3/envs/sage; no backend replacement or security level",
+  "modified_files": [
+    "README.md",
+    "docs/PROJECT_RESTART.md",
+    "docs/research/2026-10-03/原语选型第一轮核验.md",
+    "docs/research/2026-10-04-round3/Wang与PanWagner固定密钥接入审查.md",
+    "docs/research/2026-10-04-round3/固定密钥转换条件归约草案.md",
+    "docs/research/2026-10-04-round3/第三轮核验记录.json",
+    "docs/research/2026-10-04-round3/固定密钥转换精确核验结果.json",
+    "papers/index.md",
+    "papers/manifest.json",
+    "papers/2021_short_ibs_pan.pdf",
+    "papers/2022_identity_matchmaking_wang.pdf",
+    "experiments/research/fixed_key_transform_audit.py",
+    "tests/test_fixed_key_transform_audit.py"
+  ],
+  "cross_boundary_reason": "research progress/index updates, fixed primary-source archive and independently reproducible audit checks; frozen core/lattice/primitive/protocol APIs unchanged"
+}

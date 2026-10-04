@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "archived_on": "2026-10-04",
-  "purpose": "fixed primary sources for the second primitive admission review",
+  "purpose": "fixed primary sources for the second and third primitive admission reviews",
   "entries": [
     {
       "id": "abb10",
@@ -134,6 +134,50 @@
         28,
         29
       ],
+      "pdf_header_valid": true
+    },
+    {
+      "id": "pan_wagner",
+      "file": "papers/2021_short_ibs_pan.pdf",
+      "source_url": "https://eprint.iacr.org/2021/970.pdf",
+      "bytes": 705337,
+      "pages": 30,
+      "sha256": "0aa96c6104a3f89d3db1157860695166336a53e1fb57e626fa8009832990f7af",
+      "title": "Short Identity-Based Signatures with Tight Security from Lattices",
+      "authors": ["Jiaxin Pan", "Benedikt Wagner"],
+      "publication": "PQCrypto 2021",
+      "year": 2021,
+      "doi": "10.1007/978-3-030-81293-5_19",
+      "version": "30-page cached ePrint PDF; metadata latest revision date 2021-12-03; no version number or newly downloaded PDF claimed",
+      "metadata_url": "https://eprint.iacr.org/2021/970",
+      "metadata_checked_on": "2026-10-04",
+      "latest_metadata_revision_date": "2021-12-03",
+      "archiving_method": "copied unchanged from verified 2026-10-03 research cache",
+      "tex_source": null,
+      "text_review_pages": [7, 8, 9, 10, 11, 12, 13],
+      "visually_reviewed_pages_this_round": [8, 12, 13],
+      "pdf_header_valid": true
+    },
+    {
+      "id": "wang",
+      "file": "papers/2022_identity_matchmaking_wang.pdf",
+      "source_url": "https://eprint.iacr.org/2022/1718.pdf",
+      "bytes": 1067760,
+      "pages": 21,
+      "sha256": "fa3a97cfe2db59f2f8208d45b76f3c14d289774cb4075e7946dd5051ae84c597",
+      "title": "Identity-based Matchmaking Encryption with Stronger Security and Instantiation on Lattices",
+      "authors": ["Yuejun Wang", "Baocang Wang", "Qiqi Lai", "Yu Zhan"],
+      "publication": "ePrint 2022/1718; later Theoretical Computer Science",
+      "year": 2022,
+      "doi": "10.1016/j.tcs.2024.115048",
+      "version": "21-page cached ePrint PDF; metadata latest revision date 2025-03-03; no version number or newly downloaded PDF claimed",
+      "metadata_url": "https://eprint.iacr.org/2022/1718",
+      "metadata_checked_on": "2026-10-04",
+      "latest_metadata_revision_date": "2025-03-03",
+      "archiving_method": "copied unchanged from verified 2026-10-03 research cache",
+      "tex_source": null,
+      "text_review_pages": [7, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19],
+      "visually_reviewed_pages_this_round": [10, 16, 17, 18],
       "pdf_header_valid": true
     }
   ]

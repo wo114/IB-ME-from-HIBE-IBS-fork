@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "security_claim": "none",
+  "method": "exact finite salt enumeration and symbolic query-flow checks",
+  "monte_carlo_repetitions": 0,
+  "cryptographic_signatures_generated": 0,
+  "salt_checks": {
+    "same_identity_twice": {
+      "identities": [
+        "A",
+        "A"
+      ],
+      "salt_alphabet_size": 4,
+      "cached_all_equal_probability": "1",
+      "fresh_all_equal_probability": "1/4",
+      "salt_transcript_total_variation": "3/4"
+    },
+    "same_identity_three_times": {
+      "identities": [
+        "A",
+        "A",
+        "A"
+      ],
+      "salt_alphabet_size": 4,
+      "cached_all_equal_probability": "1",
+      "fresh_all_equal_probability": "1/16",
+      "salt_transcript_total_variation": "15/16"
+    },
+    "different_identities": {
+      "identities": [
+        "A",
+        "B"
+      ],
+      "salt_alphabet_size": 4,
+      "cached_all_equal_probability": "1/4",
+      "fresh_all_equal_probability": "1/4",
+      "salt_transcript_total_variation": "0"
+    }
+  },
+  "cached_target_with_later_other_user_corruption": {
+    "pre_keys": [
+      "x-2",
+      "x-3"
+    ],
+    "pre_pairs": [
+      [
+        "x-1",
+        "y-1"
+      ],
+      [
+        "x-1",
+        "y-2"
+      ],
+      [
+        "x-1",
+        "y-3"
+      ]
+    ],
+    "events": [
+      {
+        "query": "Sig",
+        "identity": "A",
+        "message": "a-first",
+        "slot": 1,
+        "r": "r-1",
+        "s": "s-1",
+        "inner_id": "x-1",
+        "inner_message": "y-1",
+        "source": "precommitted-signature"
+      },
+      {
+        "query": "Sig",
+        "identity": "B",
+        "message": "b-first",
+        "slot": 2,
+        "r": "r-2",
+        "s": "s-2",
+        "inner_id": "x-2",
+        "inner_message": "outside-y-2",
+        "source": "known-cached-key"
+      },
+      {
+        "query": "Sig",
+        "identity": "A",
+        "message": "a-second",
+        "slot": 1,
+        "r": "r-1",
+        "s": "s-3",
+        "inner_id": "x-1",
+        "inner_message": "y-2",
+        "source": "precommitted-signature"
+      },
+      {
+        "query": "Key",
+        "identity": "B",
+        "slot": 2,
+        "r": "r-2",
+        "inner_id": "x-2",
+        "key": "sk:x-2"
+      }
+    ],
+    "forgery": {
+      "inner_id": "x-1",
+      "inner_message": "outside-y-4",
+      "outer_key_fresh": true,
+      "outer_pair_fresh": true,
+      "inner_key_fresh": true,
+      "inner_pair_fresh": true,
+      "eligible_if_signature_valid": true,
+      "signature_validity_checked": false
+    },
+    "literal_PW_G1_abort_on_second_cached_Sig": true
+  },
+  "repeated_message": {
+    "events": [
+      {
+        "query": "Sig",
+        "identity": "A",
+        "message": "same",
+        "slot": 1,
+        "r": "r-1",
+        "s": "s-1",
+        "inner_id": "x-1",
+        "inner_message": "y-1",
+        "source": "precommitted-signature"
+      },
+      {
+        "query": "Sig",
+        "identity": "A",
+        "message": "same",
+        "slot": 1,
+        "r": "r-1",
+        "s": "s-2",
+        "inner_id": "x-1",
+        "inner_message": "y-2",
+        "source": "precommitted-signature"
+      }
+    ],
+    "old_message_forgery": {
+      "inner_id": "x-1",
+      "inner_message": "outside-y-3",
+      "outer_key_fresh": true,
+      "outer_pair_fresh": false,
+      "inner_key_fresh": true,
+      "inner_pair_fresh": true,
+      "eligible_if_signature_valid": false,
+      "signature_validity_checked": false
+    },
+    "unused_precommit_check": {
+      "inner_key_fresh": true,
+      "inner_pair_fresh": false
+    }
+  },
+  "B0_target_never_signed": {
+    "events": [
+      {
+        "query": "Sig",
+        "identity": "B",
+        "message": "m",
+        "slot": 1,
+        "r": "r-1",
+        "s": "s-1",
+        "inner_id": "x-1",
+        "inner_message": "outside-y-1",
+        "source": "known-cached-key"
+      },
+      {
+        "query": "Key",
+        "identity": "B",
+        "slot": 1,
+        "r": "r-1",
+        "inner_id": "x-1",
+        "key": "sk:x-1"
+      }
+    ],
+    "forgery": {
+      "inner_id": "outside-x-2",
+      "inner_message": "outside-y-2",
+      "outer_key_fresh": true,
+      "outer_pair_fresh": true,
+      "inner_key_fresh": true,
+      "inner_pair_fresh": true,
+      "eligible_if_signature_valid": true,
+      "signature_validity_checked": false
+    }
+  },
+  "wrong_guess": {
+    "events": [
+      {
+        "query": "Sig",
+        "identity": "A",
+        "message": "a-first",
+        "slot": 1,
+        "r": "r-1",
+        "s": "s-1",
+        "inner_id": "x-1",
+        "inner_message": "outside-y-1",
+        "source": "known-cached-key"
+      },
+      {
+        "query": "Sig",
+        "identity": "B",
+        "message": "b-first",
+        "slot": 2,
+        "r": "r-2",
+        "s": "s-2",
+        "inner_id": "x-2",
+        "inner_message": "y-1",
+        "source": "precommitted-signature"
+      }
+    ],
+    "abort": "Corruption of guessed signing target"
+  },
+  "tiny_budget_example": {
+    "K": 3,
+    "B1_guess_probability": "1/3",
+    "outer_reduction_loss_at_most": 4,
+    "distinct_draw_budget": {
+      "identity": 7,
+      "message": 7
+    },
+    "programming_union_bound": "17/256",
+    "collision_union_bound": "21/128",
+    "sum_unclamped": "59/256",
+    "probability_cap": "59/256",
+    "omits_sampler_and_base_reduction_errors": true,
+    "security_claim": "none"
+  },
+  "limitations": [
+    "No random oracle or Gaussian sampler implemented",
+    "No signature validity or lattice attack evaluated",
+    "Conditional reduction and uniform joint-distribution bounds remain unproved"
+  ]
+}
