@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "research_round": 8,
+  "date": "2026-10-05",
+  "objective": "Complete finite non-spherical perturbation, MP12 Algorithm 3, fixed-tape and Foo-Li sampling-contract reference mapping",
+  "base_commit": "f83d3280a140db1a5d22ef5f0c81c296264c2344",
+  "production_crypto_baseline": "b15afd675b1c53029d9b8f8909569ccc7b060fa8",
+  "production_code_changed": false,
+  "parameter_files_changed": false,
+  "scope": {
+    "generic_construction": "Wang two-level anonymous HIBE plus adaptive IBS",
+    "IBS_research_candidate": "Foo-Li fixed-key classical ordinary UF-CMA variant from round seven",
+    "Boyen_Li_enhanced_privacy": false,
+    "cross_boundary_reason": "Independent research sampler, audit, tests and documentation needed to instantiate the round-seven sampling contract; no production interface edits"
+  },
+  "primary_source": {
+    "paper": "Micciancio-Peikert, ePrint 2011/501",
+    "url": "https://eprint.iacr.org/2011/501",
+    "pdf_path": "papers/2011_lattice_trapdoors_micciancio.pdf",
+    "pdf_sha256": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+    "locations": [
+      "Lemma 2.3, PDF 12",
+      "Lemma 2.5, PDF 13",
+      "Algorithm 3 and Theorem 5.5, PDF 27-29"
+    ],
+    "adaptation": "exact rational inverse-metric nearest plane for perturbation; finite all-center CDF and bounded tapes are project adaptations"
+  },
+  "environment": {
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "physical_cores": 24,
+    "logical_processors": 24,
+    "memory_bytes": 33778278400,
+    "windows_python": "3.14.6",
+    "windows_pytest": "9.1.1",
+    "wsl": {
+      "python": "3.13.14",
+      "sage": "10.9",
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+    },
+    "sage_environment": "~/miniconda3/envs/sage"
+  },
+  "implemented": [
+    "Exact rational PSD/SPD Schur-complement certificate including singular allowed boundaries",
+    "Non-spherical integer Gaussian using inverse-metric Gram-Schmidt and all-center scalar tables",
+    "Complete prime-q MP12 Algorithm 3 for scalar Sigma_G/Sigma; fresh perturbation each call",
+    "Explicit MP12 smoothing and convolution plus finite component TV bounds",
+    "Fixed tape length, bounded unbiased draws, explicit rejection/exhaustion, deterministic replay",
+    "Exact complete ideal-ticket PMF for small SampleD and independent infinite-target comparison",
+    "Negative control: removing perturbation preserves the equation but distorts the output distribution",
+    "Public fixed tape allocation independent of trapdoor/CDF center geometry, with actual per-key byte requirement archived"
+  ],
+  "contracts": {
+    "gaussian_squared_parameter": "C in exp(-pi*x^T*C^-1*x), not the probability covariance C/(2*pi)",
+    "mp12_sign_convention": "A=[Abar|H*G-Abar*R]; Foo-Li requires R=-R_id",
+    "uniformity_scope": "All syndromes and invertible tags for every admitted unchanged fixed trapdoor with its complete certificate; rejected geometries not covered",
+    "randomness": "Independent uniform bytes assumed in distance bounds; DeterministicRandom seeds for tests only",
+    "output_space": "Integer vector plus explicit SamplingAbort; no hidden retries or entropy fallback",
+    "zero_vector": "Included by Gaussian sampler; IBS rejection policy and associated correctness/error budget not yet implemented",
+    "public_tape_length": "(d+w)*T*ceil(ceil(log2(2^mass_bits*(2*max_radius+2)))/8); independent of private trapdoor, center families and CDF masses"
+  },
+  "fixtures": {
+    "master_delegation_oracle": {
+      "q": 3,
+      "n": 1,
+      "m_bar": 1,
+      "w": 2,
+      "output_dimension": 3,
+      "r_squared": "9",
+      "Sigma_scalar": "24",
+      "Sigma_G_scalar": "5",
+      "spherical_target_width_squared": "216",
+      "MP12_smoothing_epsilon_upper": "1813601280709536014558128951225374877085210061846970971997/862718293348820473429344482784628181556388621521298319395315527974912",
+      "tv_upper_including_abort": "2018653501831142892772211853568282555288693753889433385827/215679573337205118357336120696157045389097155380324579848828881993728",
+      "tv_upper_display": "[9.3595024813734713336755697e-12 .. 9.3595024813734713336755818e-12]",
+      "fixed_random_tape_bytes": 11520,
+      "fixed_tape_bits": 92160,
+      "random_rejection_abort_upper": "5/340282366920938463463374607431768211456",
+      "tape_exhaustion_probability_at_certified_length": "0",
+      "perturbation_center_classes": 21,
+      "gadget_center_classes": 8,
+      "mu_p": "3602116602014315074398440260800620930566297517761506026787/3794275180128377091639574036764685364535950857523710002444946112771297432041422848",
+      "mu_G": "1899745771977750835934275419519862344432035307291855946793862926024438044402326799884535032856980803483832031356795428148200845797585267747052062522425092159624806021460810164544320341292494516942860201581238260077901812292402722496055146679148437855410627668082472064400112250813211109915072737037104120447847638413127732333775567707638423437449/1998204922257198211779742955305665816857014170494303411942492526792880144005457307463469100790451211113103817686356612639069238694734706376820520718425225923943771511856267463277070219866900731511289169177892801168416509756074273348398005240569934695780553270359716633404379714036299575415949168328252347381449040049580285027848374027370281488625117366845440",
+      "diagnostic_draws": 4096,
+      "aborts": 0,
+      "equation_errors": 0,
+      "all_tag_syndrome_diagnostic": {
+        "draws": 96,
+        "equation_failures": 0
+      },
+      "finite_tape_replay": true,
+      "required_tape_bytes_max_over_this_key_centers": 10880,
+      "tape_length_depends_only_on_public_dimensions_and_table_options": true
+    },
+    "user_signing_oracle": {
+      "q": 3,
+      "n": 1,
+      "m_bar": 3,
+      "w": 2,
+      "output_dimension": 5,
+      "r_squared": "16",
+      "Sigma_scalar": "40",
+      "Sigma_G_scalar": "5",
+      "spherical_target_width_squared": "640",
+      "MP12_smoothing_epsilon_upper": "1096067252713771346163097624741943742504209457673464355753/1852673427797059126777135760139006525652319754650249024631321344126610074238976",
+      "tv_upper_including_abort": "4886722630428534143291599936929314838897961116692370049203/1852673427797059126777135760139006525652319754650249024631321344126610074238976",
+      "tv_upper_display": "[2.6376600198984573394522867e-21 .. 2.6376600198984573394522896e-21]",
+      "fixed_random_tape_bytes": 16128,
+      "fixed_tape_bits": 129024,
+      "random_rejection_abort_upper": "7/340282366920938463463374607431768211456",
+      "tape_exhaustion_probability_at_certified_length": "0",
+      "perturbation_center_classes": 22,
+      "gadget_center_classes": 8,
+      "mu_p": "1362498690593444562375366426020256138720318630670022089785/474284397516047136454946754595585670566993857190463750305618264096412179005177856",
+      "mu_G": "91536959029325332289489704291344797823189665720675414861361187677971912674001181018443794265263057566528779952258913420751796346316327927587969963646223357562993131169789637813742911214863348878661987270196858434386075108581438019965708063070223001403502754907337053444978204788627983869139002727785468643316393016780974833982256952183/341133361561645528395747585449358496654643751009665472923209203577939982143957570130953110775217731058067728116243387117896451487658506304634833380373740969830141980959667905358670391460144782532183394107141868744322623970558543520685122715605122855529013050927361113361971043743920457996474159528504713528964786185763874469703265772383956346780149484617728",
+      "diagnostic_draws": 4096,
+      "aborts": 0,
+      "equation_errors": 0,
+      "all_tag_syndrome_diagnostic": {
+        "draws": 96,
+        "equation_failures": 0
+      },
+      "finite_tape_replay": true,
+      "required_tape_bytes_max_over_this_key_centers": 15232,
+      "tape_length_depends_only_on_public_dimensions_and_table_options": true
+    }
+  },
+  "local_Foo_Li_ledger": {
+    "two_column_delegation_bound_if_independent": "2018653501831142892772211853568282555288693753889433385827/107839786668602559178668060348078522694548577690162289924414440996864",
+    "signing_error_fixture": "4886722630428534143291599936929314838897961116692370049203/1852673427797059126777135760139006525652319754650249024631321344126610074238976",
+    "reference_SIS_bound_squared": 64000,
+    "q_squared": 9,
+    "nontrivial_SIS_interval_passed": false,
+    "complete_round7_E_evaluated": false,
+    "no_unfilled_term_assumed_zero": true,
+    "keys_generated_by_TrapGen": false,
+    "master_user_fixtures_connected_by_DelTrap": false
+  },
+  "independent_full_distribution": {
+    "parameters": {
+      "q": 2,
+      "A": [
+        [
+          1,
+          0
+        ]
+      ],
+      "syndrome": [
+        0
+      ],
+      "r_squared": "1",
+      "Sigma_scalar": "14",
+      "Sigma_G_scalar": "5",
+      "tail_bits": 12,
+      "mass_bits": 64,
+      "precision_bits": 160,
+      "max_trials": 64
+    },
+    "cdf_states": 113,
+    "cdf_total_probability": "1",
+    "all_vectors_satisfy_equation": true,
+    "infinite_target_tv_interval": {
+      "lower": "35152125637789980897229677282880218504549389423407064251964845214205793569749/3705346855594118253554271520278013051304639509300498049262642688253220148477952",
+      "upper": "70304251275579961794459354565760437021480164596543549041475441600349541742205/7410693711188236507108543040556026102609279018600996098525285376506440296955904",
+      "display": "[0.009486865064931596314253146104979932695601974390071630845720476935716235814175123 .. 0.009486865064931596314253146104979932697272720238201438294839553866459033506447933]"
+    },
+    "infinite_target_tv_display_approx": 0.009486865064931597,
+    "target_mass_outside_finite_cdf_support_interval": {
+      "lower": "57204317983569491961916974370168466540420343711647935071335617502229807/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+      "upper": "57204317983569491961916974370168659999572683233843834223697679032770509/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+      "display": "[4.940261321853264935212726032193520739203859651398110758891304621629047070674001e-7 .. 4.940261321853264935212726032193537446662340949472601949660612049605972795777281e-7]"
+    },
+    "zero_vector_cdf_probability": "7292767992428972959213282743705710486888155356206129891123483857817366830682964930085795429883426397149078103871/51129138359106896347895041526969170898471285354358426910798540413457241852944469216704520258403138985676762358300",
+    "zero_vector_infinite_target_probability": {
+      "lower": "16541172051725324879377484912299483421625073449642865443201792370997823877123/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+      "upper": "66164688206901299517509939649197933686610838231297783887725691663563806513339/463168356949264781694283940034751631413079938662562256157830336031652518559744",
+      "display": "[0.1428523499375173090183153947209096948602268874510567352323390358515681887501926 .. 0.1428523499375173090183153947209096948604655575395196893066384913269614131545200]"
+    },
+    "certificate_tv_upper_including_abort": "1578670034926399527260170470159145286596501426752056366011/3138550867693340381917894711603833208051177722232017256448",
+    "certificate_dominates_independent_distance": true,
+    "without_perturbation_negative_control": {
+      "event": "x[0] equals x[1]",
+      "all_unperturbed_gadget_outputs_satisfy_equation": true,
+      "unperturbed_event_probability": "1",
+      "infinite_target_event_probability": {
+        "lower": "88244651232103711199781927031094907045540429696784999719494310394386566201397/463168356949264781694283940034751631413079938662562256157830336031652518559744",
+        "upper": "88244651232103711199781927031094907045687864154288851415945225747540130124873/463168356949264781694283940034751631413079938662562256157830336031652518559744",
+        "display": "[0.1905239205314925775475808273585782229065440447101475748871592215757098379776042 .. 0.1905239205314925775475808273585782229068623619166056179382544194658838451839019]"
+      },
+      "tv_lower_witness": "374923705717161070494502013003656724367392074508273404741885110284112388434871/463168356949264781694283940034751631413079938662562256157830336031652518559744"
+    },
+    "scope": "ideal-ticket complete SampleD law versus infinite spherical coset Gaussian; abort excluded from PMF and included in certificate",
+    "security_claim": "none"
+  },
+  "reproduction": {
+    "command": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.mp12_sampled_audit --samples 4096 --output docs/research/2026-10-05-round8/mp12-sampled-results.json",
+    "same_parameters_rerun_byte_identical": true,
+    "sha256": "f933aaa56806c9e0dc542830006fd08f44e5c5a13beb2da7336ba4ad956338ef",
+    "monte_carlo_per_fixture": 4096,
+    "extra_all_tag_syndrome_draws_per_fixture": 96,
+    "exact_PMF_states": 113,
+    "identity_length_bytes": null,
+    "message_length_bytes": null,
+    "rom_use": "none in sampling; subsequent Foo-Li modular analysis is classical ROM",
+    "cryptographic_keys_or_signatures_generated": 0
+  },
+  "verification": {
+    "wsl_command": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest tests/test_mp12_sampled_reference.py tests/test_foo_li_seed_slot_audit.py tests/test_foo_li_fixed_key_audit.py tests/test_foo_li_matrix_mass_audit.py tests/test_general_gadget_reference.py tests/test_gaussian_reference.py tests/test_fixed_key_transform_audit.py tests/test_primitive_gate_audit.py -q",
+    "wsl_result": "261 passed in 5.14s",
+    "new_checks": 51,
+    "previous_checks": 210,
+    "windows_command": "python -m pytest tests/test_mp12_sampled_reference.py tests/test_foo_li_seed_slot_audit.py tests/test_foo_li_fixed_key_audit.py tests/test_foo_li_matrix_mass_audit.py tests/test_general_gadget_reference.py tests/test_gaussian_reference.py tests/test_fixed_key_transform_audit.py tests/test_primitive_gate_audit.py -q",
+    "windows_result": "98 passed, 4 skipped in 0.41s",
+    "Sage_modules_skipped_only_on_windows": 4,
+    "Sage_checks_executed_in_WSL": 163,
+    "failed_tests": [],
+    "development_fixes": [
+      "Initial smoke exposed unavailable Sage matrix.copy(); replaced by explicit mutable rational matrix construction",
+      "Initial test demanded >20 distinct outputs from 40 narrow Gaussian draws; fixed this unsupported assertion while retaining deterministic replay and entropy-advance checks",
+      "Replaced per-key CDF-dependent tape allocation by a uniform public-configuration bound before final delivery"
+    ],
+    "full_legacy_suite_rerun": false,
+    "reason": "No production/parameter edits; all eight research modules including full Sage tests executed",
+    "final_diff_check": "passed: git diff --check and git diff --cached --check for all 8 owned files; no production/parameter changes",
+    "links_and_scope_check": "passed: 74 local Markdown links, balanced math/code delimiters, 8-file ownership scope, source/result hashes and byte-identical rerun"
+  },
+  "resource_limits": {
+    "matrix_dimension_max": 16,
+    "all_center_default_max": 4096,
+    "all_center_option_max": 20000,
+    "scalar_squared_width_divided_by_step_squared_range": [
+      "1/4096",
+      "4096"
+    ],
+    "default_tail_bits": 80,
+    "default_mass_bits": 128,
+    "default_precision_bits": 192,
+    "default_max_trials": 128,
+    "default_max_radius": 512,
+    "full_random_tape_bytes_max": 16777216,
+    "full_PMF_enumerator_dimensions_max": 4,
+    "full_PMF_enumerator_q_max": 17,
+    "resource_failures_emit_partial_certificate": false
+  },
+  "teaching_parameters_unchanged": {
+    "hibe": {
+      "n": 8,
+      "m": 168,
+      "q": 524288
+    },
+    "ibs": {
+      "n": 8,
+      "m": 80,
+      "q": 257
+    }
+  },
+  "counterexamples": {
+    "old_public_IBS_forgery_fixed": false,
+    "outer_ciphertext_tamper_fixed": false,
+    "old_attacks_rerun": false,
+    "repair_targets": "Instantiate and replace IBS backend/parameters, then retain public solve/LLL regressions; separately prove and implement full-ciphertext authentication including receiver self-forgery"
+  },
+  "remaining_work": [
+    "Uniform admitted-geometry coverage or an explicit rejection/quality budget for actual TrapGen/DelTrap outputs",
+    "Real TrapGen near-uniform and quality contracts, independent-column DelTrap, connected user sampling",
+    "Efficient large-q non-spherical/gadget implementation replacing capped all-center precomputation where needed",
+    "Canonical encodings, finite RO codomains, persistent key/seed and signing-abort lifecycle",
+    "Practical parameters, full SIS norm, security estimate, correct signing failure budget and independent proof review",
+    "Formal Foo-Li backend plus forgery regression; full ciphertext authentication wrapper and receiver-self-forgery regression"
+  ],
+  "security_claim": "none: tiny hand-selected research fixtures; finite distribution certificates do not prove cryptographic security or provide NIST levels, original tightness, QROM or standard-model security",
+  "delivery": {
+    "modified_files": [
+      "README.md",
+      "docs/PROJECT_RESTART.md",
+      "docs/research/2026-10-05-round8/MP12完整SampleD有限误差与随机带核验.md",
+      "docs/research/2026-10-05-round8/mp12-sampled-results.json",
+      "docs/research/2026-10-05-round8/第八轮核验记录.json",
+      "experiments/research/mp12_sampled_reference.py",
+      "experiments/research/mp12_sampled_audit.py",
+      "tests/test_mp12_sampled_reference.py"
+    ],
+    "commit_message": "feat(research): add certified full MP12 SampleD reference",
+    "push_authorized_by_user": true,
+    "next_task": "Connect research TrapGen/DelTrap to full SampleD with explicit admission/resource/quality budgets"
+  },
+  "owned_file_sha256_except_this_record": {
+    "README.md": "6761e611c8f071823662bc398fa7991ad1c2151629b981d2775b87451afb752a",
+    "docs/PROJECT_RESTART.md": "4d593faaf9ef660ea2733659d2b19ccda7dd3d3447790e9c5960bae6a2d2ced9",
+    "docs/research/2026-10-05-round8/MP12完整SampleD有限误差与随机带核验.md": "ac53823d94a86b7df9dfa269a12043a262e2593d48f46a67d490258d6baf174c",
+    "docs/research/2026-10-05-round8/mp12-sampled-results.json": "f933aaa56806c9e0dc542830006fd08f44e5c5a13beb2da7336ba4ad956338ef",
+    "experiments/research/mp12_sampled_reference.py": "a01b198a7bbcefbb54b387f6ab0b24961b5e74c3689ea4e2f30c74c35ba1061b",
+    "experiments/research/mp12_sampled_audit.py": "cd75a5202906df9d65133f38eaa77f384b8dc810c84381b63cbb2672d2eaca65",
+    "tests/test_mp12_sampled_reference.py": "1bef617fcfab775508648fa4d4d0c6bc2544ee356ba37044b90e07c559922742"
+  }
+}
