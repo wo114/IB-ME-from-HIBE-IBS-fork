@@ -1,0 +1,375 @@
+{
+  "schema_version": 1,
+  "research_round": 10,
+  "date": "2026-10-05",
+  "objective": "Remove all-center Gaussian precomputation; certify online finite-error/resource contracts, quality classes and complete MP12 at larger prime modulus and dimension",
+  "base_commit": "face66d611d05949a3fb1d9f41715e5d9ebaf4e5",
+  "production_crypto_baseline": "b15afd675b1c53029d9b8f8909569ccc7b060fa8",
+  "production_code_changed": false,
+  "parameter_files_changed": false,
+  "scope": {
+    "generic_construction": "Wang two-level anonymous HIBE plus adaptive IBS",
+    "IBS_research_candidate": "Foo-Li fixed-key classical ordinary UF-CMA variant from round seven",
+    "Boyen_Li_enhanced_privacy": false,
+    "cross_boundary_reason": "One research task spanning online samplers, audit, tests, result certificates and progress documents; no frozen production interface changes"
+  },
+  "sources": {
+    "MP12_url": "https://eprint.iacr.org/2011/501",
+    "pdf_sha256": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+    "locations": [
+      "section 2 discrete Gaussians, PDF 11-13",
+      "section 4.2 general gadget, PDF 18-19",
+      "Algorithms 1/3/4, PDF 24/27/29"
+    ],
+    "rounding": "https://doc.sagemath.org/html/en/reference/spkg/mpfi.html"
+  },
+  "environment": {
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "physical_cores": 24,
+    "logical_processors": 24,
+    "memory_bytes": 33778278400,
+    "windows_python": "3.14.6",
+    "windows_pytest": "9.1.1",
+    "wsl": {
+      "python": "3.13.14",
+      "sage": "10.9",
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+      "pytest": "9.1.1"
+    },
+    "sage_environment": "~/miniconda3/envs/sage"
+  },
+  "implemented": [
+    "Uniform-in-rational-center bounded uniform-box rejection discrete Gaussian, with directed interval integer weights and safe exponent clipping",
+    "Uniform tail, relative-weight width, quantization, candidate abort and Gaussian abort ledger; no center or support enumeration during construction/sampling",
+    "Online general-prime gadget GPV and exact inverse-metric LDL/nearest-plane non-spherical integer perturbation",
+    "All finite actual sampling paths admitted before entropy using deterministic coefficient and center-bit recurrences",
+    "All Frobenius-quality-qualified integer trapdoors covered by shared public covariance width and determinant/center-bit bounds",
+    "Complete MP12 Algorithm 3, actual Gaussian Algorithm 1 and disjoint-column Algorithm 4",
+    "Streamed full column tapes, including unused suffix hashes, equivalent to old flat fixed-tape delegation",
+    "Independent scalar infinite partition tests and complete two-dimensional accepted-kernel PMF with factored infinite target and outside mass",
+    "Large-prime actual connected chain with all attempts retained, predeclared user prefix, deterministic replay and archived equations",
+    "Unconditional public-generation TV lower bound and public-only master trapdoor recovery negative control",
+    "Fresh entropy, malformed/oversized inputs, both rejection abort paths, immutable matrices and certificate snapshot regression checks"
+  ],
+  "parameter_source": "hand-selected stress/debug instances, not security parameters",
+  "contracts": {
+    "parameter_matrix_convention": "exp(-pi*(x-c)^2/v) and exp(-pi*x^T*C^-1*x); v and C are squared Gaussian parameters, not probability variances",
+    "rounding": "Correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; argument clipping precedes extreme exponent computation. Uniform interval-width derivation is a project proof requiring independent review.",
+    "randomness": "Independent uniform bytes for mathematical distances; frozen test-only SHAKE stream for reproducibility, not security evidence",
+    "resource_scope": {
+      "max_dimension": 128,
+      "max_q": 4294967296,
+      "prime_q_for_full_MP12": true,
+      "squared_scalar_width_range": [
+        1,
+        1000000000000
+      ],
+      "default_rational_input_bits": 8192,
+      "max_public_vector_tape_bytes": 268435456,
+      "public_width_ratio_trials_tape_guards_must_also_pass": true,
+      "physical_system_failures_excluded": true
+    },
+    "quality_class": "J=[R;I], ||R||_F^2<=Q, gamma integer>=2, sigma=(gamma+2)(Q+1); exact covariance and determinant proof, entire public class rejected if universal bit budget fails",
+    "path_scope": "Every possible finite actual sampler history, not all unbounded ideal Gaussian histories; sequential coupling uses the uniform scalar bound on equal finite histories",
+    "fixed_tape": "Full public-length byte tapes per SampleD and disjoint full parent bands per delegation column; enough bytes on every admitted finite path; no entropy fallback or resampling",
+    "distance_includes_abort": true,
+    "finite_PMF_scope": "Normalized scalar accepted kernels and sequential accepted-kernel vector law, not the actual vector distribution conditioned on whole-vector success",
+    "sign": "R_id=-R_delegated, user SampleD receives R=R_delegated; tested at odd q",
+    "constant_time": false,
+    "formal_proof_independently_reviewed": false,
+    "generated_quality_probability_claim": "Observed 3/3 qualifications only; negligible failure probabilities and complete finite security ledger remain WIP"
+  },
+  "parameters": {
+    "q": 2147483659,
+    "n": 1,
+    "w": 32,
+    "m_bar": 1,
+    "r_generator_squared": "1",
+    "r_master_squared": "9",
+    "r_user_squared": "9",
+    "gamma": 5,
+    "master_dimension": 33,
+    "user_dimension": 65,
+    "master_quality_squared": 64,
+    "user_quality_squared": 4324320,
+    "master_Sigma": 455,
+    "user_Sigma": 30270247,
+    "master_output_width_squared": "4095",
+    "user_output_width_squared": "272432223",
+    "finite_options": {
+      "tail_bits": 80,
+      "mass_bits": 128,
+      "precision_bits": 192,
+      "gaussian_abort_bits": 128,
+      "max_uniform_trials": 192,
+      "max_gaussian_trials": 100000,
+      "max_radius": 1073741824,
+      "rational_bits": 8192,
+      "max_tape_bytes": 268435456
+    }
+  },
+  "public_stages": {
+    "master_stage": {
+      "dimension": 33,
+      "quality_squared": 64,
+      "Sigma_scalar": 455,
+      "r_squared": "9",
+      "gamma": 5,
+      "all_qualified_trapdoors_covered": true,
+      "uniform_center_numerator_bit_upper": 533,
+      "uniform_center_denominator_bit_upper": 292,
+      "uniform_coordinate_width_rational_bit_upper": 296,
+      "security_claim": "none",
+      "scalar_summary": {
+        "squared_width_class": [
+          "1170",
+          "4095"
+        ],
+        "radius": 273,
+        "max_support_count": 548,
+        "max_gaussian_trials": 1423,
+        "public_tape_bytes": 569200,
+        "tv_upper_including_abort": "4277175052506274118178849306081818192136040090546010509277/7588550360256754183279148073529370729071901715047420004889892225542594864082845696",
+        "abort_upper": "18446744073709553039/6277101735386680763835789423207666416102355444464034512896",
+        "finite_options": {
+          "tail_bits": 80,
+          "mass_bits": 128,
+          "precision_bits": 192,
+          "gaussian_abort_bits": 128,
+          "max_uniform_trials": 192,
+          "max_gaussian_trials": 100000,
+          "max_radius": 1073741824,
+          "rational_bits": 8192,
+          "max_tape_bytes": 268435456
+        }
+      }
+    },
+    "user_stage": {
+      "dimension": 65,
+      "quality_squared": 4324320,
+      "Sigma_scalar": 30270247,
+      "r_squared": "9",
+      "gamma": 5,
+      "all_qualified_trapdoors_covered": true,
+      "uniform_center_numerator_bit_upper": 2154,
+      "uniform_center_denominator_bit_upper": 1616,
+      "uniform_coordinate_width_rational_bit_upper": 1620,
+      "security_claim": "none",
+      "scalar_summary": {
+        "squared_width_class": [
+          "77837778",
+          "272432223"
+        ],
+        "radius": 73633,
+        "max_support_count": 147268,
+        "max_gaussian_trials": 1482,
+        "public_tape_bytes": 877344,
+        "tv_upper_including_abort": "1568834691390293298804928577011294173612963141898771223811/1897137590064188545819787018382342682267975428761855001222473056385648716020711424",
+        "abort_upper": "9223372036854776549/3138550867693340381917894711603833208051177722232017256448",
+        "finite_options": {
+          "tail_bits": 80,
+          "mass_bits": 128,
+          "precision_bits": 192,
+          "gaussian_abort_bits": 128,
+          "max_uniform_trials": 192,
+          "max_gaussian_trials": 100000,
+          "max_radius": 1073741824,
+          "rational_bits": 8192,
+          "max_tape_bytes": 268435456
+        }
+      }
+    }
+  },
+  "experiments": {
+    "identity_length_bytes": null,
+    "message_length_bytes": null,
+    "length_reason": "No identity/message encoding or IBS signing in this matrix/syndrome reference experiment",
+    "ROM_use": "none in experiments; planned Foo-Li proof is classical ROM",
+    "production_keys_or_IBS_signatures_generated": 0,
+    "gadget_runs": [
+      {
+        "q": 257,
+        "draws": 257,
+        "all_syndromes_covered": true,
+        "equation_errors": 0,
+        "aborts": 0,
+        "potential_old_center_classes": 116761,
+        "online_tables": 0,
+        "tv_upper": "4080602881627373757429952156927948810064246771309332941163/431359146674410236714672241392314090778194310760649159697657763987456"
+      },
+      {
+        "q": 65537,
+        "draws": 256,
+        "all_syndromes_covered": false,
+        "equation_errors": 0,
+        "aborts": 0,
+        "potential_old_center_classes": 7635562945,
+        "online_tables": 0,
+        "tv_upper": "3853902721569844650576173347124803295832900389734212229225/215679573337205118357336120696157045389097155380324579848828881993728"
+      }
+    ],
+    "wide_scalar": {
+      "samples": 1024,
+      "squared_width": "1000000000000",
+      "center": "1/10^100",
+      "radius": 4604133,
+      "Gaussian_trials": 818,
+      "mean": 14134.802734375,
+      "variance": 167478410072.76382,
+      "statistical_diagnostic_not_security": true
+    },
+    "non_spherical_support_points": 797,
+    "non_spherical_infinite_target_TV": {
+      "lower": "58170913116208802187680070319674766626069387908862609412240425834279243286323/994646472819573284310764496293641680200912301594695434880927953786318994025066751066112",
+      "upper": "58170913116208802187680070319679106778870025666738314801223976078218505881377/994646472819573284310764496293641680200912301594695434880927953786318994025066751066112",
+      "display": "[5.848400884719256409037627676531277925707152098526594517426480562229206920948842e-11 .. 5.848400884719256409037627676531714277005753149534658424203508516926197258615020e-11]"
+    },
+    "online_to_old_CDF_kernel_TV": "122330172488451130488725912436276670486166695705535760020521660659128497194682722266036/46514751257150423476022155738995269429381693566384848279685935912334529213672108453140652402093136823568089124865",
+    "connected_counts": {
+      "generation_abort": 0,
+      "master_quality_rejected": 0,
+      "delegation_abort": 0,
+      "user_quality_rejected": 0,
+      "qualified_users": 3,
+      "materialized_users": 1,
+      "user_sample_attempts": 64,
+      "user_sample_abort": 0,
+      "user_equation_errors": 0
+    },
+    "attempts": 3,
+    "predeclared_materialization_prefix": 1,
+    "actual_master_norms_squared": [
+      4,
+      1,
+      3
+    ],
+    "actual_delegated_norms_squared": [
+      670772,
+      679576,
+      645764
+    ],
+    "all_actual_public_master_recoveries_valid": true,
+    "master_public_SampleD_tape_bytes": 31782768,
+    "user_public_SampleD_tape_bytes": 70026528,
+    "per_delegation_total_tape_bytes": 1017048576,
+    "peak_single_tape_band_bytes": 31782768,
+    "process_peak_RSS_measured": false,
+    "all_failed_attempts_retained_no_retry": true,
+    "actual_fixed_tape_replay_equal": true,
+    "result_path": "docs/research/2026-10-05-round10/online-sampling-results.json",
+    "result_sha256": "d6492dea8c272437e3bc6f93c4ff2ddf8f61fd9b998f0b489903ffc2a289af4b",
+    "complete_result_generation_runs": 2,
+    "complete_results_byte_identical": true,
+    "test_stream": {
+      "domain_ascii": "IBME-ROUND10-TEST-STREAM",
+      "block_size": 65536,
+      "definition": "SHAKE256(domain||u32be(seed_length)||seed||u64be(block_index),65536), concatenated; test only"
+    }
+  },
+  "security_gates": {
+    "SIS_norm_gate": {
+      "beta_reduction_squared": "306301939578851580",
+      "q_squared": 4611686065672028281,
+      "passed": true,
+      "security_level_estimated": false
+    },
+    "unconditional_public_to_uniform_TV_lower": "1050740179804299926037534426041438351530564781703562868525601084051595418442220107515409186302762300985331342332421421108491859138214285895147524032393704807038809080904382359617455056954463014497003464078788225542657940830719096925502750195341356801500801591702766698979602536435640933001034843614100613639795201710273074732096510805125933551084549064066269517790112322947716394892416525324050569990395481553238213960032066299918089898391395175993710306235981260045454491088392557197942682143316457749404178040816650056642502573792974216922253172444709436494975223179138749753828109318769827906875302882111127040137051518958792215363655467767208227415455273476458467078507479464543165889422927170347771192669957406627040514410727029711945127597655369208393526014627622390947823825698236295208864414568384362236583444134791227466990710887263796729908350960194024191171573936737002368245091702288883967248183435230643979953509767402058877859404051174631141183979087810432444434687336876391032435837415607557825620248300815063487791209192682701811369388848913454504622723497497473424138598496666218732411420123766347126201265230437716932958705281665492755913903795382288810276797467597432188344830468554884901209340896230298127164745600054615127368451686413736130199069129797412090724692912101837690821706175193715083813824062223587894119529651562815328896044753198213058957107577873078412200235327818613084633687979917072069961373589545795867335277831344749358072969820911981512327650541105493723573529753874785694452383641773080417438026448951342206415295301531422557699680021/1050956059747636038273774723630162860669260692959018747413158372367497659787854261252283332985886859843710582821750464271753218584622656875832437947719896147650242382951838547108916095713432483023720634659013887660430653843584517601872395017983333208897629205342662256902150569266324358642916840942075518034152595074245160554670478295209688469780326889404632736440078271610248723034131810371525044434770157278643831400475012900493227438539671260913225569651202561614750003577551717104101467540219217308153251971486646184725268578162795275665649237532128637934073137039238950892087358109068421470605792726462871032109911920318806055347628815488437236696356996992614624421195004307520701078740172996710333773767682562493776863938463505211154897415564182432537774641089710031811907563676647226483181732756360079828766489627258468808822766903798724925051076387142827967085142079112700808102670092203497731835849778335559593223204653093898817932737229119932684590718249347092300535501390548538987106661014612654297998388119676336399811239259249550532523997931856867779180224475564214049664593135202597980831919022106063589986829958141343466728682811643273423761764126036688573909069861372239993916075166953428097110282457442767567962821336229882716544428078257476100316607652317529282998977930844593498761315296906338649560728515832226029493509059671572244996583834577067779887080143962303490265742542506080004623393388254445661957579901353301332574273243212909812712551014636280647086480778615606409122191492482078221983224378118958676672650443061095953411258158804414214977880064",
+    "public_uniformity_gate_passed": false,
+    "actual_debug_master_trapdoor_publicly_recoverable": true,
+    "SIS_security_estimator_run": false,
+    "formal_backend_admitted": false
+  },
+  "verification": {
+    "new_module": {
+      "command": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_online_sampling_reference.py",
+      "passed": 66,
+      "failed": 0,
+      "skipped": 0
+    },
+    "all_research_WSL": {
+      "command": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_primitive_gate_audit.py tests/test_fixed_key_transform_audit.py tests/test_gaussian_reference.py tests/test_general_gadget_reference.py tests/test_foo_li_fixed_key_audit.py tests/test_foo_li_matrix_mass_audit.py tests/test_foo_li_seed_slot_audit.py tests/test_mp12_sampled_reference.py tests/test_mp12_trapdoor_chain.py tests/test_online_sampling_reference.py",
+      "passed": 366,
+      "failed": 0,
+      "skipped": 0
+    },
+    "all_research_Windows": {
+      "command": "$env:PYTHONPATH='src'; python -m pytest -q tests/test_primitive_gate_audit.py tests/test_fixed_key_transform_audit.py tests/test_gaussian_reference.py tests/test_general_gadget_reference.py tests/test_foo_li_fixed_key_audit.py tests/test_foo_li_matrix_mass_audit.py tests/test_foo_li_seed_slot_audit.py tests/test_mp12_sampled_reference.py tests/test_mp12_trapdoor_chain.py tests/test_online_sampling_reference.py",
+      "passed": 98,
+      "failed": 0,
+      "skipped_Sage_modules": 6,
+      "Sage_tests_run_in_WSL": 268
+    },
+    "audit_command": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.online_sampling_audit --attempts 3 --user-prefix 1 --samples-per-syndrome 32 --output docs/research/2026-10-05-round10/online-sampling-results.json",
+    "production_suite_rerun": false,
+    "production_suite_reason": "src/ibme and params unchanged against the recorded production baseline; only research modules were selected",
+    "git_diff_check": "passed: unstaged and staged whitespace checks",
+    "exact_nine_file_scope": "passed: working and staged paths exactly match the nine-file delivery list",
+    "production_diff_against_baseline": "empty for src/ibme and params",
+    "local_report_links": "passed: 90 local links across README, project progress and round-ten report",
+    "artifact_hashes": "passed: every recorded SHA-256 and pinned MP12 source checked"
+  },
+  "development_failures_and_corrections": [
+    {
+      "stage": "first new-module run",
+      "result": "60 passed, 6 failed",
+      "cause": "Five independent inverse calculations returned integral QQ values rejected by the signed-integer contract; one test class did not actually exceed the 128-bit proof budget",
+      "correction": "Assert integral denominators then convert test coefficients to integers; enlarge public class dimension for the universal rejection test, without weakening implementation checks"
+    },
+    {
+      "stage": "initial covariance probe",
+      "cause": "Sage immutable matrix copy remained immutable",
+      "correction": "Create an explicit mutable Schur-work matrix from exact entries; immutable input regression test"
+    },
+    {
+      "stage": "initial audit",
+      "cause": "Missing draw_uniform_integer import",
+      "correction": "Import the existing unbiased bounded integer helper"
+    },
+    {
+      "stage": "review probes",
+      "cause": "Certificate exposed live option/resource dictionaries; compactness check hit the Windows rational digit conversion limit",
+      "correction": "Return copied certificate snapshots; use directed-interval compact upper endpoints for nearest-plane powers and composition rather than enormous rational powers"
+    }
+  ],
+  "unimplemented_and_known_risks": [
+    "Dense exact geometry capped at dimension 128 and q <=2^32; no production dimensions",
+    "n=1,m_bar=1 debug generation is provably far from uniform, despite the SIS norm interval passing",
+    "Scalar width ratios/rational bits/finite tape budgets can cause public class admission rejection",
+    "No practical full parameter/security estimate, formal Foo-Li lifecycle/encoding or production IBS/HIBE backend",
+    "Legacy forgery and ciphertext tamper remain pending backend/wrapper replacement",
+    "Correct rounding and numerical-budget derivation need independent proof review; variable-time sampler",
+    "Complete finite parameter ledger E, alpha_R, alpha_z, nu and beta_red, statistical regularity, quality tails and conditional entropy are the next task",
+    "SIS norm gate is necessary only; current debug parameters are explicitly insecure and carry no claimed bit security",
+    "No runtime or process-memory performance benchmark; full column tape hashing remains about 1 GB per debug delegation",
+    "No strong-unforgeability, enhanced-privacy or standard-model/NIST claim"
+  ],
+  "next_single_task": "Foo-Li full finite parameter feasibility and cost audit, then use its verdict to scope a practical backend and real signing lifecycle",
+  "delivery": {
+    "planned_commit_message": "feat(research): add online MP12 Gaussian sampling",
+    "authorized_remote_branch": "origin/main",
+    "own_files": [
+      "README.md",
+      "docs/PROJECT_RESTART.md",
+      "docs/research/2026-10-05-round10/任意中心在线采样与MP12扩展核验.md",
+      "docs/research/2026-10-05-round10/online-sampling-results.json",
+      "docs/research/2026-10-05-round10/第十轮核验记录.json",
+      "experiments/research/online_gaussian_reference.py",
+      "experiments/research/online_mp12_reference.py",
+      "experiments/research/online_sampling_audit.py",
+      "tests/test_online_sampling_reference.py"
+    ],
+    "own_file_count": 9,
+    "file_hashes_excluding_self": {
+      "README.md": "549809a2869e5dbdd879e746278551a3521eec0e43c653702d09079d5e39d4f6",
+      "docs/PROJECT_RESTART.md": "f14498079b6024f68e97e38e98e53f83db2fd874a5f1c7e351ff42d553b1e11a",
+      "docs/research/2026-10-05-round10/任意中心在线采样与MP12扩展核验.md": "3744712c59721f489ea8f06451e9eda0ae68fafe275d814a0d75342045e03f17",
+      "docs/research/2026-10-05-round10/online-sampling-results.json": "d6492dea8c272437e3bc6f93c4ff2ddf8f61fd9b998f0b489903ffc2a289af4b",
+      "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+      "experiments/research/online_mp12_reference.py": "67ef14da368416138ad6598c0161afd023542f5912c55e79369328523cfe6d5b",
+      "experiments/research/online_sampling_audit.py": "fa86419eac6b3eb8ca7efe232fa7b3e3c91d955c2707af1adf43034392f3f83d",
+      "tests/test_online_sampling_reference.py": "844f8e41e515ad008641716729c1b219a29f3c4a973a6b4b94bf50e64075d40e"
+    },
+    "self_hash_omitted_reason": "Avoid self-referential checksum; Git commit identifies this record"
+  },
+  "security_claim": "none"
+}
