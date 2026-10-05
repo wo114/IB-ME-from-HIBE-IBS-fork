@@ -1,0 +1,459 @@
+{
+  "schema_version": 1,
+  "research_round": 9,
+  "date": "2026-10-05",
+  "objective": "Connect actual Gaussian MP12 generation, independent-column delegation and user SampleD; certify admission and failure budgets for the restricted rank-one class",
+  "base_commit": "8145109913c315111e12bb8e7bc68df80fc48ff1",
+  "production_crypto_baseline": "b15afd675b1c53029d9b8f8909569ccc7b060fa8",
+  "production_code_changed": false,
+  "parameter_files_changed": false,
+  "scope": {
+    "generic_construction": "Wang two-level anonymous HIBE plus adaptive IBS",
+    "IBS_research_candidate": "Foo-Li fixed-key classical ordinary UF-CMA variant from round seven",
+    "Boyen_Li_enhanced_privacy": false,
+    "cross_boundary_reason": "Research generation/delegation, mathematical admission proof, audit, tests and documentation for one task; no production interface or backend edits"
+  },
+  "sources": {
+    "MP12": {
+      "url": "https://eprint.iacr.org/2011/501",
+      "pdf_sha256": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+      "locations": [
+        "Algorithm 1, section 5.2, PDF 23-25",
+        "Algorithms 3/4, PDF 27-29"
+      ]
+    },
+    "rounding": "https://doc.sagemath.org/html/en/reference/spkg/mpfi.html"
+  },
+  "environment": {
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "physical_cores": 24,
+    "logical_processors": 24,
+    "memory_bytes": 33778278400,
+    "windows_python": "3.14.6",
+    "windows_pytest": "9.1.1",
+    "wsl": {
+      "python": "3.13.14",
+      "sage": "10.9",
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+    },
+    "sage_environment": "~/miniconda3/envs/sage"
+  },
+  "implemented": [
+    "Gaussian MP12 Algorithm 1 using finite certified Gaussian entries; public distribution kept separate from the trapdoor equation",
+    "MP12 Algorithm 4 with w disjoint fixed-length column tapes and a joint distance bound",
+    "Foo-Li R_id=-R_delegated sign adapter, checked at an odd modulus",
+    "Actual generated master and delegated user SampleD admission; quality rejections retained without resampling",
+    "Uniform rank-one inverse-metric width/denominator and finite-arithmetic bounds for every qualified signed integer trapdoor",
+    "Exact unfiltered binary GenTrap public law and master quality probability",
+    "Infinite-coset delegated norm-tail intervals for every nonzero binary parent row and syndrome",
+    "128 unfiltered attempts, a predetermined public prefix of four full user samplers, 512 output equations and deterministic replay"
+  ],
+  "parameter_source": "hand-selected binary rank-one mathematical reference class, not cryptographic parameters",
+  "contracts": {
+    "uniformity_scope": "q=2,n=w=m_bar=1; entire qualified rank-one class, all syndromes; general prime-q generation/delegation algebra separately tested",
+    "sign": "R_id=-R_delegated; user SampleD receives R=R_delegated",
+    "randomness": "Independent uniform bytes for distance bounds; fixed DeterministicRandom labels only for tests",
+    "quality_failure": "Explicit rejection; no resampling or search for an admissible key",
+    "resource_bound": "Mathematical reference guards under the directed rounding and no overflow/underflow assumptions; physical system failures excluded",
+    "fixed_tape": "Generation=2305, master SampleD=6912, user SampleD=9216 bytes; each delegated column receives a disjoint master segment",
+    "sampler_output": "Integer vector or explicit SamplingAbort; zero vector not filtered; no IBS verifier instantiated",
+    "rounding": "directed correctly-rounded rational conversion, pi, arithmetic and exp in Sage MPFR/MPFI, no overflow/underflow in this range"
+  },
+  "parameters": {
+    "q": 2,
+    "n": 1,
+    "w": 1,
+    "m_bar": 1,
+    "r_generator_squared": "1",
+    "master_quality_squared": 4,
+    "user_quality_squared": 128,
+    "master_r_squared": "4",
+    "user_r_squared": "4",
+    "gamma": 5,
+    "master_Sigma": 35,
+    "user_Sigma": 903,
+    "master_output_width_squared": "140",
+    "user_output_width_squared": "3612",
+    "tail_bits": 80,
+    "mass_bits": 128,
+    "precision_bits": 192,
+    "max_trials": 128,
+    "max_radius": 512,
+    "max_center_classes": 4096
+  },
+  "sampling_classes": {
+    "master": {
+      "stage": "master",
+      "q": 2,
+      "n": 1,
+      "w": 1,
+      "dimension": 2,
+      "quality_squared": 4,
+      "r_squared": "4",
+      "Sigma_scalar": 35,
+      "Sigma_G_scalar": 5,
+      "spherical_width_squared": "140",
+      "coordinate_width_squared_range": [
+        "40",
+        "140"
+      ],
+      "center_classes_uniform_max": 36,
+      "max_center_classes": 4096,
+      "uniform_relative_weight_interval_width": "1/2993155353253689176481146537402947624255349848014848",
+      "uniform_normalizer_interval_width": "309485009821345068724782083/374144419156711147060143317175368453031918731001856",
+      "uniform_geometric_tail_upper": "1/13407807929942597099574024998205846127479365820592393377723561443721764030073546976801874298166903427690031858186486050853753882811946569946433649006084096",
+      "uniform_scalar_tv_upper": "1237940039289897068666028545/1496577676626844588240573268701473812127674924007424",
+      "uniform_nearest_plane_tv_upper": "1569275433846670190958955159460021035434635117256640751015/948568795032094272909893509191171341133987714380927500611236528192824358010355712",
+      "uniform_perturbation_tv_upper": "3138550867699066098247625903058284852208409412998054208935/948568795032094272909893509191171341133987714380927500611236528192824358010355712",
+      "MP12_epsilon_upper": "5738477764154308959618207115691630952997247532032214933005/822752278660603021077484591278675252491367932816789931674304512",
+      "uniform_SampleD_tv_upper": "5800552927247322055717993113293750166669318114740414334587/205688069665150755269371147819668813122841983204197482918576128",
+      "public_tape_bytes": 6912,
+      "resource_rejection_given_quality_upper": "0",
+      "rounding_assumption": "directed correctly-rounded rational conversion, pi, arithmetic and exp in Sage MPFR/MPFI, no overflow/underflow in this range",
+      "coverage": "every signed integer rank-one trapdoor with norm_squared <= quality_squared",
+      "security_claim": "none",
+      "constant_time": false
+    },
+    "user": {
+      "stage": "user",
+      "q": 2,
+      "n": 1,
+      "w": 1,
+      "dimension": 3,
+      "quality_squared": 128,
+      "r_squared": "4",
+      "Sigma_scalar": 903,
+      "Sigma_G_scalar": 5,
+      "spherical_width_squared": "3612",
+      "coordinate_width_squared_range": [
+        "1032",
+        "3612"
+      ],
+      "center_classes_uniform_max": 1807,
+      "max_center_classes": 4096,
+      "uniform_relative_weight_interval_width": "1/47890485652059026823698344598447161988085597568237568",
+      "uniform_normalizer_interval_width": "4951760157141521099596497923/5986310706507378352962293074805895248510699696029696",
+      "uniform_geometric_tail_upper": "2271852216488326674242365260154841216147925305610040348625/1716199415032652428745475199770348304317358825035826352348615864796385795849414013030639910165363638744324077847870214509280496999929160953143507072778764288",
+      "uniform_scalar_tv_upper": "19807040628638353098656449025/23945242826029513411849172299223580994042798784118784",
+      "uniform_nearest_plane_tv_upper": "4707826301540010572876854726481556341232627279825657659393/1897137590064188545819787018382342682267975428761855001222473056385648716020711424",
+      "uniform_perturbation_tv_upper": "4707826301548599147371432564147108074880858410043902263297/948568795032094272909893509191171341133987714380927500611236528192824358010355712",
+      "MP12_epsilon_upper": "5738477764154308959618207115691630952997247532032214933005/822752278660603021077484591278675252491367932816789931674304512",
+      "uniform_SampleD_tv_upper": "2900276463623661028029137740107654706770532193406036160133/102844034832575377634685573909834406561420991602098741459288064",
+      "public_tape_bytes": 9216,
+      "resource_rejection_given_quality_upper": "0",
+      "rounding_assumption": "directed correctly-rounded rational conversion, pi, arithmetic and exp in Sage MPFR/MPFI, no overflow/underflow in this range",
+      "coverage": "every signed integer rank-one trapdoor with norm_squared <= quality_squared",
+      "security_claim": "none",
+      "constant_time": false
+    }
+  },
+  "generation_law": {
+    "public_pmf": [
+      {
+        "A": [
+          [
+            0,
+            0
+          ]
+        ],
+        "probability": "0"
+      },
+      {
+        "A": [
+          [
+            0,
+            1
+          ]
+        ],
+        "probability": "1/2"
+      },
+      {
+        "A": [
+          [
+            1,
+            0
+          ]
+        ],
+        "probability": "7352467195451613808976524248183770435/184847304532483693789178203630094657331"
+      },
+      {
+        "A": [
+          [
+            1,
+            1
+          ]
+        ],
+        "probability": "170142370141580466171225155133727116461/369694609064967387578356407260189314662"
+      }
+    ],
+    "exact_total_probability": "1",
+    "finite_CDF_public_to_uniform_TV": "170142370141580466171225155133727116461/369694609064967387578356407260189314662",
+    "finite_CDF_public_to_uniform_TV_approx": 0.46022410381342865,
+    "generation_abort_upper": "1/340282366920938463463374607431768211456",
+    "actual_public_or_abort_to_uniform_TV_upper": "28948224212657704468165658893019374251875358887270869675151477905897187845939/62900278305269067790493078030206960098674157093821755975976730728787068583936",
+    "master_quality_squared": 4,
+    "master_quality_rejection_upper": "59611631183755619608393428/61615768177494564596392734543364885777",
+    "generator_gaussian_tv_upper": "20399654957686635286720133947992788772871578951020454535722410874047478244076293536188353791620034265459177576231717105729417353469860737/131205252945187501429496527769002925382987724122629078614090295598727489715142518481962752338998637996223601835903049703261631557367852519451281563777995275415581949427712",
+    "CDF_sha256": "d006472e0ded72d6e343f7b66c39d9f99e6a43c7447f431970690de96434b170",
+    "public_generation_tape_bytes": 2305,
+    "quality_filter_used_for_public_law": false,
+    "scope": "unfiltered finite Gaussian GenTrap ideal-ticket law; abort added to the unconditional TV bound",
+    "satisfies_negligible_regularity": false,
+    "security_claim": "none"
+  },
+  "delegated_quality_budget": {
+    "master_output_width_squared": "140",
+    "user_quality_squared": 128,
+    "qualified_integer_vectors_enumerated": 405,
+    "cases": [
+      {
+        "A": [
+          [
+            0,
+            1
+          ]
+        ],
+        "syndrome": [
+          0
+        ],
+        "infinite_target_norm_rejection_interval": {
+          "lower": "6139455575477260970696305564923595066291125387961797105851643759921322687045/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "upper": "3069727787738630485348152782461797533148994534545863505698644692376503092561/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+          "display": "[0.05302137318633598889455830978103515018120736161769084450006983427640729722588216 .. 0.05302137318633598889455830978103515018126663752483734025749034674094776971147700]"
+        },
+        "tail_upper": "5325128858248551348260600682534347700186954055720968934267/100433627766186892221372630771322662657637687111424552206336"
+      },
+      {
+        "A": [
+          [
+            0,
+            1
+          ]
+        ],
+        "syndrome": [
+          1
+        ],
+        "infinite_target_norm_rejection_interval": {
+          "lower": "6710183461131330204652028816376379627870769720985766118107269288933664324795/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "upper": "6710183461131330204652028816376379627873375256319911455549201350985552619559/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "display": "[0.05795027540593719940199780841781361491951535209350833006722565634523821737756397 .. 0.05795027540593719940199780841781361491953785393583026352705009841749718489271666]"
+        },
+        "tail_upper": "5820156389067911686812537022988108353112129321749102866699/100433627766186892221372630771322662657637687111424552206336"
+      },
+      {
+        "A": [
+          [
+            1,
+            0
+          ]
+        ],
+        "syndrome": [
+          0
+        ],
+        "infinite_target_norm_rejection_interval": {
+          "lower": "6139455575477260970696305564923595066291125387961797105851643759921322687043/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "upper": "3069727787738630485348152782461797533148994534545863505698644692376503092561/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+          "display": "[0.05302137318633598889455830978103515018120736161769084450006983427640729722586489 .. 0.05302137318633598889455830978103515018126663752483734025749034674094776971147700]"
+        },
+        "tail_upper": "5325128858248551348260600682534347700186954055720968934267/100433627766186892221372630771322662657637687111424552206336"
+      },
+      {
+        "A": [
+          [
+            1,
+            0
+          ]
+        ],
+        "syndrome": [
+          1
+        ],
+        "infinite_target_norm_rejection_interval": {
+          "lower": "6710183461131330204652028816376379627870769720985766118107269288933664324793/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "upper": "6710183461131330204652028816376379627873375256319911455549201350985552619561/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "display": "[0.05795027540593719940199780841781361491951535209350833006722565634523821737754670 .. 0.05795027540593719940199780841781361491953785393583026352705009841749718489273393]"
+        },
+        "tail_upper": "5820156389067911686812537022988108353112129321749102866699/100433627766186892221372630771322662657637687111424552206336"
+      },
+      {
+        "A": [
+          [
+            1,
+            1
+          ]
+        ],
+        "syndrome": [
+          0
+        ],
+        "infinite_target_norm_rejection_interval": {
+          "lower": "6969107958183299414554382660773792390972794766753309170716439133312612329675/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "upper": "6969107958183299414554382660773792390977500316695147399273317173581488134583/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "display": "[0.06018639100552106012051213410858337291442841255226616676137458970556491379182722 .. 0.06018639100552106012051213410858337291446905047470829656363589654719725091251899]"
+        },
+        "tail_upper": "6044737590838680971328646333839446420034460374835032398713/100433627766186892221372630771322662657637687111424552206336"
+      },
+      {
+        "A": [
+          [
+            1,
+            1
+          ]
+        ],
+        "syndrome": [
+          1
+        ],
+        "infinite_target_norm_rejection_interval": {
+          "lower": "367533192401580735049621982532886393949319461765634380278571833897028817219/7237005577332262213973186563042994240829374041602535252466099000494570602496",
+          "upper": "5880531078425291760793951720526182303193864008698723400581375159883855858571/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "display": "[0.05078525758675212817604398409026539218629439655453359492628699038900040322278494 .. 0.05078525758675212817604398409026539218633544098580586265306897289047405110564811]"
+        },
+        "tail_upper": "1275136914119445515936122842920752408316155750654907101911/25108406941546723055343157692830665664409421777856138051584"
+      }
+    ],
+    "worst_ideal_norm_rejection_upper": "6044737590838680971328646333839446420034460374835032398713/100433627766186892221372630771322662657637687111424552206336",
+    "finite_delegation_error_upper": "5800552927247322055717993113293750166669318114740414334587/205688069665150755269371147819668813122841983204197482918576128",
+    "user_quality_rejection_upper": "3023784946036344226400582442582148441991514688910372745825/50216813883093446110686315385661331328818843555712276103168",
+    "bound_uniform_in_parent_public_master_trapdoor_and_extension": true,
+    "no_rejection_resampling": true,
+    "resource_rejection_given_user_quality_upper": "0",
+    "security_claim": "none"
+  },
+  "experiments": {
+    "attempts_per_run": 128,
+    "repeated_runs": 2,
+    "user_materialization_public_prefix": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "samples_per_user_per_syndrome": 64,
+    "syndrome_dimension": 1,
+    "identity_length_bytes": null,
+    "message_length_bytes": null,
+    "identity_message_note": "Not applicable: mathematical matrices/syndromes only, no string identities, IBS signatures or protocol payloads",
+    "ROM": "none in experiments; the planned Foo-Li proof is classical ROM",
+    "counts_per_run": {
+      "generation_abort": 0,
+      "master_quality_rejected": 0,
+      "delegation_abort": 0,
+      "user_quality_rejected": 2,
+      "qualified_users": 126,
+      "unexpected_resource_failure": 0,
+      "user_sampler_materialized": 4,
+      "user_sample_attempts": 512,
+      "user_sample_abort": 0,
+      "user_equation_errors": 0
+    },
+    "rejected_attempts": [
+      {
+        "attempt": 16,
+        "norm_squared": 148
+      },
+      {
+        "attempt": 27,
+        "norm_squared": 225
+      }
+    ],
+    "failed_attempts_discarded_or_retried": false,
+    "geometry_exhaustive_checks": {
+      "master_qualified_count": 5,
+      "master_actual_max_center_classes": 7,
+      "user_qualified_count": 405,
+      "user_actual_max_center_classes": 1792
+    },
+    "independent_quality_tail_check": "320-bit independent box [-70,70]^2 for all six infinite-target tail intervals; not substituted for the interval tail proof",
+    "performance_benchmark": false
+  },
+  "tests": {
+    "new_round_checks": 39,
+    "wsl_command": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest tests/test_mp12_trapdoor_chain.py tests/test_mp12_sampled_reference.py tests/test_foo_li_seed_slot_audit.py tests/test_foo_li_fixed_key_audit.py tests/test_foo_li_matrix_mass_audit.py tests/test_general_gadget_reference.py tests/test_gaussian_reference.py tests/test_fixed_key_transform_audit.py tests/test_primitive_gate_audit.py -q",
+    "wsl_result": "300 passed in 25.17s",
+    "windows_command": "$env:PYTHONPATH='src'; python -m pytest tests/test_mp12_trapdoor_chain.py tests/test_mp12_sampled_reference.py tests/test_foo_li_seed_slot_audit.py tests/test_foo_li_fixed_key_audit.py tests/test_foo_li_matrix_mass_audit.py tests/test_general_gadget_reference.py tests/test_gaussian_reference.py tests/test_fixed_key_transform_audit.py tests/test_primitive_gate_audit.py -q",
+    "windows_result": "98 passed, 5 skipped in 0.29s",
+    "sage_checks_actually_run_in_wsl": 202,
+    "initial_run": "36 passed, 3 failed in 21.37s; all three were test-case errors",
+    "initial_failures_resolved": [
+      "Independent draws can collide; corrected output-inequality requirement to actual fresh byte consumption",
+      "Corrected nearest-plane certificate field name",
+      "Replaced unsupported decimal QQ string with an exact fraction"
+    ],
+    "final_failed_tests": [],
+    "old_production_full_suite_rerun": false,
+    "reason_for_selection": "Research scripts and mathematical chain changed; production code and parameter files unchanged"
+  },
+  "reproduction": {
+    "command": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.mp12_trapdoor_chain_audit --attempts 128 --user-prefix 4 --samples-per-user 64 --output docs/research/2026-10-05-round9/mp12-trapdoor-chain-results.json",
+    "second_run": "Same counts and fixed labels, output to an external review copy",
+    "results_byte_identical": true,
+    "results_sha256": "28e530cf8f16900f31dee7546587046b32a9573c1693d13c402bf5cd7ab6d582"
+  },
+  "SIS_gate": {
+    "beta_reduction_squared": 5591376,
+    "q_squared": 4,
+    "passed": false
+  },
+  "security": {
+    "claim": "none",
+    "teaching_parameters": true,
+    "formal_backend": false,
+    "production_keys_or_IBS_signatures_generated": 0,
+    "model_planned": "Classical ROM ordinary UF-CMA; no QROM, NIST level or standard-model claim",
+    "negative_results": [
+      "Public generation TV approx 0.4602241, far from uniform",
+      "User quality failure upper approx 0.0602146, not negligible",
+      "MP12 full SampleD bound approx 2.8201e-5; small CDF error alone does not certify the full sampler",
+      "beta_reduction_squared=5591376 > q_squared=4"
+    ],
+    "tests_cannot_replace_security_proofs": true,
+    "independent_proof_review_completed": false,
+    "old_public_forgery_fixed": false,
+    "old_ciphertext_tamper_fixed": false
+  },
+  "WIP_and_known_risks": [
+    "Efficient arbitrary-center sampler and general high-dimensional uniform admission",
+    "Near-uniform master generation and negligible qualified-user failure under practical parameters",
+    "Finite SIS and correctness/entropy/game-loss chain plus lattice attack estimates",
+    "Full Foo-Li canonical RO encoding, persistent seeds, cached keys and sign-then-corrupt lifecycle",
+    "Independent proof review and variable-time/side-channel engineering",
+    "Formal IBS/HIBE backend and whole-ciphertext authentication wrapper, including recipient self-forgery",
+    "Legacy public forgery and coefficient tamper remain valid pending backend/wrapper replacement",
+    "Ring/module lattice instantiations outside this round"
+  ],
+  "next_task": "Remove all-center precomputation bottleneck with uniform arbitrary-rational-center online Gaussian/gadget/perturbation contracts and a mathematical reference implementation",
+  "modified_files": [
+    "README.md",
+    "docs/PROJECT_RESTART.md",
+    "docs/research/2026-10-05-round9/MP12生成委派连通与统一准入核验.md",
+    "docs/research/2026-10-05-round9/mp12-trapdoor-chain-results.json",
+    "docs/research/2026-10-05-round9/第九轮核验记录.json",
+    "experiments/research/mp12_trapdoor_chain.py",
+    "experiments/research/mp12_trapdoor_chain_audit.py",
+    "tests/test_mp12_trapdoor_chain.py"
+  ],
+  "file_sha256_excluding_this_record": {
+    "README.md": "a809f973cee93e89b16c99a8be3fced49f9f68a5ea4426bf0b42125a2fce1dbd",
+    "docs/PROJECT_RESTART.md": "539b880fd65de489fdb73c29202273b6457a454845cca588fc39db2595b0261e",
+    "docs/research/2026-10-05-round9/MP12生成委派连通与统一准入核验.md": "bf5c8fc01e1cc5fc909d6f6fd0144d5ae9cb36ed379455528cbbbe0f92606e78",
+    "docs/research/2026-10-05-round9/mp12-trapdoor-chain-results.json": "28e530cf8f16900f31dee7546587046b32a9573c1693d13c402bf5cd7ab6d582",
+    "experiments/research/mp12_trapdoor_chain.py": "4500bcc2d6df1e3e1f40724402d1d1f2ddffb50df831e71ea1d9debece48f2e0",
+    "experiments/research/mp12_trapdoor_chain_audit.py": "ca0388030a78a250b4a0f634b34b0a2776875119f0dc0c36b1a445ab699e4673",
+    "tests/test_mp12_trapdoor_chain.py": "a11196212cf1dfc154efa48f71eee192a8319cb8c6fd5e4ae14602cb3284516c"
+  },
+  "git_delivery": {
+    "branch": "main",
+    "commit_message": "feat(research): connect MP12 generation and delegation",
+    "all_changes_must_be_committed": true,
+    "push_authorized_in_session": true,
+    "commit_hash_and_remote_verification": "Reported with the committed delivery in the conversation"
+  },
+  "precommit_review": {
+    "diff_check": "passed tracked and staged changes",
+    "source_and_parameter_diff": "unchanged relative to b15afd675b1c53029d9b8f8909569ccc7b060fa8",
+    "exact_file_scope": "passed: staged set equals the exact eight listed files",
+    "local_document_links_checked": 81,
+    "math_and_code_fences": "balanced",
+    "file_hashes_excluding_record": "all seven verified",
+    "archived_relations": "all 128 master/delegation relations, sign maps, norms and stored output equations verified",
+    "results_repeated_byte_comparison": "passed"
+  }
+}
