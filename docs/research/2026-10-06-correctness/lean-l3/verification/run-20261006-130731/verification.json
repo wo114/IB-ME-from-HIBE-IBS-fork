@@ -1,0 +1,1464 @@
+{
+  "status": "pass_scoped_wip_overall",
+  "verification_status": "pass",
+  "full_l3_complete": false,
+  "timestamp": "2026-10-06T13:09:51.4431674+08:00",
+  "project_directory": "D:\\Lean\\projects\\fooli-l3",
+  "lean": "Lean (version 4.34.1, x86_64-w64-windows-gnu, commit 5045d0056413266e57c625dcd7c365b10e377c52, Release)",
+  "lake": "Lake version 5.0.0-src+5045d00 (Lean version 4.34.1)",
+  "powershell": "7.6.5",
+  "operating_system": "Microsoft Windows NT 10.0.26200.0",
+  "scope": "L3 WIP: conditional coset-Gaussian tail, matrix norms, raw-event TV assembly",
+  "exclusions": [
+    "C2 to CosetMassComparison not proved",
+    "C3 product law to marginal/support contracts not instantiated",
+    "No sampler contract verification",
+    "No full L3 or L4 proof",
+    "No security reduction",
+    "No parameter selection",
+    "No implementation refinement"
+  ],
+  "security_claim": "none",
+  "declaration_count": 89,
+  "theorem_count": 67,
+  "dependencies": [
+    {
+      "name": "mathlib",
+      "revision": "d13f23b723b8a846827a245b89c10fc7d3f11612"
+    },
+    {
+      "name": "plausible",
+      "revision": "118aa17ee84656b8bd727fef7c458ee8c833385c"
+    },
+    {
+      "name": "LeanSearchClient",
+      "revision": "ddf04cf3949fa556442341e87d47f9f6e6074707"
+    },
+    {
+      "name": "importGraph",
+      "revision": "e928b72544873815af278d38681b31c0293588e3"
+    },
+    {
+      "name": "proofwidgets",
+      "revision": "106ff4fafc74ef4ac99d81dbf3ab399118f497a5"
+    },
+    {
+      "name": "aesop",
+      "revision": "355695d523e41d0554926416cba2a2b3544fbbc9"
+    },
+    {
+      "name": "Qq",
+      "revision": "6a489d9af5d0c47e5b259e2e8bcdfc1811b5a259"
+    },
+    {
+      "name": "batteries",
+      "revision": "f2effa3d803fda822b1f97b806c47cf2adfbcbc2"
+    },
+    {
+      "name": "Cli",
+      "revision": "e92c9f15fdfacc8536f31cfb3b7ad26c3c8cd204"
+    }
+  ],
+  "commands": [
+    {
+      "name": "lean-version",
+      "command": "lean",
+      "arguments": [
+        "--version"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.1352532
+    },
+    {
+      "name": "lake-version",
+      "command": "lake",
+      "arguments": [
+        "--version"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.1625054
+    },
+    {
+      "name": "dependency-mathlib",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\mathlib",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.049448
+    },
+    {
+      "name": "dependency-status-mathlib",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\mathlib",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0658413
+    },
+    {
+      "name": "dependency-plausible",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\plausible",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0573486
+    },
+    {
+      "name": "dependency-status-plausible",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\plausible",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0496376
+    },
+    {
+      "name": "dependency-LeanSearchClient",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\LeanSearchClient",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0509088
+    },
+    {
+      "name": "dependency-status-LeanSearchClient",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\LeanSearchClient",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.06726
+    },
+    {
+      "name": "dependency-importGraph",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\importGraph",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0510294
+    },
+    {
+      "name": "dependency-status-importGraph",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\importGraph",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0707241
+    },
+    {
+      "name": "dependency-proofwidgets",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\proofwidgets",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0527393
+    },
+    {
+      "name": "dependency-status-proofwidgets",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\proofwidgets",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0530236
+    },
+    {
+      "name": "dependency-aesop",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\aesop",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0639587
+    },
+    {
+      "name": "dependency-status-aesop",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\aesop",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0554883
+    },
+    {
+      "name": "dependency-Qq",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\Qq",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0657451
+    },
+    {
+      "name": "dependency-status-Qq",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\Qq",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0560533
+    },
+    {
+      "name": "dependency-batteries",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\batteries",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0558492
+    },
+    {
+      "name": "dependency-status-batteries",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\batteries",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0517974
+    },
+    {
+      "name": "dependency-Cli",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\Cli",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0563848
+    },
+    {
+      "name": "dependency-status-Cli",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l3\\.lake\\packages\\Cli",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0576207
+    },
+    {
+      "name": "build",
+      "command": "lake",
+      "arguments": [
+        "build",
+        "FooLiL3",
+        "FooLiL3.Controls"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 4.0826645
+    },
+    {
+      "name": "source-Controls",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL3/Controls.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 14.0342296
+    },
+    {
+      "name": "source-EventBounds",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL3/EventBounds.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 12.0703642
+    },
+    {
+      "name": "source-GaussianLaw",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL3/GaussianLaw.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 12.6454768
+    },
+    {
+      "name": "source-GaussianTail",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL3/GaussianTail.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 13.9520649
+    },
+    {
+      "name": "source-IntegerGaussian",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL3/IntegerGaussian.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 13.9173049
+    },
+    {
+      "name": "source-L3",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL3/L3.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 14.13984
+    },
+    {
+      "name": "source-MatrixBounds",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL3/MatrixBounds.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 12.8801298
+    },
+    {
+      "name": "source-root",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL3.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 13.4481226
+    },
+    {
+      "name": "axioms-and-statements",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "Audit.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 13.6167639
+    },
+    {
+      "name": "expected-rejection-missing-column-factor",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "Checks/MissingColumnFactor.lean"
+      ],
+      "exit_code": 1,
+      "expected_exit": 1,
+      "seconds": 13.3336075
+    }
+  ],
+  "declaration_axioms": [
+    {
+      "declaration": "FooLiL3.Controls.quarter_tail_exact",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.Controls.column_count_cannot_be_dropped",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.Controls.each_column_can_be_small",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.Controls.equality_at_cutoff_is_good",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.Controls.negative_quality_cutoff_rejects_zero",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.Controls.zero_columns_have_zero_mass",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.Controls.probability_budget_is_clipped",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.Controls.epsilon_one_makes_formula_invalid",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.Controls.raw_abort_is_not_success_conditioned",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.TVWithin",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.tvWithin_nonneg",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.tvWithin_refl",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.tvWithin_symm",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.tv_event_le",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.tv_transfer_min",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.finite_union_probability_le",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.fin_union_probability_le",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.probability_union_null",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.ideal_bad_probability_le",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.actual_bad_probability_le",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.badOutput",
+      "kind": "def",
+      "axioms": []
+    },
+    {
+      "declaration": "FooLiL3.invalidOutput",
+      "kind": "def",
+      "axioms": []
+    },
+    {
+      "declaration": "FooLiL3.someEvent",
+      "kind": "def",
+      "axioms": []
+    },
+    {
+      "declaration": "FooLiL3.none_mem_badOutput",
+      "kind": "theorem",
+      "axioms": []
+    },
+    {
+      "declaration": "FooLiL3.none_not_mem_someEvent",
+      "kind": "theorem",
+      "axioms": [
+        "propext"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.badOutput_eq_invalid_union",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.badOutput_subset_invalid_union",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.actual_badOutput_probability_le",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.gaussianPMF",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.gaussianPMF_apply",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.gaussianPMF_real_event",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.gaussianPMF_outer_event",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.gaussianPMF_tail_from_mass_comparison",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.rho",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.gaussianZ",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.tailBudget",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.tailBudget_nonneg",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.exp_three_pi_div_four_ge_four",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.tail_constant",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.rho_tail_le",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.gaussian_tail_mass_le",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.gaussian_tail_from_mass_comparison",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.vectorSq",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.InCoset",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.integer_rho_summable",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.summable_product_integer",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.vector_rho_eq_product",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.vector_rho_summable",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.coset_rho_summable",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.coset_nonempty_of_surjective",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.coset_gaussianZ_pos",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.cosetGaussian",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.CosetMassComparison",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.coset_tail_from_mass_comparison",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.ValidDelegation",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.QualityGood",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.columnLarge",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.qualityGood_iff_frobSq",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.all_columns_good_implies_quality",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.l3_from_column_tail_bounds",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.badOutput_quality_eq_frobSq",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.CosetColumnLaw",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.l3_from_mass_certificates_and_marginals",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.colSq",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.frobSq",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.colSq_nonneg",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.frobSq_nonneg",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.frobSq_le_of_columns",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.frobSq_eq_int_sum",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.colSq_eq_norm_sq",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.colSq_le_iff_column_norm_le",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.column_norm_gt_iff_colSq_gt",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.frobeniusVec",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.frobeniusNorm",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.frobeniusNorm_sq",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.frobeniusNorm_eq_sqrt",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.frobSq_eq_row_sum",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.euclideanLin",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.euclideanLin_apply",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.euclideanLin_norm_sq_le",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.euclideanLin_norm_le",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.euclideanOp",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.euclideanOp_apply",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.euclideanOp_norm_le_frobenius",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.euclideanOp_norm_le_frobeniusNorm",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.frobeniusNorm_le_sqrt_of_columns",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.euclideanOp_norm_sq_le_frobSq",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.euclideanOp_norm_le_sqrt_of_columns",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL3.euclideanOp_norm_sq_le_of_columns",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "authored_files": [
+    {
+      "path": ".gitignore",
+      "sha256": "83D18A9C6795E38ED6DFFC3828CE126D7BA72E7E0DCB2A6E32D1E45A2E9981C7"
+    },
+    {
+      "path": "Audit.lean",
+      "sha256": "0788451D2E44E7ECCF9BF45F56E4B73FABBC05664425AB682F1A5F855C57AFEB"
+    },
+    {
+      "path": "Checks/MissingColumnFactor.lean",
+      "sha256": "2385CDA4AB88E179AAB58321B9E71C90CF78F13775A0F7790A1EAAAFDD3694DF"
+    },
+    {
+      "path": "declarations.json",
+      "sha256": "6B5186D6C9BF02A79FC6F34A0A3C6A10E0E40A1B2AB2BD54D5D28A757DAA0EE3"
+    },
+    {
+      "path": "FooLiL3.lean",
+      "sha256": "C28EF2A0AA4AA57D826F9468A3CDBB2BDDFFEF9AB696CE769DCB1175C33220AA"
+    },
+    {
+      "path": "FooLiL3/Controls.lean",
+      "sha256": "065B3A6A4FC014296E98D5BB0F78BA2D32926EFD35590DC6B5221A3117511BDD"
+    },
+    {
+      "path": "FooLiL3/EventBounds.lean",
+      "sha256": "02B9A99B808974284797B9C0E744CC061CDC3D1DABE2AA205748798B2E409676"
+    },
+    {
+      "path": "FooLiL3/GaussianLaw.lean",
+      "sha256": "D076B23CE256D40B88AF0E63F709FC9F07D5B5393D3CE3071CEF3D5CBC881997"
+    },
+    {
+      "path": "FooLiL3/GaussianTail.lean",
+      "sha256": "04BB33703321D094DE190527A7113EC3033D1F6D5FCEC2AE99D7D31C6FEAEA15"
+    },
+    {
+      "path": "FooLiL3/IntegerGaussian.lean",
+      "sha256": "2ECD66196E65847B0C7BA08C0EE74099396EC505BE0D5F967FCEB96DAD4F7813"
+    },
+    {
+      "path": "FooLiL3/L3.lean",
+      "sha256": "4783223688F55A07C3971A32E0DF4456917D3C876AB2AC61739E49D81D1E97A5"
+    },
+    {
+      "path": "FooLiL3/MatrixBounds.lean",
+      "sha256": "DB0580FCCFE4FE536D775EEF2B82E208E796315A3446EBDAC8F906ED1172A41A"
+    },
+    {
+      "path": "lake-manifest.json",
+      "sha256": "78A1E0354110134A3FCC3A29E0961065CBEAA735254D4F5D6A71F517A11F2B89"
+    },
+    {
+      "path": "lakefile.lean",
+      "sha256": "553B97AE5DC8990F0F33EF8330B315EDB470276EB41C61F14C189258388D122F"
+    },
+    {
+      "path": "lean-toolchain",
+      "sha256": "D5EDBA4E4B8FAAD9C1BAEADB265716D20D03BE4D1A2647DC5E35B0C0325BEA7B"
+    },
+    {
+      "path": "README.md",
+      "sha256": "6ED6C69D14FF3632CF7D7E9EDF5D96FC0A432FFD36B658AAD1F6F8CD70B3DC1B"
+    },
+    {
+      "path": "reviews/analytic-boundary-review.md",
+      "sha256": "682AB0E0EA510C9016462A386DDAE098EFADB8C50C673EB62CC9D1F9B855B41E"
+    },
+    {
+      "path": "reviews/controller-integration.md",
+      "sha256": "F22D04F6025DBA53869751848D2FAC75EFBCAB1C80A6BDFD56304BE594D18D47"
+    },
+    {
+      "path": "reviews/event-review.md",
+      "sha256": "E711473EC8981F60282D02090F9991E4FF862D6D0AA653351B1AE92BB6732EAE"
+    },
+    {
+      "path": "reviews/integration-review.md",
+      "sha256": "9971F48C3FCBE97937E440CBE29048F7F18C827D25B1643A750DCAE587419CFF"
+    },
+    {
+      "path": "reviews/matrix-review.md",
+      "sha256": "8FE3F49BAADB7FCF8510BB1D8BC467210BFF645D237EAD9CB963404E805C015A"
+    },
+    {
+      "path": "reviews/smoothing-bridge-plan.md",
+      "sha256": "8D2657B001E9F45DC299FFF8913AD42E34517EEFB0B570F0A876F60711169103"
+    },
+    {
+      "path": "Verify.ps1",
+      "sha256": "FC93E8F106070DF547D107F2A8F3FCA27C29B867E0B258BB29929C7BF70D607D"
+    }
+  ],
+  "logs": [
+    {
+      "path": "axioms-and-statements.log",
+      "sha256": "0888736BAF6B37DE19F6B3FA43CF84F23A3BC2DD4B33DC08897D671664D51C1C"
+    },
+    {
+      "path": "build.log",
+      "sha256": "D8DD9588E5B45C2176869D6B7A2246A848FACEBB2FEF71F676E73E7860C4FC08"
+    },
+    {
+      "path": "dependency-aesop.log",
+      "sha256": "E2F238DAE0AD15AD802261FD5664FBB7264CA23028EC463653EE359DEDAD69B1"
+    },
+    {
+      "path": "dependency-batteries.log",
+      "sha256": "A10C5CC1562C7E05002879CBB387405D1E84DFB2B052E4A9DA3D7B0915278E17"
+    },
+    {
+      "path": "dependency-Cli.log",
+      "sha256": "2E20E2A649DD57BE51B7D287730D045342813E1FA6E2E7DE3E2A6C249E2C51C1"
+    },
+    {
+      "path": "dependency-importGraph.log",
+      "sha256": "B7BEFBF415605485D009AA7B002B346ADB7EE3CE028E97B697FE5F259D320274"
+    },
+    {
+      "path": "dependency-LeanSearchClient.log",
+      "sha256": "969F2FABFB7FFE3973DCE9836AA523B36B30ABA71950F358C0148F7DAF1909CD"
+    },
+    {
+      "path": "dependency-mathlib.log",
+      "sha256": "D26684EA790064F49BCB150415B3A062EC30B5E646B207927AA3FC5FCBB43FBE"
+    },
+    {
+      "path": "dependency-plausible.log",
+      "sha256": "8E19735519205E6E1B0A59824699F406AF5B5CE84A32D2A6C583717CE045B900"
+    },
+    {
+      "path": "dependency-proofwidgets.log",
+      "sha256": "5C6FDE3E5EC3BC7C00FCEDC25E51A7D1D68B2DD0BA1057F4CD3A742F780CFC1D"
+    },
+    {
+      "path": "dependency-Qq.log",
+      "sha256": "6EA0E5D827CD28719F0F8303C77C64FFD115D117FB873C61DCC064C789B49021"
+    },
+    {
+      "path": "dependency-status-aesop.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-batteries.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-Cli.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-importGraph.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-LeanSearchClient.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-mathlib.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-plausible.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-proofwidgets.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-Qq.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "expected-rejection-missing-column-factor.log",
+      "sha256": "32B6A5EB952AA0B023ABD08C34BF7DB647E833482AF6530C1D6E26365D5657B9"
+    },
+    {
+      "path": "lake-version.log",
+      "sha256": "36526A338068C343BEDFF5DAA38FEC328B4F722DF1E8F0B5D026D4F0F908F3A3"
+    },
+    {
+      "path": "lean-version.log",
+      "sha256": "CAA538834571FBBF53913BBDE24B9FD3D9DEAC746137443A1C712D820E6A5B38"
+    },
+    {
+      "path": "source-Controls.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-EventBounds.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-GaussianLaw.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-GaussianTail.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-IntegerGaussian.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-L3.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-MatrixBounds.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-root.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    }
+  ]
+}

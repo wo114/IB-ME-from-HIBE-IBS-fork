@@ -1,0 +1,447 @@
+[
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.Controls.quarter_tail_exact",
+    "file": "FooLiL3/Controls.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.Controls.column_count_cannot_be_dropped",
+    "file": "FooLiL3/Controls.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.Controls.each_column_can_be_small",
+    "file": "FooLiL3/Controls.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.Controls.equality_at_cutoff_is_good",
+    "file": "FooLiL3/Controls.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.Controls.negative_quality_cutoff_rejects_zero",
+    "file": "FooLiL3/Controls.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.Controls.zero_columns_have_zero_mass",
+    "file": "FooLiL3/Controls.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.Controls.probability_budget_is_clipped",
+    "file": "FooLiL3/Controls.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.Controls.epsilon_one_makes_formula_invalid",
+    "file": "FooLiL3/Controls.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.Controls.raw_abort_is_not_success_conditioned",
+    "file": "FooLiL3/Controls.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.TVWithin",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.tvWithin_nonneg",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.tvWithin_refl",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.tvWithin_symm",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.tv_event_le",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.tv_transfer_min",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.finite_union_probability_le",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.fin_union_probability_le",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.probability_union_null",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.ideal_bad_probability_le",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.actual_bad_probability_le",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.badOutput",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.invalidOutput",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.someEvent",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.none_mem_badOutput",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.none_not_mem_someEvent",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.badOutput_eq_invalid_union",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.badOutput_subset_invalid_union",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.actual_badOutput_probability_le",
+    "file": "FooLiL3/EventBounds.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.gaussianPMF",
+    "file": "FooLiL3/GaussianLaw.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.gaussianPMF_apply",
+    "file": "FooLiL3/GaussianLaw.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.gaussianPMF_real_event",
+    "file": "FooLiL3/GaussianLaw.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.gaussianPMF_outer_event",
+    "file": "FooLiL3/GaussianLaw.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.gaussianPMF_tail_from_mass_comparison",
+    "file": "FooLiL3/GaussianLaw.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.rho",
+    "file": "FooLiL3/GaussianTail.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.gaussianZ",
+    "file": "FooLiL3/GaussianTail.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.tailBudget",
+    "file": "FooLiL3/GaussianTail.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.tailBudget_nonneg",
+    "file": "FooLiL3/GaussianTail.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.exp_three_pi_div_four_ge_four",
+    "file": "FooLiL3/GaussianTail.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.tail_constant",
+    "file": "FooLiL3/GaussianTail.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.rho_tail_le",
+    "file": "FooLiL3/GaussianTail.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.gaussian_tail_mass_le",
+    "file": "FooLiL3/GaussianTail.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.gaussian_tail_from_mass_comparison",
+    "file": "FooLiL3/GaussianTail.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.vectorSq",
+    "file": "FooLiL3/IntegerGaussian.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.InCoset",
+    "file": "FooLiL3/IntegerGaussian.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.integer_rho_summable",
+    "file": "FooLiL3/IntegerGaussian.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.summable_product_integer",
+    "file": "FooLiL3/IntegerGaussian.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.vector_rho_eq_product",
+    "file": "FooLiL3/IntegerGaussian.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.vector_rho_summable",
+    "file": "FooLiL3/IntegerGaussian.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.coset_rho_summable",
+    "file": "FooLiL3/IntegerGaussian.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.coset_nonempty_of_surjective",
+    "file": "FooLiL3/IntegerGaussian.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.coset_gaussianZ_pos",
+    "file": "FooLiL3/IntegerGaussian.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.cosetGaussian",
+    "file": "FooLiL3/IntegerGaussian.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.CosetMassComparison",
+    "file": "FooLiL3/IntegerGaussian.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.coset_tail_from_mass_comparison",
+    "file": "FooLiL3/IntegerGaussian.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.ValidDelegation",
+    "file": "FooLiL3/L3.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.QualityGood",
+    "file": "FooLiL3/L3.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.columnLarge",
+    "file": "FooLiL3/L3.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.qualityGood_iff_frobSq",
+    "file": "FooLiL3/L3.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.all_columns_good_implies_quality",
+    "file": "FooLiL3/L3.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.l3_from_column_tail_bounds",
+    "file": "FooLiL3/L3.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.badOutput_quality_eq_frobSq",
+    "file": "FooLiL3/L3.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.CosetColumnLaw",
+    "file": "FooLiL3/L3.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.l3_from_mass_certificates_and_marginals",
+    "file": "FooLiL3/L3.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.colSq",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.frobSq",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.colSq_nonneg",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.frobSq_nonneg",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.frobSq_le_of_columns",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.frobSq_eq_int_sum",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.colSq_eq_norm_sq",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.colSq_le_iff_column_norm_le",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.column_norm_gt_iff_colSq_gt",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.frobeniusVec",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.frobeniusNorm",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.frobeniusNorm_sq",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.frobeniusNorm_eq_sqrt",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.frobSq_eq_row_sum",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.euclideanLin",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.euclideanLin_apply",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.euclideanLin_norm_sq_le",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.euclideanLin_norm_le",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "def",
+    "name": "FooLiL3.euclideanOp",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.euclideanOp_apply",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.euclideanOp_norm_le_frobenius",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.euclideanOp_norm_le_frobeniusNorm",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.frobeniusNorm_le_sqrt_of_columns",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.euclideanOp_norm_sq_le_frobSq",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.euclideanOp_norm_le_sqrt_of_columns",
+    "file": "FooLiL3/MatrixBounds.lean"
+  },
+  {
+    "kind": "theorem",
+    "name": "FooLiL3.euclideanOp_norm_sq_le_of_columns",
+    "file": "FooLiL3/MatrixBounds.lean"
+  }
+]
