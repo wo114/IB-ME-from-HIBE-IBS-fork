@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-06",
+  "base_commit": "50f8ac3",
+  "teammate_head": "35fb11a",
+  "CPU": "Intel(R) Core(TM) Ultra 9 275HX",
+  "security_claim": "none",
+  "counts": {
+    "cases": 36,
+    "analytic_pass": 13,
+    "reference_limits_pass": 0,
+    "public_SIS_solutions": 9,
+    "standard_LLL_bound_exclusions": 12,
+    "analytic_pass_but_LLL_bound_excludes": 6,
+    "admitted_backends": 0
+  },
+  "public_SIS_outputs_independently_checked": 9,
+  "peer_delivery_hashes_checked": 95,
+  "peer_frozen_vendor_hashes_checked": 34,
+  "Lean_rerun": false,
+  "Lean_limit": "specified Lean installation unavailable locally; statements/premises and frozen source/log identities reviewed",
+  "commands": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest -q -p no:cacheprovider tests/test_foo_li_oracle_model.py tests/test_foo_li_runtime_reference.py tests/test_online_sampling_reference.py tests/test_encoding.py",
+      "result": "195 passed in 3.79s"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest -q -p no:cacheprovider tests/test_foo_li_parameter_screen.py tests/test_foo_li_oracle_model.py tests/test_foo_li_runtime_reference.py tests/test_online_sampling_reference.py tests/test_encoding.py",
+      "result": "227 passed in 47.21s"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.foo_li_parameter_screen --output docs/research/2026-10-06-parameters/parameter-screen-results.json",
+      "result": "36 prescreen cases and 9 saved SIS controls generated"
+    }
+  ],
+  "initial_test_failures": {
+    "result": "4 failed, 23 passed in 106.78s",
+    "resolved": [
+      "use interval-valued base for MPFI exponent",
+      "do not assume signature bound <q for every small modulus; added dedicated 61-bit negative control"
+    ]
+  },
+  "sources": [
+    {
+      "path": "experiments/research/foo_li_parameter_screen.py",
+      "sha256": "89bbd489374e9b561b12e06a61c662c3059cb43f6066417c0b209af78fdbe272"
+    },
+    {
+      "path": "tests/test_foo_li_parameter_screen.py",
+      "sha256": "c57fc7921ebcfbff0f36e52e7a260531024953b1e955fb6ce9394b9729e8ea22"
+    },
+    {
+      "path": "docs/research/2026-10-06-parameters/parameter-screen-results.json",
+      "sha256": "2a7eaa8b6d6e2d0fefc63c1587000ab1ce8ad330040bd06ffd74b1930f879a53"
+    },
+    {
+      "path": "docs/research/2026-10-06-parameters/FooLi有限参数预筛与成本审计.md",
+      "sha256": "5530469622ddcf9d094a7ccac7554005a4ee8c7e956b5932d8af7afc9c6a7e55"
+    }
+  ],
+  "limitations": [
+    "This is a prescreen, not a secure backend",
+    "No full ROM query budget or quantum SIS cost",
+    "No production keys, signatures or RSS/performance benchmark"
+  ]
+}
