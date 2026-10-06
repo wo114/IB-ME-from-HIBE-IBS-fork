@@ -1,0 +1,44 @@
+@FooLiL1.l1 : ∀ {q n m w : ℕ} (A : Matrix (Fin n) (Fin m) (ZMod q)) (B G : Matrix (Fin n) (Fin w) (ZMod q))
+  (R : Matrix (Fin m) (Fin w) ℤ) (p : Fin m ⊕ Fin w → ℤ) (z : Fin w → ℤ) (u : Fin n → ZMod q),
+  B = A * FooLiL1.reduceMat q R + G →
+    G.mulVec (FooLiL1.reduceVec q z) = u - (A.fromCols B).mulVec (FooLiL1.reduceVec q p) →
+      A.fromCols B * FooLiL1.reduceMat q (FooLiL1.trapdoorLift R) = G ∧
+        (A.fromCols B).mulVec (FooLiL1.reduceVec q (FooLiL1.signature R p z)) = u
+@FooLiL1.flattened_signature_equation : ∀ {q n m w : ℕ} (A : Matrix (Fin n) (Fin m) (ZMod q))
+  (B G : Matrix (Fin n) (Fin w) (ZMod q)) (R : Matrix (Fin m) (Fin w) ℤ) (p : Fin m ⊕ Fin w → ℤ) (z : Fin w → ℤ)
+  (u : Fin n → ZMod q),
+  B = A * FooLiL1.reduceMat q R + G →
+    G.mulVec (FooLiL1.reduceVec q z) = u - (A.fromCols B).mulVec (FooLiL1.reduceVec q p) →
+      (FooLiL1.flattenCols (A.fromCols B)).mulVec (FooLiL1.reduceVec q (FooLiL1.flattenVec (FooLiL1.signature R p z))) =
+        u
+@FooLiL1.master_trapdoor_equation : ∀ {q n m w : ℕ} (Abar : Matrix (Fin n) (Fin m) (ZMod q))
+  (G : Matrix (Fin n) (Fin w) (ZMod q)) (R0 : Matrix (Fin m) (Fin w) ℤ),
+  Abar.fromCols (G - Abar * FooLiL1.reduceMat q R0) * FooLiL1.reduceMat q (R0.fromRows 1) = G
+@FooLiL1.mp12_sign_iff : ∀ {q n m w : ℕ} (A : Matrix (Fin n) (Fin m) (ZMod q)) (B G : Matrix (Fin n) (Fin w) (ZMod q))
+  (T : Matrix (Fin m) (Fin w) ℤ), A * FooLiL1.reduceMat q T = G - B ↔ B = A * FooLiL1.reduceMat q (-T) + G
+@FooLiL1.tagged_signature_equation : ∀ {q n m w : ℕ} (A : Matrix (Fin n) (Fin m) (ZMod q))
+  (B G : Matrix (Fin n) (Fin w) (ZMod q)) (H K : Matrix (Fin n) (Fin n) (ZMod q)) (R : Matrix (Fin m) (Fin w) ℤ)
+  (p : Fin m ⊕ Fin w → ℤ) (z : Fin w → ℤ) (u : Fin n → ZMod q),
+  H * K = 1 →
+    B = A * FooLiL1.reduceMat q R + H * G →
+      G.mulVec (FooLiL1.reduceVec q z) = K.mulVec (u - (A.fromCols B).mulVec (FooLiL1.reduceVec q p)) →
+        A.fromCols B * FooLiL1.reduceMat q (FooLiL1.trapdoorLift R) = H * G ∧
+          (A.fromCols B).mulVec (FooLiL1.reduceVec q (FooLiL1.signature R p z)) = u
+'FooLiL1.reduceVec_add' depends on axioms: [propext, Quot.sound]
+'FooLiL1.reduceVec_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL1.reduceMat_trapdoorLift' depends on axioms: [propext, Quot.sound]
+'FooLiL1.trapdoor_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL1.reduceVec_signature' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL1.signature_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL1.l1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL1.reduceMat_neg' depends on axioms: [propext, Quot.sound]
+'FooLiL1.mp12_sign_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL1.master_trapdoor_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL1.flatten_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL1.flattened_signature_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL1.tagged_signature_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL1.Controls.valid_premises' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL1.Controls.valid_signature' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL1.Controls.wrong_sign_fails' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL1.Controls.wrong_syndrome_fails' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL1.Controls.wrong_key_fails' depends on axioms: [propext, Classical.choice, Quot.sound]

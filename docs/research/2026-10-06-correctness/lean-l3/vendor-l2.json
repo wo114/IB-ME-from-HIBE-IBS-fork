@@ -1,0 +1,47 @@
+{
+  "source_commit": "edf82ab55939eea399863c2091b5e8890298d21c",
+  "source_directory": "../lean-l2",
+  "files": [
+    {
+      "path": "FooLiL2.lean",
+      "sha256": "661D797C6166F3B9041585256018BA0C801ABBF27E41D95F5103A2529BCF162A"
+    },
+    {
+      "path": "FooLiL2/Assembly.lean",
+      "sha256": "79D32259AD020680B714B4AA6EBAC13F6FE80661FCCC9B389F1D144B42B34282"
+    },
+    {
+      "path": "FooLiL2/Controls.lean",
+      "sha256": "A00A447FC69C4ADD3066CD9AF7E9A6C1C416C6CA3A00B8F09A7817110403ECB1"
+    },
+    {
+      "path": "FooLiL2/Cosets.lean",
+      "sha256": "64385A442C8010E4250ABE53556B2A5800DA850E50F0021FC3D1A27A435E0372"
+    },
+    {
+      "path": "FooLiL2/DualMass.lean",
+      "sha256": "975721DE02B708CD1483E94B0D83ABDFE8C08B72150E756257D5A358AC038FAA"
+    },
+    {
+      "path": "FooLiL2/Gaussian.lean",
+      "sha256": "606BDFF24E306CEAFA32A5C113088DBE21969CAE1BF046F420389409519978E8"
+    },
+    {
+      "path": "FooLiL2/L2.lean",
+      "sha256": "F6CDEC7D39B6E1EA511A64BD5473FD8B964A6D204E23AC4B873E9BB3A4505CBB"
+    },
+    {
+      "path": "FooLiL2/MassBounds.lean",
+      "sha256": "26B08F72258C24285B634DD43F016DD20AF83DE00573FBA487067C733CB21139"
+    },
+    {
+      "path": "FooLiL2/ProductSum.lean",
+      "sha256": "040F361C9A81D91D03A984E9933F417F612F88529F74270447B18E198E0F257D"
+    },
+    {
+      "path": "FooLiL2/VectorGaussian.lean",
+      "sha256": "7796B7EEBF4690CC8BA115157342DD9EA8357B01A787F7E14544C1211658F791"
+    }
+  ],
+  "purpose": "Byte-identical L2 sources, compiled and transitively audited again in L3"
+}

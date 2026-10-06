@@ -1,0 +1,1713 @@
+{
+  "status": "pass",
+  "timestamp": "2026-10-06T12:35:46.6207524+08:00",
+  "project_directory": "D:\\Lean\\projects\\fooli-l2",
+  "lean": "Lean (version 4.34.1, x86_64-w64-windows-gnu, commit 5045d0056413266e57c625dcd7c365b10e377c52, Release)",
+  "lake": "Lake version 5.0.0-src+5045d00 (Lean version 4.34.1)",
+  "powershell": "7.6.5",
+  "operating_system": "Microsoft Windows NT 10.0.26200.0",
+  "scope": "L2 actual q-ary dual-lattice Gaussian mass extension and one-way smoothing infimum bound",
+  "exclusions": [
+    "No sampler contract verification",
+    "No L3/L4 proof",
+    "No security reduction",
+    "No parameter selection",
+    "No implementation refinement"
+  ],
+  "security_claim": "none",
+  "declaration_count": 113,
+  "theorem_count": 87,
+  "dependencies": [
+    {
+      "name": "mathlib",
+      "revision": "d13f23b723b8a846827a245b89c10fc7d3f11612"
+    },
+    {
+      "name": "plausible",
+      "revision": "118aa17ee84656b8bd727fef7c458ee8c833385c"
+    },
+    {
+      "name": "LeanSearchClient",
+      "revision": "ddf04cf3949fa556442341e87d47f9f6e6074707"
+    },
+    {
+      "name": "importGraph",
+      "revision": "e928b72544873815af278d38681b31c0293588e3"
+    },
+    {
+      "name": "proofwidgets",
+      "revision": "106ff4fafc74ef4ac99d81dbf3ab399118f497a5"
+    },
+    {
+      "name": "aesop",
+      "revision": "355695d523e41d0554926416cba2a2b3544fbbc9"
+    },
+    {
+      "name": "Qq",
+      "revision": "6a489d9af5d0c47e5b259e2e8bcdfc1811b5a259"
+    },
+    {
+      "name": "batteries",
+      "revision": "f2effa3d803fda822b1f97b806c47cf2adfbcbc2"
+    },
+    {
+      "name": "Cli",
+      "revision": "e92c9f15fdfacc8536f31cfb3b7ad26c3c8cd204"
+    }
+  ],
+  "commands": [
+    {
+      "name": "lean-version",
+      "command": "lean",
+      "arguments": [
+        "--version"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.121987
+    },
+    {
+      "name": "lake-version",
+      "command": "lake",
+      "arguments": [
+        "--version"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.1377758
+    },
+    {
+      "name": "dependency-mathlib",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\mathlib",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0432202
+    },
+    {
+      "name": "dependency-status-mathlib",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\mathlib",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0589134
+    },
+    {
+      "name": "dependency-plausible",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\plausible",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0549744
+    },
+    {
+      "name": "dependency-status-plausible",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\plausible",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0554208
+    },
+    {
+      "name": "dependency-LeanSearchClient",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\LeanSearchClient",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0442474
+    },
+    {
+      "name": "dependency-status-LeanSearchClient",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\LeanSearchClient",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.063882
+    },
+    {
+      "name": "dependency-importGraph",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\importGraph",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.055365
+    },
+    {
+      "name": "dependency-status-importGraph",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\importGraph",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0500699
+    },
+    {
+      "name": "dependency-proofwidgets",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\proofwidgets",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0612539
+    },
+    {
+      "name": "dependency-status-proofwidgets",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\proofwidgets",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.057222
+    },
+    {
+      "name": "dependency-aesop",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\aesop",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0611397
+    },
+    {
+      "name": "dependency-status-aesop",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\aesop",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0542998
+    },
+    {
+      "name": "dependency-Qq",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\Qq",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0563033
+    },
+    {
+      "name": "dependency-status-Qq",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\Qq",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0519849
+    },
+    {
+      "name": "dependency-batteries",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\batteries",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0470001
+    },
+    {
+      "name": "dependency-status-batteries",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\batteries",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0526813
+    },
+    {
+      "name": "dependency-Cli",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\Cli",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0511876
+    },
+    {
+      "name": "dependency-status-Cli",
+      "command": "git",
+      "arguments": [
+        "-C",
+        "D:\\Lean\\projects\\fooli-l2\\.lake\\packages\\Cli",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 0.0424539
+    },
+    {
+      "name": "build",
+      "command": "lake",
+      "arguments": [
+        "build",
+        "FooLiL2",
+        "FooLiL2.Controls"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 4.3294323
+    },
+    {
+      "name": "source-Assembly",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL2/Assembly.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 13.8203301
+    },
+    {
+      "name": "source-Controls",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL2/Controls.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 13.7384931
+    },
+    {
+      "name": "source-Cosets",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL2/Cosets.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 12.1066746
+    },
+    {
+      "name": "source-DualMass",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL2/DualMass.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 13.9772918
+    },
+    {
+      "name": "source-Gaussian",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL2/Gaussian.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 13.975751
+    },
+    {
+      "name": "source-L2",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL2/L2.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 13.3742109
+    },
+    {
+      "name": "source-MassBounds",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL2/MassBounds.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 10.705633
+    },
+    {
+      "name": "source-ProductSum",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL2/ProductSum.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 10.4447162
+    },
+    {
+      "name": "source-VectorGaussian",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL2/VectorGaussian.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 14.0478303
+    },
+    {
+      "name": "source-root",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "FooLiL2.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 12.988232
+    },
+    {
+      "name": "axioms-and-statements",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "Audit.lean"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "seconds": 13.0595072
+    },
+    {
+      "name": "expected-rejection-wrong-error-bound",
+      "command": "lake",
+      "arguments": [
+        "env",
+        "lean",
+        "Checks/WrongErrorBound.lean"
+      ],
+      "exit_code": 1,
+      "expected_exit": 1,
+      "seconds": 9.0710142
+    }
+  ],
+  "declaration_axioms": [
+    {
+      "declaration": "FooLiL2.cosetTheta",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.extensionTheta",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.cosetTheta_antitone",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.coset_extension_bound",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.coset_l2",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Controls.quarter_error_exact",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Controls.quadratic_term_cannot_be_dropped",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Controls.error_range_is_needed",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Controls.dimension_bound_is_needed",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Controls.modular_zero_is_not_full_rank",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Controls.zero_coset_contains_nonzero_integer",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Controls.zero_added_block_dimension",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.modVector",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.modMatrix",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.liftVector",
+      "kind": "def",
+      "axioms": [
+        "propext"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.liftMatrix",
+      "kind": "def",
+      "axioms": [
+        "propext"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.mod_liftMatrix",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.mod_liftVector",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.mod_mulVec",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.FullRowRank",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.matrix_surjective_iff_rank",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.fullRowRank_iff_rank",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.transpose_injective_of_surjective",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.transpose_mod_injective",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.InKernel",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.inKernel_iff_dvd",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.intVector",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.intVector_sub",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.intVector_single",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.DualSet",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.shift",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.integerCoset",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.shift_pairing",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.integerCoset_subset_dual",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.integerCoset_zero",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.exists_integer_right_inverse",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.modVector_sub",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.right_inverse_residual_inKernel",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.q_single_inKernel",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.dual_denominator",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.denominator_pairing",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.dual_subset_integerCosets",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.dual_eq_integerCosets",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.div_eq_integer_add_of_mod_eq",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.integerCoset_eq_of_mod_eq",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.residueCoset",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.dual_eq_residueCosets",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.overlap_mod_transpose",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.residueCoset_label_unique",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.residueCosets_pairwiseDisjoint",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.residueCoset_zero",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.qaryLattice",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.dualSet_eq_dualSubmodule",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.real_dual_eq_residueCosets",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.cosetParam",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.cosetParam_mem_dual",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.cosetParam_injective",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.dualEquiv",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.dualEquiv_apply",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.appendMatrix",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.fullRowRank_append",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.Cosets.shift_append",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gaussianWeight",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gaussianWeight_eq_euclidean",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.residueShift",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.dualMass",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.dualTheta",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.dualSet_eq_of_modMatrix_eq",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.dualTheta_eq_of_modMatrix_eq",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.SmoothAt",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.smoothAt_iff_theta",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.summable_cosetParam_weight",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.summable_dual_weight",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.dualMass_eq_coset_sum",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.dualTheta_eq_cosetTheta",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.zero_mem_dualSet",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.dualTheta_eq_nonzero_tsum",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gaussianMass",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gaussianMass_nonneg",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.summable_gaussian_coefficient",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.summable_gaussian",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.hasSum_gaussian",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.one_le_gaussianMass_zero",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gaussianMass_pos",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gaussianMass_antitone",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gaussianMass_le_zero",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.residueShift_zero",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.dualTheta_append_eq_extensionTheta",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.l2_qary_mass_extension",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.l2_prime_rank",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.l2_smoothAt",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.l2_modular_matrices",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.extensionError",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.extensionError_pos",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.extensionError_le_nine_sixteenths",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.extensionError_lt_one",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.zero_coset_le_total",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.finite_mass_extension_bound",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.smoothingInf",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.smoothingInf_le_of_mass_le",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.summable_fin_product",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.tsum_fin_product",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gridMass",
+      "kind": "def",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gridMass_nonneg",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gridMass_zero",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.summable_grid_gaussian",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gridMass_eq_tsum",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gaussian_product_eq_exp",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gridMass_eq_gaussian_tsum",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.summable_grid_gaussian_exp",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gridMass_append",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gridMass_antitone",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "FooLiL2.gridMass_le_zero",
+      "kind": "theorem",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "authored_files": [
+    {
+      "path": ".gitignore",
+      "sha256": "FDE850D24186B6E99C8C0DEBD641FB3AB85198B109EB66F71A1FEA02BD6EA1B3"
+    },
+    {
+      "path": "Audit.lean",
+      "sha256": "34109AA996A2C1C236B96CC32AEA96C9B24CB5B8BE75C35ED1A0C0AAEE1A8F72"
+    },
+    {
+      "path": "Checks/WrongErrorBound.lean",
+      "sha256": "294DF54BE11BE7D62077CC7BF2DCEB6C19A04B8D0762162563F808F0DFE53C85"
+    },
+    {
+      "path": "declarations.json",
+      "sha256": "F077CC6D094D82B0C70B65CE39CB1670A110FA50D1C5F3D22D72FA4E14D503FB"
+    },
+    {
+      "path": "FooLiL2.lean",
+      "sha256": "661D797C6166F3B9041585256018BA0C801ABBF27E41D95F5103A2529BCF162A"
+    },
+    {
+      "path": "FooLiL2/Assembly.lean",
+      "sha256": "79D32259AD020680B714B4AA6EBAC13F6FE80661FCCC9B389F1D144B42B34282"
+    },
+    {
+      "path": "FooLiL2/Controls.lean",
+      "sha256": "A00A447FC69C4ADD3066CD9AF7E9A6C1C416C6CA3A00B8F09A7817110403ECB1"
+    },
+    {
+      "path": "FooLiL2/Cosets.lean",
+      "sha256": "64385A442C8010E4250ABE53556B2A5800DA850E50F0021FC3D1A27A435E0372"
+    },
+    {
+      "path": "FooLiL2/DualMass.lean",
+      "sha256": "975721DE02B708CD1483E94B0D83ABDFE8C08B72150E756257D5A358AC038FAA"
+    },
+    {
+      "path": "FooLiL2/Gaussian.lean",
+      "sha256": "606BDFF24E306CEAFA32A5C113088DBE21969CAE1BF046F420389409519978E8"
+    },
+    {
+      "path": "FooLiL2/L2.lean",
+      "sha256": "F6CDEC7D39B6E1EA511A64BD5473FD8B964A6D204E23AC4B873E9BB3A4505CBB"
+    },
+    {
+      "path": "FooLiL2/MassBounds.lean",
+      "sha256": "26B08F72258C24285B634DD43F016DD20AF83DE00573FBA487067C733CB21139"
+    },
+    {
+      "path": "FooLiL2/ProductSum.lean",
+      "sha256": "040F361C9A81D91D03A984E9933F417F612F88529F74270447B18E198E0F257D"
+    },
+    {
+      "path": "FooLiL2/VectorGaussian.lean",
+      "sha256": "7796B7EEBF4690CC8BA115157342DD9EA8357B01A787F7E14544C1211658F791"
+    },
+    {
+      "path": "lake-manifest.json",
+      "sha256": "191844CF21F92BE788CB3C1C5084C327AB78BFEF4D97A414131B108CCB36016E"
+    },
+    {
+      "path": "lakefile.lean",
+      "sha256": "4ABAF97177AFA09640E7D9F3848014AB71CDA6B532E211EA2390762421EC36D7"
+    },
+    {
+      "path": "lean-toolchain",
+      "sha256": "D5EDBA4E4B8FAAD9C1BAEADB265716D20D03BE4D1A2647DC5E35B0C0325BEA7B"
+    },
+    {
+      "path": "README.md",
+      "sha256": "8625A2ECD4CA53FF23217637310E45CFF594DC83E79088AD74A40D4045933C7A"
+    },
+    {
+      "path": "reviews/cosets-progress.md",
+      "sha256": "F5F16C9DDA3CC33DD2251F726418EF507531F0DC705048C5D7AD79C908C53CB1"
+    },
+    {
+      "path": "reviews/final-review.md",
+      "sha256": "5529F12987C81C16FFA517F59FA566C9D865B39D25FB7B7A7E3531E7CA0E4107"
+    },
+    {
+      "path": "reviews/gaussian-progress.md",
+      "sha256": "63620D25ECA145C0B08737769F982F0C31FFFB9CD0D5BDAA5F4A2BB762BCB7C0"
+    },
+    {
+      "path": "reviews/math-review.md",
+      "sha256": "0FCDD549947B9903AAB45B34E796C0A7D2A3A6D126413AAAE961344B80A37147"
+    },
+    {
+      "path": "Verify.ps1",
+      "sha256": "120E0C4E69434A892A7273494733065F792A1A02125C74E56C62612153AFDB4E"
+    }
+  ],
+  "logs": [
+    {
+      "path": "axioms-and-statements.log",
+      "sha256": "768887A46C44128E16A4D72226DDF3CFBFF0F4B5049A37DDD7854809E938BEC2"
+    },
+    {
+      "path": "build.log",
+      "sha256": "B5F061578F3D6891E8D66DE789EE808B7816D038F27F5EA1549FEC8150EC334B"
+    },
+    {
+      "path": "dependency-aesop.log",
+      "sha256": "E2F238DAE0AD15AD802261FD5664FBB7264CA23028EC463653EE359DEDAD69B1"
+    },
+    {
+      "path": "dependency-batteries.log",
+      "sha256": "A10C5CC1562C7E05002879CBB387405D1E84DFB2B052E4A9DA3D7B0915278E17"
+    },
+    {
+      "path": "dependency-Cli.log",
+      "sha256": "2E20E2A649DD57BE51B7D287730D045342813E1FA6E2E7DE3E2A6C249E2C51C1"
+    },
+    {
+      "path": "dependency-importGraph.log",
+      "sha256": "B7BEFBF415605485D009AA7B002B346ADB7EE3CE028E97B697FE5F259D320274"
+    },
+    {
+      "path": "dependency-LeanSearchClient.log",
+      "sha256": "969F2FABFB7FFE3973DCE9836AA523B36B30ABA71950F358C0148F7DAF1909CD"
+    },
+    {
+      "path": "dependency-mathlib.log",
+      "sha256": "D26684EA790064F49BCB150415B3A062EC30B5E646B207927AA3FC5FCBB43FBE"
+    },
+    {
+      "path": "dependency-plausible.log",
+      "sha256": "8E19735519205E6E1B0A59824699F406AF5B5CE84A32D2A6C583717CE045B900"
+    },
+    {
+      "path": "dependency-proofwidgets.log",
+      "sha256": "5C6FDE3E5EC3BC7C00FCEDC25E51A7D1D68B2DD0BA1057F4CD3A742F780CFC1D"
+    },
+    {
+      "path": "dependency-Qq.log",
+      "sha256": "6EA0E5D827CD28719F0F8303C77C64FFD115D117FB873C61DCC064C789B49021"
+    },
+    {
+      "path": "dependency-status-aesop.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-batteries.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-Cli.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-importGraph.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-LeanSearchClient.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-mathlib.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-plausible.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-proofwidgets.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "dependency-status-Qq.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "expected-rejection-wrong-error-bound.log",
+      "sha256": "BCC736F9F57374F6BAB855B4EFD3D583BBF3C6E64B5C1CFC9DFC5E13EE95D5FB"
+    },
+    {
+      "path": "lake-version.log",
+      "sha256": "36526A338068C343BEDFF5DAA38FEC328B4F722DF1E8F0B5D026D4F0F908F3A3"
+    },
+    {
+      "path": "lean-version.log",
+      "sha256": "CAA538834571FBBF53913BBDE24B9FD3D9DEAC746137443A1C712D820E6A5B38"
+    },
+    {
+      "path": "source-Assembly.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-Controls.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-Cosets.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-DualMass.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-Gaussian.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-L2.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-MassBounds.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-ProductSum.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-root.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    },
+    {
+      "path": "source-VectorGaussian.log",
+      "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+    }
+  ]
+}

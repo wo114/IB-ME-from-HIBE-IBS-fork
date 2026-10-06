@@ -1,0 +1,27 @@
+'FooLiL3.phaseTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.norm_phaseTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.phaseTerm_eq_mul_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.phaseTerm_eq_rho_mul_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.norm_phaseTerm_eq_rho' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.summable_norm_phaseTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.summable_phaseTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.gaussian_poisson_prefactor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.tsum_phaseTerm_eq_gaussianMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.hasSum_phaseTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.summable_norm_dualGaussian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.tsum_gaussian_mul_phase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.summable_norm_fin_complex_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.tsum_fin_complex_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.summable_norm_prod_phaseTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.summable_prod_phaseTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.tsum_prod_phaseTerm_eq_gridMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.hasSum_prod_phaseTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.norm_prod_phaseTerm_eq_rho' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.prod_phaseTerm_eq_rho_mul_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+FooLiL3.tsum_phaseTerm_eq_gaussianMass {s : ℝ} (hs : 0 < s) (b : ℝ) :
+  ∑' (z : ℤ), FooLiL3.phaseTerm s b z = ↑s * ↑(FooLiL2.gaussianMass s b)
+FooLiL3.tsum_prod_phaseTerm_eq_gridMass (m : ℕ) {s : ℝ} (hs : 0 < s) (c : Fin m → ℝ) :
+  ∑' (z : Fin m → ℤ), ∏ i, FooLiL3.phaseTerm s (c i) (z i) = ↑s ^ m * ↑(FooLiL2.gridMass m s c)
+FooLiL3.prod_phaseTerm_eq_rho_mul_exp (m : ℕ) (s : ℝ) (c : Fin m → ℝ) (z : Fin m → ℤ) :
+  ∏ i, FooLiL3.phaseTerm s (c i) (z i) =
+    ↑(FooLiL3.rho s (∑ i, ↑(z i) ^ 2)) * Complex.exp (-2 * ↑Real.pi * Complex.I * ∑ i, ↑(c i) * ↑(z i))

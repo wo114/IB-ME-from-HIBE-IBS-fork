@@ -1,0 +1,42 @@
+'FooLiL3.mulVec_surjective_of_rightInverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.rightInverse_of_trapdoor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.mulVec_surjective_of_trapdoor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.mulVec_surjective_of_trapdoor_unit_tag' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.columnSelector' does not depend on any axioms
+'FooLiL3.mul_columnSelector' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.rightInverse_of_identity_columns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.mulVec_surjective_of_identity_columns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.blockGadget' does not depend on any axioms
+'FooLiL3.blockGadget_identity_columns' depends on axioms: [propext]
+'FooLiL3.blockGadget_rightInverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.blockGadget_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.powersGadget' does not depend on any axioms
+'FooLiL3.powersGadget_rightInverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.powersGadget_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.master_relation_surjective_of_identity_columns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.master_setup_trapdoor_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.master_setup_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.mulVec_surjective_reindex_columns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.master_relation_flat_surjective_of_identity_columns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.master_setup_flat_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.powersGadget_flat_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.powersGadget_flat_identity_columns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.standard_master_relation_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.standard_master_setup_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.fullRowRank_liftMatrix_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.fullRowRank_liftMatrix_of_trapdoor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.coset_nonempty_of_trapdoor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.inCoset_liftMatrix_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.inKernel_liftMatrix_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.inCoset_iff_sub_inKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+@FooLiL2.Cosets.mod_liftMatrix : ∀ {n d : ℕ} (q : ℕ) (C : Matrix (Fin n) (Fin d) (ZMod q)),
+  FooLiL2.Cosets.modMatrix q (FooLiL2.Cosets.liftMatrix q C) = C
+@FooLiL2.Cosets.mod_liftVector : ∀ {n : ℕ} (q : ℕ) (a : Fin n → ZMod q),
+  FooLiL2.Cosets.modVector q (FooLiL2.Cosets.liftVector q a) = a
+@master_relation_flat_surjective_of_identity_columns : ∀ {q n m w : ℕ} (A : Matrix (Fin n) (Fin m ⊕ Fin w) (ZMod q))
+  (R₀ : Matrix (Fin m) (Fin w) ℤ) (G : Matrix (Fin n) (Fin w) (ZMod q)) (sel : Fin n → Fin w),
+  A * (R₀.fromRows 1).map ⇑(Int.castRingHom (ZMod q)) = G →
+    (∀ (i j : Fin n), G i (sel j) = if i = j then 1 else 0) →
+      Function.Surjective (A.submatrix id ⇑finSumFinEquiv.symm).mulVec
+@fullRowRank_liftMatrix_iff : ∀ {q n m : ℕ} (A : Matrix (Fin n) (Fin m) (ZMod q)),
+  FooLiL2.Cosets.FullRowRank q (FooLiL2.Cosets.liftMatrix q A) ↔ Function.Surjective A.mulVec
