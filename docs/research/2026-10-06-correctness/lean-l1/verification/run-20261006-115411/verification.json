@@ -1,0 +1,646 @@
+{
+    "status":  "pass",
+    "timestamp":  "2026-10-06T11:54:48.2564957+08:00",
+    "project_directory":  "D:\\Lean\\projects\\fooli-l1",
+    "lean":  "Lean (version 4.34.1, x86_64-w64-windows-gnu, commit 5045d0056413266e57c625dcd7c365b10e377c52, Release)",
+    "lake":  "Lake version 5.0.0-src+5045d00 (Lean version 4.34.1)",
+    "powershell":  "5.1.26100.9549",
+    "operating_system":  "Microsoft Windows NT 10.0.26200.0",
+    "scope":  "L1 algebraic congruences only; conditional on hB and hz; no probability or security claim",
+    "security_claim":  "none",
+    "theorem_count":  18,
+    "dependencies":  [
+                         {
+                             "name":  "mathlib",
+                             "revision":  "d13f23b723b8a846827a245b89c10fc7d3f11612"
+                         },
+                         {
+                             "name":  "plausible",
+                             "revision":  "118aa17ee84656b8bd727fef7c458ee8c833385c"
+                         },
+                         {
+                             "name":  "LeanSearchClient",
+                             "revision":  "ddf04cf3949fa556442341e87d47f9f6e6074707"
+                         },
+                         {
+                             "name":  "importGraph",
+                             "revision":  "e928b72544873815af278d38681b31c0293588e3"
+                         },
+                         {
+                             "name":  "proofwidgets",
+                             "revision":  "106ff4fafc74ef4ac99d81dbf3ab399118f497a5"
+                         },
+                         {
+                             "name":  "aesop",
+                             "revision":  "355695d523e41d0554926416cba2a2b3544fbbc9"
+                         },
+                         {
+                             "name":  "Qq",
+                             "revision":  "6a489d9af5d0c47e5b259e2e8bcdfc1811b5a259"
+                         },
+                         {
+                             "name":  "batteries",
+                             "revision":  "f2effa3d803fda822b1f97b806c47cf2adfbcbc2"
+                         },
+                         {
+                             "name":  "Cli",
+                             "revision":  "e92c9f15fdfacc8536f31cfb3b7ad26c3c8cd204"
+                         }
+                     ],
+    "commands":  [
+                     {
+                         "name":  "lean-version",
+                         "command":  "lean",
+                         "arguments":  [
+                                           "--version"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.13644699999999998
+                     },
+                     {
+                         "name":  "lake-version",
+                         "command":  "lake",
+                         "arguments":  [
+                                           "--version"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.132072
+                     },
+                     {
+                         "name":  "dependency-mathlib",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\mathlib",
+                                           "rev-parse",
+                                           "HEAD"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.043863
+                     },
+                     {
+                         "name":  "dependency-status-mathlib",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\mathlib",
+                                           "status",
+                                           "--porcelain",
+                                           "--untracked-files=no"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.0801513
+                     },
+                     {
+                         "name":  "dependency-plausible",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\plausible",
+                                           "rev-parse",
+                                           "HEAD"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.0387442
+                     },
+                     {
+                         "name":  "dependency-status-plausible",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\plausible",
+                                           "status",
+                                           "--porcelain",
+                                           "--untracked-files=no"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.050937699999999995
+                     },
+                     {
+                         "name":  "dependency-LeanSearchClient",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\LeanSearchClient",
+                                           "rev-parse",
+                                           "HEAD"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.0374733
+                     },
+                     {
+                         "name":  "dependency-status-LeanSearchClient",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\LeanSearchClient",
+                                           "status",
+                                           "--porcelain",
+                                           "--untracked-files=no"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.0449957
+                     },
+                     {
+                         "name":  "dependency-importGraph",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\importGraph",
+                                           "rev-parse",
+                                           "HEAD"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.0366672
+                     },
+                     {
+                         "name":  "dependency-status-importGraph",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\importGraph",
+                                           "status",
+                                           "--porcelain",
+                                           "--untracked-files=no"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.0486408
+                     },
+                     {
+                         "name":  "dependency-proofwidgets",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\proofwidgets",
+                                           "rev-parse",
+                                           "HEAD"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.048083
+                     },
+                     {
+                         "name":  "dependency-status-proofwidgets",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\proofwidgets",
+                                           "status",
+                                           "--porcelain",
+                                           "--untracked-files=no"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.0483752
+                     },
+                     {
+                         "name":  "dependency-aesop",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\aesop",
+                                           "rev-parse",
+                                           "HEAD"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.0428881
+                     },
+                     {
+                         "name":  "dependency-status-aesop",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\aesop",
+                                           "status",
+                                           "--porcelain",
+                                           "--untracked-files=no"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.0550941
+                     },
+                     {
+                         "name":  "dependency-Qq",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\Qq",
+                                           "rev-parse",
+                                           "HEAD"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.054285099999999996
+                     },
+                     {
+                         "name":  "dependency-status-Qq",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\Qq",
+                                           "status",
+                                           "--porcelain",
+                                           "--untracked-files=no"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.0400952
+                     },
+                     {
+                         "name":  "dependency-batteries",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\batteries",
+                                           "rev-parse",
+                                           "HEAD"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.0440899
+                     },
+                     {
+                         "name":  "dependency-status-batteries",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\batteries",
+                                           "status",
+                                           "--porcelain",
+                                           "--untracked-files=no"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.0469136
+                     },
+                     {
+                         "name":  "dependency-Cli",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\Cli",
+                                           "rev-parse",
+                                           "HEAD"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.058833899999999995
+                     },
+                     {
+                         "name":  "dependency-status-Cli",
+                         "command":  "git",
+                         "arguments":  [
+                                           "-C",
+                                           "D:\\Lean\\projects\\fooli-l1\\.lake\\packages\\Cli",
+                                           "status",
+                                           "--porcelain",
+                                           "--untracked-files=no"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  0.040161999999999996
+                     },
+                     {
+                         "name":  "source-check",
+                         "command":  "lake",
+                         "arguments":  [
+                                           "env",
+                                           "lean",
+                                           "FooLiL1.lean"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  11.4281156
+                     },
+                     {
+                         "name":  "build",
+                         "command":  "lake",
+                         "arguments":  [
+                                           "build",
+                                           "FooLiL1",
+                                           "FooLiL1.Controls"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  2.9096409999999997
+                     },
+                     {
+                         "name":  "axioms-and-statements",
+                         "command":  "lake",
+                         "arguments":  [
+                                           "env",
+                                           "lean",
+                                           "Audit.lean"
+                                       ],
+                         "exit_code":  0,
+                         "expected_exit":  0,
+                         "seconds":  10.3233602
+                     },
+                     {
+                         "name":  "expected-rejection-wrong-sign",
+                         "command":  "lake",
+                         "arguments":  [
+                                           "env",
+                                           "lean",
+                                           "Checks/WrongSign.lean"
+                                       ],
+                         "exit_code":  1,
+                         "expected_exit":  1,
+                         "seconds":  10.183460799999999
+                     }
+                 ],
+    "theorem_axioms":  [
+                           {
+                               "theorem":  "FooLiL1.reduceVec_add",
+                               "axioms":  [
+                                              "propext",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.reduceVec_mulVec",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.reduceMat_trapdoorLift",
+                               "axioms":  [
+                                              "propext",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.trapdoor_equation",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.reduceVec_signature",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.signature_equation",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.l1",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.reduceMat_neg",
+                               "axioms":  [
+                                              "propext",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.mp12_sign_iff",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.master_trapdoor_equation",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.flatten_mulVec",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.flattened_signature_equation",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.tagged_signature_equation",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.Controls.valid_premises",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.Controls.valid_signature",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.Controls.wrong_sign_fails",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.Controls.wrong_syndrome_fails",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           },
+                           {
+                               "theorem":  "FooLiL1.Controls.wrong_key_fails",
+                               "axioms":  [
+                                              "propext",
+                                              "Classical.choice",
+                                              "Quot.sound"
+                                          ]
+                           }
+                       ],
+    "authored_files":  [
+                           {
+                               "path":  ".gitignore",
+                               "sha256":  "FDE850D24186B6E99C8C0DEBD641FB3AB85198B109EB66F71A1FEA02BD6EA1B3"
+                           },
+                           {
+                               "path":  "lean-toolchain",
+                               "sha256":  "D5EDBA4E4B8FAAD9C1BAEADB265716D20D03BE4D1A2647DC5E35B0C0325BEA7B"
+                           },
+                           {
+                               "path":  "lakefile.lean",
+                               "sha256":  "CD3308AF2E1E27BCE4EEC51C20FD2EED62B6B6E7CBBE4F4E08995EA57B3C77A9"
+                           },
+                           {
+                               "path":  "lake-manifest.json",
+                               "sha256":  "7CADEF73A0E63776097B4C5446478D29BBEF8947496BA2CB391241E574E26519"
+                           },
+                           {
+                               "path":  "FooLiL1.lean",
+                               "sha256":  "2FC2E7A0ABC53DF1DC1E025EDA1FD8BC14B3B0C4A2D6D1532411E76ADB059B20"
+                           },
+                           {
+                               "path":  "FooLiL1/Controls.lean",
+                               "sha256":  "A4D39899A6885FDDFA76913909B1B5B62B7E71AEB79125FA6D268F911EC279D1"
+                           },
+                           {
+                               "path":  "Checks/WrongSign.lean",
+                               "sha256":  "0305AEE71A5A4FA1E731ECF5B0389F7FDAD0EF0CCA61B5DFB97E03482D65840A"
+                           },
+                           {
+                               "path":  "Audit.lean",
+                               "sha256":  "4C5A9E9B05721D9794BD67232FFAA767ED556BB5D9579F2CC6386E1B5DC584CF"
+                           },
+                           {
+                               "path":  "Verify.ps1",
+                               "sha256":  "4196E8910A384FAF5B67F42AAE1CF466E4FE74F8569B171BA96ED98299605A91"
+                           },
+                           {
+                               "path":  "README.md",
+                               "sha256":  "B51FA9B7E22F274ED05ACC7C872AB53C011856C5C7DF98897CF82CF4E1E8C49A"
+                           }
+                       ],
+    "logs":  [
+                 {
+                     "path":  "axioms-and-statements.log",
+                     "sha256":  "F4705752797B42D50684284DEE03A06AA76A90AEA3BE457034CD34F32B67D8A5"
+                 },
+                 {
+                     "path":  "build.log",
+                     "sha256":  "FBB22E23C7B9A0DB40C40C471B2D1260200AA7B8FDBD0FFA5775B33B41774968"
+                 },
+                 {
+                     "path":  "dependency-aesop.log",
+                     "sha256":  "E2F238DAE0AD15AD802261FD5664FBB7264CA23028EC463653EE359DEDAD69B1"
+                 },
+                 {
+                     "path":  "dependency-batteries.log",
+                     "sha256":  "A10C5CC1562C7E05002879CBB387405D1E84DFB2B052E4A9DA3D7B0915278E17"
+                 },
+                 {
+                     "path":  "dependency-Cli.log",
+                     "sha256":  "2E20E2A649DD57BE51B7D287730D045342813E1FA6E2E7DE3E2A6C249E2C51C1"
+                 },
+                 {
+                     "path":  "dependency-importGraph.log",
+                     "sha256":  "B7BEFBF415605485D009AA7B002B346ADB7EE3CE028E97B697FE5F259D320274"
+                 },
+                 {
+                     "path":  "dependency-LeanSearchClient.log",
+                     "sha256":  "969F2FABFB7FFE3973DCE9836AA523B36B30ABA71950F358C0148F7DAF1909CD"
+                 },
+                 {
+                     "path":  "dependency-mathlib.log",
+                     "sha256":  "D26684EA790064F49BCB150415B3A062EC30B5E646B207927AA3FC5FCBB43FBE"
+                 },
+                 {
+                     "path":  "dependency-plausible.log",
+                     "sha256":  "8E19735519205E6E1B0A59824699F406AF5B5CE84A32D2A6C583717CE045B900"
+                 },
+                 {
+                     "path":  "dependency-proofwidgets.log",
+                     "sha256":  "5C6FDE3E5EC3BC7C00FCEDC25E51A7D1D68B2DD0BA1057F4CD3A742F780CFC1D"
+                 },
+                 {
+                     "path":  "dependency-Qq.log",
+                     "sha256":  "6EA0E5D827CD28719F0F8303C77C64FFD115D117FB873C61DCC064C789B49021"
+                 },
+                 {
+                     "path":  "dependency-status-aesop.log",
+                     "sha256":  "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+                 },
+                 {
+                     "path":  "dependency-status-batteries.log",
+                     "sha256":  "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+                 },
+                 {
+                     "path":  "dependency-status-Cli.log",
+                     "sha256":  "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+                 },
+                 {
+                     "path":  "dependency-status-importGraph.log",
+                     "sha256":  "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+                 },
+                 {
+                     "path":  "dependency-status-LeanSearchClient.log",
+                     "sha256":  "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+                 },
+                 {
+                     "path":  "dependency-status-mathlib.log",
+                     "sha256":  "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+                 },
+                 {
+                     "path":  "dependency-status-plausible.log",
+                     "sha256":  "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+                 },
+                 {
+                     "path":  "dependency-status-proofwidgets.log",
+                     "sha256":  "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+                 },
+                 {
+                     "path":  "dependency-status-Qq.log",
+                     "sha256":  "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+                 },
+                 {
+                     "path":  "expected-rejection-wrong-sign.log",
+                     "sha256":  "3D1C96CE9AA93036C62DD68BD846941E669C6A77AA2DF36548A729B602EF7E90"
+                 },
+                 {
+                     "path":  "lake-version.log",
+                     "sha256":  "36526A338068C343BEDFF5DAA38FEC328B4F722DF1E8F0B5D026D4F0F908F3A3"
+                 },
+                 {
+                     "path":  "lean-version.log",
+                     "sha256":  "CAA538834571FBBF53913BBDE24B9FD3D9DEAC746137443A1C712D820E6A5B38"
+                 },
+                 {
+                     "path":  "source-check.log",
+                     "sha256":  "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+                 }
+             ]
+}

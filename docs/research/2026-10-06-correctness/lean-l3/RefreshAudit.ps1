@@ -1,0 +1,39 @@
+# Mechanical generation only. Review the declaration diff before verification.
+param([string]$VendorSource = '')
+$ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot 'AuditSupport.ps1')
+$utf8 = New-Object System.Text.UTF8Encoding($false)
+Push-Location $PSScriptRoot
+try {
+    $inventory = @(Get-LibraryDeclarations)
+    $json = ($inventory | ConvertTo-Json -Depth 5) -replace "`r`n", "`n"
+    [System.IO.File]::WriteAllText((Join-Path $PSScriptRoot 'declarations.json'), $json + "`n", $utf8)
+    $lines = @('import FooLiL3', 'import FooLiL3.Controls', 'import FooLiL3.BridgeControls',
+        'import FooLiL2', 'import FooLiL2.Controls', '')
+    $lines += @($inventory | ForEach-Object { '#print axioms ' + $_.name })
+    $lines += @('', '#check @FooLiL3.l3_from_c2_c3',
+        '#check @FooLiL3.l3_from_smoothing_and_product_ideal',
+        '#check @FooLiL3.cosetMassComparison_of_smoothing',
+        '#check @FooLiL3.normalized_coset_mass_deviation',
+        '#check @FooLiL3.coset_poisson', '#check @FooLiL3.idealDelegationMeasure_rectangle')
+    [System.IO.File]::WriteAllText((Join-Path $PSScriptRoot 'Audit.lean'), ($lines -join "`n") + "`n", $utf8)
+    if ($VendorSource) {
+        $vendorPaths = @('FooLiL2.lean') + @(Get-ChildItem -LiteralPath 'FooLiL2' -File |
+            Sort-Object Name | ForEach-Object { 'FooLiL2/' + $_.Name })
+        $vendor = @()
+        foreach ($path in $vendorPaths) {
+            $original = (Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $VendorSource $path)).Hash
+            $copy = (Get-FileHash -Algorithm SHA256 -LiteralPath $path).Hash
+            if ($original -ne $copy) { throw "Vendor differs from frozen L2: $path" }
+            $vendor += [ordered]@{path=$path; sha256=$original}
+        }
+        $manifest = [ordered]@{
+            source_commit='edf82ab55939eea399863c2091b5e8890298d21c'
+            source_directory='../lean-l2'; files=$vendor
+            purpose='Byte-identical L2 sources, compiled and transitively audited again in L3'
+        }
+        $vendorJson = ($manifest | ConvertTo-Json -Depth 5) -replace "`r`n", "`n"
+        [System.IO.File]::WriteAllText((Join-Path $PSScriptRoot 'vendor-l2.json'), $vendorJson + "`n", $utf8)
+    }
+    Write-Host "Generated audit for $($inventory.Count) public declarations."
+} finally { Pop-Location }

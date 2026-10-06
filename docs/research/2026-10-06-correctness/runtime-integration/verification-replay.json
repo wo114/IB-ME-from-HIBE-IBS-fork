@@ -1,0 +1,1213 @@
+{
+  "schema_version": 1,
+  "security_claim": "none",
+  "production_backend_registered": false,
+  "algorithm_scope": "research Foo-Li raw signing lifecycle using existing online MP12",
+  "environment": {
+    "python": "3.13.15",
+    "sage": "10.9",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "hardware_acceleration": "not configured or benchmarked; underlying Sage/GMP/MPFR libraries",
+    "threads": "no explicit parallel execution"
+  },
+  "parameter_source": "hand-selected q=3 wiring controls; NOT safe cryptographic parameters",
+  "rng": "DeterministicRandom for ALL experiment seeds; counter-block SHAKE candidate for five domains",
+  "rom": "probability table assumes ideal fresh oracle tapes; experiment uses real SHAKE candidate",
+  "identity_lengths": [
+    5,
+    3,
+    6
+  ],
+  "message_lengths": [
+    0,
+    5,
+    6,
+    2
+  ],
+  "preselected_setup_attempts": 3,
+  "all_attempts": [
+    {
+      "attempt": 0,
+      "setup_status": "ok",
+      "users": [
+        {
+          "identity_hex": "416c696365",
+          "extract_status": "ok",
+          "signatures": [
+            {
+              "message_hex": "",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 55814,
+              "signature_sha256": "88b3100f934d7ca53db52fb3773b34787733b41f4f9b093aff9e5c485b6c6096",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "6669727374",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 288938,
+              "signature_sha256": "3e979fa48752da3989938ef0f4abc887eace8f1ab00f50d967eac7ff5bbc6e17",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "7365636f6e64",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 181569,
+              "signature_sha256": "87d70a94f15642d3d5b499a4e859395f37a605bd0872be28fa01c250705f8009",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "00ff",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 162621,
+              "signature_sha256": "cf24b2957389177ac38656722900dd8ed77ce03d4cd98dc16ccfeb00b3a7e185",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            }
+          ]
+        },
+        {
+          "identity_hex": "426f62",
+          "extract_status": "ok",
+          "signatures": [
+            {
+              "message_hex": "",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 263992,
+              "signature_sha256": "f939ef35e5ed8213d6ed2b9df4f195af329d1202193249a79ff7c99aad465d65",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "6669727374",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 142900,
+              "signature_sha256": "93e2b8393c17cd8d8f1f4b1ef422639e0564db6643a77dcd8b1f83184dcd5ec2",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "7365636f6e64",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 84092,
+              "signature_sha256": "956678a45bae090a72386c0f6e5c02412203ee3798b060ac9907e634bbb69452",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "00ff",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 321351,
+              "signature_sha256": "ecac55e62fab16efbdbec9b29a0ec00c0f955b853ee200b7dc3ccabec7f2cefd",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            }
+          ]
+        },
+        {
+          "identity_hex": "e6bb95e4bd91",
+          "extract_status": "ok",
+          "signatures": [
+            {
+              "message_hex": "",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 6691,
+              "signature_sha256": "a6d72522f86e24a74ef8e2d9412f0327cd17a1485388134c10525c1b2bce13b0",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "6669727374",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 140113,
+              "signature_sha256": "51df3b8f21ab60c8ce0835f553d3484d6f09e42950a6b5f50ae830f7c7520968",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "7365636f6e64",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 212895,
+              "signature_sha256": "c5207e7c704bf8f405b4ffff1b38a511a65909087e8286f672d148e27ec86663",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "00ff",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 205540,
+              "signature_sha256": "9f234a4a284de0fb20d38dad53df53e53af89fe638cd7366443b2792d0b18465",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            }
+          ]
+        }
+      ],
+      "initial_state": {
+        "conditions": {
+          "identity_tag": true,
+          "gadget_matches": true,
+          "base_matches": true,
+          "master_relation": true,
+          "full_row_rank": true,
+          "master_quality": true,
+          "C2_uniform_quality_certificate": true
+        },
+        "norm_squared": 0,
+        "rank": 1,
+        "InitGood_this_state": true,
+        "smoothing": {
+          "method": "MP12 Lemmas 5.3, 4.3, 2.3; binary G; valid identity tag",
+          "dimension": 3,
+          "quality_squared": 8,
+          "width_squared": "567",
+          "epsilon0": "1/65536",
+          "basis_GS_squared_upper": 90,
+          "required_width_squared_upper": "4524488699684780763919812425784155207503549460133816722733/12259964326927110866866776217202473468949912977468817408",
+          "C2_for_all_valid_quality_qualified_trapdoors": true,
+          "not_MP12_internal_epsilon": true,
+          "security_claim": "none"
+        },
+        "population_probability_inferred_from_one_state": false,
+        "security_claim": "none"
+      },
+      "public_matrix": [
+        [
+          0,
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "attempt": 1,
+      "setup_status": "ok",
+      "users": [
+        {
+          "identity_hex": "416c696365",
+          "extract_status": "ok",
+          "signatures": [
+            {
+              "message_hex": "",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 226579,
+              "signature_sha256": "2de6e470c3cb0dc35e9c32ac76f22b20e8f4508a6e9f9f0d9b8ba852d7025e0b",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "6669727374",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 232818,
+              "signature_sha256": "e8d68d9edb393548a64ed4e3d4378a00a7e3aff7490eab5aba58229d24715ec4",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "7365636f6e64",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 106852,
+              "signature_sha256": "ff4b39f2e4fde949f5d1e57ce0b0319b9314c824ef41c59e9d3b3899fd78c359",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "00ff",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 131763,
+              "signature_sha256": "64925c33895cb2bf1e70240c38d72e61ee097ee64af226cf8e3aedbbcda95bb0",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            }
+          ]
+        },
+        {
+          "identity_hex": "426f62",
+          "extract_status": "ok",
+          "signatures": [
+            {
+              "message_hex": "",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 115075,
+              "signature_sha256": "3f957eab01b13d64bc08eedf8bde5950523746d6b3eaf65a2bcaaf77a58ebc0b",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "6669727374",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 275019,
+              "signature_sha256": "1bb297ab7ddd716df3596738280f4343dc3eaf34496f8b0e803566a9002e458b",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "7365636f6e64",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 79769,
+              "signature_sha256": "28a2bb045aa95019813491a60e51e31cce00b366d7d0575f26d764be32fafe1f",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "00ff",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 149339,
+              "signature_sha256": "6837fd29ba7551e2b31c8513a9598f2eab817b67f313603354cc9c8c9b1761ba",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            }
+          ]
+        },
+        {
+          "identity_hex": "e6bb95e4bd91",
+          "extract_status": "ok",
+          "signatures": [
+            {
+              "message_hex": "",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 186864,
+              "signature_sha256": "ad0b817ef7df8f264b687332ea1c865b4c8061ee213f5a6cc75e0ce1aa9fd6f9",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "6669727374",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 173390,
+              "signature_sha256": "da674328f87d3e6389c6fd92974be6a4ac93921928c7062d3fda681b1d5c0581",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "7365636f6e64",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 362805,
+              "signature_sha256": "41cd5f0330f052a3c4a86ffaac717085d90aa89563334f31492e53c2c283b507",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "00ff",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 308031,
+              "signature_sha256": "1d5b2dcb2fe9a605ed37e8c8b3a5de382284025fc9ce72a5c19351f9d83bf9ba",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            }
+          ]
+        }
+      ],
+      "initial_state": {
+        "conditions": {
+          "identity_tag": true,
+          "gadget_matches": true,
+          "base_matches": true,
+          "master_relation": true,
+          "full_row_rank": true,
+          "master_quality": true,
+          "C2_uniform_quality_certificate": true
+        },
+        "norm_squared": 0,
+        "rank": 1,
+        "InitGood_this_state": true,
+        "smoothing": {
+          "method": "MP12 Lemmas 5.3, 4.3, 2.3; binary G; valid identity tag",
+          "dimension": 3,
+          "quality_squared": 8,
+          "width_squared": "567",
+          "epsilon0": "1/65536",
+          "basis_GS_squared_upper": 90,
+          "required_width_squared_upper": "4524488699684780763919812425784155207503549460133816722733/12259964326927110866866776217202473468949912977468817408",
+          "C2_for_all_valid_quality_qualified_trapdoors": true,
+          "not_MP12_internal_epsilon": true,
+          "security_claim": "none"
+        },
+        "population_probability_inferred_from_one_state": false,
+        "security_claim": "none"
+      },
+      "public_matrix": [
+        [
+          0,
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "attempt": 2,
+      "setup_status": "ok",
+      "users": [
+        {
+          "identity_hex": "416c696365",
+          "extract_status": "ok",
+          "signatures": [
+            {
+              "message_hex": "",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 71865,
+              "signature_sha256": "081b6eb9544d3d9fb152228ca1f9c44a7548ad4cac6fb487c85fe35a17202947",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "6669727374",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 177590,
+              "signature_sha256": "bea77fce897b3bce82476b7c6fcdb409227029dd5cf86d3029d58ff925ee2a59",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "7365636f6e64",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 335178,
+              "signature_sha256": "5ea3c52d5b8805121d9cb52b44d647f4a0cc9f3ac480322c6c65f3caf989fc10",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "00ff",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 108120,
+              "signature_sha256": "f11dc4e1bee2e8eb0e2e2b0c64c668a16d1d060d6e6f2ab1965c0b04e07f03ab",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            }
+          ]
+        },
+        {
+          "identity_hex": "426f62",
+          "extract_status": "ok",
+          "signatures": [
+            {
+              "message_hex": "",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 52920,
+              "signature_sha256": "62b135fe7ee58af3eecabf868b1fae0ca7f465fe8d975f05a7d7c309e8348c3f",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "6669727374",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 133060,
+              "signature_sha256": "b5dac5d69d9bb56abfcdf9c4e32aa204eef7cce8df864e0cc33cedbf11b35c15",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "7365636f6e64",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 92746,
+              "signature_sha256": "43fbce11f558108b13454a4b2a513f56726631e7b33a5734a8576664ac808aa7",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "00ff",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 149894,
+              "signature_sha256": "da96b88278e78287d4ea6d90c244211eb1f3a06b786c5301fb414ab31fd343e5",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            }
+          ]
+        },
+        {
+          "identity_hex": "e6bb95e4bd91",
+          "extract_status": "ok",
+          "signatures": [
+            {
+              "message_hex": "",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 205047,
+              "signature_sha256": "cba1d4075116912120b9ce9d0e58f187ba539cdd01c8e70e135434dd2ab9c3ef",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "6669727374",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 457635,
+              "signature_sha256": "dbeed10c648c10f97b2f2b6d9c15aebd5b1d53d8ae1564a5dbc541ba346f2f8d",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "7365636f6e64",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 153210,
+              "signature_sha256": "e1740e7bebb715e2cd52ba1d46b7113b48b1a3e734fcbc418e1e71964e9e3fbb",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            },
+            {
+              "message_hex": "00ff",
+              "status": "ok",
+              "verified": true,
+              "norm_squared": 47665,
+              "signature_sha256": "cdad2877a31ae7cf39831a2aef035cfe1e70de4163654c6999124fa5b78e8464",
+              "disk_reload_same_secret_state": true,
+              "replayed_identically": true
+            }
+          ]
+        }
+      ],
+      "initial_state": {
+        "conditions": {
+          "identity_tag": true,
+          "gadget_matches": true,
+          "base_matches": true,
+          "master_relation": true,
+          "full_row_rank": true,
+          "master_quality": true,
+          "C2_uniform_quality_certificate": true
+        },
+        "norm_squared": 0,
+        "rank": 1,
+        "InitGood_this_state": true,
+        "smoothing": {
+          "method": "MP12 Lemmas 5.3, 4.3, 2.3; binary G; valid identity tag",
+          "dimension": 3,
+          "quality_squared": 8,
+          "width_squared": "567",
+          "epsilon0": "1/65536",
+          "basis_GS_squared_upper": 90,
+          "required_width_squared_upper": "4524488699684780763919812425784155207503549460133816722733/12259964326927110866866776217202473468949912977468817408",
+          "C2_for_all_valid_quality_qualified_trapdoors": true,
+          "not_MP12_internal_epsilon": true,
+          "security_claim": "none"
+        },
+        "population_probability_inferred_from_one_state": false,
+        "security_claim": "none"
+      },
+      "public_matrix": [
+        [
+          1,
+          1,
+          2
+        ]
+      ]
+    }
+  ],
+  "counts": {
+    "setups_ok": 3,
+    "extractions_ok": 9,
+    "raw_signature_attempts": 36,
+    "raw_signatures_ok": 36,
+    "verified": 36
+  },
+  "all_disk_replays_equal": true,
+  "fresh_process_replays": [
+    {
+      "setup_attempt": 0,
+      "exit_code": 0,
+      "same_signature": true,
+      "stderr": ""
+    },
+    {
+      "setup_attempt": 1,
+      "exit_code": 0,
+      "same_signature": true,
+      "stderr": ""
+    },
+    {
+      "setup_attempt": 2,
+      "exit_code": 0,
+      "same_signature": true,
+      "stderr": ""
+    }
+  ],
+  "debug_certificate": {
+    "config": {
+      "q": 3,
+      "n": 1,
+      "m_bar": 1,
+      "master_quality": 8,
+      "user_quality": 3402,
+      "generation_width_squared": 1,
+      "master_r_squared": 9,
+      "user_r_squared": 9,
+      "gamma": 5,
+      "epsilon0": "1/65536",
+      "identity_max_bytes": 256,
+      "message_max_bytes": 4096,
+      "max_users": 16,
+      "options": {
+        "tail_bits": 24,
+        "mass_bits": 64,
+        "precision_bits": 128,
+        "gaussian_abort_bits": 24,
+        "max_uniform_trials": 64,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "rational_bits": 8192,
+        "max_tape_bytes": 268435456
+      }
+    },
+    "initialization": {
+      "smoothing": {
+        "method": "MP12 Lemmas 5.3, 4.3, 2.3; binary G; valid identity tag",
+        "dimension": 3,
+        "quality_squared": 8,
+        "width_squared": "567",
+        "epsilon0": "1/65536",
+        "basis_GS_squared_upper": 90,
+        "required_width_squared_upper": "4524488699684780763919812425784155207503549460133816722733/12259964326927110866866776217202473468949912977468817408",
+        "C2_for_all_valid_quality_qualified_trapdoors": true,
+        "not_MP12_internal_epsilon": true,
+        "security_claim": "none"
+      },
+      "master_entries": 2,
+      "first_bad_coordinate_absolute": 3,
+      "ideal_coordinate_union_tail_upper": "3627202562432239121435875864682886755984847693885677642159/1725436586697640946858688965569256363112777243042596638790631055949824",
+      "ideal_zero_center_radial_tail_upper": "1/4",
+      "ideal_master_quality_failure_upper": "3627202562432239121435875864682886755984847693885677642159/1725436586697640946858688965569256363112777243042596638790631055949824",
+      "base_uniform_abort_upper": "1/18446744073709551616",
+      "master_scalar_joint_tv_including_abort_upper": "5575401933649290544684065679103607415223797/46768052394588893382517914646921056628989841375232",
+      "joint_generation_tv_including_abort_upper": "5575401933651825845884522137906600821634549/46768052394588893382517914646921056628989841375232",
+      "delta_init_upper": "3138727605573175330799298582095219372857099695791099299415/26328072917139296674479506920917608079723773850137277813577744384",
+      "status": "conditional_uniform_byte_certificate",
+      "public_A_to_uniform_tv_upper": null,
+      "OS_CSPRNG_information_theoretic_bound": null,
+      "probability_model": "independent uniform bytes; unfiltered one-shot generator",
+      "generator_public_tape_bytes": 14608,
+      "scalar_certificate": {
+        "algorithm": "finite uniform-box rejection Gaussian, project adaptation",
+        "squared_width_class": [
+          "1",
+          "1"
+        ],
+        "uniform_in_rational_center": true,
+        "rational_input_bit_budget": 8192,
+        "radius": 2,
+        "max_support_count": 6,
+        "support_or_centers_precomputed": 0,
+        "CDF_tables": 0,
+        "tail_upper": "215633474080302402453900079330302604789/93536104789177786765035829293842113257979682750464",
+        "relative_weight_interval_width_upper": "1/20769187434139310514121985316880384",
+        "integer_weight_quantization_tv_upper": "3377699720527875/10384593717069655257060992658440192",
+        "Poisson_theta_upper": "14706121167607949130531160853595335987/170141183460469231731687303715884105728",
+        "acceptance_mass_lower": "1",
+        "acceptance_probability_lower": "1/6",
+        "max_gaussian_trials": 101,
+        "abort_upper": "1099511627877/18446744073709551616",
+        "tv_upper_including_abort": "5575401933649290544684065679103607415223797/93536104789177786765035829293842113257979682750464",
+        "public_tape_bytes": 7272,
+        "tape_exhaustion_at_public_length_upper": "0",
+        "finite_options": {
+          "tail_bits": 24,
+          "mass_bits": 64,
+          "precision_bits": 128,
+          "gaussian_abort_bits": 24,
+          "max_uniform_trials": 64,
+          "max_gaussian_trials": 100000,
+          "max_radius": 1073741824,
+          "rational_bits": 8192,
+          "max_tape_bytes": 268435456
+        },
+        "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+        "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+        "constant_time": false,
+        "security_claim": "none"
+      },
+      "security_claim": "none"
+    },
+    "master_public_class_sampled_certificate": {
+      "algorithm": "MP12 Algorithm 3 with online project Gaussian adaptation",
+      "q": 3,
+      "n": 1,
+      "w": 2,
+      "output_dimension": 3,
+      "r_squared": "9",
+      "Sigma_scalar": "63",
+      "Sigma_G_scalar": "5",
+      "spherical_target_width_squared": "567",
+      "MP12_smoothing_epsilon_upper": "196631044856777211140222183952789309187/93536104789177786765035829293842113257979682750464",
+      "ideal_MP12_convolution_tv_upper": "73568408066116124461638807324518129359833237615649810970295973139760728744032058654851072/8749002899095263493456989510007467525682156546719307537776806939177984209186191662180179719447390729",
+      "perturbation": {
+        "dimension": 3,
+        "squared_parameter_matrix": [
+          [
+            "567",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "522",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "522"
+          ]
+        ],
+        "inverse_metric_gram_schmidt_squared_norms": [
+          "1/567",
+          "1/522",
+          "1/522"
+        ],
+        "path_resources": {
+          "center_denominators": [
+            1,
+            1,
+            1
+          ],
+          "max_center_numerator_bits": 1,
+          "max_center_denominator_bits": 1,
+          "integer_coefficient_absolute_bounds": [
+            59,
+            59,
+            59
+          ],
+          "all_finite_sampler_paths_admitted": true,
+          "center_classes_precomputed": 0
+        },
+        "scalar": {
+          "algorithm": "finite uniform-box rejection Gaussian, project adaptation",
+          "squared_width_class": [
+            "162",
+            "567"
+          ],
+          "uniform_in_rational_center": true,
+          "rational_input_bit_budget": 8192,
+          "radius": 57,
+          "max_support_count": 116,
+          "support_or_centers_precomputed": 0,
+          "CDF_tables": 0,
+          "tail_upper": "192668452285597243072742743381236429587/5708990770823839524233143877797980545530986496",
+          "relative_weight_interval_width_upper": "1/20769187434139310514121985316880384",
+          "integer_weight_quantization_tv_upper": "32651097298436125/5192296858534827628530496329220096",
+          "Poisson_theta_upper": "287664943814696111820950827862241760861/15375394465392026070980930960402958051966483647589383243116337952281869440244186537876296086692518667977838631290276787444086150484586994200087471936798525767761360737466168478385414860572969804431318564695864578364068534363514095860253929241066696020120829952",
+          "acceptance_mass_lower": "72663589387388683303481951694716670207995235565/5708990770823839524233143877797980545530986496",
+          "acceptance_probability_lower": "72663589387388683303481951694716670207995235565/662242929415565384811044689824565743281594433536",
+          "max_gaussian_trials": 153,
+          "abort_upper": "1099511627929/18446744073709551616",
+          "tv_upper_including_abort": "532950819289787174178059206185807950611/5708990770823839524233143877797980545530986496",
+          "public_tape_bytes": 11016,
+          "tape_exhaustion_at_public_length_upper": "0",
+          "finite_options": {
+            "tail_bits": 24,
+            "mass_bits": 64,
+            "precision_bits": 128,
+            "gaussian_abort_bits": 24,
+            "max_uniform_trials": 64,
+            "max_gaussian_trials": 100000,
+            "max_radius": 1073741824,
+            "rational_bits": 8192,
+            "max_tape_bytes": 268435456
+          },
+          "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+          "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+          "constant_time": false,
+          "security_claim": "none"
+        },
+        "ideal_nearest_plane_to_nonspherical_tv_upper": "1/42535295865117307932921825928971026432",
+        "finite_scalar_composition_tv_upper": "1598852457869361522534177618557423851833/5708990770823839524233143877797980545530986496",
+        "tv_upper_including_abort": "24982069654208773789596525289961844837/89202980794122492566142873090593446023921664",
+        "public_tape_bytes": 33048,
+        "centers_or_CDFs_precomputed": 0,
+        "uniform_in_all_integer_paths": true,
+        "security_claim": "none",
+        "constant_time": false
+      },
+      "gadget": {
+        "q": 3,
+        "n": 1,
+        "k": 2,
+        "s_squared": "45",
+        "squared_coordinate_widths": [
+          "9",
+          "25"
+        ],
+        "basis": {
+          "q": 3,
+          "k": 2,
+          "basis_order": "forward",
+          "basis_columns_stored_in_rows": false,
+          "basis_rows": [
+            [
+              2,
+              1
+            ],
+            [
+              -1,
+              1
+            ]
+          ],
+          "determinant_absolute": 3,
+          "gram_schmidt_squared_norms": [
+            "5",
+            "9/5"
+          ],
+          "center_class_denominators": [
+            5,
+            3
+          ],
+          "center_classes_total": 8,
+          "security_claim": "none"
+        },
+        "path_resources": {
+          "center_denominators": [
+            5,
+            3
+          ],
+          "max_center_numerator_bits": 5,
+          "max_center_denominator_bits": 3,
+          "integer_coefficient_absolute_bounds": [
+            17,
+            14
+          ],
+          "all_finite_sampler_paths_admitted": true,
+          "center_classes_precomputed": 0
+        },
+        "scalar": {
+          "algorithm": "finite uniform-box rejection Gaussian, project adaptation",
+          "squared_width_class": [
+            "9",
+            "25"
+          ],
+          "uniform_in_rational_center": true,
+          "rational_input_bit_budget": 8192,
+          "radius": 11,
+          "max_support_count": 24,
+          "support_or_centers_precomputed": 0,
+          "CDF_tables": 0,
+          "tail_upper": "170455277849949637394973569848867006423/5708990770823839524233143877797980545530986496",
+          "relative_weight_interval_width_upper": "1/20769187434139310514121985316880384",
+          "integer_weight_quantization_tv_upper": "3377699720527875/2596148429267413814265248164610048",
+          "Poisson_theta_upper": "98315522428181927261833601643907998183/93536104789177786765035829293842113257979682750464",
+          "acceptance_mass_lower": "17126972141998238605502540612706527095620655145/5708990770823839524233143877797980545530986496",
+          "acceptance_probability_lower": "17126972141998238605502540612706527095620655145/137015778499772148581595453067151533092743675904",
+          "max_gaussian_trials": 135,
+          "abort_upper": "1099511627911/18446744073709551616",
+          "tv_upper_including_abort": "510737644820096217419942049804945172439/5708990770823839524233143877797980545530986496",
+          "public_tape_bytes": 9720,
+          "tape_exhaustion_at_public_length_upper": "0",
+          "finite_options": {
+            "tail_bits": 24,
+            "mass_bits": 64,
+            "precision_bits": 128,
+            "gaussian_abort_bits": 24,
+            "max_uniform_trials": 64,
+            "max_gaussian_trials": 100000,
+            "max_radius": 1073741824,
+            "rational_bits": 8192,
+            "max_tape_bytes": 268435456
+          },
+          "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+          "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+          "constant_time": false,
+          "security_claim": "none"
+        },
+        "scalar_draws_per_vector": 2,
+        "ideal_nearest_plane_to_spherical_tv_upper": "357669787002627728980263723/170141183460469231731687303715884105728",
+        "finite_scalar_composition_tv_upper": "510737644820096217419942049804945172439/2854495385411919762116571938898990272765493248",
+        "tv_upper_including_abort": "63842955690421179312239842643645363451/356811923176489970264571492362373784095686656",
+        "uniform_in_all_syndromes_and_integer_paths": true,
+        "centers_or_CDFs_precomputed": 0,
+        "public_tape_bytes": 19440,
+        "security_claim": "none",
+        "constant_time": false
+      },
+      "tv_upper_including_abort": "327548469317785791248514257494987862227/713623846352979940529142984724747568191373312",
+      "public_tape_bytes": 52488,
+      "tape_length_depends_only_on_supplied_public_width_classes_and_dimensions": true,
+      "uniform_in_all_syndromes_and_invertible_tags": true,
+      "center_or_CDF_tables_precomputed": 0,
+      "security_claim": "none",
+      "constant_time": false
+    },
+    "user_public_class_sampled_certificate": {
+      "algorithm": "MP12 Algorithm 3 with online project Gaussian adaptation",
+      "q": 3,
+      "n": 1,
+      "w": 2,
+      "output_dimension": 5,
+      "r_squared": "9",
+      "Sigma_scalar": "23821",
+      "Sigma_G_scalar": "5",
+      "spherical_target_width_squared": "214389",
+      "MP12_smoothing_epsilon_upper": "196631044856777211140222183952789309187/93536104789177786765035829293842113257979682750464",
+      "ideal_MP12_convolution_tv_upper": "73568408066116124461638807324518129359833237615649810970295973139760728744032058654851072/8749002899095263493456989510007467525682156546719307537776806939177984209186191662180179719447390729",
+      "perturbation": {
+        "dimension": 5,
+        "squared_parameter_matrix": [
+          [
+            "214389",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "214389",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "214389",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "214344",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "0",
+            "214344"
+          ]
+        ],
+        "inverse_metric_gram_schmidt_squared_norms": [
+          "1/214389",
+          "1/214389",
+          "1/214389",
+          "1/214344",
+          "1/214344"
+        ],
+        "path_resources": {
+          "center_denominators": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "max_center_numerator_bits": 1,
+          "max_center_denominator_bits": 1,
+          "integer_coefficient_absolute_bounds": [
+            1190,
+            1190,
+            1190,
+            1190,
+            1190
+          ],
+          "all_finite_sampler_paths_admitted": true,
+          "center_classes_precomputed": 0
+        },
+        "scalar": {
+          "algorithm": "finite uniform-box rejection Gaussian, project adaptation",
+          "squared_width_class": [
+            "61254",
+            "214389"
+          ],
+          "uniform_in_rational_center": true,
+          "rational_input_bit_budget": 8192,
+          "radius": 1188,
+          "max_support_count": 2378,
+          "support_or_centers_precomputed": 0,
+          "CDF_tables": 0,
+          "tail_upper": "335618047376813961302375553564556809079/5708990770823839524233143877797980545530986496",
+          "relative_weight_interval_width_upper": "1/20769187434139310514121985316880384",
+          "integer_weight_quantization_tv_upper": "1338694989235881125/10384593717069655257060992658440192",
+          "Poisson_theta_upper": "170141183460469231731687303715884105729/533996758980227520598755426542388028650676130589163192486760401955554931445160137505740521734144",
+          "acceptance_mass_lower": "1412949265246937032629364598079514074265868414089/5708990770823839524233143877797980545530986496",
+          "acceptance_probability_lower": "1412949265246937032629364598079514074265868414089/13575980053019090388626416141403597737272685887488",
+          "max_gaussian_trials": 161,
+          "abort_upper": "1099511627937/18446744073709551616",
+          "tv_upper_including_abort": "675900415083534864702145944148206834551/5708990770823839524233143877797980545530986496",
+          "public_tape_bytes": 21896,
+          "tape_exhaustion_at_public_length_upper": "0",
+          "finite_options": {
+            "tail_bits": 24,
+            "mass_bits": 64,
+            "precision_bits": 128,
+            "gaussian_abort_bits": 24,
+            "max_uniform_trials": 64,
+            "max_gaussian_trials": 100000,
+            "max_radius": 1073741824,
+            "rational_bits": 8192,
+            "max_tape_bytes": 268435456
+          },
+          "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+          "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+          "constant_time": false,
+          "security_claim": "none"
+        },
+        "ideal_nearest_plane_to_nonspherical_tv_upper": "7/170141183460469231731687303715884105728",
+        "finite_scalar_composition_tv_upper": "3379502075417674323510729720741034172755/5708990770823839524233143877797980545530986496",
+        "tv_upper_including_abort": "105609439856802322609710303773164657931/178405961588244985132285746181186892047843328",
+        "public_tape_bytes": 109480,
+        "centers_or_CDFs_precomputed": 0,
+        "uniform_in_all_integer_paths": true,
+        "security_claim": "none",
+        "constant_time": false
+      },
+      "gadget": {
+        "q": 3,
+        "n": 1,
+        "k": 2,
+        "s_squared": "45",
+        "squared_coordinate_widths": [
+          "9",
+          "25"
+        ],
+        "basis": {
+          "q": 3,
+          "k": 2,
+          "basis_order": "forward",
+          "basis_columns_stored_in_rows": false,
+          "basis_rows": [
+            [
+              2,
+              1
+            ],
+            [
+              -1,
+              1
+            ]
+          ],
+          "determinant_absolute": 3,
+          "gram_schmidt_squared_norms": [
+            "5",
+            "9/5"
+          ],
+          "center_class_denominators": [
+            5,
+            3
+          ],
+          "center_classes_total": 8,
+          "security_claim": "none"
+        },
+        "path_resources": {
+          "center_denominators": [
+            5,
+            3
+          ],
+          "max_center_numerator_bits": 5,
+          "max_center_denominator_bits": 3,
+          "integer_coefficient_absolute_bounds": [
+            17,
+            14
+          ],
+          "all_finite_sampler_paths_admitted": true,
+          "center_classes_precomputed": 0
+        },
+        "scalar": {
+          "algorithm": "finite uniform-box rejection Gaussian, project adaptation",
+          "squared_width_class": [
+            "9",
+            "25"
+          ],
+          "uniform_in_rational_center": true,
+          "rational_input_bit_budget": 8192,
+          "radius": 11,
+          "max_support_count": 24,
+          "support_or_centers_precomputed": 0,
+          "CDF_tables": 0,
+          "tail_upper": "170455277849949637394973569848867006423/5708990770823839524233143877797980545530986496",
+          "relative_weight_interval_width_upper": "1/20769187434139310514121985316880384",
+          "integer_weight_quantization_tv_upper": "3377699720527875/2596148429267413814265248164610048",
+          "Poisson_theta_upper": "98315522428181927261833601643907998183/93536104789177786765035829293842113257979682750464",
+          "acceptance_mass_lower": "17126972141998238605502540612706527095620655145/5708990770823839524233143877797980545530986496",
+          "acceptance_probability_lower": "17126972141998238605502540612706527095620655145/137015778499772148581595453067151533092743675904",
+          "max_gaussian_trials": 135,
+          "abort_upper": "1099511627911/18446744073709551616",
+          "tv_upper_including_abort": "510737644820096217419942049804945172439/5708990770823839524233143877797980545530986496",
+          "public_tape_bytes": 9720,
+          "tape_exhaustion_at_public_length_upper": "0",
+          "finite_options": {
+            "tail_bits": 24,
+            "mass_bits": 64,
+            "precision_bits": 128,
+            "gaussian_abort_bits": 24,
+            "max_uniform_trials": 64,
+            "max_gaussian_trials": 100000,
+            "max_radius": 1073741824,
+            "rational_bits": 8192,
+            "max_tape_bytes": 268435456
+          },
+          "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+          "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+          "constant_time": false,
+          "security_claim": "none"
+        },
+        "scalar_draws_per_vector": 2,
+        "ideal_nearest_plane_to_spherical_tv_upper": "357669787002627728980263723/170141183460469231731687303715884105728",
+        "finite_scalar_composition_tv_upper": "510737644820096217419942049804945172439/2854495385411919762116571938898990272765493248",
+        "tv_upper_including_abort": "63842955690421179312239842643645363451/356811923176489970264571492362373784095686656",
+        "uniform_in_all_syndromes_and_integer_paths": true,
+        "centers_or_CDFs_precomputed": 0,
+        "public_tape_bytes": 19440,
+        "security_claim": "none",
+        "constant_time": false
+      },
+      "tv_upper_including_abort": "68766208938915611421322908783493966907/89202980794122492566142873090593446023921664",
+      "public_tape_bytes": 128920,
+      "tape_length_depends_only_on_supplied_public_width_classes_and_dimensions": true,
+      "uniform_in_all_syndromes_and_invertible_tags": true,
+      "center_or_CDF_tables_precomputed": 0,
+      "security_claim": "none",
+      "constant_time": false
+    },
+    "public_tape_bytes": {
+      "setup": 14608,
+      "delegation_column": 52488,
+      "delegation_full": 104976,
+      "signature": 128920
+    },
+    "conditional_uniform_byte_ideal_RO_budget": {
+      "delta_init": "3138727605573175330799298582095219372857099695791099299415/26328072917139296674479506920917608079723773850137277813577744384",
+      "epsilon_del": "327548469317785791248514257494987862227/356811923176489970264571492362373784095686656",
+      "w_tau_m": "65537/262140",
+      "epsilon_SP": "68766208938915611421322908783493966907/89202980794122492566142873090593446023921664",
+      "tau_signature": "4295098369/137434759136",
+      "public_hash_abort": "3/18446744073709551616",
+      "total_upper": "2084246267713376523887326889471078723163541801683207027690132809022021514970711/7410354478277261972087821133591246907330417422413652946501772804184236747653120",
+      "display_total_upper": 0.28126134503054384,
+      "actual_SHAKE_failure_bound": null,
+      "note": "requires fresh uniform oracle tapes; software tests do not prove this replacement"
+    },
+    "class_certificate_method": "public width/quality classes, not secret-specific narrow widths",
+    "security_claim": "none"
+  },
+  "prior_round10_initialization_only": {
+    "smoothing": {
+      "method": "MP12 Lemmas 5.3, 4.3, 2.3; binary G; valid identity tag",
+      "dimension": 33,
+      "quality_squared": 64,
+      "width_squared": "4095",
+      "epsilon0": "1/65536",
+      "basis_GS_squared_upper": 650,
+      "required_width_squared_upper": "2422460863541040737935919007235970368552766866525010918215/766247770432944429179173513575154591809369561091801088",
+      "C2_for_all_valid_quality_qualified_trapdoors": true,
+      "not_MP12_internal_epsilon": true,
+      "security_claim": "none"
+    },
+    "master_entries": 32,
+    "first_bad_coordinate_absolute": 2,
+    "ideal_coordinate_union_tail_upper": "5738438604873785892991568430402028104469788394740985524051/25711008708143844408671393477458601640355247900524685364822016",
+    "ideal_zero_center_radial_tail_upper": "1/4294967296",
+    "ideal_master_quality_failure_upper": "1/4294967296",
+    "base_uniform_abort_upper": "1/6277101735386680763835789423207666416102355444464034512896",
+    "master_scalar_joint_tv_including_abort_upper": "2778530066031508564791876481526131264699330077407682012949/254629497041810760783555711051172270131433549208242031329517556169297662470417088272924672",
+    "joint_generation_tv_including_abort_upper": "2778530066031508564791876522090950472002670925302184584981/254629497041810760783555711051172270131433549208242031329517556169297662470417088272924672",
+    "delta_init_upper": "3138550867693340381918041805760762292703202393778717233287/13479973333575319897333507543509815336818572211270286240551805124608",
+    "status": "conditional_uniform_byte_certificate",
+    "public_A_to_uniform_tv_upper": null,
+    "OS_CSPRNG_information_theoretic_bound": null,
+    "probability_model": "independent uniform bytes; unfiltered one-shot generator",
+    "generator_public_tape_bytes": 5917952,
+    "scalar_certificate": {
+      "algorithm": "finite uniform-box rejection Gaussian, project adaptation",
+      "squared_width_class": [
+        "1",
+        "1"
+      ],
+      "uniform_in_rational_center": true,
+      "rational_input_bit_budget": 8192,
+      "radius": 4,
+      "max_support_count": 10,
+      "support_or_centers_precomputed": 0,
+      "CDF_tables": 0,
+      "tail_upper": "2778266668360422239717839194002857360538736444522177275669/8148143905337944345073782753637512644205873574663745002544561797417525199053346824733589504",
+      "relative_weight_interval_width_upper": "1/191561942608236107294793378393788647952342390272950272",
+      "integer_weight_quantization_tv_upper": "2814749767106565/95780971304118053647396689196894323976171195136475136",
+      "Poisson_theta_upper": "4340480855933224436014067551646137039649462233328893477597/50216813883093446110686315385661331328818843555712276103168",
+      "acceptance_mass_lower": "1",
+      "acceptance_probability_lower": "1/10",
+      "max_gaussian_trials": 889,
+      "abort_upper": "18446744073709552505/6277101735386680763835789423207666416102355444464034512896",
+      "tv_upper_including_abort": "2778530066031508564791876481526131264699330077407682012949/8148143905337944345073782753637512644205873574663745002544561797417525199053346824733589504",
+      "public_tape_bytes": 184912,
+      "tape_exhaustion_at_public_length_upper": "0",
+      "finite_options": {
+        "tail_bits": 80,
+        "mass_bits": 128,
+        "precision_bits": 192,
+        "gaussian_abort_bits": 128,
+        "max_uniform_trials": 192,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "rational_bits": 8192,
+        "max_tape_bytes": 268435456
+      },
+      "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+      "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+      "constant_time": false,
+      "security_claim": "none"
+    },
+    "security_claim": "none"
+  },
+  "independent_new_trials_from_replays": 0,
+  "secret_snapshots_archived": false,
+  "limitations": [
+    "New initialization derivation is written mathematics plus Sage arithmetic, not a new Lean theorem",
+    "No general Python-to-Lean refinement or SHAKE-to-ideal-RO theorem",
+    "No authenticated/encrypted/atomic concurrent keystore, signature wire codec or IBSBackend registration",
+    "No near-uniform public-key guarantee, formal parameters, SIS estimate or end-to-end IB-ME acceptance",
+    "Not a performance benchmark; all failure attempts retained; repeated inputs are not independent trials"
+  ],
+  "source_sha256": {
+    "experiments/research/foo_li_initialization.py": "efb60ea254c2dd81a4d99707794c48054d8c10c7c916cc09ffd7b85e7e1228bf",
+    "experiments/research/foo_li_runtime_reference.py": "3bc2353214b7401f713f633b5ac43d9d4fb95f327ae1bf37bc27499661a51dd3",
+    "experiments/research/foo_li_runtime_audit.py": "85f7e73ee8a10c5a006844534ba5d19fcd5232f249cde3f8b18bbe98098c2407",
+    "tests/test_foo_li_runtime_reference.py": "9261e550bf1062fd3a186f4c1d92554f8c6a126d762df25b62284378827cc0ee",
+    "experiments/research/online_mp12_reference.py": "67ef14da368416138ad6598c0161afd023542f5912c55e79369328523cfe6d5b",
+    "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+    "experiments/research/general_gadget_reference.py": "69e68a33baab3c85fe84525ce92a45e81723c667c64b526fa2dc321b2b098ab0",
+    "experiments/research/gaussian_reference.py": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c",
+    "experiments/research/mp12_sampled_reference.py": "a01b198a7bbcefbb54b387f6ab0b24961b5e74c3689ea4e2f30c74c35ba1061b",
+    "experiments/research/mp12_trapdoor_chain.py": "4500bcc2d6df1e3e1f40724402d1d1f2ddffb50df831e71ea1d9debece48f2e0",
+    "src/ibme/core/randomness.py": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
+    "src/ibme/core/encoding.py": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d",
+    "src/ibme/core/hashing.py": "ca9eed58ad1a931f7b15e031cb33626b4b240e5d418fe0ab90a4c43123e26088",
+    "papers/2011_lattice_trapdoors_micciancio.pdf": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+    "papers/2023_tightly_secure_ibs_foo.pdf": "845855b9b39fdcbbe61831d9d1c431dc8d898b5a6244863ff87b23171b1e45b8"
+  },
+  "sources_unchanged_during_run": true,
+  "status": "PASS_RESEARCH_CHECKS_WITH_OPEN_SECURITY_GATES"
+}

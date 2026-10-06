@@ -1,0 +1,23 @@
+'FooLiL3.independentFinPMF' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.independentFinPMF_marginal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.independentFinPMF_rectangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.independentFinPMF_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.idealColumnsPMF' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.idealDelegationPMF' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.idealDelegationMeasure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.idealDelegationMeasure_isProbabilityMeasure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.idealDelegationMeasure_rectangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.idealDelegationMeasure_invalidOutput' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.idealDelegationMeasure_columnLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.l3_from_mass_certificates_and_product_ideal' depends on axioms: [propext, Classical.choice, Quot.sound]
+FooLiL3.l3_from_mass_certificates_and_product_ideal {n m w : ℕ} (q : ℕ) [NeZero q] (A : Matrix (Fin n) (Fin m) (ZMod q))
+  (B G : Matrix (Fin n) (Fin w) (ZMod q)) (hA : Function.Surjective A.mulVec)
+  [MeasurableSpace (Option (Matrix (Fin m) (Fin w) ℤ))] [MeasurableSingletonClass (Option (Matrix (Fin m) (Fin w) ℤ))]
+  (μ : Measure (Option (Matrix (Fin m) (Fin w) ℤ))) [IsProbabilityMeasure μ] {s Q e εDel : ℝ} (hs : 0 < s) (he : 0 ≤ e)
+  (he1 : e < 1) (hQ : ↑m * ↑w * s ^ 2 ≤ Q) (hTV : TVWithin μ (idealDelegationMeasure q A B G hA s hs) εDel)
+  (hMass : ∀ (j : Fin w), CosetMassComparison q A (fun i => B i j - G i j) s e) :
+  μ.real (badOutput (ValidDelegation q A B G) (QualityGood Q)) ≤ min 1 (εDel + ↑w * tailBudget m e)
+'IdealAgentChecks.empty_product_point_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IdealAgentChecks.two_column_pure_product_at_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IdealAgentChecks.two_column_pure_product_outside_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IdealAgentChecks.discrete_output_support' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,136 @@
+'FooLiL3.Controls.quarter_tail_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.Controls.column_count_cannot_be_dropped' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.Controls.each_column_can_be_small' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.Controls.equality_at_cutoff_is_good' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.Controls.negative_quality_cutoff_rejects_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.Controls.zero_columns_have_zero_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.Controls.probability_budget_is_clipped' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.Controls.epsilon_one_makes_formula_invalid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.Controls.raw_abort_is_not_success_conditioned' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.TVWithin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.tvWithin_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.tvWithin_refl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.tvWithin_symm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.tv_event_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.tv_transfer_min' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.finite_union_probability_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.fin_union_probability_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.probability_union_null' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.ideal_bad_probability_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.actual_bad_probability_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.badOutput' does not depend on any axioms
+'FooLiL3.invalidOutput' does not depend on any axioms
+'FooLiL3.someEvent' does not depend on any axioms
+'FooLiL3.none_mem_badOutput' does not depend on any axioms
+'FooLiL3.none_not_mem_someEvent' depends on axioms: [propext]
+'FooLiL3.badOutput_eq_invalid_union' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.badOutput_subset_invalid_union' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.actual_badOutput_probability_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.gaussianPMF' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.gaussianPMF_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.gaussianPMF_real_event' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.gaussianPMF_outer_event' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.gaussianPMF_tail_from_mass_comparison' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.rho' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.gaussianZ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.tailBudget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.tailBudget_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.exp_three_pi_div_four_ge_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.tail_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.rho_tail_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.gaussian_tail_mass_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.gaussian_tail_from_mass_comparison' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.vectorSq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.InCoset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.integer_rho_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.summable_product_integer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.vector_rho_eq_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.vector_rho_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.coset_rho_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.coset_nonempty_of_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.coset_gaussianZ_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.cosetGaussian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.CosetMassComparison' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.coset_tail_from_mass_comparison' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.ValidDelegation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.QualityGood' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.columnLarge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.qualityGood_iff_frobSq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.all_columns_good_implies_quality' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.l3_from_column_tail_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.badOutput_quality_eq_frobSq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.CosetColumnLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.l3_from_mass_certificates_and_marginals' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.colSq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.frobSq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.colSq_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.frobSq_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.frobSq_le_of_columns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.frobSq_eq_int_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.colSq_eq_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.colSq_le_iff_column_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.column_norm_gt_iff_colSq_gt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.frobeniusVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.frobeniusNorm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.frobeniusNorm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.frobeniusNorm_eq_sqrt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.frobSq_eq_row_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.euclideanLin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.euclideanLin_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.euclideanLin_norm_sq_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.euclideanLin_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.euclideanOp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.euclideanOp_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.euclideanOp_norm_le_frobenius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.euclideanOp_norm_le_frobeniusNorm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.frobeniusNorm_le_sqrt_of_columns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.euclideanOp_norm_sq_le_frobSq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.euclideanOp_norm_le_sqrt_of_columns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL3.euclideanOp_norm_sq_le_of_columns' depends on axioms: [propext, Classical.choice, Quot.sound]
+FooLiL3.l3_from_column_tail_bounds {n m w : ℕ} (q : ℕ) (A : Matrix (Fin n) (Fin m) (ZMod q))
+  (B G : Matrix (Fin n) (Fin w) (ZMod q)) [MeasurableSpace (Option (Matrix (Fin m) (Fin w) ℤ))]
+  (μ ν : MeasureTheory.Measure (Option (Matrix (Fin m) (Fin w) ℤ))) [MeasureTheory.IsProbabilityMeasure μ]
+  [MeasureTheory.IsProbabilityMeasure ν] {s Q e εDel : ℝ} (hQ : ↑m * ↑w * s ^ 2 ≤ Q) (hTV : FooLiL3.TVWithin μ ν εDel)
+  (hE : MeasurableSet (FooLiL3.badOutput (FooLiL3.ValidDelegation q A B G) (FooLiL3.QualityGood Q)))
+  (hSupport : ν.real (FooLiL3.invalidOutput (FooLiL3.ValidDelegation q A B G)) = 0)
+  (hColumnTail : ∀ (j : Fin w), ν.real (FooLiL3.someEvent (FooLiL3.columnLarge s j)) ≤ FooLiL3.tailBudget m e) :
+  μ.real (FooLiL3.badOutput (FooLiL3.ValidDelegation q A B G) (FooLiL3.QualityGood Q)) ≤
+    min 1 (εDel + ↑w * FooLiL3.tailBudget m e)
+FooLiL3.l3_from_mass_certificates_and_marginals {n m w : ℕ} (q : ℕ) [NeZero q] (A : Matrix (Fin n) (Fin m) (ZMod q))
+  (B G : Matrix (Fin n) (Fin w) (ZMod q)) (hA : Function.Surjective A.mulVec)
+  [MeasurableSpace (Option (Matrix (Fin m) (Fin w) ℤ))]
+  (μ ν : MeasureTheory.Measure (Option (Matrix (Fin m) (Fin w) ℤ))) [MeasureTheory.IsProbabilityMeasure μ]
+  [MeasureTheory.IsProbabilityMeasure ν] {s Q e εDel : ℝ} (hs : 0 < s) (he : 0 ≤ e) (he1 : e < 1)
+  (hQ : ↑m * ↑w * s ^ 2 ≤ Q) (hTV : FooLiL3.TVWithin μ ν εDel)
+  (hE : MeasurableSet (FooLiL3.badOutput (FooLiL3.ValidDelegation q A B G) (FooLiL3.QualityGood Q)))
+  (hSupport : ν.real (FooLiL3.invalidOutput (FooLiL3.ValidDelegation q A B G)) = 0)
+  (hMass : ∀ (j : Fin w), FooLiL3.CosetMassComparison q A (fun i => B i j - G i j) s e)
+  (hMarginal : ∀ (j : Fin w), FooLiL3.CosetColumnLaw q A (fun i => B i j - G i j) ⋯ s hs ν j) :
+  μ.real (FooLiL3.badOutput (FooLiL3.ValidDelegation q A B G) (FooLiL3.QualityGood Q)) ≤
+    min 1 (εDel + ↑w * FooLiL3.tailBudget m e)
+FooLiL3.CosetMassComparison {n m : ℕ} (q : ℕ) (A : Matrix (Fin n) (Fin m) (ZMod q)) (u : Fin n → ZMod q) (s e : ℝ) :
+  Prop
+FooLiL3.CosetColumnLaw {n m w : ℕ} (q : ℕ) (A : Matrix (Fin n) (Fin m) (ZMod q)) (u : Fin n → ZMod q)
+  (hx : Nonempty { x // FooLiL3.InCoset q A u x }) (s : ℝ) (hs : 0 < s)
+  [MeasurableSpace (Option (Matrix (Fin m) (Fin w) ℤ))] (ν : MeasureTheory.Measure (Option (Matrix (Fin m) (Fin w) ℤ)))
+  (j : Fin w) : Prop
+FooLiL3.gaussian_tail_from_mass_comparison.{u_1} {X : Type u_1} (sqLength : X → ℝ) (m : ℕ) {s e : ℝ} (hs : 0 < s)
+  (he : 0 ≤ e) (he1 : e < 1) (hsum : Summable fun x => FooLiL3.rho s (sqLength x))
+  (hsum2 : Summable fun x => FooLiL3.rho (2 * s) (sqLength x)) (hz : 0 < FooLiL3.gaussianZ sqLength s)
+  (hdouble : FooLiL3.gaussianZ sqLength (2 * s) ≤ 2 ^ m * ((1 + e) / (1 - e)) * FooLiL3.gaussianZ sqLength s) :
+  (∑' (x : { x // ↑m * s ^ 2 ≤ sqLength x }), FooLiL3.rho s (sqLength ↑x)) / FooLiL3.gaussianZ sqLength s ≤
+    FooLiL3.tailBudget m e
+FooLiL3.gaussianPMF_tail_from_mass_comparison.{u_1} {X : Type u_1} [MeasurableSpace X] (sqLength : X → ℝ) (m : ℕ)
+  {s e : ℝ} (hs : 0 < s) (he : 0 ≤ e) (he1 : e < 1) (hsum : Summable fun x => FooLiL3.rho s (sqLength x))
+  (hsum2 : Summable fun x => FooLiL3.rho (2 * s) (sqLength x)) (hz : 0 < FooLiL3.gaussianZ sqLength s)
+  (hdouble : FooLiL3.gaussianZ sqLength (2 * s) ≤ 2 ^ m * ((1 + e) / (1 - e)) * FooLiL3.gaussianZ sqLength s)
+  (hE : MeasurableSet {x | ↑m * s ^ 2 ≤ sqLength x}) :
+  (FooLiL3.gaussianPMF sqLength s hsum hz).toMeasure.real {x | ↑m * s ^ 2 ≤ sqLength x} ≤ FooLiL3.tailBudget m e
+FooLiL3.euclideanOp_norm_le_sqrt_of_columns {m w : ℕ} (R : Matrix (Fin m) (Fin w) ℤ) {s Q : ℝ}
+  (hcols : ∀ (j : Fin w), FooLiL3.colSq R j ≤ ↑m * s ^ 2) (hQ : ↑m * ↑w * s ^ 2 ≤ Q) : ‖FooLiL3.euclideanOp R‖ ≤ √Q
+FooLiL3.actual_badOutput_probability_le.{u_2} {X : Type u_2} [MeasurableSpace (Option X)]
+  (μ ν : MeasureTheory.Measure (Option X)) [MeasureTheory.IsProbabilityMeasure μ] [MeasureTheory.IsProbabilityMeasure ν]
+  {w : ℕ} (valid good : X → Prop) (C : Fin w → Set X) {ε τ : ℝ} (hTV : FooLiL3.TVWithin μ ν ε)
+  (hE : MeasurableSet (FooLiL3.badOutput valid good)) (hGood : ∀ (x : X), (∀ (j : Fin w), x ∉ C j) → good x)
+  (hV : ν.real (FooLiL3.invalidOutput valid) = 0) (hC : ∀ (j : Fin w), ν.real (FooLiL3.someEvent (C j)) ≤ τ) :
+  μ.real (FooLiL3.badOutput valid good) ≤ min 1 (ε + ↑w * τ)

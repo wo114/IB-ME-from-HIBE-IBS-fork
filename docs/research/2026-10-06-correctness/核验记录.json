@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-06",
+  "baseline_commit": "800e4dd49790d0723b2a02be7698c713b93169f6",
+  "scope": "conditional_correctness_document_and_research_sampler_checks",
+  "security_claim": "none",
+  "pytest": {
+    "executor": "implementation_review_subagent",
+    "executed_this_turn": true,
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /usr/bin/time -p ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -ra tests/test_gaussian_reference.py tests/test_general_gadget_reference.py tests/test_mp12_sampled_reference.py tests/test_mp12_trapdoor_chain.py tests/test_online_sampling_reference.py",
+    "cwd": "repository root in WSL",
+    "passed": 251,
+    "failed": 0,
+    "skipped": 0,
+    "pytest_seconds": 33.74,
+    "wall_seconds": 35.12,
+    "source": "subagent returned actual command and execution results; no production-suite rerun"
+  },
+  "sampler_check": {
+    "executor": "main_agent",
+    "script": "verify_ledger.py",
+    "executed_this_turn": true,
+    "exit_code": 0,
+    "status": "PASS_WITH_LIMITATIONS",
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ~/miniconda3/envs/sage/bin/python <path-to-this-package>/verify_ledger.py --repo .",
+    "parameters": {
+      "q": 2147483659,
+      "n": 1,
+      "m_bar": 1,
+      "w": 32,
+      "m": 33,
+      "D": 65,
+      "Q0": 64,
+      "Q1": 4324320,
+      "s_squared": "4095",
+      "t_squared": "272432223",
+      "signature_bound_squared": "17708094495"
+    },
+    "archived_norms_squared": [
+      1642147126,
+      2655860501,
+      2882838546,
+      2162495100,
+      2616065067
+    ],
+    "fixed_stream_replay": {
+      "attempts": 64,
+      "aborts": 0,
+      "equation_failures": 0,
+      "norm_failures": 0,
+      "zero_outputs": 0,
+      "archived_prefix_matches": 4,
+      "min_norm_squared": 1562961147,
+      "max_norm_squared": 4158936628,
+      "new_independent_random_batch": false,
+      "full_generation_delegation_replayed": false,
+      "production_FooLi_signatures_generated": 0
+    },
+    "local_sampling_budget": {
+      "master_single_TV_upper_exact": "566750400270203150340112184232801126377439748698403420465/3369993333393829974333376885877453834204643052817571560137951281152",
+      "user_single_TV_upper_exact": "4534003202162572889958129140206088785685483828965571036543/26959946667150639794667015087019630673637144422540572481103610249216",
+      "delegation_TV_upper_exact": "566750400270203150340112184232801126377439748698403420465/105312291668557186697918027683670432318895095400549111254310977536",
+      "sampling_subtotal_upper_exact": "149622105671334579377026848303803177138310059495756846675583/26959946667150639794667015087019630673637144422540572481103610249216",
+      "sampling_subtotal_display_float": 5.5497923463491755e-9,
+      "contains_abort": true,
+      "is_total_correctness_failure_bound": false
+    }
+  },
+  "environment": {
+    "execution": "WSL Ubuntu-24.04",
+    "distribution_reported_by_test_agent": "Ubuntu 24.04.4 LTS",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15",
+    "sage": "10.9",
+    "pytest": "9.1.1",
+    "hardware_measurement_this_turn": false,
+    "performance_benchmark": false
+  },
+  "unfilled": {
+    "epsilon_0_good_A": null,
+    "delta_init": null,
+    "tau_m": null,
+    "tau_sig": null,
+    "total_correctness_failure_bound": null,
+    "formal_parameters_chosen": false,
+    "FooLi_protocol_codec_state_verified": false,
+    "IBME_end_to_end_verified": false
+  },
+  "source_sha256": {
+    "papers/2023_tightly_secure_ibs_foo.pdf": "845855b9b39fdcbbe61831d9d1c431dc8d898b5a6244863ff87b23171b1e45b8",
+    "papers/2011_lattice_trapdoors_micciancio.pdf": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+    "docs/research/2026-10-04-round7/FooLi经典ROM证明补全与修复路线.md": "cbd3540c404637d4d17becce389434b643b609c77972aeb6cc8e3f989bdedc54",
+    "docs/research/2026-10-05-round10/online-sampling-results.json": "d6492dea8c272437e3bc6f93c4ff2ddf8f61fd9b998f0b489903ffc2a289af4b",
+    "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+    "experiments/research/online_mp12_reference.py": "67ef14da368416138ad6598c0161afd023542f5912c55e79369328523cfe6d5b"
+  },
+  "protected_existing_dirty_file": {
+    "path": "docs/交接说明与安全发现.md",
+    "baseline_sha256": "99d5ecd5e305dd55230a46add85b906b6aa3a82d3deaa2fdef142c79a3335be0"
+  },
+  "limitations": [
+    "Research/debug parameters only; master trapdoor is publicly recoverable.",
+    "No full Foo-Li backend, concrete total correctness budget, or full IB-ME acceptance.",
+    "Repeated fixed test stream is not an independent sample batch.",
+    "Internal multi-agent review is not a machine-checked proof.",
+    "The earlier task prompt to one subagent mistyped the historical maximum; this run verified 4158936628 from computation."
+  ],
+  "overall_status": "CONDITIONAL_THEOREM_DOCUMENTED_CONCRETE_INSTANCE_NOT_ADMITTED",
+  "internal_review": {
+    "parallel_reviewers": 3,
+    "second_pass_completed": true,
+    "conditional_probability_review": "accepted_in_stated_scope",
+    "algebra_review": "core_bounds_accepted; notation and sampling-kernel premises incorporated",
+    "implementation_review": "parameter mapping accepted; quality factory scope clarified",
+    "machine_checked_proof": false,
+    "external_peer_review": false
+  }
+}

@@ -1,0 +1,535 @@
+{
+  "timestamp": "2026-10-06T17:27:21.0206364+08:00",
+  "final_verification_run": "run-20261006-171904",
+  "status": "partial_formal_closure",
+  "unchanged_frozen_vendor": [
+    {
+      "path": "FooLiL1.lean",
+      "sha256": "2FC2E7A0ABC53DF1DC1E025EDA1FD8BC14B3B0C4A2D6D1532411E76ADB059B20"
+    },
+    {
+      "path": "FooLiL2.lean",
+      "sha256": "661D797C6166F3B9041585256018BA0C801ABBF27E41D95F5103A2529BCF162A"
+    },
+    {
+      "path": "FooLiL3.lean",
+      "sha256": "481982E996381D7F0A85D9A33EBCD3BDE9010C78C04035E20D139C5BF9E1EB6F"
+    },
+    {
+      "path": "FooLiL4.lean",
+      "sha256": "23E5997F6822B3B9B70A8FD5E114F6DA8B181B05B54C16B9B1586AF1BC47F100"
+    },
+    {
+      "path": "FooLiL2/Assembly.lean",
+      "sha256": "79D32259AD020680B714B4AA6EBAC13F6FE80661FCCC9B389F1D144B42B34282"
+    },
+    {
+      "path": "FooLiL2/Controls.lean",
+      "sha256": "A00A447FC69C4ADD3066CD9AF7E9A6C1C416C6CA3A00B8F09A7817110403ECB1"
+    },
+    {
+      "path": "FooLiL2/Cosets.lean",
+      "sha256": "64385A442C8010E4250ABE53556B2A5800DA850E50F0021FC3D1A27A435E0372"
+    },
+    {
+      "path": "FooLiL2/DualMass.lean",
+      "sha256": "975721DE02B708CD1483E94B0D83ABDFE8C08B72150E756257D5A358AC038FAA"
+    },
+    {
+      "path": "FooLiL2/Gaussian.lean",
+      "sha256": "606BDFF24E306CEAFA32A5C113088DBE21969CAE1BF046F420389409519978E8"
+    },
+    {
+      "path": "FooLiL2/L2.lean",
+      "sha256": "F6CDEC7D39B6E1EA511A64BD5473FD8B964A6D204E23AC4B873E9BB3A4505CBB"
+    },
+    {
+      "path": "FooLiL2/MassBounds.lean",
+      "sha256": "26B08F72258C24285B634DD43F016DD20AF83DE00573FBA487067C733CB21139"
+    },
+    {
+      "path": "FooLiL2/ProductSum.lean",
+      "sha256": "040F361C9A81D91D03A984E9933F417F612F88529F74270447B18E198E0F257D"
+    },
+    {
+      "path": "FooLiL2/VectorGaussian.lean",
+      "sha256": "7796B7EEBF4690CC8BA115157342DD9EA8357B01A787F7E14544C1211658F791"
+    },
+    {
+      "path": "FooLiL3/BridgeControls.lean",
+      "sha256": "82A80C0C8DD3EE551C5B77C17E00F7D993DE13133A89F2056B511F28FCC76FD7"
+    },
+    {
+      "path": "FooLiL3/ClosedL3.lean",
+      "sha256": "035070CD073465A447A8BAF4D0C334E0B87EDF60DCA81A1D02A6115556FD5F8C"
+    },
+    {
+      "path": "FooLiL3/Controls.lean",
+      "sha256": "065B3A6A4FC014296E98D5BB0F78BA2D32926EFD35590DC6B5221A3117511BDD"
+    },
+    {
+      "path": "FooLiL3/CosetPoisson.lean",
+      "sha256": "4F2E55A28788FFB92B90B1E51F0727D032017167396419F49D9A98E97D89E65D"
+    },
+    {
+      "path": "FooLiL3/EventBounds.lean",
+      "sha256": "02B9A99B808974284797B9C0E744CC061CDC3D1DABE2AA205748798B2E409676"
+    },
+    {
+      "path": "FooLiL3/FiniteCharacters.lean",
+      "sha256": "8850D7DDE3804541F960EA600490287CC02F5490D82B0643C46CFDB82D8EA882"
+    },
+    {
+      "path": "FooLiL3/FourierGaussian.lean",
+      "sha256": "135DE376491AFDDC8EAE05F5A74FCBE7AE7E090FAB7155185840BA0EEBB4E39D"
+    },
+    {
+      "path": "FooLiL3/GaussianLaw.lean",
+      "sha256": "D076B23CE256D40B88AF0E63F709FC9F07D5B5393D3CE3071CEF3D5CBC881997"
+    },
+    {
+      "path": "FooLiL3/GaussianTail.lean",
+      "sha256": "04BB33703321D094DE190527A7113EC3033D1F6D5FCEC2AE99D7D31C6FEAEA15"
+    },
+    {
+      "path": "FooLiL3/IdealDelegation.lean",
+      "sha256": "922BD615EC7790D961726674C5FAACC1470C2488307BAC6C96409A27DE44F10B"
+    },
+    {
+      "path": "FooLiL3/IntegerGaussian.lean",
+      "sha256": "9904A027120FA6843BFC96EE95A9F0A3575F52F6415999A4BBA9A3B7D4443C39"
+    },
+    {
+      "path": "FooLiL3/L3.lean",
+      "sha256": "D98AD4ACE6820790CFED8008A46FF4FA86B61495B3731F174BC459CB4E44C028"
+    },
+    {
+      "path": "FooLiL3/MatrixBounds.lean",
+      "sha256": "DB0580FCCFE4FE536D775EEF2B82E208E796315A3446EBDAC8F906ED1172A41A"
+    },
+    {
+      "path": "FooLiL3/PhaseFactors.lean",
+      "sha256": "615DD3E7E1DBC50EA699AE34250E9010906E67BDE65F40264D5EB9D387144DFC"
+    },
+    {
+      "path": "FooLiL3/SetupRank.lean",
+      "sha256": "20ABA6AC4ACF8C936EC72D38BEF6F73820436CC382DB651C273B715E5387DB40"
+    },
+    {
+      "path": "FooLiL3/SmoothingBounds.lean",
+      "sha256": "AB75B877BF6423C8A05D008AB4B4163D8A02BC2AE3FD4DB2BEF6CDF9B6AF6D8E"
+    },
+    {
+      "path": "FooLiL3/SmoothingBridge.lean",
+      "sha256": "3096998534B7D8548D4D8083E607E951360918581F6DBDEE17D7803431BFE615"
+    },
+    {
+      "path": "FooLiL4/Contracts.lean",
+      "sha256": "4F2191D881EC204729D72FE45FC9DA4830B440EEEFE7A335CD0DBFFD7986ADE6"
+    },
+    {
+      "path": "FooLiL4/Controls.lean",
+      "sha256": "A40F3A180E9706E653ECCC924421F1116B2EF87CFF04086617DBF343F087991A"
+    },
+    {
+      "path": "FooLiL4/IdealSignature.lean",
+      "sha256": "783E83940BEE52CF6B521FE879C35958C3FA865B2B7B63788899E59EB4D4A7F4"
+    },
+    {
+      "path": "FooLiL4/L4.lean",
+      "sha256": "804DEED5A30A53227A531E23446434F06312E17A87BFFB6BB308AC8624F71704"
+    }
+  ],
+  "verified_source_and_log_hashes": true,
+  "declarations": 397,
+  "theorems": 314,
+  "new_declarations": 51,
+  "new_theorems": 44,
+  "formal_commands": 31,
+  "expected_negative_controls": 3,
+  "runtime_tests": 195,
+  "files": [
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/.gitattributes",
+      "sha256": "E804225AB7CECC2BE7A8C3132DBFD4C9295F79BBF238C29348444315E68D13D5"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/.gitignore",
+      "sha256": "FDE850D24186B6E99C8C0DEBD641FB3AB85198B109EB66F71A1FEA02BD6EA1B3"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/Audit.lean",
+      "sha256": "6ED724128F9ED7D838E774C3AC8C6D53047B12D64FE7CC49E6E8CBF75E6FA7AC"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/Checks/DroppedModelGap.lean",
+      "sha256": "057A61AF02ED3AEB8F72C2BC9D6C64066509990EAB777B06B66ED485D26A36F9"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/Checks/ErasedSetupAbort.lean",
+      "sha256": "ECA398837782109ABC34CEE47F47D06B7D3AA9893EB45040276B661E3C27AE8E"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/Checks/MasterTailAxioms.lean",
+      "sha256": "A5527CE4AFA06138F329E700F61F0B978E62BF667BEDA9A9723B782A38A77223"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/Checks/WrongBasisConstant.lean",
+      "sha256": "E45F9720DF8C1AE640641244FEEBECEB190DFB362C8D9BE8C1C37D1883310805"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/declarations.json",
+      "sha256": "AB1F7182BC8401186C50EB550127CC70000EB99866CFAF3EA5C5623667FCED91"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL1.lean",
+      "sha256": "2FC2E7A0ABC53DF1DC1E025EDA1FD8BC14B3B0C4A2D6D1532411E76ADB059B20"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL2.lean",
+      "sha256": "661D797C6166F3B9041585256018BA0C801ABBF27E41D95F5103A2529BCF162A"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL2/Assembly.lean",
+      "sha256": "79D32259AD020680B714B4AA6EBAC13F6FE80661FCCC9B389F1D144B42B34282"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL2/Controls.lean",
+      "sha256": "A00A447FC69C4ADD3066CD9AF7E9A6C1C416C6CA3A00B8F09A7817110403ECB1"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL2/Cosets.lean",
+      "sha256": "64385A442C8010E4250ABE53556B2A5800DA850E50F0021FC3D1A27A435E0372"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL2/DualMass.lean",
+      "sha256": "975721DE02B708CD1483E94B0D83ABDFE8C08B72150E756257D5A358AC038FAA"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL2/Gaussian.lean",
+      "sha256": "606BDFF24E306CEAFA32A5C113088DBE21969CAE1BF046F420389409519978E8"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL2/L2.lean",
+      "sha256": "F6CDEC7D39B6E1EA511A64BD5473FD8B964A6D204E23AC4B873E9BB3A4505CBB"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL2/MassBounds.lean",
+      "sha256": "26B08F72258C24285B634DD43F016DD20AF83DE00573FBA487067C733CB21139"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL2/ProductSum.lean",
+      "sha256": "040F361C9A81D91D03A984E9933F417F612F88529F74270447B18E198E0F257D"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL2/VectorGaussian.lean",
+      "sha256": "7796B7EEBF4690CC8BA115157342DD9EA8357B01A787F7E14544C1211658F791"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3.lean",
+      "sha256": "481982E996381D7F0A85D9A33EBCD3BDE9010C78C04035E20D139C5BF9E1EB6F"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/BridgeControls.lean",
+      "sha256": "82A80C0C8DD3EE551C5B77C17E00F7D993DE13133A89F2056B511F28FCC76FD7"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/ClosedL3.lean",
+      "sha256": "035070CD073465A447A8BAF4D0C334E0B87EDF60DCA81A1D02A6115556FD5F8C"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/Controls.lean",
+      "sha256": "065B3A6A4FC014296E98D5BB0F78BA2D32926EFD35590DC6B5221A3117511BDD"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/CosetPoisson.lean",
+      "sha256": "4F2E55A28788FFB92B90B1E51F0727D032017167396419F49D9A98E97D89E65D"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/EventBounds.lean",
+      "sha256": "02B9A99B808974284797B9C0E744CC061CDC3D1DABE2AA205748798B2E409676"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/FiniteCharacters.lean",
+      "sha256": "8850D7DDE3804541F960EA600490287CC02F5490D82B0643C46CFDB82D8EA882"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/FourierGaussian.lean",
+      "sha256": "135DE376491AFDDC8EAE05F5A74FCBE7AE7E090FAB7155185840BA0EEBB4E39D"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/GaussianLaw.lean",
+      "sha256": "D076B23CE256D40B88AF0E63F709FC9F07D5B5393D3CE3071CEF3D5CBC881997"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/GaussianTail.lean",
+      "sha256": "04BB33703321D094DE190527A7113EC3033D1F6D5FCEC2AE99D7D31C6FEAEA15"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/IdealDelegation.lean",
+      "sha256": "922BD615EC7790D961726674C5FAACC1470C2488307BAC6C96409A27DE44F10B"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/IntegerGaussian.lean",
+      "sha256": "9904A027120FA6843BFC96EE95A9F0A3575F52F6415999A4BBA9A3B7D4443C39"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/L3.lean",
+      "sha256": "D98AD4ACE6820790CFED8008A46FF4FA86B61495B3731F174BC459CB4E44C028"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/MatrixBounds.lean",
+      "sha256": "DB0580FCCFE4FE536D775EEF2B82E208E796315A3446EBDAC8F906ED1172A41A"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/PhaseFactors.lean",
+      "sha256": "615DD3E7E1DBC50EA699AE34250E9010906E67BDE65F40264D5EB9D387144DFC"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/SetupRank.lean",
+      "sha256": "20ABA6AC4ACF8C936EC72D38BEF6F73820436CC382DB651C273B715E5387DB40"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/SmoothingBounds.lean",
+      "sha256": "AB75B877BF6423C8A05D008AB4B4163D8A02BC2AE3FD4DB2BEF6CDF9B6AF6D8E"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL3/SmoothingBridge.lean",
+      "sha256": "3096998534B7D8548D4D8083E607E951360918581F6DBDEE17D7803431BFE615"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL4.lean",
+      "sha256": "23E5997F6822B3B9B70A8FD5E114F6DA8B181B05B54C16B9B1586AF1BC47F100"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL4/Contracts.lean",
+      "sha256": "4F2191D881EC204729D72FE45FC9DA4830B440EEEFE7A335CD0DBFFD7986ADE6"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL4/Controls.lean",
+      "sha256": "A40F3A180E9706E653ECCC924421F1116B2EF87CFF04086617DBF343F087991A"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL4/IdealSignature.lean",
+      "sha256": "783E83940BEE52CF6B521FE879C35958C3FA865B2B7B63788899E59EB4D4A7F4"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiL4/L4.lean",
+      "sha256": "804DEED5A30A53227A531E23446434F06312E17A87BFFB6BB308AC8624F71704"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiTotal.lean",
+      "sha256": "D104AE54CEF2D66F3B965312F8DFB41EFC949DFAF8AAE06A79860D3EC279BE04"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiTotal/Composition.lean",
+      "sha256": "8DC6507A9FA7BF481D3D6264CAFDEFA5C5E5C308502B9420030D974225E87F70"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiTotal/Controls.lean",
+      "sha256": "CCDB77656E4598C5C32F16DBFC72FEF45AA1CA4C758E5E75F57EB539AB034B7E"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiTotal/Initialization.lean",
+      "sha256": "4F37B9F941D3BBEEA5DD2FF638DD977429D565BB8A9E37F4EF1ED7BECFE64BDE"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiTotal/MasterTail.lean",
+      "sha256": "3DBC7F7B5E491B07A66BEFC150950BEC976AFF2B6A257488191355F742B82A02"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiTotal/Model.lean",
+      "sha256": "2ED9EE224AD6DA75F577D43B88FCDBB96A6B0BA2C293548D31277581EF45FB30"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/FooLiTotal/Pipeline.lean",
+      "sha256": "4269DDA75EE70BE2E16A37FBB5F78CC514D982165EE0236163DC0DFA6BE1FA34"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/lake-manifest.json",
+      "sha256": "1A1FF82E4BCE6C6A992CC7D2AC2B8AFD06EC2951F862CFB811851BBC49B7C1A0"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/lakefile.lean",
+      "sha256": "6CE1F0EC8BA8516A090AE72A972849B60B65FD27E47980FFA84BDAE12B0D268C"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/lean-toolchain",
+      "sha256": "D5EDBA4E4B8FAAD9C1BAEADB265716D20D03BE4D1A2647DC5E35B0C0325BEA7B"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/README.md",
+      "sha256": "F83852D07FE13700FBFA38C462486E4ED4508F823230AB75ABC39EFDFE4583D2"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/axioms-and-statements.log",
+      "sha256": "E911977686BF1D0DD8EB5B3605F338AA85B2C93C15211DB17D15C340845B66BA"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/build.log",
+      "sha256": "F629F5121FC4947CF065A168307DC32E0343C81C4D4B3CAB7E7B4A02186B80E9"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/lean-version.log",
+      "sha256": "61F23C143285B0FDA0F73BF4BCB4A3F595BDEED52B5565FBED4663D3551FC29A"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/master-tail-boundaries.log",
+      "sha256": "70586BA14259B0526AC63E5DB995F3650C0AF9419FF849CE4BF4BB1AB9C5F426"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/negative-DroppedModelGap.log",
+      "sha256": "D1DF4C4F3F90E86D97AD2B178A930A56A5AB54AF8D40FF8DFD3E59DEC5FFCA57"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/negative-ErasedSetupAbort.log",
+      "sha256": "757CA90E8772631A847744307429845A7C98EFB18E0FDB6537CF7E0CD66280D5"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/negative-WrongBasisConstant.log",
+      "sha256": "4462F6F88CE1FD150C71123DDFD25522AB135BEB449CA5B5D42CC979B154684B"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/revision-aesop.log",
+      "sha256": "90ECF098927EABEE4E01719FACA8CF824BF4E352A685C34B34DA4A01623D3D15"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/revision-batteries.log",
+      "sha256": "6F302214AABFB00F67D5621B177E53440959DEFF1906784238989F215C5914F4"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/revision-Cli.log",
+      "sha256": "9837F57498F1D0460FF6171E5C82146ADA4C5FAA83AA54E13AF49EF796336908"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/revision-importGraph.log",
+      "sha256": "841BA9F5360702821130F33F9783785C9BB5111F8F11E5B09F15B592A235F68F"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/revision-LeanSearchClient.log",
+      "sha256": "DA9F039BA5C65B1677F454BD64632155AB5008A651243770110E78A576E71734"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/revision-mathlib.log",
+      "sha256": "2A6788B01393B7C34A00F84DB1ACA07BECAE8C7B96CD36EE46A6B037AC05BED8"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/revision-plausible.log",
+      "sha256": "029070A933F0608FA6AA8D1163F40015317775C1A6D56CE26897057868FEDAFB"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/revision-proofwidgets.log",
+      "sha256": "5741C32B18C04E4B0C970C0A64E5384C03D81867C1DF08EEEECB59065457518F"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/revision-Qq.log",
+      "sha256": "257320C480D112E671145AE78170B2D0B94B59609884ED75C4425D046E99955D"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/source-Composition.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/source-Controls.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/source-Initialization.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/source-MasterTail.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/source-Model.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/source-Pipeline.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/status-aesop.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/status-batteries.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/status-Cli.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/status-importGraph.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/status-LeanSearchClient.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/status-mathlib.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/status-plausible.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/status-proofwidgets.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/status-Qq.log",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/verification/run-20261006-171904/verification.json",
+      "sha256": "5EB9B374B460AD2ADD675A517777C999C1021A4B6D29865D115AFD39F5A79263"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/Verify-Delivery.ps1",
+      "sha256": "7DDDBBDC671A8E75D6FA4D9B802A5011C8C89BE1DD3F33D8326C294CE60F8142"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/lean-total/Verify.ps1",
+      "sha256": "DB62BD67D840D56D982A3CF78BF55237DB2EC70BF1ADA035EC7C9F61B1F59A08"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/README.md",
+      "sha256": "AF4ADBCE1DA19401A6EF16FA08AC0DF616B16A19D7DC73D68388DB849E46D5F7"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/shake-model/.gitattributes",
+      "sha256": "E804225AB7CECC2BE7A8C3132DBFD4C9295F79BBF238C29348444315E68D13D5"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/shake-model/pytest.log",
+      "sha256": "90E4C108F917C8C30433DA27AC417C50ABB4806EC5F1D8F1B597BEBD0D33E0F7"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/shake-model/SHAKE模型边界与正确性迁移.md",
+      "sha256": "E7B95BBEFB2AA1C3013A032774328B906E76A343C3A877AB0527B578B39AB475"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/shake-model/verification.json",
+      "sha256": "05C9CA2D410AB5038979C8C20BBBA1192A7CFD95C249E012DF5D3AFBC508C747"
+    },
+    {
+      "path": "docs/research/2026-10-06-correctness/shake-model/Verify-Model.ps1",
+      "sha256": "8FF30C4D4EC8D6E80302225DB8808702A397FA710BB72457A5BD33DB8786177B"
+    },
+    {
+      "path": "experiments/research/foo_li_oracle_model.py",
+      "sha256": "0593B78C2752877B650A180248C449F47196A8344C32CC12C6AC21F26D5CBD78"
+    },
+    {
+      "path": "tests/test_foo_li_oracle_model.py",
+      "sha256": "92A1B598A762294C313FF888393625D0C124490A5A80303104A7E8AA3D289213"
+    }
+  ],
+  "inventory_excludes_self": true,
+  "security_claim": "none"
+}

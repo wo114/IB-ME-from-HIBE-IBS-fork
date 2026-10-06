@@ -1,0 +1,191 @@
+'FooLiL2.cosetTheta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.extensionTheta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.cosetTheta_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.coset_extension_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.coset_l2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Controls.quarter_error_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Controls.quadratic_term_cannot_be_dropped' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Controls.error_range_is_needed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Controls.dimension_bound_is_needed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Controls.modular_zero_is_not_full_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Controls.zero_coset_contains_nonzero_integer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Controls.zero_added_block_dimension' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.modVector' depends on axioms: [propext, Quot.sound]
+'FooLiL2.Cosets.modMatrix' depends on axioms: [propext, Quot.sound]
+'FooLiL2.Cosets.liftVector' depends on axioms: [propext]
+'FooLiL2.Cosets.liftMatrix' depends on axioms: [propext]
+'FooLiL2.Cosets.mod_liftMatrix' depends on axioms: [propext, Quot.sound]
+'FooLiL2.Cosets.mod_liftVector' depends on axioms: [propext, Quot.sound]
+'FooLiL2.Cosets.mod_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.FullRowRank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.matrix_surjective_iff_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.fullRowRank_iff_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.transpose_injective_of_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.transpose_mod_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.InKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.inKernel_iff_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.intVector' depends on axioms: [propext, Quot.sound]
+'FooLiL2.Cosets.intVector_sub' depends on axioms: [propext, Quot.sound]
+'FooLiL2.Cosets.intVector_single' depends on axioms: [propext, Quot.sound]
+'FooLiL2.Cosets.DualSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.integerCoset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.shift_pairing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.integerCoset_subset_dual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.integerCoset_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.exists_integer_right_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.modVector_sub' depends on axioms: [propext, Quot.sound]
+'FooLiL2.Cosets.right_inverse_residual_inKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.q_single_inKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.dual_denominator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.denominator_pairing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.dual_subset_integerCosets' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.dual_eq_integerCosets' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.div_eq_integer_add_of_mod_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.integerCoset_eq_of_mod_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.residueCoset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.dual_eq_residueCosets' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.overlap_mod_transpose' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.residueCoset_label_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.residueCosets_pairwiseDisjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.residueCoset_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.qaryLattice' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.dualSet_eq_dualSubmodule' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.real_dual_eq_residueCosets' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.cosetParam' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.cosetParam_mem_dual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.cosetParam_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.dualEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.dualEquiv_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.appendMatrix' depends on axioms: [propext, Quot.sound]
+'FooLiL2.Cosets.fullRowRank_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.Cosets.shift_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gaussianWeight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gaussianWeight_eq_euclidean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.residueShift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.dualMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.dualTheta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.dualSet_eq_of_modMatrix_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.dualTheta_eq_of_modMatrix_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.SmoothAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.smoothAt_iff_theta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.summable_cosetParam_weight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.summable_dual_weight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.dualMass_eq_coset_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.dualTheta_eq_cosetTheta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.zero_mem_dualSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.dualTheta_eq_nonzero_tsum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gaussianMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gaussianMass_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.summable_gaussian_coefficient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.summable_gaussian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.hasSum_gaussian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.one_le_gaussianMass_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gaussianMass_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gaussianMass_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gaussianMass_le_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.residueShift_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.dualTheta_append_eq_extensionTheta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.l2_qary_mass_extension' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.l2_prime_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.l2_smoothAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.l2_modular_matrices' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.extensionError' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.extensionError_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.extensionError_le_nine_sixteenths' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.extensionError_lt_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.zero_coset_le_total' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.finite_mass_extension_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.smoothingInf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.smoothingInf_le_of_mass_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.summable_fin_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.tsum_fin_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gridMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gridMass_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gridMass_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.summable_grid_gaussian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gridMass_eq_tsum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gaussian_product_eq_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gridMass_eq_gaussian_tsum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.summable_grid_gaussian_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gridMass_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gridMass_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiL2.gridMass_le_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+@FooLiL2.l2_qary_mass_extension : ∀ {n m w : ℕ} (q : ℕ) [NeZero q] (A : Matrix (Fin n) (Fin m) ℤ)
+  (B : Matrix (Fin n) (Fin w) ℤ),
+  FooLiL2.Cosets.FullRowRank q A →
+    ∀ {s t e : ℝ},
+      0 < s →
+        s ≤ t →
+          w ≤ m →
+            FooLiL2.dualTheta q A s ≤ e →
+              0 < e →
+                e ≤ 1 / 4 →
+                  FooLiL2.dualTheta q (FooLiL2.Cosets.appendMatrix A B) t ≤ FooLiL2.extensionError e ∧
+                    0 < FooLiL2.extensionError e ∧
+                      FooLiL2.extensionError e < 1 ∧
+                        FooLiL2.smoothingInf (FooLiL2.dualTheta q (FooLiL2.Cosets.appendMatrix A B))
+                            (FooLiL2.extensionError e) ≤
+                          t
+@FooLiL2.l2_prime_rank : ∀ {n m w : ℕ} (q : ℕ) [inst : Fact (Nat.Prime q)] (A : Matrix (Fin n) (Fin m) ℤ)
+  (B : Matrix (Fin n) (Fin w) ℤ),
+  (FooLiL2.Cosets.modMatrix q A).rank = n →
+    ∀ {s t e : ℝ},
+      0 < s →
+        s ≤ t →
+          w ≤ m →
+            FooLiL2.dualTheta q A s ≤ e →
+              0 < e →
+                e ≤ 1 / 4 →
+                  FooLiL2.dualTheta q (FooLiL2.Cosets.appendMatrix A B) t ≤ 2 * e + e ^ 2 ∧
+                    0 < 2 * e + e ^ 2 ∧
+                      2 * e + e ^ 2 < 1 ∧
+                        FooLiL2.smoothingInf (FooLiL2.dualTheta q (FooLiL2.Cosets.appendMatrix A B)) (2 * e + e ^ 2) ≤ t
+@FooLiL2.l2_modular_matrices : ∀ {n m w : ℕ} (q : ℕ) [inst : Fact (Nat.Prime q)] (A : Matrix (Fin n) (Fin m) (ZMod q))
+  (B : Matrix (Fin n) (Fin w) (ZMod q)),
+  A.rank = n →
+    ∀ {s t e : ℝ},
+      0 < s →
+        s ≤ t →
+          w ≤ m →
+            FooLiL2.dualTheta q (FooLiL2.Cosets.liftMatrix q A) s ≤ e →
+              0 < e →
+                e ≤ 1 / 4 →
+                  FooLiL2.dualTheta q
+                        (FooLiL2.Cosets.appendMatrix (FooLiL2.Cosets.liftMatrix q A) (FooLiL2.Cosets.liftMatrix q B))
+                        t ≤
+                      2 * e + e ^ 2 ∧
+                    0 < 2 * e + e ^ 2 ∧
+                      2 * e + e ^ 2 < 1 ∧
+                        FooLiL2.smoothingInf
+                            (FooLiL2.dualTheta q
+                              (FooLiL2.Cosets.appendMatrix (FooLiL2.Cosets.liftMatrix q A)
+                                (FooLiL2.Cosets.liftMatrix q B)))
+                            (2 * e + e ^ 2) ≤
+                          t
+@FooLiL2.l2_smoothAt : ∀ {n m w : ℕ} (q : ℕ) [NeZero q] (A : Matrix (Fin n) (Fin m) ℤ) (B : Matrix (Fin n) (Fin w) ℤ),
+  FooLiL2.Cosets.FullRowRank q A →
+    ∀ {s t e : ℝ},
+      0 < s →
+        s ≤ t →
+          w ≤ m →
+            FooLiL2.dualTheta q A s ≤ e →
+              0 < e → e ≤ 1 / 4 → FooLiL2.SmoothAt q (FooLiL2.Cosets.appendMatrix A B) (FooLiL2.extensionError e) t
+@FooLiL2.dualTheta_eq_nonzero_tsum : ∀ {n d : ℕ} (q : ℕ) [NeZero q] (C : Matrix (Fin n) (Fin d) ℤ),
+  FooLiL2.Cosets.FullRowRank q C →
+    ∀ {t : ℝ},
+      0 < t →
+        FooLiL2.dualTheta q C t =
+          ∑' (y : { y // y ∈ FooLiL2.Cosets.DualSet q C }), if ↑y = 0 then 0 else FooLiL2.gaussianWeight t ↑y
+@FooLiL2.gaussianWeight_eq_euclidean : ∀ {d : ℕ} (t : ℝ) (x : Fin d → ℝ),
+  FooLiL2.gaussianWeight t x = Real.exp (-Real.pi * t ^ 2 * ‖WithLp.toLp 2 x‖ ^ 2)
+def FooLiL2.dualTheta : {n d : ℕ} → ℕ → Matrix (Fin n) (Fin d) ℤ → ℝ → ℝ :=
+fun {n d} q C t => FooLiL2.dualMass q C t - 1
+def FooLiL2.Cosets.DualSet.{u_1} : {n d : ℕ} →
+  {K : Type u_1} → [Field K] → ℕ → Matrix (Fin n) (Fin d) ℤ → Set (Fin d → K) :=
+fun {n d} {K} [Field K] q C =>
+  {y | ∀ (x : Fin d → ℤ), FooLiL2.Cosets.InKernel q C x → ∃ k, y ⬝ᵥ FooLiL2.Cosets.intVector x = ↑k}
+def FooLiL2.smoothingInf : (ℝ → ℝ) → ℝ → ℝ :=
+fun theta e => sInf {t | 0 < t ∧ theta t ≤ e}
+def FooLiL2.SmoothAt : {n d : ℕ} → ℕ → Matrix (Fin n) (Fin d) ℤ → ℝ → ℝ → Prop :=
+fun {n d} q C e t => 0 < t ∧ FooLiL2.dualMass q C t ≤ 1 + e
