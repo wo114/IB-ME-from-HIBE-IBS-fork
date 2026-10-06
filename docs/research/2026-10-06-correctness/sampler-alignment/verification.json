@@ -1,0 +1,176 @@
+{
+  "actual_C2_C3_C4_C5_jointly_verified": false,
+  "audit_script_sha256": "2f5b9e56bd0cbdb0c9d9efcf43856c45394a85ead6daac9cfa23e07f4fccaea8",
+  "environment": {
+    "logical_cpus": 20,
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15",
+    "sage": "10.9"
+  },
+  "formal_parameters_selected": false,
+  "inputs_unchanged": true,
+  "limits": [
+    "finite examples and mocked branches are not uniform distribution proofs",
+    "reference TV relies on independent uniform bytes and directed interval arithmetic",
+    "MP12 smoothing epsilon is not the C2 master-matrix dualTheta bound",
+    "full generation/delegation stress run was not repeated; archived debug trapdoors reused",
+    "no production Foo-Li codec, persistent seed lifecycle, or formal parameter clearance",
+    "no benchmark or independent expert review; fixed test streams are not security evidence"
+  ],
+  "new_Lean_proofs": 0,
+  "probe_count": 12,
+  "probes": [
+    {
+      "Q": 2,
+      "gamma": 5,
+      "kappa": 21,
+      "name": "squared_width_mapping",
+      "output_dimension": 3,
+      "pass": true,
+      "q": 3,
+      "r_squared": 9,
+      "width_squared": 189
+    },
+    {
+      "members": 9,
+      "name": "small_class_consistency",
+      "pass": true,
+      "universal_proof": false
+    },
+    {
+      "name": "three_syndrome_equations",
+      "pass": true
+    },
+    {
+      "mocked": true,
+      "name": "raw_zero_not_filtered",
+      "pass": true
+    },
+    {
+      "mocked": true,
+      "name": "raw_norm_not_filtered",
+      "pass": true
+    },
+    {
+      "diagnostic_tape": "all-ff",
+      "exception": "SamplingAbort",
+      "name": "full_sampled_abort_replay_no_fallback",
+      "pass": true
+    },
+    {
+      "bands_read": 1,
+      "name": "delegation_abort_is_not_retried",
+      "pass": true
+    },
+    {
+      "name": "invalid_tape_length_is_value_error",
+      "pass": true
+    },
+    {
+      "name": "quality_rejection_is_distinct_from_sampling_abort",
+      "pass": true
+    },
+    {
+      "name": "archive_sign_and_matrix_mapping",
+      "pass": true
+    },
+    {
+      "name": "two_stage_certificate_arithmetic",
+      "pass": true,
+      "proves_distribution_contract": false
+    },
+    {
+      "name": "ledger_quality_and_signature_thresholds",
+      "pass": true
+    }
+  ],
+  "production_keys_or_IBS_signatures_generated": 0,
+  "repository_head": "4e63f2dd85deefb89366fbbedb89c373367861d4",
+  "schema_version": 1,
+  "security_claim": "none",
+  "source_sha256": {
+    "AGENTS.md": "17bb26dc716e7fc8c7593b6d69215f78b84744513a675ee16d57a2345be50f46",
+    "ARCHITECTURE.md": "0bc45a6d72726e1940dfe6958876e31b716e35b41a26b4e97fd65aa4427d0184",
+    "IMPLEMENTATION_SPEC.md": "2b207c3309dd253c722f1c66871965b65e835cf0743b660bae1b9afe16b4a05a",
+    "docs/PROJECT_RESTART.md": "f14498079b6024f68e97e38e98e53f83db2fd874a5f1c7e351ff42d553b1e11a",
+    "docs/research/2026-10-05-round10/online-sampling-results.json": "d6492dea8c272437e3bc6f93c4ff2ddf8f61fd9b998f0b489903ffc2a289af4b",
+    "docs/research/2026-10-05-round10/任意中心在线采样与MP12扩展核验.md": "3744712c59721f489ea8f06451e9eda0ae68fafe275d814a0d75342045e03f17",
+    "docs/research/2026-10-05-round8/MP12完整SampleD有限误差与随机带核验.md": "ac53823d94a86b7df9dfa269a12043a262e2593d48f46a67d490258d6baf174c",
+    "docs/research/2026-10-06-correctness/FooLi-条件式正确性定理与参数账本.md": "f1b769ca2f71c2784877ccf4b34f62be7155ba468da8030c12f2cfa7d2724159",
+    "docs/research/2026-10-06-correctness/lean-l3/FooLiL3/ClosedL3.lean": "035070cd073465a447a8baf4d0c334e0b87edf60dca81a1d02a6115556fd5f8c",
+    "docs/research/2026-10-06-correctness/lean-l3/FooLiL3/EventBounds.lean": "02b9a99b808974284797b9c0e744cc061cdc3d1dabe2aa205748798b2e409676",
+    "docs/research/2026-10-06-correctness/lean-l3/FooLiL3/IdealDelegation.lean": "922bd615ec7790d961726674c5faacc1470c2488307bac6c96409a27de44f10b",
+    "docs/research/2026-10-06-correctness/verify_ledger.py": "8dad5fe2cedbf6dc72fd1f3bd61863c437a0a0524e42e7200e67933e7327ac64",
+    "experiments/research/gaussian_reference.py": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c",
+    "experiments/research/general_gadget_reference.py": "69e68a33baab3c85fe84525ce92a45e81723c667c64b526fa2dc321b2b098ab0",
+    "experiments/research/mp12_sampled_reference.py": "a01b198a7bbcefbb54b387f6ab0b24961b5e74c3689ea4e2f30c74c35ba1061b",
+    "experiments/research/mp12_trapdoor_chain.py": "4500bcc2d6df1e3e1f40724402d1d1f2ddffb50df831e71ea1d9debece48f2e0",
+    "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+    "experiments/research/online_mp12_reference.py": "67ef14da368416138ad6598c0161afd023542f5912c55e79369328523cfe6d5b",
+    "experiments/research/online_sampling_audit.py": "fa86419eac6b3eb8ca7efe232fa7b3e3c91d955c2707af1adf43034392f3f83d",
+    "papers/2011_lattice_trapdoors_micciancio.pdf": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+    "papers/2023_tightly_secure_ibs_foo.pdf": "845855b9b39fdcbbe61831d9d1c431dc8d898b5a6244863ff87b23171b1e45b8",
+    "src/ibme/core/randomness.py": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
+    "src/ibme/ibs/sis_ibs.py": "a66f160d1c0ceb35080db2fa039dbe7f41bb7a71ebf223a6e35965d70486ed61",
+    "tests/test_online_sampling_reference.py": "844f8e41e515ad008641716729c1b219a29f3c4a973a6b4b94bf50e64075d40e"
+  },
+  "stages": {
+    "master": {
+      "MP12_smoothing_epsilon_upper": "226700160095840517804473017285584524871167702483027265335/6739986666787659948666753771754907668409286105635143120275902562304",
+      "Sigma_G_scalar": "5",
+      "Sigma_scalar": "455",
+      "n": 1,
+      "output_dimension": 33,
+      "public_tape_bytes": 31782768,
+      "q": 2147483659,
+      "r_squared": "9",
+      "spherical_target_width_squared": "4095",
+      "tv_upper_including_abort": "566750400270203150340112184232801126377439748698403420465/3369993333393829974333376885877453834204643052817571560137951281152",
+      "unrounded_formula_upper_exact": "452928573520767243824910639742387273777504164427611837302311533301314349729508694773386309442979315305999967227841430084855772909617224509242565078242015722395452435093113874298088475393064071526184224583/2693189581411595806299721747417559946966336726646053912522793906422716025401329014572217831668081683329502248158937805490283431765578698663986542622379533961250984380980752387029159377508790878638070052058354941952",
+      "w": 32
+    },
+    "user": {
+      "MP12_smoothing_epsilon_upper": "226700160095840517804473017285584524871167702483027265335/6739986666787659948666753771754907668409286105635143120275902562304",
+      "Sigma_G_scalar": "5",
+      "Sigma_scalar": "30270247",
+      "n": 1,
+      "output_dimension": 65,
+      "public_tape_bytes": 70026528,
+      "q": 2147483659,
+      "r_squared": "9",
+      "spherical_target_width_squared": "272432223",
+      "tv_upper_including_abort": "4534003202162572889958129140206088785685483828965571036543/26959946667150639794667015087019630673637144422540572481103610249216",
+      "unrounded_formula_upper_exact": "452928573520861913945191660774761514975926538566218296309973317623738038019788938945437113721254648701009919335355217321978349619310610236758175479516032245216449434504763710565997123864606027085300337119/2693189581411595806299721747417559946966336726646053912522793906422716025401329014572217831668081683329502248158937805490283431765578698663986542622379533961250984380980752387029159377508790878638070052058354941952",
+      "w": 32
+    }
+  },
+  "status": "PASS_DIAGNOSTICS_WITH_OPEN_CONTRACTS",
+  "tests_and_ledger_replay": [
+    {
+      "argv": [
+        "/home/zhang/miniconda3/envs/sage/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_online_sampling_reference.py"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "..................................................................       [100%]\n66 passed in 2.06s\n"
+    },
+    {
+      "argv": [
+        "/home/zhang/miniconda3/envs/sage/bin/python",
+        "docs/research/2026-10-06-correctness/verify_ledger.py",
+        "--repo",
+        "."
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\n  \"archived_vectors_recomputed\": [\n    {\n      \"index\": 0,\n      \"kind\": \"archived_sample\",\n      \"norm_squared\": 1642147126,\n      \"syndrome\": 0\n    },\n    {\n      \"index\": 1,\n      \"kind\": \"archived_sample\",\n      \"norm_squared\": 2655860501,\n      \"syndrome\": 0\n    },\n    {\n      \"index\": 2,\n      \"kind\": \"archived_sample\",\n      \"norm_squared\": 2882838546,\n      \"syndrome\": 2147483658\n    },\n    {\n      \"index\": 3,\n      \"kind\": \"archived_sample\",\n      \"norm_squared\": 2162495100,\n      \"syndrome\": 2147483658\n    },\n    {\n      \"kind\": \"archived_replay\",\n      \"norm_squared\": 2616065067,\n      \"syndrome\": 12345\n    }\n  ],\n  \"conditional_unfilled\": {\n    \"FooLi_protocol_codec_state_verified\": false,\n    \"delta_init\": null,\n    \"epsilon_A\": null,\n    \"tau_m\": null,\n    \"tau_sig\": null,\n    \"total_correctness_failure_bound\": null\n  },\n  \"environment\": {\n    \"platform\": \"Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39\",\n    \"python\": \"3.13.15\",\n    \"sage\": \"10.9\"\n  },\n  \"evidence_baseline_commit\": \"800e4dd49790d0723b2a02be7698c713b93169f6\",\n  \"executed_repository_head\": \"4e63f2dd85deefb89366fbbedb89c373367861d4\",\n  \"fixed_stream_replay\": {\n    \"counts\": {\n      \"aborts\": 0,\n      \"archived_prefix_matches\": 4,\n      \"attempts\": 64,\n      \"equation_failures\": 0,\n      \"norm_failures\": 0,\n      \"zero_outputs\": 0\n    },\n    \"full_generation_delegation_replayed\": false,\n    \"max_norm_squared\": 4158936628,\n    \"min_norm_squared\": 1562961147,\n    \"new_independent_random_batch\": false\n  },\n  \"local_sampling_budget\": {\n    \"contains_abort\": true,\n    \"delegation_TV_upper_exact\": \"566750400270203150340112184232801126377439748698403420465/105312291668557186697918027683670432318895095400549111254310977536\",\n    \"is_total_correctness_failure_bound\": false,\n    \"master_single_TV_upper_exact\": \"566750400270203150340112184232801126377439748698403420465/3369993333393829974333376885877453834204643052817571560137951281152\",\n    \"sampling_subtotal_display_float\": 5.5497923463491755e-09,\n    \"sampling_subtotal_upper_exact\": \"149622105671334579377026848303803177138310059495756846675583/26959946667150639794667015087019630673637144422540572481103610249216\",\n    \"user_single_TV_upper_exact\": \"4534003202162572889958129140206088785685483828965571036543/26959946667150639794667015087019630673637144422540572481103610249216\"\n  },\n  \"parameters\": {\n    \"D\": 65,\n    \"Q0\": 64,\n    \"Q1\": 4324320,\n    \"m\": 33,\n    \"m_bar\": 1,\n    \"n\": 1,\n    \"q\": 2147483659,\n    \"s_squared\": \"4095\",\n    \"signature_bound_squared\": \"17708094495\",\n    \"t_squared\": \"272432223\",\n    \"w\": 32\n  },\n  \"schema_version\": 1,\n  \"scope\": \"research_sampler_equations_norms_and_local_certificates_only\",\n  \"security_claim\": \"none\",\n  \"source_sha256\": {\n    \"docs/research/2026-10-04-round7/FooLi经典ROM证明补全与修复路线.md\": \"cbd3540c404637d4d17becce389434b643b609c77972aeb6cc8e3f989bdedc54\",\n    \"docs/research/2026-10-05-round10/online-sampling-results.json\": \"d6492dea8c272437e3bc6f93c4ff2ddf8f61fd9b998f0b489903ffc2a289af4b\",\n    \"experiments/research/online_gaussian_reference.py\": \"0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa\",\n    \"experiments/research/online_mp12_reference.py\": \"67ef14da368416138ad6598c0161afd023542f5912c55e79369328523cfe6d5b\",\n    \"papers/2011_lattice_trapdoors_micciancio.pdf\": \"bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84\",\n    \"papers/2023_tightly_secure_ibs_foo.pdf\": \"845855b9b39fdcbbe61831d9d1c431dc8d898b5a6244863ff87b23171b1e45b8\"\n  },\n  \"status\": \"PASS_WITH_LIMITATIONS\"\n}\n"
+    }
+  ],
+  "utc": "2026-10-06T06:54:42.236756+00:00"
+}
