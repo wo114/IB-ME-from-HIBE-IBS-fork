@@ -1,0 +1,16 @@
+FooLiTotal.idealMasterGaussian_quality_tail (d : ℕ) {r Q : ℝ} (hr : 0 < r) (hQ : ↑d * r ^ 2 ≤ Q) :
+  (FooLiTotal.idealMasterGaussian d r hr).toMeasure.real {x | Q < FooLiL3.vectorSq x} ≤ (1 / 2) ^ d
+FooLiTotal.iid_integerGaussian_quality_tail.{u_1} {Ω : Type u_1} [MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (d : ℕ) (X : Fin d → Ω → ℤ) {r Q : ℝ} (hr : 0 < r)
+  (hX : ∀ (i : Fin d), Measurable (X i)) (hInd : ProbabilityTheory.iIndepFun X μ)
+  (hLaw : ∀ (i : Fin d), MeasureTheory.Measure.map (X i) μ = (FooLiTotal.idealIntegerGaussian r hr).toMeasure)
+  (hQ : ↑d * r ^ 2 ≤ Q) : μ.real {ω | Q < ∑ i, ↑(X i ω) ^ 2} ≤ (1 / 2) ^ d
+'FooLiTotal.master_gaussianZ_poisson' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiTotal.master_gaussianZ_double_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiTotal.master_radial_mass_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiTotal.idealMasterGaussian_apply_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiTotal.idealMasterGaussian_toMeasure_eq_pi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiTotal.idealMasterGaussian_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiTotal.idealMasterGaussian_coordinate_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiTotal.idealMasterGaussian_quality_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FooLiTotal.iid_integerGaussian_quality_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
