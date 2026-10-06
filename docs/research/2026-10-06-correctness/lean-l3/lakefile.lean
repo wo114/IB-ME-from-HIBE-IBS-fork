@@ -8,3 +8,5 @@ require mathlib from git
 
 @[default_target]
 lean_lib FooLiL3
+
+lean_lib FooLiL2

@@ -1,138 +1,92 @@
-# Foo–Li L3：Lean 阶段交付（WIP）
+# Foo–Li L3：条件式委派质量定理已闭合
 
-日期：2026-10-06。**完整 L3 尚未闭合，不能标记“L3 已全部机器证明”。**
-本目录保存已形式化的条件式子定理、汇总核验脚本与尚待补齐的解析桥接。
-不改变 L1/L2 的已交付版本，不修改生产算法、参数或安全声明。
+日期：2026-10-06。本次补齐 C2→陪集质量比较、C3→独立理想联合分布接口，以及有效主陷门→满秩→L2 整数 lift 的连接。
 
-## 一、现在证明到哪里
+**“L3 已闭合”仅指从明确的 C2/C3 前提推出 L3 结论的机器证明，不是这些前提已在实际代码中兑现，也不是整个算法安全性已证明。**
 
-| 层次 | 本目录内容 | 完成边界 |
-|---|---|---|
-| 确定性矩阵界 | 列平方和 → Frobenius 平方和 → 真实欧氏算子范数 | 已写成完整 Lean 定理；不是默认函数空间的 sup 范数 |
-| 概率组合 | 有限并合、理想无效事件零质量、原始输出 TV 转移、上界截断到 1 | 已写成测度论定理；不需要列独立；中止只计一次 |
-| 真正的高斯分布 | 有符号整数向量、实际模陪集、全无限和可和性、正归一化、归一化 PMF | 已形式化；不是均匀分布或有限截断近似 |
-| 条件式尾界 | 在显式 `CosetMassComparison` 下，推出每列尾界并连接最终失败概率 | 已形式化；**质量比较仍是前提** |
-| C2 → 质量比较 | 从真实对偶格 `Theta_A(s) ≤ epsilon_0` 推出任意目标陪集的比较界 | **尚未形式化，是主要缺口** |
-| C3 → 理想支撑/边际接口 | 将 C3 指定的独立列产品分布实例化为这里的 `hSupport`、`CosetColumnLaw` | **尚未在本目录构造该产品分布并证明接口** |
+## 1. 结论与入口
 
-机器核验以 `verification/run-*/verification.json` 为证，只有该记录中的
-`verification_status: pass` 才表示该冻结版本的构建、逐文件检查、公理审计和负对照通过。
-记录同时保留 `full_l3_complete: false`，不把“文件可编译”混同于“原目标已完整证明”。
+主入口：[ClosedL3.lean](FooLiL3/ClosedL3.lean) 的 **l3_from_c2_c3**。
 
-## 二、原目标和当前主定理
-
-原账本 L3（固定一个满足 C2 的好初始化输出）要求：
+对固定的满足 C2 的好初始化状态，在 C3 原始输出空间上证明：
 
 \[
-\tau_m=2^{-m}\frac{1+\varepsilon_0}{1-\varepsilon_0},\qquad
-Q_1\ge mws^2,
+\Pr[\text{委派中止、模关系无效或质量不合格}]
+\le\min\left\{1,\varepsilon_{\rm Del}+w\,2^{-m}
+   \frac{1+\varepsilon_0}{1-\varepsilon_0}\right\}.
 \]
 
-\[
-\Pr[\text{原始委派中止、无效关系或质量不合格}]
-\le\min\{1,\varepsilon_{\rm Del}+w\tau_m\}.
-\]
+质量条件同时要求 Frobenius 平方和与真实欧氏算子范数平方不超过 Q₁；已证明等价于只检查 Frobenius 平方。要求 Q₁≥mws²。中止、非法关系、质量失败包含于同一坏事件；TV 只加一次，不作成功条件化。
 
-`L3.lean` 提供两个层次：
+| 最终前提 | 精确含义和后续边界 |
+| --- | --- |
+| 合法维度、q>0、s>0 | 标准二进制 gadget，每块至少一项；参数及实现仍须接线 |
+| 有效主关系 | A[R₀;I]=G；整数先模约简，索引显式扁平化；不能用签名阶段的负号代替 |
+| C2 对偶质量界 | L2 真正积分配对对偶格的 dualTheta(q,liftMatrix(A),s)≤e；实际 Setup 好事件概率预算仍未证明 |
+| 0≤e<1 | 原账本 0<epsilon₀≤1/4 更强；正式数值参数尚未定 |
+| C3 TV 契约 | 实际原始概率测度 μ 与独立、未截断、未质量过滤的列高斯产品律相距≤εDel；**实际有限采样器的统一证书仍未证明** |
+| 可测性与质量阈值 | 可数整数矩阵 Option 空间，单点可测；Q≥mws² |
 
-- `l3_from_column_tail_bounds`：每列尾界作为显式输入，完成矩阵与概率组合。
-- `l3_from_mass_certificates_and_marginals`：使用真实模陪集高斯的完整事件边际律，
-  由质量比较证书推导尾界，再完成组合；不再将尾界本身作为输入。
+最终入口**不再输入**陪集质量比较、列尾界、理想无效事件零质量、列边际律或 A 的满射性。满射性从有效主关系及标准 gadget 的单位列推得。辅助入口 l3_from_smoothing_and_product_ideal 支持任意满射 A 及任意 B/G；更底层条件式接口仍保留，不能混写其前提。
 
-第二个定理的前提包括正模数、模矩阵满射、`s>0`、`0≤e<1`、`Q≥mws²`、
-实际/理想概率测度、原始输出 TV 契约、坏事件可测、理想支撑及各列完整边际律、
-各目标陪集的 `CosetMassComparison`。原账本 `0<epsilon_0≤1/4` 强于此处的误差范围。
-当前并未把这些前提全部从 C2/C3 的原始算法描述推导出来。
+维度：Lean 主入口 r 为未扩展块宽，k+1 为 gadget 完整长度，因此账本 w=n(k+1)、m=r+w。k 不是完整 gadget 长度，不能少算一项。R₀ 是主陷门，结论中的 R 是委派用户陷门。
 
-质量好条件同时写入 `frobSq R≤Q` 和 `‖euclideanOp R‖²≤Q`；已证它等价于只检查
-Frobenius 平方和。整数平方和与实数中的这一检查也有精确等式。
-`ValidDelegation` 逐列使用 `A R_j=B_j−G_j (mod q)`，保持 Foo–Li 加号约定。
+与原账本同名符号换算：账本 k_ledger=ceil(log₂q) 是块长；应取 k_Lean=k_ledger−1，
+r=mbar，且确认 k_ledger≥1。不能直接令 k_Lean=ceil(log₂q)，否则每块多一列。
+这里证明代数与条件式分布结论，不证明任意 gadget 长度下的实现采样契约。
 
-## 三、没有隐藏的解析前提
+## 2. 本轮证明链
 
-对真实陪集定义
+1. **FiniteCharacters**：模 q 字符正交和陪集指示函数的 q⁻ⁿ 因子，不要求 q 为素数。
+2. **FourierGaussian**：复幂主值前因子恰为正实 s；一维负相位 Poisson 恒等式、绝对可和及有限维乘积分解。
+3. **PhaseFactors / CosetPoisson**：整数 lift、模字符和正移位对齐，对完整实际陪集证明
+   \[
+   Z_u(s)=\frac{s^m}{q^n}\sum_a\chi(a\cdot u)
+       \operatorname{gridMass}(m,s,A^Ta/q).
+   \]
+4. **SmoothingBounds / SmoothingBridge**：单位模相位和 L2 对偶格陪集分解给出
+   \[
+   \left|\frac{Z_u(s)}{s^m/q^n}-1\right|\le\Theta_A(s).
+   \]
+   减去的仅是真正原点的质量 1；**零剩余类中的非零整数格点仍保留**。再由 Theta_A(2s)≤Theta_A(s) 导出任意 u 的
+   \[
+   Z_u(2s)\le 2^m\frac{1+e}{1-e}Z_u(s).
+   \]
+5. **IdealDelegation**：实际构造独立 PMF 产品；证明矩形事件乘积、归一化、理想非法/中止零质量、完整列边际。
+6. **SetupRank / ClosedL3**：主关系推出满射并接通 lift；合并解析尾界、矩阵范数、并合和一次 TV 转移。
 
-\[
-Z_u(r)=\sum_{x\in\Lambda_q^u(A)}\exp(-\pi\|x\|_2^2/r^2).
-\]
+使用精确实数/复数、整数和完整无限和，不用随机实验、数值截断或估计器替代证明。未反用 L2 的 smoothingInf 上界，而是直接使用 C2 点态质量界。非严格尾事件 ≥ms² 覆盖严格大列事件 >ms²，未误称两者相等。
 
-`CosetMassComparison` 的确切含义是
+## 3. 核验与复现
 
-\[
-Z_u(2s)\le 2^m\frac{1+e}{1-e}Z_u(s).
-\tag{MC}
-\]
+固定 Lean **4.34.1**，commit 5045d0056413266e57c625dcd7c365b10e377c52；Mathlib **d13f23b723b8a846827a245b89c10fc7d3f11612**。其余 8 个依赖由 lockfile 固定。
 
-在 (MC) 下已证明：当 `‖x‖²≥ms²` 时，
-`rho_s(x)≤exp(-3*pi*m/4)*rho_(2s)(x)`；对完整尾集合求和、归一化，
-再用 `2^m exp(-3*pi*m/4)≤2^(-m)` 得到 `tau_m`。
-`s` 是高斯参数，不是标准差。这里是原格宽度；L2 的 `dualTheta ... s` 使用
-对偶权重 `exp(-pi*s²*‖y‖²)`，不可直接把两个质量函数当成同一函数。
-
-原文 MP12 Lemma 2.6 的尾事件用 `≥`，质量拒绝用 `>`；主定理已用集合包含和
-测度单调性连接二者，不误称两个事件相等。
-
-**(MC) 是尚需证明的解析命题，不是新增密码学困难假设，也不是已经由 L2 自动给出的事实。**
-下一步应从 q-元陪集的带相位 Poisson 求和式证明
-
-\[
-\left|q^n r^{-m}Z_u(r)-1\right|\le\Theta_A(r),
-\]
-
-结合 `Theta_A(2s)≤Theta_A(s)≤epsilon_0`，导出 (MC)。
-路线见 [桥接计划](reviews/smoothing-bridge-plan.md)。该路线目前是数学计划，不是机器证明。
-不得反用 L2 仅有单向证明的 `smoothingInf` 上界；C2 本身已提供直接点态质量界。
-
-## 四、文件索引与复跑
-
-- [MatrixBounds.lean](FooLiL3/MatrixBounds.lean)：列范数、整数/Frobenius、欧氏连续算子。
-- [EventBounds.lean](FooLiL3/EventBounds.lean)：真实概率测度、TV、并合、Option 中止语义。
-- [GaussianTail.lean](FooLiL3/GaussianTail.lean)：点态指数界和条件式无限和尾界。
-- [GaussianLaw.lean](FooLiL3/GaussianLaw.lean)：归一化 PMF 与事件概率等式。
-- [IntegerGaussian.lean](FooLiL3/IntegerGaussian.lean)：模陪集、高斯可和性、正质量及证书。
-- [L3.lean](FooLiL3/L3.lean)：两层组合定理与完整列边际律接口。
-- [Controls.lean](FooLiL3/Controls.lean)：精确阈值、列数因子、零列、错误误差范围和原始中止对照。
-- `Checks/MissingColumnFactor.lean`：刻意错误的上界，必须编译失败；不属于默认构建目标。
-- `Audit.lean`、`declarations.json`、`Verify.ps1`：公开声明清单、定理/传递公理检查和日志留存。
-- `reviews/`：两个子智能体的模块审查、解析边界及后续桥接方案，主控汇总另见集成记录。
-
-环境固定：Lean **4.34.1**（提交 `5045d0056413266e57c625dcd7c365b10e377c52`），
-Mathlib **`d13f23b723b8a846827a245b89c10fc7d3f11612`**；全部依赖在 lockfile 中。
-不运行 `lake update`，不升级工具链。构建缓存与本机环境仅在 D 盘，不提交到仓库。
-
-本机 PowerShell：
-
-```powershell
+~~~powershell
 Set-Location D:\Lean\projects\fooli-l3
 . D:\Lean\Enter-Lean.ps1
-lake build FooLiL3 FooLiL3.Controls
+lake build FooLiL3 FooLiL3.Controls FooLiL3.BridgeControls FooLiL2 FooLiL2.Controls
 .\Verify.ps1 -LeanHome D:\Lean
-```
+~~~
 
-其他机器安装同版本工具链并按 lockfile 获取依赖后，在目录中运行相同的 `lake` 命令；
-`Verify.ps1` 可不传 `LeanHome`，使用当前进程的工具链。首次缓存获取可用
-`lake exe cache get`；这会下载构建缓存，应先确认磁盘与网络条件。
-本机 `.lake/packages` 是复用既有缓存的目录联接，不属于可移植交付物。
+其他机器按 lockfile 准备相同工具链，运行相同 lake 命令；Verify 可省略 LeanHome。D 盘缓存联接不属于交付物，不执行 lake update。
 
-审计允许的基础公理仅 `propext`、`Classical.choice`、`Quot.sound`；检查公开定义及
-定理的传递依赖，并扫描全部证明源码。此检查能排除占位证明，但**不能替代前提语义审查**：
-即使零自定义公理，定理参数中仍可能有未实现的前提；本目录对此明确列账。
+Verify 检查工具链与 9 个依赖提交、依赖工作树干净；L2 vendor 哈希；全量构建、每库文件直接检查、正向边界检查；全部公开定义/定理/具名实例的传递公理；三个错误结论必须拒绝；人工源核验前后哈希不变。所有退出码和日志哈希保存在 verification/run-*。
 
-## 五、文献、协作和验收边界
+允许公理只有 propext、Classical.choice、Quot.sound。负对照分别为漏列数、错误产品点质量、抹去整个零剩余类余量。检查公理不能替代前提语义审查，两者都做。
 
-依据原账本 `FooLi-条件式正确性定理与参数账本.md` 的 C2、C3、L3，
-SHA-256 `F1B769CA2F71C2784877CCF4B34F62BE7155BA468DA8030C12F2CFA7D2724159`。
-回查 [Micciancio–Peikert 原文](https://eprint.iacr.org/2011/501)，
-固定本地 PDF 第 12–13 页，Definition 2.2、Lemmas 2.4–2.6；没有声称本轮通读全篇。
-PDF SHA-256 `BF1160F088825ED28C343B299F5BC2ACDCA41CC50293310A03A4506D2FDBDB84`。
+以成功核验 JSON 为准。新记录 full_l3_complete:true 的范围仅为**条件式 L3**，同时保留 actual_sampler_contracts_verified:false 和 security_claim:none。旧 run-20261006-130731 及旧 review 保留原样，描述此前 WIP，不改写历史证据；本轮结论另见 closure-review.md。
 
-协作：矩阵与事件模块各由一个子智能体编写并测试；主控负责解析模块、集成、
-全量复跑、声明审计和交付。两个子智能体另外审查解析假设与文献桥接；
-这不是外部密码专家评审。`proof-writer` 仅用于组织前提和证据边界，不是数学依据。
+L2 源码 FooLiL2/ 与根文件逐字节复用自仓库提交 edf82ab55939eea399863c2091b5e8890298d21c，哈希见 vendor-l2.json。它们重新编译与审计，但不计成此次新写成果。两库分项计数见核验 JSON。RefreshAudit.ps1 仅机械生成清单，清单差异仍需审阅。
 
-对应官方 A02/A04/A09 的部分正确性论证资料，**不表示这些验收项已整体通过**。
-未实施算法安全归约、正式参数选择、采样器实现精化、HIBE 正确性、完整 IB-ME 批量测试、
-性能测试或侧信道分析。没有实际安全参数集；对照中的小整数不是候选密码参数。
-`security_claim: none`。本目录不宣称 L4、完整正确性或整体安全性已完成。
+## 4. 文献、审阅与验收边界
 
-本轮只本地提交本目录；未经另行要求不推送远程、不创建 PR。后续远程提交沿用 fork → PR。
+依据原账本 C2/C3、L3，文件 SHA-256：
+F1B769CA2F71C2784877CCF4B34F62BE7155BA468DA8030C12F2CFA7D2724159。
+
+数学路线对照 [Micciancio–Peikert 原文](https://eprint.iacr.org/2011/501) Definition 2.2、Lemmas 2.4–2.6，本地 PDF SHA-256：
+BF1160F088825ED28C343B299F5BC2ACDCA41CC50293310A03A4506D2FDBDB84。
+本轮证明所需 q-元高斯特殊情形，没有声称机器化了 MP12 全文或一般格的全部定理。
+
+三个子智能体补产品律、Fourier 高斯、Setup/lift；主控补有限字符、完整陪集 Poisson、平滑桥接、总定理，组织交叉审阅和全量复跑。proof-writer 只用于前提和证据检查，不是数学依据；多 AI 复核不是外部专家审稿。
+
+此成果仅是 A02/A04/A09 的部分正确性证据。仍未完成实际 Setup 好事件预算、实际 C3/C4 采样契约、L4、完整 Foo–Li/HIBE/IB-ME 正确性接线、正式安全归约、参数选择、性能及实现一致性验证。L3 不保证失败概率为零。本轮不修改生产代码/参数/安全声明。仅本地提交；远程提交按 fork→PR 另行操作。

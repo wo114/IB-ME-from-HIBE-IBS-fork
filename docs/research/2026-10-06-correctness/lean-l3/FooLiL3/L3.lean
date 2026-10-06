@@ -3,11 +3,11 @@ import FooLiL3.EventBounds
 import FooLiL3.IntegerGaussian
 
 /-!
-# L3 conditional assembly (WIP at the C2-to-Gaussian-tail bridge)
+# L3 lower-level conditional assembly
 
 `l3_from_column_tail_bounds` proves the matrix/probability assembly.
-Its per-column tail hypothesis is explicit; this is not a theorem deriving
-the ledger's entire L3 directly from C2 and C3.
+Its per-column tail hypothesis is explicit. The higher-level ClosedL3 module
+now derives these inputs and exports the ledger-facing C2/C3 theorem.
 -/
 
 noncomputable section
@@ -79,8 +79,8 @@ def CosetColumnLaw {n m w : ℕ} (q : ℕ)
       ((cosetGaussian q A u hx s hs).toOuterMeasure {x | x.val ∈ E}).toReal
 
 /-- All probability and matrix steps are linked to exact modular-coset Gaussians.
-The remaining `hMass` hypotheses still need a proof from C2; the ideal support
-and marginal contracts here must be instantiated by C3's specified ideal law. -/
+SmoothingBridge derives `hMass` from C2; IdealDelegation constructs C3's
+product law and supplies support and marginals; ClosedL3 combines them. -/
 theorem l3_from_mass_certificates_and_marginals {n m w : ℕ} (q : ℕ) [NeZero q]
     (A : Matrix (Fin n) (Fin m) (ZMod q))
     (B G : Matrix (Fin n) (Fin w) (ZMod q))

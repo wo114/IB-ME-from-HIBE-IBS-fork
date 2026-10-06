@@ -10,7 +10,8 @@ import Mathlib.Data.ZMod.Basic
 /-!
 Exact integer-vector and modular-coset distributions. Summability is proved,
 not assumed, using the same Jacobi-theta/product argument as L2.
-The missing C2-to-mass-comparison bridge is kept explicit in the tail theorem.
+This lower-level tail theorem uses a mass certificate. SmoothingBridge derives
+that certificate from C2; ClosedL3 exports the resulting ledger-facing theorem.
 -/
 
 noncomputable section
@@ -91,8 +92,8 @@ def cosetGaussian {n m : ℕ} (q : ℕ)
   gaussianPMF (fun x => vectorSq x.val) s
     (coset_rho_summable q A u hs) (coset_gaussianZ_pos q A u hx hs)
 
-/-- Exact remaining analytic obligation, stated in terms of actual coset masses.
-It is NOT a restatement of C2 or a theorem established by L2. -/
+/-- Exact mass certificate, derived from C2 in SmoothingBridge rather than
+identified definitionally with C2 or with the L2 transfer theorem. -/
 def CosetMassComparison {n m : ℕ} (q : ℕ)
     (A : Matrix (Fin n) (Fin m) (ZMod q)) (u : Fin n → ZMod q) (s e : ℝ) : Prop :=
   gaussianZ (fun x : {x // InCoset q A u x} => vectorSq x.val) (2 * s) ≤
