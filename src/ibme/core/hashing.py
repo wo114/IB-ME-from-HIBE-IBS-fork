@@ -34,6 +34,11 @@ For the HIBE / IBS internal domains (``DOMAIN_HIBE_ID``, ``DOMAIN_IBS_H1``,
 ``DOMAIN_IBS_H2``) callers pass their own already-canonicalised ``data`` to
 :func:`shake256`, because the field layout of those inputs is owned by the
 respective modules.
+
+``PreparedShake256(domain, prefix).digest(suffix, out_len)``
+    Reuse absorption of an immutable, already-encoded prefix. This is exactly
+    ``shake256(domain, prefix + suffix, out_len)``; every call copies the state.
+    It does not shorten the context, change domains or reuse random outputs.
 """
 
 from __future__ import annotations
@@ -96,6 +101,38 @@ def shake256(domain: bytes, data: bytes, out_len: int) -> bytes:
     hasher.update(_u32be(len(bytes(domain))) + bytes(domain))
     hasher.update(bytes(data))
     return hasher.digest(out_len)
+
+
+class PreparedShake256:
+    """A snapshot of a SHAKE input prefix, with independent suffix evaluation.
+
+    Callers own canonical field encoding; this helper owns the frozen domain
+    framing. The absorbed state may contain private inputs and is not exported,
+    serialized or included in repr. This is an equivalence optimization, not a
+    new random oracle or entropy source.
+    """
+
+    __slots__ = ("_state",)
+
+    def __init__(self, domain: bytes, prefix: bytes):
+        if not isinstance(domain, _BYTES_LIKE) or not bytes(domain):
+            raise InvalidParameterError("domain must be non-empty bytes")
+        if not isinstance(prefix, _BYTES_LIKE):
+            raise InvalidParameterError("prefix must be bytes-like")
+        state = hashlib.shake_256()
+        encoded_domain = bytes(domain)
+        state.update(_u32be(len(encoded_domain)) + encoded_domain)
+        state.update(bytes(prefix))
+        self._state = state
+
+    def digest(self, suffix: bytes, out_len: int) -> bytes:
+        if not isinstance(suffix, _BYTES_LIKE):
+            raise InvalidParameterError("suffix must be bytes-like")
+        if not isinstance(out_len, int) or isinstance(out_len, bool) or out_len <= 0:
+            raise InvalidParameterError("out_len must be a positive int")
+        state = self._state.copy()
+        state.update(bytes(suffix))
+        return state.digest(out_len)
 
 
 def hash_identity(identity: bytes, out_len: int) -> bytes:
