@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "registered_on": "2026-10-08",
+  "purpose": "three concrete IBS/HIBE combination candidates; keep old manifest unchanged",
+  "entries": [
+    {
+      "file": "papers/2006_generic_ibs_galindo.pdf",
+      "title": "On the Generic Construction of Identity-Based Signatures with Additional Properties",
+      "authors": [
+        "David Galindo",
+        "Javier Herranz",
+        "Eike Kiltz"
+      ],
+      "source_url": "https://www.iacr.org/archive/asiacrypt2006/42840177/42840177.pdf",
+      "version": "ASIACRYPT 2006 proceedings PDF",
+      "year": 2006,
+      "bytes": 168120,
+      "pages": 16,
+      "sha256": "b3362442d3278953ddaaea1fa4921f8d6f051f166108fb6d81013b22b510aed2",
+      "original_PDF_unchanged": true,
+      "tex_source": null,
+      "text_review_pages": [
+        1,
+        2,
+        5
+      ],
+      "review_scope": "algorithm/theorem statement or parameter/format triage; not complete proof admission"
+    },
+    {
+      "file": "papers/2024_ml_dsa_fips204.pdf",
+      "title": "Module-Lattice-Based Digital Signature Standard",
+      "authors": [
+        "NIST"
+      ],
+      "source_url": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf",
+      "version": "FIPS 204 official PDF",
+      "year": 2024,
+      "bytes": 3291746,
+      "pages": 65,
+      "sha256": "57239b9f84c03227eda3ca0991204dc7764c79af9ce2e6824eda774918d46b6b",
+      "original_PDF_unchanged": true,
+      "tex_source": null,
+      "text_review_pages": [
+        24,
+        25,
+        26
+      ],
+      "review_scope": "algorithm/theorem statement or parameter/format triage; not complete proof admission"
+    },
+    {
+      "file": "papers/2020_falcon_spec_fouque.pdf",
+      "title": "Falcon: Fast-Fourier Lattice-based Compact Signatures over NTRU",
+      "authors": [
+        "Pierre-Alain Fouque et al."
+      ],
+      "source_url": "https://falcon-sign.info/falcon.pdf",
+      "version": "Specification v1.2; homepage date literal 01/10/2020",
+      "year": 2020,
+      "bytes": 382156,
+      "pages": 67,
+      "sha256": "f887f3f9f367c664fb36639a830bf24390f19b3505abeac2e2c076fd1ad6c6f3",
+      "original_PDF_unchanged": true,
+      "tex_source": null,
+      "text_review_pages": [
+        5,
+        11,
+        19,
+        20,
+        48,
+        51
+      ],
+      "review_scope": "algorithm/theorem statement or parameter/format triage; not complete proof admission"
+    }
+  ],
+  "security_claim": "none"
+}

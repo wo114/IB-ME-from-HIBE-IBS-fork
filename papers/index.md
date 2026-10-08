@@ -2,6 +2,8 @@
 
 登记日期：2026-10-04。已固定第二、第三轮直接审查的五篇原文。摘要说明研究内容，不代表本项目已验证定理或批准后端。PDF 保留作者及出版方声明；TeX 源码均未取得。固定文件指纹见 [manifest.json](manifest.json)。
 
+2026-10-08 补充三份组合选型资料；采用独立 [新增资料指纹](portfolio-manifest-2026-10-08.json)，不改原五篇冻结 manifest。原文筛选不表示完整证明或后端已经准入。
+
 ## 2010_lattice_basis_delegation_agrawal.pdf
 
 - 标题：Lattice Basis Delegation in Fixed Dimension and Shorter-Ciphertext Hierarchical IBE
@@ -58,3 +60,30 @@
 - TeX 源码：无。
 - 本轮核验：Lemma 2.6、Definition 6、Construction 1、Lemma 4.2、Figure 4/5 与 Theorem 5.1，PDF 7、9–10、12–19；视觉复核 PDF 10、16–18。
 - 当前审查：[固定密钥接入审查](../docs/research/2026-10-04-round3/Wang与PanWagner固定密钥接入审查.md)。普通隐私与加强认证的具体后端前提尚未闭合。
+
+## 2006_generic_ibs_galindo.pdf
+
+- 标题：On the Generic Construction of Identity-Based Signatures with Additional Properties。
+- 作者：David Galindo、Javier Herranz、Eike Kiltz；ASIACRYPT 2006。
+- 来源：[IACR 官方归档](https://www.iacr.org/archive/asiacrypt2006/42840177/42840177.pdf)，16 页；原样保存。
+- 一句话主题：由主机构签发身份与用户公钥的认证，把普通签名转成仅用主公钥/身份即可验证的 IBS。
+- 本次核对：§3、Theorem 1，PDF 第 5 页；完整 BNN 原始归约与缓存服务的映射待精读。
+- 文件：[PDF](2006_generic_ibs_galindo.pdf)。TeX 源码：未取得。
+
+## 2024_ml_dsa_fips204.pdf
+
+- 标题：Module-Lattice-Based Digital Signature Standard，FIPS 204。
+- 作者/发布方：NIST，2024；65 页官方 PDF，原样保存并固定指纹。
+- 来源：[NIST](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)。
+- 一句话主题：规范 ML-DSA 的模格签名算法、参数与编码，可作为认证型 IBS 的普通签名组件。
+- 本次核对：算法接口与参数/尺寸 Tables 1/2，尺寸见 PDF 第 26 页；没有宣称标准本身证明完整 IBS/IBME。
+- 文件：[PDF](2024_ml_dsa_fips204.pdf)。TeX 源码：未取得。
+
+## 2020_falcon_spec_fouque.pdf
+
+- 标题：Falcon: Fast-Fourier Lattice-based Compact Signatures over NTRU，Specification v1.2。
+- 作者：Pierre-Alain Fouque 等；首页日期按原文保留 01/10/2020，67 页。
+- 来源：[Falcon 原始规范](https://falcon-sign.info/falcon.pdf)，原样保存。
+- 一句话主题：在 NTRU 格上用快速 Fourier 采样实现 GPV 签名，提供较小的公钥/签名与具体编码规则。
+- 本次核对：§§2.2、2.7、3.11、3.13；尺寸 Table 3.3，PDF 第 51 页；保密签名编码注意事项见 PDF 第 48 页。
+- 文件：[PDF](2020_falcon_spec_fouque.pdf)。TeX 源码：未取得。
