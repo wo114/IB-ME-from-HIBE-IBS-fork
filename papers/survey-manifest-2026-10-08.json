@@ -1,0 +1,132 @@
+{
+  "date": "2026-10-08",
+  "purpose": "Expanded HIBE and direct IBS selection; retrieval is not backend admission",
+  "sources": [
+    {
+      "file": "papers/2010_bonsai_trees_cash.pdf",
+      "source_url": "https://sites.cc.gatech.edu/fac/cpeikert/pubs/bonsai.pdf",
+      "resolved_url": "https://sites.cc.gatech.edu/fac/cpeikert/pubs/bonsai.pdf",
+      "bytes": 622882,
+      "pages": 36,
+      "sha256": "b1d8a2ae0e9d4e5c9145bbc6dc864090605c12a5b76149aa0684d62a8815d2ce",
+      "first_page_excerpt": "Bonsai Trees, or How to Delegate a Lattice Basis\nDavid Cash∗ Dennis Hofheinz† Eike Kiltz‡ Chris Peikert§\nJune 14, 2011\nAbstract\nWe introduce a new lattice-based cryptographic structure called a bonsai tree, and use it to resolve\nsome important open problems in the area. Applications of bonsai trees include:\n• An efﬁcient, stateless ‘hash-and-sign’ signature ",
+      "status": "downloaded"
+    },
+    {
+      "file": "papers/2024_ibs_without_trapdoors_luo.pdf",
+      "source_url": "https://icics2024.aegean.gr/wp-content/uploads/2024/08/150570198.pdf",
+      "resolved_url": "https://icics2024.aegean.gr/wp-content/uploads/2024/08/150570198.pdf",
+      "bytes": 183335,
+      "pages": 20,
+      "sha256": "12c70ae7635c0b88c132bca14990480a8e0cdec2e786a6dcf39256e5bb0dd455",
+      "first_page_excerpt": "Identity-Based Signature from Lattices without\nTrapdoors\nPingbin Luo 1, Xinjian Chen 1, Willy Susilo 3, Qiong Huang 1,2 ⋆\n1 College of Mathematics and Informatics, South China Agricultural University\n2 Guangzhou Key Laboratory of Intelligent Agriculture, Guangzhou 510642, China\n3 School of Computing and Information Technology, University of Wollongong\nrobin2",
+      "status": "downloaded"
+    },
+    {
+      "file": "papers/2025_efficient_ibs_jia.pdf",
+      "source_url": "https://ietresearch.onlinelibrary.wiley.com/doi/pdf/10.1049/ise2/6684889",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "file": "papers/2025_adaptive_hibe_goyal.pdf",
+      "source_url": "https://eprint.iacr.org/2025/291.pdf",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "file": "papers/2024_quantum_safe_hibe_zhao.pdf",
+      "source_url": "https://eprint.iacr.org/2021/222.pdf",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "file": "papers/2023_shorter_faster_ibs_sageloli.pdf",
+      "source_url": "https://eprint.iacr.org/2023/489.pdf",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "file": "papers/2010_lattice_hibe_standard_agrawal.pdf",
+      "source_url": "https://crypto.stanford.edu/~dabo/pubs/papers/latticebb.pdf",
+      "resolved_url": "https://crypto.stanford.edu/~dabo/pubs/papers/latticebb.pdf",
+      "bytes": 505607,
+      "pages": 40,
+      "sha256": "25452dc998f4f82b48bbd5b90c5b65ab046936702edb928ecb47eebfcd284d3f",
+      "first_page_excerpt": "Eﬃcient Lattice (H)IBE in the Standard Model ∗\nShweta Agrawal\nUniversity of Texas, Austin\nDan Boneh †\nStanford University\nXavier Boyen\nPARC\nAbstract\nWe construct an eﬃcient identity based encryption system based on the standard learning\nwith errors (LWE) probl",
+      "status": "downloaded"
+    },
+    {
+      "file": "papers/2024_quantum_safe_hibe_zhao.pdf",
+      "source_url": "https://pureadmin.qub.ac.uk/ws/portalfiles/portal/549983007/Quantum_Safe_HIBE.pdf",
+      "resolved_url": "https://pureadmin.qub.ac.uk/ws/portalfiles/portal/549983007/Quantum_Safe_HIBE.pdf",
+      "bytes": 3359727,
+      "pages": 17,
+      "sha256": "aefa8c6808b4ee7aa565587ccd48d64ca8e8ab81a9cba600e4691227253d70ca",
+      "first_page_excerpt": "Quantum-safe HIBE: does it cost a LATTE?\nZhao, R., McCarthy, S., Steinfeld, R., Sakzad, A., & O'Neill, M. (2023). Quantum-safe HIBE: does it cost a\nLATTE? IEEE Transactions on Information Forensics and Security. Advance online publication.\nhttps://doi.org/10.1",
+      "status": "downloaded"
+    },
+    {
+      "file": "papers/2020_ideal_lattice_hibe_zhang.pdf",
+      "source_url": "https://mdpi-res.com/d_attachment/entropy/entropy-22-01247/article_deploy/entropy-22-01247.pdf",
+      "resolved_url": "https://mdpi-res.com/d_attachment/entropy/entropy-22-01247/article_deploy/entropy-22-01247.pdf",
+      "bytes": 1225215,
+      "pages": 19,
+      "sha256": "6b31a181e1461b491c69cd41ce637a63db14f0404c3105f2827e64347e191c60",
+      "first_page_excerpt": "entropy\nArticle\nAdaptively Secure Efﬁcient (H)IBE over Ideal Lattice\nwith Short Parameters\nYuan Zhang\n , Yuan Liu\n , Yurong Guo, Shihui Zheng and Licheng Wang *\nState Key Laboratory of Networking and Switching Technology, Beijing University of Posts and\nTeleco",
+      "status": "downloaded"
+    },
+    {
+      "file": "papers/2023_shorter_faster_ibs_sageloli.pdf",
+      "source_url": "https://hal.science/hal-04107694/document",
+      "status": "failed",
+      "error": "Response is not a plausible PDF"
+    },
+    {
+      "file": "papers/2025_efficient_ibs_jia.pdf",
+      "source_url": "https://downloads.hindawi.com/journals/ietis/2025/6684889.pdf",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden"
+    }
+  ],
+  "security_claim": "none",
+  "tex_source_status": "No TeX source obtained; sources were not arXiv submissions.",
+  "online_review_only": [
+    {
+      "title": "Constructing Efficient Identity-Based Signatures on Lattices",
+      "authors": [
+        "Huiwen Jia",
+        "Ying Liu",
+        "Chunming Tang",
+        "Lin Wang"
+      ],
+      "doi": "10.1049/ise2/6684889",
+      "source_url": "https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/ise2/6684889",
+      "pdf_url": "https://ietresearch.onlinelibrary.wiley.com/doi/pdf/10.1049/ise2/6684889",
+      "pdf_pages_observed_by_browser_tool": 12,
+      "reviewed": [
+        "Definition 3",
+        "Algorithms 1-8",
+        "Theorem 2",
+        "Tables 1,4,5,6"
+      ],
+      "local_pdf_downloaded": false,
+      "sha256": null,
+      "public_code_obtained": false
+    },
+    {
+      "title": "A Note on Adaptive Security in Hierarchical Identity-Based Encryption",
+      "source_url": "https://eprint.iacr.org/2025/291",
+      "history_date_observed": "2025-06-02",
+      "reviewed": "Abstract/metadata and indexed anonymity-conversion excerpt; not complete text",
+      "local_pdf_downloaded": false
+    },
+    {
+      "title": "Identity-based signature and identity-based matchmaking encryption from lattices",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S0304397526003816",
+      "doi": "10.1016/j.tcs.2026.116152",
+      "reviewed": "Existing teammate archive and primary publisher abstract/introduction available in search results; full target PDF still missing",
+      "local_pdf_downloaded": false
+    }
+  ]
+}

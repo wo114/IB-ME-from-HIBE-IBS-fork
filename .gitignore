@@ -42,3 +42,6 @@ recovered*.bin
 # 攻击复现脚本的中间产物（experiments/attacks/）
 isis_case.json
 isis_forged_z.json
+
+# Local and CI JUnit reports
+test-results/

@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-08",
+  "base_commit": "6fd7f42",
+  "scope": "Literature and implementation planning only",
+  "security_claim": "none",
+  "cryptographic_tests_run": false,
+  "new_production_parameters": null,
+  "sage_used": false,
+  "checks": {
+    "pdf": [
+      {
+        "file": "papers/2010_bonsai_trees_cash.pdf",
+        "header_ok": true,
+        "size_matches": true,
+        "pages_match": true,
+        "sha256_matches": true,
+        "passed": true
+      },
+      {
+        "file": "papers/2024_ibs_without_trapdoors_luo.pdf",
+        "header_ok": true,
+        "size_matches": true,
+        "pages_match": true,
+        "sha256_matches": true,
+        "passed": true
+      },
+      {
+        "file": "papers/2010_lattice_hibe_standard_agrawal.pdf",
+        "header_ok": true,
+        "size_matches": true,
+        "pages_match": true,
+        "sha256_matches": true,
+        "passed": true
+      },
+      {
+        "file": "papers/2024_quantum_safe_hibe_zhao.pdf",
+        "header_ok": true,
+        "size_matches": true,
+        "pages_match": true,
+        "sha256_matches": true,
+        "passed": true
+      },
+      {
+        "file": "papers/2020_ideal_lattice_hibe_zhang.pdf",
+        "header_ok": true,
+        "size_matches": true,
+        "pages_match": true,
+        "sha256_matches": true,
+        "passed": true
+      }
+    ],
+    "documents": [
+      {
+        "file": "docs/research/2026-10-08-selection/文献复核与后续实施计划.md",
+        "code_fences_balanced": true,
+        "math_fences_balanced": true,
+        "no_trailing_spaces": true,
+        "missing_links": [],
+        "passed": true
+      },
+      {
+        "file": "docs/deliveries/2026-10-08-selection/README.md",
+        "code_fences_balanced": true,
+        "math_fences_balanced": true,
+        "no_trailing_spaces": true,
+        "missing_links": [],
+        "passed": true
+      },
+      {
+        "file": "docs/PROJECT_RESTART.md",
+        "code_fences_balanced": true,
+        "math_fences_balanced": true,
+        "no_trailing_spaces": true,
+        "missing_links": [],
+        "passed": true
+      },
+      {
+        "file": "IMPLEMENTATION_SPEC.md",
+        "code_fences_balanced": true,
+        "math_fences_balanced": true,
+        "no_trailing_spaces": true,
+        "missing_links": [],
+        "passed": true
+      },
+      {
+        "file": "papers/index.md",
+        "code_fences_balanced": true,
+        "math_fences_balanced": true,
+        "no_trailing_spaces": true,
+        "missing_links": [],
+        "passed": true
+      },
+      {
+        "file": "docs/research/2026-09-30/IBME-HIBE候选方案筛选.md",
+        "code_fences_balanced": true,
+        "math_fences_balanced": true,
+        "no_trailing_spaces": true,
+        "missing_links": [],
+        "passed": true
+      },
+      {
+        "file": "docs/research/2026-10-08-integration/三组优先组合与联合优化路线.md",
+        "code_fences_balanced": true,
+        "math_fences_balanced": true,
+        "no_trailing_spaces": true,
+        "missing_links": [],
+        "passed": true
+      }
+    ],
+    "json_parse": true
+  },
+  "failures": [],
+  "download_failures_recorded": 6,
+  "notes": [
+    "No implementation code changed; no algorithm tests or performance experiment executed.",
+    "PDF retrieval failures are acquisition limitations, not failed cryptographic tests.",
+    "Source claims and research recommendations are distinguished; no backend admitted."
+  ],
+  "passed": true
+}

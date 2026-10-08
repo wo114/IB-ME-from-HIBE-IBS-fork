@@ -1,0 +1,142 @@
+{
+  "date": "2026-10-08",
+  "base_commit": "faa004e2f183df13e59345f245022a6361bc60d5",
+  "scope": "M1 real matrix IBS research reference only",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "production_backend_changed": false,
+  "paper_proof_reproved": false,
+  "runtime": {
+    "windows_python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "wsl_python": "3.13.14 | packaged by conda-forge | (main, Jun 12 2026, 09:50:25) [GCC 14.3.0]",
+    "artifact_verifier_python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "checks": {
+    "cross_environment_public_replay": {
+      "passed": true,
+      "comparison_fields": [
+        "cases",
+        "educational_public_forgery",
+        "honest_signatures_verified",
+        "selected_wide_profile_mutations_rejected",
+        "restored_identity_keys_checked"
+      ],
+      "private_snapshots_in_artifact": false
+    },
+    "functional_run": {
+      "honest_signatures": 72,
+      "mutations_rejected": 96,
+      "restored_keys": 12,
+      "total_setups": 6,
+      "functional_setups": 5,
+      "negative_control_setups": 1,
+      "algorithm_instances": 1,
+      "parameter_profiles": 2,
+      "complete_ibme_instances": 0
+    },
+    "toy_public_attack": {
+      "challenge_space": 24,
+      "private_key_access": false,
+      "key_extraction_queries": 0,
+      "signing_queries": 0,
+      "attack_h1_matrix_queries": 1,
+      "attack_h2_queries": 11,
+      "verified": true
+    },
+    "ci_local_suite": {
+      "collected": 250,
+      "passed": 247,
+      "xfailed": 3,
+      "failed_or_errors": 0,
+      "observed_expected_outcome": true,
+      "junit_sha256": "f51945c961ff638497098722f44860f2f20fcc84df98e8aeb8b81e3cb3de1ef6"
+    },
+    "README.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "docs/PROJECT_RESTART.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "docs/KNOWN_SECURITY_GAPS.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "docs/research/luo-reference/README.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "docs/deliveries/2026-10-08-m1/README.md": {
+      "passed": true,
+      "missing_links": []
+    }
+  },
+  "failures": [],
+  "test_commands": [
+    {
+      "command": "python -B -m pytest -p no:cacheprovider -q tests/test_luo_matrix_reference.py tests/test_primitive_spec_audit.py tests/test_encoding.py tests/test_lattice_core.py",
+      "result": "254 passed",
+      "seconds": 1.02
+    },
+    {
+      "command": "python -B -m pytest -p no:cacheprovider -ra --tb=short tests/test_encoding.py tests/test_lattice_core.py tests/test_prepared_hashing.py tests/test_known_security_gaps.py tests/test_luo_matrix_reference.py --junitxml=test-results/m1-basic.xml",
+      "result": "247 passed, 3 xfailed",
+      "seconds": 53.68
+    },
+    {
+      "command": "WSL ~/miniconda3/envs/sage/bin/python -B -m pytest -p no:cacheprovider -q tests/test_luo_matrix_reference.py",
+      "result": "65 passed",
+      "seconds": 0.8
+    }
+  ],
+  "initial_failures_resolved": [
+    "Standalone CLI and fresh process lacked checkout package path; consistent research path bootstrap fixes import.",
+    "Failing hash-budget regression proved verify propagated SamplingAbort; it now returns False and has passing coverage."
+  ],
+  "source_fingerprints": [
+    {
+      "file": "experiments/research/luo_matrix_reference.py",
+      "lf_canonical_sha256": "d7e4e9a6242df5cb9b71a1fee305931379c0baf321195b9d08fc06d7eaa2b4d2"
+    },
+    {
+      "file": "experiments/research/luo_matrix_audit.py",
+      "lf_canonical_sha256": "3df3b40195d04a3efadcec80615a57304739de9dacc6dc9628b598cb31d9ddd8"
+    },
+    {
+      "file": "tests/test_luo_matrix_reference.py",
+      "lf_canonical_sha256": "50e80710fc29998b715472d3ffc635e0264059b5d5da8d0b96cd3b777f5678ef"
+    },
+    {
+      "file": ".github/workflows/basic-checks.yml",
+      "lf_canonical_sha256": "0fbe5bfef710fcea619ac808b03f675600b99e54226768d092617bfdccc197f6"
+    },
+    {
+      "file": "docs/research/luo-reference/functional-audit.json",
+      "lf_canonical_sha256": "f9bea9da5fbf59c99cd109be3bdc08a9c2b3e21da592d2f546f3cf3aa7ae6c27"
+    },
+    {
+      "file": "docs/research/luo-reference/functional-audit-wsl.json",
+      "lf_canonical_sha256": "ba9b8c0861244cb0e6ed280c137cb94c35ce1f6be4972d1ea4c3183a43f13011"
+    }
+  ],
+  "paper": {
+    "file": "papers/2024_ibs_without_trapdoors_luo.pdf",
+    "sha256": "12c70ae7635c0b88c132bca14990480a8e0cdec2e786a6dcf39256e5bb0dd455",
+    "reference": "Section 3 Algorithms 1-4, PDF pages 6-9",
+    "cache_model_status": "R1 interpretation; not author-confirmed"
+  },
+  "m1_test_count": 65,
+  "notes": [
+    "Test batches overlap and are not added together.",
+    "No SIS hardness or complete security parameter assessment performed.",
+    "No Gaussian operation is needed by this IBS; WSL run uses the specified interpreter environment.",
+    "Snapshots hold secret material; only public artifacts and digests are committed.",
+    "Remote CI status is checked after push, never inferred from local results."
+  ],
+  "passed": true
+}

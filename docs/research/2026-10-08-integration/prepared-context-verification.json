@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-08",
+  "security_claim": "none",
+  "base_commit": "5f88a77",
+  "benchmark_cases": 9,
+  "timed_output_checks": 126,
+  "repetitions_per_method_per_case": 7,
+  "cold_preparation_included": true,
+  "peak_RSS_measured": false,
+  "full_IBME_benchmark": false,
+  "parameter_source": "synthetic public contexts for benchmark; q=3,n=mbar=1 research lifecycle for equivalence tests",
+  "commands": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest -q -p no:cacheprovider tests/test_prepared_hashing.py tests/test_prepared_context_stream.py tests/test_encoding.py tests/test_foo_li_runtime_reference.py tests/test_foo_li_oracle_model.py tests/test_online_sampling_reference.py",
+      "result": "219 passed in 3.69s"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.prepared_context_benchmark --repetitions 7 --output docs/research/2026-10-08-integration/prepared-context-benchmark.json",
+      "result": "9 cases; all outputs equal; max median speedup 12.73x"
+    }
+  ],
+  "metadata_note": "CPU/Sage/receiver-not-applicable annotations added after run; raw timing samples unchanged",
+  "sources": [
+    {
+      "path": "src/ibme/core/hashing.py",
+      "sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4",
+      "worktree_sha256": "9a3cb87c0759c79c608ee17125851bf1031e164954f054dd04fd1e507a62d94d"
+    },
+    {
+      "path": "experiments/research/prepared_context_stream.py",
+      "sha256": "11556a0fee92c09c8f541eacd09a1887064d203718383e0f94d640d34cb654f3",
+      "worktree_sha256": "11556a0fee92c09c8f541eacd09a1887064d203718383e0f94d640d34cb654f3"
+    },
+    {
+      "path": "experiments/research/prepared_context_benchmark.py",
+      "sha256": "5e535bffb499e65f94b8458059c861c99e2362798ace0894f7dadd375d30f2f5",
+      "worktree_sha256": "5e535bffb499e65f94b8458059c861c99e2362798ace0894f7dadd375d30f2f5"
+    },
+    {
+      "path": "tests/test_prepared_hashing.py",
+      "sha256": "17846d8b2e88c5019ef44c13aa2af8264f09f9e0a19ed519a311a23026fe8360",
+      "worktree_sha256": "17846d8b2e88c5019ef44c13aa2af8264f09f9e0a19ed519a311a23026fe8360"
+    },
+    {
+      "path": "tests/test_prepared_context_stream.py",
+      "sha256": "d4b6800c760c20e881134091569839daf0dc1583d7abcaf07b5bca8c87b43242",
+      "worktree_sha256": "d4b6800c760c20e881134091569839daf0dc1583d7abcaf07b5bca8c87b43242"
+    },
+    {
+      "path": "IMPLEMENTATION_SPEC.md",
+      "sha256": "3d017889602c39bb992b65a58f053bfa490fd1a71015624569de48a25e14db10",
+      "worktree_sha256": "3d017889602c39bb992b65a58f053bfa490fd1a71015624569de48a25e14db10"
+    },
+    {
+      "path": "docs/research/2026-10-08-integration/组合上下文复用优化与公平基线.md",
+      "sha256": "9742fd15b0c731c3884334a7deba411b945e4a70389438d76f48df608a49a4c1",
+      "worktree_sha256": "9742fd15b0c731c3884334a7deba411b945e4a70389438d76f48df608a49a4c1"
+    },
+    {
+      "path": "docs/research/2026-10-08-integration/prepared-context-benchmark.json",
+      "sha256": "bc6d024d501b7ed50fe24f583e8fd4d2a60d786be10a8e74e0d468989dcc8c21",
+      "worktree_sha256": "bc6d024d501b7ed50fe24f583e8fd4d2a60d786be10a8e74e0d468989dcc8c21"
+    }
+  ],
+  "limitations": [
+    "Subtask only, not secure end-to-end IBME",
+    "No change to six frozen domains or raw bitstreams",
+    "Default production HIBE/IBS/protocol not replaced; optional research adapter",
+    "Large-message wrapper and joint encoding remain design work"
+  ],
+  "source_sha256_basis": "LF-canonical text bytes; no other normalization; raw worktree hash retained separately"
+}
