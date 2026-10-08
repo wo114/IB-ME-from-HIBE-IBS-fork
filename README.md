@@ -8,6 +8,8 @@
 
 最新实施入口为 [R1 规格与首套选择](docs/research/2026-10-08-r1/README.md)：先做 CHKP 两层匿名 ROM HIBE + Luo 2024 矩阵 IBS 的真实研究实例，理论以原文定理引用和实现/参数对应为主。用户要求将后续工作分为 [主 AI 的 IBS/集成/优化清单](docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md)和 [队友的 CHKP/格工具任务书](docs/workplans/2026-10-08/队友任务-CHKP与格工具.md)。正式参数和完整安全实例仍未放行，`security_claim: none`。
 
+主 AI M1 已完成 [Luo 2024 矩阵 IBS 真实参考](docs/research/luo-reference/README.md)：Setup/Extract/Sign/Verify、同一身份缓存及规范保存恢复；65 项 M1 检查在 Windows/WSL 通过，72 条签名、12 份恢复密钥和公开 transcript 跨环境一致。小参数挑战空间只有 24，公开枚举 11 次查询即可生成有效伪造，因此仍是功能研究而非安全参数后端。当前 CI 普通批次为 247 passed、3 xfailed，旧漏洞未修复；下一轮进入 M2 的契约与选参。
+
 已合并 PR #5（`37e7031`）；本地基础检查 182 passed、3 xfailed，严格模式 3 failed；合并后的主仓库基础 CI 成功。三个 XFAIL 是保留的旧教学漏洞，不是修复或安全通过。R1 新增 24 项公开参数/容量检查，不生成新密钥或密码性能结果。
 
 团队固定王老师的两层匿名 HIBE + IBS 通用构造，不实施 Boyen–Li 增强隐私。已整合队友 PR #3 的条件式正确性和研究签验/恢复流程；195 项相关回归复跑通过，95 个交付及 34 个复用源码指纹一致。Lean 总包保持 `partial_formal_closure`，几何及实际随机模型前提未全部解除，本机没有重跑 Lean。

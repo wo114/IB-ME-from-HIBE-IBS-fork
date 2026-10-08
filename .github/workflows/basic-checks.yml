@@ -31,6 +31,7 @@ jobs:
           python -m pytest -p no:cacheprovider -ra --tb=short
           tests/test_encoding.py tests/test_lattice_core.py
           tests/test_prepared_hashing.py tests/test_known_security_gaps.py
+          tests/test_luo_matrix_reference.py
           --junitxml=test-results/basic.xml
       - name: Enforce security targets when explicitly requested
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.strict_security }}
@@ -44,11 +45,12 @@ jobs:
         run: |
           @'
           ## Validation scope
-          This job checks the selected Windows basic tests and three legacy security targets.
+          This job checks selected Windows basics, the Luo matrix research reference, and three legacy security targets.
           **XFAIL means an unfixed vulnerability, not a security pass.**
           Strict XPASS requires reviewing a changed result and removing its XFAIL marker.
           Run with `strict_security=true` to enforce these targets; the education instance currently fails.
           This is not the full protocol suite, Sage research validation, Lean compilation, or a security proof.
+          The Luo reference uses hand-selected research parameters and includes an accepted toy forgery control.
           See the pytest log and JUnit artifact for actual passed, failed, and skipped outcomes.
           '@ | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
       - name: Upload test reports

@@ -1,0 +1,176 @@
+{
+  "security_claim": "none",
+  "backend_admitted": false,
+  "algorithm_instances": 1,
+  "parameter_profiles": 2,
+  "complete_ibme_instances": 0,
+  "python": "3.13.14 | packaged by conda-forge | (main, Jun 12 2026, 09:50:25) [GCC 14.3.0]",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "entropy": "Explicit deterministic streams for reproducibility only",
+  "hash_instantiation": "Domain-separated SHAKE-256; no ROM/QROM implementation proof",
+  "source": "Luo et al., ICICS 2024, Section 3 Algorithms 1-4; R1 cached-oracle interpretation",
+  "total_setups": 6,
+  "functional_setups": 5,
+  "negative_control_setups": 1,
+  "honest_signatures_verified": 72,
+  "selected_wide_profile_mutations_rejected": 96,
+  "restored_identity_keys_checked": 12,
+  "cases": [
+    {
+      "profile": "r1-tiny",
+      "setup_index": 0,
+      "public_key_bytes": 280,
+      "user_private_key_bytes": [
+        679,
+        677
+      ],
+      "master_snapshot_bytes": 1980,
+      "signature_size_counts": {
+        "259": 8
+      },
+      "public_context_hex": "06a784c67209ef8ba1b90c3e71cefd7fac7c1806f266be53a2ba08a7289493d9",
+      "public_transcript_sha256": "35cfde5cefe83a983262f0eec13dd71f72966af386d2d738cc2b624502cdb1b5",
+      "identity_lengths": [
+        5,
+        3
+      ],
+      "message_lengths": [
+        0,
+        1,
+        4,
+        4
+      ]
+    },
+    {
+      "profile": "r1-tiny",
+      "setup_index": 1,
+      "public_key_bytes": 280,
+      "user_private_key_bytes": [
+        679,
+        677
+      ],
+      "master_snapshot_bytes": 1980,
+      "signature_size_counts": {
+        "259": 8
+      },
+      "public_context_hex": "e2b1b97eb53f14e750ce608265e40f7e06e07df24aaa994090234d4669b5a8c9",
+      "public_transcript_sha256": "317f76e2a1d127a45084264dd5574bc01f14f314e42866075485ac5450829eba",
+      "identity_lengths": [
+        5,
+        3
+      ],
+      "message_lengths": [
+        0,
+        1,
+        4,
+        4
+      ]
+    },
+    {
+      "profile": "r1-tiny",
+      "setup_index": 2,
+      "public_key_bytes": 280,
+      "user_private_key_bytes": [
+        679,
+        677
+      ],
+      "master_snapshot_bytes": 1980,
+      "signature_size_counts": {
+        "259": 8
+      },
+      "public_context_hex": "18eead15e68670934c4d077ba2198d08256b3500e5961711fbada6ade8307852",
+      "public_transcript_sha256": "2aea9f394d600f27d0ff0ee2633647b1198c4c40523c172c2916a7e03c911001",
+      "identity_lengths": [
+        5,
+        3
+      ],
+      "message_lengths": [
+        0,
+        1,
+        4,
+        4
+      ]
+    },
+    {
+      "profile": "wide-functional",
+      "setup_index": 0,
+      "public_key_bytes": 776,
+      "user_private_key_bytes": [
+        3431,
+        3429,
+        3435
+      ],
+      "master_snapshot_bytes": 13211,
+      "signature_size_counts": {
+        "947": 24
+      },
+      "public_context_hex": "adc65bc4df4d46490c6ec74032460fef2a3b543ef9dd8a2c3f37d58a5b3804b8",
+      "public_transcript_sha256": "3b29c54b5d447be0976c92cf75df82d7b65328b2fb62655956500ad74af10be8",
+      "identity_lengths": [
+        5,
+        3,
+        9
+      ],
+      "message_lengths": [
+        0,
+        1,
+        4,
+        4,
+        16,
+        32,
+        6,
+        5
+      ]
+    },
+    {
+      "profile": "wide-functional",
+      "setup_index": 1,
+      "public_key_bytes": 776,
+      "user_private_key_bytes": [
+        3431,
+        3429,
+        3435
+      ],
+      "master_snapshot_bytes": 13211,
+      "signature_size_counts": {
+        "947": 24
+      },
+      "public_context_hex": "46ea5d313d2bc8aeb8718968c2a6350cb078359adcc7c7adcd1c173b642c0fa0",
+      "public_transcript_sha256": "2f0152104e3fa455894cfbaea3dfc2f72afb7caffcffde51d38ebd89db2699aa",
+      "identity_lengths": [
+        5,
+        3,
+        9
+      ],
+      "message_lengths": [
+        0,
+        1,
+        4,
+        4,
+        16,
+        32,
+        6,
+        5
+      ]
+    }
+  ],
+  "educational_public_forgery": {
+    "challenge_space": 24,
+    "private_key_access": false,
+    "key_extraction_queries": 0,
+    "signing_queries": 0,
+    "attack_h1_matrix_queries": 1,
+    "attack_h2_queries": 11,
+    "verified": true,
+    "identity_hex": "556e697373756564",
+    "message_hex": "7075626c69632d666f72676572793a30",
+    "public_key_hex": "4c323452310000001949424d452f4c554f323032342f4d41545249582d5245462f31000000065055424c49430000003800000004000000080000000400010001000000010000000200000080000008000000001000000020000010000000100000000040000000800000006c0000000400000008000100010091d800f120005a6b00c39e00a135001bf200624e00f9a70038c6003c4c000553005cc000910300921d00fcec00c0f600fbfe005f0000b36500220e0091d5008624002ae900acb80036f7003eb4009cf100ef300065a2009164000dd200d2d40000003c000000040000000400010001003113009ab600a96c0095ad00f4690068a80048e1007b2800f55100d8400016eb00d0ee006cda00ab2300493e00d940",
+    "signature_hex": "4c323452310000001949424d452f4c554f323032342f4d41545249582d5245462f31000000095349474e4154555245000000201495e114cfd30af6603d06fc6cfe8ef225e1e6ab8cbe7dd90f2deae1d75c48250000004400000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002400000004000000000000000100000000000000000000000000000000ffffffffffffffff0000003c000000040000000400010001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "notes": [
+    "No HIBE or production backend changed.",
+    "Persistence snapshots contain private material; this artifact includes only lengths/digests.",
+    "Toy public forgery is expected: neither functional profile establishes SIS hardness.",
+    "No algorithm performance claim and no security theorem are inferred from these tests."
+  ]
+}
