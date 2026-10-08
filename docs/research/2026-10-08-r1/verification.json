@@ -1,0 +1,135 @@
+{
+  "date": "2026-10-08",
+  "base_commit": "37e70316ac03dc86c19feeeb10b4aaf491841f7f",
+  "security_claim": "none",
+  "new_cryptographic_objects_generated": false,
+  "r1_status": "Implementation specifications and public arithmetic complete; production admission remains WIP",
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "9.1.1",
+    "sage_invocation": "WSL ~/miniconda3/envs/sage/bin/python; prime checks with proof=True",
+    "artifact_verifier_python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "test_python": "3.14.6"
+  },
+  "checks": {
+    "AGENTS.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "IMPLEMENTATION_SPEC.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "README.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "docs/PROJECT_RESTART.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "docs/research/2026-10-08-selection/文献复核与后续实施计划.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "docs/research/2026-10-08-r1/README.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "docs/research/2026-10-08-r1/两套HIBE实施规格.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "docs/research/2026-10-08-r1/Luo2024IBS实施规格.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "docs/research/2026-10-08-r1/SRGG2025IBS实施规格与条件.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "docs/workplans/2026-10-08/队友任务-CHKP与格工具.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "docs/deliveries/2026-10-08-r1/README.md": {
+      "passed": true,
+      "missing_links": []
+    },
+    "pr5_basic": {
+      "tests": 185,
+      "failed": 0,
+      "xfailed": 3,
+      "errors": 0,
+      "sha256": "65e7d3be9d442debcf932a95ff7a7ca72ae28ccb91239aca3cdc68f5ebda991e",
+      "goal": "182 passed + 3 xfailed",
+      "observed_expected_outcome": true
+    },
+    "pr5_strict": {
+      "tests": 3,
+      "failed": 3,
+      "xfailed": 0,
+      "errors": 0,
+      "sha256": "bb49bc0df783ed53cd42118405ee11622c052ea1659a93ebfc86ac2ddc6b4c44",
+      "goal": "3 assertion failures expected from unfixed legacy gaps",
+      "observed_expected_outcome": true
+    },
+    "parameter_report": {
+      "sage_primality_checked": true,
+      "candidate_count": 10,
+      "primes": [
+        14952038401
+      ],
+      "backend_admitted": false,
+      "sha256": "1ddc68f8e9d24f76078bf45e157f852565b0186a1c6dac15251f8cab84285366"
+    },
+    "first_research_config": {
+      "passed": true,
+      "prime_modulus": 65537,
+      "formal_hardness_estimate": null
+    },
+    "experiments/research/primitive_spec_audit.py": {
+      "lf_canonical_sha256": "93b8a3b763e5018a3d58abdf56562bbca5dbe7a3f7d341533eea612b518cd7ad"
+    },
+    "tests/test_primitive_spec_audit.py": {
+      "lf_canonical_sha256": "5b8813840731e2e7d3b37f6fd66d215b1789b67493ca2045454cda7c87aef7a0"
+    }
+  },
+  "failures": [],
+  "r1_tests": {
+    "command": "python -B -m pytest -p no:cacheprovider -q tests/test_primitive_spec_audit.py",
+    "result": "24 passed",
+    "seconds": 0.04,
+    "final_failures": 0,
+    "final_warnings": 0
+  },
+  "source_versions": [
+    {
+      "file": "papers/2010_bonsai_trees_cash.pdf",
+      "sha256": "b1d8a2ae0e9d4e5c9145bbc6dc864090605c12a5b76149aa0684d62a8815d2ce",
+      "matches_frozen": true
+    },
+    {
+      "file": "papers/2024_ibs_without_trapdoors_luo.pdf",
+      "sha256": "12c70ae7635c0b88c132bca14990480a8e0cdec2e786a6dcf39256e5bb0dd455",
+      "matches_frozen": true
+    }
+  ],
+  "online_only_source": {
+    "url": "https://ietresearch.onlinelibrary.wiley.com/doi/pdf/10.1049/ise2/6684889",
+    "observed_pages": 12,
+    "local_pdf_downloaded": false,
+    "review_scope": "Definitions/algorithms, literal theorem conditions and parameter tables; no complete proof repair"
+  },
+  "main_ci": {
+    "head": "37e70316ac03dc86c19feeeb10b4aaf491841f7f",
+    "run_id": 37778417795,
+    "conclusion": "success",
+    "strict_security_step_executed": false
+  },
+  "passed": true
+}

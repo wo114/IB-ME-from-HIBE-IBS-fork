@@ -1,0 +1,328 @@
+{
+  "scope": "Public specification arithmetic; no cryptographic execution",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "luo": [
+    {
+      "source": {
+        "name": "table-1-I",
+        "bits": 34,
+        "k": 6,
+        "l": 5,
+        "kappa": 39,
+        "gamma1": 49920,
+        "drop_bits": 26,
+        "beta2": 1946880,
+        "gamma2": 4984012800,
+        "signature_bytes_reported": 6691,
+        "bkz_blocksize_reported": 312
+      },
+      "polynomial_degree": 256,
+      "beta2_relation_ok": true,
+      "key_acceptance_bound": 49881,
+      "sign_acceptance_bound_strict": 4982065920,
+      "extract_repetitions_derived": "9.032577558345495647445382740",
+      "compatible_moduli_interpretation": "bit length and alpha=2*gamma3=gamma2; conditional",
+      "compatible_moduli": [
+        {
+          "q": 9968025601,
+          "coefficient_bits": 34,
+          "rounding_divisor_ok": true,
+          "ntt_divisibility_ok": true,
+          "legacy_uint32_params_compatible": false,
+          "prime": false
+        },
+        {
+          "q": 14952038401,
+          "coefficient_bits": 34,
+          "rounding_divisor_ok": true,
+          "ntt_divisibility_ok": true,
+          "legacy_uint32_params_compatible": false,
+          "prime": true
+        }
+      ],
+      "exact_paper_modulus_known": false,
+      "classical_core_svp_exponent_from_source": "91.104",
+      "quantum_core_svp_exponent_from_source": "82.680",
+      "reduction_query_loss_accounted": false,
+      "backend_admitted": false,
+      "security_claim": "none"
+    },
+    {
+      "source": {
+        "name": "table-1-II",
+        "bits": 36,
+        "k": 8,
+        "l": 7,
+        "kappa": 39,
+        "gamma1": 69888,
+        "drop_bits": 27,
+        "beta2": 2725632,
+        "gamma2": 9768665088,
+        "signature_bytes_reported": 9738,
+        "bkz_blocksize_reported": 470
+      },
+      "polynomial_degree": 256,
+      "beta2_relation_ok": true,
+      "key_acceptance_bound": 69849,
+      "sign_acceptance_bound_strict": 9765939456,
+      "extract_repetitions_derived": "8.528725373617257106237343140",
+      "compatible_moduli_interpretation": "bit length and alpha=2*gamma3=gamma2; conditional",
+      "compatible_moduli": [
+        {
+          "q": 39074660353,
+          "coefficient_bits": 36,
+          "rounding_divisor_ok": true,
+          "ntt_divisibility_ok": true,
+          "legacy_uint32_params_compatible": false,
+          "prime": false
+        },
+        {
+          "q": 48843325441,
+          "coefficient_bits": 36,
+          "rounding_divisor_ok": true,
+          "ntt_divisibility_ok": true,
+          "legacy_uint32_params_compatible": false,
+          "prime": false
+        },
+        {
+          "q": 58611990529,
+          "coefficient_bits": 36,
+          "rounding_divisor_ok": true,
+          "ntt_divisibility_ok": true,
+          "legacy_uint32_params_compatible": false,
+          "prime": false
+        },
+        {
+          "q": 68380655617,
+          "coefficient_bits": 36,
+          "rounding_divisor_ok": true,
+          "ntt_divisibility_ok": true,
+          "legacy_uint32_params_compatible": false,
+          "prime": false
+        }
+      ],
+      "exact_paper_modulus_known": false,
+      "classical_core_svp_exponent_from_source": "137.240",
+      "quantum_core_svp_exponent_from_source": "124.550",
+      "reduction_query_loss_accounted": false,
+      "backend_admitted": false,
+      "security_claim": "none"
+    },
+    {
+      "source": {
+        "name": "table-1-III",
+        "bits": 38,
+        "k": 11,
+        "l": 10,
+        "kappa": 49,
+        "gamma1": 125440,
+        "drop_bits": 28,
+        "beta2": 6146560,
+        "gamma2": 31470387200,
+        "signature_bytes_reported": 14680,
+        "bkz_blocksize_reported": 688
+      },
+      "polynomial_degree": 256,
+      "beta2_relation_ok": true,
+      "key_acceptance_bound": 125391,
+      "sign_acceptance_bound_strict": 31464240640,
+      "extract_repetitions_derived": "8.169452468604471474542691262",
+      "compatible_moduli_interpretation": "bit length and alpha=2*gamma3=gamma2; conditional",
+      "compatible_moduli": [
+        {
+          "q": 157351936001,
+          "coefficient_bits": 38,
+          "rounding_divisor_ok": true,
+          "ntt_divisibility_ok": true,
+          "legacy_uint32_params_compatible": false,
+          "prime": false
+        },
+        {
+          "q": 188822323201,
+          "coefficient_bits": 38,
+          "rounding_divisor_ok": true,
+          "ntt_divisibility_ok": true,
+          "legacy_uint32_params_compatible": false,
+          "prime": false
+        },
+        {
+          "q": 220292710401,
+          "coefficient_bits": 38,
+          "rounding_divisor_ok": true,
+          "ntt_divisibility_ok": true,
+          "legacy_uint32_params_compatible": false,
+          "prime": false
+        },
+        {
+          "q": 251763097601,
+          "coefficient_bits": 38,
+          "rounding_divisor_ok": true,
+          "ntt_divisibility_ok": true,
+          "legacy_uint32_params_compatible": false,
+          "prime": false
+        }
+      ],
+      "exact_paper_modulus_known": false,
+      "classical_core_svp_exponent_from_source": "200.896",
+      "quantum_core_svp_exponent_from_source": "182.320",
+      "reduction_query_loss_accounted": false,
+      "backend_admitted": false,
+      "security_claim": "none"
+    }
+  ],
+  "srgg": [
+    {
+      "source": {
+        "name": "PARAM-I",
+        "rank": 2,
+        "gamma": "42086491.7",
+        "table1_mpk": 3104,
+        "table4_mpk": 12320,
+        "table1_signature": 12088,
+        "table4_signature": 12148
+      },
+      "polynomial_degree": 512,
+      "gadget_base": 31,
+      "gadget_dimension": 2,
+      "gadget_modulus": 961,
+      "p": 16383,
+      "modulus_Q": 15744063,
+      "public_coefficient_count": 4096,
+      "public_fixed_bit_packing_plus_seed_bytes": 12320,
+      "table4_matches_this_public_matrix_layout": true,
+      "table1_table4_public_sizes_equal": false,
+      "table1_table4_signature_sizes_equal": false,
+      "theorem1_interpretation": "Not a proved mapping: requires clarification of Section 3 q versus IBS Q",
+      "literal_Q_gt_2gamma": false,
+      "literal_2Q_gt_2gamma": false,
+      "twice_gamma": "84172983.4",
+      "underlying_strong_signature_condition_verified": false,
+      "backend_admitted": false,
+      "security_claim": "none"
+    },
+    {
+      "source": {
+        "name": "PARAM-II",
+        "rank": 3,
+        "gamma": "63653172.0",
+        "table1_mpk": 4640,
+        "table4_mpk": 27680,
+        "table1_signature": 17736,
+        "table4_signature": 17786
+      },
+      "polynomial_degree": 512,
+      "gadget_base": 31,
+      "gadget_dimension": 2,
+      "gadget_modulus": 961,
+      "p": 16383,
+      "modulus_Q": 15744063,
+      "public_coefficient_count": 9216,
+      "public_fixed_bit_packing_plus_seed_bytes": 27680,
+      "table4_matches_this_public_matrix_layout": true,
+      "table1_table4_public_sizes_equal": false,
+      "table1_table4_signature_sizes_equal": false,
+      "theorem1_interpretation": "Not a proved mapping: requires clarification of Section 3 q versus IBS Q",
+      "literal_Q_gt_2gamma": false,
+      "literal_2Q_gt_2gamma": false,
+      "twice_gamma": "127306344.0",
+      "underlying_strong_signature_condition_verified": false,
+      "backend_admitted": false,
+      "security_claim": "none"
+    },
+    {
+      "source": {
+        "name": "PARAM-III",
+        "rank": 4,
+        "gamma": "86573930.5",
+        "table1_mpk": 6176,
+        "table4_mpk": 49184,
+        "table1_signature": 23480,
+        "table4_signature": 23516
+      },
+      "polynomial_degree": 512,
+      "gadget_base": 31,
+      "gadget_dimension": 2,
+      "gadget_modulus": 961,
+      "p": 16383,
+      "modulus_Q": 15744063,
+      "public_coefficient_count": 16384,
+      "public_fixed_bit_packing_plus_seed_bytes": 49184,
+      "table4_matches_this_public_matrix_layout": true,
+      "table1_table4_public_sizes_equal": false,
+      "table1_table4_signature_sizes_equal": false,
+      "theorem1_interpretation": "Not a proved mapping: requires clarification of Section 3 q versus IBS Q",
+      "literal_Q_gt_2gamma": false,
+      "literal_2Q_gt_2gamma": false,
+      "twice_gamma": "173147861.0",
+      "underlying_strong_signature_condition_verified": false,
+      "backend_admitted": false,
+      "security_claim": "none"
+    }
+  ],
+  "chkp_layout": {
+    "depth": 2,
+    "parent_columns_multiplier": 2,
+    "child_columns_multiplier": 3,
+    "fixed_decapsulation_key_per_identity_required": true
+  },
+  "payload_cost_examples": [
+    {
+      "maximum_depth": 2,
+      "base_columns": 128,
+      "padded_preamble_coefficients": 384,
+      "payload_bytes": 6723,
+      "payload_bits": 53784,
+      "independent_bit_ciphertext_coefficients": 20706840,
+      "amortized_ciphertext_coefficients": 54168,
+      "independent_bit_packed_bytes": 44002035,
+      "amortized_packed_bytes": 115107,
+      "independent_bit_hibe_random_secret_vectors": 53784,
+      "amortized_hibe_random_secret_vectors": 1,
+      "amortized_distinct_syndromes": 53784,
+      "decryption_preimage_coefficients_if_materialized": 20653056,
+      "public_syndrome_elements_per_row": 53784,
+      "parameter_admitted": false,
+      "security_claim": "none"
+    },
+    {
+      "maximum_depth": 2,
+      "base_columns": 128,
+      "padded_preamble_coefficients": 384,
+      "payload_bytes": 9770,
+      "payload_bits": 78160,
+      "independent_bit_ciphertext_coefficients": 30091600,
+      "amortized_ciphertext_coefficients": 78544,
+      "independent_bit_packed_bytes": 63944650,
+      "amortized_packed_bytes": 166906,
+      "independent_bit_hibe_random_secret_vectors": 78160,
+      "amortized_hibe_random_secret_vectors": 1,
+      "amortized_distinct_syndromes": 78160,
+      "decryption_preimage_coefficients_if_materialized": 30013440,
+      "public_syndrome_elements_per_row": 78160,
+      "parameter_admitted": false,
+      "security_claim": "none"
+    },
+    {
+      "maximum_depth": 2,
+      "base_columns": 128,
+      "padded_preamble_coefficients": 384,
+      "payload_bytes": 14712,
+      "payload_bits": 117696,
+      "independent_bit_ciphertext_coefficients": 45312960,
+      "amortized_ciphertext_coefficients": 118080,
+      "independent_bit_packed_bytes": 96290040,
+      "amortized_packed_bytes": 250920,
+      "independent_bit_hibe_random_secret_vectors": 117696,
+      "amortized_hibe_random_secret_vectors": 1,
+      "amortized_distinct_syndromes": 117696,
+      "decryption_preimage_coefficients_if_materialized": 45195264,
+      "public_syndrome_elements_per_row": 117696,
+      "parameter_admitted": false,
+      "security_claim": "none"
+    }
+  ],
+  "payload_cost_example_parameters": "m=128, 17-bit q is only a counting model, not legal LWE parameters",
+  "hardware_or_performance_result": false,
+  "primality_checked_with_sage": true
+}
