@@ -6,6 +6,7 @@
 
 ## 材料
 
+- [算法组合候选与实现评估](算法组合候选与实现评估.md)：现有 HIBE + IBS 的五个算法、前期筛选的五条替代路线、来源和实现边界；区分论文已有构造与候选搭配。
 - [方案③实现设计与来源核验](方案3-IBE与IBS实现设计.md)：目标、已确认的五个组合算法、模块接口、测试范围和实现依赖。
 - [目标论文出版社页面](https://www.sciencedirect.com/science/article/pii/S0304397526003816)：Qing Yu、Shengli Liu、Yiming Li，TCS 1082 (2026), 116152，DOI 10.1016/j.tcs.2026.116152。
 - [Boyen–Li 2016 IBE 依赖论文](https://www.iacr.org/archive/asiacrypt2016/10031179/10031179.pdf)：公开会议归档；本目录只引用来源，不收录 PDF 或本地文本提取产物。
