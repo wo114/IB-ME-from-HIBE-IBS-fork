@@ -56,6 +56,14 @@ M2-A Luo 研究适配（2026-10-09）：`src/ibme/ibs/luo.py` 实现冻结的 IB
 
 ## 3. 格基基础模块
 
+2026-10-09 Luo 模格研究后端冻结补充（M2-B2）：独立 `LuoModuleParams` 和 `MODULE-REF/1` 格式，不转换旧 Params。默认研究输入 degree=256、(k,l)=(11,10)、q=274877844481、NTT 512 阶根 153250464611、η=1、κ=64、γ₁=125440、γ₂=31470387200、γ₃=15270991360、d=28。实现论文 §4 Algorithms 7–16；Algorithm 15 第 9 行的 zid 按该节正文及 Algorithm 16 解释为签名 z。不增加 z 非零条件。H1/H2 用独立 SHAKE-256 角色域、规范输入和本 IBS 公钥上下文；本轮 A 为真实均匀显式矩阵，未实施原文 SHAKE-128 种子压缩。
+
+多项式为 Z[X]/(X^N+1) 与 Z_q[X]/(X^N+1)：掩码、私有响应和 z 保留有符号整数；A、t、w 为 [0,q) 系数。负循环 NTT 用 twist/untwist 和 2N 阶根，整数运算不得溢出或截断 q。Power2Round 保留最高端进位（默认 w1 可为 1024）；Decompose 的 q−1 特例、MakeHint/UseHint 严格依原文，h 为逐系数 bit，不发明 hint 重量上限。
+
+对象公钥/主状态/固定身份密钥/签名分别版本化、类型化、长度前缀编码；参数和模系数为 uint64，z/私有系数为 int64，c 为 signed int8，h 为 bit 字节，w1 宽度由参数决定。解析拒绝未知版本、重复/截断/追加、维度/范围错误、错误公钥上下文；主状态恢复校验 t=As1+s2，身份密钥恢复校验 Az1+z2=w+tH1(w1,id)。同一身份缓存同一份密钥，RNG 不进入快照，私有 repr 隐去秘密。
+
+公开资源限制：N 为 2–256 的二次幂，k/l≤16，消息≤65536 B、身份≤256 B、缓存≤64 身份、wire≤16 MiB；均匀抽样/Extract/Sign 均有显式预算，超限抛 IBMEError 的采样中止而不返回默认值。大素数仅接收本轮已有 Sage 核验的模数，小素数独立核验；不把资源/方程通过当作 MLWE/MSIS 或完整 QROM 安全。`security_claim: none`、`backend_admitted: false`，不注册为 CLI 安全后端，签名载荷与完整攻击验收仍是后续切换门槛。
+
 ### 模矩阵
 
 `ModMatrix` 至少支持：

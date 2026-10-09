@@ -8,11 +8,11 @@
 
 ## 当前重建路线 2026 年 10 月 9 日
 
-最新实施入口为 [R1 规格与首套选择](docs/research/2026-10-08-r1/README.md)：先做 CHKP 两层匿名 ROM HIBE + Luo 2024 矩阵 IBS 的真实研究实例，理论以原文定理引用和实现/参数对应为主。用户要求将后续工作分为 [主 AI 的 IBS/集成/优化清单](docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md)和 [队友的 CHKP/格工具任务书](docs/workplans/2026-10-08/队友任务-CHKP与格工具.md)。正式参数和完整安全实例仍未放行，`security_claim: none`。
+总体规格与分工以 [R1](docs/research/2026-10-08-r1/README.md)为基础：队友实施 CHKP 两层匿名 ROM HIBE；主 AI 已形成 Luo 矩阵正确性参考，当前进一步实现模格 IBS，进度见下文 M2-B2。理论以原文定理引用和实现/参数对应为主。后续工作分为 [主 AI 的 IBS/集成/优化清单](docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md)和 [队友的 CHKP/格工具任务书](docs/workplans/2026-10-08/队友任务-CHKP与格工具.md)。正式参数和完整安全实例仍未放行，`security_claim: none`。
 
 M1/M2-A 已完成 [真实矩阵参考](docs/research/luo-reference/README.md)与 [IBSBackend 接入](docs/research/2026-10-09-m2/README.md)，公开小参数伪造和一列主秘密的 LLL 恢复保留为负面对照。M2-B1 完成 [联合选参与精确模格参数](docs/research/2026-10-09-m2b/README.md)：40 行矩阵研究搜索、统计分布检查、保守范数界及 7 组模格参数对照。上一轮最低 LWE 成本来自区分攻击，现已与秘密搜索分开；原 Theorem 1 与事件 E 的范数界差异也明确记录。
 
-下一轮优先实现 Luo 模格的多项式与 Hint 参考，研究输入为 degree=256、(k,l)=(11,10)、κ=64、q=274877844481、γ₃=15270991360；一般整除/NTT/Hint 算术条件已核验，仍不是安全 preset。Windows 相关批次 431 passed、3 xfailed，WSL Luo 批次 186 passed；M2-B1 当时的 CI 选择为 368 passed、3 xfailed。完整 IBME、正式参数准入与剩余两项 IBS 认证修复仍未完成，`security_claim: none`。
+M2-B2 已实现 [Luo 模格 IBS 四算法及独立 Sage 核验](docs/research/2026-10-09-module/README.md)：degree=256、(k,l)=(11,10)、κ=64、q=274877844481 的真实签验、精确 NTT/Hint、规范对象和固定密钥恢复。68 项新检查跨 Windows/WSL 通过，Sage 独立核验 24 个真实参数签名；当前基础批次 464 passed、2 xfailed。参考签名 29455 B，完整 Wang/BYTEAUTH 载荷至少 29563 B，超过默认 HIBE 的 489 B；下一轮先做大载荷适配和完整伪造验收。默认 IBS 尚未切换，完整安全组合、参数准入及两个身份认证漏洞仍 WIP，`security_claim: none`。
 
 已合并 PR #5（`37e7031`）；本地基础检查 182 passed、3 xfailed，严格模式 3 failed；合并后的主仓库基础 CI 成功。三个 XFAIL 是保留的旧教学漏洞，不是修复或安全通过。R1 新增 24 项公开参数/容量检查，不生成新密钥或密码性能结果。
 
@@ -20,7 +20,7 @@ M1/M2-A 已完成 [真实矩阵参考](docs/research/luo-reference/README.md)与
 
 有限参数预筛检查 36 个矩阵 SIS 点：13 个通过所列解析检查，其中 6 个被标准 LLL 上界排除；9 个预定公开 SIS 对照均找到短关系。所有点均超过当前参考实现至少一项上限，没有准入安全后端。参数扫描不计新算法或假设实例；全查询预算、真实采样误差与 SIS 难度仍待收紧和估计。
 
-组合优化新增保持完整输入的 Core SHAKE 前缀准备及显式研究适配器，219 项相关检查通过。合成 1 MiB 联合上下文、128 块的子环节中位数从 196.45 ms 降至 15.44 ms（12.73 倍），包含首次准备成本且输出逐字节相同；这不是完整 IBME 跑分。生产 HIBE/IBS/协议和教育参数没有替换，旧公开伪造与外层篡改仍待修复，`security_claim: none`。
+组合优化曾实现保持完整输入的 Core SHAKE 前缀准备及显式研究适配器，219 项相关检查通过。合成 1 MiB 联合上下文、128 块的子环节中位数从 196.45 ms 降至 15.44 ms（12.73 倍），包含首次准备成本且输出逐字节相同；这不是完整 IBME 跑分。随后 BYTEAUTH 已修复默认外层字节篡改目标；公开 IBS 伪造和冒名仍待真实替换及完整验收，`security_claim: none`。
 
 2026-10-06 用户向老师进一步确认：多实例同时覆盖不同困难假设和不同算法。围绕矩阵 LWE/SIS、环格、模格调查假设扩展，也核验 Foo–Li、Wang + Pan–Wagner 等具体算法实例；同族算法不增加假设类别，参数扫描和采样实现调整不增加算法方案。混合组合分别标注 HIBE/IBS 的依赖。所有完整实例均须原语与参数准入，当前范围修订不表示已交付这些后端。
 
