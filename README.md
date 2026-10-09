@@ -12,7 +12,9 @@
 
 M1/M2-A 已完成 [真实矩阵参考](docs/research/luo-reference/README.md)与 [IBSBackend 接入](docs/research/2026-10-09-m2/README.md)，公开小参数伪造和一列主秘密的 LLL 恢复保留为负面对照。M2-B1 完成 [联合选参与精确模格参数](docs/research/2026-10-09-m2b/README.md)：40 行矩阵研究搜索、统计分布检查、保守范数界及 7 组模格参数对照。上一轮最低 LWE 成本来自区分攻击，现已与秘密搜索分开；原 Theorem 1 与事件 E 的范数界差异也明确记录。
 
-M2-B2 已实现 [Luo 模格 IBS 四算法及独立 Sage 核验](docs/research/2026-10-09-module/README.md)：degree=256、(k,l)=(11,10)、κ=64、q=274877844481 的真实签验、精确 NTT/Hint、规范对象和固定密钥恢复。68 项新检查跨 Windows/WSL 通过，Sage 独立核验 24 个真实参数签名；当前基础批次 464 passed、2 xfailed。参考签名 29455 B，完整 Wang/BYTEAUTH 载荷至少 29563 B，超过默认 HIBE 的 489 B；下一轮先做大载荷适配和完整伪造验收。默认 IBS 尚未切换，完整安全组合、参数准入及两个身份认证漏洞仍 WIP，`security_claim: none`。
+M2-B2 已实现 [Luo 模格 IBS 四算法及独立 Sage 核验](docs/research/2026-10-09-module/README.md)：degree=256、(k,l)=(11,10)、κ=64、q=274877844481 的真实签验、精确 NTT/Hint、规范对象和固定密钥恢复。68 项新检查跨 Windows/WSL 通过，Sage 独立核验 24 个真实参数签名；当前基础批次 464 passed、2 xfailed。参考签名 29455 B，完整 Wang/BYTEAUTH 载荷至少 29563 B；当时超出现有 HIBE 的 489 B 容量，已由下述 M3-A 继续完成接线。正式参数、安全组合和旧教育目标的状态须分别记录，均 `security_claim: none`。
+
+当前已完成 [大载荷适配与真实研究组合](docs/research/2026-10-09-hybrid/README.md)：`--params luo-module-research` 接 ABB10 教学 HIBE + Luo 模格 IBS + BYTEAUTH，底层只加密 32 B 种子，AEAD 承载完整签名/消息。修复身份长度泄漏及跨命令身份缓存；新组合 Windows/WSL 均 67 passed，公开新格式猜测、完整冒名及持接收密钥重签对照均拒绝。应用消息上限 3924 B，完整密文约 2.58 MB；未做全系统加速宣传。默认 education 保留两个认证反例，正式参数/安全 HIBE 与安全默认入口仍待准入，全部 none/false。下一轮集中处理模格 MSIS/Hint 条件与成本，队友继续 CHKP。
 
 已合并 PR #5（`37e7031`）；本地基础检查 182 passed、3 xfailed，严格模式 3 failed；合并后的主仓库基础 CI 成功。三个 XFAIL 是保留的旧教学漏洞，不是修复或安全通过。R1 新增 24 项公开参数/容量检查，不生成新密钥或密码性能结果。
 
