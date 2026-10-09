@@ -4,6 +4,11 @@ Source: Cash--Hofheinz--Kiltz--Peikert, fixed 36-page author version,
 section 3.3, Lemma 3.2, PDF pp. 13--14. Basis vectors are COLUMNS;
 basis_rows stores the rows of that integer matrix without reducing mod q.
 Sage is used for exact ZZ/QQ/GF arithmetic and proven prime checks.
+
+Domain: prime q, nonempty matrices, full row rank modulo q, nonempty
+right-appended blocks. Lemma 3.2's general composite-modulus and permuted
+variants are not implemented. For the column convention A -> A P, a
+coordinate permutation would require S -> P^T S (not P S in general).
 """
 
 from dataclasses import dataclass, field
@@ -12,20 +17,31 @@ from operator import index
 from sage.all import GF, QQ, ZZ, matrix, vector
 
 
-def _integer(value):
+def _integer(value, modulus=None):
     if isinstance(value, bool):
         raise ValueError("boolean values are not integer matrix entries")
+    # Sage prime-field elements implement __index__. Do not silently forget
+    # their source modulus or mistake a reduced basis for an integer basis.
+    get_parent = getattr(value, "parent", None)
+    if callable(get_parent):
+        ring = get_parent()
+        characteristic = getattr(ring, "characteristic", None)
+        if callable(characteristic) and characteristic() != 0:
+            if (modulus is None or characteristic() != modulus
+                    or ring.cardinality() != modulus):
+                raise ValueError("finite-ring entries require a matching prime modulus; "
+                                 "otherwise supply explicit integer lifts")
     try:
         return int(index(value))
     except TypeError as exc:
         raise ValueError("exact integer entries are required") from exc
 
 
-def _rows(values):
+def _rows(values, modulus=None):
     if hasattr(values, "rows") and callable(values.rows):
         values = values.rows()
     try:
-        rows = tuple(tuple(_integer(x) for x in row) for row in values)
+        rows = tuple(tuple(_integer(x, modulus=modulus) for x in row) for row in values)
     except TypeError as exc:
         raise ValueError("expected a two-dimensional integer matrix") from exc
     if not rows or not rows[0] or any(len(row) != len(rows[0]) for row in rows):
@@ -62,12 +78,17 @@ class CHKPAlgebraParams:
 
 @dataclass(frozen=True)
 class ModMatrixReference:
+    """Integer lifts reduced modulo q, or entries of the same prime field.
+
+    Foreign finite-ring entries require an explicit caller-selected integer
+    lift; integer bases and dimensions never implicitly accept field entries.
+    """
     rows: tuple[tuple[int, ...], ...]
     q: int
 
     def __post_init__(self):
         q = _prime(self.q)
-        rows = _rows(self.rows)
+        rows = _rows(self.rows, modulus=q)
         object.__setattr__(self, "q", q)
         object.__setattr__(self, "rows", tuple(tuple(x % q for x in row) for row in rows))
 
@@ -99,7 +120,11 @@ def _full_rank_field(public):
 
 @dataclass(frozen=True)
 class KernelBasis:
-    """A complete integer basis certificate; no shortness or key secrecy claim."""
+    """A complete integer basis certificate; no shortness or key secrecy claim.
+
+    Surjectivity gives [Z^m : ker(A mod q)] = q^n. Containment together with
+    |det(S)| = q^n therefore certifies equality, not merely a sublattice.
+    """
 
     public: ModMatrixReference
     basis_rows: tuple[tuple[int, ...], ...]
@@ -167,6 +192,8 @@ def ext_basis(parent, block):
 
     This preserves the parent's full integer basis as a visible subblock.
     RandBasis is REQUIRED before this could become a delegated secret key.
+    Ordered squared GS lengths equal those of S followed by k ones. Only
+    their maximum must be >= 1; individual rational GS lengths may be < 1.
     """
     if not isinstance(parent, KernelBasis) or not isinstance(block, ModMatrixReference):
         raise ValueError("ExtBasis requires a validated basis and a modular block")

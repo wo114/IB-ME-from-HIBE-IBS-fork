@@ -29,24 +29,32 @@ def test_root_parent_child_dimensions_and_order():
         a_z = matrix(ZZ, public.rows)
         s_z = matrix(ZZ, basis.basis_rows)
         assert a_z.ncols() == s_z.nrows() == s_z.ncols()
-        assert all(int(x) % 17 == 0 for x in a_z * s_z)
+        assert all(int(x) % 17 == 0 for x in (a_z * s_z).list())
         assert s_z.rank() == public.ncols
         assert abs(s_z.det()) == 17**2
         assert basis.security_claim == "none"
         assert not basis.is_randomized
 
 
-@pytest.mark.parametrize("rows,q", [([[0, 2, 1], [1, 0, 1]], 3),
-                                    ([[2, 0, 1, 5], [0, 3, 2, 1]], 17),
-                                    ([[1, 2, 3]], 2)])
-def test_nonleading_pivots_and_complete_index(rows, q):
+@pytest.mark.parametrize("rows,q,pivots", [
+    ([[0, 2, 1], [1, 0, 1]], 3, (0, 1)),
+    ([[2, 0, 1, 5], [0, 3, 2, 1]], 17, (0, 1)),
+    ([[1, 2, 3]], 2, (0,)),
+    ([[0, 1, 0], [0, 0, 1]], 5, (1, 2)),
+    ([[0, 2, 0, 1], [0, 4, 1, 3]], 5, (1, 2)),
+    ([[0, 0, 1, 2], [0, 0, 0, 1]], 3, (2, 3)),
+])
+def test_pivot_positions_and_complete_index(rows, q, pivots):
     public = ModMatrixReference(rows, q)
     basis = complete_kernel_basis(public)
     a, s = matrix(GF(q), public.rows), matrix(ZZ, basis.basis_rows)
+    assert tuple(a.pivots()) == pivots
     assert a.rank() == public.nrows
     assert matrix(GF(q), s).nrows() == public.ncols
     assert a * matrix(GF(q), s) == 0
     assert abs(s.det()) == q**public.nrows
+    assert gram_schmidt_squared_lengths(basis.basis_rows) == (
+        (q**2,) * public.nrows + (1,) * (public.ncols - public.nrows))
 
 
 def test_exhaustive_membership_not_just_kernel_containment():
@@ -56,9 +64,9 @@ def test_exhaustive_membership_not_just_kernel_containment():
     inverse = s.inverse()
     for values in product(range(3), repeat=4):
         v = matrix(ZZ, 4, 1, values)
-        in_kernel = all(int(x) % 3 == 0 for x in a * v)
+        in_kernel = all(int(x) % 3 == 0 for x in (a * v).list())
         coords = inverse * v
-        in_basis = all(x.denominator() == 1 for x in coords)
+        in_basis = all(x.denominator() == 1 for x in coords.list())
         assert in_kernel == in_basis
 
 
