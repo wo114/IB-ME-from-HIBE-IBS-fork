@@ -1,4 +1,4 @@
-"""基线 IB-ME 最小 CLI（IMPLEMENTATION_SPEC.md §1/§7 验收场景）。
+"""IB-ME 最小 CLI：默认完整密文字节认证（SPEC §6 BYTEAUTH/1）。
 
 子命令::
 
@@ -42,8 +42,10 @@
 * 重建协议对象需要组件类，因此 CLI 按 ``--mock`` 开关导入对应后端的
   公共类（协议层自身不假设后端）；
 * ``--mock`` 使用 TEST-ONLY mock 后端（无任何安全性），仅用于联调；
-* ``--params education`` 目前映射到基线调试参数对
-  （HIBE: ``BASELINE_DEBUG_PARAMS``，IBS: ``BASELINE_DEBUG_IBS_PARAMS``，
+* encrypt/decrypt 默认使用 BYTEAUTH/1；旧未认证密文必须显式指定
+  ``--legacy-baseline``，不自动降级；长期密钥格式不变。
+* ``--params education`` 映射到带额外 89 B envelope 容量的调试参数对
+  （HIBE: ``BYTEAUTH_DEBUG_PARAMS``，IBS: ``BASELINE_DEBUG_IBS_PARAMS``，
   **security_claim: none，教学/调试参数**）。
 """
 
@@ -69,7 +71,9 @@ from ibme.protocol.baseline import (
 )
 
 #: 参数预设名 -> (HIBE 参数, IBS 参数)；均为教学/调试参数（无安全声明）。
-_PRESETS = {"education": (BASELINE_DEBUG_PARAMS, BASELINE_DEBUG_IBS_PARAMS)}
+from ibme.protocol.byteauth import BYTEAUTH_DEBUG_PARAMS
+
+_PRESETS = {"education": (BYTEAUTH_DEBUG_PARAMS, BASELINE_DEBUG_IBS_PARAMS)}
 
 _MPK_FILE = "mpk.bin"
 _MSK_FILE = "msk.bin"
@@ -153,6 +157,7 @@ def _write_state_meta(
         "identity_bytes": hibe_params.identity_bytes,
         "max_message_bytes": hibe_params.max_message_bytes,
         "security_claim": "none",  # 教学参数，无任何安全声明
+        "default_ciphertext_protocol": "byteauth-v1",
     }
     (state / _META_FILE).write_text(
         json.dumps(meta, indent=2, sort_keys=True) + "\n", encoding="utf-8"
@@ -189,8 +194,10 @@ def _load_state_meta(state: Path) -> dict:
 # ---------------------------------------------------------------------------
 
 
-def _make_runtime(mock: bool):
+def _make_runtime(mock: bool, *, legacy_baseline=False):
     """按 --mock 选择后端与组件类（组件 from_bytes 是 api 层冻结接口）。"""
+    from ibme.protocol.byteauth import ByteAuthenticatedIBME
+    protocol_class = BaselineIBME if legacy_baseline else ByteAuthenticatedIBME
     if mock:
         # TEST-ONLY 路径：mock 后端没有任何安全性。
         from ibme.hibe.mock import (
@@ -207,7 +214,7 @@ def _make_runtime(mock: bool):
         )
 
         return (
-            BaselineIBME(MockHIBE(), MockIBSBackend()),
+            protocol_class(MockHIBE(), MockIBSBackend()),
             {
                 "hpk": MockHIBEPublicKey,
                 "hmsk": MockHIBEMasterSecret,
@@ -231,7 +238,7 @@ def _make_runtime(mock: bool):
     )
 
     return (
-        BaselineIBME(ABB10HIBE(), SisIBSBackend()),
+        protocol_class(ABB10HIBE(), SisIBSBackend()),
         {
             "hpk": ABB10PublicKey,
             "hmsk": ABB10MasterSecret,
@@ -341,7 +348,7 @@ def cmd_encrypt(args) -> int:
     receiver = _parse_identity(
         args.receiver, max_bytes=meta["identity_bytes"], role="receiver identity"
     )
-    proto, classes = _make_runtime(args.mock)
+    proto, classes = _make_runtime(args.mock, legacy_baseline=args.legacy_baseline)
     pk = PublicKey.from_bytes(
         _read(args.state / _MPK_FILE), classes["hpk"], classes["ipk"]
     )
@@ -370,7 +377,7 @@ def cmd_decrypt(args) -> int:
     sender = _parse_identity(
         args.sender, max_bytes=meta["identity_bytes"], role="sender identity"
     )
-    proto, classes = _make_runtime(args.mock)
+    proto, classes = _make_runtime(args.mock, legacy_baseline=args.legacy_baseline)
     pk = PublicKey.from_bytes(
         _read(args.state / _MPK_FILE), classes["hpk"], classes["ipk"]
     )
@@ -424,7 +431,7 @@ def _add_common(sub) -> None:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="ibme",
-        description="基线 IB-ME（两层格基 HIBE + SIS-IBS）最小 CLI；"
+        description="IB-ME（两层格基 HIBE + SIS-IBS）最小 CLI；默认完整密文字节认证。"
         "教学/调试参数，security_claim: none。身份接受任意非空可打印 "
         "UTF-8 字符串（进算法前转字节）；密钥文件名由身份的 SHA-256 "
         "前 16 hex 派生，不内嵌身份原文。",
@@ -452,6 +459,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_issue_receiver_key)
 
     p = sub.add_parser("encrypt", help="加密消息（--sender 的 ek + --receiver 身份）")
+    p.add_argument("--legacy-baseline", action="store_true", help="研究对照：使用未认证的旧密文版本")
     p.add_argument("--sender", required=True, help=f"发送者{_IDENTITY_HELP}")
     p.add_argument("--receiver", required=True, help=f"接收者{_IDENTITY_HELP}")
     p.add_argument("--in", dest="in_path", type=Path, required=True, help="明文文件")
@@ -460,6 +468,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_encrypt)
 
     p = sub.add_parser("decrypt", help="解密密文（--receiver 的 dk + --sender 身份）")
+    p.add_argument("--legacy-baseline", action="store_true", help="研究对照：允许解密旧未认证密文，不自动降级")
     p.add_argument("--receiver", required=True, help=f"接收者{_IDENTITY_HELP}（需已签发 dk）")
     p.add_argument("--sender", required=True, help=f"声称的发送者{_IDENTITY_HELP}")
     p.add_argument("--in", dest="in_path", type=Path, required=True, help="密文文件")

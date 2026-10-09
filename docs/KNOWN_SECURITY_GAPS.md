@@ -1,7 +1,7 @@
 # 已知漏洞回归与基础 CI
 
 本检查保留老师的两层匿名 HIBE + IBS 通用构造，仅增加自动验收证据。
-现有教学参数和密码后端未修复，`security_claim: none`。
+现有教学 IBS 公开伪造/冒名未修复；默认 CLI 的完整密文字节认证已实现并通过原低位反例回归，整体仍 `security_claim: none`。
 
 2026-10-08 M1 补充：基础 CI 加入 `tests/test_luo_matrix_reference.py` 的 65 项数学研究检查，当前 CI 的普通批次为 247 passed、3 xfailed。下文 PR #5 的独立基础命令仍对应 182 passed、3 xfailed，两个批次不要相加。新参考使用小参数，包含“公开枚举伪造被接受”的负面对照；它不是已经通过安全准入的新 IBS 后端，三个旧漏洞目标仍未修复。
 
@@ -11,15 +11,17 @@
 
 ## 三个安全目标
 
+2026-10-09 修复排序调整：[BYTEAUTH/1](research/2026-10-09-byteauth/README.md)独立于新格后端先交付，CLI 默认启用。目标/新版本批次 Windows 和 WSL 均 28 passed、2 xfailed；完整协议/CLI+编码批次 175 passed；剩余两项严格目标为 2 failed。原始 Baseline 低位容错仍留作无标记负面对照；新包装中的公开 IBS 伪造也明确复现，不能据此称整体已安全。当前基础 CI 选择本地实测为 396 passed、2 xfailed，历史批次统计保留原时间口径。
+
 | 编号 | 目标 | 当前教学实例 |
 |---|---|---|
 | LEGACY-IBS-01 | 不持有签名密钥的公开线性求解签名应被拒绝 | 被接受 |
 | LEGACY-IBME-01 | 未获得发送者密钥的冒名密文应被拒绝 | 被接受 |
-| LEGACY-CT-01 | 单字节密文修改应被完整性验收拒绝 | c1 低位修改后恢复原消息 |
+| LEGACY-CT-01 | 单字节密文修改应被完整性验收拒绝 | 默认 BYTEAUTH 拒绝；旧 Baseline 仍为负面对照 |
 
 `tests/test_known_security_gaps.py` 使用现有攻击求解器、真实 ABB10/SIS 教学后端和固定测试随机流。
 协议伪造检查只给接收者发钥，不给被冒充发送者发钥。篡改检查先验证真实签名的合法密文可解密，
-再改变完整序列化密文的最后一个字节，确认仍可规范加载且只改变最后一个 c1 系数的低位。
+再改变内部完整序列化密文的最后一个字节，确认仍可规范加载且只改变最后一个 c1 系数的低位；旧 inner 解出同一 envelope，而默认认证版本返回 BOTTOM。没有把攻击改成破坏 magic 的容易用例。
 数据准备若异常或诚实解密失败，会报错，不能作为已知漏洞检查通过。
 
 这些问题针对具体教学实例。原始 CPA 加密的解码容错本身不是论文通用定理被攻破；
@@ -34,7 +36,7 @@ python -m pip install -e . pytest==9.1.1
 python -B -m pytest -p no:cacheprovider -ra --tb=short tests/test_encoding.py tests/test_lattice_core.py tests/test_prepared_hashing.py tests/test_known_security_gaps.py --junitxml=test-results/basic.xml
 ```
 
-当前预期为 182 项通过、3 项 XFAIL。XFAIL 是已知安全目标失败，不计为安全通过，
+PR #5 历史预期为 182 项通过、3 项 XFAIL。当前 byteauth 修复批次见上文；XFAIL 是已知安全目标失败，不计为安全通过，
 也不计为普通跳过。GitHub Actions 输出明细和 JUnit XML，并在任务摘要说明验证范围。
 JUnit 格式将 XFAIL 放在 skipped 元素中，并标记 `type="pytest.xfail"`；消费 XML 时应按这个类型与普通 skip 分开统计。
 工作流使用只读权限和固定的官方 Action 提交，不调用 pull_request_target 或读取仓库秘密。
@@ -48,7 +50,7 @@ JUnit 格式将 XFAIL 放在 skipped 元素中，并标记 `type="pytest.xfail"`
 python -B -m pytest -p no:cacheprovider --runxfail -ra --tb=short tests/test_known_security_gaps.py --junitxml=test-results/strict-security.xml
 ```
 
-`--runxfail` 忽略预期失败标记。当前教学实例应出现三个断言失败并返回非零退出码。
+`--runxfail` 忽略预期失败标记。当前应出现两个 IBS 认证目标断言失败；字节认证目标已无标记通过，严格命令仍返回非零退出码。
 也可手动运行 GitHub Actions 并选择 `strict_security=true`；严格步骤失败会使任务失败，
 不使用 continue-on-error 隐藏它。
 

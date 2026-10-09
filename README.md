@@ -4,13 +4,15 @@
 
 [已知漏洞回归与基础 CI](docs/KNOWN_SECURITY_GAPS.md)：自动记录教学实例的公开伪造和单字节篡改问题；XFAIL 表示未修复，不表示安全通过。
 
+2026-10-09 [密文字节认证修复](docs/research/2026-10-09-byteauth/README.md)：CLI 默认使用 BYTEAUTH/1，对临时认证公钥作内层 IBS 绑定并签完整外层密文字节，原 c1 低位篡改和接收者换认证密钥重签均拒绝；旧未认证密文仅显式 `--legacy-baseline` 研究开关访问。原公开 IBS 伪造及冒名仍未修复，也在新包装中保留真实反例，教育参数和整体系统仍 `security_claim: none`。本轮目标批次 28 passed、2 xfailed，完整协议/CLI 回归 175 passed；旧三个 XFAIL 已变为两个未修复目标及一个无标记通过目标。
+
 ## 当前重建路线 2026 年 10 月 9 日
 
 最新实施入口为 [R1 规格与首套选择](docs/research/2026-10-08-r1/README.md)：先做 CHKP 两层匿名 ROM HIBE + Luo 2024 矩阵 IBS 的真实研究实例，理论以原文定理引用和实现/参数对应为主。用户要求将后续工作分为 [主 AI 的 IBS/集成/优化清单](docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md)和 [队友的 CHKP/格工具任务书](docs/workplans/2026-10-08/队友任务-CHKP与格工具.md)。正式参数和完整安全实例仍未放行，`security_claim: none`。
 
 M1/M2-A 已完成 [真实矩阵参考](docs/research/luo-reference/README.md)与 [IBSBackend 接入](docs/research/2026-10-09-m2/README.md)，公开小参数伪造和一列主秘密的 LLL 恢复保留为负面对照。M2-B1 完成 [联合选参与精确模格参数](docs/research/2026-10-09-m2b/README.md)：40 行矩阵研究搜索、统计分布检查、保守范数界及 7 组模格参数对照。上一轮最低 LWE 成本来自区分攻击，现已与秘密搜索分开；原 Theorem 1 与事件 E 的范数界差异也明确记录。
 
-下一轮优先实现 Luo 模格的多项式与 Hint 参考，研究输入为 degree=256、(k,l)=(11,10)、κ=64、q=274877844481、γ₃=15270991360；一般整除/NTT/Hint 算术条件已核验，仍不是安全 preset。Windows 相关批次 431 passed、3 xfailed，WSL Luo 批次 186 passed；当前 CI 选择为 368 passed、3 xfailed。完整 IBME、正式参数准入与三项旧漏洞修复仍未完成，`security_claim: none`。
+下一轮优先实现 Luo 模格的多项式与 Hint 参考，研究输入为 degree=256、(k,l)=(11,10)、κ=64、q=274877844481、γ₃=15270991360；一般整除/NTT/Hint 算术条件已核验，仍不是安全 preset。Windows 相关批次 431 passed、3 xfailed，WSL Luo 批次 186 passed；M2-B1 当时的 CI 选择为 368 passed、3 xfailed。完整 IBME、正式参数准入与剩余两项 IBS 认证修复仍未完成，`security_claim: none`。
 
 已合并 PR #5（`37e7031`）；本地基础检查 182 passed、3 xfailed，严格模式 3 failed；合并后的主仓库基础 CI 成功。三个 XFAIL 是保留的旧教学漏洞，不是修复或安全通过。R1 新增 24 项公开参数/容量检查，不生成新密钥或密码性能结果。
 
