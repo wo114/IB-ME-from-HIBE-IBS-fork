@@ -1,0 +1,21 @@
+{
+  "config_version": "IBME/LUO2024/MATRIX-CONFIG/1",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters": {
+    "n": 4,
+    "m": 8,
+    "k": 32,
+    "q": 2147483647,
+    "eta": 1,
+    "kappa": 8,
+    "gamma1": 4096,
+    "gamma2": 131072,
+    "identity_max_bytes": 64,
+    "message_max_bytes": 4096,
+    "max_extract_attempts": 4096,
+    "max_sign_attempts": 4096,
+    "max_uniform_attempts": 64,
+    "max_cached_identities": 128
+  }
+}

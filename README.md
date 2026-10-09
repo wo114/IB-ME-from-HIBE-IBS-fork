@@ -4,11 +4,11 @@
 
 [已知漏洞回归与基础 CI](docs/KNOWN_SECURITY_GAPS.md)：自动记录教学实例的公开伪造和单字节篡改问题；XFAIL 表示未修复，不表示安全通过。
 
-## 当前重建路线 2026 年 10 月 8 日
+## 当前重建路线 2026 年 10 月 9 日
 
 最新实施入口为 [R1 规格与首套选择](docs/research/2026-10-08-r1/README.md)：先做 CHKP 两层匿名 ROM HIBE + Luo 2024 矩阵 IBS 的真实研究实例，理论以原文定理引用和实现/参数对应为主。用户要求将后续工作分为 [主 AI 的 IBS/集成/优化清单](docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md)和 [队友的 CHKP/格工具任务书](docs/workplans/2026-10-08/队友任务-CHKP与格工具.md)。正式参数和完整安全实例仍未放行，`security_claim: none`。
 
-主 AI M1 已完成 [Luo 2024 矩阵 IBS 真实参考](docs/research/luo-reference/README.md)：Setup/Extract/Sign/Verify、同一身份缓存及规范保存恢复；65 项 M1 检查在 Windows/WSL 通过，72 条签名、12 份恢复密钥和公开 transcript 跨环境一致。小参数挑战空间只有 24，公开枚举 11 次查询即可生成有效伪造，因此仍是功能研究而非安全参数后端。当前 CI 普通批次为 247 passed、3 xfailed，旧漏洞未修复；下一轮进入 M2 的契约与选参。
+主 AI M1 已完成 [真实矩阵参考](docs/research/luo-reference/README.md)，M2-A 已完成 [IBSBackend 接入与参数初筛](docs/research/2026-10-09-m2/README.md)：规范对象、固定身份密钥、新进程恢复、安装包签验与版本化研究配置。Windows 相关批次 412 passed、3 xfailed，WSL 的 Luo 批次 167 passed；原 72 条签验/12 份恢复的 M1 公开结果不变。两组小参数均能仅凭公钥枚举 6561 个候选恢复等效主秘密并伪造。新筛查还发现，四个手选大参数行即使最后一行 SIS 的启发式攻击成本指数 log₂ 达经典 166.732/量子 151.315，公开主密钥列仍映射到低成本 LWE，六类格攻击的最低估算指数约经典 11.680/量子 10.601；一个固定 n=128 样本还由公开 A,T 实验恢复一整列有界主秘密。该实验不是全主密钥恢复或完整伪造，但足以拒绝这些手选行作为安全候选。当前 CI 普通批次对应 349 passed、3 xfailed；M2-B 必须联合重选参数、完成格式/资源与模格 Hint 条件，完整 IBME 尚未交付。
 
 已合并 PR #5（`37e7031`）；本地基础检查 182 passed、3 xfailed，严格模式 3 failed；合并后的主仓库基础 CI 成功。三个 XFAIL 是保留的旧教学漏洞，不是修复或安全通过。R1 新增 24 项公开参数/容量检查，不生成新密钥或密码性能结果。
 

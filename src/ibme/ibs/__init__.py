@@ -37,6 +37,10 @@ from ibme.ibs.sis_ibs import (
     h2_vector,
     signature_bound,
 )
+from ibme.ibs.luo import (
+    LuoIBSBackend, LuoMatrixParams, LuoMasterSecret, LuoPublicKey,
+    LuoSamplingAbort, LuoSignature, LuoSigningKey,
+)
 
 __all__ = [
     # api
@@ -63,4 +67,12 @@ __all__ = [
     "h1_matrix",
     "h2_vector",
     "signature_bound",
+    # Luo 2024 matrix research adapter (not admitted as secure)
+    "LuoIBSBackend",
+    "LuoMatrixParams",
+    "LuoMasterSecret",
+    "LuoPublicKey",
+    "LuoSamplingAbort",
+    "LuoSignature",
+    "LuoSigningKey",
 ]

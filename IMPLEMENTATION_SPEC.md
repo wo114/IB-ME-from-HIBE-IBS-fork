@@ -52,6 +52,8 @@ class Params:
 
 R1 研究扩展决定（2026-10-08）：旧 `Params` 及旧 uint32 格式保持兼容；CHKP、Luo/SRGG 的独立数学参考使用各自显式研究配置，记录层级宽度、挑战和编码条件等旧类型无法表达的字段。大模数不得截断为 uint32。`BaselineIBME.setup` 已分别转发 HIBE/IBS 参数，方法形状不需改变；进入 `src/ibme/` 的新版本参数类型与 wire 必须在对应后端任务中单独补充规范和 contract tests，研究配置不自动成为生产后端。当前规格见 [R1](docs/research/2026-10-08-r1/README.md)。
 
+M2-A Luo 研究适配（2026-10-09）：`src/ibme/ibs/luo.py` 实现冻结的 IBS 方法与对象基类，显式使用独立 `LuoMatrixParams`；旧 Params 不自动映射。配置为 `IBME/LUO2024/MATRIX-CONFIG/1`，完整字段且安全声明固定 none/false，JSON 解析拒绝重复/未知字段和错误版本。对象继续兼容 M1 的 `MATRIX-REF/1` 研究格式，主状态保存固定身份密钥而不保存 RNG，验签只依赖公开输入。程序对象类型错误为 TypeError，身份/消息错误为 EncodingError，配置错误为 InvalidParameterError，反序列化错误为 SerializationError；熵源错误为 RandomnessError，预算耗尽为明确的 LuoSamplingAbort。当前 n≤16,m≤128,k≤32、uint32 q、有符号 int64 整数及 8 MiB 上限是研究资源限制；分析报告里的大参数不能交给这个版本执行。方法形状、旧后端和 CLI 选择不变，未准入安全后端。算法对应、测试、完整格式及 CHKP 载荷交接见 [M2-A](docs/research/2026-10-09-m2/README.md)。
+
 ## 3. 格基基础模块
 
 ### 模矩阵
