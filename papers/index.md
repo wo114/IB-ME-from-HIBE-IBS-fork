@@ -1,6 +1,15 @@
 # 项目论文库
 
-2026-10-10 用户提供 GKR、SRGG 和 Yu 三篇完整 PDF，已原样复制并核对标题、页数、SHA-256；历史下载失败记录保留，新状态见 [用户提供稿指纹](user-supplied-manifest-2026-10-10.json)。这些获取状态更新不等于完成算法/参数审查或安全准入。
+2026-10-10 用户提供 GKR、SRGG 和 Yu 三篇完整 PDF，已原样复制并核对标题、页数、SHA-256；历史下载失败记录保留，新状态见 [用户提供稿指纹](user-supplied-manifest-2026-10-10.json)。这些获取状态更新不等于完成算法/参数审查或安全准入。同轮另从 HAL 取得 Sageloli 完整稿，候选基础包记录于 [统一入口](../docs/research/2026-10-10-foundations/README.md)。
+
+## 2023_shorter_faster_ibs_sageloli.pdf
+
+- 标题：Shorter and Faster Identity-Based Signatures with Tight Security in the (Q)ROM from Lattices。
+- 作者：Éric Sageloli、Pierre Pébereau、Pierrick Méaux、Céline Chevalier；ACNS 2023，DOI `10.1007/978-3-031-33488-7_24`。
+- 来源：[HAL hal-04107694v1](https://hal.science/hal-04107694v1)，提交日期 2023-05-26；73 页，包含仓储封面和完整附录。文件 SHA-256 为 `0e92f184828bc8643a774e9c334b14689346387981e766c311c596239ef73e3e`；不是本轮取得的出版社30页稿。
+- 一句话主题：用非齐次原像签名减少一次消息委派，并给出 SIS/Ring-SIS 两条 IBS 路线。
+- 本轮速读范围：§5–8 的算法/游戏/表格和 Appendix E；固定密钥游戏适配、尺寸单位与有限实例继续单独核对，未重证基础定理。
+- 文件：[PDF](2023_shorter_faster_ibs_sageloli.pdf)。获取尝试见 [记录](candidate-fetch-2026-10-10.json)，TeX 源码未取得。
 
 ## 2026_ibs_ibme_yu.pdf
 

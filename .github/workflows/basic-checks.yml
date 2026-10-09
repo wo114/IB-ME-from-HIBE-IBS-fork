@@ -37,6 +37,7 @@ jobs:
           tests/test_luo_module_math.py tests/test_luo_module_backend.py
           tests/test_luo_module_security_screen.py
           tests/test_luo_module_codec.py
+          tests/test_candidate_foundations.py
           tests/test_byteauth.py
           --junitxml=test-results/basic.xml
       - name: Enforce security targets when explicitly requested
@@ -62,6 +63,7 @@ jobs:
           The module backend runs the exact 38-bit research modulus and public-only Verify, including strict object formats and Hint boundaries; it is not registered as the default CLI IBS.
           Module admission tests check exact Hint/fork bounds and conditional nonzero controls. Pinned Sage cost estimates and oracle assumptions are separate; no security grade follows from these checks.
           MODULE-COMPACT/1 checks lossless mathematical/hash-input equivalence and strict canonical decoding. It changes transport size, not security parameters or the algorithm count.
+          Candidate handoff tests validate sources, metadata boundaries and Sageloli counting units. Candidate entries are not implemented/admitted backends; Sage algebra prerequisites run separately.
           Its small functional profiles also admit public master recovery. The external Sage SIS/LWE cost screen and public-only LLL recovery control run separately.
           See the pytest log and JUnit artifact for actual passed, failed, and skipped outcomes.
           '@ | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8

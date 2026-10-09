@@ -1,0 +1,158 @@
+{
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameter_admission": false,
+  "python": "3.13.14 | packaged by conda-forge | (main, Jun 12 2026, 09:50:25) [GCC 14.3.0]",
+  "sage": "10.9",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "entropy": "Deterministic public examples and test-only IBS random streams",
+  "repeats": 1,
+  "rom": "Existing Luo hash interpretation only; algebra examples have no security-model claim",
+  "chkp": {
+    "n": 2,
+    "base_columns": 4,
+    "q": 17,
+    "rows": [
+      {
+        "level": 0,
+        "columns": 4,
+        "basis_shape": [
+          4,
+          4
+        ],
+        "kernel_equation": true,
+        "determinant": 289
+      },
+      {
+        "level": 1,
+        "columns": 8,
+        "basis_shape": [
+          8,
+          8
+        ],
+        "kernel_equation": true,
+        "determinant": 289
+      },
+      {
+        "level": 2,
+        "columns": 12,
+        "basis_shape": [
+          12,
+          12
+        ],
+        "kernel_equation": true,
+        "determinant": 289
+      }
+    ],
+    "security_claim": "none",
+    "backend_admitted": false,
+    "randbasis_implemented": false,
+    "gaussian_sampling_implemented": false,
+    "note": "Public long bases and ExtBasis only. Parent basis remains visible: these objects MUST NOT be issued as user keys."
+  },
+  "abb": {
+    "q": 17,
+    "n": 2,
+    "m": 4,
+    "rows": [
+      {
+        "level": 1,
+        "columns": 4,
+        "complete_basis_determinant": 289,
+        "multiply_only_determinant": 578,
+        "multiply_only_sublattice_index": 2,
+        "multiply_only_is_complete_basis": false
+      },
+      {
+        "level": 2,
+        "columns": 4,
+        "complete_basis_determinant": 289,
+        "multiply_only_determinant": 1734,
+        "multiply_only_sublattice_index": 6,
+        "multiply_only_is_complete_basis": false
+      }
+    ],
+    "security_claim": "none",
+    "backend_admitted": false,
+    "sampler_R_implemented": false,
+    "short_basis_completion_implemented": false,
+    "note": "Multiplication alone yields a proper sublattice (indices 2,6). Public elimination completes only a long basis; it is NOT ABB BasisDel."
+  },
+  "ring": {
+    "degree": 8,
+    "moduli": [
+      17,
+      81
+    ],
+    "negacyclic_product_matches_sage": true,
+    "composite_modulus_tested": true,
+    "toy_NTRU_integer_identity": true,
+    "security_claim": "none",
+    "actual_NTRU_keygen": false,
+    "ring_sampler_implemented": false,
+    "note": "Only ring arithmetic and a public trivial NTRU identity. No LATTE, Zhang or Sageloli signature/encryption is implemented here."
+  },
+  "ibs": [
+    {
+      "candidate_id": "luo-matrix",
+      "setup_extract_sign_verify": true,
+      "signature_bytes": 259,
+      "identity_bytes": 5,
+      "message_bytes": 10,
+      "repeats": 1,
+      "parameters": {
+        "n": 4,
+        "m": 8,
+        "k": 4,
+        "q": 65537,
+        "eta": 1,
+        "kappa": 2,
+        "gamma1": 128,
+        "gamma2": 2048,
+        "identity_max_bytes": 16,
+        "message_max_bytes": 32,
+        "max_extract_attempts": 4096,
+        "max_sign_attempts": 4096,
+        "max_uniform_attempts": 64,
+        "max_cached_identities": 128
+      },
+      "security_claim": "none",
+      "backend_admitted": false
+    },
+    {
+      "candidate_id": "luo-module",
+      "setup_extract_sign_verify": true,
+      "signature_bytes": 29455,
+      "identity_bytes": 5,
+      "message_bytes": 10,
+      "repeats": 1,
+      "parameters": {
+        "degree": 256,
+        "k": 11,
+        "l": 10,
+        "q": 274877844481,
+        "root": 153250464611,
+        "eta": 1,
+        "kappa": 64,
+        "gamma1": 125440,
+        "gamma2": 31470387200,
+        "gamma3": 15270991360,
+        "dropped_bits": 28,
+        "identity_max_bytes": 64,
+        "message_max_bytes": 4096,
+        "max_extract_attempts": 1024,
+        "max_sign_attempts": 1024,
+        "max_uniform_attempts": 128,
+        "max_cached_identities": 64
+      },
+      "security_claim": "none",
+      "backend_admitted": false,
+      "compact_signature_bytes": 16063
+    }
+  ],
+  "source_sha256_lf": {
+    "experiments/research/candidate_preflight.py": "88efc48fa03eef27642c9e34c9b87f146ae47153a8ad37edb4a48b187fb6f4d6"
+  },
+  "limits": "No new full HIBE/IBS backend, secure parameter, timing comparison or proof follows from these prerequisites."
+}
