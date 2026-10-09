@@ -9,6 +9,7 @@ from ibme.hibe.abb10 import (ABB10HIBE, ABB10_DEBUG_PARAMS, ABB10PublicKey, ABB1
                             ABB10Level1SecretKey, ABB10Level2SecretKey)
 from ibme.ibs.luo_module import (LuoModuleIBSBackend, LuoModuleParams, LuoModulePublicKey,
                                LuoModuleMasterSecret, LuoModuleSigningKey)
+from ibme.ibs.luo_module_codec import LuoModuleCompactIBSBackend
 from .baseline import PublicKey, SenderKey
 from .byteauth import ByteAuthenticatedIBME, encode_bound_message, COMMITMENT_BYTES
 from .hybrid_hibe import HybridHIBE, HybridHIBEParams, HybridLimits, HybridPublicKey, encoded_identity_bytes
@@ -61,9 +62,12 @@ class _ProfileDecoder:
         return value
 
 
-def make_research_runtime(*, ibs_rng=None, ots_rng=None):
+def make_research_runtime(*, ibs_rng=None, ots_rng=None, signature_format="reference"):
+    if signature_format not in ("reference", "compact"):
+        raise InvalidParameterError("unknown research signature format")
     hibe = make_hybrid_abb10()
-    protocol = LuoHybridResearchIBME(hibe, LuoModuleIBSBackend(rng=ibs_rng), ots_rng=ots_rng)
+    backend = LuoModuleCompactIBSBackend if signature_format == "compact" else LuoModuleIBSBackend
+    protocol = LuoHybridResearchIBME(hibe, backend(rng=ibs_rng), ots_rng=ots_rng)
     readers = {name: _ProfileDecoder(reader, False) for name, reader in hibe.component_decoders().items()}
     readers.update(ipk=_ProfileDecoder(LuoModulePublicKey, True),
                    imsk=_ProfileDecoder(LuoModuleMasterSecret, True),

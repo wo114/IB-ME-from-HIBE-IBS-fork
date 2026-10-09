@@ -47,6 +47,10 @@ from ibme.ibs.luo_module import (
     LuoModuleIBSBackend, LuoModuleParams, LuoModuleMasterSecret, LuoModulePublicKey,
     LuoModuleSamplingAbort, LuoModuleSignature, LuoModuleSigningKey,
 )
+from ibme.ibs.luo_module_codec import (
+    LuoModuleCompactIBSBackend, LuoModuleCompactSignature,
+    compact_layout, encode_compact, decode_compact,
+)
 
 __all__ = [
     # api
@@ -89,4 +93,10 @@ __all__ = [
     "LuoModuleSamplingAbort",
     "LuoModuleSignature",
     "LuoModuleSigningKey",
+    # Lossless MODULE-COMPACT/1 transport; same algorithm and security status.
+    "LuoModuleCompactIBSBackend",
+    "LuoModuleCompactSignature",
+    "compact_layout",
+    "encode_compact",
+    "decode_compact",
 ]

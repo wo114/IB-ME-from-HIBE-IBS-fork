@@ -68,6 +68,12 @@ M2-A Luo 研究适配（2026-10-09）：`src/ibme/ibs/luo.py` 实现冻结的 IB
 
 非零条件须分支记录：整数二次幂分圆环是整环，小挑战乘积的系数界小于 q，足以排除新身份分支的零模产品，无需错误假设所有挑战在 Rq 可逆；已签身份分支不能只由 c≠c′ 推出非零，需要原文公开模拟/固定缓存条件下的平均猜测界。此条件论证、启发式成本筛查及真实实现分别验收，尚无完整 QROM/侧信道/安全默认实例；研究代码与生产参数不得据此被无条件放行。
 
+2026-10-09 `MODULE-COMPACT/1` 传输格式：只压缩签名字节，不改变参数、公钥/密钥格式、数学签名或 H1/H2 的既有输入编码。z 以偏移 `z+Zmax` 打包，`Zmax=γ₂−β₂−1`，宽度 `max(1,bit_length(2*Zmax))`；w₁ 宽度为 `max(1,bit_length(max_w1))`；默认分别36/11位。挑战使用N位存在位图和κ个符号位（按系数下标递增，1表示−1）；h 按全体 kN 个 bit 打包，不增加 Hint 重量限制。全部系数按多项式行序、最高位优先打包；末尾不足字节的低位必须零，不能接受非规范填充或未使用范围编码。
+
+压缩 wire：`L24C1 || LP(IBME/LUO2024/MODULE-COMPACT/1) || LP(SIGNATURE) || LP(params) || LP(context) || LP(z) || LP(c_presence) || LP(c_signs) || LP(w1) || LP(h)`；params/context仍是136/64B，字段长度由已验证公钥参数推导，先核对参数/上下文，再解码固定大小字段。总长≤1MiB，拒绝截断、追加、重复、版本/上下文错误、维度/范围/权重和填充异常。编码/解码在合法数学签名空间与规范字节空间上互逆；BITPACK不是新的密码算法。
+
+显式 `LuoModuleCompactIBSBackend` 复用原四算法与密钥缓存，只包装 Sign 返回值及选定格式的加载；规范转换函数可用于参考/压缩差分。`luo-module-research` setup 支持 `--signature-format reference|compact`，缺省 reference；研究 state明确保存选择，既有缺少该字段的v1状态按已知 reference 格式读取。Encrypt/Decrypt 按state选择，不能用这个选项临时改解码器；compact加载器仅接收compact，reference仅接收reference。教育/mock配置不支持compact选项，既有哈希域及Wang/BYTEAUTH的输入和绑定均不改。安全声明和原语实例计数不因压缩改变。
+
 ### 模矩阵
 
 `ModMatrix` 至少支持：
