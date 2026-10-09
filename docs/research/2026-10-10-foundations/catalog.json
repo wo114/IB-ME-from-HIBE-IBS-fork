@@ -119,9 +119,9 @@
       "assumptions": ["SIS", "PRF；采用LWE-PRF时另记LWE"], "paper_model": "standard-model-claimed", "review": "section-reviewed", "backend": "none", "parameters": "not-admitted", "fit": "unknown",
       "algorithm_location": "用户提供26页出版稿；§3.1固定密钥游戏；§3.3 Figure5/Theorem3；§2 PRF/Evalpub/Evalprv",
       "interface_mapping": ["setup：两个PRF及公开矩阵/gadget配置", "key_extract：公开同态求值和一次陷门委派，保存身份随机值与密钥", "sign：新随机值/消息PRF求值，第二次委派与短原像", "verify：按Figure5公开验证与两套PRF绑定；严格数学对象格式待冻结", "仅调查IBS组件，保持Wang HIBE+IBS；不改成论文另一套IBE+IBS通用构造"],
-      "assets": ["docs/research/2026-10-08-selection/文献复核与后续实施计划.md"],
-      "next_steps": ["原稿已归档；实现Evalpub/Evalprv/gadget关系的最小独立单元", "核对固定身份密钥、PRF实例/电路规模与Gaussian/范数条件", "先选有限最小电路/参数，不继承整个IBME标准模型标签"],
-      "work_area": "experiments/research/candidates/yu/", "probe": null, "scenario_hypotheses": ["many-identities", "model-comparison"]
+      "assets": ["docs/research/2026-10-08-selection/文献复核与后续实施计划.md", "experiments/research/candidates/yu/homomorphic_reference.py", "docs/research/2026-10-10-yu/README.md"],
+      "next_steps": ["同态代数/匹配电路参考已完成；核对兼容原文奇异值界的评估实现", "接实际PRF有限电路，核对固定身份密钥及Gaussian/范数条件", "之后接委派/采样与Figure5四算法，仍不继承整个IBME标准模型标签"],
+      "work_area": "experiments/research/candidates/yu/", "probe": "yu-homomorphism-algebra", "scenario_hypotheses": ["many-identities", "model-comparison"]
     },
     {
       "id": "sageloli-sis", "role": "IBS", "label": "Sageloli 2023 矩阵 SIS IBS", "family": "Sageloli", "sources": ["sageloli"],

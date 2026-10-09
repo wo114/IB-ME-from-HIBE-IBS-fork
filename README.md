@@ -10,6 +10,8 @@
 
 2026-10-10 用户更新顺序：**全部候选先做基础准备 → 首套完整实现 → 继续其它候选并比较 → 选择三组场景代表 → 联合优化**。已建立 [候选基础包](docs/research/2026-10-10-foundations/README.md)，7个HIBE/10个IBS条目及17份来源，逐项给出算法/接口/参数状态、复用资产和队友任务；3个公共代数探针、2套已有IBS最小实跑及Sageloli单位计数已完成。条目数不等于实现数，未预定获选三套；其余路线也保留为重要比较材料。原先继续压缩/跑分的安排已后置，正式安全组合仍未准入。GKR、SRGG、Yu全文由用户补齐并原样归档。
 
+最新 [Yu同态基础单元](docs/research/2026-10-10-yu/README.md)已实现gadget分解、NAND/匹配电路和公开/私有整数关系；47项检查跨环境通过，Sage独立核对32组输入及152个位原像。它供后续PRF/发钥/签名接手，当前仅完成同态代数部分，论文的完整范数保证、真实PRF及Yu IBS仍待实现，全部none/false；未做新的压缩/性能优化。
+
 总体规格与分工以 [R1](docs/research/2026-10-08-r1/README.md)为基础：队友实施 CHKP 两层匿名 ROM HIBE；主 AI 已形成 Luo 矩阵正确性参考，当前进一步实现模格 IBS，进度见下文 M2-B2。理论以原文定理引用和实现/参数对应为主。后续工作分为 [主 AI 的 IBS/集成/优化清单](docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md)和 [队友的 CHKP/格工具任务书](docs/workplans/2026-10-08/队友任务-CHKP与格工具.md)。正式参数和完整安全实例仍未放行，`security_claim: none`。
 
 M1/M2-A 已完成 [真实矩阵参考](docs/research/luo-reference/README.md)与 [IBSBackend 接入](docs/research/2026-10-09-m2/README.md)，公开小参数伪造和一列主秘密的 LLL 恢复保留为负面对照。M2-B1 完成 [联合选参与精确模格参数](docs/research/2026-10-09-m2b/README.md)：40 行矩阵研究搜索、统计分布检查、保守范数界及 7 组模格参数对照。上一轮最低 LWE 成本来自区分攻击，现已与秘密搜索分开；原 Theorem 1 与事件 E 的范数界差异也明确记录。

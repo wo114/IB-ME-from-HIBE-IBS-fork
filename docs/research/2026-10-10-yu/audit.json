@@ -1,0 +1,634 @@
+{
+  "security_claim": "none",
+  "backend_admitted": false,
+  "full_IBS_implemented": false,
+  "actual_PRF_implemented": false,
+  "paper_spectral_norm_bound_verified": false,
+  "lemma7_homomorphism_portion_checked": true,
+  "paper_source": "papers/2026_ibs_ibme_yu.pdf",
+  "paper_sha256": "f10d8672d952d9923a00c883a7d65feb36a15fb67fbef1c52ee64254f5301948",
+  "paper_locations": "§2.2 Definition2/Lemma7 PDF6; §3.3 Eq.(3.2)/Figure5",
+  "python": "3.13.14 | packaged by conda-forge | (main, Jun 12 2026, 09:50:25) [GCC 14.3.0]",
+  "sage": "10.9",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "repeats_per_input": 1,
+  "entropy": "Deterministic teaching streams only; synthetic +/-1 input witnesses",
+  "identity_message_lengths": "Not applicable: Boolean circuits over 2/3/4 synthetic bits; no IBS identity/message encoding",
+  "rom": "None in this algebra component; no standard-model or QROM security claim follows",
+  "cases": [
+    {
+      "name": "nand-prime",
+      "parameters": {
+        "n": 1,
+        "m": 3,
+        "q": 17
+      },
+      "gadget_columns": 5,
+      "inputs": 2,
+      "outputs": 1,
+      "gates": 1,
+      "output_depth": 1,
+      "public_output_shape": [
+        1,
+        5
+      ],
+      "private_output_shape": [
+        3,
+        5
+      ],
+      "circuit_sha256": "9cee3f9e935dac8b105eaa7fe5cc1673aba7d32b82d6bc86e1b4da9ca37c3655",
+      "rows": [
+        {
+          "input_bits": [
+            0,
+            0
+          ],
+          "output_bits": [
+            1
+          ],
+          "public_output_sha256": "70bc434bff4045f91f9ddd00bc36da371dd9836aaac102066fee6c539b646562",
+          "private_coefficient_max": 3,
+          "max_intermediate_abs": 3,
+          "coefficient_bound": 6,
+          "frobenius_squared": 65
+        },
+        {
+          "input_bits": [
+            0,
+            1
+          ],
+          "output_bits": [
+            1
+          ],
+          "public_output_sha256": "4003e06ef5d322ad1c2e491a8cec3ca29c1adbbeb58bf66aa0abd1d9f13d8437",
+          "private_coefficient_max": 2,
+          "max_intermediate_abs": 2,
+          "coefficient_bound": 6,
+          "frobenius_squared": 18
+        },
+        {
+          "input_bits": [
+            1,
+            0
+          ],
+          "output_bits": [
+            1
+          ],
+          "public_output_sha256": "9baab88a2048810852ed978e8d5b06c4f29765bf08710d23b2ba7b6d1bb127ae",
+          "private_coefficient_max": 4,
+          "max_intermediate_abs": 4,
+          "coefficient_bound": 6,
+          "frobenius_squared": 66
+        },
+        {
+          "input_bits": [
+            1,
+            1
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "870fc991e6674f7105524b2ab63ce6fe69ac3c82fd8414ddd5d58d77d8c58799",
+          "private_coefficient_max": 3,
+          "max_intermediate_abs": 3,
+          "coefficient_bound": 6,
+          "frobenius_squared": 29
+        }
+      ]
+    },
+    {
+      "name": "nand-composite",
+      "parameters": {
+        "n": 1,
+        "m": 3,
+        "q": 81
+      },
+      "gadget_columns": 7,
+      "inputs": 2,
+      "outputs": 1,
+      "gates": 1,
+      "output_depth": 1,
+      "public_output_shape": [
+        1,
+        7
+      ],
+      "private_output_shape": [
+        3,
+        7
+      ],
+      "circuit_sha256": "9cee3f9e935dac8b105eaa7fe5cc1673aba7d32b82d6bc86e1b4da9ca37c3655",
+      "rows": [
+        {
+          "input_bits": [
+            0,
+            0
+          ],
+          "output_bits": [
+            1
+          ],
+          "public_output_sha256": "4ce87aaf29e118a9ea7238b25a43c5f51e716c77475a927352c278b9d49b64ff",
+          "private_coefficient_max": 3,
+          "max_intermediate_abs": 3,
+          "coefficient_bound": 8,
+          "frobenius_squared": 29
+        },
+        {
+          "input_bits": [
+            0,
+            1
+          ],
+          "output_bits": [
+            1
+          ],
+          "public_output_sha256": "b26192e5ff424514413991609e4d00b2eeaa0a224ec66c0caabd1a57dbafa481",
+          "private_coefficient_max": 2,
+          "max_intermediate_abs": 2,
+          "coefficient_bound": 8,
+          "frobenius_squared": 22
+        },
+        {
+          "input_bits": [
+            1,
+            0
+          ],
+          "output_bits": [
+            1
+          ],
+          "public_output_sha256": "4e0381c76e71187818493493c5909574dca4fdd293d46caf12e5427d8f0dabf8",
+          "private_coefficient_max": 4,
+          "max_intermediate_abs": 4,
+          "coefficient_bound": 8,
+          "frobenius_squared": 68
+        },
+        {
+          "input_bits": [
+            1,
+            1
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "4a723ce6c8e5a29b5fe1d59b428928335394b1bd1b909a2118c80febc164fd9e",
+          "private_coefficient_max": 3,
+          "max_intermediate_abs": 3,
+          "coefficient_bound": 8,
+          "frobenius_squared": 35
+        }
+      ]
+    },
+    {
+      "name": "shared-multi-output",
+      "parameters": {
+        "n": 2,
+        "m": 4,
+        "q": 257
+      },
+      "gadget_columns": 18,
+      "inputs": 3,
+      "outputs": 3,
+      "gates": 2,
+      "output_depth": 2,
+      "public_output_shape": [
+        2,
+        54
+      ],
+      "private_output_shape": [
+        4,
+        54
+      ],
+      "circuit_sha256": "7b10f48f58e69270eccdce003dc6ad99625a7b43915e16a08dade84f45a09a9a",
+      "rows": [
+        {
+          "input_bits": [
+            0,
+            0,
+            0
+          ],
+          "output_bits": [
+            1,
+            1,
+            0
+          ],
+          "public_output_sha256": "bfe987e16bb0320e269d24f0abccab021edd3cfe2afb22f1f1bef6191310f550",
+          "private_coefficient_max": 34,
+          "max_intermediate_abs": 34,
+          "coefficient_bound": 361,
+          "frobenius_squared": 19196
+        },
+        {
+          "input_bits": [
+            0,
+            0,
+            1
+          ],
+          "output_bits": [
+            0,
+            1,
+            0
+          ],
+          "public_output_sha256": "53187f40030d3210d19261903dec064ba6637f49da9c4da4704973aa17780eea",
+          "private_coefficient_max": 36,
+          "max_intermediate_abs": 36,
+          "coefficient_bound": 361,
+          "frobenius_squared": 18992
+        },
+        {
+          "input_bits": [
+            0,
+            1,
+            0
+          ],
+          "output_bits": [
+            1,
+            1,
+            0
+          ],
+          "public_output_sha256": "e668e32c99dece5d8e9c1c2b4be565151bace78fd0f22e6c45f14265ba6ebf21",
+          "private_coefficient_max": 34,
+          "max_intermediate_abs": 34,
+          "coefficient_bound": 361,
+          "frobenius_squared": 20064
+        },
+        {
+          "input_bits": [
+            0,
+            1,
+            1
+          ],
+          "output_bits": [
+            0,
+            1,
+            0
+          ],
+          "public_output_sha256": "ecd5f4a31fd5a054b9736204b7e0a44b0998495e2fdbeabee03793dfa6451702",
+          "private_coefficient_max": 32,
+          "max_intermediate_abs": 32,
+          "coefficient_bound": 361,
+          "frobenius_squared": 19268
+        },
+        {
+          "input_bits": [
+            1,
+            0,
+            0
+          ],
+          "output_bits": [
+            1,
+            1,
+            1
+          ],
+          "public_output_sha256": "9c958841afe782ba7ce44a46d516ad3bec6399e260b60b831a57483a75f3ac4e",
+          "private_coefficient_max": 38,
+          "max_intermediate_abs": 38,
+          "coefficient_bound": 361,
+          "frobenius_squared": 22784
+        },
+        {
+          "input_bits": [
+            1,
+            0,
+            1
+          ],
+          "output_bits": [
+            0,
+            1,
+            1
+          ],
+          "public_output_sha256": "72ff63e4d7ae016965771fee3c10b18931b8501fa136db3e527fdc0ddf1be9ab",
+          "private_coefficient_max": 39,
+          "max_intermediate_abs": 39,
+          "coefficient_bound": 361,
+          "frobenius_squared": 22908
+        },
+        {
+          "input_bits": [
+            1,
+            1,
+            0
+          ],
+          "output_bits": [
+            1,
+            0,
+            1
+          ],
+          "public_output_sha256": "6f8bd9cd3d1d13c6d9b1870c874f30a65c221302dfd0cc39946e5b550d666d4b",
+          "private_coefficient_max": 39,
+          "max_intermediate_abs": 39,
+          "coefficient_bound": 361,
+          "frobenius_squared": 23404
+        },
+        {
+          "input_bits": [
+            1,
+            1,
+            1
+          ],
+          "output_bits": [
+            1,
+            0,
+            1
+          ],
+          "public_output_sha256": "d55a073bb33880a49b2807cdde0006c7f51f2699b2e0fc4068d645c1bd8b5027",
+          "private_coefficient_max": 36,
+          "max_intermediate_abs": 36,
+          "coefficient_bound": 361,
+          "frobenius_squared": 22788
+        }
+      ]
+    },
+    {
+      "name": "match-1010",
+      "parameters": {
+        "n": 2,
+        "m": 4,
+        "q": 257
+      },
+      "gadget_columns": 18,
+      "inputs": 4,
+      "outputs": 1,
+      "gates": 8,
+      "output_depth": 5,
+      "public_output_shape": [
+        2,
+        18
+      ],
+      "private_output_shape": [
+        4,
+        18
+      ],
+      "circuit_sha256": "c0d2ab9f283a5e76c9cf3606907ed01b44e09db11aa0139a6c87020d6bdc9fbb",
+      "rows": [
+        {
+          "input_bits": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "46ec7f03161505d27a1e716e29a2aa1f8303b3c9d3bc33607caf32d503b0eb3a",
+          "private_coefficient_max": 2236,
+          "max_intermediate_abs": 2236,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 63241556
+        },
+        {
+          "input_bits": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "50049aaffe63e3c3b9393e3ca50310f7c9ebd5014d7a60753b5bc5e55f8c227b",
+          "private_coefficient_max": 2478,
+          "max_intermediate_abs": 2478,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 57620788
+        },
+        {
+          "input_bits": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "70886cf7636bf1274582d7f3af36dcc31b76c7752f3b1f64cf0918c3b5ecfc26",
+          "private_coefficient_max": 1944,
+          "max_intermediate_abs": 1944,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 50473860
+        },
+        {
+          "input_bits": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "c8e882dc5c3f8da5bdaf90c8766954f4e17c4c16bbe3051a815ecea6abeeb185",
+          "private_coefficient_max": 2200,
+          "max_intermediate_abs": 2200,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 47816080
+        },
+        {
+          "input_bits": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "e82274c0037aff937f3cf9ce09767166d587244dea814c5e2227269df7f8d985",
+          "private_coefficient_max": 2147,
+          "max_intermediate_abs": 2147,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 82843184
+        },
+        {
+          "input_bits": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "1b7fb92396b2a48f227c1bf573e9ab5704cffc87f392213e40d73cebb8d798cf",
+          "private_coefficient_max": 2214,
+          "max_intermediate_abs": 2214,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 76199724
+        },
+        {
+          "input_bits": [
+            0,
+            1,
+            1,
+            0
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "61763c11141b910e1a2fd8f4c01c5e7a94fab773b90afc6d2ed76ec25a95e0b7",
+          "private_coefficient_max": 1997,
+          "max_intermediate_abs": 1997,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 59785880
+        },
+        {
+          "input_bits": [
+            0,
+            1,
+            1,
+            1
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "c68443130b5bef1dd79e218c50eeeb404976ca69570dce0ea376bde70bd4020f",
+          "private_coefficient_max": 1982,
+          "max_intermediate_abs": 1982,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 59524372
+        },
+        {
+          "input_bits": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "03b700b368e99c767af89bc742b767f56c863295936a50b8791973b43b08a24f",
+          "private_coefficient_max": 4088,
+          "max_intermediate_abs": 4088,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 203633484
+        },
+        {
+          "input_bits": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "e171bfe6ee54294f6aa89a21f02c0f9dd09670177a09ff0db0e5dedbde2513c6",
+          "private_coefficient_max": 3840,
+          "max_intermediate_abs": 3840,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 192790380
+        },
+        {
+          "input_bits": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "output_bits": [
+            1
+          ],
+          "public_output_sha256": "890aa144ce33d5568312b6d576160ce6277959c1d9e6187aee7d28a06c21d259",
+          "private_coefficient_max": 2986,
+          "max_intermediate_abs": 2986,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 126355836
+        },
+        {
+          "input_bits": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "798b693622a010a948c8b077518b755df83509db12432b27777c82fe6dc23861",
+          "private_coefficient_max": 2827,
+          "max_intermediate_abs": 2827,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 122504760
+        },
+        {
+          "input_bits": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "016d887333b9ce2aba790d523ab00f66321c36cab739e6ede71ceb4e6a0d33b2",
+          "private_coefficient_max": 5473,
+          "max_intermediate_abs": 5473,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 499153072
+        },
+        {
+          "input_bits": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "7131ab4f45e05f0623c799ae821585c2aeb1c5dee6fc91630b9680c29c556160",
+          "private_coefficient_max": 5941,
+          "max_intermediate_abs": 5941,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 368330144
+        },
+        {
+          "input_bits": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "7a9a8779b161df3cd6b63fd91244cadd2da4a36498e14f4c7513dbfd609f9f61",
+          "private_coefficient_max": 5449,
+          "max_intermediate_abs": 5449,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 352935796
+        },
+        {
+          "input_bits": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "output_bits": [
+            0
+          ],
+          "public_output_sha256": "688444b7197346245d03d3d752b217de565045d81de1c3b7b4936971caa3092a",
+          "private_coefficient_max": 5541,
+          "max_intermediate_abs": 5541,
+          "coefficient_bound": 2476099,
+          "frobenius_squared": 368107676
+        }
+      ]
+    }
+  ],
+  "input_assignments_checked": 32,
+  "independent_digit_preimages_checked": 152,
+  "altered_public_outputs_rejected": 32,
+  "source_sha256_lf": {
+    "experiments/research/candidates/yu/homomorphic_reference.py": "09c15b1cd2d488a39be2acf2f6f21890067e1a34d58ac086dc7e72d81154ce38",
+    "experiments/research/candidates/yu/audit.py": "c4419c82eeeebce2188bfbfae2008dd473e3fa86d1ba7335bc516496d89720ef"
+  },
+  "limitations": [
+    "Canonical binary preimages give exact equations but not a Gaussian sampler or the paper's O(4^d*m^1.5) singular-value bound.",
+    "Initial +/-1 witnesses and arbitrary integer witnesses used in composition have different norm scopes.",
+    "Full PRF circuit/evaluation, sampling, finite parameters, IBS and protocol integration remain WIP.",
+    "No private matrices, witness digest, random seed or key snapshot is exported."
+  ]
+}
