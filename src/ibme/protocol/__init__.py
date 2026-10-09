@@ -35,6 +35,7 @@ from ibme.protocol.baseline import (
     is_bottom,
     parse_payload,
 )
+from ibme.protocol.byteauth import ByteAuthenticatedIBME, ByteAuthCiphertext
 
 __all__ = [
     "BASELINE_DEBUG_IBS_PARAMS",
@@ -42,6 +43,8 @@ __all__ = [
     "BASELINE_MOCK_PARAMS",
     "BOTTOM",
     "BaselineIBME",
+    "ByteAuthenticatedIBME",
+    "ByteAuthCiphertext",
     "Ciphertext",
     "DOMAIN_SIGNATURE",
     "MasterSecret",

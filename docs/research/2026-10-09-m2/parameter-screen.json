@@ -1,0 +1,1391 @@
+{
+  "schema": "IBME/LUO2024/MATRIX-SCREEN/1",
+  "paper": "https://icics2024.aegean.gr/wp-content/uploads/2024/08/150570198.pdf",
+  "theorem_mapping": "Section 2.1 infinity-norm SIS; Theorem 1 d=2*gamma2+2*kappa*beta1; explicit n,m,q",
+  "master_recovery_lwe_model": {
+    "equation": "A=[A0|A1], S=[S0;S1], U=A0^-1*T=S0+(A0^-1*A1)*S1 (mod q)",
+    "condition": "A0 is invertible over Z_q; for uniform square A0 the probability is product_{i=1}^n(1-q^-i)",
+    "interpretation": "each of the k public master columns gives n samples of an (m-n)-dimensional bounded-secret, bounded-error LWE instance",
+    "limitation": "heuristic implemented-lattice-attack screen and one-column recovery experiment; neither alone proves a full IBS forgery or a theorem-level break"
+  },
+  "runtime": {
+    "python": "3.13.14",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "processor": "x86_64"
+  },
+  "research_reference_challenge_cap": {
+    "k": 32,
+    "maximizing_kappa": 22,
+    "count": "270583946280960",
+    "log2_count": 47.94306957532107
+  },
+  "rows": [
+    {
+      "name": "r1-tiny",
+      "source": "hand-selected research or screening family, not published safe parameters",
+      "parameters": {
+        "n": 4,
+        "m": 8,
+        "k": 4,
+        "q": 65537,
+        "eta": 1,
+        "kappa": 2,
+        "gamma1": 128,
+        "gamma2": 2048
+      },
+      "beta1": 2,
+      "beta2": 256,
+      "q_bit_length": 17,
+      "q_prime": true,
+      "reference_executable": true,
+      "current_wire_encodable": true,
+      "challenge_count": "24",
+      "challenge_bits": 4.584962500721156,
+      "generic_quantum_challenge_search_exponent": 2.292481250360578,
+      "challenge_count_at_least_2pow128": false,
+      "challenge_count_at_least_2pow256": false,
+      "extraction": {
+        "planning_expected_trials": 1.6519742327470306,
+        "planning_log2_expected_trials": 0.7241911839861753,
+        "unconditional_central_region_log2_acceptance_lower_bound": -1.4599237480255096,
+        "coefficient_count": 32,
+        "scope": "planning model plus deterministic central-region bound; excludes uniform-draw/hash budgets"
+      },
+      "signing": {
+        "planning_expected_trials": 2.9224914299895484,
+        "planning_log2_expected_trials": 1.5471987941565186,
+        "unconditional_central_region_log2_acceptance_lower_bound": -3.326875044035412,
+        "coefficient_count": 8,
+        "scope": "planning model plus deterministic central-region bound; excludes uniform-draw/hash budgets"
+      },
+      "estimator_input": {
+        "n": 4,
+        "m": 8,
+        "q": 65537,
+        "length_bound": 4104,
+        "norm": "infinity"
+      },
+      "master_recovery_lwe_input": null,
+      "master_recovery_lwe_estimates": {},
+      "sis_bound_below_q": true,
+      "public_A_T_raw_coefficient_bytes": 144,
+      "signature_raw_z_c_W_bytes": 144,
+      "raw_size_scope": "byte-aligned modular coefficients and int64 z/c; excludes future framing",
+      "current_signature_wire_bytes": 259,
+      "estimates": {},
+      "security_claim": "none",
+      "backend_admitted": false,
+      "estimate_scope": "omitted: direct public master recovery is already demonstrated"
+    },
+    {
+      "name": "m2-functional",
+      "source": "hand-selected research or screening family, not published safe parameters",
+      "parameters": {
+        "n": 4,
+        "m": 8,
+        "k": 32,
+        "q": 2147483647,
+        "eta": 1,
+        "kappa": 8,
+        "gamma1": 4096,
+        "gamma2": 131072
+      },
+      "beta1": 8,
+      "beta2": 32768,
+      "q_bit_length": 31,
+      "q_prime": true,
+      "reference_executable": true,
+      "current_wire_encodable": true,
+      "challenge_count": "2692684800",
+      "challenge_bits": 31.326398214872576,
+      "generic_quantum_challenge_search_exponent": 15.663199107436288,
+      "challenge_count_at_least_2pow128": false,
+      "challenge_count_at_least_2pow256": false,
+      "extraction": {
+        "planning_expected_trials": 1.649426696449883,
+        "planning_log2_expected_trials": 0.7219646633116559,
+        "unconditional_central_region_log2_acceptance_lower_bound": -1.445343384891324,
+        "coefficient_count": 256,
+        "scope": "planning model plus deterministic central-region bound; excludes uniform-draw/hash budgets"
+      },
+      "signing": {
+        "planning_expected_trials": 9.98943253098447,
+        "planning_log2_expected_trials": 3.3204027252661814,
+        "unconditional_central_region_log2_acceptance_lower_bound": -8.000132082927793,
+        "coefficient_count": 8,
+        "scope": "planning model plus deterministic central-region bound; excludes uniform-draw/hash budgets"
+      },
+      "estimator_input": {
+        "n": 4,
+        "m": 8,
+        "q": 2147483647,
+        "length_bound": 262272,
+        "norm": "infinity"
+      },
+      "master_recovery_lwe_input": null,
+      "master_recovery_lwe_estimates": {},
+      "sis_bound_below_q": true,
+      "public_A_T_raw_coefficient_bytes": 640,
+      "signature_raw_z_c_W_bytes": 832,
+      "raw_size_scope": "byte-aligned modular coefficients and int64 z/c; excludes future framing",
+      "current_signature_wire_bytes": 947,
+      "estimates": {},
+      "security_claim": "none",
+      "backend_admitted": false,
+      "estimate_scope": "omitted: direct public master recovery is already demonstrated"
+    },
+    {
+      "name": "screen-n128-q61",
+      "source": "hand-selected research or screening family, not published safe parameters",
+      "parameters": {
+        "n": 128,
+        "m": 256,
+        "k": 128,
+        "kappa": 32,
+        "q": 2305843009213693951,
+        "eta": 1,
+        "gamma1": 455391,
+        "gamma2": 1620162957
+      },
+      "beta1": 32,
+      "beta2": 14572512,
+      "q_bit_length": 61,
+      "q_prime": true,
+      "reference_executable": false,
+      "current_wire_encodable": false,
+      "challenge_count": "6347132397654734652814305971963481292800",
+      "challenge_bits": 132.22130063735855,
+      "generic_quantum_challenge_search_exponent": 66.11065031867928,
+      "challenge_count_at_least_2pow128": true,
+      "challenge_count_at_least_2pow256": false,
+      "extraction": {
+        "planning_expected_trials": 10.000772192934832,
+        "planning_log2_expected_trials": 3.3220394944780884,
+        "unconditional_central_region_log2_acceptance_lower_bound": -6.644312450648088,
+        "coefficient_count": 32768,
+        "scope": "planning model plus deterministic central-region bound; excludes uniform-draw/hash budgets"
+      },
+      "signing": {
+        "planning_expected_trials": 10.10472398929071,
+        "planning_log2_expected_trials": 3.3369580099033893,
+        "unconditional_central_region_log2_acceptance_lower_bound": -6.7043408688555335,
+        "coefficient_count": 256,
+        "scope": "planning model plus deterministic central-region bound; excludes uniform-draw/hash budgets"
+      },
+      "estimator_input": {
+        "n": 128,
+        "m": 256,
+        "q": 2305843009213693951,
+        "length_bound": 3240327962,
+        "norm": "infinity"
+      },
+      "master_recovery_lwe_input": {
+        "secret_dimension": 128,
+        "sample_count": 128,
+        "q": 2305843009213693951,
+        "secret_distribution": "uniform integers [-1,1], inclusive",
+        "error_distribution": "uniform integers [-1,1], inclusive",
+        "public_equation": "A0^-1*T = S0 + (A0^-1*A1)*S1 (mod q)",
+        "condition": "A0 (the first n columns of A) is invertible over Z_q",
+        "samples_per_master_column": 128,
+        "independent_master_columns": 128,
+        "scope": "heuristic one-column master-key recovery screen; no full-scheme forgery claim"
+      },
+      "master_recovery_lwe_estimates": {
+        "classical": {
+          "attacks": {
+            "usvp": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 11.972,
+              "cost_fields": {
+                "rop": "4017.27080033710",
+                "red": "4017.27080033710",
+                "delta": "1.01250491785081",
+                "beta": "41",
+                "d": "137",
+                "tag": "usvp"
+              }
+            },
+            "bdd": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 13.879297960361365,
+              "cost_fields": {
+                "rop": "15069.0198452490",
+                "red": "3281.18221860709",
+                "svp": "11787.8376266419",
+                "beta": "40",
+                "eta": "36",
+                "d": "136",
+                "tag": "bdd"
+              }
+            },
+            "bdd_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 16.05976019865525,
+              "cost_fields": {
+                "rop": "68307.6812182088",
+                "red": "3281.18221860709",
+                "svp": "65026.4989996018",
+                "beta": "40",
+                "eta": "1",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "256",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "bdd_mitm_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 16.070481200388258,
+              "cost_fields": {
+                "rop": "68817.1822186071",
+                "red": "3281.18221860709",
+                "svp": "65536.0000000000",
+                "beta": "40",
+                "eta": "2",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "256",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "dual": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 11.680439620583575,
+              "cost_fields": {
+                "rop": "3282.18221860709",
+                "mem": "41",
+                "m": "128",
+                "beta": "40",
+                "d": "256",
+                "repetitions": "1",
+                "tag": "dual"
+              }
+            },
+            "dual_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 12.24615653971877,
+              "cost_fields": {
+                "rop": "4858.03288216287",
+                "red": "4017.27080033710",
+                "guess": "840.762081825763",
+                "beta": "41",
+                "p": "3",
+                "zeta": "0",
+                "t": "0",
+                "beta_": "41",
+                "N": "0.693147180559951",
+                "m": "128"
+              }
+            }
+          },
+          "attack_scope": "implemented classical lattice families; BKW and algebraic Arora-GB excluded"
+        },
+        "quantum": {
+          "attacks": {
+            "usvp": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 10.865,
+              "cost_fields": {
+                "rop": "1865.05181919637",
+                "red": "1865.05181919637",
+                "delta": "1.01250491785081",
+                "beta": "41",
+                "d": "137",
+                "tag": "usvp"
+              }
+            },
+            "bdd": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 13.603467835636442,
+              "cost_fields": {
+                "rop": "12446.6324095253",
+                "red": "1552.09376410665",
+                "svp": "10894.5386454187",
+                "beta": "40",
+                "eta": "36",
+                "d": "136",
+                "tag": "bdd"
+              }
+            },
+            "bdd_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 16.02276956354837,
+              "cost_fields": {
+                "rop": "66578.5376933022",
+                "red": "1552.09376410665",
+                "svp": "65026.4439291955",
+                "beta": "40",
+                "eta": "1",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "256",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "bdd_mitm_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 16.033769131196813,
+              "cost_fields": {
+                "rop": "67088.0937641067",
+                "red": "1552.09376410665",
+                "svp": "65536.0000000000",
+                "beta": "40",
+                "eta": "2",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "256",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "dual": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 10.600929216079646,
+              "cost_fields": {
+                "rop": "1553.09376410665",
+                "mem": "41",
+                "m": "128",
+                "beta": "40",
+                "d": "256",
+                "repetitions": "1",
+                "tag": "dual"
+              }
+            },
+            "dual_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 11.401846902503848,
+              "cost_fields": {
+                "rop": "2705.81390102214",
+                "red": "1865.05181919637",
+                "guess": "840.762081825763",
+                "beta": "41",
+                "p": "3",
+                "zeta": "0",
+                "t": "0",
+                "beta_": "41",
+                "N": "0.693147180559951",
+                "m": "128"
+              }
+            }
+          },
+          "attack_scope": "implemented classical lattice families; BKW and algebraic Arora-GB excluded"
+        }
+      },
+      "sis_bound_below_q": true,
+      "public_A_T_raw_coefficient_bytes": 393216,
+      "signature_raw_z_c_W_bytes": 134144,
+      "raw_size_scope": "byte-aligned modular coefficients and int64 z/c; excludes future framing",
+      "current_signature_wire_bytes": null,
+      "estimates": {
+        "classical": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 22.192,
+            "cost_fields": {
+              "rop": "4.79134743254184e6",
+              "red": "4.79134743254184e6",
+              "sieve": "1e-100",
+              "beta": "76",
+              "eta": "76",
+              "zeta": "0",
+              "d": "256",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        },
+        "quantum": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 20.14,
+            "cost_fields": {
+              "rop": "1.15543125878543e6",
+              "red": "1.15543125878543e6",
+              "sieve": "1e-100",
+              "beta": "76",
+              "eta": "76",
+              "zeta": "0",
+              "d": "256",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        }
+      },
+      "security_claim": "none",
+      "backend_admitted": false
+    },
+    {
+      "name": "screen-n256-q61",
+      "source": "hand-selected research or screening family, not published safe parameters",
+      "parameters": {
+        "n": 256,
+        "m": 512,
+        "k": 128,
+        "kappa": 32,
+        "q": 2305843009213693951,
+        "eta": 1,
+        "gamma1": 910782,
+        "gamma2": 6480651827
+      },
+      "beta1": 32,
+      "beta2": 29145024,
+      "q_bit_length": 61,
+      "q_prime": true,
+      "reference_executable": false,
+      "current_wire_encodable": false,
+      "challenge_count": "6347132397654734652814305971963481292800",
+      "challenge_bits": 132.22130063735855,
+      "generic_quantum_challenge_search_exponent": 66.11065031867928,
+      "challenge_count_at_least_2pow128": true,
+      "challenge_count_at_least_2pow256": false,
+      "extraction": {
+        "planning_expected_trials": 10.00038028161897,
+        "planning_log2_expected_trials": 3.3219829568848014,
+        "unconditional_central_region_log2_acceptance_lower_bound": -6.644082636540775,
+        "coefficient_count": 65536,
+        "scope": "planning model plus deterministic central-region bound; excludes uniform-draw/hash budgets"
+      },
+      "signing": {
+        "planning_expected_trials": 10.052067982048214,
+        "planning_log2_expected_trials": 3.329420428185558,
+        "unconditional_central_region_log2_acceptance_lower_bound": -6.673915677351773,
+        "coefficient_count": 512,
+        "scope": "planning model plus deterministic central-region bound; excludes uniform-draw/hash budgets"
+      },
+      "estimator_input": {
+        "n": 256,
+        "m": 512,
+        "q": 2305843009213693951,
+        "length_bound": 12961305702,
+        "norm": "infinity"
+      },
+      "master_recovery_lwe_input": {
+        "secret_dimension": 256,
+        "sample_count": 256,
+        "q": 2305843009213693951,
+        "secret_distribution": "uniform integers [-1,1], inclusive",
+        "error_distribution": "uniform integers [-1,1], inclusive",
+        "public_equation": "A0^-1*T = S0 + (A0^-1*A1)*S1 (mod q)",
+        "condition": "A0 (the first n columns of A) is invertible over Z_q",
+        "samples_per_master_column": 256,
+        "independent_master_columns": 128,
+        "scope": "heuristic one-column master-key recovery screen; no full-scheme forgery claim"
+      },
+      "master_recovery_lwe_estimates": {
+        "classical": {
+          "attacks": {
+            "usvp": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 11.972,
+              "cost_fields": {
+                "rop": "4017.27080033710",
+                "red": "4017.27080033710",
+                "delta": "1.01250491785081",
+                "beta": "41",
+                "d": "286",
+                "tag": "usvp"
+              }
+            },
+            "bdd": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 16.424625876109513,
+              "cost_fields": {
+                "rop": "87964.0174983717",
+                "red": "3281.18221860709",
+                "svp": "84682.8352797646",
+                "beta": "40",
+                "eta": "2",
+                "d": "293",
+                "tag": "bdd"
+              }
+            },
+            "bdd_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 18.01238273766019,
+              "cost_fields": {
+                "rop": "264403.681218209",
+                "red": "3281.18221860709",
+                "svp": "261122.498999602",
+                "beta": "40",
+                "eta": "1",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "512",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "bdd_mitm_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 18.017945727354533,
+              "cost_fields": {
+                "rop": "265425.182218607",
+                "red": "3281.18221860709",
+                "svp": "262144.000000000",
+                "beta": "40",
+                "eta": "2",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "512",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "dual": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 11.680439620583575,
+              "cost_fields": {
+                "rop": "3282.18221860709",
+                "mem": "41",
+                "m": "256",
+                "beta": "40",
+                "d": "512",
+                "repetitions": "1",
+                "tag": "dual"
+              }
+            },
+            "dual_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 12.009109294628024,
+              "cost_fields": {
+                "rop": "4121.94430043849",
+                "red": "3281.18221860709",
+                "guess": "840.762081831402",
+                "beta": "40",
+                "p": "3",
+                "zeta": "0",
+                "t": "0",
+                "beta_": "40",
+                "N": "0.693147180564600",
+                "m": "256"
+              }
+            }
+          },
+          "attack_scope": "implemented classical lattice families; BKW and algebraic Arora-GB excluded"
+        },
+        "quantum": {
+          "attacks": {
+            "usvp": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 10.865,
+              "cost_fields": {
+                "rop": "1865.05181919637",
+                "red": "1865.05181919637",
+                "delta": "1.01250491785081",
+                "beta": "41",
+                "d": "286",
+                "tag": "usvp"
+              }
+            },
+            "bdd": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 16.395983047569924,
+              "cost_fields": {
+                "rop": "86234.8288414810",
+                "red": "1552.09376410665",
+                "svp": "84682.7350773743",
+                "beta": "40",
+                "eta": "2",
+                "d": "293",
+                "tag": "bdd"
+              }
+            },
+            "bdd_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 18.002916834314664,
+              "cost_fields": {
+                "rop": "262674.537693302",
+                "red": "1552.09376410665",
+                "svp": "261122.443929196",
+                "beta": "40",
+                "eta": "1",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "512",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "bdd_mitm_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 18.00851667457788,
+              "cost_fields": {
+                "rop": "263696.093764107",
+                "red": "1552.09376410665",
+                "svp": "262144.000000000",
+                "beta": "40",
+                "eta": "2",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "512",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "dual": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 10.600929216079646,
+              "cost_fields": {
+                "rop": "1553.09376410665",
+                "mem": "41",
+                "m": "256",
+                "beta": "40",
+                "d": "512",
+                "repetitions": "1",
+                "tag": "dual"
+              }
+            },
+            "dual_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 11.224517771127047,
+              "cost_fields": {
+                "rop": "2392.85584593805",
+                "red": "1552.09376410665",
+                "guess": "840.762081831402",
+                "beta": "40",
+                "p": "3",
+                "zeta": "0",
+                "t": "0",
+                "beta_": "40",
+                "N": "0.693147180564600",
+                "m": "256"
+              }
+            }
+          },
+          "attack_scope": "implemented classical lattice families; BKW and algebraic Arora-GB excluded"
+        }
+      },
+      "sis_bound_below_q": true,
+      "public_A_T_raw_coefficient_bytes": 1310720,
+      "signature_raw_z_c_W_bytes": 267264,
+      "raw_size_scope": "byte-aligned modular coefficients and int64 z/c; excludes future framing",
+      "current_signature_wire_bytes": null,
+      "estimates": {
+        "classical": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 34.163999999999994,
+            "cost_fields": {
+              "rop": "1.92481401350204e10",
+              "red": "1.92481401350204e10",
+              "sieve": "1e-100",
+              "beta": "117",
+              "eta": "117",
+              "zeta": "0",
+              "d": "512",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        },
+        "quantum": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 31.005000000000003,
+            "cost_fields": {
+              "rop": "2.15493917115413e9",
+              "red": "2.15493917115413e9",
+              "sieve": "1e-100",
+              "beta": "117",
+              "eta": "117",
+              "zeta": "0",
+              "d": "512",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        }
+      },
+      "security_claim": "none",
+      "backend_admitted": false
+    },
+    {
+      "name": "screen-n512-q61",
+      "source": "hand-selected research or screening family, not published safe parameters",
+      "parameters": {
+        "n": 512,
+        "m": 1024,
+        "k": 192,
+        "kappa": 48,
+        "q": 2305843009213693951,
+        "eta": 1,
+        "gamma1": 4098517,
+        "gamma2": 87488756962
+      },
+      "beta1": 48,
+      "beta2": 196728816,
+      "q_bit_length": 61,
+      "q_prime": true,
+      "reference_executable": false,
+      "current_wire_encodable": false,
+      "challenge_count": "1450238593631479639062214061205885300421480098959761971609600",
+      "challenge_bits": 199.85197596557296,
+      "generic_quantum_challenge_search_exponent": 99.92598798278648,
+      "challenge_count_at_least_2pow128": true,
+      "challenge_count_at_least_2pow256": false,
+      "extraction": {
+        "planning_expected_trials": 10.000131666989676,
+        "planning_log2_expected_trials": 3.3219470902936146,
+        "unconditional_central_region_log2_acceptance_lower_bound": -6.643933086426124,
+        "coefficient_count": 196608,
+        "scope": "planning model plus deterministic central-region bound; excludes uniform-draw/hash budgets"
+      },
+      "signing": {
+        "planning_expected_trials": 10.025960805339567,
+        "planning_log2_expected_trials": 3.3256685941788287,
+        "unconditional_central_region_log2_acceptance_lower_bound": -6.658840645555141,
+        "coefficient_count": 1024,
+        "scope": "planning model plus deterministic central-region bound; excludes uniform-draw/hash budgets"
+      },
+      "estimator_input": {
+        "n": 512,
+        "m": 1024,
+        "q": 2305843009213693951,
+        "length_bound": 174977518532,
+        "norm": "infinity"
+      },
+      "master_recovery_lwe_input": {
+        "secret_dimension": 512,
+        "sample_count": 512,
+        "q": 2305843009213693951,
+        "secret_distribution": "uniform integers [-1,1], inclusive",
+        "error_distribution": "uniform integers [-1,1], inclusive",
+        "public_equation": "A0^-1*T = S0 + (A0^-1*A1)*S1 (mod q)",
+        "condition": "A0 (the first n columns of A) is invertible over Z_q",
+        "samples_per_master_column": 512,
+        "independent_master_columns": 192,
+        "scope": "heuristic one-column master-key recovery screen; no full-scheme forgery claim"
+      },
+      "master_recovery_lwe_estimates": {
+        "classical": {
+          "attacks": {
+            "usvp": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 11.972,
+              "cost_fields": {
+                "rop": "4017.27080033710",
+                "red": "4017.27080033710",
+                "delta": "1.01250491785081",
+                "beta": "41",
+                "d": "646",
+                "tag": "usvp"
+              }
+            },
+            "bdd": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 18.803598313485722,
+              "cost_fields": {
+                "rop": "457559.017498372",
+                "red": "3281.18221860709",
+                "svp": "454277.835279765",
+                "beta": "40",
+                "eta": "2",
+                "d": "676",
+                "tag": "bdd"
+              }
+            },
+            "bdd_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 20.001699124892554,
+              "cost_fields": {
+                "rop": "1.04981168121821e6",
+                "red": "3281.18221860709",
+                "svp": "1.04653049899960e6",
+                "beta": "40",
+                "eta": "1",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "1024",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "bdd_mitm_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 20.00450740276406,
+              "cost_fields": {
+                "rop": "1.05185718221861e6",
+                "red": "3281.18221860709",
+                "svp": "1.04857600000000e6",
+                "beta": "40",
+                "eta": "2",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "1024",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "dual": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 11.680439620583575,
+              "cost_fields": {
+                "rop": "3282.18221860709",
+                "mem": "41",
+                "m": "512",
+                "beta": "40",
+                "d": "1024",
+                "repetitions": "1",
+                "tag": "dual"
+              }
+            },
+            "dual_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 12.009110336728792,
+              "cost_fields": {
+                "rop": "4121.94727784034",
+                "red": "3281.18221860709",
+                "guess": "840.765059233247",
+                "beta": "40",
+                "p": "3",
+                "zeta": "0",
+                "t": "0",
+                "beta_": "40",
+                "N": "0.693149635215848",
+                "m": "512"
+              }
+            }
+          },
+          "attack_scope": "implemented classical lattice families; BKW and algebraic Arora-GB excluded"
+        },
+        "quantum": {
+          "attacks": {
+            "usvp": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 10.865,
+              "cost_fields": {
+                "rop": "1865.05181919637",
+                "red": "1865.05181919637",
+                "delta": "1.01250491785081",
+                "beta": "41",
+                "d": "646",
+                "tag": "usvp"
+              }
+            },
+            "bdd": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 18.798135809995728,
+              "cost_fields": {
+                "rop": "455829.828841481",
+                "red": "1552.09376410665",
+                "svp": "454277.735077374",
+                "beta": "40",
+                "eta": "2",
+                "d": "676",
+                "tag": "bdd"
+              }
+            },
+            "bdd_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 19.99932090455066,
+              "cost_fields": {
+                "rop": "1.04808253769330e6",
+                "red": "1552.09376410665",
+                "svp": "1.04653044392920e6",
+                "beta": "40",
+                "eta": "1",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "1024",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "bdd_mitm_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 20.002133886707856,
+              "cost_fields": {
+                "rop": "1.05012809376411e6",
+                "red": "1552.09376410665",
+                "svp": "1.04857600000000e6",
+                "beta": "40",
+                "eta": "2",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "1024",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "dual": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 10.600929216079646,
+              "cost_fields": {
+                "rop": "1553.09376410665",
+                "mem": "41",
+                "m": "512",
+                "beta": "40",
+                "d": "1024",
+                "repetitions": "1",
+                "tag": "dual"
+              }
+            },
+            "dual_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 11.224519566254074,
+              "cost_fields": {
+                "rop": "2392.85882333990",
+                "red": "1552.09376410665",
+                "guess": "840.765059233247",
+                "beta": "40",
+                "p": "3",
+                "zeta": "0",
+                "t": "0",
+                "beta_": "40",
+                "N": "0.693149635215848",
+                "m": "512"
+              }
+            }
+          },
+          "attack_scope": "implemented classical lattice families; BKW and algebraic Arora-GB excluded"
+        }
+      },
+      "sis_bound_below_q": true,
+      "public_A_T_raw_coefficient_bytes": 4980736,
+      "signature_raw_z_c_W_bytes": 796160,
+      "raw_size_scope": "byte-aligned modular coefficients and int64 z/c; excludes future framing",
+      "current_signature_wire_bytes": null,
+      "estimates": {
+        "classical": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 47.596,
+            "cost_fields": {
+              "rop": "2.12727518310251e14",
+              "red": "2.12727518310251e14",
+              "sieve": "1e-100",
+              "beta": "163",
+              "eta": "163",
+              "zeta": "0",
+              "d": "1024",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        },
+        "quantum": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 43.195,
+            "cost_fields": {
+              "rop": "1.00691002013950e13",
+              "red": "1.00691002013950e13",
+              "sieve": "1e-100",
+              "beta": "163",
+              "eta": "163",
+              "zeta": "0",
+              "d": "1024",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        }
+      },
+      "security_claim": "none",
+      "backend_admitted": false
+    },
+    {
+      "name": "screen-n512-k256-q77",
+      "source": "hand-selected research or screening family, not published safe parameters",
+      "parameters": {
+        "n": 512,
+        "m": 1024,
+        "k": 256,
+        "kappa": 64,
+        "q": 75557863725914323419151,
+        "eta": 1,
+        "gamma1": 7286253,
+        "gamma2": 207380773055
+      },
+      "beta1": 64,
+      "beta2": 466320192,
+      "q_bit_length": 77,
+      "q_prime": true,
+      "reference_executable": false,
+      "current_wire_encodable": false,
+      "challenge_count": "351296187477796756408194449961080320765996752345435276171761637422382735949824000",
+      "challenge_bits": 267.5669355104564,
+      "generic_quantum_challenge_search_exponent": 133.7834677552282,
+      "challenge_count_at_least_2pow128": true,
+      "challenge_count_at_least_2pow256": true,
+      "extraction": {
+        "planning_expected_trials": 10.000097430885111,
+        "planning_log2_expected_trials": 3.321942151124365,
+        "unconditional_central_region_log2_acceptance_lower_bound": -6.643913481455694,
+        "coefficient_count": 262144,
+        "scope": "planning model plus deterministic central-region bound; excludes uniform-draw/hash budgets"
+      },
+      "signing": {
+        "planning_expected_trials": 10.02596073747057,
+        "planning_log2_expected_trials": 3.3256685844127554,
+        "unconditional_central_region_log2_acceptance_lower_bound": -6.658840635785094,
+        "coefficient_count": 1024,
+        "scope": "planning model plus deterministic central-region bound; excludes uniform-draw/hash budgets"
+      },
+      "estimator_input": {
+        "n": 512,
+        "m": 1024,
+        "q": 75557863725914323419151,
+        "length_bound": 414761554302,
+        "norm": "infinity"
+      },
+      "master_recovery_lwe_input": {
+        "secret_dimension": 512,
+        "sample_count": 512,
+        "q": 75557863725914323419151,
+        "secret_distribution": "uniform integers [-1,1], inclusive",
+        "error_distribution": "uniform integers [-1,1], inclusive",
+        "public_equation": "A0^-1*T = S0 + (A0^-1*A1)*S1 (mod q)",
+        "condition": "A0 (the first n columns of A) is invertible over Z_q",
+        "samples_per_master_column": 512,
+        "independent_master_columns": 256,
+        "scope": "heuristic one-column master-key recovery screen; no full-scheme forgery claim"
+      },
+      "master_recovery_lwe_estimates": {
+        "classical": {
+          "attacks": {
+            "usvp": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 11.972,
+              "cost_fields": {
+                "rop": "4017.27080033710",
+                "red": "4017.27080033710",
+                "delta": "1.01250491785081",
+                "beta": "41",
+                "d": "610",
+                "tag": "usvp"
+              }
+            },
+            "bdd": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 18.345594412422567,
+              "cost_fields": {
+                "rop": "333099.673057587",
+                "red": "3281.18221860709",
+                "svp": "329818.490838979",
+                "beta": "40",
+                "eta": "41",
+                "d": "611",
+                "tag": "bdd"
+              }
+            },
+            "bdd_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 20.001699124892554,
+              "cost_fields": {
+                "rop": "1.04981168121821e6",
+                "red": "3281.18221860709",
+                "svp": "1.04653049899960e6",
+                "beta": "40",
+                "eta": "1",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "1024",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "bdd_mitm_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 20.00450740276406,
+              "cost_fields": {
+                "rop": "1.05185718221861e6",
+                "red": "3281.18221860709",
+                "svp": "1.04857600000000e6",
+                "beta": "40",
+                "eta": "2",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "1024",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "dual": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 11.680439620583575,
+              "cost_fields": {
+                "rop": "3282.18221860709",
+                "mem": "41",
+                "m": "512",
+                "beta": "40",
+                "d": "1024",
+                "repetitions": "1",
+                "tag": "dual"
+              }
+            },
+            "dual_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 12.009109294657852,
+              "cost_fields": {
+                "rop": "4121.94430052371",
+                "red": "3281.18221860709",
+                "guess": "840.762081916620",
+                "beta": "40",
+                "p": "3",
+                "zeta": "0",
+                "t": "0",
+                "beta_": "40",
+                "N": "0.693147180634855",
+                "m": "512"
+              }
+            }
+          },
+          "attack_scope": "implemented classical lattice families; BKW and algebraic Arora-GB excluded"
+        },
+        "quantum": {
+          "attacks": {
+            "usvp": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 10.865,
+              "cost_fields": {
+                "rop": "1865.05181919637",
+                "red": "1865.05181919637",
+                "delta": "1.01250491785081",
+                "beta": "41",
+                "d": "610",
+                "tag": "usvp"
+              }
+            },
+            "bdd": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 18.31207489008771,
+              "cost_fields": {
+                "rop": "325449.661944304",
+                "red": "1552.09376410665",
+                "svp": "323897.568180197",
+                "beta": "40",
+                "eta": "45",
+                "d": "610",
+                "tag": "bdd"
+              }
+            },
+            "bdd_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 19.99932090455066,
+              "cost_fields": {
+                "rop": "1.04808253769330e6",
+                "red": "1552.09376410665",
+                "svp": "1.04653044392920e6",
+                "beta": "40",
+                "eta": "1",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "1024",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "bdd_mitm_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 20.002133886707856,
+              "cost_fields": {
+                "rop": "1.05012809376411e6",
+                "red": "1552.09376410665",
+                "svp": "1.04857600000000e6",
+                "beta": "40",
+                "eta": "2",
+                "zeta": "0",
+                "|S|": "1",
+                "d": "1024",
+                "prob": "1.0",
+                "repetitions": "1",
+                "tag": "hybrid"
+              }
+            },
+            "dual": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 10.600929216079646,
+              "cost_fields": {
+                "rop": "1553.09376410665",
+                "mem": "41",
+                "m": "512",
+                "beta": "40",
+                "d": "1024",
+                "repetitions": "1",
+                "tag": "dual"
+              }
+            },
+            "dual_hybrid": {
+              "status": "finite_heuristic_estimate",
+              "rop_log2": 11.224517771178427,
+              "cost_fields": {
+                "rop": "2392.85584602327",
+                "red": "1552.09376410665",
+                "guess": "840.762081916620",
+                "beta": "40",
+                "p": "3",
+                "zeta": "0",
+                "t": "0",
+                "beta_": "40",
+                "N": "0.693147180634855",
+                "m": "512"
+              }
+            }
+          },
+          "attack_scope": "implemented classical lattice families; BKW and algebraic Arora-GB excluded"
+        }
+      },
+      "sis_bound_below_q": true,
+      "public_A_T_raw_coefficient_bytes": 6553600,
+      "signature_raw_z_c_W_bytes": 1320960,
+      "raw_size_scope": "byte-aligned modular coefficients and int64 z/c; excludes future framing",
+      "current_signature_wire_bytes": null,
+      "estimates": {
+        "classical": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 166.732,
+            "cost_fields": {
+              "rop": "1.55357862395274e50",
+              "red": "1.55357862395274e50",
+              "sieve": "1e-100",
+              "beta": "571",
+              "eta": "571",
+              "zeta": "0",
+              "d": "1024",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        },
+        "quantum": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 151.315,
+            "cost_fields": {
+              "rop": "3.55102552373913e45",
+              "red": "3.55102552373913e45",
+              "sieve": "1e-100",
+              "beta": "571",
+              "eta": "571",
+              "zeta": "0",
+              "d": "1024",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        }
+      },
+      "security_claim": "none",
+      "backend_admitted": false
+    }
+  ],
+  "estimator": {
+    "repository": "https://github.com/malb/lattice-estimator",
+    "commit": "53da5982597709ba0fdf94ea37a84d822310fd84",
+    "clean_checkout": true,
+    "cost_model": "ADPS16 classical 0.292 / quantum 0.265, Core-SVP heuristic",
+    "shape_model": "lgsa",
+    "problem_norm": "infinity",
+    "sage_version": "10.9",
+    "public_master_lwe_control": {
+      "profile": "screen-n128-q61",
+      "seed": 2026100916,
+      "n": 128,
+      "m": 256,
+      "q": 2305843009213693951,
+      "eta": 1,
+      "result": {
+        "input_a_sha256": "68945ef6367acb9147d4f15f4de1feee316b0106624bc804ec4b870c23dfc949",
+        "input_t_sha256": "83fbff27ed1989c1dc8ed019bb9145b2733c61046f4d8b42f5f703ef37dbc98e",
+        "a0_invertible": true,
+        "equation_count": 16,
+        "embedding_dimension": 145,
+        "recovered_one_full_bounded_master_column": true,
+        "attacker_inputs": "public A,T and public n,m,q,eta only",
+        "original_secret_given_to_recovery_routine": false,
+        "victim_oracle_queries": 0,
+        "lll_algorithm": "fpLLL:heuristic",
+        "lll_seconds": 9.571340021000026,
+        "full_master_recovery": false,
+        "full_scheme_forgery_tested": false,
+        "security_claim": "none"
+      },
+      "private_secret_saved": false,
+      "scope": "single synthetic column recovery; it does not establish a full IBS break"
+    },
+    "scope": "implemented lattice attack model; not all possible IBS attacks or a security proof"
+  },
+  "public_forgery_controls": [
+    {
+      "profile": "r1-tiny",
+      "candidate_vectors_checked": 6561,
+      "victim_extract_queries": 0,
+      "victim_sign_queries": 0,
+      "equivalent_master_recovered": true,
+      "forged_signature_accepted": true,
+      "identity_hex": "746172676574",
+      "message_hex": "7075626c6963206d6173746572207265636f76657279",
+      "public_key_hex": "4c323452310000001949424d452f4c554f323032342f4d41545249582d5245462f31000000065055424c49430000003800000004000000080000000400010001000000010000000200000080000008000000001000000020000010000000100000000040000000800000006c00000004000000080001000100664e00331f00dd0400bfe500510400b7d1009267000a4b0035ff0077cd00a28e0016d500b542003c6200597500e5a700486e00a49d0026f300ae7f00831600a7650057dc00cb8a00040000839900559e00ef5d00700400ea18007e28008a360000003c000000040000000400010001001a04000a6e003b04009b6b00921a004b6600c92e0084130067f500dd5b0056ee00a021002f250095a20052ad000add",
+      "signature_hex": "4c323452310000001949424d452f4c554f323032342f4d41545249582d5245462f31000000095349474e415455524500000020c10469cbad0a32ecdd3e079c0a77841f879c1100fd3bb0086297e3a0cf781e150000004400000008fffffffffffff9c3fffffffffffffbd2fffffffffffff942fffffffffffffa0dfffffffffffffb19000000000000053fffffffffffffff36ffffffffffffffe8000000240000000400000000000000000000000000000000ffffffffffffffff00000000000000010000003c00000004000000040001000100a71d00f4a000cac30074ea0065d200586c004cd200d1e800d5e200cd3500ec4c00c87000fb5d009c8f00a633003fda",
+      "private_material_published": false,
+      "scope": "tiny-profile attack; not an attack on legal security-target paper parameters"
+    },
+    {
+      "profile": "m2-functional",
+      "candidate_vectors_checked": 6561,
+      "victim_extract_queries": 0,
+      "victim_sign_queries": 0,
+      "equivalent_master_recovered": true,
+      "forged_signature_accepted": true,
+      "identity_hex": "746172676574",
+      "message_hex": "7075626c6963206d6173746572207265636f76657279",
+      "public_key_hex": "4c323452310000001949424d452f4c554f323032342f4d41545249582d5245462f31000000065055424c4943000000380000000400000008000000207fffffff000000010000000800001000000200000000001000000020000010000000100000000040000000800000008c00000004000000087fffffff28521fa7651c6ddd1f3e015935ddddf2781e05822f18a85c43b880706012d5d3749de07d3b06d8e437f5e5e37b4a8c8a35a475f92da91c8677b90643717dd3530c36400d3656c10f5c3227a81dce35b81a4da3d959ac10884a05c0dd74d3d5d035c7977056743a940a8560ea2c3542ad03ed9a214938de4b7345f28825f7f5db0000020c00000004000000207fffffff679a7bf203878b463d64447664fdb5fc3e031d1b69e31e644b98e54e1d337f9a55865ea5223c4b5b4594cd222e34159f4e05414c6df3be972ebb94ed5bae7d8c2de6b0e262cdb17c6f9bdf4119deda0879bdc5677ec75d713dbe51544f44668d79675d0c0be8cd3557d3c7e73f012a213d937e43314f57f06f3190b94b7cf423121de5b8575ecb3e050113be0a9ad3570c5f6430586b8323398119693e1badc37776bbe34adb9a2c53747fc045b4ad9a1cb9418716a53a3723fc228e23eb7d7818fad713299e796f7880cf7c250117714e1eb9c617a7bf576c4203ae62bf2087181bbb041714e91b1d754f5558ad78a42d3bce73624f71a371414d337962b1ef429f86735329736e578a76195e6022183899791359bbaba74356a04a3ef3583d77496aaf3f3e135f7f8a5b4120a63e796151597b75d12ef67d30d19f6def8176368bcc2271a645b14a38996c3be86b1c5735948718b87fc67a94e776318cd0a53ee191721cd0d6d932a63ac10233111448acd1380a8d28c33cb8fad4085b1bfd0486dbb71b18ca6025d00ef45d83e6f03f3a2d1f3dfd45a95cf0fb3907623ca35f28243f37219bab451235d83a372fc9715b214a7bd80de84a91d07a06dc596465c39f6359e8fa2f3dfc339d1a085e3e7cb0c30a2d2d07c419892e203dcb61ff6d676e8d7d71eb872b3e822b5f5fdaf86cb794fe3c31846017d36c2457b33b96",
+      "signature_hex": "4c323452310000001949424d452f4c554f323032342f4d41545249582d5245462f31000000095349474e415455524500000020f88444dbda776cf091896eeba01e2343f9bba61c0b662e12f460aed64736681b0000004400000008ffffffffffffb5d20000000000006552ffffffffffffdb4800000000000011a50000000000015e4f0000000000002abdfffffffffffef83cfffffffffffee4b0000001040000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000ffffffffffffffffffffffffffffffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffff0000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000001ffffffffffffffff0000000000000000000000000000000000000000000000000000020c00000004000000207fffffff4fb9cc4c648de4bb7ec046350b97aec908362b2508200b285df0a8ff27bc2c373370457702cca12f4d076a0e7f01cd9539dec0681899893a1262b26a6532da244005ebaf4b458c327e1be05d20d7e06552f112b4589490eb332fe81937ff9be069f56ec4670c85a0493a9ae6562bd4157c8afffe37927ac95b52b724124362e84fd21a69397a1c7b3dff55386b39d6355c1c524f063851fb43f0ae3d7a1d9fb87d3cda552c5c65f60a2e6f6313a83c6c7a29e82f42684a8414014526176d9a524302f06e43d2fdf03247148b16d5bea554d5c2c8615cfd5a0609cf3417eba9dc2cc8246a2ea361727dbe6806550307290f3179ec51981ba95bd9363c04775db93541ae4e4afd319f6286dd4c3d9e46fe2c0bfbc2783e486b5b99f44b15b73bcf28bea2976aac717f0d3da1bc6dbd9a512cd554a26b9ea32b4835cab5434cef9c31856b30088e93854b1cdade36d6edef0936617b5f971e0f57f46eee07e223b337d31d16287fbb256dab287d6d90cebe3fef89b238d374c020683018180ca899197bf1ba0f16e57873b4b2214db4b874657508026d1f3dea1e5d56d6518ef5dd69506b0748f9e2431c6077910c417a663602cd7155212c8864e4c71f58abae72507554d171cb0a7d1a064f8a48443d557ba46f691f19482512150abc07113442628b93a4089bafc065ec1ad234e94f3d54db32411ad5b6b47c58c96e1cb0bdba",
+      "private_material_published": false,
+      "scope": "tiny-profile attack; not an attack on legal security-target paper parameters"
+    }
+  ],
+  "reduction_budget_example": {
+    "target_bits": 128,
+    "assumed_s_plus_h": 1048576,
+    "illustrative_required_sis_advantage_exponent": 296,
+    "interpretation": "128-bit IBS advantage with delta^2/(s+h)^2 requires about 2*128+2*20 SIS advantage exponent; NOT a work-factor conversion or certificate",
+    "theorem_is_approximate": true,
+    "runtime_and_reduction_errors_accounted": false,
+    "quantum_reduction_available": false
+  },
+  "algorithm_instances": 1,
+  "parameter_profiles_implemented": 2,
+  "analysis_only_profiles": 4,
+  "complete_ibme_instances": 0,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "limitations": [
+    "Parameter families are hand-selected and do not extend the executable reference limits.",
+    "Rejection planning counts assume constant shift/ideal fresh hash; the central-region bound is separate.",
+    "Core-SVP and LGSA costs are heuristic and version/model dependent.",
+    "Quantum SIS and generic search costs do not prove quantum or QROM IBS security.",
+    "Raw size projections omit a future big-modulus format and are not timing benchmarks.",
+    "No published formal safe parameter set or complete IBME backend is admitted."
+  ]
+}
