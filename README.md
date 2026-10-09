@@ -8,7 +8,9 @@
 
 最新实施入口为 [R1 规格与首套选择](docs/research/2026-10-08-r1/README.md)：先做 CHKP 两层匿名 ROM HIBE + Luo 2024 矩阵 IBS 的真实研究实例，理论以原文定理引用和实现/参数对应为主。用户要求将后续工作分为 [主 AI 的 IBS/集成/优化清单](docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md)和 [队友的 CHKP/格工具任务书](docs/workplans/2026-10-08/队友任务-CHKP与格工具.md)。正式参数和完整安全实例仍未放行，`security_claim: none`。
 
-主 AI M1 已完成 [真实矩阵参考](docs/research/luo-reference/README.md)，M2-A 已完成 [IBSBackend 接入与参数初筛](docs/research/2026-10-09-m2/README.md)：规范对象、固定身份密钥、新进程恢复、安装包签验与版本化研究配置。Windows 相关批次 412 passed、3 xfailed，WSL 的 Luo 批次 167 passed；原 72 条签验/12 份恢复的 M1 公开结果不变。两组小参数均能仅凭公钥枚举 6561 个候选恢复等效主秘密并伪造。新筛查还发现，四个手选大参数行即使最后一行 SIS 的启发式攻击成本指数 log₂ 达经典 166.732/量子 151.315，公开主密钥列仍映射到低成本 LWE，六类格攻击的最低估算指数约经典 11.680/量子 10.601；一个固定 n=128 样本还由公开 A,T 实验恢复一整列有界主秘密。该实验不是全主密钥恢复或完整伪造，但足以拒绝这些手选行作为安全候选。当前 CI 普通批次对应 349 passed、3 xfailed；M2-B 必须联合重选参数、完成格式/资源与模格 Hint 条件，完整 IBME 尚未交付。
+M1/M2-A 已完成 [真实矩阵参考](docs/research/luo-reference/README.md)与 [IBSBackend 接入](docs/research/2026-10-09-m2/README.md)，公开小参数伪造和一列主秘密的 LLL 恢复保留为负面对照。M2-B1 完成 [联合选参与精确模格参数](docs/research/2026-10-09-m2b/README.md)：40 行矩阵研究搜索、统计分布检查、保守范数界及 7 组模格参数对照。上一轮最低 LWE 成本来自区分攻击，现已与秘密搜索分开；原 Theorem 1 与事件 E 的范数界差异也明确记录。
+
+下一轮优先实现 Luo 模格的多项式与 Hint 参考，研究输入为 degree=256、(k,l)=(11,10)、κ=64、q=274877844481、γ₃=15270991360；一般整除/NTT/Hint 算术条件已核验，仍不是安全 preset。Windows 相关批次 431 passed、3 xfailed，WSL Luo 批次 186 passed；当前 CI 选择为 368 passed、3 xfailed。完整 IBME、正式参数准入与三项旧漏洞修复仍未完成，`security_claim: none`。
 
 已合并 PR #5（`37e7031`）；本地基础检查 182 passed、3 xfailed，严格模式 3 failed；合并后的主仓库基础 CI 成功。三个 XFAIL 是保留的旧教学漏洞，不是修复或安全通过。R1 新增 24 项公开参数/容量检查，不生成新密钥或密码性能结果。
 

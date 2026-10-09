@@ -33,6 +33,7 @@ jobs:
           tests/test_prepared_hashing.py tests/test_known_security_gaps.py
           tests/test_luo_matrix_reference.py
           tests/test_luo_ibs_contract.py tests/test_luo_parameter_screen.py
+          tests/test_luo_joint_parameters.py
           --junitxml=test-results/basic.xml
       - name: Enforce security targets when explicitly requested
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.strict_security }}

@@ -137,7 +137,7 @@ def master_recovery_lwe_input(p: dict) -> dict:
         condition="A0 (the first n columns of A) is invertible over Z_q",
         samples_per_master_column=n,
         independent_master_columns=p["k"],
-        scope="heuristic one-column master-key recovery screen; no full-scheme forgery claim",
+        scope="one-column LWE input; search and distinguishing costs have separate attack-goal tags",
     )
 
 
@@ -191,7 +191,8 @@ def public_forgery_controls() -> list[dict]:
     return output
 
 
-def run_estimator(rows: list[dict], root: Path, *, public_master_lwe_control=False) -> dict:
+def verify_estimator_checkout(root: Path) -> tuple[Path, str]:
+    """Validate the shared external tool without modifying its checkout."""
     root = root.resolve()
     revision = subprocess.check_output(["git", "-C", str(root), "rev-parse", "HEAD"], text=True).strip()
     # A checkout made by Windows Git can use CRLF. Check Git-normalized
@@ -201,6 +202,22 @@ def run_estimator(rows: list[dict], root: Path, *, public_master_lwe_control=Fal
     ], text=True).strip()
     if revision != ESTIMATOR_COMMIT or dirty:
         raise ValueError("estimator must be the clean, pinned revision")
+    return root, revision
+
+
+def lwe_attack_goal(attack: str) -> str:
+    """Keep decision costs distinct from heuristic secret-search costs."""
+    if attack in {"usvp", "bdd", "bdd_hybrid", "bdd_mitm_hybrid"}:
+        return "heuristic_secret_search"
+    if attack == "dual":
+        return "decisional_distinguisher"
+    if attack == "dual_hybrid":
+        return "distinguishing_with_partial_secret_guess"
+    return "unclassified_no_key_recovery_claim"
+
+
+def run_estimator(rows: list[dict], root: Path, *, public_master_lwe_control=False) -> dict:
+    root, revision = verify_estimator_checkout(root)
     sys.path.insert(0, str(root))
     import estimator
     from estimator import LWE, ND, SIS
@@ -226,6 +243,7 @@ def run_estimator(rows: list[dict], root: Path, *, public_master_lwe_control=Fal
             for attack, cost in result.items():
                 finite = cost["rop"] != oo
                 attacks[attack] = dict(
+                    attack_goal="nonzero_kernel_search",
                     status="finite_heuristic_estimate" if finite else "no_finite_estimate",
                     rop_log2=None if not finite else float(log(cost["rop"], 2)),
                     cost_fields={key: str(value) for key, value in cost.items() if key != "problem"},
@@ -251,13 +269,14 @@ def run_estimator(rows: list[dict], root: Path, *, public_master_lwe_control=Fal
             for attack, cost in result.items():
                 finite = cost["rop"] != oo
                 attacks[attack] = dict(
+                    attack_goal=lwe_attack_goal(attack),
                     status="finite_heuristic_estimate" if finite else "no_finite_estimate",
                     rop_log2=None if not finite else float(log(cost["rop"], 2)),
                     cost_fields={key: str(value) for key, value in cost.items() if key != "problem"},
                 )
             row["master_recovery_lwe_estimates"][mode] = dict(
                 attacks=attacks,
-                attack_scope="implemented classical lattice families; BKW and algebraic Arora-GB excluded",
+                attack_scope="implemented lattice families under the selected cost model; BKW and algebraic Arora-GB excluded",
             )
     public_control = None
     if public_master_lwe_control:
@@ -285,7 +304,7 @@ def audit(estimator_path: Path | None = None, *, public_master_lwe_control=False
             equation="A=[A0|A1], S=[S0;S1], U=A0^-1*T=S0+(A0^-1*A1)*S1 (mod q)",
             condition="A0 is invertible over Z_q; for uniform square A0 the probability is product_{i=1}^n(1-q^-i)",
             interpretation="each of the k public master columns gives n samples of an (m-n)-dimensional bounded-secret, bounded-error LWE instance",
-            limitation="heuristic implemented-lattice-attack screen and one-column recovery experiment; neither alone proves a full IBS forgery or a theorem-level break",
+            limitation="dual costs are distinguishing costs, not full key-recovery costs; the independent one-column experiment does not prove full IBS forgery",
         ),
         runtime=dict(python=sys.version.split()[0], platform=platform.platform(), processor=platform.processor()),
         research_reference_challenge_cap=dict(k=32, maximizing_kappa=best[1], count=str(best[0]),
