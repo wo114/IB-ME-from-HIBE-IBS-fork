@@ -1,0 +1,127 @@
+{
+  "created_utc": "2026-10-10T04:53:10.987621+00:00",
+  "schema_version": 1,
+  "scope": "fixed-capacity cache and trusted snapshot restore on public toy CHKP leaves",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "T2_complete": false,
+  "T3_complete": false,
+  "sampler_modified": false,
+  "caps_relaxed": false,
+  "declared_seeds": [
+    "chkp-t2-chain-0",
+    "chkp-t2-chain-1",
+    "chkp-t2-chain-2",
+    "chkp-t2-chain-3"
+  ],
+  "seed_search_or_retry": false,
+  "parameters": {
+    "n": 1,
+    "q": 2,
+    "root_dimension": 10,
+    "s1_squared": 9064,
+    "s2_squared": 15952640,
+    "epsilon_bits_not_security_bits": 16
+  },
+  "identity_bytes": {
+    "receiver": 3,
+    "sender": 3
+  },
+  "application_message_bytes": null,
+  "target_source": "explicit (0,),(1,) fixtures, NOT implemented H/G",
+  "attempts": [
+    {
+      "seed": "chkp-t2-chain-0",
+      "repeated_and_restored_vectors_identical": true,
+      "fresh_process_identical_snapshot": true,
+      "fresh_process_exit": 0,
+      "capacity": 2,
+      "preimage_count": 2,
+      "dimension": 30,
+      "snapshot_bytes": 935,
+      "leaf_squared_norms": [
+        "53731476",
+        "96500136"
+      ],
+      "has_parent_basis_or_rng_in_snapshot": false,
+      "private_snapshot_published": false,
+      "outcome": "cache_restore_passed"
+    },
+    {
+      "seed": "chkp-t2-chain-1",
+      "repeated_and_restored_vectors_identical": true,
+      "fresh_process_identical_snapshot": true,
+      "fresh_process_exit": 0,
+      "capacity": 2,
+      "preimage_count": 2,
+      "dimension": 30,
+      "snapshot_bytes": 935,
+      "leaf_squared_norms": [
+        "74344791",
+        "76589995"
+      ],
+      "has_parent_basis_or_rng_in_snapshot": false,
+      "private_snapshot_published": false,
+      "outcome": "cache_restore_passed"
+    },
+    {
+      "seed": "chkp-t2-chain-2",
+      "repeated_and_restored_vectors_identical": true,
+      "fresh_process_identical_snapshot": true,
+      "fresh_process_exit": 0,
+      "capacity": 2,
+      "preimage_count": 2,
+      "dimension": 30,
+      "snapshot_bytes": 935,
+      "leaf_squared_norms": [
+        "73453104",
+        "80588154"
+      ],
+      "has_parent_basis_or_rng_in_snapshot": false,
+      "private_snapshot_published": false,
+      "outcome": "cache_restore_passed"
+    },
+    {
+      "seed": "chkp-t2-chain-3",
+      "repeated_and_restored_vectors_identical": true,
+      "fresh_process_identical_snapshot": true,
+      "fresh_process_exit": 0,
+      "capacity": 2,
+      "preimage_count": 2,
+      "dimension": 30,
+      "snapshot_bytes": 934,
+      "leaf_squared_norms": [
+        "39619243",
+        "82548110"
+      ],
+      "has_parent_basis_or_rng_in_snapshot": false,
+      "private_snapshot_published": false,
+      "outcome": "cache_restore_passed"
+    }
+  ],
+  "fixed_cache_gate_passed": true,
+  "environment": {
+    "python": "3.13.15",
+    "sage": "10.9",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "sha256": {
+    "experiments/research/chkp_leaf_cache_types.py": "bb3657e05c07b5c0a0cbdd7f9e8885b16a83f458304d07ef016d7de9ad1772cd",
+    "experiments/research/chkp_leaf_cache_wire.py": "906ec0c5678a7373d03d053d3e39c261d0a019c64f00de4c24375e3f29ea5ca8",
+    "experiments/research/chkp_leaf_cache.py": "8c8197e60044b4d91a7fef929b784054771d4c530bced50bbf2508f252b8deb5",
+    "experiments/research/chkp_leaf_cache_audit.py": "d7c7692d07de77af624b0c79fd8a76d6bbdae5c2f4df11462eb2caed803f8345",
+    "experiments/research/chkp_leaf_reference.py": "2e33cd9b5155400b0132a87a41654e8d17f3102e739d964c614b307d7f745c5c",
+    "experiments/research/chkp_gpv.py": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+    "experiments/research/chkp_randbasis.py": "69d970490202fcf69da4389d4435e1538f6c1c49b83441365291260134dc2282",
+    "experiments/research/chkp_basis_reduce.py": "101f0c13a1027ffe1d82b9386b1be5a270a7024d8aeebb8ca7a7b722f2913218",
+    "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+    "papers/2010_bonsai_trees_cash.pdf": "b1d8a2ae0e9d4e5c9145bbc6dc864090605c12a5b76149aa0684d62a8815d2ce"
+  },
+  "limitations": [
+    "trusted precomputed matrix/targets and full public context required",
+    "no H/G or full HIBE/IBME byte payload or noise/decryption",
+    "no authenticated/encrypted storage, rollback protection or multiprocess transactions",
+    "persist current state after success AND failure; older or forked owners can diverge",
+    "formal parameters, budgets and security estimates remain open"
+  ]
+}

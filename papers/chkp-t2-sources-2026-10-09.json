@@ -1,0 +1,69 @@
+{
+  "recorded_on": "2026-10-09",
+  "purpose": "CHKP T2 source and finite sampling contract",
+  "acquisition_method": "Public author PDF URLs, direct download, manual identity/page/text/hash checks; dedicated paper-fetch runtime unavailable; no installation or account used",
+  "security_claim": "none",
+  "sources": [
+    {
+      "id": "AP09-author-2010-07-10",
+      "title": "Generating Shorter Bases for Hard Random Lattices",
+      "authors": ["Joel Alwen", "Chris Peikert"],
+      "conference_year": 2009,
+      "document_date": "2010-07-10",
+      "url": "https://sites.cc.gatech.edu/fac/cpeikert/pubs/shorter.pdf",
+      "file": "papers/2009_generating_shorter_bases_alwen_peikert_full.pdf",
+      "pdf_pages": 18,
+      "bytes": 335965,
+      "sha256": "cab8f0808bd693f049ac0e6b3273389b8062d552efd15d3ea00f76cb767f3861",
+      "status": "author_full_text_acquired_unmodified",
+      "read_scope": "Sections 2.1-2.4, 3.1-3.2 and opening of 3.3; PDF pages 4-14. Not a full-paper review.",
+      "visual_checks_pdf_pages": [8],
+      "key_locations": "Theorems 3.1/3.2 PDF 8 (printed 7); Algorithm 1 PDF 9; first construction PDF 11-13; second construction starts PDF 13",
+      "tex_source_acquired": false
+    },
+    {
+      "id": "GPV08-author-2008-08-25",
+      "title": "How to Use a Short Basis: Trapdoors for Hard Lattices and New Cryptographic Constructions",
+      "authors": ["Craig Gentry", "Chris Peikert", "Vinod Vaikuntanathan"],
+      "document_date": "2008-08-25",
+      "url": "https://sites.cc.gatech.edu/fac/cpeikert/pubs/trap_lattice.pdf",
+      "file": "papers/2008_gpv_trapdoors_full.pdf",
+      "pdf_pages": 41,
+      "bytes": 493626,
+      "sha256": "7e747881cddd16b7dcf82893682cb9b4c788d7cec5712f80aa4193f2bd30a5b3",
+      "status": "author_full_text_acquired_unmodified",
+      "read_scope": "PDF pages 9-17: basis conversion restatement, Gaussian facts, smoothing bound, SampleZ, SampleD and proof of Theorem 4.1. Not a full-paper review.",
+      "visual_checks_pdf_pages": [10, 12, 15],
+      "version_warning": "Lemma 2.6 on PDF 10 prints 2n/(1+1/epsilon) inside log; visually confirmed. Contract uses Lemma 3.1 on PDF 12, not that expression.",
+      "key_locations": "Lemma 2.1 PDF 9; Lemma 2.7/Corollary 2.8 PDF 10-11; Lemma 2.9 PDF 11; Lemma 3.1 PDF 12; Theorem 4.1 and Lemmas 4.2-4.5 PDF 14-17",
+      "tex_source_acquired": false
+    },
+    {
+      "id": "MG02-chapter7",
+      "title": "Complexity of Lattice Problems: A Cryptographic Perspective",
+      "authors": ["Daniele Micciancio", "Shafi Goldwasser"],
+      "year": 2002,
+      "chapter": "7: Basis Reduction Problems, pp. 125-142",
+      "lemma_location_as_cited_by_GPV_and_CHKP": "Lemma 7.1, p.129",
+      "url": "https://link.springer.com/chapter/10.1007/978-1-4615-0897-7_7",
+      "author_landing": "https://cseweb.ucsd.edu/~daniele/papers/book.html",
+      "status": "publisher_metadata_confirmed_full_chapter_not_acquired",
+      "file": null,
+      "sha256": null,
+      "barrier": "Subscription chapter; public author sample is chapter 1, not the requested chapter 7. No account login, payment or bypass attempted.",
+      "usable_restatements": ["GPV08-author-2008-08-25 Lemma 2.1 PDF 9", "CHKP-author-2011-06-14 Lemma 2.1 PDF 11"],
+      "original_proof_read": false
+    },
+    {
+      "id": "CHKP-author-2011-06-14",
+      "title": "Bonsai Trees, or How to Delegate a Lattice Basis",
+      "file": "papers/2010_bonsai_trees_cash.pdf",
+      "url": "https://sites.cc.gatech.edu/fac/cpeikert/pubs/bonsai.pdf",
+      "pdf_pages": 36,
+      "sha256": "b1d8a2ae0e9d4e5c9145bbc6dc864090605c12a5b76149aa0684d62a8815d2ce",
+      "status": "existing_repository_pdf_reused",
+      "read_scope": "T2 reread Lemma 2.1, Lemma 2.4, GenBasis/ExtBasis/RandBasis and level scheduling in sections 5.2/5.3; not a fresh full-paper review",
+      "visual_checks_pdf_pages_this_turn": [15]
+    }
+  ]
+}

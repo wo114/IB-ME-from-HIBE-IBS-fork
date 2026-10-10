@@ -1,0 +1,75 @@
+{
+  "scope": "CHKP depth-two paper-derived numeric preflight",
+  "source": {
+    "paper": "papers/2010_bonsai_trees_cash.pdf",
+    "sections": [
+      "5.1 Lemma 5.1",
+      "5.2 Equations (5.1)/(5.2)",
+      "5.3 ROHIBE and Theorem 5.2"
+    ],
+    "model": "classical random oracle model"
+  },
+  "parameters": {
+    "n": 2,
+    "m": 64,
+    "q": 65537,
+    "depth": 2,
+    "s1_squared": 256,
+    "s2_squared": 4096,
+    "epsilon_bits": null
+  },
+  "dimensions": {
+    "root": 64,
+    "level_1": 128,
+    "level_2_leaf": 192
+  },
+  "paper_relations": {
+    "m_ge_C_n_log2_q": {
+      "known_floor_m_ge_n_ceil_log2_q": true,
+      "floor_rhs": 34,
+      "observed_ratio_m_over_n_ceil_log2_q": "32/17",
+      "status": "C_is_unspecified_in_paper; no fixed C is invented"
+    },
+    "q_ge_4_s_t_m_t_plus_1": {
+      "level_1": {
+        "q_squared": "4295098369",
+        "required_q_squared": "68161536",
+        "passed": true
+      },
+      "level_2_leaf": {
+        "q_squared": "4295098369",
+        "required_q_squared": "2441150464",
+        "passed": true
+      }
+    },
+    "alpha_condition": {
+      "status": "not_evaluated",
+      "reason": "requires a chosen omega(sqrt(log n)) tail factor and alpha"
+    }
+  },
+  "implementation_constraints": {
+    "current_gpv_dimension_cap": 192,
+    "current_ap09_root_dimension_cap": 192,
+    "current_ap09_n_cap": 16,
+    "current_ap09_q_cap": 2305843009213693951,
+    "dimension_cap_passed": true,
+    "root_cap_passed": true,
+    "n_cap_passed": true,
+    "q_cap_passed": true,
+    "q_prime": true,
+    "random_tape_and_to_basis": "requires the actual basis and sampler run",
+    "noise_and_decryption": "requires alpha, error distribution, and HIBE equations"
+  },
+  "known_static_conditions_passed": true,
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "security_claim": "none",
+  "unresolved": [
+    "paper constant C in m >= C*n*log2(q)",
+    "omega tail factor and alpha/noise budget",
+    "GenBasis distribution and finite quality certificate",
+    "actual GS lengths after ExtBasis/RandBasis/optional postprocessing",
+    "SampleD/RandBasis random tape and memory",
+    "IBS composition and whole-system security estimate"
+  ]
+}

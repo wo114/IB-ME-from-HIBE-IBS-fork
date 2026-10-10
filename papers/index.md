@@ -41,6 +41,31 @@
 
 同日后续扩大 HIBE 与直接 IBS 调查，新增五份固定 PDF；指纹、下载失败及在线阅读状态分别记于 [调查清单](survey-manifest-2026-10-08.json)。优先级见 [实施计划](../docs/research/2026-10-08-selection/文献复核与后续实施计划.md)。
 
+2026-10-09 为 CHKP T2 增补 AP09/GPV08 作者全文，并定位 MG02 ToBasis 原始出处；指纹、版本、阅读范围和未取得的第 7 章见 [T2 来源清单](chkp-t2-sources-2026-10-09.json)。没有把来源归档视为采样算法已实现。
+
+## 2009_generating_shorter_bases_alwen_peikert_full.pdf
+
+- 标题：Generating Shorter Bases for Hard Random Lattices；Joel Alwen、Chris Peikert。
+- 版本：2010-07-10 作者全文，18 页；AP09 指 STACS 2009 初版年份，不与 12 页会议版混用。
+- 来源：[作者公开 PDF](https://sites.cc.gatech.edu/fac/cpeikert/pubs/shorter.pdf)，原样归档。文件：[PDF](2009_generating_shorter_bases_alwen_peikert_full.pdf)。
+- 本轮核对：§2.1–2.4、§3.1–3.2、§3.3 开头；重点 Theorems 3.1/3.2、Algorithm 1 和有限常数缺口，不声称全篇精读。TeX 未取得。
+- 用途：CHKP GenBasis 的来源及子算法选择门槛；正式实现与有限质量证书尚未完成。
+
+## 2008_gpv_trapdoors_full.pdf
+
+- 标题：How to Use a Short Basis: Trapdoors for Hard Lattices and New Cryptographic Constructions；Craig Gentry、Chris Peikert、Vinod Vaikuntanathan。
+- 版本：2008-08-25 作者全文，41 页。
+- 来源：[作者公开 PDF](https://sites.cc.gatech.edu/fac/cpeikert/pubs/trap_lattice.pdf)，原样归档。文件：[PDF](2008_gpv_trapdoors_full.pdf)。
+- 本轮核对：PDF 9–17 的 ToBasis 转述、Gaussian 引理、Lemma 3.1、Theorem 4.1 和 §4.1–4.2；未审查全部密码构造，TeX 未取得。
+- 用途：一般列基 SampleD/标量 SampleZ 的明确算法和有限误差推导，不是 MP12 G-trapdoor 的同义名称。
+
+## MG02 ToBasis：已定位，原章节未取得
+
+- Daniele Micciancio、Shafi Goldwasser，Complexity of Lattice Problems: A Cryptographic Perspective，2002。
+- [Chapter 7: Basis Reduction Problems](https://link.springer.com/chapter/10.1007/978-1-4615-0897-7_7)，pp.125–142；GPV08/CHKP 引用 Lemma 7.1，p.129。
+- 出版社提供订阅访问；[作者样章入口](https://cseweb.ucsd.edu/~daniele/papers/book.html)只有第 1 章。不创建伪全文文件，不声称读过原证明。
+- 当前可核对的转述是 GPV08 Lemma 2.1（PDF 9）和 CHKP Lemma 2.1（PDF 11）；输入、后置条件与后续补全门槛见 [T2 契约](../docs/research/team-chkp/T2-算法来源与采样契约-2026-10-09.md)。
+
 ## 2010_lattice_basis_delegation_agrawal.pdf
 
 - 标题：Lattice Basis Delegation in Fixed Dimension and Shorter-Ciphertext Hierarchical IBE
@@ -183,3 +208,12 @@
 - 一句话主题：用紧凑原像采样和椭球 G + G 构造直接 IBS，提供缓存密钥安全实验和模格参数。
 - 本轮核对：Definition 3、§4.5 Theorem 2 的底层条件、§5 Tables 1/4/5/6；尺寸表不一致，必须以实现核算；论文 C 原型未取得公开代码。
 - 本地直接下载返回 403；未创建 `2025_efficient_ibs_jia.pdf`，没有 TeX，不能把在线阅读写成完成本地归档。
+
+## 2011_peikert_parallel_gaussian_author.pdf
+
+- 标题：An Efficient and Parallel Gaussian Sampler for Lattices。
+- 作者/版本：Chris Peikert，2011-04-13 作者版，19 页；原样保留，非 MG02 第七章。
+- 来源：[作者公开 PDF](https://sites.cc.gatech.edu/fac/cpeikert/pubs/pargauss.pdf)；[本地 PDF](2011_peikert_parallel_gaussian_author.pdf)；[文件指纹与阅读范围](chkp-t2-source-supplement-2026-10-10.json)。
+- 本轮用于：PDF 16 的 Lemma 5.4，ToBasis 显式步骤、完整格和逐项 GS 不增；没有改用此论文的并行向量采样算法。
+- 限制：不采用该证明中有问题的三角整数矩阵奇异值推断，不宣称谱/普通列范数不增。未取得 MG02 第七章或此稿 TeX，未声称全篇精读。
+- 实施/证据：[CHKP T2 续作](../docs/research/team-chkp/T2-真实采样实现与未闭合项-2026-10-10.md)，整体仍 WIP。
