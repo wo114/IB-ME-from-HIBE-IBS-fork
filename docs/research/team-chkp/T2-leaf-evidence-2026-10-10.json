@@ -1,0 +1,1215 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-10T04:37:13.187071+00:00",
+  "scope": "fixed PUBLIC TOY sampling-path gate only, NOT HIBE correctness",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "T2_complete": false,
+  "parameters_are_formal": false,
+  "sampler_modified": false,
+  "caps_relaxed": false,
+  "seed_search_or_retry": false,
+  "declared_seeds": [
+    "chkp-t2-chain-0",
+    "chkp-t2-chain-1",
+    "chkp-t2-chain-2",
+    "chkp-t2-chain-3"
+  ],
+  "epsilon_bits_not_security_bits": 16,
+  "parameters": {
+    "algorithm": "AP09 second construction, Algorithm 1 / section 3.3",
+    "parameters": {
+      "n": 1,
+      "q": 2,
+      "random_rows": 2,
+      "m1": 2,
+      "m2": 8,
+      "hadamard_scale": 4,
+      "max_uniform_trials": 192
+    },
+    "hadamard_width": 4,
+    "gs_squared_bound": 103,
+    "quality_gate": "4*d*m2 <= Cprime^2*w; deterministic Frobenius sufficient condition",
+    "quality_bad_probability_inside_admitted_domain": "0",
+    "unconditioned_paper_matrix_tv_upper": "1",
+    "ideal_A1_rank_abort_upper": "1/4",
+    "uniform_integer_abort_upper": "1/3138550867693340381917894711603833208051177722232017256448",
+    "actual_output_vs_uniform_including_abort_tv_upper": "1",
+    "public_random_tape_bytes_upper": 400,
+    "rounding": "sqrt rounded upward to 2^-80; not a security level",
+    "randomness_assumption": "independent uniform bytes; fixed seed tests are not proof",
+    "near_uniform_bound_nonvacuous": false,
+    "dimension_optimality_claim": false,
+    "security_claim": "none",
+    "backend_admitted": false
+  },
+  "target_schedule": [
+    [
+      0
+    ],
+    [
+      1
+    ]
+  ],
+  "targets_are_identity_hashes": false,
+  "environment": {
+    "sage": "10.9",
+    "python": "3.13.15",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "processor": "x86_64"
+  },
+  "attempts": [
+    {
+      "seed": "chkp-t2-chain-0",
+      "postprocess": false,
+      "stages": [
+        {
+          "level": 1,
+          "input_algebra": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1/78",
+            "gs_squared_max": "33"
+          },
+          "width_squared": "9064",
+          "width_interval": {
+            "scalar_only_lower": "33",
+            "upper": "500000000000/39",
+            "C1_exec_lower": "2904",
+            "public_C1_lower": "9064",
+            "scalar_only_nonempty": true,
+            "C1_exec_nonempty": true,
+            "public_C1_nonempty": true
+          },
+          "SampleD": {
+            "dimension": 20,
+            "width_squared": "9064",
+            "epsilon_bits": 16,
+            "C1_exec_verified": true,
+            "geometry_tv_upper": "4/13099",
+            "scalar_tv_upper_sum": "204248480221374786605286957330706224368050730646575081822537/15177100720513508366558296147058741458143803430094840009779784451085189728165691392",
+            "tv_upper_including_abort": "60708402882054033468908635430654754162317867574454280872116234325080245909456177731/198804842338006446093547121230322454360225681130812309288105396524764900249242391543808",
+            "random_tape_bytes": 5808368,
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "1",
+              "max_center_denominator_bits": 13,
+              "max_center_numerator_bits": 23,
+              "max_coefficient_bits": 16,
+              "max_residual_bits": 18,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "all_syndromes_exact": [
+            true,
+            true
+          ],
+          "RandBasis_certificate": {
+            "algorithm": "CHKP RandBasis, project finite K/norm-abort adaptation",
+            "dimension": 20,
+            "max_vectors": 40,
+            "width_squared": "9064",
+            "candidate_norm_squared_limit": "181280",
+            "ideal_rank_exhaustion_upper": "1281/1048576",
+            "one_ideal_norm_tail_upper": "65537/68718428160",
+            "actual_vs_bounded_ideal_output_tv_upper": "303542014410270167344543177153273770811589337872271404360581171625401229547280888655/24850605292250805761693390153790306795028210141351538661013174565595612531155298942976",
+            "rank_or_norm_or_sampling_failure_upper": "4388864920576590147182354459064894278904138934733554651546762130593149863563413495395773/325716883565531311118515264745729551162434750322694617229899679031261693445852503245586432",
+            "failure_bound_nonvacuous": true,
+            "output_gs_squared_upper_on_success": "181280",
+            "public_random_tape_bytes": 232334720,
+            "whole_call_random_tape_cap": 268435456,
+            "public_test_evidence_only": true,
+            "disclosure": "basis-dependent tape/profile diagnostics are excluded from the parent-basis output-TV comparison",
+            "canonical_complete_lattice_basis": true,
+            "all_candidate_tobasis_coordinate_resources_checked": true,
+            "parent_basis_comparison": "at common s,K,norm cutoff and canonical postprocessor, TV <= K*(delta_D0+delta_D1); NOT exact basis independence",
+            "ordinary_column_norm_preservation": false,
+            "spectral_norm_preservation": false,
+            "randomness_assumption": "independent uniform bytes; deterministic seeds only test executions",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          },
+          "raw_vectors_consumed": 20,
+          "before_postprocess": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1/3473167136897322064731608725724581045702259721287000130074243432207106945",
+            "gs_squared_max": "3741888464495/102547479"
+          }
+        },
+        {
+          "level": 2,
+          "input_algebra": {
+            "dimension": 30,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1/3473167136897322064731608725724581045702259721287000130074243432207106945",
+            "gs_squared_max": "3741888464495/102547479"
+          },
+          "width_squared": "15952640",
+          "width_interval": {
+            "scalar_only_lower": "3741888464495/102547479",
+            "upper": "200000000000/694633427379464412946321745144916209140451944257400026014848686441421389",
+            "C1_exec_lower": "329286184875560/102547479",
+            "public_C1_lower": "15952640",
+            "scalar_only_nonempty": false,
+            "C1_exec_nonempty": false,
+            "public_C1_nonempty": false
+          }
+        }
+      ],
+      "level2_randbasis_calls": 0,
+      "outcome": "admission_rejected",
+      "stopped_at": "level_2_SampleD_admission",
+      "reason": "Scalar squared width outside 1..10^12; no hardcap relaxation",
+      "elapsed_seconds_diagnostic_only": 0.28726
+    },
+    {
+      "seed": "chkp-t2-chain-1",
+      "postprocess": false,
+      "stages": [
+        {
+          "level": 1,
+          "input_algebra": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "4/161",
+            "gs_squared_max": "1403/50"
+          },
+          "width_squared": "9064",
+          "width_interval": {
+            "scalar_only_lower": "1403/50",
+            "upper": "4000000000000/161",
+            "C1_exec_lower": "61732/25",
+            "public_C1_lower": "9064",
+            "scalar_only_nonempty": true,
+            "C1_exec_nonempty": true,
+            "public_C1_nonempty": true
+          },
+          "SampleD": {
+            "dimension": 20,
+            "width_squared": "9064",
+            "epsilon_bits": 16,
+            "C1_exec_verified": true,
+            "geometry_tv_upper": "4/13099",
+            "scalar_tv_upper_sum": "207122026292736014637645081553320828021338953734243905045461/15177100720513508366558296147058741458143803430094840009779784451085189728165691392",
+            "tv_upper_including_abort": "60708402882054033468946276010643514888313726643646309565370656759305619824853259207/198804842338006446093547121230322454360225681130812309288105396524764900249242391543808",
+            "random_tape_bytes": 5808144,
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "1",
+              "max_center_denominator_bits": 13,
+              "max_center_numerator_bits": 25,
+              "max_coefficient_bits": 18,
+              "max_residual_bits": 19,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "all_syndromes_exact": [
+            true,
+            true
+          ],
+          "RandBasis_certificate": {
+            "algorithm": "CHKP RandBasis, project finite K/norm-abort adaptation",
+            "dimension": 20,
+            "max_vectors": 40,
+            "width_squared": "9064",
+            "candidate_norm_squared_limit": "181280",
+            "ideal_rank_exhaustion_upper": "1281/1048576",
+            "one_ideal_norm_tail_upper": "65537/68718428160",
+            "actual_vs_bounded_ideal_output_tv_upper": "303542014410270167344731380053217574441568633218231547826853283796528099124266296035/24850605292250805761693390153790306795028210141351538661013174565595612531155298942976",
+            "rank_or_norm_or_sampling_failure_upper": "4388864920576590147184821234474457713082277558833054251959190704820109743108961229925433/325716883565531311118515264745729551162434750322694617229899679031261693445852503245586432",
+            "failure_bound_nonvacuous": true,
+            "output_gs_squared_upper_on_success": "181280",
+            "public_random_tape_bytes": 232325760,
+            "whole_call_random_tape_cap": 268435456,
+            "public_test_evidence_only": true,
+            "disclosure": "basis-dependent tape/profile diagnostics are excluded from the parent-basis output-TV comparison",
+            "canonical_complete_lattice_basis": true,
+            "all_candidate_tobasis_coordinate_resources_checked": true,
+            "parent_basis_comparison": "at common s,K,norm cutoff and canonical postprocessor, TV <= K*(delta_D0+delta_D1); NOT exact basis independence",
+            "ordinary_column_norm_preservation": false,
+            "spectral_norm_preservation": false,
+            "randomness_assumption": "independent uniform bytes; deterministic seeds only test executions",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          },
+          "raw_vectors_consumed": 20,
+          "before_postprocess": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "4/5238081023592315390468973473488943405711140851805236552077901589399699192109",
+            "gs_squared_max": "5051254211143999923116753769609312/118782162872686168068310550093"
+          }
+        },
+        {
+          "level": 2,
+          "input_algebra": {
+            "dimension": 30,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "4/5238081023592315390468973473488943405711140851805236552077901589399699192109",
+            "gs_squared_max": "5051254211143999923116753769609312/118782162872686168068310550093"
+          },
+          "width_squared": "15952640",
+          "width_interval": {
+            "scalar_only_lower": "5051254211143999923116753769609312/118782162872686168068310550093",
+            "upper": "4000000000000/5238081023592315390468973473488943405711140851805236552077901589399699192109",
+            "C1_exec_lower": "444510370580671993234274331725619456/118782162872686168068310550093",
+            "public_C1_lower": "15952640",
+            "scalar_only_nonempty": false,
+            "C1_exec_nonempty": false,
+            "public_C1_nonempty": false
+          }
+        }
+      ],
+      "level2_randbasis_calls": 0,
+      "outcome": "admission_rejected",
+      "stopped_at": "level_2_SampleD_admission",
+      "reason": "Scalar squared width outside 1..10^12; no hardcap relaxation",
+      "elapsed_seconds_diagnostic_only": 0.16346
+    },
+    {
+      "seed": "chkp-t2-chain-2",
+      "postprocess": false,
+      "stages": [
+        {
+          "level": 1,
+          "input_algebra": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "4/155",
+            "gs_squared_max": "527/18"
+          },
+          "width_squared": "9064",
+          "width_interval": {
+            "scalar_only_lower": "527/18",
+            "upper": "800000000000/31",
+            "C1_exec_lower": "23188/9",
+            "public_C1_lower": "9064",
+            "scalar_only_nonempty": true,
+            "C1_exec_nonempty": true,
+            "public_C1_nonempty": true
+          },
+          "SampleD": {
+            "dimension": 20,
+            "width_squared": "9064",
+            "epsilon_bits": 16,
+            "C1_exec_verified": true,
+            "geometry_tv_upper": "4/13099",
+            "scalar_tv_upper_sum": "205690226068091142730571419088200873648388438940770320369483/15177100720513508366558296147058741458143803430094840009779784451085189728165691392",
+            "tv_upper_including_abort": "60708402882054033468927520859500891711202968739015703283039377966025909339182623385/198804842338006446093547121230322454360225681130812309288105396524764900249242391543808",
+            "random_tape_bytes": 5808752,
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "1",
+              "max_center_denominator_bits": 13,
+              "max_center_numerator_bits": 23,
+              "max_coefficient_bits": 17,
+              "max_residual_bits": 19,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "all_syndromes_exact": [
+            true,
+            true
+          ],
+          "RandBasis_certificate": {
+            "algorithm": "CHKP RandBasis, project finite K/norm-abort adaptation",
+            "dimension": 20,
+            "max_vectors": 40,
+            "width_squared": "9064",
+            "candidate_norm_squared_limit": "181280",
+            "ideal_rank_exhaustion_upper": "1281/1048576",
+            "one_ideal_norm_tail_upper": "65537/68718428160",
+            "actual_vs_bounded_ideal_output_tv_upper": "303542014410270167344637604297504458556014843695078516415196889830129546695913116925/24850605292250805761693390153790306795028210141351538661013174565595612531155298942976",
+            "rank_or_norm_or_sampling_failure_upper": "4388864920576590147183592115644325903170324039553087469246610349102523916430536111330663/325716883565531311118515264745729551162434750322694617229899679031261693445852503245586432",
+            "failure_bound_nonvacuous": true,
+            "output_gs_squared_upper_on_success": "181280",
+            "public_random_tape_bytes": 232350080,
+            "whole_call_random_tape_cap": 268435456,
+            "public_test_evidence_only": true,
+            "disclosure": "basis-dependent tape/profile diagnostics are excluded from the parent-basis output-TV comparison",
+            "canonical_complete_lattice_basis": true,
+            "all_candidate_tobasis_coordinate_resources_checked": true,
+            "parent_basis_comparison": "at common s,K,norm cutoff and canonical postprocessor, TV <= K*(delta_D0+delta_D1); NOT exact basis independence",
+            "ordinary_column_norm_preservation": false,
+            "spectral_norm_preservation": false,
+            "randomness_assumption": "independent uniform bytes; deterministic seeds only test executions",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          },
+          "raw_vectors_consumed": 20,
+          "before_postprocess": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1/4070816589279808705714092842455428453211729037299101573660508721380297335322972",
+            "gs_squared_max": "18473271186346427564838842043743313876304133/522894668807588823340456869902845152113"
+          }
+        },
+        {
+          "level": 2,
+          "input_algebra": {
+            "dimension": 30,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1/4070816589279808705714092842455428453211729037299101573660508721380297335322972",
+            "gs_squared_max": "18473271186346427564838842043743313876304133/522894668807588823340456869902845152113"
+          },
+          "width_squared": "15952640",
+          "width_interval": {
+            "scalar_only_lower": "18473271186346427564838842043743313876304133/522894668807588823340456869902845152113",
+            "upper": "250000000000/1017704147319952176428523210613857113302932259324775393415127180345074333830743",
+            "C1_exec_lower": "1625647864398485625705818099849411621114763704/522894668807588823340456869902845152113",
+            "public_C1_lower": "15952640",
+            "scalar_only_nonempty": false,
+            "C1_exec_nonempty": false,
+            "public_C1_nonempty": false
+          }
+        }
+      ],
+      "level2_randbasis_calls": 0,
+      "outcome": "admission_rejected",
+      "stopped_at": "level_2_SampleD_admission",
+      "reason": "Scalar squared width outside 1..10^12; no hardcap relaxation",
+      "elapsed_seconds_diagnostic_only": 0.173098
+    },
+    {
+      "seed": "chkp-t2-chain-3",
+      "postprocess": false,
+      "stages": [
+        {
+          "level": 1,
+          "input_algebra": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "133/4934",
+            "gs_squared_max": "42"
+          },
+          "width_squared": "9064",
+          "width_interval": {
+            "scalar_only_lower": "42",
+            "upper": "66500000000000/2467",
+            "C1_exec_lower": "3696",
+            "public_C1_lower": "9064",
+            "scalar_only_nonempty": true,
+            "C1_exec_nonempty": true,
+            "public_C1_nonempty": true
+          },
+          "SampleD": {
+            "dimension": 20,
+            "width_squared": "9064",
+            "epsilon_bits": 16,
+            "C1_exec_verified": true,
+            "geometry_tv_upper": "4/13099",
+            "scalar_tv_upper_sum": "102536161131555927261353193319074970373209662040270190388799/7588550360256754183279148073529370729071901715047420004889892225542594864082845696",
+            "tv_upper_including_abort": "30354201441027016734459713468779734007484072339476243056478242265235878680234260885/99402421169003223046773560615161227180112840565406154644052698262382450124621195771904",
+            "random_tape_bytes": 5808752,
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "1",
+              "max_center_denominator_bits": 12,
+              "max_center_numerator_bits": 23,
+              "max_coefficient_bits": 14,
+              "max_residual_bits": 18,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "all_syndromes_exact": [
+            true,
+            true
+          ],
+          "RandBasis_certificate": {
+            "algorithm": "CHKP RandBasis, project finite K/norm-abort adaptation",
+            "dimension": 20,
+            "max_vectors": 40,
+            "width_squared": "9064",
+            "candidate_norm_squared_limit": "181280",
+            "ideal_rank_exhaustion_upper": "1281/1048576",
+            "one_ideal_norm_tail_upper": "65537/68718428160",
+            "actual_vs_bounded_ideal_output_tv_upper": "151771007205135083672298567343898670037420361697381215282391211326179393401171304425/12425302646125402880846695076895153397514105070675769330506587282797806265577649471488",
+            "rank_or_norm_or_sampling_failure_upper": "2194432460288295073591530840234947350618787422388422266002613963901741283252753730995819/162858441782765655559257632372864775581217375161347308614949839515630846722926251622793216",
+            "failure_bound_nonvacuous": true,
+            "output_gs_squared_upper_on_success": "181280",
+            "public_random_tape_bytes": 232350080,
+            "whole_call_random_tape_cap": 268435456,
+            "public_test_evidence_only": true,
+            "disclosure": "basis-dependent tape/profile diagnostics are excluded from the parent-basis output-TV comparison",
+            "canonical_complete_lattice_basis": true,
+            "all_candidate_tobasis_coordinate_resources_checked": true,
+            "parent_basis_comparison": "at common s,K,norm cutoff and canonical postprocessor, TV <= K*(delta_D0+delta_D1); NOT exact basis independence",
+            "ordinary_column_norm_preservation": false,
+            "spectral_norm_preservation": false,
+            "randomness_assumption": "independent uniform bytes; deterministic seeds only test executions",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          },
+          "raw_vectors_consumed": 20,
+          "before_postprocess": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1/58221085868141574625791329558388970123906060620107997813471837293544413896965",
+            "gs_squared_max": "102356337523686724646761072051805306033/3106912373063640232845930807148788"
+          }
+        },
+        {
+          "level": 2,
+          "input_algebra": {
+            "dimension": 30,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1/58221085868141574625791329558388970123906060620107997813471837293544413896965",
+            "gs_squared_max": "102356337523686724646761072051805306033/3106912373063640232845930807148788"
+          },
+          "width_squared": "15952640",
+          "width_interval": {
+            "scalar_only_lower": "102356337523686724646761072051805306033/3106912373063640232845930807148788",
+            "upper": "200000000000/11644217173628314925158265911677794024781212124021599562694367458708882779393",
+            "C1_exec_lower": "2251839425521107942228743585139716732726/776728093265910058211482701787197",
+            "public_C1_lower": "15952640",
+            "scalar_only_nonempty": false,
+            "C1_exec_nonempty": false,
+            "public_C1_nonempty": false
+          }
+        }
+      ],
+      "level2_randbasis_calls": 0,
+      "outcome": "admission_rejected",
+      "stopped_at": "level_2_SampleD_admission",
+      "reason": "Scalar squared width outside 1..10^12; no hardcap relaxation",
+      "elapsed_seconds_diagnostic_only": 0.198298
+    },
+    {
+      "seed": "chkp-t2-chain-0",
+      "postprocess": true,
+      "stages": [
+        {
+          "level": 1,
+          "input_algebra": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1/78",
+            "gs_squared_max": "33"
+          },
+          "width_squared": "9064",
+          "width_interval": {
+            "scalar_only_lower": "33",
+            "upper": "500000000000/39",
+            "C1_exec_lower": "2904",
+            "public_C1_lower": "9064",
+            "scalar_only_nonempty": true,
+            "C1_exec_nonempty": true,
+            "public_C1_nonempty": true
+          },
+          "SampleD": {
+            "dimension": 20,
+            "width_squared": "9064",
+            "epsilon_bits": 16,
+            "C1_exec_verified": true,
+            "geometry_tv_upper": "4/13099",
+            "scalar_tv_upper_sum": "204248480221374786605286957330706224368050730646575081822537/15177100720513508366558296147058741458143803430094840009779784451085189728165691392",
+            "tv_upper_including_abort": "60708402882054033468908635430654754162317867574454280872116234325080245909456177731/198804842338006446093547121230322454360225681130812309288105396524764900249242391543808",
+            "random_tape_bytes": 5808368,
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "1",
+              "max_center_denominator_bits": 13,
+              "max_center_numerator_bits": 23,
+              "max_coefficient_bits": 16,
+              "max_residual_bits": 18,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "all_syndromes_exact": [
+            true,
+            true
+          ],
+          "RandBasis_certificate": {
+            "algorithm": "CHKP RandBasis, project finite K/norm-abort adaptation",
+            "dimension": 20,
+            "max_vectors": 40,
+            "width_squared": "9064",
+            "candidate_norm_squared_limit": "181280",
+            "ideal_rank_exhaustion_upper": "1281/1048576",
+            "one_ideal_norm_tail_upper": "65537/68718428160",
+            "actual_vs_bounded_ideal_output_tv_upper": "303542014410270167344543177153273770811589337872271404360581171625401229547280888655/24850605292250805761693390153790306795028210141351538661013174565595612531155298942976",
+            "rank_or_norm_or_sampling_failure_upper": "4388864920576590147182354459064894278904138934733554651546762130593149863563413495395773/325716883565531311118515264745729551162434750322694617229899679031261693445852503245586432",
+            "failure_bound_nonvacuous": true,
+            "output_gs_squared_upper_on_success": "181280",
+            "public_random_tape_bytes": 232334720,
+            "whole_call_random_tape_cap": 268435456,
+            "public_test_evidence_only": true,
+            "disclosure": "basis-dependent tape/profile diagnostics are excluded from the parent-basis output-TV comparison",
+            "canonical_complete_lattice_basis": true,
+            "all_candidate_tobasis_coordinate_resources_checked": true,
+            "parent_basis_comparison": "at common s,K,norm cutoff and canonical postprocessor, TV <= K*(delta_D0+delta_D1); NOT exact basis independence",
+            "ordinary_column_norm_preservation": false,
+            "spectral_norm_preservation": false,
+            "randomness_assumption": "independent uniform bytes; deterministic seeds only test executions",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          },
+          "raw_vectors_consumed": 20,
+          "before_postprocess": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1/3473167136897322064731608725724581045702259721287000130074243432207106945",
+            "gs_squared_max": "3741888464495/102547479"
+          },
+          "LLL": {
+            "steps": 9095,
+            "swaps": 4562,
+            "after": {
+              "dimension": 20,
+              "kernel_equation_exact": true,
+              "absolute_determinant": "2",
+              "expected_index": "2",
+              "gs_squared_min": "1",
+              "gs_squared_max": "2"
+            }
+          }
+        },
+        {
+          "level": 2,
+          "input_algebra": {
+            "dimension": 30,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1",
+            "gs_squared_max": "2"
+          },
+          "width_squared": "15952640",
+          "width_interval": {
+            "scalar_only_lower": "2",
+            "upper": "1000000000000",
+            "C1_exec_lower": "176",
+            "public_C1_lower": "15952640",
+            "scalar_only_nonempty": true,
+            "C1_exec_nonempty": true,
+            "public_C1_nonempty": true
+          },
+          "SampleD": {
+            "dimension": 30,
+            "width_squared": "15952640",
+            "epsilon_bits": 16,
+            "C1_exec_verified": true,
+            "geometry_tv_upper": "2/4365",
+            "scalar_tv_upper_sum": "188110356408467928709057454485089619395181598973791516914907/7588550360256754183279148073529370729071901715047420004889892225542594864082845696",
+            "tv_upper_including_abort": "15177100720513508367379397852781703966958839218922256198439752130605789699499260447/33124022322520732010013481340955703232398850986181988321344379564493426581721621463040",
+            "random_tape_bytes": 9406400,
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "1",
+              "max_center_denominator_bits": 3,
+              "max_center_numerator_bits": 20,
+              "max_coefficient_bits": 19,
+              "max_residual_bits": 20,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "all_syndromes_exact": [
+            true,
+            true
+          ],
+          "leaf_preimage_count": 2,
+          "leaf_integer_count": 60,
+          "leaf_basis_retained": false,
+          "leaf_squared_norms": [
+            "53731476",
+            "96500136"
+          ],
+          "norm_reference_squared": "478579200",
+          "observed_norms_within_reference": true,
+          "norm_filter_applied": false,
+          "leaf_batch_tape_bytes": 18812800,
+          "leaf_batch_tape_cap_bytes": 268435456,
+          "leaf_batch_tv_upper_including_abort": "15177100720513508367379397852781703966958839218922256198439752130605789699499260447/16562011161260366005006740670477851616199425493090994160672189782246713290860810731520",
+          "counterfactual_randbasis_tape_bytes": 470320000
+        }
+      ],
+      "level2_randbasis_calls": 0,
+      "outcome": "leaf_preimage_path_completed",
+      "elapsed_seconds_diagnostic_only": 8.590922
+    },
+    {
+      "seed": "chkp-t2-chain-1",
+      "postprocess": true,
+      "stages": [
+        {
+          "level": 1,
+          "input_algebra": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "4/161",
+            "gs_squared_max": "1403/50"
+          },
+          "width_squared": "9064",
+          "width_interval": {
+            "scalar_only_lower": "1403/50",
+            "upper": "4000000000000/161",
+            "C1_exec_lower": "61732/25",
+            "public_C1_lower": "9064",
+            "scalar_only_nonempty": true,
+            "C1_exec_nonempty": true,
+            "public_C1_nonempty": true
+          },
+          "SampleD": {
+            "dimension": 20,
+            "width_squared": "9064",
+            "epsilon_bits": 16,
+            "C1_exec_verified": true,
+            "geometry_tv_upper": "4/13099",
+            "scalar_tv_upper_sum": "207122026292736014637645081553320828021338953734243905045461/15177100720513508366558296147058741458143803430094840009779784451085189728165691392",
+            "tv_upper_including_abort": "60708402882054033468946276010643514888313726643646309565370656759305619824853259207/198804842338006446093547121230322454360225681130812309288105396524764900249242391543808",
+            "random_tape_bytes": 5808144,
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "1",
+              "max_center_denominator_bits": 13,
+              "max_center_numerator_bits": 25,
+              "max_coefficient_bits": 18,
+              "max_residual_bits": 19,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "all_syndromes_exact": [
+            true,
+            true
+          ],
+          "RandBasis_certificate": {
+            "algorithm": "CHKP RandBasis, project finite K/norm-abort adaptation",
+            "dimension": 20,
+            "max_vectors": 40,
+            "width_squared": "9064",
+            "candidate_norm_squared_limit": "181280",
+            "ideal_rank_exhaustion_upper": "1281/1048576",
+            "one_ideal_norm_tail_upper": "65537/68718428160",
+            "actual_vs_bounded_ideal_output_tv_upper": "303542014410270167344731380053217574441568633218231547826853283796528099124266296035/24850605292250805761693390153790306795028210141351538661013174565595612531155298942976",
+            "rank_or_norm_or_sampling_failure_upper": "4388864920576590147184821234474457713082277558833054251959190704820109743108961229925433/325716883565531311118515264745729551162434750322694617229899679031261693445852503245586432",
+            "failure_bound_nonvacuous": true,
+            "output_gs_squared_upper_on_success": "181280",
+            "public_random_tape_bytes": 232325760,
+            "whole_call_random_tape_cap": 268435456,
+            "public_test_evidence_only": true,
+            "disclosure": "basis-dependent tape/profile diagnostics are excluded from the parent-basis output-TV comparison",
+            "canonical_complete_lattice_basis": true,
+            "all_candidate_tobasis_coordinate_resources_checked": true,
+            "parent_basis_comparison": "at common s,K,norm cutoff and canonical postprocessor, TV <= K*(delta_D0+delta_D1); NOT exact basis independence",
+            "ordinary_column_norm_preservation": false,
+            "spectral_norm_preservation": false,
+            "randomness_assumption": "independent uniform bytes; deterministic seeds only test executions",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          },
+          "raw_vectors_consumed": 20,
+          "before_postprocess": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "4/5238081023592315390468973473488943405711140851805236552077901589399699192109",
+            "gs_squared_max": "5051254211143999923116753769609312/118782162872686168068310550093"
+          },
+          "LLL": {
+            "steps": 9825,
+            "swaps": 4929,
+            "after": {
+              "dimension": 20,
+              "kernel_equation_exact": true,
+              "absolute_determinant": "2",
+              "expected_index": "2",
+              "gs_squared_min": "1",
+              "gs_squared_max": "2"
+            }
+          }
+        },
+        {
+          "level": 2,
+          "input_algebra": {
+            "dimension": 30,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1",
+            "gs_squared_max": "2"
+          },
+          "width_squared": "15952640",
+          "width_interval": {
+            "scalar_only_lower": "2",
+            "upper": "1000000000000",
+            "C1_exec_lower": "176",
+            "public_C1_lower": "15952640",
+            "scalar_only_nonempty": true,
+            "C1_exec_nonempty": true,
+            "public_C1_nonempty": true
+          },
+          "SampleD": {
+            "dimension": 30,
+            "width_squared": "15952640",
+            "epsilon_bits": 16,
+            "C1_exec_verified": true,
+            "geometry_tv_upper": "2/4365",
+            "scalar_tv_upper_sum": "188110356408467928709057454485089619395181598973791516914907/7588550360256754183279148073529370729071901715047420004889892225542594864082845696",
+            "tv_upper_including_abort": "15177100720513508367379397852781703966958839218922256198439752130605789699499260447/33124022322520732010013481340955703232398850986181988321344379564493426581721621463040",
+            "random_tape_bytes": 9406400,
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "1",
+              "max_center_denominator_bits": 3,
+              "max_center_numerator_bits": 20,
+              "max_coefficient_bits": 19,
+              "max_residual_bits": 20,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "all_syndromes_exact": [
+            true,
+            true
+          ],
+          "leaf_preimage_count": 2,
+          "leaf_integer_count": 60,
+          "leaf_basis_retained": false,
+          "leaf_squared_norms": [
+            "74344791",
+            "76589995"
+          ],
+          "norm_reference_squared": "478579200",
+          "observed_norms_within_reference": true,
+          "norm_filter_applied": false,
+          "leaf_batch_tape_bytes": 18812800,
+          "leaf_batch_tape_cap_bytes": 268435456,
+          "leaf_batch_tv_upper_including_abort": "15177100720513508367379397852781703966958839218922256198439752130605789699499260447/16562011161260366005006740670477851616199425493090994160672189782246713290860810731520",
+          "counterfactual_randbasis_tape_bytes": 470320000
+        }
+      ],
+      "level2_randbasis_calls": 0,
+      "outcome": "leaf_preimage_path_completed",
+      "elapsed_seconds_diagnostic_only": 9.46425
+    },
+    {
+      "seed": "chkp-t2-chain-2",
+      "postprocess": true,
+      "stages": [
+        {
+          "level": 1,
+          "input_algebra": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "4/155",
+            "gs_squared_max": "527/18"
+          },
+          "width_squared": "9064",
+          "width_interval": {
+            "scalar_only_lower": "527/18",
+            "upper": "800000000000/31",
+            "C1_exec_lower": "23188/9",
+            "public_C1_lower": "9064",
+            "scalar_only_nonempty": true,
+            "C1_exec_nonempty": true,
+            "public_C1_nonempty": true
+          },
+          "SampleD": {
+            "dimension": 20,
+            "width_squared": "9064",
+            "epsilon_bits": 16,
+            "C1_exec_verified": true,
+            "geometry_tv_upper": "4/13099",
+            "scalar_tv_upper_sum": "205690226068091142730571419088200873648388438940770320369483/15177100720513508366558296147058741458143803430094840009779784451085189728165691392",
+            "tv_upper_including_abort": "60708402882054033468927520859500891711202968739015703283039377966025909339182623385/198804842338006446093547121230322454360225681130812309288105396524764900249242391543808",
+            "random_tape_bytes": 5808752,
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "1",
+              "max_center_denominator_bits": 13,
+              "max_center_numerator_bits": 23,
+              "max_coefficient_bits": 17,
+              "max_residual_bits": 19,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "all_syndromes_exact": [
+            true,
+            true
+          ],
+          "RandBasis_certificate": {
+            "algorithm": "CHKP RandBasis, project finite K/norm-abort adaptation",
+            "dimension": 20,
+            "max_vectors": 40,
+            "width_squared": "9064",
+            "candidate_norm_squared_limit": "181280",
+            "ideal_rank_exhaustion_upper": "1281/1048576",
+            "one_ideal_norm_tail_upper": "65537/68718428160",
+            "actual_vs_bounded_ideal_output_tv_upper": "303542014410270167344637604297504458556014843695078516415196889830129546695913116925/24850605292250805761693390153790306795028210141351538661013174565595612531155298942976",
+            "rank_or_norm_or_sampling_failure_upper": "4388864920576590147183592115644325903170324039553087469246610349102523916430536111330663/325716883565531311118515264745729551162434750322694617229899679031261693445852503245586432",
+            "failure_bound_nonvacuous": true,
+            "output_gs_squared_upper_on_success": "181280",
+            "public_random_tape_bytes": 232350080,
+            "whole_call_random_tape_cap": 268435456,
+            "public_test_evidence_only": true,
+            "disclosure": "basis-dependent tape/profile diagnostics are excluded from the parent-basis output-TV comparison",
+            "canonical_complete_lattice_basis": true,
+            "all_candidate_tobasis_coordinate_resources_checked": true,
+            "parent_basis_comparison": "at common s,K,norm cutoff and canonical postprocessor, TV <= K*(delta_D0+delta_D1); NOT exact basis independence",
+            "ordinary_column_norm_preservation": false,
+            "spectral_norm_preservation": false,
+            "randomness_assumption": "independent uniform bytes; deterministic seeds only test executions",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          },
+          "raw_vectors_consumed": 20,
+          "before_postprocess": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1/4070816589279808705714092842455428453211729037299101573660508721380297335322972",
+            "gs_squared_max": "18473271186346427564838842043743313876304133/522894668807588823340456869902845152113"
+          },
+          "LLL": {
+            "steps": 8912,
+            "swaps": 4469,
+            "after": {
+              "dimension": 20,
+              "kernel_equation_exact": true,
+              "absolute_determinant": "2",
+              "expected_index": "2",
+              "gs_squared_min": "1",
+              "gs_squared_max": "2"
+            }
+          }
+        },
+        {
+          "level": 2,
+          "input_algebra": {
+            "dimension": 30,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1",
+            "gs_squared_max": "2"
+          },
+          "width_squared": "15952640",
+          "width_interval": {
+            "scalar_only_lower": "2",
+            "upper": "1000000000000",
+            "C1_exec_lower": "176",
+            "public_C1_lower": "15952640",
+            "scalar_only_nonempty": true,
+            "C1_exec_nonempty": true,
+            "public_C1_nonempty": true
+          },
+          "SampleD": {
+            "dimension": 30,
+            "width_squared": "15952640",
+            "epsilon_bits": 16,
+            "C1_exec_verified": true,
+            "geometry_tv_upper": "2/4365",
+            "scalar_tv_upper_sum": "188110356408467928709057454485089619395181598973791516914907/7588550360256754183279148073529370729071901715047420004889892225542594864082845696",
+            "tv_upper_including_abort": "15177100720513508367379397852781703966958839218922256198439752130605789699499260447/33124022322520732010013481340955703232398850986181988321344379564493426581721621463040",
+            "random_tape_bytes": 9406400,
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "1",
+              "max_center_denominator_bits": 3,
+              "max_center_numerator_bits": 20,
+              "max_coefficient_bits": 19,
+              "max_residual_bits": 20,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "all_syndromes_exact": [
+            true,
+            true
+          ],
+          "leaf_preimage_count": 2,
+          "leaf_integer_count": 60,
+          "leaf_basis_retained": false,
+          "leaf_squared_norms": [
+            "73453104",
+            "80588154"
+          ],
+          "norm_reference_squared": "478579200",
+          "observed_norms_within_reference": true,
+          "norm_filter_applied": false,
+          "leaf_batch_tape_bytes": 18812800,
+          "leaf_batch_tape_cap_bytes": 268435456,
+          "leaf_batch_tv_upper_including_abort": "15177100720513508367379397852781703966958839218922256198439752130605789699499260447/16562011161260366005006740670477851616199425493090994160672189782246713290860810731520",
+          "counterfactual_randbasis_tape_bytes": 470320000
+        }
+      ],
+      "level2_randbasis_calls": 0,
+      "outcome": "leaf_preimage_path_completed",
+      "elapsed_seconds_diagnostic_only": 8.15687
+    },
+    {
+      "seed": "chkp-t2-chain-3",
+      "postprocess": true,
+      "stages": [
+        {
+          "level": 1,
+          "input_algebra": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "133/4934",
+            "gs_squared_max": "42"
+          },
+          "width_squared": "9064",
+          "width_interval": {
+            "scalar_only_lower": "42",
+            "upper": "66500000000000/2467",
+            "C1_exec_lower": "3696",
+            "public_C1_lower": "9064",
+            "scalar_only_nonempty": true,
+            "C1_exec_nonempty": true,
+            "public_C1_nonempty": true
+          },
+          "SampleD": {
+            "dimension": 20,
+            "width_squared": "9064",
+            "epsilon_bits": 16,
+            "C1_exec_verified": true,
+            "geometry_tv_upper": "4/13099",
+            "scalar_tv_upper_sum": "102536161131555927261353193319074970373209662040270190388799/7588550360256754183279148073529370729071901715047420004889892225542594864082845696",
+            "tv_upper_including_abort": "30354201441027016734459713468779734007484072339476243056478242265235878680234260885/99402421169003223046773560615161227180112840565406154644052698262382450124621195771904",
+            "random_tape_bytes": 5808752,
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "1",
+              "max_center_denominator_bits": 12,
+              "max_center_numerator_bits": 23,
+              "max_coefficient_bits": 14,
+              "max_residual_bits": 18,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "all_syndromes_exact": [
+            true,
+            true
+          ],
+          "RandBasis_certificate": {
+            "algorithm": "CHKP RandBasis, project finite K/norm-abort adaptation",
+            "dimension": 20,
+            "max_vectors": 40,
+            "width_squared": "9064",
+            "candidate_norm_squared_limit": "181280",
+            "ideal_rank_exhaustion_upper": "1281/1048576",
+            "one_ideal_norm_tail_upper": "65537/68718428160",
+            "actual_vs_bounded_ideal_output_tv_upper": "151771007205135083672298567343898670037420361697381215282391211326179393401171304425/12425302646125402880846695076895153397514105070675769330506587282797806265577649471488",
+            "rank_or_norm_or_sampling_failure_upper": "2194432460288295073591530840234947350618787422388422266002613963901741283252753730995819/162858441782765655559257632372864775581217375161347308614949839515630846722926251622793216",
+            "failure_bound_nonvacuous": true,
+            "output_gs_squared_upper_on_success": "181280",
+            "public_random_tape_bytes": 232350080,
+            "whole_call_random_tape_cap": 268435456,
+            "public_test_evidence_only": true,
+            "disclosure": "basis-dependent tape/profile diagnostics are excluded from the parent-basis output-TV comparison",
+            "canonical_complete_lattice_basis": true,
+            "all_candidate_tobasis_coordinate_resources_checked": true,
+            "parent_basis_comparison": "at common s,K,norm cutoff and canonical postprocessor, TV <= K*(delta_D0+delta_D1); NOT exact basis independence",
+            "ordinary_column_norm_preservation": false,
+            "spectral_norm_preservation": false,
+            "randomness_assumption": "independent uniform bytes; deterministic seeds only test executions",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          },
+          "raw_vectors_consumed": 20,
+          "before_postprocess": {
+            "dimension": 20,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1/58221085868141574625791329558388970123906060620107997813471837293544413896965",
+            "gs_squared_max": "102356337523686724646761072051805306033/3106912373063640232845930807148788"
+          },
+          "LLL": {
+            "steps": 9418,
+            "swaps": 4718,
+            "after": {
+              "dimension": 20,
+              "kernel_equation_exact": true,
+              "absolute_determinant": "2",
+              "expected_index": "2",
+              "gs_squared_min": "1",
+              "gs_squared_max": "2"
+            }
+          }
+        },
+        {
+          "level": 2,
+          "input_algebra": {
+            "dimension": 30,
+            "kernel_equation_exact": true,
+            "absolute_determinant": "2",
+            "expected_index": "2",
+            "gs_squared_min": "1",
+            "gs_squared_max": "2"
+          },
+          "width_squared": "15952640",
+          "width_interval": {
+            "scalar_only_lower": "2",
+            "upper": "1000000000000",
+            "C1_exec_lower": "176",
+            "public_C1_lower": "15952640",
+            "scalar_only_nonempty": true,
+            "C1_exec_nonempty": true,
+            "public_C1_nonempty": true
+          },
+          "SampleD": {
+            "dimension": 30,
+            "width_squared": "15952640",
+            "epsilon_bits": 16,
+            "C1_exec_verified": true,
+            "geometry_tv_upper": "2/4365",
+            "scalar_tv_upper_sum": "188110356408467928709057454485089619395181598973791516914907/7588550360256754183279148073529370729071901715047420004889892225542594864082845696",
+            "tv_upper_including_abort": "15177100720513508367379397852781703966958839218922256198439752130605789699499260447/33124022322520732010013481340955703232398850986181988321344379564493426581721621463040",
+            "random_tape_bytes": 9406400,
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "1",
+              "max_center_denominator_bits": 3,
+              "max_center_numerator_bits": 20,
+              "max_coefficient_bits": 19,
+              "max_residual_bits": 20,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "all_syndromes_exact": [
+            true,
+            true
+          ],
+          "leaf_preimage_count": 2,
+          "leaf_integer_count": 60,
+          "leaf_basis_retained": false,
+          "leaf_squared_norms": [
+            "39619243",
+            "82548110"
+          ],
+          "norm_reference_squared": "478579200",
+          "observed_norms_within_reference": true,
+          "norm_filter_applied": false,
+          "leaf_batch_tape_bytes": 18812800,
+          "leaf_batch_tape_cap_bytes": 268435456,
+          "leaf_batch_tv_upper_including_abort": "15177100720513508367379397852781703966958839218922256198439752130605789699499260447/16562011161260366005006740670477851616199425493090994160672189782246713290860810731520",
+          "counterfactual_randbasis_tape_bytes": 470320000
+        }
+      ],
+      "level2_randbasis_calls": 0,
+      "outcome": "leaf_preimage_path_completed",
+      "elapsed_seconds_diagnostic_only": 7.943792
+    }
+  ],
+  "counts": {
+    "without_postprocess_completed": 0,
+    "with_postprocess_completed": 4
+  },
+  "declared_leaf_sampling_gate_passed": true,
+  "sha256": {
+    "experiments/research/chkp_basis.py": "e8924704c6808fb96849e89c2f34cd59615178771738b604f55627c2e7b5f677",
+    "experiments/research/chkp_genbasis.py": "d9bf8a0d71b0ae3ccccd32b24e1a7ebdc9652a44e7e4640d97c423c6bb389aa8",
+    "experiments/research/chkp_randbasis.py": "69d970490202fcf69da4389d4435e1538f6c1c49b83441365291260134dc2282",
+    "experiments/research/chkp_tobasis.py": "d7f3b2c2fe5762a4d45cd26ecc2d5f1f7170d189b2be0555dc5afc90b115f92a",
+    "experiments/research/chkp_gpv.py": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+    "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+    "experiments/research/chkp_basis_reduce.py": "101f0c13a1027ffe1d82b9386b1be5a270a7024d8aeebb8ca7a7b722f2913218",
+    "experiments/research/chkp_t2_audit.py": "b56d0d329361911c980458e005043fe928f07b361511a56b849128016beb72f3",
+    "experiments/research/chkp_width_audit.py": "ec01800e9076bf394f265cbbd1154edd9925e793c5829c113e38f75398ac1846",
+    "experiments/research/chkp_leaf_reference.py": "2e33cd9b5155400b0132a87a41654e8d17f3102e739d964c614b307d7f745c5c",
+    "experiments/research/chkp_leaf_audit.py": "0fb4242a374c0445693c4cbb494f87f64ecdf4259aa0b9dfbf81bad930e0108b",
+    "papers/2010_bonsai_trees_cash.pdf": "b1d8a2ae0e9d4e5c9145bbc6dc864090605c12a5b76149aa0684d62a8815d2ce"
+  },
+  "limitations": [
+    "small public n=1,q=2 parameters; no security level",
+    "LLL and other initialization/resource failure budgets still open",
+    "conditional leaf TV is not the whole-chain failure probability",
+    "no H/G identity mapping, caching, serialization or byte capacity",
+    "no noisy encryption/decryption or multi-bit HIBE claim",
+    "timings include diagnostic algebra/certificates, not benchmarks",
+    "no secret basis or preimage is exported; public toy diagnostics only"
+  ]
+}
