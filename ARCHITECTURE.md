@@ -118,6 +118,8 @@ class HIBEBackend(Protocol):
 
 身份顺序固定为 `(parent_id, child_id) = (rcv, phi)`。HIBE 密文不能明文携带身份，否则会破坏匿名性。
 
+2026-10-10 适配层接入补充：HybridHIBE要求原语提供或显式注入公开的validate_key_binding能力，在原语内部验证秘密对象属于所声明公钥并满足可检查的私钥关系。协议层只调用验证器，不读取陷门；原七个HIBE方法和协议语义保持。详见 IMPLEMENTATION_SPEC 的密钥绑定补充。
+
 ### IBS
 
 ```python

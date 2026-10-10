@@ -101,6 +101,7 @@ jobs:
           tests/test_hybrid_hibe.py tests/test_luo_hybrid_ibme.py
           tests/test_luo_compact_ibme.py
           tests/test_research_state_integrity.py
+          tests/test_hybrid_key_binding.py
           --junitxml=test-results/hybrid.xml
       - name: Explain research scope
         if: always()
@@ -111,6 +112,7 @@ jobs:
           This job checks HYBRID-HIBE/1, fixed-width injective identity encoding, the real debug ABB10 + Luo module combination, fresh-process state and attack controls.
           Explicit reference/compact signature formats have separate decoders; both real research paths retain public forgery and recipient re-signing controls.
           Research-state checks enforce fixed HIBE parameter snapshots, serialized identity issuance/cache snapshots, atomic key publication and refusal to overwrite research keys by switching profiles.
+          Hybrid key-binding checks require a primitive validator and reject same-parameter public/secret mixups, bad private equations and invalid emitted keys. Algebraic validity does not certify sampling or security.
           All checks are unmarked; there are no security XFAILs in this job.
           The education profile's two vulnerabilities remain explicit XFAILs in the other job.
           A functional real composition is not an admitted secure instance: the HIBE is educational and Luo's parameter/proof mapping is still under review.

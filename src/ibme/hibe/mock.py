@@ -268,6 +268,26 @@ class MockHIBE:
     由公开信息推导，没有任何安全性；生产代码必须使用真实格基后端。
     """
 
+    def validate_key_binding(self, public_key, secret_key) -> bool:
+        """TEST-ONLY checks; this mock still has no cryptographic security.
+
+        The unused level-one k1 chain cannot be checked from the public seed.
+        Its public-root/limit binding is checked; level-two k12 is public.
+        """
+        if not isinstance(public_key, MockHIBEPublicKey):
+            return False
+        if isinstance(secret_key, MockHIBEMasterSecret):
+            return (secret_key.max_message_bytes == public_key.max_message_bytes
+                    and secret_key.identity_bytes == public_key.identity_bytes
+                    and constant_time_equal(shake256(_DOM_PK, secret_key.master, _SEED_LEN), public_key.seed))
+        if isinstance(secret_key, MockHIBELevel1SecretKey):
+            return (secret_key.identity_bytes == public_key.identity_bytes
+                    and constant_time_equal(secret_key.pk_seed, public_key.seed))
+        if isinstance(secret_key, MockHIBELevel2SecretKey):
+            return constant_time_equal(secret_key.k12, _derive_k12(public_key.seed,
+                                       secret_key.parent_identity, secret_key.child_identity))
+        return False
+
     def setup(self, params, *, rng=None):
         rng = rng if rng is not None else SecureRandom()
         if not hasattr(rng, "read") or not callable(rng.read):

@@ -194,6 +194,18 @@ CLI所有Setup/发钥写操作在读取主状态前取得本地状态锁，并�
 
 安全依据按普通混合加密、RFC 5869 与 AES-GCM 的条件分项引用，见本轮报告；未宣称 HPKE 兼容或由 CPA HIBE 获得 CCA/QROM。AEAD 不能防持钥接收者重签，IBS 与 BYTEAUTH 继续承担发送者认证和完整字节绑定。所有后端/组合声明固定 none/false，底层教学 HIBE、模格 IBS 的安全参数和引用条件仍需准入。
 
+### 2026-10-10 HIBE密钥与公钥的语义绑定
+
+新增独立的`HIBEKeyBindingValidator.validate_key_binding(public_key, secret_key) -> bool`能力。既有HIBE七个方法签名保持；HYBRID-HIBE适配器构造时必须取得该验证器，可由原语方法提供，或以`key_binding_validator`显式注入。缺失/不可调用即拒绝，不能只比较类型或参数后放行。
+
+协议层传入不透明的底层公钥/秘密对象，由原语内部核对公钥来源、身份路径及可验证的私钥方程。调用不消费随机性；只有Python字面True接受，None/0/1/字符串及异常都明确失败。加载错误映射SerializationError，运行时错误映射InvalidParameterError。Setup/Extract/Derive产生的秘密对象和Decode/Decrypt使用的秘密对象均经过相同检查，坏密钥在新随机采样或胶囊解析前拒绝。
+
+ABB10教学实现：主密钥重建公开A并核对元数据/u；一级、二级密钥核对同一根A/u/元数据，再复用既有公开代数验证函数核对A·R1+G=H(parent)、[A|H(parent)]·R2+G=H(parent,child)。私有矩阵只在原语层读取。校验不证明Gaussian采样来源、范数分布、不可伪造或匿名性，不提高安全声明。
+
+Mock仅供契约测试：核对可验证的公开种子/限额与二级公开派生值，一级秘密链不能从公钥核验，仍无任何密码安全性。不得以mock结果放行CHKP；队友T4须交真实验证器并覆盖同参数不同公钥/坏方程/身份路径及恢复案例。
+
+合法既有wire、HIBE/IBS算法、身份顺序及随机输入保持；不引入新的密文字段或公开身份。先前可解析但语义不绑定的密钥现在拒绝。CHKP文件和格工具未被修改。
+
 ## 6. 测试验收
 
 ### 2026-10-09 完整密文字节认证版本（BYTEAUTH/1）

@@ -306,11 +306,16 @@ class HybridHIBE:
     security_claim = "none"
     backend_admitted = False
 
-    def __init__(self, inner_backend, *, backend_id, public_key_type, master_type, level1_type, level2_type):
+    def __init__(self, inner_backend, *, backend_id, public_key_type, master_type, level1_type, level2_type,
+                 key_binding_validator=None):
         self.inner_backend = inner_backend
         self.backend_id = HybridLimits(backend_id=backend_id).backend_id
         self.public_key_type, self.master_type = public_key_type, master_type
         self.level1_type, self.level2_type = level1_type, level2_type
+        validator = getattr(inner_backend, "validate_key_binding", None) if key_binding_validator is None else key_binding_validator
+        if not callable(validator):
+            raise InvalidParameterError("hybrid HIBE requires an explicit primitive key-binding validator")
+        self._key_binding_validator = validator
 
     def component_decoders(self):
         return dict(hpk=_BoundDecoder(self.load_public_key), hmsk=_BoundDecoder(self.load_master_secret),
@@ -326,6 +331,12 @@ class HybridHIBE:
         if not isinstance(secret, wrapper_type) or not isinstance(secret.inner, inner_type):
             raise TypeError("expected the selected hybrid secret type")
         self._check_public(secret.public_key)
+        try:
+            accepted = self._key_binding_validator(secret.public_key.inner, secret.inner)
+        except Exception as exc:
+            raise InvalidParameterError("inner HIBE key/public binding validation failed") from exc
+        if accepted is not True:
+            raise InvalidParameterError("inner HIBE secret is not bound to its advertised public key")
 
     def load_public_key(self, data):
         value = HybridPublicKey.from_bytes(data, self.public_key_type)
@@ -365,13 +376,17 @@ class HybridHIBE:
         self._check_secret(msk, HybridMasterSecret, self.master_type)
         identity = validate_identity(parent_id, max_bytes=msk.public_key.limits.identity_max_bytes)
         inner = self.inner_backend.extract(msk.inner, encoded_identity(identity, msk.public_key.limits, b"P"), rng=rng)
-        return HybridLevel1SecretKey(msk.public_key, inner, (identity,))
+        result = HybridLevel1SecretKey(msk.public_key, inner, (identity,))
+        self._check_secret(result, HybridLevel1SecretKey, self.level1_type)
+        return result
 
     def derive(self, sk_parent, child_id, *, rng=None):
         self._check_secret(sk_parent, HybridLevel1SecretKey, self.level1_type)
         identity = validate_identity(child_id, max_bytes=sk_parent.public_key.limits.identity_max_bytes)
         inner = self.inner_backend.derive(sk_parent.inner, encoded_identity(identity, sk_parent.public_key.limits, b"C"), rng=rng)
-        return HybridLevel2SecretKey(sk_parent.public_key, inner, (sk_parent.identity, identity))
+        result = HybridLevel2SecretKey(sk_parent.public_key, inner, (sk_parent.identity, identity))
+        self._check_secret(result, HybridLevel2SecretKey, self.level2_type)
+        return result
 
     def encrypt(self, pk, parent_id, child_id, payload, *, rng=None):
         self._check_public(pk)
