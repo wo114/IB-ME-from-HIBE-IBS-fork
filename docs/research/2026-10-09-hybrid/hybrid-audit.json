@@ -1,0 +1,170 @@
+{
+  "security_claim": "none",
+  "backend_admitted": false,
+  "real_component_functional_combination": true,
+  "admitted_secure_combinations": 0,
+  "python": "3.13.14 | packaged by conda-forge | (main, Jun 12 2026, 09:50:25) [GCC 14.3.0]",
+  "sage": "10.9",
+  "cryptography": "49.0.0",
+  "openssl": "OpenSSL 4.0.1 9 Jun 2026",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "processor": "Intel(R) Core(TM) Ultra 9 275HX",
+  "entropy": "Deterministic test streams only",
+  "rom": "No new ROM/QROM or CCA proof; inherited assumptions require admission",
+  "hybrid_limits": {
+    "backend_id": "abb10-debug-v2",
+    "identity_max_bytes": 64,
+    "max_payload_bytes": 65536,
+    "max_capsule_bytes": 4194304
+  },
+  "inner_hibe_params": {
+    "name": "hybrid-abb10-short-debug",
+    "security_parameter": 8,
+    "n": 8,
+    "m_matrix": 168,
+    "q": 524288,
+    "s0": 3.0,
+    "s": 1.0,
+    "s_prime": 1.0,
+    "identity_bytes": 86,
+    "max_message_bytes": 32
+  },
+  "ibs_params": {
+    "degree": 256,
+    "k": 11,
+    "l": 10,
+    "q": 274877844481,
+    "root": 153250464611,
+    "eta": 1,
+    "kappa": 64,
+    "gamma1": 125440,
+    "gamma2": 31470387200,
+    "gamma3": 15270991360,
+    "dropped_bits": 28,
+    "identity_max_bytes": 64,
+    "message_max_bytes": 4096,
+    "max_extract_attempts": 1024,
+    "max_sign_attempts": 1024,
+    "max_uniform_attempts": 128,
+    "max_cached_identities": 64
+  },
+  "max_application_bytes": 3924,
+  "sender_bytes": 5,
+  "receiver_bytes": 3,
+  "repeats": 1,
+  "setups": 1,
+  "honest_roundtrips": 3,
+  "restored_roundtrips": 1,
+  "mismatches_rejected": 3,
+  "public_key_bytes": 252278,
+  "sender_key_bytes": 313695,
+  "receiver_key_bytes": 85223,
+  "master_snapshot_bytes": 368849,
+  "signature_bytes": 29455,
+  "ciphertext_rows": [
+    {
+      "message_bytes": 0,
+      "complete_ciphertext_bytes": 2580256,
+      "baseline_bytes": 2481835,
+      "hybrid_bytes": 2481815,
+      "capsule_bytes": 2452065,
+      "dem_bytes": 29579,
+      "public_ciphertext_sha256": "78507369f7b39d18fe66a1c9a868d67a486fa3bf0ad3664a0a9f82f9ad659825"
+    },
+    {
+      "message_bytes": 32,
+      "complete_ciphertext_bytes": 2580288,
+      "baseline_bytes": 2481867,
+      "hybrid_bytes": 2481847,
+      "capsule_bytes": 2452065,
+      "dem_bytes": 29611,
+      "public_ciphertext_sha256": "3b1165a769b3207913c289c5f05746914b6a191d9b1fbc1fd9f3b66ced4fd848"
+    },
+    {
+      "message_bytes": 3924,
+      "complete_ciphertext_bytes": 2584180,
+      "baseline_bytes": 2485759,
+      "hybrid_bytes": 2485739,
+      "capsule_bytes": 2452065,
+      "dem_bytes": 33503,
+      "public_ciphertext_sha256": "e4a44efc503a79781e1a4ee95fa835b45e1071e4b0b352841029e597524097fa"
+    }
+  ],
+  "linear_public_subpath": {
+    "private_key_access": false,
+    "extract_queries": 0,
+    "sign_queries": 0,
+    "rows": [
+      {
+        "root_index": 0,
+        "matrix_rank": 10,
+        "augmented_rank": 11,
+        "nonzero_challenge_scale": true,
+        "exact_solution_exists": false
+      },
+      {
+        "root_index": 1,
+        "matrix_rank": 10,
+        "augmented_rank": 11,
+        "nonzero_challenge_scale": true,
+        "exact_solution_exists": false
+      },
+      {
+        "root_index": 127,
+        "matrix_rank": 10,
+        "augmented_rank": 11,
+        "nonzero_challenge_scale": true,
+        "exact_solution_exists": false
+      },
+      {
+        "root_index": 255,
+        "matrix_rank": 10,
+        "augmented_rank": 11,
+        "nonzero_challenge_scale": true,
+        "exact_solution_exists": false
+      }
+    ],
+    "scope": "Fixed h=0 exact v=0 linear subpath only. Rounded low-bit targets, other w1/h, lattice attacks and adaptive forgeries are not excluded."
+  },
+  "public_forgery": {
+    "candidate_signatures": 64,
+    "canonical_new_signature_type": true,
+    "accepted": 0,
+    "valid_outer_ots": true,
+    "full_unissued_sender_ciphertext_rejected": true,
+    "sender_key_issued": false,
+    "notes": "Finite public guessing and one complete attack ciphertext, not a security proof."
+  },
+  "recipient_resigning": {
+    "recipient_private_key": true,
+    "sender_private_key": false,
+    "legitimate_payload_reencrypted": true,
+    "baseline_control_accepts_same_envelope": true,
+    "valid_new_ots": true,
+    "new_vk_branch_rejected": true,
+    "changed_envelope_rejected": true,
+    "signature_bytes": 29455
+  },
+  "original_c1_tamper": {
+    "c1_xor": 1,
+    "raw_hibe_restores_same_seed": true,
+    "hybrid_aad_rejects": true,
+    "byteauth_rejects": true
+  },
+  "source_sha256": {
+    "src/ibme/protocol/hybrid_hibe.py": "7b2ff0c6a6cbbef6498b6c627f259a19e77f98f7d791f9ae72c2a77cd79a9dd2",
+    "src/ibme/protocol/luo_hybrid.py": "8b2fc1343110ddb50301aa0a44d704eeb7a64b8d52ea8e350ff006f77f778641",
+    "src/ibme/cli.py": "1dcec0abfc81c447d27d0e9f5ec5c010e3b8c63cc4a225d4ccaa8f06c3939921",
+    "src/ibme/protocol/byteauth.py": "d174c0be104ab756c70fdb7fea8ade13b3afb8d6b59e6295019db42efe2f7414",
+    "src/ibme/core/lamport_ots.py": "6322e025e01c299e20769ba6cd3a3bb02b9a14a98cf7fc530c81950adda046a5",
+    "src/ibme/ibs/luo_module.py": "93f1086f128c52ac67d3ac2e2abaea376555739a1f89934234221368ba575d2d",
+    "experiments/research/luo_hybrid_audit.py": "44460eb5ca47821e405749e4717d93c4c0a87194b1cb9b66163bc1f2067a809b"
+  },
+  "notes": [
+    "A real functional combination is not an admitted secure instance; inner HIBE is educational.",
+    "No private snapshots, seed, DEM key or signing mask is exported.",
+    "Ciphertext sizes are measurements; no comparison of end-to-end speed or A+B<C.",
+    "Signature guesses and exact linear rank obstruction do not exclude all adaptive/lattice attacks.",
+    "The existing education profile still reproduces the two old authentication vulnerabilities."
+  ]
+}

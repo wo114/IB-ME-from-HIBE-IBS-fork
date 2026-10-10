@@ -1,0 +1,476 @@
+{
+  "security_claim": "none",
+  "backend_admitted": false,
+  "full_IBS_implemented": false,
+  "gaussian_sampler_implemented": false,
+  "XOF_and_challenge_hash_implemented": false,
+  "paper_source": "papers/2025_efficient_ibs_jia.pdf",
+  "paper_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+  "paper_locations": "§4/Table3 PDF6; Algorithms1--6 PDF7; Algorithms7/8 PDF8; prose mismatch PDF5",
+  "python": "3.13.14 | packaged by conda-forge | (main, Jun 12 2026, 09:50:25) [GCC 14.3.0]",
+  "sage": "10.9",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "repeats": 1,
+  "identity_message_lengths": "Not applicable: public target vectors and supplied binary polynomial challenges only",
+  "entropy": "Deterministic CBD1/algebra fixtures; supplied perturbation/u values are not Gaussian samples",
+  "master_widths": {
+    "first_squared": "4096",
+    "second_squared": "64",
+    "r_squared": "1"
+  },
+  "signature_widths": {
+    "first_squared": "1048576",
+    "second_squared": "262144",
+    "r_squared": "1"
+  },
+  "cases": [
+    {
+      "name": "degree2-rank1",
+      "parameters": {
+        "degree": 2,
+        "rank": 1,
+        "p": 5,
+        "base": 3,
+        "digits": 1
+      },
+      "Q": 15,
+      "q_gadget": 3,
+      "master_columns": 3,
+      "signing_columns": 4,
+      "master_geometry_dimension": 6,
+      "signature_geometry_dimension": 8,
+      "approximate_error_nonzero_coefficients": 2,
+      "exact_key_reconstruction": true,
+      "master_shifted_positive": true,
+      "signature_literal_positive": true,
+      "signature_factor_two_positive": true,
+      "zeta_coefficient_shape_factor": 2,
+      "gadget_scalar_shape_factor": 9,
+      "traces": [
+        {
+          "challenge_bits": [
+            0,
+            0
+          ],
+          "commitment_sha256": "2f0e75a49bfec48f7166f47501d25e3feccb42c940a8525bc45b9fc44dcd9850",
+          "response_public_sha256": "e4516739b1f8d40be3714d9be195f18b7d7e9f000aec6c55b42c90bd374c0f46"
+        },
+        {
+          "challenge_bits": [
+            0,
+            1
+          ],
+          "commitment_sha256": "2f0e75a49bfec48f7166f47501d25e3feccb42c940a8525bc45b9fc44dcd9850",
+          "response_public_sha256": "62c0f78eabf6c62f077f59e08379ecfe01289461509ae093dfcdc44df7b83403"
+        },
+        {
+          "challenge_bits": [
+            1,
+            0
+          ],
+          "commitment_sha256": "2f0e75a49bfec48f7166f47501d25e3feccb42c940a8525bc45b9fc44dcd9850",
+          "response_public_sha256": "a955febb13347704d1c17a85922d654b13fffe68a1bf20d72dd5f5619417e0df"
+        },
+        {
+          "challenge_bits": [
+            1,
+            1
+          ],
+          "commitment_sha256": "2f0e75a49bfec48f7166f47501d25e3feccb42c940a8525bc45b9fc44dcd9850",
+          "response_public_sha256": "5e8253adfe4f8401ea7f14f3ba3c0b0a534b437358e2b175ec4eae6333656bb1"
+        }
+      ]
+    },
+    {
+      "name": "degree4-rank1",
+      "parameters": {
+        "degree": 4,
+        "rank": 1,
+        "p": 5,
+        "base": 3,
+        "digits": 2
+      },
+      "Q": 45,
+      "q_gadget": 9,
+      "master_columns": 4,
+      "signing_columns": 5,
+      "master_geometry_dimension": 16,
+      "signature_geometry_dimension": 20,
+      "approximate_error_nonzero_coefficients": 4,
+      "exact_key_reconstruction": true,
+      "master_shifted_positive": true,
+      "signature_literal_positive": true,
+      "signature_factor_two_positive": true,
+      "zeta_coefficient_shape_factor": 2,
+      "gadget_scalar_shape_factor": 9,
+      "traces": [
+        {
+          "challenge_bits": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "a47149930c282837950f6ed8ed05a88acfb04bb73d74441aa1626766197a5a2b"
+        },
+        {
+          "challenge_bits": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "b72a7a9957d7cefe4708cb2f705825dea84f70e71e7f695baa620867ad8ff2a4"
+        },
+        {
+          "challenge_bits": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "a855d26427e42443bb52b61bb5dba7acfdc5b662b722d9df0871d49057aac7f5"
+        },
+        {
+          "challenge_bits": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "17d5f772523ac3048adee474daab8f2f2be5dd8a3e969593d136b97fc5d7b0b3"
+        },
+        {
+          "challenge_bits": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "e2506cb848214cafcdd40a4d0f297efafa7b2df4e0389bc22d8333e3927ee6cc"
+        },
+        {
+          "challenge_bits": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "3786c10a68ca45a703fdd96f0b12c162a8647890b25c35b2e755e0a0eec19124"
+        },
+        {
+          "challenge_bits": [
+            0,
+            1,
+            1,
+            0
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "65f48af7e3d18e641a0b7fbcb7f6abc8535bc23009fd349d812392d64bbe0c48"
+        },
+        {
+          "challenge_bits": [
+            0,
+            1,
+            1,
+            1
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "36dec42acb26c8e7f5a4b0a4028201a57aca7b3f33c656aff55d482075e0c525"
+        },
+        {
+          "challenge_bits": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "97100343290bf77b9ce01fa75b424ad0907a2190187e4d71fabc5c0d51b04fb4"
+        },
+        {
+          "challenge_bits": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "05649acd39a24e01df1b68a3a0fb75f85d5304a20c6f8527966b07ffb468fde9"
+        },
+        {
+          "challenge_bits": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "f272dd0e50aa1cbc1896d3a8c3477146c92b65c5d447b3e8c834544ce009096d"
+        },
+        {
+          "challenge_bits": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "3c0a9d21c20c35ed01dfc04d318016c3a8c4716370c4d0b57d8206142eea85df"
+        },
+        {
+          "challenge_bits": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "37595d5b3767d753346e8520c421eb99e9307324a385313e2bc81bbc1670fb34"
+        },
+        {
+          "challenge_bits": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "7f86819f3319a76cc9891413e1dc564471b60291e5713d254050138ddc7548e8"
+        },
+        {
+          "challenge_bits": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "6101db36362028941db7b6bb7089895842507ea497aef6317810c7d8d5a4f649"
+        },
+        {
+          "challenge_bits": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "commitment_sha256": "150af9601b26bc58c2125e8866fe13dcc54e7f407e09e211b705c2fe3455cb35",
+          "response_public_sha256": "3b74b85198b65a1c380a076074b2eaf14e837a218f8a9e4f6ad607c1327be0a3"
+        }
+      ]
+    },
+    {
+      "name": "degree4-rank2",
+      "parameters": {
+        "degree": 4,
+        "rank": 2,
+        "p": 7,
+        "base": 3,
+        "digits": 2
+      },
+      "Q": 63,
+      "q_gadget": 9,
+      "master_columns": 8,
+      "signing_columns": 9,
+      "master_geometry_dimension": 32,
+      "signature_geometry_dimension": 36,
+      "approximate_error_nonzero_coefficients": 8,
+      "exact_key_reconstruction": true,
+      "master_shifted_positive": true,
+      "signature_literal_positive": true,
+      "signature_factor_two_positive": true,
+      "zeta_coefficient_shape_factor": 2,
+      "gadget_scalar_shape_factor": 9,
+      "traces": [
+        {
+          "challenge_bits": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "1d044ac7abaa7b32f274fd30e99d52501d1bbc21a20141e2183886945009c9ef"
+        },
+        {
+          "challenge_bits": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "1fa731c1229c854c111c4301dc6bf3fc3d0eaf1c8f453627e2d4e0041cb4c0b9"
+        },
+        {
+          "challenge_bits": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "8586924fa4fb3c9dbca99010a197965d63c0576b5c8ae10d7e6a006481cf72cb"
+        },
+        {
+          "challenge_bits": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "9a6b2a2b8e3a5166b2042c9d51bd851f123de11b7a4862ae824e5480563b9cde"
+        },
+        {
+          "challenge_bits": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "86b6601e951860dc04ca3fd91df754408bab3526f96f27bf0645d2e1211cf2b8"
+        },
+        {
+          "challenge_bits": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "edb1cda9c13af62b7887d956a0fd09fc0aaa536206874de9ba8a1f13b2ae2d81"
+        },
+        {
+          "challenge_bits": [
+            0,
+            1,
+            1,
+            0
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "ddb64d802e024aeed77632128db4165cc912710522692e06238cb0ff7486b04b"
+        },
+        {
+          "challenge_bits": [
+            0,
+            1,
+            1,
+            1
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "7293bac699f71adc903e64135140ecd66884d4906202d3a2ed067749497e591a"
+        },
+        {
+          "challenge_bits": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "1b86e1c75c5e6fdeab56cb22d2c45cdd0d5338a7b6836de850651d46b02da446"
+        },
+        {
+          "challenge_bits": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "faafa922bb997dfa903a476325f0f8aca78ea26585d1dae27a8587e9fe42ad6f"
+        },
+        {
+          "challenge_bits": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "7906f00deb6076b2aecac2a7d5f78b87792e4680e0cd9c17e2f370e3784f6010"
+        },
+        {
+          "challenge_bits": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "640a2d39d7a0b94c5b6fe58f7341a350aa427c26719755595ee33b7be3ae19e5"
+        },
+        {
+          "challenge_bits": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "92f4098637f8c0b4ee3cc19cc3e75bec57318767b41cf0b367583ba525ef7898"
+        },
+        {
+          "challenge_bits": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "585c8be57ad5f8bab31c348db38aec50c7f17beaccd6868916da1e17f1dc2e8f"
+        },
+        {
+          "challenge_bits": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "75864addc0ee442e5ad8cd4c183f7950646999fd7aea8de4160c731a328b96ff"
+        },
+        {
+          "challenge_bits": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "commitment_sha256": "d7d1b0fdecc878d66f5833e655b1902e8d4f159ae98a153e41e7f68aaec8307b",
+          "response_public_sha256": "2fdb1f8144a9014228f8ea678222fed5a09a105bbdb39c9e6f4f40859f4c89fa"
+        }
+      ]
+    }
+  ],
+  "binary_challenges_checked": 36,
+  "altered_recovery_values_detected": 72,
+  "covariance_shape_checks": 9,
+  "signature_noise_scale_interpretation_resolved": false,
+  "gadget_noise_width_mapping_resolved": false,
+  "teaching_parameters": true,
+  "rom": "No instantiated H/Hbar or ROM/QROM claim in this algebra/geometry component",
+  "source_sha256_lf": {
+    "experiments/research/candidates/srgg/algebra.py": "da04d7b4198a7442dd35889edc73b4f8fa29aec93bb04418ab2dfde9c590c68b",
+    "experiments/research/candidates/srgg/geometry.py": "6166de10c02678449973bbda10442463e027db5696dbd037fe1bb573f1b3c297",
+    "experiments/research/candidates/srgg/audit.py": "08fa57bfd37f5beef884d37a724073fb65dcf12c42f54bcb61ca6a6832f09b58"
+  },
+  "limitations": [
+    "Canonical gadget digits are not Algorithm6 Gaussian sampling; covariance identities are not a distribution certificate.",
+    "Algorithm3 uses sigma^2=b^2*r^2 while prose uses r^2; reference follows Table3/Algorithm3.",
+    "Zeta multiplication scales coefficient shape by2; literal signature covariance and this noise-width interpretation still need sampler mapping.",
+    "Algorithm6 prints width r on bZ+v; the text's b*SampleZ(-v/b)+v with SampleZ width r instead gives width b*r. No interpretation is silently used as sampling.",
+    "Underlying strong-signature and q/Q/gamma conditions remain open; no ROM/QROM security proof is granted.",
+    "No master/user vectors, random seeds or Gaussian state are exported."
+  ]
+}

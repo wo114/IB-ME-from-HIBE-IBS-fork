@@ -861,6 +861,27 @@ class ABB10HIBE:
     :class:`ABB10Ciphertext`）。
     """
 
+    def validate_key_binding(self, public_key, secret_key) -> bool:
+        """Check public root and exact secret equations without sampling.
+
+        This is algebraic well-formedness, not a shortness/distribution or
+        parameter-security certificate for this educational implementation.
+        """
+        if not isinstance(public_key, ABB10PublicKey) or not isinstance(
+            secret_key, (ABB10MasterSecret, ABB10Level1SecretKey, ABB10Level2SecretKey)
+        ):
+            return False
+        if secret_key.meta != public_key.meta or secret_key.u != public_key.u:
+            return False
+        try:
+            if isinstance(secret_key, ABB10MasterSecret):
+                return Trapdoor(a_bar=secret_key.a_bar, r=secret_key.r).public_matrix() == public_key.a
+            if secret_key.a != public_key.a:
+                return False
+            return verify_level1_key(secret_key) if isinstance(secret_key, ABB10Level1SecretKey) else verify_level2_key(secret_key)
+        except (IBMEError, TypeError, ValueError, OverflowError):
+            return False
+
     def setup(self, params, *, rng=None):
         if not isinstance(params, Params):
             raise InvalidParameterError(

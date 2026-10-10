@@ -41,6 +41,7 @@ __all__ = [
     "HIBELevel2SecretKey",
     "HIBECiphertext",
     "HIBEBackend",
+    "HIBEKeyBindingValidator",
 ]
 
 
@@ -96,6 +97,20 @@ class HIBELevel2SecretKey(HIBESerializable, Protocol):
 @runtime_checkable
 class HIBECiphertext(HIBESerializable, Protocol):
     """HIBE 密文：不得明文携带身份（匿名性）。"""
+
+
+@runtime_checkable
+class HIBEKeyBindingValidator(Protocol):
+    """Optional primitive capability, required by the hybrid adapter.
+
+    The backend verifies the advertised public key, identity path and available
+    private-key equations internally. The protocol never reads its trapdoors.
+    Validation consumes no randomness and returns a Python bool; only True
+    authorizes use. It does not certify sampling provenance or security level.
+    """
+
+    def validate_key_binding(self, public_key, secret_key) -> bool:
+        ...
 
 
 @runtime_checkable

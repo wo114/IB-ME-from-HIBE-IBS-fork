@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "retrieval_date": "2026-10-10",
+  "entries": [
+    {
+      "source_id": "gkr2025",
+      "status": "not-obtained",
+      "intended_path": "papers/2025_adaptive_hibe_goyal.pdf",
+      "attempts": [
+        {
+          "url": "https://eprint.iacr.org/2025/291.pdf",
+          "error": "HTTPError: HTTP Error 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "source_id": "sageloli2023",
+      "path": "papers/2023_shorter_faster_ibs_sageloli.pdf",
+      "status": "downloaded",
+      "source_url": "https://inria.hal.science/hal-04107694/document",
+      "resolved_url": "https://hal.science/hal-04107694/document",
+      "bytes": 1444868,
+      "pages": 73,
+      "sha256": "0e92f184828bc8643a774e9c334b14689346387981e766c311c596239ef73e3e",
+      "version": "HAL hal-04107694v1, submitted 2023-05-26, 73 pages including repository cover",
+      "title_check_excerpt": "HAL Id: hal-04107694\nhttps://hal.science/hal-04107694v1\nSubmitted on 26 May 2023\nHAL is a multi-disciplinary open access archive\nfor the deposit and dissemination of scientific re-\nsearch documents, whether they are published or not.\nThe do",
+      "attempts": [
+        {
+          "url": "https://eprint.iacr.org/2023/489.pdf",
+          "error": "HTTPError: HTTP Error 403: Forbidden"
+        }
+      ],
+      "title_verified_pdf_page": 2
+    },
+    {
+      "source_id": "srgg2025",
+      "status": "not-obtained",
+      "intended_path": "papers/2025_efficient_ibs_jia.pdf",
+      "attempts": [
+        {
+          "url": "https://ietresearch.onlinelibrary.wiley.com/doi/pdf/10.1049/ise2/6684889",
+          "error": "HTTPError: HTTP Error 403: Forbidden"
+        },
+        {
+          "url": "https://downloads.hindawi.com/journals/ietis/2025/6684889.pdf",
+          "error": "HTTPError: HTTP Error 403: Forbidden"
+        }
+      ]
+    }
+  ],
+  "tex_sources_obtained": false,
+  "yu2026": {
+    "status": "not-obtained",
+    "doi": "10.1016/j.tcs.2026.116152",
+    "source_url": "https://www.sciencedirect.com/science/article/pii/S0304397526003816",
+    "reason": "Primary search result has abstract/introduction; no open PDF located by exact-title search. No subscription access attempted."
+  },
+  "snapshot_stage": "Historical retrieval before the user supplied GKR, SRGG and Yu on the same date",
+  "subsequent_resolution_manifest": "papers/user-supplied-manifest-2026-10-10.json"
+}

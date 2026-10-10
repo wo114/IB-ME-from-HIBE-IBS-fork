@@ -1,0 +1,107 @@
+{
+  "source_pdf": "papers/2023_shorter_faster_ibs_sageloli.pdf",
+  "source_sha256": "0e92f184828bc8643a774e9c334b14689346387981e766c311c596239ef73e3e",
+  "source_version": "HAL hal-04107694v1, submitted 2023-05-26",
+  "source_locations": "PDF p.28 Table 6/7; pp.69--73 Appendix E; printed pages are PDF minus one",
+  "rows": [
+    {
+      "name": "ParamI",
+      "k": 65,
+      "degree": 2048,
+      "columns": 132,
+      "tail_bits": 200,
+      "q_decimal": "10301051460877537453973547267843",
+      "log2_sid": 20.653446553992662,
+      "log2_ssign": 38.91896453607523,
+      "appendix_E_approximate_information_bits": {
+        "signature": 19879308,
+        "public": 27850708,
+        "master": 14136344,
+        "identity_key": 698977041
+      },
+      "appendix_printed_Mo_numeric": {
+        "signature": 19.88,
+        "public": 27.85,
+        "master": 14.14,
+        "identity_key": 698.98
+      },
+      "normalized_information_bytes": {
+        "signature": 2484914,
+        "public": 3481339,
+        "master": 1767043,
+        "identity_key": 87372131
+      },
+      "coefficient_width_bits": {
+        "public": 104,
+        "response_block1": 50,
+        "response_block2": 49
+      },
+      "fixed_width_public_bytes": 3514368,
+      "fixed_width_signature_bytes_excluding_nonces_frame": 2504960,
+      "fits_legacy_uint32": false,
+      "fits_module_ref_uint64": false,
+      "modulus_is_prime": false,
+      "implemented_encoding": false,
+      "gaussian_sampler_implemented": false,
+      "security_estimator_executed": false,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "notes": "q=3^k is composite here. Floating Appendix E counts are estimates; fixed-width counts exclude framing, nonces and context. All model/parameter mapping remains pending."
+    },
+    {
+      "name": "ParamII",
+      "k": 153,
+      "degree": 2048,
+      "columns": 308,
+      "tail_bits": 200,
+      "q_decimal": "9989689095948428268966921126195809393034773710522520293009978943147202723",
+      "log2_sid": 21.274940336049784,
+      "log2_ssign": 40.16194758638445,
+      "appendix_E_approximate_information_bits": {
+        "signature": 48271224,
+        "public": 152964655,
+        "master": 76978966,
+        "identity_key": 3939908336
+      },
+      "appendix_printed_Mo_numeric": {
+        "signature": 48.27,
+        "public": 152.96,
+        "master": 76.98,
+        "identity_key": 3939.91
+      },
+      "normalized_information_bytes": {
+        "signature": 6033903,
+        "public": 19120582,
+        "master": 9622371,
+        "identity_key": 492488542
+      },
+      "coefficient_width_bits": {
+        "public": 243,
+        "response_block1": 52,
+        "response_block2": 51
+      },
+      "fixed_width_public_bytes": 19160064,
+      "fixed_width_signature_bytes_excluding_nonces_frame": 6097664,
+      "fits_legacy_uint32": false,
+      "fits_module_ref_uint64": false,
+      "modulus_is_prime": false,
+      "implemented_encoding": false,
+      "gaussian_sampler_implemented": false,
+      "security_estimator_executed": false,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "notes": "q=3^k is composite here. Floating Appendix E counts are estimates; fixed-width counts exclude framing, nonces and context. All model/parameter mapping remains pending."
+    }
+  ],
+  "units_issue_observed": true,
+  "units_issue_scope": "Appendix E formulas count bits but print bits/1e6 with Mo labels. No byte encoding or attack is inferred.",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "performance_measured": false,
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+  "repeats": 1,
+  "identity_message_lengths": "Not applicable: counting only; signature nonce/framing excluded",
+  "rom": "Paper ROM/QROM declarations only; no scheme or proof implemented"
+}

@@ -47,6 +47,11 @@
 * ``--params education`` 映射到带额外 89 B envelope 容量的调试参数对
   （HIBE: ``BYTEAUTH_DEBUG_PARAMS``，IBS: ``BASELINE_DEBUG_IBS_PARAMS``，
   **security_claim: none，教学/调试参数**）。
+* ``--params luo-module-research`` 为显式真实研究组合：固定宽度身份、
+  32 B HIBE 种子胶囊、完整模格 IBS 载荷及 BYTEAUTH；原身份≤64 B、
+  应用消息≤3924 B，固定身份缓存写回主状态，安全声明仍为 none。
+  setup 可选 ``--signature-format compact`` 启用无损位打包；默认 reference，
+  后续命令由 state 选择唯一解码器，不自动回退。
 """
 
 from __future__ import annotations
@@ -54,10 +59,13 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import sys
+import tempfile
 from pathlib import Path
 
 from ibme.core.errors import IBMEError
+from ibme.cli_state import key_issuance_lock
 from ibme.protocol.baseline import (
     BASELINE_DEBUG_IBS_PARAMS,
     BASELINE_DEBUG_PARAMS,
@@ -73,7 +81,8 @@ from ibme.protocol.baseline import (
 #: 参数预设名 -> (HIBE 参数, IBS 参数)；均为教学/调试参数（无安全声明）。
 from ibme.protocol.byteauth import BYTEAUTH_DEBUG_PARAMS
 
-_PRESETS = {"education": (BYTEAUTH_DEBUG_PARAMS, BASELINE_DEBUG_IBS_PARAMS)}
+_RESEARCH_PRESET = "luo-module-research"
+_PRESETS = {"education": (BYTEAUTH_DEBUG_PARAMS, BASELINE_DEBUG_IBS_PARAMS), _RESEARCH_PRESET: None}
 
 _MPK_FILE = "mpk.bin"
 _MSK_FILE = "msk.bin"
@@ -145,20 +154,25 @@ def _receiver_key_path(state: Path, identity: bytes) -> Path:
 
 
 def _write_state_meta(
-    state: Path, *, mock: bool, preset: str, hibe_params, ibs_params
+    state: Path, *, mock: bool, preset: str, hibe_params, ibs_params, signature_format="reference"
 ) -> None:
+    research = preset == _RESEARCH_PRESET
     meta = {
         "version": _STATE_VERSION,
-        "backend": "mock" if mock else "abb10+sis",
+        "backend": "abb10-hybrid+luo-module" if research else ("mock" if mock else "abb10+sis"),
         "params_preset": preset,
         "hibe_params_name": hibe_params.name,
-        "ibs_params_name": ibs_params.name,
+        "ibs_params_name": "luo2024-module-ref1" if research else ibs_params.name,
         # 身份最大字节长度（SPEC section 2）；HIBE 层入口同样强制该上限。
         "identity_bytes": hibe_params.identity_bytes,
         "max_message_bytes": hibe_params.max_message_bytes,
         "security_claim": "none",  # 教学参数，无任何安全声明
         "default_ciphertext_protocol": "byteauth-v1",
     }
+    if research:
+        from ibme.protocol.luo_hybrid import MAX_APPLICATION_BYTES
+        meta.update(max_application_bytes=MAX_APPLICATION_BYTES, inner_hibe_payload_bytes=32, inner_hibe_identity_bytes=86,
+                    backend_admitted=False, persistent_identity_cache=True, signature_format=signature_format)
     (state / _META_FILE).write_text(
         json.dumps(meta, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
@@ -174,10 +188,17 @@ def _load_state_meta(state: Path) -> dict:
             "filenames are not supported and must be re-created)"
         )
     try:
-        meta = json.loads(path.read_text(encoding="utf-8"))
+        def unique_fields(pairs):
+            result = {}
+            for key, value in pairs:
+                if key in result:
+                    raise ValueError(f"duplicate state metadata field: {key}")
+                result[key] = value
+            return result
+        meta = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique_fields)
     except json.JSONDecodeError as exc:
         raise ValueError(f"corrupt state metadata {path}: {exc}") from exc
-    if not isinstance(meta, dict) or meta.get("version") != _STATE_VERSION:
+    if not isinstance(meta, dict) or type(meta.get("version")) is not int or meta.get("version") != _STATE_VERSION:
         found = meta.get("version") if isinstance(meta, dict) else None
         raise ValueError(
             f"unsupported state metadata in {path}: expected version "
@@ -186,6 +207,19 @@ def _load_state_meta(state: Path) -> dict:
     limit = meta.get("identity_bytes")
     if not isinstance(limit, int) or isinstance(limit, bool) or limit < 1:
         raise ValueError(f"invalid identity_bytes recorded in {path}: {limit!r}")
+    if meta.get("params_preset") == _RESEARCH_PRESET or meta.get("backend") == "abb10-hybrid+luo-module":
+        expected = dict(version=1, backend="abb10-hybrid+luo-module", params_preset=_RESEARCH_PRESET,
+                        identity_bytes=64, max_message_bytes=65536, max_application_bytes=3924,
+                        inner_hibe_payload_bytes=32, inner_hibe_identity_bytes=86, security_claim="none", backend_admitted=False,
+                        persistent_identity_cache=True, default_ciphertext_protocol="byteauth-v1",
+                        hibe_params_name="hybrid-hibe-research-v1", ibs_params_name="luo2024-module-ref1")
+        if any(type(meta.get(key)) is not type(value) or meta.get(key) != value for key, value in expected.items()):
+            raise ValueError("research state metadata differs from its fixed profile; no backend fallback")
+    signature_format = meta.get("signature_format", "reference")
+    if type(signature_format) is not str or signature_format not in ("reference", "compact"):
+        raise ValueError("invalid signature_format in state metadata")
+    if signature_format == "compact" and meta.get("params_preset") != _RESEARCH_PRESET:
+        raise ValueError("compact signatures require luo-module-research")
     return meta
 
 
@@ -194,9 +228,21 @@ def _load_state_meta(state: Path) -> dict:
 # ---------------------------------------------------------------------------
 
 
-def _make_runtime(mock: bool, *, legacy_baseline=False):
+def _make_runtime(mock: bool, *, legacy_baseline=False, preset="education", signature_format="reference"):
     """按 --mock 选择后端与组件类（组件 from_bytes 是 api 层冻结接口）。"""
     from ibme.protocol.byteauth import ByteAuthenticatedIBME
+    if type(signature_format) is not str or signature_format not in ("reference", "compact"):
+        raise ValueError("unknown signature format")
+    if preset == _RESEARCH_PRESET:
+        if mock or legacy_baseline:
+            raise ValueError("luo-module-research requires real components and BYTEAUTH/1; incompatible research flag")
+        try:
+            from ibme.protocol.luo_hybrid import make_research_runtime
+        except ImportError as exc:
+            raise ValueError("research profile requires the hybrid extra: pip install '.[hybrid]'") from exc
+        return make_research_runtime(signature_format=signature_format)
+    if signature_format != "reference":
+        raise ValueError("compact signatures require luo-module-research")
     protocol_class = BaselineIBME if legacy_baseline else ByteAuthenticatedIBME
     if mock:
         # TEST-ONLY 路径：mock 后端没有任何安全性。
@@ -251,6 +297,14 @@ def _make_runtime(mock: bool, *, legacy_baseline=False):
 
 
 def _params_pair(preset: str, mock: bool):
+    if preset == _RESEARCH_PRESET:
+        if mock:
+            raise ValueError("luo-module-research cannot use --mock")
+        try:
+            from ibme.protocol.luo_hybrid import RESEARCH_HIBE_PARAMS, RESEARCH_IBS_PARAMS
+        except ImportError as exc:
+            raise ValueError("research profile requires the hybrid extra: pip install '.[hybrid]'") from exc
+        return RESEARCH_HIBE_PARAMS, RESEARCH_IBS_PARAMS
     if mock:
         return BASELINE_MOCK_PARAMS, BASELINE_MOCK_PARAMS
     return _PRESETS[preset]
@@ -262,11 +316,38 @@ def _read(path: Path) -> bytes:
     return path.read_bytes()
 
 
+def _atomic_write_state(path: Path, raw: bytes) -> None:
+    """Publish a complete snapshot; the caller holds the state writer lock."""
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(dir=path.parent, prefix=".ibme-state-", suffix=".tmp", delete=False) as handle:
+            temporary = Path(handle.name)
+            handle.write(raw)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary is not None and temporary.exists():
+            temporary.unlink()
+
+
+def _persist_research_master(state: Path, master: MasterSecret) -> None:
+    """Commit the identity cache before exposing the issued key."""
+    _atomic_write_state(state / _MSK_FILE, master.to_bytes())
+
+
 def _load_msk(state: Path, mock: bool) -> tuple[MasterSecret, BaselineIBME, dict]:
-    proto, classes = _make_runtime(mock)
+    meta = _load_state_meta(state)
+    proto, classes = _make_runtime(mock, preset=meta.get("params_preset", "education"),
+                                   signature_format=meta.get("signature_format", "reference"))
     msk = MasterSecret.from_bytes(
         _read(state / _MSK_FILE), classes["hmsk"], classes["imsk"]
     )
+    if meta.get("params_preset") == _RESEARCH_PRESET:
+        public = PublicKey.from_bytes(_read(state / _MPK_FILE), classes["hpk"], classes["ipk"])
+        if (msk.hmsk.public_key.to_bytes() != public.hpk.to_bytes()
+                or msk.imsk.public_key.to_bytes() != public.ipk.to_bytes()):
+            raise ValueError("research public/master state context mismatch")
     return msk, proto, classes
 
 
@@ -276,8 +357,22 @@ def _load_msk(state: Path, mock: bool) -> tuple[MasterSecret, BaselineIBME, dict
 
 
 def cmd_setup(args) -> int:
+    # Reject incompatible profiles/formats before creating any state artifact.
     hibe_params, ibs_params = _params_pair(args.params, args.mock)
-    proto, _ = _make_runtime(args.mock)
+    signature_format = getattr(args, "signature_format", "reference")
+    proto, _ = _make_runtime(args.mock, preset=args.params, signature_format=signature_format)
+    args.state.mkdir(parents=True, exist_ok=True)
+    with key_issuance_lock(args.state):
+        if (args.state / _META_FILE).exists():
+            previous = _load_state_meta(args.state)
+            if previous.get("params_preset") == _RESEARCH_PRESET:
+                raise ValueError("existing research state cannot be overwritten by setup or a different profile")
+        return _setup_unlocked(args, proto, hibe_params, ibs_params, signature_format)
+
+
+def _setup_unlocked(args, proto, hibe_params, ibs_params, signature_format) -> int:
+    if args.params == _RESEARCH_PRESET and any((args.state / name).exists() for name in (_META_FILE, _MPK_FILE, _MSK_FILE)):
+        raise ValueError("research setup requires a new state directory; existing keys will not be overwritten")
     pk, msk = proto.setup(hibe_params, ibs_params=ibs_params)
     args.state.mkdir(parents=True, exist_ok=True)
     (args.state / _MPK_FILE).write_bytes(pk.to_bytes())
@@ -288,12 +383,15 @@ def cmd_setup(args) -> int:
         preset=args.params,
         hibe_params=hibe_params,
         ibs_params=ibs_params,
+        signature_format=signature_format,
     )
     print(
         f"setup complete: preset={args.params} "
-        f"({'TEST-ONLY mock backends' if args.mock else 'abb10+sis debug backends'}, "
+        f"({'hybrid ABB10 debug + Luo module research' if args.params == _RESEARCH_PRESET else ('TEST-ONLY mock backends' if args.mock else 'abb10+sis debug backends')}, "
         f"security_claim: none)"
     )
+    if args.params == _RESEARCH_PRESET:
+        print(f"  signature_format={signature_format}")
     print(f"  wrote {args.state / _MPK_FILE} ({len(pk.to_bytes())} bytes)")
     print(f"  wrote {args.state / _MSK_FILE} ({len(msk.to_bytes())} bytes)")
     print(
@@ -305,6 +403,11 @@ def cmd_setup(args) -> int:
 
 
 def cmd_issue_sender_key(args) -> int:
+    with key_issuance_lock(args.state):
+        return _issue_sender_key_unlocked(args)
+
+
+def _issue_sender_key_unlocked(args) -> int:
     meta = _load_state_meta(args.state)
     identity = _parse_identity(
         args.name, max_bytes=meta["identity_bytes"], role="sender identity"
@@ -312,8 +415,11 @@ def cmd_issue_sender_key(args) -> int:
     digest = _identity_digest(identity)
     msk, proto, classes = _load_msk(args.state, args.mock)
     ek = proto.skgen(msk, identity)
+    if meta.get("params_preset") == _RESEARCH_PRESET:
+        # Preserve the fixed identity key across separately invoked commands.
+        _persist_research_master(args.state, msk)
     out = _sender_key_path(args.state, identity)
-    out.write_bytes(ek.to_bytes())
+    _atomic_write_state(out, ek.to_bytes())
     print(
         f"issued sender key: identity={args.name!r} utf8={len(identity)}B "
         f"digest={digest} (sha256[:{_DIGEST_HEX_CHARS}] of UTF-8 bytes)"
@@ -323,6 +429,11 @@ def cmd_issue_sender_key(args) -> int:
 
 
 def cmd_issue_receiver_key(args) -> int:
+    with key_issuance_lock(args.state):
+        return _issue_receiver_key_unlocked(args)
+
+
+def _issue_receiver_key_unlocked(args) -> int:
     meta = _load_state_meta(args.state)
     identity = _parse_identity(
         args.name, max_bytes=meta["identity_bytes"], role="receiver identity"
@@ -330,8 +441,11 @@ def cmd_issue_receiver_key(args) -> int:
     digest = _identity_digest(identity)
     msk, proto, classes = _load_msk(args.state, args.mock)
     dk = proto.rkgen(msk, identity)
+    if meta.get("params_preset") == _RESEARCH_PRESET:
+        # A delegated HIBE can carry persistent address/decapsulation caches.
+        _persist_research_master(args.state, msk)
     out = _receiver_key_path(args.state, identity)
-    out.write_bytes(dk.to_bytes())
+    _atomic_write_state(out, dk.to_bytes())
     print(
         f"issued receiver key: identity={args.name!r} utf8={len(identity)}B "
         f"digest={digest} (sha256[:{_DIGEST_HEX_CHARS}] of UTF-8 bytes)"
@@ -348,7 +462,9 @@ def cmd_encrypt(args) -> int:
     receiver = _parse_identity(
         args.receiver, max_bytes=meta["identity_bytes"], role="receiver identity"
     )
-    proto, classes = _make_runtime(args.mock, legacy_baseline=args.legacy_baseline)
+    proto, classes = _make_runtime(args.mock, legacy_baseline=args.legacy_baseline,
+                                   preset=meta.get("params_preset", "education"),
+                                   signature_format=meta.get("signature_format", "reference"))
     pk = PublicKey.from_bytes(
         _read(args.state / _MPK_FILE), classes["hpk"], classes["ipk"]
     )
@@ -377,7 +493,9 @@ def cmd_decrypt(args) -> int:
     sender = _parse_identity(
         args.sender, max_bytes=meta["identity_bytes"], role="sender identity"
     )
-    proto, classes = _make_runtime(args.mock, legacy_baseline=args.legacy_baseline)
+    proto, classes = _make_runtime(args.mock, legacy_baseline=args.legacy_baseline,
+                                   preset=meta.get("params_preset", "education"),
+                                   signature_format=meta.get("signature_format", "reference"))
     pk = PublicKey.from_bytes(
         _read(args.state / _MPK_FILE), classes["hpk"], classes["ipk"]
     )
@@ -443,8 +561,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--params",
         choices=sorted(_PRESETS),
         default="education",
-        help="参数预设（当前仅 education：教学/调试参数）",
+        help="参数预设：education 教学参数或 luo-module-research 研究组合（均无安全声明）",
     )
+    p.add_argument("--signature-format", choices=("reference", "compact"), default="reference",
+                   help="研究组合的签名存储格式；compact 为无损位打包，其他预设仅允许 reference")
     _add_common(p)
     p.set_defaults(func=cmd_setup)
 

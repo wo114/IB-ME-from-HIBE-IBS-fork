@@ -1,0 +1,3158 @@
+{
+  "schema": "IBME/LUO2024/MODULE-SECURITY-SCREEN/1",
+  "paper": "https://icics2024.aegean.gr/wp-content/uploads/2024/08/150570198.pdf",
+  "params": {
+    "degree": 256,
+    "k": 11,
+    "l": 10,
+    "q": 274877844481,
+    "root": 153250464611,
+    "eta": 1,
+    "kappa": 64,
+    "gamma1": 125440,
+    "gamma2": 31470387200,
+    "gamma3": 15270991360,
+    "dropped_bits": 28,
+    "identity_max_bytes": 64,
+    "message_max_bytes": 4096,
+    "max_extract_attempts": 1024,
+    "max_sign_attempts": 1024,
+    "max_uniform_attempts": 128,
+    "max_cached_identities": 64
+  },
+  "compression": {
+    "sign_z": 31462359039,
+    "extraction_z": 125376,
+    "dropped_low_product": 8589934592,
+    "hint_correction": 30541982721,
+    "uncompressed_error": 39131917313,
+    "source": "PDF page 16, Section 4.4 and Equation (4.1); coefficient infinity norms",
+    "hash_lift": "H1(Power2Round(w),id); does not treat H1 as an independent oracle on every full low-bit lift"
+  },
+  "witnesses": [
+    {
+      "name": "known-identity-tight",
+      "module_rows": 11,
+      "module_columns": 21,
+      "coefficient_rows": 2816,
+      "coefficient_columns": 5376,
+      "block_infinity_bounds": [
+        62940766206,
+        78279882754
+      ],
+      "uniform_screen_bound": 78279882754,
+      "q": 274877844481,
+      "below_q_half": true,
+      "normalized_matrix": "[A|I_k]",
+      "interpretation": "Same cached w1/CID and H2 input; integer witness nonzero uses the conditional cube-guess lemma",
+      "estimates": {
+        "classical": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 196.808,
+            "fields": {
+              "rop": "1.75837453912521e59",
+              "red": "1.75837453912521e59",
+              "sieve": "1e-100",
+              "beta": "674",
+              "eta": "674",
+              "zeta": "1",
+              "d": "5375",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        },
+        "quantum": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 178.61,
+            "fields": {
+              "rop": "5.84746357984394e53",
+              "red": "5.84746357984394e53",
+              "sieve": "1e-100",
+              "beta": "674",
+              "eta": "674",
+              "zeta": "1",
+              "d": "5375",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        }
+      },
+      "security_claim": "none",
+      "backend_admitted": false
+    },
+    {
+      "name": "known-identity-paper-loose",
+      "module_rows": 11,
+      "module_columns": 21,
+      "coefficient_rows": 2816,
+      "coefficient_columns": 5376,
+      "block_infinity_bounds": [
+        62956830720,
+        78279890946
+      ],
+      "uniform_screen_bound": 78279890946,
+      "q": 274877844481,
+      "below_q_half": true,
+      "normalized_matrix": "[A|I_k]",
+      "interpretation": "Conservative paper-style strict-bound relaxation of the known-identity branch",
+      "estimates": {
+        "classical": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 196.808,
+            "fields": {
+              "rop": "1.75837453912521e59",
+              "red": "1.75837453912521e59",
+              "sieve": "1e-100",
+              "beta": "674",
+              "eta": "674",
+              "zeta": "1",
+              "d": "5375",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        },
+        "quantum": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 178.61,
+            "fields": {
+              "rop": "5.84746357984394e53",
+              "red": "5.84746357984394e53",
+              "sieve": "1e-100",
+              "beta": "674",
+              "eta": "674",
+              "zeta": "1",
+              "d": "5375",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        }
+      },
+      "security_claim": "none",
+      "backend_admitted": false
+    },
+    {
+      "name": "fresh-identity-augmented",
+      "module_rows": 11,
+      "module_columns": 22,
+      "coefficient_rows": 2816,
+      "coefficient_columns": 5632,
+      "block_infinity_bounds": [
+        62924718078,
+        78263834626,
+        128
+      ],
+      "uniform_screen_bound": 78263834626,
+      "q": 274877844481,
+      "below_q_half": true,
+      "normalized_matrix": "[A|I_k|t]",
+      "interpretation": "After the MLWE t-uniform hybrid; same H2 challenge, distinct H1 challenges; final product block proves nonzero",
+      "estimates": {
+        "classical": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 196.808,
+            "fields": {
+              "rop": "1.75837453912521e59",
+              "red": "1.75837453912521e59",
+              "sieve": "1e-100",
+              "beta": "674",
+              "eta": "674",
+              "zeta": "1",
+              "d": "5631",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        },
+        "quantum": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 178.61,
+            "fields": {
+              "rop": "5.84746357984394e53",
+              "red": "5.84746357984394e53",
+              "sieve": "1e-100",
+              "beta": "674",
+              "eta": "674",
+              "zeta": "1",
+              "d": "5631",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        }
+      },
+      "security_claim": "none",
+      "backend_admitted": false
+    },
+    {
+      "name": "all-branches-relaxed",
+      "module_rows": 11,
+      "module_columns": 22,
+      "coefficient_rows": 2816,
+      "coefficient_columns": 5632,
+      "block_infinity_bounds": [
+        62956830720,
+        78279890946,
+        128
+      ],
+      "uniform_screen_bound": 78279890946,
+      "q": 274877844481,
+      "below_q_half": true,
+      "normalized_matrix": "[A|I_k|t]",
+      "interpretation": "Relaxed common box; known-identity witnesses append a zero t block",
+      "estimates": {
+        "classical": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 196.808,
+            "fields": {
+              "rop": "1.75837453912521e59",
+              "red": "1.75837453912521e59",
+              "sieve": "1e-100",
+              "beta": "674",
+              "eta": "674",
+              "zeta": "1",
+              "d": "5631",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        },
+        "quantum": {
+          "lattice": {
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 178.61,
+            "fields": {
+              "rop": "5.84746357984394e53",
+              "red": "5.84746357984394e53",
+              "sieve": "1e-100",
+              "beta": "674",
+              "eta": "674",
+              "zeta": "1",
+              "d": "5631",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        }
+      },
+      "security_claim": "none",
+      "backend_admitted": false
+    }
+  ],
+  "nonzero": {
+    "fresh_identity": {
+      "integer_ring": "Z[X]/(X^N+1), power-of-two N; integral domain",
+      "last_block": "c*(CID-CID')",
+      "coefficient_bound": 128,
+      "bound_below_q": true,
+      "requires_c_nonzero_and_CID_distinct": true,
+      "invertible_mod_q_challenge_not_required": true
+    },
+    "known_identity": {
+      "uniform_key_cube_dimensions": 5376,
+      "cube_radius": 125376,
+      "public_label_dimensions": 2816,
+      "labels_per_coefficient": 1025,
+      "illustrative_guess_union": 1048576,
+      "average_bound_log2": -68239.4728990734,
+      "exact_bound_at_most_2pow_minus128": true,
+      "pointwise_posterior_claim": false,
+      "hypothesis": "Published Extract/Sign oracle simulation with shared cached identity state; view reveals the uniform key only through w1 and independent public randomness; excludes timings and failed programming events"
+    },
+    "scope": "Finite conditional nonzero bridges, not a replacement for the paper's simulator/forking probabilities or a full QROM theorem"
+  },
+  "arithmetic": {
+    "scalar_hint_cases": 2444,
+    "high_lifts_checked": 1025,
+    "signed_polynomial_error_cases": 12,
+    "small_nonzero_product_cases": 496,
+    "integer_cyclotomic_irreducible": true,
+    "high1024_low": -62464,
+    "tight_hint_correction": -30541982721,
+    "normalization_examples": 2,
+    "known_branch_fork_alone_can_give_zero_control": true,
+    "prime": true,
+    "selected_root_order": 512,
+    "normalization_bad_block_probability_upper": {
+      "numerator": 256,
+      "denominator": 274877844480,
+      "interpretation": "For a uniform k-by-k block over the fully split Rq: condition on invertibility, then normalize; reduction success loses a multiplicative factor, not an additive IBS advantage"
+    }
+  },
+  "budgets": {
+    "extraction": {
+      "coefficient_count": 5376,
+      "attempt_limit": 1024,
+      "ideal_new_hash_planning_expected_trials": 15.542001773811988,
+      "ideal_planning_abort_upper_log2": -98.24916983564142,
+      "unconditional_central_region_acceptance_lower_log2": -7.918221830448521,
+      "central_region_abort_upper_log2": -6.1200005917825075,
+      "scope": "Mask cube only; planning assumes new ideal hash challenges; excludes uniform/XOF/programming budgets"
+    },
+    "sign_z_only": {
+      "coefficient_count": 2560,
+      "attempt_limit": 1024,
+      "ideal_new_hash_planning_expected_trials": 1.9215739553819509,
+      "ideal_planning_abort_upper_log2": -1085.5594515029256,
+      "unconditional_central_region_acceptance_lower_log2": -1.884817358945784,
+      "central_region_abort_upper_log2": -466.5037670553668,
+      "scope": "Mask cube only; planning assumes new ideal hash challenges; excludes uniform/XOF/programming budgets"
+    },
+    "signing_remaining_rejections_not_bounded_here": true,
+    "interpretation": "These are availability/model checks, not an observed abort frequency or a security-level claim"
+  },
+  "comparator_grid": [
+    {
+      "mode": "classical",
+      "beta": 40,
+      "zeta": 0,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "40",
+        "eta": "40",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "6.64220552111685e-34433",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 40,
+      "zeta": 1,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "40",
+        "eta": "40",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "6.64220552111685e-34433",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 40,
+      "zeta": 128,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "40",
+        "eta": "40",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "6.64220552111685e-34433",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 40,
+      "zeta": 256,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "40",
+        "eta": "40",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "6.64220552111685e-34433",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 40,
+      "zeta": 512,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "40",
+        "eta": "40",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "6.64220552111685e-34433",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 40,
+      "zeta": 1024,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "40",
+        "eta": "40",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "6.64220552111685e-34433",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 80,
+      "zeta": 0,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "80",
+        "eta": "80",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "5.25394324642725e-30686",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 80,
+      "zeta": 1,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "80",
+        "eta": "80",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "5.25394324642725e-30686",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 80,
+      "zeta": 128,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "80",
+        "eta": "80",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "5.25394324642725e-30686",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 80,
+      "zeta": 256,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "80",
+        "eta": "80",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "5.25394324642725e-30686",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 80,
+      "zeta": 512,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "80",
+        "eta": "80",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "5.25394324642725e-30686",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 80,
+      "zeta": 1024,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "80",
+        "eta": "80",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "5.25394324642725e-30686",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 160,
+      "zeta": 0,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "160",
+        "eta": "160",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "1.19203657032318e-24007",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 160,
+      "zeta": 1,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "160",
+        "eta": "160",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "1.19203657032318e-24007",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 160,
+      "zeta": 128,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "160",
+        "eta": "160",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "1.19203657032318e-24007",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 160,
+      "zeta": 256,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "160",
+        "eta": "160",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "1.19203657032318e-24007",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 160,
+      "zeta": 512,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "160",
+        "eta": "160",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "1.19203657032318e-24007",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 160,
+      "zeta": 1024,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "160",
+        "eta": "160",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "1.19203657032318e-24007",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 320,
+      "zeta": 0,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "320",
+        "eta": "320",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "7.89450971385855e-13964",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 320,
+      "zeta": 1,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "320",
+        "eta": "320",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "7.89450971385855e-13964",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 320,
+      "zeta": 128,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "320",
+        "eta": "320",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "7.89450971385855e-13964",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 320,
+      "zeta": 256,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "320",
+        "eta": "320",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "7.89450971385855e-13964",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 320,
+      "zeta": 512,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "320",
+        "eta": "320",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "7.89450971385855e-13964",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 320,
+      "zeta": 1024,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "320",
+        "eta": "320",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "7.89450971385855e-13964",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 480,
+      "zeta": 0,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "480",
+        "eta": "480",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "3.73622511857785e-6245",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 480,
+      "zeta": 1,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "480",
+        "eta": "480",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "3.73622511857785e-6245",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 480,
+      "zeta": 128,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "480",
+        "eta": "480",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "3.73622511857785e-6245",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 480,
+      "zeta": 256,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "480",
+        "eta": "480",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "3.73622511857785e-6245",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 480,
+      "zeta": 512,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "480",
+        "eta": "480",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "3.73622511857785e-6245",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 480,
+      "zeta": 1024,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "480",
+        "eta": "480",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "3.73622511857785e-6245",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 600,
+      "zeta": 0,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "600",
+        "eta": "600",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "8.24980159175250e-1471",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 600,
+      "zeta": 1,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "600",
+        "eta": "600",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "8.24980159175250e-1471",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 600,
+      "zeta": 128,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "600",
+        "eta": "600",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "8.24980159175250e-1471",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 600,
+      "zeta": 256,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "600",
+        "eta": "600",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "8.24980159175250e-1471",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 600,
+      "zeta": 512,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "600",
+        "eta": "600",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "8.24980159175250e-1471",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 600,
+      "zeta": 1024,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "600",
+        "eta": "600",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "9.89992210083669e-1589",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 640,
+      "zeta": 0,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 1475.7378849308384,
+      "fields": {
+        "rop": "1.74328784433274e444",
+        "red": "1.74328784433274e444",
+        "sieve": "inf",
+        "beta": "640",
+        "eta": "640",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "4.76828463649451e-388",
+        "repetitions": "9657917966435971731409691939540683992288783735596984466600176996674364183246581999736914797457198250856827905493469297055485174875088156129797246776745689130418552204401459514559717886555595502830901955419268195265225703923588381542005689250540676261675707132708256082469845093065921037684127936880112280135766473688417476627343151406834138650540588364962110529814713789161626238226494346"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 640,
+      "zeta": 1,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 1475.7378849308384,
+      "fields": {
+        "rop": "1.74328784433274e444",
+        "red": "1.74328784433274e444",
+        "sieve": "inf",
+        "beta": "640",
+        "eta": "640",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "4.76828463649451e-388",
+        "repetitions": "9657917966435971731409691939540683992288783735596984466600176996674364183246581999736914797457198250856827905493469297055485174875088156129797246776745689130418552204401459514559717886555595502830901955419268195265225703923588381542005689250540676261675707132708256082469845093065921037684127936880112280135766473688417476627343151406834138650540588364962110529814713789161626238226494346"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 640,
+      "zeta": 128,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 1475.7378849308384,
+      "fields": {
+        "rop": "1.74328784433274e444",
+        "red": "1.74328784433274e444",
+        "sieve": "inf",
+        "beta": "640",
+        "eta": "640",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "4.76828463649451e-388",
+        "repetitions": "9657917966435971731409691939540683992288783735596984466600176996674364183246581999736914797457198250856827905493469297055485174875088156129797246776745689130418552204401459514559717886555595502830901955419268195265225703923588381542005689250540676261675707132708256082469845093065921037684127936880112280135766473688417476627343151406834138650540588364962110529814713789161626238226494346"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 640,
+      "zeta": 256,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 1475.7378849308384,
+      "fields": {
+        "rop": "1.74328784433274e444",
+        "red": "1.74328784433274e444",
+        "sieve": "inf",
+        "beta": "640",
+        "eta": "640",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "4.76828463649451e-388",
+        "repetitions": "9657917966435971731409691939540683992288783735596984466600176996674364183246581999736914797457198250856827905493469297055485174875088156129797246776745689130418552204401459514559717886555595502830901955419268195265225703923588381542005689250540676261675707132708256082469845093065921037684127936880112280135766473688417476627343151406834138650540588364962110529814713789161626238226494346"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 640,
+      "zeta": 512,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 1475.7378849308384,
+      "fields": {
+        "rop": "1.74328784433274e444",
+        "red": "1.74328784433274e444",
+        "sieve": "inf",
+        "beta": "640",
+        "eta": "640",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "4.76828463649451e-388",
+        "repetitions": "9657917966435971731409691939540683992288783735596984466600176996674364183246581999736914797457198250856827905493469297055485174875088156129797246776745689130418552204401459514559717886555595502830901955419268195265225703923588381542005689250540676261675707132708256082469845093065921037684127936880112280135766473688417476627343151406834138650540588364962110529814713789161626238226494346"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 640,
+      "zeta": 1024,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 2142.0387036202223,
+      "fields": {
+        "rop": "6.57508941014154e644",
+        "red": "6.57508941014154e644",
+        "sieve": "inf",
+        "beta": "640",
+        "eta": "640",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "1.26424024474832e-588",
+        "repetitions": "3642638497799813567028787408831287268123938411822975204090629930102658994993646952000216964775437396611408006363169702516236112714697179504917546014742526110550121154219323217013494639302157458766877679412696651319498813822968267491520165649266421676205552298720035290561160181116126789544011008933666083736103240041965255870525561982013458757461809977612918380124839748943922739111144250956916482626688071609761500155333008688454351744218485187261971940665479699530928478501222086583160275871397240899547419049938140972915974525776393919418360058340103740899941703804931712962141253919858"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 672,
+      "zeta": 0,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 228.08907676971646,
+      "fields": {
+        "rop": "4.58832097205108e68",
+        "red": "4.58832097205108e68",
+        "sieve": "3.911505289e-91",
+        "beta": "672",
+        "eta": "672",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "1.17733962862167e-9",
+        "repetitions": "3911505289"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 672,
+      "zeta": 1,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 228.08907676971646,
+      "fields": {
+        "rop": "4.58832097205108e68",
+        "red": "4.58832097205108e68",
+        "sieve": "3.911505289e-91",
+        "beta": "672",
+        "eta": "672",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "1.17733962862167e-9",
+        "repetitions": "3911505289"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 672,
+      "zeta": 128,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 228.08907676971646,
+      "fields": {
+        "rop": "4.58832097205108e68",
+        "red": "4.58832097205108e68",
+        "sieve": "3.911505289e-91",
+        "beta": "672",
+        "eta": "672",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "1.17733962862167e-9",
+        "repetitions": "3911505289"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 672,
+      "zeta": 256,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 228.08907676971646,
+      "fields": {
+        "rop": "4.58832097205108e68",
+        "red": "4.58832097205108e68",
+        "sieve": "3.911505289e-91",
+        "beta": "672",
+        "eta": "672",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "1.17733962862167e-9",
+        "repetitions": "3911505289"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 672,
+      "zeta": 512,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 236.77585315489907,
+      "fields": {
+        "rop": "1.89074973654796e71",
+        "red": "1.89074973654796e71",
+        "sieve": "1.611848351441e-88",
+        "beta": "672",
+        "eta": "672",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "2.85707410493616e-12",
+        "repetitions": "1611848351441"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 672,
+      "zeta": 1024,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 616.0317242666127,
+      "fields": {
+        "rop": "2.77988791066717e185",
+        "red": "2.77988791066717e185",
+        "sieve": "2.36983121530425e+26",
+        "beta": "672",
+        "eta": "672",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "1.94324817575536e-126",
+        "repetitions": "2369831215304250245645195393433420433467334061982807898298725955534988513004475984732004953148277899465290190843008071994652937"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 674,
+      "zeta": 0,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 196.808,
+      "fields": {
+        "rop": "1.75837453912521e59",
+        "red": "1.75837453912521e59",
+        "sieve": "1e-100",
+        "beta": "674",
+        "eta": "674",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 674,
+      "zeta": 1,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 196.808,
+      "fields": {
+        "rop": "1.75837453912521e59",
+        "red": "1.75837453912521e59",
+        "sieve": "1e-100",
+        "beta": "674",
+        "eta": "674",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 674,
+      "zeta": 128,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 196.808,
+      "fields": {
+        "rop": "1.75837453912521e59",
+        "red": "1.75837453912521e59",
+        "sieve": "1e-100",
+        "beta": "674",
+        "eta": "674",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 674,
+      "zeta": 256,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 196.808,
+      "fields": {
+        "rop": "1.75837453912521e59",
+        "red": "1.75837453912521e59",
+        "sieve": "1e-100",
+        "beta": "674",
+        "eta": "674",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 674,
+      "zeta": 512,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 206.60079029430105,
+      "fields": {
+        "rop": "1.55967821620406e62",
+        "red": "1.55967821620406e62",
+        "sieve": "8.87e-98",
+        "beta": "674",
+        "eta": "674",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "0.00518241593483716",
+        "repetitions": "887"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 674,
+      "zeta": 1024,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 558.0119894551048,
+      "fields": {
+        "rop": "9.51364115235015e167",
+        "red": "9.51364115235015e167",
+        "sieve": "541047481.1062244",
+        "beta": "674",
+        "eta": "674",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "8.51158234129909e-109",
+        "repetitions": "5410474811062243710624379120975713639367487538309993487234782052626420232509695229291512373345241520745959028"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 688,
+      "zeta": 0,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 200.896,
+      "fields": {
+        "rop": "2.99034990646143e60",
+        "red": "2.99034990646143e60",
+        "sieve": "1e-100",
+        "beta": "688",
+        "eta": "688",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 688,
+      "zeta": 1,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 200.896,
+      "fields": {
+        "rop": "2.99034990646143e60",
+        "red": "2.99034990646143e60",
+        "sieve": "1e-100",
+        "beta": "688",
+        "eta": "688",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 688,
+      "zeta": 128,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 200.896,
+      "fields": {
+        "rop": "2.99034990646143e60",
+        "red": "2.99034990646143e60",
+        "sieve": "1e-100",
+        "beta": "688",
+        "eta": "688",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 688,
+      "zeta": 256,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 200.896,
+      "fields": {
+        "rop": "2.99034990646143e60",
+        "red": "2.99034990646143e60",
+        "sieve": "1e-100",
+        "beta": "688",
+        "eta": "688",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 688,
+      "zeta": 512,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 200.896,
+      "fields": {
+        "rop": "2.99034990646143e60",
+        "red": "2.99034990646143e60",
+        "sieve": "1e-100",
+        "beta": "688",
+        "eta": "688",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 688,
+      "zeta": 1024,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 262.39095825596786,
+      "fields": {
+        "rop": "9.71737641621182e78",
+        "red": "9.71737641621182e78",
+        "sieve": "3.249578383858988e-82",
+        "beta": "688",
+        "eta": "688",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "1.41715928714398e-18",
+        "repetitions": "3249578383858987907"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 736,
+      "zeta": 0,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 214.91199999999998,
+      "fields": {
+        "rop": "4.95402767219419e64",
+        "red": "4.95402767219419e64",
+        "sieve": "1e-100",
+        "beta": "736",
+        "eta": "736",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 736,
+      "zeta": 1,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 214.91199999999998,
+      "fields": {
+        "rop": "4.95402767219419e64",
+        "red": "4.95402767219419e64",
+        "sieve": "1e-100",
+        "beta": "736",
+        "eta": "736",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 736,
+      "zeta": 128,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 214.91199999999998,
+      "fields": {
+        "rop": "4.95402767219419e64",
+        "red": "4.95402767219419e64",
+        "sieve": "1e-100",
+        "beta": "736",
+        "eta": "736",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 736,
+      "zeta": 256,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 214.91199999999998,
+      "fields": {
+        "rop": "4.95402767219419e64",
+        "red": "4.95402767219419e64",
+        "sieve": "1e-100",
+        "beta": "736",
+        "eta": "736",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 736,
+      "zeta": 512,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 214.91199999999998,
+      "fields": {
+        "rop": "4.95402767219419e64",
+        "red": "4.95402767219419e64",
+        "sieve": "1e-100",
+        "beta": "736",
+        "eta": "736",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 736,
+      "zeta": 1024,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 214.91199999999998,
+      "fields": {
+        "rop": "4.95402767219419e64",
+        "red": "4.95402767219419e64",
+        "sieve": "1e-100",
+        "beta": "736",
+        "eta": "736",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 800,
+      "zeta": 0,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 233.6,
+      "fields": {
+        "rop": "2.09221825513661e70",
+        "red": "2.09221825513661e70",
+        "sieve": "1e-100",
+        "beta": "800",
+        "eta": "800",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 800,
+      "zeta": 1,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 233.6,
+      "fields": {
+        "rop": "2.09221825513661e70",
+        "red": "2.09221825513661e70",
+        "sieve": "1e-100",
+        "beta": "800",
+        "eta": "800",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 800,
+      "zeta": 128,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 233.6,
+      "fields": {
+        "rop": "2.09221825513661e70",
+        "red": "2.09221825513661e70",
+        "sieve": "1e-100",
+        "beta": "800",
+        "eta": "800",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 800,
+      "zeta": 256,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 233.6,
+      "fields": {
+        "rop": "2.09221825513661e70",
+        "red": "2.09221825513661e70",
+        "sieve": "1e-100",
+        "beta": "800",
+        "eta": "800",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 800,
+      "zeta": 512,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 233.6,
+      "fields": {
+        "rop": "2.09221825513661e70",
+        "red": "2.09221825513661e70",
+        "sieve": "1e-100",
+        "beta": "800",
+        "eta": "800",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "classical",
+      "beta": 800,
+      "zeta": 1024,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 233.6,
+      "fields": {
+        "rop": "2.09221825513661e70",
+        "red": "2.09221825513661e70",
+        "sieve": "1e-100",
+        "beta": "800",
+        "eta": "800",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 40,
+      "zeta": 0,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "40",
+        "eta": "40",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "6.64220552111685e-34433",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 40,
+      "zeta": 1,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "40",
+        "eta": "40",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "6.64220552111685e-34433",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 40,
+      "zeta": 128,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "40",
+        "eta": "40",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "6.64220552111685e-34433",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 40,
+      "zeta": 256,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "40",
+        "eta": "40",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "6.64220552111685e-34433",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 40,
+      "zeta": 512,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "40",
+        "eta": "40",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "6.64220552111685e-34433",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 40,
+      "zeta": 1024,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "40",
+        "eta": "40",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "6.64220552111685e-34433",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 80,
+      "zeta": 0,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "80",
+        "eta": "80",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "5.25394324642725e-30686",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 80,
+      "zeta": 1,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "80",
+        "eta": "80",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "5.25394324642725e-30686",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 80,
+      "zeta": 128,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "80",
+        "eta": "80",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "5.25394324642725e-30686",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 80,
+      "zeta": 256,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "80",
+        "eta": "80",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "5.25394324642725e-30686",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 80,
+      "zeta": 512,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "80",
+        "eta": "80",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "5.25394324642725e-30686",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 80,
+      "zeta": 1024,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "80",
+        "eta": "80",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "5.25394324642725e-30686",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 160,
+      "zeta": 0,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "160",
+        "eta": "160",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "1.19203657032318e-24007",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 160,
+      "zeta": 1,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "160",
+        "eta": "160",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "1.19203657032318e-24007",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 160,
+      "zeta": 128,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "160",
+        "eta": "160",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "1.19203657032318e-24007",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 160,
+      "zeta": 256,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "160",
+        "eta": "160",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "1.19203657032318e-24007",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 160,
+      "zeta": 512,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "160",
+        "eta": "160",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "1.19203657032318e-24007",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 160,
+      "zeta": 1024,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "160",
+        "eta": "160",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "1.19203657032318e-24007",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 320,
+      "zeta": 0,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "320",
+        "eta": "320",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "7.89450971385855e-13964",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 320,
+      "zeta": 1,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "320",
+        "eta": "320",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "7.89450971385855e-13964",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 320,
+      "zeta": 128,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "320",
+        "eta": "320",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "7.89450971385855e-13964",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 320,
+      "zeta": 256,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "320",
+        "eta": "320",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "7.89450971385855e-13964",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 320,
+      "zeta": 512,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "320",
+        "eta": "320",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "7.89450971385855e-13964",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 320,
+      "zeta": 1024,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "320",
+        "eta": "320",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "7.89450971385855e-13964",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 480,
+      "zeta": 0,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "480",
+        "eta": "480",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "3.73622511857785e-6245",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 480,
+      "zeta": 1,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "480",
+        "eta": "480",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "3.73622511857785e-6245",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 480,
+      "zeta": 128,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "480",
+        "eta": "480",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "3.73622511857785e-6245",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 480,
+      "zeta": 256,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "480",
+        "eta": "480",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "3.73622511857785e-6245",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 480,
+      "zeta": 512,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "480",
+        "eta": "480",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "3.73622511857785e-6245",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 480,
+      "zeta": 1024,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "480",
+        "eta": "480",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "3.73622511857785e-6245",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 600,
+      "zeta": 0,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "600",
+        "eta": "600",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "8.24980159175250e-1471",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 600,
+      "zeta": 1,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "600",
+        "eta": "600",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "8.24980159175250e-1471",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 600,
+      "zeta": 128,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "600",
+        "eta": "600",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "8.24980159175250e-1471",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 600,
+      "zeta": 256,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "600",
+        "eta": "600",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "8.24980159175250e-1471",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 600,
+      "zeta": 512,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "600",
+        "eta": "600",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "8.24980159175250e-1471",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 600,
+      "zeta": 1024,
+      "status": "no_finite_estimate",
+      "rop_log2": null,
+      "fields": {
+        "rop": "+Infinity",
+        "red": "+Infinity",
+        "sieve": "+Infinity",
+        "beta": "600",
+        "eta": "600",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "9.89992210083669e-1589",
+        "repetitions": "+Infinity"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 640,
+      "zeta": 0,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 1458.4578849308384,
+      "fields": {
+        "rop": "1.09539505699480e439",
+        "red": "1.09539505699480e439",
+        "sieve": "inf",
+        "beta": "640",
+        "eta": "640",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "4.76828463649451e-388",
+        "repetitions": "9657917966435971731409691939540683992288783735596984466600176996674364183246581999736914797457198250856827905493469297055485174875088156129797246776745689130418552204401459514559717886555595502830901955419268195265225703923588381542005689250540676261675707132708256082469845093065921037684127936880112280135766473688417476627343151406834138650540588364962110529814713789161626238226494346"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 640,
+      "zeta": 1,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 1458.4578849308384,
+      "fields": {
+        "rop": "1.09539505699480e439",
+        "red": "1.09539505699480e439",
+        "sieve": "inf",
+        "beta": "640",
+        "eta": "640",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "4.76828463649451e-388",
+        "repetitions": "9657917966435971731409691939540683992288783735596984466600176996674364183246581999736914797457198250856827905493469297055485174875088156129797246776745689130418552204401459514559717886555595502830901955419268195265225703923588381542005689250540676261675707132708256082469845093065921037684127936880112280135766473688417476627343151406834138650540588364962110529814713789161626238226494346"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 640,
+      "zeta": 128,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 1458.4578849308384,
+      "fields": {
+        "rop": "1.09539505699480e439",
+        "red": "1.09539505699480e439",
+        "sieve": "inf",
+        "beta": "640",
+        "eta": "640",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "4.76828463649451e-388",
+        "repetitions": "9657917966435971731409691939540683992288783735596984466600176996674364183246581999736914797457198250856827905493469297055485174875088156129797246776745689130418552204401459514559717886555595502830901955419268195265225703923588381542005689250540676261675707132708256082469845093065921037684127936880112280135766473688417476627343151406834138650540588364962110529814713789161626238226494346"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 640,
+      "zeta": 256,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 1458.4578849308384,
+      "fields": {
+        "rop": "1.09539505699480e439",
+        "red": "1.09539505699480e439",
+        "sieve": "inf",
+        "beta": "640",
+        "eta": "640",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "4.76828463649451e-388",
+        "repetitions": "9657917966435971731409691939540683992288783735596984466600176996674364183246581999736914797457198250856827905493469297055485174875088156129797246776745689130418552204401459514559717886555595502830901955419268195265225703923588381542005689250540676261675707132708256082469845093065921037684127936880112280135766473688417476627343151406834138650540588364962110529814713789161626238226494346"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 640,
+      "zeta": 512,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 1458.4578849308384,
+      "fields": {
+        "rop": "1.09539505699480e439",
+        "red": "1.09539505699480e439",
+        "sieve": "inf",
+        "beta": "640",
+        "eta": "640",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "4.76828463649451e-388",
+        "repetitions": "9657917966435971731409691939540683992288783735596984466600176996674364183246581999736914797457198250856827905493469297055485174875088156129797246776745689130418552204401459514559717886555595502830901955419268195265225703923588381542005689250540676261675707132708256082469845093065921037684127936880112280135766473688417476627343151406834138650540588364962110529814713789161626238226494346"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 640,
+      "zeta": 1024,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 2124.758703620222,
+      "fields": {
+        "rop": "4.13145795892626e639",
+        "red": "4.13145795892626e639",
+        "sieve": "inf",
+        "beta": "640",
+        "eta": "640",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "1.26424024474832e-588",
+        "repetitions": "3642638497799813567028787408831287268123938411822975204090629930102658994993646952000216964775437396611408006363169702516236112714697179504917546014742526110550121154219323217013494639302157458766877679412696651319498813822968267491520165649266421676205552298720035290561160181116126789544011008933666083736103240041965255870525561982013458757461809977612918380124839748943922739111144250956916482626688071609761500155333008688454351744218485187261971940665479699530928478501222086583160275871397240899547419049938140972915974525776393919418360058340103740899941703804931712962141253919858"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 672,
+      "zeta": 0,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 209.94507676971648,
+      "fields": {
+        "rop": "1.58403783168315e63",
+        "red": "1.58403783168315e63",
+        "sieve": "3.911505289e-91",
+        "beta": "672",
+        "eta": "672",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "1.17733962862167e-9",
+        "repetitions": "3911505289"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 672,
+      "zeta": 1,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 209.94507676971648,
+      "fields": {
+        "rop": "1.58403783168315e63",
+        "red": "1.58403783168315e63",
+        "sieve": "3.911505289e-91",
+        "beta": "672",
+        "eta": "672",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "1.17733962862167e-9",
+        "repetitions": "3911505289"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 672,
+      "zeta": 128,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 209.94507676971648,
+      "fields": {
+        "rop": "1.58403783168315e63",
+        "red": "1.58403783168315e63",
+        "sieve": "3.911505289e-91",
+        "beta": "672",
+        "eta": "672",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "1.17733962862167e-9",
+        "repetitions": "3911505289"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 672,
+      "zeta": 256,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 209.94507676971648,
+      "fields": {
+        "rop": "1.58403783168315e63",
+        "red": "1.58403783168315e63",
+        "sieve": "3.911505289e-91",
+        "beta": "672",
+        "eta": "672",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "1.17733962862167e-9",
+        "repetitions": "3911505289"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 672,
+      "zeta": 512,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 218.6318531548991,
+      "fields": {
+        "rop": "6.52748386867554e65",
+        "red": "6.52748386867554e65",
+        "sieve": "1.611848351441e-88",
+        "beta": "672",
+        "eta": "672",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "2.85707410493616e-12",
+        "repetitions": "1611848351441"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 672,
+      "zeta": 1024,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 597.8877242666127,
+      "fields": {
+        "rop": "9.59707841966203e179",
+        "red": "9.59707841966203e179",
+        "sieve": "2.36983121530425e+26",
+        "beta": "672",
+        "eta": "672",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "1.94324817575536e-126",
+        "repetitions": "2369831215304250245645195393433420433467334061982807898298725955534988513004475984732004953148277899465290190843008071994652937"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 674,
+      "zeta": 0,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 178.61,
+      "fields": {
+        "rop": "5.84746357984394e53",
+        "red": "5.84746357984394e53",
+        "sieve": "1e-100",
+        "beta": "674",
+        "eta": "674",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 674,
+      "zeta": 1,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 178.61,
+      "fields": {
+        "rop": "5.84746357984394e53",
+        "red": "5.84746357984394e53",
+        "sieve": "1e-100",
+        "beta": "674",
+        "eta": "674",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 674,
+      "zeta": 128,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 178.61,
+      "fields": {
+        "rop": "5.84746357984394e53",
+        "red": "5.84746357984394e53",
+        "sieve": "1e-100",
+        "beta": "674",
+        "eta": "674",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 674,
+      "zeta": 256,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 178.61,
+      "fields": {
+        "rop": "5.84746357984394e53",
+        "red": "5.84746357984394e53",
+        "sieve": "1e-100",
+        "beta": "674",
+        "eta": "674",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 674,
+      "zeta": 512,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 188.40279029430107,
+      "fields": {
+        "rop": "5.18670019532158e56",
+        "red": "5.18670019532158e56",
+        "sieve": "8.87e-98",
+        "beta": "674",
+        "eta": "674",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "0.00518241593483716",
+        "repetitions": "887"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 674,
+      "zeta": 1024,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 539.8139894551048,
+      "fields": {
+        "rop": "3.16375544073495e162",
+        "red": "3.16375544073495e162",
+        "sieve": "541047481.1062244",
+        "beta": "674",
+        "eta": "674",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "8.51158234129909e-109",
+        "repetitions": "5410474811062243710624379120975713639367487538309993487234782052626420232509695229291512373345241520745959028"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 688,
+      "zeta": 0,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 182.32000000000002,
+      "fields": {
+        "rop": "7.65224399887366e54",
+        "red": "7.65224399887366e54",
+        "sieve": "1e-100",
+        "beta": "688",
+        "eta": "688",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 688,
+      "zeta": 1,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 182.32000000000002,
+      "fields": {
+        "rop": "7.65224399887366e54",
+        "red": "7.65224399887366e54",
+        "sieve": "1e-100",
+        "beta": "688",
+        "eta": "688",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 688,
+      "zeta": 128,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 182.32000000000002,
+      "fields": {
+        "rop": "7.65224399887366e54",
+        "red": "7.65224399887366e54",
+        "sieve": "1e-100",
+        "beta": "688",
+        "eta": "688",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 688,
+      "zeta": 256,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 182.32000000000002,
+      "fields": {
+        "rop": "7.65224399887366e54",
+        "red": "7.65224399887366e54",
+        "sieve": "1e-100",
+        "beta": "688",
+        "eta": "688",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 688,
+      "zeta": 512,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 182.32000000000002,
+      "fields": {
+        "rop": "7.65224399887366e54",
+        "red": "7.65224399887366e54",
+        "sieve": "1e-100",
+        "beta": "688",
+        "eta": "688",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 688,
+      "zeta": 1024,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 243.8149582559679,
+      "fields": {
+        "rop": "2.48665666867545e73",
+        "red": "2.48665666867545e73",
+        "sieve": "3.249578383858988e-82",
+        "beta": "688",
+        "eta": "688",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "1.41715928714398e-18",
+        "repetitions": "3249578383858987907"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 736,
+      "zeta": 0,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 195.04000000000002,
+      "fields": {
+        "rop": "5.16286006838234e58",
+        "red": "5.16286006838234e58",
+        "sieve": "1e-100",
+        "beta": "736",
+        "eta": "736",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 736,
+      "zeta": 1,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 195.04000000000002,
+      "fields": {
+        "rop": "5.16286006838234e58",
+        "red": "5.16286006838234e58",
+        "sieve": "1e-100",
+        "beta": "736",
+        "eta": "736",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 736,
+      "zeta": 128,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 195.04000000000002,
+      "fields": {
+        "rop": "5.16286006838234e58",
+        "red": "5.16286006838234e58",
+        "sieve": "1e-100",
+        "beta": "736",
+        "eta": "736",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 736,
+      "zeta": 256,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 195.04000000000002,
+      "fields": {
+        "rop": "5.16286006838234e58",
+        "red": "5.16286006838234e58",
+        "sieve": "1e-100",
+        "beta": "736",
+        "eta": "736",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 736,
+      "zeta": 512,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 195.04000000000002,
+      "fields": {
+        "rop": "5.16286006838234e58",
+        "red": "5.16286006838234e58",
+        "sieve": "1e-100",
+        "beta": "736",
+        "eta": "736",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 736,
+      "zeta": 1024,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 195.04000000000002,
+      "fields": {
+        "rop": "5.16286006838234e58",
+        "red": "5.16286006838234e58",
+        "sieve": "1e-100",
+        "beta": "736",
+        "eta": "736",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 800,
+      "zeta": 0,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 212.0,
+      "fields": {
+        "rop": "6.58201822928482e63",
+        "red": "6.58201822928482e63",
+        "sieve": "1e-100",
+        "beta": "800",
+        "eta": "800",
+        "zeta": "0",
+        "d": "5632",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 800,
+      "zeta": 1,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 212.0,
+      "fields": {
+        "rop": "6.58201822928482e63",
+        "red": "6.58201822928482e63",
+        "sieve": "1e-100",
+        "beta": "800",
+        "eta": "800",
+        "zeta": "1",
+        "d": "5631",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 800,
+      "zeta": 128,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 212.0,
+      "fields": {
+        "rop": "6.58201822928482e63",
+        "red": "6.58201822928482e63",
+        "sieve": "1e-100",
+        "beta": "800",
+        "eta": "800",
+        "zeta": "128",
+        "d": "5504",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 800,
+      "zeta": 256,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 212.0,
+      "fields": {
+        "rop": "6.58201822928482e63",
+        "red": "6.58201822928482e63",
+        "sieve": "1e-100",
+        "beta": "800",
+        "eta": "800",
+        "zeta": "256",
+        "d": "5376",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 800,
+      "zeta": 512,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 212.0,
+      "fields": {
+        "rop": "6.58201822928482e63",
+        "red": "6.58201822928482e63",
+        "sieve": "1e-100",
+        "beta": "800",
+        "eta": "800",
+        "zeta": "512",
+        "d": "5120",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    },
+    {
+      "mode": "quantum",
+      "beta": 800,
+      "zeta": 1024,
+      "status": "finite_heuristic_estimate",
+      "rop_log2": 212.0,
+      "fields": {
+        "rop": "6.58201822928482e63",
+        "red": "6.58201822928482e63",
+        "sieve": "1e-100",
+        "beta": "800",
+        "eta": "800",
+        "zeta": "1024",
+        "d": "4608",
+        "prob": "1",
+        "repetitions": "1"
+      }
+    }
+  ],
+  "tool_warnings": [
+    "red_shape_model is ignored for Euclidean (norm=2) SIS estimates; reduction shape simulators apply only to infinity-norm attacks."
+  ],
+  "provenance": {
+    "estimator": "https://github.com/malb/lattice-estimator",
+    "estimator_commit": "53da5982597709ba0fdf94ea37a84d822310fd84",
+    "clean_checkout": true,
+    "prior_mlwe_artifact_sha256": "93bfad304dd38c7f6bc35b6f1e47cab6101d347f922f95e208544a058778bb32",
+    "source_sha256": {
+      "experiments/research/luo_module_security_screen.py": "eda9a0343ff01f8cde04501c9190c3f1c9267ff083720e94899e5738ad3e8f48",
+      "src/ibme/ibs/luo_module.py": "93f1086f128c52ac67d3ac2e2abaea376555739a1f89934234221368ba575d2d",
+      "src/ibme/ibs/luo_module_math.py": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f",
+      "papers/2024_ibs_without_trapdoors_luo.pdf": "12c70ae7635c0b88c132bca14990480a8e0cdec2e786a6dcf39256e5bb0dd455"
+    }
+  },
+  "runtime": {
+    "python": "3.13.14 | packaged by conda-forge | (main, Jun 12 2026, 09:50:25) [GCC 14.3.0]",
+    "sage": "10.9",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "processor": "Intel(R) Core(TM) Ultra 9 275HX"
+  },
+  "cost_scope": "Unstructured coefficient-dimensional homogeneous infinity-norm SIS comparator, relaxing all block bounds to their maximum; module algebraic attacks and exact IBS advantage excluded",
+  "model": "ADPS16 classical/quantum Core-SVP, LGSA; no hardware run-time estimate",
+  "prior_mlwe_comparator": {
+    "classical": {
+      "usvp": {
+        "attack_goal": "heuristic_secret_search",
+        "status": "finite_heuristic_estimate",
+        "rop_log2": 201.188,
+        "cost_fields": {
+          "rop": "3.66119421649128e60",
+          "red": "3.66119421649128e60",
+          "delta": "1.00269877377903",
+          "beta": "689",
+          "d": "4863",
+          "tag": "usvp"
+        }
+      },
+      "bdd": {
+        "attack_goal": "heuristic_secret_search",
+        "status": "finite_heuristic_estimate",
+        "rop_log2": 200.46730743050148,
+        "cost_fields": {
+          "rop": "2.22163488659787e60",
+          "red": "1.62937006341163e60",
+          "svp": "5.92264823186238e59",
+          "beta": "685",
+          "eta": "679",
+          "d": "4942",
+          "tag": "bdd"
+        }
+      },
+      "bdd_hybrid": {
+        "attack_goal": "heuristic_secret_search",
+        "status": "finite_heuristic_estimate",
+        "rop_log2": 200.46730743050148,
+        "cost_fields": {
+          "rop": "2.22163488659787e60",
+          "red": "1.62937006341163e60",
+          "svp": "5.92264823186238e59",
+          "beta": "685",
+          "eta": "679",
+          "zeta": "0",
+          "|S|": "1",
+          "d": "4992",
+          "prob": "1.0",
+          "repetitions": "1",
+          "tag": "hybrid"
+        }
+      },
+      "bdd_mitm_hybrid": {
+        "attack_goal": "heuristic_secret_search",
+        "status": "finite_heuristic_estimate",
+        "rop_log2": 333.09058919813094,
+        "cost_fields": {
+          "rop": "1.86319633833651e100",
+          "red": "3.18340908623240e90",
+          "svp": "1.86319633801817e100",
+          "beta": "689",
+          "eta": "2",
+          "zeta": "264",
+          "|S|": "911935951235403913396560984850285215507917243671398006336311045951990832803587494334730906677002443712560382967825494301314465",
+          "d": "4737",
+          "prob": "5.29634175004891e-30",
+          "repetitions": "869500195289619891106797324849",
+          "tag": "hybrid"
+        }
+      },
+      "dual": {
+        "attack_goal": "decisional_distinguisher",
+        "status": "finite_heuristic_estimate",
+        "rop_log2": 203.524,
+        "cost_fields": {
+          "rop": "1.84853993588932e61",
+          "mem": "24024018760616666030511974114961301972706327152",
+          "m": "2464",
+          "beta": "697",
+          "d": "5024",
+          "repetitions": "1",
+          "tag": "dual"
+        }
+      },
+      "dual_hybrid": {
+        "attack_goal": "distinguishing_with_partial_secret_guess",
+        "status": "finite_heuristic_estimate",
+        "rop_log2": 196.1991496932277,
+        "cost_fields": {
+          "rop": "1.15299966584198e59",
+          "red": "9.58096184036916e58",
+          "guess": "1.94903481805066e58",
+          "beta": "671",
+          "p": "3",
+          "zeta": "0",
+          "t": "110",
+          "beta_": "671",
+          "N": "3.13135431933322e41",
+          "m": "2560"
+        }
+      }
+    },
+    "quantum": {
+      "usvp": {
+        "attack_goal": "heuristic_secret_search",
+        "status": "finite_heuristic_estimate",
+        "rop_log2": 182.585,
+        "cost_fields": {
+          "rop": "9.19521224882201e54",
+          "red": "9.19521224882201e54",
+          "delta": "1.00269877377903",
+          "beta": "689",
+          "d": "4863",
+          "tag": "usvp"
+        }
+      },
+      "bdd": {
+        "attack_goal": "heuristic_secret_search",
+        "status": "finite_heuristic_estimate",
+        "rop_log2": 182.00327893717258,
+        "cost_fields": {
+          "rop": "6.14393014583657e54",
+          "red": "5.29959780756745e54",
+          "svp": "8.44332338269117e53",
+          "beta": "686",
+          "eta": "675",
+          "d": "4950",
+          "tag": "bdd"
+        }
+      },
+      "bdd_hybrid": {
+        "attack_goal": "heuristic_secret_search",
+        "status": "finite_heuristic_estimate",
+        "rop_log2": 182.00327893717258,
+        "cost_fields": {
+          "rop": "6.14393014583657e54",
+          "red": "5.29959780756745e54",
+          "svp": "8.44332338269117e53",
+          "beta": "686",
+          "eta": "675",
+          "zeta": "0",
+          "|S|": "1",
+          "d": "4994",
+          "prob": "1.0",
+          "repetitions": "1",
+          "tag": "hybrid"
+        }
+      },
+      "bdd_mitm_hybrid": {
+        "attack_goal": "heuristic_secret_search",
+        "status": "finite_heuristic_estimate",
+        "rop_log2": 333.09058919788447,
+        "cost_fields": {
+          "rop": "1.86319633801817e100",
+          "red": "7.99523884608025e84",
+          "svp": "1.86319633801817e100",
+          "beta": "689",
+          "eta": "2",
+          "zeta": "264",
+          "|S|": "911935951235403913396560984850285215507917243671398006336311045951990832803587494334730906677002443712560382967825494301314465",
+          "d": "4737",
+          "prob": "5.29634175004891e-30",
+          "repetitions": "869500195289619891106797324849",
+          "tag": "hybrid"
+        }
+      },
+      "dual": {
+        "attack_goal": "decisional_distinguisher",
+        "status": "finite_heuristic_estimate",
+        "rop_log2": 184.7050000000004,
+        "cost_fields": {
+          "rop": "3.99710308764971e55",
+          "mem": "24024018760616666030511974114961301972706327152",
+          "m": "2464",
+          "beta": "697",
+          "d": "5024",
+          "repetitions": "1",
+          "tag": "dual"
+        }
+      },
+      "dual_hybrid": {
+        "attack_goal": "distinguishing_with_partial_secret_guess",
+        "status": "finite_heuristic_estimate",
+        "rop_log2": 178.61431478842985,
+        "cost_fields": {
+          "rop": "2.5994083e53*e^(-5) + 5.84746357984394e53",
+          "red": "5.84746357984394e53",
+          "guess": "2.5994083e53*e^(-5)",
+          "beta": "674",
+          "p": "3",
+          "zeta": "10",
+          "t": "80",
+          "beta_": "674",
+          "N": "1.03668075331450e42",
+          "m": "2560"
+        }
+      }
+    }
+  },
+  "challenge_space_bits": 267.5669355104564,
+  "generic_quantum_challenge_search_exponent": 133.7834677552282,
+  "kappa49_control": {
+    "params_same_except_kappa": true,
+    "challenge_bits": 225.34500627391523,
+    "generic_quantum_search_exponent": 112.67250313695762,
+    "meets128_search_floor": false,
+    "error_bound": 37118651393
+  },
+  "decision": {
+    "arithmetic_usable": true,
+    "chosen_cost_models_complete": true,
+    "finite_grid_error_count": 0,
+    "heuristic128_floor_pass": true,
+    "retain_scheme": true,
+    "retain_current_research_parameters": true,
+    "formal_release_admitted": false,
+    "security_claim": "none",
+    "explanation": "Keep this parameter variant for engineering if the explicit heuristic floor passes; cite the module-security sketch only with its simulator/normalization/forking hypotheses. No complete QROM theorem or safe HIBE is inferred."
+  },
+  "private_material_generated": false,
+  "new_algorithm_instances": 0,
+  "admitted_secure_ibme_instances": 0,
+  "security_claim": "none",
+  "backend_admitted": false
+}

@@ -1,0 +1,147 @@
+{
+  "base_commit": "f64b83d",
+  "previous_ci_run": 38032041344,
+  "previous_ci_result": "success",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "first_secure_suite_admitted": false,
+  "new_tests": 28,
+  "before_fix": {
+    "environment": "Windows",
+    "failed": 8,
+    "details": [
+      "three foreign same-parameter secrets loaded",
+      "two bad delegated-key equations loaded",
+      "three runtime uses lacked early binding rejection"
+    ]
+  },
+  "final_junit": {
+    "windows": {
+      "binding-state": {
+        "passed": 46,
+        "failed": 0,
+        "skipped": 0,
+        "junit_sha256": "c0332503c5e7cc9e45fa61f11bfe745ef7834f75e118a94224f98bd4f5e1e657"
+      },
+      "protocol": {
+        "passed": 88,
+        "failed": 0,
+        "skipped": 0,
+        "junit_sha256": "509c7d5b0b65e5b849722f806e58e8fcfa7ec3dba3c53b8d15c5017228b70311"
+      }
+    },
+    "sage": {
+      "binding-state": {
+        "passed": 46,
+        "failed": 0,
+        "skipped": 0,
+        "junit_sha256": "6c2b1b3205b74a95aaef730ba5bef75bdb3aeeedcb648b1a7424954e6fa6346e"
+      },
+      "protocol": {
+        "passed": 88,
+        "failed": 0,
+        "skipped": 0,
+        "junit_sha256": "5d8529105edac9861766d7712ec938a1c3b79373eaa0958179623d2deeea9928"
+      }
+    }
+  },
+  "note_on_counts": "28 new +18 prior state=46; original hybrid/reference/compact=88; 134 unique per environment",
+  "checks": [
+    "primitive capability or explicit validator required",
+    "only literal True accepts",
+    "exceptions reject with no fallback",
+    "same-root metadata/A/u",
+    "root master public reconstruction",
+    "two exact delegated equations",
+    "outer+inner identity substitution",
+    "invalid newly emitted keys",
+    "CLI same-outer-context hidden foreign master"
+  ],
+  "wire_changed": false,
+  "algorithm_math_changed": false,
+  "parameters_changed": false,
+  "IBS_parameters": {
+    "degree": 256,
+    "k": 11,
+    "l": 10,
+    "q": 274877844481,
+    "root": 153250464611,
+    "eta": 1,
+    "kappa": 64,
+    "gamma1": 125440,
+    "gamma2": 31470387200,
+    "gamma3": 15270991360,
+    "dropped_bits": 28,
+    "identity_max_bytes": 64,
+    "message_max_bytes": 4096,
+    "max_extract_attempts": 1024,
+    "max_sign_attempts": 1024,
+    "max_uniform_attempts": 128,
+    "max_cached_identities": 64
+  },
+  "HIBE_parameters": {
+    "n": 8,
+    "m_matrix": 168,
+    "q": 524288,
+    "s0": 3.0,
+    "s": 1.0,
+    "s_prime": 1.0,
+    "identity_bytes": 86,
+    "seed_bytes": 32
+  },
+  "identity_message_limits": {
+    "raw_identity_bytes": 64,
+    "application_message_bytes": 3924,
+    "hybrid_payload_bytes": 65536
+  },
+  "repetitions": "two genuine setup/extract/derive sequences, each once; individual corruption/fault cases once; existing protocol boundaries in test sources",
+  "randomness": "system source default, fixed test streams only for reproducible teaching/research cases; validator consumes no randomness",
+  "ROM": "no additional ROM/QROM claim; existing conditional mapping retained",
+  "environments": {
+    "hardware": "Intel Core Ultra9 275HX",
+    "Windows": {
+      "python": "3.14.6",
+      "pytest": "9.1.1",
+      "cryptography": "49.0.0"
+    },
+    "WSL": {
+      "python": "3.13.14",
+      "sage": "10.9",
+      "pytest": "9.1.1",
+      "cryptography": "49.0.0"
+    }
+  },
+  "limits": [
+    "algebraic binding does not prove shortness/distribution/provenance or HIBE security",
+    "trusted correct primitive validator required",
+    "mock unused level-one secret chain is not publicly verifiable; mock is TEST-ONLY",
+    "old education authentication gaps unchanged",
+    "no CHKP, NIST, QROM, side-channel or complete parameter admission"
+  ],
+  "files_changed": [
+    "src/ibme/hibe/api.py",
+    "src/ibme/hibe/abb10.py",
+    "src/ibme/hibe/mock.py",
+    "src/ibme/protocol/hybrid_hibe.py",
+    "tests/test_hybrid_key_binding.py",
+    ".github/workflows/basic-checks.yml",
+    "ARCHITECTURE.md",
+    "IMPLEMENTATION_SPEC.md",
+    "docs/workplans/2026-10-08/队友任务-CHKP与格工具.md",
+    "README.md",
+    "docs/PROJECT_RESTART.md",
+    "docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md",
+    "docs/KNOWN_SECURITY_GAPS.md",
+    "docs/research/2026-10-10-key-binding/README.md",
+    "docs/research/2026-10-10-key-binding/audit.json"
+  ],
+  "source_sha256_lf": {
+    "src/ibme/hibe/api.py": "b81ec0a7ec48c8b5f2fbbed7182b0c22952167d355f92943918a419ab8a5ac4a",
+    "src/ibme/hibe/abb10.py": "a7121a89e3645e87fa059564b745ed1487dfb7f9510a10973c42d0b5e94a9d32",
+    "src/ibme/hibe/mock.py": "48f53e2fdd383cd361ea304056f289f6f4dfee23558b3825038d4b363113002a",
+    "src/ibme/protocol/hybrid_hibe.py": "00f67d1065b25fe63e41ba1752266e73f03ed586f2a008a8333682ef0d158655",
+    "tests/test_hybrid_key_binding.py": "6252a35d0ba1715e8cb88e430a432a1f3e79b03e96d9c65d8faa1fcb4fff17e1"
+  },
+  "factory_source_sha256_lf": "ee4498a2096e33520b856e14fd9a441484e603af07e3e4c3e90a5936cfd3459d",
+  "hibe_status": "educational ABB10; CHKP handoff still pending"
+}

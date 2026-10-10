@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 from functools import lru_cache
 import math
 import struct
+from threading import RLock
 from typing import ClassVar
 
 from ibme.core.encoding import decode_bytes, encode_bytes
@@ -329,6 +330,7 @@ class LuoModuleMasterSecret(IBSMasterSecret):
     s1: tuple
     s2: tuple
     _cache: dict = field(default_factory=dict, repr=False)
+    _cache_lock: object = field(default_factory=RLock, init=False, repr=False, compare=False)
     __hash__ = None
 
     def __post_init__(self):
@@ -344,10 +346,13 @@ class LuoModuleMasterSecret(IBSMasterSecret):
             raise SerializationError("invalid module identity cache")
 
     @property
-    def cached_identities(self): return tuple(sorted(self._cache))
+    def cached_identities(self):
+        with self._cache_lock:
+            return tuple(sorted(self._cache))
 
     def to_bytes(self):
-        cache = len(self._cache).to_bytes(4, "big") + b"".join(encode_bytes(self._cache[id]._local_bytes()) for id in self.cached_identities)
+        with self._cache_lock:
+            cache = len(self._cache).to_bytes(4, "big") + b"".join(encode_bytes(self._cache[id]._local_bytes()) for id in self.cached_identities)
         return _frame(b"MASTER", (self.public_key.to_bytes(), _pack(self.s1, signed=True), _pack(self.s2, signed=True), cache))
 
     @classmethod
@@ -453,6 +458,10 @@ class LuoModuleIBSBackend:
     def key_extract(self, msk, identity):
         if not isinstance(msk, LuoModuleMasterSecret):
             raise TypeError("expected module master state")
+        with msk._cache_lock:
+            return self._key_extract_locked(msk, identity)
+
+    def _key_extract_locked(self, msk, identity):
         pk, p = msk.public_key, msk.public_key.params
         ident = validate_identity(identity, max_bytes=p.identity_max_bytes)
         if ident in msk._cache:

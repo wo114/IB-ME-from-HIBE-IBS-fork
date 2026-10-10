@@ -1,5 +1,40 @@
 # 项目论文库
 
+2026-10-10 用户提供 GKR、SRGG 和 Yu 三篇完整 PDF，已原样复制并核对标题、页数、SHA-256；历史下载失败记录保留，新状态见 [用户提供稿指纹](user-supplied-manifest-2026-10-10.json)。这些获取状态更新不等于完成算法/参数审查或安全准入。同轮另从 HAL 取得 Sageloli 完整稿，候选基础包记录于 [统一入口](../docs/research/2026-10-10-foundations/README.md)。
+
+## 2023_shorter_faster_ibs_sageloli.pdf
+
+- 标题：Shorter and Faster Identity-Based Signatures with Tight Security in the (Q)ROM from Lattices。
+- 作者：Éric Sageloli、Pierre Pébereau、Pierrick Méaux、Céline Chevalier；ACNS 2023，DOI `10.1007/978-3-031-33488-7_24`。
+- 来源：[HAL hal-04107694v1](https://hal.science/hal-04107694v1)，提交日期 2023-05-26；73 页，包含仓储封面和完整附录。文件 SHA-256 为 `0e92f184828bc8643a774e9c334b14689346387981e766c311c596239ef73e3e`；不是本轮取得的出版社30页稿。
+- 一句话主题：用非齐次原像签名减少一次消息委派，并给出 SIS/Ring-SIS 两条 IBS 路线。
+- 本轮速读范围：§5–8 的算法/游戏/表格和 Appendix E；固定密钥游戏适配、尺寸单位与有限实例继续单独核对，未重证基础定理。
+- 文件：[PDF](2023_shorter_faster_ibs_sageloli.pdf)。获取尝试见 [记录](candidate-fetch-2026-10-10.json)，TeX 源码未取得。
+
+## 2026_ibs_ibme_yu.pdf
+
+- 标题：Identity-based signature and identity-based matchmaking encryption from lattices。
+- 作者：Qing Yu、Shengli Liu、Yiming Li；Theoretical Computer Science，2026，DOI `10.1016/j.tcs.2026.116152`。
+- 来源：用户提供的出版 PDF，26 页；下载目录原文件保留，仓库复制件逐字节一致。
+- 一句话主题：研究固定密钥服务下的标准模型 IBS 与 IBME；本项目先调查其独立 IBS，保持已选 Wang HIBE+IBS 通用构造。
+- 文件：[PDF](2026_ibs_ibme_yu.pdf)。TeX 源码：未取得；全文算法及参数核验待做。
+
+## 2025_adaptive_hibe_goyal.pdf
+
+- 标题：A Note on Adaptive Security in Hierarchical Identity-Based Encryption。
+- 作者：Rishab Goyal、Venkata Koppula、Mahesh Sreekumar Rajasree；CRYPTO 2025 / [ePrint 2025/291](https://eprint.iacr.org/2025/291)。
+- 来源：用户提供 PDF，34 页；以文件指纹固定本地版本，不推断未核实的数字修订号。
+- 一句话主题：从选择性 IBE 编译自适应 HIBE，并研究完全匿名扩展；具体底层原语与工程成本待核对。
+- 文件：[PDF](2025_adaptive_hibe_goyal.pdf)。TeX 源码：未取得；本次只完成归档。
+
+## 2025_efficient_ibs_jia.pdf
+
+- 标题：Constructing Efficient Identity-Based Signatures on Lattices。
+- 作者：Huiwen Jia、Ying Liu、Chunming Tang、Lin Wang；IET Information Security，2025，DOI `10.1049/ise2/6684889`。
+- 来源：用户提供出版 PDF，12 页；已有在线审查现在可用本地完整公式复核。
+- 一句话主题：将原像采样与椭球 G+G 签名结合成 SRGG-IBS，区分离线/在线计算。
+- 文件：[PDF](2025_efficient_ibs_jia.pdf)。TeX 源码：未取得；底层强结论/参数映射的既有待核条件未因下载完成自动关闭。
+
 登记日期：2026-10-04。已固定第二、第三轮直接审查的五篇原文。摘要说明研究内容，不代表本项目已验证定理或批准后端。PDF 保留作者及出版方声明；TeX 源码均未取得。固定文件指纹见 [manifest.json](manifest.json)。
 
 2026-10-08 补充三份组合选型资料；采用独立 [新增资料指纹](portfolio-manifest-2026-10-08.json)，不改原五篇冻结 manifest。原文筛选不表示完整证明或后端已经准入。

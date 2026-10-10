@@ -6,13 +6,33 @@
 
 2026-10-09 [密文字节认证修复](docs/research/2026-10-09-byteauth/README.md)：CLI 默认使用 BYTEAUTH/1，对临时认证公钥作内层 IBS 绑定并签完整外层密文字节，原 c1 低位篡改和接收者换认证密钥重签均拒绝；旧未认证密文仅显式 `--legacy-baseline` 研究开关访问。原公开 IBS 伪造及冒名仍未修复，也在新包装中保留真实反例，教育参数和整体系统仍 `security_claim: none`。本轮目标批次 28 passed、2 xfailed，完整协议/CLI 回归 175 passed；旧三个 XFAIL 已变为两个未修复目标及一个无标记通过目标。
 
-## 当前重建路线 2026 年 10 月 9 日
+## 当前重建路线 2026 年 10 月 10 日
+
+2026-10-10 用户更新顺序：**全部候选先做基础准备 → 首套完整实现 → 继续其它候选并比较 → 选择三组场景代表 → 联合优化**。已建立 [候选基础包](docs/research/2026-10-10-foundations/README.md)，7个HIBE/10个IBS条目及17份来源，逐项给出算法/接口/参数状态、复用资产和队友任务；3个公共代数探针、2套已有IBS最小实跑及Sageloli单位计数已完成。条目数不等于实现数，未预定获选三套；其余路线也保留为重要比较材料。原先继续压缩/跑分的安排已后置，正式安全组合仍未准入。GKR、SRGG、Yu全文由用户补齐并原样归档。
+
+最新 [Yu同态基础单元](docs/research/2026-10-10-yu/README.md)已实现gadget分解、NAND/匹配电路和公开/私有整数关系；47项检查跨环境通过，Sage独立核对32组输入及152个位原像。它供后续PRF/发钥/签名接手，当前仅完成同态代数部分，论文的完整范数保证、真实PRF及Yu IBS仍待实现，全部none/false；未做新的压缩/性能优化。
+
+本轮 [SRGG代数与几何基础](docs/research/2026-10-10-srgg/README.md)进一步完成带误差原像、HNF首块重建、签名承诺恢复和精确正定/Schur条件；51项检查跨环境，Sage独立核对36个挑战、72个恢复修改及9组形状。高斯采样/XOF/哈希与完整IBS仍未实现，gadget/ζ宽度映射及强结论条件保留，全部none/false；不计新增完整实例，不进行性能优化。
+
+后续 [SRGG随机gadget参考](docs/research/2026-10-10-srgg-sampling/README.md)已实现有误差界的离散高斯原像，40项Sage检查、36,864次抽样及27个联合PMF核验；仿射宽度映射明确，陪集归一化偏差单独计入。完整相关扰动、密钥分布/范数、哈希和IBS仍WIP，全部none/false。
+
+当前[工作优先级](docs/workplans/2026-10-10/首套系统关键路径与优先级.md)已转回首套系统：先核验现有Luo IBS/组合条件、接CHKP真实HIBE并完成攻击验收；候选深入和独立优化后置。仓库尚未收到可集成CHKP，现有完整研究组合仍使用教学HIBE，安全获准组合为0。
+
+首套接入已完成[固定状态与参数快照修复](docs/research/2026-10-10-mainline/README.md)：实际复现并修复并发同身份不同钥/不同身份丢缓存、HIBE参数漂移，补齐线程快照、原子密钥发布和跨配置覆盖保护。Luo数学算法/参数/wire不变；CHKP未交接，整体准入仍none/false。
+
+首套接入第二轮已修复[HIBE密钥/公钥与私钥方程绑定](docs/research/2026-10-10-key-binding/README.md)：协议调用原语验证器，拒绝同参数不同公钥混钥、坏方程、身份替换及非法新产物。新增28项、每环境134项回归通过；算法/参数/wire保持，CHKP未交接、整体仍none/false。
 
 总体规格与分工以 [R1](docs/research/2026-10-08-r1/README.md)为基础：队友实施 CHKP 两层匿名 ROM HIBE；主 AI 已形成 Luo 矩阵正确性参考，当前进一步实现模格 IBS，进度见下文 M2-B2。理论以原文定理引用和实现/参数对应为主。后续工作分为 [主 AI 的 IBS/集成/优化清单](docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md)和 [队友的 CHKP/格工具任务书](docs/workplans/2026-10-08/队友任务-CHKP与格工具.md)。正式参数和完整安全实例仍未放行，`security_claim: none`。
 
 M1/M2-A 已完成 [真实矩阵参考](docs/research/luo-reference/README.md)与 [IBSBackend 接入](docs/research/2026-10-09-m2/README.md)，公开小参数伪造和一列主秘密的 LLL 恢复保留为负面对照。M2-B1 完成 [联合选参与精确模格参数](docs/research/2026-10-09-m2b/README.md)：40 行矩阵研究搜索、统计分布检查、保守范数界及 7 组模格参数对照。上一轮最低 LWE 成本来自区分攻击，现已与秘密搜索分开；原 Theorem 1 与事件 E 的范数界差异也明确记录。
 
-M2-B2 已实现 [Luo 模格 IBS 四算法及独立 Sage 核验](docs/research/2026-10-09-module/README.md)：degree=256、(k,l)=(11,10)、κ=64、q=274877844481 的真实签验、精确 NTT/Hint、规范对象和固定密钥恢复。68 项新检查跨 Windows/WSL 通过，Sage 独立核验 24 个真实参数签名；当前基础批次 464 passed、2 xfailed。参考签名 29455 B，完整 Wang/BYTEAUTH 载荷至少 29563 B，超过默认 HIBE 的 489 B；下一轮先做大载荷适配和完整伪造验收。默认 IBS 尚未切换，完整安全组合、参数准入及两个身份认证漏洞仍 WIP，`security_claim: none`。
+M2-B2 已实现 [Luo 模格 IBS 四算法及独立 Sage 核验](docs/research/2026-10-09-module/README.md)：degree=256、(k,l)=(11,10)、κ=64、q=274877844481 的真实签验、精确 NTT/Hint、规范对象和固定密钥恢复。68 项新检查跨 Windows/WSL 通过，Sage 独立核验 24 个真实参数签名；当前基础批次 464 passed、2 xfailed。参考签名 29455 B，完整 Wang/BYTEAUTH 载荷至少 29563 B；当时超出现有 HIBE 的 489 B 容量，已由下述 M3-A 继续完成接线。正式参数、安全组合和旧教育目标的状态须分别记录，均 `security_claim: none`。
+
+当前已完成 [大载荷适配与真实研究组合](docs/research/2026-10-09-hybrid/README.md)：`--params luo-module-research` 接 ABB10 教学 HIBE + Luo 模格 IBS + BYTEAUTH，底层只加密 32 B 种子，AEAD 承载完整签名/消息。修复身份长度泄漏及跨命令身份缓存；新组合 Windows/WSL 均 67 passed，公开新格式猜测、完整冒名及持接收密钥重签对照均拒绝。应用消息上限 3924 B，完整密文约 2.58 MB；未做全系统加速宣传。默认 education 保留两个认证反例，正式参数/安全 HIBE 与安全默认入口仍待准入，全部 none/false。下一轮集中处理模格 MSIS/Hint 条件与成本，队友继续 CHKP。
+
+[M2-B3 参数/引用复核](docs/research/2026-10-09-admission/README.md)已明确 Hint 恢复误差、两分支 MSIS 矩阵/块界及条件式非零论证；4 个输入和 144 个固定扫描点的经典/量子最低对照为196.808/178.610。κ=64 的泛型量子挑战搜索指数133.783，κ=49 对照112.673不通过本轮128搜索线。结论是保留当前研究参数继续工程；不是完整安全位数或 QROM 证明，参数/算法未改变，none/false保持。新增20项检查跨环境通过；后续规范压缩见下文，队友继续可信 HIBE。
+
+最新 [M2-B4 规范无损压缩](docs/research/2026-10-09-compact/README.md)已保持数学值和完整哈希输入，签名29455→16063 B（减少45.466%），完整密文实测每包减少13392 B、约0.52%；HIBE胶囊仍为2452065 B。`setup --params luo-module-research --signature-format compact` 显式启用，参考格式仍默认，两种严格解码器不互相回退。新增96项检查跨环境通过、两环境公开数据一致，基础CI选择本地559 passed、2 xfailed。此项不计新算法或 A+B<C，不提升安全声明；下一轮建立完整系统冷/热与内存基线。
 
 已合并 PR #5（`37e7031`）；本地基础检查 182 passed、3 xfailed，严格模式 3 failed；合并后的主仓库基础 CI 成功。三个 XFAIL 是保留的旧教学漏洞，不是修复或安全通过。R1 新增 24 项公开参数/容量检查，不生成新密钥或密码性能结果。
 

@@ -1,0 +1,105 @@
+{
+  "candidate_entries": 17,
+  "roles": {
+    "HIBE": 7,
+    "IBS": 10
+  },
+  "cached_sources": 17,
+  "source_records": {
+    "abb": {
+      "path": "papers/2010_lattice_basis_delegation_agrawal.pdf",
+      "bytes": 269327,
+      "sha256": "f12232770a19c612e5f430f94a556d74232ac08d9882e34367b60b3bbf205d11"
+    },
+    "bonsai": {
+      "path": "papers/2010_bonsai_trees_cash.pdf",
+      "bytes": 622882,
+      "sha256": "b1d8a2ae0e9d4e5c9145bbc6dc864090605c12a5b76149aa0684d62a8815d2ce"
+    },
+    "latte": {
+      "path": "papers/2024_quantum_safe_hibe_zhao.pdf",
+      "bytes": 3359727,
+      "sha256": "aefa8c6808b4ee7aa565587ccd48d64ca8e8ab81a9cba600e4691227253d70ca"
+    },
+    "gkr": {
+      "path": "papers/2025_adaptive_hibe_goyal.pdf",
+      "bytes": 618091,
+      "sha256": "9b70af56d34d3474eafdda6a5e13ecef162ead444af105c3b332e8ebc9af0f10"
+    },
+    "zhang": {
+      "path": "papers/2020_ideal_lattice_hibe_zhang.pdf",
+      "bytes": 1225215,
+      "sha256": "6b31a181e1461b491c69cd41ce637a63db14f0404c3105f2827e64347e191c60"
+    },
+    "abb-standard": {
+      "path": "papers/2010_lattice_hibe_standard_agrawal.pdf",
+      "bytes": 505607,
+      "sha256": "25452dc998f4f82b48bbd5b90c5b65ab046936702edb928ecb47eebfcd284d3f"
+    },
+    "luo": {
+      "path": "papers/2024_ibs_without_trapdoors_luo.pdf",
+      "bytes": 183335,
+      "sha256": "12c70ae7635c0b88c132bca14990480a8e0cdec2e786a6dcf39256e5bb0dd455"
+    },
+    "srgg": {
+      "path": "papers/2025_efficient_ibs_jia.pdf",
+      "bytes": 512758,
+      "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+    },
+    "yu": {
+      "path": "papers/2026_ibs_ibme_yu.pdf",
+      "bytes": 5010829,
+      "sha256": "f10d8672d952d9923a00c883a7d65feb36a15fb67fbef1c52ee64254f5301948"
+    },
+    "sageloli": {
+      "path": "papers/2023_shorter_faster_ibs_sageloli.pdf",
+      "bytes": 1444868,
+      "sha256": "0e92f184828bc8643a774e9c334b14689346387981e766c311c596239ef73e3e"
+    },
+    "foo": {
+      "path": "papers/2023_tightly_secure_ibs_foo.pdf",
+      "bytes": 609601,
+      "sha256": "845855b9b39fdcbbe61831d9d1c431dc8d898b5a6244863ff87b23171b1e45b8"
+    },
+    "wang": {
+      "path": "papers/2022_identity_matchmaking_wang.pdf",
+      "bytes": 1067760,
+      "sha256": "fa3a97cfe2db59f2f8208d45b76f3c14d289774cb4075e7946dd5051ae84c597"
+    },
+    "pw": {
+      "path": "papers/2021_short_ibs_pan.pdf",
+      "bytes": 705337,
+      "sha256": "0aa96c6104a3f89d3db1157860695166336a53e1fb57e626fa8009832990f7af"
+    },
+    "generic-ibs": {
+      "path": "papers/2006_generic_ibs_galindo.pdf",
+      "bytes": 168120,
+      "sha256": "b3362442d3278953ddaaea1fa4921f8d6f051f166108fb6d81013b22b510aed2"
+    },
+    "ml-dsa": {
+      "path": "papers/2024_ml_dsa_fips204.pdf",
+      "bytes": 3291746,
+      "sha256": "57239b9f84c03227eda3ca0991204dc7764c79af9ce2e6824eda774918d46b6b"
+    },
+    "falcon": {
+      "path": "papers/2020_falcon_spec_fouque.pdf",
+      "bytes": 382156,
+      "sha256": "f887f3f9f367c664fb36639a830bf24390f19b3505abeac2e2c076fd1ad6c6f3"
+    },
+    "mp12": {
+      "path": "papers/2011_lattice_trapdoors_micciancio.pdf",
+      "bytes": 528318,
+      "sha256": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84"
+    }
+  },
+  "research_backend_entries": [
+    "luo-matrix",
+    "luo-module"
+  ],
+  "admitted_secure_combinations": 0,
+  "selected_representatives": [],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "scenario_performance": "unknown until common complete-IBME measurements",
+  "note": "Entries include distinct models/instantiations and two certification reserves. Entry count is not an implemented algorithm, hypothesis or combination count."
+}

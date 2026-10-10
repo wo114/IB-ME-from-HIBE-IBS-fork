@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-10",
+  "scope": "Candidate foundations and handoff; not backend registration or representative selection",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "sources": {
+    "abb": {"url": "https://crypto.stanford.edu/~dabo/pubs/papers/latticehibe.pdf", "path": "papers/2010_lattice_basis_delegation_agrawal.pdf"},
+    "bonsai": {"url": "https://sites.cc.gatech.edu/fac/cpeikert/pubs/bonsai.pdf", "path": "papers/2010_bonsai_trees_cash.pdf"},
+    "latte": {"url": "https://eprint.iacr.org/2021/222", "path": "papers/2024_quantum_safe_hibe_zhao.pdf"},
+    "gkr": {"url": "https://eprint.iacr.org/2025/291", "path": "papers/2025_adaptive_hibe_goyal.pdf"},
+    "zhang": {"url": "https://www.mdpi.com/1099-4300/22/11/1247", "path": "papers/2020_ideal_lattice_hibe_zhang.pdf"},
+    "abb-standard": {"url": "https://crypto.stanford.edu/~dabo/pubs/papers/latticebb.pdf", "path": "papers/2010_lattice_hibe_standard_agrawal.pdf"},
+    "luo": {"url": "https://icics2024.aegean.gr/wp-content/uploads/2024/08/150570198.pdf", "path": "papers/2024_ibs_without_trapdoors_luo.pdf"},
+    "srgg": {"url": "https://doi.org/10.1049/ise2/6684889", "path": "papers/2025_efficient_ibs_jia.pdf"},
+    "yu": {"url": "https://doi.org/10.1016/j.tcs.2026.116152", "path": "papers/2026_ibs_ibme_yu.pdf"},
+    "sageloli": {"url": "https://hal.science/hal-04107694v1", "path": "papers/2023_shorter_faster_ibs_sageloli.pdf"},
+    "foo": {"url": "https://doi.org/10.1007/978-3-031-35486-1_17", "path": "papers/2023_tightly_secure_ibs_foo.pdf"},
+    "wang": {"url": "https://eprint.iacr.org/2022/1718", "path": "papers/2022_identity_matchmaking_wang.pdf"},
+    "pw": {"url": "https://eprint.iacr.org/2021/970", "path": "papers/2021_short_ibs_pan.pdf"},
+    "generic-ibs": {"url": "https://www.iacr.org/archive/asiacrypt2006/42840177/42840177.pdf", "path": "papers/2006_generic_ibs_galindo.pdf"},
+    "ml-dsa": {"url": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf", "path": "papers/2024_ml_dsa_fips204.pdf"},
+    "falcon": {"url": "https://falcon-sign.info/falcon.pdf", "path": "papers/2020_falcon_spec_fouque.pdf"},
+    "mp12": {"url": "https://eprint.iacr.org/2011/501", "path": "papers/2011_lattice_trapdoors_micciancio.pdf"}
+  },
+  "candidates": [
+    {
+      "id": "abb-rom", "role": "HIBE", "label": "ABB10 CRYPTO 固定维度 ROM", "family": "ABB10", "sources": ["abb"],
+      "assumptions": ["LWE"], "paper_model": "classic-ROM", "review": "algorithm-mapped", "backend": "legacy-demo", "parameters": "not-admitted", "fit": "conditional",
+      "algorithm_location": "§3 BasisDel / Definition 7 / Theorems 3,4；§4 HIBE / Theorem 5",
+      "interface_mapping": ["setup：根矩阵与完整整数短基", "extract：第一次公开身份矩阵变换及 BasisDel", "derive：第二次变换及 BasisDel", "encrypt/decrypt：§4 dual-Regev；两层固定深度", "load_ciphertext：未来独立格式，不能把旧 abb10.py 改名当忠实实例"],
+      "assets": ["docs/research/2026-10-04/ABB10两层HIBE算法与参数规范.md", "docs/research/2026-10-08-r1/两套HIBE实施规格.md", "src/ibme/hibe/abb10.py"],
+      "next_steps": ["实施完整基补全和整体条件于模可逆的 SampleR", "核对逐层宽度与范数条件；公开完成基不是短陷门", "单体契约后以相同32B种子接口交接"],
+      "work_area": "experiments/research/candidates/abb/", "probe": "abb", "scenario_hypotheses": ["compact-client", "many-identities"]
+    },
+    {
+      "id": "chkp-rom", "role": "HIBE", "label": "CHKP 两层匿名 ROM", "family": "CHKP", "sources": ["bonsai"],
+      "assumptions": ["LWE"], "paper_model": "classic-ROM", "review": "algorithm-mapped", "backend": "none", "parameters": "not-admitted", "fit": "conditional",
+      "algorithm_location": "§3 格基工具；§5.1–5.3、Lemma 5.1、Theorem 5.2；PDF22重复解封装状态",
+      "interface_mapping": ["setup：GenBasis 根矩阵/完整基", "extract：A1=[A0|H(rcv)]，ExtBasis/RandBasis", "derive：A2=[A1|H(rcv,phi)]，缓存同地址原像", "encrypt/decrypt：KEM/多比特及统一深度匿名填充", "load_ciphertext：独立版本，外部身份64B、底层固定编码86B"],
+      "assets": ["docs/research/2026-10-08-r1/两套HIBE实施规格.md", "docs/workplans/2026-10-08/队友任务-CHKP与格工具.md"],
+      "next_steps": ["复用本轮ExtBasis公开代数测试，实施真实GenBasis/RandBasis", "按论文宽度运行SampleD并持久化同地址解封装状态", "交接至少32B种子封装；原文多比特摊销单独计数"],
+      "work_area": "experiments/research/candidates/chkp/", "probe": "chkp", "scenario_hypotheses": ["online-service", "many-identities"]
+    },
+    {
+      "id": "latte", "role": "HIBE", "label": "LATTE NTRU/RLWE HIBE", "family": "LATTE", "sources": ["latte"],
+      "assumptions": ["NTRU/RLWE（实际定理依赖待逐项对应）"], "paper_model": "to-map", "review": "section-reviewed", "backend": "none", "parameters": "not-admitted", "fit": "unknown",
+      "algorithm_location": "§III方案；§IV精度/安全；§V实现；原文参数/性能表",
+      "interface_mapping": ["setup：KeyGen及NTRU主陷门", "extract/derive：区分原文Extract与Delegate并对应两层角色", "encrypt/decrypt：保留原密文验证步骤", "load_ciphertext：先定位作者对象/编码，再定义适配"],
+      "assets": ["papers/2024_quantum_safe_hibe_zhao.pdf", "docs/research/2026-10-08-selection/文献复核与后续实施计划.md"],
+      "next_steps": ["首先核对Wang所需匿名定义，不能把IND-CCA直接当匿名", "获取并审读作者实现后编译最小委派用例", "记录精度、Gaussian、NTRU求解和正式参数成本；不据作者跑分做本项目排名"],
+      "work_area": "experiments/research/candidates/latte/", "probe": "ring", "scenario_hypotheses": ["compact-client", "online-service"]
+    },
+    {
+      "id": "gkr2025", "role": "HIBE", "label": "GKR 2025 自适应匿名 HIBE", "family": "GKR", "sources": ["gkr"],
+      "assumptions": ["LWE匿名路径", "PKE/OTSE/garbling/可委派PRF", "匿名LWE扩展含lockable obfuscation"], "paper_model": "standard-model-claimed", "review": "section-reviewed", "backend": "none", "parameters": "not-admitted", "fit": "unknown",
+      "algorithm_location": "用户提供34页稿；§3/Theorem3.1编译器；引言Theorem1/2及匿名LWE扩展；底层§2",
+      "interface_mapping": ["setup：PKE/OTSE/可委派PRF与电路配置", "extract/derive：原文Delegate、PRF委派与签名/电路状态", "encrypt/decrypt：基础编译器与匿名扩展分别映射；LWE匿名扩展还需lockable obfuscation", "load_ciphertext：先估计电路/garbling规模，当前不定义新wire"],
+      "assets": ["docs/research/2026-10-08-selection/文献复核与后续实施计划.md"],
+      "next_steps": ["原稿已归档；提取Theorem3.1和匿名扩展的依赖图", "区分一般自适应HIBE与完全匿名扩展，核对lockable obfuscation实例", "先做参数/电路/密钥规模估算，再决定最小实现路径"],
+      "work_area": "experiments/research/candidates/gkr/", "probe": null, "scenario_hypotheses": ["model-comparison"]
+    },
+    {
+      "id": "zhang2020", "role": "HIBE", "label": "Zhang 2020 理想格 HIBE", "family": "Zhang2020", "sources": ["zhang"],
+      "assumptions": ["Ring-LWE（完整映射待核）"], "paper_model": "to-map", "review": "section-reviewed", "backend": "none", "parameters": "not-admitted", "fit": "unknown",
+      "algorithm_location": "§2.1、§4.1–4.3、Theorem4/5；PDF10–11委派/解密类型",
+      "interface_mapping": ["setup/extract/derive：先澄清私钥是短向量还是可委派陷门", "encrypt/decrypt：核对二层维度及SamplePre的入参", "load_ciphertext：类型澄清后冻结"],
+      "assets": ["papers/2020_ideal_lattice_hibe_zhang.pdf", "docs/research/2026-10-08-selection/文献复核与后续实施计划.md"],
+      "next_steps": ["记录并核对委派输出与解密采样器类型疑点", "核对匿名性及Theorem4模数条件的原文方向", "只在语义明确后做小维度对象；不自行补造协议"],
+      "work_area": "experiments/research/candidates/zhang/", "probe": "ring", "scenario_hypotheses": ["compact-client"]
+    },
+    {
+      "id": "abb-standard-selective", "role": "HIBE", "label": "ABB EUROCRYPT 标准模型选择性 HIBE", "family": "ABB-standard", "sources": ["abb-standard"],
+      "assumptions": ["LWE"], "paper_model": "standard-model-selective", "review": "section-reviewed", "backend": "none", "parameters": "not-admitted", "fit": "comparison-only",
+      "algorithm_location": "40页全文§8、Theorem33；§7自适应结论针对IBE",
+      "interface_mapping": ["setup/extract/derive/encrypt/decrypt：保留§8独立模型的对照对象", "不能直接注册为满足Wang自适应匿名要求的HIBE"],
+      "assets": ["papers/2010_lattice_hibe_standard_agrawal.pdf"],
+      "next_steps": ["制作选择性与自适应游戏区别对照", "提取§8算法和列数/宽度条件", "仅作选择性模型比较；若增加转换必须单独引用"],
+      "work_area": "experiments/research/candidates/abb_standard/", "probe": null, "scenario_hypotheses": ["model-comparison"]
+    },
+    {
+      "id": "chkp-standard", "role": "HIBE", "label": "CHKP §5.4 标准模型变体", "family": "CHKP", "sources": ["bonsai"],
+      "assumptions": ["LWE及可容许哈希相关条件"], "paper_model": "standard-model-conditional", "review": "section-reviewed", "backend": "none", "parameters": "not-admitted", "fit": "unknown",
+      "algorithm_location": "§5.4、Theorem5.4/Corollary5.5；不能沿用§5.3 ROM参数",
+      "interface_mapping": ["setup/extract/derive：可容许哈希分块与不同参数路径另映射", "encrypt/decrypt/load_ciphertext：独立变体，不通过开关宣称消除ROM"],
+      "assets": ["papers/2010_bonsai_trees_cash.pdf"],
+      "next_steps": ["核对层深/身份空间与哈希前提、归约损失", "确认匿名扩展与自适应结论的准确范围", "列出额外公钥/维度成本；先做模型对照"],
+      "work_area": "experiments/research/candidates/chkp_standard/", "probe": "chkp", "scenario_hypotheses": ["model-comparison"]
+    },
+    {
+      "id": "luo-matrix", "role": "IBS", "label": "Luo 2024 矩阵无陷门 IBS", "family": "Luo", "sources": ["luo"],
+      "assumptions": ["SIS", "公开主密钥关系的LWE式攻击路径需筛查"], "paper_model": "classic-ROM", "review": "algorithm-mapped", "backend": "research", "parameters": "unsafe-teaching", "fit": "conditional",
+      "algorithm_location": "§3 Algorithms1–6 / Theorem1",
+      "interface_mapping": ["setup：A、S、T=AS", "key_extract：均匀掩码与拒绝采样，缓存Z/W", "sign：已有身份密钥加新掩码", "verify/load_signature：公开方程、严格边界与MATRIX-REF/1"],
+      "assets": ["src/ibme/ibs/luo.py", "src/ibme/ibs/luo_reference.py", "docs/research/2026-10-09-m2/README.md"],
+      "next_steps": ["复用现有单体，不重复实现四算法", "将公开主密钥攻击纳入有限参数筛查，当前小参数不能升级声明", "若继续大矩阵路线，先估计资源并设计独立格式"],
+      "work_area": "experiments/research/candidates/luo_matrix/", "probe": "ibs", "scenario_hypotheses": ["model-comparison"]
+    },
+    {
+      "id": "luo-module", "role": "IBS", "label": "Luo 2024 模格无陷门 IBS", "family": "Luo", "sources": ["luo"],
+      "assumptions": ["MLWE", "MSIS"], "paper_model": "classic-ROM", "review": "algorithm-mapped", "backend": "research", "parameters": "research-screened", "fit": "conditional",
+      "algorithm_location": "§4 Algorithms13–16 / §4.4；项目M2-B1至B4精确参数/Hint对应",
+      "interface_mapping": ["setup/key_extract：模格公开关系及固定身份缓存", "sign/verify：精确NTT/Hint与公开验签", "load_signature：REF与COMPACT显式分离，同一数学算法"],
+      "assets": ["src/ibme/ibs/luo_module.py", "src/ibme/ibs/luo_module_codec.py", "docs/research/2026-10-09-admission/README.md", "docs/research/2026-10-09-compact/README.md"],
+      "next_steps": ["冻结实际参数与已有定理/缓存解释的对应条件", "接入合格HIBE进行完整匹配、公开伪造和接收者重签验收", "完整实现稳定后再做性能；REF/COMPACT不计两个算法实例"],
+      "work_area": "experiments/research/candidates/luo_module/", "probe": "ibs", "scenario_hypotheses": ["online-service", "many-identities"]
+    },
+    {
+      "id": "srgg2025", "role": "IBS", "label": "SRGG 2025 椭球G+G IBS", "family": "SRGG", "sources": ["srgg"],
+      "assumptions": ["MLWE", "MSIS", "底层sEUF-CMA条件"], "paper_model": "QROM-conditional", "review": "algorithm-mapped-local", "backend": "none", "parameters": "not-admitted", "fit": "conditional",
+      "algorithm_location": "Definition3；§4 Algorithms1–8 / Theorem2；§3 Theorem1与§5表格",
+      "interface_mapping": ["setup：公开块、主陷门与协方差配置", "key_extract：离线扰动和在线gadget原像，缓存身份", "sign：Ellipsoid G+G离线/在线分相", "verify/load_signature：范数、承诺、挑战；先参考定宽wire"],
+      "assets": ["docs/research/2026-10-08-r1/SRGG2025IBS实施规格与条件.md", "experiments/research/primitive_spec_audit.py", "experiments/research/candidates/srgg/algebra.py", "experiments/research/candidates/srgg/geometry.py", "docs/research/2026-10-10-srgg/README.md", "experiments/research/candidates/srgg/sampling.py", "docs/research/2026-10-10-srgg-sampling/README.md"],
+      "next_steps": ["有限Gaussian/gadget、仿射宽度和模误差已核验；原文记号及ζ尺度继续保留", "接SampleP/SampleF相关扰动、卷积及HNF密钥分布/范数，分别预算误差和中止", "再接XOF/哈希、固定身份缓存与四算法；底层强前提、q/γ映射继续保留"],
+      "work_area": "experiments/research/candidates/srgg/", "probe": "srgg-random-gadget", "scenario_hypotheses": ["online-service", "compact-client"]
+    },
+    {
+      "id": "yu2026", "role": "IBS", "label": "Yu–Liu–Li 2026 标准模型 IBS", "family": "Yu2026", "sources": ["yu"],
+      "assumptions": ["SIS", "PRF；采用LWE-PRF时另记LWE"], "paper_model": "standard-model-claimed", "review": "section-reviewed", "backend": "none", "parameters": "not-admitted", "fit": "unknown",
+      "algorithm_location": "用户提供26页出版稿；§3.1固定密钥游戏；§3.3 Figure5/Theorem3；§2 PRF/Evalpub/Evalprv",
+      "interface_mapping": ["setup：两个PRF及公开矩阵/gadget配置", "key_extract：公开同态求值和一次陷门委派，保存身份随机值与密钥", "sign：新随机值/消息PRF求值，第二次委派与短原像", "verify：按Figure5公开验证与两套PRF绑定；严格数学对象格式待冻结", "仅调查IBS组件，保持Wang HIBE+IBS；不改成论文另一套IBE+IBS通用构造"],
+      "assets": ["docs/research/2026-10-08-selection/文献复核与后续实施计划.md", "experiments/research/candidates/yu/homomorphic_reference.py", "docs/research/2026-10-10-yu/README.md"],
+      "next_steps": ["同态代数/匹配电路参考已完成；核对兼容原文奇异值界的评估实现", "接实际PRF有限电路，核对固定身份密钥及Gaussian/范数条件", "之后接委派/采样与Figure5四算法，仍不继承整个IBME标准模型标签"],
+      "work_area": "experiments/research/candidates/yu/", "probe": "yu-homomorphism-algebra", "scenario_hypotheses": ["many-identities", "model-comparison"]
+    },
+    {
+      "id": "sageloli-sis", "role": "IBS", "label": "Sageloli 2023 矩阵 SIS IBS", "family": "Sageloli", "sources": ["sageloli"],
+      "assumptions": ["SIS"], "paper_model": "ROM-QROM-claimed", "review": "algorithm-scouted", "backend": "none", "parameters": "not-admitted", "fit": "conditional",
+      "algorithm_location": "HALv1 PDF18–19 §6 Figure5/6、Table2；§5转换；PDF11 Figure1游戏",
+      "interface_mapping": ["setup：Trap；q=3^k，复合模数", "key_extract：身份盐r及一次DelTrap", "sign：消息盐s，非齐次syndrome，SampleD；无需再次委派", "verify：拒绝零，分块范数；load_signature保存有符号整数及两个盐"],
+      "assets": ["papers/2023_shorter_faster_ibs_sageloli.pdf", "experiments/research/sageloli_parameter_units.py"],
+      "next_steps": ["核对Figure1每次签名发钥游戏与固定密钥服务引用范围", "提取Table2有限矩阵参数/宽度，区别高斯密度宽度和标准差", "复合模数trapdoor/gadget采样先单体，保持r缓存及每消息新s"],
+      "work_area": "experiments/research/candidates/sageloli_sis/", "probe": "source-accounting", "scenario_hypotheses": ["model-comparison", "many-identities"]
+    },
+    {
+      "id": "sageloli-rsis", "role": "IBS", "label": "Sageloli 2023 Ring-SIS IBS", "family": "Sageloli", "sources": ["sageloli"],
+      "assumptions": ["Ring-SIS"], "paper_model": "ROM-QROM-claimed", "review": "algorithm-scouted", "backend": "none", "parameters": "not-admitted", "fit": "conditional",
+      "algorithm_location": "HALv1 PDF23–24 §7 Figure7/8、Table4；PDF28 Table6/7；PDF69–73 AppendixE",
+      "interface_mapping": ["setup：TrapR，R=Z[X]/(X^d+1)，q=3^k", "key_extract：DelTrapR与身份盐r", "sign：SampleDR非齐次原像和新消息盐s", "verify：零/分块系数欧氏范数检查；load_signature不得先模q归约"],
+      "assets": ["papers/2023_shorter_faster_ibs_sageloli.pdf", "experiments/research/sageloli_parameter_units.py"],
+      "next_steps": ["先解决固定密钥服务引用范围并计入有限模型条件", "按AppendixE核对bits/Mo单位，再算真正wire与缓存成本", "q=3^k不是素数，不能套Luo素数NTT；先复合模数环原像小实验"],
+      "work_area": "experiments/research/candidates/sageloli_rsis/", "probe": "ring", "scenario_hypotheses": ["model-comparison", "many-identities"]
+    },
+    {
+      "id": "foo-li", "role": "IBS", "label": "Foo–Li 2023 固定种子 IBS", "family": "FooLi", "sources": ["foo", "mp12"],
+      "assumptions": ["SIS"], "paper_model": "project-conditional-classic-ROM", "review": "algorithm-mapped", "backend": "research-lifecycle", "parameters": "not-admitted", "fit": "conditional",
+      "algorithm_location": "Figure2算法；Figure9原文审查；项目第6/7轮条件归约和第8–10轮MP12",
+      "interface_mapping": ["setup：主陷门和两个独立主种子", "key_extract：固定身份分支及委派随机带，用户另持种子", "sign：真实SampleD与固定用户随机带；签后腐化可重算", "verify/load_signature：整数向量和分支比特；现有研究生命周期不是IBSBackend"],
+      "assets": ["experiments/research/foo_li_runtime_reference.py", "experiments/research/foo_li_parameter_screen.py", "docs/research/2026-10-04-round7/FooLi经典ROM证明补全与修复路线.md"],
+      "next_steps": ["复用已有采样/种子/审查，不重写整篇证明", "先找可执行有限参数，旧公开恢复/范数负面对照保留", "适配契约、严格对象和攻击验收；不要将sign_raw当正式Sign"],
+      "work_area": "experiments/research/candidates/foo_li/", "probe": "existing-evidence", "scenario_hypotheses": ["many-identities", "model-comparison"]
+    },
+    {
+      "id": "wang-pw", "role": "IBS", "label": "Wang 基本 IBS + Pan–Wagner", "family": "WangPW", "sources": ["wang", "pw"],
+      "assumptions": ["SIS"], "paper_model": "project-conditional-classic-ROM", "review": "algorithm-mapped", "backend": "none", "parameters": "not-admitted", "fit": "conditional",
+      "algorithm_location": "Wang Figure4/Theorem5.1；PW Figure5/Theorem2；项目第3轮固定密钥条件草案",
+      "interface_mapping": ["setup：Wang基本SIS原像签名", "key_extract：身份盐及基础密钥缓存", "sign：新消息盐和基础签名", "verify/load_signature：身份盐、消息盐、整数向量；基本非自适应形式不能直接注册"],
+      "assets": ["docs/research/2026-10-04-round3/Wang与PanWagner固定密钥接入审查.md", "docs/research/2026-10-04-round3/固定密钥转换条件归约草案.md"],
+      "next_steps": ["保留原文每次签名发钥实验与固定服务模型的区别", "引用已有转换并核对项目缓存条件，不再仅添加两个盐就宣称安全", "真实原像采样与有限SIS参数通过后形成完整适配器"],
+      "work_area": "experiments/research/candidates/wang_pw/", "probe": "existing-evidence", "scenario_hypotheses": ["model-comparison"]
+    },
+    {
+      "id": "cert-ml-dsa", "role": "IBS", "label": "认证转换 + ML-DSA（工程储备）", "family": "CertifiedIBS", "sources": ["generic-ibs", "ml-dsa"],
+      "assumptions": ["普通ML-DSA的MLWE/MSIS依赖及通用转换条件"], "paper_model": "conversion-to-map", "review": "section-reviewed", "backend": "none", "parameters": "not-admitted", "fit": "unknown",
+      "algorithm_location": "Galindo等§3/Theorem1；FIPS204算法/参数表",
+      "interface_mapping": ["setup：机构普通签名密钥", "key_extract：用户密钥及绑定身份/公钥的机构认证", "sign：用户普通签名；完整IBS包含认证和用户公钥", "verify：验证机构认证和用户签名；不把普通签名本身叫IBS"],
+      "assets": ["papers/2006_generic_ibs_galindo.pdf", "papers/2024_ml_dsa_fips204.pdf"],
+      "next_steps": ["明确转换强度/多用户/腐化及查询损失", "冻结认证消息和固定用户状态的唯一编码", "作为对照记录全部认证载荷；当前不抢占直接IBS首套任务"],
+      "work_area": "experiments/research/candidates/cert_ml_dsa/", "probe": "existing-evidence", "scenario_hypotheses": ["online-service"]
+    },
+    {
+      "id": "cert-falcon", "role": "IBS", "label": "认证转换 + Falcon（工程储备）", "family": "CertifiedIBS", "sources": ["generic-ibs", "falcon"],
+      "assumptions": ["NTRU结构格签名依赖及通用转换条件（完整映射待核）"], "paper_model": "conversion-to-map", "review": "section-reviewed", "backend": "none", "parameters": "not-admitted", "fit": "unknown",
+      "algorithm_location": "Galindo等§3/Theorem1；Falcon v1.2 §§2.2、2.7、3.11、3.13",
+      "interface_mapping": ["setup/key_extract：同完整认证转换，区分机构与用户密钥", "sign：普通Falcon采样及选定编码", "verify/load_signature：保留认证、公钥、消息签名及唯一解析"],
+      "assets": ["papers/2006_generic_ibs_galindo.pdf", "papers/2020_falcon_spec_fouque.pdf"],
+      "next_steps": ["固定采样实现、精度/侧信道和编码版本", "核对转换引用及参数，不能只比较Falcon裸签名", "保留为重要工程比较材料，不将库封装当密码原创"],
+      "work_area": "experiments/research/candidates/cert_falcon/", "probe": "existing-evidence", "scenario_hypotheses": ["compact-client"]
+    }
+  ]
+}
