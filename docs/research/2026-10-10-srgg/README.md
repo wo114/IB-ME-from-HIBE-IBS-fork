@@ -2,6 +2,8 @@
 
 日期：2026-10-10；基点 `71a1470`，上一轮GitHub CI run37970155844已成功，远端无新增提交或PR。本轮在独立候选目录实现SRGG的代数与几何基础，不修改队友CHKP、已有HIBE/IBS、协议、哈希输入或正式接口；没有性能优化。
 
+后续进度：第二轮[随机gadget参考](../2026-10-10-srgg-sampling/README.md)已接真实有限误差高斯内核，明确SampleZ仿射宽度及陪集归一化偏差；本页记录第一轮的历史范围，完整扰动/签验仍未完成。
+
 **已交付可运行的模环公开关系、带误差原像的密钥重建、签名承诺恢复，以及精确有理协方差正定/Schur检查。** 新增51项检查跨Windows/指定WSL Sage通过；独立Sage核验36个二进制挑战、72个恢复值修改对照和9组协方差形状。完整结果见 [audit.json](audit.json)，代码在 [候选目录](../../../experiments/research/candidates/srgg/algebra.py)。
 
 这些是数学基础单元，**没有实现高斯采样、XOF、身份/挑战哈希、完整Sign/Verify或IBSBackend**；全部 `security_claim: none`、`backend_admitted: false`，不计新增完整算法或组合实例。

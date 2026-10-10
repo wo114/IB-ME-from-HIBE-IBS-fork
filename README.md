@@ -14,6 +14,8 @@
 
 本轮 [SRGG代数与几何基础](docs/research/2026-10-10-srgg/README.md)进一步完成带误差原像、HNF首块重建、签名承诺恢复和精确正定/Schur条件；51项检查跨环境，Sage独立核对36个挑战、72个恢复修改及9组形状。高斯采样/XOF/哈希与完整IBS仍未实现，gadget/ζ宽度映射及强结论条件保留，全部none/false；不计新增完整实例，不进行性能优化。
 
+后续 [SRGG随机gadget参考](docs/research/2026-10-10-srgg-sampling/README.md)已实现有误差界的离散高斯原像，40项Sage检查、36,864次抽样及27个联合PMF核验；仿射宽度映射明确，陪集归一化偏差单独计入。完整相关扰动、密钥分布/范数、哈希和IBS仍WIP，全部none/false。
+
 总体规格与分工以 [R1](docs/research/2026-10-08-r1/README.md)为基础：队友实施 CHKP 两层匿名 ROM HIBE；主 AI 已形成 Luo 矩阵正确性参考，当前进一步实现模格 IBS，进度见下文 M2-B2。理论以原文定理引用和实现/参数对应为主。后续工作分为 [主 AI 的 IBS/集成/优化清单](docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md)和 [队友的 CHKP/格工具任务书](docs/workplans/2026-10-08/队友任务-CHKP与格工具.md)。正式参数和完整安全实例仍未放行，`security_claim: none`。
 
 M1/M2-A 已完成 [真实矩阵参考](docs/research/luo-reference/README.md)与 [IBSBackend 接入](docs/research/2026-10-09-m2/README.md)，公开小参数伪造和一列主秘密的 LLL 恢复保留为负面对照。M2-B1 完成 [联合选参与精确模格参数](docs/research/2026-10-09-m2b/README.md)：40 行矩阵研究搜索、统计分布检查、保守范数界及 7 组模格参数对照。上一轮最低 LWE 成本来自区分攻击，现已与秘密搜索分开；原 Theorem 1 与事件 E 的范数界差异也明确记录。
