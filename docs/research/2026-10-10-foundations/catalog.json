@@ -107,12 +107,12 @@
     },
     {
       "id": "srgg2025", "role": "IBS", "label": "SRGG 2025 椭球G+G IBS", "family": "SRGG", "sources": ["srgg"],
-      "assumptions": ["MLWE", "MSIS", "底层sEUF-CMA条件"], "paper_model": "QROM-conditional", "review": "algorithm-mapped-online", "backend": "none", "parameters": "not-admitted", "fit": "conditional",
+      "assumptions": ["MLWE", "MSIS", "底层sEUF-CMA条件"], "paper_model": "QROM-conditional", "review": "algorithm-mapped-local", "backend": "none", "parameters": "not-admitted", "fit": "conditional",
       "algorithm_location": "Definition3；§4 Algorithms1–8 / Theorem2；§3 Theorem1与§5表格",
       "interface_mapping": ["setup：公开块、主陷门与协方差配置", "key_extract：离线扰动和在线gadget原像，缓存身份", "sign：Ellipsoid G+G离线/在线分相", "verify/load_signature：范数、承诺、挑战；先参考定宽wire"],
-      "assets": ["docs/research/2026-10-08-r1/SRGG2025IBS实施规格与条件.md", "experiments/research/primitive_spec_audit.py"],
-      "next_steps": ["原稿已归档；逐式复核协方差、gadget与所有取值空间", "澄清底层强结论与q/Q/2Q映射及表格尺寸差异", "在候选目录实现独立Gaussian/gadget参考，再四算法"],
-      "work_area": "experiments/research/candidates/srgg/", "probe": "source-accounting", "scenario_hypotheses": ["online-service", "compact-client"]
+      "assets": ["docs/research/2026-10-08-r1/SRGG2025IBS实施规格与条件.md", "experiments/research/primitive_spec_audit.py", "experiments/research/candidates/srgg/algebra.py", "experiments/research/candidates/srgg/geometry.py", "docs/research/2026-10-10-srgg/README.md"],
+      "next_steps": ["公开/HNF/承诺恢复与形状参考已完成；核对gadget与ζ采样宽度映射", "接真正标量/相关Gaussian及gadget采样，分别核对分布、模误差和中止", "再接XOF/哈希、固定身份缓存与四算法；底层强前提、q/γ映射继续保留"],
+      "work_area": "experiments/research/candidates/srgg/", "probe": "srgg-algebra-geometry", "scenario_hypotheses": ["online-service", "compact-client"]
     },
     {
       "id": "yu2026", "role": "IBS", "label": "Yu–Liu–Li 2026 标准模型 IBS", "family": "Yu2026", "sources": ["yu"],

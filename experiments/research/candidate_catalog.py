@@ -117,7 +117,7 @@ def render_cards(data):
         lines += ["", "已有可复用材料：", ""] + [f"- `{item}`" for item in c["assets"]]
         lines += ["", "接手后先做：", ""] + [f"{i}. {item}。" for i, item in enumerate(c["next_steps"], 1)]
         lines += ["", f"建议基础实验文件范围：`{c['work_area']}`；进入 src 前冻结该方案独立参数/编码并通过单体契约。", "",
-                  f"本轮关联探针：{c['probe'] or '仅来源/依赖/接口准备，无真实算法实验'}；详见 preflight.json 和参数单位账本。", "",
+                  f"本轮关联探针：{c['probe'] or '仅来源/依赖/接口准备，无真实算法实验'}；公共预检查见 preflight.json 和参数单位账本，候选后续实验见上列可复用材料。", "",
                   "待检验场景优势：" + "、".join(c["scenario_hypotheses"]) + "；这不是性能结论。", ""]
     return "\n".join(lines)
 
