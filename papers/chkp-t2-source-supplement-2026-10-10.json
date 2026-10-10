@@ -1,0 +1,23 @@
+{
+  "recorded_on": "2026-10-10",
+  "security_claim": "none",
+  "supplements": "papers/chkp-t2-sources-2026-10-09.json",
+  "source": {
+    "title": "An Efficient and Parallel Gaussian Sampler for Lattices",
+    "author": "Chris Peikert",
+    "author_version_date": "2011-04-13",
+    "url": "https://sites.cc.gatech.edu/fac/cpeikert/pubs/pargauss.pdf",
+    "file": "papers/2011_peikert_parallel_gaussian_author.pdf",
+    "pdf_pages": 19,
+    "bytes": 407654,
+    "sha256": "39ae6ea450a98267ab7f3ac682e4daae4a91ec8aed9432dca666e05eefd46163",
+    "acquisition": "Public author PDF retained unmodified from the preceding public-source inspection; no account, payment or access bypass",
+    "read_scope": "Title/version and PDF 16: Algorithm 3, Lemma 5.4 with its explicit ToBasis construction and GS proof. Not a full-paper review.",
+    "used_claims": ["integer unimodular basis completion", "ordered Gram-Schmidt nonincrease"],
+    "excluded_claim": "The proof's inference that every singular value of a nonsingular triangular integer matrix is at least one is false; no spectral or ordinary column-norm bound is inherited.",
+    "MG02_chapter7_acquired": false,
+    "tex_source_acquired": false
+  },
+  "AP09_additional_read_scope": "Algorithm 1 and section 3.3 proof, PDF 9-10 and 13-17 of the already pinned 2010-07-10 author version",
+  "implementation_status": "Research components implemented; two randomized delegation chain NOT passed; no formal parameters"
+}

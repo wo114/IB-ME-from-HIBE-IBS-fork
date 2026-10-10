@@ -173,3 +173,12 @@
 - 一句话主题：用紧凑原像采样和椭球 G + G 构造直接 IBS，提供缓存密钥安全实验和模格参数。
 - 本轮核对：Definition 3、§4.5 Theorem 2 的底层条件、§5 Tables 1/4/5/6；尺寸表不一致，必须以实现核算；论文 C 原型未取得公开代码。
 - 本地直接下载返回 403；未创建 `2025_efficient_ibs_jia.pdf`，没有 TeX，不能把在线阅读写成完成本地归档。
+
+## 2011_peikert_parallel_gaussian_author.pdf
+
+- 标题：An Efficient and Parallel Gaussian Sampler for Lattices。
+- 作者/版本：Chris Peikert，2011-04-13 作者版，19 页；原样保留，非 MG02 第七章。
+- 来源：[作者公开 PDF](https://sites.cc.gatech.edu/fac/cpeikert/pubs/pargauss.pdf)；[本地 PDF](2011_peikert_parallel_gaussian_author.pdf)；[文件指纹与阅读范围](chkp-t2-source-supplement-2026-10-10.json)。
+- 本轮用于：PDF 16 的 Lemma 5.4，ToBasis 显式步骤、完整格和逐项 GS 不增；没有改用此论文的并行向量采样算法。
+- 限制：不采用该证明中有问题的三角整数矩阵奇异值推断，不宣称谱/普通列范数不增。未取得 MG02 第七章或此稿 TeX，未声称全篇精读。
+- 实施/证据：[CHKP T2 续作](../docs/research/team-chkp/T2-真实采样实现与未闭合项-2026-10-10.md)，整体仍 WIP。

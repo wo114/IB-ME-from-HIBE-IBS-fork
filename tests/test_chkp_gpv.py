@@ -145,11 +145,22 @@ def test_finite_tape_replay_and_stream_byte_budget(sampler, monkeypatch):
     assert expected == sampler.sample_from_tape((2,), tape)
     assert expected == sampler.sample_from_tape((2,), bytearray(tape))
     assert expected == sampler.sample_from_tape((2,), memoryview(tape))
+    assert len(tape) % 4 == 0
+    assert expected == sampler.sample_from_tape((2,), memoryview(tape).cast("I"))
     for bad in (b"", tape[:-1], tape + b"x", "not bytes"):
         with pytest.raises(ValueError, match="fixed length"):
             sampler.sample_from_tape((2,), bad)
     with pytest.raises(SamplingAbort, match="tape exhausted"):
         sampler.sample((2,), rng=FiniteByteTape(b""))
+
+
+def test_multibyte_view_cannot_hide_excess_tape_bytes(sampler, monkeypatch):
+    # len(view) counts elements, not bytes. Reject before the tape copy.
+    bad = memoryview(bytearray(sampler.random_tape_bytes*4)).cast("I")
+    assert len(bad) == sampler.random_tape_bytes
+    monkeypatch.setattr(module, "FiniteByteTape", forbidden)
+    with pytest.raises(ValueError, match="fixed length"):
+        sampler.sample_from_tape((1,), bad)
 
 
 @pytest.mark.parametrize("target", [None, 1, (), (0, 1), (True,), (1.0,), (-1,),

@@ -225,7 +225,10 @@ class CHKPGPVSampler:
 
     def sample_from_tape(self, syndrome, tape) -> tuple[int, ...]:
         target = self._syndrome(syndrome)
-        if not isinstance(tape, (bytes, bytearray, memoryview)) or len(tape) != self.random_tape_bytes:
+        if not isinstance(tape, (bytes, bytearray, memoryview)):
+            raise ValueError("GPV tape must have the public fixed length")
+        size = tape.nbytes if isinstance(tape, memoryview) else len(tape)
+        if size != self.random_tape_bytes:
             raise ValueError("GPV tape must have the public fixed length")
         return self.sample(target, rng=FiniteByteTape(tape))
 
