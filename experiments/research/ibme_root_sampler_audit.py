@@ -42,8 +42,25 @@ def geometry(basis):
 
 def checked_sage_lll(basis, gs_upper):
     original = matrix(ZZ,basis.basis_rows)
-    rows, transform = original.transpose().LLL(delta=QQ(99)/100, transformation=True)
+    # eta=1/2 can fail in fplll's Babai step on these sampled integer bases.
+    # Use the supported eta=0.501, then size-reduce exactly. The extra delta
+    # margin covers a possible adjacent mu^2 decrease of at most 0.002:
+    # 0.999 - (0.501^2 - 0.499^2) = 0.997 > the verified delta 0.99.
+    rows, transform = original.transpose().LLL(
+        delta=QQ(999)/1000, eta=QQ(501)/1000, transformation=True)
     reduced, column_transform = rows.transpose(), transform.transpose()
+    orthogonal, _ = reduced.transpose().change_ring(QQ).gram_schmidt()
+    norms = tuple(row.dot_product(row) for row in orthogonal.rows())
+    # Integer column additions preserve every GS vector and determinant.
+    # Descending i prevents later additions from changing an already reduced
+    # higher-index coefficient; the exact transform tracks each operation.
+    for j in range(reduced.ncols()):
+        for i in reversed(range(j)):
+            mu = reduced.column(j).dot_product(orthogonal.row(i))/norms[i]
+            nearest = ZZ((mu+QQ(1)/2).floor())
+            if nearest:
+                reduced.add_multiple_of_column(j, i, -nearest)
+                column_transform.add_multiple_of_column(j, i, -nearest)
     if original*column_transform != reduced or abs(column_transform.det()) != 1:
         raise ArithmeticError("Sage LLL transform did not preserve the integer lattice")
     result = KernelBasis(basis.public, reduced)

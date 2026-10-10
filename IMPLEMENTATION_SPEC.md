@@ -220,6 +220,10 @@ PR #6交付研究组件尚未成为完整HIBE；原缓存单批/单对象32个bi
 
 ## 6. 测试验收
 
+2026-10-11 同组链诊断补充：独立ibme_chain_audit只调用交付的GenBasis/ExtBasis/GPV/RandBasis/固定叶缓存，不新增HIBE后端或H/G。显式OnlineOptions(tail_bits=64,mass_bits=96,precision_bits=160,gaussian_abort_bits=32,max_uniform_trials=48)、epsilon_bits=32的每项误差与随机带单列；它与默认profile是两个预定输入，不能在随机执行失败后切换profile或重抽。维度192、scalar width²<=10^12、整次随机带256 MiB、leaf32等原有上限保持。
+
+同组诊断的独立Sage规约使用delta=0.999/eta=0.501后精确整数size reduction，验证列变换、完整格、GS上界、|mu|<=1/2和delta=0.99的Lovasz条件。严格eta=1/2可能使本机fplll在父基Babai步骤报错；不能把库调用成功视为上述精确条件已成立。该规约无统一资源/失败准入，不替代队友有界算法或改变部署Setup。终层只用扩展父基，不增加第二RandBasis。32个固定bit恢复成功不满足32 B种子的256bit契约，真实噪声相位计数必须独立于无噪声代数控制。详见[同组核验](docs/research/2026-10-11-same-input-chain/README.md)，现有wire/协议与安全声明保持。
+
 2026-10-11 原文噪声参考实现：独立experiments/research/ibme_noise_budget.py与ibme_rounded_noise.py提供RoundedNoiseParams(q,alpha,tail_bits,mass_bits,precision_bits,max_radius)、build_rounded_noise、sample_signed/sample_mod_q/sample_vector和certificate。CDF积分目标为round(连续Gaussian宽度q*alpha)，按需投影到Zq；signed表示保留负整数，mod-q表示为[0,q)。非法输入/未获资源或精度准入为InvalidParameterError，错误随机源类型/长度为RandomnessError，源异常传播；不进行零/均匀回退、重采样或隐式升精度。
 
 CDF内点取区间下端floor及单调前缀最大值，边缘夹持原尾部而不条件化；尾误差和CDF整数/区间误差单列。每样本读ceil(mass_bits/8)字节并掩去闲置高bit，不存RNG，不复用输出；生产缺省SecureRandom，测试流必须显式注入。向量输入/布尔mod_q先验证再抽样，当前长度上限65536。误差绑定q/alpha和profile，组合器重算原理想预算，按M*(D+L)计入噪声实现耦合，缺失项不默认零；外部证书不是真实性或密码安全证明。完整说明及界限见[本轮报告](docs/research/2026-10-11-rounded-noise/README.md)，现有HIBE接口/wire与协议未改。

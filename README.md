@@ -8,6 +8,8 @@
 
 ## 当前重建路线 2026 年 10 月 11 日
 
+最新[同组根—父—叶链核验](docs/research/2026-10-11-same-input-chain/README.md)把实际GenBasis、父级RandBasis、终层SampleD和固定叶缓存接到同组输入；默认随机带拒绝、未经规约的叶拒绝和真实噪声解码失败分别保留。显式有限误差profile不改原语默认值或硬上限；独立Sage规约仍只作诊断，完整H/G、256bit容量及正确性/安全参数仍WIP，不计完整HIBE。
+
 首套[原文噪声组件](docs/research/2026-10-11-rounded-noise/README.md)已实现连续Gaussian取整的有限CDF、signed/mod-q/向量接口和显式误差；6组98,304次抽样与3组资源拒绝核验完成，新增88项Sage检查。共享前导按D+L计入实现耦合误差并接上条件解码预算；完整CHKP/实际安全参数仍WIP，没有修改队友算法或放宽其他采样上限。
 
 2026-10-11 [联合参数与噪声核验](docs/research/2026-10-11-joint-parameters/README.md)已覆盖当前有限实现的35个参数区间，确认维度、C1-exec与选定q正确性条件交集为空；给出条件式alpha/取整/多比特寿命计算和更大资源数值规划。两组183维真实AP09根经独立Sage LLL诊断后，原GPV采样器完成4个原像；未改上限、未隐藏原路径拒绝。完整HIBE、正式参数及生产规约准入仍WIP，下一项明确为支持域衔接和同组两层生命周期。

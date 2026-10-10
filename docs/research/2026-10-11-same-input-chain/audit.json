@@ -1,0 +1,88 @@
+{
+  "schema": "IBME/SAME-INPUT-CHAIN-DELIVERY/1",
+  "baseline": "396eb53a70a46c2f6a44898476b5668238916562",
+  "changed_files": [
+    "experiments/research/ibme_chain_audit.py",
+    "experiments/research/ibme_root_sampler_audit.py",
+    "tests/test_ibme_chain_audit.py",
+    ".github/workflows/basic-checks.yml",
+    "README.md",
+    "IMPLEMENTATION_SPEC.md",
+    "docs/PROJECT_RESTART.md",
+    "docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md",
+    "docs/workplans/2026-10-08/队友任务-CHKP与格工具.md",
+    "docs/workplans/2026-10-10/首套系统关键路径与优先级.md",
+    "docs/research/2026-10-11-same-input-chain/README.md",
+    "docs/research/2026-10-11-same-input-chain/chain-results.json",
+    "docs/research/2026-10-11-same-input-chain/audit.json"
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "actual_chains_completed": 4,
+  "actual_leaf_preimages": 128,
+  "honest_noise_decode_failures": 196,
+  "honest_noise_bits": 384,
+  "scalar_noise_calls": 1752,
+  "tests": {
+    "native": {
+      "tests": 166,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 6,
+      "passed": 160
+    },
+    "sage": {
+      "tests": 409,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 409
+    }
+  },
+  "new_sage_tests": 19,
+  "final_failures_or_errors": 0,
+  "initial_validation_failures": [
+    {
+      "test_batch": "eta-half first regression",
+      "passed": 17,
+      "errors": 5,
+      "cause": "fplll infinite loop in babai on randomized parent",
+      "resolved": true
+    },
+    {
+      "kind": "invalid test file name",
+      "result": "no tests ran",
+      "resolved": true
+    }
+  ],
+  "final_source_sha256_lf": {
+    "experiments/research/ibme_chain_audit.py": "4a6a30d40f048a43e4d385e1d2c24b05841b54efd876573a57ab36c1a3e3a8d0",
+    "experiments/research/ibme_root_sampler_audit.py": "00bc6af3eae975d1428af5cd51af9b5f8e8d4dc467270fb0f7279a36713b00dc",
+    "experiments/research/ibme_joint_parameters.py": "271d795d60bfdd8a6cf02422e1dc8df5bfcd27d4657fefedb2fe149a94e24e08",
+    "experiments/research/ibme_noise_budget.py": "811d7eebf348c7bd2774acacc03c5ba395e8b4105a6aaf362cbc336fe1608f2c",
+    "experiments/research/ibme_rounded_noise.py": "1e2f87b1ed964c4821a4d290ed2128d21d9bb77dacbf268205799f74352bb740",
+    "experiments/research/chkp_basis.py": "e8924704c6808fb96849e89c2f34cd59615178771738b604f55627c2e7b5f677",
+    "experiments/research/chkp_genbasis.py": "d9bf8a0d71b0ae3ccccd32b24e1a7ebdc9652a44e7e4640d97c423c6bb389aa8",
+    "experiments/research/chkp_gpv.py": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+    "experiments/research/chkp_randbasis.py": "69d970490202fcf69da4389d4435e1538f6c1c49b83441365291260134dc2282",
+    "experiments/research/chkp_tobasis.py": "d7f3b2c2fe5762a4d45cd26ecc2d5f1f7170d189b2be0555dc5afc90b115f92a",
+    "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+    "experiments/research/chkp_leaf_reference.py": "2e33cd9b5155400b0132a87a41654e8d17f3102e739d964c614b307d7f745c5c",
+    "experiments/research/chkp_leaf_cache.py": "8c8197e60044b4d91a7fef929b784054771d4c530bced50bbf2508f252b8deb5",
+    "experiments/research/chkp_leaf_cache_types.py": "bb3657e05c07b5c0a0cbdd7f9e8885b16a83f458304d07ef016d7de9ad1772cd",
+    "experiments/research/chkp_leaf_cache_wire.py": "906ec0c5678a7373d03d053d3e39c261d0a019c64f00de4c24375e3f29ea5ca8"
+  },
+  "source_pdf": "papers/2010_bonsai_trees_cash.pdf",
+  "wip": [
+    "full H/G and anonymous HIBE",
+    "valid joint parameters and actual LWE estimates",
+    "bounded preprocessing and failure/resource budgets",
+    "256-bit fixed-address state/wire",
+    "full noisy KEM and IBME attacks",
+    "legacy education authentication flaws"
+  ],
+  "reproduction_commands_documented_in": "README.md section 5",
+  "execution_result_exit_code": 0,
+  "execution_exit_means": "diagnostic invariants completed; NOT backend/security admission"
+}

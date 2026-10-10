@@ -35,6 +35,10 @@ T3/T4容量至少覆盖32 B种子的256个bit，内层framing另计；当前单�
 
 ## 3. 逐轮实施与验收
 
+2026-10-11 主AI[同组根—父—叶诊断](../../research/2026-10-11-same-input-chain/README.md)提供两组奇素数输入/预定测试流的接线样例。父级默认RandBasis的最坏随机带超过256 MiB；显式tail64/mass96/precision160/gaussian_abort32/uniform_trials48（epsilon32）在原有资源上限内运行，误差证书必须同步带入。此profile不是失败重试选项或安全默认值，且两组GenBasis近均匀上界仍平凡；参数须另外闭合。
+
+终层使用扩展父基SampleD，无第二RandBasis；Sage诊断规约另经精确size/列变换/GS/Lovasz检查，但没有有界资源准入，不替代你负责的正式规约路线。32个固定原像及恢复可以按该脚本核验；256bit单批拒绝和带原文噪声的相位失败仍保留。下一项优先同组完整q/alpha/宽度/资源条件、256地址/wire及真实H/G/KEM，不再用方程成功代表可靠解密。
+
 2026-10-11 [原文chi_alpha支持组件](../../research/2026-10-11-rounded-noise/README.md)已可调用：RoundedNoiseParams、build_rounded_noise及signed/mod-q/vector接口；默认系统CSPRNG，固定测试流显式注入。用同一q/alpha构造，完整证书进入误差账本；无需用D_Z,q*alpha代替或自行重写这个噪声工具。一次多bit封装共D+L个独立标量误差，原文共享s/b前导，其余身份/矩阵/原像/KEM仍由队友实现。
 
 资源/精度拒绝及异常不得回退成均匀/零噪声或隐藏重试；窄噪声的合法高零概率不是安全选参依据。该组件不自动解除GPV/GenBasis/规约/随机带/256地址门槛；优先在同组可执行输入下完成两层和完整契约，再接主AI Wang/BYTEAUTH组合。
