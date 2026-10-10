@@ -42,6 +42,7 @@ jobs:
           tests/test_srgg_algebra.py tests/test_srgg_geometry.py
           tests/test_srgg_sampling.py
           tests/test_cli_state_lock.py
+          tests/test_ibme_handoff_screen.py
           tests/test_byteauth.py
           --junitxml=test-results/basic.xml
       - name: Enforce security targets when explicitly requested
@@ -72,6 +73,7 @@ jobs:
           SRGG component checks cover module relations, HNF correction, commitment recovery and exact shape/Schur positivity. Deterministic digits are not Gaussian sampling; sampler-width and underlying security conditions remain pending.
           SRGG random-gadget tests require Sage and are explicitly skipped on this Windows job. Local Sage checks cover finite Gaussian draws, width mapping, coset-normalizer bias and aborts; correlated perturbation and a complete IBS remain pending.
           Local state lock checks cover contention, bounded failure and release after process exit. These are state-management checks, not cryptographic security evidence.
+          The CHKP handoff screen joins current finite AP09/GPV constraints and the 32-byte hybrid seed requirement. Sage constructor comparisons run locally; paper-only preflight success is not backend admission.
           Its small functional profiles also admit public master recovery. The external Sage SIS/LWE cost screen and public-only LLL recovery control run separately.
           See the pytest log and JUnit artifact for actual passed, failed, and skipped outcomes.
           '@ | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
@@ -102,6 +104,7 @@ jobs:
           tests/test_luo_compact_ibme.py
           tests/test_research_state_integrity.py
           tests/test_hybrid_key_binding.py
+          tests/test_cli_receiver_state.py
           --junitxml=test-results/hybrid.xml
       - name: Explain research scope
         if: always()
@@ -113,6 +116,7 @@ jobs:
           Explicit reference/compact signature formats have separate decoders; both real research paths retain public forgery and recipient re-signing controls.
           Research-state checks enforce fixed HIBE parameter snapshots, serialized identity issuance/cache snapshots, atomic key publication and refusal to overwrite research keys by switching profiles.
           Hybrid key-binding checks require a primitive validator and reject same-parameter public/secret mixups, bad private equations and invalid emitted keys. Algebraic validity does not certify sampling or security.
+          Receiver-state checks cover fresh-process reuse, concurrent decrypts, failed sampling, atomic private snapshots and pending markers after incomplete operations. The portable stateful driver is test-only; three real small-parameter CHKP Gaussian-cache bridge checks require Sage and run locally.
           All checks are unmarked; there are no security XFAILs in this job.
           The education profile's two vulnerabilities remain explicit XFAILs in the other job.
           A functional real composition is not an admitted secure instance: the HIBE is educational and Luo's parameter/proof mapping is still under review.

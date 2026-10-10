@@ -16,7 +16,9 @@
 
 后续 [SRGG随机gadget参考](docs/research/2026-10-10-srgg-sampling/README.md)已实现有误差界的离散高斯原像，40项Sage检查、36,864次抽样及27个联合PMF核验；仿射宽度映射明确，陪集归一化偏差单独计入。完整相关扰动、密钥分布/范数、哈希和IBS仍WIP，全部none/false。
 
-当前[工作优先级](docs/workplans/2026-10-10/首套系统关键路径与优先级.md)已转回首套系统：先核验现有Luo IBS/组合条件、接CHKP真实HIBE并完成攻击验收；候选深入和独立优化后置。仓库尚未收到可集成CHKP，现有完整研究组合仍使用教学HIBE，安全获准组合为0。
+当前[工作优先级](docs/workplans/2026-10-10/首套系统关键路径与优先级.md)已转回首套系统：先核验现有Luo IBS/组合条件、接CHKP真实HIBE并完成攻击验收；候选深入和独立优化后置。[队友PR #6已合并并复核](docs/research/2026-10-10-chkp-review/README.md)，收到真实GenBasis/GPV/固定叶缓存研究组件；完整CHKP后端仍WIP。现有完整研究组合仍使用教学HIBE，安全获准组合为0。
+
+首套接入第三轮已完成[接收状态事务与固定原像恢复](docs/research/2026-10-10-receiver-persistence/README.md)：解密与发钥共用锁，成功/BOTTOM/异常均保存变化，跨进程复用已有地址；未完成操作的pending标记阻止自动重采样，重新发接收密钥复用已验证文件。队友真实高斯缓存桥接通过；联合交接筛查另指出AP09尺寸/宽度和32个bit缓存对256个种子bit的缺口。下一项先闭合同组参数与完整HIBE容量/生命周期，全部none/false。
 
 首套接入已完成[固定状态与参数快照修复](docs/research/2026-10-10-mainline/README.md)：实际复现并修复并发同身份不同钥/不同身份丢缓存、HIBE参数漂移，补齐线程快照、原子密钥发布和跨配置覆盖保护。Luo数学算法/参数/wire不变；CHKP未交接，整体准入仍none/false。
 
