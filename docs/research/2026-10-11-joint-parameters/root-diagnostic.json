@@ -1,0 +1,213 @@
+{
+  "scope": "public-test AP09 roots / raw rejection / independent LLL / unchanged GPV",
+  "fixed_seed_tests_only": true,
+  "parameters_are_formal": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "code_lf_sha256": {
+    "experiments/research/ibme_root_sampler_audit.py": "e5517b81b5a43cb0d91af7258f6937803237c450bbca0a2b213698402561c7c1",
+    "experiments/research/chkp_genbasis.py": "d9bf8a0d71b0ae3ccccd32b24e1a7ebdc9652a44e7e4640d97c423c6bb389aa8",
+    "experiments/research/chkp_basis.py": "e8924704c6808fb96849e89c2f34cd59615178771738b604f55627c2e7b5f677",
+    "experiments/research/chkp_gpv.py": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+    "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa"
+  },
+  "smoothing_factor_source_sha256": "b31768245bc433409a4467f1aaa60dcd9ab1766ef280e82310a8ac512cbd10c4",
+  "model": "classical ROM reference; no full HIBE experiment",
+  "root_attempts": [
+    {
+      "seed": "ibme-joint-root-0",
+      "parameters": {
+        "algorithm": "AP09 second construction, Algorithm 1 / section 3.3",
+        "parameters": {
+          "n": 1,
+          "q": 257,
+          "random_rows": 55,
+          "m1": 55,
+          "m2": 128,
+          "hadamard_scale": 21,
+          "max_uniform_trials": 192
+        },
+        "hadamard_width": 64,
+        "gs_squared_bound": 31685,
+        "quality_gate": "4*d*m2 <= Cprime^2*w; deterministic Frobenius sufficient condition",
+        "quality_bad_probability_inside_admitted_domain": "0",
+        "unconditioned_paper_matrix_tv_upper": "25525916408961891/2361183241434822606848",
+        "ideal_A1_rank_abort_upper": "1/3518210198715044292938488405621392591769768195095954493101312114133562716631165675804487432207958032866242516249654831069858202728193",
+        "uniform_integer_abort_upper": "55/6277101735386680763835789423207666416102355444464034512896",
+        "actual_output_vs_uniform_including_abort_tv_upper": "238744074404569176483063473067861142690417636062417979586938163400369920550985470662757297152771923025229843133620009221256082260475795992599504180127183828830405652311794687655896600887/22084163343809323508780031638683053713742903455722377136434666294121782182962853260841326661840096544305186736497609327728894550092636239115992663724943191722018538087209023483459057041276928",
+        "public_random_tape_bytes_upper": 28160,
+        "rounding": "sqrt rounded upward to 2^-80; not a security level",
+        "randomness_assumption": "independent uniform bytes; fixed seed tests are not proof",
+        "near_uniform_bound_nonvacuous": true,
+        "dimension_optimality_claim": false,
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "attempts": 1,
+      "fixed_seed_test_only": true,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "genbasis_seconds": 31.589213631,
+      "genbasis_actual_entropy_bytes": 7250,
+      "public_matrix_sha256": "8a3d20515f0a704d7b9cbdfafb0e98dd36ca2552a329ec60c9087597b141b3da",
+      "root_sampling_width_squared": 5196340,
+      "raw": {
+        "gs_squared_min": "66049/36462286565",
+        "gs_squared_max": "1337635290937656038327671412612009/64947513308568946929757478874",
+        "max_scalar_width_squared": "189470438169172100/66049",
+        "min_scalar_width_squared": "337489361305849161688975977772121160/1337635290937656038327671412612009",
+        "status": "rejected",
+        "error_type": "ValueError",
+        "error": "Scalar squared width outside 1..10^12; no hardcap relaxation",
+        "seconds": 68.479281594
+      },
+      "diagnostic_lll": {
+        "algorithm": "installed Sage LLL + exact transform/GS/size/Lovasz verification",
+        "seconds": 3.3808740980000067,
+        "bounded_chkp_reducer_used": false,
+        "production_or_uniform_resource_admission": false,
+        "sampler": {
+          "gs_squared_min": "1",
+          "gs_squared_max": "5/2",
+          "max_scalar_width_squared": "5196340",
+          "min_scalar_width_squared": "2078536",
+          "dimension": 183,
+          "tv_upper": "231450785987831823031575403835771984701926171764789674501691238633390981737579535667/5432095472725632527677724291850451265257406121544508431295850899179942337013512030088331264",
+          "public_tape_bytes": 57151600,
+          "path_resources": {
+            "all_canonical_syndromes": true,
+            "all_nonaborted_paths": true,
+            "initial_coordinate_abs_upper": "256",
+            "max_center_denominator_bits": 15,
+            "max_center_numerator_bits": 37,
+            "max_coefficient_bits": 28,
+            "max_residual_bits": 29,
+            "rational_bit_budget": 8192,
+            "max_dimension": 192,
+            "input_bit_budget": 1024,
+            "centers_or_CDFs_precomputed": 0
+          },
+          "samples": [
+            {
+              "target": 0,
+              "equation": true,
+              "norm_squared": "132044026",
+              "actual_entropy_bytes": 26114
+            },
+            {
+              "target": 17,
+              "equation": true,
+              "norm_squared": "108599024",
+              "actual_entropy_bytes": 30108
+            }
+          ],
+          "status": "root_preimages_sampled",
+          "seconds": 4.715102872999992
+        }
+      },
+      "root_generated": true,
+      "total_seconds": 108.17077379
+    },
+    {
+      "seed": "ibme-joint-root-1",
+      "parameters": {
+        "algorithm": "AP09 second construction, Algorithm 1 / section 3.3",
+        "parameters": {
+          "n": 1,
+          "q": 257,
+          "random_rows": 55,
+          "m1": 55,
+          "m2": 128,
+          "hadamard_scale": 21,
+          "max_uniform_trials": 192
+        },
+        "hadamard_width": 64,
+        "gs_squared_bound": 31685,
+        "quality_gate": "4*d*m2 <= Cprime^2*w; deterministic Frobenius sufficient condition",
+        "quality_bad_probability_inside_admitted_domain": "0",
+        "unconditioned_paper_matrix_tv_upper": "25525916408961891/2361183241434822606848",
+        "ideal_A1_rank_abort_upper": "1/3518210198715044292938488405621392591769768195095954493101312114133562716631165675804487432207958032866242516249654831069858202728193",
+        "uniform_integer_abort_upper": "55/6277101735386680763835789423207666416102355444464034512896",
+        "actual_output_vs_uniform_including_abort_tv_upper": "238744074404569176483063473067861142690417636062417979586938163400369920550985470662757297152771923025229843133620009221256082260475795992599504180127183828830405652311794687655896600887/22084163343809323508780031638683053713742903455722377136434666294121782182962853260841326661840096544305186736497609327728894550092636239115992663724943191722018538087209023483459057041276928",
+        "public_random_tape_bytes_upper": 28160,
+        "rounding": "sqrt rounded upward to 2^-80; not a security level",
+        "randomness_assumption": "independent uniform bytes; fixed seed tests are not proof",
+        "near_uniform_bound_nonvacuous": true,
+        "dimension_optimality_claim": false,
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "attempts": 1,
+      "fixed_seed_test_only": true,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "genbasis_seconds": 30.16718999599999,
+      "genbasis_actual_entropy_bytes": 7250,
+      "public_matrix_sha256": "8d6fed194bf991ce82c543429822c4e56d9cc0ac35138c233f8f661027755ace",
+      "root_sampling_width_squared": 5196340,
+      "raw": {
+        "gs_squared_min": "66049/32628582036",
+        "gs_squared_max": "27021325184002867904801079173531473345/1187962501500050665418700815102783",
+        "max_scalar_width_squared": "169549205976948240/66049",
+        "min_scalar_width_squared": "1234611413008954654948362358710239082844/5404265036800573580960215834706294669",
+        "status": "rejected",
+        "error_type": "ValueError",
+        "error": "Scalar squared width outside 1..10^12; no hardcap relaxation",
+        "seconds": 66.50678366899999
+      },
+      "diagnostic_lll": {
+        "algorithm": "installed Sage LLL + exact transform/GS/size/Lovasz verification",
+        "seconds": 3.496302030999999,
+        "bounded_chkp_reducer_used": false,
+        "production_or_uniform_resource_admission": false,
+        "sampler": {
+          "gs_squared_min": "1",
+          "gs_squared_max": "1366/599",
+          "max_scalar_width_squared": "5196340",
+          "min_scalar_width_squared": "1556303830/683",
+          "dimension": 183,
+          "tv_upper": "115725392993915911501244883774652330879522422058782715328075293879018432143161862757/2716047736362816263838862145925225632628703060772254215647925449589971168506756015044165632",
+          "public_tape_bytes": 57151200,
+          "path_resources": {
+            "all_canonical_syndromes": true,
+            "all_nonaborted_paths": true,
+            "initial_coordinate_abs_upper": "256",
+            "max_center_denominator_bits": 16,
+            "max_center_numerator_bits": 37,
+            "max_coefficient_bits": 28,
+            "max_residual_bits": 29,
+            "rational_bit_budget": 8192,
+            "max_dimension": 192,
+            "input_bit_budget": 1024,
+            "centers_or_CDFs_precomputed": 0
+          },
+          "samples": [
+            {
+              "target": 0,
+              "equation": true,
+              "norm_squared": "175520463",
+              "actual_entropy_bytes": 29874
+            },
+            {
+              "target": 17,
+              "equation": true,
+              "norm_squared": "163090127",
+              "actual_entropy_bytes": 28654
+            }
+          ],
+          "status": "root_preimages_sampled",
+          "seconds": 4.713091222000003
+        }
+      },
+      "root_generated": true,
+      "total_seconds": 104.889568989
+    }
+  ],
+  "omitted": [
+    "uniform LLL work/abort proof",
+    "two-level extraction or encapsulation",
+    "alpha/noise implementation",
+    "production entropy or side channels",
+    "memory peak measurement"
+  ]
+}

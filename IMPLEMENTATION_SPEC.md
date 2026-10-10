@@ -220,6 +220,10 @@ PR #6交付研究组件尚未成为完整HIBE；原缓存单批/单对象32个bi
 
 ## 6. 测试验收
 
+2026-10-11 CHKP噪声与有限正确性接入补充：锁定36页作者版§2.3.1/PDF12的chi_alpha——先抽连续Gaussian宽度alpha，再round(q*x) mod q；不能把标量D_Z,q*alpha直接当同一误差模型。高斯宽度平方与统计方差分开。§5.1/PDF18–19的解码比较模q下到0与floor(q/2)的距离，严格更近0返回0，否则1；奇数q及平局须按此语义验收。
+
+主AI有限检查器在||x||²<=s²D和精确原文噪声的条件下，显式计入(||x||_1+1)/2取整误差，采用安全整数相位半径floor((floor(q/2)-1)/2)，给出alpha及逐bit/寿命并集界。多bit共享s和b前导按原文允许，条件失败概率并集不假设bit独立。真实连续噪声有限实现误差、固定原像坏范数、GPV TV/ABORT、基/资源失败和LWE成本仍单列，不填默认零、不凭alpha数值放行。检查器与根诊断见[联合核验](docs/research/2026-10-11-joint-parameters/README.md)，现有wire/协议/后端保持。
+
 ### 2026-10-09 完整密文字节认证版本（BYTEAUTH/1）
 
 这是 §4 Wang 基线外的独立工程包装，不改变 HIBE 身份顺序。底层基线的消息改为规范 envelope：`IBME:BOUND-MSG:v1 || LP(ots_vk_commitment) || LP(application_message)`；因此原有 IBS 同时签入接收者、应用消息和临时 OTS 公钥承诺。每次 Encrypt 新生成一把 Lamport 型一次性哈希签名密钥；先完成基线加密，再对外层版本域、公钥上下文承诺、完整 OTS 公钥及完整基线密文字节签名。签名置于外层末尾，无签名/被签密文循环。
