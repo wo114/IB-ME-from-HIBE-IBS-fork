@@ -94,4 +94,3 @@ wsl -- bash -lc "cd /mnt/d/zcode_projects/ibme && ~/miniconda3/envs/sage/bin/pyt
 **下一项**：实现SampleP/SampleF的相关扰动参考，并与此gadget卷积相接，逐项预算分布、范数和中止；随后才接XOF、规范哈希、固定身份缓存及完整四算法。签名ζ尺度、底层强结论和q/Q/γ条件仍须核验。CHKP交接到达时仍优先首套集成；候选基础继续服务于之后三组代表的公平选择，优化后置。
 
 WIP：完整扰动/卷积、重建密钥分布/范数、签名宽度、哈希和完整IBS/IBME；旧education两项认证反例仍未关闭。全部none/false，测试和采样误差预算不替代密码学安全证明。
-
