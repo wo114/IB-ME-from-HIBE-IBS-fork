@@ -1,0 +1,167 @@
+{
+  "base_commit": "292b958",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "first_secure_suite_admitted": false,
+  "parameters_changed": false,
+  "wire_changed": false,
+  "signature_algorithm_changed": false,
+  "source_pdf": "papers/2024_ibs_without_trapdoors_luo.pdf",
+  "source_pdf_sha256": "12c70ae7635c0b88c132bca14990480a8e0cdec2e786a6dcf39256e5bb0dd455",
+  "source_locations": [
+    "Definition3 PDF6",
+    "Theorem1/Algorithms5-6 PDF8-9",
+    "Algorithms13-14 PDF13",
+    "Algorithms15-16 PDF14",
+    "Section4.4 PDF15-16"
+  ],
+  "IBS_reference_model": "conditional classical-ROM mapping; no complete module QROM theorem granted",
+  "paper_cache_interpretation_author_confirmed": false,
+  "full_simulation_and_fork_mapping_closed": false,
+  "hibe_status": "educational ABB10; no CHKP handoff received",
+  "IBS_parameters": {
+    "degree": 256,
+    "k": 11,
+    "l": 10,
+    "q": 274877844481,
+    "root": 153250464611,
+    "eta": 1,
+    "kappa": 64,
+    "gamma1": 125440,
+    "gamma2": 31470387200,
+    "gamma3": 15270991360,
+    "dropped_bits": 28,
+    "identity_max_bytes": 64,
+    "message_max_bytes": 4096,
+    "max_extract_attempts": 1024,
+    "max_sign_attempts": 1024,
+    "max_uniform_attempts": 128,
+    "max_cached_identities": 64
+  },
+  "HIBE_parameters": {
+    "n": 8,
+    "m_matrix": 168,
+    "m_bar": 16,
+    "q": 524288,
+    "s0": 3.0,
+    "s_enc": 1.0,
+    "s_pre": 1.0,
+    "identity_bytes": 86,
+    "seed_bytes": 32
+  },
+  "IBS_security_claim": "none",
+  "HIBE_security_claim": "none",
+  "application_limit_bytes": 3924,
+  "initial_counterexamples": {
+    "environment": "Windows",
+    "failed": 10,
+    "passed": 1,
+    "details": [
+      "8 accepted inner HIBE snapshot drifts",
+      "same-identity concurrent keys differ",
+      "different-identity concurrent cache entry lost"
+    ]
+  },
+  "own_regression_repaired": "incompatible compact education setup created a directory before rejection; preflight restored before writes",
+  "new_tests": 28,
+  "final_junit": {
+    "windows": {
+      "state": {
+        "passed": 75,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "junit_sha256": "f52ce7977031bc2f9096ddffcc209c8eafb327f27f39fec2671c5151d0e45bfb"
+      },
+      "hybrid": {
+        "passed": 46,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "junit_sha256": "fc85b86291404ede00a9af985629d685b43f18c820daeb7c2f8142488749c51d"
+      },
+      "cli-setup": {
+        "passed": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "junit_sha256": "3b759f112f28771ec80a20032ade13e25657258d4b95b4738d26d145cfcc8e3f"
+      }
+    },
+    "sage": {
+      "state": {
+        "passed": 75,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "junit_sha256": "2ea9b42e9afdb9ddc676f3756860e0a2239f5a5e4d7cc71f89479cf30d202dc7"
+      },
+      "hybrid": {
+        "passed": 46,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "junit_sha256": "c90e1b09291f69c32303e1bb0f1de49467aab4454cbd66bfc42fff7d49121928"
+      },
+      "cli-setup": {
+        "passed": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "junit_sha256": "7573e31afec1885588ed32205e086b41ecdde658146aa7796c6f1514113f7fe8"
+      }
+    }
+  },
+  "earlier_legacy_cli_checks_each_environment": 12,
+  "note_on_counts": "75 state/module + 46 complete protocol + 3 setup checks are disjoint; the earlier 12 CLI checks overlap the final 3 and are not added",
+  "repetitions": "three process interleavings once each; two thread interleavings once each; publication faults and lock termination tests once per selected case",
+  "identity_message_lengths": "public fixture names Alice/Bob/Carol; existing protocol tests include 64-byte identity and 3924-byte application boundary; see test sources",
+  "ROM": "H1/H2 algorithm mapping assumes classical ROM; tests do not establish ROM/QROM security",
+  "environments": {
+    "hardware": "Intel Core Ultra9 275HX",
+    "Windows": {
+      "python": "3.14.6",
+      "pytest": "9.1.1",
+      "cryptography": "49.0.0"
+    },
+    "WSL": {
+      "python": "3.13.14",
+      "sage": "10.9",
+      "pytest": "9.1.1",
+      "cryptography": "49.0.0"
+    }
+  },
+  "lock_scope": "same-OS local filesystem; Windows msvcrt / POSIX flock; timeout 30s, explicit failure, no unlocked fallback",
+  "atomicity_scope": "atomic single-file replacement; not a multi-file power-loss transaction or distributed lock",
+  "limitations": [
+    "no CHKP implementation/parameter admission",
+    "conditional IBS simulation/fork conditions remain",
+    "no NIST/QROM/full anonymity or side-channel guarantee",
+    "old education two authentication counterexamples remain"
+  ],
+  "files_changed": [
+    "src/ibme/cli_state.py",
+    "src/ibme/cli.py",
+    "src/ibme/ibs/luo_module.py",
+    "src/ibme/protocol/luo_hybrid.py",
+    "tests/test_cli_state_lock.py",
+    "tests/test_research_state_integrity.py",
+    "IMPLEMENTATION_SPEC.md",
+    ".github/workflows/basic-checks.yml",
+    "README.md",
+    "docs/PROJECT_RESTART.md",
+    "docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md",
+    "docs/KNOWN_SECURITY_GAPS.md",
+    "docs/research/2026-10-10-mainline/README.md",
+    "docs/research/2026-10-10-mainline/admission.json"
+  ],
+  "source_sha256_lf": {
+    "src/ibme/cli_state.py": "51731625c895cc4f37a8d130047eff7e33d8efb77921c3ca1400bc42c8e82c19",
+    "src/ibme/cli.py": "47647d731d8f933d6e8e4f831881d3c16931adce2d1fb950876b152402b4c2b7",
+    "src/ibme/ibs/luo_module.py": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275",
+    "src/ibme/protocol/luo_hybrid.py": "ee4498a2096e33520b856e14fd9a441484e603af07e3e4c3e90a5936cfd3459d",
+    "tests/test_cli_state_lock.py": "adfcda0ccb92e4cf52faebfa1d3ce34ffb4d2a2790c52b5c7eb78e1901a2f2b6",
+    "tests/test_research_state_integrity.py": "ce609ad4c4ada69fe9491f23ec36203487508cc733e117e2f269690d101fc648"
+  },
+  "previous_parameter_screen_sha256": "a0d3e980a21cfceb4061cdd9571db7d9434de90f18cbfa15fa3c52a124d4a8ef"
+}

@@ -65,6 +65,7 @@ import tempfile
 from pathlib import Path
 
 from ibme.core.errors import IBMEError
+from ibme.cli_state import key_issuance_lock
 from ibme.protocol.baseline import (
     BASELINE_DEBUG_IBS_PARAMS,
     BASELINE_DEBUG_PARAMS,
@@ -315,19 +316,24 @@ def _read(path: Path) -> bytes:
     return path.read_bytes()
 
 
-def _persist_research_master(state: Path, master: MasterSecret) -> None:
-    """Atomic single-writer cache snapshot; secrets never enter the metadata."""
+def _atomic_write_state(path: Path, raw: bytes) -> None:
+    """Publish a complete snapshot; the caller holds the state writer lock."""
     temporary = None
     try:
-        with tempfile.NamedTemporaryFile(dir=state, prefix=".ibme-master-", suffix=".tmp", delete=False) as handle:
+        with tempfile.NamedTemporaryFile(dir=path.parent, prefix=".ibme-state-", suffix=".tmp", delete=False) as handle:
             temporary = Path(handle.name)
-            handle.write(master.to_bytes())
+            handle.write(raw)
             handle.flush()
             os.fsync(handle.fileno())
-        os.replace(temporary, state / _MSK_FILE)
+        os.replace(temporary, path)
     finally:
         if temporary is not None and temporary.exists():
             temporary.unlink()
+
+
+def _persist_research_master(state: Path, master: MasterSecret) -> None:
+    """Commit the identity cache before exposing the issued key."""
+    _atomic_write_state(state / _MSK_FILE, master.to_bytes())
 
 
 def _load_msk(state: Path, mock: bool) -> tuple[MasterSecret, BaselineIBME, dict]:
@@ -351,11 +357,22 @@ def _load_msk(state: Path, mock: bool) -> tuple[MasterSecret, BaselineIBME, dict
 
 
 def cmd_setup(args) -> int:
-    if args.params == _RESEARCH_PRESET and any((args.state / name).exists() for name in (_META_FILE, _MPK_FILE, _MSK_FILE)):
-        raise ValueError("research setup requires a new state directory; existing keys will not be overwritten")
+    # Reject incompatible profiles/formats before creating any state artifact.
     hibe_params, ibs_params = _params_pair(args.params, args.mock)
     signature_format = getattr(args, "signature_format", "reference")
     proto, _ = _make_runtime(args.mock, preset=args.params, signature_format=signature_format)
+    args.state.mkdir(parents=True, exist_ok=True)
+    with key_issuance_lock(args.state):
+        if (args.state / _META_FILE).exists():
+            previous = _load_state_meta(args.state)
+            if previous.get("params_preset") == _RESEARCH_PRESET:
+                raise ValueError("existing research state cannot be overwritten by setup or a different profile")
+        return _setup_unlocked(args, proto, hibe_params, ibs_params, signature_format)
+
+
+def _setup_unlocked(args, proto, hibe_params, ibs_params, signature_format) -> int:
+    if args.params == _RESEARCH_PRESET and any((args.state / name).exists() for name in (_META_FILE, _MPK_FILE, _MSK_FILE)):
+        raise ValueError("research setup requires a new state directory; existing keys will not be overwritten")
     pk, msk = proto.setup(hibe_params, ibs_params=ibs_params)
     args.state.mkdir(parents=True, exist_ok=True)
     (args.state / _MPK_FILE).write_bytes(pk.to_bytes())
@@ -386,6 +403,11 @@ def cmd_setup(args) -> int:
 
 
 def cmd_issue_sender_key(args) -> int:
+    with key_issuance_lock(args.state):
+        return _issue_sender_key_unlocked(args)
+
+
+def _issue_sender_key_unlocked(args) -> int:
     meta = _load_state_meta(args.state)
     identity = _parse_identity(
         args.name, max_bytes=meta["identity_bytes"], role="sender identity"
@@ -397,7 +419,7 @@ def cmd_issue_sender_key(args) -> int:
         # Preserve the fixed identity key across separately invoked commands.
         _persist_research_master(args.state, msk)
     out = _sender_key_path(args.state, identity)
-    out.write_bytes(ek.to_bytes())
+    _atomic_write_state(out, ek.to_bytes())
     print(
         f"issued sender key: identity={args.name!r} utf8={len(identity)}B "
         f"digest={digest} (sha256[:{_DIGEST_HEX_CHARS}] of UTF-8 bytes)"
@@ -407,6 +429,11 @@ def cmd_issue_sender_key(args) -> int:
 
 
 def cmd_issue_receiver_key(args) -> int:
+    with key_issuance_lock(args.state):
+        return _issue_receiver_key_unlocked(args)
+
+
+def _issue_receiver_key_unlocked(args) -> int:
     meta = _load_state_meta(args.state)
     identity = _parse_identity(
         args.name, max_bytes=meta["identity_bytes"], role="receiver identity"
@@ -414,8 +441,11 @@ def cmd_issue_receiver_key(args) -> int:
     digest = _identity_digest(identity)
     msk, proto, classes = _load_msk(args.state, args.mock)
     dk = proto.rkgen(msk, identity)
+    if meta.get("params_preset") == _RESEARCH_PRESET:
+        # A delegated HIBE can carry persistent address/decapsulation caches.
+        _persist_research_master(args.state, msk)
     out = _receiver_key_path(args.state, identity)
-    out.write_bytes(dk.to_bytes())
+    _atomic_write_state(out, dk.to_bytes())
     print(
         f"issued receiver key: identity={args.name!r} utf8={len(identity)}B "
         f"digest={digest} (sha256[:{_DIGEST_HEX_CHARS}] of UTF-8 bytes)"

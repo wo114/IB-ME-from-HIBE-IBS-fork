@@ -5,6 +5,7 @@ from dataclasses import dataclass, replace
 from ibme.core.encoding import encode_message
 from ibme.core.errors import InvalidParameterError, SerializationError
 from ibme.core.types import validate_bytes, validate_identity
+from ibme.lattice.gadget import gadget_width
 from ibme.hibe.abb10 import (ABB10HIBE, ABB10_DEBUG_PARAMS, ABB10PublicKey, ABB10MasterSecret,
                             ABB10Level1SecretKey, ABB10Level2SecretKey)
 from ibme.ibs.luo_module import (LuoModuleIBSBackend, LuoModuleParams, LuoModulePublicKey,
@@ -20,6 +21,13 @@ RESEARCH_INNER_PARAMS = replace(ABB10_DEBUG_PARAMS, name="hybrid-abb10-short-deb
                               max_message_bytes=32, identity_bytes=encoded_identity_bytes(RESEARCH_LIMITS.identity_max_bytes))
 RESEARCH_HIBE_PARAMS = HybridHIBEParams(RESEARCH_INNER_PARAMS, RESEARCH_LIMITS)
 RESEARCH_IBS_PARAMS = LuoModuleParams()
+_INNER_SNAPSHOT = (
+    RESEARCH_INNER_PARAMS.n,
+    RESEARCH_INNER_PARAMS.m_matrix - RESEARCH_INNER_PARAMS.n * gadget_width(RESEARCH_INNER_PARAMS.q),
+    RESEARCH_INNER_PARAMS.q, RESEARCH_INNER_PARAMS.identity_bytes,
+    RESEARCH_INNER_PARAMS.max_message_bytes, RESEARCH_INNER_PARAMS.s0,
+    RESEARCH_INNER_PARAMS.s, RESEARCH_INNER_PARAMS.s_prime,
+)
 MAX_APPLICATION_BYTES = RESEARCH_IBS_PARAMS.message_max_bytes - len(encode_message(
     b"x" * RESEARCH_LIMITS.identity_max_bytes, encode_bound_message(b"x" * COMMITMENT_BYTES, b"")))
 
@@ -59,6 +67,14 @@ class _ProfileDecoder:
             public = value if isinstance(value, HybridPublicKey) else value.public_key
             if public.limits != RESEARCH_LIMITS:
                 raise SerializationError("state uses different hybrid profile limits")
+            # Only inspect the public parameter snapshots, never trapdoors.
+            components = (public.inner,) if isinstance(value, HybridPublicKey) else (public.inner, value.inner)
+            for component in components:
+                meta = component.meta
+                snapshot = (meta.n, meta.m_bar, meta.q, meta.identity_bytes,
+                            meta.max_message_bytes, meta.s0, meta.s_enc, meta.s_pre)
+                if snapshot != _INNER_SNAPSHOT:
+                    raise SerializationError("state uses different inner HIBE parameter profile")
         return value
 
 
