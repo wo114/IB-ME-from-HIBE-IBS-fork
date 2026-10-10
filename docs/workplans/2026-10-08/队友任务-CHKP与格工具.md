@@ -35,6 +35,10 @@ T3/T4容量至少覆盖32 B种子的256个bit，内层framing另计；当前单�
 
 ## 3. 逐轮实施与验收
 
+2026-10-11 [原文chi_alpha支持组件](../../research/2026-10-11-rounded-noise/README.md)已可调用：RoundedNoiseParams、build_rounded_noise及signed/mod-q/vector接口；默认系统CSPRNG，固定测试流显式注入。用同一q/alpha构造，完整证书进入误差账本；无需用D_Z,q*alpha代替或自行重写这个噪声工具。一次多bit封装共D+L个独立标量误差，原文共享s/b前导，其余身份/矩阵/原像/KEM仍由队友实现。
+
+资源/精度拒绝及异常不得回退成均匀/零噪声或隐藏重试；窄噪声的合法高零概率不是安全选参依据。该组件不自动解除GPV/GenBasis/规约/随机带/256地址门槛；优先在同组可执行输入下完成两层和完整契约，再接主AI Wang/BYTEAUTH组合。
+
 2026-10-11 [新联合核验](../../research/2026-10-11-joint-parameters/README.md)确认当前AP09维度规则+GPV192/C1-exec+选定Lemma5.1 q条件在全部35区间内无法同时成立，继续仅换参数不能闭合现门槛。主AI提供可实跑的183维根诊断：公开误差证书<2^-16，原GPV因标量宽度拒绝，独立精确验证Sage LLL后4个原像通过；此Sage诊断不替代现有<=64维有界规约，也不提供统一失败/资源准入。
 
 下一轮先确定真实支持域方案：根和父基规约/另一合格GenBasis、维度与标量宽度、整次GPV/RandBasis及256bit随机带/缓存wire预算。新的数值规划n=1只是诊断，不能直接作为安全后端或照填其445/890/1335尺寸。噪声必须采用CHKP原文round(q·连续Gaussian宽度alpha) mod q；D_Z,q*alpha不自动是同一分布。接原文共同s/b前导与逐bit独立标量噪声，复用主AI的条件式alpha计算并计入真实噪声误差；不自动继承QROM或安全等级。

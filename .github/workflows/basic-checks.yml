@@ -44,6 +44,7 @@ jobs:
           tests/test_cli_state_lock.py
           tests/test_ibme_handoff_screen.py
           tests/test_ibme_joint_parameters.py tests/test_ibme_root_sampler_audit.py
+          tests/test_ibme_noise_budget.py tests/test_ibme_rounded_noise.py
           tests/test_byteauth.py
           --junitxml=test-results/basic.xml
       - name: Enforce security targets when explicitly requested
@@ -76,6 +77,7 @@ jobs:
           Local state lock checks cover contention, bounded failure and release after process exit. These are state-management checks, not cryptographic security evidence.
           The CHKP handoff screen joins current finite AP09/GPV constraints and the 32-byte hybrid seed requirement. Sage constructor comparisons run locally; paper-only preflight success is not backend admission.
           Joint parameter checks cover the whole current finite dimension domain and conditional rounded-continuous-Gaussian decode budgets, including odd moduli and shared-preamble union accounting. Actual Sage root/LLL diagnostics run locally; larger numeric plans do not override any backend cap or certify LWE hardness.
+          Rounded-noise metadata checks enforce exact q/alpha binding and an explicit finite-error ledger with D+L shared-preamble draws. Actual erf/CDF sampling and independent quadrature require Sage and run locally; no HIBE backend or security grade follows from this support component.
           Its small functional profiles also admit public master recovery. The external Sage SIS/LWE cost screen and public-only LLL recovery control run separately.
           See the pytest log and JUnit artifact for actual passed, failed, and skipped outcomes.
           '@ | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8

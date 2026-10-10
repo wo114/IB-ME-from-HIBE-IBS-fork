@@ -220,6 +220,10 @@ PR #6交付研究组件尚未成为完整HIBE；原缓存单批/单对象32个bi
 
 ## 6. 测试验收
 
+2026-10-11 原文噪声参考实现：独立experiments/research/ibme_noise_budget.py与ibme_rounded_noise.py提供RoundedNoiseParams(q,alpha,tail_bits,mass_bits,precision_bits,max_radius)、build_rounded_noise、sample_signed/sample_mod_q/sample_vector和certificate。CDF积分目标为round(连续Gaussian宽度q*alpha)，按需投影到Zq；signed表示保留负整数，mod-q表示为[0,q)。非法输入/未获资源或精度准入为InvalidParameterError，错误随机源类型/长度为RandomnessError，源异常传播；不进行零/均匀回退、重采样或隐式升精度。
+
+CDF内点取区间下端floor及单调前缀最大值，边缘夹持原尾部而不条件化；尾误差和CDF整数/区间误差单列。每样本读ceil(mass_bits/8)字节并掩去闲置高bit，不存RNG，不复用输出；生产缺省SecureRandom，测试流必须显式注入。向量输入/布尔mod_q先验证再抽样，当前长度上限65536。误差绑定q/alpha和profile，组合器重算原理想预算，按M*(D+L)计入噪声实现耦合，缺失项不默认零；外部证书不是真实性或密码安全证明。完整说明及界限见[本轮报告](docs/research/2026-10-11-rounded-noise/README.md)，现有HIBE接口/wire与协议未改。
+
 2026-10-11 CHKP噪声与有限正确性接入补充：锁定36页作者版§2.3.1/PDF12的chi_alpha——先抽连续Gaussian宽度alpha，再round(q*x) mod q；不能把标量D_Z,q*alpha直接当同一误差模型。高斯宽度平方与统计方差分开。§5.1/PDF18–19的解码比较模q下到0与floor(q/2)的距离，严格更近0返回0，否则1；奇数q及平局须按此语义验收。
 
 主AI有限检查器在||x||²<=s²D和精确原文噪声的条件下，显式计入(||x||_1+1)/2取整误差，采用安全整数相位半径floor((floor(q/2)-1)/2)，给出alpha及逐bit/寿命并集界。多bit共享s和b前导按原文允许，条件失败概率并集不假设bit独立。真实连续噪声有限实现误差、固定原像坏范数、GPV TV/ABORT、基/资源失败和LWE成本仍单列，不填默认零、不凭alpha数值放行。检查器与根诊断见[联合核验](docs/research/2026-10-11-joint-parameters/README.md)，现有wire/协议/后端保持。
