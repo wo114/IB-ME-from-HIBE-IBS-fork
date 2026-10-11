@@ -1,0 +1,386 @@
+{
+  "schema": "IBME/LUO2024/PENDING-ROUTE-NUMERICS/1",
+  "profiles": [
+    {
+      "name": "current",
+      "parameters": {
+        "degree": 256,
+        "k": 11,
+        "l": 10,
+        "q": 274877844481,
+        "root": 153250464611,
+        "eta": 1,
+        "kappa": 64,
+        "gamma1": 125440,
+        "gamma2": 31470387200,
+        "gamma3": 15270991360,
+        "dropped_bits": 28,
+        "identity_max_bytes": 64,
+        "message_max_bytes": 4096,
+        "max_extract_attempts": 1024,
+        "max_sign_attempts": 1024,
+        "max_uniform_attempts": 128,
+        "max_cached_identities": 64
+      },
+      "constructor_valid": true,
+      "theorem_status": "PENDING_MAIN_PROOF",
+      "epsilon": "1/256",
+      "interval_precision_bits": 192,
+      "Bc": 62908661759,
+      "good_residue_count": 274588830711,
+      "h": 9,
+      "F": {
+        "lower": "0.0516960534100467185796223587012601713220651188740186386053",
+        "upper": "0.0516960534100467185796223587012601713220651188740186386514"
+      },
+      "delta_A_upper_log2": {
+        "lower": "-290.305252504141667344573052209528803543035802297056218241",
+        "upper": "-290.305252504141667344573052209528803543035802297056218238"
+      },
+      "sign_per_trial_lower": {
+        "lower": "0.0139434756663089226212017468286877802705209765603906266577",
+        "upper": "0.0139434756663089226212017468286877802705209765603906266817"
+      },
+      "sign_abort_cond_goodA_log2": {
+        "lower": "-20.7439312950332408783349657276616100852541993069284674803",
+        "upper": "-20.7439312950332408783349657276616100852541993069284674439"
+      },
+      "extract_per_trial_lower": {
+        "lower": "0.00413406895941155248003993076012653072822376099096012943846",
+        "upper": "0.00413406895941155248003993076012653072822376099096012944554"
+      },
+      "extract_abort_log2": {
+        "lower": "-6.12000059178266184774004420884949905427689419677740005388",
+        "upper": "-6.12000059178266184774004420884949905427689419677740004299"
+      },
+      "illustrative_lifetime": {
+        "setups": 1,
+        "distinct_extract_calls": 64,
+        "sign_calls": 1048576,
+        "unclipped_union_log2": {
+          "lower": "0.601503797575961278699173517428912007645969462236369088034",
+          "upper": "0.601503797575961278699173517428912007645969462236369108914"
+        },
+        "bound_nontrivial": false,
+        "at_most_2pow_minus128": false,
+        "excludes": "uniform-draw/RO-programming/other primitive/state failures; not enforced counters"
+      },
+      "sampler_tail_per_call": [
+        {
+          "label": "public-A",
+          "bound": 274877844481,
+          "draw_bytes": 5,
+          "rejection_numerator": 249852,
+          "rejection_denominator": 1099511627776,
+          "abort_log2": {
+            "lower": "-2824.86857715791208184534733584228288747132457466415998796",
+            "upper": "-2824.86857715791208184534733584228288747132457466415998794"
+          }
+        },
+        {
+          "label": "secret",
+          "bound": 3,
+          "draw_bytes": 1,
+          "rejection_numerator": 1,
+          "rejection_denominator": 256,
+          "abort_log2": {
+            "lower": "-1024.00000000000000000000000000000000000000000000000000001",
+            "upper": "-1023.99999999999999999999999999999999999999999999999999999"
+          }
+        },
+        {
+          "label": "extract-mask",
+          "bound": 250881,
+          "draw_bytes": 3,
+          "rejection_numerator": 219070,
+          "rejection_denominator": 16777216,
+          "abort_log2": {
+            "lower": "-801.147852034211878166210547186809420238687496367861079646",
+            "upper": "-801.147852034211878166210547186809420238687496367861079644"
+          }
+        },
+        {
+          "label": "sign-mask",
+          "bound": 62940774401,
+          "draw_bytes": 5,
+          "rejection_numerator": 29518462959,
+          "rejection_denominator": 1099511627776,
+          "abort_log2": {
+            "lower": "-668.044985551143945742246603989218215794046175572443547307",
+            "upper": "-668.044985551143945742246603989218215794046175572443547306"
+          }
+        },
+        {
+          "label": "worst-challenge-position",
+          "bound": 193,
+          "draw_bytes": 1,
+          "rejection_numerator": 63,
+          "rejection_denominator": 256,
+          "abort_log2": {
+            "lower": "-258.908169792010691795270757743684630251436103507058828213",
+            "upper": "-258.908169792010691795270757743684630251436103507058828212"
+          }
+        }
+      ],
+      "challenge_xof_worst_consumption_bytes": 8256,
+      "hash_bytes": 16384,
+      "xof_budget_sufficient": true,
+      "security_claim": "none",
+      "backend_admitted": false
+    },
+    {
+      "name": "proposal-k49-g145000-g2-34000000000-cap4096",
+      "parameters": {
+        "degree": 256,
+        "k": 11,
+        "l": 10,
+        "q": 274877844481,
+        "root": 153250464611,
+        "eta": 1,
+        "kappa": 49,
+        "gamma1": 145000,
+        "gamma2": 34000000000,
+        "gamma3": 15270991360,
+        "dropped_bits": 28,
+        "identity_max_bytes": 64,
+        "message_max_bytes": 4096,
+        "max_extract_attempts": 4096,
+        "max_sign_attempts": 4096,
+        "max_uniform_attempts": 128,
+        "max_cached_identities": 64
+      },
+      "constructor_valid": true,
+      "theorem_status": "PENDING_MAIN_PROOF",
+      "epsilon": "1/256",
+      "interval_precision_bits": 192,
+      "Bc": 67971579999,
+      "good_residue_count": 274622064471,
+      "h": 9,
+      "F": {
+        "lower": "0.0726885668159122676875906153092626114794425456833349856093",
+        "upper": "0.0726885668159122676875906153092626114794425456833349856760"
+      },
+      "delta_A_upper_log2": {
+        "lower": "-292.293658009071843554997690635262078964276551060093314843",
+        "upper": "-292.293658009071843554997690635262078964276551060093314839"
+      },
+      "sign_per_trial_lower": {
+        "lower": "0.0248316009635235510172194917127657407937450830799898631999",
+        "upper": "0.0248316009635235510172194917127657407937450830799898632432"
+      },
+      "sign_abort_cond_goodA_log2": {
+        "lower": "-148.589443640881640255819661501145139173176789401802045888",
+        "upper": "-148.589443640881640255819661501145139173176789401802045623"
+      },
+      "extract_per_trial_lower": {
+        "lower": "0.0263931611684955929970815351639319410308794362633141808414",
+        "upper": "0.0263931611684955929970815351639319410308794362633141808875"
+      },
+      "extract_abort_log2": {
+        "lower": "-158.059696080935110177883954347125836480631143656049797233",
+        "upper": "-158.059696080935110177883954347125836480631143656049796952"
+      },
+      "illustrative_lifetime": {
+        "setups": 1,
+        "distinct_extract_calls": 64,
+        "sign_calls": 1048576,
+        "unclipped_union_log2": {
+          "lower": "-128.589443516737984568933533725684141492530048360314318411",
+          "upper": "-128.589443516737984568933533725684141492530048360314318146"
+        },
+        "bound_nontrivial": true,
+        "at_most_2pow_minus128": true,
+        "excludes": "uniform-draw/RO-programming/other primitive/state failures; not enforced counters"
+      },
+      "sampler_tail_per_call": [
+        {
+          "label": "public-A",
+          "bound": 274877844481,
+          "draw_bytes": 5,
+          "rejection_numerator": 249852,
+          "rejection_denominator": 1099511627776,
+          "abort_log2": {
+            "lower": "-2824.86857715791208184534733584228288747132457466415998796",
+            "upper": "-2824.86857715791208184534733584228288747132457466415998794"
+          }
+        },
+        {
+          "label": "secret",
+          "bound": 3,
+          "draw_bytes": 1,
+          "rejection_numerator": 1,
+          "rejection_denominator": 256,
+          "abort_log2": {
+            "lower": "-1024.00000000000000000000000000000000000000000000000000001",
+            "upper": "-1023.99999999999999999999999999999999999999999999999999999"
+          }
+        },
+        {
+          "label": "extract-mask",
+          "bound": 290001,
+          "draw_bytes": 3,
+          "rejection_numerator": 247159,
+          "rejection_denominator": 16777216,
+          "abort_log2": {
+            "lower": "-778.869770766200867610603953269917952575419904415435618056",
+            "upper": "-778.869770766200867610603953269917952575419904415435618055"
+          }
+        },
+        {
+          "label": "sign-mask",
+          "bound": 68000000001,
+          "draw_bytes": 5,
+          "rejection_numerator": 11511627760,
+          "rejection_denominator": 1099511627776,
+          "abort_log2": {
+            "lower": "-841.936282133597301128197690338367869752837735987900085443",
+            "upper": "-841.936282133597301128197690338367869752837735987900085442"
+          }
+        },
+        {
+          "label": "worst-challenge-position",
+          "bound": 208,
+          "draw_bytes": 1,
+          "rejection_numerator": 48,
+          "rejection_denominator": 256,
+          "abort_log2": {
+            "lower": "-309.124799907692008773921415174679486878743755815362424262",
+            "upper": "-309.124799907692008773921415174679486878743755815362424261"
+          }
+        }
+      ],
+      "challenge_xof_worst_consumption_bytes": 6321,
+      "hash_bytes": 16384,
+      "xof_budget_sufficient": true,
+      "security_claim": "none",
+      "backend_admitted": false
+    },
+    {
+      "name": "control-k64-g145000-g2-34000000000-cap4096",
+      "parameters": {
+        "degree": 256,
+        "k": 11,
+        "l": 10,
+        "q": 274877844481,
+        "root": 153250464611,
+        "eta": 1,
+        "kappa": 64,
+        "gamma1": 145000,
+        "gamma2": 34000000000,
+        "gamma3": 15270991360,
+        "dropped_bits": 28,
+        "identity_max_bytes": 64,
+        "message_max_bytes": 4096,
+        "max_extract_attempts": 4096,
+        "max_sign_attempts": 4096,
+        "max_uniform_attempts": 128,
+        "max_cached_identities": 64
+      },
+      "constructor_valid": true,
+      "theorem_status": "PENDING_MAIN_PROOF",
+      "epsilon": "1/256",
+      "interval_precision_bits": 192,
+      "Bc": 67962879999,
+      "good_residue_count": 274543764471,
+      "h": 9,
+      "F": {
+        "lower": "0.0325629193163384067100464566423426605170459082698191097209",
+        "upper": "0.0325629193163384067100464566423426605170459082698191097502"
+      },
+      "delta_A_upper_log2": {
+        "lower": "-289.974999156729596000189410079542036067676497822715758757",
+        "upper": "-289.974999156729596000189410079542036067676497822715758753"
+      },
+      "sign_per_trial_lower": {
+        "lower": "0.00801584201645303214539939992145065630792421971358990899270",
+        "upper": "0.00801584201645303214539939992145065630792421971358990900603"
+      },
+      "sign_abort_cond_goodA_log2": {
+        "lower": "-47.5587132369867947383041430568762005963186847239738593692",
+        "upper": "-47.5587132369867947383041430568762005963186847239738592887"
+      },
+      "extract_per_trial_lower": {
+        "lower": "0.00867083782594658356561896913509168340764208675610584596920",
+        "upper": "0.00867083782594658356561896913509168340764208675610584598385"
+      },
+      "extract_abort_log2": {
+        "lower": "-51.4618313271110537483889817893344580065348426062469029364",
+        "upper": "-51.4618313271110537483889817893344580065348426062469028475"
+      },
+      "illustrative_lifetime": {
+        "setups": 1,
+        "distinct_extract_calls": 64,
+        "sign_calls": 1048576,
+        "unclipped_union_log2": {
+          "lower": "-27.5587073512871996564033274497079060125411534213759199177",
+          "upper": "-27.5587073512871996564033274497079060125411534213759198372"
+        },
+        "bound_nontrivial": true,
+        "at_most_2pow_minus128": false,
+        "excludes": "uniform-draw/RO-programming/other primitive/state failures; not enforced counters"
+      },
+      "sampler_tail_per_call": [
+        {
+          "label": "public-A",
+          "bound": 274877844481,
+          "draw_bytes": 5,
+          "rejection_numerator": 249852,
+          "rejection_denominator": 1099511627776,
+          "abort_log2": {
+            "lower": "-2824.86857715791208184534733584228288747132457466415998796",
+            "upper": "-2824.86857715791208184534733584228288747132457466415998794"
+          }
+        },
+        {
+          "label": "secret",
+          "bound": 3,
+          "draw_bytes": 1,
+          "rejection_numerator": 1,
+          "rejection_denominator": 256,
+          "abort_log2": {
+            "lower": "-1024.00000000000000000000000000000000000000000000000000001",
+            "upper": "-1023.99999999999999999999999999999999999999999999999999999"
+          }
+        },
+        {
+          "label": "extract-mask",
+          "bound": 290001,
+          "draw_bytes": 3,
+          "rejection_numerator": 247159,
+          "rejection_denominator": 16777216,
+          "abort_log2": {
+            "lower": "-778.869770766200867610603953269917952575419904415435618056",
+            "upper": "-778.869770766200867610603953269917952575419904415435618055"
+          }
+        },
+        {
+          "label": "sign-mask",
+          "bound": 68000000001,
+          "draw_bytes": 5,
+          "rejection_numerator": 11511627760,
+          "rejection_denominator": 1099511627776,
+          "abort_log2": {
+            "lower": "-841.936282133597301128197690338367869752837735987900085443",
+            "upper": "-841.936282133597301128197690338367869752837735987900085442"
+          }
+        },
+        {
+          "label": "worst-challenge-position",
+          "bound": 193,
+          "draw_bytes": 1,
+          "rejection_numerator": 63,
+          "rejection_denominator": 256,
+          "abort_log2": {
+            "lower": "-258.908169792010691795270757743684630251436103507058828213",
+            "upper": "-258.908169792010691795270757743684630251436103507058828212"
+          }
+        }
+      ],
+      "challenge_xof_worst_consumption_bytes": 8256,
+      "hash_bytes": 16384,
+      "xof_budget_sufficient": true,
+      "security_claim": "none",
+      "backend_admitted": false
+    }
+  ]
+}

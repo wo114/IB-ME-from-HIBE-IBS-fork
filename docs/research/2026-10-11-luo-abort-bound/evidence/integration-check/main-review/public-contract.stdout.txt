@@ -1,0 +1,124 @@
+{
+  "scope": "public-interface boundary checks; no CHKP/Luo composition executed",
+  "checks": [
+    {
+      "name": "ordered_identity_seed_contract",
+      "passed": true,
+      "parent_role": "rcv",
+      "child_role": "phi",
+      "raw_identity_lengths": [
+        3,
+        5
+      ],
+      "inner_lengths": [
+        86,
+        86,
+        32
+      ]
+    },
+    {
+      "name": "role_separation",
+      "passed": true
+    },
+    {
+      "name": "max_raw_identity_fixed_width",
+      "passed": true
+    },
+    {
+      "name": "oversized_raw_identity_rejected",
+      "passed": true
+    },
+    {
+      "name": "invalid_inner_capacity_85_32",
+      "passed": true
+    },
+    {
+      "name": "invalid_inner_capacity_87_32",
+      "passed": true
+    },
+    {
+      "name": "invalid_inner_capacity_86_31",
+      "passed": true
+    },
+    {
+      "name": "none_does_not_block_functional_parameter_check",
+      "passed": true
+    },
+    {
+      "name": "reject_ABB10HIBE",
+      "passed": true,
+      "blockers": [
+        "MOCK_OR_TEACHING_BACKEND",
+        "NOT_THE_REVIEWED_CHKP_SLOT",
+        "UNREVIEWED_METHOD_ORIGIN:decrypt",
+        "UNREVIEWED_METHOD_ORIGIN:derive",
+        "UNREVIEWED_METHOD_ORIGIN:encrypt",
+        "UNREVIEWED_METHOD_ORIGIN:extract",
+        "UNREVIEWED_METHOD_ORIGIN:load_ciphertext",
+        "UNREVIEWED_METHOD_ORIGIN:setup",
+        "UNREVIEWED_METHOD_ORIGIN:validate_key_binding"
+      ]
+    },
+    {
+      "name": "reject_MockHIBE",
+      "passed": true,
+      "blockers": [
+        "MOCK_OR_TEACHING_BACKEND",
+        "NOT_THE_REVIEWED_CHKP_SLOT",
+        "UNREVIEWED_METHOD_ORIGIN:decrypt",
+        "UNREVIEWED_METHOD_ORIGIN:derive",
+        "UNREVIEWED_METHOD_ORIGIN:encrypt",
+        "UNREVIEWED_METHOD_ORIGIN:extract",
+        "UNREVIEWED_METHOD_ORIGIN:load_ciphertext",
+        "UNREVIEWED_METHOD_ORIGIN:setup",
+        "UNREVIEWED_METHOD_ORIGIN:validate_key_binding"
+      ]
+    },
+    {
+      "name": "existing_hybrid_factory_is_teaching_abb10",
+      "passed": true
+    },
+    {
+      "name": "application_capacity_not_seed_capacity",
+      "passed": true,
+      "application_max_bytes": 3924
+    },
+    {
+      "name": "first_suite_has_same_leaf_256_addresses",
+      "passed": true
+    },
+    {
+      "name": "positions_use_ordered_public_G",
+      "passed": true,
+      "independence_proved": false,
+      "preimages_generated": 0,
+      "note": "256 distinct input positions; output collisions are allowed. This checks no sampling distribution."
+    },
+    {
+      "name": "first_suite_rejects_32_preimages",
+      "passed": true
+    },
+    {
+      "name": "seed_kem_is_functions_not_HIBE_backend",
+      "passed": true,
+      "encapsulate_signature": "(oracle, receiver, sender, seed, noise, *, rng=None)",
+      "decapsulate_signature": "(key, capsule)"
+    },
+    {
+      "name": "step7_cap32_rejects_33",
+      "passed": true,
+      "exception": "invalid leaf range"
+    },
+    {
+      "name": "step7_cap32_rejects_256",
+      "passed": true,
+      "exception": "invalid leaf range"
+    }
+  ],
+  "passed": 18,
+  "preimages_generated": 0,
+  "seed_encapsulations": 0,
+  "smoke_executed": false,
+  "security_claim": "none",
+  "backend_admitted": false
+}
