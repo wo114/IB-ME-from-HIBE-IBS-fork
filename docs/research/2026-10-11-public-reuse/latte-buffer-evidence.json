@@ -1,0 +1,41 @@
+{
+  "source": {
+    "revision": "18cfbf9a671fca34785583b58ab9f28e3be21a3c",
+    "source_sha256": "5a6a3e8c4f1f7cea3692a9676c4464ab8c53665391682a5780ce708d5d3ce189",
+    "fresh_box_muller_buffer_filled": true,
+    "fresh_box_muller_buffer_read": false,
+    "reused_comparison_buffer_read": true
+  },
+  "controlled_comparison": {
+    "upstream": [
+      {
+        "mode": 0,
+        "result": 1,
+        "entropy_calls": 3
+      },
+      {
+        "mode": 1,
+        "result": 1,
+        "entropy_calls": 3
+      }
+    ],
+    "buffer_edit": [
+      {
+        "mode": 0,
+        "result": 1,
+        "entropy_calls": 3
+      },
+      {
+        "mode": 1,
+        "result": 26,
+        "entropy_calls": 3
+      }
+    ]
+  },
+  "upstream_ignores_changed_fresh_box_muller_bytes": true,
+  "buffer_edit_restores_dependence": true,
+  "statistical_sampling_test": false,
+  "production_patch_admitted": false,
+  "security_claim": "none",
+  "backend_admitted": false
+}

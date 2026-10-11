@@ -21,8 +21,8 @@
 | ID / 算法 | 假设与论文模型 | 原文与参数状态 | 实现及接入状态 |
 |---|---|---|---|
 | `abb-rom` — ABB10 CRYPTO 固定维度 HIBE | 普通 LWE，经典 ROM；匿名/两层条件按选定算法映射 | [18 页作者稿](../papers/2010_lattice_basis_delegation_agrawal.pdf)、[算法核验](research/2026-10-04/ABB10两层HIBE算法与参数规范.md)。完整 BasisDel、模可逆 SampleR 与逐层宽度仍需有限实例 | **已有教学后端与公共代数组件**。`src/ibme/hibe/abb10.py` 可以运行，但与忠实固定维度论文实例有差别，不能改名升级为正式 ABB10 |
-| `chkp-rom` — CHKP 两层匿名 ROM HIBE | 普通 LWE，经典 ROM；匿名填充、固定同址解封装状态是具体条件 | [作者全文](../papers/2010_bonsai_trees_cash.pdf) §5.1–5.3；[当前交接](research/team-chkp/README.md)。真实参数、采样宽度、噪声及资源条件未同时闭合 | **已有真实研究组件，优先继续**。根基/扩展/随机化/叶采样/缓存等代码及第七步外部包；尚无完整公开 `HIBEBackend`，不能登记真实 CHKP+Luo 已通 |
-| `latte` — LATTE NTRU/RLWE HIBE | NTRU 结构陷门与 Ring-LWE 密文路线；完整定理依赖待逐项对应。IND-CCA 标签不能代替匿名性 | [作者接受稿](../papers/2024_quantum_safe_hibe_zhao.pdf)；作者源码含具体参数，详见下节 | **有作者 C 源码，未本地编译/接入**。实际 Delegate 与两层参数存在；Wang 组合要求的匿名性质尚未核实，暂作工程候选 |
+| `chkp-rom` — CHKP 两层匿名 ROM HIBE | 普通 LWE，经典 ROM；匿名填充、固定同址解封装状态是具体条件 | [作者全文](../papers/2010_bonsai_trees_cash.pdf) §5.1–5.3；[当前交接](research/team-chkp/README.md)。真实参数、采样宽度、噪声及资源条件未同时闭合 | **已有真实研究组件，优先继续**。根基/扩展/随机化/叶采样/缓存等代码、第七步外部包及已并入的 [first_suite 有限 DelTrap 对照](research/2026-10-11-first-suite-compact/README.md)；独立 n=1 原型含公开种子恢复反例。尚无完整公开 `HIBEBackend`，不能登记真实 CHKP+Luo 已通 |
+| `latte` — LATTE NTRU/RLWE HIBE | NTRU 结构陷门与 Ring-LWE 密文路线；完整定理依赖待逐项对应。IND-CCA 标签不能代替匿名性 | [作者接受稿](../papers/2024_quantum_safe_hibe_zhao.pdf)；作者源码含具体参数，详见下节 | **有作者 C 源码；已做局部标量 C 诊断，未完整 HIBE 运行/接入**。[固定版本诊断](research/2026-10-11-public-reuse/README.md)复现缓冲区使用问题，修订未正式准入；实际 Delegate 与两层参数存在；Wang 组合要求的匿名性质尚未核实，暂作工程候选 |
 | `gkr2025` — Goyal–Koppula–Rajasree 自适应 HIBE 编译器 | 标准模型论文路线；一般编译器依赖 PKE、OTSE、garbling、可委派 PRF；匿名 LWE 扩展另含 lockable obfuscation | [34 页用户完整稿](../papers/2025_adaptive_hibe_goyal.pdf)已取得；已定位 §3/Theorem 3.1 与匿名扩展。无本项目有限参数闭环 | **仅候选，复杂编译器储备**。无完整后端；须先明确匿名扩展和电路/对象规模，不能简化成一套普通矩阵公式 |
 | `zhang2020` — Zhang 等理想格 HIBE | Ring-LWE 路线；自适应声明、匿名性及模数条件待完整映射 | [19 页原文](../papers/2020_ideal_lattice_hibe_zhang.pdf)；§4.1–4.3 的私钥类型、委派及 SamplePre 输入仍有实施疑点 | **暂缓完整实现**。只有可复用公共环算术基础；先澄清短向量/可委派陷门类型，不能自行补造缺失算法 |
 | `abb-standard-selective` — ABB 标准模型选择性 HIBE | 普通 LWE，标准模型选择性身份；§7 自适应 IBE 不等于 §8 自适应 HIBE | [40 页作者稿](../papers/2010_lattice_hibe_standard_agrawal.pdf) §8/Theorem 33；参数条件待独立实例化 | **模型对照**。没有完整后端；不能直接登记为满足当前自适应匿名组合前提 |
@@ -37,7 +37,7 @@
 - [param.h](https://gitlab.com/raykzhao/latte/-/blob/master/latte_3/param.h)给出 `N=1024`、`L=2`、`Q=68718428161`，另列各层宽度、范数与精度。这是作者代码配置，不是本项目已核安全参数。
 - [Makefile](https://gitlab.com/raykzhao/latte/-/blob/master/latte_3/Makefile)链接 GMP、MPFR、MPC、XKCP、quadmath；目录有 `keygen.c`、`extract.c`、`encrypt.c`、`decrypt.c`、`test.c`。[许可证](https://gitlab.com/raykzhao/latte/-/blob/master/LICENSE)为 BSD Zero Clause。
 
-本轮只读取网页/API/源码，未下载依赖、编译或跑测试；master 未冻结为本项目源码版本。下一次实际复现须先固定提交或归档 SHA-256，并核对匿名适配和测试覆盖。
+原目录调查只读取网页/API/源码；本次合并同时取得上游独立 [LATTE 标量 C 探针证据](research/2026-10-11-public-reuse/latte-buffer-evidence.json)，固定源码 revision 为 `18cfbf9a671fca34785583b58ab9f28e3be21a3c`。该探针已实际编译/运行并复现新 Box–Muller 缓冲未被读取的问题，不是完整 HIBE 复现或统计分布验收；生产补丁未准入。后续完整复现仍须核对匿名适配、依赖和全算法测试。
 
 ## 3. IBS：11 条路线
 

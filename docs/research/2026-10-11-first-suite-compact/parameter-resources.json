@@ -1,0 +1,624 @@
+{
+  "estimator_revision": "53da5982597709ba0fdf94ea37a84d822310fd84",
+  "model": "ADPS16 Core-SVP classical/quantum, LGSA, primal-uSVP ONLY",
+  "noise_model": "Gaussian sigma=continuous_width/sqrt(2*pi) comparator; not a literal rounded-noise PMF theorem",
+  "finite_root_entropy_floor": "319/10",
+  "root_regularity_target_bits": 128,
+  "source_finite_R_mass_floor_checked": true,
+  "rows": [
+    {
+      "n": 128,
+      "q": 2305843009213693951,
+      "k": 61,
+      "m_bar": 1620,
+      "root_dimension": 9428,
+      "original_parent_dimension": 18856,
+      "leaf_dimension": 28284,
+      "deltrap_sampling_prefix": 11048,
+      "deltrap_columns": 7808,
+      "root_gs_squared_bound": 3698682393610,
+      "source_width_squared": 2130441058719360,
+      "original_parent_gs_squared_bound": 40171596603212252160,
+      "compact_frobenius_parent_gs_squared_bound": 1837777768730394682982410,
+      "original_leaf_width_squared": 23138839643450257244160,
+      "compact_frobenius_leaf_width_squared": 1058559994788707337397868160,
+      "continuous_noise_width": 32,
+      "alpha": "32/2305843009213693951",
+      "noise_lower_bound_2sqrt_n": true,
+      "original_conditional_noise": {
+        "q": 2305843009213693951,
+        "dimension": 28284,
+        "width_squared": "23138839643450257244160",
+        "alpha": "32/2305843009213693951",
+        "assumed_preimage_norm_squared_upper": "654458940475347075893821440",
+        "preimage_norm_measured_or_certified": false,
+        "l1_integer_upper": 4302408241020919,
+        "rounding_error_upper": "2151204120510460",
+        "integer_phase_radius": 576460752303423487,
+        "continuous_margin": "574309548182913027",
+        "continuous_squared_upper": "43560787078039101371492755112960",
+        "conditional_noise_sufficient": true,
+        "error_bits": 64,
+        "conditional_per_bit_failure_upper": "1/18446744073709551616",
+        "conditional_lifetime_failure_upper": "1/68719476736",
+        "seed_bits": 256,
+        "encapsulations": 1048576,
+        "q_times_alpha": "32",
+        "shared_preamble_independence_required": false,
+        "noise_definition": "CHKP section 2.3.1: round(q*continuous Gaussian width alpha) mod q",
+        "noise_implementation_verified": false,
+        "lwe_hardness_or_reduction_verified": false,
+        "excluded": [
+          "key norm bad event",
+          "sampler TV and abort",
+          "basis/resource failures",
+          "finite continuous-noise implementation",
+          "security estimation"
+        ],
+        "backend_admitted": false,
+        "security_claim": "none"
+      },
+      "noise_check_omitted_if_dimension_exceeds_existing_checker": false,
+      "Gaussian_comparator_sigma": "12.7661529728458",
+      "sample_counts": {
+        "preamble": 28284,
+        "chosen_plaintext_seed": 28540
+      },
+      "minimum_private_wire_bytes": {
+        "root_full_basis": 533323104,
+        "original_parent_full_basis": 2133292416,
+        "compact_parent_trapdoor": 345051136,
+        "terminal_256_vectors": 43444224
+      },
+      "actual_implementation_caps": {
+        "root_n": 64,
+        "root_basis": 1024,
+        "gpv_prefix": 256,
+        "tobasis": 192,
+        "private_bytes": 16777216
+      },
+      "execution_gates": {
+        "root": false,
+        "original_parent": false,
+        "compact_source": false,
+        "leaf": false,
+        "terminal_unit_scalar": true,
+        "compact_terminal_unit_scalar": false
+      },
+      "actual_key_generation_or_sampling": false,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "normalized_lwe": {
+        "n": 128,
+        "m": "28412",
+        "secret": "D(\u03c3=12.77, \u03bc=0.00, n=128)",
+        "error": "D(\u03c3=12.77, \u03bc=0.00, n=28412)"
+      },
+      "primal_usvp": {
+        "classical": {
+          "core_svp_log2": 11.972,
+          "fields": {
+            "rop": "4017.27080033710",
+            "red": "4017.27080033710",
+            "delta": "1.01250491785081",
+            "beta": "41",
+            "d": "150",
+            "tag": "usvp"
+          },
+          "seconds": 0.07877643099999965,
+          "goal": "heuristic secret search; not an executed key-recovery attack"
+        },
+        "quantum": {
+          "core_svp_log2": 10.865,
+          "fields": {
+            "rop": "1865.05181919637",
+            "red": "1865.05181919637",
+            "delta": "1.01250491785081",
+            "beta": "41",
+            "d": "150",
+            "tag": "usvp"
+          },
+          "seconds": 0.06919320100000004,
+          "goal": "heuristic secret search; not an executed key-recovery attack"
+        }
+      },
+      "private_encoding_lower_bounds": {
+        "existing_signed_length_integer_bytes": 6,
+        "compact_JSON_integer_string_bytes": 4,
+        "compact_JSON_formula": "p*w integers, at least quoted zero plus separator; row/outer/header omitted"
+      }
+    },
+    {
+      "n": 256,
+      "q": 2305843009213693951,
+      "k": 61,
+      "m_bar": 3183,
+      "root_dimension": 18799,
+      "original_parent_dimension": 37598,
+      "leaf_dimension": 56397,
+      "deltrap_sampling_prefix": 21982,
+      "deltrap_columns": 15616,
+      "root_gs_squared_bound": 14534451924490,
+      "source_width_squared": 8429982116204200,
+      "original_parent_gs_squared_bound": 316950467605045511600,
+      "compact_frobenius_parent_gs_squared_bound": 28937676491731057122304010,
+      "original_leaf_width_squared": 183831271210926396728000,
+      "compact_frobenius_leaf_width_squared": 16783852365204013130936325800,
+      "continuous_noise_width": 32,
+      "alpha": "32/2305843009213693951",
+      "noise_lower_bound_2sqrt_n": true,
+      "original_conditional_noise": {
+        "q": 2305843009213693951,
+        "dimension": 56397,
+        "width_squared": "183831271210926396728000",
+        "alpha": "32/2305843009213693951",
+        "assumed_preimage_norm_squared_upper": "10367532202482615996269016000",
+        "preimage_norm_measured_or_certified": false,
+        "l1_integer_upper": 24180523435678809,
+        "rounding_error_upper": "12090261717839405",
+        "integer_phase_radius": 576460752303423487,
+        "continuous_margin": "564370490585584082",
+        "continuous_squared_upper": "690062943397242920711665705026560",
+        "conditional_noise_sufficient": true,
+        "error_bits": 64,
+        "conditional_per_bit_failure_upper": "1/18446744073709551616",
+        "conditional_lifetime_failure_upper": "1/68719476736",
+        "seed_bits": 256,
+        "encapsulations": 1048576,
+        "q_times_alpha": "32",
+        "shared_preamble_independence_required": false,
+        "noise_definition": "CHKP section 2.3.1: round(q*continuous Gaussian width alpha) mod q",
+        "noise_implementation_verified": false,
+        "lwe_hardness_or_reduction_verified": false,
+        "excluded": [
+          "key norm bad event",
+          "sampler TV and abort",
+          "basis/resource failures",
+          "finite continuous-noise implementation",
+          "security estimation"
+        ],
+        "backend_admitted": false,
+        "security_claim": "none"
+      },
+      "noise_check_omitted_if_dimension_exceeds_existing_checker": false,
+      "Gaussian_comparator_sigma": "12.7661529728458",
+      "sample_counts": {
+        "preamble": 56397,
+        "chosen_plaintext_seed": 56653
+      },
+      "minimum_private_wire_bytes": {
+        "root_full_basis": 2120414406,
+        "original_parent_full_basis": 8481657624,
+        "compact_parent_trapdoor": 1373083648,
+        "terminal_256_vectors": 86625792
+      },
+      "actual_implementation_caps": {
+        "root_n": 64,
+        "root_basis": 1024,
+        "gpv_prefix": 256,
+        "tobasis": 192,
+        "private_bytes": 16777216
+      },
+      "execution_gates": {
+        "root": false,
+        "original_parent": false,
+        "compact_source": false,
+        "leaf": false,
+        "terminal_unit_scalar": true,
+        "compact_terminal_unit_scalar": false
+      },
+      "actual_key_generation_or_sampling": false,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "normalized_lwe": {
+        "n": 256,
+        "m": "56397",
+        "secret": "D(\u03c3=12.77, \u03bc=0.00, n=256)",
+        "error": "D(\u03c3=12.77, \u03bc=0.00, n=56397)"
+      },
+      "primal_usvp": {
+        "classical": {
+          "core_svp_log2": 11.972,
+          "fields": {
+            "rop": "4017.27080033710",
+            "red": "4017.27080033710",
+            "delta": "1.01250491785081",
+            "beta": "41",
+            "d": "311",
+            "tag": "usvp"
+          },
+          "seconds": 0.07457814700000043,
+          "goal": "heuristic secret search; not an executed key-recovery attack"
+        },
+        "quantum": {
+          "core_svp_log2": 10.865,
+          "fields": {
+            "rop": "1865.05181919637",
+            "red": "1865.05181919637",
+            "delta": "1.01250491785081",
+            "beta": "41",
+            "d": "311",
+            "tag": "usvp"
+          },
+          "seconds": 0.07810232000000017,
+          "goal": "heuristic secret search; not an executed key-recovery attack"
+        }
+      },
+      "private_encoding_lower_bounds": {
+        "existing_signed_length_integer_bytes": 6,
+        "compact_JSON_integer_string_bytes": 4,
+        "compact_JSON_formula": "p*w integers, at least quoted zero plus separator; row/outer/header omitted"
+      }
+    },
+    {
+      "n": 512,
+      "q": 2305843009213693951,
+      "k": 61,
+      "m_bar": 6310,
+      "root_dimension": 37542,
+      "original_parent_dimension": 75084,
+      "leaf_dimension": 112626,
+      "deltrap_sampling_prefix": 43852,
+      "deltrap_columns": 31232,
+      "root_gs_squared_bound": 57626384947210,
+      "source_width_squared": 33653808809170640,
+      "original_parent_gs_squared_bound": 2526862580627768333760,
+      "compact_frobenius_parent_gs_squared_bound": 460917740840370202737049610,
+      "original_leaf_width_squared": 1475687747086616706915840,
+      "compact_frobenius_leaf_width_squared": 269175960650776198398436972240,
+      "continuous_noise_width": 64,
+      "alpha": "64/2305843009213693951",
+      "noise_lower_bound_2sqrt_n": true,
+      "original_conditional_noise": null,
+      "noise_check_omitted_if_dimension_exceeds_existing_checker": true,
+      "Gaussian_comparator_sigma": "25.5323059456917",
+      "sample_counts": {
+        "preamble": 112626,
+        "chosen_plaintext_seed": 112882
+      },
+      "minimum_private_wire_bytes": {
+        "root_full_basis": 8456410584,
+        "original_parent_full_basis": 33825642336,
+        "compact_parent_trapdoor": 5478342656,
+        "terminal_256_vectors": 172993536
+      },
+      "actual_implementation_caps": {
+        "root_n": 64,
+        "root_basis": 1024,
+        "gpv_prefix": 256,
+        "tobasis": 192,
+        "private_bytes": 16777216
+      },
+      "execution_gates": {
+        "root": false,
+        "original_parent": false,
+        "compact_source": false,
+        "leaf": false,
+        "terminal_unit_scalar": false,
+        "compact_terminal_unit_scalar": false
+      },
+      "actual_key_generation_or_sampling": false,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "normalized_lwe": {
+        "n": 512,
+        "m": "112370",
+        "secret": "D(\u03c3=25.53, \u03bc=0.00, n=512)",
+        "error": "D(\u03c3=25.53, \u03bc=0.00, n=112370)"
+      },
+      "primal_usvp": {
+        "classical": {
+          "core_svp_log2": 11.972,
+          "fields": {
+            "rop": "4017.27080033710",
+            "red": "4017.27080033710",
+            "delta": "1.01250491785081",
+            "beta": "41",
+            "d": "753",
+            "tag": "usvp"
+          },
+          "seconds": 0.09475724200000002,
+          "goal": "heuristic secret search; not an executed key-recovery attack"
+        },
+        "quantum": {
+          "core_svp_log2": 10.865,
+          "fields": {
+            "rop": "1865.05181919637",
+            "red": "1865.05181919637",
+            "delta": "1.01250491785081",
+            "beta": "41",
+            "d": "753",
+            "tag": "usvp"
+          },
+          "seconds": 0.09713394299999933,
+          "goal": "heuristic secret search; not an executed key-recovery attack"
+        }
+      },
+      "private_encoding_lower_bounds": {
+        "existing_signed_length_integer_bytes": 6,
+        "compact_JSON_integer_string_bytes": 4,
+        "compact_JSON_formula": "p*w integers, at least quoted zero plus separator; row/outer/header omitted"
+      }
+    },
+    {
+      "n": 1024,
+      "q": 2305843009213693951,
+      "k": 61,
+      "m_bar": 12562,
+      "root_dimension": 75026,
+      "original_parent_dimension": 150052,
+      "leaf_dimension": 225078,
+      "deltrap_sampling_prefix": 87588,
+      "deltrap_columns": 62464,
+      "root_gs_squared_bound": 229446164090890,
+      "source_width_squared": 134914344485443320,
+      "original_parent_gs_squared_bound": 20244167218729741052640,
+      "compact_frobenius_parent_gs_squared_bound": 7381294427056656181675622410,
+      "original_leaf_width_squared": 11903570324613087738952320,
+      "compact_frobenius_leaf_width_squared": 4340201123109313834825265977080,
+      "continuous_noise_width": 64,
+      "alpha": "64/2305843009213693951",
+      "noise_lower_bound_2sqrt_n": true,
+      "original_conditional_noise": null,
+      "noise_check_omitted_if_dimension_exceeds_existing_checker": true,
+      "Gaussian_comparator_sigma": "25.5323059456917",
+      "sample_counts": {
+        "preamble": 225078,
+        "chosen_plaintext_seed": 225334
+      },
+      "minimum_private_wire_bytes": {
+        "root_full_basis": 33773404056,
+        "original_parent_full_basis": 135093616224,
+        "compact_parent_trapdoor": 21884387328,
+        "terminal_256_vectors": 345719808
+      },
+      "actual_implementation_caps": {
+        "root_n": 64,
+        "root_basis": 1024,
+        "gpv_prefix": 256,
+        "tobasis": 192,
+        "private_bytes": 16777216
+      },
+      "execution_gates": {
+        "root": false,
+        "original_parent": false,
+        "compact_source": false,
+        "leaf": false,
+        "terminal_unit_scalar": false,
+        "compact_terminal_unit_scalar": false
+      },
+      "actual_key_generation_or_sampling": false,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "normalized_lwe": {
+        "n": 1024,
+        "m": "224310",
+        "secret": "D(\u03c3=25.53, \u03bc=0.00, n=1024)",
+        "error": "D(\u03c3=25.53, \u03bc=0.00, n=224310)"
+      },
+      "primal_usvp": {
+        "classical": {
+          "core_svp_log2": 33.58,
+          "fields": {
+            "rop": "1.28406572706745e10",
+            "red": "1.28406572706745e10",
+            "delta": "1.00862589181831",
+            "beta": "115",
+            "d": "2120",
+            "tag": "usvp"
+          },
+          "seconds": 0.1573783870000005,
+          "goal": "heuristic secret search; not an executed key-recovery attack"
+        },
+        "quantum": {
+          "core_svp_log2": 30.475,
+          "fields": {
+            "rop": "1.49241332458435e9",
+            "red": "1.49241332458435e9",
+            "delta": "1.00862589181831",
+            "beta": "115",
+            "d": "2120",
+            "tag": "usvp"
+          },
+          "seconds": 0.16610406700000002,
+          "goal": "heuristic secret search; not an executed key-recovery attack"
+        }
+      },
+      "private_encoding_lower_bounds": {
+        "existing_signed_length_integer_bytes": 6,
+        "compact_JSON_integer_string_bytes": 4,
+        "compact_JSON_formula": "p*w integers, at least quoted zero plus separator; row/outer/header omitted"
+      }
+    },
+    {
+      "n": 2048,
+      "q": 2305843009213693951,
+      "k": 61,
+      "m_bar": 25067,
+      "root_dimension": 149995,
+      "original_parent_dimension": 299990,
+      "leaf_dimension": 449985,
+      "deltrap_sampling_prefix": 175062,
+      "deltrap_columns": 124928,
+      "root_gs_squared_bound": 915702435164170,
+      "source_width_squared": 542095841617188640,
+      "original_parent_gs_squared_bound": 162623331526740420113600,
+      "compact_frobenius_parent_gs_squared_bound": 118557149506283211559659110410,
+      "original_leaf_width_squared": 96273012263830328707251200,
+      "compact_frobenius_leaf_width_squared": 70185832507719661243318193362720,
+      "continuous_noise_width": 128,
+      "alpha": "128/2305843009213693951",
+      "noise_lower_bound_2sqrt_n": true,
+      "original_conditional_noise": null,
+      "noise_check_omitted_if_dimension_exceeds_existing_checker": true,
+      "Gaussian_comparator_sigma": "51.0646118913834",
+      "sample_counts": {
+        "preamble": 449985,
+        "chosen_plaintext_seed": 450241
+      },
+      "minimum_private_wire_bytes": {
+        "root_full_basis": 134991000150,
+        "original_parent_full_basis": 539964000600,
+        "compact_parent_trapdoor": 87480582144,
+        "terminal_256_vectors": 691176960
+      },
+      "actual_implementation_caps": {
+        "root_n": 64,
+        "root_basis": 1024,
+        "gpv_prefix": 256,
+        "tobasis": 192,
+        "private_bytes": 16777216
+      },
+      "execution_gates": {
+        "root": false,
+        "original_parent": false,
+        "compact_source": false,
+        "leaf": false,
+        "terminal_unit_scalar": false,
+        "compact_terminal_unit_scalar": false
+      },
+      "actual_key_generation_or_sampling": false,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "normalized_lwe": {
+        "n": 2048,
+        "m": "448193",
+        "secret": "D(\u03c3=51.06, \u03bc=0.00, n=2048)",
+        "error": "D(\u03c3=51.06, \u03bc=0.00, n=448193)"
+      },
+      "primal_usvp": {
+        "classical": {
+          "core_svp_log2": 105.11999999999999,
+          "fields": {
+            "rop": "4.40832032246429e31",
+            "red": "4.40832032246429e31",
+            "delta": "1.00428178289300",
+            "beta": "360",
+            "d": "4418",
+            "tag": "usvp"
+          },
+          "seconds": 0.32206758700000027,
+          "goal": "heuristic secret search; not an executed key-recovery attack"
+        },
+        "quantum": {
+          "core_svp_log2": 95.4,
+          "fields": {
+            "rop": "5.22710935967863e28",
+            "red": "5.22710935967863e28",
+            "delta": "1.00428178289300",
+            "beta": "360",
+            "d": "4418",
+            "tag": "usvp"
+          },
+          "seconds": 0.33262032199999947,
+          "goal": "heuristic secret search; not an executed key-recovery attack"
+        }
+      },
+      "private_encoding_lower_bounds": {
+        "existing_signed_length_integer_bytes": 6,
+        "compact_JSON_integer_string_bytes": 4,
+        "compact_JSON_formula": "p*w integers, at least quoted zero plus separator; row/outer/header omitted"
+      }
+    },
+    {
+      "n": 4096,
+      "q": 2305843009213693951,
+      "k": 61,
+      "m_bar": 50075,
+      "root_dimension": 299931,
+      "original_parent_dimension": 599862,
+      "leaf_dimension": 899793,
+      "deltrap_sampling_prefix": 350006,
+      "deltrap_columns": 249856,
+      "root_gs_squared_bound": 3658499177472010,
+      "source_width_squared": 2180465509773317960,
+      "original_parent_gs_squared_bound": 1307978401623642058121520,
+      "compact_frobenius_parent_gs_squared_bound": 1906841054578152058076092825610,
+      "original_leaf_width_squared": 779555127367690666640425920,
+      "compact_frobenius_leaf_width_squared": 1136477268528578626613351324063560,
+      "continuous_noise_width": 128,
+      "alpha": "128/2305843009213693951",
+      "noise_lower_bound_2sqrt_n": true,
+      "original_conditional_noise": null,
+      "noise_check_omitted_if_dimension_exceeds_existing_checker": true,
+      "Gaussian_comparator_sigma": "51.0646118913834",
+      "sample_counts": {
+        "preamble": 899793,
+        "chosen_plaintext_seed": 900049
+      },
+      "minimum_private_wire_bytes": {
+        "root_full_basis": 539751628566,
+        "original_parent_full_basis": 2159006514264,
+        "compact_parent_trapdoor": 349804396544,
+        "terminal_256_vectors": 1382082048
+      },
+      "actual_implementation_caps": {
+        "root_n": 64,
+        "root_basis": 1024,
+        "gpv_prefix": 256,
+        "tobasis": 192,
+        "private_bytes": 16777216
+      },
+      "execution_gates": {
+        "root": false,
+        "original_parent": false,
+        "compact_source": false,
+        "leaf": false,
+        "terminal_unit_scalar": false,
+        "compact_terminal_unit_scalar": false
+      },
+      "actual_key_generation_or_sampling": false,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "normalized_lwe": {
+        "n": 4096,
+        "m": "895953",
+        "secret": "D(\u03c3=51.06, \u03bc=0.00, n=4096)",
+        "error": "D(\u03c3=51.06, \u03bc=0.00, n=895953)"
+      },
+      "primal_usvp": {
+        "classical": {
+          "core_svp_log2": 266.596,
+          "fields": {
+            "rop": "1.79222579633741e80",
+            "red": "1.79222579633741e80",
+            "delta": "1.00218856407682",
+            "beta": "913",
+            "d": "8711",
+            "tag": "usvp"
+          },
+          "seconds": 0.6332680760000002,
+          "goal": "heuristic secret search; not an executed key-recovery attack"
+        },
+        "quantum": {
+          "core_svp_log2": 241.94500000000002,
+          "fields": {
+            "rop": "6.80302866546535e72",
+            "red": "6.80302866546535e72",
+            "delta": "1.00218856407682",
+            "beta": "913",
+            "d": "8711",
+            "tag": "usvp"
+          },
+          "seconds": 0.6668138680000002,
+          "goal": "heuristic secret search; not an executed key-recovery attack"
+        }
+      },
+      "private_encoding_lower_bounds": {
+        "existing_signed_length_integer_bytes": 6,
+        "compact_JSON_integer_string_bytes": 4,
+        "compact_JSON_formula": "p*w integers, at least quoted zero plus separator; row/outer/header omitted"
+      }
+    }
+  ],
+  "parameters_are_formal": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "public_projection_encoding_note": "Compact private keys currently use canonical JSON integer strings (minimum4B/coefficient); original complete-basis/leaf private format uses signed length framing (minimum6B). Sizes recomputed without changing costs, parameters or generating keys."
+}

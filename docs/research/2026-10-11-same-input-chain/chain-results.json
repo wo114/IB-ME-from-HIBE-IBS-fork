@@ -1,0 +1,1438 @@
+{
+  "schema": "IBME/SAME-INPUT-CHAIN-AUDIT/1",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "epsilon_bits_not_security_bits": 32,
+  "explicit_options": {
+    "tail_bits": 64,
+    "mass_bits": 96,
+    "precision_bits": 160,
+    "gaussian_abort_bits": 32,
+    "max_uniform_trials": 48
+  },
+  "default_options_changed": false,
+  "hardcaps_changed": false,
+  "seed_search_or_retry": false,
+  "declared_attempt_count": 4,
+  "environment": {
+    "python": "3.13.14",
+    "sage": "10.9",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "attempts": [
+    {
+      "seed": "ibme-same-input-q17-0",
+      "attempts": 1,
+      "genbasis_certificate": {
+        "algorithm": "AP09 second construction, Algorithm 1 / section 3.3",
+        "parameters": {
+          "n": 1,
+          "q": 17,
+          "random_rows": 6,
+          "m1": 6,
+          "m2": 22,
+          "hadamard_scale": 9,
+          "max_uniform_trials": 192
+        },
+        "hadamard_width": 8,
+        "gs_squared_bound": 869,
+        "quality_gate": "4*d*m2 <= Cprime^2*w; deterministic Frobenius sufficient condition",
+        "quality_bad_probability_inside_admitted_domain": "0",
+        "unconditioned_paper_matrix_tv_upper": "1",
+        "ideal_A1_rank_abort_upper": "1/24137569",
+        "uniform_integer_abort_upper": "3/3138550867693340381917894711603833208051177722232017256448",
+        "actual_output_vs_uniform_including_abort_tv_upper": "1",
+        "public_random_tape_bytes_upper": 1284,
+        "rounding": "sqrt rounded upward to 2^-80; not a security level",
+        "randomness_assumption": "independent uniform bytes; fixed seed tests are not proof",
+        "near_uniform_bound_nonvacuous": false,
+        "dimension_optimality_claim": false,
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "stages": {
+        "GenBasis": {
+          "dimension": 28,
+          "gs_squared_min": "15064014377/9887948149233",
+          "gs_squared_max": "362749172769/1202249707",
+          "entropy_bytes": 142,
+          "public_matrix_sha256": "9aa4b9edac4dad5d8c5cedd67ab8b3395d5e9b4c966e29aebdcc1e718ecd1885"
+        },
+        "root_diagnostic_LLL": {
+          "dimension": 28,
+          "gs_squared_min": "1",
+          "gs_squared_max": "2"
+        },
+        "parent_admission": {
+          "block_entropy_bytes": 49,
+          "raw_basis_default": {
+            "status": "admission_rejected",
+            "sampler": {
+              "dimension": 56,
+              "width_squared": "135564",
+              "tv_upper_including_abort": "424958820174379661527096636585991975563154552111356008530710179849293327899868750497/32592574763845586671281908304006318268004601913530086209819786637112279309900167657572794368",
+              "public_random_tape_bytes": 17400512,
+              "scalar_width_squared_min": "54327259759916/120916390923",
+              "scalar_width_squared_max": "1340449802902622412/15064014377",
+              "path_resources": {
+                "all_canonical_syndromes": true,
+                "all_nonaborted_paths": true,
+                "initial_coordinate_abs_upper": "16",
+                "max_center_denominator_bits": 57,
+                "max_center_numerator_bits": 76,
+                "max_coefficient_bits": 34,
+                "max_residual_bits": 36,
+                "rational_bit_budget": 8192,
+                "max_dimension": 192,
+                "input_bit_budget": 1024,
+                "centers_or_CDFs_precomputed": 0
+              }
+            },
+            "entropy_bytes": 0,
+            "randbasis_worst_tape_bytes": 1531245056,
+            "reason": "Whole RandBasis tape exceeds the resource budget"
+          },
+          "reduced_basis_default": {
+            "status": "admission_rejected",
+            "sampler": {
+              "dimension": 56,
+              "width_squared": "135564",
+              "tv_upper_including_abort": "212479410087189849230934208689287095748467111879796848235667003102196155909898566517/16296287381922793335640954152003159134002300956765043104909893318556139654950083828786397184",
+              "public_random_tape_bytes": 17221200,
+              "scalar_width_squared_min": "67782",
+              "scalar_width_squared_max": "135564",
+              "path_resources": {
+                "all_canonical_syndromes": true,
+                "all_nonaborted_paths": true,
+                "initial_coordinate_abs_upper": "16",
+                "max_center_denominator_bits": 7,
+                "max_center_numerator_bits": 24,
+                "max_coefficient_bits": 22,
+                "max_residual_bits": 23,
+                "rational_bit_budget": 8192,
+                "max_dimension": 192,
+                "input_bit_budget": 1024,
+                "centers_or_CDFs_precomputed": 0
+              }
+            },
+            "entropy_bytes": 0,
+            "randbasis_worst_tape_bytes": 1515465600,
+            "reason": "Whole RandBasis tape exceeds the resource budget"
+          },
+          "explicit_options": {
+            "tail_bits": 64,
+            "mass_bits": 96,
+            "precision_bits": 160,
+            "gaussian_abort_bits": 32,
+            "max_uniform_trials": 48,
+            "max_gaussian_trials": 100000,
+            "max_radius": 1073741824,
+            "rational_bits": 8192,
+            "max_tape_bytes": 268435456
+          },
+          "explicit_sampler": {
+            "dimension": 56,
+            "width_squared": "135564",
+            "tv_upper_including_abort": "755884825687728273329763886000535536826886977568363105785520614615329/28948021547710555508887172052828800755012929636160811073093223410801292869632",
+            "public_random_tape_bytes": 1056780,
+            "scalar_width_squared_min": "67782",
+            "scalar_width_squared_max": "135564",
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "16",
+              "max_center_denominator_bits": 7,
+              "max_center_numerator_bits": 24,
+              "max_coefficient_bits": 22,
+              "max_residual_bits": 23,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "explicit_randbasis": {
+            "algorithm": "CHKP RandBasis, project finite K/norm-abort adaptation",
+            "dimension": 56,
+            "max_vectors": 88,
+            "width_squared": "135564",
+            "candidate_norm_squared_limit": "7591584",
+            "ideal_rank_exhaustion_upper": "177/4294967296",
+            "one_ideal_norm_tail_upper": "4294967297/309485009749287474686853120",
+            "actual_vs_bounded_ideal_output_tv_upper": "8314733082565011006627402746005890905095756753251994163640726760768619/3618502693463819438610896506603600094376616204520101384136652926350161608704",
+            "rank_or_norm_or_sampling_failure_upper": "36351981651845032783071692161650180416789552696676401350296579107286045683301269/15541350725296514754619060726492213934606480011180866614951156129439987827348267335680",
+            "failure_bound_nonvacuous": true,
+            "output_gs_squared_upper_on_success": "7591584",
+            "public_random_tape_bytes": 92996640,
+            "whole_call_random_tape_cap": 268435456,
+            "public_test_evidence_only": true,
+            "disclosure": "basis-dependent tape/profile diagnostics are excluded from the parent-basis output-TV comparison",
+            "canonical_complete_lattice_basis": true,
+            "all_candidate_tobasis_coordinate_resources_checked": true,
+            "parent_basis_comparison": "at common s,K,norm cutoff and canonical postprocessor, TV <= K*(delta_D0+delta_D1); NOT exact basis independence",
+            "ordinary_column_norm_preservation": false,
+            "spectral_norm_preservation": false,
+            "randomness_assumption": "independent uniform bytes; deterministic seeds only test executions",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          }
+        },
+        "parent_RandBasis": {
+          "dimension": 56,
+          "gs_squared_min": "289/10346923129013266805314083821176786874824595076226858636824164898207833342267880818392866018222042112571811630160227035034672344658473053983149144508323887514855982294554294602454941908714183220171174477995637863769470132355303975601943156269093808832888996563738967810994631651008961394361566328864307995906296",
+          "gs_squared_max": "273574310801913200/181017344997",
+          "entropy_bytes": 361128,
+          "gaussian_vectors_used": 56,
+          "public_gs_squared_upper": "7591584"
+        },
+        "raw_terminal_leaf_admission": {
+          "entropy_bytes": 0,
+          "status": "admission_rejected",
+          "reason": "Scalar squared width outside 1..10^12; no hardcap relaxation"
+        },
+        "parent_diagnostic_LLL": {
+          "dimension": 56,
+          "gs_squared_min": "1",
+          "gs_squared_max": "2"
+        },
+        "terminal_leaf_admission": {
+          "dimension": 84,
+          "gs_squared_min": "1",
+          "gs_squared_max": "2",
+          "sampler": {
+            "dimension": 84,
+            "width_squared": "1214653440",
+            "tv_upper_including_abort": "1511853356556389915972107044086264575769687803769073639035101957080853/38597361560361736225037619903320786048984133606987718876700278233800999174144",
+            "public_random_tape_bytes": 2384928,
+            "scalar_width_squared_min": "607326720",
+            "scalar_width_squared_max": "1214653440",
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "16",
+              "max_center_denominator_bits": 8,
+              "max_center_numerator_bits": 33,
+              "max_coefficient_bits": 30,
+              "max_residual_bits": 31,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "target_bits": 32,
+          "public_batch_tape_bytes": 76317696,
+          "second_RandBasis_used": false
+        },
+        "fixed_leaf_cache": {
+          "preimages": 32,
+          "equations_exact": 32,
+          "entropy_bytes": 379419,
+          "norm_squared_min": "11419602930",
+          "norm_squared_max": "20109439193",
+          "assumed_norm_squared_upper": "102030888960",
+          "norms_within_budget": 32,
+          "snapshot_bytes": 19605,
+          "snapshot_written_to_disk": false,
+          "cache_hit_entropy_bytes": 0,
+          "restore_hit_entropy_bytes": 0,
+          "restored_vectors_identical": true,
+          "public_context_and_receiver_bound": true,
+          "real_identity_H_or_G": false,
+          "identities_are_test_labels": true,
+          "receiver_bytes": 8,
+          "sender_bytes": 8
+        },
+        "256_bit_capacity_control": {
+          "status": "admission_rejected",
+          "reason": "Leaf targets must be a bounded nonempty sequence",
+          "entropy_bytes": 0,
+          "hybrid_seed_bytes": 32,
+          "required_seed_bits": 256,
+          "capacity_met": false
+        },
+        "rounded_noise_phase_probe": {
+          "noise_certificate": {
+            "schema": "IBME/ROUNDED-CONTINUOUS-NOISE/1",
+            "config": {
+              "q": 17,
+              "alpha": "1/17",
+              "tail_bits": 80,
+              "mass_bits": 128,
+              "precision_bits": 256,
+              "max_radius": 8192
+            },
+            "support": [
+              -9,
+              9
+            ],
+            "support_count": 19,
+            "draw_bytes": 16,
+            "cdf_interval_error_units": 18,
+            "tail_tv_upper": "1/1208925819614629174706176",
+            "cdf_quantization_and_interval_tv_upper": "9/170141183460469231731687303715884105728",
+            "random_rejection_abort_upper": "0",
+            "tv_upper_including_abort": "140737488355337/170141183460469231731687303715884105728",
+            "scaled_width": "1",
+            "target": "round(continuous Gaussian of width q*alpha), then modulo q if requested",
+            "finite_tail_policy": "clamp to endpoints, no conditioning",
+            "randomness_assumption": "independent uniform bytes; errors of faulty sources propagate",
+            "cdf_sha256": "c573c40b8faea85b6997ac9102e1b7a2c3e409dd00ee0cebb04589a55d83da32",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          },
+          "repetitions": [
+            {
+              "bits": 32,
+              "phase_equations_exact": 32,
+              "noiseless_control_correct": 32,
+              "honest_rounded_noise_correct": 17,
+              "honest_rounded_noise_failed": 15,
+              "nonzero_noise_coordinates": 21,
+              "scalar_noise_calls": 116,
+              "entropy_bytes": 1858,
+              "noise_profile_is_full_chain_correctness_candidate": false
+            },
+            {
+              "bits": 32,
+              "phase_equations_exact": 32,
+              "noiseless_control_correct": 32,
+              "honest_rounded_noise_correct": 19,
+              "honest_rounded_noise_failed": 13,
+              "nonzero_noise_coordinates": 29,
+              "scalar_noise_calls": 116,
+              "entropy_bytes": 1861,
+              "noise_profile_is_full_chain_correctness_candidate": false
+            },
+            {
+              "bits": 32,
+              "phase_equations_exact": 32,
+              "noiseless_control_correct": 32,
+              "honest_rounded_noise_correct": 16,
+              "honest_rounded_noise_failed": 16,
+              "nonzero_noise_coordinates": 25,
+              "scalar_noise_calls": 116,
+              "entropy_bytes": 1858,
+              "noise_profile_is_full_chain_correctness_candidate": false
+            }
+          ],
+          "conditional_budget": {
+            "scope": "conditional honest encapsulation noise; supplied metadata arithmetic only",
+            "q": 17,
+            "alpha": "1/17",
+            "dimension": 84,
+            "seed_bits": 32,
+            "encapsulations": 3,
+            "scalar_noise_draws": 348,
+            "random_bytes_upper": 5568,
+            "scalar_noise_tv_upper": "140737488355337/170141183460469231731687303715884105728",
+            "joint_noise_coupling_upper": "12244161486914319/42535295865117307932921825928971026432",
+            "ideal_lifetime_failure_upper": null,
+            "lifetime_noise_upper_if_key_norm_good": null,
+            "q_alpha_and_ledger_matched": true,
+            "certificate_authenticity_verified": false,
+            "omitted": [
+              "bad key norm",
+              "GPV TV/abort",
+              "basis and resource failures",
+              "LWE estimates and full HIBE implementation"
+            ],
+            "security_claim": "none",
+            "backend_admitted": false,
+            "parameters_are_formal": false
+          },
+          "negative_noise_control": true,
+          "full_KEM_or_HIBE_implemented": false
+        }
+      },
+      "outcome": "parent_and_fixed_terminal_preimages_completed",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "ideal_H_or_G_implemented": false,
+      "diagnostic_lll_uniform_resources_admitted": false,
+      "randbasis_and_leaf_sampling_terms_upper": "39966146635229274354346863590916423097616315689094728225487138347902998975494691906210963/11124931745721023033126556204650132811764359888200735760431163714431550772956826631192245698560",
+      "omitted_from_selected_terms": [
+        "leaf preimage norm-tail probability",
+        "GenBasis distribution",
+        "preprocessing failure/resources",
+        "noise decode failures"
+      ],
+      "local_budget_condition": "given successful preprocessing and fixed public diagnostic bases",
+      "preprocessing_abort_or_resource_upper": null,
+      "full_joint_failure_upper": null,
+      "public_genbasis_tv_nonvacuous": false,
+      "diagnostic_seconds_not_benchmark": 7.350329
+    },
+    {
+      "seed": "ibme-same-input-q17-1",
+      "attempts": 1,
+      "genbasis_certificate": {
+        "algorithm": "AP09 second construction, Algorithm 1 / section 3.3",
+        "parameters": {
+          "n": 1,
+          "q": 17,
+          "random_rows": 6,
+          "m1": 6,
+          "m2": 22,
+          "hadamard_scale": 9,
+          "max_uniform_trials": 192
+        },
+        "hadamard_width": 8,
+        "gs_squared_bound": 869,
+        "quality_gate": "4*d*m2 <= Cprime^2*w; deterministic Frobenius sufficient condition",
+        "quality_bad_probability_inside_admitted_domain": "0",
+        "unconditioned_paper_matrix_tv_upper": "1",
+        "ideal_A1_rank_abort_upper": "1/24137569",
+        "uniform_integer_abort_upper": "3/3138550867693340381917894711603833208051177722232017256448",
+        "actual_output_vs_uniform_including_abort_tv_upper": "1",
+        "public_random_tape_bytes_upper": 1284,
+        "rounding": "sqrt rounded upward to 2^-80; not a security level",
+        "randomness_assumption": "independent uniform bytes; fixed seed tests are not proof",
+        "near_uniform_bound_nonvacuous": false,
+        "dimension_optimality_claim": false,
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "stages": {
+        "GenBasis": {
+          "dimension": 28,
+          "gs_squared_min": "289/278071",
+          "gs_squared_max": "5379821/18972",
+          "entropy_bytes": 145,
+          "public_matrix_sha256": "0174bf03cdf3f1cd150cc50bd7f49564bb19123c165691a685a65850e69df252"
+        },
+        "root_diagnostic_LLL": {
+          "dimension": 28,
+          "gs_squared_min": "1",
+          "gs_squared_max": "2"
+        },
+        "parent_admission": {
+          "block_entropy_bytes": 60,
+          "raw_basis_default": {
+            "status": "admission_rejected",
+            "sampler": {
+              "dimension": 56,
+              "width_squared": "135564",
+              "tv_upper_including_abort": "424958820174379649804332304364347581038546730546964758629179749469824639213661975587/32592574763845586671281908304006318268004601913530086209819786637112279309900167657572794368",
+              "public_random_tape_bytes": 17402320,
+              "scalar_width_squared_min": "32555952/68099",
+              "scalar_width_squared_max": "37696417044/289",
+              "path_resources": {
+                "all_canonical_syndromes": true,
+                "all_nonaborted_paths": true,
+                "initial_coordinate_abs_upper": "16",
+                "max_center_denominator_bits": 57,
+                "max_center_numerator_bits": 76,
+                "max_coefficient_bits": 35,
+                "max_residual_bits": 36,
+                "rational_bit_budget": 8192,
+                "max_dimension": 192,
+                "input_bit_budget": 1024,
+                "centers_or_CDFs_precomputed": 0
+              }
+            },
+            "entropy_bytes": 0,
+            "randbasis_worst_tape_bytes": 1531404160,
+            "reason": "Whole RandBasis tape exceeds the resource budget"
+          },
+          "reduced_basis_default": {
+            "status": "admission_rejected",
+            "sampler": {
+              "dimension": 56,
+              "width_squared": "135564",
+              "tv_upper_including_abort": "424958820174379699738465973201401531884107972367537564529922528570481513728719566581/32592574763845586671281908304006318268004601913530086209819786637112279309900167657572794368",
+              "public_random_tape_bytes": 17221600,
+              "scalar_width_squared_min": "67782",
+              "scalar_width_squared_max": "135564",
+              "path_resources": {
+                "all_canonical_syndromes": true,
+                "all_nonaborted_paths": true,
+                "initial_coordinate_abs_upper": "16",
+                "max_center_denominator_bits": 8,
+                "max_center_numerator_bits": 26,
+                "max_coefficient_bits": 22,
+                "max_residual_bits": 23,
+                "rational_bit_budget": 8192,
+                "max_dimension": 192,
+                "input_bit_budget": 1024,
+                "centers_or_CDFs_precomputed": 0
+              }
+            },
+            "entropy_bytes": 0,
+            "randbasis_worst_tape_bytes": 1515500800,
+            "reason": "Whole RandBasis tape exceeds the resource budget"
+          },
+          "explicit_options": {
+            "tail_bits": 64,
+            "mass_bits": 96,
+            "precision_bits": 160,
+            "gaussian_abort_bits": 32,
+            "max_uniform_trials": 48,
+            "max_gaussian_trials": 100000,
+            "max_radius": 1073741824,
+            "rational_bits": 8192,
+            "max_tape_bytes": 268435456
+          },
+          "explicit_sampler": {
+            "dimension": 56,
+            "width_squared": "135564",
+            "tv_upper_including_abort": "188971257843952806286460299359574067080956334570780240699291479574571/7237005386927638877221793013207200188753232409040202768273305852700323217408",
+            "public_random_tape_bytes": 1056996,
+            "scalar_width_squared_min": "67782",
+            "scalar_width_squared_max": "135564",
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "16",
+              "max_center_denominator_bits": 8,
+              "max_center_numerator_bits": 26,
+              "max_coefficient_bits": 21,
+              "max_residual_bits": 23,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "explicit_randbasis": {
+            "algorithm": "CHKP RandBasis, project finite K/norm-abort adaptation",
+            "dimension": 56,
+            "max_vectors": 88,
+            "width_squared": "135564",
+            "candidate_norm_squared_limit": "7591584",
+            "ideal_rank_exhaustion_upper": "177/4294967296",
+            "one_ideal_norm_tail_upper": "4294967297/309485009749287474686853120",
+            "actual_vs_bounded_ideal_output_tv_upper": "2078683836283480869151063292955314737890519680278582647692206275320281/904625673365954859652724126650900023594154051130025346034163231587540402176",
+            "rank_or_norm_or_sampling_failure_upper": "9087997842376128631334983536908502471187611466896294341774728063832757049206311/3885337681324128688654765181623053483651620002795216653737789032359996956837066833920",
+            "failure_bound_nonvacuous": true,
+            "output_gs_squared_upper_on_success": "7591584",
+            "public_random_tape_bytes": 93015648,
+            "whole_call_random_tape_cap": 268435456,
+            "public_test_evidence_only": true,
+            "disclosure": "basis-dependent tape/profile diagnostics are excluded from the parent-basis output-TV comparison",
+            "canonical_complete_lattice_basis": true,
+            "all_candidate_tobasis_coordinate_resources_checked": true,
+            "parent_basis_comparison": "at common s,K,norm cutoff and canonical postprocessor, TV <= K*(delta_D0+delta_D1); NOT exact basis independence",
+            "ordinary_column_norm_preservation": false,
+            "spectral_norm_preservation": false,
+            "randomness_assumption": "independent uniform bytes; deterministic seeds only test executions",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          }
+        },
+        "parent_RandBasis": {
+          "dimension": 56,
+          "gs_squared_min": "289/401981571137991420348223557399405576586717874967521606153247124701543695086170815992617386746695388796647257177778388194020657392415758057171021633479610218788998683907913395976930161260946786559941107889170734638711450702733646164474348180060458042122121479946050908092068246640708938140797355295593258580049",
+          "gs_squared_max": "2151536222729141145/1158404450518",
+          "entropy_bytes": 372012,
+          "gaussian_vectors_used": 56,
+          "public_gs_squared_upper": "7591584"
+        },
+        "raw_terminal_leaf_admission": {
+          "entropy_bytes": 0,
+          "status": "admission_rejected",
+          "reason": "Scalar squared width outside 1..10^12; no hardcap relaxation"
+        },
+        "parent_diagnostic_LLL": {
+          "dimension": 56,
+          "gs_squared_min": "1",
+          "gs_squared_max": "2"
+        },
+        "terminal_leaf_admission": {
+          "dimension": 84,
+          "gs_squared_min": "1",
+          "gs_squared_max": "2",
+          "sampler": {
+            "dimension": 84,
+            "width_squared": "1214653440",
+            "tv_upper_including_abort": "755926678278197390449760593010973885562628635657620517988172703556709/19298680780180868112518809951660393024492066803493859438350139116900499587072",
+            "public_random_tape_bytes": 2384928,
+            "scalar_width_squared_min": "607326720",
+            "scalar_width_squared_max": "1214653440",
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "16",
+              "max_center_denominator_bits": 8,
+              "max_center_numerator_bits": 32,
+              "max_coefficient_bits": 29,
+              "max_residual_bits": 30,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "target_bits": 32,
+          "public_batch_tape_bytes": 76317696,
+          "second_RandBasis_used": false
+        },
+        "fixed_leaf_cache": {
+          "preimages": 32,
+          "equations_exact": 32,
+          "entropy_bytes": 385845,
+          "norm_squared_min": "9813773481",
+          "norm_squared_max": "21281535713",
+          "assumed_norm_squared_upper": "102030888960",
+          "norms_within_budget": 32,
+          "snapshot_bytes": 19611,
+          "snapshot_written_to_disk": false,
+          "cache_hit_entropy_bytes": 0,
+          "restore_hit_entropy_bytes": 0,
+          "restored_vectors_identical": true,
+          "public_context_and_receiver_bound": true,
+          "real_identity_H_or_G": false,
+          "identities_are_test_labels": true,
+          "receiver_bytes": 8,
+          "sender_bytes": 8
+        },
+        "256_bit_capacity_control": {
+          "status": "admission_rejected",
+          "reason": "Leaf targets must be a bounded nonempty sequence",
+          "entropy_bytes": 0,
+          "hybrid_seed_bytes": 32,
+          "required_seed_bits": 256,
+          "capacity_met": false
+        },
+        "rounded_noise_phase_probe": {
+          "noise_certificate": {
+            "schema": "IBME/ROUNDED-CONTINUOUS-NOISE/1",
+            "config": {
+              "q": 17,
+              "alpha": "1/17",
+              "tail_bits": 80,
+              "mass_bits": 128,
+              "precision_bits": 256,
+              "max_radius": 8192
+            },
+            "support": [
+              -9,
+              9
+            ],
+            "support_count": 19,
+            "draw_bytes": 16,
+            "cdf_interval_error_units": 18,
+            "tail_tv_upper": "1/1208925819614629174706176",
+            "cdf_quantization_and_interval_tv_upper": "9/170141183460469231731687303715884105728",
+            "random_rejection_abort_upper": "0",
+            "tv_upper_including_abort": "140737488355337/170141183460469231731687303715884105728",
+            "scaled_width": "1",
+            "target": "round(continuous Gaussian of width q*alpha), then modulo q if requested",
+            "finite_tail_policy": "clamp to endpoints, no conditioning",
+            "randomness_assumption": "independent uniform bytes; errors of faulty sources propagate",
+            "cdf_sha256": "c573c40b8faea85b6997ac9102e1b7a2c3e409dd00ee0cebb04589a55d83da32",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          },
+          "repetitions": [
+            {
+              "bits": 32,
+              "phase_equations_exact": 32,
+              "noiseless_control_correct": 32,
+              "honest_rounded_noise_correct": 14,
+              "honest_rounded_noise_failed": 18,
+              "nonzero_noise_coordinates": 22,
+              "scalar_noise_calls": 116,
+              "entropy_bytes": 1859,
+              "noise_profile_is_full_chain_correctness_candidate": false
+            },
+            {
+              "bits": 32,
+              "phase_equations_exact": 32,
+              "noiseless_control_correct": 32,
+              "honest_rounded_noise_correct": 13,
+              "honest_rounded_noise_failed": 19,
+              "nonzero_noise_coordinates": 27,
+              "scalar_noise_calls": 116,
+              "entropy_bytes": 1857,
+              "noise_profile_is_full_chain_correctness_candidate": false
+            },
+            {
+              "bits": 32,
+              "phase_equations_exact": 32,
+              "noiseless_control_correct": 32,
+              "honest_rounded_noise_correct": 17,
+              "honest_rounded_noise_failed": 15,
+              "nonzero_noise_coordinates": 29,
+              "scalar_noise_calls": 116,
+              "entropy_bytes": 1861,
+              "noise_profile_is_full_chain_correctness_candidate": false
+            }
+          ],
+          "conditional_budget": {
+            "scope": "conditional honest encapsulation noise; supplied metadata arithmetic only",
+            "q": 17,
+            "alpha": "1/17",
+            "dimension": 84,
+            "seed_bits": 32,
+            "encapsulations": 3,
+            "scalar_noise_draws": 348,
+            "random_bytes_upper": 5568,
+            "scalar_noise_tv_upper": "140737488355337/170141183460469231731687303715884105728",
+            "joint_noise_coupling_upper": "12244161486914319/42535295865117307932921825928971026432",
+            "ideal_lifetime_failure_upper": null,
+            "lifetime_noise_upper_if_key_norm_good": null,
+            "q_alpha_and_ledger_matched": true,
+            "certificate_authenticity_verified": false,
+            "omitted": [
+              "bad key norm",
+              "GPV TV/abort",
+              "basis and resource failures",
+              "LWE estimates and full HIBE implementation"
+            ],
+            "security_claim": "none",
+            "backend_admitted": false,
+            "parameters_are_formal": false
+          },
+          "negative_noise_control": true,
+          "full_KEM_or_HIBE_implemented": false
+        }
+      },
+      "outcome": "parent_and_fixed_terminal_preimages_completed",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "ideal_H_or_G_implemented": false,
+      "diagnostic_lll_uniform_resources_admitted": false,
+      "randbasis_and_leaf_sampling_terms_upper": "39966153591400656802530943142037052517566218958328820950935591758109769080247086296128363/11124931745721023033126556204650132811764359888200735760431163714431550772956826631192245698560",
+      "omitted_from_selected_terms": [
+        "leaf preimage norm-tail probability",
+        "GenBasis distribution",
+        "preprocessing failure/resources",
+        "noise decode failures"
+      ],
+      "local_budget_condition": "given successful preprocessing and fixed public diagnostic bases",
+      "preprocessing_abort_or_resource_upper": null,
+      "full_joint_failure_upper": null,
+      "public_genbasis_tv_nonvacuous": false,
+      "diagnostic_seconds_not_benchmark": 6.973766
+    },
+    {
+      "seed": "ibme-same-input-q257-0",
+      "attempts": 1,
+      "genbasis_certificate": {
+        "algorithm": "AP09 second construction, Algorithm 1 / section 3.3",
+        "parameters": {
+          "n": 1,
+          "q": 257,
+          "random_rows": 10,
+          "m1": 10,
+          "m2": 38,
+          "hadamard_scale": 10,
+          "max_uniform_trials": 192
+        },
+        "hadamard_width": 16,
+        "gs_squared_bound": 1695,
+        "quality_gate": "4*d*m2 <= Cprime^2*w; deterministic Frobenius sufficient condition",
+        "quality_bad_probability_inside_admitted_domain": "0",
+        "unconditioned_paper_matrix_tv_upper": "1",
+        "ideal_A1_rank_abort_upper": "1/1256988294225653106805249",
+        "uniform_integer_abort_upper": "5/3138550867693340381917894711603833208051177722232017256448",
+        "actual_output_vs_uniform_including_abort_tv_upper": "1",
+        "public_random_tape_bytes_upper": 4220,
+        "rounding": "sqrt rounded upward to 2^-80; not a security level",
+        "randomness_assumption": "independent uniform bytes; fixed seed tests are not proof",
+        "near_uniform_bound_nonvacuous": false,
+        "dimension_optimality_claim": false,
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "stages": {
+        "GenBasis": {
+          "dimension": 48,
+          "gs_squared_min": "66049/396540512",
+          "gs_squared_max": "588324847291443000/1215211745166467",
+          "entropy_bytes": 408,
+          "public_matrix_sha256": "407865b7f23a33bae1475e312457623cf038d4b789fa13b008f5ef64dae841e4"
+        },
+        "root_diagnostic_LLL": {
+          "dimension": 48,
+          "gs_squared_min": "1",
+          "gs_squared_max": "2"
+        },
+        "parent_admission": {
+          "block_entropy_bytes": 194,
+          "raw_basis_default": {
+            "status": "admission_rejected",
+            "sampler": {
+              "dimension": 96,
+              "width_squared": "271200",
+              "tv_upper_including_abort": "485667223056433880220448400128677038671764055342736242595120389072179774909861651577/21728382771174371900494382427782981590436629058518632670684124163947267510995052353963425792",
+              "public_random_tape_bytes": 30570816,
+              "scalar_width_squared_min": "549275708815243084/980541412152405",
+              "scalar_width_squared_max": "107541786854400/66049",
+              "path_resources": {
+                "all_canonical_syndromes": true,
+                "all_nonaborted_paths": true,
+                "initial_coordinate_abs_upper": "256",
+                "max_center_denominator_bits": 113,
+                "max_center_numerator_bits": 149,
+                "max_coefficient_bits": 62,
+                "max_residual_bits": 63,
+                "rational_bit_budget": 8192,
+                "max_dimension": 192,
+                "input_bit_budget": 1024,
+                "centers_or_CDFs_precomputed": 0
+              }
+            },
+            "entropy_bytes": 0,
+            "randbasis_worst_tape_bytes": 3913064448,
+            "reason": "Whole RandBasis tape exceeds the resource budget"
+          },
+          "reduced_basis_default": {
+            "status": "admission_rejected",
+            "sampler": {
+              "dimension": 96,
+              "width_squared": "271200",
+              "tv_upper_including_abort": "242833611528216959714061902447370315318867263346704244735158147804896502623573682753/10864191385587185950247191213891490795218314529259316335342062081973633755497526176981712896",
+              "public_random_tape_bytes": 29625600,
+              "scalar_width_squared_min": "135600",
+              "scalar_width_squared_max": "271200",
+              "path_resources": {
+                "all_canonical_syndromes": true,
+                "all_nonaborted_paths": true,
+                "initial_coordinate_abs_upper": "256",
+                "max_center_denominator_bits": 16,
+                "max_center_numerator_bits": 37,
+                "max_coefficient_bits": 30,
+                "max_residual_bits": 31,
+                "rational_bit_budget": 8192,
+                "max_dimension": 192,
+                "input_bit_budget": 1024,
+                "centers_or_CDFs_precomputed": 0
+              }
+            },
+            "entropy_bytes": 0,
+            "randbasis_worst_tape_bytes": 3792076800,
+            "reason": "Whole RandBasis tape exceeds the resource budget"
+          },
+          "explicit_options": {
+            "tail_bits": 64,
+            "mass_bits": 96,
+            "precision_bits": 160,
+            "gaussian_abort_bits": 32,
+            "max_uniform_trials": 48,
+            "max_gaussian_trials": 100000,
+            "max_radius": 1073741824,
+            "rational_bits": 8192,
+            "max_tape_bytes": 268435456
+          },
+          "explicit_sampler": {
+            "dimension": 96,
+            "width_squared": "271200",
+            "tv_upper_including_abort": "1727740254401587482272668653891103921944141903263623881034414459817783/38597361344682162887832501545984665352827088217890563496375698384972117180416",
+            "public_random_tape_bytes": 1814400,
+            "scalar_width_squared_min": "135600",
+            "scalar_width_squared_max": "271200",
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "256",
+              "max_center_denominator_bits": 16,
+              "max_center_numerator_bits": 37,
+              "max_coefficient_bits": 30,
+              "max_residual_bits": 31,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "explicit_randbasis": {
+            "algorithm": "CHKP RandBasis, project finite K/norm-abort adaptation",
+            "dimension": 96,
+            "max_vectors": 128,
+            "width_squared": "271200",
+            "candidate_norm_squared_limit": "26035200",
+            "ideal_rank_exhaustion_upper": "257/4294967296",
+            "one_ideal_norm_tail_upper": "4294967297/340282366841710300949110269838224261120",
+            "actual_vs_bounded_ideal_output_tv_upper": "1727740254401587482272668653891103921944141903263623881034414459817783/301541885505329397561191418328005198068961626702270027315435143632594665472",
+            "rank_or_norm_or_sampling_failure_upper": "833120461274069353606231691697943871141896055072395989256123856538938538826433/143901392924224923414152211439271767588465260144027607730950065621735731577078415360",
+            "failure_bound_nonvacuous": true,
+            "output_gs_squared_upper_on_success": "26035200",
+            "public_random_tape_bytes": 232243200,
+            "whole_call_random_tape_cap": 268435456,
+            "public_test_evidence_only": true,
+            "disclosure": "basis-dependent tape/profile diagnostics are excluded from the parent-basis output-TV comparison",
+            "canonical_complete_lattice_basis": true,
+            "all_candidate_tobasis_coordinate_resources_checked": true,
+            "parent_basis_comparison": "at common s,K,norm cutoff and canonical postprocessor, TV <= K*(delta_D0+delta_D1); NOT exact basis independence",
+            "ordinary_column_norm_preservation": false,
+            "spectral_norm_preservation": false,
+            "randomness_assumption": "independent uniform bytes; deterministic seeds only test executions",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          }
+        },
+        "parent_RandBasis": {
+          "dimension": 96,
+          "gs_squared_min": "66049/2072196398716044005994849416172747551556716699216597304051912767330912056445949447726101533054839518768622011760786303460695223825245416638119727147060050771242046566071686884247600053444384205201406731336273066390732973023905184154688440059425967195240090157114136039066002821872880842476221322843138867632301721309440769125864615206407476376466386178157170802661209894320929775466783604400672134208973597250768348702361686239202594688173286377780511378931482739434987930067791795956576886696320131916091490709447479924096045118627388779605864339803248977924560684231755965874039854611265",
+          "gs_squared_max": "25709571306632499297/5098578782645",
+          "entropy_bytes": 1018296,
+          "gaussian_vectors_used": 96,
+          "public_gs_squared_upper": "26035200"
+        },
+        "raw_terminal_leaf_admission": {
+          "entropy_bytes": 0,
+          "status": "admission_rejected",
+          "reason": "Scalar squared width outside 1..10^12; no hardcap relaxation"
+        },
+        "parent_diagnostic_LLL": {
+          "dimension": 96,
+          "gs_squared_min": "35967260058/1209962668327",
+          "gs_squared_max": "237/7"
+        },
+        "terminal_leaf_admission": {
+          "dimension": 144,
+          "gs_squared_min": "35967260058/1209962668327",
+          "gs_squared_max": "237/7",
+          "sampler": {
+            "dimension": 144,
+            "width_squared": "4269772800",
+            "tv_upper_including_abort": "1295890125471861666795737716421050575032745043259764874504768704750205/19298680240981934769506014058320091284099453330750970987538689494828294602752",
+            "public_random_tape_bytes": 4124484,
+            "scalar_width_squared_min": "9962803200/79",
+            "scalar_width_squared_max": "861044281706341017600/5994543343",
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "256",
+              "max_center_denominator_bits": 145,
+              "max_center_numerator_bits": 337,
+              "max_coefficient_bits": 241,
+              "max_residual_bits": 243,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "target_bits": 32,
+          "public_batch_tape_bytes": 131983488,
+          "second_RandBasis_used": false
+        },
+        "fixed_leaf_cache": {
+          "preimages": 32,
+          "equations_exact": 32,
+          "entropy_bytes": 634059,
+          "norm_squared_min": "68428770725",
+          "norm_squared_max": "112832245324",
+          "assumed_norm_squared_upper": "614847283200",
+          "norms_within_budget": 32,
+          "snapshot_bytes": 33415,
+          "snapshot_written_to_disk": false,
+          "cache_hit_entropy_bytes": 0,
+          "restore_hit_entropy_bytes": 0,
+          "restored_vectors_identical": true,
+          "public_context_and_receiver_bound": true,
+          "real_identity_H_or_G": false,
+          "identities_are_test_labels": true,
+          "receiver_bytes": 8,
+          "sender_bytes": 8
+        },
+        "256_bit_capacity_control": {
+          "status": "admission_rejected",
+          "reason": "Leaf targets must be a bounded nonempty sequence",
+          "entropy_bytes": 0,
+          "hybrid_seed_bytes": 32,
+          "required_seed_bits": 256,
+          "capacity_met": false
+        },
+        "rounded_noise_phase_probe": {
+          "noise_certificate": {
+            "schema": "IBME/ROUNDED-CONTINUOUS-NOISE/1",
+            "config": {
+              "q": 257,
+              "alpha": "1/257",
+              "tail_bits": 80,
+              "mass_bits": 128,
+              "precision_bits": 256,
+              "max_radius": 8192
+            },
+            "support": [
+              -9,
+              9
+            ],
+            "support_count": 19,
+            "draw_bytes": 16,
+            "cdf_interval_error_units": 18,
+            "tail_tv_upper": "1/1208925819614629174706176",
+            "cdf_quantization_and_interval_tv_upper": "9/170141183460469231731687303715884105728",
+            "random_rejection_abort_upper": "0",
+            "tv_upper_including_abort": "140737488355337/170141183460469231731687303715884105728",
+            "scaled_width": "1",
+            "target": "round(continuous Gaussian of width q*alpha), then modulo q if requested",
+            "finite_tail_policy": "clamp to endpoints, no conditioning",
+            "randomness_assumption": "independent uniform bytes; errors of faulty sources propagate",
+            "cdf_sha256": "17de7c55855cf213e6bb8e5fe9ea63f7cba6b9266ab48576a45965fd8546b236",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          },
+          "repetitions": [
+            {
+              "bits": 32,
+              "phase_equations_exact": 32,
+              "noiseless_control_correct": 32,
+              "honest_rounded_noise_correct": 17,
+              "honest_rounded_noise_failed": 15,
+              "nonzero_noise_coordinates": 41,
+              "scalar_noise_calls": 176,
+              "entropy_bytes": 2822,
+              "noise_profile_is_full_chain_correctness_candidate": false
+            },
+            {
+              "bits": 32,
+              "phase_equations_exact": 32,
+              "noiseless_control_correct": 32,
+              "honest_rounded_noise_correct": 13,
+              "honest_rounded_noise_failed": 19,
+              "nonzero_noise_coordinates": 29,
+              "scalar_noise_calls": 176,
+              "entropy_bytes": 2820,
+              "noise_profile_is_full_chain_correctness_candidate": false
+            },
+            {
+              "bits": 32,
+              "phase_equations_exact": 32,
+              "noiseless_control_correct": 32,
+              "honest_rounded_noise_correct": 17,
+              "honest_rounded_noise_failed": 15,
+              "nonzero_noise_coordinates": 33,
+              "scalar_noise_calls": 176,
+              "entropy_bytes": 2818,
+              "noise_profile_is_full_chain_correctness_candidate": false
+            }
+          ],
+          "conditional_budget": {
+            "scope": "conditional honest encapsulation noise; supplied metadata arithmetic only",
+            "q": 257,
+            "alpha": "1/257",
+            "dimension": 144,
+            "seed_bits": 32,
+            "encapsulations": 3,
+            "scalar_noise_draws": 528,
+            "random_bytes_upper": 8448,
+            "scalar_noise_tv_upper": "140737488355337/170141183460469231731687303715884105728",
+            "joint_noise_coupling_upper": "4644337115726121/10633823966279326983230456482242756608",
+            "ideal_lifetime_failure_upper": null,
+            "lifetime_noise_upper_if_key_norm_good": null,
+            "q_alpha_and_ledger_matched": true,
+            "certificate_authenticity_verified": false,
+            "omitted": [
+              "bad key norm",
+              "GPV TV/abort",
+              "basis and resource failures",
+              "LWE estimates and full HIBE implementation"
+            ],
+            "security_claim": "none",
+            "backend_admitted": false,
+            "parameters_are_formal": false
+          },
+          "negative_noise_control": true,
+          "full_KEM_or_HIBE_implemented": false
+        }
+      },
+      "outcome": "parent_and_fixed_terminal_preimages_completed",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "ideal_H_or_G_implemented": false,
+      "diagnostic_lll_uniform_resources_admitted": false,
+      "randbasis_and_leaf_sampling_terms_upper": "3270851870554739532968068508231390386361555537517603007451929284381940962309229079942129/412034489913926198073923696671840150599353497389513762201045776406559939464373247615361351680",
+      "omitted_from_selected_terms": [
+        "leaf preimage norm-tail probability",
+        "GenBasis distribution",
+        "preprocessing failure/resources",
+        "noise decode failures"
+      ],
+      "local_budget_condition": "given successful preprocessing and fixed public diagnostic bases",
+      "preprocessing_abort_or_resource_upper": null,
+      "full_joint_failure_upper": null,
+      "public_genbasis_tv_nonvacuous": false,
+      "diagnostic_seconds_not_benchmark": 70.688934
+    },
+    {
+      "seed": "ibme-same-input-q257-1",
+      "attempts": 1,
+      "genbasis_certificate": {
+        "algorithm": "AP09 second construction, Algorithm 1 / section 3.3",
+        "parameters": {
+          "n": 1,
+          "q": 257,
+          "random_rows": 10,
+          "m1": 10,
+          "m2": 38,
+          "hadamard_scale": 10,
+          "max_uniform_trials": 192
+        },
+        "hadamard_width": 16,
+        "gs_squared_bound": 1695,
+        "quality_gate": "4*d*m2 <= Cprime^2*w; deterministic Frobenius sufficient condition",
+        "quality_bad_probability_inside_admitted_domain": "0",
+        "unconditioned_paper_matrix_tv_upper": "1",
+        "ideal_A1_rank_abort_upper": "1/1256988294225653106805249",
+        "uniform_integer_abort_upper": "5/3138550867693340381917894711603833208051177722232017256448",
+        "actual_output_vs_uniform_including_abort_tv_upper": "1",
+        "public_random_tape_bytes_upper": 4220,
+        "rounding": "sqrt rounded upward to 2^-80; not a security level",
+        "randomness_assumption": "independent uniform bytes; fixed seed tests are not proof",
+        "near_uniform_bound_nonvacuous": false,
+        "dimension_optimality_claim": false,
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "stages": {
+        "GenBasis": {
+          "dimension": 48,
+          "gs_squared_min": "66049/278862039",
+          "gs_squared_max": "239893434024992253/506914819719818",
+          "entropy_bytes": 416,
+          "public_matrix_sha256": "6204b72c69f58d658f786f73c2dff50a8429bde823818b632c20cccb720c503b"
+        },
+        "root_diagnostic_LLL": {
+          "dimension": 48,
+          "gs_squared_min": "1",
+          "gs_squared_max": "19/8"
+        },
+        "parent_admission": {
+          "block_entropy_bytes": 198,
+          "raw_basis_default": {
+            "status": "admission_rejected",
+            "sampler": {
+              "dimension": 96,
+              "width_squared": "271200",
+              "tv_upper_including_abort": "242833611528216938678385004668070900609242520452880100463499701662360622293664599939/10864191385587185950247191213891490795218314529259316335342062081973633755497526176981712896",
+              "public_random_tape_bytes": 30420144,
+              "scalar_width_squared_min": "45825099702671547200/79964478008330751",
+              "scalar_width_squared_max": "75627384976800/66049",
+              "path_resources": {
+                "all_canonical_syndromes": true,
+                "all_nonaborted_paths": true,
+                "initial_coordinate_abs_upper": "256",
+                "max_center_denominator_bits": 113,
+                "max_center_numerator_bits": 146,
+                "max_coefficient_bits": 59,
+                "max_residual_bits": 61,
+                "rational_bit_budget": 8192,
+                "max_dimension": 192,
+                "input_bit_budget": 1024,
+                "centers_or_CDFs_precomputed": 0
+              }
+            },
+            "entropy_bytes": 0,
+            "randbasis_worst_tape_bytes": 3893778432,
+            "reason": "Whole RandBasis tape exceeds the resource budget"
+          },
+          "reduced_basis_default": {
+            "status": "admission_rejected",
+            "sampler": {
+              "dimension": 96,
+              "width_squared": "271200",
+              "tv_upper_including_abort": "242833611528216962103907113578340219151501171566770521888229412999491380809343401569/10864191385587185950247191213891490795218314529259316335342062081973633755497526176981712896",
+              "public_random_tape_bytes": 29625600,
+              "scalar_width_squared_min": "2169600/19",
+              "scalar_width_squared_max": "271200",
+              "path_resources": {
+                "all_canonical_syndromes": true,
+                "all_nonaborted_paths": true,
+                "initial_coordinate_abs_upper": "256",
+                "max_center_denominator_bits": 17,
+                "max_center_numerator_bits": 38,
+                "max_coefficient_bits": 29,
+                "max_residual_bits": 30,
+                "rational_bit_budget": 8192,
+                "max_dimension": 192,
+                "input_bit_budget": 1024,
+                "centers_or_CDFs_precomputed": 0
+              }
+            },
+            "entropy_bytes": 0,
+            "randbasis_worst_tape_bytes": 3792076800,
+            "reason": "Whole RandBasis tape exceeds the resource budget"
+          },
+          "explicit_options": {
+            "tail_bits": 64,
+            "mass_bits": 96,
+            "precision_bits": 160,
+            "gaussian_abort_bits": 32,
+            "max_uniform_trials": 48,
+            "max_gaussian_trials": 100000,
+            "max_radius": 1073741824,
+            "rational_bits": 8192,
+            "max_tape_bytes": 268435456
+          },
+          "explicit_sampler": {
+            "dimension": 96,
+            "width_squared": "271200",
+            "tv_upper_including_abort": "1727739980151010238859606238609157011673283230982962141919903524763179/38597361344682162887832501545984665352827088217890563496375698384972117180416",
+            "public_random_tape_bytes": 1814184,
+            "scalar_width_squared_min": "2169600/19",
+            "scalar_width_squared_max": "271200",
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "256",
+              "max_center_denominator_bits": 17,
+              "max_center_numerator_bits": 38,
+              "max_coefficient_bits": 29,
+              "max_residual_bits": 30,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "explicit_randbasis": {
+            "algorithm": "CHKP RandBasis, project finite K/norm-abort adaptation",
+            "dimension": 96,
+            "max_vectors": 128,
+            "width_squared": "271200",
+            "candidate_norm_squared_limit": "26035200",
+            "ideal_rank_exhaustion_upper": "257/4294967296",
+            "one_ideal_norm_tail_upper": "4294967297/340282366841710300949110269838224261120",
+            "actual_vs_bounded_ideal_output_tv_upper": "1727739980151010238859606238609157011673283230982962141919903524763179/301541885505329397561191418328005198068961626702270027315435143632594665472",
+            "rank_or_norm_or_sampling_failure_upper": "833120330396596031902858663983536072970825211848777630316718664763450403362413/143901392924224923414152211439271767588465260144027607730950065621735731577078415360",
+            "failure_bound_nonvacuous": true,
+            "output_gs_squared_upper_on_success": "26035200",
+            "public_random_tape_bytes": 232215552,
+            "whole_call_random_tape_cap": 268435456,
+            "public_test_evidence_only": true,
+            "disclosure": "basis-dependent tape/profile diagnostics are excluded from the parent-basis output-TV comparison",
+            "canonical_complete_lattice_basis": true,
+            "all_candidate_tobasis_coordinate_resources_checked": true,
+            "parent_basis_comparison": "at common s,K,norm cutoff and canonical postprocessor, TV <= K*(delta_D0+delta_D1); NOT exact basis independence",
+            "ordinary_column_norm_preservation": false,
+            "spectral_norm_preservation": false,
+            "randomness_assumption": "independent uniform bytes; deterministic seeds only test executions",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          }
+        },
+        "parent_RandBasis": {
+          "dimension": 96,
+          "gs_squared_min": "66049/6888095507912133157477269097156586971588341999634515888156523613571334975869973593644593505656377522594883850732504706108420733248423300940585732807565065448717725644399899857367018093298574006110548000628459181724077335280869683389348078241675723701204190777638703847550032627584903956992930973205721270654350805768298736718944054864437719128569748996140496350360563628813954518964600785771022382582379791453255423525815028648788613357117363906698344593250730391311961888201180917434065443425577857604998947707282722902163739931889917919106459339775430407082989384994194290884402986493569",
+          "gs_squared_max": "444058319945550105522211246009200927344333374706289532075017274369612832750296062386140200980609541941487/93865310802890957102497093695623151580204148645442464130070088896606102966376341290593643230908265",
+          "entropy_bytes": 1032488,
+          "gaussian_vectors_used": 96,
+          "public_gs_squared_upper": "26035200"
+        },
+        "raw_terminal_leaf_admission": {
+          "entropy_bytes": 0,
+          "status": "admission_rejected",
+          "reason": "Scalar squared width outside 1..10^12; no hardcap relaxation"
+        },
+        "parent_diagnostic_LLL": {
+          "dimension": 96,
+          "gs_squared_min": "10051925220/351540338989",
+          "gs_squared_max": "3202873/67617"
+        },
+        "terminal_leaf_admission": {
+          "dimension": 144,
+          "gs_squared_min": "10051925220/351540338989",
+          "gs_squared_max": "3202873/67617",
+          "sampler": {
+            "dimension": 144,
+            "width_squared": "4269772800",
+            "tv_upper_including_abort": "323972479945951117838968923871377890418811344839967684744785357722867/4824670060245483692376503514580022821024863332687742746884672373707073650688",
+            "public_random_tape_bytes": 4124016,
+            "scalar_width_squared_min": "288709227417600/3202873",
+            "scalar_width_squared_max": "8338874319544509440/55844029",
+            "path_resources": {
+              "all_canonical_syndromes": true,
+              "all_nonaborted_paths": true,
+              "initial_coordinate_abs_upper": "256",
+              "max_center_denominator_bits": 150,
+              "max_center_numerator_bits": 362,
+              "max_coefficient_bits": 260,
+              "max_residual_bits": 262,
+              "rational_bit_budget": 8192,
+              "max_dimension": 192,
+              "input_bit_budget": 1024,
+              "centers_or_CDFs_precomputed": 0
+            }
+          },
+          "target_bits": 32,
+          "public_batch_tape_bytes": 131968512,
+          "second_RandBasis_used": false
+        },
+        "fixed_leaf_cache": {
+          "preimages": 32,
+          "equations_exact": 32,
+          "entropy_bytes": 645153,
+          "norm_squared_min": "76029879970",
+          "norm_squared_max": "129131766991",
+          "assumed_norm_squared_upper": "614847283200",
+          "norms_within_budget": 32,
+          "snapshot_bytes": 33423,
+          "snapshot_written_to_disk": false,
+          "cache_hit_entropy_bytes": 0,
+          "restore_hit_entropy_bytes": 0,
+          "restored_vectors_identical": true,
+          "public_context_and_receiver_bound": true,
+          "real_identity_H_or_G": false,
+          "identities_are_test_labels": true,
+          "receiver_bytes": 8,
+          "sender_bytes": 8
+        },
+        "256_bit_capacity_control": {
+          "status": "admission_rejected",
+          "reason": "Leaf targets must be a bounded nonempty sequence",
+          "entropy_bytes": 0,
+          "hybrid_seed_bytes": 32,
+          "required_seed_bits": 256,
+          "capacity_met": false
+        },
+        "rounded_noise_phase_probe": {
+          "noise_certificate": {
+            "schema": "IBME/ROUNDED-CONTINUOUS-NOISE/1",
+            "config": {
+              "q": 257,
+              "alpha": "1/257",
+              "tail_bits": 80,
+              "mass_bits": 128,
+              "precision_bits": 256,
+              "max_radius": 8192
+            },
+            "support": [
+              -9,
+              9
+            ],
+            "support_count": 19,
+            "draw_bytes": 16,
+            "cdf_interval_error_units": 18,
+            "tail_tv_upper": "1/1208925819614629174706176",
+            "cdf_quantization_and_interval_tv_upper": "9/170141183460469231731687303715884105728",
+            "random_rejection_abort_upper": "0",
+            "tv_upper_including_abort": "140737488355337/170141183460469231731687303715884105728",
+            "scaled_width": "1",
+            "target": "round(continuous Gaussian of width q*alpha), then modulo q if requested",
+            "finite_tail_policy": "clamp to endpoints, no conditioning",
+            "randomness_assumption": "independent uniform bytes; errors of faulty sources propagate",
+            "cdf_sha256": "17de7c55855cf213e6bb8e5fe9ea63f7cba6b9266ab48576a45965fd8546b236",
+            "constant_time": false,
+            "security_claim": "none",
+            "backend_admitted": false
+          },
+          "repetitions": [
+            {
+              "bits": 32,
+              "phase_equations_exact": 32,
+              "noiseless_control_correct": 32,
+              "honest_rounded_noise_correct": 11,
+              "honest_rounded_noise_failed": 21,
+              "nonzero_noise_coordinates": 38,
+              "scalar_noise_calls": 176,
+              "entropy_bytes": 2820,
+              "noise_profile_is_full_chain_correctness_candidate": false
+            },
+            {
+              "bits": 32,
+              "phase_equations_exact": 32,
+              "noiseless_control_correct": 32,
+              "honest_rounded_noise_correct": 19,
+              "honest_rounded_noise_failed": 13,
+              "nonzero_noise_coordinates": 41,
+              "scalar_noise_calls": 176,
+              "entropy_bytes": 2820,
+              "noise_profile_is_full_chain_correctness_candidate": false
+            },
+            {
+              "bits": 32,
+              "phase_equations_exact": 32,
+              "noiseless_control_correct": 32,
+              "honest_rounded_noise_correct": 15,
+              "honest_rounded_noise_failed": 17,
+              "nonzero_noise_coordinates": 35,
+              "scalar_noise_calls": 176,
+              "entropy_bytes": 2820,
+              "noise_profile_is_full_chain_correctness_candidate": false
+            }
+          ],
+          "conditional_budget": {
+            "scope": "conditional honest encapsulation noise; supplied metadata arithmetic only",
+            "q": 257,
+            "alpha": "1/257",
+            "dimension": 144,
+            "seed_bits": 32,
+            "encapsulations": 3,
+            "scalar_noise_draws": 528,
+            "random_bytes_upper": 8448,
+            "scalar_noise_tv_upper": "140737488355337/170141183460469231731687303715884105728",
+            "joint_noise_coupling_upper": "4644337115726121/10633823966279326983230456482242756608",
+            "ideal_lifetime_failure_upper": null,
+            "lifetime_noise_upper_if_key_norm_good": null,
+            "q_alpha_and_ledger_matched": true,
+            "certificate_authenticity_verified": false,
+            "omitted": [
+              "bad key norm",
+              "GPV TV/abort",
+              "basis and resource failures",
+              "LWE estimates and full HIBE implementation"
+            ],
+            "security_claim": "none",
+            "backend_admitted": false,
+            "parameters_are_formal": false
+          },
+          "negative_noise_control": true,
+          "full_KEM_or_HIBE_implemented": false
+        }
+      },
+      "outcome": "parent_and_fixed_terminal_preimages_completed",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "ideal_H_or_G_implemented": false,
+      "diagnostic_lll_uniform_resources_admitted": false,
+      "randbasis_and_leaf_sampling_terms_upper": "1635425677641545387021941059785875448335058228091088416188431291839266497573213226090467/206017244956963099036961848335920075299676748694756881100522888203279969732186623807680675840",
+      "omitted_from_selected_terms": [
+        "leaf preimage norm-tail probability",
+        "GenBasis distribution",
+        "preprocessing failure/resources",
+        "noise decode failures"
+      ],
+      "local_budget_condition": "given successful preprocessing and fixed public diagnostic bases",
+      "preprocessing_abort_or_resource_upper": null,
+      "full_joint_failure_upper": null,
+      "public_genbasis_tv_nonvacuous": false,
+      "diagnostic_seconds_not_benchmark": 73.457506
+    }
+  ],
+  "all_diagnostic_chains_completed": true,
+  "source_sha256_lf": {
+    "experiments/research/ibme_chain_audit.py": "4a6a30d40f048a43e4d385e1d2c24b05841b54efd876573a57ab36c1a3e3a8d0",
+    "experiments/research/ibme_root_sampler_audit.py": "00bc6af3eae975d1428af5cd51af9b5f8e8d4dc467270fb0f7279a36713b00dc",
+    "experiments/research/ibme_joint_parameters.py": "271d795d60bfdd8a6cf02422e1dc8df5bfcd27d4657fefedb2fe149a94e24e08",
+    "experiments/research/ibme_noise_budget.py": "811d7eebf348c7bd2774acacc03c5ba395e8b4105a6aaf362cbc336fe1608f2c",
+    "experiments/research/ibme_rounded_noise.py": "1e2f87b1ed964c4821a4d290ed2128d21d9bb77dacbf268205799f74352bb740",
+    "experiments/research/chkp_basis.py": "e8924704c6808fb96849e89c2f34cd59615178771738b604f55627c2e7b5f677",
+    "experiments/research/chkp_genbasis.py": "d9bf8a0d71b0ae3ccccd32b24e1a7ebdc9652a44e7e4640d97c423c6bb389aa8",
+    "experiments/research/chkp_gpv.py": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+    "experiments/research/chkp_randbasis.py": "69d970490202fcf69da4389d4435e1538f6c1c49b83441365291260134dc2282",
+    "experiments/research/chkp_tobasis.py": "d7f3b2c2fe5762a4d45cd26ecc2d5f1f7170d189b2be0555dc5afc90b115f92a",
+    "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+    "experiments/research/chkp_leaf_reference.py": "2e33cd9b5155400b0132a87a41654e8d17f3102e739d964c614b307d7f745c5c",
+    "experiments/research/chkp_leaf_cache.py": "8c8197e60044b4d91a7fef929b784054771d4c530bced50bbf2508f252b8deb5",
+    "experiments/research/chkp_leaf_cache_types.py": "bb3657e05c07b5c0a0cbdd7f9e8885b16a83f458304d07ef016d7de9ad1772cd",
+    "experiments/research/chkp_leaf_cache_wire.py": "906ec0c5678a7373d03d053d3e39c261d0a019c64f00de4c24375e3f29ea5ca8"
+  },
+  "not_implemented": [
+    "real H/G and two-level anonymous HIBE",
+    "256-bit fixed-address wire/state",
+    "valid full-chain noisy KEM parameters",
+    "uniform preprocessing/resource bound",
+    "full IBME composition or attacks",
+    "LWE cost estimate/security level"
+  ],
+  "source_version": "CHKP author 2011-06-14, section 5.1 bit equations and 5.2 terminal leaf",
+  "timing_scope": "single diagnostic per fixed seed; includes exact audit/serialization overhead",
+  "randomness_scope": "explicit deterministic PUBLIC TEST streams, not independent physical repetitions"
+}

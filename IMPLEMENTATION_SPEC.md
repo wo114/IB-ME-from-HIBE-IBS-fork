@@ -86,6 +86,8 @@ load_signature(self, pk, data: bytes) -> signature
 
 ### 3.3 算法专属条件
 
+本地 `first_suite` 独立研究组件的算法、有限采样、根/父/叶状态及资源契约集中在 [first_suite 专属契约](docs/specs/first-suite-research.md)。它们是有限原型，不能记为已注册的 CHKP/HIBE 后端；真实接收状态事务见 [传输与状态契约](docs/specs/transport-and-state.md#21-固定接收状态的磁盘事务)。
+
 每个模块给出论文算法—实现映射、正确性条件、真实随机分布、失败事件、格式和恢复语义。需要离散高斯的算法必须说明宽度约定并做统计诊断；使用均匀掩码的算法按原论文实现。SIS 方程、gadget、陷门委派或 NTT 仅约束使用它们的后端，不能作为所有 HIBE/IBS 的通用接口要求。
 
 ## 4. 基线 IB-ME 算法

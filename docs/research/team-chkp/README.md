@@ -6,9 +6,9 @@
 
 | 来源 | 已有内容 | 尚不能据此宣称 |
 |---|---|---|
-| 本 checkout，整理前基线 `52a394e` | `experiments/research/chkp_*` 的完整格基、AP09/GPV/RandBasis、叶路径与固定原像缓存研究组件 | 不存在 `src/ibme/hibe/chkp.py`；未提供完整公开 HIBE 后端或正式参数 |
+| 本 checkout，合并 `upstream/main` 的 `bc22c9c` 后 | `experiments/research/chkp_*` 的完整格基、AP09/GPV/RandBasis、叶路径与固定原像缓存研究组件 | 不存在 `src/ibme/hibe/chkp.py`；未提供完整公开 HIBE 后端或正式参数 |
 | 仓库外第七步 Codex 修订包 | 规范集合／持久状态／执行器／收据修复；实际采样与资源问题的研究工具 | A/D 尚需接线；第七步同叶目标帽 32 不满足 32 B 种子的 256 位置需求；F 的成功是教学 ABB10 + Luo 路径 |
-| Luo 独立 worktree，`f079ce10fb6b3d2877465b308caaa30276d9e6f9` | `experiments/research/first_suite/identity.py` 有 256 位置 H/G，`leaf_state.py` 要求恰好 256 原像并维护固定状态，另有种子 KEM／委派组件 | 这些文件尚未并入本 checkout；256 位置表示不等于 256 真实样本或完整公开 HIBE。缺少公共后端仍阻塞真实 CHKP + Luo 组合 |
+| 已并入本 checkout 的 `first_suite` | H/G、固定 256 位置、根/父/叶状态、有限 CSPRNG 和种子 KEM；[DelTrap 原交付](../2026-10-11-first-suite-compact/README.md)记录真实父陷门、同叶 256 原像及两枚带噪声种子的 512 位恢复 | 原执行参数 n=1 可公开恢复种子；独立 MP12 DelTrap 不等于原 CHKP RandBasis，尚无完整公开 HIBE。研究合同见 [first_suite 专属规范](../../specs/first-suite-research.md) |
 
 本次整理核实了上述本地文件和外部组件源码，没有重新运行密码实验。第七步研究包仍声明 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`、`T2_complete=false`、`T3_complete=false`。
 
@@ -30,7 +30,7 @@
 6e20806345024e92f1e9fe259439ac461f2ddfe7e194db597dce9ddbdc950790
 ```
 
-外部 `first_suite` 本次核对位置为 `C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/`。相关公共接口预检报告是交付区的 `CODEX-step22-luo-integration/report.md`；所有者后续已复跑 26 项检查和 18 项公共边界；本对话未复跑，不能纳入本次独立实跑统计。
+`first_suite` 已随 `bc22c9c` 并入本 checkout；外部 Luo 第二十二步提交 `886fc12` 尚未合并。相关公共接口预检报告是交付区的 `CODEX-step22-luo-integration/report.md`；所有者后续已复跑 26 项检查和 18 项公共边界；本对话未复跑，不能纳入本次独立实跑统计。
 
 ### 第七步修订的证据边界
 
@@ -45,7 +45,7 @@
 ## 3. 现在要打通什么
 
 1. 同一配置下的根生成、一级随机化、叶采样、噪声、有限中止与资源条件。AP09 根 173 的矩阵 TV **充分上界为 1，界无信息**，不等于实际 TV 距离为 1。MP12 单体陷门不能直接当作 CHKP 所需短基。
-2. 真实带噪声两层链、同一叶身份的 256 位置、固定状态恢复及 32 B Hybrid。外部 `first_suite` 与第七步格式／状态是不同组件，接线时明确来源与容量，避免重复开发或混用承诺。
+2. 真实带噪声两层链、同一叶身份的 256 位置、固定状态恢复及 32 B Hybrid。本地 `first_suite` 与第七步格式／状态是不同组件，接线时明确来源与容量，避免重复开发或混用承诺。
 3. 公共 HIBE 对象、规范加载、无随机消耗的密钥绑定验证及组合测试。公共框架和 IBS 可继续独立开发；没有 CHKP 后端只阻塞依赖 CHKP 的组合。
 
 执行采用 G-run／G-chain／G-formal 分层：合法真实调用可以标为研究诊断，正式参数未闭合不阻止全部功能工作；数学采样前提、正式安全与功能结果各自留证。第八步 v2 已把可并行内容合并，不继续按旧 T1—T5 串行等待。

@@ -1,0 +1,198 @@
+{
+  "date": "2026-10-11",
+  "objective": "先完成第一套的集中闭环",
+  "objective_complete": false,
+  "base_commit": "79256ba693ad4e98960ba4937c1eceb964ca7768",
+  "scope": "Independent finite MP12 Algorithm4 DelTrap, private mathematical wire, saved-root/full256-leaf CSPRNG execution and joint dimension/LWE/resource screening",
+  "modified_files": [
+    ".github/workflows/basic-checks.yml",
+    "IMPLEMENTATION_SPEC.md",
+    "docs/PROJECT_RESTART.md",
+    "docs/workplans/2026-10-10/首套系统关键路径与优先级.md",
+    "experiments/research/first_suite/delegation_state.py",
+    "experiments/research/first_suite/compact_delegation.py",
+    "experiments/research/first_suite/compact_delegation_probe.py",
+    "experiments/research/first_suite/private_basis_bridge.py",
+    "experiments/research/first_suite/parameter_resource_probe.py",
+    "tests/test_first_suite_compact_delegation.py",
+    "docs/research/2026-10-11-first-suite-compact/README.md",
+    "docs/research/2026-10-11-first-suite-compact/compact-chain.json",
+    "docs/research/2026-10-11-first-suite-compact/parameter-resources.json",
+    "docs/research/2026-10-11-first-suite-compact/audit.json"
+  ],
+  "source_lf_sha256": {
+    ".github/workflows/basic-checks.yml": "c1808c73975690940da774e669be1867a43998c5a1d0142750dfc4426507d4a7",
+    "IMPLEMENTATION_SPEC.md": "44b4777c6c24fd3d0df02d3170650bdc3cb1d93928e70c90244a69470c834a83",
+    "docs/PROJECT_RESTART.md": "cff8d5741cf10a88f7b8ce63072bd078f7c78bb551310c4e24987fe32d90af0f",
+    "docs/workplans/2026-10-10/首套系统关键路径与优先级.md": "0aa08d4df1cfabbb5d601e9b9914e5d184571ebf977b5f4a338dd43ffb404a4a",
+    "experiments/research/first_suite/delegation_state.py": "b695773777d136e04f476b987434a4aa5d3daf9389521e405b68f9ac92fb047b",
+    "experiments/research/first_suite/compact_delegation.py": "75798c6d64fbe81ea7252099835bc2f0fb552f25a771be43e9d90d76f5112dbe",
+    "experiments/research/first_suite/compact_delegation_probe.py": "1f1b04ea8a8217ba2e9de2d5f388ebd15f65743cd18d2a72b7fa43ddabb79936",
+    "experiments/research/first_suite/private_basis_bridge.py": "6ee978a9a13655036ef751dc23fde8b2e5261c8ee0215864889b77a71f4cb00f",
+    "experiments/research/first_suite/parameter_resource_probe.py": "ffb257de676a98fddc89a0dfe2265493228372e33b7ff54464c86d4024b0d60c",
+    "tests/test_first_suite_compact_delegation.py": "3e479508dd0a19c3551433240249158a755faac5ac1bfdd6a58d8535ee4568c3",
+    "docs/research/2026-10-11-first-suite-compact/README.md": "bd39d0f3195ecd8f8d6cbdcf6e7c6b7ee42af81afc07fdcf78ab092263a6b090",
+    "docs/research/2026-10-11-first-suite-compact/compact-chain.json": "24417732f0fc701449641c42e0bb53c0b336e276f9df827fab9f1b8149d7bb24",
+    "docs/research/2026-10-11-first-suite-compact/parameter-resources.json": "69ff9f46bf8e71ca81104aacd347a6483e5a958d78a3b809b552be864df3d9a6"
+  },
+  "preserved_source_lf_sha256": {
+    "experiments/research/first_suite/root_generation.py": "2d809229b5a8f8ae2c6e34189b16f250854a0c11c73e8909289c1724759cc8cb",
+    "experiments/research/first_suite/finite_gaussian.py": "9892f3b8bd85c11f08948f1d0cf3849efa4752ad339c366b842263c991d60549",
+    "experiments/research/first_suite/finite_gpv.py": "4ddeda10288c2683a573c2d4a44b33737d87bb83e2b08e3e72d0feb22b0748e3",
+    "experiments/research/first_suite/finite_randbasis.py": "c117a4585849ef9e3f73447da7d4fb1bed98ddf331d576053aed75f8549f4644",
+    "experiments/research/chkp_basis.py": "e8924704c6808fb96849e89c2f34cd59615178771738b604f55627c2e7b5f677",
+    "experiments/research/chkp_gpv.py": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+    "experiments/research/chkp_randbasis.py": "69d970490202fcf69da4389d4435e1538f6c1c49b83441365291260134dc2282",
+    "experiments/research/chkp_tobasis.py": "d7f3b2c2fe5762a4d45cd26ecc2d5f1f7170d189b2be0555dc5afc90b115f92a",
+    "experiments/research/reuse/qfall_probe/src/bin/ibme-qfall-private-root.rs": "db86761c7c48646c8fd3ffff03c766b7b68dff82f28d115a3c4706afc874e033"
+  },
+  "cross_boundary_reason": "Owned master state adds explicit immutable private research input access; spec/workplan/CI document distinct DelTrap variant and pending model admission. Teammate modules and all original guards unchanged.",
+  "runtime": {
+    "sage": "10.9",
+    "python": "3.13.14",
+    "environment": "~/miniconda3/envs/sage",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "native_python": "3.14.6",
+    "native_platform": "Windows-11-10.0.26200-SP0"
+  },
+  "algorithm_mapping": {
+    "paper": "papers/2011_lattice_trapdoors_micciancio.pdf",
+    "sections": [
+      "5.5 Algorithm4/Lemma5.7 DelTrap",
+      "5.1 Lemma5.3 complete-basis conversion"
+    ],
+    "native_conversion_revision": "b8eb4842fb80c36f7f3494930ea316472cb75793",
+    "native_license": "MPL-2.0",
+    "algorithm3_sampling_implemented": false,
+    "CHKP_theorem5_2_mapping_for_changed_key_format_completed": false,
+    "old_RandBasis_relabelled": false
+  },
+  "actual_params": {
+    "n": 1,
+    "q": 35184372088891,
+    "dimensions": [
+      83,
+      166,
+      249
+    ],
+    "sampling_prefix_dimension": 120,
+    "delegated_gaussian_columns": 46,
+    "source_width_squared": "272729642840",
+    "parent_full_basis_gs_squared_bound": "15054676284768010",
+    "leaf_width_squared": "8249962604052869480",
+    "original_identity_bytes": [
+      3,
+      5
+    ],
+    "encoded_identity_bytes": 86,
+    "seed_bytes": 32
+  },
+  "actual_results": {
+    "root_generations": 0,
+    "parent_generations": 1,
+    "leaf_generations": 1,
+    "parent_wire_bytes": 50656,
+    "leaf_wire_bytes": 574449,
+    "raw_capsule_bytes": 3127,
+    "seed_bits": 512,
+    "seed_errors": [
+      0,
+      0
+    ],
+    "source": "system CSPRNG; no native RNG or test seed",
+    "parent_actual_entropy": 2282281,
+    "leaf_actual_entropy": 27819627,
+    "generation_seconds": 46.4901901,
+    "fresh_process": {
+      "backend_admitted": false,
+      "compact_parent_byte_equal": true,
+      "fixed_leaf_byte_equal": true,
+      "fixed_positions": 256,
+      "new_root_parent_or_leaf_generations": 0,
+      "private_native_conversion_used": false,
+      "security_claim": "none",
+      "seed_hash_matches": true
+    }
+  },
+  "tests": [
+    {
+      "file": "test-results/first-suite-compact-final-sage.xml",
+      "sha256": "44a0495b5b1dd59e215050155f5855af1f729259a04b433ee50414d0f3d6842d",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 17
+    },
+    {
+      "file": "test-results/first-suite-compact-regression-sage.xml",
+      "sha256": "c1ec6da25e6dad304cd5e0b5dd12589eefdb76141749331b92d540f594d34862",
+      "tests": 157,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 157
+    },
+    {
+      "file": "test-results/first-suite-compact-native.xml",
+      "sha256": "6699cf3af7c0ed01efb617a2eb80b6e67c7a58c2cd854deebaa13f6340cd3c31",
+      "tests": 38,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2,
+      "passed": 36
+    }
+  ],
+  "batches_overlap": true,
+  "broad_regression_before_last_type_bridge_test": true,
+  "final_affected_tests_reexecuted": true,
+  "whole_repository_tests_rerun": false,
+  "commands": [
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q --tb=short tests/test_first_suite_compact_delegation.py --junitxml=test-results/first-suite-compact-final-sage.xml",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q --tb=short tests/test_first_suite_compact_delegation.py tests/test_first_suite_root_generation.py tests/test_first_suite_delegation.py tests/test_first_suite_finite_sampling.py tests/test_first_suite_identity_state.py tests/test_first_suite_seed_sage.py tests/test_public_reuse_gpv.py --junitxml=test-results/first-suite-compact-regression-sage.xml",
+    "python -m pytest -p no:cacheprovider -q --tb=short tests/test_first_suite_compact_delegation.py tests/test_first_suite_identity_state.py tests/test_first_suite_delegation.py --junitxml=test-results/first-suite-compact-native.xml",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.first_suite.compact_delegation_probe --source-manifest test-results/first-suite-private-root-closed/private/public-restore-manifest.json --private-directory test-results/first-suite-compact-deltrap-fixed/private --output test-results/first-suite-compact-deltrap-fixed/result.json",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.first_suite.parameter_resource_probe --estimator-path test-results/lattice-estimator --output test-results/first-suite-parameter-resources.json"
+  ],
+  "estimation": {
+    "repository": "https://github.com/malb/lattice-estimator",
+    "revision": "53da5982597709ba0fdf94ea37a84d822310fd84",
+    "clean_checkout_checked": true,
+    "attacks": [
+      "primal-usvp"
+    ],
+    "cost_model": "ADPS16 classical/quantum Core-SVP LGSA",
+    "not_literal_rounded_noise_PMF": true,
+    "actual_high_dim_attack_executed": false,
+    "actual_high_dim_key_generated": false,
+    "security_grade_is_not_inferred": true
+  },
+  "private_public_boundary": {
+    "secret_R_bases_vectors_entropy_seeds_not_archived": true,
+    "private_directories_ignored": true,
+    "per_coordinate_secret_basis_certificates_not_published": true,
+    "public_range_error_bounds_only": true
+  },
+  "initial_errors_and_fixes": [
+    "Private conversion helper import did not match disk source; independent bridge now uses existing parser without modifying original GenTrap.",
+    "Wrong placement of the first draft master accessor was detected before runtime and moved to MasterTreeState; receiver has no root accessor.",
+    "Prototype LLL passed Python Fraction to Sage QQ comparison; corrected exact QQ before any parent entropy draw. First two failed attempts were terminal and pre-entropy; old pending directories retained; one successful generation in a new reserved directory.",
+    "Compact key JSON minimum coefficient encoding is4B, not the old signed binary6B. Public projections recalculated; 525GB earlier commentary corrected to350GB; no costs or keys regenerated."
+  ],
+  "known_gaps": [
+    "n1 current operational input is publicly breakable; root conditional regularity target64 not a security grade",
+    "Joint root/message hardness and actual finite/resource/noise parameters",
+    "Smaller published root/gadget path and scalable sampled compact trapdoor/preimage representation",
+    "Original RandBasis large finite parent not executed by this variant",
+    "CHKP/MP12/Luo/Wang model and key-distribution citation mapping",
+    "Seven-method public/private/byte binding and CLI unique-owner publication; probe is not a backend",
+    "Full four-match and authentication/recipient-resigning/tamper acceptance for this variant",
+    "Legacy education two authentication counterexamples still unfixed",
+    "No independent-clone/rollback or constant-time claim"
+  ],
+  "goal_status": "active",
+  "parameters_are_formal": false,
+  "security_claim": "none",
+  "backend_admitted": false
+}

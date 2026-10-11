@@ -73,7 +73,8 @@ import tempfile
 from pathlib import Path
 
 from ibme.core.errors import IBMEError
-from ibme.cli_state import key_issuance_lock
+from ibme.cli_state import (LOCK_FILE, check_receiver_ready, key_issuance_lock,
+                            receiver_state_transaction)
 from ibme.protocol.baseline import (
     BASELINE_DEBUG_IBS_PARAMS,
     BASELINE_DEBUG_PARAMS,
@@ -160,6 +161,32 @@ def _sender_key_path(state: Path, identity: bytes) -> Path:
 
 def _receiver_key_path(state: Path, identity: bytes) -> Path:
     return state / f"receiver-{_identity_digest(identity)}.bin"
+
+
+def _check_data_output(state: Path, output: Path | None) -> None:
+    """Keep data output from replacing authoritative CLI state or its guards."""
+    if output is None:
+        return
+    root, target = state.resolve(), output.resolve()
+    reserved = {_MPK_FILE, _MSK_FILE, _META_FILE, LOCK_FILE}
+    def is_reserved(path):
+        return (path.name in reserved or path.name.startswith(".ibme-state-")
+                or path.name.startswith(("sender-", "receiver-")))
+    # Resolve existing aliases too: a data path may be a symlink to a key, or
+    # the authoritative state key itself may have a resolved path outside root.
+    if ((target.parent == root and is_reserved(target))
+            or any(target == path.resolve()
+                   or (target.exists() and path.exists() and os.path.samefile(target, path))
+                   for path in state.iterdir() if is_reserved(path))):
+        raise ValueError("data output cannot overwrite protected key state")
+
+
+def _check_research_receiver(public_hibe, receiver: ReceiverKey, identity: bytes) -> None:
+    """Compare declared public context only; primitive loaders validate keys."""
+    if receiver.identity != identity:
+        raise ValueError("receiver key file has a different identity")
+    if receiver.level1_key.public_key.to_bytes() != public_hibe.to_bytes():
+        raise ValueError("receiver key file has a different public state context")
 
 
 # ---------------------------------------------------------------------------
@@ -686,18 +713,41 @@ def _issue_receiver_key_unlocked(args) -> int:
         args.name, max_bytes=meta["identity_bytes"], role="receiver identity"
     )
     digest = _identity_digest(identity)
-    msk, proto, classes = _load_msk(args.state, args.mock)
-    dk = proto.rkgen(msk, identity)
-    if meta["version"] == _SELECTED_STATE_VERSION:
-        _atomic_write_state(args.state / _MSK_FILE, _state_object(msk.to_bytes(), meta, "msk"))
-    elif meta.get("params_preset") == _RESEARCH_PRESET:
-        # A delegated HIBE can carry persistent address/decapsulation caches.
-        _persist_research_master(args.state, msk)
     out = _receiver_key_path(args.state, identity)
-    encoded = _state_object(dk.to_bytes(), meta, "receiver") if meta["version"] == _SELECTED_STATE_VERSION else dk.to_bytes()
-    _atomic_write_state(out, encoded)
+    selected = meta["version"] == _SELECTED_STATE_VERSION
+    research = meta.get("params_preset") == _RESEARCH_PRESET
+    if selected or research:
+        check_receiver_ready(out)
+    msk, proto, classes = _load_msk(args.state, args.mock)
+    if selected:
+        _, _, runtime = _runtime_for_state(meta, args.mock)
+        public = PublicKey.from_bytes(_read_state_object(args.state / _MPK_FILE, meta, "mpk"),
+                                      classes["hpk"], classes["ipk"])
+    # Existing receivers retain their authoritative private leaf addresses.
+    # Delegating again from the master would discard this authoritative cache.
+    if (selected or research) and out.exists():
+        dk = ReceiverKey.from_bytes(_read_state_object(out, meta, "receiver"), classes["sk1"])
+        if dk.identity != identity:
+            raise ValueError("receiver key file has a different identity")
+        if selected:
+            runtime.validate_receiver(public, dk)
+        else:
+            _check_research_receiver(msk.hmsk.public_key, dk, identity)
+        action = "reused"
+    else:
+        dk = proto.rkgen(msk, identity)
+        if selected:
+            runtime.validate_receiver(public, dk)
+            _atomic_write_state(args.state / _MSK_FILE, _state_object(msk.to_bytes(), meta, "msk"))
+        elif research:
+            _check_research_receiver(msk.hmsk.public_key, dk, identity)
+            _persist_research_master(args.state, msk)
+        encoded = _state_object(dk.to_bytes(), meta, "receiver") if selected else dk.to_bytes()
+        _atomic_write_state(out, encoded)
+        action = "issued"
+    encoded = _state_object(dk.to_bytes(), meta, "receiver") if selected else dk.to_bytes()
     print(
-        f"issued receiver key: identity={args.name!r} utf8={len(identity)}B "
+        f"{action} receiver key: identity={args.name!r} utf8={len(identity)}B "
         f"digest={digest} (sha256[:{_DIGEST_HEX_CHARS}] of UTF-8 bytes)"
     )
     print(f"  wrote {out} ({len(encoded)} bytes)")
@@ -706,6 +756,8 @@ def _issue_receiver_key_unlocked(args) -> int:
 
 def cmd_encrypt(args) -> int:
     meta = _load_state_meta(args.state)
+    out = args.out or Path(str(args.in_path) + ".ibme-ct")
+    _check_data_output(args.state, out)
     sender = _parse_identity(
         args.sender, max_bytes=meta["identity_bytes"], role="sender identity"
     )
@@ -721,7 +773,6 @@ def cmd_encrypt(args) -> int:
         raise ValueError(f"sender key file does not belong to {args.sender!r}")
     message = _read(args.in_path)
     ct = proto.encrypt(pk, ek, receiver, message)
-    out = args.out or Path(str(args.in_path) + ".ibme-ct")
     out.write_bytes(ct.to_bytes())
     print(
         f"sender identity={args.sender!r} "
@@ -734,22 +785,38 @@ def cmd_encrypt(args) -> int:
 
 
 def cmd_decrypt(args) -> int:
+    # Derive may update a private fixed-address cache. Read the receiver only
+    # after acquiring the same lock as issuance, and retain it through output.
+    with key_issuance_lock(args.state):
+        return _decrypt_unlocked(args)
+
+
+def _decrypt_unlocked(args) -> int:
     meta = _load_state_meta(args.state)
+    _check_data_output(args.state, args.out)
     receiver = _parse_identity(
         args.receiver, max_bytes=meta["identity_bytes"], role="receiver identity"
     )
     sender = _parse_identity(
         args.sender, max_bytes=meta["identity_bytes"], role="sender identity"
     )
-    proto, classes, _ = _runtime_for_state(meta, args.mock, legacy_baseline=args.legacy_baseline)
+    proto, classes, runtime = _runtime_for_state(meta, args.mock, legacy_baseline=args.legacy_baseline)
     pk = PublicKey.from_bytes(
         _read_state_object(args.state / _MPK_FILE, meta, "mpk"), classes["hpk"], classes["ipk"]
     )
-    dk = ReceiverKey.from_bytes(
-        _read_state_object(_receiver_key_path(args.state, receiver), meta, "receiver"), classes["sk1"]
-    )
+    key_path = _receiver_key_path(args.state, receiver)
+    selected = meta["version"] == _SELECTED_STATE_VERSION
+    research = meta.get("params_preset") == _RESEARCH_PRESET
+    if selected or research:
+        check_receiver_ready(key_path)
+    original = _read(key_path)
+    dk = ReceiverKey.from_bytes(_read_state_object(key_path, meta, "receiver"), classes["sk1"])
     if dk.identity != receiver:
         raise ValueError(f"receiver key file does not belong to {args.receiver!r}")
+    if selected:
+        runtime.validate_receiver(pk, dk)
+    elif research:
+        _check_research_receiver(pk.hpk, dk, receiver)
     data = _read(args.in_path)
     # 身份/摘要信息打到 stderr：stdout 缺省承载原始明文字节流。
     print(
@@ -759,7 +826,12 @@ def cmd_decrypt(args) -> int:
         f"digest={_identity_digest(sender)}",
         file=sys.stderr,
     )
-    message = proto.decrypt(pk, dk, sender, data)
+    if selected or research:
+        snapshot = (lambda: _state_object(dk.to_bytes(), meta, "receiver")) if selected else dk.to_bytes
+        with receiver_state_transaction(key_path, original, snapshot, _atomic_write_state):
+            message = proto.decrypt(pk, dk, sender, data)
+    else:
+        message = proto.decrypt(pk, dk, sender, data)
     if is_bottom(message):
         print("BOTTOM")
         return 1

@@ -26,6 +26,18 @@ CLI所有Setup/发钥写操作在读取主状态前取得本地状态锁，并�
 
 安全依据按普通混合加密、RFC 5869 与 AES-GCM 的条件分项引用，对应历史实施记录见 [M2 交接](../research/2026-10-09-m2/README.md)；未宣称 HPKE 兼容或由 CPA HIBE 获得 CCA/QROM。AEAD 不能防持钥接收者重签，IBS 与 BYTEAUTH 继续承担发送者认证和完整字节绑定。本地上述研究后端/组合声明保持 none/false，底层教学 HIBE、模格 IBS 的安全参数和引用条件仍需准入。
 
+### 2.1 固定接收状态的磁盘事务
+
+CLI解密与Setup/发钥共用本地状态锁，从读取接收密钥前保持至明文输出；研究profile解密前核对接收身份及其声明的公开HIBE上下文。协议只调用不透明ReceiverKey.to_bytes，不读取私有基/原像矩阵。底层序列化须包含固定地址和失败墓碑。
+
+研究解密进入可能采样的协议调用前，以O_EXCL建立receiver-<digest>.bin.pending，写固定版本字节并flush/fsync；该文件不存身份/私钥/原像。finally序列化当前接收状态，有变化时通过同目录临时文件和原子替换提交，再移除标记。成功、BOTTOM和异常/KeyboardInterrupt均走相同保存路径；完成保存后才返回明文或BOTTOM。无变化则保持原密钥字节，不增加重写。
+
+进程硬退出、序列化/提交/解除标记失败时，标记保留，后续解密和接收者重新发钥明确失败，不自动重抽或删除标记。它是同OS本地进程崩溃下的保守阻止机制，不是硬断电、目录持久化、反回滚或跨OS分布式事务；本轮不增加自动修复命令。
+
+研究profile已有接收密钥时，重新发钥经原语加载校验、身份和公开上下文检查后复用完整文件，不再次委派、不覆盖缓存；坏文件明确拒绝。首次发钥仍按主缓存先提交再发布密钥的契约，具体HIBE主状态须实现固定发钥及失败状态。数据输出拒绝覆盖密钥、元数据、锁、pending和临时状态等保留路径；现有别名按resolve检查，不声称抵抗恶意本地文件系统操纵。有效wire、密码算法、KDF/AAD和安全声明保持。
+
+实现与故障证据见 [接收状态事务记录](../research/2026-10-10-receiver-persistence/README.md)；本次文档合并未重新执行该实验。
+
 ## 3. HIBE 密钥与公钥的语义绑定
 
 独立的`HIBEKeyBindingValidator.validate_key_binding(public_key, secret_key) -> bool`能力。HIBE 六个基础方法签名保持；HYBRID-HIBE适配器构造时必须取得该验证器，可由原语方法提供，或以`key_binding_validator`显式注入。缺失/不可调用即拒绝，不能只比较类型或参数后放行。
@@ -65,4 +77,4 @@ CLI 默认产生并只接受 BYTEAUTH/1；旧未认证密文仅经显式 `--lega
 
 32/86/86 是当前 wrapper 的输入合同，不是已证明的 CHKP 容量。教学 ABB10 的内部组帧长度不进入 CHKP/Hybrid 容量定义。HIBE 解密原始数学层可能在低位扰动后恢复同一 seed；Hybrid 必须在完整胶囊 AAD 验证处拒绝这种修改。完整组合仍必须经 IBS 和 BYTEAUTH 的认证路径验收。
 
-测试入口：`tests/test_hybrid_hibe.py`、`tests/test_hybrid_key_binding.py`、`tests/test_byteauth.py`、`tests/test_luo_hybrid_ibme.py`、`tests/test_luo_compact_ibme.py`、`tests/test_cli_state_lock.py`、`tests/test_research_state_integrity.py`。报告应分别标记 raw math、wire、state、Hybrid 和完整协议的执行结果，保留预计失败的历史负面对照。
+测试入口：`tests/test_hybrid_hibe.py`、`tests/test_hybrid_key_binding.py`、`tests/test_byteauth.py`、`tests/test_luo_hybrid_ibme.py`、`tests/test_luo_compact_ibme.py`、`tests/test_cli_state_lock.py`、`tests/test_cli_receiver_state.py`、`tests/test_research_state_integrity.py`。报告应分别标记 raw math、wire、state、Hybrid 和完整协议的执行结果，保留预计失败的历史负面对照。

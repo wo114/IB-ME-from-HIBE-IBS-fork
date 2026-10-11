@@ -1,0 +1,203 @@
+{
+  "date": "2026-10-10",
+  "scope": "opaque receiver persistence and first-suite handoff",
+  "integration_base": "0acd43ebd2a8f73a0268d7a7ebe5874f6793181f",
+  "pr": {
+    "number": 6,
+    "state": "MERGED",
+    "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/6"
+  },
+  "modified_files": [
+    "src/ibme/cli.py",
+    "src/ibme/cli_state.py",
+    "tests/test_cli_receiver_state.py",
+    ".github/workflows/basic-checks.yml",
+    "README.md",
+    "docs/PROJECT_RESTART.md",
+    "docs/KNOWN_SECURITY_GAPS.md",
+    "ARCHITECTURE.md",
+    "IMPLEMENTATION_SPEC.md",
+    "docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md",
+    "docs/workplans/2026-10-08/队友任务-CHKP与格工具.md",
+    "docs/workplans/2026-10-10/首套系统关键路径与优先级.md",
+    "docs/research/2026-10-10-receiver-persistence/README.md",
+    "docs/research/2026-10-10-receiver-persistence/audit.json"
+  ],
+  "source_lf_sha256": {
+    "src/ibme/cli.py": "e6189372c3ad4a4b7f53f3d8af977b308ec6aaedbab6e46a976b0b69579c3b59",
+    "src/ibme/cli_state.py": "1496faec7a17342c3b4ae7e8581b38f60ba754688953b2f224037e30acdb23e0",
+    "tests/test_cli_receiver_state.py": "93403e6c42ada0804eee17207cb7b4ec6d0671e0afb99583b7a67742fa6981b3",
+    ".github/workflows/basic-checks.yml": "4d18455a054236980670165cf2f1c5708280f9839cd1fcac8b0d23cd2cfb1869"
+  },
+  "tests": {
+    "receiver-state-before": {
+      "tests": 20,
+      "failures": 20,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 0,
+      "junit_seconds": 3.383,
+      "junit_path": "test-results/receiver-state-before.xml",
+      "sha256": "ec4a954530a8e61dfdeafc9766943939771395057c31c3a75d398bba128f4eb7"
+    },
+    "receiver-state-native": {
+      "tests": 86,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 3,
+      "passed": 83,
+      "junit_seconds": 20.79,
+      "junit_path": "test-results/receiver-state-native.xml",
+      "sha256": "273069b1d8c7bd91e4af6d66a0f2768c6684496e77926ba46d612c656ad6aa76"
+    },
+    "receiver-state-sage": {
+      "tests": 86,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 86,
+      "junit_seconds": 18.99,
+      "junit_path": "test-results/receiver-state-sage.xml",
+      "sha256": "93fb2de06b833e745abbf5f9d5d0aedff79ada927d7643a58a3cda57cd4c3ddf"
+    },
+    "receiver-cli-native": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4,
+      "junit_seconds": 30.987,
+      "junit_path": "test-results/receiver-cli-native.xml",
+      "sha256": "a01a9f4908d2dfb63ad926809138475a3e0c3ef89d17074b3ad10e73d8a67588"
+    },
+    "receiver-cli-sage": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4,
+      "junit_seconds": 34.816,
+      "junit_path": "test-results/receiver-cli-sage.xml",
+      "sha256": "33f4f2844e4efb417314c098234915413884f5aeeff224a81de885b44ac26c96"
+    },
+    "receiver-legacy-cli-native": {
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 11,
+      "junit_seconds": 124.53,
+      "junit_path": "test-results/receiver-legacy-cli-native.xml",
+      "sha256": "feba9fa5aa6e737fa0f9ef8ddc2a1b2d022372c61166b7cdc7e8c05f3b890801"
+    },
+    "receiver-legacy-mode-native": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1,
+      "junit_seconds": 0.155,
+      "junit_path": "test-results/receiver-legacy-mode-native.xml",
+      "sha256": "e012612fbdb513761f2ae1660fe9c02a4cbd6a5db21e9eeeceab1b9ac42b51e7"
+    },
+    "receiver-legacy-cli-sage": {
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 12,
+      "junit_seconds": 142.148,
+      "junit_path": "test-results/receiver-legacy-cli-sage.xml",
+      "sha256": "c07ae556d37b1074039eb385d3c46df1560954c3481cb19ce1ea14f23110fb58"
+    }
+  },
+  "final_nonoverlapping_state_cli_totals": {
+    "native": {
+      "passed": 99,
+      "skipped": 3,
+      "failed": 0
+    },
+    "sage": {
+      "passed": 102,
+      "skipped": 0,
+      "failed": 0
+    }
+  },
+  "environment": {
+    "cpu": "Intel Core Ultra9 275HX",
+    "native_python": "3.14.6",
+    "sage_python": "3.13.14",
+    "sage": "10.9",
+    "pytest": "9.1.1",
+    "cryptography": "49.0.0",
+    "sage_env": "~/miniconda3/envs/sage"
+  },
+  "parameters": {
+    "hibe": {
+      "n": 8,
+      "m_matrix": 168,
+      "m_bar": 16,
+      "q": 524288,
+      "s0": 3,
+      "s_enc": 1,
+      "s_pre": 1,
+      "encoded_identity_bytes": 86,
+      "seed_bytes": 32
+    },
+    "ibs": {
+      "degree": 256,
+      "k": 11,
+      "l": 10,
+      "q": 274877844481,
+      "kappa": 64,
+      "eta": 1,
+      "gamma1": 125440,
+      "gamma2": 31470387200,
+      "gamma3": 15270991360,
+      "dropped_bits": 28,
+      "root": 153250464611
+    },
+    "external_identity_max_bytes": 64,
+    "application_max_bytes": 3924,
+    "real_cache_bridge": {
+      "matrix": [
+        [
+          1,
+          0
+        ]
+      ],
+      "q": 2,
+      "width_squared": 512,
+      "epsilon_bits": 16,
+      "targets": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "capacity": 2,
+      "max_entries": 2,
+      "deterministic_tests": true
+    }
+  },
+  "protocol_changed": false,
+  "wire_changed": false,
+  "primitive_algorithms_changed": false,
+  "receiver_reissuance_reuses_existing_state": true,
+  "teammate_algorithm_sources_changed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "model": "classical ROM; no QROM claim",
+  "unresolved": [
+    "complete CHKP HIBE and H/G/KEM",
+    "joint GenBasis/GS/width/alpha/noise/resources",
+    "256-or-more fixed bit capacity and bounded private wire",
+    "formal parameter and composition admission",
+    "two legacy education authentication vulnerabilities",
+    "automatic safe pending recovery and rollback/power-loss guarantees",
+    "cross-OS concurrent filesystem writers"
+  ]
+}

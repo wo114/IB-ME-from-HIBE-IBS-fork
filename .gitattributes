@@ -20,6 +20,11 @@
 *.bundle binary
 *.pyc    binary
 
+# Byte-exact MIT upstream snapshot for source auditing. Its original trailing
+# whitespace is covered by a pinned SHA-256; owned implementation files retain
+# the normal whitespace checks. This file is not a production sampler.
+experiments/research/reuse/vendor/latte/sample_z.upstream.c -text -eol -whitespace
+
 # 第三方参考资料：不随提交物打包
 #
 # 这三个文件是撰写作品时查阅的参考材料，不是作品产出，也不被任何代码读取

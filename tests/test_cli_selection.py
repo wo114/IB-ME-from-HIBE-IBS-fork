@@ -1,7 +1,7 @@
 """Independent CLI selection, fail-closed persistence and legacy coexistence.
 
 Mock cases verify framework/state behavior only, never cryptographic security.
-Real combination coverage lives in test_assembly_combinations and the runner.
+Real combination coverage lives in test_combination_matrix and the runner.
 """
 
 import hashlib
@@ -268,3 +268,116 @@ def test_partial_selected_setup_cannot_be_overwritten_via_legacy(selected_state)
     before = (selected_state / "msk.bin").read_bytes()
     assert cli.main(["setup", "--state", str(selected_state), "--mock"]) == 2
     assert (selected_state / "msk.bin").read_bytes() == before
+
+
+def test_v2_receiver_reissuance_reuses_authoritative_key_without_entropy(selected_state, monkeypatch):
+    common = ["--state", str(selected_state)]
+    assert cli.main(["issue-receiver-key", "Bob", *common]) == 0
+    receiver = cli._receiver_key_path(selected_state, b"Bob")
+    original = receiver.read_bytes()
+    master = (selected_state / "msk.bin").read_bytes()
+    def forbidden(*args, **kwargs):
+        pytest.fail("reissuance discarded the existing receiver and sampled again")
+    monkeypatch.setattr(SecureRandom, "read", forbidden)
+    assert cli.main(["issue-receiver-key", "Bob", *common]) == 0
+    assert receiver.read_bytes() == original
+    assert (selected_state / "msk.bin").read_bytes() == master
+
+
+def _receiver_driver(selected_state, monkeypatch, *, outcome="success"):
+    """Inject an opaque state update, using only TEST-ONLY mock storage.
+
+    This checks v2 envelope publication, not real CHKP or Gaussian sampling.
+    The existing upstream tests separately exercise the delivered Sage cache.
+    """
+    assert cli.main(["issue-receiver-key", "Bob", "--state", str(selected_state)]) == 0
+    factory = cli._runtime_for_state
+    calls = []
+    def runtime_factory(*args, **kwargs):
+        proto, readers, runtime = factory(*args, **kwargs)
+        def mutate_receiver(public, receiver, sender, data):
+            from ibme.protocol.baseline import BOTTOM
+            calls.append(sender)
+            # Fault injection changes a serializable mock private field. The
+            # caller still handles it through the opaque ReceiverKey interface.
+            object.__setattr__(receiver.level1_key, "k1", b"z" * 32)
+            if outcome == "raise":
+                raise ValueError("injected post-update failure")
+            if outcome == "bottom":
+                return BOTTOM
+            return b"opaque receiver state committed"
+        proto.decrypt = mutate_receiver
+        return proto, readers, runtime
+    monkeypatch.setattr(cli, "_runtime_for_state", runtime_factory)
+    return calls
+
+
+@pytest.mark.parametrize("outcome,expected", [("success", 0), ("bottom", 1), ("raise", 2)])
+def test_v2_receiver_transaction_preserves_envelope_on_all_outcomes(selected_state, tmp_path, monkeypatch, outcome, expected):
+    from ibme.protocol.baseline import ReceiverKey
+    from ibme.hibe.mock import MockHIBELevel1SecretKey
+    from ibme.cli_state import receiver_pending_path
+    calls = _receiver_driver(selected_state, monkeypatch, outcome=outcome)
+    source, output = tmp_path / "input", tmp_path / "output"
+    source.write_bytes(b"test driver")
+    assert cli.main(["decrypt", "--state", str(selected_state), "--receiver", "Bob", "--sender", "Alice",
+                     "--in", str(source), "--out", str(output)]) == expected
+    key_path = cli._receiver_key_path(selected_state, b"Bob")
+    assert key_path.read_bytes().startswith(cli._STATE_OBJECT_MAGIC)
+    key = ReceiverKey.from_bytes(cli._read_state_object(key_path, _meta(selected_state), "receiver"), MockHIBELevel1SecretKey)
+    assert key.level1_key.k1 == b"z" * 32 and calls == [b"Alice"]
+    assert not receiver_pending_path(key_path).exists()
+    assert output.exists() == (outcome == "success")
+    if outcome == "success":
+        assert output.read_bytes() == b"opaque receiver state committed"
+
+
+def test_v2_receiver_publication_failure_blocks_retry_and_reissue(selected_state, tmp_path, monkeypatch, capsys):
+    from ibme.cli_state import receiver_pending_path
+    calls = _receiver_driver(selected_state, monkeypatch)
+    key_path = cli._receiver_key_path(selected_state, b"Bob")
+    before = key_path.read_bytes()
+    source, output = tmp_path / "input", tmp_path / "output"
+    source.write_bytes(b"test driver")
+    command = ["decrypt", "--state", str(selected_state), "--receiver", "Bob", "--sender", "Alice",
+               "--in", str(source), "--out", str(output)]
+    original_replace = cli.os.replace
+    def fail_key_publication(source, destination):
+        if Path(destination) == key_path:
+            raise OSError("injected receiver publication failure")
+        return original_replace(source, destination)
+    capsys.readouterr()
+    with monkeypatch.context() as patch:
+        patch.setattr(cli.os, "replace", fail_key_publication)
+        assert cli.main(command) == 2
+    assert not capsys.readouterr().out
+    assert not output.exists() and key_path.read_bytes() == before
+    assert receiver_pending_path(key_path).exists() and calls == [b"Alice"]
+    assert cli.main(command) == 2
+    assert cli.main(["issue-receiver-key", "Bob", "--state", str(selected_state)]) == 2
+    assert calls == [b"Alice"] and key_path.read_bytes() == before
+    assert not list(selected_state.glob(".ibme-state-*.tmp"))
+
+
+@pytest.mark.parametrize("kind", ["msk", "mpk", "metadata", "sender", "receiver", "pending", "lock"])
+def test_v2_data_output_cannot_replace_state(selected_state, tmp_path, kind):
+    from ibme.cli_state import LOCK_FILE, receiver_pending_path
+    targets = {"msk": selected_state / "msk.bin", "mpk": selected_state / "mpk.bin",
+               "metadata": selected_state / "state.json", "sender": cli._sender_key_path(selected_state, b"Alice"),
+               "receiver": cli._receiver_key_path(selected_state, b"Bob"),
+               "pending": receiver_pending_path(cli._receiver_key_path(selected_state, b"Bob")),
+               "lock": selected_state / LOCK_FILE}
+    source = tmp_path / "input"
+    source.write_bytes(b"message")
+    before = {p.name: p.read_bytes() for p in selected_state.iterdir() if p.is_file()}
+    for operation in ("encrypt", "decrypt"):
+        assert cli.main([operation, "--state", str(selected_state), "--receiver", "Bob", "--sender", "Alice",
+                         "--in", str(source), "--out", str(targets[kind])]) == 2
+    assert before == {p.name: p.read_bytes() for p in selected_state.iterdir() if p.is_file()}
+
+
+def test_data_output_rejects_hardlink_alias_to_authoritative_state(selected_state, tmp_path):
+    alias = tmp_path / "innocent-output.bin"
+    alias.hardlink_to(selected_state / "msk.bin")
+    with pytest.raises(ValueError, match="protected key state"):
+        cli._check_data_output(selected_state, alias)

@@ -1,0 +1,272 @@
+[
+  {
+    "scope": "CHKP delivery / mainline static integration gates",
+    "candidate": {
+      "n": 1,
+      "m": 10,
+      "q": 2,
+      "s1_squared": 9064,
+      "s2_squared": 15952640,
+      "depth": 2
+    },
+    "paper_preflight": {
+      "scope": "CHKP depth-two paper-derived numeric preflight",
+      "source": {
+        "paper": "papers/2010_bonsai_trees_cash.pdf",
+        "sections": [
+          "5.1 Lemma 5.1",
+          "5.2 Equations (5.1)/(5.2)",
+          "5.3 ROHIBE and Theorem 5.2"
+        ],
+        "model": "classical random oracle model"
+      },
+      "parameters": {
+        "n": 1,
+        "m": 10,
+        "q": 2,
+        "depth": 2,
+        "s1_squared": 9064,
+        "s2_squared": 15952640,
+        "epsilon_bits": null
+      },
+      "dimensions": {
+        "root": 10,
+        "level_1": 20,
+        "level_2_leaf": 30
+      },
+      "paper_relations": {
+        "m_ge_C_n_log2_q": {
+          "known_floor_m_ge_n_ceil_log2_q": true,
+          "floor_rhs": 1,
+          "observed_ratio_m_over_n_ceil_log2_q": "10",
+          "status": "C_is_unspecified_in_paper; no fixed C is invented"
+        },
+        "q_ge_4_s_t_m_t_plus_1": {
+          "level_1": {
+            "q_squared": "4",
+            "required_q_squared": "63955584",
+            "passed": false
+          },
+          "level_2_leaf": {
+            "q_squared": "4",
+            "required_q_squared": "245287792640",
+            "passed": false
+          }
+        },
+        "alpha_condition": {
+          "status": "not_evaluated",
+          "reason": "requires a chosen omega(sqrt(log n)) tail factor and alpha"
+        }
+      },
+      "implementation_constraints": {
+        "current_gpv_dimension_cap": 192,
+        "current_ap09_root_dimension_cap": 192,
+        "current_ap09_n_cap": 16,
+        "current_ap09_q_cap": 2305843009213693951,
+        "dimension_cap_passed": true,
+        "root_cap_passed": true,
+        "n_cap_passed": true,
+        "q_cap_passed": true,
+        "q_prime": true,
+        "random_tape_and_to_basis": "requires the actual basis and sampler run",
+        "noise_and_decryption": "requires alpha, error distribution, and HIBE equations"
+      },
+      "known_static_conditions_passed": false,
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "unresolved": [
+        "paper constant C in m >= C*n*log2(q)",
+        "omega tail factor and alpha/noise budget",
+        "GenBasis distribution and finite quality certificate",
+        "actual GS lengths after ExtBasis/RandBasis/optional postprocessing",
+        "SampleD/RandBasis random tape and memory",
+        "IBS composition and whole-system security estimate"
+      ]
+    },
+    "minimum_finite_ap09_layout": {
+      "n": 1,
+      "q": 2,
+      "random_rows": 2,
+      "m1": 2,
+      "m2": 6,
+      "hadamard_scale": 4,
+      "root_dimension": 8,
+      "level1_dimension": 16,
+      "leaf_dimension": 24,
+      "gs_squared_certificate_upper": 103
+    },
+    "candidate_root_fits_minimum_ap09_layout": true,
+    "minimum_ap09_leaf_fits_current_gpv_cap": true,
+    "current_gpv_dimension_cap": 192,
+    "hypothetical_minimum_layout_sufficient_widths": {
+      "epsilon_bits": 16,
+      "s1_squared": 9064,
+      "s2_squared": 12762112,
+      "same_q_meets_sufficient_leaf_correctness_relation": false,
+      "actual_basis_or_sampling_executed": false,
+      "necessary_width_or_impossibility_claim": false
+    },
+    "payload_contract": {
+      "hybrid_seed_bytes": 32,
+      "seed_bits_lower_bound": 256,
+      "current_cache_capacity_bits": 32,
+      "current_leaf_batch_bits": 32,
+      "current_single_cache_covers_seed_lower_bound": false,
+      "additional_inner_framing_bits": "not_frozen; can increase requirement"
+    },
+    "source_lf_sha256": {
+      "experiments/research/chkp_gpv.py": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+      "experiments/research/chkp_genbasis.py": "d9bf8a0d71b0ae3ccccd32b24e1a7ebdc9652a44e7e4640d97c423c6bb389aa8",
+      "experiments/research/chkp_leaf_cache_types.py": "bb3657e05c07b5c0a0cbdd7f9e8885b16a83f458304d07ef016d7de9ad1772cd",
+      "experiments/research/chkp_leaf_reference.py": "2e33cd9b5155400b0132a87a41654e8d17f3102e739d964c614b307d7f745c5c",
+      "src/ibme/protocol/hybrid_hibe.py": "00f67d1065b25fe63e41ba1752266e73f03ed586f2a008a8333682ef0d158655"
+    },
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "security_claim": "none",
+    "unresolved": [
+      "actual GS and public distribution error",
+      "sampling tape/abort and memory",
+      "alpha/noise and actual KEM correctness",
+      "complete H/G and HIBE lifecycle",
+      "256-or-more fixed bit addresses and bounded private wire",
+      "security estimates"
+    ]
+  },
+  {
+    "scope": "CHKP delivery / mainline static integration gates",
+    "candidate": {
+      "n": 2,
+      "m": 64,
+      "q": 65537,
+      "s1_squared": 256,
+      "s2_squared": 4096,
+      "depth": 2
+    },
+    "paper_preflight": {
+      "scope": "CHKP depth-two paper-derived numeric preflight",
+      "source": {
+        "paper": "papers/2010_bonsai_trees_cash.pdf",
+        "sections": [
+          "5.1 Lemma 5.1",
+          "5.2 Equations (5.1)/(5.2)",
+          "5.3 ROHIBE and Theorem 5.2"
+        ],
+        "model": "classical random oracle model"
+      },
+      "parameters": {
+        "n": 2,
+        "m": 64,
+        "q": 65537,
+        "depth": 2,
+        "s1_squared": 256,
+        "s2_squared": 4096,
+        "epsilon_bits": null
+      },
+      "dimensions": {
+        "root": 64,
+        "level_1": 128,
+        "level_2_leaf": 192
+      },
+      "paper_relations": {
+        "m_ge_C_n_log2_q": {
+          "known_floor_m_ge_n_ceil_log2_q": true,
+          "floor_rhs": 34,
+          "observed_ratio_m_over_n_ceil_log2_q": "32/17",
+          "status": "C_is_unspecified_in_paper; no fixed C is invented"
+        },
+        "q_ge_4_s_t_m_t_plus_1": {
+          "level_1": {
+            "q_squared": "4295098369",
+            "required_q_squared": "68161536",
+            "passed": true
+          },
+          "level_2_leaf": {
+            "q_squared": "4295098369",
+            "required_q_squared": "2441150464",
+            "passed": true
+          }
+        },
+        "alpha_condition": {
+          "status": "not_evaluated",
+          "reason": "requires a chosen omega(sqrt(log n)) tail factor and alpha"
+        }
+      },
+      "implementation_constraints": {
+        "current_gpv_dimension_cap": 192,
+        "current_ap09_root_dimension_cap": 192,
+        "current_ap09_n_cap": 16,
+        "current_ap09_q_cap": 2305843009213693951,
+        "dimension_cap_passed": true,
+        "root_cap_passed": true,
+        "n_cap_passed": true,
+        "q_cap_passed": true,
+        "q_prime": true,
+        "random_tape_and_to_basis": "requires the actual basis and sampler run",
+        "noise_and_decryption": "requires alpha, error distribution, and HIBE equations"
+      },
+      "known_static_conditions_passed": true,
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "unresolved": [
+        "paper constant C in m >= C*n*log2(q)",
+        "omega tail factor and alpha/noise budget",
+        "GenBasis distribution and finite quality certificate",
+        "actual GS lengths after ExtBasis/RandBasis/optional postprocessing",
+        "SampleD/RandBasis random tape and memory",
+        "IBS composition and whole-system security estimate"
+      ]
+    },
+    "minimum_finite_ap09_layout": {
+      "n": 2,
+      "q": 65537,
+      "random_rows": 35,
+      "m1": 35,
+      "m2": 138,
+      "hadamard_scale": 18,
+      "root_dimension": 173,
+      "level1_dimension": 346,
+      "leaf_dimension": 519,
+      "gs_squared_certificate_upper": 15440
+    },
+    "candidate_root_fits_minimum_ap09_layout": false,
+    "minimum_ap09_leaf_fits_current_gpv_cap": false,
+    "current_gpv_dimension_cap": 192,
+    "hypothetical_minimum_layout_sufficient_widths": {
+      "epsilon_bits": 16,
+      "s1_squared": 1605760,
+      "s2_squared": 60004039680,
+      "same_q_meets_sufficient_leaf_correctness_relation": false,
+      "actual_basis_or_sampling_executed": false,
+      "necessary_width_or_impossibility_claim": false
+    },
+    "payload_contract": {
+      "hybrid_seed_bytes": 32,
+      "seed_bits_lower_bound": 256,
+      "current_cache_capacity_bits": 32,
+      "current_leaf_batch_bits": 32,
+      "current_single_cache_covers_seed_lower_bound": false,
+      "additional_inner_framing_bits": "not_frozen; can increase requirement"
+    },
+    "source_lf_sha256": {
+      "experiments/research/chkp_gpv.py": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+      "experiments/research/chkp_genbasis.py": "d9bf8a0d71b0ae3ccccd32b24e1a7ebdc9652a44e7e4640d97c423c6bb389aa8",
+      "experiments/research/chkp_leaf_cache_types.py": "bb3657e05c07b5c0a0cbdd7f9e8885b16a83f458304d07ef016d7de9ad1772cd",
+      "experiments/research/chkp_leaf_reference.py": "2e33cd9b5155400b0132a87a41654e8d17f3102e739d964c614b307d7f745c5c",
+      "src/ibme/protocol/hybrid_hibe.py": "00f67d1065b25fe63e41ba1752266e73f03ed586f2a008a8333682ef0d158655"
+    },
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "security_claim": "none",
+    "unresolved": [
+      "actual GS and public distribution error",
+      "sampling tape/abort and memory",
+      "alpha/noise and actual KEM correctness",
+      "complete H/G and HIBE lifecycle",
+      "256-or-more fixed bit addresses and bounded private wire",
+      "security estimates"
+    ]
+  }
+]
