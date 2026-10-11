@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-11",
+  "base_commit": "4bea689c8d5c99eeeef55fa4360ad33e7ac0b945",
+  "scope": "joint numeric gates / original rounded Gaussian / independent root diagnostic",
+  "modified_files": [
+    "experiments/research/ibme_joint_parameters.py",
+    "experiments/research/ibme_root_sampler_audit.py",
+    "tests/test_ibme_joint_parameters.py",
+    "tests/test_ibme_root_sampler_audit.py",
+    ".github/workflows/basic-checks.yml",
+    "README.md",
+    "docs/PROJECT_RESTART.md",
+    "IMPLEMENTATION_SPEC.md",
+    "docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md",
+    "docs/workplans/2026-10-08/队友任务-CHKP与格工具.md",
+    "docs/workplans/2026-10-10/首套系统关键路径与优先级.md",
+    "docs/research/2026-10-11-joint-parameters/README.md",
+    "docs/research/2026-10-11-joint-parameters/joint-conditions.json",
+    "docs/research/2026-10-11-joint-parameters/root-diagnostic.json",
+    "docs/research/2026-10-11-joint-parameters/audit.json"
+  ],
+  "source_lf_sha256": {
+    "experiments/research/ibme_joint_parameters.py": "271d795d60bfdd8a6cf02422e1dc8df5bfcd27d4657fefedb2fe149a94e24e08",
+    "experiments/research/ibme_root_sampler_audit.py": "e5517b81b5a43cb0d91af7258f6937803237c450bbca0a2b213698402561c7c1",
+    "tests/test_ibme_joint_parameters.py": "6eb825b769a8a661abc4b87c458b49eeafea57b6a34cd28ede74862d959afec3",
+    "tests/test_ibme_root_sampler_audit.py": "7ba27e7fd51e8b2d35a5d85f1b311001655b1fe3d19251e464e7f447ef679a5b",
+    ".github/workflows/basic-checks.yml": "5ab70fe7df6164993efe0c4a7937bdc17db10400953c51f3b40a345a6222e160"
+  },
+  "tests": {
+    "joint-parameters-native": {
+      "tests": 116,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 4,
+      "passed": 112,
+      "junit_seconds": 0.184,
+      "sha256": "87384caf97a1deb87f0f71615432910da0c94a8b8f82d2bd413d716219c13ce1"
+    },
+    "joint-parameters-sage": {
+      "tests": 118,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 118,
+      "junit_seconds": 2.938,
+      "sha256": "d235e831fe35d5c65f23417d6b15350fe7f6d149df1369320a5c88ec898811bb"
+    }
+  },
+  "source_papers": [
+    {
+      "path": "papers/2010_bonsai_trees_cash.pdf",
+      "sha256": "b1d8a2ae0e9d4e5c9145bbc6dc864090605c12a5b76149aa0684d62a8815d2ce",
+      "pages": 36,
+      "used_sections": [
+        "2.3.1/PDF12",
+        "5.1/PDF18-19",
+        "5.2-5.3/PDF20-22"
+      ],
+      "visual_pages": [
+        18,
+        19
+      ]
+    }
+  ],
+  "experiments": {
+    "root_seeds": 2,
+    "raw_root_sampling_rejected": 2,
+    "independent_lll_roots_sampled": 2,
+    "real_preimage_equations_passed": 4,
+    "source_caps_changed": false,
+    "attempts_per_root": 1,
+    "replayed_exploration_is_not_new_sample": true,
+    "numeric_cli_exit_code": 2,
+    "root_diagnostic_cli_exit_code": 0
+  },
+  "environment": {
+    "cpu": "Intel Core Ultra9 275HX",
+    "windows_python": "3.14.6",
+    "wsl_python": "3.13.14",
+    "sage": "10.9",
+    "pytest": "9.1.1",
+    "sage_env": "~/miniconda3/envs/sage"
+  },
+  "protocol_math_changed": false,
+  "wire_changed": false,
+  "old_parameters_changed": false,
+  "teammate_sources_changed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "model": "classical ROM research references; no QROM conclusion",
+  "previous_ci": {
+    "commit": "4bea689",
+    "conclusion": "success",
+    "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38063539305"
+  },
+  "remaining": [
+    "joint actual two-level generator/sampler/resource admission",
+    "bounded production basis processing",
+    "actual rounded continuous Gaussian and TV/abort",
+    "LWE cost and cited reduction applicability",
+    "at least256 fixed bit addresses and complete wire",
+    "complete H/G/KEM/bytes and protocol attack tests",
+    "two legacy educational authentication vulnerabilities"
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "date": "2026-10-11",
+  "objective": "先完成第一套的集中闭环",
+  "objective_completed": false,
+  "base_commit": "7e58efa68a6e3d1f10826fc1a6ffe4c55e96cb33",
+  "scope": "Independent finite wide Gaussian/256-dim GPV and bounded RandBasis with actual system-byte API; real 237-dim leaf batch",
+  "modified_files": [
+    ".github/workflows/basic-checks.yml",
+    "IMPLEMENTATION_SPEC.md",
+    "docs/PROJECT_RESTART.md",
+    "experiments/research/first_suite/entropy.py",
+    "experiments/research/first_suite/finite_gaussian.py",
+    "experiments/research/first_suite/finite_gpv.py",
+    "experiments/research/first_suite/finite_randbasis.py",
+    "experiments/research/first_suite/finite_sampler_probe.py",
+    "tests/test_first_suite_finite_sampling.py",
+    "docs/research/2026-10-11-first-suite-finite/README.md",
+    "docs/research/2026-10-11-first-suite-finite/finite-leaf-result.json",
+    "docs/research/2026-10-11-first-suite-finite/input-screen.json",
+    "docs/research/2026-10-11-first-suite-finite/audit.json"
+  ],
+  "cross_boundary_reason": "New first_suite research profile only; exact original online/CHKP/ToBasis sources preserved. Central spec/CI/progress record independent support and evidence.",
+  "source_lf_sha256": {
+    ".github/workflows/basic-checks.yml": "1265ea07704f7e798ce5aa2eac4efbf06441770bc6f57647116328213a50fc6a",
+    "experiments/research/first_suite/entropy.py": "105a837215509b5d707830de825fbb726fd06dddcc856f2901f88d68876fd7fa",
+    "experiments/research/first_suite/finite_gaussian.py": "9892f3b8bd85c11f08948f1d0cf3849efa4752ad339c366b842263c991d60549",
+    "experiments/research/first_suite/finite_gpv.py": "4ddeda10288c2683a573c2d4a44b33737d87bb83e2b08e3e72d0feb22b0748e3",
+    "experiments/research/first_suite/finite_randbasis.py": "c117a4585849ef9e3f73447da7d4fb1bed98ddf331d576053aed75f8549f4644",
+    "experiments/research/first_suite/finite_sampler_probe.py": "6ff2a753f0b355738e2d33ff89bec58e9645c17960ae4c1119120c9006ae5dfd",
+    "tests/test_first_suite_finite_sampling.py": "b94db7363951033c09fdd552ceeb504fe757ef6c8bf93c6b803779ec8d6f2fc3",
+    "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+    "experiments/research/chkp_gpv.py": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+    "experiments/research/chkp_randbasis.py": "69d970490202fcf69da4389d4435e1538f6c1c49b83441365291260134dc2282",
+    "experiments/research/chkp_tobasis.py": "d7f3b2c2fe5762a4d45cd26ecc2d5f1f7170d189b2be0555dc5afc90b115f92a",
+    "experiments/research/chkp_basis.py": "e8924704c6808fb96849e89c2f34cd59615178771738b604f55627c2e7b5f677",
+    "experiments/research/first_suite/leaf_state.py": "c799db9542cb6cb314ef742eb3df553c19d12b57588afb8fd5f157c4539c5568",
+    "experiments/research/first_suite/identity.py": "1921bcebea84321e14508b251906795f235ee60c46843c8f66a2a8f367d99718",
+    "experiments/research/first_suite/seed_kem.py": "dee36d3efd15de41f32af4573adfce5fc2d86619222495c51e5c5a0f7120affd",
+    "src/ibme/core/randomness.py": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
+    "experiments/research/first_suite/delegation_state.py": "efede5f6f5c47fd0947e8c57dd39e83d59bab19084ea5480158e3d28974a4dad",
+    "experiments/research/ibme_rounded_noise.py": "1e2f87b1ed964c4821a4d290ed2128d21d9bb77dacbf268205799f74352bb740"
+  },
+  "artifacts_sha256": {
+    "docs/research/2026-10-11-first-suite-finite/finite-leaf-result.json": "c0ded9b8ddecb1f79e6669c7ec1d4cb7f4ee5c0a6b41e75778bf489ccc83e4f7",
+    "docs/research/2026-10-11-first-suite-finite/input-screen.json": "cf086f8d497cf06e4947e52b91e5802e3af8074084b86bb690e41501b5619314"
+  },
+  "runtime": {
+    "sage": "10.9",
+    "python": "3.13.14",
+    "cryptography": "49.0.0",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "sampler_extension_sha256": "487cc42d52b39912b3f01ec4ca3d2c498ab1eeb17d5ee757754d1565deea34bc",
+    "qfall_binary_sha256": "cc9030fe3c6ca6010b95fc738a26e8675920e41fa1f38aa3d7e5ee3a0432cf04",
+    "sage_environment": "~/miniconda3/envs/sage",
+    "parameters_are_formal": false,
+    "security_claim": "none"
+  },
+  "native_test_runtime": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "tests": [
+    {
+      "name": "first-suite-finite-sampling-sage",
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 16,
+      "junit_sha256": "1774eec5b2d73032ea459076c595330e020b1839e3f7bfbf0216ea9fa14bd74c"
+    },
+    {
+      "name": "first-suite-finite-regression-sage",
+      "tests": 176,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 176,
+      "junit_sha256": "d3ff08bb1a2c25a8bea2597383612266516aa8a26ae80900bd0e5051e95ade5a"
+    },
+    {
+      "name": "first-suite-finite-native",
+      "tests": 37,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 36,
+      "junit_sha256": "48a5c796ece5baa39891cc7c235a594f3feeb3a318d53e57a29e0aaa88033324"
+    }
+  ],
+  "batches_overlap": true,
+  "whole_repository_tests_rerun": false,
+  "commands": [
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q --tb=short tests/test_first_suite_finite_sampling.py --junitxml=test-results/first-suite-finite-sampling-sage.xml",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q --tb=short tests/test_first_suite_finite_sampling.py tests/test_first_suite_delegation.py tests/test_first_suite_identity_state.py tests/test_first_suite_seed_sage.py tests/test_chkp_gpv.py tests/test_chkp_randbasis.py --junitxml=test-results/first-suite-finite-regression-sage.xml",
+    "python -m pytest -p no:cacheprovider -q --tb=short tests/test_first_suite_finite_sampling.py tests/test_first_suite_identity_state.py --junitxml=test-results/first-suite-finite-native.xml",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.first_suite.finite_sampler_probe --manifest test-results/first-suite-tree-qbig/private/public-restore-manifest.json --private-directory test-results/first-suite-finite/private --output test-results/first-suite-finite/result.json"
+  ],
+  "profiles": {
+    "scalar": "FIRST-SUITE-FINITE-DGS/1",
+    "vector": "FIRST-SUITE-FINITE-GPV/1",
+    "randbasis": "FIRST-SUITE-FINITE-RANDBASIS/1",
+    "vector_dimension_cap": 256,
+    "randbasis_tobasis_cap": 192,
+    "scalar_squared_width_cap": "2^80",
+    "scalar_radius_cap": "2^48",
+    "worst_tape_cap_bytes": 1099511627776,
+    "default_options": {
+      "tail_bits": 128,
+      "mass_bits": 256,
+      "precision_bits": 320,
+      "gaussian_abort_bits": 128,
+      "max_uniform_trials": 192
+    }
+  },
+  "actual_input": {
+    "n": 1,
+    "q": 1073741827,
+    "dimension": 237,
+    "width_squared": 63276067520,
+    "epsilon_bits": 128,
+    "positions": 256,
+    "seed_bytes": 32,
+    "identity_bytes": 86,
+    "parent_source": "previous explicit public-test native fixture",
+    "source_root_is_formal": false
+  },
+  "source_compatibility": "Same finite formulas as previous reference; larger support recomputes error/acceptance/path/tape bounds. Exact rational exponent clipping before interval exp makes weight-rounding bound independent of absolute width; no inheritance of native null certificates.",
+  "certificate_is_basis_dependent": true,
+  "certificate_publication_only_for_public_fixture": true,
+  "full_certificate_local_sha256": "b19340cec90baec984d450967b3d455307ac83838341a710a9132f55da2defbc",
+  "initial_command_errors": [
+    "The private geometry diagnostic used Python Fraction against Sage QQ in LLL gate; repeated diagnostic with exact QQ, no sampling occurred.",
+    "First regression named missing tests/test_online_gaussian.py, collected no tests; corrected selected paths and reran."
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "known_risks": [
+    "Original root and parent are native/public-test provenance, no whole chain production admission",
+    "Large-parent finite RandBasis execution not claimed from small test",
+    "Formal difficulty/GenBasis regularity and full same-parameter resource/noise/TV chain incomplete",
+    "Variable-time and no side-channel assessment",
+    "HIBE seven-method/byte/CLI, final Luo/Wang assumptions and composition attacks incomplete",
+    "Original education two authentication vulnerabilities remain"
+  ],
+  "next_critical_work": [
+    "CSPRNG root generation with correct published distribution and regularity conditions",
+    "Admit finite parent/leaf sampling and full parameter/resource/error chain",
+    "Complete seven-method HIBE/byte object integration and whole-protocol attack checks"
+  ]
+}

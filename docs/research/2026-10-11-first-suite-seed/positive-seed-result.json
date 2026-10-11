@@ -1,0 +1,197 @@
+{
+  "q": 1073741827,
+  "n": 1,
+  "m_bar": 48,
+  "k": 31,
+  "dimensions": {
+    "root": 79,
+    "parent": 158,
+    "leaf": 237
+  },
+  "public_test_seed": "first-suite-real-hg-q1073741827-bar48",
+  "public_configuration_sha256": "37adf284d04ba7e182c8b7da38c3ccac57d081d33f3b087e44907e33d86ce551",
+  "parent_width_squared": 2441960,
+  "leaf_width_squared": 63276067520,
+  "parent_native_vectors": 158,
+  "terminal_second_randbasis": false,
+  "real_H_G_used": true,
+  "ordered_identity_bytes": [
+    86,
+    86
+  ],
+  "original_identity_bytes": [
+    3,
+    5
+  ],
+  "fixed_positions": 256,
+  "distinct_syndrome_values": 256,
+  "private_generations": 1,
+  "native_private_vectors": 256,
+  "canonical_private_snapshot_bytes": 457248,
+  "private_snapshot_sha256": "53f0bb7c79d3c078d70748273012383382f5797a43aa028e7dc482ef89576e83",
+  "failure_tombstone_recovered": true,
+  "fresh_process": {
+    "backend_admitted": false,
+    "fixed_positions": 256,
+    "native_sampler_loaded": false,
+    "new_private_draws": 0,
+    "private_snapshot_byte_equal": true,
+    "recovered": [
+      {
+        "recovered_seed_sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
+        "seed_hash_matches": true
+      },
+      {
+        "recovered_seed_sha256": "af9613760f72635fbdb44a5a0a63c39f12af30f950a6ee5c971be188e89c4051",
+        "seed_hash_matches": true
+      },
+      {
+        "recovered_seed_sha256": "329156558625d0ac8c794bf41384e21cab605544e919ef6341f64855e14c10c7",
+        "seed_hash_matches": true
+      }
+    ],
+    "security_claim": "none"
+  },
+  "capsules": [
+    {
+      "seed_sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
+      "bit_errors": 0,
+      "correct": true,
+      "ciphertext_bytes": 2069,
+      "expected_noise_scalar_calls": 493,
+      "counted_noise_scalar_calls": 493,
+      "entropy_bytes": 5928
+    },
+    {
+      "seed_sha256": "af9613760f72635fbdb44a5a0a63c39f12af30f950a6ee5c971be188e89c4051",
+      "bit_errors": 0,
+      "correct": true,
+      "ciphertext_bytes": 2069,
+      "expected_noise_scalar_calls": 493,
+      "counted_noise_scalar_calls": 493,
+      "entropy_bytes": 5920
+    },
+    {
+      "seed_sha256": "329156558625d0ac8c794bf41384e21cab605544e919ef6341f64855e14c10c7",
+      "bit_errors": 0,
+      "correct": true,
+      "ciphertext_bytes": 2069,
+      "expected_noise_scalar_calls": 493,
+      "counted_noise_scalar_calls": 493,
+      "entropy_bytes": 5920
+    }
+  ],
+  "wrong_identity_raw_kem": [
+    {
+      "receiver_matches": false,
+      "sender_matches": true,
+      "raw_seed_differs": true,
+      "raw_kem_returns_bottom": false
+    },
+    {
+      "receiver_matches": true,
+      "sender_matches": false,
+      "raw_seed_differs": true,
+      "raw_kem_returns_bottom": false
+    },
+    {
+      "receiver_matches": false,
+      "sender_matches": false,
+      "raw_seed_differs": true,
+      "raw_kem_returns_bottom": false
+    }
+  ],
+  "malformed_capsules_rejected": 3,
+  "total_bit_errors": 0,
+  "rounded_noise": {
+    "schema": "IBME/ROUNDED-CONTINUOUS-NOISE/1",
+    "config": {
+      "q": 1073741827,
+      "alpha": "4/1073741827",
+      "tail_bits": 64,
+      "mass_bits": 96,
+      "precision_bits": 160,
+      "max_radius": 8192
+    },
+    "support": [
+      -33,
+      33
+    ],
+    "support_count": 67,
+    "draw_bytes": 12,
+    "cdf_interval_error_units": 66,
+    "tail_tv_upper": "1/18446744073709551616",
+    "cdf_quantization_and_interval_tv_upper": "33/39614081257132168796771975168",
+    "random_rejection_abort_upper": "0",
+    "tv_upper_including_abort": "2147483681/39614081257132168796771975168",
+    "scaled_width": "4",
+    "target": "round(continuous Gaussian of width q*alpha), then modulo q if requested",
+    "finite_tail_policy": "clamp to endpoints, no conditioning",
+    "randomness_assumption": "independent uniform bytes; errors of faulty sources propagate",
+    "cdf_sha256": "233adc7aeca3782bea2825bef1f3c116abcc200dfe473a62aa8620947119ff53",
+    "constant_time": false,
+    "security_claim": "none",
+    "backend_admitted": false
+  },
+  "conditional_noise": {
+    "q": 1073741827,
+    "dimension": 237,
+    "width_squared": "63276067520",
+    "alpha": "4/1073741827",
+    "assumed_preimage_norm_squared_upper": "14996428002240",
+    "preimage_norm_measured_or_certified": false,
+    "l1_integer_upper": 59616722,
+    "rounding_error_upper": "59616723/2",
+    "integer_phase_radius": 268435456,
+    "continuous_margin": "477254189/2",
+    "continuous_squared_upper": "7918113985183248",
+    "conditional_noise_sufficient": true,
+    "error_bits": 32,
+    "conditional_per_bit_failure_upper": "1/4294967296",
+    "conditional_lifetime_failure_upper": "3/16777216",
+    "seed_bits": 256,
+    "encapsulations": 3,
+    "q_times_alpha": "4",
+    "shared_preamble_independence_required": false,
+    "noise_definition": "CHKP section 2.3.1: round(q*continuous Gaussian width alpha) mod q",
+    "noise_implementation_verified": false,
+    "lwe_hardness_or_reduction_verified": false,
+    "excluded": [
+      "key norm bad event",
+      "sampler TV and abort",
+      "basis/resource failures",
+      "finite continuous-noise implementation",
+      "security estimation"
+    ],
+    "backend_admitted": false,
+    "security_claim": "none"
+  },
+  "native_sampler": {
+    "profile": "SAGE-DGS-PUBLIC-COMPARISON/1",
+    "dimension": 237,
+    "width_squared": "63276067520",
+    "precision_bits": 192,
+    "tau": 12,
+    "native_algorithm": "uniform+online; MPFR",
+    "scalar_tv_upper": null,
+    "whole_sampler_tv_upper": null,
+    "worst_random_tape_bytes": null,
+    "scalar_rejection_is_bounded": false,
+    "test_randomness_only": true,
+    "production_random_api": false,
+    "security_claim": "none",
+    "backend_admitted": false
+  },
+  "diagnostic_total_seconds": 496.547428947,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "full_hibe_backend_implemented": false,
+  "full_ibme_combination_implemented": false,
+  "outstanding": [
+    "formal dimension/LWE cost and root near-uniformity",
+    "production native RNG and finite-error/resource admission",
+    "master/parent issuance and complete seven-method HIBE",
+    "byte framing/AEAD/IBS/BYTEAUTH integration and full attacks"
+  ]
+}

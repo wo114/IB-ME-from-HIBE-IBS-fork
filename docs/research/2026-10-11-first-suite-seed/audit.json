@@ -1,0 +1,191 @@
+{
+  "date": "2026-10-11",
+  "objective": "先完成第一套的集中闭环",
+  "objective_completed": false,
+  "base_commit": "fc3e52e3b4cf90725bde01e1ff3d1b69234a91a1",
+  "merged_pr": {
+    "number": 8,
+    "head": "52a394e567e914d238ddd5350755b9c6cbed343c",
+    "state": "MERGED",
+    "merge_commit": "fc3e52e3b4cf90725bde01e1ff3d1b69234a91a1"
+  },
+  "scope": "Actual canonical depth-two H/G, durable 256-position seed keys and real-noise KEM prerequisites",
+  "modified_files": [
+    ".github/workflows/basic-checks.yml",
+    "IMPLEMENTATION_SPEC.md",
+    "README.md",
+    "docs/PROJECT_RESTART.md",
+    "docs/workplans/2026-10-08/队友任务-CHKP与格工具.md",
+    "docs/workplans/2026-10-10/首套系统关键路径与优先级.md",
+    "experiments/research/first_suite/__init__.py",
+    "experiments/research/first_suite/identity.py",
+    "experiments/research/first_suite/leaf_state.py",
+    "experiments/research/first_suite/lifecycle_probe.py",
+    "experiments/research/first_suite/seed_kem.py",
+    "tests/test_first_suite_identity_state.py",
+    "tests/test_first_suite_seed_sage.py",
+    "docs/research/2026-10-11-first-suite-seed/README.md",
+    "docs/research/2026-10-11-first-suite-seed/positive-seed-result.json",
+    "docs/research/2026-10-11-first-suite-seed/negative-seed-result.json",
+    "docs/research/2026-10-11-first-suite-seed/audit.json"
+  ],
+  "cross_boundary_reason": "Independent first_suite research files implement integration prerequisites; no teammate chkp_* or production HIBE/lattice source overwritten. Central spec/plan/CI updated to record actual contract and validation.",
+  "source_lf_sha256": {
+    ".github/workflows/basic-checks.yml": "bacbc2edec8df43df64e4dc95338984c32cd7a661d24c31621e1f6a4fc5c20ae",
+    "experiments/research/first_suite/__init__.py": "98a3203836217e8d437e31a13137e43f5d3759be61d7b2e901ff700e676ba931",
+    "experiments/research/first_suite/identity.py": "1921bcebea84321e14508b251906795f235ee60c46843c8f66a2a8f367d99718",
+    "experiments/research/first_suite/leaf_state.py": "c799db9542cb6cb314ef742eb3df553c19d12b57588afb8fd5f157c4539c5568",
+    "experiments/research/first_suite/lifecycle_probe.py": "d15aa153fb6b15744bdccb433aa2a9712925b6a05f8f9a9fe86d5ec736727828",
+    "experiments/research/first_suite/seed_kem.py": "dee36d3efd15de41f32af4573adfce5fc2d86619222495c51e5c5a0f7120affd",
+    "tests/test_first_suite_identity_state.py": "ffa176b6f055b31d47dd14600102f87b461503ef8340c9c84cc7425ceb184bb9",
+    "tests/test_first_suite_seed_sage.py": "96d0b8913b31428708fe7368a18395bc8ed000076a6665656ea9b96967f71cbe",
+    "experiments/research/reuse/qfall_bridge.py": "c8e4e296f05a61e7a7ad282fdf05395a281af44afaed279dbf558ff587a16491",
+    "experiments/research/reuse/sage_native_gpv.py": "90aa0035fd9d5100def9d93cf386fcc49457b25c66b60d1bfb04b5caf720ccc1",
+    "experiments/research/chkp_basis.py": "e8924704c6808fb96849e89c2f34cd59615178771738b604f55627c2e7b5f677",
+    "experiments/research/chkp_tobasis.py": "d7f3b2c2fe5762a4d45cd26ecc2d5f1f7170d189b2be0555dc5afc90b115f92a",
+    "experiments/research/chkp_gpv.py": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+    "experiments/research/ibme_joint_parameters.py": "271d795d60bfdd8a6cf02422e1dc8df5bfcd27d4657fefedb2fe149a94e24e08",
+    "experiments/research/ibme_root_sampler_audit.py": "00bc6af3eae975d1428af5cd51af9b5f8e8d4dc467270fb0f7279a36713b00dc",
+    "experiments/research/ibme_noise_budget.py": "811d7eebf348c7bd2774acacc03c5ba395e8b4105a6aaf362cbc336fe1608f2c",
+    "experiments/research/ibme_rounded_noise.py": "1e2f87b1ed964c4821a4d290ed2128d21d9bb77dacbf268205799f74352bb740",
+    "src/ibme/core/randomness.py": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
+    "src/ibme/core/encoding.py": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d",
+    "src/ibme/protocol/hybrid_hibe.py": "00f67d1065b25fe63e41ba1752266e73f03ed586f2a008a8333682ef0d158655"
+  },
+  "artifact_sha256": {
+    "docs/research/2026-10-11-first-suite-seed/positive-seed-result.json": "26503edea98acc8e450fdb2ab258b46f0ae6f66a5b32dc5270ab154f81e0f7ed",
+    "docs/research/2026-10-11-first-suite-seed/negative-seed-result.json": "095151a085cd712e137ce171b26b219a3d4fa4bded94343212d01a7a2f0b9da0",
+    "papers/2010_bonsai_trees_cash.pdf": "b1d8a2ae0e9d4e5c9145bbc6dc864090605c12a5b76149aa0684d62a8815d2ce"
+  },
+  "sage_runtime": {
+    "sage": "10.9",
+    "python": "3.13.14",
+    "cryptography": "49.0.0",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "sampler_extension_sha256": "487cc42d52b39912b3f01ec4ca3d2c498ab1eeb17d5ee757754d1565deea34bc",
+    "qfall_binary_sha256": "cc9030fe3c6ca6010b95fc738a26e8675920e41fa1f38aa3d7e5ee3a0432cf04",
+    "sage_environment": "~/miniconda3/envs/sage",
+    "parameters_are_formal": false,
+    "security_claim": "none"
+  },
+  "native_test_runtime": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "tests": [
+    {
+      "name": "first-suite-identity-native",
+      "tests": 37,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 36,
+      "junit_sha256": "7221c6d701da95263471bad207a5b79ef7eb4ec0d24596c32516b6afbdafe021"
+    },
+    {
+      "name": "first-suite-state-regression-native",
+      "tests": 83,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 82,
+      "junit_sha256": "a7d5c7ead89c18781647a6e9b823b35fb786f7282e894b51b63887ed9f45a0f9"
+    },
+    {
+      "name": "first-suite-lifecycle-regression-sage",
+      "tests": 194,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 194,
+      "junit_sha256": "30778bd94057f77ccb5b991f7854848e46f85ba6b6da356ceff593d5b022b352"
+    }
+  ],
+  "test_batches_overlap": true,
+  "whole_repository_tests_rerun": false,
+  "commands": [
+    "python -m pytest -p no:cacheprovider -q --tb=short tests/test_first_suite_identity_state.py tests/test_first_suite_seed_sage.py --junitxml=test-results/first-suite-identity-native.xml",
+    "python -m pytest -p no:cacheprovider -q --tb=short tests/test_first_suite_identity_state.py tests/test_first_suite_seed_sage.py tests/test_hybrid_key_binding.py tests/test_research_state_integrity.py --junitxml=test-results/first-suite-state-regression-native.xml",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q --tb=short tests/test_first_suite_identity_state.py tests/test_first_suite_seed_sage.py tests/test_ibme_rounded_noise.py tests/test_ibme_noise_budget.py tests/test_chkp_leaf_cache.py tests/test_chkp_leaf_cache_wire.py tests/test_chkp_leaf_cache_audit.py --junitxml=test-results/first-suite-lifecycle-regression-sage.xml",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.first_suite.lifecycle_probe --only-q 17 --private-directory test-results/first-suite-seed-q17/private --output test-results/first-suite-seed-q17/result.json",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.first_suite.lifecycle_probe --only-q 1073741827 --private-directory test-results/first-suite-seed-qbig/private --output test-results/first-suite-seed-qbig/result.json"
+  ],
+  "independent_native_restore": {
+    "fixed_positions": 256,
+    "new_private_draws": 0,
+    "private_snapshot_byte_equal": true,
+    "recovered": [
+      {
+        "seed_hash_matches": true,
+        "recovered_seed_sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925"
+      },
+      {
+        "seed_hash_matches": true,
+        "recovered_seed_sha256": "af9613760f72635fbdb44a5a0a63c39f12af30f950a6ee5c971be188e89c4051"
+      },
+      {
+        "seed_hash_matches": true,
+        "recovered_seed_sha256": "329156558625d0ac8c794bf41384e21cab605544e919ef6341f64855e14c10c7"
+      }
+    ],
+    "native_sampler_loaded": false,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "native_module_in_sys_modules": false
+  },
+  "diagnostic_input": {
+    "n": 1,
+    "q": 1073741827,
+    "m_bar": 48,
+    "m": 79,
+    "dimensions": [
+      79,
+      158,
+      237
+    ],
+    "alpha": "4/1073741827",
+    "parent_width_squared": 2441960,
+    "leaf_width_squared": 63276067520,
+    "seed_bits": 256,
+    "encoded_identity_bytes": 86,
+    "original_identity_bytes": [
+      3,
+      5
+    ],
+    "repetitions": 3,
+    "private_generations": 1,
+    "noise_calls_per_encapsulation": 493
+  },
+  "conditions": {
+    "classic_ROM_citation_only": true,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "native_finite_tv_certified": false,
+    "native_production_rng_implemented": false,
+    "root_regular_distribution_admitted": false,
+    "seven_method_hibe_implemented": false,
+    "complete_CHKP_IBME_integrated": false
+  },
+  "initial_failures_resolved": [
+    "Portable toy pivot vectors used non-centered residues beyond their declared norm bound; fixtures corrected to centered lifts; norm gate retained.",
+    "New fresh-process probe lacked src on sys.path; CLI bootstrap corrected and replayed.",
+    "Invalid identity test expected parameter errors only; EncodingError expectation corrected.",
+    "Existing cache audit subprocess needed PYTHONPATH=src; rerun with required environment; teammate source untouched."
+  ],
+  "known_risks": [
+    "n=1 has no cryptographic difficulty",
+    "Native sampler finite TV, bounded entropy/rejection and production RNG unavailable",
+    "Root near-uniformity and real parameter/LWE cost not admitted",
+    "HIBE master/parent fixed issuance, full objects/byte contract and composition attacks still WIP",
+    "Raw KEM returns arbitrary seeds under wrong identities; AEAD/IBS/BYTEAUTH must enforce BOTTOM and whole-byte integrity",
+    "Private state trusted storage/unique issuance/no rollback conditions remain",
+    "Original education two authentication vulnerabilities remain"
+  ],
+  "next_critical_work": [
+    "Actual main/parent durable issuance and HIBE seven-method objects",
+    "Production sampling and root/difficulty/width/noise/resource admission on the same parameter set",
+    "Wire/AEAD/IBS/BYTEAUTH integration and unmarked whole-system attacks"
+  ]
+}

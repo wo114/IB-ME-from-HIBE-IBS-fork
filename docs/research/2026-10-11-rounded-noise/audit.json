@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-11",
+  "base_commit": "a0f2f019d8bd41ae88fb17fd61197497d9a40394",
+  "scope": "actual rounded-continuous Gaussian and finite honest-noise budget",
+  "modified_files": [
+    "experiments/research/ibme_noise_budget.py",
+    "experiments/research/ibme_rounded_noise.py",
+    "experiments/research/ibme_rounded_noise_audit.py",
+    "tests/test_ibme_noise_budget.py",
+    "tests/test_ibme_rounded_noise.py",
+    ".github/workflows/basic-checks.yml",
+    "README.md",
+    "docs/PROJECT_RESTART.md",
+    "IMPLEMENTATION_SPEC.md",
+    "docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md",
+    "docs/workplans/2026-10-08/队友任务-CHKP与格工具.md",
+    "docs/workplans/2026-10-10/首套系统关键路径与优先级.md",
+    "docs/research/2026-10-11-rounded-noise/README.md",
+    "docs/research/2026-10-11-rounded-noise/sampling-results.json",
+    "docs/research/2026-10-11-rounded-noise/audit.json"
+  ],
+  "source_lf_sha256": {
+    "experiments/research/ibme_noise_budget.py": "811d7eebf348c7bd2774acacc03c5ba395e8b4105a6aaf362cbc336fe1608f2c",
+    "experiments/research/ibme_rounded_noise.py": "1e2f87b1ed964c4821a4d290ed2128d21d9bb77dacbf268205799f74352bb740",
+    "experiments/research/ibme_rounded_noise_audit.py": "7da150c940ac937f52e497cd1ececce7881da6c1ff4479a7744574e438c1a2b0",
+    "tests/test_ibme_noise_budget.py": "d327f091c16a6014ff81ad3a36bce959c011979507a22c9ccde8d06c8186b087",
+    "tests/test_ibme_rounded_noise.py": "8fe75e52ed0cc8c36462adfa4bca87a8a444eb7b34686204dbcacc0ce14a3763",
+    ".github/workflows/basic-checks.yml": "7b58f2b639bc929b6ca8a3bb8078130a10c243e3dd0b4a222d91cb2c451d2f0f"
+  },
+  "tests": {
+    "rounded-noise-native": {
+      "tests": 165,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 5,
+      "passed": 160,
+      "junit_seconds": 0.302,
+      "sha256": "7b4ba42620b706a1407bf96e6b654fe71a15def12bb76afc81d83c8422014035"
+    },
+    "rounded-noise-sage": {
+      "tests": 206,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 206,
+      "junit_seconds": 4.671,
+      "sha256": "87319e313d16ea268ebdfd4d60086cc52c8d671a81e673aaeb9aa3b7008dc198"
+    }
+  },
+  "experiments": {
+    "valid_profiles": 6,
+    "samples_per_profile": 16384,
+    "total_samples": 98304,
+    "independent_numeric_pmf_passed": 6,
+    "rejected_input_controls": 3,
+    "repeated_seed_replay_is_not_new_samples": true
+  },
+  "source_paper": {
+    "path": "papers/2010_bonsai_trees_cash.pdf",
+    "sha256": "b1d8a2ae0e9d4e5c9145bbc6dc864090605c12a5b76149aa0684d62a8815d2ce",
+    "pages": 36,
+    "sections": [
+      "2.3.1/PDF12",
+      "5.1/PDF18-19"
+    ]
+  },
+  "numerical_library_reference": {
+    "url": "https://doc.sagemath.org/html/en/reference/rings_numerical/sage/rings/real_arb.html",
+    "online_version": "10.8",
+    "actual_installed_sage": "10.9",
+    "local_lower_upper_and_erf_checked": true
+  },
+  "environment": {
+    "cpu": "Intel Core Ultra9 275HX",
+    "native_python": "3.14.6",
+    "wsl_python": "3.13.14",
+    "sage": "10.9",
+    "mpmath": "1.4.1",
+    "pytest": "9.1.1",
+    "sage_env": "~/miniconda3/envs/sage"
+  },
+  "parameters": {
+    "default_tail_bits": 80,
+    "default_mass_bits": 128,
+    "default_precision_bits": 256,
+    "high_tail_bits": 160,
+    "high_mass_bits": 192,
+    "high_precision_bits": 320,
+    "candidate_q": 274877844481,
+    "candidate_alpha": "1/8589934592",
+    "hypothetical_dimension": 1335,
+    "seed_bits": 256,
+    "honest_encapsulations": 1048576
+  },
+  "protocol_math_changed": false,
+  "wire_changed": false,
+  "teammate_algorithms_changed": false,
+  "existing_parameters_changed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "model": "classical ROM research references; uniform independent entropy bytes",
+  "remaining": [
+    "uniform root/parent/scalar/vector/tape support",
+    "256 fixed bit addresses and complete wire",
+    "actual H/G/KEM and byte HIBE lifecycle",
+    "bad preimage norm and GPV TV/abort",
+    "LWE estimates and full cited composition conditions",
+    "two legacy educational authentication vulnerabilities"
+  ],
+  "previous_ci": {
+    "head": "a0f2f01",
+    "conclusion": "success",
+    "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38067820975"
+  }
+}

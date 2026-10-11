@@ -14,7 +14,7 @@
 
 ## 2. 代码与证据状态
 
-以下本地事实以本次整理前 `52a394e` 及工作树检查为基点；文档整理不会自动合并外部代码。
+本次文档同步把 `8b9500c` 的规范整理与 `upstream/main` 的 `bc22c9c` 合并。下表以合并后的 checkout 为准：上游 `first_suite` 组件、收据及 CLI 接收状态事务已在本地；本次仅核对源码/报告和文档，没有重新运行这些密码实验。Luo 第二十二步 `886fc12` 仍是下表单列的外部提交。
 
 | 模块/产物 | 已有内容 | 尚缺内容及范围 |
 |---|---|---|
@@ -26,7 +26,8 @@
 | 现有完整研究接线 | **教学 ABB10 + Hybrid + Luo 模格 + BYTEAUTH** | 可以验证工程流程；HIBE 不是 CHKP，不能记为真实 CHKP 组合完成 |
 | CHKP 本仓库 | `experiments/research/chkp_*` 的格基、采样、叶路径和缓存研究模块与测试 | 无 `src/ibme/hibe/chkp.py` 完整公开后端；T2/T3 与真实 32 B 接入未闭合 |
 | CHKP 第七步外部包 | Codex 直接返工包及定向验证，原输入与清单保留 | 第八步加量任务已发；本次目录检查未收到 `CHKP-step8-package/`；第七步新增改动不能冒称已获 DeepSeek 再验 |
-| 外部 `first_suite` | Luo 工作树中的独立根/委派/叶状态/种子组件；支持 256 个位置的表示和状态 | 与第七步 cap32 不同版本；没有完整公开 HIBE，256 个位置的容器不等于全部真实采样已跑通 |
+| 本地 `first_suite` 独立研究原型 | 已并入根/H/G/主父叶状态、有限 CSPRNG 采样、共享前导种子 KEM及 MP12 DelTrap；[固定交付](research/2026-10-11-first-suite-compact/README.md)记录 83/166/249 维 n=1 配置的真实父采样、同叶 256 原像、512 噪声位恢复与跨进程恢复 | 与第七步 cap32 不同版本；DelTrap 是独立 MP12 profile，不能改名当作原 CHKP RandBasis。n=1 可公开恢复种子；困难参数/资源、公开 HIBE 后端及 CHKP+Luo 完整组合仍未完成 |
+| 本地 CLI 接收状态事务 | [接收状态证据](research/2026-10-10-receiver-persistence/README.md)：锁、pending、保存后输出及已有研究接收密钥复用 | 提供同 OS 本地进程失败后的保守阻止；不宣称防回滚、硬断电或跨 OS 分布式事务 |
 | 其它候选 | [候选基础包](research/2026-10-10-foundations/README.md)、Yu 同态、SRGG 代数/采样等部分实现 | 每项按实际算法和测试单独计数；不把候选卡或公开方程计作完整后端 |
 
 ### 外部工作必须单列
@@ -59,6 +60,7 @@
 
 - [总体架构](../ARCHITECTURE.md)、[公共接口与验收](../IMPLEMENTATION_SPEC.md)、[协作流程](../AI_WORKFLOW.md)、[通用任务模板](../DELEGATION_PROMPTS.md)。
 - [CHKP 交接入口](research/team-chkp/README.md)、[主 AI/IBS 与集成任务](workplans/2026-10-08/主AI任务-IBS集成与优化.md)。
+- 本地首套研究版本：[公开代码/标量诊断](research/2026-10-11-public-reuse/README.md)、[原文噪声](research/2026-10-11-rounded-noise/README.md)、[固定种子/H-G](research/2026-10-11-first-suite-seed/README.md)、[主父树](research/2026-10-11-first-suite-tree/README.md)、[有限采样](research/2026-10-11-first-suite-finite/README.md)、[根与公开恢复攻击](research/2026-10-11-first-suite-root/README.md)、[有限 DelTrap/资源筛查](research/2026-10-11-first-suite-compact/README.md)。对应合同见 [first_suite 专属契约](specs/first-suite-research.md)。各报告统计属于各自原执行版本，不合计为本次复跑。
 - [Luo 模格路线决策](research/2026-10-11/IBS版本决策-模格版主线.md)、[已知漏洞与历史 CI](KNOWN_SECURITY_GAPS.md)。
 - [现行算法总表](ALGORITHM_CATALOG.md)（8 条 HIBE / 11 条 IBS 候选及模型路线）、[论文库](../papers/index.md)、[历史重建记录](history/PROJECT_RESTART-through-2026-10-10.md)。
 

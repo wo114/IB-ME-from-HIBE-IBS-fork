@@ -1,0 +1,54 @@
+{
+  "n": 1,
+  "q": 1073741827,
+  "dimension": 237,
+  "width_squared": "63276067520",
+  "source_parent_snapshot_sha256": "89cdfaf21cc4ee6cc93c3d0ae77ab6b696c3d7e6e3aa024d778b51cae20c14bc",
+  "new_parent_generations": 0,
+  "new_leaf_samples": 256,
+  "scalar_width_squared_min": "59859159873920/970923",
+  "scalar_width_squared_max": "44525031978101144496816753878720/1152921511049297929",
+  "native_Sage_rng_used": false,
+  "randomness": "OS CSPRNG; no test seed supplied to finite sampler",
+  "finite_profile": "FIRST-SUITE-FINITE-GPV/1",
+  "epsilon_bits": 128,
+  "geometry_tv_upper": "79/113427455640312821154458202477256070327",
+  "scalar_tv_upper_sum": "1012330757251144467676646007939821780492237370907414146231386935403665429757972690460399289973708811/726838724295606890549323807888004534353641360687318060281490199180639288113397923326191050713763565560762521606266177933534601628614656",
+  "per_vector_tv_including_abort": "172246361280781420276197609093703893087495711280029375443692512049099451344383860837961575169304698583334268289590274819560293812296109021/82443467157701511353500840339882396563294318353599522301044749115365023762850740281280107475845066792931336524050708586470205315089685856201782797375152883162556999518912512",
+  "batch_tv_including_abort": "172246361280781420276197609093703893087495711280029375443692512049099451344383860837961575169304698583334268289590274819560293812296109021/322044793584771528724612657577665611575368431068748133988456051231894624073635704223750419827519792159888033297073080415899239512069085375788214052246690949853738279370752",
+  "worst_vector_entropy_bytes": 149357376,
+  "worst_batch_entropy_bytes": 38235488256,
+  "actual_entropy_bytes": 24618430,
+  "actual_entropy_calls": 1639262,
+  "fixed_state_snapshot_bytes": 457222,
+  "fixed_state_restore_vector_equal": true,
+  "certificate_sha256": "b19340cec90baec984d450967b3d455307ac83838341a710a9132f55da2defbc",
+  "honest_rounded_noise": [
+    {
+      "bit_errors": 0,
+      "seed_sha256": "49b903f2c13386b7bb3ab0845c506cde5da736fc8822014e62fe8977e63f1d21",
+      "recovered_sha256": "49b903f2c13386b7bb3ab0845c506cde5da736fc8822014e62fe8977e63f1d21",
+      "source_bytes": 5960,
+      "ciphertext_bytes": 2069
+    },
+    {
+      "bit_errors": 0,
+      "seed_sha256": "7a1f2a5fe368bbcddf20fc9c768595358b5d756732a11f0d25d44b9b04439a83",
+      "recovered_sha256": "7a1f2a5fe368bbcddf20fc9c768595358b5d756732a11f0d25d44b9b04439a83",
+      "source_bytes": 5964,
+      "ciphertext_bytes": 2069
+    }
+  ],
+  "whole_runtime_seconds": 137.027441865,
+  "parent_is_prior_public_test_native_fixture": true,
+  "full_hibe_or_ibme_admitted": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "unclosed": [
+    "root/parent generation and regularity",
+    "full formal parameter/LWE and resource chain",
+    "HIBE seven-method/byte/CLI and full composition",
+    "side-channel/constant-time implementation"
+  ]
+}

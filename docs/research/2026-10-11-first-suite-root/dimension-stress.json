@@ -1,0 +1,50 @@
+{
+  "scope": "public dimensional stress calculations, not new admitted parameters or executed key generation",
+  "fixed_q": 35184372088891,
+  "k": 46,
+  "regularity_bits": 64,
+  "finite_R_mass_lower_used": "319/10",
+  "actual_mass_lower_exceeds_conservative_floor": true,
+  "rows": [
+    {
+      "n": 128,
+      "m_bar": 1184,
+      "dimensions": [
+        7072,
+        14144,
+        21216
+      ],
+      "minimum_root_basis_private_wire_bytes": 300079104,
+      "minimum_parent_basis_private_wire_bytes": 1200316416,
+      "minimum_leaf_256_vectors_private_wire_bytes": 32587776,
+      "root_engine_n_cap": 64,
+      "root_engine_dimension_cap": 1024,
+      "parent_tobasis_cap": 192,
+      "leaf_gpv_cap": 256,
+      "private_object_byte_cap": 16777216,
+      "actual_profiles_or_noise_conditions_checked": false,
+      "security_strength_not_inferred_from_n": true
+    },
+    {
+      "n": 256,
+      "m_bar": 2338,
+      "dimensions": [
+        14114,
+        28228,
+        42342
+      ],
+      "minimum_root_basis_private_wire_bytes": 1195229976,
+      "minimum_parent_basis_private_wire_bytes": 4780919904,
+      "minimum_leaf_256_vectors_private_wire_bytes": 65037312,
+      "root_engine_n_cap": 64,
+      "root_engine_dimension_cap": 1024,
+      "parent_tobasis_cap": 192,
+      "leaf_gpv_cap": 256,
+      "private_object_byte_cap": 16777216,
+      "actual_profiles_or_noise_conditions_checked": false,
+      "security_strength_not_inferred_from_n": true
+    }
+  ],
+  "security_claim": "none",
+  "backend_admitted": false
+}

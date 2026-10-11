@@ -1,0 +1,193 @@
+{
+  "date": "2026-10-11",
+  "objective": "先完成第一套的集中闭环",
+  "objective_completed": false,
+  "base_commit": "9ed1b8343428aefe948fe26237da2d25ad73f212",
+  "scope": "CSPRNG finite-Gaussian MP12 root/full-basis API, same-parameter public plan, master-only persistence and public n=1 KEM seed attack",
+  "modified_files": [
+    ".github/workflows/basic-checks.yml",
+    "IMPLEMENTATION_SPEC.md",
+    "docs/PROJECT_RESTART.md",
+    "docs/workplans/2026-10-10/首套系统关键路径与优先级.md",
+    "experiments/research/first_suite/delegation_state.py",
+    "experiments/research/first_suite/root_generation.py",
+    "experiments/research/first_suite/root_probe.py",
+    "experiments/research/reuse/qfall_probe/src/bin/ibme-qfall-private-root.rs",
+    "tests/test_first_suite_root_generation.py",
+    "docs/research/2026-10-11-first-suite-root/README.md",
+    "docs/research/2026-10-11-first-suite-root/root-result.json",
+    "docs/research/2026-10-11-first-suite-root/public-n1-attack.json",
+    "docs/research/2026-10-11-first-suite-root/public-n1-attack-result.json",
+    "docs/research/2026-10-11-first-suite-root/dimension-stress.json",
+    "docs/research/2026-10-11-first-suite-root/audit.json"
+  ],
+  "cross_boundary_reason": "New independent first_suite/root components; owned master scope epsilon range extends to128 for exact metadata. Spec/progress/workplan/CI record scope. Teammate CHKP and legacy profiles preserved.",
+  "source_lf_sha256": {
+    ".github/workflows/basic-checks.yml": "84d46386b55841aac86a96dd8493ca0f15fbaaad5fd1cc14a103878bd341543a",
+    "IMPLEMENTATION_SPEC.md": "d4b2248acdc6db0774a11eba175ce062a23c664ed94b289ff2c9f2f1dd160335",
+    "docs/PROJECT_RESTART.md": "d216bd22d21b5e8600ba5795663505e95e41a66145c321a59f53acf7d298c02a",
+    "docs/workplans/2026-10-10/首套系统关键路径与优先级.md": "621d13efe684c38398338c48ef0639f7093e9a603a61de8c9161bf3c2085062e",
+    "experiments/research/first_suite/delegation_state.py": "107533df0d6101719c0937e7b9fcc9bce080340a66a7284d7b34cc35f62a906b",
+    "experiments/research/first_suite/root_generation.py": "2d809229b5a8f8ae2c6e34189b16f250854a0c11c73e8909289c1724759cc8cb",
+    "experiments/research/first_suite/root_probe.py": "edbc14830056dd8c20707ae22a8f26602fb87c3da6678533a10c93d8e20ce7bd",
+    "experiments/research/reuse/qfall_probe/src/bin/ibme-qfall-private-root.rs": "db86761c7c48646c8fd3ffff03c766b7b68dff82f28d115a3c4706afc874e033",
+    "tests/test_first_suite_root_generation.py": "541704fd0016569ca87f7bd903e456d4fbfbfdf652db3f2618e11edb81f53979",
+    "docs/research/2026-10-11-first-suite-root/README.md": "ffd1cbc6715bc2a709993d33b74ed9973fe35b270e0f234055b797cb2d382158",
+    "docs/research/2026-10-11-first-suite-root/root-result.json": "4cff424e7bbdd7784962439d9853105a0299af60d54b91b5f103781914d06ebc",
+    "docs/research/2026-10-11-first-suite-root/public-n1-attack.json": "6d767ccf17d9b8677c9910c486195f6d25d2b6af9dde8172e615641009f49394",
+    "docs/research/2026-10-11-first-suite-root/public-n1-attack-result.json": "8063d949f353667c96da51b98a328f145ead83809a765843e598ac51d2c5d409",
+    "docs/research/2026-10-11-first-suite-root/dimension-stress.json": "8162313a183be3048a3e3cdadabd90ed88d59df228b7c17bc8120388485e641a"
+  },
+  "preserved_source_lf_sha256": {
+    "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+    "experiments/research/chkp_gpv.py": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+    "experiments/research/chkp_randbasis.py": "69d970490202fcf69da4389d4435e1538f6c1c49b83441365291260134dc2282",
+    "experiments/research/chkp_tobasis.py": "d7f3b2c2fe5762a4d45cd26ecc2d5f1f7170d189b2be0555dc5afc90b115f92a",
+    "experiments/research/chkp_basis.py": "e8924704c6808fb96849e89c2f34cd59615178771738b604f55627c2e7b5f677",
+    "experiments/research/reuse/qfall_probe/src/main.rs": "df6094baf43e855fde5e18ebb386941e5ca6dee403f8b4d128bdf97af2b93e06",
+    "experiments/research/reuse/qfall_probe/Cargo.toml": "be24e3cdbfc4ecacd085ac657c7c8c9a8b22a311443c268657364121d6abe0c5",
+    "experiments/research/reuse/qfall_probe/Cargo.lock": "3d6c38bae7d5cd43ea72d0bd810f251130d9112a28ce0b56f168960a5c7d0576"
+  },
+  "parameters": {
+    "n": 1,
+    "q": 35184372088891,
+    "m_bar": 37,
+    "r_width_squared": 1024,
+    "regularity_bits": 64,
+    "uniform_trials": 192,
+    "max_entropy_bytes": 1099511627776,
+    "security_claim": "none",
+    "backend_admitted": false
+  },
+  "source_mapping": {
+    "mp12_pdf": "papers/2011_lattice_trapdoors_micciancio.pdf",
+    "mp12_sections": [
+      "5.2 Algorithm 1 statistical instantiation",
+      "5.1 Lemma 5.3 full-basis conversion"
+    ],
+    "mp12_algorithm3_samplepre_implemented": false,
+    "qfall_revision": "b8eb4842fb80c36f7f3494930ea316472cb75793",
+    "qfall_source": "src/sample/g_trapdoor/short_basis_classical.rs",
+    "qfall_license": "MPL-2.0",
+    "chkp_sections": [
+      "3.4 RandBasis",
+      "5.2 width/delegation",
+      "5.3 ROM H/G"
+    ],
+    "formal_mapping_is_still_pending": true
+  },
+  "runtime": {
+    "sage": "10.9",
+    "python": "3.13.14",
+    "sage_environment": "~/miniconda3/envs/sage",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "rust": "1.97.1",
+    "qfall_math": "0.1.1",
+    "flint_sys": "0.7.3",
+    "gmp_mpfr_sys": "1.7.1",
+    "private_root_binary_sha256": "27ec5bbb759384e2e535b5e136aa9ca2db501a3ac350c5f217d6bf114f73b284",
+    "parameters_are_formal": false,
+    "security_claim": "none"
+  },
+  "native_test_runtime": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "tests": [
+    {
+      "file": "test-results/first-suite-root-final-unit-sage.xml",
+      "sha256": "833a1b6ac5ec437bfab552581495696f661d21c7e213aa4fe06ef040b9c6960a",
+      "tests": 33,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 33
+    },
+    {
+      "file": "test-results/first-suite-root-final-regression-sage.xml",
+      "sha256": "4c9623c8336b6a46e4e74d2644a79723c5fd0f333c0dde5779b59991555c87d1",
+      "tests": 237,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 237
+    },
+    {
+      "file": "test-results/first-suite-root-native.xml",
+      "sha256": "7ea7def78bd0c2adc3166f4d3e31f49bba51ba1878108174df04c29b8251392f",
+      "tests": 38,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2,
+      "passed": 36
+    }
+  ],
+  "batches_overlap": true,
+  "whole_repository_tests_rerun": false,
+  "final_root_tests_after_last_changes": true,
+  "broad_regression_before_last_root_only_changes": true,
+  "commands": [
+    "~/.cargo/bin/cargo build --release --locked --offline --manifest-path experiments/research/reuse/qfall_probe/Cargo.toml --target-dir test-results/qfall-target --bin ibme-qfall-private-root",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q --tb=short tests/test_first_suite_root_generation.py --junitxml=test-results/first-suite-root-final-unit-sage.xml",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q --tb=short tests/test_first_suite_root_generation.py tests/test_first_suite_finite_sampling.py tests/test_first_suite_delegation.py tests/test_first_suite_identity_state.py tests/test_first_suite_seed_sage.py tests/test_public_reuse_gpv.py tests/test_chkp_gpv.py tests/test_chkp_randbasis.py --junitxml=test-results/first-suite-root-final-regression-sage.xml",
+    "python -m pytest -p no:cacheprovider -q --tb=short tests/test_first_suite_root_generation.py tests/test_first_suite_identity_state.py tests/test_first_suite_delegation.py --junitxml=test-results/first-suite-root-native.xml",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.first_suite.root_probe --private-directory test-results/first-suite-private-root-closed/private --output test-results/first-suite-private-root-closed/result.json",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.first_suite.root_probe --restore-only test-results/first-suite-private-root-closed/private/public-restore-manifest.json",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.first_suite.root_probe --attack-only test-results/first-suite-private-root-closed/public-n1-attack.json",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.first_suite.root_probe --attack-only docs/research/2026-10-11-first-suite-root/public-n1-attack.json"
+  ],
+  "entropy": {
+    "actual_root_bytes": 650576,
+    "worst_root_bytes": 676213184,
+    "source": "system",
+    "native_entropy_generated": false
+  },
+  "private_public_boundary": {
+    "private_bases_R_entropy_seeds_not_archived": true,
+    "public_attack_fixture_includes_only_public_context_known_identities_ciphertext_noise_and_seed_hash": true,
+    "root_private_state_directory_ignored": true,
+    "source_revision_config_is_public": true
+  },
+  "experiment_repetitions": {
+    "original_root_probe": 1,
+    "original_fresh_master_restore": 1,
+    "original_public_attack": 1,
+    "additional_same_public_root_ciphertext_archived": 1,
+    "additional_readonly_master_restore": 1,
+    "archived_public_fixture_attack_in_fresh_interpreter": 2
+  },
+  "evidence_note": "Capacity summary was appended by public parameter recomputation and existing-state read-only restore; same private root was retained. Public attack fixture is a separate fresh ciphertext under that same public root, not the original ephemeral capsule.",
+  "initial_errors_and_repairs": [
+    "Initial Sage QQ(numerator,denominator) construction was invalid; corrected to division before successful root trials.",
+    "A test incorrectly used absent DelegationScope.from_bytes; corrected to actual MasterTreeState round-trip.",
+    "A documentation patch used an incorrect existing header and was rejected atomically; verified actual header and reapplied.",
+    "First git fetch failed at TLS handshake; retry succeeded, HEAD and origin/main unchanged."
+  ],
+  "remote_baseline": {
+    "no_open_pull_requests": true,
+    "head": "9ed1b8343428aefe948fe26237da2d25ad73f212",
+    "ci_database_id": 38119670852,
+    "ci_conclusion": "success"
+  },
+  "resource_boundary": {
+    "parent_tobasis_cap": 192,
+    "leaf_gpv_cap": 256,
+    "root_dimension_ceiling_two_layers": 85,
+    "current_q_max_n_before_random_columns": 1,
+    "private_object_bytes": 16777216,
+    "dimension_stress_is_not_admitted_parameter_selection": true
+  },
+  "unresolved": [
+    "LWE/MSIS difficulty and joint formal parameter/model/reduction mapping",
+    "Scalable full-basis delegation and preimage sampling resources; current two-layer profile cannot provide real difficulty at chosen modulus",
+    "Actual whole-finite CSPRNG parent and fixed256 leaf chain on a jointly admitted input",
+    "Seven-method HIBE public/private/byte/key-binding objects and CLI unique-owner publication",
+    "CHKP/Luo/Wang/HYBRID/BYTEAUTH four matches and whole-system attack acceptance",
+    "Legacy education two authentication counterexamples remain unfixed",
+    "No constant-time or independent-copy/rollback consistency claim"
+  ],
+  "parameters_are_formal": false,
+  "backend_admitted": false,
+  "security_claim": "none"
+}
