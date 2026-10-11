@@ -80,8 +80,6 @@ No randomness, LLL approximation, mod-q basis reduction, or retry occurs.
     canonical = canonical_basis(basis, max_dimension=max_dimension)
     d = canonical.public.ncols
     s = _checked_square(vectors_rows, d)
-    if s.det() == 0:
-        raise ValueError("sampled vectors must have full integer rank")
     b = matrix(ZZ, canonical.basis_rows)
     coordinates = matrix(QQ, b).solve_right(matrix(QQ, s))
     if any(x.denominator() != 1 for x in coordinates.list()):
@@ -90,11 +88,11 @@ No randomness, LLL approximation, mod-q basis reduction, or retry occurs.
     if any(abs(int(x)).bit_length() > MAX_ENTRY_BITS for x in z.list()):
         raise ValueError("integer coordinates exceed the entry bit budget")
     r, v = z.hermite_form(transformation=True)
-    if (v * z != r or abs(v.det()) != 1
+    if (v * z != r
             or any(r[i, j] != 0 for i in range(d) for j in range(i))):
         raise ArithmeticError("HNF transformation failed its exact contract")
     if any(r[i, i] == 0 for i in range(d)):
-        raise ArithmeticError("HNF unexpectedly lost full rank")
+        raise ValueError("sampled vectors must have full integer rank")
     # T R = S determines T uniquely. Solve one column at a time using the
     # exact upper-triangular R instead of inverting the generally large V.
     # This gives precisely B*V^-1, not an alternative short basis.
@@ -117,4 +115,10 @@ No randomness, LLL approximation, mod-q basis reduction, or retry occurs.
     # and is especially expensive for the large integer HNF transformations.
     # Small-matrix tests independently verify both GS decompositions and the
     # old B*V^-1 output. Complete-lattice validation is retained below.
-    return KernelBasis(canonical.public, t)
+    # The final exact product certificate also verifies HNF unimodularity:
+    # S=B*Z, V*Z=R, and |det(B)|=q^n give
+    # |det(V)|=|prod diag(R)|*q^n/|det(S)|=1. Computing det(V) separately
+    # can dominate the whole sampler when HNF coefficients are very large.
+    # Neither this certificate nor construction below trusts Sage's claimed
+    # transformation: both matrix identities and the determinant ratio run.
+    return KernelBasis.from_upper_triangular_product(canonical.public, t, r, s)

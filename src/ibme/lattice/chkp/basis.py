@@ -146,6 +146,53 @@ class KernelBasis:
             raise ValueError("basis determinant is not the complete kernel index q^n")
         object.__setattr__(self, "basis_rows", rows)
 
+    @classmethod
+    def from_upper_triangular_product(cls, public, basis_rows, triangular_rows,
+                                      product_rows):
+        """Certify a complete basis T from the exact factorization T R = S.
+
+        R must be an integer upper-triangular matrix with nonzero diagonal.
+        We compute det(S) ourselves, never accept a caller's determinant, and
+        require |det(S)| = |prod diag(R)| q^n. Thus |det(T)| = q^n exactly.
+        Together with checked public surjectivity and A T = 0 this is the
+        same complete-kernel certificate as the ordinary constructor. It
+        avoids modular determinant work on a potentially enormous T after
+        HNF completion, while retaining every algebraic assertion.
+
+        This proves neither shortness nor randomness. No approximate rank,
+        floating-point determinant, or trusted external certificate is used.
+        """
+        a, _ = _full_rank_field(public)
+        rows, r_rows, s_rows = (_rows(values) for values in
+                                (basis_rows, triangular_rows, product_rows))
+        dimension = public.ncols
+        if any(len(values) != dimension or len(values[0]) != dimension
+               for values in (rows, r_rows, s_rows)):
+            raise ValueError("factorization matrices must all be m by m integers")
+        if any(r_rows[i][j] for i in range(dimension) for j in range(i)):
+            raise ValueError("factorization requires an upper-triangular matrix")
+        determinant_r = ZZ(1)
+        for i in range(dimension):
+            if r_rows[i][i] == 0:
+                raise ValueError("triangular factor must have nonzero diagonal")
+            determinant_r *= r_rows[i][i]
+        t, r, s = (matrix(ZZ, values) for values in (rows, r_rows, s_rows))
+        if t * r != s:
+            raise ValueError("integer basis factorization T R = S is false")
+        if a * matrix(GF(public.q), t) != 0:
+            raise ValueError("basis columns do not satisfy A T = 0 mod q")
+        if abs(s.det()) != abs(determinant_r) * public.q**public.nrows:
+            raise ValueError("factorization does not certify complete kernel index q^n")
+        # All ordinary-constructor conditions were established above using
+        # the exact determinant identity. Calling __post_init__ would repeat
+        # the expensive det(T), adding no further validation.
+        result = object.__new__(cls)
+        object.__setattr__(result, "public", public)
+        object.__setattr__(result, "basis_rows", rows)
+        object.__setattr__(result, "security_claim", "none")
+        object.__setattr__(result, "is_randomized", False)
+        return result
+
 
 def _center(value, q):
     value = int(value)

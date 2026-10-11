@@ -30,11 +30,16 @@ def checked_lll(basis, gs_squared_upper, *, max_dimension=512):
             if nearest:
                 reduced.add_multiple_of_column(j, i, -nearest)
                 change.add_multiple_of_column(j, i, -nearest)
-    if original*change != reduced or abs(change.det()) != 1:
+    if original*change != reduced:
         raise ArithmeticError("LLL transformation did not preserve the complete lattice")
     result = KernelBasis(basis.public, reduced)
-    star, _ = reduced.transpose().change_ring(QQ).gram_schmidt()
-    lengths = tuple(row.dot_product(row) for row in star.rows())
+    # Both original (the validated input) and reduced (just checked) have
+    # absolute determinant q^n. The exact product above therefore certifies
+    # |det(change)|=1 without a costly determinant of its huge coefficients.
+    # Integer subtraction of earlier columns leaves each ordered orthogonal
+    # GS vector unchanged, so the exact pre-size-reduction geometry is valid
+    # after all these operations. The output mu coefficients are recomputed.
+    star, lengths = orthogonal, norms
     mu = lambda i,j: reduced.column(i).dot_product(star.row(j))/lengths[j]
     if (max(lengths) > bound
             or any(abs(mu(i,j)) > QQ(1)/2 for i in range(len(lengths)) for j in range(i))
