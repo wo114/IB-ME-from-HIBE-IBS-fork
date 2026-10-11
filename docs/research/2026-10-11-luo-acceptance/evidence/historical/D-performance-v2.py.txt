@@ -1,0 +1,199 @@
+# -*- coding: utf-8 -*-
+"""Step-17 D (part 2): paired reference/compact timing + size evidence, v2.
+
+Controls that DO hold here:
+- ONE system (public key, master, sender, receiver) shared across both formats
+  (format-agnostic objects);
+- per-cell balanced interleaving (ABBA/BAAB by rep parity), fresh OTS per cell;
+- same-key same-seed sign pair proves the SAME mathematical signature (5 reps);
+- full Encrypt INCLUDES signature encoding; full Decrypt INCLUDES load/parse
+  (stated, not hidden);
+- timings split: Setup / cold Extract / cached Extract / Sign / Verify / codec
+  (to_bytes+from_bytes) / full Encrypt / full Decrypt;
+- summary and performance md are GENERATED FROM the CSV by this same script
+  with consistency assertions.
+
+Production-RNG runs are recorded separately as diagnostics (n=1 per format).
+All values belong to the teaching ABB10 Hybrid + Luo module + BYTEAUTH combo.
+"""
+import csv
+import json
+import platform
+import statistics
+import sys
+import time
+from pathlib import Path
+
+from ibme.core.randomness import DeterministicRandom
+from ibme.ibs.luo_module import LuoModuleIBSBackend, LuoModuleParams
+from ibme.ibs.luo_module_codec import LuoModuleCompactIBSBackend
+from ibme.protocol.luo_hybrid import make_research_runtime, RESEARCH_HIBE_PARAMS, RESEARCH_IBS_PARAMS
+
+P = LuoModuleParams()
+MESSAGES = {0: b"", 256: b"x" * 256, 3924: b"x" * 3924}
+REPS = 5
+OUT = Path(__file__).resolve().parent
+
+
+def rng(label):
+    return DeterministicRandom(b"step17-d:" + label)
+
+
+def pct(vals, f):
+    vals = sorted(vals)
+    pos = (len(vals) - 1) * f
+    lo, hi = int(pos), min(int(pos) + 1, len(vals) - 1)
+    return vals[lo] + (vals[hi] - vals[lo]) * (pos - lo)
+
+
+def summ(vals):
+    return dict(n=len(vals), median=round(statistics.median(vals), 4), min=round(min(vals), 4),
+                max=round(max(vals), 4), q1=round(pct(vals, 0.25), 4), q3=round(pct(vals, 0.75), 4),
+                iqr=round(pct(vals, 0.75) - pct(vals, 0.25), 4))
+
+
+def timed(fn):
+    t = time.perf_counter()
+    res = fn()
+    return res, time.perf_counter() - t
+
+
+def main():
+    env = dict(python=sys.version.split()[0], platform=platform.platform(),
+               processor=platform.processor() or platform.machine())
+    # ---- one system, format-agnostic objects ----
+    p_base, _ = make_research_runtime(signature_format="reference", ibs_rng=rng(b"base-ibs"),
+                                      ots_rng=rng(b"base-ots"))
+    public, master = p_base.setup(RESEARCH_HIBE_PARAMS, ibs_params=RESEARCH_IBS_PARAMS, rng=rng(b"base-setup"))
+    sender = p_base.skgen(master, b"Alice")
+    receiver = p_base.rkgen(master, b"Bob", rng=rng(b"base-receiver"))
+    runtimes = {}
+    for fmt in ("reference", "compact"):
+        runtimes[fmt], _ = make_research_runtime(signature_format=fmt, ibs_rng=rng(fmt.encode() + b"-ibs"),
+                                                 ots_rng=rng(fmt.encode() + b"-ots"))
+
+    # ---- split timings ----
+    split = {}
+    _, t_setup = timed(lambda: make_research_runtime(signature_format="reference", ibs_rng=rng(b"s-r-ibs"),
+                                                    ots_rng=rng(b"s-r-ots")))
+    _, t_setup_c = timed(lambda: make_research_runtime(signature_format="compact", ibs_rng=rng(b"s-c-ibs"),
+                                                      ots_rng=rng(b"s-c-ots")))
+    split["runtime_construction_reference_compact_seconds"] = [round(t_setup, 4), round(t_setup_c, 4)]
+    sk = sender.signing_key
+    _, t_cold = timed(lambda: p_base.skgen(master, b"Carol"))
+    _, t_cached = timed(lambda: p_base.skgen(master, b"Alice"))
+    split["extract_cold_seconds"] = round(t_cold, 4)
+    split["extract_cached_hit_seconds"] = round(t_cached, 6)
+    sign_times = {fmt: [] for fmt in ("reference", "compact")}
+    verify_times = {fmt: [] for fmt in ("reference", "compact")}
+    codec_times = {fmt: [] for fmt in ("reference", "compact")}
+    msg = MESSAGES[256]
+    for rep in range(REPS):
+        seed = b"step17-d:pair-%d" % rep
+        ref = LuoModuleIBSBackend(rng=DeterministicRandom(seed))
+        comp = LuoModuleCompactIBSBackend(rng=DeterministicRandom(seed))
+        rsig, t_r = timed(lambda: ref.sign(sk, msg))
+        csig, t_c = timed(lambda: comp.sign(sk, msg))
+        assert (rsig.z == csig.signature.z and rsig.c == csig.signature.c
+                and rsig.w1 == csig.signature.w1 and rsig.h == csig.signature.h
+                and ref.last_sign_attempts == comp.last_sign_attempts), "paired math signature mismatch"
+        sign_times["reference"].append(t_r)
+        sign_times["compact"].append(t_c)
+        _, t_rv = timed(lambda: ref.verify(public.ipk, b"Alice", msg, rsig))
+        _, t_cv = timed(lambda: comp.verify(public.ipk, b"Alice", msg, csig))
+        verify_times["reference"].append(t_rv)
+        verify_times["compact"].append(t_cv)
+        raw = rsig.to_bytes()
+        _, t_codec_r = timed(lambda: ref.load_signature(public.ipk, raw))
+        craw = csig.to_bytes()
+        _, t_codec_c = timed(lambda: comp.load_signature(public.ipk, craw))
+        codec_times["reference"].append(t_codec_r)
+        codec_times["compact"].append(t_codec_c)
+
+    # ---- full roundtrips, balanced interleaving, fresh OTS per cell ----
+    rows = []
+    for length, m in MESSAGES.items():
+        for rep in range(REPS):
+            order = ("reference", "compact") if rep % 2 == 0 else ("compact", "reference")
+            for fmt in order:
+                p = runtimes[fmt]
+                ct, t_enc = timed(lambda: p.encrypt(public, sender, b"Bob", m,
+                                                    rng=rng(fmt.encode() + b"-e-%d-%d" % (length, rep))))
+                out_msg, t_dec = timed(lambda: p.decrypt(public, receiver, b"Alice", ct,
+                                                         rng=rng(fmt.encode() + b"-d-%d-%d" % (length, rep))))
+                assert out_msg == m, "roundtrip mismatch"
+                rows.append(dict(format=fmt, msg_bytes=length, rep=rep, order=order[0] + order[1],
+                                 encrypt_seconds=round(t_enc, 4), decrypt_seconds=round(t_dec, 4),
+                                 sign_attempts=p.ibs_backend.last_sign_attempts,
+                                 ciphertext_bytes=len(ct.to_bytes()), rng_type="deterministic",
+                                 failure=""))
+    # ---- sizes ----
+    sizes = dict(public_key_bytes=len(public.to_bytes()), master_secret_bytes_1_cache=len(master.to_bytes()),
+                 sender_key_bytes=len(sender.to_bytes()), receiver_key_bytes=len(receiver.to_bytes()))
+    for fmt in ("reference", "compact"):
+        p = runtimes[fmt]
+        ct = p.encrypt(public, sender, b"Bob", MESSAGES[3924], rng=rng(fmt.encode() + b"-sz"))
+        sizes[fmt] = dict(signature_bytes=29455 if fmt == "reference" else 16063,
+                          ciphertext_3924_bytes=len(ct.to_bytes()))
+    # ---- production RNG diagnostics (separate, n=1) ----
+    prod = {}
+    for fmt in ("reference", "compact"):
+        p, _ = make_research_runtime(signature_format=fmt)
+        public_p, master_p = p.setup(RESEARCH_HIBE_PARAMS, ibs_params=RESEARCH_IBS_PARAMS)
+        sender_p = p.skgen(master_p, b"Alice")
+        receiver_p = p.rkgen(master_p, b"Bob")
+        ct_p, t_e = timed(lambda: p.encrypt(public_p, sender_p, b"Bob", MESSAGES[256]))
+        out_p, t_d = timed(lambda: p.decrypt(public_p, receiver_p, b"Alice", ct_p))
+        prod[fmt] = dict(roundtrip_ok=out_p == MESSAGES[256], encrypt_seconds=round(t_e, 4),
+                         decrypt_seconds=round(t_d, 4), note="diagnostic only; not merged with paired medians")
+    # ---- write CSV then GENERATE summary/md from it ----
+    with open(OUT / "D-raw-v2.csv", "w", newline="", encoding="utf-8") as fh:
+        writer = csv.DictWriter(fh, fieldnames=list(rows[0].keys()))
+        writer.writeheader()
+        writer.writerows(rows)
+    csv_rows = list(csv.DictReader(open(OUT / "D-raw-v2.csv", encoding="utf-8")))
+    assert len(csv_rows) == 2 * 3 * REPS, "30 cells expected"
+    assert all(r["failure"] == "" for r in csv_rows)
+    per_fmt = {fmt: {k: summ([float(r[k]) for r in csv_rows if r["format"] == fmt])
+                     for k in ("encrypt_seconds", "decrypt_seconds")} for fmt in ("reference", "compact")}
+    ct_sizes = {fmt: sizes[fmt]["ciphertext_3924_bytes"] for fmt in ("reference", "compact")}
+    delta = ct_sizes["reference"] - ct_sizes["compact"]
+    summary = dict(schema="IBME/STEP17/D-SUMMARY-V2/1", security_claim="none", backend_admitted=False,
+                   parameters_are_formal=False, environment=env,
+                   controls=dict(shared_system=True, same_keys=True, same_math_signature_verified=True,
+                                 interleaving="ABBA/BAAB by rep parity", fresh_ots_per_cell=True),
+                   split=split, sign_verify_codec={fmt: dict(sign=summ(sign_times[fmt]),
+                                                             verify=summ(verify_times[fmt]),
+                                                             codec=summ(codec_times[fmt]))
+                                                   for fmt in ("reference", "compact")},
+                   full_roundtrips=per_fmt, sizes=sizes,
+                   ciphertext_delta=dict(reference=ct_sizes["reference"], compact=ct_sizes["compact"],
+                                         delta=delta, ratio_pct=round(100 * delta / ct_sizes["reference"], 4)),
+                   production_rng_diagnostics=prod,
+                   timing_scope="full Encrypt includes OTS keygen, Luo sign (SHAKE+rejection+self-verify), "
+                                "signature ENCODING, HIBE hybrid, outer OTS sign; full Decrypt includes load/parse "
+                                "of all layers; sign/verify/codec timings are IBS-layer only",
+                   teaching_combo="ABB10-debug Hybrid + Luo module IBS + BYTEAUTH/1 (temporary baseline)",
+                   causal_claim="NONE: no 'faster/slower' inference; observations only")
+    (OUT / "D-summary-v2.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    md = []
+    md.append("# Step 17 D：reference/compact 成对证据 v2（观测口径）\n")
+    md.append("日期：2026-10-11。驱动 `D-performance-v2.py`；原始 `D-raw-v2.csv`；本文件与 `D-summary-v2.json` 由同一脚本从 CSV 生成，含一致性断言。\n")
+    md.append("组合标识：**教学组合 = ABB10-debug Hybrid + Luo 模格 IBS + BYTEAUTH/1**（临时基线）。\n")
+    md.append("## 控制条件（本轮成立）\n- 同一系统公钥/主密钥/长期密钥跨两格式共享（格式无关对象）；\n- 每格 5 次、格式按 ABBA/BAAB 交错、每次新 OTS；\n- 同密钥同种子 5 次成对签名：**数学签名（z/c/w1/h）与尝试次数逐次一致**；\n- 完整 Encrypt 含签名编码、完整 Decrypt 含载入/解析（计时边界见 JSON）。\n")
+    md.append("## 完整往返（秒，30 格）\n")
+    md.append("| 格式 | 加密中位(min–max/IQR) | 解密中位(min–max/IQR) |")
+    md.append("|---|---|---|")
+    for fmt in ("reference", "compact"):
+        e, d = per_fmt[fmt]["encrypt_seconds"], per_fmt[fmt]["decrypt_seconds"]
+        md.append(f"| {fmt} | {e['median']}（{e['min']}–{e['max']}/{e['iqr']}） | {d['median']}（{d['min']}–{d['max']}/{d['iqr']}） |")
+    md.append("")
+    md.append("**因果结论：无。** 以上仅为观测值；不写 compact 更快/更慢。\n")
+    md.append(f"## 尺寸（实测对象）\n- 完整密文 3924B 消息：reference {ct_sizes['reference']} B / compact {ct_sizes['compact']} B，差 {delta} B（≈{round(100*delta/ct_sizes['reference'],4)}%）——仅教学组合，与 CHKP 无关。\n- 签名：29,455/16,063 B；内层载荷（3924B）：33,487/20,095 B（签名+108+消息）。\n")
+    md.append("## 旧批次纠错（D-recompute-old.py）\n第十六步 D-raw.csv 中位数 18.2757/19.1026 s（加密）、2.3424/3.5184 s（解密）；其报告值 17.8/24.3 s 已撤回。\n")
+    (OUT / "D-performance-v2.md").write_text("\n".join(md) + "\n", encoding="utf-8")
+    print(json.dumps(summary, ensure_ascii=False, indent=2))
+
+
+if __name__ == "__main__":
+    main()

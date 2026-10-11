@@ -1,0 +1,31 @@
+test_actual_abb10_rejected (test_preflight.BackendGuards.test_actual_abb10_rejected) ... ok
+test_actual_mock_rejected (test_preflight.BackendGuards.test_actual_mock_rejected) ... ok
+test_empty_backend_rejected (test_preflight.BackendGuards.test_empty_backend_rejected) ... ok
+test_monkeypatched_method_rejected (test_preflight.BackendGuards.test_monkeypatched_method_rejected) ... ok
+test_renamed_teaching_subclass_rejected (test_preflight.BackendGuards.test_renamed_teaching_subclass_rejected) ... ok
+test_unknown_complete_interface_with_true_flag_rejected (test_preflight.BackendGuards.test_unknown_complete_interface_with_true_flag_rejected) ... ok
+test_booleans_are_not_numeric_capacities (test_preflight.ContractTests.test_booleans_are_not_numeric_capacities) ... ok
+test_eight_identity_shards_rejected (test_preflight.ContractTests.test_eight_identity_shards_rejected) ... ok
+test_exact_contract (test_preflight.ContractTests.test_exact_contract) ... ok
+test_failure_nonzero_and_first_blocker_preserved (test_preflight.ContractTests.test_failure_nonzero_and_first_blocker_preserved) ... ok
+test_missing_and_extra_evidence_rejected (test_preflight.ContractTests.test_missing_and_extra_evidence_rejected) ... ok
+test_no_security_admission_even_when_functionally_ready (test_preflight.ContractTests.test_no_security_admission_even_when_functionally_ready) ... ok
+test_other_family_and_fixture_rejected (test_preflight.ContractTests.test_other_family_and_fixture_rejected) ... ok
+test_positions_must_cover_zero_to_255 (test_preflight.ContractTests.test_positions_must_cover_zero_to_255) ... ok
+test_repeated_preimage_rejected (test_preflight.ContractTests.test_repeated_preimage_rejected) ... ok
+test_reversed_roles_rejected (test_preflight.ContractTests.test_reversed_roles_rejected) ... ok
+test_same_leaf_capacity_not_identity_sum (test_preflight.ContractTests.test_same_leaf_capacity_not_identity_sum) ... ok
+test_wrong_input_lengths (test_preflight.ContractTests.test_wrong_input_lengths) ... ok
+test_actual_first_blocker_is_missing_slot (test_preflight.InventoryAndLineage.test_actual_first_blocker_is_missing_slot) ... ok
+test_actual_inventory_distinguishes_components (test_preflight.InventoryAndLineage.test_actual_inventory_distinguishes_components) ... ok
+test_direct_teaching_alias_in_chkp_slot_rejected_before_import (test_preflight.InventoryAndLineage.test_direct_teaching_alias_in_chkp_slot_rejected_before_import) ... ok
+test_duplicate_review_fields_rejected (test_preflight.InventoryAndLineage.test_duplicate_review_fields_rejected) ... ok
+test_head_mismatch_precedes_backend_selection (test_preflight.InventoryAndLineage.test_head_mismatch_precedes_backend_selection) ... ok
+test_parallel_changes_are_recorded_not_treated_as_backend (test_preflight.InventoryAndLineage.test_parallel_changes_are_recorded_not_treated_as_backend) ... ok
+test_slot_presence_alone_never_imports_or_admits (test_preflight.InventoryAndLineage.test_slot_presence_alone_never_imports_or_admits) ... ok
+test_stale_review_never_imports_or_admits (test_preflight.InventoryAndLineage.test_stale_review_never_imports_or_admits) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.474s
+
+OK

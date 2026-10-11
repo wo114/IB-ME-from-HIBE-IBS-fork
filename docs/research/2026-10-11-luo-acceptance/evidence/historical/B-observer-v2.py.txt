@@ -1,0 +1,255 @@
+# -*- coding: utf-8 -*-
+"""Step-17 B: per-attempt rejection-event ledger with denominator-correct negatives.
+
+- Natural sample: 3 setups x 3 identity lengths x 3 message lengths x 4 signs.
+- Every ATTEMPT gets a row: call id, attempt number, event flags, combo, accepted,
+  category. The observer reads the signing-key internals (sk.z1/z2/w) and is
+  explicitly a WHITE-BOX diagnostic; acceptance alignment against the unmodified
+  backend uses only public results (final math signature, verify, accepted-attempt
+  number, call-level outcome).
+- Negative controls: uniform-budget abort (always-high RNG), XOF-budget abort
+  (temporary HASH_BYTES patch, labeled), backend entropy exception (wrong-type
+  rng). Every aborted CALL stays in the denominator (calls / aligned).
+No y, private keys or production tapes are written to disk.
+"""
+import csv
+import json
+import platform
+import sys
+import time
+from hashlib import sha256
+from pathlib import Path
+
+from ibme.core.randomness import DeterministicRandom
+from ibme.ibs.luo_module import LuoModuleIBSBackend, LuoModuleParams, message_challenge
+from ibme.ibs.luo_module import LuoModuleSamplingAbort
+from ibme.ibs.luo_module_math import sparse_product
+
+P = LuoModuleParams()
+R = P.rounding()
+G2, B2, G3, D, L, K, N = P.gamma2, P.beta2, P.gamma3, P.dropped_bits, P.l, P.k, P.degree
+BOUND_Y = 2 * G2 + 1
+
+
+def draw_below(source, bound, attempts):
+    width = max(1, ((bound - 1).bit_length() + 7) // 8)
+    ceiling = 2 ** (8 * width)
+    limit = ceiling - ceiling % bound
+    for _ in range(attempts):
+        value = int.from_bytes(source.read(width), "big")
+        if value < limit:
+            return value % bound
+    raise RuntimeError("uniform budget exhausted")
+
+
+def draw_y(source):
+    return tuple(tuple(draw_below(source, BOUND_Y, P.max_uniform_attempts) - G2
+                       for _ in range(N)) for _ in range(L))
+
+
+def norm(v):
+    return max(abs(x) for poly in v for x in poly)
+
+
+def observe_attempt(pk, sk, msg, source):
+    y = draw_y(source)
+    w = pk.matvec(y)
+    c = message_challenge(pk, tuple(tuple(R.high_bits(x) for x in poly) for poly in w),
+                          sk.identity, msg)
+    z = tuple(tuple(a + b for a, b in zip(sparse_product(zp, c), yp)) for zp, yp in zip(sk.z1, y))
+    sid2c = tuple(sparse_product(zp, c) for zp in sk.z2)
+    w1 = tuple(tuple(R.power2round(x) for x in poly) for poly in sk.w)
+    w0 = tuple(tuple(w - high * 2 ** D for w, high in zip(poly, highs)) for poly, highs in zip(sk.w, w1))
+    w0c = tuple(sparse_product(p, c) for p in w0)
+    r = tuple(tuple((a - b) % P.q for a, b in zip(wp, scp)) for wp, scp in zip(w, sid2c))
+    ez = norm(z) >= G2 - B2
+    elow = norm(tuple(tuple(R.low_bits(x) for x in poly) for poly in r)) >= G3 - B2
+    ew0c = norm(w0c) >= G3
+    h = None
+    if not (ez or elow or ew0c):
+        h = tuple(tuple(R.make_hint(-shift, (value + shift) % P.q)
+                        for value, shift in zip(poly, shifts))
+                  for poly, shifts in zip(r, w0c))
+    return z, c, w1, h, ez, elow, ew0c
+
+
+def combo(e1, e2, e3):
+    parts = []
+    if e1:
+        parts.append("z")
+    if e2:
+        parts.append("low")
+    if e3:
+        parts.append("w0c")
+    return "+".join(parts) or "accept"
+
+
+def main():
+    out = Path(__file__).resolve().parent
+    attempt_rows = []
+    call_rows = []
+    totals = dict(calls=0, attempts=0, ez=0, elow=0, ew0c=0, ez_elow=0, aligned=0, natural_aborts=0)
+    t0 = time.perf_counter()
+    for si in range(3):
+        backend = LuoModuleIBSBackend(rng=DeterministicRandom(b"step17-b-setup-%d" % si))
+        pk, msk = backend.setup(P)
+        for idlen in (1, 5, 64):
+            ident = b"A" * idlen
+            sk = backend.key_extract(msk, ident)
+            for msglen in (0, 256, 3924):
+                msg = b"x" * msglen
+                for rep in range(4):
+                    call_id = f"nat-{si}-{idlen}-{msglen}-{rep}"
+                    seed = b"step17-b-sign-%d-%d-%d-%d" % (si, idlen, msglen, rep)
+                    sign_backend = LuoModuleIBSBackend(rng=DeterministicRandom(seed))
+                    category = ""
+                    try:
+                        sig = sign_backend.sign(sk, msg)
+                        attempts = sign_backend.last_sign_attempts
+                    except Exception as exc:
+                        totals["calls"] += 1
+                        totals["natural_aborts"] += 1
+                        call_rows.append(dict(call_id=call_id, category=f"abort:{type(exc).__name__}",
+                                              attempts=sign_backend.last_sign_attempts,
+                                              ez=0, elow=0, ew0c=0, ez_elow=0, aligned=False,
+                                              note="natural abort counted in denominator"))
+                        continue
+                    source = DeterministicRandom(seed)
+                    ez = elow = ew0c = ez_elow = 0
+                    accepted_at = None
+                    observed_sig = None
+                    for attempt in range(1, P.max_sign_attempts + 1):
+                        z, c, w1, h, e1, e2, e3 = observe_attempt(pk, sk, msg, source)
+                        combo_str = combo(e1, e2, e3)
+                        attempt_rows.append(dict(call_id=call_id, attempt=attempt, ez=int(e1),
+                                                 elow=int(e2), ew0c=int(e3), combo=combo_str,
+                                                 accepted=combo_str == "accept", category=""))
+                        ez += e1
+                        elow += e2
+                        ew0c += e3
+                        ez_elow += e1 and e2
+                        if combo_str == "accept":
+                            accepted_at = attempt
+                            from ibme.ibs.luo_module import LuoModuleSignature
+                            observed_sig = LuoModuleSignature(P, pk.context, z, c, w1, h)
+                            break
+                    aligned = (accepted_at == attempts and observed_sig is not None
+                               and observed_sig.z == sig.z and observed_sig.c == sig.c
+                               and observed_sig.w1 == sig.w1 and observed_sig.h == sig.h
+                               and sign_backend.verify(pk, ident, msg, sig))
+                    totals["calls"] += 1
+                    totals["attempts"] += attempts
+                    totals["ez"] += ez
+                    totals["elow"] += elow
+                    totals["ew0c"] += ew0c
+                    totals["ez_elow"] += ez_elow
+                    totals["aligned"] += aligned
+                    call_rows.append(dict(call_id=call_id, category=category, attempts=attempts,
+                                          ez=ez, elow=elow, ew0c=ew0c, ez_elow=ez_elow,
+                                          accepted_attempt=accepted_at, aligned=aligned,
+                                          note="WHITE-BOX observer (reads sk.z1/z2/w); alignment via public results"))
+    # ---- negative controls (counted in denominator) ----
+    negs = dict(calls=0, attempts=0, categories={})
+    neg_seed_base = b"step17-b-neg"
+    sk_n = None
+    backend_n = LuoModuleIBSBackend(rng=DeterministicRandom(b"step17-b-neg-setup"))
+    pk_n, msk_n = backend_n.setup(P)
+    sk_n = backend_n.key_extract(msk_n, b"Neg")
+
+    class HighRng:
+        def read(self, count):
+            return b"\xff" * count
+
+    b_high = LuoModuleIBSBackend(rng=HighRng())
+    try:
+        b_high.sign(sk_n, b"neg-uniform")
+        category = "unexpected-success"
+        attempts = b_high.last_sign_attempts
+    except Exception as exc:
+        category = f"abort:{type(exc).__name__}"
+        attempts = b_high.last_sign_attempts
+    negs["calls"] += 1
+    negs["attempts"] += attempts
+    negs["categories"][category] = negs["categories"].get(category, 0) + 1
+    call_rows.append(dict(call_id="neg-uniform", category=category, attempts=attempts,
+                          ez=0, elow=0, ew0c=0, ez_elow=0, aligned=False,
+                          note="negative control: always-high rng forces uniform-budget abort; counted in denominator"))
+    attempt_rows.append(dict(call_id="neg-uniform", attempt=attempts or 1, ez=0, elow=0, ew0c=0,
+                             combo=category, accepted=False, category=category))
+
+    import ibme.ibs.luo_module as module
+    orig_hash_bytes = module.HASH_BYTES
+    module.HASH_BYTES = 1
+    try:
+        b_xof = LuoModuleIBSBackend(rng=DeterministicRandom(neg_seed_base + b"-xof"))
+        try:
+            b_xof.sign(sk_n, b"neg-xof")
+            category = "unexpected-success"
+            attempts = b_xof.last_sign_attempts
+        except Exception as exc:
+            category = f"abort:{type(exc).__name__}"
+            attempts = b_xof.last_sign_attempts
+    finally:
+        module.HASH_BYTES = orig_hash_bytes
+    negs["calls"] += 1
+    negs["attempts"] += attempts
+    negs["categories"][category] = negs["categories"].get(category, 0) + 1
+    call_rows.append(dict(call_id="neg-xof", category=category, attempts=attempts,
+                          ez=0, elow=0, ew0c=0, ez_elow=0, aligned=False,
+                          note="negative control: temporary HASH_BYTES=1 patch forces XOF-budget abort (driver-side only, repo untouched); counted in denominator"))
+    attempt_rows.append(dict(call_id="neg-xof", attempt=attempts or 1, ez=0, elow=0, ew0c=0,
+                             combo=category, accepted=False, category=category))
+
+    class BadRng:
+        def read(self, count):
+            return object()
+
+    b_bad = LuoModuleIBSBackend(rng=BadRng())
+    try:
+        b_bad.sign(sk_n, b"neg-badrng")
+        category = "unexpected-success"
+        attempts = b_bad.last_sign_attempts
+    except Exception as exc:
+        category = f"abort:{type(exc).__name__}"
+        attempts = b_bad.last_sign_attempts
+    negs["calls"] += 1
+    negs["attempts"] += attempts
+    negs["categories"][category] = negs["categories"].get(category, 0) + 1
+    call_rows.append(dict(call_id="neg-badrng", category=category, attempts=attempts,
+                          ez=0, elow=0, ew0c=0, ez_elow=0, aligned=False,
+                          note="negative control: wrong-type rng read forces entropy exception; counted in denominator"))
+    attempt_rows.append(dict(call_id="neg-badrng", attempt=attempts or 1, ez=0, elow=0, ew0c=0,
+                             combo=category, accepted=False, category=category))
+
+    # ---- write outputs + consistency assertions ----
+    with open(out / "B-attempt-events.csv", "w", newline="", encoding="utf-8") as fh:
+        writer = csv.DictWriter(fh, fieldnames=["call_id", "attempt", "ez", "elow", "ew0c", "combo", "accepted", "category"])
+        writer.writeheader()
+        writer.writerows(attempt_rows)
+    with open(out / "B-call-summary.csv", "w", newline="", encoding="utf-8") as fh:
+        writer = csv.DictWriter(fh, fieldnames=["call_id", "category", "attempts", "ez", "elow", "ew0c", "ez_elow",
+                                                "accepted_attempt", "aligned", "note"])
+        writer.writeheader()
+        writer.writerows(call_rows)
+    natural_attempt_rows = [r for r in attempt_rows if r["call_id"].startswith("nat-")]
+    assert len(call_rows) == totals["calls"] + negs["calls"], "every call (incl. negatives) has a summary row"
+    assert sum(r["attempts"] for r in call_rows if r["call_id"].startswith("nat-")) == len(natural_attempt_rows), "per-attempt rows == per-call attempts (natural)"
+    assert all(r["category"] or r["accepted"] or r["combo"] in ("z", "low", "w0c", "z+low", "z+w0c", "low+w0c", "z+low+w0c") for r in attempt_rows)
+    summary = dict(schema="IBME/STEP17/B-SUMMARY-V2/1", security_claim="none", backend_admitted=False,
+                   parameters_are_formal=False,
+                   environment=dict(python=sys.version.split()[0], platform=platform.platform(),
+                                    processor=platform.processor() or platform.machine()),
+                   natural=dict(**totals, wall_seconds=round(time.perf_counter() - t0, 1)),
+                   negative_controls=negs,
+                   denominator_note="negative-control calls are included in calls/denominators; natural and negative samples are NOT merged for any rate",
+                   observer_label="WHITE-BOX diagnostic observer (reads signing-key fields sk.z1/z2/w); alignment against the unmodified backend uses only public results (final math signature, verify result, accepted-attempt number)",
+                   step16_historical=dict(calls=108, attempts=946, ez=449, elow=735, ez_elow=346,
+                                          note="kept as historical sample; this run is reconciled row-by-row, differences recorded"),
+                   source_sha256={name: sha256((Path("src") / name).read_bytes()).hexdigest()
+                                  for name in ("ibme/ibs/luo_module.py", "ibme/ibs/luo_module_math.py")})
+    (out / "B-summary-v2.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(summary, ensure_ascii=False, indent=2))
+
+
+if __name__ == "__main__":
+    main()

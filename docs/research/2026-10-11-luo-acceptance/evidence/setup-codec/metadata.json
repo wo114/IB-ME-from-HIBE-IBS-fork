@@ -1,0 +1,85 @@
+{
+  "schema": "IBME/LUO-SETUP-CODEC-EVIDENCE/1",
+  "environment": {
+    "utc_started": "2026-10-11T13:01:59.389398+00:00",
+    "source_base_commit": "bc22c9cb834dee51e9c8b7a37040fa0c5349fcdb",
+    "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+    "logical_cpu_count": 20,
+    "clock": "perf_counter_ns wall clock; serial operations; no deliberate warmup",
+    "source_sha256": {
+      "src/ibme/ibs/luo_module.py": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275",
+      "src/ibme/ibs/luo_module_codec.py": "bb99eb6a18a06be204ab0274de8e295522589d8100cc2c9f944c7cf4980b06df",
+      "src/ibme/protocol/luo_hybrid.py": "ee4498a2096e33520b856e14fd9a441484e603af07e3e4c3e90a5936cfd3459d",
+      "src/ibme/protocol/hybrid_hibe.py": "00f67d1065b25fe63e41ba1752266e73f03ed586f2a008a8333682ef0d158655",
+      "src/ibme/protocol/byteauth.py": "d174c0be104ab756c70fdb7fea8ade13b3afb8d6b59e6295019db42efe2f7414",
+      "src/ibme/protocol/baseline.py": "3bffb26ce97294c8268430719c8ed1fbf66b118bb11bc5930e7e27f8dcab0b16",
+      "experiments/research/luo_acceptance_benchmark.py": "a5bbaeaf1bc6391d7cc468c5895bdfc4e3de3e3b8ba0b4785a3be8d5dc8c7a52"
+    }
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "combo": "ABB10 teaching Hybrid + Luo module + BYTEAUTH; NOT CHKP",
+  "hibe_parameters": {
+    "inner_params": {
+      "name": "hybrid-abb10-short-debug",
+      "security_parameter": 8,
+      "n": 8,
+      "m_matrix": 168,
+      "q": 524288,
+      "s0": 3.0,
+      "s": 1.0,
+      "s_prime": 1.0,
+      "identity_bytes": 86,
+      "max_message_bytes": 32
+    },
+    "limits": {
+      "backend_id": {
+        "encoding": "hex",
+        "value": "61626231302d64656275672d7632"
+      },
+      "identity_max_bytes": 64,
+      "max_payload_bytes": 65536,
+      "max_capsule_bytes": 4194304
+    }
+  },
+  "ibs_parameters": {
+    "degree": 256,
+    "k": 11,
+    "l": 10,
+    "q": 274877844481,
+    "root": 153250464611,
+    "eta": 1,
+    "kappa": 64,
+    "gamma1": 125440,
+    "gamma2": 31470387200,
+    "gamma3": 15270991360,
+    "dropped_bits": 28,
+    "identity_max_bytes": 64,
+    "message_max_bytes": 4096,
+    "max_extract_attempts": 1024,
+    "max_sign_attempts": 1024,
+    "max_uniform_attempts": 128,
+    "max_cached_identities": 64
+  },
+  "rng": "deterministic test streams, disjoint per repetition and role; not production randomness",
+  "repeats": 5,
+  "identity_bytes": 5,
+  "ibs_message_bytes": 256,
+  "boundaries": {
+    "setup": "protocol.setup: actual HIBE and IBS Setup; excludes runtime creation and wire encoding",
+    "extract_cold": "protocol.skgen for Alice in each fresh master state",
+    "extract_cached": "protocol.skgen for the already-issued Alice; no new issuance",
+    "sign": "IBS Sign on raw 256-byte message, includes internal self-verification; excludes wire encoding",
+    "encode": "signature.to_bytes only; same mathematical signature in both formats",
+    "decode": "backend.load_signature only, includes validation; verify excluded",
+    "verify": "IBS Verify on already-decoded signature; decode excluded"
+  },
+  "unit": "one fresh system and one authentic mathematical signature per repetition; formats share that signature",
+  "scope": "five independent systems at default repeats; codec pairs alternate order; no end-to-end speed claim",
+  "completed": true,
+  "failure_type": null,
+  "utc_finished": "2026-10-11T13:02:08.867081+00:00"
+}

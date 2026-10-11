@@ -1,0 +1,68 @@
+{
+  "schema": "IBME/RESEARCH-EVIDENCE-CARD/1",
+  "status": "research_evidence_only_not_backend_registration",
+  "combination": {
+    "protocol": "Wang baseline + HYBRID-HIBE/1 + BYTEAUTH/1",
+    "hibe_implementation": "ABB10 teaching debug via HybridHIBE",
+    "ibs_implementation": "Luo 2024 module research backend",
+    "source_base_commit": "bc22c9cb834dee51e9c8b7a37040fa0c5349fcdb",
+    "research_profile": "luo-module-research",
+    "signature_formats": ["MODULE-REF/1", "MODULE-COMPACT/1"],
+    "default_signature_format": "reference",
+    "formats_count_as_distinct_algorithms": false,
+    "chkp_implementation_measured": false
+  },
+  "security": {
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "overall_security_bits": null,
+    "theoretical_sign_abort_bound": null,
+    "model_note": "Classical-ROM literature mapping only; no new proof or QROM claim; teaching HIBE prevents a secure-system claim."
+  },
+  "capacity_bytes": {
+    "application_max": 3924,
+    "raw_identity_max": 64,
+    "inner_encoded_identity_each": 86,
+    "inner_hibe_seed": 32,
+    "hybrid_outer_payload_max": 65536,
+    "signature_reference": 29455,
+    "signature_compact": 16063,
+    "outer_payload_at_max_application_reference": 33487,
+    "outer_payload_at_max_application_compact": 20095
+  },
+  "measurements": {
+    "fresh_setup_sender_extract_sign_codec_verify": {
+      "origin": "Codex new measurement",
+      "raw": "evidence/setup-codec/raw.csv",
+      "metadata": "evidence/setup-codec/metadata.json",
+      "summary": "evidence/setup-codec/summary.json",
+      "unit": "five fresh systems; one mathematical signature per system, two formats",
+      "causal_full_system_speedup_claim": false
+    },
+    "full_encrypt_decrypt": {
+      "origin": "DeepSeek Step17 historical run, Codex CSV recount only this turn",
+      "raw": "evidence/historical/D-raw-v2.csv",
+      "recount": "evidence/historical-recount.json",
+      "unit": "0,256,3924 byte messages; five calls per format and length",
+      "same_random_tape_across_formats": false,
+      "causal_full_system_speedup_claim": false
+    },
+    "sign_rejection_events": {
+      "origin": "DeepSeek Step17 white-box run, Codex CSV recount only this turn",
+      "raw": "evidence/historical/B-attempt-events.csv",
+      "calls": "evidence/historical/B-call-summary.csv",
+      "natural_calls": 108,
+      "natural_aborts": 0,
+      "negative_controls_separate": 3,
+      "is_theoretical_probability": false
+    }
+  },
+  "unmeasured_in_new_timing_run": [
+    "receiver_key_issuance_latency", "hibe_delegation_latency",
+    "peak_process_memory", "persistent_state_recovery_latency",
+    "CHKP backend", "formal-security parameter profiles"
+  ],
+  "selected_test_run": "evidence/pytest.xml",
+  "human_receipt": "验收收据.md"
+}

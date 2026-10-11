@@ -1,0 +1,1749 @@
+{
+  "schema": "CODEX/CHKP-LUO-PREFLIGHT/1",
+  "repo": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS",
+  "functional_status": "BLOCKED",
+  "ready_for_bounded_smoke": false,
+  "functional_integration_passed": false,
+  "smoke_executed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "security_admission": "NOT_EVALUATED_MAIN_OWNER",
+  "required_contract": {
+    "family": "CHKP-depth2-anonymous-ROM",
+    "parent_role": "rcv",
+    "child_role": "phi",
+    "parent_bytes": 86,
+    "child_bytes": 86,
+    "seed_bytes": 32,
+    "same_leaf_target_capacity": 256,
+    "preimage_sampling": "independent-per-position",
+    "position_range": [
+      0,
+      255
+    ],
+    "identity_sharding": false,
+    "implementation_kind": "actual-chkp"
+  },
+  "blockers": [
+    "CHKP_PUBLIC_BACKEND_MISSING"
+  ],
+  "inventory": {
+    "src/ibme/hibe/__init__.py": {
+      "sha256": "8b471e5f2ca4a5b22cb2a695d6f75d1891962ff135ff0662e64f47abbde4cd1e",
+      "bytes": 1524,
+      "module_doc": "HIBE \u539f\u8bed\u5c42\uff1a\u51bb\u7ed3\u63a5\u53e3\uff08api\uff09\u3001TEST-ONLY mock \u540e\u7aef\u4e0e ABB10 \u683c\u57fa\u540e\u7aef\u3002\n\n\u6a21\u5757\u6240\u6709\u6743\u4e0e\u4fee\u6539\u8fb9\u754c\u89c1\u4ed3\u5e93 AGENTS.md \u4e0e DELEGATION_PROMPTS.md \u4efb\u52a1 C\u3002\n\u5b89\u5168\u53e3\u5f84\uff1a\u672c\u5305\u4e0d\u5ba3\u79f0\u4efb\u4f55\u5b89\u5168\u7ea7\u522b\uff1b``ibme.hibe.mock`` \u662f\u6d4b\u8bd5\u7ec4\u4ef6\uff0c\n``ibme.hibe.abb10`` \u4f7f\u7528\u6559\u5b66\u53c2\u6570\uff08security_claim: none\uff0c\u4ec5\u8c03\u8bd5\uff09\u3002",
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "from ibme.hibe.api import HIBECiphertext, HIBEBackend, HIBEMasterSecret, HIBEPublicKey, HIBELevel1SecretKey, HIBELevel2SecretKey, HIBESerializable",
+        "from ibme.hibe.mock import MockHIBE, MockHIBECiphertext, MockHIBEMasterSecret, MockHIBEPublicKey, MockHIBELevel1SecretKey, MockHIBELevel2SecretKey",
+        "from ibme.hibe.abb10 import ABB10HIBE, ABB10_DEBUG_PARAMS, ABB10Ciphertext, ABB10Level1SecretKey, ABB10Level2SecretKey, ABB10MasterSecret, ABB10PublicKey"
+      ]
+    },
+    "src/ibme/hibe/abb10.py": {
+      "sha256": "a7121a89e3645e87fa059564b745ed1487dfb7f9510a10973c42d0b5e94a9d32",
+      "bytes": 47209,
+      "module_doc": "Agrawal\u2013Boneh\u2013Boyen 2010 \u98ce\u683c\u7684\u4e24\u5c42\u683c\u57fa HIBE \u53c2\u8003\u5b9e\u73b0\uff08\u6559\u5b66/\u8c03\u8bd5\uff09\u3002\n\nSECURITY CLAIM: none \u2014\u2014 \u672c\u6a21\u5757\u4e0d\u5ba3\u79f0\u4efb\u4f55\u5b89\u5168\u7ea7\u522b\uff1b\u53c2\u6570\u672a\u505a\u683c\u5b89\u5168\u4f30\u8ba1\uff0c\n\u4ec5\u7528\u4e8e\u529f\u80fd\u8c03\u8bd5\u4e0e\u5951\u7ea6\u6d4b\u8bd5\u3002\u529f\u80fd\u6d4b\u8bd5\u6210\u529f\u4e0d\u6784\u6210 LWE/SIS \u6216 HIBE \u5b89\u5168\u6027\u8bc1\u660e\u3002\n\n\u6784\u9020\uff08\u6309\u4efb\u52a1 C \u89c4\u8303\u4e0e notes/ib-me-hibe-ibs-design.md \u00a74.4\uff0c\u7ef4\u5ea6\u8bb0\nk = ceil(log2 q)\u3001nk = n\u00b7k\u3001m = m_bar + nk\uff09::\n\n    setup(params, rng):\n        trapgen \u91c7\u6837\u4e3b G-\u9677\u95e8 (\u0100, R)\uff08\u9ad8\u65af\u5bbd\u5ea6 params.s0\uff09\uff0c\u516c\u5f00\u77e9\u9635\n        A = [\u0100 | G - \u0100\u00b7R] \u2208 Z_q^{n\u00d7m}\uff0c\u516c\u5f00\u5411\u91cf u \u2190 Z_q^n \u5747\u5300\u91c7\u6837\n        \uff08\u516c\u5f00\u968f\u673a\u91cf\uff0c\u5141\u8bb8\u5747\u5300\uff09\u3002\n    extract(msk, rcv, rng):\n        H(rcv) = SHAKE256(DOMAIN_HIBE_ID, \"L1\"||enc(rcv)) \u2192 Z_q^{n\u00d7nk}\uff1b\n        \u9010\u5217\u96f6\u5747\u503c\u539f\u50cf\u91c7\u6837\uff08\u968f\u673a\u5316 gadget \u5206\u89e3\u57fa\uff0c\u89c1\n        :func:`_sample_pre_centered`\uff09\u5f97\u77ed\u6574\u6570\u77e9\u9635 R1 \u4f7f\n            A\u00b7R1 = H(rcv) - G   (mod q)\uff0c\n        \u4e8e\u662f [-R1; I_nk] \u662f B_rcv = [A | H(rcv)] \u7684 G-\u9677\u95e8\u3002\n        \u7b2c\u4e00\u5c42\u5bc6\u94a5 = (rcv, A, u, R1)\u3002\n    derive(sk_rcv, phi, rng):\n        H(rcv, phi) = SHAKE256(DOMAIN_HIBE_ID, \"L2\"||enc(rcv)||enc(phi))\uff1b\n        \u7528 B_rcv \u7684\u9677\u95e8 [-R1; I] \u9010\u5217\u91c7\u6837 R2 \u4f7f\n            B_rcv\u00b7R2 = H(rcv, phi) - G   (mod q)\uff0c\n        \u4e8e\u662f [-R2; I_nk] \u662f B_full = [A | H(rcv) | H(rcv, phi)] \u7684\u9677\u95e8\u3002\n        \u7b2c\u4e8c\u5c42\u5bc6\u94a5 = (rcv, phi, A, u, R2)\u3002\n    encrypt(pk, rcv, phi, payload, rng):\n        B_full = [A | H(rcv) | H(rcv, phi)]\uff1bRegev \u6bd4\u7279\u52a0\u5bc6\uff0c**\u6bcf\u4e2a\u6bd4\u7279 j\n        \u72ec\u7acb\u91c7\u6837**\uff08v2\uff0cP0 \u4fee\u590d\uff09s_j \u2190 Z_q^n \u5747\u5300\uff08\u516c\u5f00\u968f\u673a\u91cf\uff09\u3001\n        e2^(j)/e1_j \u9ad8\u65af\uff08\u5bbd\u5ea6 params.s\uff09\u3002\u52a0\u5bc6\u660e\u6587\u662f\u7ed1\u5b9a\u8eab\u4efd\u7684\u7ed3\u6784\u5316\u4e32::\n            m = enc(rcv) || enc(phi) || enc(payload)\n            c2^(j) = B_full^T\u00b7s_j + e2^(j) \u2208 Z_q^{m+2nk}\n            c1_j   = u\u00b7s_j + e1_j + m_j\u00b7\u230aq/2\u2309\n        \u9010\u6bd4\u7279\u72ec\u7acb\u968f\u673a\u6027\u662f\u7ed3\u6784\u6027\u5b89\u5168\u524d\u63d0\uff1av1 \u66fe\u8ba9\u5168\u90e8\u6bd4\u7279\u5171\u4eab\u540c\u4e00\n        (s, e2)\uff0c\u4e8e\u662f c1_j \u2212 c1_0 \u6d88\u53bb\u516c\u5171 u\u00b7s\uff0c\u5dee\u503c\u6309\u660e\u6587\u6bd4\u7279\u5b8c\u7f8e\u53cc\u7c07\n        \u805a\u7c7b\uff0c\u5df2\u77e5\u4efb\u4e00\u660e\u6587\u6bd4\u7279\uff08\u5982 uint32 \u957f\u5ea6\u524d\u7f00\u7684\u9ad8\u4f4d 0\uff09\u5373\u53ef\u65e0\u5bc6\u94a5\n        \u6062\u590d\u5b8c\u6574\u660e\u6587\uff08\u542b\u8eab\u4efd\u4e0e\u6d88\u606f\uff09\u3002\u5bc6\u6587\u683c\u5f0f\u56e0\u6b64\u5347\u7ea7\u4e3a v2\uff0cv1 \u5bc6\u6587\n        from_bytes \u4e00\u5f8b\u62d2\u7edd\u3002\n        \u8eab\u4efd\u653e\u5728 LWE \u660e\u6587\u4e2d\u800c\u4e0d\u662f\u5bc6\u6587\u91cc\uff1a\u5bc6\u6587\u5b57\u8282\u4e0d\u542b\u8eab\u4efd\u660e\u6587\uff08\u533f\u540d\u6027\n        \u7684\u529f\u80fd\u8981\u6c42\uff09\uff0c\u8bed\u4e49\u4e0a\u7684\u4e0d\u6cc4\u9732\u4f9d\u8d56 LWE\uff08\u6559\u5b66\u53c2\u6570\u4e0b\u4e0d\u505a\u58f0\u660e\uff09\u3002\n    decrypt(sk2, ct, rng):\n        \u89e3\u5bc6\u65b9\u7528\u81ea\u5df1\u7684 (\u03c1, snd) \u91cd\u7b97 B(\u03c1, snd)\uff0c\u7528\u9677\u95e8 [-R2; I] \u5bf9 u \u505a\n        \u96f6\u5747\u503c\u539f\u50cf\u91c7\u6837\uff0c\u53d6\u5176\u524d m+2nk \u4e2a\u5206\u91cf\u4e3a\u77ed\u5411\u91cf x\uff08B_full\u00b7x = u\uff0c\n        \u8fd0\u884c\u65f6\u9a8c\u8bc1\uff09\uff0c\u9010\u6bd4\u7279\u6062\u590d::\n            v_j = c1_j - <x, c2^(j)> = m_j\u00b7\u230aq/2\u2309 + (e1_j - <x, e2^(j)>)\uff0c\n        \u4ee5 q/4 \u4e3a\u9608\u503c\u89e3\u7801\u51fa m'\uff0c\u4e25\u683c\u89e3\u6790\u51fa (rcv', phi', payload')\uff0c\u5e76\u4e0e\n        \u89e3\u5bc6\u65b9\u8eab\u4efd\u505a\u5e38\u6570\u65f6\u95f4\u6bd4\u8f83\u3002\u4efb\u4f55\u5931\u8d25\u2014\u2014\u7ef4\u5ea6/\u6a21\u6570\u4e0d\u7b26\u3001\u539f\u50cf\u9a8c\u8bc1\n        \u5931\u8d25\u3001\u89e3\u6790\u9519\u8bef\u3001\u8eab\u4efd\u4e0d\u5339\u914d\u2014\u2014\u8fd4\u56de None\u3002\n\n    \u8eab\u4efd\u7ed1\u5b9a\u4ecd\u7136\u5fc5\u8981\uff1a\u4e0d\u5339\u914d\u8eab\u4efd\u4e0b\u89e3\u5bc6\u65b9\u81ea\u5df1\u7684 B'\u00b7x = u \u6210\u7acb\uff0c\u4f46\u5bc6\u6587\n    \u7684 c2^(j) \u662f\u5728\u52a0\u5bc6\u65b9\u7684 B \u2260 B' \u4e0b\u8ba1\u7b97\u7684\uff0c\u6bcf\u6bd4\u7279\u504f\u79fb (u \u2212 B\u00b7x)\u00b7s_j\n    \u542b\u5747\u5300\u5206\u91cf\uff1b\u9010\u6bd4\u7279\u72ec\u7acb\u7684 s_j \u4f7f\u5404\u6bd4\u7279\u7684\u504f\u79bb\u4e92\u4e0d\u76f8\u5173\uff0c\u89e3\u7801\u8f93\u51fa\u672c\u8d28\n    \u968f\u673a\u3001\u4e25\u683c\u89e3\u6790\u51e0\u4e4e\u5fc5\u7136\u5931\u8d25\u2014\u2014\u4f46\u89e3\u6790\u5076\u7136\"\u6210\u529f\"\u65e0\u6cd5\u6392\u9664\uff0c\u663e\u5f0f\u7684\n    \u5e38\u6570\u65f6\u95f4\u8eab\u4efd\u6bd4\u5bf9\u624d\u628a\u4e0d\u5339\u914d\u786e\u5b9a\u6027\u5730\u6620\u5c04\u4e3a BOTTOM (None)\u3002\n\n\u566a\u58f0\u9884\u7b97\uff08ABB10_DEBUG_PARAMS\uff1an=8, q=2^19, k=19, nk=152, m_bar=16,\n\u03c30=3.0, \u03c3_pre=1.0, \u03c3_enc=1.0\uff1b\u4e2d\u5fc3\u5316\u5206\u89e3\u4f4d bits_c \u7684\u65b9\u5dee\u4e3a 1/2\uff0c\u8bb0\n\u03b1 = sqrt(nk/2) \u2248 8.72\uff09\uff1a\n\n* \u59d4\u6d3e\u94fe\u6bcf\u8fc7\u4e00\u5c42\u96f6\u5747\u503c\u539f\u50cf\u91c7\u6837\uff0c\u4e3b\u5bfc\u884c\u7684\u6807\u51c6\u5dee\u4e58 \u03b1\uff08\u56e0\n  ``z_head = R_prev\u00b7bits_c + e``\uff0cbits_c \u5404\u4f4d\u65b9\u5dee 1/2\uff09\uff1a\n  ``\u03c3(R1 \u4e3b\u5bfc\u884c) \u2248 sqrt((nk/2)\u00b7\u03c30\u00b2 + \u03c3_pre\u00b2) \u2248 26``\uff1b\n  ``\u03c3(R2 \u4e3b\u5bfc\u884c) \u2248 \u03c30\u00b7\u03b1\u00b2 \u2248 228``\uff1b\n  ``\u03c3(x  \u4e3b\u5bfc\u884c) \u2248 \u03c30\u00b7\u03b1\u00b3 \u2248 1990``\uff0c\u4ece\u800c ``||x||\u2082 \u2248 8\u00b710\u00b3``\u3002\n* \u6bcf\u6bd4\u7279\u89e3\u5bc6\u566a\u58f0 ``e1_j - <x, e2^(j)>`` \u7684\u6807\u51c6\u5dee \u2248 ``||x||\u2082\u00b7\u03c3_enc \u2248\n  8\u00b710\u00b3``\uff08v2 \u8d77\u6bcf\u4e2a\u6bd4\u7279\u6709\u72ec\u7acb\u7684 e2^(j)\uff0c\u566a\u58f0\u5728\u6bd4\u7279\u95f4\u72ec\u7acb\u3001\u91cf\u7ea7\u4e0e\n  v1 \u76f8\u540c\uff09\uff1b\u89e3\u7801\u9608\u503c ``q/4 = 131072 \u2248 16\u03c3``\uff0c\u5355\u6bd4\u7279\u89e3\u7801\u5931\u8d25\u6982\u7387\n  \uff08\u9ad8\u65af\u5c3e\u8fd1\u4f3c\uff09\u4f4e\u4e8e 1e-57\uff0c\u591a\u6bd4\u7279 payload \u4e0b\u4ecd\u53ef\u5ffd\u7565\u3002\n* \u5bc6\u6587\u5c3a\u5bf8\uff08v2 \u7684\u5982\u5b9e\u4ee3\u4ef7\uff09\uff1a\u6bcf\u4e2a\u660e\u6587\u6bd4\u7279\u4e00\u6761\u5b8c\u6574 LWE \u6837\u672c\uff0c\u5bc6\u6587 =\n  ``bit_count \u00d7 (m + 2nk + 1)`` \u4e2a Z_q \u7cfb\u6570\uff08\u672c\u53c2\u6570\u4e0b 473\u00d73 = 1419\n  \u5b57\u8282/\u6bd4\u7279\uff09\uff1bencrypt \u65f6\u95f4\u6309\u6bd4\u7279\u6570\u7ebf\u6027\u653e\u5927\u3002\u57fa\u51c6\u53e3\u5f84\u7531\u4e3b AI \u7edf\u4e00\u91cd\u6d4b\u3002\n* \u4ee5\u4e0a\u662f\u542f\u53d1\u5f0f\u4f30\u8ba1\uff1a\u539f\u50cf\u91c7\u6837\u662f\u65e0\u6270\u52a8\u7684\u7b80\u5316\u5206\u5e03\uff08\u89c1\n  :func:`_sample_pre_centered` \u7684\u8bf4\u660e\u4e0e lattice.trapdoor \u7684\u9650\u5236\u58f0\u660e\uff09\uff0c\n  \u56e0\u6b64\u672c\u540e\u7aef\u4e0d\u5f97\u7528\u4e8e\u4efb\u4f55\u5b89\u5168\u58f0\u660e\uff1b\u6559\u80b2\u53c2\u6570 EDUCATION_PARAMS (q=257)\n  \u7684\u566a\u58f0\u9884\u7b97\u4e0d\u8db3\u4ee5\u6b63\u786e\u89e3\u7801\uff0c\u672c\u6a21\u5757\u81ea\u5e26 ABB10_DEBUG_PARAMS \u9884\u8bbe\n  \uff08security_claim: none\uff0c\u4ec5\u8c03\u8bd5\uff09\u3002\n\n\u4e0e ABB10 \u8bba\u6587\u5b9e\u4f8b\u7684\u5df2\u77e5\u5dee\u5f02\uff08\u6559\u5b66\u7b80\u5316\uff0c\u5df2\u5217\u5165\u4ea4\u4ed8\u98ce\u9669\uff09\uff1a\n\n* H(\u00b7) \u7528 SHAKE-256 \u54c8\u5e0c\u5230\u5747\u5300\u77e9\u9635\uff08ROM \u98ce\u683c\u5de5\u7a0b\u5b9e\u4f8b\uff09\uff0c\u4e0d\u662f\u8bba\u6587\u6807\u51c6\n  \u6a21\u578b\u4e0b\u7684\u76ee\u6807\u51fd\u6570\u6784\u9020\uff1b\u8eab\u4efd\u77e9\u9635\u4e0d\u4e0e mpk \u7ed1\u5b9a\uff1b\n* \u9677\u95e8/\u539f\u50cf\u91c7\u6837\u590d\u7528 M1 \u7684\u7b80\u5316 trapgen \u4e0e\u65e0\u6270\u52a8\u539f\u50cf\u91c7\u6837\uff0c\u5e76\u5728 hibe \u5c42\n  \u52a0\u4e86\u968f\u673a\u5316 gadget \u5206\u89e3\u57fa\u4ee5\u6d88\u9664\u5747\u503c\u7d2f\u79ef\uff08\u89c1\n  :func:`_sample_pre_centered`\uff09\uff1b\u8f93\u51fa\u5206\u5e03\u5747\u672a\u8fbe\u8bc1\u660e\u7ea7\u3002\n\n\u5e8f\u5217\u5316\u683c\u5f0f\uff08\u5168\u90e8\u4e25\u683c\u89e3\u6790\uff1amagic\u3001\u7ef4\u5ea6\u4ea4\u53c9\u9a8c\u8bc1\u3001\u62d2\u7edd\u622a\u65ad/\u8ffd\u52a0\uff09::\n\n    pk  : MAGIC || meta(44B: n,m_bar,q,identity_bytes,max_msg,s0,s_enc,s_pre)\n          || A || u\n    msk : MAGIC || meta || \u0100 || R(shift \u7f16\u7801\u4e3a mod-q \u77e9\u9635)\n    sk1 : MAGIC || meta || enc(rcv) || A || u || R1(shift \u7f16\u7801)\n    sk2 : MAGIC || meta || enc(rcv) || enc(phi) || A || u || R2(shift \u7f16\u7801)\n    ct  : MAGIC || u32(bit_count) || u32(c2_len) || u32(q)\n          || c2 \u533a\uff08bit_count \u00d7 c2_len \u4e2a elem(q) \u7cfb\u6570\uff0cbit \u4e3b\u5e8f\uff09\n          || c1 \u533a\uff08bit_count \u4e2a\u7cfb\u6570\uff09\n\n\u6240\u6709 magic \u5747\u4e3a v2\uff08\u9010\u6bd4\u7279\u72ec\u7acb\u6837\u672c + meta \u643a\u5e26 identity_bytes\uff09\uff1av1\n\u5e8f\u5217\u5316\uff08\u5171\u4eab c2 \u7684\u65e7\u5bc6\u6587\u3001\u65e0 identity_bytes \u7684\u65e7\u5bc6\u94a5\uff09\u5728 magic \u6bd4\u5bf9\u5904\n\u5373\u88ab\u62d2\u7edd\uff0c\u7edd\u4e0d\u9759\u9ed8\u8bef\u89e3\u6790\u3002ct \u7684\u52a0\u5bc6\u660e\u6587\u662f\n``enc(rcv) || enc(phi) || enc(payload)``\uff0cbit_count \u662f\u8be5\u660e\u6587\u7684\u603b\u6bd4\u7279\u6570\n\uff08= len(c1) = len(c2)\uff0c\u6bcf\u6bd4\u7279\u4e00\u6761\u72ec\u7acb LWE \u6837\u672c\uff09\u3002\n\n\u77ed\u6574\u6570\u77e9\u9635\u7684 shift \u7f16\u7801\uff1a``v \u2208 [-\u230aq/2\u230b, \u230aq/2\u230b) \u2194 (v + \u230aq/2\u230b) mod q``\uff0c\n\u534a\u5f00\u533a\u95f4\u4fdd\u8bc1\u5f80\u8fd4\u65e0\u6b67\u4e49\uff08\u907f\u514d \u00b1q/2 \u540c\u4f59\u78b0\u649e\uff09\u3002",
+      "classes": [
+        {
+          "name": "ABB10PublicKey",
+          "line": 481,
+          "bases": [],
+          "methods": [
+            {
+              "name": "to_bytes",
+              "line": 501,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 505,
+              "signature": "cls, data: bytes"
+            }
+          ]
+        },
+        {
+          "name": "ABB10MasterSecret",
+          "line": 516,
+          "bases": [],
+          "methods": [
+            {
+              "name": "to_bytes",
+              "line": 540,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 551,
+              "signature": "cls, data: bytes"
+            }
+          ]
+        },
+        {
+          "name": "ABB10Level1SecretKey",
+          "line": 571,
+          "bases": [],
+          "methods": [
+            {
+              "name": "to_bytes",
+              "line": 597,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 609,
+              "signature": "cls, data: bytes"
+            }
+          ]
+        },
+        {
+          "name": "ABB10Level2SecretKey",
+          "line": 630,
+          "bases": [],
+          "methods": [
+            {
+              "name": "to_bytes",
+              "line": 665,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 678,
+              "signature": "cls, data: bytes"
+            }
+          ]
+        },
+        {
+          "name": "ABB10Ciphertext",
+          "line": 707,
+          "bases": [],
+          "methods": [
+            {
+              "name": "to_bytes",
+              "line": 752,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 769,
+              "signature": "cls, data: bytes"
+            }
+          ]
+        },
+        {
+          "name": "ABB10HIBE",
+          "line": 849,
+          "bases": [],
+          "methods": [
+            {
+              "name": "validate_key_binding",
+              "line": 864,
+              "signature": "self, public_key, secret_key"
+            },
+            {
+              "name": "setup",
+              "line": 885,
+              "signature": "self, params, *, rng=None"
+            },
+            {
+              "name": "extract",
+              "line": 899,
+              "signature": "self, msk, parent_id: bytes, *, rng=None"
+            },
+            {
+              "name": "derive",
+              "line": 915,
+              "signature": "self, sk_parent, child_id: bytes, *, rng=None"
+            },
+            {
+              "name": "encrypt",
+              "line": 939,
+              "signature": "self, pk, parent_id: bytes, child_id: bytes, payload: bytes, *, rng=None"
+            },
+            {
+              "name": "decrypt",
+              "line": 1003,
+              "signature": "self, sk_child, ct, *, rng=None"
+            },
+            {
+              "name": "load_ciphertext",
+              "line": 1059,
+              "signature": "self, data: bytes"
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "hash_identity_matrix",
+          "line": 370,
+          "signature": "identity: bytes, n: int, q: int"
+        },
+        {
+          "name": "hash_pair_matrix",
+          "line": 381,
+          "signature": "parent_id: bytes, child_id: bytes, n: int, q: int"
+        },
+        {
+          "name": "verify_level1_key",
+          "line": 827,
+          "signature": "sk1: ABB10Level1SecretKey"
+        },
+        {
+          "name": "verify_level2_key",
+          "line": 835,
+          "signature": "sk2: ABB10Level2SecretKey"
+        }
+      ],
+      "imports": [
+        "from __future__ import annotations",
+        "import math",
+        "import struct",
+        "from dataclasses import dataclass",
+        "from ibme.core.encoding import decode_bytes, encode_bytes",
+        "from ibme.core.errors import IBMEError, InvalidParameterError, SerializationError",
+        "from ibme.core.hashing import DOMAIN_HIBE_ID, shake256",
+        "from ibme.core.randomness import DeterministicRandom, SecureRandom",
+        "from ibme.core.types import constant_time_equal, validate_bytes, validate_identity",
+        "from ibme.lattice.gadget import bit_decompose, gadget_matrix, gadget_width",
+        "from ibme.lattice.gaussian import sample_integer_gaussian, sample_vector_gaussian, uniform_integer",
+        "from ibme.lattice.modmat import ModMatrix, ModVector",
+        "from ibme.lattice.params import Params",
+        "from ibme.lattice.trapdoor import Trapdoor, trapgen"
+      ]
+    },
+    "src/ibme/hibe/api.py": {
+      "sha256": "b81ec0a7ec48c8b5f2fbbed7182b0c22952167d355f92943918a419ab8a5ac4a",
+      "bytes": 5756,
+      "module_doc": "HIBE \u539f\u8bed\u5c42\u7684\u51bb\u7ed3\u63a5\u53e3\u4e0e\u6570\u636e\u7c7b\u578b\u534f\u8bae\uff08ARCHITECTURE.md \u00a74\uff09\u3002\n\n\u672c\u6a21\u5757\u53ea\u5b9a\u4e49\u5951\u7ea6\uff0c\u4e0d\u542b\u4efb\u4f55\u5b9e\u73b0\u3002\u5177\u4f53\u540e\u7aef\uff1a\n\n* :mod:`ibme.hibe.mock` \u2014\u2014 TEST-ONLY \u7684 SHAKE \u5bf9\u79f0\u63a9\u7801\u5047\u540e\u7aef\uff08\u4ec5\u6d4b\u8bd5\u7528\uff09\uff1b\n* :mod:`ibme.hibe.abb10` \u2014\u2014 Agrawal\u2013Boneh\u2013Boyen 2010 \u98ce\u683c\u7684\u4e24\u5c42\u683c\u57fa\u540e\u7aef\n  \uff08\u6559\u5b66\u53c2\u6570\uff0c``security_claim: none``\uff09\u3002\n\n\u63a5\u53e3\u5951\u7ea6\uff08contract tests \u5bf9\u6bcf\u4e2a\u540e\u7aef\u6309\u540c\u4e00\u5951\u7ea6\u53c2\u6570\u5316\u9a8c\u8bc1\uff09\uff1a\n\n1. \u8eab\u4efd\u987a\u5e8f\u56fa\u5b9a\u4e3a ``(parent_id, child_id) = (rcv, phi)``\uff1a\n\n   * ``extract(msk, parent_id)`` \u751f\u6210\u7b2c\u4e00\u5c42\uff08\u63a5\u6536\u8005 \u03c1\uff09\u5bc6\u94a5\uff1b\n   * ``derive(sk_parent, child_id)`` \u6d3e\u751f\u7b2c\u4e8c\u5c42\uff08\u53d1\u9001\u8005 \u03c6\uff09\u5bc6\u94a5\uff1b\n   * ``encrypt(pk, parent_id, child_id, payload)`` \u5728\u8eab\u4efd\u5bf9 (rcv, phi) \u4e0b\n     \u52a0\u5bc6\u3002\n\n2. ``decrypt`` \u5931\u8d25\u8fd4\u56de ``None``\uff08\u534f\u8bae\u5c42\u6620\u5c04\u4e3a BOTTOM\uff09\uff0c\u7edd\u4e0d\u8fd4\u56de\u90e8\u5206\n   \u7ed3\u679c\uff1b\u6210\u529f\u65f6\u8fd4\u56de\u539f\u59cb payload \u5b57\u8282\u4e32\uff08\u5141\u8bb8\u7a7a payload\uff09\u3002\n3. \u5bc6\u6587\u4e0d\u5f97\u660e\u6587\u643a\u5e26\u8eab\u4efd\uff08\u533f\u540d\u6027\u8981\u6c42\uff09\uff1a\u8eab\u4efd\u53ea\u53c2\u4e0e\u5bc6\u94a5\u6d3e\u751f\u4e0e\u54c8\u5e0c\u3002\n4. \u6240\u6709\u968f\u673a\u6027\u7ecf\u53ef\u6ce8\u5165\u7684 ``rng``\uff08core \u51bb\u7ed3\u7684 ``read(n) -> bytes`` \u534f\u8bae\uff09\n   \u8fdb\u5165\uff1b``rng=None`` \u4e00\u5f8b\u8868\u793a\u751f\u4ea7\u968f\u673a\u6e90\uff08``core.SecureRandom``\uff09\u3002\u56fa\u5b9a\n   rng \u4e0b\u6574\u5957\u6d41\u7a0b\u53ef\u590d\u73b0\u3002 ARCHITECTURE.md \u00a74 \u7684\u65b9\u6cd5\u7b7e\u540d\u5728\u6b64\u57fa\u7840\u4e0a\u4ee5\n   ``rng`` \u5173\u952e\u5b57\u53c2\u6570\u6269\u5c55\uff0c\u4f4d\u7f6e\u53c2\u6570\u5f62\u5f0f\u4fdd\u6301\u517c\u5bb9\u3002\n5. \u516c\u94a5\u3001\u4e3b\u5bc6\u94a5\u3001\u4e24\u7ea7\u79c1\u94a5\u548c\u5bc6\u6587\u90fd\u5b9e\u73b0 ``to_bytes``/``from_bytes``\uff1b\n   \u89e3\u6790\u5fc5\u987b\u4e25\u683c\u62d2\u7edd\u622a\u65ad\u3001\u8ffd\u52a0\u3001\u7ef4\u5ea6\u4e0d\u7b26\u548c\u672a\u77e5\u7248\u672c\uff08magic \u4e0d\u5339\u914d\uff09\uff0c\n   \u5f80\u8fd4\u4e00\u81f4\u3002\n\n\u672c\u6a21\u5757\u6ca1\u6709\u4efb\u4f55\u5b89\u5168\u58f0\u660e\uff1b\u5b89\u5168\u53e3\u5f84\u7531\u5404\u540e\u7aef\u81ea\u884c\u6807\u6ce8\u3002",
+      "classes": [
+        {
+          "name": "HIBESerializable",
+          "line": 49,
+          "bases": [
+            "Protocol"
+          ],
+          "methods": [
+            {
+              "name": "to_bytes",
+              "line": 52,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 57,
+              "signature": "cls, data: bytes"
+            }
+          ]
+        },
+        {
+          "name": "HIBEPublicKey",
+          "line": 63,
+          "bases": [
+            "HIBESerializable",
+            "Protocol"
+          ],
+          "methods": []
+        },
+        {
+          "name": "HIBEMasterSecret",
+          "line": 68,
+          "bases": [
+            "HIBESerializable",
+            "Protocol"
+          ],
+          "methods": []
+        },
+        {
+          "name": "HIBELevel1SecretKey",
+          "line": 73,
+          "bases": [
+            "HIBESerializable",
+            "Protocol"
+          ],
+          "methods": [
+            {
+              "name": "identity",
+              "line": 77,
+              "signature": "self"
+            }
+          ]
+        },
+        {
+          "name": "HIBELevel2SecretKey",
+          "line": 83,
+          "bases": [
+            "HIBESerializable",
+            "Protocol"
+          ],
+          "methods": [
+            {
+              "name": "parent_identity",
+              "line": 87,
+              "signature": "self"
+            },
+            {
+              "name": "child_identity",
+              "line": 92,
+              "signature": "self"
+            }
+          ]
+        },
+        {
+          "name": "HIBECiphertext",
+          "line": 98,
+          "bases": [
+            "HIBESerializable",
+            "Protocol"
+          ],
+          "methods": []
+        },
+        {
+          "name": "HIBEKeyBindingValidator",
+          "line": 103,
+          "bases": [
+            "Protocol"
+          ],
+          "methods": [
+            {
+              "name": "validate_key_binding",
+              "line": 112,
+              "signature": "self, public_key, secret_key"
+            }
+          ]
+        },
+        {
+          "name": "HIBEBackend",
+          "line": 117,
+          "bases": [
+            "Protocol"
+          ],
+          "methods": [
+            {
+              "name": "setup",
+              "line": 123,
+              "signature": "self, params, *, rng=None"
+            },
+            {
+              "name": "extract",
+              "line": 129,
+              "signature": "self, msk: HIBEMasterSecret, parent_id: bytes, *, rng=None"
+            },
+            {
+              "name": "derive",
+              "line": 135,
+              "signature": "self, sk_parent: HIBELevel1SecretKey, child_id: bytes, *, rng=None"
+            },
+            {
+              "name": "encrypt",
+              "line": 141,
+              "signature": "self, pk: HIBEPublicKey, parent_id: bytes, child_id: bytes, payload: bytes, *, rng=None"
+            },
+            {
+              "name": "decrypt",
+              "line": 153,
+              "signature": "self, sk_child: HIBELevel2SecretKey, ct: HIBECiphertext, *, rng=None"
+            },
+            {
+              "name": "load_ciphertext",
+              "line": 159,
+              "signature": "self, data: bytes"
+            }
+          ]
+        }
+      ],
+      "functions": [],
+      "imports": [
+        "from __future__ import annotations",
+        "from typing import Protocol, runtime_checkable"
+      ]
+    },
+    "src/ibme/hibe/mock.py": {
+      "sha256": "48f53e2fdd383cd361ea304056f289f6f4dfee23558b3825038d4b363113002a",
+      "bytes": 15991,
+      "module_doc": "TEST-ONLY mock HIBE \u540e\u7aef \u2014\u2014 \u6d4b\u8bd5\u7ec4\u4ef6\uff0c\u4e0d\u5f97\u7528\u4e8e\u751f\u4ea7\u3002\n\n.. warning::\n   **\u672c\u6a21\u5757\u6ca1\u6709\u4efb\u4f55\u5bc6\u7801\u5b66\u5b89\u5168\u6027\uff0c\u4ec5\u4f9b\u534f\u8bae\u5c42\u5951\u7ea6\u6d4b\u8bd5\u4f7f\u7528\u3002**\n   \u5b83\u662f\u4e00\u4e2a\u57fa\u4e8e SHAKE-256 \u5bf9\u79f0\u63a9\u7801\u7684\"\u5047 HIBE\"\uff1a\u52a0\u5bc6\u5bc6\u94a5\u53ef\u4ee5\u4ece\u516c\u5f00\u4fe1\u606f\n   \uff08pk_seed + \u8eab\u4efd\uff09\u76f4\u63a5\u63a8\u5bfc\uff0c\u4efb\u4f55\u4eba\u90fd\u80fd\u89e3\u5bc6\uff1b\u5b83\u53ea\u4fdd\u8bc1\u6ee1\u8db3\n   :mod:`ibme.hibe.api` \u7684\u63a5\u53e3\u5951\u7ea6\uff08\u5339\u914d\u89e3\u5bc6\u3001\u4e0d\u5339\u914d\u8fd4\u56de ``None``\u3001\n   \u5bc6\u6587\u4e0d\u542b\u8eab\u4efd\u660e\u6587\u3001\u5e8f\u5217\u5316\u4e25\u683c\u5f80\u8fd4\u3001\u56fa\u5b9a rng \u53ef\u590d\u73b0\uff09\uff0c\u4ece\u800c\u8ba9\u534f\u8bae\u5c42\n   \u5728\u771f\u5b9e\u683c\u540e\u7aef\u53ef\u7528\u4e4b\u524d\u5148\u901a\u8fc7 contract tests\u3002\n\n\u6784\u9020\uff08\u5168\u90e8\u57df\u5206\u9694\uff0c\u5168\u90e8\u957f\u5ea6\u524d\u7f00\uff09\uff1a\n\n* ``setup``: ``master \u2190 rng.read(32)``\uff0c``pk_seed = H_PK(master)``\uff1b\n* ``extract``: \u7b2c\u4e00\u5c42\u5bc6\u94a5 ``k1 = H_K1(master, rcv)``\uff08\u79d8\u5bc6\u94fe\uff0c\u4ec5\u4fdd\u6301\n  \u5bc6\u94a5\u5c42\u7ea7\u7684\u5f62\u72b6\uff0c\u4e0d\u53c2\u4e0e\u89e3\u5bc6\u8def\u5f84\u2014\u2014\u89c1\u4e0a\u6587\u8b66\u544a\uff09\uff1b\n* ``derive``: ``k12 = H_K12(pk_seed, rcv, phi)``\uff1b\n* ``encrypt``: \u540c\u4e00 ``k12`` \u6d3e\u751f\u63a9\u7801 ``mask = H_MASK(k12, len)`` \u4e0e\n  \u8ba4\u8bc1\u6807\u7b7e ``tag = H_TAG(k12, len, masked)``\uff1b\u5bc6\u6587 = len || masked || tag\uff1b\n* ``decrypt``: \u7528 sk2 \u4e2d\u7684 ``k12`` \u91cd\u7b97\u63a9\u7801\u4e0e\u6807\u7b7e\uff1b\u6807\u7b7e\u4e0d\u5339\u914d\u8fd4\u56de\n  ``None``\uff08\u56e0\u6b64\u5b50/\u7236\u8eab\u4efd\u4efb\u4e00\u4e0d\u5339\u914d\u90fd\u4f1a\u5931\u8d25\uff09\u3002",
+      "classes": [
+        {
+          "name": "MockHIBEPublicKey",
+          "line": 92,
+          "bases": [],
+          "methods": [
+            {
+              "name": "to_bytes",
+              "line": 99,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 109,
+              "signature": "cls, data: bytes"
+            }
+          ]
+        },
+        {
+          "name": "MockHIBEMasterSecret",
+          "line": 125,
+          "bases": [],
+          "methods": [
+            {
+              "name": "to_bytes",
+              "line": 132,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 142,
+              "signature": "cls, data: bytes"
+            }
+          ]
+        },
+        {
+          "name": "MockHIBELevel1SecretKey",
+          "line": 158,
+          "bases": [],
+          "methods": [
+            {
+              "name": "to_bytes",
+              "line": 166,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 178,
+              "signature": "cls, data: bytes"
+            }
+          ]
+        },
+        {
+          "name": "MockHIBELevel2SecretKey",
+          "line": 200,
+          "bases": [],
+          "methods": [
+            {
+              "name": "to_bytes",
+              "line": 207,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 217,
+              "signature": "cls, data: bytes"
+            }
+          ]
+        },
+        {
+          "name": "MockHIBECiphertext",
+          "line": 231,
+          "bases": [],
+          "methods": [
+            {
+              "name": "to_bytes",
+              "line": 238,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 244,
+              "signature": "cls, data: bytes"
+            }
+          ]
+        },
+        {
+          "name": "MockHIBE",
+          "line": 264,
+          "bases": [],
+          "methods": [
+            {
+              "name": "validate_key_binding",
+              "line": 271,
+              "signature": "self, public_key, secret_key"
+            },
+            {
+              "name": "setup",
+              "line": 291,
+              "signature": "self, params, *, rng=None"
+            },
+            {
+              "name": "extract",
+              "line": 312,
+              "signature": "self, msk, parent_id: bytes, *, rng=None"
+            },
+            {
+              "name": "derive",
+              "line": 324,
+              "signature": "self, sk_parent, child_id: bytes, *, rng=None"
+            },
+            {
+              "name": "encrypt",
+              "line": 335,
+              "signature": "self, pk, parent_id: bytes, child_id: bytes, payload: bytes, *, rng=None"
+            },
+            {
+              "name": "decrypt",
+              "line": 356,
+              "signature": "self, sk_child, ct, *, rng=None"
+            },
+            {
+              "name": "load_ciphertext",
+              "line": 373,
+              "signature": "self, data: bytes"
+            }
+          ]
+        }
+      ],
+      "functions": [],
+      "imports": [
+        "from __future__ import annotations",
+        "from dataclasses import dataclass",
+        "from ibme.core.encoding import decode_bytes, encode_bytes",
+        "from ibme.core.errors import EncodingError, InvalidParameterError, RandomnessError, SerializationError",
+        "from ibme.core.hashing import shake256",
+        "from ibme.core.randomness import SecureRandom",
+        "from ibme.core.types import constant_time_equal, validate_bytes, validate_identity"
+      ]
+    },
+    "experiments/research/first_suite/__init__.py": {
+      "sha256": "98a3203836217e8d437e31a13137e43f5d3759be61d7b2e901ff700e676ba931",
+      "bytes": 79,
+      "module_doc": "First-suite implementation prerequisites; admission remains conditional.",
+      "classes": [],
+      "functions": [],
+      "imports": []
+    },
+    "experiments/research/first_suite/compact_delegation.py": {
+      "sha256": "75798c6d64fbe81ea7252099835bc2f0fb552f25a771be43e9d90d76f5112dbe",
+      "bytes": 12141,
+      "module_doc": "MP12 section5.5 Algorithm4 DelTrap with the finite/CSPRNG GPV oracle.\n\nResearch primitive, not the original CHKP RandBasis or an admitted HIBE.\nFor [A|A1] with exactly nk final columns, sample A*R'=G-A1. Extra extension\ncolumns belong to A. No old trapdoor is padded and returned to the receiver.\nThe private key stores a rectangular G-trapdoor. A full basis conversion is\noptional arithmetic reuse, not MP12 Algorithm3 perturbation sampling.",
+      "classes": [
+        {
+          "name": "CompactGTrapdoor",
+          "line": 36,
+          "bases": [],
+          "methods": [
+            {
+              "name": "gadget_columns",
+              "line": 74,
+              "signature": "self"
+            },
+            {
+              "name": "prefix_dimension",
+              "line": 77,
+              "signature": "self"
+            },
+            {
+              "name": "public_gs_squared_bound",
+              "line": 80,
+              "signature": "self"
+            },
+            {
+              "name": "to_basis",
+              "line": 85,
+              "signature": "self, binary"
+            },
+            {
+              "name": "to_bytes",
+              "line": 97,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 106,
+              "signature": "cls, data, *, expected_public, expected_width_squared"
+            }
+          ]
+        },
+        {
+          "name": "FiniteDelTrap",
+          "line": 152,
+          "bases": [],
+          "methods": [
+            {
+              "name": "sample",
+              "line": 179,
+              "signature": "self, *, rng=None"
+            },
+            {
+              "name": "certificate",
+              "line": 193,
+              "signature": "self"
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "public_binding",
+          "line": 30,
+          "signature": "public"
+        },
+        {
+          "name": "public_gpv_tv_upper",
+          "line": 138,
+          "signature": "sampler"
+        },
+        {
+          "name": "split_extension",
+          "line": 206,
+          "signature": "root_basis, block"
+        }
+      ],
+      "imports": [
+        "from dataclasses import dataclass, field",
+        "from fractions import Fraction",
+        "from hashlib import sha256",
+        "import json",
+        "from sage.all import QQ, ZZ, matrix",
+        "from ibme.core.errors import InvalidParameterError, SerializationError",
+        "from ibme.core.randomness import SecureRandom",
+        "from experiments.research.chkp_basis import ModMatrixReference, ext_basis",
+        "from experiments.research.gaussian_reference import SamplingAbort",
+        "from .entropy import CheckedEntropy",
+        "from .finite_gpv import FirstFiniteGPV",
+        "from .root_generation import SCHEMA as ROOT_SCHEMA, unique_fields",
+        "from .private_basis_bridge import convert_private_input"
+      ]
+    },
+    "experiments/research/first_suite/compact_delegation_probe.py": {
+      "sha256": "1f1b04ea8a8217ba2e9de2d5f388ebd15f65743cd18d2a72b7fa43ddabb79936",
+      "bytes": 10514,
+      "module_doc": "Saved CSPRNG root -> MP12 DelTrap -> fixed256 leaf -> private restore.\n\nDistinct public profile from CHKP/RandBasis; no reuse or relabeling of old\nreceiver addresses. No formal parameters/model admission, or full IBME.\nSource uses the explicit master-owned private-input method, not private fields.",
+      "classes": [],
+      "functions": [
+        {
+          "name": "no_generation",
+          "line": 29,
+          "signature": "plan"
+        },
+        {
+          "name": "restore_only",
+          "line": 32,
+          "signature": "manifest_path"
+        },
+        {
+          "name": "one_probe",
+          "line": 52,
+          "signature": "source_manifest, binary, private_directory"
+        },
+        {
+          "name": "main",
+          "line": 138,
+          "signature": "argv=None"
+        }
+      ],
+      "imports": [
+        "import argparse",
+        "from fractions import Fraction",
+        "from hashlib import sha256",
+        "import json",
+        "from pathlib import Path",
+        "import subprocess",
+        "import sys",
+        "import time",
+        "from .compact_delegation import CompactGTrapdoor, FiniteDelTrap, split_extension, public_gpv_tv_upper",
+        "from .delegation_state import MasterTreeState",
+        "from .finite_gpv import FirstFiniteGPV",
+        "from .identity import ROHIBEContext",
+        "from .leaf_state import FixedSeedState, SeedScope",
+        "from .root_probe import scope_for, canonical_json",
+        "from .seed_kem import SeedCapsule, encapsulate_seed, decapsulate_seed"
+      ]
+    },
+    "experiments/research/first_suite/delegation_state.py": {
+      "sha256": "b695773777d136e04f476b987434a4aa5d3daf9389521e405b68f9ac92fb047b",
+      "bytes": 16482,
+      "module_doc": "Single-owner master/parent state around the real first-suite CHKP oracles.\n\nCHKP section 5.2--5.3: complete parent bases permit delegation; terminal\npreimages remain fixed. These objects bind actual matrices, complete integer\nbases, published GS/width bounds and canonical child snapshots. They do NOT\nimplement GenBasis/RandBasis/GPV, certify a callback's distribution, or provide\nthe byte HIBE/CLI. Independent clones, stale snapshots and multiple issuers\nremain outside the unique-owner consistency model.",
+      "classes": [
+        {
+          "name": "DelegationScope",
+          "line": 39,
+          "bases": [],
+          "methods": [
+            {
+              "name": "parent_gs_squared_bound",
+              "line": 67,
+              "signature": "self"
+            },
+            {
+              "name": "seed_scope",
+              "line": 70,
+              "signature": "self, receiver"
+            },
+            {
+              "name": "to_bytes",
+              "line": 73,
+              "signature": "self"
+            }
+          ]
+        },
+        {
+          "name": "ParentDelegationPlan",
+          "line": 133,
+          "bases": [],
+          "methods": []
+        },
+        {
+          "name": "LeafDelegationPlan",
+          "line": 140,
+          "bases": [],
+          "methods": []
+        },
+        {
+          "name": "ParentAddressBlocked",
+          "line": 145,
+          "bases": [
+            "InvalidParameterError"
+          ],
+          "methods": []
+        },
+        {
+          "name": "ReceiverState",
+          "line": 149,
+          "bases": [],
+          "methods": [
+            {
+              "name": "identity",
+              "line": 166,
+              "signature": "self"
+            },
+            {
+              "name": "scope",
+              "line": 169,
+              "signature": "self"
+            },
+            {
+              "name": "lookup",
+              "line": 173,
+              "signature": "self, sender"
+            },
+            {
+              "name": "derive",
+              "line": 177,
+              "signature": "self, sender, generate"
+            },
+            {
+              "name": "to_bytes",
+              "line": 193,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 202,
+              "signature": "cls, data, *, expected_scope, expected_identity=None"
+            }
+          ]
+        },
+        {
+          "name": "MasterTreeState",
+          "line": 224,
+          "bases": [],
+          "methods": [
+            {
+              "name": "scope",
+              "line": 236,
+              "signature": "self"
+            },
+            {
+              "name": "root_basis_for_research",
+              "line": 240,
+              "signature": "self"
+            },
+            {
+              "name": "lookup",
+              "line": 260,
+              "signature": "self, receiver"
+            },
+            {
+              "name": "issue",
+              "line": 270,
+              "signature": "self, receiver, generate"
+            },
+            {
+              "name": "to_bytes",
+              "line": 291,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 305,
+              "signature": "cls, data, *, expected_scope"
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "validate_basis",
+          "line": 85,
+          "signature": "basis, public_rows, q, gs_squared_upper"
+        }
+      ],
+      "imports": [
+        "from dataclasses import dataclass, field",
+        "from fractions import Fraction",
+        "from threading import RLock",
+        "from sage.all import QQ, matrix",
+        "from ibme.core.encoding import encode_bytes",
+        "from ibme.core.errors import EncodingError, InvalidParameterError, SerializationError",
+        "from ibme.core.types import validate_identity",
+        "from experiments.research.chkp_basis import KernelBasis, ModMatrixReference",
+        "from experiments.research.ibme_joint_parameters import smoothing_factor",
+        "from .identity import Reader, ROHIBEContext, SEED_BITS, checked_bytes, checked_int",
+        "from .leaf_state import MAX_WIRE, VECTOR_BITS, FixedSeedState, SeedScope, _read_signed, _signed, _uint, _width"
+      ]
+    },
+    "experiments/research/first_suite/entropy.py": {
+      "sha256": "105a837215509b5d707830de825fbb726fd06dddcc856f2901f88d68876fd7fa",
+      "bytes": 1144,
+      "module_doc": "Frozen byte RNG checks and finite consumption; never a seeded native RNG.",
+      "classes": [
+        {
+          "name": "CheckedEntropy",
+          "line": 7,
+          "bases": [],
+          "methods": [
+            {
+              "name": "read",
+              "line": 15,
+              "signature": "self, count"
+            }
+          ]
+        }
+      ],
+      "functions": [],
+      "imports": [
+        "from ibme.core.errors import RandomnessError",
+        "from experiments.research.gaussian_reference import SamplingAbort"
+      ]
+    },
+    "experiments/research/first_suite/finite_gaussian.py": {
+      "sha256": "9892f3b8bd85c11f08948f1d0cf3849efa4752ad339c366b842263c991d60549",
+      "bytes": 12413,
+      "module_doc": "Independent first-suite wide finite Gaussian profile; not backend admission.\n\nSame finite rejection equations as the prior bounded reference, with independent\nexplicit width/radius/tape limits and recomputed certificates. Old limits are\nunchanged. No CDF, center cache, seeded native RNG or continuous Gaussian. Width and resource admission is\npublic; intervals require correctly-rounded MPFR/MPFI. Variable time, explicit\nabort, uniform-byte assumption, no security level. Use WSL ~/miniconda3/envs/sage.",
+      "classes": [
+        {
+          "name": "FirstFiniteOptions",
+          "line": 62,
+          "bases": [],
+          "methods": []
+        },
+        {
+          "name": "FirstFiniteGaussian",
+          "line": 84,
+          "bases": [],
+          "methods": [
+            {
+              "name": "checked_inputs",
+              "line": 159,
+              "signature": "self, width_squared, center"
+            },
+            {
+              "name": "integer_weight",
+              "line": 170,
+              "signature": "self, value, width, fractional, closest"
+            },
+            {
+              "name": "sample",
+              "line": 181,
+              "signature": "self, width_squared, center=0, *, rng=None"
+            },
+            {
+              "name": "sample_from_tape",
+              "line": 196,
+              "signature": "self, width_squared, center, tape"
+            },
+            {
+              "name": "finite_distribution",
+              "line": 203,
+              "signature": "self, width_squared, center=0, *, max_points=4096"
+            },
+            {
+              "name": "certificate",
+              "line": 214,
+              "signature": "self"
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "exact_integer",
+          "line": 23,
+          "signature": "value, name, *, minimum=0, maximum=2 ** 32"
+        },
+        {
+          "name": "exact_rational",
+          "line": 32,
+          "signature": "value, name, *, max_bits=8192"
+        },
+        {
+          "name": "interval_upper",
+          "line": 44,
+          "signature": "value"
+        },
+        {
+          "name": "capped_exp_minus_pi",
+          "line": 49,
+          "signature": "value, field, cap_bits"
+        }
+      ],
+      "imports": [
+        "from __future__ import annotations",
+        "from dataclasses import dataclass",
+        "from fractions import Fraction",
+        "from sage.all import QQ, ZZ, RealIntervalField",
+        "from ibme.core.randomness import SecureRandom",
+        "from experiments.research.gaussian_reference import SamplingAbort, draw_uniform_integer, interval_bounds",
+        "from experiments.research.mp12_sampled_reference import FiniteByteTape",
+        "from .entropy import CheckedEntropy"
+      ]
+    },
+    "experiments/research/first_suite/finite_gpv.py": {
+      "sha256": "4ddeda10288c2683a573c2d4a44b33737d87bb83e2b08e3e72d0feb22b0748e3",
+      "bytes": 15117,
+      "module_doc": "Independent first-suite finite GPV with system CSPRNG and wide scalar profile.\n\nGPV08 (2008-08-25 author version), section 4.2, PDF pp. 15--17:\ndescending randomized nearest plane with c=-t, then return t+v, where\nA*t=y (mod q). The scalar oracle is the project's bounded online Gaussian,\nnot GPV's ideal oracle and NOT the MP12 vector/perturbation sampler.\n\nThe project's T2 contract (2026-10-09), C1-exec and C2-exec/C3, supplies\nthe conservative finite width and TV bounds. These finite adaptations are\nnot verbatim GPV theorems. All GS/coset arithmetic is exact ZZ/QQ; scalar\nrounding/truncation/abort errors remain in each scalar's actual certificate.\nAll adaptive rational centers are admitted BEFORE entropy is consumed.\n\nVariable time, bounded research dimensions, no security level or backend\nadmission. Certificates contain basis-dependent diagnostic profiles: publish\nthem only for PUBLIC TEST BASES, not as a secret-key serialization format.",
+      "classes": [
+        {
+          "name": "FirstFiniteGPV",
+          "line": 136,
+          "bases": [],
+          "methods": [
+            {
+              "name": "sample",
+              "line": 214,
+              "signature": "self, syndrome, *, rng=None"
+            },
+            {
+              "name": "sample_from_tape",
+              "line": 227,
+              "signature": "self, syndrome, tape"
+            },
+            {
+              "name": "certificate",
+              "line": 236,
+              "signature": "self"
+            }
+          ]
+        }
+      ],
+      "functions": [],
+      "imports": [
+        "from __future__ import annotations",
+        "from itertools import islice",
+        "from math import lcm",
+        "import re",
+        "from sage.all import QQ, ZZ, matrix, vector",
+        "from ibme.core.randomness import SecureRandom",
+        "from experiments.research.chkp_basis import KernelBasis, ModMatrixReference, _full_rank_field, _integer, _rows",
+        "from .finite_gaussian import FiniteByteTape, FirstFiniteOptions, FirstFiniteGaussian, exact_integer, exact_rational",
+        "from .entropy import CheckedEntropy"
+      ]
+    },
+    "experiments/research/first_suite/finite_randbasis.py": {
+      "sha256": "c117a4585849ef9e3f73447da7d4fb1bed98ddf331d576053aed75f8549f4644",
+      "bytes": 6739,
+      "module_doc": "Independent first-suite finite/CSPRNG RandBasis; existing ToBasis domain.\n\nCHKP author 2011-06-14, section 3.4; project T2 finite contract C4--C6.\nNo retry after ABORT, no conditioning the report on a successful invocation.\nNo security level or production backend; not constant time.",
+      "classes": [
+        {
+          "name": "FirstFiniteRandResult",
+          "line": 22,
+          "bases": [],
+          "methods": []
+        },
+        {
+          "name": "FirstFiniteRandBasis",
+          "line": 32,
+          "bases": [],
+          "methods": [
+            {
+              "name": "sample",
+              "line": 72,
+              "signature": "self, *, rng=None"
+            },
+            {
+              "name": "sample_from_tape",
+              "line": 88,
+              "signature": "self, tape"
+            },
+            {
+              "name": "certificate",
+              "line": 96,
+              "signature": "self"
+            }
+          ]
+        }
+      ],
+      "functions": [],
+      "imports": [
+        "from dataclasses import dataclass, field",
+        "from sage.all import QQ, ZZ, matrix, vector",
+        "from ibme.core.randomness import SecureRandom",
+        "from .finite_gpv import FirstFiniteGPV",
+        "from experiments.research.chkp_tobasis import MAX_ENTRY_BITS, canonical_basis, to_basis",
+        "from experiments.research.gaussian_reference import SamplingAbort",
+        "from experiments.research.mp12_sampled_reference import FiniteByteTape",
+        "from experiments.research.online_gaussian_reference import exact_integer",
+        "from .entropy import CheckedEntropy"
+      ]
+    },
+    "experiments/research/first_suite/finite_sampler_probe.py": {
+      "sha256": "6ff2a753f0b355738e2d33ff89bec58e9645c17960ae4c1119120c9006ae5dfd",
+      "bytes": 7912,
+      "module_doc": "Actual 237-dimension finite/CSPRNG leaf comparison on saved public fixture.\n\nReuses the existing explicit public-test parent, never redraws it. New leaf\nsamples use independent OS bytes with finite error/tape certificates. The\ninput parent/root still have their earlier unadmitted provenance; this is not\na full production CHKP/IBME claim. Private outputs stay in test-results.",
+      "classes": [
+        {
+          "name": "CountedOS",
+          "line": 36,
+          "bases": [],
+          "methods": [
+            {
+              "name": "read",
+              "line": 39,
+              "signature": "self, count"
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "probe",
+          "line": 46,
+          "signature": "manifest_path, output_directory"
+        },
+        {
+          "name": "main",
+          "line": 123,
+          "signature": "argv=None"
+        }
+      ],
+      "imports": [
+        "import argparse",
+        "from fractions import Fraction",
+        "from hashlib import sha256",
+        "import json",
+        "from pathlib import Path",
+        "import sys",
+        "import time",
+        "from sage.all import QQ",
+        "from ibme.core.randomness import SecureRandom",
+        "from experiments.research.chkp_basis import ModMatrixReference, ext_basis",
+        "from experiments.research.ibme_root_sampler_audit import checked_sage_lll",
+        "from experiments.research.ibme_noise_budget import RoundedNoiseParams",
+        "from experiments.research.ibme_rounded_noise import build_rounded_noise",
+        "from .identity import Reader, ROHIBEContext",
+        "from .delegation_state import DelegationScope, ReceiverState, PARENT_MAGIC, _load_basis",
+        "from .tree_probe import PARENT_PROFILE, LEAF_PROFILE",
+        "from .leaf_state import SeedScope, FixedSeedState",
+        "from .seed_kem import encapsulate_seed, decapsulate_seed",
+        "from .finite_gpv import FirstFiniteGPV",
+        "from .finite_gaussian import FirstFiniteOptions"
+      ]
+    },
+    "experiments/research/first_suite/identity.py": {
+      "sha256": "1921bcebea84321e14508b251906795f235ee60c46843c8f66a2a8f367d99718",
+      "bytes": 9446,
+      "module_doc": "Canonical H/G for the depth-two CHKP ROHIBE and its 256-bit amortization.\n\nCHKP, fixed 36-page author version, sections 5.1--5.3, PDF pp. 19--22.\nThis defines the real public identity algorithm, never the proof simulator's\ncontrolled-growth matrices or hidden trapdoors. SHAKE-256 instantiates two\ndomain-separated oracles; exact residue rejection has an explicit abort limit.\nIt does not establish a ROM/QROM theorem or certify a supplied root matrix.",
+      "classes": [
+        {
+          "name": "Reader",
+          "line": 45,
+          "bases": [],
+          "methods": [
+            {
+              "name": "take",
+              "line": 53,
+              "signature": "self, count"
+            },
+            {
+              "name": "number",
+              "line": 60,
+              "signature": "self, width=4"
+            },
+            {
+              "name": "blob",
+              "line": 63,
+              "signature": "self, maximum, *, nonempty=True"
+            },
+            {
+              "name": "finish",
+              "line": 69,
+              "signature": "self"
+            }
+          ]
+        },
+        {
+          "name": "ROHIBEContext",
+          "line": 106,
+          "bases": [],
+          "methods": [
+            {
+              "name": "residue_bytes",
+              "line": 145,
+              "signature": "self"
+            },
+            {
+              "name": "leaf_dimension",
+              "line": 149,
+              "signature": "self"
+            },
+            {
+              "name": "to_bytes",
+              "line": 152,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 160,
+              "signature": "cls, data"
+            },
+            {
+              "name": "path_bytes",
+              "line": 182,
+              "signature": "self, path"
+            },
+            {
+              "name": "h",
+              "line": 188,
+              "signature": "self, path"
+            },
+            {
+              "name": "g",
+              "line": 193,
+              "signature": "self, path, position"
+            },
+            {
+              "name": "parent_rows",
+              "line": 198,
+              "signature": "self, receiver"
+            },
+            {
+              "name": "leaf_rows",
+              "line": 202,
+              "signature": "self, receiver, sender"
+            },
+            {
+              "name": "targets",
+              "line": 207,
+              "signature": "self, receiver, sender"
+            },
+            {
+              "name": "certificate",
+              "line": 213,
+              "signature": "self"
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "checked_int",
+          "line": 30,
+          "signature": "value, name, low, high"
+        },
+        {
+          "name": "checked_bytes",
+          "line": 36,
+          "signature": "value, name, limit, *, nonempty=True"
+        }
+      ],
+      "imports": [
+        "from dataclasses import dataclass, field",
+        "import hashlib",
+        "from ibme.core.encoding import encode_bytes",
+        "from ibme.core.errors import EncodingError, InvalidParameterError, SerializationError",
+        "from ibme.core.hashing import shake256",
+        "from ibme.core.types import validate_identity"
+      ]
+    },
+    "experiments/research/first_suite/leaf_state.py": {
+      "sha256": "c799db9542cb6cb314ef742eb3df553c19d12b57588afb8fd5f157c4539c5568",
+      "bytes": 11095,
+      "module_doc": "Identity-bound, 256-position private leaf state for the first CHKP suite.\n\nOnly short preimages survive delegation; no root/parent/leaf basis or RNG is\nretained by this store. All H/G/public matrices are reconstructed from the\ncanonical root and ordered identities. A failed attempt stays FAILED through\nserialization; callers must publish snapshots on success AND failure. Existing\nCLI receiver transactions provide the eventual disk boundary. This module is\nnot itself a HIBE backend, disk transaction, authenticated storage or sampler.",
+      "classes": [
+        {
+          "name": "SeedScope",
+          "line": 67,
+          "bases": [],
+          "methods": [
+            {
+              "name": "to_bytes",
+              "line": 82,
+              "signature": "self"
+            }
+          ]
+        },
+        {
+          "name": "SeedPlan",
+          "line": 89,
+          "bases": [],
+          "methods": [
+            {
+              "name": "dimension",
+              "line": 104,
+              "signature": "self"
+            }
+          ]
+        },
+        {
+          "name": "FixedSeedKey",
+          "line": 109,
+          "bases": [],
+          "methods": []
+        },
+        {
+          "name": "SeedAddressBlocked",
+          "line": 135,
+          "bases": [
+            "InvalidParameterError"
+          ],
+          "methods": []
+        },
+        {
+          "name": "FixedSeedState",
+          "line": 139,
+          "bases": [],
+          "methods": [
+            {
+              "name": "scope",
+              "line": 149,
+              "signature": "self"
+            },
+            {
+              "name": "lookup",
+              "line": 158,
+              "signature": "self, sender"
+            },
+            {
+              "name": "resolve",
+              "line": 168,
+              "signature": "self, sender, generate"
+            },
+            {
+              "name": "to_bytes",
+              "line": 195,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 208,
+              "signature": "cls, data, *, expected_scope"
+            }
+          ]
+        }
+      ],
+      "functions": [],
+      "imports": [
+        "from dataclasses import dataclass, field",
+        "from fractions import Fraction",
+        "from threading import RLock",
+        "from ibme.core.encoding import encode_bytes",
+        "from ibme.core.errors import EncodingError, InvalidParameterError, SerializationError",
+        "from ibme.core.types import validate_identity",
+        "from .identity import Reader, ROHIBEContext, SEED_BITS, checked_bytes, checked_int"
+      ]
+    },
+    "experiments/research/first_suite/lifecycle_probe.py": {
+      "sha256": "d15aa153fb6b15744bdccb433aa2a9712925b6a05f8f9a9fe86d5ec736727828",
+      "bytes": 14372,
+      "module_doc": "Real H/G -> RandBasis -> durable 256-position key -> noisy seed wire pilot.\n\nPublic seeded teaching inputs only. Native Sage GPV and diagnostic LLL keep\ntheir existing unadmitted status. Private snapshots/capsules are written only\nto an explicit local directory; the public report stores counts and hashes.\nThis closes the fixed-seed lifecycle prerequisite, not the full HIBE/IBME.",
+      "classes": [
+        {
+          "name": "CountedTestRandom",
+          "line": 34,
+          "bases": [],
+          "methods": [
+            {
+              "name": "read",
+              "line": 39,
+              "signature": "self, count"
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "canonical_json",
+          "line": 44,
+          "signature": "value"
+        },
+        {
+          "name": "restore_only",
+          "line": 48,
+          "signature": "manifest_path"
+        },
+        {
+          "name": "one_probe",
+          "line": 71,
+          "signature": "q, m_bar, binary, private_directory"
+        },
+        {
+          "name": "main",
+          "line": 222,
+          "signature": "argv=None"
+        }
+      ],
+      "imports": [
+        "import argparse",
+        "from fractions import Fraction",
+        "from hashlib import sha256",
+        "import json",
+        "from pathlib import Path",
+        "import subprocess",
+        "import sys",
+        "import time",
+        "from ibme.core.errors import InvalidParameterError, SerializationError",
+        "from ibme.core.hashing import shake256",
+        "from ibme.core.randomness import DeterministicRandom",
+        "from ibme.protocol.hybrid_hibe import HybridLimits, encoded_identity",
+        "from .identity import ROHIBEContext, SEED_BITS",
+        "from .leaf_state import FixedSeedState, SeedAddressBlocked, SeedScope",
+        "from .seed_kem import SeedCapsule, decapsulate_seed, encapsulate_seed"
+      ]
+    },
+    "experiments/research/first_suite/parameter_resource_probe.py": {
+      "sha256": "ffb257de676a98fddc89a0dfe2265493228372e33b7ff54464c86d4024b0d60c",
+      "bytes": 6662,
+      "module_doc": "Formal-size CHKP/MP12 resource projections and pinned LWE screening.\n\nNo roots/keys generated and no implementation cap overridden. LWE estimates\nare Gaussian standard-deviation comparators for the rounded-continuous noise,\nnot a proof for its literal PMF. Cost >= target alone never admits a backend.",
+      "classes": [],
+      "functions": [
+        {
+          "name": "minimum_entropy_columns",
+          "line": 22,
+          "signature": "n, q, k, *, bits=128, mass=Fraction(319, 10)"
+        },
+        {
+          "name": "public_projection",
+          "line": 38,
+          "signature": "n, q"
+        },
+        {
+          "name": "run",
+          "line": 73,
+          "signature": "estimator_path, output"
+        },
+        {
+          "name": "main",
+          "line": 107,
+          "signature": "argv=None"
+        }
+      ],
+      "imports": [
+        "import argparse",
+        "from fractions import Fraction",
+        "import json",
+        "from pathlib import Path",
+        "import sys",
+        "import time",
+        "from sage.all import QQ, RR, log, oo, ZZ",
+        "from experiments.research.luo_parameter_screen import verify_estimator_checkout",
+        "from experiments.research.ibme_joint_parameters import smoothing_factor, evaluate_noise",
+        "from .finite_gaussian import FirstFiniteGaussian"
+      ]
+    },
+    "experiments/research/first_suite/private_basis_bridge.py": {
+      "sha256": "6ee978a9a13655036ef751dc23fde8b2e5261c8ee0215864889b77a71f4cb00f",
+      "bytes": 1303,
+      "module_doc": "Independent private qFALL basis conversion; supplies no entropy/grade.\n\nUses the existing private engine schema and independent mathematical parser.\nNo change to GenTrap's distribution certificate or the public test frontend.",
+      "classes": [],
+      "functions": [
+        {
+          "name": "convert_private_input",
+          "line": 15,
+          "signature": "request, binary"
+        }
+      ],
+      "imports": [
+        "import json",
+        "from pathlib import Path",
+        "import subprocess",
+        "from ibme.core.errors import InvalidParameterError",
+        "from .root_generation import MAX_INPUT_BYTES, MAX_OUTPUT_BYTES, unique_fields, validate_output"
+      ]
+    },
+    "experiments/research/first_suite/root_generation.py": {
+      "sha256": "2d809229b5a8f8ae2c6e34189b16f250854a0c11c73e8909289c1724759cc8cb",
+      "bytes": 11006,
+      "module_doc": "Private-input MP12 root generation with system bytes and finite Gaussian R.\n\nqFALL public API performs the unmodified full-basis conversion. Independently\ncheck A=[Abar|G-Abar R], full kernel, and a public Frobenius-based GS bound.\nActual finite R min-entropy gives a conditional leftover-hash regularity bound;\nuniform/R sampling aborts are separate. No LWE security level is implied.",
+      "classes": [
+        {
+          "name": "MP12RootParams",
+          "line": 32,
+          "bases": [],
+          "methods": [
+            {
+              "name": "k",
+              "line": 58,
+              "signature": "self"
+            },
+            {
+              "name": "dimension",
+              "line": 61,
+              "signature": "self"
+            }
+          ]
+        },
+        {
+          "name": "PrivateRootResult",
+          "line": 86,
+          "bases": [],
+          "methods": []
+        },
+        {
+          "name": "MP12RootGenerator",
+          "line": 95,
+          "bases": [],
+          "methods": [
+            {
+              "name": "generate",
+              "line": 113,
+              "signature": "self, *, rng=None"
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "regularity_upper",
+          "line": 64,
+          "signature": "params, mass_lower"
+        },
+        {
+          "name": "unique_fields",
+          "line": 162,
+          "signature": "pairs"
+        },
+        {
+          "name": "validate_output",
+          "line": 170,
+          "signature": "request, output"
+        }
+      ],
+      "imports": [
+        "from dataclasses import asdict, dataclass, field",
+        "import json",
+        "from math import isqrt",
+        "from pathlib import Path",
+        "import subprocess",
+        "from sage.all import QQ, ZZ, matrix",
+        "from ibme.core.randomness import SecureRandom, DeterministicRandom",
+        "from ibme.core.errors import InvalidParameterError",
+        "from experiments.research.chkp_basis import KernelBasis, ModMatrixReference",
+        "from experiments.research.gaussian_reference import draw_uniform_integer",
+        "from .entropy import CheckedEntropy",
+        "from .finite_gaussian import FirstFiniteGaussian, FirstFiniteOptions",
+        "from .identity import checked_int"
+      ]
+    },
+    "experiments/research/first_suite/root_probe.py": {
+      "sha256": "edbc14830056dd8c20707ae22a8f26602fb87c3da6678533a10c93d8e20ce7bd",
+      "bytes": 14788,
+      "module_doc": "CSPRNG root, public two-layer plan and private master-only restore pilot.\n\nNo parent/leaf generation, seven-method HIBE or security grade is claimed.\nThe n=1 diagnostic explicitly demonstrates public-only seed recovery; root\nregularity is a distribution condition, not a substitute for LWE difficulty.\nPrivate full bases stay in an ignored, newly-created test-results directory.",
+      "classes": [],
+      "functions": [
+        {
+          "name": "canonical_json",
+          "line": 28,
+          "signature": "value"
+        },
+        {
+          "name": "chain_plan",
+          "line": 32,
+          "signature": "generator, *, epsilon_bits=128"
+        },
+        {
+          "name": "scope_for",
+          "line": 62,
+          "signature": "oracle, plan"
+        },
+        {
+          "name": "restore_only",
+          "line": 72,
+          "signature": "manifest_path"
+        },
+        {
+          "name": "public_n1_seed_attack",
+          "line": 85,
+          "signature": "oracle, receiver, sender, capsule, noise"
+        },
+        {
+          "name": "public_attack_fixture",
+          "line": 120,
+          "signature": "oracle, receiver, sender, capsule, noise, seed"
+        },
+        {
+          "name": "attack_only",
+          "line": 129,
+          "signature": "fixture"
+        },
+        {
+          "name": "one_probe",
+          "line": 151,
+          "signature": "binary, private_directory"
+        },
+        {
+          "name": "main",
+          "line": 228,
+          "signature": "argv=None"
+        }
+      ],
+      "imports": [
+        "import argparse",
+        "from dataclasses import asdict",
+        "from fractions import Fraction",
+        "from hashlib import sha256",
+        "import json",
+        "from pathlib import Path",
+        "import subprocess",
+        "import sys",
+        "import time",
+        "from .delegation_state import DelegationScope, MasterTreeState",
+        "from .identity import ROHIBEContext, checked_int",
+        "from .root_generation import MP12RootParams, MP12RootGenerator"
+      ]
+    },
+    "experiments/research/first_suite/seed_kem.py": {
+      "sha256": "dee36d3efd15de41f32af4573adfce5fc2d86619222495c51e5c5a0f7120affd",
+      "bytes": 6594,
+      "module_doc": "CHKP shared-preamble 256-bit seed encapsulation with actual rounded noise.\n\nSections 5.1--5.3 of the fixed CHKP author version. This is the KEM boundary,\nnot yet the seven-method byte HIBE or an admitted IBME suite. Wrong identities\ncan decode arbitrary seed bytes; the existing HYBRID-HIBE AEAD layer must\nreject them. The raw KEM does not claim all-byte integrity or CCA security.",
+      "classes": [
+        {
+          "name": "SeedCapsule",
+          "line": 45,
+          "bases": [],
+          "methods": [
+            {
+              "name": "residue_bytes",
+              "line": 67,
+              "signature": "self"
+            },
+            {
+              "name": "to_bytes",
+              "line": 70,
+              "signature": "self"
+            },
+            {
+              "name": "from_bytes",
+              "line": 75,
+              "signature": "cls, data"
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "uniform_residue",
+          "line": 23,
+          "signature": "source, q"
+        },
+        {
+          "name": "decode_phase",
+          "line": 36,
+          "signature": "phase, q"
+        },
+        {
+          "name": "encapsulate_seed",
+          "line": 94,
+          "signature": "oracle, receiver, sender, seed, noise, *, rng=None"
+        },
+        {
+          "name": "decapsulate_seed",
+          "line": 125,
+          "signature": "key, capsule"
+        }
+      ],
+      "imports": [
+        "from dataclasses import dataclass, field",
+        "from hmac import compare_digest",
+        "from ibme.core.errors import InvalidParameterError, RandomnessError, SerializationError",
+        "from ibme.core.randomness import SecureRandom",
+        "from .identity import MAX_DIMENSION, MAX_RESIDUE_TRIALS, Reader, ROHIBEContext, SEED_BITS, checked_bytes, checked_int",
+        "from .leaf_state import FixedSeedKey"
+      ]
+    },
+    "experiments/research/first_suite/tree_probe.py": {
+      "sha256": "a6ded72700bbd0f8c490b12ea047546e7296779f8352e59e9cb8c2c21536daa4",
+      "bytes": 13670,
+      "module_doc": "Real qFALL/CHKP master -> parent -> fixed leaf -> private restore pilot.\n\nUses exactly the seed-lifecycle public context/configuration and predeclared\ntest streams, now through owned master/parent objects. Native seeded sampling\nand diagnostic LLL remain unadmitted; no production or full HIBE is claimed.",
+      "classes": [],
+      "functions": [
+        {
+          "name": "no_generation",
+          "line": 34,
+          "signature": "plan"
+        },
+        {
+          "name": "restore_only",
+          "line": 38,
+          "signature": "path"
+        },
+        {
+          "name": "one_probe",
+          "line": 71,
+          "signature": "q, m_bar, binary, private_directory"
+        },
+        {
+          "name": "main",
+          "line": 196,
+          "signature": "argv=None"
+        }
+      ],
+      "imports": [
+        "import argparse",
+        "from fractions import Fraction",
+        "from hashlib import sha256",
+        "import json",
+        "from pathlib import Path",
+        "import subprocess",
+        "import sys",
+        "import time",
+        "from ibme.core.errors import InvalidParameterError",
+        "from ibme.core.hashing import shake256",
+        "from ibme.protocol.hybrid_hibe import HybridLimits, encoded_identity",
+        "from .delegation_state import DelegationScope, MasterTreeState, ParentAddressBlocked, ReceiverState",
+        "from .identity import ROHIBEContext",
+        "from .leaf_state import SeedAddressBlocked",
+        "from .lifecycle_probe import CONFIGS, CountedTestRandom, EPSILON_BITS, canonical_json",
+        "from .seed_kem import SeedCapsule, decapsulate_seed, encapsulate_seed"
+      ]
+    }
+  },
+  "git_head": "f079ce10fb6b3d2877465b308caaa30276d9e6f9",
+  "git_status": "?? docs/research/2026-10-11-luo-abort-bound/\n?? experiments/research/luo_candidate_probe.py\n?? experiments/research/luo_robust_abort_certificate.py\n?? tests/test_luo_robust_abort_certificate.py",
+  "source_snapshot": {
+    "sha256": "97fef7070a2636106a88822fc70e8079791a15e0068c8bdc9080ab9cd94847c1",
+    "files": {
+      "src/ibme/__init__.py": "f0e3dd70a3752229d5209b58ef760914242569406374c427a463a45823090bb8",
+      "src/ibme/cli.py": "e6189372c3ad4a4b7f53f3d8af977b308ec6aaedbab6e46a976b0b69579c3b59",
+      "src/ibme/cli_state.py": "1496faec7a17342c3b4ae7e8581b38f60ba754688953b2f224037e30acdb23e0",
+      "src/ibme/core/__init__.py": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac",
+      "src/ibme/core/encoding.py": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d",
+      "src/ibme/core/errors.py": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e",
+      "src/ibme/core/hashing.py": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4",
+      "src/ibme/core/lamport_ots.py": "6322e025e01c299e20769ba6cd3a3bb02b9a14a98cf7fc530c81950adda046a5",
+      "src/ibme/core/randomness.py": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
+      "src/ibme/core/types.py": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56",
+      "src/ibme/hibe/__init__.py": "8b471e5f2ca4a5b22cb2a695d6f75d1891962ff135ff0662e64f47abbde4cd1e",
+      "src/ibme/hibe/abb10.py": "a7121a89e3645e87fa059564b745ed1487dfb7f9510a10973c42d0b5e94a9d32",
+      "src/ibme/hibe/api.py": "b81ec0a7ec48c8b5f2fbbed7182b0c22952167d355f92943918a419ab8a5ac4a",
+      "src/ibme/hibe/mock.py": "48f53e2fdd383cd361ea304056f289f6f4dfee23558b3825038d4b363113002a",
+      "src/ibme/ibs/__init__.py": "09f78edc872e40b5c0644b187db5e8f6aa2fb9a74455eb41571b9e71a63920c4",
+      "src/ibme/ibs/api.py": "e08bfaf4c73c0471966103156f3b88debda5f37b06b493c63dde7b4372da661c",
+      "src/ibme/ibs/luo.py": "728319d4ca14c004b258717b3ffecf083760920f15fa79bfe0af761de81a67bf",
+      "src/ibme/ibs/luo_module.py": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275",
+      "src/ibme/ibs/luo_module_codec.py": "bb99eb6a18a06be204ab0274de8e295522589d8100cc2c9f944c7cf4980b06df",
+      "src/ibme/ibs/luo_module_math.py": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f",
+      "src/ibme/ibs/luo_reference.py": "993a9da05f302c73464860028e54a3dad95557a23ca334df4dbb5f4090c236b0",
+      "src/ibme/ibs/mock.py": "c91902e02252a07dba1a777f1fa444de05058ca2f2c228356c82f3ca951b51a8",
+      "src/ibme/ibs/sis_ibs.py": "a66f160d1c0ceb35080db2fa039dbe7f41bb7a71ebf223a6e35965d70486ed61",
+      "src/ibme/lattice/__init__.py": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f",
+      "src/ibme/lattice/gadget.py": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d",
+      "src/ibme/lattice/gaussian.py": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c",
+      "src/ibme/lattice/modmat.py": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94",
+      "src/ibme/lattice/params.py": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be",
+      "src/ibme/lattice/trapdoor.py": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8",
+      "src/ibme/protocol/__init__.py": "362828a85b5b1190ae145b8dde11d83a2f61cc58079aaef860ae7cde8e05b240",
+      "src/ibme/protocol/baseline.py": "3bffb26ce97294c8268430719c8ed1fbf66b118bb11bc5930e7e27f8dcab0b16",
+      "src/ibme/protocol/byteauth.py": "d174c0be104ab756c70fdb7fea8ade13b3afb8d6b59e6295019db42efe2f7414",
+      "src/ibme/protocol/hybrid_hibe.py": "00f67d1065b25fe63e41ba1752266e73f03ed586f2a008a8333682ef0d158655",
+      "src/ibme/protocol/luo_hybrid.py": "ee4498a2096e33520b856e14fd9a441484e603af07e3e4c3e90a5936cfd3459d",
+      "experiments/research/audit_luo_acceptance_evidence.py": "78fb70cfce218aefed98edc7ad8dab479b6fd4f5e26e2bf15627a681cedc5a33",
+      "experiments/research/audit_luo_lifecycle.py": "c456e66c69bcda302f89b96fad73eedcbfe29a42a9a562bfce51ee10ddbf930e",
+      "experiments/research/candidate_catalog.py": "05728f797456b343c4f5a08134b9b71e53e5fe8a8eb538cbb53e2c8e3d96c204",
+      "experiments/research/candidate_preflight.py": "88efc48fa03eef27642c9e34c9b87f146ae47153a8ad37edb4a48b187fb6f4d6",
+      "experiments/research/candidates/srgg/algebra.py": "da04d7b4198a7442dd35889edc73b4f8fa29aec93bb04418ab2dfde9c590c68b",
+      "experiments/research/candidates/srgg/audit.py": "08fa57bfd37f5beef884d37a724073fb65dcf12c42f54bcb61ca6a6832f09b58",
+      "experiments/research/candidates/srgg/geometry.py": "6166de10c02678449973bbda10442463e027db5696dbd037fe1bb573f1b3c297",
+      "experiments/research/candidates/srgg/sampling.py": "b9fa8e13a4467ecf00edea7a57fbd5284569f934bb654bf024ef20c2853c9628",
+      "experiments/research/candidates/srgg/sampling_audit.py": "e93645ceedabfe415f4d3cf99799ead474e65f5eda61699d73ad96522e72c7c6",
+      "experiments/research/candidates/yu/audit.py": "c4419c82eeeebce2188bfbfae2008dd473e3fa86d1ba7335bc516496d89720ef",
+      "experiments/research/candidates/yu/homomorphic_reference.py": "09c15b1cd2d488a39be2acf2f6f21890067e1a34d58ac086dc7e72d81154ce38",
+      "experiments/research/chkp_basis.py": "e8924704c6808fb96849e89c2f34cd59615178771738b604f55627c2e7b5f677",
+      "experiments/research/chkp_basis_reduce.py": "101f0c13a1027ffe1d82b9386b1be5a270a7024d8aeebb8ca7a7b722f2913218",
+      "experiments/research/chkp_genbasis.py": "d9bf8a0d71b0ae3ccccd32b24e1a7ebdc9652a44e7e4640d97c423c6bb389aa8",
+      "experiments/research/chkp_gpv.py": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+      "experiments/research/chkp_leaf_audit.py": "0fb4242a374c0445693c4cbb494f87f64ecdf4259aa0b9dfbf81bad930e0108b",
+      "experiments/research/chkp_leaf_cache.py": "8c8197e60044b4d91a7fef929b784054771d4c530bced50bbf2508f252b8deb5",
+      "experiments/research/chkp_leaf_cache_audit.py": "d7c7692d07de77af624b0c79fd8a76d6bbdae5c2f4df11462eb2caed803f8345",
+      "experiments/research/chkp_leaf_cache_types.py": "bb3657e05c07b5c0a0cbdd7f9e8885b16a83f458304d07ef016d7de9ad1772cd",
+      "experiments/research/chkp_leaf_cache_wire.py": "906ec0c5678a7373d03d053d3e39c261d0a019c64f00de4c24375e3f29ea5ca8",
+      "experiments/research/chkp_leaf_reference.py": "2e33cd9b5155400b0132a87a41654e8d17f3102e739d964c614b307d7f745c5c",
+      "experiments/research/chkp_paper_preflight.py": "0a24ad05e1150f241c6104fc0a6816523531c6ea1e1d34a67d5c1a02d20770dc",
+      "experiments/research/chkp_randbasis.py": "69d970490202fcf69da4389d4435e1538f6c1c49b83441365291260134dc2282",
+      "experiments/research/chkp_t1_audit.py": "e4dff61efd5701c141c2b36002fddd0d8a5984846ca4c013cb01ec0a4dbfab1d",
+      "experiments/research/chkp_t2_audit.py": "b56d0d329361911c980458e005043fe928f07b361511a56b849128016beb72f3",
+      "experiments/research/chkp_t2_conditions.py": "344921b1ffaeff2e8c47361eda53848eafaab9b12b800906809a5b56fa0ede90",
+      "experiments/research/chkp_tobasis.py": "d7f3b2c2fe5762a4d45cd26ecc2d5f1f7170d189b2be0555dc5afc90b115f92a",
+      "experiments/research/chkp_width_audit.py": "ec01800e9076bf394f265cbbd1154edd9925e793c5829c113e38f75398ac1846",
+      "experiments/research/fetch_candidate_sources.py": "9f0c877c82e2c9d1f6fd2512638674b2ec5cb0daa7f8ddda4bd92e432dc48541",
+      "experiments/research/first_suite/__init__.py": "98a3203836217e8d437e31a13137e43f5d3759be61d7b2e901ff700e676ba931",
+      "experiments/research/first_suite/compact_delegation.py": "75798c6d64fbe81ea7252099835bc2f0fb552f25a771be43e9d90d76f5112dbe",
+      "experiments/research/first_suite/compact_delegation_probe.py": "1f1b04ea8a8217ba2e9de2d5f388ebd15f65743cd18d2a72b7fa43ddabb79936",
+      "experiments/research/first_suite/delegation_state.py": "b695773777d136e04f476b987434a4aa5d3daf9389521e405b68f9ac92fb047b",
+      "experiments/research/first_suite/entropy.py": "105a837215509b5d707830de825fbb726fd06dddcc856f2901f88d68876fd7fa",
+      "experiments/research/first_suite/finite_gaussian.py": "9892f3b8bd85c11f08948f1d0cf3849efa4752ad339c366b842263c991d60549",
+      "experiments/research/first_suite/finite_gpv.py": "4ddeda10288c2683a573c2d4a44b33737d87bb83e2b08e3e72d0feb22b0748e3",
+      "experiments/research/first_suite/finite_randbasis.py": "c117a4585849ef9e3f73447da7d4fb1bed98ddf331d576053aed75f8549f4644",
+      "experiments/research/first_suite/finite_sampler_probe.py": "6ff2a753f0b355738e2d33ff89bec58e9645c17960ae4c1119120c9006ae5dfd",
+      "experiments/research/first_suite/identity.py": "1921bcebea84321e14508b251906795f235ee60c46843c8f66a2a8f367d99718",
+      "experiments/research/first_suite/leaf_state.py": "c799db9542cb6cb314ef742eb3df553c19d12b57588afb8fd5f157c4539c5568",
+      "experiments/research/first_suite/lifecycle_probe.py": "d15aa153fb6b15744bdccb433aa2a9712925b6a05f8f9a9fe86d5ec736727828",
+      "experiments/research/first_suite/parameter_resource_probe.py": "ffb257de676a98fddc89a0dfe2265493228372e33b7ff54464c86d4024b0d60c",
+      "experiments/research/first_suite/private_basis_bridge.py": "6ee978a9a13655036ef751dc23fde8b2e5261c8ee0215864889b77a71f4cb00f",
+      "experiments/research/first_suite/root_generation.py": "2d809229b5a8f8ae2c6e34189b16f250854a0c11c73e8909289c1724759cc8cb",
+      "experiments/research/first_suite/root_probe.py": "edbc14830056dd8c20707ae22a8f26602fb87c3da6678533a10c93d8e20ce7bd",
+      "experiments/research/first_suite/seed_kem.py": "dee36d3efd15de41f32af4573adfce5fc2d86619222495c51e5c5a0f7120affd",
+      "experiments/research/first_suite/tree_probe.py": "a6ded72700bbd0f8c490b12ea047546e7296779f8352e59e9cb8c2c21536daa4",
+      "experiments/research/fixed_key_transform_audit.py": "6dd3c14d5f866c3f66d2ac4acefbcc1c5bea7a03c96403c5a5238a6d813341ae",
+      "experiments/research/foo_li_fixed_key_audit.py": "86370468a6f66cc0d147080872bdccd30985d338a511a19b833892e623720be7",
+      "experiments/research/foo_li_initialization.py": "efb60ea254c2dd81a4d99707794c48054d8c10c7c916cc09ffd7b85e7e1228bf",
+      "experiments/research/foo_li_matrix_mass_audit.py": "373ee614c39fe6078321912250b0c7b556a1802cb354232c783555d19f632741",
+      "experiments/research/foo_li_oracle_model.py": "0593b78c2752877b650a180248c449f47196a8344c32cc12c6ac21f26d5cbd78",
+      "experiments/research/foo_li_parameter_screen.py": "89bbd489374e9b561b12e06a61c662c3059cb43f6066417c0b209af78fdbe272",
+      "experiments/research/foo_li_runtime_audit.py": "85f7e73ee8a10c5a006844534ba5d19fcd5232f249cde3f8b18bbe98098c2407",
+      "experiments/research/foo_li_runtime_reference.py": "3bc2353214b7401f713f633b5ac43d9d4fb95f327ae1bf37bc27499661a51dd3",
+      "experiments/research/foo_li_seed_slot_audit.py": "dec1ab4bade41a24c12131fe3349fe6193b9797183451016f6f79c4b2d11812e",
+      "experiments/research/gaussian_reference.py": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c",
+      "experiments/research/general_gadget_audit.py": "35fa0b6b5c345de4d865cf875712114e6f8e2108b58448ef63860abc2959f235",
+      "experiments/research/general_gadget_reference.py": "69e68a33baab3c85fe84525ce92a45e81723c667c64b526fa2dc321b2b098ab0",
+      "experiments/research/ibme_chain_audit.py": "4a6a30d40f048a43e4d385e1d2c24b05841b54efd876573a57ab36c1a3e3a8d0",
+      "experiments/research/ibme_handoff_screen.py": "bede9415ecad753b4a88df7c882e4a5994a7b7481fd31a017a920a3325c016dd",
+      "experiments/research/ibme_joint_parameters.py": "271d795d60bfdd8a6cf02422e1dc8df5bfcd27d4657fefedb2fe149a94e24e08",
+      "experiments/research/ibme_noise_budget.py": "811d7eebf348c7bd2774acacc03c5ba395e8b4105a6aaf362cbc336fe1608f2c",
+      "experiments/research/ibme_root_sampler_audit.py": "00bc6af3eae975d1428af5cd51af9b5f8e8d4dc467270fb0f7279a36713b00dc",
+      "experiments/research/ibme_rounded_noise.py": "1e2f87b1ed964c4821a4d290ed2128d21d9bb77dacbf268205799f74352bb740",
+      "experiments/research/ibme_rounded_noise_audit.py": "7da150c940ac937f52e497cd1ececce7881da6c1ff4479a7744574e438c1a2b0",
+      "experiments/research/luo_acceptance_benchmark.py": "a5bbaeaf1bc6391d7cc468c5895bdfc4e3de3e3b8ba0b4785a3be8d5dc8c7a52",
+      "experiments/research/luo_candidate_probe.py": "3e08126cc333b9520fc23e4e52d2248b2dcc526f82f1e9d1c2edffb4686c2a2f",
+      "experiments/research/luo_compact_audit.py": "d90a25809fab3fe06532c968c5d6a3446be88fec1d5d824a6d29b78fe8c399ac",
+      "experiments/research/luo_hybrid_audit.py": "44460eb5ca47821e405749e4717d93c4c0a87194b1cb9b66163bc1f2067a809b",
+      "experiments/research/luo_joint_parameter_screen.py": "41232c92af735377e005a4e0e32bc2eff343ce8ae04f3cb8719532a6f34b2e7f",
+      "experiments/research/luo_lifecycle_benchmark.py": "95ffaa03c6fbdda61fdcc04d0ee6131e2ff6d1b762adfd1d768222f49c882fdb",
+      "experiments/research/luo_matrix_audit.py": "3df3b40195d04a3efadcec80615a57304739de9dacc6dc9628b598cb31d9ddd8",
+      "experiments/research/luo_matrix_reference.py": "e5781e8c027c6e1c8bcb964e8e34851d7628de1ba4aa7748a22fba782ab41cff",
+      "experiments/research/luo_module_audit.py": "58f239ac6e462837de79b1d668540a24f02a84c88a6f59223c4fb387fb4cbade",
+      "experiments/research/luo_module_security_screen.py": "eda9a0343ff01f8cde04501c9190c3f1c9267ff083720e94899e5738ad3e8f48",
+      "experiments/research/luo_parameter_screen.py": "eed0fc5fb99248d2aa30cab64a7703f2a56bb2ab662583e2e080e0fb993edb7f",
+      "experiments/research/luo_public_master_lwe_probe.py": "fdf4c742b7bd4fe8d607e0ce9c5206aff71c9d0888690a1572dbb806a3429757",
+      "experiments/research/luo_robust_abort_certificate.py": "28c0bdaae844ab802c178e6ea820002812e8a6306accb606d14b7692a32eb1b8",
+      "experiments/research/mp12_sampled_audit.py": "cd75a5202906df9d65133f38eaa77f384b8dc810c84381b63cbb2672d2eaca65",
+      "experiments/research/mp12_sampled_reference.py": "a01b198a7bbcefbb54b387f6ab0b24961b5e74c3689ea4e2f30c74c35ba1061b",
+      "experiments/research/mp12_trapdoor_chain.py": "4500bcc2d6df1e3e1f40724402d1d1f2ddffb50df831e71ea1d9debece48f2e0",
+      "experiments/research/mp12_trapdoor_chain_audit.py": "ca0388030a78a250b4a0f634b34b0a2776875119f0dc0c36b1a445ab699e4673",
+      "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+      "experiments/research/online_mp12_reference.py": "67ef14da368416138ad6598c0161afd023542f5912c55e79369328523cfe6d5b",
+      "experiments/research/online_sampling_audit.py": "fa86419eac6b3eb8ca7efe232fa7b3e3c91d955c2707af1adf43034392f3f83d",
+      "experiments/research/prepared_context_benchmark.py": "5e535bffb499e65f94b8458059c861c99e2362798ace0894f7dadd375d30f2f5",
+      "experiments/research/prepared_context_stream.py": "11556a0fee92c09c8f541eacd09a1887064d203718383e0f94d640d34cb654f3",
+      "experiments/research/primitive_gate_audit.py": "e1ceed3574a195286ed9bf0978e305e1bffd5ffa11bc4c5f43e8a2337611f463",
+      "experiments/research/primitive_spec_audit.py": "93b8a3b763e5018a3d58abdf56562bbca5dbe7a3f7d341533eea612b518cd7ad",
+      "experiments/research/reuse/latte_scalar_probe.py": "3a26d755b004b479ad3bb416e8952de197ee2e00ef9b0737d747cc6d9af2ef2c",
+      "experiments/research/reuse/public_chain_probe.py": "0828c553f8fc481f4f3fca7becb698fd29e1ceac3b532e5e2170b9c678e54f92",
+      "experiments/research/reuse/qfall_bridge.py": "c8e4e296f05a61e7a7ad282fdf05395a281af44afaed279dbf558ff587a16491",
+      "experiments/research/reuse/sage_native_gpv.py": "90aa0035fd9d5100def9d93cf386fcc49457b25c66b60d1bfb04b5caf720ccc1",
+      "experiments/research/sageloli_parameter_units.py": "253d3617a0f5f885253ee3629525bb7b46f74fd997ce5c3e2cf02c043c484e5f",
+      "experiments/research/sampling_reference_audit.py": "ac96f6f9d032939b6a3d56b65476cbade2797133f5001bf206efaabdf8ec3e87",
+      "experiments/research/verify_luo_compact_vectors.py": "d3fc535d626a3304f1a33193223f9d852de545f54974acae81806231e5d4613b"
+    }
+  },
+  "first_blocker": "CHKP_PUBLIC_BACKEND_MISSING",
+  "exit_code": 2
+}
