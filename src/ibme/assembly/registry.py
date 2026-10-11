@@ -30,6 +30,12 @@ class BackendSpec:
     persistent_identity_cache: bool = False
     reason: str = ""
     ciphertext_size: object = None
+    # This describes primitive wire only. CLI v2 additionally binds the entire
+    # SuiteConfig, including policy fields absent from older primitive formats.
+    object_parameter_binding: str = "backend-specific"
+    # Public adapter capability: the IBS base class does not prescribe an
+    # attribute called public_key on every implementation's master object.
+    master_public_key: object = None
 
     def parse_params(self, values):
         if not self.available:
@@ -63,7 +69,8 @@ class BackendRegistry:
             if (not all(callable(x) for x in required) or not spec.presets
                     or not spec.decoders or set(spec.decoders) != keys
                     or any(not callable(getattr(x, "from_bytes", None)) for x in spec.decoders.values())
-                    or (spec.role == "ibs" and not callable(spec.signature_size))
+                    or (spec.role == "ibs" and (not callable(spec.signature_size)
+                                               or not callable(spec.master_public_key)))
                     or (spec.role == "hibe" and not callable(spec.ciphertext_size))):
                 raise InvalidParameterError("incomplete runnable backend descriptor")
         self._specs[spec.role, spec.id] = spec
@@ -80,6 +87,8 @@ class BackendRegistry:
                            parameter_presets=sorted(s.presets or {}),
                            signature_formats=list(s.signature_formats),
                            two_level=s.two_level, key_binding=s.key_binding,
+                           object_parameter_binding=s.object_parameter_binding,
+                           master_public_key_capability=callable(s.master_public_key),
                            persistent_identity_cache=s.persistent_identity_cache)
                        for s in self._specs.values() if s.role == role]
                 for role in ("hibe", "ibs")}
@@ -181,27 +190,32 @@ def default_registry():
                     {"education": BYTEAUTH_DEBUG_PARAMS, "hybrid-research": hybrid},
                     lambda rng, fmt: ABB10HIBE(), hs(ABB10PublicKey,ABB10MasterSecret,ABB10Level1SecretKey,ABB10Level2SecretKey),
                     _abb_check, two_level=True, key_binding=True,
-                    reason="teaching ABB10; not security admitted",ciphertext_size=_abb_ciphertext_size),
+                    reason="teaching ABB10; not security admitted",ciphertext_size=_abb_ciphertext_size,
+                    object_parameter_binding="partial-legacy-wire"),
         BackendSpec("mock", "hibe", "mock-hibe-v1", Params,
                     {"education": mock, "hybrid-research": replace(mock,identity_bytes=86,max_message_bytes=32)},
                     lambda rng, fmt: MockHIBE(), hs(MockHIBEPublicKey,MockHIBEMasterSecret,MockHIBELevel1SecretKey,MockHIBELevel2SecretKey),
                     _mock_hibe_check, test_only=True, two_level=True,key_binding=True,reason="TEST-ONLY; no cryptographic security",
-                    ciphertext_size=_mock_ciphertext_size),
+                    ciphertext_size=_mock_ciphertext_size,object_parameter_binding="test-only-partial-wire"),
         BackendSpec("sis", "ibs", "sis-teaching-v1", Params, {"education": sis},
                     lambda rng, fmt: SisIBSBackend(rng=rng), ins(SisPublicKey,SisMasterSecret,SisSigningKey),
-                    _sis_check,_sis_size,reason="teaching SIS; known forgery control retained"),
+                    _sis_check,_sis_size,reason="teaching SIS; known forgery control retained",
+                    object_parameter_binding="partial-legacy-wire",master_public_key=lambda obj:obj.public_key),
         BackendSpec("mock", "ibs", "mock-ibs-v1", Params, {"education": replace(mock,max_message_bytes=4096)},
                     lambda rng, fmt: MockIBSBackend(rng=rng), ins(MockPublicKey,MockMasterSecret,MockSigningKey),
-                    lambda obj,p: None,lambda p,fmt:len(b"IBS1-M-SIG")+32,test_only=True,reason="TEST-ONLY; public master material"),
+                    lambda obj,p: None,lambda p,fmt:len(b"IBS1-M-SIG")+32,test_only=True,reason="TEST-ONLY; public master material",
+                    object_parameter_binding="test-only-partial-wire",master_public_key=lambda obj:obj.public_key),
         BackendSpec("luo-matrix", "ibs", "luo-matrix-ref1", LuoMatrixParams,
                     {"research":matrix,"test-small":replace(LuoMatrixParams(),identity_max_bytes=64,message_max_bytes=4096)},
                     lambda rng,fmt:LuoIBSBackend(rng=rng),ins(LuoPublicKey,LuoMasterSecret,LuoSigningKey),
-                    _luo_check,_matrix_size,persistent_identity_cache=True,reason="functional research parameters; none/false"),
+                    _luo_check,_matrix_size,persistent_identity_cache=True,reason="functional research parameters; none/false",
+                    object_parameter_binding="full-parameter-snapshot",master_public_key=lambda obj:obj.public_key),
         BackendSpec("luo-module", "ibs", "luo-module-ref1", LuoModuleParams,
                     {"research":LuoModuleParams(),"test-small":tiny},
                     lambda rng,fmt:(LuoModuleCompactIBSBackend if fmt=="compact" else LuoModuleIBSBackend)(rng=rng),
                     ins(LuoModulePublicKey,LuoModuleMasterSecret,LuoModuleSigningKey),_luo_check,_module_size,
-                    signature_formats=("reference","compact"),persistent_identity_cache=True,reason="research module backend; none/false"),
+                    signature_formats=("reference","compact"),persistent_identity_cache=True,reason="research module backend; none/false",
+                    object_parameter_binding="full-parameter-snapshot",master_public_key=lambda obj:obj.public_key),
     ]
     for identifier in ("chkp", "latte", "lai-ideal-hibe", "gkr2025", "zhang2020", "abb-standard-selective", "chkp-standard"):
         specs.append(BackendSpec(identifier,"hibe","unavailable-v1",available=False,reason="public backend not delivered; no mock fallback"))

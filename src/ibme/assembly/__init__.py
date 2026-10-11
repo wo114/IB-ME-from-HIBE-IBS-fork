@@ -13,8 +13,8 @@ from ibme.core.encoding import encode_message
 from ibme.core.errors import IBMEError, InvalidParameterError, SerializationError
 from ibme.core.types import validate_bytes, validate_identity
 from ibme.lattice.params import Params
-from ibme.protocol.baseline import BaselineIBME, PublicKey, MasterSecret, SenderKey, ReceiverKey, DOMAIN_SIGNATURE, BOTTOM
-from ibme.protocol.byteauth import ByteAuthenticatedIBME, ENVELOPE_OVERHEAD
+from ibme.protocol.baseline import BaselineIBME, PublicKey, MasterSecret, SenderKey, ReceiverKey, DOMAIN_SIGNATURE, MAGIC_CIPHERTEXT, BOTTOM
+from ibme.protocol.byteauth import ByteAuthenticatedIBME, ENVELOPE_OVERHEAD, MAX_INNER_BYTES
 from .registry import BackendSpec, BackendRegistry, default_registry
 
 SUITE_VERSION = "IBME/SUITE/1"
@@ -190,16 +190,23 @@ def validate_suite(config, *, registry=None):
             identity=limits["identity_max_bytes"]; payload=limits["max_payload_bytes"]
             if hp.identity_bytes!=22+identity: errors.append("Hybrid inner identity capacity must equal encoded width")
             if hp.max_message_bytes<32: errors.append("Hybrid inner HIBE cannot hold the 32-byte seed")
-            if importlib.util.find_spec("cryptography") is None: errors.append("Hybrid requires installed cryptography extra")
+            if importlib.util.find_spec("cryptography") is None:
+                raise InvalidParameterError("Hybrid requires installed cryptography extra")
             capsule=hs.ciphertext_size(hp,32,hp.identity_bytes)
             if capsule>limits["max_capsule_bytes"]:
                 errors.append("Hybrid capsule budget cannot contain the selected HIBE seed ciphertext")
+            from ibme.protocol.hybrid_hibe import MAGIC, SUITE, CONTEXT_BYTES, NONCE_BYTES, TAG_BYTES
+            hibe_wire=(len(MAGIC)+4+len(SUITE)+4+len(b"CIPHERTEXT")+16
+                       +CONTEXT_BYTES+capsule+NONCE_BYTES+payload+TAG_BYTES)
         elif data["transport"]!="direct":
             raise InvalidParameterError("unknown transport version")
         else:
             capsule=hs.ciphertext_size(hp,payload,hp.identity_bytes)
+            hibe_wire=capsule
             if data["hybrid_limits"]!={}: errors.append("direct suite must not carry Hybrid limits")
-        if capsule>64*2**20: errors.append("selected HIBE ciphertext exceeds 64 MiB assembly wire budget")
+        baseline_wire=hibe_wire+len(MAGIC_CIPHERTEXT)+4
+        if baseline_wire>MAX_INNER_BYTES:
+            errors.append("selected ciphertext including Baseline frame exceeds 64 MiB assembly wire budget")
         identity=min(identity,getattr(ip,"identity_max_bytes",getattr(ip,"identity_bytes",0)))
         if not 1<=identity<=256: errors.append("shared identity capacity must be in [1,256]")
         ibs_input=getattr(ip,"message_max_bytes",getattr(ip,"max_message_bytes",0))
@@ -217,6 +224,8 @@ def validate_suite(config, *, registry=None):
                         state_policy=data["state_policy"],suite_digest=config.digest,
                         hibe=data["hibe"],ibs=data["ibs"],protocol=data["protocol"],transport=data["transport"],
                         signature_format=data["signature_format"],hibe_key_binding_capability=hs.key_binding,
+                        raw_object_parameter_binding={"hibe":hs.object_parameter_binding,
+                                                      "ibs":ins.object_parameter_binding},
                         resource_policy="legacy-assembly-resource-v1")
     except (IBMEError,TypeError,ValueError,AttributeError,OverflowError) as exc:
         errors.append(str(exc))
@@ -288,6 +297,7 @@ class SuiteRuntime:
     metadata: dict
     hibe: object
     ibs: object
+    ibs_master_public_key: object
 
     def _validate_public(self,public):
         for name,obj in (("hpk",public.hpk),("ipk",public.ipk)):
@@ -324,12 +334,17 @@ class SuiteRuntime:
             raise SerializationError("receiver key belongs to a different HIBE public key")
 
     def validate_master(self, public, master):
+        """Check encoded parameters and public binding, not generation provenance.
+
+        Legacy wire omits some policy/generation fields. Only the CLI v2 state
+        envelope binds these objects to every SuiteConfig field on disk.
+        """
         if not isinstance(public,PublicKey) or not isinstance(master,MasterSecret):
             raise SerializationError("expected public/master protocol objects")
         # Invoke the selected primitive's public capability; never read trapdoors.
         if self._hibe_binding(public.hpk,master.hmsk) is False:
             raise SerializationError("HIBE master is not bound to the selected public key")
-        if master.imsk.public_key.to_bytes()!=public.ipk.to_bytes():
+        if self.ibs_master_public_key(master.imsk).to_bytes()!=public.ipk.to_bytes():
             raise SerializationError("IBS master is not bound to the selected public key")
         for name,obj in (("hpk",public.hpk),("ipk",public.ipk),("hmsk",master.hmsk),("imsk",master.imsk)):
             self.decoders[name].from_bytes(obj.to_bytes())
@@ -360,7 +375,7 @@ def build_runtime(config, *, ibs_rng=None, ots_rng=None, registry=None):
         readers={name:_Decoder(reader,check_limits) for name,reader in hibe.component_decoders().items()}
     readers.update({name:_Decoder(reader,lambda obj:ins.check_object(obj,ip)) for name,reader in ins.decoders.items()})
     proto=(_Byteauth(hibe,ibs,ots_rng=ots_rng) if data["protocol"]=="byteauth-v1" else _Baseline(hibe,ibs))
-    runtime=SuiteRuntime(config,proto,hparams,ip,readers,report.capacity,report.metadata,hibe,ibs)
+    runtime=SuiteRuntime(config,proto,hparams,ip,readers,report.capacity,report.metadata,hibe,ibs,ins.master_public_key)
     proto._bind(runtime)
     return runtime
 

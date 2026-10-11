@@ -17,6 +17,16 @@ class NoRead:
     def read(self, count): raise AssertionError("preflight consumed entropy")
 
 
+def test_primitive_wire_parameter_binding_limits_are_explicit():
+    report = validate_suite(make_suite(ibs="sis"))
+    assert report.metadata["raw_object_parameter_binding"] == {
+        "hibe": "partial-legacy-wire", "ibs": "partial-legacy-wire"}
+    report = validate_suite(make_suite(ibs="luo-module", transport="hybrid"))
+    assert report.metadata["raw_object_parameter_binding"]["ibs"] == "full-parameter-snapshot"
+    backends = list_backends()
+    assert next(s for s in backends["ibs"] if s["id"] == "sis")["object_parameter_binding"] == "partial-legacy-wire"
+
+
 def test_preflight_is_entropy_free_and_never_builds_backends():
     registry=default_registry()
     def forbidden(*args,**kwargs): raise AssertionError("preflight instantiated backend")
@@ -116,6 +126,60 @@ def test_registry_extension_duplicate_and_missing_capability():
     with pytest.raises(InvalidParameterError): registry.register(spec)
     with pytest.raises(InvalidParameterError):
         registry.register(replace(spec,id="empty",decoders={}))
+
+
+def test_byteauth_capacity_counts_baseline_frame_without_large_allocation():
+    from ibme.lattice.params import Params
+    hp = Params(name="wire-boundary", security_parameter=8, n=1, m_matrix=46, q=65537,
+                s0=4.0, s=1.0, s_prime=12.0, identity_bytes=64,
+                max_message_bytes=34381)
+    config = make_suite(hibe_params=hp, ibs_params=replace(
+        default_registry().get("ibs", "sis").presets["education"], max_message_bytes=65536))
+    report = validate_suite(config)
+    assert report.capacity["inner_hibe_ciphertext_max_bytes"] == 67108857
+    assert not report.ok and "including Baseline frame" in " ".join(report.errors)
+    data = config.to_dict()
+    data["hibe_params"]["max_message_bytes"] -= 1
+    assert validate_suite(SuiteConfig.from_dict(data)).ok
+
+
+def test_missing_hybrid_dependency_is_a_preflight_error(monkeypatch):
+    import importlib.util
+    original = importlib.util.find_spec
+    monkeypatch.setattr(importlib.util, "find_spec", lambda name: None if name == "cryptography" else original(name))
+    report = validate_suite(make_suite(ibs="luo-module", transport="hybrid"))
+    assert not report.ok and "cryptography extra" in " ".join(report.errors)
+
+
+def test_ibs_master_binding_uses_registered_public_adapter():
+    from ibme.ibs.api import IBSMasterSecret
+    from ibme.ibs.mock import MockIBSBackend, MockMasterSecret
+
+    class OpaqueMaster(IBSMasterSecret):
+        def __init__(self, delegate): self._delegate = delegate
+        def to_bytes(self): return self._delegate.to_bytes()
+        @classmethod
+        def from_bytes(cls, raw): return cls(MockMasterSecret.from_bytes(raw))
+        def export_public(self): return self._delegate.public_key
+
+    class OpaqueBackend(MockIBSBackend):
+        def setup(self, params):
+            pk, master = super().setup(params)
+            return pk, OpaqueMaster(master)
+
+    registry = default_registry()
+    original = registry.get("ibs", "mock")
+    spec = replace(original, id="opaque-test", factory=lambda rng, fmt: OpaqueBackend(rng=rng),
+                   decoders={**original.decoders, "imsk": OpaqueMaster},
+                   master_public_key=lambda master: master.export_public())
+    registry.register(spec)
+    config = make_suite(hibe="mock", ibs="opaque-test", allow_mock=True, registry=registry)
+    runtime = build_runtime(config, registry=registry)
+    pk, master = runtime.proto.setup(runtime.hibe_params, ibs_params=runtime.ibs_params)
+    assert not hasattr(master.imsk, "public_key")
+    runtime.validate_master(pk, master)
+    with pytest.raises(InvalidParameterError):
+        registry.register(replace(spec, id="missing-public-adapter", master_public_key=None))
 
 
 @pytest.fixture
