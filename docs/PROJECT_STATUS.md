@@ -22,7 +22,7 @@
 | HIBE 公共接口 | 六个 HIBE 方法、规范对象；Hybrid 使用独立的公开密钥绑定验证能力 | 接口存在不等于每个候选已实现 |
 | 教学 ABB10 + 教学 SIS | 实际代码、CLI、历史攻击与回归 | 教学参数及公开认证反例；不能计入已准入安全组合 |
 | Luo 矩阵 IBS | 本地真实研究算法、适配器与历史参数筛查 | 当前暂停继续扩网格，保留为比较实例 |
-| Luo 模格 IBS | 本地真实四算法、NTT/Hint、固定状态及 reference/compact 格式 | 参数与论文条件、LowBits/总签名中止界仍须核验；最新外部工作见下表 |
+| Luo 模格 IBS | 本地真实四算法、NTT/Hint、固定状态及 reference/compact 格式 | 外部第二十二步已交条件式中止界和 C64B 实跑；尚未合并，引用条件和正式参数准入仍未全部完成，见下表 |
 | 现有完整研究接线 | **教学 ABB10 + Hybrid + Luo 模格 + BYTEAUTH** | 可以验证工程流程；HIBE 不是 CHKP，不能记为真实 CHKP 组合完成 |
 | CHKP 本仓库 | `experiments/research/chkp_*` 的格基、采样、叶路径和缓存研究模块与测试 | 无 `src/ibme/hibe/chkp.py` 完整公开后端；T2/T3 与真实 32 B 接入未闭合 |
 | CHKP 第七步外部包 | Codex 直接返工包及定向验证，原输入与清单保留 | 第八步加量任务已发；本次目录检查未收到 `CHKP-step8-package/`；第七步新增改动不能冒称已获 DeepSeek 再验 |
@@ -33,11 +33,13 @@
 
 | 来源 | 当前可使用的事实 | 验收边界 |
 |---|---|---|
-| 邻居 Luo 工作树 `luo-acceptance-evidence`，提交 `f079ce10fb6b3d2877465b308caaa30276d9e6f9` | 负责人已核的上一批 54 次 Sign、528 次 attempt、108 次两格式验签、212 项选定测试 | 本次只核对工作树 HEAD 和负责人状态，未复跑、未合并到本 checkout |
-| Luo 第二十二步 | 负责人已复核鲁棒接受集/随机矩阵二阶矩研究路线；C49/C64B 两显式配置各 54 次真实 Sign；成本估计与交付仍进行中 | 未提交/未合并，不登记为正式参数或本对话独立复跑；新次数不覆盖稳定提交记录 |
+| 邻居 Luo 工作树 `luo-acceptance-evidence`，历史提交 `f079ce10fb6b3d2877465b308caaa30276d9e6f9` | 负责人已核的上一批 54 次 Sign、528 次 attempt、108 次两格式验签、212 项选定测试 | 历史基点；最新已提交工作为下一行，均未合并到本 checkout |
+| Luo 第二十二步，提交 `886fc127304479b87ef210836757004818e5b6ea` | 已提交鲁棒接受集/随机矩阵二阶矩条件式中止界、C49/C64B 研究候选及攻击成本估计。负责人记录 C64B 54 次 Sign／315 次尝试／108 次双格式验签，选定回归 269 passed | 本对话已核该工作树 HEAD 并读取此提交的交付入口，未独立复跑或合并。条件式可用性界不是安全位数，正式参数仍未准入 |
 | `CODEX-step22-luo-integration/report.md` | 静态及公共接口预检报告指出首阻塞 `CHKP_PUBLIC_BACKEND_MISSING` | 负责人后续已复跑 26 项检查及 18 项公共边界；本对话未复跑，仍不是实际 CHKP+Luo 加解密结果 |
 
 第二十二步显式 C64B 候选的 compact 签名由负责人测得 16383 B（默认仍为 16063 B），inner 输入仍为 86/86/32 B；该候选尚未改变本仓库默认参数，未来组合按所选配置重新核算外层容量。
+
+第二十二步固定入口为上述外部提交中的 `docs/research/2026-10-11-luo-abort-bound/README.md`；工作树位于 `C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS`。C64B 的 κ=64、γ1=190000、γ2=60000000000、γ3=(q−1)/10，两项重试帽各4096。负责人在理想随机源／理想 XOF 及明确查询预算下给出正常调用总中止上界 <2^-153；MSIS 模型成本指数为经典188.340／量子170.925。以上是该固定交付的条件与结果，未授予整个 IBS 或组合相应安全等级。
 
 目前相关研究组合保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。这些标识约束安全表述；可执行的真实研究配置仍可进行功能接入和测量。
 
