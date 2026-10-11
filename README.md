@@ -11,7 +11,7 @@
 | 公共接口、兼容预检与验收 | [IMPLEMENTATION_SPEC](IMPLEMENTATION_SPEC.md) |
 | 分工、交接与提交 | [AGENTS](AGENTS.md)、[AI_WORKFLOW](AI_WORKFLOW.md) |
 | 交给实现者的任务模板 | [DELEGATION_PROMPTS](DELEGATION_PROMPTS.md) |
-| 文献与候选基础 | [论文库](papers/index.md)、[候选基础包](docs/research/2026-10-10-foundations/README.md) |
+| 算法、代码与论文 | [现行算法总表](docs/ALGORITHM_CATALOG.md)、[论文库](papers/index.md) |
 | 已知漏洞与历史记录 | [安全回归](docs/KNOWN_SECURITY_GAPS.md)、[重建历史](docs/history/PROJECT_RESTART-through-2026-10-10.md) |
 
 ## 框架与当前能力

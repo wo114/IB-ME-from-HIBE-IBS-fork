@@ -1,0 +1,179 @@
+{
+  "schema": "manual-paper-acquisition/v1",
+  "checked_on": "2026-10-11",
+  "requested_candidate": "Xie-Hu-Gao-Gao NTRU IBS",
+  "identity": {
+    "title": "Efficient identity-based signature over NTRU lattice",
+    "authors": [
+      "Jia Xie",
+      "Yu-pu Hu",
+      "Jun-tao Gao",
+      "Wen Gao"
+    ],
+    "doi": "10.1631/FITEE.1500197",
+    "year": 2016,
+    "journal": "Frontiers of Information Technology & Electronic Engineering",
+    "volume": 17,
+    "issue": 2,
+    "pages": "135-142",
+    "publisher_online_date": "2016-02-26",
+    "resolved": true
+  },
+  "sources": {
+    "publisher_landing": "https://journal.hep.com.cn/fitee/EN/1160009795640025580",
+    "journal_landing": "https://jzus.zju.edu.cn/article.php?doi=10.1631/FITEE.1500197",
+    "doi_registry": "https://api.crossref.org/works/10.1631/FITEE.1500197",
+    "pdf_requested": "https://link.springer.com/content/pdf/10.1631/FITEE.1500197.pdf",
+    "pdf_final": "https://link.springer.com/content/pdf/10.1631/FITEE.1500197.pdf?error=cookies_not_supported&code=2c2c1d3c-2bca-4309-9b4f-0b2d8ca3ed1f",
+    "pdf_http_status": 200,
+    "pdf_content_type": "application/pdf"
+  },
+  "output": {
+    "path": "papers/2016_ntru_ibs_xie.pdf",
+    "bytes": 548574,
+    "sha256": "0797847601224a3743cdf1597cad74aa31cfa966c5b466e4b945af07762a0559",
+    "page_count": 8,
+    "pdf_version": "1.4",
+    "encrypted": false,
+    "javascript": false
+  },
+  "manual_acceptance": {
+    "overall": "fulltext_pdf_archived_with_acquisition_fallback",
+    "identity": "Title, four authors and DOI checked on actual first-page text and publisher metadata",
+    "fetch": "Publisher PDF returned HTTP 200; no account, payment or access-control bypass",
+    "content": "Full 8-page PDF with algorithms and references; selected sections checked, no claim of complete proof review",
+    "asset": "Original PDF archived; two publisher supplementary links discovered but not obtained",
+    "output": "Nonempty PDF, parsed by pdfinfo and pdftotext; actual pages 139 and 141 rendered and inspected",
+    "provenance": "Ordinary HTTP retrieval after unavailable paper-fetch runtime and other publisher-route failures; not a paper-fetch tool acceptance envelope"
+  },
+  "failed_or_unavailable_routes": [
+    {
+      "route": "paper-fetch MCP",
+      "result": "No callable paper-fetch tools found"
+    },
+    {
+      "route": "paper-fetch console",
+      "result": "Not on PATH"
+    },
+    {
+      "route": "python -m paper_fetch.cli --help",
+      "result": "ModuleNotFoundError: No module named paper_fetch"
+    },
+    {
+      "route": "https://jzus.zju.edu.cn/opentxt.php?doi=10.1631%2FFITEE.1500197",
+      "result": "Local TLS EOF; web retrieval timeout"
+    },
+    {
+      "route": "http://jzus.zju.edu.cn/opentxt.php?doi=10.1631/FITEE.1500197",
+      "result": "HTTP 502"
+    },
+    {
+      "route": "https://journal.hep.com.cn/fitee/EN/file/download?fileId=a6cgJ4iOsDBrnCuswCvU3w%3D%3D",
+      "result": "Local TLS EOF; web timeout; supplementary content unknown"
+    },
+    {
+      "route": "https://journal.hep.com.cn/fitee/EN/file/download?fileId=aUhOXy5pfpk%2F27nKh2J+ug%3D%3D",
+      "result": "Local TLS EOF; web timeout; supplementary content unknown"
+    },
+    {
+      "route": "ResearchGate public article",
+      "result": "Web full-text visible; local HTTP 403; not used as archived PDF source"
+    }
+  ],
+  "reading_scope": [
+    "Identity and first page",
+    "Section 2.1.1 ring assumptions",
+    "Sections 3.1-3.2 algorithms",
+    "Page 139 algorithms 4-7 rendered",
+    "Section 4.3 and page 141 Table 2 rendered",
+    "Section 5 statement scope"
+  ],
+  "parameter_status": {
+    "paper_examples_present": true,
+    "ready_to_run_parameter_profile": false,
+    "table2_printed_N": [
+      512,
+      512,
+      512,
+      512,
+      512
+    ],
+    "table2_printed_q": [
+      227,
+      225,
+      233,
+      218,
+      226
+    ],
+    "table2_printed_k": [
+      80,
+      512,
+      512,
+      512,
+      512
+    ],
+    "table2_printed_lambda": [
+      28,
+      14,
+      14,
+      14,
+      14
+    ],
+    "notes": [
+      "q values transcribed from rendered publisher PDF, not converted to powers of two",
+      "Section 2.1.1 requires prime q; table contains 225, 218 and 226",
+      "Algorithm 3 requires invertible f/g; Algorithm 4 line 1 prints non-membership while returning h=g/f",
+      "Widths, finite rejection sampling and exact valid modulus need reconciliation before implementing a certified profile"
+    ]
+  },
+  "code_search": {
+    "original_author_ibs_repository": "not_found_in_checked_sources",
+    "scope": [
+      "Exact title and DOI web searches",
+      "Exact title restricted to GitHub/GitLab/Gitee",
+      "Jia Xie / Yupu Hu / Juntao Gao with NTRU and code/GitHub",
+      "Publisher landing pages and listed supplementary links",
+      "ORCID 0000-0002-0894-0369 attempted; tool inaccessible"
+    ],
+    "limits": [
+      "Negative search is not proof that code does not exist",
+      "Publisher supplementary files could not be obtained; content not classified",
+      "No original-author account inferred from homonymous Jia Xie pages"
+    ],
+    "related_repositories": [
+      {
+        "url": "https://github.com/tprest/Lattice-IBE",
+        "commit": "7843ffbce2bfc19a123946c25809865392508f8c",
+        "relation": "Ducas-Lyubashevsky-Prest 2014 author IBE reference; upstream trapdoor/sampler engineering reference, not Xie 2016 IBS",
+        "license_file": "License.eng.txt",
+        "license_heading": "CeCILL FREE SOFTWARE LICENSE AGREEMENT Version 2.1",
+        "default_parameters": {
+          "N0": 512,
+          "q0_expression": "1<<30"
+        },
+        "archive": "C:/Users/A/.dsh/deliverables/NTRU-IBS-source-survey-2026-10-11/Lattice-IBE-7843ffbce2bfc19a123946c25809865392508f8c.zip",
+        "archive_bytes": 33495,
+        "archive_sha256": "957d47624cddf1cd8982851785c92cd127d619ba0fb0fcab48b294d0c4f48f8f",
+        "archive_entries": 19,
+        "uncompressed_bytes": 91823,
+        "executed": false
+      },
+      {
+        "url": "https://github.com/xff-github/NTRU",
+        "commit": "bde43edc749d41231500702dd81d86a09395de85",
+        "relation": "Linked from Tang et al. 2021 Identity-Based Linkable Ring Signature on NTRU Lattice, DOI 10.1155/2021/9992414; different primitive/author team",
+        "source_files_observed": [
+          "Matrix.java",
+          "Ntru.java",
+          "Ntru_ring.java",
+          "Polynomial_test.java"
+        ],
+        "executed": false,
+        "original_xie_ibs": false
+      }
+    ]
+  },
+  "implementation_admitted": false,
+  "parameters_are_formal": false,
+  "security_claim": "none"
+}

@@ -1,5 +1,7 @@
 # 项目论文库
 
+算法可用程度、源码与参数情况统一见[现行算法总表](../docs/ALGORITHM_CATALOG.md)。本索引记录来源与归档，不把取得论文等同于实现或安全准入。
+
 2026-10-10 用户提供 GKR、SRGG 和 Yu 三篇完整 PDF，已原样复制并核对标题、页数、SHA-256；历史下载失败记录保留，新状态见 [用户提供稿指纹](user-supplied-manifest-2026-10-10.json)。这些获取状态更新不等于完成算法/参数审查或安全准入。同轮另从 HAL 取得 Sageloli 完整稿，候选基础包记录于 [统一入口](../docs/research/2026-10-10-foundations/README.md)。
 
 ## 2023_shorter_faster_ibs_sageloli.pdf
@@ -34,6 +36,7 @@
 - 来源：用户提供出版 PDF，12 页；已有在线审查现在可用本地完整公式复核。
 - 一句话主题：将原像采样与椭球 G+G 签名结合成 SRGG-IBS，区分离线/在线计算。
 - 文件：[PDF](2025_efficient_ibs_jia.pdf)。TeX 源码：未取得；底层强结论/参数映射的既有待核条件未因下载完成自动关闭。
+- 历史获取：2026-10-08 出版社直取曾返回403；该失败已由2026-10-10用户提供完整PDF解决，不再重复登记为“未取得”。当时核对Definition 3、§4.5 Theorem 2和Tables 1/4/5/6；作者 C 原型仍未确认公开源码，尺寸/底层条件问题另核。
 
 登记日期：2026-10-04。已固定第二、第三轮直接审查的五篇原文。摘要说明研究内容，不代表本项目已验证定理或批准后端。PDF 保留作者及出版方声明；TeX 源码均未取得。固定文件指纹见 [manifest.json](manifest.json)。
 
@@ -200,15 +203,6 @@
 - 本轮核对：§2.2、§3.2 Algorithms 5/6 / Theorem 1、§4 Algorithms 13–16 / MLWE-MSIS 条件；重复身份签名的缓存解释待确认。
 - 文件：[PDF](2024_ibs_without_trapdoors_luo.pdf)。未找到该后端的公开源码；TeX 源码未取得。
 
-## SRGG-IBS 2025：在线原文已读，本地 PDF 未取得
-
-- 标题：Constructing Efficient Identity-Based Signatures on Lattices。
-- 作者：Huiwen Jia、Ying Liu、Chunming Tang、Lin Wang；IET Information Security，2025，DOI `10.1049/ise2/6684889`。
-- 来源：[出版社全文](https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/ise2/6684889)、[12 页 PDF](https://ietresearch.onlinelibrary.wiley.com/doi/pdf/10.1049/ise2/6684889)。
-- 一句话主题：用紧凑原像采样和椭球 G + G 构造直接 IBS，提供缓存密钥安全实验和模格参数。
-- 本轮核对：Definition 3、§4.5 Theorem 2 的底层条件、§5 Tables 1/4/5/6；尺寸表不一致，必须以实现核算；论文 C 原型未取得公开代码。
-- 本地直接下载返回 403；未创建 `2025_efficient_ibs_jia.pdf`，没有 TeX，不能把在线阅读写成完成本地归档。
-
 ## 2011_peikert_parallel_gaussian_author.pdf
 
 - 标题：An Efficient and Parallel Gaussian Sampler for Lattices。
@@ -217,3 +211,18 @@
 - 本轮用于：PDF 16 的 Lemma 5.4，ToBasis 显式步骤、完整格和逐项 GS 不增；没有改用此论文的并行向量采样算法。
 - 限制：不采用该证明中有问题的三角整数矩阵奇异值推断，不宣称谱/普通列范数不增。未取得 MG02 第七章或此稿 TeX，未声称全篇精读。
 - 实施/证据：[CHKP T2 续作](../docs/research/team-chkp/T2-真实采样实现与未闭合项-2026-10-10.md)，整体仍 WIP。
+
+## 2016_ntru_ibs_xie.pdf
+
+- 标题：Efficient identity-based signature over NTRU lattice。
+- 作者：Jia Xie、Yu-pu Hu、Jun-tao Gao、Wen Gao；FITEE 2016，17(2):135–142，DOI `10.1631/FITEE.1500197`。
+- 来源：[Springer 官方 PDF](https://link.springer.com/content/pdf/10.1631/FITEE.1500197.pdf)；[本地原始 PDF](2016_ntru_ibs_xie.pdf)，8页、548574字节。
+- SHA-256：`0797847601224a3743cdf1597cad74aa31cfa966c5b466e4b945af07762a0559`；[获取与代码检索清单](ntru-ibs-fetch-2026-10-11.json)。
+- 本轮核对算法/参数相关章节与部分页面，不声称全篇证明已审；具体困难假设、参数文字冲突和上游 IBE 代码边界见[来源记录](../docs/research/2026-10-11-catalog/ntru-ibs-sources.md)。已纳入原生 NTRU IBS 候选，尚无本仓库完整实现；未确认原作者 IBS 代码。
+
+## Lai–Cheung–Chow：Trapdoors for Ideal Lattices with Applications（原 PDF 待取得）
+
+- Russell W. F. Lai、Henry K. F. Cheung、Sherman S. M. Chow；Inscrypt 2014，出版2015，LNCS8957:239–256；[DOI](https://link.springer.com/chapter/10.1007/978-3-319-16745-9_14)。
+- [作者上传网页正文](https://www.academia.edu/87100350/Trapdoors_for_Ideal_Lattices_with_Applications)可读；原作者PDF旧链接与当前可查下载途径未成功，本次没有本地PDF，也未用摘要或网页重排件冒充。
+- §5.1–5.2/定理10的PLWE、INDr匿名与HIBE描述已选读；网页公式可能抽取失真，不是最终实现依据。没有完成全篇证明审查或准入参数核验。
+- [获取和代码清单](ideal-lattice-fetch-2026-10-11.json)、[具体来源与限制](../docs/research/2026-10-11-catalog/ideal-lattice-sources.md)。作者 `lattice_lib` 固定版本仅确认为通用 Sage 格工具，未确认对应完整 HIBE 实现或数值参数包。

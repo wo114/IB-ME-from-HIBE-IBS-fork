@@ -52,7 +52,8 @@ HIBE 和 IBS 分别选择参数；身份顺序仍是 (rcv, phi)。
 按共同六方法契约实现 setup / extract / derive / encrypt / decrypt /
 load_ciphertext，随机性经关键字 rng 注入。
 身份顺序固定为 parent_id=rcv、child_id=phi；实现真正的两层身份委派。
-分别记录根陷门、一级密钥、叶密钥、采样/解密条件与失败事件。
+按选定算法记录根生成、一级密钥、叶密钥、解密条件与失败事件；
+涉及陷门或采样的算法另记录相应条件，不对所有 HIBE 强加同一种陷门。
 数学参考核、公开 HIBE 适配器、Hybrid 接线分层交付。
 提供公钥/主密钥/两级私钥/密文的严格序列化与公开读取器。
 需要 Hybrid 时提供 validate_key_binding 独立能力，核算种子和身份容量。

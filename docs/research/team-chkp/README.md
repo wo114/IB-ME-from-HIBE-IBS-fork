@@ -30,7 +30,7 @@
 6e20806345024e92f1e9fe259439ac461f2ddfe7e194db597dce9ddbdc950790
 ```
 
-外部 `first_suite` 本次核对位置为 `C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/`。相关公共接口预检报告是交付区的 `CODEX-step22-luo-integration/report.md`；其测试结果仍待所有者复跑，不能纳入本次已核实验统计。
+外部 `first_suite` 本次核对位置为 `C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/`。相关公共接口预检报告是交付区的 `CODEX-step22-luo-integration/report.md`；所有者后续已复跑 26 项检查和 18 项公共边界；本对话未复跑，不能纳入本次独立实跑统计。
 
 ### 第七步修订的证据边界
 

@@ -34,8 +34,10 @@
 | 来源 | 当前可使用的事实 | 验收边界 |
 |---|---|---|
 | 邻居 Luo 工作树 `luo-acceptance-evidence`，提交 `f079ce10fb6b3d2877465b308caaa30276d9e6f9` | 负责人已核的上一批 54 次 Sign、528 次 attempt、108 次两格式验签、212 项选定测试 | 本次只核对工作树 HEAD 和负责人状态，未复跑、未合并到本 checkout |
-| Luo 第二十二步 | 负责人在审查鲁棒接受集及中止概率候选；新参数实跑、成本估计与独立审查进行中 | 不登记为已完成定理或正式参数；进行中的次数不覆盖稳定提交记录 |
-| `CODEX-step22-luo-integration/report.md` | 静态及公共接口预检报告指出首阻塞 `CHKP_PUBLIC_BACKEND_MISSING` | 其测试收据尚待负责人复跑；不是实际 CHKP+Luo 加解密结果 |
+| Luo 第二十二步 | 负责人已复核鲁棒接受集/随机矩阵二阶矩研究路线；C49/C64B 两显式配置各 54 次真实 Sign；成本估计与交付仍进行中 | 未提交/未合并，不登记为正式参数或本对话独立复跑；新次数不覆盖稳定提交记录 |
+| `CODEX-step22-luo-integration/report.md` | 静态及公共接口预检报告指出首阻塞 `CHKP_PUBLIC_BACKEND_MISSING` | 负责人后续已复跑 26 项检查及 18 项公共边界；本对话未复跑，仍不是实际 CHKP+Luo 加解密结果 |
+
+第二十二步显式 C64B 候选的 compact 签名由负责人测得 16383 B（默认仍为 16063 B），inner 输入仍为 86/86/32 B；该候选尚未改变本仓库默认参数，未来组合按所选配置重新核算外层容量。
 
 目前相关研究组合保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。这些标识约束安全表述；可执行的真实研究配置仍可进行功能接入和测量。
 
@@ -56,7 +58,7 @@
 - [总体架构](../ARCHITECTURE.md)、[公共接口与验收](../IMPLEMENTATION_SPEC.md)、[协作流程](../AI_WORKFLOW.md)、[通用任务模板](../DELEGATION_PROMPTS.md)。
 - [CHKP 交接入口](research/team-chkp/README.md)、[主 AI/IBS 与集成任务](workplans/2026-10-08/主AI任务-IBS集成与优化.md)。
 - [Luo 模格路线决策](research/2026-10-11/IBS版本决策-模格版主线.md)、[已知漏洞与历史 CI](KNOWN_SECURITY_GAPS.md)。
-- [论文库](../papers/index.md)、[历史重建记录](history/PROJECT_RESTART-through-2026-10-10.md)。
+- [现行算法总表](ALGORITHM_CATALOG.md)（8 条 HIBE / 11 条 IBS 候选及模型路线）、[论文库](../papers/index.md)、[历史重建记录](history/PROJECT_RESTART-through-2026-10-10.md)。
 
 本机外部交付根为 `C:/Users/A/.dsh/deliverables/`。可移交时需带包本身及其清单，不能只发送本机路径：
 
