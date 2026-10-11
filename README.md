@@ -9,7 +9,8 @@
 | 当前进度、负责人、外部交付与下一步 | [PROJECT_STATUS](docs/PROJECT_STATUS.md) |
 | 模块结构与组合方式 | [ARCHITECTURE](ARCHITECTURE.md) |
 | 公共接口、兼容预检与验收 | [IMPLEMENTATION_SPEC](IMPLEMENTATION_SPEC.md) |
-| 分工、交接与提交 | [AGENTS](AGENTS.md)、[AI_WORKFLOW](AI_WORKFLOW.md) |
+| 分工、交接与提交 | [三人方案分工](docs/workplans/三人方案分工与统一框架交付.md)、[AGENTS](AGENTS.md)、[AI_WORKFLOW](AI_WORKFLOW.md) |
+| 分别选择 HIBE / IBS、预检和运行 | [框架使用指南](docs/FRAMEWORK_USAGE.md) |
 | 交给实现者的任务模板 | [DELEGATION_PROMPTS](DELEGATION_PROMPTS.md) |
 | 算法、代码与论文 | [现行算法总表](docs/ALGORITHM_CATALOG.md)、[论文库](papers/index.md) |
 | 已知漏洞与历史记录 | [安全回归](docs/KNOWN_SECURITY_GAPS.md)、[重建历史](docs/history/PROJECT_RESTART-through-2026-10-10.md) |
@@ -22,7 +23,7 @@ HIBE 模块 ─┐
 IBS 模块 ──┘
 ```
 
-现有协议已经支持注入 HIBE/IBS 对象和分别传入参数。通用后端注册、独立选择命令和自动组合矩阵是接下来的实现项；本文整理没有实现这些功能。
+统一装配已经支持独立选择 HIBE、IBS 及各自参数，并在发钥前检查版本、能力和容量。CLI 提供 `list-backends`、`check`、`matrix` 与独立选择的 `setup`；真实组合测试由共用驱动执行，静态预检与实际结果分别记录。
 
 当前可运行的研究预设使用**教学 ABB10 + Hybrid + Luo 模格 IBS + BYTEAUTH**。真实 CHKP 公开后端和正式安全组合尚未完成；仓库外的新成果及尚未合并的提交见当前进度表。`security_claim=none`，功能测试不等于安全证明。Boyen–Li 增强隐私不在开发范围。
 
@@ -33,10 +34,11 @@ HIBE/IBS 可以由不同成员同时实现，一项阻塞不暂停其它模块�
 Python 项目位于 `src/ibme/`，测试位于 `tests/`，研究原型位于 `experiments/research/`。已配置依赖的环境可先查看：
 
 ```text
-python -m ibme.cli --help
+python -m ibme.cli list-backends
+python -m ibme.cli check --hibe abb10 --ibs luo-module --transport hybrid --signature-format compact
 ```
 
-现有 CLI 按预设选择，具体命令以实际帮助为准。需要 Sage 的研究代码统一使用 WSL 环境 `~/miniconda3/envs/sage`。新的安装或环境变更单独确认。
+新 CLI 可分别选择原语，也保留旧预设。未安装 editable package 时先设置 PowerShell `$env:PYTHONPATH = 'src'`；完整调用见[使用指南](docs/FRAMEWORK_USAGE.md)。需要 Sage 的研究代码统一使用 WSL 环境 `~/miniconda3/envs/sage`。新的安装或环境变更单独确认。
 
 ## 保留的历史参数反例
 

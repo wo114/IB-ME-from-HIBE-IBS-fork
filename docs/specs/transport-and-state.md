@@ -38,6 +38,12 @@ CLI解密与Setup/发钥共用本地状态锁，从读取接收密钥前保持�
 
 实现与故障证据见 [接收状态事务记录](../research/2026-10-10-receiver-persistence/README.md)；本次文档合并未重新执行该实验。
 
+### 2.2 v2 可选组合的状态
+
+独立选择 CLI 使用版本 2 的 `state.json`，存储完整 `IBME/SUITE/1` 配置、配置 digest、容量和公钥 digest。磁盘上的公钥/主密钥/发送者/接收者对象再封装对象 kind、suite digest、公钥 digest 与规范原语字节；底层密码对象的既有 wire 不改。恢复严格按固定配置装配，无自动后端/格式降级。摘要用于一致性检查，不提供外部存储认证或防回滚。
+
+v2 发钥和解密采用上节相同锁/pending/先保存后输出规则，接收状态保存包含完整 v2 封装；已有接收密钥校验后复用。数据输出拒绝本状态保留文件及现有路径别名/硬链接。旧 `education`、`luo-module-research` 入口保持各自版本，不能与 v2 选择混用。旧 ABB10/SIS 裸对象未编码的字段由配置封装额外绑定；直接使用 Python 原语加载器不能据此声称能追溯这些生成字段。使用入口见 [FRAMEWORK_USAGE](../FRAMEWORK_USAGE.md)。
+
 ## 3. HIBE 密钥与公钥的语义绑定
 
 独立的`HIBEKeyBindingValidator.validate_key_binding(public_key, secret_key) -> bool`能力。HIBE 六个基础方法签名保持；HYBRID-HIBE适配器构造时必须取得该验证器，可由原语方法提供，或以`key_binding_validator`显式注入。缺失/不可调用即拒绝，不能只比较类型或参数后放行。

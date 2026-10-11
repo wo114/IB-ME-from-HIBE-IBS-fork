@@ -30,7 +30,7 @@ CLI / 应用 / 统一评测
 
 格工具可以按算法需要复用，不强制所有算法采用同一种陷门、采样分布或签名方程。协议层通过公开接口传递不透明对象；不得跨模块读取秘密矩阵或私有字段来弥补接口缺口。
 
-## 3. 现有装配与待补机制
+## 3. 现有装配机制
 
 | 层次 | 代码入口与职责 | 本次整理时的状态 |
 |---|---|---|
@@ -39,10 +39,11 @@ CLI / 应用 / 统一评测
 | 容量适配 | [hybrid_hibe.py](src/ibme/protocol/hybrid_hibe.py) | 用内层 HIBE 封装种子，外层 HKDF/AES-GCM 处理载荷 |
 | 字节认证 | [byteauth.py](src/ibme/protocol/byteauth.py) | 在基线外增加密文字节认证及加密内容绑定 |
 | 当前研究配置 | [luo_hybrid.py](src/ibme/protocol/luo_hybrid.py) | 教学 ABB10 + Luo 模格 IBS + Hybrid + BYTEAUTH 的专用配置 |
-| 用户入口 | [cli.py](src/ibme/cli.py) | 现有预设；尚无通用 HIBE/IBS 独立选择机制 |
-| 统一选择与装配 | 后续框架工作 | 补组件登记、能力检查、配置装配和组合测试矩阵 |
+| 用户入口 | [cli.py](src/ibme/cli.py) | 独立 `--hibe` / `--ibs`、两边选参；旧预设保留 |
+| 统一选择与装配 | [assembly](src/ibme/assembly/__init__.py)、[registry](src/ibme/assembly/registry.py) | 显式后端登记、严格配置快照、无随机性的能力/容量预检、公开对象恢复 |
+| 组合验收 | [run_combination_matrix.py](experiments/run_combination_matrix.py) | 同一驱动执行各已实现组合；静态兼容与真实执行分开记录 |
 
-后续装配机制应利用现有构造函数，不复制协议。配置须明确后端标识与版本、各自参数、序列化读取器、包装选择、能力限制和声明状态。字段名与 wire 变更仍须按接口流程冻结；这张表不代表新的注册 API 已实现。
+装配机制复用现有构造函数。`SuiteConfig` 保存后端标识与版本、各自完整参数、包装/格式/限额和声明；读取器与工厂由代码注册，JSON 不能指定任意导入。`validate_suite` 在发钥或状态写入前报告不兼容项；`build_runtime` 构造共同协议及对应解码器。命令与 Python 示例见 [使用指南](docs/FRAMEWORK_USAGE.md)。接口、容量通过不代表论文安全前提已核准。
 
 ## 4. 原语接口
 
