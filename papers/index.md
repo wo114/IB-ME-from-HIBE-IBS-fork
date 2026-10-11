@@ -220,9 +220,10 @@
 - SHA-256：`0797847601224a3743cdf1597cad74aa31cfa966c5b466e4b945af07762a0559`；[获取与代码检索清单](ntru-ibs-fetch-2026-10-11.json)。
 - 本轮核对算法/参数相关章节与部分页面，不声称全篇证明已审；具体困难假设、参数文字冲突和上游 IBE 代码边界见[来源记录](../docs/research/2026-10-11-catalog/ntru-ibs-sources.md)。已纳入原生 NTRU IBS 候选，尚无本仓库完整实现；未确认原作者 IBS 代码。
 
-## Lai–Cheung–Chow：Trapdoors for Ideal Lattices with Applications（原 PDF 待取得）
+## 2015_ideal_lattice_trapdoors_lai.pdf
 
 - Russell W. F. Lai、Henry K. F. Cheung、Sherman S. M. Chow；Inscrypt 2014，出版2015，LNCS8957:239–256；[DOI](https://link.springer.com/chapter/10.1007/978-3-319-16745-9_14)。
-- [作者上传网页正文](https://www.academia.edu/87100350/Trapdoors_for_Ideal_Lattices_with_Applications)可读；原作者PDF旧链接与当前可查下载途径未成功，本次没有本地PDF，也未用摘要或网页重排件冒充。
-- §5.1–5.2/定理10的PLWE、INDr匿名与HIBE描述已选读；网页公式可能抽取失真，不是最终实现依据。没有完成全篇证明审查或准入参数核验。
+- 标题：Trapdoors for Ideal Lattices with Applications；[本地 PDF](2015_ideal_lattice_trapdoors_lai.pdf)由用户于 2026-10-11 提供，原样复制，18 页、226438 字节。
+- SHA-256：`0985cb1d8cc760a18070a38d30b8de5b532bca52b5c06e05e65b2d712bdf338c`；首页标题/作者与末页参考文献已核。Ghostscript 2022 文件生成时间不是论文年份；具体发行版本未认证。
+- 较早[作者上传网页正文](https://www.academia.edu/87100350/Trapdoors_for_Ideal_Lattices_with_Applications)的 §5.1–5.2/定理10已选读；PLWE、INDr匿名与HIBE描述仍需按 PDF 完成模型/公式映射。没有完成全篇证明审查或准入参数核验。
 - [获取和代码清单](ideal-lattice-fetch-2026-10-11.json)、[具体来源与限制](../docs/research/2026-10-11-catalog/ideal-lattice-sources.md)。作者 `lattice_lib` 固定版本仅确认为通用 Sage 格工具，未确认对应完整 HIBE 实现或数值参数包。

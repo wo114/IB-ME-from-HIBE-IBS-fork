@@ -11,11 +11,17 @@
 - **作者确认**：[Cheung 的论文目录](https://sites.google.com/view/kfcheung/research)、[CUHK 课题组目录](https://crypto.ie.cuhk.edu.hk/theory/)。
 - **可读版本**：[Chow 的 Academia 论文目录](https://cuhk.academia.edu/ShermanSMChow/Papers)链接到[作者上传的文章页面](https://www.academia.edu/87100350/Trapdoors_for_Ideal_Lattices_with_Applications)。
 
-## 2. 获取结果：网页可读，原始 PDF 未取得
+## 2. 获取结果：用户提供的 18 页 PDF 已归档
+
+用户随后提供 `C:/Users/A/Downloads/Trapdoors_for_Ideal_Lattices_with_Applic.pdf`，现已原样归档为[本地论文](../../../papers/2015_ideal_lattice_trapdoors_lai.pdf)。首页标题、三位作者及摘要与目标论文一致；`pdfinfo` 确认 18 页、226438 字节，末页为第 18 页和参考文献 20–22。源文件与归档文件 SHA-256 均为 `0985cb1d8cc760a18070a38d30b8de5b532bca52b5c06e05e65b2d712bdf338c`。
+
+本次来源是用户提供的 PDF，不是本轮从出版社下载；Ghostscript 文件生成日期为 2022 年，不能当作论文发表年份。已确认论文身份及文件可读性，尚未认证出版社版本、逐页公式或完成全文证明审查。完整作者代码和具体参数包仍未确认。
+
+### 较早的在线获取记录（保留来源历史）
 
 已由网页工具实际取得该文章页面的全部 95 条抽取文本行（L0–L94，无缺失行），包含正文至原文第 18 页的页码及 22 条参考文献。这个检查只说明网页抽取范围覆盖完整；数学公式存在抽取损坏风险，不能替代原 PDF 的逐页验收。
 
-**本次没有生成 PDF 文件，也没有把网页正文重新打包冒充 PDF 或完整原稿。** 下列访问结果支持降级记录：
+较早在线检索没有取得 PDF；现有归档来自上述用户文件，没有重排网页正文。下列失败结果只描述此前访问，不再表示本地缺少 PDF：
 
 | 来源 | 本次结果 |
 |---|---|
@@ -34,7 +40,7 @@
 - 原文 §2.2、§5.1–5.2、定理 10 使用 PLWE 并宣称 INDr-ID-CCA，文中解释 INDr 包含接收者匿名性。
 - §5.2 展开基本 IBE，称 HIBE 的 Derive 沿用 Extract；本项目仍需补齐两层算法及模型映射。
 - §3.3、§4.4–4.5 给出环采样、委派与符号参数条件；未核准可直接运行的具体安全参数。
-- 原文涉及标签逆元；实现前应核查标签取值域、采样条件及噪声界。网页公式不能作为最终实现依据。
+- 原文涉及标签逆元；实现前应核查标签取值域、采样条件及噪声界。已有 PDF 可用于后续逐式核对，先前网页选读不能代替该项工作。
 
 来源：[作者上传版本](https://www.academia.edu/87100350/Trapdoors_for_Ideal_Lattices_with_Applications)。本轮不据此认定标准模型/QROM 的组合结论，不宣称与共享 IB-ME 框架已经兼容。
 
@@ -66,4 +72,10 @@
 
 `C:/Users/A/.dsh/deliverables/ideal-lattice-source-audit-2026-10-11/`
 
-逐文件 SHA-256 见获取记录。该目录没有算法运行产物，也没有本文 PDF。当前可把此论文列为具匿名性论述的环格 HIBE 文献候选；不能列为“已有作者代码、参数可直接复现”的后端。
+逐文件 SHA-256 见获取记录。该外部目录保存代码检索元数据，PDF 位于仓库 `papers/`。当前可把此论文列为具匿名性论述的环格 HIBE 文献候选；不能列为“已有作者代码、参数可直接复现”的后端。
+
+## 5. 本次 PDF 归档交付范围
+
+- 修改文件：新增 `papers/2015_ideal_lattice_trapdoors_lai.pdf`；更新 `papers/ideal-lattice-fetch-2026-10-11.json`、`papers/index.md`、`docs/ALGORITHM_CATALOG.md` 及本文。
+- 验证：`pdfinfo`、首页/末页 `pdftotext -layout`；源文件与副本 SHA-256 比较；获取记录 JSON 解析及本地链接检查；`git diff --check`。未运行密码算法测试。
+- 参数与声明：本次仅归档文献，没有使用实验参数、实现算法或提升安全声明。两层算法映射、参数核验、完整代码与证明审查仍待完成。

@@ -27,7 +27,7 @@
 | `zhang2020` — Zhang 等理想格 HIBE | Ring-LWE 路线；自适应声明、匿名性及模数条件待完整映射 | [19 页原文](../papers/2020_ideal_lattice_hibe_zhang.pdf)；§4.1–4.3 的私钥类型、委派及 SamplePre 输入仍有实施疑点 | **暂缓完整实现**。只有可复用公共环算术基础；先澄清短向量/可委派陷门类型，不能自行补造缺失算法 |
 | `abb-standard-selective` — ABB 标准模型选择性 HIBE | 普通 LWE，标准模型选择性身份；§7 自适应 IBE 不等于 §8 自适应 HIBE | [40 页作者稿](../papers/2010_lattice_hibe_standard_agrawal.pdf) §8/Theorem 33；参数条件待独立实例化 | **模型对照**。没有完整后端；不能直接登记为满足当前自适应匿名组合前提 |
 | `chkp-standard` — CHKP §5.4 变体 | LWE 及可容许哈希条件，标准模型条件路线；匿名扩展范围另核 | [同一 CHKP 原文](../papers/2010_bonsai_trees_cash.pdf) §5.4/Theorem 5.4/Corollary 5.5；额外维度与归约成本未闭合 | **模型对照**。不能用 ROM 实现切一个开关就算消除随机预言机；不与 `chkp-rom` 参数共用结论 |
-| `lai-ideal-hibe` — Lai–Cheung–Chow，理想格陷门 HIBE | 原文 PLWE 与 INDr-ID-CCA 声明含收件人匿名性；选读 §5.1–5.2/定理10，尚需具体两层模型映射 | Inscrypt 2014／出版2015；[作者上传在线正文](https://www.academia.edu/87100350/Trapdoors_for_Ideal_Lattices_with_Applications)可读，原 PDF 未取得。符号参数不能直接当有限可运行配置 | **新增文献候选**。[来源核验](research/2026-10-11-catalog/ideal-lattice-sources.md)未确认对应作者 HIBE 代码；已查 lattice_lib 仅通用格工具。网页公式有抽取风险，实施前需原稿核准 |
+| `lai-ideal-hibe` — Lai–Cheung–Chow，理想格陷门 HIBE | 原文 PLWE 与 INDr-ID-CCA 声明含收件人匿名性；选读 §5.1–5.2/定理10，尚需具体两层模型映射 | Inscrypt 2014／出版2015；[18 页 PDF](../papers/2015_ideal_lattice_trapdoors_lai.pdf)由用户提供并原样归档，标题/作者已核。符号参数不能直接当有限可运行配置 | **新增文献候选**。[来源核验](research/2026-10-11-catalog/ideal-lattice-sources.md)未确认对应作者 HIBE 代码；已查 lattice_lib 仅通用格工具。实施前仍需按 PDF 核准算法、公式和参数 |
 
 ### LATTE：本轮已确认的外部代码
 
@@ -89,5 +89,5 @@ Sageloli 的 [计数工具](../experiments/research/sageloli_parameter_units.py)
 
 - 原 17 条 ID 保持可追溯：[目录 JSON](research/2026-10-10-foundations/catalog.json)、[基础卡](research/2026-10-10-foundations/候选基础卡与队友接手任务.md)。其中旧“下一步”按[当前状态](PROJECT_STATUS.md)执行，不重新成为全项目任务排序。
 - 论文获取以[论文库](../papers/index.md)及文件指纹为准；旧抓取失败记录不能覆盖后来已取得的 GKR/Yu/SRGG 全文。
-- 新增 Lai 与 Xie 两项已有本日来源记录：Xie 官方 PDF 已归档，Lai 为可读作者网页、原 PDF 未取得；完整代码和参数不因文献定位自动视为可用。
+- 新增 Lai 与 Xie 两项已有本日来源记录：Xie 官方 PDF、Lai 用户提供的 18 页 PDF 均已归档；完整代码和参数不因文献取得自动视为可用。
 - 目录更新不改变安全标记：当前相关研究实例保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`，实际可执行的研究任务仍可按 G-run 推进。

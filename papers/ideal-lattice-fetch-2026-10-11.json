@@ -19,11 +19,11 @@
     "identity_status": "resolved"
   },
   "acquisition": {
-    "status": "degraded",
-    "requested_pdf_obtained": false,
-    "pdf_path": null,
-    "pdf_sha256": null,
-    "pdf_page_count": null,
+    "status": "user_supplied_pdf_archived",
+    "requested_pdf_obtained": true,
+    "pdf_path": "papers/2015_ideal_lattice_trapdoors_lai.pdf",
+    "pdf_sha256": "0985cb1d8cc760a18070a38d30b8de5b532bca52b5c06e05e65b2d712bdf338c",
+    "pdf_page_count": 18,
     "online_fulltext_available": true,
     "online_fulltext_url": "https://www.academia.edu/87100350/Trapdoors_for_Ideal_Lattices_with_Applications",
     "online_fulltext_origin": "linked from coauthor Sherman S. M. Chow's Academia profile",
@@ -39,8 +39,24 @@
         "availability checked; only selected sections studied; not a full proof audit"
       ]
     },
-    "fulltext_republished_locally": false,
-    "local_fulltext_path": null
+    "fulltext_republished_locally": true,
+    "local_fulltext_path": "papers/2015_ideal_lattice_trapdoors_lai.pdf",
+    "pdf_bytes": 226438,
+    "local_pdf_provenance": {
+      "source": "user-provided local file",
+      "source_path": "C:/Users/A/Downloads/Trapdoors_for_Ideal_Lattices_with_Applic.pdf",
+      "method": "byte-for-byte copy; source preserved",
+      "verification": [
+        "pdfinfo: 18 pages, unencrypted, 226438 bytes",
+        "pdftotext page 1: exact title and three authors",
+        "pdftotext page 18: page marker and references 20-22",
+        "source and archive SHA-256 match"
+      ],
+      "edition_status": "title and author identity confirmed; exact publisher edition not authenticated",
+      "reading_scope": "identity and first/last page checks only; prior selected sections from online text; no full proof audit",
+      "metadata_note": "Ghostscript 9.26 creation date 2022 is file processing metadata, not publication year"
+    },
+    "prior_online_attempt_status": "degraded; failures retained below; subsequent local acquisition does not change those historical responses"
   },
   "workflow": {
     "primary_skill": "paper-fetch-skill",
@@ -176,7 +192,6 @@
     ]
   },
   "outstanding": [
-    "original PDF acquisition and PDF-specific integrity verification",
     "paper-specific full HIBE code/parameter package not located",
     "complete model, algorithm, and parameter mapping before backend admission"
   ],
