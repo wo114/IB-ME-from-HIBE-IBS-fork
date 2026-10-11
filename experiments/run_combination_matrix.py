@@ -42,7 +42,7 @@ def case_definitions():
                                                   transport="hybrid", allow_mock=True)
     cases["abb10-hybrid-mock-byteauth"] = dict(hibe="abb10", ibs="mock",
                                              transport="hybrid", allow_mock=True)
-    cases["chkp-pending"] = dict(hibe="chkp", ibs="luo-module", transport="hybrid")
+    cases["latte-pending"] = dict(hibe="latte", ibs="luo-module", transport="hybrid")
     return cases
 
 
