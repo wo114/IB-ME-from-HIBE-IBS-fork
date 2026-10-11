@@ -26,10 +26,11 @@
 | 教学 ABB10 + 教学 SIS | 实际代码、CLI、历史攻击与回归 | 教学参数及公开认证反例；不能计入已准入安全组合 |
 | Luo 矩阵 IBS | 本地真实研究算法、适配器与历史参数筛查 | 当前暂停继续扩网格，保留为比较实例 |
 | Luo 模格 IBS | 本地真实四算法、NTT/Hint、固定状态及 reference/compact 格式；通用框架允许显式完整参数 | 外部第二十三步已固定 C64B helper、研究入口恢复和装配收据；其代码尚未合并，引用条件和正式参数准入仍未全部完成，见下表 |
-| 现有完整研究接线 | **教学 ABB10 + Hybrid + Luo 模格 + BYTEAUTH** | 可以验证工程流程；HIBE 不是 CHKP，不能记为真实 CHKP 组合完成 |
+| 既有内置完整研究接线 | **教学 ABB10 + Hybrid + Luo 模格 + BYTEAUTH** | 可以验证工程流程；HIBE 不是 CHKP，不能记为真实 CHKP 组合完成 |
 | CHKP 本仓库 | `experiments/research/chkp_*` 的格基、采样、叶路径和缓存研究模块与测试 | 无 `src/ibme/hibe/chkp.py` 完整公开后端；T2/T3 与真实 32 B 接入未闭合 |
 | CHKP 第七步外部包 | Codex 直接返工包及定向验证，原输入与清单保留 | 第八步加量任务已发；本次目录检查未收到 `CHKP-step8-package/`；第七步新增改动不能冒称已获 DeepSeek 再验 |
 | 本地 `first_suite` 独立研究原型 | 已并入根/H/G/主父叶状态、有限 CSPRNG 采样、共享前导种子 KEM及 MP12 DelTrap；[固定交付](research/2026-10-11-first-suite-compact/README.md)记录 83/166/249 维 n=1 配置的真实父采样、同叶 256 原像、512 噪声位恢复与跨进程恢复 | 与第七步 cap32 不同版本；DelTrap 是独立 MP12 profile，不能改名当作原 CHKP RandBasis。n=1 可公开恢复种子；困难参数/资源、公开 HIBE 后端及 CHKP+Luo 完整组合仍未完成 |
+| A 的 MP12 变体公开研究后端（未合并分支） | [2026-10-12 交付](research/team-a-delivery/2026-10-12-hibe-reference/README.md)：计算型 `[I\|Â]` 根、真实 DelTrap/固定256叶，六方法/五类对象/绑定，自定义 registry 接 Luo compact/Hybrid/BYTEAUTH；21 项实际组合检查，新进程不耗熵/无 engine 恢复，48 项最终 Sage 测试通过 | n2/q549755813911 为不安全调试输入，8649次公开枚举实际恢复明文；原 CHKP theorem 不能直接继承。source-checkout/Sage 研究版本，非默认CLI/wheel；正式参数/模型、原 CHKP 和 ABB-ROM 仍待完成，不升级已准入数 |
 | 本地 CLI 接收状态事务 | [接收状态证据](research/2026-10-10-receiver-persistence/README.md)：锁、pending、保存后输出及已有研究接收密钥复用 | 提供同 OS 本地进程失败后的保守阻止；不宣称防回滚、硬断电或跨 OS 分布式事务 |
 | 其它候选 | [候选基础包](research/2026-10-10-foundations/README.md)、Yu 同态、SRGG 代数/采样等部分实现 | 每项按实际算法和测试单独计数；不把候选卡或公开方程计作完整后端 |
 
@@ -69,6 +70,8 @@
 19 条路线均有 owner、优先级和下一步，公共 T0—T10 明确覆盖 PR 接收、装配、状态、全组合攻击、评测、展示、优化验证、报告和支撑材料。详见[总计划](workplans/三人方案分工与统一框架交付.md)、[A](workplans/2026-10-12/A-矩阵HIBE任务.md)、[B](workplans/2026-10-12/B-原生格IBS任务.md)、[C](workplans/2026-10-12/C-结构HIBE与工程IBS任务.md)和[任务登记](workplans/2026-10-12/tasks.json)。全部就绪且适配的配对纳入验收，最后按场景数据挑三个报告重点，不限制其它配对。这个分工是计划，不是新增后端的完成声明。
 
 本次修改在 PR #11 审查工作树完成；PR #10 的目录/规范已经包含在该分支，PR #9 的 C64B helper 仍待独立接收。本轮未合并这三个 PR，未改变密码算法。复核范围和未关闭项见[PR 审查与修订说明](workplans/2026-10-12/PR审查与分工修订说明.md)。
+
+A 随后按新任务书开始独立分支实施，新增 MP12 变体研究后端和真实单配对，范围/攻击/参数缺口见上表交付；此前分工修订的远端两项 CI 已完成通过。A 目标仍 active：公开研究接口已实跑，正式维度/两角色困难性/模型对应和部署工具未闭合，A2/AR 尚未交付。新结果不覆盖原型/旧报告或其它未测组合。
 
 ## 4. 当前入口与证据定位
 

@@ -65,12 +65,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "planned",
+      "execution_state": "research_profile_and_projection_done_formal_roles_pending",
       "deliverables": [
         "研究配置/目标配置全参数与原文条件表",
         "根父叶尺寸/资源和第一阻塞",
         "下一真实路径输入选择"
-      ]
+      ],
+      "evidence": "../../research/team-a-delivery/2026-10-12-hibe-reference/README.md"
     },
     {
       "id": "A3",
@@ -80,12 +81,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "planned",
+      "execution_state": "finite_tools_reused_public_package_and_scaling_pending",
       "deliverables": [
         "现有有限工具接收与公开接口",
         "真实分布/委派、异常/资源测试",
         "消费者和误差口径"
-      ]
+      ],
+      "evidence": "../../research/team-a-delivery/2026-10-12-hibe-reference/README.md"
     },
     {
       "id": "A1",
@@ -96,12 +98,13 @@
         "A0",
         "A3"
       ],
-      "execution_state": "planned",
+      "execution_state": "source_reference_real_pair_done_formal_and_deployment_pending",
       "deliverables": [
         "六方法及真实 Extract→Derive",
         "对象/绑定/固定状态与严格 codec",
         "BackendSpec 提案与算法章节"
-      ]
+      ],
+      "evidence": "../../research/team-a-delivery/2026-10-12-hibe-reference/README.md"
     },
     {
       "id": "A2",
@@ -622,5 +625,6 @@
     "LATTE/Lai 匿名/采样/委派与 Xie 原文冲突须先核验",
     "完整参数/模型条件和正式安全声明逐配置审查",
     "完整展示/报告/支撑/答辩产物仍待实施，本文提供任务和模板"
-  ]
+  ],
+  "last_a_evidence_date": "2026-10-12"
 }
