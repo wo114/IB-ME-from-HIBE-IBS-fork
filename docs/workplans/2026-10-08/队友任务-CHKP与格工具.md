@@ -1,5 +1,7 @@
 # 队友任务书：CHKP 两层匿名 HIBE 与格工具
 
+2026-10-11 首套集中闭环补充：[真实H/G与固定256位状态包](../../research/2026-10-11-first-suite-seed/README.md)提供独立identity/leaf_state/seed_kem组件与可复跑Gaussian/恢复探针，不修改本任务保留文件。可复用规范公开配置上下文、有序H/G/位置、256短原像私有wire和FAILED规则；raw KEM错身份由后续AEAD/IBS收口，不能按原始种子接口宣称已满足完整HIBE contract。优先交主/父固定发钥、真实参数/采样/绑定和七入口；主AI继续协议集成。完整首套及生产准入仍WIP。
+
 2026-10-11 可接手[公开代码复用包](../../research/2026-10-11-public-reuse/README.md)：固定qFALL Git/Cargo.lock的MP12完整短基转换，现有ExtBasis/ToBasis与原生Sage DGS适配；三个预定诊断和小q失败保留。该包未覆盖本任务保留源文件，也不是已注册CHKP后端。建议先核验MP12作为GenBasis的引用/近均匀/GS条件及正式n，明确CSPRNG和原生有限误差/资源，再落实H/G、一级委派、256地址/wire和可恢复密钥；已有有限参考作差分对照。
 
 日期：2026-10-08。可直接把本文件交给负责 HIBE 的队友或其 AI。任务是在已确认 Wang HIBE + IBS 组合下，实现 **CHKP/Bonsai Trees §5.3 的两层匿名 ROM HIBE**；不负责 IBS、协议包装或另一个 IBE + IBS 通用协议，不恢复增强隐私。

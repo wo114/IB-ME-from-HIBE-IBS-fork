@@ -220,6 +220,10 @@ PR #6交付研究组件尚未成为完整HIBE；原缓存单批/单对象32个bi
 
 ## 6. 测试验收
 
+2026-10-11 首套集中闭环的独立组件：`experiments/research/first_suite/` 定义真实两层H/G、固定256位seed原像状态和CHKP共享前导种子wire，规范见[本轮记录](docs/research/2026-10-11-first-suite-seed/README.md)。H/G绑定调用方完整规范公开配置、根矩阵、身份分量/角色与位置，模余数经有界拒绝产生；Oracle类型不证明配置语义、素性/秩、GenBasis或安全难度。私有scope再绑定receiver/width/profile，恢复重算目标并验维度、方程、范数；FAILED在执行前保留，跨恢复禁止重抽。私有wire≤16MiB、每整数≤256bit、最多8个sender，按256*D*37 B预留后执行；不是旧32位缓存的扩容，不改变有限原语硬上限/证书。
+
+SeedCapsule固定256末端和最大深度3m前导，q为uint64；MSB位序、实际round(q·连续Gaussian alpha)噪声、D+256独立标量和奇数q平局规则固定。Raw KEM错身份可输出随机种子，须接HYBRID AEAD和Wang/BYTEAUTH验收BOTTOM/全字节完整性。当前探针为原生public-test profile/n=1，不注册HIBE后端、不授予参数准入；主/父钥、七入口/CLI/完整组合仍需contract和攻击验收。队友chkp_*和源后端文件未覆盖。
+
 2026-10-11 公开代码比较契约：独立experiments/research/reuse/用qFALL公开API生成gadget/完整整数基，fixture须显式public_test_fixture=true、n<=4/q<=2^40/m_bar<=96/根维度<=192；JSON长度/形状/规范整数及参数/定义关系先核对，Sage再核对完整核格det=q^n。R为明确的两个测试bit之差，不称Gaussian。该Rust接口无生产发钥或HIBE七算法入口。
 
 独立NativePublicGPV仅用于公开测试，最多256维/256位置，精确列基GSO、C1-exec规则和sigma=s/sqrt(2pi)对应；使用Sage整数DGS uniform+online/MPFR192/tau12，必须显式测试seed。向量方程核对、固定最多D+32个RandBasis尝试，失败不重试；Scalar TV、整链TV及最坏随机带为null，原生内部拒绝没有有限次数证书，不继承旧有限采样证明或生产随机API。现有原语硬上限/profile不变。256位置对象是比较批次，未实现固定私有地址/cache/wire，不将它接为已获准后端。

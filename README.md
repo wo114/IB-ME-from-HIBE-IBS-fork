@@ -1,5 +1,7 @@
 # IB-ME from HIBE + IBS
 
+2026-10-11 当前集中推进第一套：[真实H/G与固定256位种子生命周期](docs/research/2026-10-11-first-suite-seed/README.md)已有独立公开身份算法、固定私有wire、失败墓碑和真实噪声封装/恢复路径。PR #8引用边界合并`fc3e52e`；完整参数、主父钥和七入口/协议攻击仍WIP，全部none/false。后续优先真实首套闭环，候选扩展和独立优化后置。
+
 2026-10-11 最新[公开代码复用试验](docs/research/2026-10-11-public-reuse/README.md)：已接qFALL的MP12完整短基转换、既有CHKP扩展/ToBasis和Sage原生GPV。独立79/158/237维教学链完成256原像及两轮512/512有噪声位相位；旧192维拒绝保持。n=1、原生TV/资源及生产熵、H/G/256位持久密钥/完整后端仍WIP；LATTE标量缓冲区问题已C复现并隔离，PR #7最终文档已合并。全部none/false，不计安全首套或性能优化。
 
 本项目的目标是实现基于两层格基 HIBE 和格基 IBS 的身份基匹配加密（IB-ME）。
