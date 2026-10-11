@@ -48,6 +48,7 @@ jobs:
           tests/test_first_suite_delegation.py
           tests/test_first_suite_finite_sampling.py
           tests/test_first_suite_root_generation.py
+          tests/test_first_suite_compact_delegation.py
           tests/test_ibme_joint_parameters.py tests/test_ibme_root_sampler_audit.py
           tests/test_ibme_noise_budget.py tests/test_ibme_rounded_noise.py
           tests/test_ibme_chain_audit.py

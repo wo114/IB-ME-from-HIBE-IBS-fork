@@ -237,6 +237,16 @@ class MasterTreeState:
 
     def __repr__(self): return "MasterTreeState(RESEARCH, all secret bases/state hidden)"
 
+    def root_basis_for_research(self):
+        """Explicit private primitive input for an independently bound pilot.
+
+        The caller already holds the master secret. This does not issue a
+        receiver, change the tree, or certify another delegation algorithm.
+        The immutable complete basis was validated by the constructor.
+        """
+        with self._lock:
+            return self._root
+
     def _reserve(self, growth):
         if len(self.to_bytes()) + growth > MAX_WIRE:
             raise InvalidParameterError("whole master tree future private wire exceeds budget")
