@@ -1,20 +1,14 @@
-# IB-ME from HIBE + IBS：实现规范与验收标准
+# IB-ME 统一接口与验收规范
 
-本文档是代码实现的唯一接口规范。其他 AI 只应根据本文件和 `ARCHITECTURE.md` 修改代码；论文中的记号与代码命名不一致时，以本文件的接口为准，并在适配层转换。
+本文件是共享框架的唯一通用接口和验收规范。架构见 [ARCHITECTURE.md](ARCHITECTURE.md)，当前实现与外部交付进度见 [PROJECT_STATUS.md](docs/PROJECT_STATUS.md)。方案专属约束分别见 [Luo IBS](docs/specs/luo-ibs.md)、[传输与状态](docs/specs/transport-and-state.md)、[教学格工具](docs/specs/teaching-lattice.md)。研究记录和任务书不得自行改写这些接口。
 
-2026-10-03 重建范围已固定为王老师的两层匿名 HIBE + IBS 通用构造，不实施 Boyen–Li 增强隐私。当前接口暂保持兼容；第 3 节的二进制 gadget 和 SIS 关系描述现有参考后端，不是所有未来后端必须采用的算法。具体原语选定后，再版本化补充参数与算法规范。研究记录不能自行改写代码接口，进度见 `docs/PROJECT_RESTART.md`。
+框架沿用 Wang 的两层匿名 HIBE + IBS 通用构造；HIBE 与 IBS 独立实现、独立选参，再装配为兼容组合。不实施 Boyen–Li 的 Ext/ReExt 增强隐私。共同目标包括普通隐私、加强认证、自我伪造防护和完整密文字节篡改拒绝，安全结论须逐项说明前提。
 
-原语准入条件为满足 Wang 的 HIBE 自适应匿名安全定义和 IBS 自适应不可伪造定义；mock、非自适应 IBS 基本形式或教学采样不能作为安全完整实例交付。错误身份拒绝与密文字节篡改拒绝仍须实现，取消增强隐私不降低本文件验收要求。
-
-2026-10-08 用户转述老师要求安全性证明以引用为主。对于忠实复现的已发表算法，交付算法/定理/参数和实现对应表即可组织理论依据，不要求重做基础定理或完整 Lean 形式化。仍须检查引用结论覆盖两层匿名、自适应与实际密钥复用模型，完成合法选参和实现验收；已知反例、未覆盖的算法改变与完整性包装不能靠引用消除。具体工作顺序见 [文献复核与实施计划](docs/research/2026-10-08-selection/文献复核与后续实施计划.md)。此说明不改变接口与安全声明门槛。
-
-2026-10-06 多实例验收口径（老师确认后的补充）：同时要求不同格困难假设和不同具体算法的实例化。按 HIBE/IBS 真实依赖记录假设类别，按完整具体方案记录算法实例；同一假设下的不同算法可计为算法实例，参数或采样器调整仍属于参数扫描/实现优化。每套实例须提供假设、具体原语、安全模型、证明映射、参数与攻击估计，再通过完整协议验收。完整组合数与底层算法数分别报告，不靠接口配置组合凑数量。详见 [专项说明](docs/research/2026-10-06/多困难假设实例化口径与验收.md)。此修订不改变现有代码接口或 `Params` 类型。
+**实现边界：**`BaselineIBME`、`ByteAuthenticatedIBME` 已接受两个后端对象；Hybrid 通过显式解码器连接底层 HIBE。统一注册表、独立 HIBE/IBS CLI 选择和自动组合兼容表仍待实现。本次整理冻结其要求，不把文档或空适配器计为实现。
 
 ## 1. 身份与编码
 
-身份类型为非空字节串 `Identity`。CLI 可以接受 UTF-8 字符串，但进入密码算法前必须转成字节串。
-
-规范编码：
+身份为非空字节串；CLI 的 UTF-8 文本必须先转换为字节。消息可以为空。身份顺序固定为 `(parent_id, child_id) = (receiver_id, sender_id)`。身份比较使用规范化原始字节的常数时间比较；不得把显示文本当作另一套身份。
 
 ```text
 encode_bytes(x) = uint32_be(len(x)) || x
@@ -23,251 +17,137 @@ encode_pair(a, b) = DOMAIN_PAIR || encode_bytes(a) || encode_bytes(b)
 encode_message(id, message) = DOMAIN_MSG || encode_bytes(id) || encode_bytes(message)
 ```
 
-禁止使用无长度的字符串拼接。身份比较使用原始规范化字节串的常数时间比较。
+使用 [Core 编码](src/ibme/core/encoding.py)，禁止无长度字段拼接。顶层解析拒绝追加/重复字段，读取长度后先核对剩余字节和资源预算，不按不可信长度分配内存。各后端需校验自己的维度、模数、范围、版本、公钥上下文及规范重编码。
 
-2026-10-08 增加兼容的 Core 辅助接口 `PreparedShake256(domain, prefix).digest(suffix, out_len)`，结果逐字节等于 `shake256(domain, prefix + suffix, out_len)`。前缀在构造时吸收，后续每次复制状态再添加后缀；调用者仍负责原有规范字段编码。六个域常量、原 `shake256` 输入布局与生产协议保持不变。此接口用于已编码联合上下文的重复吸收优化，不替换熵源、不缩短上下文、不复用扰动/噪声/签名输出。研究适配器显式注入，详见优化报告。
+`PreparedShake256(domain, prefix).digest(suffix, out_len)` 的结果必须逐字节等于 `shake256(domain, prefix + suffix, out_len)`；调用方仍负责规范编码。复制已吸收前缀的状态不能改变旧域/输入、缩短上下文或复用随机噪声。
 
-## 2. 参数对象
+## 2. 参数与组合配置
 
-```python
-@dataclass(frozen=True)
-class Params:
-    name: str
-    security_parameter: int
-    n: int
-    m_matrix: int
-    q: int
-    s0: float
-    s: float
-    s_prime: float
-    identity_bytes: int
-    max_message_bytes: int
-```
+每个后端使用自己的显式参数类型。旧 `Params` 的字段、uint32 格式和教学约束只见 [教学兼容规范](docs/specs/teaching-lattice.md)；`LuoMatrixParams`、`LuoModuleParams` 和后续 CHKP 参数不自动转换为旧类型。HIBE/IBS 不要求相同 n、q、环或困难假设。代码中矩阵列数称 `m_matrix`，消息称 `message`。
 
-代码中不要用 `m` 同时表示消息和矩阵列数；矩阵列数统一叫 `m_matrix`，消息统一叫 `message`。
+参数记录必须包含论文/算法版本、来源位置、完整数值、身份和消息限额、随机与中止策略、资源上限、已验证条件和安全声明。未完成安全准入时使用 `security_claim=none`、`backend_admitted=false`，另行记录参数是否正式；这些标记允许合法研究运行，不能伪装为已安全准入的默认配置。
 
-`identity_bytes` 的语义（主 AI 冻结，2026-09 M3 审查后）：**身份的最大字节长度**（上限，不是固定长度）。HIBE 后端的所有身份入口（extract/derive/encrypt/decrypt 中的身份参数）必须以 `validate_identity(..., max_bytes=params.identity_bytes)` 强制执行；协议组合中每个身份都会流经 HIBE 层，因此该上限覆盖整个 IB-ME 路径。IBS 原语单独调用时依赖调用方先经过 HIBE 层规范化（在 IBS 模块文档中注明）。
+身份限额为最大长度。组合需同时满足 HIBE 与 IBS 的入口限制；采用 Hybrid 时还须满足编码后的两层身份宽度。IBS 单独调用按自身契约验证身份，不依赖某次 HIBE 调用为它完成校验。
 
-参数文件必须记录：来源论文、是否仅用于调试、预期安全级别、已知限制。没有完成安全估计的参数必须标注 `security_claim: none`。
+未来统一装配配置至少明确以下信息。这是装配功能的验收要求，不是当前已有的 Python 类或 CLI 参数：
 
-R1 研究扩展决定（2026-10-08）：旧 `Params` 及旧 uint32 格式保持兼容；CHKP、Luo/SRGG 的独立数学参考使用各自显式研究配置，记录层级宽度、挑战和编码条件等旧类型无法表达的字段。大模数不得截断为 uint32。`BaselineIBME.setup` 已分别转发 HIBE/IBS 参数，方法形状不需改变；进入 `src/ibme/` 的新版本参数类型与 wire 必须在对应后端任务中单独补充规范和 contract tests，研究配置不自动成为生产后端。当前规格见 [R1](docs/research/2026-10-08-r1/README.md)。
+| 配置信息 | 必须保留的内容 |
+|---|---|
+| HIBE / IBS 选择 | 各自稳定标识、算法版本、独立参数与对象解码器 |
+| 协议与包装 | Baseline 或 BYTEAUTH；direct 或 Hybrid；明确 wire/suite 版本 |
+| 编码选择 | IBS 签名 reference/compact 等已实现格式，加载时不能自动降级 |
+| 容量与能力 | 两层派生、身份宽度、载荷/签名预算、Hybrid 所需密钥绑定验证器 |
+| 状态语义 | 固定身份密钥、缓存/重采样规则、持久化与单写者要求 |
+| 证据状态 | 功能可运行、组合已测、安全已准入分列；本地提交与外部产物分列 |
 
-M2-A Luo 研究适配（2026-10-09）：`src/ibme/ibs/luo.py` 实现冻结的 IBS 方法与对象基类，显式使用独立 `LuoMatrixParams`；旧 Params 不自动映射。配置为 `IBME/LUO2024/MATRIX-CONFIG/1`，完整字段且安全声明固定 none/false，JSON 解析拒绝重复/未知字段和错误版本。对象继续兼容 M1 的 `MATRIX-REF/1` 研究格式，主状态保存固定身份密钥而不保存 RNG，验签只依赖公开输入。程序对象类型错误为 TypeError，身份/消息错误为 EncodingError，配置错误为 InvalidParameterError，反序列化错误为 SerializationError；熵源错误为 RandomnessError，预算耗尽为明确的 LuoSamplingAbort。当前 n≤16,m≤128,k≤32、uint32 q、有符号 int64 整数及 8 MiB 上限是研究资源限制；分析报告里的大参数不能交给这个版本执行。方法形状、旧后端和 CLI 选择不变，未准入安全后端。算法对应、测试、完整格式及 CHKP 载荷交接见 [M2-A](docs/research/2026-10-09-m2/README.md)。
+装配预检应在熵消费、发钥或状态写入前拒绝不兼容配置。一个原语阻塞仅阻塞依赖它的组合。不同算法可以使用同一困难假设；参数或编码调整不能重复计作新密码算法。第三个 HIBE 候选不再强制 Module-LWE；具体候选与优先级由当前状态记录维护。
 
-## 3. 格基基础模块
+## 3. 原语公共接口
 
-2026-10-09 Luo 模格研究后端冻结补充（M2-B2）：独立 `LuoModuleParams` 和 `MODULE-REF/1` 格式，不转换旧 Params。默认研究输入 degree=256、(k,l)=(11,10)、q=274877844481、NTT 512 阶根 153250464611、η=1、κ=64、γ₁=125440、γ₂=31470387200、γ₃=15270991360、d=28。实现论文 §4 Algorithms 7–16；Algorithm 15 第 9 行的 zid 按该节正文及 Algorithm 16 解释为签名 z。不增加 z 非零条件。H1/H2 用独立 SHAKE-256 角色域、规范输入和本 IBS 公钥上下文；本轮 A 为真实均匀显式矩阵，未实施原文 SHAKE-128 种子压缩。
+### 3.1 HIBE：六个基础方法
 
-多项式为 Z[X]/(X^N+1) 与 Z_q[X]/(X^N+1)：掩码、私有响应和 z 保留有符号整数；A、t、w 为 [0,q) 系数。负循环 NTT 用 twist/untwist 和 2N 阶根，整数运算不得溢出或截断 q。Power2Round 保留最高端进位（默认 w1 可为 1024）；Decompose 的 q−1 特例、MakeHint/UseHint 严格依原文，h 为逐系数 bit，不发明 hint 重量上限。
-
-对象公钥/主状态/固定身份密钥/签名分别版本化、类型化、长度前缀编码；参数和模系数为 uint64，z/私有系数为 int64，c 为 signed int8，h 为 bit 字节，w1 宽度由参数决定。解析拒绝未知版本、重复/截断/追加、维度/范围错误、错误公钥上下文；主状态恢复校验 t=As1+s2，身份密钥恢复校验 Az1+z2=w+tH1(w1,id)。同一身份缓存同一份密钥，RNG 不进入快照，私有 repr 隐去秘密。
-
-公开资源限制：N 为 2–256 的二次幂，k/l≤16，消息≤65536 B、身份≤256 B、缓存≤64 身份、wire≤16 MiB；均匀抽样/Extract/Sign 均有显式预算，超限抛 IBMEError 的采样中止而不返回默认值。大素数仅接收本轮已有 Sage 核验的模数，小素数独立核验；不把资源/方程通过当作 MLWE/MSIS 或完整 QROM 安全。`security_claim: none`、`backend_admitted: false`，不注册为 CLI 安全后端，签名载荷与完整攻击验收仍是后续切换门槛。
-
-2026-10-09 模格 MSIS/Hint 核验口径：论文 §4.4 式 (4.1) 引入 u′ 的系数无穷范数界 `κ*2^(d−1)+2γ₃+1`，当前为 39131917313，不能仅用 z 的界代替。已签身份条件分支的矩阵为 [A|I_k]；新身份分支在 MLWE 将 t 换为均匀后采用 [A|I_k|t]，对应系数维度分别 (2816,5376)/(2816,5632)，后一分支的小挑战乘积块单独限制为 128。筛查的共同放松界为 78279890946，采用固定版本工具的无穷范数模型，记录块界/放松方向、模型与局限。HighBits→完整 w 的升举在最高 w1=1024 时必须保留低部 −62464，H1 仍作用于 Power2Round(w) 的原高位编码。
-
-非零条件须分支记录：整数二次幂分圆环是整环，小挑战乘积的系数界小于 q，足以排除新身份分支的零模产品，无需错误假设所有挑战在 Rq 可逆；已签身份分支不能只由 c≠c′ 推出非零，需要原文公开模拟/固定缓存条件下的平均猜测界。此条件论证、启发式成本筛查及真实实现分别验收，尚无完整 QROM/侧信道/安全默认实例；研究代码与生产参数不得据此被无条件放行。
-
-2026-10-09 `MODULE-COMPACT/1` 传输格式：只压缩签名字节，不改变参数、公钥/密钥格式、数学签名或 H1/H2 的既有输入编码。z 以偏移 `z+Zmax` 打包，`Zmax=γ₂−β₂−1`，宽度 `max(1,bit_length(2*Zmax))`；w₁ 宽度为 `max(1,bit_length(max_w1))`；默认分别36/11位。挑战使用N位存在位图和κ个符号位（按系数下标递增，1表示−1）；h 按全体 kN 个 bit 打包，不增加 Hint 重量限制。全部系数按多项式行序、最高位优先打包；末尾不足字节的低位必须零，不能接受非规范填充或未使用范围编码。
-
-压缩 wire：`L24C1 || LP(IBME/LUO2024/MODULE-COMPACT/1) || LP(SIGNATURE) || LP(params) || LP(context) || LP(z) || LP(c_presence) || LP(c_signs) || LP(w1) || LP(h)`；params/context仍是136/64B，字段长度由已验证公钥参数推导，先核对参数/上下文，再解码固定大小字段。总长≤1MiB，拒绝截断、追加、重复、版本/上下文错误、维度/范围/权重和填充异常。编码/解码在合法数学签名空间与规范字节空间上互逆；BITPACK不是新的密码算法。
-
-显式 `LuoModuleCompactIBSBackend` 复用原四算法与密钥缓存，只包装 Sign 返回值及选定格式的加载；规范转换函数可用于参考/压缩差分。`luo-module-research` setup 支持 `--signature-format reference|compact`，缺省 reference；研究 state明确保存选择，既有缺少该字段的v1状态按已知 reference 格式读取。Encrypt/Decrypt 按state选择，不能用这个选项临时改解码器；compact加载器仅接收compact，reference仅接收reference。教育/mock配置不支持compact选项，既有哈希域及Wang/BYTEAUTH的输入和绑定均不改。安全声明和原语实例计数不因压缩改变。
-
-### 模矩阵
-
-`ModMatrix` 至少支持：
-
-- 创建和维度检查；
-- 模 $q$ 加、减、乘；
-- 矩阵拼接；
-- 固定长度序列化；
-- 从规范字节串反序列化；
-- 与整数向量相乘。
-
-所有操作都必须检查模数和维度一致性，失败时抛出项目自定义异常。
-
-### gadget 矩阵
-
-对 $q$ 使用统一的二进制 gadget 矩阵：
-
-$$
-G\in\mathbb{Z}_q^{n\times n\lceil\log_2q\rceil}.
-$$
-
-### SIS-IBS 关键关系
-
-$$
-H_1(mpk,id)=A\widehat R_{id}+G,
-\qquad
-F_{id}=[A\mid H_1(mpk,id)] .
-$$
-
-签名必须满足：
-
-$$
-F_{id}z=H_2(mpk,id,message)\pmod q.
-$$
-
-验证还要检查 $z\neq 0$ 和论文规定的范数界。
-
-### 随机性
-
-离散高斯采样器必须提供：
+以 [hibe/api.py](src/ibme/hibe/api.py) 为对应代码入口，保持位置参数和 rng 关键字约定：
 
 ```python
-sample_integer_gaussian(sigma, center=0) -> int
-sample_vector_gaussian(length, sigma) -> list[int]
+setup(self, params, *, rng=None) -> (public_key, master_secret)
+extract(self, msk, parent_id: bytes, *, rng=None) -> level1_key
+derive(self, sk_parent, child_id: bytes, *, rng=None) -> level2_key
+encrypt(self, pk, parent_id: bytes, child_id: bytes,
+        payload: bytes, *, rng=None) -> ciphertext
+decrypt(self, sk_child, ct, *, rng=None) -> bytes | None
+load_ciphertext(self, data: bytes) -> ciphertext
 ```
 
-实现者必须提供采样统计测试，报告均值、方差和尾部计数。不能把均匀随机数伪装成离散高斯。
+- `rng` 为 `read(n) -> bytes`；None 使用生产随机源，测试显式注入确定流。
+- 公钥、主密钥、两级私钥和密文均提供严格 `to_bytes/from_bytes`。上层只持有不透明对象及明确的解码器，不读取陷门矩阵。
+- 一级密钥公开 `identity`；二级密钥公开 `parent_identity`、`child_identity`。Hybrid 对外属性返回原身份，在原语边界转换为固定宽度编码。
+- 密文不得明文携带身份或可公开枚举的身份摘要。是否达到匿名安全须另核验算法和模型。
+- 解密成功返回完整 payload；其可识别的数据失败返回 None，绝不返回部分结果。原始 CPA 数学解码器不具备通用篡改检测承诺，错误身份/低位扰动的行为必须按测试层区分。
+
+独立能力 `HIBEKeyBindingValidator.validate_key_binding(public_key, secret_key) -> bool` 不计入上述六个方法。它在基础接口中是可选能力，在 Hybrid 中必须提供（后端方法或显式注入）；只接受字面 True、不消费随机性，验证公钥来源/身份路径/可检查方程，不能证明采样分布或安全等级。详见 [绑定契约](docs/specs/transport-and-state.md#3-hibe-密钥与公钥的语义绑定)。
+
+### 3.2 IBS：五个方法
+
+以 [ibs/api.py](src/ibme/ibs/api.py) 为对应代码入口：
+
+```python
+setup(self, params) -> (public_key, master_secret)
+key_extract(self, msk, identity: bytes) -> signing_key
+sign(self, sk, message: bytes) -> signature
+verify(self, pk, identity: bytes, message: bytes, signature) -> bool
+load_signature(self, pk, data: bytes) -> signature
+```
+
+- 随机源通过后端构造函数注入，协议的 `rng` 不隐式替换 IBS 随机源。
+- 签名密钥绑定 `identity` 及其 `identity_digest`，`sign` 不再接收可替换身份；错身份验证返回 False。
+- 对象实现 IBS 公共基类和规范序列化；签名加载统一经过 `load_signature(pk, data)`，不假设所有签名类具有相同 `from_bytes` 参数。
+- `verify` 对不合法身份/消息/签名、维度、方程和范数返回 False；严格加载错误抛 `SerializationError`。
+- `setup/key_extract/sign` 的程序类型、编码、参数错误分别明确报告；熵源错误、资源耗尽和采样中止不得伪装为有效默认输出。具体异常、固定身份缓存和算法条件由专属规范说明。
+
+### 3.3 算法专属条件
+
+每个模块给出论文算法—实现映射、正确性条件、真实随机分布、失败事件、格式和恢复语义。需要离散高斯的算法必须说明宽度约定并做统计诊断；使用均匀掩码的算法按原论文实现。SIS 方程、gadget、陷门委派或 NTT 仅约束使用它们的后端，不能作为所有 HIBE/IBS 的通用接口要求。
 
 ## 4. 基线 IB-ME 算法
 
-```python
-def setup(params):
-    hpk, hmsk = hibe.setup(params)
-    ipk, imsk = ibs.setup(params)
-    return PublicKey(hpk=hpk, ipk=ipk), MasterSecret(hmsk=hmsk, imsk=imsk)
-
-def skgen(msk, sender_id):
-    return SenderKey(ibs.key_extract(msk.imsk, sender_id))
-
-def rkgen(msk, receiver_id):
-    return ReceiverKey(hibe.extract(msk.hmsk, receiver_id))
-
-def encrypt(public, ek_sender, receiver_id, message):
-    signed_message = encode_message(receiver_id, message)
-    signature = ibs.sign(ek_sender.signing_key, signed_message)
-    payload = encode_signature(signature) + encode_bytes(message)
-    return hibe.encrypt(public.hpk, receiver_id,
-                        ek_sender.identity, payload)
-
-def decrypt(public, dk_receiver, sender_id, ciphertext):
-    child_key = hibe.derive(dk_receiver.level1_key, sender_id)
-    payload = hibe.decrypt(child_key, ciphertext)
-    if payload is None:
-        return None
-    signature, message = parse_payload(payload)
-    verify_message = encode_message(dk_receiver.identity, message)
-    if not ibs.verify(public.ipk, sender_id, verify_message, signature):
-        return None
-    return message
-```
-
-实现时将 `None` 映射为对外 API 的 `BOTTOM`，不要返回部分解密结果。
-
-## 5. 混合加密包装
-
-当消息超过 HIBE 明文容量时：
-
-1. 生成随机对称密钥；
-2. 用 AEAD 加密文件；
-3. IB-ME 只加密对称密钥和必要的绑定信息；
-4. IBS 绑定规范化后的 `receiver_id || nonce || aead_ciphertext` 的哈希。
-
-这是工程包装，报告中必须说明它与论文中直接加密消息的接口差异。
-
-上述步骤只描述待论证的包装方向，尚不是完整性或 CCA 定理。认证必须覆盖完整头部、格胶囊和消息体；只绑定 nonce 与 AEAD 消息体不能排除胶囊修改后恢复同一短密钥的情况。新包装先写计算顺序、攻击者权限和安全论证，再实现，不形成签名与被签密文相互依赖的循环。
-
-### 2026-10-09 HIBE 大载荷适配（HYBRID-HIBE/1）
-
-主 AI 决定本轮先在 HIBE 接口后实现载荷适配，和上面的待研究应用文件包装分开：Wang 的 IBS 输入、signature||message 载荷、(rcv,phi) 顺序与 BYTEAUTH 内层 OTS 绑定都不改。适配器放在 `src/ibme/protocol/hybrid_hibe.py`，只调用底层 HIBE 的公开接口，不占队友原语文件。
-
-Encrypt：新抽取 32 B 均匀种子和 12 B nonce；底层 HIBE 在 (rcv,phi) 的规范固定宽度编码下仅加密种子；HKDF-SHA256 从种子、公钥上下文和固定 suite 域导出 32 B AES 密钥；AES-256-GCM 加密完整载荷。AAD 规范绑定 suite、64 B 公钥上下文、**完整底层胶囊字节**、nonce 和载荷长度。身份及其可公开枚举摘要不放入新头部/AAD。每次加密重新抽取种子，不持久化种子/DEM 密钥/RNG。Decrypt：上下文/预算与规范解析 → 底层解出恰好 32 B 种子 → KDF → GCM 验证，全部通过才返回完整载荷；数据错误返回 None。
-
-身份编码修复本轮发现的旧胶囊长度泄漏：`IBME:HYBRID-ID:v1 || role(P/C) || LP(raw_identity) || zero_padding`，padding 将原身份槽补至公开 identity_max_bytes。编码定长且单射；不哈希身份，不增加碰撞假设。包装密钥持有原身份并在加载时检查底层冻结身份属性等于相应编码；协议/IBS/CLI 继续使用原身份。默认原身份上限 64 B，对应底层身份宽度及上限 86 B；加密和派生保持接收者先、发送者后。新 suite 明确包含 IDPAD，固定底层身份宽度及种子宽度，仍不据长度测试声称完整匿名证明。
-
-公钥、主状态、两级密钥及密文使用独立 kind 和 suite 的长度前缀格式。包装密钥携带同一完整包装公钥、底层对象和相应原身份字段，冻结身份属性返回原身份，并核对其底层编码绑定；公钥上下文由其规范字节导出，底层对象通过调用方明确绑定的解码器加载，拒绝非规范往返与后端错配。默认资源为身份≤64 B、载荷≤65536 B、胶囊≤4 MiB；硬上限分别 256 B、16 MiB、4 MiB，底层对象≤16 MiB，包装对象≤32 MiB+1 KiB；解析先检查总长再调用底层加载器。旧组件类形式之外允许显式绑定的 `from_bytes` 解码器，协议方法形状不变。
-
-新增显式研究配置 `luo-module-research`：底层 ABB10 教学参数的载荷上限缩为 32 B、编码身份上限 86 B，外部原身份上限仍为 64 B；IBS 为 M2-B2 的精确模格输入，完整消息仍经 BYTEAUTH。应用消息统一上限 3924 B，包含 IBS 输入所需接收身份和 89 B envelope；越限在随机数/签名操作前拒绝。跨命令发钥须写回 Luo 身份缓存；新进程按 state 的明确版本/研究配置选择解码器，不能退回旧教育后端。研究配置禁止 --mock 和 --legacy-baseline，不自动成为安全 preset；当前默认 education 及其旧攻击对照保持可复现。
-
-### 2026-10-10 首套固定密钥状态与参数快照
-
-LuoModuleMasterSecret的同一对象以不进入wire的重入锁串行化key_extract与缓存快照；from_bytes重建新的锁。同一身份的缓存检查、随机发钥和插入构成一个临界区，序列化的count与条目来自同一快照；数学算法、H1/H2、参数、同一串行操作序列的协议随机消费和MODULE-REF/COMPACT格式保持。
-
-CLI所有Setup/发钥写操作在读取主状态前取得本地状态锁，并保持至缓存提交和完整密钥文件发布。研究接收者发钥也写回主状态，以承接后续有状态HIBE。主状态先提交，密钥文件随后通过同目录临时文件、flush/fsync和原子替换发布；主状态发布失败不暴露新密钥，密钥文件发布失败可以从已提交缓存重试同一密钥。研究状态不允许通过改选education/mock等配置来覆盖。参数/格式预检在创建状态目录和锁文件之前执行。
-
-状态锁文件为永久的`.ibme-issue.lock`，只保存一个零字节，不保存身份/私钥/种子。Windows使用msvcrt字节锁，POSIX使用flock；默认最多等待30秒，忙或文件系统错误明确失败，不降级为无锁读写。进程退出释放OS锁；禁止删除锁文件来“解锁”，避免产生第二个锁inode。这是同一OS本地文件系统范围，不是分布式锁或硬断电下的多文件事务。未验证Windows与WSL混合进程共同写同一状态目录的互操作性。
-
-固定研究profile的HIBE解码器同时核对外层限额，以及公钥与各级秘密对象中公开参数快照的n、m_bar、q、身份/载荷上限、s0/s_enc/s_pre，必须等于RESEARCH_INNER_PARAMS推导的完整快照。只比较参数，不读取陷门矩阵；合法通用HIBE对象也不能绕过该profile的固定选参。协议接口、有效旧wire和安全声明保持none/false。
-
-安全依据按普通混合加密、RFC 5869 与 AES-GCM 的条件分项引用，见本轮报告；未宣称 HPKE 兼容或由 CPA HIBE 获得 CCA/QROM。AEAD 不能防持钥接收者重签，IBS 与 BYTEAUTH 继续承担发送者认证和完整字节绑定。所有后端/组合声明固定 none/false，底层教学 HIBE、模格 IBS 的安全参数和引用条件仍需准入。
-
-### 2026-10-10 HIBE密钥与公钥的语义绑定
-
-新增独立的`HIBEKeyBindingValidator.validate_key_binding(public_key, secret_key) -> bool`能力。既有HIBE七个方法签名保持；HYBRID-HIBE适配器构造时必须取得该验证器，可由原语方法提供，或以`key_binding_validator`显式注入。缺失/不可调用即拒绝，不能只比较类型或参数后放行。
-
-协议层传入不透明的底层公钥/秘密对象，由原语内部核对公钥来源、身份路径及可验证的私钥方程。调用不消费随机性；只有Python字面True接受，None/0/1/字符串及异常都明确失败。加载错误映射SerializationError，运行时错误映射InvalidParameterError。Setup/Extract/Derive产生的秘密对象和Decode/Decrypt使用的秘密对象均经过相同检查，坏密钥在新随机采样或胶囊解析前拒绝。
-
-ABB10教学实现：主密钥重建公开A并核对元数据/u；一级、二级密钥核对同一根A/u/元数据，再复用既有公开代数验证函数核对A·R1+G=H(parent)、[A|H(parent)]·R2+G=H(parent,child)。私有矩阵只在原语层读取。校验不证明Gaussian采样来源、范数分布、不可伪造或匿名性，不提高安全声明。
-
-Mock仅供契约测试：核对可验证的公开种子/限额与二级公开派生值，一级秘密链不能从公钥核验，仍无任何密码安全性。不得以mock结果放行CHKP；队友T4须交真实验证器并覆盖同参数不同公钥/坏方程/身份路径及恢复案例。
-
-合法既有wire、HIBE/IBS算法、身份顺序及随机输入保持；不引入新的密文字段或公开身份。先前可解析但语义不绑定的密钥现在拒绝。CHKP文件和格工具未被修改。
-
-## 6. 测试验收
-
-### 2026-10-09 完整密文字节认证版本（BYTEAUTH/1）
-
-这是 §4 Wang 基线外的独立工程包装，不改变 HIBE 身份顺序。底层基线的消息改为规范 envelope：`IBME:BOUND-MSG:v1 || LP(ots_vk_commitment) || LP(application_message)`；因此原有 IBS 同时签入接收者、应用消息和临时 OTS 公钥承诺。每次 Encrypt 新生成一把 Lamport 型一次性哈希签名密钥；先完成基线加密，再对外层版本域、公钥上下文承诺、完整 OTS 公钥及完整基线密文字节签名。签名置于外层末尾，无签名/被签密文循环。
-
-OTS 固定 512 个消息摘要 bit，每个 bit 两个 64 B 随机原像；公钥 1024 个 64 B 哈希像，签名 512 个 64 B 原像。元素像、消息摘要、OTS 公钥承诺和协议公钥上下文使用各自新域的 SHAKE-256，不改变旧六个域常量。生产随机数使用系统 CSPRNG，测试流构造注入；单个私钥对象签一次即耗尽，不序列化进主密钥/状态。
-
-外层 wire：`IBME:BYTEAUTH-CT:v1 || LP(public_context_digest) || LP(ots_public_key) || LP(baseline_ciphertext) || LP(ots_signature)`。承诺均 64 B；内部密文≤64 MiB，公钥/签名长度固定，严格拒绝重复、截断、追加和未知版本。Decrypt 先核对公钥上下文和完整 OTS，再走原基线 Decrypt，最后核对 envelope 中的 OTS 公钥承诺，全部数据失败返回 BOTTOM。公钥及双方长期密钥编码不变。
-
-攻击者可持接收者密钥和原合法签名。若修改原认证公钥下的密文/外层签名却通过，形成强一次性签名伪造；若换新认证公钥并重签，则内部 IBS 签入的承诺必须改变，除承诺碰撞外需要 IBS 伪造。相同字节密文重放不是篡改。临时签名密钥不交给接收者，公开 checksum 或接收者已知密钥的 MAC 不作为替代。
-
-依据为 Lamport 一次性哈希签名的单次签名与单向/第二原像条件；工程实例化另假设 SHAKE 域的原像/碰撞安全。CHK 的强 OTS 包装仅作参考：本版本不把 vk 改成 HIBE 身份，**不引用其定理宣称 CCA**。上述是条件式字节认证论证；当前不安全 IBS 仍使新公钥分支可被伪造，完整加强认证/后量子安全级别仍不得宣称。本轮必须保留该反例。
-
-CLI 默认产生并只接受 BYTEAUTH/1；旧未认证密文仅经显式 `--legacy-baseline` 研究开关访问，不自动降级。原 BaselineIBME 保留数学参考和负面对照；新版本与旧版本的测试分别记录，不能靠关闭验签使安全目标通过。
-
-### 原语测试
-
-- 矩阵维度和模数检查；
-- `F_id * z = h2 mod q`；
-- 陷门委派前后接口兼容；
-- 离散高斯统计；
-- 序列化往返一致性。
-
-### 协议测试
-
-| 情况 | 结果 |
-|---|---|
-| `receiver = rcv` 且 `sender = snd` | 返回原消息 |
-| 仅接收者不匹配 | `BOTTOM` |
-| 仅发送者不匹配 | `BOTTOM` |
-| 两者都不匹配 | `BOTTOM` |
-| 修改密文一个字节 | `BOTTOM` |
-| 修改签名一个系数 | `BOTTOM` |
-| 截断、追加或重复字段 | `BOTTOM` |
-| 随机伪造签名 | 验证失败 |
-
-### 性能测试
-
-记录 `Setup`、`KeyExt`、`Extract`、`Derive`、`Sign`、`Verify`、`Encrypt`、`Decrypt` 的中位数、四分位数、参数和消息长度。尺寸记录 `mpk`、`ek`、`dk`、`ct` 的序列化字节数。
-
-## 7. CLI 验收场景
+现有构造为 `BaselineIBME(hibe_backend, ibs_backend)`。`setup(params, *, ibs_params=None, rng=None)` 将 `params` 交给 HIBE，将显式 `ibs_params` 交给 IBS；省略后者时仅为旧调用兼容而复用 `params`。其他公共方法保持 `skgen`、`rkgen`、`encrypt`、`decrypt`、`load_ciphertext`。
 
 ```text
-setup --params education
-issue-sender-key Alice
-issue-receiver-key Bob
-encrypt --sender Alice --receiver Bob --in message.bin
-decrypt --receiver Bob --sender Alice --in ciphertext.bin   # 成功
-decrypt --receiver Bob --sender Carol --in ciphertext.bin   # BOTTOM
-decrypt --receiver Carol --sender Alice --in ciphertext.bin  # BOTTOM
-tamper ciphertext.bin
-decrypt --receiver Bob --sender Alice --in tampered.bin     # BOTTOM
+Setup:  分别 setup → hpk/hmsk 和 ipk/imsk
+SKGen:  IBS.key_extract(imsk, sender) → 发送者密钥
+RKGen:  HIBE.extract(hmsk, receiver) → 第一层接收者密钥
+Encrypt:
+  signature = IBS.sign(sender_key, encode_message(receiver, message))
+  payload = DOMAIN_SIGNATURE || LP(signature.to_bytes()) || LP(message)
+  ciphertext = HIBE.encrypt(hpk, receiver, sender_key.identity, payload)
+Decrypt:
+  child = HIBE.derive(receiver_key, claimed_sender)
+  payload = HIBE.decrypt(child, ciphertext)
+  严格解析 signature/message；IBS.load_signature(ipk, signature_bytes)
+  IBS.verify(ipk, claimed_sender, encode_message(receiver, message), signature)
+  全部成功返回 message；数据失败返回 BOTTOM
 ```
 
-## 8. 交付格式
+`DOMAIN_SIGNATURE = b"IBME:SIG:v1"`，LP 即 `encode_bytes`。协议层不能绕开加载器、关闭验签或依赖其他原语私有字段。可识别的密文/验签数据失败对外统一 BOTTOM；错误调用类型/非法 API 参数仍按代码接口报告异常，不把任何程序异常都吞为解密失败。
 
-每个实现任务必须返回：
+## 5. 组合与包装
 
-1. 修改的文件列表；
-2. 运行过的命令；
-3. 测试结果；
-4. 使用的参数及其安全声明；
-5. 未实现内容和已知风险；
-6. 对接口或论文解释有疑问的地方。
+同一框架支持 direct 和 Hybrid 载荷路线。direct 要容纳完整签名及规范消息；Hybrid 将大载荷包装在 HIBE 接口后，底层加密 32 B seed，完整胶囊进入 AEAD AAD。BYTEAUTH 在基线外绑定完整密文字节，内部 IBS 同时绑定一次性认证公钥承诺。准确格式、容量和状态顺序集中在 [传输与状态契约](docs/specs/transport-and-state.md)。
+
+组合前逐项核对：两层 HIBE 与 `(rcv,phi)` 顺序；身份编码与容量；IBS 最大签名/输入尺寸；对象解码器和版本；公钥/密钥语义绑定；固定密钥与持久化需求；失败/中止的分层处理。不同环和模数不构成接口不兼容；超容量、缺少必需能力或语义不符必须明确拒绝。
+
+功能接入与安全准入分别验收。满足可执行参数与资源条件的真实研究后端可以接入共同 smoke/攻击测试，声明仍可保持 none/false。安全完整组合还须满足 Wang 所用自适应匿名 HIBE、自适应不可伪造 IBS 等确切前提、合法参数和包装论证。mock、教学实现、选择身份基本形式不能冒充这些前提已满足。
+
+已发表算法以原定理引用和算法/定理/参数/实现对应组织安全依据，不默认重做基础定理或 Lean 项目；引用不能覆盖未解释的算法更改、反例或失效条件。ROM、QROM、标准模型、正确性概率、攻击估计和实际测试分别记录，不相互替代；BYTEAUTH/Hybrid 不自动给出 CCA 或 QROM 结论。
+
+## 6. 分层验收
+
+| 层 | 必测内容 | 结果含义 |
+|---|---|---|
+| 原语数学 | 对应算法方程、边界、噪声/采样诊断、真实生成/派生/签名 | 原语实现和样例证据，不是安全证明 |
+| 公共接口与 wire | 方法、对象、身份、规范往返、版本/截断/追加/重复/范围拒绝 | 插件可替换和规范编码 |
+| 状态 | 缓存命中、保存/恢复、并发、故障、中止后重试规则 | 按后端明确的持久化边界 |
+| Hybrid | 32 B seed、身份宽度、容量、完整胶囊 AAD、公钥/密钥绑定 | 包装路径的功能与负面对照 |
+| 完整组合 | 下表身份与认证场景、跨进程恢复、所选编码/参数 | 某一具体组合的验收 |
+| 安全与性能 | 引用前提、参数估计、失败界；同边界基准与尺寸 | 分开报告理论/估计/实测 |
+
+完整组合测试须覆盖：
+
+| 场景 | 验收预期 |
+|---|---|
+| 接收者与发送者均匹配 | 返回原消息 |
+| 仅接收者错 / 仅发送者错 / 两者都错 | BOTTOM |
+| 修改完整密文任一受保护区域、修改签名 | BOTTOM |
+| 截断、追加、重复字段、未知版本 | BOTTOM |
+| 随机伪造签名 | 验证失败 |
+| 换新 OTS 公钥并重签、持接收密钥修改 | 检查内部 IBS 绑定；教学可伪造组合保留反例 |
+
+上表篡改拒绝针对 BYTEAUTH 等声明相应能力的完整组合。raw CPA 解码后的同值事件应作为原始数学对照，不强行改算法使所有扰动都报错。历史 xfail、blocked、未执行和 pass 分列；空执行、全部 skip、只重复历史结果不能计为本轮已验收。
+
+性能记录 Setup/KeyExt/Extract/Derive/Sign/Verify/Encrypt/Decrypt 的重复次数、中位数、四分位数，及 mpk/ek/dk/ct 规范字节尺寸。记录硬件/软件、参数、消息/身份长度、RNG/缓存状态、计时边界和失败/超时。完整组合提速要与同安全目标和输入的基线比较；单环节加速、压缩格式或参数调整不等于新增算法或密码学创新。
+
+## 7. 交付与回归
+
+每次交付列明：自己的提交哈希/信息与文件；实际执行的命令和结果；参数与安全声明；本地/外部证据位置；未实现内容、失败与已知风险。接口或版本变更必须同时更新对应规范和 contract tests，不能让按日研究报告取代现行规范。
+
+测试按改动风险选择已有相关 contract/组合测试；文档整理只核对链接、接口、内容和 diff，无须为未改的密码代码重复全量实验。旧 wire 的兼容行为须显式保留或版本化迁移，禁止静默更换算法、解码器、参数或安全声明。

@@ -1,190 +1,118 @@
-# IB-ME from HIBE + IBS：项目总体架构
+# IB-ME 统一框架与独立原语
+
+更新：2026-10-11。接口和验收细节以 [IMPLEMENTATION_SPEC.md](IMPLEMENTATION_SPEC.md) 为准；实际完成情况、外部交付和当前任务统一查 [PROJECT_STATUS.md](docs/PROJECT_STATUS.md)。本文件描述模块职责，不累计逐轮进度。
 
 ## 1. 项目目标
 
-本项目固定采用指导论文第三章、Wang 等论文 §4 的两层匿名 HIBE + IBS 身份基匹配加密通用构造。2026-10-03 团队决定不实施 Boyen–Li 增强隐私。具体原语、正式参数和完整性包装通过核验后确定，进度见 [重建工作记录](docs/PROJECT_RESTART.md)。
+采用指导论文第三章、Wang 等论文 §4 的两层匿名 HIBE + IBS 通用构造。共享一套协议、编码、状态管理和验收工具；HIBE 与 IBS 分别实现，再选择兼容组件组成实例。每个模块只实现一次，供多个组合复用。最终按场景选择三组有实际优势的完整组合，其余保留为比较对象。
 
-2026-10-06 经用户向老师确认，多实例同时覆盖不同格困难假设和不同具体算法。矩阵 LWE/SIS 为首套研究主线，环格与模格为假设扩展方向；同一矩阵 SIS 下的 Foo–Li、Wang + Pan–Wagner 则可作为不同算法实例。分别记录假设类别、原语算法与完整组合，不把同族算法计为新假设，也不把参数扫描计为新算法。具体组件须各自准入，混合组合如实标注，详见 [实例化口径与验收](docs/research/2026-10-06/多困难假设实例化口径与验收.md)。
+分别统计困难假设、原语算法、参数配置和完整组合。两个原语可以属于不同格家族；第三套 HIBE 不再强制覆盖 Module-LWE。候选组合仍须经过各自验证，不能把参数调整计为新算法，也不能把配置接线计为已完成安全实例。
 
-主线方案的解密条件为：
+解密匹配条件固定为 `rho == rcv and phi == snd`：`rho` 为接收密钥身份，`phi` 为真实发送者，`rcv` 为加密指定的接收者，`snd` 为解密尝试的发送者。HIBE 身份顺序始终是 `(parent_id, child_id) = (rcv, phi)`。
 
-$$
-\rho = rcv \quad\land\quad \phi = snd.
-$$
+目标包括普通隐私、加强认证、自我伪造防护和所选包装层的篡改拒绝。不实现 Boyen–Li 增强隐私或 Ext/ReExt；普通隐私不自动保护持有目标接收密钥的恶意用户。
 
-其中 $\phi$ 是真实发送者身份，$\rho$ 是真实接收者身份，`rcv` 是加密时指定的接收者，`snd` 是解密时尝试的发送者。
+## 2. 模块分层
 
-项目的安全口径必须分开：
+```text
+CLI / 应用 / 统一评测
+        │
+组合配置与装配：选择 HIBE、IBS、各自参数、包装及编解码器
+        │
+共享 IB-ME 协议：BaselineIBME / ByteAuthenticatedIBME
+        ├── HIBEBackend ← 可选 HybridHIBE 容量适配
+        │       └── 独立 HIBE 算法实现
+        └── IBSBackend
+                └── 独立 IBS 算法实现
+基础设施：编码、域分隔、随机源、错误、状态存储
+算法工具：各后端所需的矩阵 / 环 / 模 / 陷门 / 采样器
+```
 
-| 版本 | 组件 | 应声明的性质 |
+格工具可以按算法需要复用，不强制所有算法采用同一种陷门、采样分布或签名方程。协议层通过公开接口传递不透明对象；不得跨模块读取秘密矩阵或私有字段来弥补接口缺口。
+
+## 3. 现有装配与待补机制
+
+| 层次 | 代码入口与职责 | 本次整理时的状态 |
 |---|---|---|
-| 已确认通用构造 | 两层匿名 HIBE + 自适应安全 IBS | 普通隐私与加强认证；具体实现仍需证明映射与参数核验 |
-| 工程认证包装 | 对头部、胶囊与消息体的完整绑定 | 独立论证的密文完整性；基本构造不自动保证全部篡改拒绝 |
+| 原语接口 | [HIBE](src/ibme/hibe/api.py)、[IBS](src/ibme/ibs/api.py) | 已有独立接口 |
+| 共享协议 | [baseline.py](src/ibme/protocol/baseline.py) | 构造函数接收两个后端；Setup 可分别传入 HIBE/IBS 参数 |
+| 容量适配 | [hybrid_hibe.py](src/ibme/protocol/hybrid_hibe.py) | 用内层 HIBE 封装种子，外层 HKDF/AES-GCM 处理载荷 |
+| 字节认证 | [byteauth.py](src/ibme/protocol/byteauth.py) | 在基线外增加密文字节认证及加密内容绑定 |
+| 当前研究配置 | [luo_hybrid.py](src/ibme/protocol/luo_hybrid.py) | 教学 ABB10 + Luo 模格 IBS + Hybrid + BYTEAUTH 的专用配置 |
+| 用户入口 | [cli.py](src/ibme/cli.py) | 现有预设；尚无通用 HIBE/IBS 独立选择机制 |
+| 统一选择与装配 | 后续框架工作 | 补组件登记、能力检查、配置装配和组合测试矩阵 |
 
-`978-3-031-51476-0_21` 仅作为增强隐私定义的背景资料，不是待实现组件或现成代码库。普通隐私不能宣称保护持有目标接收密钥、尚未匹配发送者的恶意用户；加强认证仍须覆盖持有目标接收密钥的自我伪造攻击。
-
-## 2. 总体分层
-
-```text
-应用层
-  └── CLI / Demo / Benchmark
-
-协议层
-  └── IBMEBaseline 与经论证的认证包装
-
-原语层
-  ├── HIBEBackend
-  └── IBSBackend
-
-格工具层
-  ├── Zq 矩阵
-  ├── gadget 矩阵
-  ├── TrapGen / DelTrap / SamplePre
-  └── 离散高斯采样
-
-基础设施层
-  ├── 身份、消息、密文的规范编码
-  ├── SHAKE-256 域分隔哈希
-  ├── 安全随机数与测试随机数
-  └── 参数配置与版本管理
-```
-
-任何上层模块不得直接操作底层 Python 列表或自行实现序列化。矩阵、随机性和编码都必须经过基础设施层提供的接口。
-
-## 3. 推荐目录
-
-```text
-ibme/
-  pyproject.toml
-  README.md
-  ARCHITECTURE.md
-  IMPLEMENTATION_SPEC.md
-  DELEGATION_PROMPTS.md
-  src/ibme/
-    core/
-      types.py
-      encoding.py
-      hashing.py
-      randomness.py
-      errors.py
-    lattice/
-      params.py
-      modmat.py
-      gadget.py
-      gaussian.py
-      trapdoor.py
-    hibe/
-      api.py
-      abb10.py
-      mock.py
-    ibs/
-      api.py
-      sis_ibs.py
-      mock.py
-    protocol/
-      baseline.py
-    cli.py
-  tests/
-    test_encoding.py
-    test_lattice_core.py
-    test_hibe_contract.py
-    test_ibs_contract.py
-    test_baseline_ibme.py
-    test_security_properties.py
-  experiments/
-    benchmark.py
-    parameter_sweep.py
-    test_vectors/
-  params/
-    education.yaml
-    competition.yaml
-```
-
-第一版使用 Python + SageMath。需要 Sage 的代码在 WSL 中使用环境 `~/miniconda3/envs/sage` 运行。性能优化可另建 C++/Rust 后端，但不能改变 Python 参考实现的协议接口。
+后续装配机制应利用现有构造函数，不复制协议。配置须明确后端标识与版本、各自参数、序列化读取器、包装选择、能力限制和声明状态。字段名与 wire 变更仍须按接口流程冻结；这张表不代表新的注册 API 已实现。
 
 ## 4. 原语接口
 
-### HIBE
+### 4.1 HIBE：六个方法
+
+以下是 [HIBEBackend](src/ibme/hibe/api.py) 的调用形状；对象详细约束见实现规范。
 
 ```python
-class HIBEBackend(Protocol):
-    def setup(self, params) -> tuple[HIBEPublicKey, HIBEMasterSecret]: ...
-    def extract(self, msk, parent_id: bytes) -> HIBELevel1SecretKey: ...
-    def derive(self, sk_parent, child_id: bytes) -> HIBELevel2SecretKey: ...
-    def encrypt(self, pk, parent_id: bytes, child_id: bytes,
-                payload: bytes) -> HIBECiphertext: ...
-    def decrypt(self, sk_child, ct: HIBECiphertext) -> bytes | None: ...
+setup(params, *, rng=None) -> (public_key, master_secret)
+extract(master_secret, parent_id: bytes, *, rng=None) -> level1_key
+derive(level1_key, child_id: bytes, *, rng=None) -> level2_key
+encrypt(public_key, parent_id: bytes, child_id: bytes,
+        payload: bytes, *, rng=None) -> ciphertext
+decrypt(level2_key, ciphertext, *, rng=None) -> bytes | None
+load_ciphertext(data: bytes) -> ciphertext
 ```
 
-身份顺序固定为 `(parent_id, child_id) = (rcv, phi)`。HIBE 密文不能明文携带身份，否则会破坏匿名性。
+`rng` 遵守 `read(n) -> bytes`，默认采用安全随机源；固定随机源只用于复现。密钥和密文提供规范序列化；协议经 `load_ciphertext` 恢复密文，不猜测具体类。公钥、主密钥、一级密钥、二级密钥、密文的编解码由后端负责。
 
-2026-10-10 适配层接入补充：HybridHIBE要求原语提供或显式注入公开的validate_key_binding能力，在原语内部验证秘密对象属于所声明公钥并满足可检查的私钥关系。协议层只调用验证器，不读取陷门；原七个HIBE方法和协议语义保持。详见 IMPLEMENTATION_SPEC 的密钥绑定补充。
+一级密钥公开 `identity`，二级密钥公开 `parent_identity` / `child_identity`。匿名 HIBE 密文不得直接暴露身份或可公开枚举验证的身份标签。解密失败返回 `None`，成功返回完整载荷；数学参考核产生比特并不等于已满足这一适配契约。
 
-### IBS
+`HIBEKeyBindingValidator.validate_key_binding(public_key, secret_key) -> bool` 是**独立能力**，不计入六个基本方法。Hybrid 要求后端提供该能力或显式注入验证器；验证在后端内部检查公钥归属、身份路径和可检查的秘密关系。仅字面值 `True` 放行，检查不消耗随机数，也不证明采样来源或安全等级。
+
+### 4.2 IBS：五个方法
 
 ```python
-class IBSBackend(Protocol):
-    def setup(self, params) -> tuple[IBSPublicKey, IBSMasterSecret]: ...
-    def key_extract(self, msk, identity: bytes) -> IBSSigningKey: ...
-    def sign(self, sk: IBSSigningKey, message: bytes) -> IBSSignature: ...
-    def verify(self, pk, identity: bytes, message: bytes,
-               signature: IBSSignature) -> bool: ...
+setup(params) -> (public_key, master_secret)
+key_extract(master_secret, identity: bytes) -> signing_key
+sign(signing_key, message: bytes) -> signature
+verify(public_key, identity: bytes, message: bytes, signature) -> bool
+load_signature(public_key, data: bytes) -> signature
 ```
 
-签名密钥对象应保存规范化后的身份摘要，避免调用者在 `sign` 时误传另一个身份。
+随机源经 IBS 后端构造函数注入，不给这五个方法额外增加 `rng` 参数。签名密钥绑定身份，`sign` 不重复接受身份。协议经 `load_signature` 解析签名；公钥提供算法需要的解析上下文。
 
-## 5. 协议组合
+验证失败返回 `False`；严格反序列化失败抛 `SerializationError`；Setup/提取/签名的非法参数、编程错误和采样中止按专属契约明确报告。不能把采样中止伪装成有效签名。
 
-基线版加密过程：
+### 4.3 参数和公共基础
 
-$$
-t\gets\mathsf{IBS.Sign}(sk_\phi,\mathsf{EncID}(rcv)\mathbin\Vert m),
-$$
+`BaselineIBME.setup(hibe_params, ibs_params=ibs_params, rng=...)` 的第一个参数在当前代码中名为 `params`。两个原语允许不同参数类、模数、维度、环和分布；共享的是协议语义与编码边界。不得为了“统一”而强制相同 `q` 或复用一个算法的参数不等式。
 
-$$
-ct\gets\mathsf{HIBE.Enc}(hpk,rcv,\phi,\mathsf{EncSig}(t)\mathbin\Vert m).
-$$
+协议编码使用 core 中的长度前缀和域分隔规则。后端内部哈希、随机分布和范数判据按选定算法规定实现；公共框架不能把所有构造改成一种哈希或采样器。
 
-基线版解密先派生 $\mathsf{sk}_{\rho|snd}$ 并调用 HIBE 解密，再验证：
+## 5. 组合与兼容性
 
-$$
-\mathsf{IBS.Verify}(ipk,snd,\mathsf{EncID}(\rho)\mathbin\Vert m',t)=1.
-$$
+基线加密按现有规范执行：
 
-协议层只能依赖接口，不能读取 HIBE 或 IBS 的内部矩阵。
+```text
+signed_message = encode_message(receiver_id, message)
+signature = IBS.sign(sender_key, signed_message)
+payload = encode_signature(signature) || encode_bytes(message)
+ciphertext = HIBE.encrypt(hpk, receiver_id, sender_id, payload)
+```
 
-## 6. 工程约束
+解密先由接收密钥和尝试的发送者身份派生二级 HIBE 密钥，再解密、严格解析、加载 IBS 签名并验证 `encode_message(receiver_key.identity, message)`。BYTEAUTH 在其外层验证认证及绑定；Hybrid 在 HIBE 接口内处理种子与大载荷。具体层次和拒绝责任见 [实现规范](IMPLEMENTATION_SPEC.md)。
 
-1. 身份、消息、签名都使用长度前缀和域分隔编码。
-2. 所有哈希使用 SHAKE-256，并区分 `HIBE-ID`、`IBS-H1`、`IBS-H2` 等域。
-3. 测试随机数可以固定种子，生产随机数必须来自系统 CSPRNG。
-4. 所有模 $q$ 系数使用统一的 `[0, q)` 表示；范数计算使用明确的整数或高精度实现。
-5. 不在代码中散落参数；所有参数从 `Params` 对象读取。
-6. 大文件使用混合加密，IB-ME 只封装对称密钥。
-7. 小参数只能用于功能调试，不能用于宣称安全等级。
+每个组合须分别检查：
 
-## 7. 集成顺序
+| 检查 | 需要确认的内容 |
+|---|---|
+| 接口 | 两层委派、对象编解码、失败语义和随机源满足共同契约 |
+| 容量 | 应用消息、签名/认证开销、内层种子、两级身份编码均适配 |
+| 状态 | 公钥/参数/后端版本绑定；所用缓存和持久化能力满足该配置的要求 |
+| 正确性 | 原语条件与组合后的解密/验证条件同时成立，失败来源可区分 |
+| 安全前提 | 匿名 HIBE、IBS 安全模型、通用构造定理与包装假设逐项对应 |
 
-按以下顺序合并其他 AI 的工作：
+因此，可配置组合表示工程复用；每一套安全声明仍需独立核对前提。原始 CPA 数学解码可能在小幅篡改后恢复原值，不能把全字节篡改拒绝硬塞入其数学算法。
 
-1. `core` 编码、哈希、类型和错误处理；
-2. `lattice` 矩阵、gadget、采样和陷门工具；
-3. `HIBEBackend`，先通过 mock，再接 ABB10；
-4. `IBSBackend`，先通过 mock，再接 SIS-IBS；
-5. 基线协议组合；
-6. 正确性、篡改、伪造和性能测试；
-7. 同一通用构造下不同困难假设及不同算法的完整实例与公平评测；假设类别、算法及组合分别统计。
+## 6. 并行实施与验收
 
-每个阶段都必须保留一组可复现测试向量。
+框架、HIBE、IBS、工具和测试可以按文件所有权并行推进。使用 mock 的框架测试、原语真实研究运行、完整研究组合、正式安全准入分别记录；一个原语受阻只阻塞依赖它的组合。具体门槛与交接见 [AI_WORKFLOW.md](AI_WORKFLOW.md)。
 
-## 8. 安全声明边界
-
-最终报告必须明确：
-
-- 方案是否在随机预言机模型中分析；
-- 使用的是教学参数还是经过格安全估计的参数；
-- 是否实现了完整的匿名 HIBE，而不是普通 HIBE 的功能替代品；
-- 明确不实施、不宣称 Boyen–Li 增强隐私；
-- 密文完整性包装的认证范围和独立安全依据。
-
-没有完成相应组件和证明映射时，不得使用“增强隐私”“达到 NIST Level X”或“标准模型安全”等表述。
+当前可运行配置和最新 CHKP/Luo 结果仅在 [项目状态](docs/PROJECT_STATUS.md) 更新。功能成功、性能结果、正确性论证、参数估计和安全归约分别报告；任何包装都不自动补齐原语安全性，也不自动得到 CCA、QROM、标准模型或 NIST 等级声明。
