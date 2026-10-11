@@ -1,0 +1,1363 @@
+{
+  "backend_admitted": false,
+  "contexts": [
+    {
+      "algorithms": {
+        "cached_extract": 1,
+        "fresh_extract": 1,
+        "setup": 1,
+        "sign": 1
+      },
+      "api": {
+        "LuoModuleCompactIBSBackend": {
+          "__init__": "(self, *, rng=None)",
+          "key_extract": "(self, msk, identity)",
+          "load_signature": "(self, public, data)",
+          "setup": "(self, params)",
+          "sign": "(self, sk, message)",
+          "verify": "(self, public, identity, message, signature)"
+        },
+        "LuoModuleIBSBackend": {
+          "__init__": "(self, *, rng=None)",
+          "key_extract": "(self, msk, identity)",
+          "load_signature": "(self, pk, data)",
+          "setup": "(self, params)",
+          "sign": "(self, sk, message)",
+          "verify": "(self, pk, identity, message, signature)"
+        },
+        "LuoModuleMasterSecret": {
+          "from_bytes": "(data)",
+          "to_bytes": "(self)"
+        },
+        "LuoModuleParams": {
+          "from_bytes": "(raw)",
+          "to_bytes": "(self)"
+        },
+        "LuoModulePublicKey": {
+          "from_bytes": "(data)",
+          "to_bytes": "(self)"
+        },
+        "LuoModuleSigningKey": {
+          "from_bytes": "(data)",
+          "to_bytes": "(self)"
+        }
+      },
+      "attempts": {
+        "extract": 21,
+        "sign": 6
+      },
+      "backend_admitted": false,
+      "checks": [
+        {
+          "name": "explicit_C64B_parameter_equality",
+          "result": "pass"
+        },
+        {
+          "name": "identity_64B_and_cached_identity",
+          "result": "pass"
+        },
+        {
+          "name": "cached_extract_no_entropy",
+          "result": "pass"
+        },
+        {
+          "name": "compact_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "master_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "params_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "public_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "reference_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "signing_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "reference_to_compact_identical",
+          "result": "pass"
+        },
+        {
+          "name": "compact_to_reference_identical",
+          "result": "pass"
+        },
+        {
+          "name": "reference_verify",
+          "result": "pass"
+        },
+        {
+          "name": "reference_wrong_message",
+          "result": "pass"
+        },
+        {
+          "name": "reference_wrong_identity",
+          "result": "pass"
+        },
+        {
+          "name": "compact_verify",
+          "result": "pass"
+        },
+        {
+          "name": "compact_wrong_message",
+          "result": "pass"
+        },
+        {
+          "name": "compact_wrong_identity",
+          "result": "pass"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_loader_rejects_compact",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_loader_rejects_reference",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "params_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "params_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "public_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "public_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "master_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "master_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "signing_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "signing_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_unknown_version",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_default_params_not_C64B",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_wrong_public_context",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_unknown_version",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_default_params_not_C64B",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_wrong_public_context",
+          "result": "rejected"
+        }
+      ],
+      "codecs": [
+        "IBME/LUO2024/MODULE-REF/1",
+        "IBME/LUO2024/MODULE-COMPACT/1"
+      ],
+      "command": [
+        "C:\\Users\\A\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-I",
+        "-S",
+        "-B",
+        "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\experiments\\research\\luo_cross_version.py",
+        "--worker"
+      ],
+      "dont_write_bytecode": true,
+      "elapsed_seconds": 2.53,
+      "executable": "C:\\Users\\A\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "head": "886fc127304479b87ef210836757004818e5b6ea",
+      "isolated": true,
+      "mode": "produce",
+      "modules": [
+        {
+          "module": "ibme",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\__init__.py",
+          "sha256": "f0e3dd70a3752229d5209b58ef760914242569406374c427a463a45823090bb8"
+        },
+        {
+          "module": "ibme.core",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\__init__.py",
+          "sha256": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac"
+        },
+        {
+          "module": "ibme.core.encoding",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\encoding.py",
+          "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+        },
+        {
+          "module": "ibme.core.errors",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\errors.py",
+          "sha256": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e"
+        },
+        {
+          "module": "ibme.core.hashing",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\hashing.py",
+          "sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4"
+        },
+        {
+          "module": "ibme.core.randomness",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\randomness.py",
+          "sha256": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202"
+        },
+        {
+          "module": "ibme.core.types",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\types.py",
+          "sha256": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56"
+        },
+        {
+          "module": "ibme.ibs",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\__init__.py",
+          "sha256": "09f78edc872e40b5c0644b187db5e8f6aa2fb9a74455eb41571b9e71a63920c4"
+        },
+        {
+          "module": "ibme.ibs.api",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\api.py",
+          "sha256": "e08bfaf4c73c0471966103156f3b88debda5f37b06b493c63dde7b4372da661c"
+        },
+        {
+          "module": "ibme.ibs.luo",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo.py",
+          "sha256": "728319d4ca14c004b258717b3ffecf083760920f15fa79bfe0af761de81a67bf"
+        },
+        {
+          "module": "ibme.ibs.luo_module",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo_module.py",
+          "sha256": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275"
+        },
+        {
+          "module": "ibme.ibs.luo_module_codec",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo_module_codec.py",
+          "sha256": "bb99eb6a18a06be204ab0274de8e295522589d8100cc2c9f944c7cf4980b06df"
+        },
+        {
+          "module": "ibme.ibs.luo_module_math",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo_module_math.py",
+          "sha256": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f"
+        },
+        {
+          "module": "ibme.ibs.luo_reference",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo_reference.py",
+          "sha256": "993a9da05f302c73464860028e54a3dad95557a23ca334df4dbb5f4090c236b0"
+        },
+        {
+          "module": "ibme.ibs.mock",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\mock.py",
+          "sha256": "c91902e02252a07dba1a777f1fa444de05058ca2f2c228356c82f3ca951b51a8"
+        },
+        {
+          "module": "ibme.ibs.sis_ibs",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\sis_ibs.py",
+          "sha256": "a66f160d1c0ceb35080db2fa039dbe7f41bb7a71ebf223a6e35965d70486ed61"
+        },
+        {
+          "module": "ibme.lattice",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\__init__.py",
+          "sha256": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f"
+        },
+        {
+          "module": "ibme.lattice.gadget",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\gadget.py",
+          "sha256": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d"
+        },
+        {
+          "module": "ibme.lattice.gaussian",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\gaussian.py",
+          "sha256": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c"
+        },
+        {
+          "module": "ibme.lattice.modmat",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\modmat.py",
+          "sha256": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94"
+        },
+        {
+          "module": "ibme.lattice.params",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\params.py",
+          "sha256": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be"
+        },
+        {
+          "module": "ibme.lattice.trapdoor",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\trapdoor.py",
+          "sha256": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8"
+        }
+      ],
+      "no_site": true,
+      "pid": 34844,
+      "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+      "root": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS",
+      "security_claim": "none",
+      "wires": {
+        "compact": {
+          "bytes": 16383,
+          "sha256": "33d8a03dde369cb24fab6f92e928c8500036e7632e6ed2f0ca1b91c272674076"
+        },
+        "master": {
+          "bytes": 356744
+        },
+        "params": {
+          "bytes": 136,
+          "sha256": "4aba80efb7a0b023eb8d4e6a3e3a4897a18ddb7923ab11abcfa1b390ce7767c9"
+        },
+        "public": {
+          "bytes": 248000,
+          "sha256": "4719a4fbe0155a84e1e14fca1a2814ce8b0241ea7aaea53ddecfc6e303c971af"
+        },
+        "reference": {
+          "bytes": 29455,
+          "sha256": "b4d08adb175a6296d99cc99e1c3ac0c248428755929f733836816d0c164c47e4"
+        },
+        "signing": {
+          "bytes": 313725
+        }
+      }
+    },
+    {
+      "algorithms": {
+        "cached_extract": 1,
+        "fresh_extract": 0,
+        "setup": 0,
+        "sign": 0
+      },
+      "api": {
+        "LuoModuleCompactIBSBackend": {
+          "__init__": "(self, *, rng=None)",
+          "key_extract": "(self, msk, identity)",
+          "load_signature": "(self, public, data)",
+          "setup": "(self, params)",
+          "sign": "(self, sk, message)",
+          "verify": "(self, public, identity, message, signature)"
+        },
+        "LuoModuleIBSBackend": {
+          "__init__": "(self, *, rng=None)",
+          "key_extract": "(self, msk, identity)",
+          "load_signature": "(self, pk, data)",
+          "setup": "(self, params)",
+          "sign": "(self, sk, message)",
+          "verify": "(self, pk, identity, message, signature)"
+        },
+        "LuoModuleMasterSecret": {
+          "from_bytes": "(data)",
+          "to_bytes": "(self)"
+        },
+        "LuoModuleParams": {
+          "from_bytes": "(raw)",
+          "to_bytes": "(self)"
+        },
+        "LuoModulePublicKey": {
+          "from_bytes": "(data)",
+          "to_bytes": "(self)"
+        },
+        "LuoModuleSigningKey": {
+          "from_bytes": "(data)",
+          "to_bytes": "(self)"
+        }
+      },
+      "attempts": {},
+      "backend_admitted": false,
+      "checks": [
+        {
+          "name": "explicit_C64B_parameter_equality",
+          "result": "pass"
+        },
+        {
+          "name": "identity_64B_and_cached_identity",
+          "result": "pass"
+        },
+        {
+          "name": "cached_extract_no_entropy",
+          "result": "pass"
+        },
+        {
+          "name": "compact_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "master_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "params_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "public_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "reference_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "signing_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "reference_to_compact_identical",
+          "result": "pass"
+        },
+        {
+          "name": "compact_to_reference_identical",
+          "result": "pass"
+        },
+        {
+          "name": "reference_verify",
+          "result": "pass"
+        },
+        {
+          "name": "reference_wrong_message",
+          "result": "pass"
+        },
+        {
+          "name": "reference_wrong_identity",
+          "result": "pass"
+        },
+        {
+          "name": "compact_verify",
+          "result": "pass"
+        },
+        {
+          "name": "compact_wrong_message",
+          "result": "pass"
+        },
+        {
+          "name": "compact_wrong_identity",
+          "result": "pass"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_loader_rejects_compact",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_loader_rejects_reference",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "params_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "params_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "public_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "public_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "master_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "master_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "signing_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "signing_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_unknown_version",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_default_params_not_C64B",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_wrong_public_context",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_unknown_version",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_default_params_not_C64B",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_wrong_public_context",
+          "result": "rejected"
+        }
+      ],
+      "codecs": [
+        "IBME/LUO2024/MODULE-REF/1",
+        "IBME/LUO2024/MODULE-COMPACT/1"
+      ],
+      "command": [
+        "C:\\Users\\A\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-I",
+        "-S",
+        "-B",
+        "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\experiments\\research\\luo_cross_version.py",
+        "--worker"
+      ],
+      "dont_write_bytecode": true,
+      "elapsed_seconds": 0.819,
+      "executable": "C:\\Users\\A\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "head": "0bf0855464a9902ad95c91ea5bdfb4d12e78f5b9",
+      "isolated": true,
+      "mode": "consume",
+      "modules": [
+        {
+          "module": "ibme",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\__init__.py",
+          "sha256": "f0e3dd70a3752229d5209b58ef760914242569406374c427a463a45823090bb8"
+        },
+        {
+          "module": "ibme.core",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\__init__.py",
+          "sha256": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac"
+        },
+        {
+          "module": "ibme.core.encoding",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\encoding.py",
+          "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+        },
+        {
+          "module": "ibme.core.errors",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\errors.py",
+          "sha256": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e"
+        },
+        {
+          "module": "ibme.core.hashing",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\hashing.py",
+          "sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4"
+        },
+        {
+          "module": "ibme.core.randomness",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\randomness.py",
+          "sha256": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202"
+        },
+        {
+          "module": "ibme.core.types",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\types.py",
+          "sha256": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56"
+        },
+        {
+          "module": "ibme.ibs",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\__init__.py",
+          "sha256": "09f78edc872e40b5c0644b187db5e8f6aa2fb9a74455eb41571b9e71a63920c4"
+        },
+        {
+          "module": "ibme.ibs.api",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\api.py",
+          "sha256": "e08bfaf4c73c0471966103156f3b88debda5f37b06b493c63dde7b4372da661c"
+        },
+        {
+          "module": "ibme.ibs.luo",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo.py",
+          "sha256": "728319d4ca14c004b258717b3ffecf083760920f15fa79bfe0af761de81a67bf"
+        },
+        {
+          "module": "ibme.ibs.luo_module",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo_module.py",
+          "sha256": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275"
+        },
+        {
+          "module": "ibme.ibs.luo_module_codec",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo_module_codec.py",
+          "sha256": "bb99eb6a18a06be204ab0274de8e295522589d8100cc2c9f944c7cf4980b06df"
+        },
+        {
+          "module": "ibme.ibs.luo_module_math",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo_module_math.py",
+          "sha256": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f"
+        },
+        {
+          "module": "ibme.ibs.luo_reference",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo_reference.py",
+          "sha256": "993a9da05f302c73464860028e54a3dad95557a23ca334df4dbb5f4090c236b0"
+        },
+        {
+          "module": "ibme.ibs.mock",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\mock.py",
+          "sha256": "c91902e02252a07dba1a777f1fa444de05058ca2f2c228356c82f3ca951b51a8"
+        },
+        {
+          "module": "ibme.ibs.sis_ibs",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\sis_ibs.py",
+          "sha256": "a66f160d1c0ceb35080db2fa039dbe7f41bb7a71ebf223a6e35965d70486ed61"
+        },
+        {
+          "module": "ibme.lattice",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\__init__.py",
+          "sha256": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f"
+        },
+        {
+          "module": "ibme.lattice.gadget",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\gadget.py",
+          "sha256": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d"
+        },
+        {
+          "module": "ibme.lattice.gaussian",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\gaussian.py",
+          "sha256": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c"
+        },
+        {
+          "module": "ibme.lattice.modmat",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\modmat.py",
+          "sha256": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94"
+        },
+        {
+          "module": "ibme.lattice.params",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\params.py",
+          "sha256": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be"
+        },
+        {
+          "module": "ibme.lattice.trapdoor",
+          "path": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\trapdoor.py",
+          "sha256": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8"
+        }
+      ],
+      "no_site": true,
+      "pid": 44512,
+      "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+      "root": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS",
+      "security_claim": "none",
+      "wires": {
+        "compact": {
+          "bytes": 16383,
+          "sha256": "33d8a03dde369cb24fab6f92e928c8500036e7632e6ed2f0ca1b91c272674076"
+        },
+        "master": {
+          "bytes": 356744
+        },
+        "params": {
+          "bytes": 136,
+          "sha256": "4aba80efb7a0b023eb8d4e6a3e3a4897a18ddb7923ab11abcfa1b390ce7767c9"
+        },
+        "public": {
+          "bytes": 248000,
+          "sha256": "4719a4fbe0155a84e1e14fca1a2814ce8b0241ea7aaea53ddecfc6e303c971af"
+        },
+        "reference": {
+          "bytes": 29455,
+          "sha256": "b4d08adb175a6296d99cc99e1c3ac0c248428755929f733836816d0c164c47e4"
+        },
+        "signing": {
+          "bytes": 313725
+        }
+      }
+    },
+    {
+      "algorithms": {
+        "cached_extract": 1,
+        "fresh_extract": 0,
+        "setup": 0,
+        "sign": 0
+      },
+      "api": {
+        "LuoModuleCompactIBSBackend": {
+          "__init__": "(self, *, rng=None)",
+          "key_extract": "(self, msk, identity)",
+          "load_signature": "(self, public, data)",
+          "setup": "(self, params)",
+          "sign": "(self, sk, message)",
+          "verify": "(self, public, identity, message, signature)"
+        },
+        "LuoModuleIBSBackend": {
+          "__init__": "(self, *, rng=None)",
+          "key_extract": "(self, msk, identity)",
+          "load_signature": "(self, pk, data)",
+          "setup": "(self, params)",
+          "sign": "(self, sk, message)",
+          "verify": "(self, pk, identity, message, signature)"
+        },
+        "LuoModuleMasterSecret": {
+          "from_bytes": "(data)",
+          "to_bytes": "(self)"
+        },
+        "LuoModuleParams": {
+          "from_bytes": "(raw)",
+          "to_bytes": "(self)"
+        },
+        "LuoModulePublicKey": {
+          "from_bytes": "(data)",
+          "to_bytes": "(self)"
+        },
+        "LuoModuleSigningKey": {
+          "from_bytes": "(data)",
+          "to_bytes": "(self)"
+        }
+      },
+      "attempts": {},
+      "backend_admitted": false,
+      "checks": [
+        {
+          "name": "explicit_C64B_parameter_equality",
+          "result": "pass"
+        },
+        {
+          "name": "identity_64B_and_cached_identity",
+          "result": "pass"
+        },
+        {
+          "name": "cached_extract_no_entropy",
+          "result": "pass"
+        },
+        {
+          "name": "compact_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "master_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "params_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "public_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "reference_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "signing_canonical_roundtrip",
+          "result": "pass"
+        },
+        {
+          "name": "reference_to_compact_identical",
+          "result": "pass"
+        },
+        {
+          "name": "compact_to_reference_identical",
+          "result": "pass"
+        },
+        {
+          "name": "reference_verify",
+          "result": "pass"
+        },
+        {
+          "name": "reference_wrong_message",
+          "result": "pass"
+        },
+        {
+          "name": "reference_wrong_identity",
+          "result": "pass"
+        },
+        {
+          "name": "compact_verify",
+          "result": "pass"
+        },
+        {
+          "name": "compact_wrong_message",
+          "result": "pass"
+        },
+        {
+          "name": "compact_wrong_identity",
+          "result": "pass"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_loader_rejects_compact",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_loader_rejects_reference",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "params_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "params_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "public_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "public_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "master_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "master_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "signing_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "signing_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_truncated",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_appended",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_unknown_version",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_default_params_not_C64B",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "reference_wrong_public_context",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_unknown_version",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_default_params_not_C64B",
+          "result": "rejected"
+        },
+        {
+          "exception": "SerializationError",
+          "name": "compact_wrong_public_context",
+          "result": "rejected"
+        }
+      ],
+      "codecs": [
+        "IBME/LUO2024/MODULE-REF/1",
+        "IBME/LUO2024/MODULE-COMPACT/1"
+      ],
+      "command": [
+        "C:\\Users\\A\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-I",
+        "-S",
+        "-B",
+        "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\experiments\\research\\luo_cross_version.py",
+        "--worker"
+      ],
+      "dont_write_bytecode": true,
+      "elapsed_seconds": 0.885,
+      "executable": "C:\\Users\\A\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "head": "886fc127304479b87ef210836757004818e5b6ea",
+      "isolated": true,
+      "mode": "consume",
+      "modules": [
+        {
+          "module": "ibme",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\__init__.py",
+          "sha256": "f0e3dd70a3752229d5209b58ef760914242569406374c427a463a45823090bb8"
+        },
+        {
+          "module": "ibme.core",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\__init__.py",
+          "sha256": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac"
+        },
+        {
+          "module": "ibme.core.encoding",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\encoding.py",
+          "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+        },
+        {
+          "module": "ibme.core.errors",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\errors.py",
+          "sha256": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e"
+        },
+        {
+          "module": "ibme.core.hashing",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\hashing.py",
+          "sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4"
+        },
+        {
+          "module": "ibme.core.randomness",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\randomness.py",
+          "sha256": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202"
+        },
+        {
+          "module": "ibme.core.types",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\core\\types.py",
+          "sha256": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56"
+        },
+        {
+          "module": "ibme.ibs",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\__init__.py",
+          "sha256": "09f78edc872e40b5c0644b187db5e8f6aa2fb9a74455eb41571b9e71a63920c4"
+        },
+        {
+          "module": "ibme.ibs.api",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\api.py",
+          "sha256": "e08bfaf4c73c0471966103156f3b88debda5f37b06b493c63dde7b4372da661c"
+        },
+        {
+          "module": "ibme.ibs.luo",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo.py",
+          "sha256": "728319d4ca14c004b258717b3ffecf083760920f15fa79bfe0af761de81a67bf"
+        },
+        {
+          "module": "ibme.ibs.luo_module",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo_module.py",
+          "sha256": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275"
+        },
+        {
+          "module": "ibme.ibs.luo_module_codec",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo_module_codec.py",
+          "sha256": "bb99eb6a18a06be204ab0274de8e295522589d8100cc2c9f944c7cf4980b06df"
+        },
+        {
+          "module": "ibme.ibs.luo_module_math",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo_module_math.py",
+          "sha256": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f"
+        },
+        {
+          "module": "ibme.ibs.luo_reference",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\luo_reference.py",
+          "sha256": "993a9da05f302c73464860028e54a3dad95557a23ca334df4dbb5f4090c236b0"
+        },
+        {
+          "module": "ibme.ibs.mock",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\mock.py",
+          "sha256": "c91902e02252a07dba1a777f1fa444de05058ca2f2c228356c82f3ca951b51a8"
+        },
+        {
+          "module": "ibme.ibs.sis_ibs",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\ibs\\sis_ibs.py",
+          "sha256": "a66f160d1c0ceb35080db2fa039dbe7f41bb7a71ebf223a6e35965d70486ed61"
+        },
+        {
+          "module": "ibme.lattice",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\__init__.py",
+          "sha256": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f"
+        },
+        {
+          "module": "ibme.lattice.gadget",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\gadget.py",
+          "sha256": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d"
+        },
+        {
+          "module": "ibme.lattice.gaussian",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\gaussian.py",
+          "sha256": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c"
+        },
+        {
+          "module": "ibme.lattice.modmat",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\modmat.py",
+          "sha256": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94"
+        },
+        {
+          "module": "ibme.lattice.params",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\params.py",
+          "sha256": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be"
+        },
+        {
+          "module": "ibme.lattice.trapdoor",
+          "path": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\src\\ibme\\lattice\\trapdoor.py",
+          "sha256": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8"
+        }
+      ],
+      "no_site": true,
+      "pid": 40772,
+      "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+      "root": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS",
+      "security_claim": "none",
+      "wires": {
+        "compact": {
+          "bytes": 16383,
+          "sha256": "33d8a03dde369cb24fab6f92e928c8500036e7632e6ed2f0ca1b91c272674076"
+        },
+        "master": {
+          "bytes": 356744
+        },
+        "params": {
+          "bytes": 136,
+          "sha256": "4aba80efb7a0b023eb8d4e6a3e3a4897a18ddb7923ab11abcfa1b390ce7767c9"
+        },
+        "public": {
+          "bytes": 248000,
+          "sha256": "4719a4fbe0155a84e1e14fca1a2814ce8b0241ea7aaea53ddecfc6e303c971af"
+        },
+        "reference": {
+          "bytes": 29455,
+          "sha256": "b4d08adb175a6296d99cc99e1c3ac0c248428755929f733836816d0c164c47e4"
+        },
+        "signing": {
+          "bytes": 313725
+        }
+      }
+    }
+  ],
+  "directions": [
+    "old generated -> new loaded/reserialized",
+    "new reserialized -> old loaded"
+  ],
+  "identity_bytes": 64,
+  "independent_signatures": 1,
+  "message_bytes": 19,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "profile": {
+    "degree": 256,
+    "dropped_bits": 28,
+    "eta": 1,
+    "gamma1": 190000,
+    "gamma2": 60000000000,
+    "gamma3": 27487784448,
+    "identity_max_bytes": 64,
+    "k": 11,
+    "kappa": 64,
+    "l": 10,
+    "max_cached_identities": 64,
+    "max_extract_attempts": 4096,
+    "max_sign_attempts": 4096,
+    "max_uniform_attempts": 128,
+    "message_max_bytes": 4096,
+    "q": 274877844481,
+    "root": 153250464611
+  },
+  "rng": "fresh OS CSPRNG; seed and secret material not logged",
+  "runner_sha256": "15e8b66e98fc2bc046adaa76191a478bf220d341d27dc9b3b52361fcfa47efc8",
+  "schema": "luo-cross-version/1",
+  "scope": "one C64B setup/extract/sign; codec/source compatibility, not security or CHKP",
+  "security_claim": "none",
+  "selected_source_sets_identical": true,
+  "sources": {
+    "new": {
+      "files": {
+        "src/ibme/__init__.py": {
+          "git_blob": "0a2b0242f4ea7c5f867e291a6d55867d3dcc3f80",
+          "sha256": "f0e3dd70a3752229d5209b58ef760914242569406374c427a463a45823090bb8"
+        },
+        "src/ibme/core/__init__.py": {
+          "git_blob": "274a0fff4e7a5a66719eb8738a152da88263753c",
+          "sha256": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac"
+        },
+        "src/ibme/core/encoding.py": {
+          "git_blob": "1be1846f929b9e35e85176ea3deb2ac725abe9c8",
+          "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+        },
+        "src/ibme/core/errors.py": {
+          "git_blob": "71074340b6b4e85d252398a3ced69626c56c0ad0",
+          "sha256": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e"
+        },
+        "src/ibme/core/hashing.py": {
+          "git_blob": "27f8aa036b7fe1148eeaa0e162f8e56c8cd416f7",
+          "sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4"
+        },
+        "src/ibme/core/lamport_ots.py": {
+          "git_blob": "6a70037ace1f88240058959cdae3bd76bac98b36",
+          "sha256": "6322e025e01c299e20769ba6cd3a3bb02b9a14a98cf7fc530c81950adda046a5"
+        },
+        "src/ibme/core/randomness.py": {
+          "git_blob": "c1b43a6cb5a70f26f15cb41bbc7e73a98491bc4d",
+          "sha256": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202"
+        },
+        "src/ibme/core/types.py": {
+          "git_blob": "d358212ef45fe7f9bcc52403f7399441e1bb9484",
+          "sha256": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56"
+        },
+        "src/ibme/ibs/__init__.py": {
+          "git_blob": "3dc6bf532c2bfbace241c62363bbf26f657405bd",
+          "sha256": "09f78edc872e40b5c0644b187db5e8f6aa2fb9a74455eb41571b9e71a63920c4"
+        },
+        "src/ibme/ibs/api.py": {
+          "git_blob": "b88ef730ce7a3aaeaeb8c270949008ae42b6c098",
+          "sha256": "e08bfaf4c73c0471966103156f3b88debda5f37b06b493c63dde7b4372da661c"
+        },
+        "src/ibme/ibs/luo.py": {
+          "git_blob": "05257bc28351020d73749d3752146030a72d9649",
+          "sha256": "728319d4ca14c004b258717b3ffecf083760920f15fa79bfe0af761de81a67bf"
+        },
+        "src/ibme/ibs/luo_module.py": {
+          "git_blob": "6c3d69e3781ac60c2c814855e7dae2deef05c7c8",
+          "sha256": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275"
+        },
+        "src/ibme/ibs/luo_module_codec.py": {
+          "git_blob": "6e8b59b17cecf8b4125bd622ba21216e01805e95",
+          "sha256": "bb99eb6a18a06be204ab0274de8e295522589d8100cc2c9f944c7cf4980b06df"
+        },
+        "src/ibme/ibs/luo_module_math.py": {
+          "git_blob": "451d2e9b41d9ca848d54cf78d15f6798f1b233ec",
+          "sha256": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f"
+        },
+        "src/ibme/ibs/luo_reference.py": {
+          "git_blob": "303f54f71649ce0066149a31f1c9ef109227232c",
+          "sha256": "993a9da05f302c73464860028e54a3dad95557a23ca334df4dbb5f4090c236b0"
+        },
+        "src/ibme/ibs/mock.py": {
+          "git_blob": "ac3e2a0fc44dbb8a894ec676c905934b67314e09",
+          "sha256": "c91902e02252a07dba1a777f1fa444de05058ca2f2c228356c82f3ca951b51a8"
+        },
+        "src/ibme/ibs/sis_ibs.py": {
+          "git_blob": "e4fba0b49ac909ccbe252030dafa39f8b5bc786d",
+          "sha256": "a66f160d1c0ceb35080db2fa039dbe7f41bb7a71ebf223a6e35965d70486ed61"
+        },
+        "src/ibme/lattice/__init__.py": {
+          "git_blob": "b3cd4ffed5e8c8291940936150340f808df1ba8e",
+          "sha256": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f"
+        },
+        "src/ibme/lattice/gadget.py": {
+          "git_blob": "1988019fef8d05011b31b7463b787ba832420829",
+          "sha256": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d"
+        },
+        "src/ibme/lattice/gaussian.py": {
+          "git_blob": "83737ed0154f134b66053f658e386afab5fc3690",
+          "sha256": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c"
+        },
+        "src/ibme/lattice/modmat.py": {
+          "git_blob": "48128492841b994506d46c8316957d8efe1e2180",
+          "sha256": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94"
+        },
+        "src/ibme/lattice/params.py": {
+          "git_blob": "3427a8741506f6acc0b5f8047a51f3829adf6606",
+          "sha256": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be"
+        },
+        "src/ibme/lattice/trapdoor.py": {
+          "git_blob": "8591fe2265dc4d20f375f2cd05d5245c31d01b7d",
+          "sha256": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8"
+        }
+      },
+      "head": "0bf0855464a9902ad95c91ea5bdfb4d12e78f5b9",
+      "root": "C:\\Users\\A\\OneDrive\\\u6587\u6863\\IB-ME-from-HIBE-IBS",
+      "source_set_sha256": "c046e011c7358427e4cefbe5c8ec89fd494bce77f2bb4d25592730d2903d72ee"
+    },
+    "old": {
+      "files": {
+        "src/ibme/__init__.py": {
+          "git_blob": "0a2b0242f4ea7c5f867e291a6d55867d3dcc3f80",
+          "sha256": "f0e3dd70a3752229d5209b58ef760914242569406374c427a463a45823090bb8"
+        },
+        "src/ibme/core/__init__.py": {
+          "git_blob": "274a0fff4e7a5a66719eb8738a152da88263753c",
+          "sha256": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac"
+        },
+        "src/ibme/core/encoding.py": {
+          "git_blob": "1be1846f929b9e35e85176ea3deb2ac725abe9c8",
+          "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+        },
+        "src/ibme/core/errors.py": {
+          "git_blob": "71074340b6b4e85d252398a3ced69626c56c0ad0",
+          "sha256": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e"
+        },
+        "src/ibme/core/hashing.py": {
+          "git_blob": "27f8aa036b7fe1148eeaa0e162f8e56c8cd416f7",
+          "sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4"
+        },
+        "src/ibme/core/lamport_ots.py": {
+          "git_blob": "6a70037ace1f88240058959cdae3bd76bac98b36",
+          "sha256": "6322e025e01c299e20769ba6cd3a3bb02b9a14a98cf7fc530c81950adda046a5"
+        },
+        "src/ibme/core/randomness.py": {
+          "git_blob": "c1b43a6cb5a70f26f15cb41bbc7e73a98491bc4d",
+          "sha256": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202"
+        },
+        "src/ibme/core/types.py": {
+          "git_blob": "d358212ef45fe7f9bcc52403f7399441e1bb9484",
+          "sha256": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56"
+        },
+        "src/ibme/ibs/__init__.py": {
+          "git_blob": "3dc6bf532c2bfbace241c62363bbf26f657405bd",
+          "sha256": "09f78edc872e40b5c0644b187db5e8f6aa2fb9a74455eb41571b9e71a63920c4"
+        },
+        "src/ibme/ibs/api.py": {
+          "git_blob": "b88ef730ce7a3aaeaeb8c270949008ae42b6c098",
+          "sha256": "e08bfaf4c73c0471966103156f3b88debda5f37b06b493c63dde7b4372da661c"
+        },
+        "src/ibme/ibs/luo.py": {
+          "git_blob": "05257bc28351020d73749d3752146030a72d9649",
+          "sha256": "728319d4ca14c004b258717b3ffecf083760920f15fa79bfe0af761de81a67bf"
+        },
+        "src/ibme/ibs/luo_module.py": {
+          "git_blob": "6c3d69e3781ac60c2c814855e7dae2deef05c7c8",
+          "sha256": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275"
+        },
+        "src/ibme/ibs/luo_module_codec.py": {
+          "git_blob": "6e8b59b17cecf8b4125bd622ba21216e01805e95",
+          "sha256": "bb99eb6a18a06be204ab0274de8e295522589d8100cc2c9f944c7cf4980b06df"
+        },
+        "src/ibme/ibs/luo_module_math.py": {
+          "git_blob": "451d2e9b41d9ca848d54cf78d15f6798f1b233ec",
+          "sha256": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f"
+        },
+        "src/ibme/ibs/luo_reference.py": {
+          "git_blob": "303f54f71649ce0066149a31f1c9ef109227232c",
+          "sha256": "993a9da05f302c73464860028e54a3dad95557a23ca334df4dbb5f4090c236b0"
+        },
+        "src/ibme/ibs/mock.py": {
+          "git_blob": "ac3e2a0fc44dbb8a894ec676c905934b67314e09",
+          "sha256": "c91902e02252a07dba1a777f1fa444de05058ca2f2c228356c82f3ca951b51a8"
+        },
+        "src/ibme/ibs/sis_ibs.py": {
+          "git_blob": "e4fba0b49ac909ccbe252030dafa39f8b5bc786d",
+          "sha256": "a66f160d1c0ceb35080db2fa039dbe7f41bb7a71ebf223a6e35965d70486ed61"
+        },
+        "src/ibme/lattice/__init__.py": {
+          "git_blob": "b3cd4ffed5e8c8291940936150340f808df1ba8e",
+          "sha256": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f"
+        },
+        "src/ibme/lattice/gadget.py": {
+          "git_blob": "1988019fef8d05011b31b7463b787ba832420829",
+          "sha256": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d"
+        },
+        "src/ibme/lattice/gaussian.py": {
+          "git_blob": "83737ed0154f134b66053f658e386afab5fc3690",
+          "sha256": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c"
+        },
+        "src/ibme/lattice/modmat.py": {
+          "git_blob": "48128492841b994506d46c8316957d8efe1e2180",
+          "sha256": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94"
+        },
+        "src/ibme/lattice/params.py": {
+          "git_blob": "3427a8741506f6acc0b5f8047a51f3829adf6606",
+          "sha256": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be"
+        },
+        "src/ibme/lattice/trapdoor.py": {
+          "git_blob": "8591fe2265dc4d20f375f2cd05d5245c31d01b7d",
+          "sha256": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8"
+        }
+      },
+      "head": "886fc127304479b87ef210836757004818e5b6ea",
+      "root": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS",
+      "source_set_sha256": "c046e011c7358427e4cefbe5c8ec89fd494bce77f2bb4d25592730d2903d72ee"
+    }
+  },
+  "status": "functional_wire_compatible",
+  "utc": "2026-10-11T15:54:22.939360+00:00",
+  "worker_timeout_seconds": 45
+}
