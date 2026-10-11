@@ -220,6 +220,8 @@ PR #6交付研究组件尚未成为完整HIBE；原缓存单批/单对象32个bi
 
 ## 6. 测试验收
 
+2026-10-11 首套私有根契约：`first_suite/root_generation.py`以系统bytes产生均匀Abar和有限零中心Gaussian R，独立Rust `IBME/MP12-SECRET-ROOT/1`仅作qFALL确定性完整基转换；旧public-fixture接口不改、不回退。输入先验素性/维度/支持模q单射/实际有限熵regularity/整次随机带，输出验严格schema、规范整数、定义关系、完整核格和公开GS界。regularity使用实际条件有限熵、nk列并集与向上取整，中止另列；目标64/128/192位重算取整精度，不对应安全等级。scope的epsilon验收范围独立扩至128，wire形状、旧采样/ToBasis guard保持。真实根保存与恢复无重抽，私有诊断错误不回显输入；探针拒绝覆盖与私钥路径别名。来源/实跑/公开n=1种子恢复反例见[本轮记录](docs/research/2026-10-11-first-suite-root/README.md)。根主状态组件不注册完整HIBE或安全preset；困难维度/资源、全有限父叶、七入口/字节/组合攻击仍待统一准入。
+
 2026-10-11 首套独立有限采样profile：`first_suite/finite_gaussian.py`、`finite_gpv.py`、`finite_randbasis.py`复用既有有限公式，分别明确新width/radius/256维与1TiB最坏随机带支持域，原reference/CHKP/ToBasis上限保持。默认SecureRandom，无native seed；严格bytes/长度和有限消费，错误与ABORT不重试、不回退。对每个输入重算区间/量化/尾/中止、GPV几何/全部路径与整体随机带账本，不继承native null证书。规范/实跑见[有限误差与CSPRNG](docs/research/2026-10-11-first-suite-finite/README.md)。它是独立研究原语，不注册HIBE/安全preset；秘密基相关诊断不能作为公开字段。根/父生成和整套参数/模型/协议准入仍需完成。
 
 2026-10-11 首套主/父状态补充：独立`first_suite/delegation_state.py`提供DelegationScope、MasterTreeState、ReceiverState，保存完整根/父整数基及既有固定256位子状态；恢复以真实H/G核对完整核格、身份、scope及GS上界，FAILED状态禁止重抽。主树共用锁序和整树最坏wire增长预留，不序列化RNG/回调/锁。恢复先用普通列范数给出的严格GS充分证书，不成立时仍精确GS，接受条件不放宽；解析与构造不重复GS。规范/范围见[主父发钥树](docs/research/2026-10-11-first-suite-tree/README.md)。它不是生产HIBE或跨副本/机器同步；CLI接入须保留唯一状态、已有接收钥文件复用及锁/pending语义。原有限采样/规约上限保持。

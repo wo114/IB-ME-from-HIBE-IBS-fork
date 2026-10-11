@@ -53,7 +53,7 @@ class DelegationScope:
             object.__setattr__(self, name, _width(getattr(self, name)))
         for name in ("parent_profile", "leaf_profile"):
             object.__setattr__(self, name, checked_bytes(getattr(self, name), name, 4096))
-        checked_int(self.epsilon_bits, "epsilon bits", 2, 64)
+        checked_int(self.epsilon_bits, "epsilon bits", 2, 128)
         checked_int(self.max_receivers, "receiver capacity", 1, MAX_RECEIVERS)
         if self.root_gs_squared_bound < 1:
             raise InvalidParameterError("complete integer kernel root GS upper bound must be >= 1")
