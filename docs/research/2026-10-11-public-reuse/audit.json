@@ -1,0 +1,165 @@
+{
+  "date": "2026-10-11",
+  "scope": "public-code inventory and real independent native CHKP component pilot",
+  "git_base": "2b337e2b153749b14547fcd8a363a00ccef017c7",
+  "merged_pr": {
+    "number": 7,
+    "head": "066bac00e6780532ef0f6152c381791c52ff2133",
+    "state": "MERGED",
+    "merge_commit": "2b337e2b153749b14547fcd8a363a00ccef017c7",
+    "early_merge": "3948c0f"
+  },
+  "modified_files": [
+    ".gitattributes",
+    ".github/workflows/basic-checks.yml",
+    "IMPLEMENTATION_SPEC.md",
+    "README.md",
+    "docs/PROJECT_RESTART.md",
+    "docs/research/2026-10-11-public-reuse/README.md",
+    "docs/research/2026-10-11-public-reuse/audit.json",
+    "docs/research/2026-10-11-public-reuse/chain-results.json",
+    "docs/research/2026-10-11-public-reuse/latte-buffer-evidence.json",
+    "docs/research/2026-10-11-public-reuse/runtime.json",
+    "docs/workplans/2026-10-08/主AI任务-IBS集成与优化.md",
+    "docs/workplans/2026-10-08/队友任务-CHKP与格工具.md",
+    "docs/workplans/2026-10-10/首套系统关键路径与优先级.md",
+    "experiments/research/reuse/latte_scalar_probe.py",
+    "experiments/research/reuse/public_chain_probe.py",
+    "experiments/research/reuse/qfall_bridge.py",
+    "experiments/research/reuse/qfall_probe/Cargo.lock",
+    "experiments/research/reuse/qfall_probe/Cargo.toml",
+    "experiments/research/reuse/qfall_probe/src/main.rs",
+    "experiments/research/reuse/sage_native_gpv.py",
+    "experiments/research/reuse/vendor/latte/LICENSE",
+    "experiments/research/reuse/vendor/latte/UPSTREAM.json",
+    "experiments/research/reuse/vendor/latte/sample_z.upstream.c",
+    "tests/test_latte_reuse_probe.py",
+    "tests/test_public_reuse_gpv.py"
+  ],
+  "source_lf_sha256": {
+    ".github/workflows/basic-checks.yml": "a36caa64e70eb29857e2fad77cbe4e7e4e199b7728e2df89e85e5ae80c1752ef",
+    "experiments/research/reuse/latte_scalar_probe.py": "3a26d755b004b479ad3bb416e8952de197ee2e00ef9b0737d747cc6d9af2ef2c",
+    "experiments/research/reuse/public_chain_probe.py": "0828c553f8fc481f4f3fca7becb698fd29e1ceac3b532e5e2170b9c678e54f92",
+    "experiments/research/reuse/qfall_bridge.py": "c8e4e296f05a61e7a7ad282fdf05395a281af44afaed279dbf558ff587a16491",
+    "experiments/research/reuse/qfall_probe/Cargo.lock": "3d6c38bae7d5cd43ea72d0bd810f251130d9112a28ce0b56f168960a5c7d0576",
+    "experiments/research/reuse/qfall_probe/Cargo.toml": "be24e3cdbfc4ecacd085ac657c7c8c9a8b22a311443c268657364121d6abe0c5",
+    "experiments/research/reuse/qfall_probe/src/main.rs": "df6094baf43e855fde5e18ebb386941e5ca6dee403f8b4d128bdf97af2b93e06",
+    "experiments/research/reuse/sage_native_gpv.py": "90aa0035fd9d5100def9d93cf386fcc49457b25c66b60d1bfb04b5caf720ccc1",
+    "experiments/research/reuse/vendor/latte/UPSTREAM.json": "6c6921c0f73a6e5ca185d1ef01db8428132e1c56fbe0e25f3247c0dedd89aff6",
+    "experiments/research/reuse/vendor/latte/sample_z.upstream.c": "5a6a3e8c4f1f7cea3692a9676c4464ab8c53665391682a5780ce708d5d3ce189",
+    "tests/test_latte_reuse_probe.py": "b58847ee54c61ac21f374985223b2548f31a276c464d13892de9dd53d22344b9",
+    "tests/test_public_reuse_gpv.py": "0e7dfd2c63666144e63da3c07d7ff07c68c75abcdf8bc87732f96c0df9552c63",
+    ".gitattributes": "f83a5afb7488799c9db7c09fbc86eb754a1597a06d84738fde7144790d5802d4"
+  },
+  "dependency_packages": [
+    {
+      "name": "flint-sys",
+      "version": "0.7.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "cd39a21fba2a1dd249af52d118f5b6cc8f1a98c87732de386dc5e8e53d22a24b"
+    },
+    {
+      "name": "gmp-mpfr-sys",
+      "version": "1.7.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "7db155b537cb791b133341f99f68371d86ee7fa4c79aacfbc376d72d23c70531"
+    },
+    {
+      "name": "qfall-math",
+      "version": "0.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "2a106500d9885892de40ba6067f1db39bf5e34a5f25e823d077fd718015859dd"
+    },
+    {
+      "name": "qfall-tools",
+      "version": "0.1.0",
+      "source": "git+https://github.com/qfall/tools?rev=b8eb4842fb80c36f7f3494930ea316472cb75793#b8eb4842fb80c36f7f3494930ea316472cb75793"
+    }
+  ],
+  "cargo_lock_sha256": "3d6c38bae7d5cd43ea72d0bd810f251130d9112a28ce0b56f168960a5c7d0576",
+  "tests": {
+    "reuse-progress-sage": {
+      "tests": 107,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 107,
+      "junit_seconds": 5.123,
+      "junit_sha256": "bfdaf7b147a64726f69e78a08b644180f28144eb461e41b55aed97ab410d9536"
+    },
+    "public-reuse-native": {
+      "tests": 43,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 25,
+      "passed": 18,
+      "junit_seconds": 0.142,
+      "junit_sha256": "217420245a1c7cfb873042412406aabf83c0c2ff5573d4cf447aea38cac0af9a"
+    },
+    "public-reuse-sage": {
+      "tests": 162,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 162,
+      "junit_seconds": 5.278,
+      "junit_sha256": "7fa3ec67dd5332493a4aabe7c905cb2a000e5d4547b0776b82977120d7f95b9d"
+    },
+    "latte-reuse-sage": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 2,
+      "junit_seconds": 0.592,
+      "junit_sha256": "0f689ced965130fd83f15af36df2243d13b40e06a293563fc51f66502c27a503"
+    }
+  },
+  "runtime": {
+    "sage": "10.9",
+    "python": "3.13.14",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "dgs_extension_relative_path": "lib/python3.13/site-packages/sage/stats/distributions/discrete_gaussian_integer.cpython-313-x86_64-linux-gnu.so",
+    "dgs_extension_sha256": "487cc42d52b39912b3f01ec4ca3d2c498ab1eeb17d5ee757754d1565deea34bc",
+    "dgs_source_lf_sha256": "3de90f82ca9b9768c679e12dbe3df332b01c4e004cd852a239fef7a8e18f5561",
+    "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+    "gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "native_binary_sha256": "cc9030fe3c6ca6010b95fc738a26e8675920e41fa1f38aa3d7e5ee3a0432cf04"
+  },
+  "native_windows_python": "3.14.6",
+  "pytest": "9.1.1",
+  "cpu": "Intel Core Ultra9 275HX",
+  "commands": {
+    "build": "CARGO_TARGET_DIR=<repo>/test-results/qfall-target CARGO_BUILD_JOBS=4 cargo build --locked --offline --release",
+    "native": "python -B -m pytest -q -p no:cacheprovider tests/test_public_reuse_gpv.py tests/test_latte_reuse_probe.py tests/test_ibme_handoff_screen.py --tb=short",
+    "sage": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -B -m pytest -q -p no:cacheprovider tests/test_public_reuse_gpv.py tests/test_latte_reuse_probe.py tests/test_ibme_handoff_screen.py tests/test_chkp_basis.py tests/test_chkp_gpv.py tests/test_chkp_randbasis.py --tb=short",
+    "probe": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -B -m experiments.research.reuse.public_chain_probe --only-q <17|257|1073741827> --output test-results/native-chain-<label>.json"
+  },
+  "initial_repaired_implementation_issues": [
+    "Rust MatrixGetEntry trait generic used as method generic; corrected API",
+    "Python LLL helper returns KernelBasis directly; corrected invalid [0]",
+    "LATTE source checker mistook write cast for read; corrected dereference check"
+  ],
+  "external_source_defect": "LATTE sample_z fills r_bm but uses old r for Box-Muller; bounded C counterexample confirms unused fresh bytes",
+  "production_modules_changed": false,
+  "teammate_algorithm_files_changed": false,
+  "old_caps_or_certificates_changed": false,
+  "native_randomness": "explicit public test seed, not production CSPRNG API",
+  "full_hibe": false,
+  "whole_sampler_tv_upper": null,
+  "complete_failure_budget": null,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "model": "classical ROM research reference; no QROM",
+  "unresolved": [
+    "formal n/LWE estimate and root regularity",
+    "native finite TV/entropy/rejection/resource and LLL bounds",
+    "production randomness",
+    "H/G, durable 256-bit keys/cache/wire and validators",
+    "complete Wang/BYTEAUTH suite and attacks",
+    "two legacy education authentication vulnerabilities",
+    "full LATTE/anonymous HIBE suitability"
+  ],
+  "upstream_snapshot_attributes": "only the exact vendored C snapshot has byte preservation / whitespace override; pinned hash checked by tests; owned code checks remain"
+}

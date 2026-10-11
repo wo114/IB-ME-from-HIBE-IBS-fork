@@ -220,6 +220,10 @@ PR #6交付研究组件尚未成为完整HIBE；原缓存单批/单对象32个bi
 
 ## 6. 测试验收
 
+2026-10-11 公开代码比较契约：独立experiments/research/reuse/用qFALL公开API生成gadget/完整整数基，fixture须显式public_test_fixture=true、n<=4/q<=2^40/m_bar<=96/根维度<=192；JSON长度/形状/规范整数及参数/定义关系先核对，Sage再核对完整核格det=q^n。R为明确的两个测试bit之差，不称Gaussian。该Rust接口无生产发钥或HIBE七算法入口。
+
+独立NativePublicGPV仅用于公开测试，最多256维/256位置，精确列基GSO、C1-exec规则和sigma=s/sqrt(2pi)对应；使用Sage整数DGS uniform+online/MPFR192/tau12，必须显式测试seed。向量方程核对、固定最多D+32个RandBasis尝试，失败不重试；Scalar TV、整链TV及最坏随机带为null，原生内部拒绝没有有限次数证书，不继承旧有限采样证明或生产随机API。现有原语硬上限/profile不变。256位置对象是比较批次，未实现固定私有地址/cache/wire，不将它接为已获准后端。
+
 2026-10-11 同组链诊断补充：独立ibme_chain_audit只调用交付的GenBasis/ExtBasis/GPV/RandBasis/固定叶缓存，不新增HIBE后端或H/G。显式OnlineOptions(tail_bits=64,mass_bits=96,precision_bits=160,gaussian_abort_bits=32,max_uniform_trials=48)、epsilon_bits=32的每项误差与随机带单列；它与默认profile是两个预定输入，不能在随机执行失败后切换profile或重抽。维度192、scalar width²<=10^12、整次随机带256 MiB、leaf32等原有上限保持。
 
 同组诊断的独立Sage规约使用delta=0.999/eta=0.501后精确整数size reduction，验证列变换、完整格、GS上界、|mu|<=1/2和delta=0.99的Lovasz条件。严格eta=1/2可能使本机fplll在父基Babai步骤报错；不能把库调用成功视为上述精确条件已成立。该规约无统一资源/失败准入，不替代队友有界算法或改变部署Setup。终层只用扩展父基，不增加第二RandBasis。32个固定bit恢复成功不满足32 B种子的256bit契约，真实噪声相位计数必须独立于无噪声代数控制。详见[同组核验](docs/research/2026-10-11-same-input-chain/README.md)，现有wire/协议与安全声明保持。

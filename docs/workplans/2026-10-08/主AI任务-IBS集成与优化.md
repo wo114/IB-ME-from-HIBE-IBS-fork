@@ -1,5 +1,7 @@
 # 主 AI 的后续工作：IBS、完整系统与优化
 
+2026-10-11 [公开代码复用](../../research/2026-10-11-public-reuse/README.md)已得到qFALL完整基/现有CHKP扩展/原生GPV的实际同组路径；237维256原像与512/512有噪声位相位通过，n=1及原生误差/熵/资源未准入。PR #7模格IBS记录已审阅合并，第三方错误推断/缓存及消息开销另作主AI校正。下一项统一GenBasis/采样引用和真实H/G/固定256地址/wire，再接已实现Luo/BYTEAUTH；不按裸位成功提前统计安全首套。
+
 2026-10-11 [同组链实跑](../../research/2026-10-11-same-input-chain/README.md)已接真实GenBasis/父级RandBasis/终层原像/缓存恢复并保留真实噪声失败。显式profile与规约都不作为安全准入；下一项应解决完整同参数正确性与256bit/H/G接入，再按现有事务和Wang/BYTEAUTH接口集成，不继续相同教学链扩样。独立主AI文件ibme_chain_audit和ibme_root_sampler_audit只用于交接核验，队友chkp_*文件保持。
 
 2026-10-11 [原文噪声工具与有限误差](../../research/2026-10-11-rounded-noise/README.md)已交付：连续Gaussian取整CDF、6组实跑/3拒绝控制、D+L共享前导账本与q/alpha精确绑定。下一项转回真实组件支持域和两层/256bit接线，保持已收集失败记录；不将噪声工具计为完整HIBE或继续独立性能优化。队友可直接使用本报告API，主AI负责组合/整体攻击验收。

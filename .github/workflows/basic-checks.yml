@@ -43,6 +43,7 @@ jobs:
           tests/test_srgg_sampling.py
           tests/test_cli_state_lock.py
           tests/test_ibme_handoff_screen.py
+          tests/test_public_reuse_gpv.py tests/test_latte_reuse_probe.py
           tests/test_ibme_joint_parameters.py tests/test_ibme_root_sampler_audit.py
           tests/test_ibme_noise_budget.py tests/test_ibme_rounded_noise.py
           tests/test_ibme_chain_audit.py
@@ -77,6 +78,7 @@ jobs:
           SRGG random-gadget tests require Sage and are explicitly skipped on this Windows job. Local Sage checks cover finite Gaussian draws, width mapping, coset-normalizer bias and aborts; correlated perturbation and a complete IBS remain pending.
           Local state lock checks cover contention, bounded failure and release after process exit. These are state-management checks, not cryptographic security evidence.
           The CHKP handoff screen joins current finite AP09/GPV constraints and the 32-byte hybrid seed requirement. Sage constructor comparisons run locally; paper-only preflight success is not backend admission.
+          Public-code reuse checks validate bounded fixture/source metadata on Windows. Actual qFALL native conversion, Sage GPV/256-position diagnostics and the LATTE C entropy-flow counterexample require explicit local builds and are skipped here; they do not admit a HIBE or inherit existing finite-sampler certificates.
           Joint parameter checks cover the whole current finite dimension domain and conditional rounded-continuous-Gaussian decode budgets, including odd moduli and shared-preamble union accounting. Actual Sage root/LLL diagnostics run locally; larger numeric plans do not override any backend cap or certify LWE hardness.
           Rounded-noise metadata checks enforce exact q/alpha binding and an explicit finite-error ledger with D+L shared-preamble draws. Actual erf/CDF sampling and independent quadrature require Sage and run locally; no HIBE backend or security grade follows from this support component.
           Same-input root/parent/terminal-leaf chain, cache restore and rounded-noise phase checks require Sage and run locally. Default tape and 256-bit admissions remain explicit rejection controls; noiseless equations cannot replace honest-noise decode counts. Explicit finite-error options and diagnostic LLL are not backend admission.
