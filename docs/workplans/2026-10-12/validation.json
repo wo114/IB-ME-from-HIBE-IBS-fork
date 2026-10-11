@@ -1,0 +1,80 @@
+{
+  "schema": "IBME_TEAM_PLAN_VALIDATION/1",
+  "date": "2026-10-12",
+  "planning_only": true,
+  "source_commit": "f98de52f25e117fa7e365c686c23e0c142d004b1",
+  "checks": {
+    "catalog_coverage": {
+      "passed": true,
+      "candidates": 19,
+      "hibe": 8,
+      "ibs": 11
+    },
+    "task_owner_priority": true,
+    "dependency_dag": {
+      "passed": true,
+      "tasks": 26
+    },
+    "coordination_tasks": 11,
+    "new_or_modified_markdown_local_links": {
+      "checked": 198,
+      "missing": [],
+      "strict_existence_check_passed": true
+    },
+    "code_unchanged_from_pr11_head": true,
+    "git_diff_check": true,
+    "modified_tracked_files": 8,
+    "new_task_package_files": 8
+  },
+  "tests": {
+    "command": "python -m pytest -p no:cacheprovider -q --tb=short tests/test_assembly.py tests/test_cli_selection.py tests/test_combination_matrix.py --junitxml=test-results/team-plan-review-assembly.xml",
+    "counts": {
+      "tests": 85,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "passed": 85,
+    "duration_seconds_reported": 3.79,
+    "scope": "定向框架回归；含 mock/教学/既有研究配置，不是新真实方案或安全证明",
+    "parameters": "测试源码内已有配置；未新增密码参数",
+    "repetitions": "本轮执行一次测试套件；不是性能测量"
+  },
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.6",
+    "cryptography": "49.0.0"
+  },
+  "source_sha256": {
+    "src/ibme/assembly/__init__.py": "57843b8fc922b5979536c166a4e40f25f638b95dcc6c8686487cf6bd62171536",
+    "src/ibme/assembly/registry.py": "33f133efecdd5251908039ae9c6cdf1885bf8654db4ad6312e24c5dd0237134b",
+    "src/ibme/cli.py": "2bca2381e3877fce97882cc08f77fcd6e226c86254a287648a7531d94478df97",
+    "experiments/run_combination_matrix.py": "d6312c5b29402d12b3283f7f76d5f7246814363b6e5a0dad99b6fff8a10a91ad",
+    "tests/test_assembly.py": "fed7533a45380db9fc2493bead3c2f015f5f0b5b77b45add67adddc4e8794e81",
+    "tests/test_cli_selection.py": "f44a1f94eca666fa0cd7fdaacfdeb5731614f8438f3b99b1162ca607186351d2",
+    "tests/test_combination_matrix.py": "86ed7f24550c37359b7afd204d42df77bc3fb2c0c2d6692036904bb8a8168091"
+  },
+  "security": {
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "scope": "计划本轮未准入任何密码后端"
+  },
+  "not_run": [
+    "Sage CHKP 大采样",
+    "PR9 全部密码实验",
+    "目标真实组合矩阵",
+    "正式参数估计",
+    "QROM 证明"
+  ],
+  "merge_performed": false,
+  "pending": "独立 PR 代码/状态/版本接收仍待 T0/B1；本轮只完成计划修订",
+  "test_evidence": {
+    "file": "assembly.junit.xml",
+    "sha256": "ce348c15163b711861be8296787f3511c6f426bd76a0d232e112ee838a1299b1"
+  },
+  "planning_input_sha256": {
+    "tasks.json": "e72c9f7a1cbbb4fcabf61a7d8d1130de2b39db514adc19b571fc62f4c20a3a42",
+    "../三人方案分工与统一框架交付.md": "da7ae760b35c1bd812cd66a7f92abe11064eacdbf2792a93eeb6bcd1bd8c3725"
+  }
+}

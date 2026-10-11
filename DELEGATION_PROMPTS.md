@@ -2,6 +2,8 @@
 
 更新：2026-10-11。按“统一框架 + 独立 HIBE/IBS + 兼容组合验收”派发任务；当前优先级与已完成内容见 [PROJECT_STATUS.md](docs/PROJECT_STATUS.md)。这些模板提供任务结构，不固定某个 HIBE、SIS 方程、陷门或采样器，也不代替 [实现规范](IMPLEMENTATION_SPEC.md) 和算法专属规范。
 
+具体队员 A/B/C 的责任、顺序和第一批验收见[三人交付计划](docs/workplans/三人方案分工与统一框架交付.md)及其中任务书。下文“任务 A—F”是模板类型，**不是队员代号**；派发时另填计划任务 ID 和实际 owner，避免把队员 A 误派为框架负责人。
+
 ## 共用任务头
 
 派发者先填入具体值，删除无关项目。文件所有权遵守 [AI_WORKFLOW.md](AI_WORKFLOW.md)。
