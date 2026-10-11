@@ -46,6 +46,7 @@ jobs:
           tests/test_public_reuse_gpv.py tests/test_latte_reuse_probe.py
           tests/test_first_suite_identity_state.py tests/test_first_suite_seed_sage.py
           tests/test_first_suite_delegation.py
+          tests/test_first_suite_finite_sampling.py
           tests/test_ibme_joint_parameters.py tests/test_ibme_root_sampler_audit.py
           tests/test_ibme_noise_budget.py tests/test_ibme_rounded_noise.py
           tests/test_ibme_chain_audit.py
@@ -83,6 +84,7 @@ jobs:
           Public-code reuse checks validate bounded fixture/source metadata on Windows. Actual qFALL native conversion, Sage GPV/256-position diagnostics and the LATTE C entropy-flow counterexample require explicit local builds and are skipped here; they do not admit a HIBE or inherit existing finite-sampler certificates.
           First-suite seed-state checks cover canonical H/G, full public context and ordered identities, 256 fixed addresses, private wire/equation/norm validation, failure tombstones and fresh-process reuse. Portable tests use explicitly public toy vectors only. Actual Gaussian sampling and rounded-noise KEM diagnostics require Sage and run locally; the raw KEM is not a complete HIBE, AEAD wrapper or admitted IBME instance.
           Owned master/parent tree tests require Sage and run locally. They cover complete kernel/GS binding, single issuance, nested fixed leaf snapshots, failure tombstones, consistent lock order and whole-tree resource checks. A sufficient exact column-norm certificate avoids duplicate GS during restore, with exact GS fallback retained. These private-state objects are not an implemented/admitted seven-method HIBE or a substitute for production sampling and formal parameters.
+          Independent finite/CSPRNG sampler tests require Sage and run locally. The wide scalar/256-dimension GPV profiles recompute tail/rounding/abort/path/tape certificates, preserve original limits and default to OS byte sources. Their sampler TV bounds are not security levels, and the prior native parent/root remain unadmitted.
           Joint parameter checks cover the whole current finite dimension domain and conditional rounded-continuous-Gaussian decode budgets, including odd moduli and shared-preamble union accounting. Actual Sage root/LLL diagnostics run locally; larger numeric plans do not override any backend cap or certify LWE hardness.
           Rounded-noise metadata checks enforce exact q/alpha binding and an explicit finite-error ledger with D+L shared-preamble draws. Actual erf/CDF sampling and independent quadrature require Sage and run locally; no HIBE backend or security grade follows from this support component.
           Same-input root/parent/terminal-leaf chain, cache restore and rounded-noise phase checks require Sage and run locally. Default tape and 256-bit admissions remain explicit rejection controls; noiseless equations cannot replace honest-noise decode counts. Explicit finite-error options and diagnostic LLL are not backend admission.

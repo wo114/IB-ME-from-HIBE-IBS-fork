@@ -220,6 +220,8 @@ PR #6交付研究组件尚未成为完整HIBE；原缓存单批/单对象32个bi
 
 ## 6. 测试验收
 
+2026-10-11 首套独立有限采样profile：`first_suite/finite_gaussian.py`、`finite_gpv.py`、`finite_randbasis.py`复用既有有限公式，分别明确新width/radius/256维与1TiB最坏随机带支持域，原reference/CHKP/ToBasis上限保持。默认SecureRandom，无native seed；严格bytes/长度和有限消费，错误与ABORT不重试、不回退。对每个输入重算区间/量化/尾/中止、GPV几何/全部路径与整体随机带账本，不继承native null证书。规范/实跑见[有限误差与CSPRNG](docs/research/2026-10-11-first-suite-finite/README.md)。它是独立研究原语，不注册HIBE/安全preset；秘密基相关诊断不能作为公开字段。根/父生成和整套参数/模型/协议准入仍需完成。
+
 2026-10-11 首套主/父状态补充：独立`first_suite/delegation_state.py`提供DelegationScope、MasterTreeState、ReceiverState，保存完整根/父整数基及既有固定256位子状态；恢复以真实H/G核对完整核格、身份、scope及GS上界，FAILED状态禁止重抽。主树共用锁序和整树最坏wire增长预留，不序列化RNG/回调/锁。恢复先用普通列范数给出的严格GS充分证书，不成立时仍精确GS，接受条件不放宽；解析与构造不重复GS。规范/范围见[主父发钥树](docs/research/2026-10-11-first-suite-tree/README.md)。它不是生产HIBE或跨副本/机器同步；CLI接入须保留唯一状态、已有接收钥文件复用及锁/pending语义。原有限采样/规约上限保持。
 
 2026-10-11 首套集中闭环的独立组件：`experiments/research/first_suite/` 定义真实两层H/G、固定256位seed原像状态和CHKP共享前导种子wire，规范见[本轮记录](docs/research/2026-10-11-first-suite-seed/README.md)。H/G绑定调用方完整规范公开配置、根矩阵、身份分量/角色与位置，模余数经有界拒绝产生；Oracle类型不证明配置语义、素性/秩、GenBasis或安全难度。私有scope再绑定receiver/width/profile，恢复重算目标并验维度、方程、范数；FAILED在执行前保留，跨恢复禁止重抽。私有wire≤16MiB、每整数≤256bit、最多8个sender，按256*D*37 B预留后执行；不是旧32位缓存的扩容，不改变有限原语硬上限/证书。
