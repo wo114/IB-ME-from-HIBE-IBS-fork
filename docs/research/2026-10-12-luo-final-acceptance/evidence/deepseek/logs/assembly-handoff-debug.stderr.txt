@@ -1,0 +1,12 @@
+EXC_TYPE h.GateFailure
+EXC_ARGS ('head_mismatch',)
+Traceback (most recent call last):
+  File "<string>", line 8, in <module>
+    m.main()
+    ~~~~~~^^
+  File "C:\Users\A\.codex\worktrees\luo-acceptance-evidence\IB-ME-from-HIBE-IBS\experiments\research\luo_assembly_handoff.py", line 37, in main
+    require(git("rev-parse", "HEAD").decode().strip() == args.head, "head_mismatch")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\A\.codex\worktrees\luo-acceptance-evidence\IB-ME-from-HIBE-IBS\experiments\research\luo_assembly_handoff.py", line 24, in require
+    raise GateFailure(code)
+h.GateFailure: head_mismatch
