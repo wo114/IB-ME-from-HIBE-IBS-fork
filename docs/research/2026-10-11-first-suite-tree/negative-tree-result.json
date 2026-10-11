@@ -1,0 +1,123 @@
+{
+  "q": 17,
+  "n": 1,
+  "m_bar": 8,
+  "dimensions": [
+    13,
+    26,
+    39
+  ],
+  "original_identity_bytes": [
+    3,
+    5
+  ],
+  "encoded_identity_bytes": 86,
+  "seed_bits": 256,
+  "parent_generations": 1,
+  "parent_native_draws": [
+    26
+  ],
+  "leaf_generations": 1,
+  "fixed_leaf_vectors": 256,
+  "parent_gs_squared_public_bound": "1620320",
+  "whole_master_snapshot_bytes": 77592,
+  "receiver_snapshot_bytes": 75557,
+  "master_snapshot_sha256": "13a3e7be5797b9529e96b292da0f2f5738a42bfce38e24b57977fc77afb702e2",
+  "receiver_snapshot_sha256": "b31d953ff532e2f9979809f0532475fcee9873d7e08916b4085263f5ea6cde6c",
+  "raw_kem_wire_bytes": 392,
+  "seed_bit_errors": 121,
+  "recovered_seed_sha256": "f4a27a5cf97a2b0f78038f5dec431fed5929efd5c21a217b934bf68200483577",
+  "fresh_process": {
+    "backend_admitted": false,
+    "fixed_positions": 256,
+    "leaf_failure_tombstone_blocked": true,
+    "master_snapshot_byte_equal": true,
+    "native_sampler_module_loaded": false,
+    "new_leaf_generations": 0,
+    "new_parent_generations": 0,
+    "parent_failure_tombstone_blocked": true,
+    "receiver_snapshot_byte_equal": true,
+    "recovered_seed_sha256": "f4a27a5cf97a2b0f78038f5dec431fed5929efd5c21a217b934bf68200483577",
+    "security_claim": "none",
+    "seed_hash_matches": false,
+    "standalone_receiver_vectors_equal": true
+  },
+  "actual_noise_calls": 295,
+  "expected_noise_calls": 295,
+  "sampler_profiles": {
+    "parent": {
+      "profile": "SAGE-DGS-PUBLIC-COMPARISON/1",
+      "dimension": 26,
+      "width_squared": "62320",
+      "precision_bits": 192,
+      "tau": 12,
+      "native_algorithm": "uniform+online; MPFR",
+      "scalar_tv_upper": null,
+      "whole_sampler_tv_upper": null,
+      "worst_random_tape_bytes": null,
+      "scalar_rejection_is_bounded": false,
+      "test_randomness_only": true,
+      "production_random_api": false,
+      "security_claim": "none",
+      "backend_admitted": false
+    },
+    "leaf": {
+      "profile": "SAGE-DGS-PUBLIC-COMPARISON/1",
+      "dimension": 39,
+      "width_squared": "252769920",
+      "precision_bits": 192,
+      "tau": 12,
+      "native_algorithm": "uniform+online; MPFR",
+      "scalar_tv_upper": null,
+      "whole_sampler_tv_upper": null,
+      "worst_random_tape_bytes": null,
+      "scalar_rejection_is_bounded": false,
+      "test_randomness_only": true,
+      "production_random_api": false,
+      "security_claim": "none",
+      "backend_admitted": false
+    }
+  },
+  "rounded_noise": {
+    "schema": "IBME/ROUNDED-CONTINUOUS-NOISE/1",
+    "config": {
+      "q": 17,
+      "alpha": "4/17",
+      "tail_bits": 64,
+      "mass_bits": 96,
+      "precision_bits": 160,
+      "max_radius": 8192
+    },
+    "support": [
+      -33,
+      33
+    ],
+    "support_count": 67,
+    "draw_bytes": 12,
+    "cdf_interval_error_units": 66,
+    "tail_tv_upper": "1/18446744073709551616",
+    "cdf_quantization_and_interval_tv_upper": "33/39614081257132168796771975168",
+    "random_rejection_abort_upper": "0",
+    "tv_upper_including_abort": "2147483681/39614081257132168796771975168",
+    "scaled_width": "4",
+    "target": "round(continuous Gaussian of width q*alpha), then modulo q if requested",
+    "finite_tail_policy": "clamp to endpoints, no conditioning",
+    "randomness_assumption": "independent uniform bytes; errors of faulty sources propagate",
+    "cdf_sha256": "73399c6b96731bf5e0d94b88f14c40f140e49b3124b9244b62173bcad02bf9d7",
+    "constant_time": false,
+    "security_claim": "none",
+    "backend_admitted": false
+  },
+  "total_diagnostic_seconds": 1.774602484999999,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "seven_method_hibe_implemented": false,
+  "full_ibme_implemented": false,
+  "unresolved": [
+    "real difficulty/root regularity and same-parameter admission",
+    "native production RNG/error/resources",
+    "unique disk owner/publication and rollback model",
+    "HIBE byte/public-key objects/interface and protocol integration"
+  ]
+}
