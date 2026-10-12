@@ -99,3 +99,9 @@ python -m pip install --no-deps --target test-results/pr13-review-install/window
 最后文档修订同步安装已完成的状态、T0接收与本记录；没有再改密码代码。归档使用LF并给出实际归档 SHA，原始本机 JUnit 的原SHA在原运行收据保留。最终本地/远端版本以交付提交为准。
 
 最终收尾提交另更新 `ARCHITECTURE.md`、`IMPLEMENTATION_SPEC.md`、`docs/PROJECT_STATUS.md`、`docs/specs/first-suite-research.md`、`docs/workplans/2026-10-12/tasks.json` 及本目录 `README.md/review.json`。本目录新增 `.gitattributes`、`pr13-review.json`、`pr13-wheel-inspection.json`、`pr13-windows-installed.json`、`pr13-sage-installed.json`、`pr13-cli-lifecycle.json`、`pr13-portable.junit.xml`、`pr13-sage.junit.xml`、`pr13-installed-independence.junit.xml`。提交信息：`docs(review): finalize merged public API validation`；修复的测试提交与合入 SHA 在上文保留。
+
+## 7. 本地主目录保护
+
+本机 `D:/zcode_projects/ibme` 仍有3份原未跟踪论文/清单；其中 `papers/2016_ntru_ibs_xie.pdf` 与主线同名已跟踪文件字节不同。保护检查在执行 fast-forward 之前拒绝，因此没有覆盖、移动、暂存或清理这3份文件，主目录仍在原 `bc22c9c`。这是本地主目录同步的具体限制，不是远端合并失败。
+
+远端main和本任务的管理工作树 `pr-merge-review/ibme` 都已包含五个PR和最终记录，可从该工作树继续；准确主目录状态/文件指纹见 `review.json`。文档来源应按该最新 checkout，不能从旧主目录误读当前接口。论文版本需要另行保留/比较后再同步主目录，本轮没有改动它们。此保护说明对应文档提交 `docs(review): preserve local paper collision evidence`。

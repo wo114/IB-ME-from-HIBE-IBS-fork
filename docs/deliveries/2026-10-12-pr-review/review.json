@@ -232,5 +232,30 @@
     "task_dependency_dag": true,
     "code_changes": 0,
     "diff_check": true
+  },
+  "local_primary_sync": {
+    "status": "not_performed_to_preserve_existing_untracked_file",
+    "primary_head": "bc22c9cb834dee51e9c8b7a37040fa0c5349fcdb",
+    "collision": "papers/2016_ntru_ibs_xie.pdf",
+    "reason": "本地未跟踪版本与远端同名已跟踪文件不同；保护检查在任何 merge/文件写入之前拒绝。",
+    "existing_files": [
+      {
+        "path": "papers/2016_ntru_ibs_xie.pdf",
+        "sha256": "05cfdfbbff7d37855ca36e44309a79ff5b189632762bd71660fe0aaa2d391e88",
+        "bytes": 686954
+      },
+      {
+        "path": "papers/2021_module_trapdoors_bert.pdf",
+        "sha256": "eacffb2ad4dee159e59c2c3e85f83ed7296ab26e13a930b1ce5203fa7ab9432a",
+        "bytes": 555517
+      },
+      {
+        "path": "papers/structured-survey-manifest-2026-10-11.json",
+        "sha256": "8d9e67f63813381108a6f18c3580efbac5c01f2eb3d56adb7e97788aa264005a",
+        "bytes": 2571
+      }
+    ],
+    "updated_managed_worktree": "pr-merge-review",
+    "primary_worktree_preserved": true
   }
 }
