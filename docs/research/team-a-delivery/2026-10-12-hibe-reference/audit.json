@@ -1,0 +1,232 @@
+{
+  "schema": "A-HIBE-REFERENCE-DELIVERY-AUDIT/1",
+  "date": "2026-10-12",
+  "baseline": "57a02e597ddde9cef30dd16bf2874ab9cd192b17",
+  "scope": "A0/A1 source-checkout research slice; full A remains incomplete",
+  "goal_objective": "完成我该负责的任务（A）",
+  "goal_complete": false,
+  "commands": [
+    {
+      "command": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.first_suite.hibe_probe --private-directory test-results/a-hibe-contract/private --output test-results/a-hibe-contract/result.json",
+      "result": "exit0; 21 checks pass; required n2 public privacy attack succeeds; one actual lifecycle"
+    },
+    {
+      "command": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.first_suite.hibe_probe --restore-only test-results/a-hibe-contract/private",
+      "result": "exit0 after final parser hardening; canonical master/receiver/sender; no entropy/native engine/generation"
+    },
+    {
+      "command": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q --tb=short tests/test_first_suite_hibe_reference.py --junitxml=test-results/a-hibe-reference-release.xml",
+      "result": "48 passed in 32.05s; no skip"
+    },
+    {
+      "command": "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.first_suite.computational_parameter_plan --output test-results/a-hibe-parameter-plan-final.json",
+      "result": "9 arithmetic/resource projections; no high-dimensional keys; omitted noise is null"
+    },
+    {
+      "command": "python -m pytest -p no:cacheprovider -q --tb=short tests/test_assembly.py tests/test_cli_selection.py tests/test_combination_matrix.py --junitxml=test-results/a-hibe-framework-regression.xml",
+      "result": "85 passed in 3.51s"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed before stage; rechecked at stage/commit"
+    }
+  ],
+  "test_counts": {
+    "sage-final.junit.xml": {
+      "tests": 48,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "framework.junit.xml": {
+      "tests": 85,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "environment": {
+    "cpu": "Intel Core Ultra9 275HX",
+    "host": "Windows",
+    "os": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "Sage": "10.9",
+    "python": "3.13.14",
+    "cryptography": "49.0.0",
+    "framework_python": "3.14.6"
+  },
+  "parameters": {
+    "hibe": {
+      "n": 2,
+      "q": 549755813911,
+      "r_width_squared": 16,
+      "identity_bytes": 86,
+      "max_receivers": 2,
+      "max_children": 2,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false
+    },
+    "ibs": {
+      "degree": 256,
+      "k": 11,
+      "l": 10,
+      "q": 274877844481,
+      "root": 153250464611,
+      "eta": 1,
+      "kappa": 64,
+      "gamma1": 125440,
+      "gamma2": 31470387200,
+      "gamma3": 15270991360,
+      "dropped_bits": 28,
+      "identity_max_bytes": 64,
+      "message_max_bytes": 4096,
+      "max_extract_attempts": 1024,
+      "max_sign_attempts": 1024,
+      "max_uniform_attempts": 128,
+      "max_cached_identities": 64
+    },
+    "identity_original_bytes": [
+      3,
+      5
+    ],
+    "identity_inner_bytes": 86,
+    "message_bytes": 57,
+    "repetitions": 1
+  },
+  "source_manifest": {
+    "final_new_sources": {
+      "experiments/research/first_suite/computational_root.py": "1c50724fcbbc58e1fe217ea40e2d094c01e964dca915c869bd663a2955884e82",
+      "experiments/research/first_suite/hibe_reference.py": "60f7189995219f403ac31c803aea2c352eaeff0fe39668c18d1a7af8667b72a6",
+      "experiments/research/first_suite/hibe_registry.py": "d7fa0bfd6357e98f71558154a8756dc2dbb77848bf47c8de3e9d7275c536c5b0",
+      "experiments/research/first_suite/hibe_probe.py": "1cb0d1d16eb9975099c747c0711ad312f2b488829032973c03cac21821d5c2ad",
+      "experiments/research/first_suite/computational_parameter_plan.py": "86f0a72057d3f64e62c3a1f78aa628cb5aeac63e34c019f2c5e950f86173748b",
+      "tests/test_first_suite_hibe_reference.py": "aa0fc63ccb109c5f78e280edb5733d68e277cf386ab01862389077beb4b9dbf4"
+    },
+    "consumed_unchanged_sources": {
+      "src/ibme/assembly/__init__.py": "57843b8fc922b5979536c166a4e40f25f638b95dcc6c8686487cf6bd62171536",
+      "src/ibme/assembly/registry.py": "33f133efecdd5251908039ae9c6cdf1885bf8654db4ad6312e24c5dd0237134b",
+      "src/ibme/protocol/baseline.py": "3bffb26ce97294c8268430719c8ed1fbf66b118bb11bc5930e7e27f8dcab0b16",
+      "src/ibme/protocol/hybrid_hibe.py": "00f67d1065b25fe63e41ba1752266e73f03ed586f2a008a8333682ef0d158655",
+      "src/ibme/protocol/byteauth.py": "d174c0be104ab756c70fdb7fea8ade13b3afb8d6b59e6295019db42efe2f7414",
+      "experiments/research/first_suite/finite_gaussian.py": "9892f3b8bd85c11f08948f1d0cf3849efa4752ad339c366b842263c991d60549",
+      "experiments/research/first_suite/finite_gpv.py": "4ddeda10288c2683a573c2d4a44b33737d87bb83e2b08e3e72d0feb22b0748e3",
+      "experiments/research/first_suite/compact_delegation.py": "75798c6d64fbe81ea7252099835bc2f0fb552f25a771be43e9d90d76f5112dbe",
+      "experiments/research/first_suite/identity.py": "1921bcebea84321e14508b251906795f235ee60c46843c8f66a2a8f367d99718",
+      "experiments/research/first_suite/seed_kem.py": "dee36d3efd15de41f32af4573adfce5fc2d86619222495c51e5c5a0f7120affd",
+      "experiments/research/first_suite/leaf_state.py": "c799db9542cb6cb314ef742eb3df553c19d12b57588afb8fd5f157c4539c5568",
+      "experiments/research/first_suite/private_basis_bridge.py": "6ee978a9a13655036ef751dc23fde8b2e5261c8ee0215864889b77a71f4cb00f"
+    },
+    "lifecycle_boundary": "actual lifecycle before final bounded parameter-parser hardening; same cryptographic math/parameters/wire; final source restore and 48 tests executed after hardening; final hashes are not claimed captured before the initial run"
+  },
+  "artifact_sha256": {
+    "lifecycle.json": "46e401abd29a4971adc7ed2a765c1a5f88dfef8104bd69f3d605bf46304d52d8",
+    "parameter-plan.json": "82f4ded7e731fbda5ec93d0b49915d7cb60dec419a6abc34a5328f1d77f842e3",
+    "sage-final.junit.xml": "beed1f9e1024fbf3e9636e3a7268d724c04cf3a96814c679a554ad6fa475049f",
+    "framework.junit.xml": "1a52da8366f2bc64ae03280b46ed2730483791abe727e9f483563d79b3114dec"
+  },
+  "native_engine": {
+    "sha256": "27ec5bbb759384e2e535b5e136aa9ca2db501a3ac350c5f217d6bf114f73b284",
+    "source_revision": "qFALL b8eb4842fb80c36f7f3494930ea316472cb75793",
+    "source": "experiments/research/reuse/qfall_probe/src/bin/ibme-qfall-private-root.rs",
+    "supplies_entropy": false,
+    "cached_binary_reused": true
+  },
+  "paper_source": {
+    "path": "papers/2011_lattice_trapdoors_micciancio.pdf",
+    "sha256": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+    "locations": [
+      "PDF25 section5.2 computational root",
+      "PDF23 Lemma5.3",
+      "PDF29 Algorithm4/Lemma5.7"
+    ]
+  },
+  "secrecy": "private keys, bases, preimages, seeds and progress remain only in ignored test-results; no private artifacts copied to delivery",
+  "security": {
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "known_public_attack": true,
+    "random_oracle_model": "classical ROM mapping pending; no QROM claim"
+  },
+  "requirement_audit": [
+    {
+      "task": "A0",
+      "proved": [
+        "same-input executed research profile",
+        "nine resource/correctness projections",
+        "root/ct LWE roles separated",
+        "actual n2 privacy negative control"
+      ],
+      "incomplete": [
+        "both-role attack estimation for formal inputs",
+        "finite feasible admitted parameter set",
+        "model mapping"
+      ]
+    },
+    {
+      "task": "A1",
+      "proved": [
+        "six public methods",
+        "real root/extract/derive/fixed256",
+        "five object codecs/strict parser/binding",
+        "custom registry and one real Luo/Hybrid/BYTEAUTH pair",
+        "persisted failure/no retry tests",
+        "fresh process/no entropy/no engine restore"
+      ],
+      "incomplete": [
+        "original CHKP backend",
+        "formal model/parameters",
+        "installed-wheel/default CLI deployment"
+      ]
+    },
+    {
+      "task": "A3",
+      "proved": [
+        "existing finite CSPRNG/GPV/DelTrap tools reused without guard changes"
+      ],
+      "incomplete": [
+        "public package",
+        "target-dimensional geometry/tape and suitable Algorithm3/spectral gates"
+      ]
+    },
+    {
+      "task": "A2",
+      "proved": [],
+      "incomplete": [
+        "faithful ABB-ROM backend and comparison"
+      ]
+    },
+    {
+      "task": "AR",
+      "proved": [],
+      "incomplete": [
+        "GKR/standard-model reserve execution cards"
+      ]
+    }
+  ],
+  "known_failures": [
+    {
+      "scope": "initial probe to_bytes on SuiteConfig",
+      "state": "before Setup/entropy; old directory contains pending only; fixed to_json/from_json and new directory used once"
+    },
+    {
+      "scope": "n2 privacy",
+      "state": "intentional required negative control; 8649 public candidates recover challenge; not repaired by wrappers"
+    }
+  ],
+  "external_framework_ci": {
+    "run": 38158396399,
+    "commit": "57a02e597ddde9cef30dd16bf2874ab9cd192b17",
+    "conclusion": "success",
+    "scope": "prior team-plan/framework branch; not new A code CI"
+  },
+  "next": "Keep A active; package public tools/backend, map the MP12 variant and choose realistic parameters without changing legacy guards; implement faithful ABB-ROM and reserve tasks.",
+  "static_checks": {
+    "modified_markdown_local_links": 97,
+    "missing": 0,
+    "task_ids": 26,
+    "candidate_ids": 19,
+    "source_crypto_files_changed": 0,
+    "byte_compile": "passed"
+  }
+}

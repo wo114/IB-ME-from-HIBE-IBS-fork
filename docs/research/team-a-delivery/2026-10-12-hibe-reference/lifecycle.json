@@ -1,0 +1,288 @@
+{
+  "profile": "A-HIBE-SOURCE-REFERENCE/1",
+  "config": {
+    "allow_mock": false,
+    "backend_admitted": false,
+    "hibe": "mp12-chkp-reference",
+    "hibe_params": {
+      "backend_admitted": false,
+      "identity_bytes": 86,
+      "max_children": 2,
+      "max_receivers": 2,
+      "n": 2,
+      "parameters_are_formal": false,
+      "q": 549755813911,
+      "r_width_squared": 16,
+      "security_claim": "none"
+    },
+    "hibe_version": "mp12-chkp-finite-v1",
+    "hybrid_limits": {
+      "backend_id": "mp12-chkp-finite-v1",
+      "identity_max_bytes": 64,
+      "max_capsule_bytes": 4194304,
+      "max_payload_bytes": 65536
+    },
+    "ibs": "luo-module",
+    "ibs_params": {
+      "degree": 256,
+      "dropped_bits": 28,
+      "eta": 1,
+      "gamma1": 125440,
+      "gamma2": 31470387200,
+      "gamma3": 15270991360,
+      "identity_max_bytes": 64,
+      "k": 11,
+      "kappa": 64,
+      "l": 10,
+      "max_cached_identities": 64,
+      "max_extract_attempts": 1024,
+      "max_sign_attempts": 1024,
+      "max_uniform_attempts": 128,
+      "message_max_bytes": 4096,
+      "q": 274877844481,
+      "root": 153250464611
+    },
+    "ibs_version": "luo-module-ref1",
+    "parameters_are_formal": false,
+    "protocol": "byteauth-v1",
+    "security_claim": "none",
+    "signature_format": "compact",
+    "state_policy": "single-writer-commit-before-publish-v1",
+    "transport": "hybrid",
+    "version": "IBME/SUITE/1"
+  },
+  "capacity": {
+    "identity_bytes": 64,
+    "max_application_bytes": 3924,
+    "signature_max_bytes": 16063,
+    "ibs_input_bytes": 4096,
+    "hibe_payload_bytes": 65536,
+    "protocol_payload_overhead": 16171,
+    "signed_input_overhead": 172,
+    "inner_hibe_payload_bytes": 32,
+    "inner_hibe_identity_bytes": 86,
+    "inner_hibe_ciphertext_max_bytes": 2664
+  },
+  "hibe_parameters": {
+    "n": 2,
+    "q": 549755813911,
+    "r_width_squared": 16,
+    "identity_bytes": 86,
+    "max_receivers": 2,
+    "max_children": 2,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "ibs_parameters": {
+    "degree": 256,
+    "k": 11,
+    "l": 10,
+    "q": 274877844481,
+    "root": 153250464611,
+    "eta": 1,
+    "kappa": 64,
+    "gamma1": 125440,
+    "gamma2": 31470387200,
+    "gamma3": 15270991360,
+    "dropped_bits": 28,
+    "identity_max_bytes": 64,
+    "message_max_bytes": 4096,
+    "max_extract_attempts": 1024,
+    "max_sign_attempts": 1024,
+    "max_uniform_attempts": 128,
+    "max_cached_identities": 64
+  },
+  "root_generation": {
+    "profile": "IBME/MP12-COMPUTATIONAL-ROOT/1",
+    "source": "MP12 section5.2, PDF25 computational instantiation",
+    "parameters": {
+      "n": 2,
+      "q": 549755813911,
+      "r_width_squared": 16,
+      "uniform_trials": 192,
+      "max_entropy_bytes": 1099511627776,
+      "security_claim": "none",
+      "backend_admitted": false
+    },
+    "n": 2,
+    "q": 549755813911,
+    "k": 40,
+    "m_bar": 4,
+    "dimension": 84,
+    "public_base_layout": "[I_n | uniform Ahat_nxn]",
+    "entropy_source": "system",
+    "native_entropy_generated": false,
+    "root_distribution": "computational, ignoring public identity block",
+    "root_security_assumption": "normal-form decision LWE; R2 secret and R1 error",
+    "root_lwe_exact_distribution": "independent ideal D_Z,s coordinates; finite implementation separately coupled",
+    "root_lwe_samples_per_secret": 2,
+    "root_lwe_independent_secret_columns": 80,
+    "root_lwe_width_squared": 16,
+    "root_statistical_regularity_bound": null,
+    "public_quality_squared": 5120,
+    "public_gs_squared_bound": 51210,
+    "ideal_root_norm_bad_upper": "1/2135987035920910082395021706169552114602704522356652769947041607822219725780640550022962086936576",
+    "r_batch_tv_upper_including_abort": "2744502789887687088546068464978328456462149680333708945376589899747459862518885328988820737699101955/2907354897182427562197295231552018137414565442749272241125960796722557152453591693304764202855054262243050086425064711734138406514458624",
+    "root_output_coupling_upper_including_norm_abort": "2744502789887687088546068464978328456462149680333708945376591260876927546272739182487250464771947779/2907354897182427562197295231552018137414565442749272241125960796722557152453591693304764202855054262243050086425064711734138406514458624",
+    "uniform_matrix_abort_upper": "1/1569275433846670190958947355801916604025588861116008628224",
+    "worst_entropy_bytes": 70035200,
+    "actual_entropy_bytes": 106531,
+    "finite_options": {
+      "tail_bits": 128,
+      "mass_bits": 256,
+      "precision_bits": 320,
+      "gaussian_abort_bits": 128,
+      "max_uniform_trials": 192,
+      "max_gaussian_trials": 100000,
+      "max_radius": 281474976710656,
+      "rational_bits": 8192,
+      "max_tape_bytes": 1099511627776
+    },
+    "scalar_radius": 21,
+    "complete_kernel_and_defining_relation_checked": true,
+    "qfall_revision": "b8eb4842fb80c36f7f3494930ea316472cb75793",
+    "basis_conversion_supplies_no_entropy": true,
+    "parameters_are_formal": false,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "exclusions": [
+      "normal-form LWE attack estimate",
+      "multi-column reduction loss",
+      "HIBE key-distribution/model mapping",
+      "side channels",
+      "native conversion resource failure"
+    ]
+  },
+  "dimensions": [
+    84,
+    168,
+    252
+  ],
+  "seed_bits": 256,
+  "root_generations": 1,
+  "parent_generations": 2,
+  "leaf_generations": 4,
+  "checks": {
+    "both_match": true,
+    "sender_mismatch": true,
+    "receiver_mismatch": true,
+    "both_mismatch": true,
+    "same_receiver_no_entropy": true,
+    "same_leaf_no_entropy": true,
+    "outer_context_tamper_rejected": true,
+    "middle_region_tamper_rejected": true,
+    "outer_signature_tamper_rejected": true,
+    "truncated_rejected": true,
+    "appended_rejected": true,
+    "duplicated_rejected": true,
+    "fresh_outer_key_resign_rejected": true,
+    "public_roundtrip": true,
+    "public_truncate_rejected": true,
+    "public_append_rejected": true,
+    "receiver_roundtrip": true,
+    "receiver_truncate_rejected": true,
+    "receiver_append_rejected": true,
+    "fresh_restore_matches": true,
+    "fresh_restore_canonical": true
+  },
+  "checks_passed": 21,
+  "fresh_process": {
+    "message_matches": true,
+    "master_byte_equal": true,
+    "receiver_byte_equal": true,
+    "sender_byte_equal": true,
+    "entropy_reads_permitted": false,
+    "native_engine_available": false,
+    "new_root_parent_or_leaf_generations": 0,
+    "security_claim": "none",
+    "backend_admitted": false
+  },
+  "public_negative_control": {
+    "attack": "bounded n2 identity-column error enumeration",
+    "secret_keys_supplied": false,
+    "noise_support_radius": 46,
+    "trials": 8649,
+    "valid_dem_decryptions": 1,
+    "challenge_plaintext_recovered": true,
+    "security_claim": "none",
+    "backend_admitted": false
+  },
+  "sizes": {
+    "public": 249836,
+    "master": 2864602,
+    "sender": 313695,
+    "receiver_Bob": 1232812,
+    "receiver_Mallory": 1232795,
+    "ciphertext": 117520,
+    "raw_seed_capsule": 2664
+  },
+  "elapsed_seconds": 218.92291932400002,
+  "events": [
+    {
+      "stage": "real_computational_root_setup",
+      "elapsed_seconds": 0.004392093999996405
+    },
+    {
+      "stage": "real_receiver_Bob_DelTrap",
+      "elapsed_seconds": 0.21497878699999262
+    },
+    {
+      "stage": "real_leaf_Bob_Alice_fixed256",
+      "elapsed_seconds": 27.236484784999988
+    },
+    {
+      "stage": "real_leaf_Bob_Eve_fixed256",
+      "elapsed_seconds": 65.16815502399999
+    },
+    {
+      "stage": "real_receiver_Mallory_DelTrap",
+      "elapsed_seconds": 103.21158549699999
+    },
+    {
+      "stage": "real_leaf_Mallory_Alice_fixed256",
+      "elapsed_seconds": 128.598471568
+    },
+    {
+      "stage": "real_leaf_Mallory_Eve_fixed256",
+      "elapsed_seconds": 166.274968547
+    },
+    {
+      "stage": "wire_attack_controls_and_reuse",
+      "elapsed_seconds": 204.335712355
+    },
+    {
+      "stage": "public_n2_privacy_negative_control",
+      "elapsed_seconds": 211.37346167599998
+    },
+    {
+      "stage": "fresh_process_restore_without_engine_or_entropy",
+      "elapsed_seconds": 211.398884189
+    }
+  ],
+  "identity_original_bytes": [
+    3,
+    5
+  ],
+  "identity_inner_bytes": 86,
+  "message_bytes": 57,
+  "repetitions": 1,
+  "python": "3.13.14",
+  "os": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "native_engine_sha256": "27ec5bbb759384e2e535b5e136aa9ca2db501a3ac350c5f217d6bf114f73b284",
+  "source_checkout_only": true,
+  "default_registry_modified": false,
+  "random_oracle_model": "classical ROM conditions pending",
+  "parameters_are_formal": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "not_covered": [
+    "secure parameters",
+    "original CHKP theorem unchanged for MP12 variant",
+    "installed-wheel deployment",
+    "default CLI registration",
+    "constant-time or rollback protection",
+    "fair performance comparison",
+    "QROM proof"
+  ]
+}

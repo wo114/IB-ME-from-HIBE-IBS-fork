@@ -74,6 +74,8 @@ Sageloli 的 [计数工具](../experiments/research/sageloli_parameter_units.py)
 
 以下是基于已存代码和明确缺口的实施建议，不是速度、安全等级或最终三套的排名。
 
+2026-10-12 A 新增[MP12 变体研究后端](research/team-a-delivery/2026-10-12-hibe-reference/README.md)，ID `mp12-chkp-reference`：真实计算型根/DelTrap、六方法和一条 Luo/Hybrid/BYTEAUTH 配对已实跑。它不改变表中“原 CHKP 尚无完整获准后端”的结论，不自动新增困难假设/原算法计数；n2 参数已被公开攻击，默认 registry/wheel/正式模型未完成，另列具体状态。
+
 2026-10-12 的具体 owner、P0—P3 顺序、第一批产物与材料责任统一见[三人交付计划](workplans/三人方案分工与统一框架交付.md)。目录中的 19 条均已分配；原生论文路线优先，认证转换为可并行的工程对照，LATTE/Lai 先过匿名/委派核验。全部就绪池做可行配对比较，再选三个报告重点，本文不另发布一套冲突排序。
 
 | 工作包 | 直接可做的内容 | 该包不能替代的工作 |
