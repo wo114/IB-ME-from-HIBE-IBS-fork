@@ -23,6 +23,7 @@ from math import lcm
 import re
 
 from sage.all import QQ, ZZ, matrix, vector
+from sage.rings.rational import Rational
 
 from ibme.core.randomness import SecureRandom
 from ibme.lattice.chkp.basis import KernelBasis, ModMatrixReference, _full_rank_field, _integer, _rows
@@ -50,6 +51,21 @@ def _bounded_rational(value, name, bits):
         if not re.fullmatch(r"[+-]?[0-9]+(?:/[0-9]+)?", value):
             raise ValueError(f"{name} requires integer or fraction text")
     return exact_rational(value, name, max_bits=bits)
+
+
+def _bounded_qq(value, name, bits):
+    """Gate an internal QQ result without reparsing or copying its big integers.
+
+    Only exact QQ vector arithmetic calls this helper. Public inputs retain
+    _bounded_rational and its type/text gates. Sage Integer.nbits() measures
+    the magnitude, including for negative numerators, exactly like the
+    former abs(int(numerator)).bit_length(). Keep every intermediate gate.
+    """
+    if not isinstance(value, Rational):
+        raise ValueError(f"{name} must be an internal QQ value")
+    if value.numerator().nbits() > bits or value.denominator().nbits() > bits:
+        raise ValueError(f"{name} exceeds the public rational bit budget")
+    return value
 
 
 def _bounded_basis(basis, max_dimension, bits):
@@ -84,15 +100,19 @@ def _gs_geometry(rows, bits):
     columns = tuple(matrix(ZZ, rows).columns())
     orthogonal, squared, weights = [], [], []
     for column in columns:
+        original = vector(QQ, column)
         current = vector(QQ, column)
         for g, norm in zip(orthogonal, squared):
-            current -= (current.dot_product(g) / norm) * g
+            # Earlier exact GS vectors are orthogonal to g. Thus original.g
+            # equals current.g, without the growing denominators of current.
+            # Every subsequent current and its gate position remain identical.
+            current -= (original.dot_product(g) / norm) * g
             for entry in current:
-                _bounded_rational(entry, "GS intermediate", bits)
-        norm = _bounded_rational(current.dot_product(current), "GS squared length", bits)
+                _bounded_qq(entry, "GS intermediate", bits)
+        norm = _bounded_qq(current.dot_product(current), "GS squared length", bits)
         if norm <= 0:
             raise ValueError("Basis must have full integer rank")
-        weight = tuple(_bounded_rational(x / norm, "GS weight", bits) for x in current)
+        weight = tuple(_bounded_qq(x / norm, "GS weight", bits) for x in current)
         current.set_immutable()
         column.set_immutable()
         orthogonal.append(current)
