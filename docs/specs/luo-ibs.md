@@ -41,6 +41,14 @@
 
 同一主状态对象对发钥与缓存快照持有重入锁；缓存命中返回同一身份密钥，恢复时重建锁，不序列化 RNG。跨进程发布与固定 profile 的检查见 [传输与状态](transport-and-state.md)。
 
+### C64B 显式研究配置
+
+[luo_module_profiles.py](../../src/ibme/ibs/luo_module_profiles.py) 的 `c64b_params()` 固定完整17字段，ID为 `luo-module-c64b-v1`。N/k/l/q/root/eta/kappa/d 为256/11/10/274877844481/153250464611/1/64/28；gamma1/gamma2/gamma3 为190000/60000000000/27487784448，Extract/Sign 上限各4096，uniform上限128，身份/消息/缓存上限64/4096/64。它不改 `LuoModuleParams()` 默认值和两种 wire 版本。
+
+专用研究入口显式 `make_research_runtime(ibs_params=c64b_params(), signature_format=...)`；Setup 传入其它 snapshot 时在消费熵前拒绝，公开对象读取器拒绝跨 profile 恢复。公共 assembly 可传完整 C64B 参数对象/JSON；它不自动成为默认 preset。reference/compact 签名分别29455/16383 B，完整组合容量另核，本轮最新 assembly 的最大3924 B应用输入实际往返见[合入记录](../deliveries/2026-10-12-pr-review/README.md)。参数或格式变化不算新 IBS 算法。
+
+可用性证书是理想随机源/XOF、矩阵好事件及明确调用/查询预算下的条件界，不是安全位数。C64B 继续 none/false/非正式参数；MLWE/MSIS、固定服务及整体模型条件单独核验，不从接口或样本成功继承 QROM/安全等级。
+
 ## 3. 矩阵参考后端的兼容范围
 
 M2-A Luo 研究适配（2026-10-09）：`src/ibme/ibs/luo.py` 实现冻结的 IBS 方法与对象基类，显式使用独立 `LuoMatrixParams`；旧 Params 不自动映射。配置为 `IBME/LUO2024/MATRIX-CONFIG/1`，完整字段且安全声明固定 none/false，JSON 解析拒绝重复/未知字段和错误版本。对象继续兼容 M1 的 `MATRIX-REF/1` 研究格式，主状态保存固定身份密钥而不保存 RNG，验签只依赖公开输入。程序对象类型错误为 TypeError，身份/消息错误为 EncodingError，配置错误为 InvalidParameterError，反序列化错误为 SerializationError；熵源错误为 RandomnessError，预算耗尽为明确的 LuoSamplingAbort。当前 n≤16,m≤128,k≤32、uint32 q、有符号 int64 整数及 8 MiB 上限是研究资源限制；分析报告里的大参数不能交给这个版本执行。方法形状、旧后端和 CLI 选择不变，未准入安全后端。算法对应、测试、完整格式及 CHKP 载荷交接见 [M2-A](../research/2026-10-09-m2/README.md)。

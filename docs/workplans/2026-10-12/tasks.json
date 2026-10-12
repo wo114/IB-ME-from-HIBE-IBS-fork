@@ -289,12 +289,13 @@
       "priority": "P0",
       "title": "PR 审查与版本接收",
       "depends_on": [],
-      "execution_state": "plan_revised_code_review_pending",
+      "execution_state": "reviewed_merged_current_pr_batch",
       "deliverables": [
         "本轮分工/路线修订",
         "PR9/10/11 独立代码与证据接收",
         "固定基线/owner/差分/合并结论"
-      ]
+      ],
+      "completed_scope": "#9/#10/#11/#12 固定版本审查合入；未来交付继续逐批接收，不代表全部候选完成。"
     },
     {
       "id": "T1",
@@ -619,12 +620,27 @@
     "parameters_are_formal": false
   },
   "known_pending": [
-    "PR11 仍为草稿，独立代码/接口/状态合并验收未关闭",
-    "PR9 C64B helper 未包含在 PR11，需要 B1/T0 接收",
-    "真实首套及扩展 2×3 后端池尚未齐备",
-    "LATTE/Lai 匿名/采样/委派与 Xie 原文冲突须先核验",
-    "完整参数/模型条件和正式安全声明逐配置审查",
-    "完整展示/报告/支撑/答辩产物仍待实施，本文提供任务和模板"
+    "新的提交/PR 和未来算法仍须逐版本审查；本轮四个 PR 已合入。",
+    "C64B 明确 opt-in，默认参数未改；条件界/模型和正式安全准入仍待核。",
+    "MP12 n2 source-checkout/Sage 后端已实跑；默认 CLI/wheel、正式参数/两角色攻击估计/变体模型仍待完成。",
+    "扩展 2×3 及全就绪池的真实组合仍未齐备。",
+    "LATTE/Lai 匿名/采样/委派与 Xie 原文冲突须先核验。",
+    "完整展示/报告/支撑/答辩产物仍待实施，当前提供任务和模板。"
   ],
-  "last_a_evidence_date": "2026-10-12"
+  "last_a_evidence_date": "2026-10-12",
+  "baseline_describes_original_plan_only": true,
+  "latest_pr_acceptance": {
+    "date": "2026-10-12",
+    "main_before_document_sync": "7686fd906198e74d3ce140c542908ae253e20ef5",
+    "prs": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "states": "MERGED",
+    "code_review_source_head": "ea62d6543a16a07bd3c5a3a2c94cfe0f5d1dd3e9",
+    "merged_source_tree_equivalent": true,
+    "report": "../../deliveries/2026-10-12-pr-review/README.md"
+  }
 }

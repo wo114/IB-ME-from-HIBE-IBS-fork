@@ -41,6 +41,7 @@ CLI / 应用 / 统一评测
 | 容量适配 | [hybrid_hibe.py](src/ibme/protocol/hybrid_hibe.py) | 用内层 HIBE 封装种子，外层 HKDF/AES-GCM 处理载荷 |
 | 字节认证 | [byteauth.py](src/ibme/protocol/byteauth.py) | 在基线外增加密文字节认证及加密内容绑定 |
 | 当前研究配置 | [luo_hybrid.py](src/ibme/protocol/luo_hybrid.py) | 教学 ABB10 + Luo 模格 IBS + Hybrid + BYTEAUTH 的专用配置 |
+| source checkout HIBE 研究配置 | [hibe_reference.py](experiments/research/first_suite/hibe_reference.py)、[hibe_registry.py](experiments/research/first_suite/hibe_registry.py) | MP12 计算型根/DelTrap + CHKP H/G，真实六方法/固定叶/对象恢复；通过自定义 registry 接共同协议，默认 CLI/原 CHKP/正式安全准入保持分开 |
 | 用户入口 | [cli.py](src/ibme/cli.py) | 独立 `--hibe` / `--ibs`、两边选参；旧预设保留 |
 | 统一选择与装配 | [assembly](src/ibme/assembly/__init__.py)、[registry](src/ibme/assembly/registry.py) | 显式后端登记、严格配置快照、无随机性的能力/容量预检、公开对象恢复 |
 | 组合验收 | [run_combination_matrix.py](experiments/run_combination_matrix.py) | 同一驱动执行各已实现组合；静态兼容与真实执行分开记录 |

@@ -2,7 +2,17 @@
 
 此页迁移自 `upstream/main` 的 `bc22c9c` 版本公共规范，保留已实现组件的算法、状态、资源与证据边界。它补充 [统一实现规范](../../IMPLEMENTATION_SPEC.md)，不发布全项目排序；当前状态见 [PROJECT_STATUS](../PROJECT_STATUS.md)。各段中的“本轮”“下一项”仅指原交付版本。
 
-`experiments/research/first_suite/` 已在本 checkout 中，包含真实有限根/父/叶和固定 256 位种子研究路径；它没有注册完整公开 HIBE 后端。DelTrap 为独立 MP12 profile，不等同于原 CHKP RandBasis。n=1 公开种子恢复反例和 none/false 声明继续保留。迁移时读取了对应源码和报告，未重新运行密码实验。
+`experiments/research/first_suite/` 已在本 checkout 中，包含真实有限根/父/叶和固定 256 位种子研究路径。下面日期为 2026-10-11 的迁移段落描述当时的独立组件，不否定新增的计算型 MP12 六方法研究后端。DelTrap 为独立 MP12 profile，不等同于原 CHKP RandBasis；n=1 和新 n=2 公开恢复负控、none/false 声明继续保留。
+
+## 计算型 MP12 六方法研究后端
+
+[公开实现](../../experiments/research/first_suite/hibe_reference.py)、[自定义登记](../../experiments/research/first_suite/hibe_registry.py)和[交付/重放命令](../research/team-a-delivery/2026-10-12-hibe-reference/README.md)对应独立 `MP12-COMPUTATIONAL-CHKP-FINITE/1` profile，backend ID 为 `mp12-chkp-reference`。MP12 §5.2 的计算型 `[I|Ahat]` 根与 Algorithm4 委派，结合 CHKP 的两层 H/G 和共享前导；不关闭旧统计根的 regularity 检查，不继承原 CHKP RandBasis 安全结论。
+
+六方法和 per-call `rng` 满足共同 HIBE 接口；真正 Extract→Derive，固定每叶256原像，并提供 `validate_key_binding`。PK/MSK/两级密钥/密文分别有版本与严格 codec，绑定全参数、公钥与身份路径；失败地址在私有状态中保留，恢复不能重新抽样。缺少 engine 的新进程可以恢复已有状态；新 Setup/委派需要指定的本机转换工具。用户持有的私钥、基、原像、RNG 和生产种子不进入 Git。
+
+当前 profile：n=2、q=549755813911、根/父/叶维度84/168/252、s_R²=16；最多2接收者、每人2子地址。内层身份最多86 B，载荷0—32 B；Hybrid 使用32 B seed，外层共同身份64 B。它是 source checkout/Sage 的研究后端，默认 registry/CLI/wheel 尚未接入；原 `chkp` 的 unavailable 记录不能改名充数。该 profile 已有公开噪声枚举恢复明文反例，不能用于正式推荐或宣称隐私安全。
+
+真实采样/方程/规范解析/绑定、固定状态与完整组合的功能分别验收；raw CPA 容错和 Hybrid/BYTEAUTH 拒绝分层处理。正式参数、两角色 LWE 估计、变体模型和分布对应仍待核验，保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。本轮独立复核和版本边界见[PR 合入记录](../deliveries/2026-10-12-pr-review/README.md)；历史探针计数不与本轮测试相加。
 
 ## 按既有交付版本保留的专属契约
 
