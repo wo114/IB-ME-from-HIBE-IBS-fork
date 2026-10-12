@@ -1,0 +1,205 @@
+{
+  "schema": "IBME/LUO-ACCEPTANCE-FILES/1",
+  "source_base_commit": "bc22c9cb834dee51e9c8b7a37040fa0c5349fcdb",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "excluded": [
+    "docs/research/2026-10-11-luo-acceptance/evidence/manifest.json"
+  ],
+  "hash_semantics": "SHA256 of archived UTF-8 LF file bytes. Manifest does not hash itself. JUnit hostname redacted; no testcase/result/time changes.",
+  "original_step17_receipt_sha256": "9c7751a5c851e0a666b431e1fb1434bf7c9339c1dcda286642c80c17198eb85a",
+  "original_step17_file_hashes": [
+    {
+      "name": "B-attempt-events.csv",
+      "sha256": "9a75ef9ac5f2951e210d8036240f61ad0fc7446efd9eea059426a74c0f84e745"
+    },
+    {
+      "name": "B-call-summary.csv",
+      "sha256": "eff48ec169692c18b7293ad51506f9000e47922228b02034a55118f8959b12f5"
+    },
+    {
+      "name": "D-raw-v2.csv",
+      "sha256": "3f67e958a1d5b210407d8c588349e6d538d8500189928e8fbf3d593050dfb9e1"
+    },
+    {
+      "name": "B-summary-v2.json",
+      "sha256": "b44a0ced91d7d9cdca4ef4a56a2133b40aa2918590c6a9898586bf2696dab115"
+    },
+    {
+      "name": "B-observer-v2.py",
+      "sha256": "b1af9c7fdfb267541b3118e3c7f787b63c75126cf14442a9244e72b32094dd94"
+    },
+    {
+      "name": "D-performance-v2.py",
+      "sha256": "e27a245f699bdd75472ed1d422cc5359b0244e7a559c2e0a0432bb01bbb87f25"
+    }
+  ],
+  "selected_test_run": {
+    "tests": 317,
+    "passed": 317,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "pytest_seconds": 1539.76,
+    "junit_seconds": 1539.675
+  },
+  "files": [
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/结果卡.json",
+      "bytes": 2830,
+      "sha256": "561af1d867bc1b3ebb614efe3b838042805ce9a2d08f30e3ef20fc5943201e73"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/来源与返工对照.md",
+      "bytes": 4677,
+      "sha256": "862ba4ea1c12560e10479a34dcd03f8de97e5a67251d9d15ca431145ee926469"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/验收收据.md",
+      "bytes": 4067,
+      "sha256": "fa9747edaf1f4b7cfeea1674078e665fa8a180c53d302f57ea3198d999a99c25"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/environment-extra.json",
+      "bytes": 483,
+      "sha256": "7d76e94de8fef721b016e22b0960978bf7da98af2755b88ec199b9cc776be375"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/historical-recount.json",
+      "bytes": 2052,
+      "sha256": "30e94908d4c077901a13fa06499372bf1c58a268a6afe477e8b4e35add563dc3"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/historical/B-attempt-events.csv",
+      "bytes": 34283,
+      "sha256": "1287f032da1c84655dce2986d9345e519e39a291a84c0f9916f3a019f6a91516"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/historical/B-call-summary.csv",
+      "bytes": 11474,
+      "sha256": "56f4adc15de63cb791345535d9c01a4869da8b2d4e9ffe21e9831f839af288e9"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/historical/B-observer-v2.py.txt",
+      "bytes": 13159,
+      "sha256": "b1af9c7fdfb267541b3118e3c7f787b63c75126cf14442a9244e72b32094dd94"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/historical/B-summary-v2.json",
+      "bytes": 1469,
+      "sha256": "1879ee6aa12ab59f6099adb0427208c40e4672cfdfa57c77d10d64fa7ad40d90"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/historical/D-performance-v2.py.txt",
+      "bytes": 12195,
+      "sha256": "e27a245f699bdd75472ed1d422cc5359b0244e7a559c2e0a0432bb01bbb87f25"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/historical/D-raw-v2.csv",
+      "bytes": 2265,
+      "sha256": "261718ec371446a162896b45891d4438ed9b6317a272021a8b57258edb1ba225"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/pytest.log",
+      "bytes": 433,
+      "sha256": "b4cdcbf9823e6d4891082b7e38aa6c6a221c6af0576124bb1819465aa42d091c"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/pytest.xml",
+      "bytes": 45540,
+      "sha256": "f0548f14f25db3a7538e9f7bc3af568581d6714d8023a1a0909d533ce1b82bfd"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/setup-codec-first-attempt/FAILURE.md",
+      "bytes": 542,
+      "sha256": "9e501d8d4474b51e57633b42269ef2dc125b9a4665226a6e8ae99e9f8b255b0e"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/setup-codec-first-attempt/raw.csv",
+      "bytes": 2486,
+      "sha256": "e5c1a567315bb6b0f37c7c86f4210371ba805ce9539b326c5be18c7f8575980d"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/setup-codec-pre-review/metadata.json",
+      "bytes": 3594,
+      "sha256": "5822345c314cecf6f102d9739c1c81075520880ee3d71389d74cafa1174979da"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/setup-codec-pre-review/raw.csv",
+      "bytes": 2485,
+      "sha256": "1667154a2993c8a79a5598bed80a158c0f97962706d0e33c7791201202d8d6da"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/setup-codec-pre-review/README.md",
+      "bytes": 562,
+      "sha256": "6c8e117c07083bb2d99f30bb3db0916f8264d87a00dff9ad47681910f6d16722"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/setup-codec-pre-review/summary.json",
+      "bytes": 2390,
+      "sha256": "57bd9813666b003375a4169d742e965d2c38fd3bd950942e1aa888dd6cdb57aa"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/setup-codec/metadata.json",
+      "bytes": 3594,
+      "sha256": "3a4e0af7ba4d4a97e4140af63c665405cc036cd77e3d151ba36e3f604957699f"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/setup-codec/raw.csv",
+      "bytes": 2481,
+      "sha256": "6dd904016e7f243232fda9917cb5835d758238361ce90b80e5fb3ed38d0f84b6"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/evidence/setup-codec/summary.json",
+      "bytes": 2386,
+      "sha256": "0f6ef5d7881422d89718dd04a4391682a96106a35cf3c06a082ebd09580beaa3"
+    },
+    {
+      "file": "docs/research/2026-10-11-luo-acceptance/README.md",
+      "bytes": 7842,
+      "sha256": "727c9641178b303f9ac0f7f4a470c20ebf7c13784afae4376ce6eaf71b875a87"
+    },
+    {
+      "file": "experiments/research/audit_luo_acceptance_evidence.py",
+      "bytes": 5763,
+      "sha256": "78fb70cfce218aefed98edc7ad8dab479b6fd4f5e26e2bf15627a681cedc5a33"
+    },
+    {
+      "file": "experiments/research/luo_acceptance_benchmark.py",
+      "bytes": 10767,
+      "sha256": "a5bbaeaf1bc6391d7cc468c5895bdfc4e3de3e3b8ba0b4785a3be8d5dc8c7a52"
+    },
+    {
+      "file": "tests/luo_acceptance/test_layer_attribution.py",
+      "bytes": 9687,
+      "sha256": "49c3cd8f1dcc9224b91842531063d2a980c2d8dce5e91b62e0611eb4ebabb9b8"
+    },
+    {
+      "file": "tests/luo_acceptance/test_luo_cross_context.py",
+      "bytes": 6875,
+      "sha256": "c684403cdc6114116861316acfe6fd6d7a4e8fc3502537375e2ae2cf1a83fb8d"
+    },
+    {
+      "file": "tests/luo_acceptance/test_luo_format_state_contract.py",
+      "bytes": 8413,
+      "sha256": "bf792d054b8b4d7da52fc35450ca3aba8a2bb731316279fca60861b0942aecfa"
+    },
+    {
+      "file": "tests/luo_acceptance/test_luo_payload_attacks.py",
+      "bytes": 7128,
+      "sha256": "01f1f9ade0aa40b63a105a2f13af435df18cd358b3cde9ae4ea33985a14684e6"
+    },
+    {
+      "file": "tests/luo_acceptance/test_luo_payload_contract.py",
+      "bytes": 6396,
+      "sha256": "39d8b90637417e3595f4c5f162aaf525dcd345f91ccc65812a86eeedec191047"
+    },
+    {
+      "file": "tests/test_luo_acceptance_evidence.py",
+      "bytes": 3262,
+      "sha256": "cb3f492e6d22178f3536a9b5e6d389014b6a023c74f26da51b006da2c5b7f5ac"
+    }
+  ]
+}

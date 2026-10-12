@@ -1,0 +1,860 @@
+{
+  "schema": "IBME/LUO2024/STEP22-PARAMETER-ADMISSION/1",
+  "review_date": "2026-10-11",
+  "read_only_repository": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS",
+  "baseline_commit": "f079ce10fb6b3d2877465b308caaa30276d9e6f9",
+  "scope": "current plus one exact authorized candidate and one kappa64 control; no parameter/src mutations or broad grids",
+  "sources": {
+    "M": {
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/src/ibme/ibs/luo_module.py",
+      "ranges": [
+        [
+          51,
+          108
+        ],
+        [
+          188,
+          240
+        ],
+        [
+          442,
+          535
+        ]
+      ],
+      "sha256": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275"
+    },
+    "R": {
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/src/ibme/ibs/luo_module_math.py",
+      "ranges": [
+        [
+          51,
+          66
+        ],
+        [
+          131,
+          186
+        ]
+      ]
+    },
+    "S": {
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/experiments/research/luo_module_security_screen.py",
+      "ranges": [
+        [
+          78,
+          168
+        ],
+        [
+          171,
+          278
+        ],
+        [
+          287,
+          368
+        ]
+      ]
+    },
+    "J": {
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/experiments/research/luo_joint_parameter_screen.py",
+      "ranges": [
+        [
+          34,
+          37
+        ],
+        [
+          149,
+          202
+        ],
+        [
+          265,
+          306
+        ]
+      ]
+    },
+    "E": {
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/experiments/research/luo_parameter_screen.py",
+      "ranges": [
+        [
+          26,
+          28
+        ],
+        [
+          194,
+          205
+        ],
+        [
+          208,
+          216
+        ]
+      ]
+    },
+    "I": {
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/IMPLEMENTATION_SPEC.md",
+      "ranges": [
+        [
+          7,
+          9
+        ],
+        [
+          59,
+          75
+        ],
+        [
+          183,
+          195
+        ]
+      ]
+    },
+    "P": {
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/papers/2024_ibs_without_trapdoors_luo.pdf",
+      "pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "sha256": "12c70ae7635c0b88c132bca14990480a8e0cdec2e786a6dcf39256e5bb0dd455"
+    },
+    "H": {
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/docs/research/2026-10-09-admission/module-security.json",
+      "ranges": [
+        [
+          4,
+          32
+        ],
+        [
+          34,
+          258
+        ],
+        [
+          260,
+          332
+        ],
+        [
+          2919,
+          2940
+        ],
+        [
+          3142,
+          3158
+        ]
+      ]
+    },
+    "B": {
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/docs/research/2026-10-09-m2b/joint-screen.json",
+      "ranges": [
+        [
+          5778,
+          5828
+        ]
+      ]
+    },
+    "L": {
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/docs/research/2026-10-11-luo-lifecycle/参数与引用边界.md",
+      "ranges": [
+        [
+          7,
+          11
+        ],
+        [
+          24,
+          36
+        ]
+      ]
+    },
+    "A": {
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/experiments/research/luo_robust_abort_certificate.py",
+      "ranges": [
+        [
+          28,
+          69
+        ],
+        [
+          80,
+          162
+        ]
+      ],
+      "sha256": "3dbf9751592d0f1a07670af0afec480333b142485e38095738b5a1240dc9816d",
+      "tracked_at_review": false,
+      "proof_status": "main prototype under independent review; only arithmetic executed here"
+    }
+  },
+  "profiles": [
+    {
+      "name": "current",
+      "parameters": {
+        "degree": 256,
+        "k": 11,
+        "l": 10,
+        "q": 274877844481,
+        "root": 153250464611,
+        "eta": 1,
+        "kappa": 64,
+        "gamma1": 125440,
+        "gamma2": 31470387200,
+        "gamma3": 15270991360,
+        "dropped_bits": 28,
+        "identity_max_bytes": 64,
+        "message_max_bytes": 4096,
+        "max_extract_attempts": 1024,
+        "max_sign_attempts": 1024,
+        "max_uniform_attempts": 128,
+        "max_cached_identities": 64
+      },
+      "constructor_valid": true,
+      "selected_default": true,
+      "math_change_from_current": {},
+      "msis_common": {
+        "name": "all-branches-relaxed",
+        "module_rows": 11,
+        "module_columns": 22,
+        "coefficient_rows": 2816,
+        "coefficient_columns": 5632,
+        "block_infinity_bounds": [
+          62956830720,
+          78279890946,
+          128
+        ],
+        "uniform_screen_bound": 78279890946,
+        "q": 274877844481,
+        "below_q_half": true,
+        "normalized_matrix": "[A|I_k|t]",
+        "interpretation": "Relaxed common box; known-identity witnesses append a zero t block",
+        "estimates": {},
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "mlwe_shared_exact_input": {
+        "n": 2560,
+        "m": 2816,
+        "q": 274877844481,
+        "Xs": "Uniform(-1,1)",
+        "Xe": "Uniform(-1,1)"
+      },
+      "challenge_bits": 267.5669355104564,
+      "generic_quantum_challenge_search_exponent": 133.7834677552282,
+      "security_claim": "none",
+      "parameters_are_formal": false,
+      "backend_admitted": false
+    },
+    {
+      "name": "proposal-k49-g145000-g2-34000000000-cap4096",
+      "parameters": {
+        "degree": 256,
+        "k": 11,
+        "l": 10,
+        "q": 274877844481,
+        "root": 153250464611,
+        "eta": 1,
+        "kappa": 49,
+        "gamma1": 145000,
+        "gamma2": 34000000000,
+        "gamma3": 15270991360,
+        "dropped_bits": 28,
+        "identity_max_bytes": 64,
+        "message_max_bytes": 4096,
+        "max_extract_attempts": 4096,
+        "max_sign_attempts": 4096,
+        "max_uniform_attempts": 128,
+        "max_cached_identities": 64
+      },
+      "constructor_valid": true,
+      "selected_default": false,
+      "math_change_from_current": {
+        "kappa": 49,
+        "gamma1": 145000,
+        "gamma2": 34000000000,
+        "max_extract_attempts": 4096,
+        "max_sign_attempts": 4096
+      },
+      "msis_common": {
+        "name": "all-branches-relaxed",
+        "module_rows": 11,
+        "module_columns": 22,
+        "coefficient_rows": 2816,
+        "coefficient_columns": 5632,
+        "block_infinity_bounds": [
+          68014210000,
+          74251512786,
+          98
+        ],
+        "uniform_screen_bound": 74251512786,
+        "q": 274877844481,
+        "below_q_half": true,
+        "normalized_matrix": "[A|I_k|t]",
+        "interpretation": "Relaxed common box; known-identity witnesses append a zero t block",
+        "estimates": {},
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "mlwe_shared_exact_input": {
+        "n": 2560,
+        "m": 2816,
+        "q": 274877844481,
+        "Xs": "Uniform(-1,1)",
+        "Xe": "Uniform(-1,1)"
+      },
+      "challenge_bits": 225.34500627391523,
+      "generic_quantum_challenge_search_exponent": 112.67250313695762,
+      "security_claim": "none",
+      "parameters_are_formal": false,
+      "backend_admitted": false
+    },
+    {
+      "name": "control-k64-g145000-g2-34000000000-cap4096",
+      "parameters": {
+        "degree": 256,
+        "k": 11,
+        "l": 10,
+        "q": 274877844481,
+        "root": 153250464611,
+        "eta": 1,
+        "kappa": 64,
+        "gamma1": 145000,
+        "gamma2": 34000000000,
+        "gamma3": 15270991360,
+        "dropped_bits": 28,
+        "identity_max_bytes": 64,
+        "message_max_bytes": 4096,
+        "max_extract_attempts": 4096,
+        "max_sign_attempts": 4096,
+        "max_uniform_attempts": 128,
+        "max_cached_identities": 64
+      },
+      "constructor_valid": true,
+      "selected_default": false,
+      "math_change_from_current": {
+        "kappa": 64,
+        "gamma1": 145000,
+        "gamma2": 34000000000,
+        "max_extract_attempts": 4096,
+        "max_sign_attempts": 4096
+      },
+      "msis_common": {
+        "name": "all-branches-relaxed",
+        "module_rows": 11,
+        "module_columns": 22,
+        "coefficient_rows": 2816,
+        "coefficient_columns": 5632,
+        "block_infinity_bounds": [
+          68018560000,
+          78282394626,
+          128
+        ],
+        "uniform_screen_bound": 78282394626,
+        "q": 274877844481,
+        "below_q_half": true,
+        "normalized_matrix": "[A|I_k|t]",
+        "interpretation": "Relaxed common box; known-identity witnesses append a zero t block",
+        "estimates": {},
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "mlwe_shared_exact_input": {
+        "n": 2560,
+        "m": 2816,
+        "q": 274877844481,
+        "Xs": "Uniform(-1,1)",
+        "Xe": "Uniform(-1,1)"
+      },
+      "challenge_bits": 267.5669355104564,
+      "generic_quantum_challenge_search_exponent": 133.7834677552282,
+      "security_claim": "none",
+      "parameters_are_formal": false,
+      "backend_admitted": false
+    }
+  ],
+  "admission_matrix": [
+    {
+      "id": "source_identity",
+      "kind": "source_fact",
+      "condition": "Current profile is a variant of PDF Table 1 third parameter column, not a literal third-column author preset",
+      "status": "resolved_mapping",
+      "anchors": [
+        "P:p15",
+        "J:34-37",
+        "J:149-202",
+        "M:53-69"
+      ],
+      "values": {
+        "author_kappa": 49,
+        "current_kappa": 64,
+        "author_gamma3": 15735193600,
+        "current_gamma3": 15270991360,
+        "author_exact_q": null
+      }
+    },
+    {
+      "id": "prime_ntt",
+      "kind": "exact_arithmetic",
+      "condition": "q prime; N=256 power of two; q=1 mod 2N; root^N=-1 mod q; root^(2N)=1 mod q",
+      "status": "passed_current_and_candidates",
+      "anchors": [
+        "P:p11",
+        "R:61-66",
+        "S:173-179"
+      ],
+      "values": {
+        "q": 274877844481,
+        "N": 256,
+        "root": 153250464611,
+        "root_order": 512
+      }
+    },
+    {
+      "id": "hint_domain",
+      "kind": "exact_arithmetic",
+      "condition": "alpha=2*gamma3 even; alpha divides q-1; q>2*alpha=4*gamma3",
+      "status": "passed_current_and_candidates",
+      "anchors": [
+        "P:p12 Algorithms 8/12 and Lemma 1",
+        "R:137-142"
+      ],
+      "values": {
+        "alpha": 30541982720,
+        "ratio": 9,
+        "q": 274877844481
+      }
+    },
+    {
+      "id": "mask_bounds",
+      "kind": "constructor_and_algorithm_conditions",
+      "condition": "1<=kappa<=N; beta1=kappa*eta<gamma1; beta2=kappa*gamma1<gamma2; 2*gamma2<q; beta2<gamma3; kappa*2^(d-1)<gamma3",
+      "status": "passed_current_and_candidates",
+      "anchors": [
+        "M:73-103",
+        "P:p13-14"
+      ]
+    },
+    {
+      "id": "extract_acceptance",
+      "kind": "algorithm_condition",
+      "condition": "||z1,z2||inf<=gamma1-beta1; masks include both endpoints [-gamma1,gamma1]",
+      "status": "implemented_not_distribution_proof",
+      "anchors": [
+        "M:442-444",
+        "M:473-483",
+        "P:p13 Algorithm 14"
+      ]
+    },
+    {
+      "id": "sign_acceptance",
+      "kind": "algorithm_condition",
+      "condition": "||z||inf<gamma2-beta2; ||LowBits(Ay-z2*c,2gamma3)||inf<gamma3-beta2; ||w0*c||inf<gamma3",
+      "status": "implemented_conditional_honest_correctness",
+      "anchors": [
+        "M:495-511",
+        "P:p14-15 Algorithms 15/16"
+      ]
+    },
+    {
+      "id": "compression_error",
+      "kind": "conditional_reduction_bound",
+      "condition": "||u||inf<=2gamma3+1; ||u'||inf<=kappa*2^(d-1)+2gamma3+1; include full error block in SIS",
+      "status": "source_mapped_arithmetic_checked",
+      "anchors": [
+        "P:p16 Eq4.1",
+        "S:78-109"
+      ],
+      "values": {
+        "current_U": 39131917313,
+        "candidate49_U": 37118651393
+      }
+    },
+    {
+      "id": "fork_dimensions",
+      "kind": "conditional_reduction_bound",
+      "condition": "known label: [A|I_k], 2816x5376; fresh label after uniform-t MLWE hybrid: [A|I_k|t],2816x5632; preserve separate coordinate bounds",
+      "status": "conditional_not_complete_reduction",
+      "anchors": [
+        "S:87-109",
+        "P:p9-10 E/Eprime",
+        "L:24-28"
+      ]
+    },
+    {
+      "id": "uniform_relaxation",
+      "kind": "screen_only",
+      "condition": "B=max(block bounds); 2B<q-1 avoids trivial modulus vectors; this is not a hardness theorem",
+      "status": "passed_current_and_candidates",
+      "anchors": [
+        "S:87-109",
+        "S:300-307"
+      ],
+      "values": {
+        "current_B": 78279890946,
+        "candidate49_B": 74251512786,
+        "control64_B": 78282394626
+      }
+    },
+    {
+      "id": "nonzero_known_label",
+      "kind": "conditional_counting",
+      "condition": "Q_guess*(max_w1+1)^(Nk)/(2*(gamma1-beta1)+1)^(N(k+l)); requires uniform secret cube and complete view simulation through cached w1",
+      "status": "conditional_simulation_gap",
+      "anchors": [
+        "S:113-147",
+        "S:265-275"
+      ],
+      "values": {
+        "illustrative_Q_guess": 1048576,
+        "current_log2_bound": -68239.4728990734
+      }
+    },
+    {
+      "id": "nonzero_fresh_label",
+      "kind": "conditional_algebra",
+      "condition": "c!=0 and CID!=CIDprime; integer cyclotomic domain; ||c*(CID-CIDprime)||inf<=2kappa<q",
+      "status": "algebra_checked_fork_event_not_proved",
+      "anchors": [
+        "S:129-147",
+        "P:p9-10"
+      ],
+      "values": {
+        "current_product_bound": 128,
+        "candidate49_product_bound": 98
+      }
+    },
+    {
+      "id": "normalization",
+      "kind": "conditional_reduction",
+      "condition": "uniform final kxk block over fully split Rq invertible with bad probability<=N/(q-1); normalize on invertibility preserving witness",
+      "status": "conditional_multiplicative_success_loss",
+      "anchors": [
+        "S:245-278"
+      ],
+      "values": {
+        "failure_upper_numerator": 256,
+        "failure_upper_denominator": 274877844480,
+        "add_to_ibs_advantage": false
+      }
+    },
+    {
+      "id": "challenge",
+      "kind": "generic_workfactor_model",
+      "condition": "C=binomial(N,kappa)*2^kappa; classical target-challenge exponent log2(C), quantum generic exponent log2(C)/2",
+      "status": "candidate49_fails_128_generic_quantum_floor",
+      "anchors": [
+        "P:p13",
+        "S:331-360",
+        "M:222-240"
+      ],
+      "values": {
+        "current_entropy": 267.5669355104564,
+        "candidate49_entropy": 225.34500627391523,
+        "current_quantum_exponent": 133.7834677552282,
+        "candidate49_quantum_exponent": 112.67250313695762,
+        "approved_security_bits": null
+      }
+    },
+    {
+      "id": "scalar_sampling",
+      "kind": "ideal_source_bound",
+      "condition": "rho=(2^(8w) mod b)/2^(8w), Pr[128 rejections]=rho^128 for ideal independent source words; compose over actual draw/query budgets",
+      "status": "numeric_bounds_available_model_conditional",
+      "anchors": [
+        "M:200-208",
+        "A:64-77",
+        "A:124-138"
+      ]
+    },
+    {
+      "id": "xof_capacity",
+      "kind": "deterministic_resource_bound",
+      "condition": "N<=256; signs need one byte; kappa*(max_uniform_attempts+1)<=HASH_BYTES=16384",
+      "status": "passed_current_and_candidates",
+      "anchors": [
+        "M:211-230",
+        "A:72-77"
+      ],
+      "values": {
+        "current_bytes": 8256,
+        "candidate49_bytes": 6321,
+        "maximum": 16384
+      }
+    },
+    {
+      "id": "robust_sets",
+      "kind": "main_pending_theorem",
+      "condition": "Bc=2gamma2-4beta2-1 satisfies 0<Bc<q; gamma3-2beta2>0; gamma1>=2beta1; h=(q-1)/(2gamma3); good=h*(2gamma3-4beta2-1)",
+      "status": "constructor_and_numerics_pass_proof_under_review",
+      "anchors": [
+        "A:92-123"
+      ]
+    },
+    {
+      "id": "availability",
+      "kind": "main_pending_theorem",
+      "condition": "deltaA<=(deltaPair+2deltaZero*F^2)/(epsilon^2*F^2); pSign>=(Bc/(2gamma2+1))^(Nl)*(1-epsilon)*F; pExtract>=((2gamma1-4beta1+1)/(2gamma1+1))^(N(k+l))",
+      "status": "main_prototype_arithmetic_reproduced_no_proof_admission",
+      "anchors": [
+        "A:111-141"
+      ],
+      "values": {
+        "candidate_epsilon": "1/100",
+        "candidate_sign_log2": -147.66897249024282,
+        "candidate_extract_log2": -158.05969608093505,
+        "candidate_badA_log2": -295.00594562952244
+      }
+    },
+    {
+      "id": "lifecycle",
+      "kind": "conditional_composition",
+      "condition": "min(1,deltaA+SetupAbort+QX*(ExtractRetry+ExtractSource)+QS*(SignRetry+SignSource)+QH*ChallengeDecodeAbort); recorded examples use external QH=0",
+      "status": "finite_budget_dependent",
+      "anchors": [
+        "A:124-150"
+      ],
+      "values": {
+        "single_lifetime_candidate_log2": -147.66789826991806,
+        "lifetime_QX64_QS2pow20_epsilon_1over100_log2": -127.66897242465325,
+        "lifetime_QX64_QS2pow20_epsilon_1over256_log2": -128.58944351673802
+      }
+    },
+    {
+      "id": "security_reduction",
+      "kind": "proof_gap",
+      "condition": "Complete cached high-label public simulation, RO programming/collision errors, E/Eprime including new label on known identity, branch probabilities, fork time loss and nonzero extraction",
+      "status": "open",
+      "anchors": [
+        "P:p8-10",
+        "P:p15-16",
+        "L:24-28",
+        "S:146-147"
+      ]
+    },
+    {
+      "id": "qrom_and_real_hash",
+      "kind": "proof_gap",
+      "condition": "A concrete quantum cost model is not a QROM IBS reduction; SHAKE instantiation/side channels need separate claims",
+      "status": "open_not_claimed",
+      "anchors": [
+        "P:p10",
+        "S:353-366",
+        "M:1-4"
+      ]
+    },
+    {
+      "id": "ibme_composition",
+      "kind": "outside_sidecar_authority",
+      "condition": "Wang prerequisites for adaptive anonymous two-level HIBE, adaptive IBS, fixed identity ordering, payload/format and BYTEAUTH/Hybrid conditions",
+      "status": "main_and_chkp_owners",
+      "anchors": [
+        "I:7-9",
+        "I:183-195"
+      ]
+    },
+    {
+      "id": "formal_admission",
+      "kind": "admission_decision",
+      "condition": "Algebra + hardness estimates + reviewed security/availability/composition mapping + operational budgets",
+      "status": "not_admitted",
+      "values": {
+        "security_claim": "none",
+        "backend_admitted": false,
+        "parameters_are_formal": false,
+        "approved_security_bits": null
+      }
+    }
+  ],
+  "estimator": {
+    "url": "https://github.com/malb/lattice-estimator",
+    "commit": "53da5982597709ba0fdf94ea37a84d822310fd84",
+    "models": "ADPS16 classical and quantum Core-SVP; LGSA; infinity SIS; coefficient-dimensional unstructured comparators",
+    "excluded": [
+      "module algebraic/correlation attacks",
+      "BKW",
+      "Arora-GB",
+      "complete IBS advantage",
+      "complete QROM proof",
+      "hardware attack runtime"
+    ],
+    "historical_log2_comparison": [
+      {
+        "job": "sis-classical",
+        "row": "known-identity-tight",
+        "attack": "lattice",
+        "old": 196.808,
+        "current": 196.808,
+        "match": true
+      },
+      {
+        "job": "sis-classical",
+        "row": "known-identity-paper-loose",
+        "attack": "lattice",
+        "old": 196.808,
+        "current": 196.808,
+        "match": true
+      },
+      {
+        "job": "sis-classical",
+        "row": "fresh-identity-augmented",
+        "attack": "lattice",
+        "old": 196.808,
+        "current": 196.808,
+        "match": true
+      },
+      {
+        "job": "sis-classical",
+        "row": "all-branches-relaxed",
+        "attack": "lattice",
+        "old": 196.808,
+        "current": 196.808,
+        "match": true
+      },
+      {
+        "job": "sis-quantum",
+        "row": "known-identity-tight",
+        "attack": "lattice",
+        "old": 178.61,
+        "current": 178.61,
+        "match": true
+      },
+      {
+        "job": "sis-quantum",
+        "row": "known-identity-paper-loose",
+        "attack": "lattice",
+        "old": 178.61,
+        "current": 178.61,
+        "match": true
+      },
+      {
+        "job": "sis-quantum",
+        "row": "fresh-identity-augmented",
+        "attack": "lattice",
+        "old": 178.61,
+        "current": 178.61,
+        "match": true
+      },
+      {
+        "job": "sis-quantum",
+        "row": "all-branches-relaxed",
+        "attack": "lattice",
+        "old": 178.61,
+        "current": 178.61,
+        "match": true
+      },
+      {
+        "job": "lwe-classical",
+        "attack": "usvp",
+        "old": 201.188,
+        "current": 201.188,
+        "match": true
+      },
+      {
+        "job": "lwe-classical",
+        "attack": "bdd",
+        "old": 200.46730743050148,
+        "current": 200.46730743050148,
+        "match": true
+      },
+      {
+        "job": "lwe-classical",
+        "attack": "bdd_hybrid",
+        "old": 200.46730743050148,
+        "current": 200.46730743050148,
+        "match": true
+      },
+      {
+        "job": "lwe-classical",
+        "attack": "bdd_mitm_hybrid",
+        "old": 333.09058919813094,
+        "current": 333.09058919813094,
+        "match": true
+      },
+      {
+        "job": "lwe-classical",
+        "attack": "dual",
+        "old": 203.524,
+        "current": 203.524,
+        "match": true
+      },
+      {
+        "job": "lwe-classical",
+        "attack": "dual_hybrid",
+        "old": 196.1991496932277,
+        "current": 196.1991496932277,
+        "match": true
+      },
+      {
+        "job": "lwe-quantum",
+        "attack": "usvp",
+        "old": 182.585,
+        "current": 182.585,
+        "match": true
+      },
+      {
+        "job": "lwe-quantum",
+        "attack": "bdd",
+        "old": 182.00327893717258,
+        "current": 182.00327893717258,
+        "match": true
+      },
+      {
+        "job": "lwe-quantum",
+        "attack": "bdd_hybrid",
+        "old": 182.00327893717258,
+        "current": 182.00327893717258,
+        "match": true
+      },
+      {
+        "job": "lwe-quantum",
+        "attack": "bdd_mitm_hybrid",
+        "old": 333.09058919788447,
+        "current": 333.09058919788447,
+        "match": true
+      },
+      {
+        "job": "lwe-quantum",
+        "attack": "dual",
+        "old": 184.7050000000004,
+        "current": 184.7050000000004,
+        "match": true
+      },
+      {
+        "job": "lwe-quantum",
+        "attack": "dual_hybrid",
+        "old": 178.61431478842985,
+        "current": 178.61431478842985,
+        "match": true
+      }
+    ],
+    "fresh_output": "current-profile-rerun.json",
+    "all_jobs_completed": true,
+    "total_wall_seconds": 324.3432222
+  },
+  "main_certificate": {
+    "source_sha256": "3dbf9751592d0f1a07670af0afec480333b142485e38095738b5a1240dc9816d",
+    "source_untracked_and_owned_by_main": true,
+    "proof_independent_review_pending": true,
+    "arithmetic_output": "main-certificate-observations.json",
+    "claimed_31_tests": "reported by user; not rerun by sidecar"
+  },
+  "independent_interval_substitution": "conditional-route.json",
+  "conclusion": {
+    "selected_mathematical_parameters": "current unchanged",
+    "candidate49": "constructor-valid and finite-model screened; availability prototype promising, under review",
+    "estimated_hardness": "model-specific estimates only",
+    "full_security_admission": false,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "approved_security_bits": null
+  },
+  "initial_execution_issue": {
+    "status": "resolved_without_repository_change",
+    "cause": "WSL git cannot interpret Windows absolute gitdir pointer",
+    "fix": "Windows Git only for managed-worktree metadata; Sage and estimator remain in WSL"
+  },
+  "repository_owned_changes": [],
+  "observed_main_changes": [
+    "experiments/research/luo_robust_abort_certificate.py",
+    "tests/test_luo_robust_abort_certificate.py",
+    "experiments/research/luo_candidate_probe.py",
+    "docs/research/2026-10-11-luo-abort-bound/"
+  ]
+}

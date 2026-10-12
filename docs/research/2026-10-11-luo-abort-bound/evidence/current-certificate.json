@@ -1,0 +1,135 @@
+{
+  "schema": "IBME/LUO-ROBUST-AVAILABILITY/1",
+  "parameters": {
+    "degree": 256,
+    "k": 11,
+    "l": 10,
+    "q": 274877844481,
+    "root": 153250464611,
+    "eta": 1,
+    "kappa": 64,
+    "gamma1": 125440,
+    "gamma2": 31470387200,
+    "gamma3": 15270991360,
+    "dropped_bits": 28,
+    "identity_max_bytes": 64,
+    "message_max_bytes": 4096,
+    "max_extract_attempts": 1024,
+    "max_sign_attempts": 1024,
+    "max_uniform_attempts": 128,
+    "max_cached_identities": 64
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "kind": "conservative mathematical bound, not measured acceptance or security strength",
+  "model": "independent ideal source words; ideal XOF challenge decoder",
+  "matrix_scope": "uniform Setup A except the explicit matrix_bad_event; not every adversarial A",
+  "quantifiers": "all valid fixed keys/messages/challenge outputs on the same good A; fresh masks per attempt",
+  "budgets": {
+    "setups": 1,
+    "new_identity_extract_calls": 1,
+    "sign_calls": 1,
+    "external_fresh_oracle_queries": 0,
+    "operating_system_entropy_failures_included": false,
+    "invalid_input_cache_capacity_or_storage_failures_included": false
+  },
+  "epsilon": "1/100",
+  "precision_bits": 1024,
+  "arithmetic": {
+    "mask_core_length": 62908661759,
+    "mask_full_length": 62940774401,
+    "lowbit_core_threshold": 15254935040,
+    "lowbit_core_residues": 274588830711,
+    "lowbit_buckets": 9,
+    "extract_core_length": 250625
+  },
+  "bounds": {
+    "matrix_bad_event": {
+      "direction": "upper",
+      "numerator": "11159551140022946095381572281273053144383124052414298045614488600191373389205503913196420212287473911784810375599292535641996252584862379315156806069614413267083143345523639349125489857582909846314524574605453732689238846",
+      "denominator_power_of_two": 1024,
+      "approx_log2_bound": -293.0175401245922,
+      "approximation_is_not_the_certificate": true
+    },
+    "setup_source_abort": {
+      "direction": "upper",
+      "numerator": "33536",
+      "denominator_power_of_two": 1024,
+      "approx_log2_bound": -1008.9665769984625,
+      "approximation_is_not_the_certificate": true
+    },
+    "sign_retry_given_good_matrix": {
+      "direction": "upper",
+      "numerator": "111850966643004045175488878692962675452719355868309978215116970535099531029793136482640406152124276358547662852995436416387204173551439842972301714550866317243357724206739690215197473374796175859922577347800836672835723134697313757494394474221523174411325754919963012529864135307470613938318666786778522",
+      "denominator_power_of_two": 1024,
+      "approx_log2_bound": -20.6161376194475,
+      "approximation_is_not_the_certificate": true
+    },
+    "sign_source_abort": {
+      "direction": "upper",
+      "numerator": "486182443199608881227330741110775793105762020954418972248643015060497105939740508185207707980763047382750203166189099977225905116326555826118252578638139897280463071721011854345806132289570545113848160890158810105714778014915157041184",
+      "denominator_power_of_two": 1024,
+      "approx_log2_bound": -247.7092560948878,
+      "approximation_is_not_the_certificate": true
+    },
+    "extract_retry": {
+      "direction": "upper",
+      "numerator": "2584709912135925004590970686376540567093243285052351994441179737127103362354056318950277613377899181627124063813368273660058770224204912929833021409581338033825276270719725671393106744470780932559361738747670472068849073868170087515704047999723338835421650032285715174160955096963210513180268264427717457331",
+      "denominator_power_of_two": 1024,
+      "approx_log2_bound": -6.1200005917826275,
+      "approximation_is_not_the_certificate": true
+    },
+    "extract_source_abort": {
+      "direction": "upper",
+      "numerator": "486419721112346611281614455479302282023822422135948703323434934540760891740589576271193656105692653555216162269735312324328215044766001148950293780811324684490916995444836438257962173486596225062662337663199848029638148429705392635968",
+      "denominator_power_of_two": 1024,
+      "approx_log2_bound": -247.70855216950622,
+      "approximation_is_not_the_certificate": true
+    },
+    "challenge_decode_abort_per_fresh_query": {
+      "direction": "upper",
+      "numerator": "237277912737730054283714368526488918060401181529731074791919480263785800849068085985948124929606172465959103546212347475282056119398049340951362819907963260727243910333504126762289177620073434208417148299562091606355827483464638496",
+      "denominator_power_of_two": 1024,
+      "approx_log2_bound": -258.709960363899,
+      "approximation_is_not_the_certificate": true
+    },
+    "external_oracle_decode_abort": {
+      "direction": "upper",
+      "numerator": "0",
+      "denominator_power_of_two": 1024,
+      "approx_log2_bound": null,
+      "approximation_is_not_the_certificate": true
+    },
+    "finite_lifecycle_abort": {
+      "direction": "upper",
+      "numerator": "2584821763102568008636146175255233529768696004408220304419394854097638462857688276398726905844136525439656068178086985239987216124508828268979605880226164729933089218812829769261974851780352840664941114953217244226653131420084523406911223973312936105709890773556530803541566424303490643721738481447743185387",
+      "denominator_power_of_two": 1024,
+      "approx_log2_bound": -6.1199381618199595,
+      "approximation_is_not_the_certificate": true
+    },
+    "sign_per_attempt_success_given_good_matrix": {
+      "direction": "lower",
+      "numerator": "2491274498673330008667824392407956443991439959934024338921397796150105929284806219365313704619933641598075421149480492063463381155825610229373796384727377146626149045461866592081860482837539353874459727632055888510404696177155759123885486904856849767524710306139054407486603881060449885945402847450992102942",
+      "denominator_power_of_two": 1024,
+      "approx_log2_bound": -6.17311897217121,
+      "approximation_is_not_the_certificate": true
+    },
+    "extract_per_attempt_success": {
+      "direction": "lower",
+      "numerator": "743178738738154600099897258759722478011212431833393804851799447758113674873759809738796363219848315092284833766282813804574113533359288912058764676646833083923638116515088753477088870081370366213946576582795575168772565238568655827293976363273379860883376969711430950720450165010448851808436036970819835290",
+      "denominator_power_of_two": 1024,
+      "approx_log2_bound": -7.918221830448488,
+      "approximation_is_not_the_certificate": true
+    }
+  },
+  "claims_not_made": [
+    "exact joint LowBits distribution",
+    "all-public-matrix bound",
+    "SHAKE indistinguishability proof",
+    "EUF-ID-CMA reduction",
+    "security level or production admission",
+    "actual CHKP combination"
+  ],
+  "profile": "current"
+}

@@ -1,0 +1,106 @@
+{
+  "decode/compact": {
+    "n": 5,
+    "median_seconds": 0.0054382,
+    "min_seconds": 0.0052877,
+    "max_seconds": 0.0061059,
+    "q1_seconds": 0.0053609,
+    "q3_seconds": 0.0059272,
+    "serialized_bytes_observed": [
+      16063
+    ]
+  },
+  "decode/reference": {
+    "n": 5,
+    "median_seconds": 0.0032081,
+    "min_seconds": 0.0018924,
+    "max_seconds": 0.0057826,
+    "q1_seconds": 0.0030131,
+    "q3_seconds": 0.0034284,
+    "serialized_bytes_observed": [
+      29455
+    ]
+  },
+  "encode/compact": {
+    "n": 5,
+    "median_seconds": 0.0046927,
+    "min_seconds": 0.004561,
+    "max_seconds": 0.0048055,
+    "q1_seconds": 0.00467,
+    "q3_seconds": 0.0047238,
+    "serialized_bytes_observed": [
+      16063
+    ]
+  },
+  "encode/reference": {
+    "n": 5,
+    "median_seconds": 0.001136,
+    "min_seconds": 0.0006981,
+    "max_seconds": 0.0017107,
+    "q1_seconds": 0.0010304,
+    "q3_seconds": 0.0012539,
+    "serialized_bytes_observed": [
+      29455
+    ]
+  },
+  "extract_cached/shared": {
+    "n": 5,
+    "median_seconds": 1.12e-05,
+    "min_seconds": 9.2e-06,
+    "max_seconds": 2.1e-05,
+    "q1_seconds": 1.06e-05,
+    "q3_seconds": 1.22e-05,
+    "serialized_bytes_observed": [
+      313695
+    ]
+  },
+  "extract_cold/shared": {
+    "n": 5,
+    "median_seconds": 1.0509457,
+    "min_seconds": 0.1893983,
+    "max_seconds": 2.1038893,
+    "q1_seconds": 0.8367392,
+    "q3_seconds": 1.4187101,
+    "serialized_bytes_observed": [
+      313695
+    ]
+  },
+  "setup/shared": {
+    "n": 5,
+    "median_seconds": 0.3066686,
+    "min_seconds": 0.2656624,
+    "max_seconds": 0.3115503,
+    "q1_seconds": 0.3016435,
+    "q3_seconds": 0.3075533,
+    "serialized_bytes_observed": [
+      252278
+    ]
+  },
+  "sign/reference": {
+    "n": 5,
+    "median_seconds": 0.6492594,
+    "min_seconds": 0.2821581,
+    "max_seconds": 0.9640867,
+    "q1_seconds": 0.5483177,
+    "q3_seconds": 0.7876198,
+    "serialized_bytes_observed": []
+  },
+  "verify/compact": {
+    "n": 5,
+    "median_seconds": 0.0846967,
+    "min_seconds": 0.0772848,
+    "max_seconds": 0.1017507,
+    "q1_seconds": 0.0843246,
+    "q3_seconds": 0.0861658,
+    "serialized_bytes_observed": []
+  },
+  "verify/reference": {
+    "n": 5,
+    "median_seconds": 0.0887201,
+    "min_seconds": 0.0763847,
+    "max_seconds": 0.1143405,
+    "q1_seconds": 0.0827757,
+    "q3_seconds": 0.0893232,
+    "serialized_bytes_observed": []
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "profile": "availability-k64",
+  "planned_calls": 54,
+  "successful_calls": 54,
+  "sign_attempts": 315,
+  "stage_rows": 30,
+  "reference_bytes": [
+    29455
+  ],
+  "compact_bytes": [
+    16383
+  ],
+  "codec_verifications": 108,
+  "elapsed_seconds": 44.03944449999835,
+  "source_versions": {
+    "src/ibme/ibs/luo_module.py": "current",
+    "src/ibme/ibs/luo_module_math.py": "current",
+    "src/ibme/ibs/luo_module_codec.py": "current",
+    "src/ibme/core/randomness.py": "current",
+    "src/ibme/core/hashing.py": "current",
+    "src/ibme/core/encoding.py": "current",
+    "experiments/research/luo_robust_abort_certificate.py": "current",
+    "experiments/research/luo_candidate_probe.py": "current"
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "scope": "public evidence consistency; no new crypto execution"
+}
