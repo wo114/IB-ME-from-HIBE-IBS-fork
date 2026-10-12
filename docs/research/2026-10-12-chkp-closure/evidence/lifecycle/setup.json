@@ -1,6 +1,7 @@
 {
   "backend_admitted": false,
   "entropy_bytes": 1373232,
+  "executed_this_run": false,
   "identities_are_public_test_labels": true,
   "master_bytes": 104228,
   "parameters_are_formal": false,
@@ -11,7 +12,12 @@
   "public_bytes": 3262,
   "python": "3.13.15",
   "randomness": "system CSPRNG",
+  "recovery_ledger": "resume.json",
+  "reused_actual_result": true,
   "root_dimension": 127,
   "seconds": 1.9734712849999596,
-  "security_claim": "none"
+  "security_claim": "none",
+  "source_receipt_sha256": "a4fcddcf9d89865997f7e363f425cb61862a2034116d44a688918d1e1cb7590d",
+  "source_relative": "test-results/chkp-lifetime-2026-10-12-r3",
+  "this_run_entropy_bytes": 0
 }

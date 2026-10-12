@@ -1,0 +1,35 @@
+{
+  "schema": "ibme.observed-test-result.v1",
+  "implementation_commit": "3c53df1",
+  "execution_owner": "/root/chkp_acceptance_scope",
+  "test_files": ["tests/test_chkp_resume_pre_entropy.py"],
+  "record_type": "transcription_of_previously_observed_tool_output",
+  "junit_generated": false,
+  "rerun_for_this_record": false,
+  "independent_controller_rerun": false,
+  "runs": [
+    {
+      "runtime": "Windows Python",
+      "command": "python -m pytest -q tests/test_chkp_resume_pre_entropy.py",
+      "exit_code": 0,
+      "observed_stdout_tail": "39 passed, 1 skipped in 3.43s",
+      "passed": 39,
+      "skipped": 1
+    },
+    {
+      "runtime": "WSL Sage",
+      "command_from_repository_root": "~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_chkp_resume_pre_entropy.py",
+      "exit_code": 0,
+      "observed_stdout_tail": "40 passed in 5.87s",
+      "passed": 40,
+      "skipped": 0,
+      "original_exec_session_id": 28214
+    }
+  ],
+  "limitations": [
+    "These are observed command summaries, not JUnit or per-test receipts.",
+    "Tests ran against the two-file patch committed as 3c53df1.",
+    "Small public fixtures test object copying and recovery guards; actual r3 recovery has a separate receipt.",
+    "No cryptographic security or global antirollback claim follows from these tests."
+  ]
+}

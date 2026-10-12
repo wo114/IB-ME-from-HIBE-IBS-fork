@@ -1,0 +1,50 @@
+{
+  "diagnostic": "read_only_original_leaf_preflight",
+  "entropy_consumed": 0,
+  "sampler_sample_called": false,
+  "state_mutation_called": false,
+  "private_geometry_printed": false,
+  "timeout_seconds": 300,
+  "preflight_passed": false,
+  "original_failure_gate_identified": false,
+  "error_type": "cysignals.signals.AlarmInterrupt",
+  "safe_error": "diagnostic deadline interrupted exact GSO; original ValueError was not reached",
+  "safe_error_provenance": "added from completed tool output, not from a new execution",
+  "last_stack_location": {
+    "file": "src/ibme/lattice/chkp/finite_gpv.py",
+    "line": 109,
+    "function": "_gs_geometry"
+  },
+  "parent_snapshot_unchanged": true,
+  "seconds": 300.088588,
+  "events": [
+    {
+      "stage": "imports",
+      "seconds": 0.003537
+    },
+    {
+      "stage": "parent_load_start",
+      "seconds": 4.004741
+    },
+    {
+      "stage": "parent_load_done",
+      "seconds": 5.43085
+    },
+    {
+      "stage": "sampler_constructor_start",
+      "seconds": 5.431221
+    },
+    {
+      "stage": "_bounded_basis_start",
+      "seconds": 5.431312
+    },
+    {
+      "stage": "_bounded_basis_done",
+      "seconds": 5.806472
+    },
+    {
+      "stage": "_gs_geometry_start",
+      "seconds": 5.806593
+    }
+  ]
+}

@@ -42,9 +42,20 @@ parameters_are_formal=false
 |---|---|---|
 | 首次 `chkp-lifetime-2026-10-12` | setup 收据通过：根维127、约4.126 s、1,362,388随机字节；主控记录 parent 在约942 s后终止，停留于巨大 HNF 变换后的行列式工作。没有 parent 成功收据，原目录永久保留 pending | 不是父采样通过；也不能仅据运行中止判定论文采样数学失败 |
 | 行列式修复后 `chkp-lifetime-2026-10-12-r2` | setup通过：3.225 s、1,406,180随机字节；parent约750 s后终止，已越过ToBasis，栈位于δ=.999的LLL wrapper。失败收据及pending保留 | 没有父成功对象；不把确定性后处理超时写成采样分布或数学前提失败 |
-| 固定LLL v2后 `chkp-lifetime-2026-10-12-r3` | 根与父使用源码`0c9a7f3`；[父成功收据](evidence/lifecycle/parent.json)：254维、4606.795 s、26,906,498随机字节、459,799 B对象、进程峰值RSS520,976 KiB。叶使用`2976c1a`，[302.890 s后准备阶段失败](attempt-3-leaf-preparation-failed.json)：ValueError、0随机字节，保留pending与失败叶状态；正在只读定位首门 | 父通过仍不是叶通过；不得覆盖失败、删除 pending 重抽，或将不同尝试合并成一次成功 |
+| 固定LLL v2后 `chkp-lifetime-2026-10-12-r3` | 根与父使用源码`0c9a7f3`；[父成功收据](evidence/lifecycle/parent.json)：254维、4606.795 s、26,906,498随机字节、459,799 B对象、进程峰值RSS520,976 KiB。叶使用`2976c1a`，[302.890 s后准备阶段失败](attempt-3-leaf-preparation-failed.json)：ValueError、0随机字节；已确定为标量平方宽度执行域上限，保留pending与失败叶状态 | 父通过仍不是叶通过；不得覆盖失败、删除 pending 重抽，或将不同尝试合并成一次成功 |
+| 显式继续 `chkp-lifetime-2026-10-12-r3-resumed` | `0765304`将固定标量执行域扩展至`2^88`；`3c53df1`恢复工具实际通过，11.115 s、0随机字节，根/主密钥逐字节不变、父等于原master缓存。[叶256目标真实采样](evidence/lifecycle/leaf.json)通过：347.726 s、42,660,095随机字节、381维、873,447 B对象、峰值RSS335,940 KiB。[封装/恢复](evidence/lifecycle/roundtrip.json)及无熵缓存复用通过；5329个公开误差组合中唯一seed候选与真实seed匹配 | 不把复制的setup/parent记为本轮新生成；公开攻击成功保留为小维参数不安全的负控，不能因功能通过授予安全等级 |
 | 真实 CHKP + C64B 组合 | 待 prepare、第二接收者、其余三叶及 checks 的逐阶段收据 | 不用教学 ABB10、旧 first_suite 或 mock 结果代替 |
 | CLI | 待分别填写“导入已生成状态后的 CLI 操作”和“新状态的实际 CLI setup”收据 | 导入状态不能记为由 CLI setup 生成；必须区分二者来源 |
+
+### r3零熵失败的定位与继续原则
+
+[完整只读预检](evidence/diagnostics/preflight-failure-gate.json)已确定首个拒绝为有限标量平方宽度上限`2^80`；精确GSO与C1宽度充分门已通过，尚未调用采样。此前300秒的[诊断超时](evidence/diagnostics/preflight-timeout.json)只是工具截止时间过短，不计作另一次密码实验失败。
+
+复用本地已计算的几何数据，对唯一固定候选`2^88`做了[标量域检查](evidence/diagnostics/scalar-domain-candidate.json)：原半径上限`2^48`、精度320、质量256、尾参数128、拒绝次数2048和单GPV随机字节预算均通过。这份结果当时尚未检查后续路径/扩展基及256目标总预算，不能单独算叶成功。
+
+用户明确要求从已有成功结果继续。因此修复限定于采样器可执行域及有记录的零熵预检恢复，保持原公钥/上下文/参数/根/父基；不再次GenTrap、RandBasis或LLL，不重抽根父。原r3失败叶状态和pending保留。恢复分支必须核验没有成功叶或耗熵失败，并单列来源、复制结果与第一次实际叶采样；普通后端的失败墓碑规则不因此放开。安全参数和全局抗回滚结论仍未获得准入。
+
+后续[完整预检](evidence/diagnostics/preflight-complete.json)已通过全部17项门，包括ExtendedGPV构造、路径准入、真实身份矩阵绑定及256目标总预算。预检使用与原父快照、`2976c1a`源码及未变化GSO函数严格绑定的本地几何缓存，没有重算GSO或采样。`2^88`只是可执行标量平方宽度上限，实际叶宽度、概率质量、采样顺序、随机带上限及全部误差门保持原值。实际叶调用仍自行执行正常构造检查。[恢复收据](evidence/lifecycle/resume.json)只声明可以进入第一次叶采样；[源setup](evidence/lifecycle/history/setup.json)、[源parent](evidence/lifecycle/history/parent.json)和[源失败](evidence/lifecycle/history/leaf-failed.json)单列且逐字节保留。
 
 行列式修复使用精确整数乘积及完整格指数证书，不移除核空间、完整性或上三角检查；LLL 的尺寸约减复用经精确运算保持的有序 GS 向量。这里不填写未经实测的加速倍数。
 
@@ -52,7 +63,7 @@ LLL v2固定δ=.75、无变换矩阵，精确复核size≤.5、Lovasz≥.74以�
 
 ## 5. 已执行的定向检查
 
-本轮11份JUnit已集中归档；[逐文件索引](evidence/regression/index.json)列出测试文件、复跑参数和版本边界。另有一份明确标注为原输出转录的100项测试记录。多个批次覆盖相同测试，**不相加为独立测试总数**。
+本轮13份JUnit已集中归档；[逐文件索引](evidence/regression/index.json)列出测试文件、复跑参数和版本边界。另有明确标注为原输出转录的几何等价和恢复守卫测试记录。多个批次覆盖相同测试，**不相加为独立测试总数**。
 
 | 收据 | 结果 | 范围与版本 |
 |---|---|---|
@@ -68,6 +79,9 @@ LLL v2固定δ=.75、无变换矩阵，精确复核size≤.5、Lovasz≥.74以�
 | [精确采样算术等价](evidence/regression/chkp-sampler-equivalence.xml) | 48 passed | 对应`0c1a77d`；新旧输出、逐次耗熵和中止一致，含ExtendedGPV和大有理数边界 |
 | [采样准备几何等价](evidence/regression/chkp-gs-equivalence-results.json) | 100 passed | 对应`2976c1a`；执行子代理原命令/输出转录，非JUnit，也非主控另行复跑 |
 | [LLL几何缓存等价](evidence/regression/chkp-lll-geometry.xml) | 54 passed | 对应`be09ecb`；14个新增几何/最终输出对照及40个既有约减/格证书用例 |
+| [固定标量执行域](evidence/regression/chkp-scalar-domain.xml) | 114 passed | 对应`0765304`；包含旧域输出/耗熵轨迹相同、新域准入、超帽及证书不足拒绝 |
+| [显式恢复守卫](evidence/regression/chkp-resume-results.json) | Sage 40 passed；Windows 39 passed / 1 skipped | 对应`3c53df1`；原命令输出转录，非JUnit；含实际小型对象编解码与禁止重新生成/采样 |
+| [恢复来源验收](evidence/regression/chkp-delivery-audit-recovery-gates.xml) | 66 passed / 1 skipped | 对应`71a3fa1`；缺历史、篡改源测量、假零熵、丢失败或缺完整预检均拒绝；只跳过Windows符号链接权限用例 |
 
 精确算术优化预存共同分母下的整数权重，以整数点积计算原来的有理投影；Gaussian指数采用精确差平方因式分解。原参数、抽样顺序、整数质量和失败规则不变；额外保存O(d²)整数权重，不预分配随机带。此处不根据小算术探针声称整链加速倍数。
 
@@ -120,4 +134,4 @@ done
 python -B -m experiments.research.audit_chkp_delivery --directory docs/research/2026-10-12-chkp-closure --source-root .
 ```
 
-该工具核对12个必要阶段、固定核心源码覆盖和文件哈希；缺失/失败/全跳过不能通过。它不读取私钥，不重新执行密码实验，不验证Git提交对象，也不证明材料来源真实性或密码安全。
+该工具核对12个必要阶段、固定核心源码覆盖和文件哈希；若根父标注复用，还须验收恢复、历史失败及完整预检来源链。缺失/失败/全跳过不能通过，恢复复制不计为第13次新密码实验。它不读取私钥，不重新执行密码实验，不验证Git提交对象，也不证明材料来源真实性或密码安全。历史执行的源码原始字节哈希与最终Git规范换行后的源码哈希分别保留，不据两者不同重做实验或改写旧收据。
