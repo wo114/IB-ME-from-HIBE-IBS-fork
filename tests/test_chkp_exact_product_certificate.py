@@ -1,11 +1,13 @@
 """Exact completeness certificates and deterministic postprocess equivalence."""
 
+from hashlib import sha256
+
 import pytest
 
 pytest.importorskip("sage.all")
 from sage.all import QQ, ZZ, matrix
 
-from ibme.lattice.chkp.basis import KernelBasis, ModMatrixReference
+from ibme.lattice.chkp.basis import KernelBasis, ModMatrixReference, complete_kernel_basis
 from ibme.lattice.chkp.basis_reduce import checked_lll
 from ibme.lattice.chkp.root_basis import private_root_basis
 from ibme.lattice.chkp.tobasis import to_basis
@@ -81,15 +83,60 @@ def _legacy_checked_lll(basis, bound):
     return KernelBasis(basis.public, reduced)
 
 
+def _check_reduction_postconditions(basis, bound, lovasz):
+    s = matrix(ZZ, basis.basis_rows)
+    a = matrix(ZZ, basis.public.rows)
+    assert a*s % basis.public.q == 0
+    assert abs(s.det()) == basis.public.q**basis.public.nrows
+    star, _ = s.transpose().change_ring(QQ).gram_schmidt()
+    lengths = tuple(row.dot_product(row) for row in star.rows())
+    mu = lambda i,j: s.column(i).dot_product(star.row(j))/lengths[j]
+    assert max(lengths) <= bound
+    assert all(abs(mu(i,j)) <= QQ(1)/2 for i in range(len(lengths)) for j in range(i))
+    assert all(lengths[i]+mu(i,i-1)**2*lengths[i-1] >= lovasz*lengths[i-1]
+               for i in range(1,len(lengths)))
+
+
 @pytest.mark.parametrize("q,n,mbar", [(3, 1, 1), (17, 2, 2), (257, 1, 2)])
-def test_checked_lll_matches_previous_output_and_recomputed_geometry(q,n,mbar):
+def test_old_and_new_lll_profiles_have_their_declared_exact_postconditions(q,n,mbar):
     k = (q-1).bit_length()
     root = private_root_basis(
         [[(2*i+3*j+1) % q for j in range(mbar)] for i in range(n)],
         [[(7*i+2*j) % 5-2 for j in range(n*k)] for i in range(mbar)], q)
     expected = _legacy_checked_lll(root, QQ(q*q*root.public.ncols))
     actual = checked_lll(root, q*q*root.public.ncols)
-    assert actual == expected
+    # Delta is a versioned deterministic postprocess choice, not a CHKP
+    # width condition. Do not assert identical old/new encoded bases.
+    assert actual.public == expected.public == root.public
+    _check_reduction_postconditions(expected, q*q*root.public.ncols, QQ(99)/100)
+    _check_reduction_postconditions(actual, q*q*root.public.ncols, QQ(74)/100)
+    assert actual == checked_lll(root, q*q*root.public.ncols)
+
+
+def test_fixed_lll_profile_handles_public_ill_conditioned_tobasis_fixture():
+    dimension, q = 32, 1099511627791
+    public = ModMatrixReference(tuple(tuple(
+        int.from_bytes(sha256(f"PUBLIC-A/{i}/{j}".encode()).digest()[:6], "big") % q
+        for j in range(dimension)) for i in range(2)), q)
+    basis = complete_kernel_basis(public)
+    mixing = matrix(ZZ, dimension, dimension, lambda i,j:
+        (dimension*65536 if i == j else 0)
+        + int.from_bytes(sha256(f"PUBLIC-DENSE/{dimension}/{i}/{j}".encode()).digest()[:2], "big")
+        - 32768)
+    # These are public deterministic algebra fixtures, not Gaussian samples.
+    vectors = matrix(ZZ, basis.basis_rows)*mixing
+    before = to_basis(vectors, basis)
+    assert max(abs(x).bit_length() for row in before.basis_rows for x in row) > 40
+    frozen_parent_bound = 150187181128720
+    after = checked_lll(before, frozen_parent_bound)
+    _check_reduction_postconditions(after, frozen_parent_bound, QQ(74)/100)
+    assert after.security_claim == "none"
+
+
+def test_fixed_lll_profile_cannot_relax_the_callers_gs_bound():
+    basis = KernelBasis(_public(), [[7, 0], [0, 1]])
+    with pytest.raises(ArithmeticError, match="GS or Lovasz"):
+        checked_lll(basis, 1)
 
 
 def test_lll_size_subtraction_preserves_ordered_gs_vectors_exactly():

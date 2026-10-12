@@ -1,7 +1,15 @@
 """Deterministic LLL with exact lattice, GS and Lovasz postconditions.
 
-This promotes the already-tested root_sampler_audit rule. It is a public
-profile choice, not a failed-sampling retry or a new trapdoor distribution.
+Fixed postprocess version 2 uses fpLLL wrapper delta=3/4, eta=501/1000,
+without a transformation matrix; exact checks require size <=1/2, Lovasz
+>=74/100 and the caller's unchanged GS bound. Version 1 used delta=999/1000.
+The output basis may differ across these versions or library builds.
+
+This consumes no entropy and does not choose a mode from sampled results.
+Applying the same fixed deterministic postprocessor to actual and ideal
+RandBasis outputs cannot increase their TV distance (data processing).
+It does not make their encoded basis distributions equal or prove security.
+Postprocess exceptions remain failures, not permission to sample again.
 The explicit input budgets bound matrix size/entries, not wall clock time.
 """
 from sage.all import ZZ, QQ, matrix
@@ -18,9 +26,9 @@ def checked_lll(basis, gs_squared_upper, *, max_dimension=512):
     if bound < 1:
         raise ValueError("LLL needs a positive complete-kernel GS bound")
     original = matrix(ZZ, basis.basis_rows)
-    rows, transform = original.transpose().LLL(
-        delta=QQ(999)/1000, eta=QQ(501)/1000, transformation=True)
-    reduced, change = rows.transpose(), transform.transpose()
+    rows = original.transpose().LLL(algorithm="fpLLL:wrapper",
+        delta=QQ(3)/4, eta=QQ(501)/1000, transformation=False)
+    reduced = rows.transpose()
     orthogonal, _ = reduced.transpose().change_ring(QQ).gram_schmidt()
     norms = tuple(row.dot_product(row) for row in orthogonal.rows())
     for j in range(reduced.ncols()):
@@ -29,13 +37,11 @@ def checked_lll(basis, gs_squared_upper, *, max_dimension=512):
             nearest = ZZ((mu+QQ(1)/2).floor())
             if nearest:
                 reduced.add_multiple_of_column(j, i, -nearest)
-                change.add_multiple_of_column(j, i, -nearest)
-    if original*change != reduced:
-        raise ArithmeticError("LLL transformation did not preserve the complete lattice")
     result = KernelBasis(basis.public, reduced)
     # Both original (the validated input) and reduced (just checked) have
-    # absolute determinant q^n. The exact product above therefore certifies
-    # |det(change)|=1 without a costly determinant of its huge coefficients.
+    # containment in the SAME kernel and absolute determinant q^n. They
+    # therefore generate exactly the same complete lattice, independently
+    # of any claimed LLL transformation; no transformation matrix is needed.
     # Integer subtraction of earlier columns leaves each ordered orthogonal
     # GS vector unchanged, so the exact pre-size-reduction geometry is valid
     # after all these operations. The output mu coefficients are recomputed.
@@ -43,7 +49,7 @@ def checked_lll(basis, gs_squared_upper, *, max_dimension=512):
     mu = lambda i,j: reduced.column(i).dot_product(star.row(j))/lengths[j]
     if (max(lengths) > bound
             or any(abs(mu(i,j)) > QQ(1)/2 for i in range(len(lengths)) for j in range(i))
-            or any(lengths[i]+mu(i,i-1)**2*lengths[i-1] < QQ(99)/100*lengths[i-1]
+            or any(lengths[i]+mu(i,i-1)**2*lengths[i-1] < QQ(74)/100*lengths[i-1]
                    for i in range(1,len(lengths)))):
         raise ArithmeticError("exact LLL size, GS or Lovasz postcondition failed")
     return result
