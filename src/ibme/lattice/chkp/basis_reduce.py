@@ -16,6 +16,28 @@ from sage.all import ZZ, QQ, matrix
 from .basis import KernelBasis
 
 
+def _exact_column_gso(basis):
+    """Sage's exact QQ column recurrence, caching each orthogonal norm.
+
+    The numerator uses the original column, not the partially subtracted
+    vector. Over QQ the dot product equals Sage's Hermitian inner product.
+    As in Sage, zero orthogonal vectors are omitted; a complete input basis
+    has none. This changes neither the arithmetic result nor rejection gates.
+    """
+    orthogonal, norms = [], []
+    for original in basis.change_ring(QQ).columns():
+        current = original
+        for previous, squared_norm in zip(orthogonal, norms):
+            coefficient = previous.dot_product(original)/squared_norm
+            current = current - coefficient*previous
+        squared_norm = current.dot_product(current)
+        if squared_norm:
+            orthogonal.append(current)
+            norms.append(squared_norm)
+    star = matrix(QQ, orthogonal) if orthogonal else matrix(QQ, 0, basis.nrows())
+    return star, tuple(norms)
+
+
 def checked_lll(basis, gs_squared_upper, *, max_dimension=512):
     if (not isinstance(basis, KernelBasis) or type(max_dimension) is not int
             or not 1 <= max_dimension <= 512 or basis.public.ncols > max_dimension):
@@ -29,8 +51,7 @@ def checked_lll(basis, gs_squared_upper, *, max_dimension=512):
     rows = original.transpose().LLL(algorithm="fpLLL:wrapper",
         delta=QQ(3)/4, eta=QQ(501)/1000, transformation=False)
     reduced = rows.transpose()
-    orthogonal, _ = reduced.transpose().change_ring(QQ).gram_schmidt()
-    norms = tuple(row.dot_product(row) for row in orthogonal.rows())
+    orthogonal, norms = _exact_column_gso(reduced)
     for j in range(reduced.ncols()):
         for i in reversed(range(j)):
             mu = reduced.column(j).dot_product(orthogonal.row(i))/norms[i]
