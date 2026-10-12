@@ -1,0 +1,84 @@
+{
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "provenance": "DeepSeek Step17 historical CSV; independently recounted, not rerun",
+  "B": {
+    "natural_calls": 108,
+    "natural_attempts": 1000,
+    "natural_aborts": 0,
+    "ez": 459,
+    "elow": 796,
+    "ew0c": 0,
+    "ez_elow": 363,
+    "negative_controls": {
+      "abort:LuoModuleSamplingAbort": 2,
+      "abort:RandomnessError": 1
+    },
+    "rates_are_not_theoretical_probabilities": true
+  },
+  "D": {
+    "rows": 30,
+    "workload_pairs": 15,
+    "pairs_with_different_sign_attempts": 14,
+    "median_seconds_by_application_bytes": {
+      "0": {
+        "reference": {
+          "n": 5,
+          "encrypt_seconds": 18.119,
+          "decrypt_seconds": 2.4104,
+          "ciphertext_bytes": [
+            2580256
+          ]
+        },
+        "compact": {
+          "n": 5,
+          "encrypt_seconds": 18.0515,
+          "decrypt_seconds": 2.2678,
+          "ciphertext_bytes": [
+            2566864
+          ]
+        }
+      },
+      "256": {
+        "reference": {
+          "n": 5,
+          "encrypt_seconds": 23.268,
+          "decrypt_seconds": 2.8941,
+          "ciphertext_bytes": [
+            2580512
+          ]
+        },
+        "compact": {
+          "n": 5,
+          "encrypt_seconds": 20.3795,
+          "decrypt_seconds": 2.5394,
+          "ciphertext_bytes": [
+            2567120
+          ]
+        }
+      },
+      "3924": {
+        "reference": {
+          "n": 5,
+          "encrypt_seconds": 22.4622,
+          "decrypt_seconds": 2.5702,
+          "ciphertext_bytes": [
+            2584180
+          ]
+        },
+        "compact": {
+          "n": 5,
+          "encrypt_seconds": 20.7945,
+          "decrypt_seconds": 2.5407,
+          "ciphertext_bytes": [
+            2570788
+          ]
+        }
+      }
+    },
+    "ciphertext_reduction_bytes": 13392,
+    "causal_speed_claim": false,
+    "note": "format-specific random streams; same workload is not same randomness; old Setup/codec labels withdrawn"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "IBME/LUO-C64B-HANDOFF/1",
+  "files": {
+    "docs/research/2026-10-11-luo-c64b-handoff/.gitattributes": "4060923ccc80d6a74b97b2e2e5da826958467ffd4972d1c4e7d0db84eda65087",
+    "docs/research/2026-10-11-luo-c64b-handoff/evidence/assembly-current.json": "13462239e33f6b952f337a7d7dc4920d5b591574f4fb631ce8a2d1b2d126ae3b",
+    "docs/research/2026-10-11-luo-c64b-handoff/evidence/assembly-diagnostic.json": "815ead9d1ebb1c7a589158a46b658f2c2832f630bbbfdbc7dd17236d16de52cc",
+    "docs/research/2026-10-11-luo-c64b-handoff/evidence/assembly-final.json": "0518962d6922d845d8485e92551c55bcff7e55775253c173b3e95fabf9d164da",
+    "docs/research/2026-10-11-luo-c64b-handoff/evidence/cross-version-current.json": "23a3fb55924b04538c0b5e3bc76e02762847198bcee0d64a99ee7ef1872904c2",
+    "docs/research/2026-10-11-luo-c64b-handoff/evidence/cross-version-harness.xml": "845ebb33c8335007c8a083cab79ba493e2e40841776ad72d56f5bec07fc2ad48",
+    "docs/research/2026-10-11-luo-c64b-handoff/evidence/cross-version.json": "3e0b13fa3809a577fa9a1a1dcb963879197043f2067fb5050d5e13485e1393dd",
+    "docs/research/2026-10-11-luo-c64b-handoff/evidence/deepseek-correction.md": "5b6d30cbc549eeeba0598f748e257a5596c80af997aec59d6e7f02090cc5f8dc",
+    "docs/research/2026-10-11-luo-c64b-handoff/evidence/deepseek-review.md": "f5e269ed05776bf2413c31084420e9ad031270d5488f34a6a5f3ec7e5bae614a",
+    "docs/research/2026-10-11-luo-c64b-handoff/evidence/parameter-decision-optimized.json": "a669c5f5b135ce4cca4012083d12a22cac8602f6574ed2ef6e0cc90574b6e065",
+    "docs/research/2026-10-11-luo-c64b-handoff/evidence/parameter-decision.json": "3f30df634abcea0137f59f0bb20cd5280b4f0950448cba8f8e39e0ecb7893d58",
+    "docs/research/2026-10-11-luo-c64b-handoff/evidence/parameter-negative-control.json": "00e797edcdb641d7194ccab92137346adc3b32e5fee5061dab13baf233342ac3",
+    "docs/research/2026-10-11-luo-c64b-handoff/evidence/regression.xml": "301e391664985ea0151a115335982f3f7320671fa5adb706943826017e59306b",
+    "docs/research/2026-10-11-luo-c64b-handoff/profile.json": "d9367da68cee4451b15dc74f79817f638f14f29722b26355a1ef47dc45b860ef",
+    "docs/research/2026-10-11-luo-c64b-handoff/README.md": "d3a47c7e45bbd284be041157ffc06ad4a8b5edf32834488fa48b723e3e566ca5",
+    "docs/research/2026-10-11-luo-c64b-handoff/参数决定与安全引用条件.md": "b1db9d9168ae4882f208354adfbdba9fa2cfab7cced2181baf09f971d685e8b4",
+    "docs/research/2026-10-11-luo-c64b-handoff/验收记录.md": "babde0076853580f326aafdbdf4102f0f7f5a87b772fb3fb351721a0dc80519f",
+    "experiments/research/audit_luo_c64b_delivery.py": "5c48b29c8ffcb3f004753ed3adf6caa167c61ca043dd4a334ff53936f696f0fd",
+    "experiments/research/audit_luo_c64b_selection.py": "19ea7b203240b03115661747c8dd1e449b2bb292ee9525c9215e07628d7fb1a3",
+    "experiments/research/luo_assembly_handoff.py": "5bb6ebbd04017cc3d0451b7b96205d79fd3e19b9d2bc04ca3b1f9a170c2163e1",
+    "experiments/research/luo_cross_version.py": "15e8b66e98fc2bc046adaa76191a478bf220d341d27dc9b3b52361fcfa47efc8",
+    "src/ibme/ibs/luo_module_profiles.py": "6a17ab63257e8c3c0dc35eff35d0489741604410cecfb80465e008ea72dba02e",
+    "src/ibme/protocol/luo_hybrid.py": "9d9d9095da3fadd33a57c5027abf1c0f41a63452f64f92ae1b2603071810e572",
+    "tests/test_luo_c64b_profile.py": "fa7ce46dd879193e2be6ac2f3e1b5813b9bc43ec168737c9e23176f9a4725cd8",
+    "tests/test_luo_cross_version_harness.py": "5fcdddd4006aee835391db067adf0c423a2dda55e6707c91212d63296227c864"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "profile_id": "luo-module-c64b-v1",
+  "status": "research-candidate-frozen",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "certificate_profile": "availability-k64",
+  "default_signature_format": "reference",
+  "params": {
+    "degree": 256,
+    "k": 11,
+    "l": 10,
+    "q": 274877844481,
+    "root": 153250464611,
+    "eta": 1,
+    "kappa": 64,
+    "gamma1": 190000,
+    "gamma2": 60000000000,
+    "gamma3": 27487784448,
+    "dropped_bits": 28,
+    "identity_max_bytes": 64,
+    "message_max_bytes": 4096,
+    "max_extract_attempts": 4096,
+    "max_sign_attempts": 4096,
+    "max_uniform_attempts": 128,
+    "max_cached_identities": 64
+  },
+  "availability_example_budget": {
+    "setups": 1,
+    "extracts": 64,
+    "signs": 65536,
+    "classical_fresh_oracle_queries": 18446744073709551616
+  },
+  "signature_bytes": {"reference": 29455, "compact": 16383},
+  "hybrid_handoff": {
+    "application_max_bytes": 3924,
+    "identity_max_bytes": 64,
+    "inner_encoded_identity_bytes": 86,
+    "inner_seed_bytes": 32,
+    "outer_payload_max_bytes_compact_derived": 20415,
+    "real_chkp_measurement": false
+  }
+}

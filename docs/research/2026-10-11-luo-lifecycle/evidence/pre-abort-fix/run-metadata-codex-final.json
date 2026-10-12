@@ -1,0 +1,70 @@
+{
+  "schema": "IBME/LUO-LIFECYCLE/2",
+  "run_id": "codex-final",
+  "started_utc": "2026-10-11T14:06:05.354591+00:00",
+  "source_base_commit": "c43c23280fb6946ec8266563e938c39ce76c3a5b",
+  "source_sha256": {
+    "src/ibme/ibs/luo_module.py": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275",
+    "src/ibme/ibs/luo_module_math.py": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f",
+    "src/ibme/ibs/luo_module_codec.py": "bb99eb6a18a06be204ab0274de8e295522589d8100cc2c9f944c7cf4980b06df",
+    "src/ibme/core/randomness.py": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
+    "src/ibme/core/encoding.py": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d",
+    "src/ibme/core/hashing.py": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4",
+    "experiments/research/luo_lifecycle_benchmark.py": "5ae69e0d7e1686ced8dd6eeb435c845d99a82fe309d2a9625b9bd41f62bc9b11"
+  },
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "logical_cpus": 20,
+  "parameters": {
+    "degree": 256,
+    "k": 11,
+    "l": 10,
+    "q": 274877844481,
+    "root": 153250464611,
+    "eta": 1,
+    "kappa": 64,
+    "gamma1": 125440,
+    "gamma2": 31470387200,
+    "gamma3": 15270991360,
+    "dropped_bits": 28,
+    "identity_max_bytes": 64,
+    "message_max_bytes": 4096,
+    "max_extract_attempts": 1024,
+    "max_sign_attempts": 1024,
+    "max_uniform_attempts": 128,
+    "max_cached_identities": 64
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "completed": true,
+  "interrupted": false,
+  "failure_type": null,
+  "rng": "deterministic test streams, disjoint setup/extract and each sign call; not production",
+  "unit": "3 systems x identity bytes 1/5/64 x message bytes 0/256/4096 x 2 repetitions = 54 Sign calls",
+  "timing": "perf_counter_ns wall time; no affinity/load control; validation/serialization excluded except named stage",
+  "restore": "in-memory wire decoding and equation checks; no disk I/O, crash safety or anti-rollback claim",
+  "sign": "includes backend self-Verify, excludes wire encoding; rep0 uses original key, rep1 restored key",
+  "cache": "timed key_extract only; equality checks outside timer; NoEntropy enforces zero resampling",
+  "unknown": {
+    "theoretical_sign_abort_bound": null,
+    "security_bits": null
+  },
+  "source_sha256_final": {
+    "src/ibme/ibs/luo_module.py": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275",
+    "src/ibme/ibs/luo_module_math.py": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f",
+    "src/ibme/ibs/luo_module_codec.py": "bb99eb6a18a06be204ab0274de8e295522589d8100cc2c9f944c7cf4980b06df",
+    "src/ibme/core/randomness.py": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
+    "src/ibme/core/encoding.py": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d",
+    "src/ibme/core/hashing.py": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4",
+    "experiments/research/luo_lifecycle_benchmark.py": "5ae69e0d7e1686ced8dd6eeb435c845d99a82fe309d2a9625b9bd41f62bc9b11"
+  },
+  "finished_utc": "2026-10-11T14:07:15.084059+00:00",
+  "elapsed_seconds": 69.46751550000045,
+  "memory": {
+    "bytes": 62824448,
+    "method": "Windows PeakWorkingSetSize; whole worker lifetime, interpreter/imports/evidence included"
+  },
+  "attempted_sign_calls": 54,
+  "normal_call_failures": 0
+}

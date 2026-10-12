@@ -1,0 +1,778 @@
+{
+  "normal_calls": 54,
+  "sign_attempts": 528,
+  "normal_failures": 0,
+  "scope": "complete recorded matrix; NOT theoretical abort bound",
+  "per_cell_timings": [
+    {
+      "stage": "decode",
+      "format": "compact",
+      "identity_len": 1,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.0044502,
+      "min_seconds": 0.0030795,
+      "max_seconds": 0.0059312
+    },
+    {
+      "stage": "decode",
+      "format": "compact",
+      "identity_len": 1,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.0052517499999999995,
+      "min_seconds": 0.0032676,
+      "max_seconds": 0.007159
+    },
+    {
+      "stage": "decode",
+      "format": "compact",
+      "identity_len": 1,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.00577475,
+      "min_seconds": 0.0047491,
+      "max_seconds": 0.0061483
+    },
+    {
+      "stage": "decode",
+      "format": "compact",
+      "identity_len": 5,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.00328905,
+      "min_seconds": 0.0031347,
+      "max_seconds": 0.0043067
+    },
+    {
+      "stage": "decode",
+      "format": "compact",
+      "identity_len": 5,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.00423345,
+      "min_seconds": 0.0029666,
+      "max_seconds": 0.0067113
+    },
+    {
+      "stage": "decode",
+      "format": "compact",
+      "identity_len": 5,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.00585945,
+      "min_seconds": 0.0040588,
+      "max_seconds": 0.00654
+    },
+    {
+      "stage": "decode",
+      "format": "compact",
+      "identity_len": 64,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.00503835,
+      "min_seconds": 0.0030292,
+      "max_seconds": 0.0072444
+    },
+    {
+      "stage": "decode",
+      "format": "compact",
+      "identity_len": 64,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.0033629000000000003,
+      "min_seconds": 0.0030221,
+      "max_seconds": 0.0071077
+    },
+    {
+      "stage": "decode",
+      "format": "compact",
+      "identity_len": 64,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.00445185,
+      "min_seconds": 0.0029032,
+      "max_seconds": 0.0065731
+    },
+    {
+      "stage": "decode",
+      "format": "reference",
+      "identity_len": 1,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.00251165,
+      "min_seconds": 0.0017139,
+      "max_seconds": 0.0046294
+    },
+    {
+      "stage": "decode",
+      "format": "reference",
+      "identity_len": 1,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.0027548499999999997,
+      "min_seconds": 0.0016608,
+      "max_seconds": 0.004795
+    },
+    {
+      "stage": "decode",
+      "format": "reference",
+      "identity_len": 1,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.0036325,
+      "min_seconds": 0.0029669,
+      "max_seconds": 0.0045791
+    },
+    {
+      "stage": "decode",
+      "format": "reference",
+      "identity_len": 5,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.0018387,
+      "min_seconds": 0.0016891,
+      "max_seconds": 0.0044174
+    },
+    {
+      "stage": "decode",
+      "format": "reference",
+      "identity_len": 5,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.002741,
+      "min_seconds": 0.0018057,
+      "max_seconds": 0.0032696
+    },
+    {
+      "stage": "decode",
+      "format": "reference",
+      "identity_len": 5,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.00283605,
+      "min_seconds": 0.0019963,
+      "max_seconds": 0.0043484
+    },
+    {
+      "stage": "decode",
+      "format": "reference",
+      "identity_len": 64,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.0034129499999999997,
+      "min_seconds": 0.0026218,
+      "max_seconds": 0.004561
+    },
+    {
+      "stage": "decode",
+      "format": "reference",
+      "identity_len": 64,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.00237435,
+      "min_seconds": 0.0016561,
+      "max_seconds": 0.004104
+    },
+    {
+      "stage": "decode",
+      "format": "reference",
+      "identity_len": 64,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.0028643,
+      "min_seconds": 0.0017423,
+      "max_seconds": 0.0042724
+    },
+    {
+      "stage": "encode",
+      "format": "compact",
+      "identity_len": 1,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.00362785,
+      "min_seconds": 0.0024686,
+      "max_seconds": 0.0051132
+    },
+    {
+      "stage": "encode",
+      "format": "compact",
+      "identity_len": 1,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.0030077000000000003,
+      "min_seconds": 0.0025231,
+      "max_seconds": 0.0055339
+    },
+    {
+      "stage": "encode",
+      "format": "compact",
+      "identity_len": 1,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.00513935,
+      "min_seconds": 0.0035247,
+      "max_seconds": 0.0065661
+    },
+    {
+      "stage": "encode",
+      "format": "compact",
+      "identity_len": 5,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.0030294,
+      "min_seconds": 0.0025121,
+      "max_seconds": 0.003872
+    },
+    {
+      "stage": "encode",
+      "format": "compact",
+      "identity_len": 5,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.0035446,
+      "min_seconds": 0.0025388,
+      "max_seconds": 0.005445
+    },
+    {
+      "stage": "encode",
+      "format": "compact",
+      "identity_len": 5,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.0046726499999999995,
+      "min_seconds": 0.0025065,
+      "max_seconds": 0.00594
+    },
+    {
+      "stage": "encode",
+      "format": "compact",
+      "identity_len": 64,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.0043070999999999995,
+      "min_seconds": 0.002441,
+      "max_seconds": 0.0065274
+    },
+    {
+      "stage": "encode",
+      "format": "compact",
+      "identity_len": 64,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.0032300000000000002,
+      "min_seconds": 0.0025721,
+      "max_seconds": 0.0055162
+    },
+    {
+      "stage": "encode",
+      "format": "compact",
+      "identity_len": 64,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.0031306,
+      "min_seconds": 0.0025372,
+      "max_seconds": 0.0065549
+    },
+    {
+      "stage": "encode",
+      "format": "reference",
+      "identity_len": 1,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.0013268,
+      "min_seconds": 0.000716,
+      "max_seconds": 0.0015652
+    },
+    {
+      "stage": "encode",
+      "format": "reference",
+      "identity_len": 1,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.000658,
+      "min_seconds": 0.0006127,
+      "max_seconds": 0.0017869
+    },
+    {
+      "stage": "encode",
+      "format": "reference",
+      "identity_len": 1,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.0014161,
+      "min_seconds": 0.0006392,
+      "max_seconds": 0.0017706
+    },
+    {
+      "stage": "encode",
+      "format": "reference",
+      "identity_len": 5,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.0007973500000000001,
+      "min_seconds": 0.0005769,
+      "max_seconds": 0.0015225
+    },
+    {
+      "stage": "encode",
+      "format": "reference",
+      "identity_len": 5,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.0009641000000000001,
+      "min_seconds": 0.000647,
+      "max_seconds": 0.0016444
+    },
+    {
+      "stage": "encode",
+      "format": "reference",
+      "identity_len": 5,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.00125265,
+      "min_seconds": 0.0007118,
+      "max_seconds": 0.0016154
+    },
+    {
+      "stage": "encode",
+      "format": "reference",
+      "identity_len": 64,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.00102565,
+      "min_seconds": 0.0006545,
+      "max_seconds": 0.0016172
+    },
+    {
+      "stage": "encode",
+      "format": "reference",
+      "identity_len": 64,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.0008887000000000001,
+      "min_seconds": 0.0006273,
+      "max_seconds": 0.0014922
+    },
+    {
+      "stage": "encode",
+      "format": "reference",
+      "identity_len": 64,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.00121975,
+      "min_seconds": 0.0006116,
+      "max_seconds": 0.0016039
+    },
+    {
+      "stage": "extract_cached",
+      "format": "",
+      "identity_len": 1,
+      "message_len": 0,
+      "n": 3,
+      "median_seconds": 1.43e-05,
+      "min_seconds": 8e-06,
+      "max_seconds": 1.65e-05
+    },
+    {
+      "stage": "extract_cached",
+      "format": "",
+      "identity_len": 5,
+      "message_len": 0,
+      "n": 3,
+      "median_seconds": 7.4e-06,
+      "min_seconds": 6.7e-06,
+      "max_seconds": 9.5e-06
+    },
+    {
+      "stage": "extract_cached",
+      "format": "",
+      "identity_len": 64,
+      "message_len": 0,
+      "n": 3,
+      "median_seconds": 6.8e-06,
+      "min_seconds": 6.7e-06,
+      "max_seconds": 0.0001114
+    },
+    {
+      "stage": "extract_cold",
+      "format": "",
+      "identity_len": 1,
+      "message_len": 0,
+      "n": 3,
+      "median_seconds": 0.9107283,
+      "min_seconds": 0.2949163,
+      "max_seconds": 1.2952496
+    },
+    {
+      "stage": "extract_cold",
+      "format": "",
+      "identity_len": 5,
+      "message_len": 0,
+      "n": 3,
+      "median_seconds": 0.7985617,
+      "min_seconds": 0.5266416,
+      "max_seconds": 0.8170813
+    },
+    {
+      "stage": "extract_cold",
+      "format": "",
+      "identity_len": 64,
+      "message_len": 0,
+      "n": 3,
+      "median_seconds": 0.1589658,
+      "min_seconds": 0.1161937,
+      "max_seconds": 0.2756812
+    },
+    {
+      "stage": "master_state_recover",
+      "format": "",
+      "identity_len": 0,
+      "message_len": 0,
+      "n": 3,
+      "median_seconds": 0.0856581,
+      "min_seconds": 0.0809458,
+      "max_seconds": 0.0945841
+    },
+    {
+      "stage": "master_state_recover",
+      "format": "",
+      "identity_len": 1,
+      "message_len": 0,
+      "n": 3,
+      "median_seconds": 0.130893,
+      "min_seconds": 0.1274341,
+      "max_seconds": 0.1408883
+    },
+    {
+      "stage": "master_state_recover",
+      "format": "",
+      "identity_len": 5,
+      "message_len": 0,
+      "n": 3,
+      "median_seconds": 0.181496,
+      "min_seconds": 0.1383661,
+      "max_seconds": 0.1819637
+    },
+    {
+      "stage": "master_state_recover",
+      "format": "",
+      "identity_len": 64,
+      "message_len": 0,
+      "n": 3,
+      "median_seconds": 0.1898758,
+      "min_seconds": 0.1896202,
+      "max_seconds": 0.1917466
+    },
+    {
+      "stage": "setup",
+      "format": "",
+      "identity_len": 0,
+      "message_len": 0,
+      "n": 3,
+      "median_seconds": 0.1723923,
+      "min_seconds": 0.1633669,
+      "max_seconds": 0.1729413
+    },
+    {
+      "stage": "sign",
+      "format": "",
+      "identity_len": 1,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.47327050000000004,
+      "min_seconds": 0.1460287,
+      "max_seconds": 3.1261796
+    },
+    {
+      "stage": "sign",
+      "format": "",
+      "identity_len": 1,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.57416895,
+      "min_seconds": 0.2697363,
+      "max_seconds": 1.2458481
+    },
+    {
+      "stage": "sign",
+      "format": "",
+      "identity_len": 1,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.5711079,
+      "min_seconds": 0.1400417,
+      "max_seconds": 2.7159348
+    },
+    {
+      "stage": "sign",
+      "format": "",
+      "identity_len": 5,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.45584465,
+      "min_seconds": 0.1460033,
+      "max_seconds": 1.1262814
+    },
+    {
+      "stage": "sign",
+      "format": "",
+      "identity_len": 5,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.9123129000000001,
+      "min_seconds": 0.2181245,
+      "max_seconds": 1.0799324
+    },
+    {
+      "stage": "sign",
+      "format": "",
+      "identity_len": 5,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.7644933,
+      "min_seconds": 0.2082744,
+      "max_seconds": 2.2293051
+    },
+    {
+      "stage": "sign",
+      "format": "",
+      "identity_len": 64,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.4215474,
+      "min_seconds": 0.2701326,
+      "max_seconds": 2.0126628
+    },
+    {
+      "stage": "sign",
+      "format": "",
+      "identity_len": 64,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.8525874499999999,
+      "min_seconds": 0.3102919,
+      "max_seconds": 2.0244205
+    },
+    {
+      "stage": "sign",
+      "format": "",
+      "identity_len": 64,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.35250675,
+      "min_seconds": 0.1884492,
+      "max_seconds": 1.4484626
+    },
+    {
+      "stage": "signing_key_recover",
+      "format": "",
+      "identity_len": 1,
+      "message_len": 0,
+      "n": 3,
+      "median_seconds": 0.0991509,
+      "min_seconds": 0.0940938,
+      "max_seconds": 0.1111322
+    },
+    {
+      "stage": "signing_key_recover",
+      "format": "",
+      "identity_len": 5,
+      "message_len": 0,
+      "n": 3,
+      "median_seconds": 0.1032357,
+      "min_seconds": 0.1015336,
+      "max_seconds": 0.1286982
+    },
+    {
+      "stage": "signing_key_recover",
+      "format": "",
+      "identity_len": 64,
+      "message_len": 0,
+      "n": 3,
+      "median_seconds": 0.0984006,
+      "min_seconds": 0.0872483,
+      "max_seconds": 0.1071094
+    },
+    {
+      "stage": "verify",
+      "format": "compact",
+      "identity_len": 1,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.069468,
+      "min_seconds": 0.0586185,
+      "max_seconds": 0.1004971
+    },
+    {
+      "stage": "verify",
+      "format": "compact",
+      "identity_len": 1,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.07195335,
+      "min_seconds": 0.057726,
+      "max_seconds": 0.0876342
+    },
+    {
+      "stage": "verify",
+      "format": "compact",
+      "identity_len": 1,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.0804962,
+      "min_seconds": 0.0661718,
+      "max_seconds": 0.1005178
+    },
+    {
+      "stage": "verify",
+      "format": "compact",
+      "identity_len": 5,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.06488564999999999,
+      "min_seconds": 0.0495556,
+      "max_seconds": 0.0690446
+    },
+    {
+      "stage": "verify",
+      "format": "compact",
+      "identity_len": 5,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.07001099999999999,
+      "min_seconds": 0.0533048,
+      "max_seconds": 0.098456
+    },
+    {
+      "stage": "verify",
+      "format": "compact",
+      "identity_len": 5,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.09015985,
+      "min_seconds": 0.0578397,
+      "max_seconds": 0.0983386
+    },
+    {
+      "stage": "verify",
+      "format": "compact",
+      "identity_len": 64,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.06665715,
+      "min_seconds": 0.0558165,
+      "max_seconds": 0.0889766
+    },
+    {
+      "stage": "verify",
+      "format": "compact",
+      "identity_len": 64,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.06760605,
+      "min_seconds": 0.0568145,
+      "max_seconds": 0.0840823
+    },
+    {
+      "stage": "verify",
+      "format": "compact",
+      "identity_len": 64,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.0630706,
+      "min_seconds": 0.0587618,
+      "max_seconds": 0.1039745
+    },
+    {
+      "stage": "verify",
+      "format": "reference",
+      "identity_len": 1,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.06461615,
+      "min_seconds": 0.0622168,
+      "max_seconds": 0.0950199
+    },
+    {
+      "stage": "verify",
+      "format": "reference",
+      "identity_len": 1,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.0623658,
+      "min_seconds": 0.0579609,
+      "max_seconds": 0.0885475
+    },
+    {
+      "stage": "verify",
+      "format": "reference",
+      "identity_len": 1,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.06818445000000001,
+      "min_seconds": 0.0579223,
+      "max_seconds": 0.0996705
+    },
+    {
+      "stage": "verify",
+      "format": "reference",
+      "identity_len": 5,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.06337765000000001,
+      "min_seconds": 0.051837,
+      "max_seconds": 0.0712854
+    },
+    {
+      "stage": "verify",
+      "format": "reference",
+      "identity_len": 5,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.06199165,
+      "min_seconds": 0.0513741,
+      "max_seconds": 0.0960426
+    },
+    {
+      "stage": "verify",
+      "format": "reference",
+      "identity_len": 5,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.08058604999999999,
+      "min_seconds": 0.0631082,
+      "max_seconds": 0.0954786
+    },
+    {
+      "stage": "verify",
+      "format": "reference",
+      "identity_len": 64,
+      "message_len": 0,
+      "n": 6,
+      "median_seconds": 0.0694279,
+      "min_seconds": 0.0612675,
+      "max_seconds": 0.0991427
+    },
+    {
+      "stage": "verify",
+      "format": "reference",
+      "identity_len": 64,
+      "message_len": 256,
+      "n": 6,
+      "median_seconds": 0.0637272,
+      "min_seconds": 0.0572392,
+      "max_seconds": 0.0682133
+    },
+    {
+      "stage": "verify",
+      "format": "reference",
+      "identity_len": 64,
+      "message_len": 4096,
+      "n": 6,
+      "median_seconds": 0.06977649999999999,
+      "min_seconds": 0.0604086,
+      "max_seconds": 0.0914776
+    }
+  ]
+}

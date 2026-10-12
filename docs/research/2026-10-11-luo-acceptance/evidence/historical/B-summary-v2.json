@@ -1,0 +1,44 @@
+{
+  "schema": "IBME/STEP17/B-SUMMARY-V2/1",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "environment": {
+    "python": "3.14.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel"
+  },
+  "natural": {
+    "calls": 108,
+    "attempts": 1000,
+    "ez": 459,
+    "elow": 796,
+    "ew0c": 0,
+    "ez_elow": 363,
+    "aligned": 108,
+    "natural_aborts": 0,
+    "wall_seconds": 171.5
+  },
+  "negative_controls": {
+    "calls": 3,
+    "attempts": 3,
+    "categories": {
+      "abort:LuoModuleSamplingAbort": 2,
+      "abort:RandomnessError": 1
+    }
+  },
+  "denominator_note": "negative-control calls are included in calls/denominators; natural and negative samples are NOT merged for any rate",
+  "observer_label": "WHITE-BOX diagnostic observer (reads signing-key fields sk.z1/z2/w); alignment against the unmodified backend uses only public results (final math signature, verify result, accepted-attempt number)",
+  "step16_historical": {
+    "calls": 108,
+    "attempts": 946,
+    "ez": 449,
+    "elow": 735,
+    "ez_elow": 346,
+    "note": "kept as historical sample; this run is reconciled row-by-row, differences recorded"
+  },
+  "source_sha256": {
+    "ibme/ibs/luo_module.py": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275",
+    "ibme/ibs/luo_module_math.py": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f"
+  }
+}

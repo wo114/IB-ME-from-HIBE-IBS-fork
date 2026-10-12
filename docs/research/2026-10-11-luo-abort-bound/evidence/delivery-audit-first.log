@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\A\.codex\worktrees\luo-acceptance-evidence\IB-ME-from-HIBE-IBS\experiments\research\audit_luo_abort_delivery.py", line 75, in <module>
+    result=check()
+  File "C:\Users\A\.codex\worktrees\luo-acceptance-evidence\IB-ME-from-HIBE-IBS\experiments\research\audit_luo_abort_delivery.py", line 46, in check
+    require(c64['availability_certificate']==certificate(profile('availability-k64'),extracts=64,signs=65536,
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                                         oracle_queries=2**64),'screen certificate mismatch')
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\A\.codex\worktrees\luo-acceptance-evidence\IB-ME-from-HIBE-IBS\experiments\research\luo_robust_abort_certificate.py", line 21, in require
+    raise ValueError(message)
+ValueError: screen certificate mismatch

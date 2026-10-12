@@ -1,0 +1,22 @@
+{
+  "sidecar_validation_passed": true,
+  "expected_exit_codes": {
+    "preflight": 2,
+    "tests": 0,
+    "public-contract": 0
+  },
+  "actual_exit_codes": {
+    "preflight": 2,
+    "tests": 0,
+    "public-contract": 0
+  },
+  "monitored_input_bytes_unchanged": true,
+  "functional_status": "BLOCKED",
+  "first_blocker": "CHKP_PUBLIC_BACKEND_MISSING",
+  "smoke_executed": false,
+  "functional_integration_passed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "package_manifest_verification": "not repeated; owner-confirmed 465 entries",
+  "environment": "environment.json"
+}
