@@ -1,7 +1,7 @@
 """Six-method research HIBE: MP12 computational root/DelTrap + CHKP H/G.
 
 Real finite byte-driven sampling, true receiver delegation, fixed 256 preimages.
-Source-checkout/Sage reference, not an installed production backend. Original
+Sage reference with public installable entry; not a production backend. Original
 CHKP RandBasis and the statistical root profiles are unchanged. This variant's
 ROM/model mapping and formal parameters remain unadmitted. Payload <=32 bytes;
 the public Hybrid adapter can use its exact 32-byte seed capacity.
@@ -341,12 +341,14 @@ class MP12CHKPResearchHIBE:
     backend_admitted=False
     parameters_are_formal=False
 
-    def __init__(self,basis_engine):
-        self.basis_engine = Path(basis_engine)
+    def __init__(self,basis_engine=None):
+        self.basis_engine = None if basis_engine is None else Path(basis_engine)
         self.last_setup_receipt = None
 
     def setup(self,params,*,rng=None):
         if not isinstance(params,MP12HIBEParams): raise InvalidParameterError("MP12 HIBE parameters required")
+        if self.basis_engine is None or not self.basis_engine.is_file():
+            raise InvalidParameterError("private basis engine required for Setup before entropy")
         result = ComputationalRootGenerator(params.root_params,self.basis_engine).generate(rng=rng)
         oracle = ROHIBEContext(params.n,params.m,params.q,result.basis.public.rows,
             params.configuration(),params.identity_bytes)
@@ -363,6 +365,8 @@ class MP12CHKPResearchHIBE:
                 return msk.receivers[identity]
             if len(msk.receivers)>=msk.pk.params.max_receivers:
                 raise InvalidParameterError("receiver capacity exhausted before entropy")
+            if self.basis_engine is None or not self.basis_engine.is_file():
+                raise InvalidParameterError("private basis engine required for new receiver before entropy/state")
             msk.receivers[identity]=None
             p,o = msk.pk.params,msk.pk.oracle
             base,tail = split_extension(msk.basis,ModMatrixReference(o.h((identity,)),p.q))

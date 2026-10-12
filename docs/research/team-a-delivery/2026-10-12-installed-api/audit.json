@@ -1,0 +1,117 @@
+{
+  "schema": "A-INSTALLED-API-AUDIT/1",
+  "date": "2026-10-12",
+  "baseline": "77957196f1d7fabb80cf2a18a05064fbd7ecc32c",
+  "implementation_commit": "887aa5c",
+  "goal": "完成我该负责的任务（A）",
+  "goal_complete": false,
+  "environment": {
+    "host": "Windows",
+    "WindowsPython": "3.14.6",
+    "WSLPython": "3.13.14",
+    "Sage": "10.9",
+    "cryptography": "49.0.0",
+    "cpu": "Intel Core Ultra9 275HX",
+    "Sage_runtime": "~/miniconda3/envs/sage"
+  },
+  "parameters": {
+    "n": 2,
+    "q": 549755813911,
+    "r_width_squared": 16,
+    "original_identity_lengths": [
+      3,
+      5
+    ],
+    "inner_identity_length": 86,
+    "seed_bytes": 32,
+    "cli_message_bytes": 42,
+    "repetitions": 1,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "tests": {
+    "sage-tests.junit.xml": {
+      "tests": 55,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "windows-tests.junit.xml": {
+      "tests": 92,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2
+    }
+  },
+  "installed_checks": {
+    "windows": 3,
+    "Sage": 10,
+    "import_origins_verified": true,
+    "provider_files": {
+      "windows": 34,
+      "Sage": 63
+    },
+    "cli_steps": 8,
+    "cli_elapsed_seconds": 84.437860289,
+    "cli_ciphertext_bytes": 117505
+  },
+  "commands": [
+    "python -m pip wheel --no-deps --no-build-isolation --wheel-dir test-results/a-install/wheels .",
+    "~/miniconda3/envs/sage/bin/python -m pip install --no-deps --target test-results/a-install/sage-package test-results/a-install/wheels/ibme-0.1.0-py3-none-any.whl",
+    "python -m pip install --no-deps --target test-results/a-install/windows-package test-results/a-install/wheels/ibme-0.1.0-py3-none-any.whl",
+    "outside checkout: python -I tests/install_probes/verify_research_api.py --install-root <pip target> --checkout <checkout> --fixtures <ignored saved data> --output <new receipt>",
+    "outside checkout: ~/miniconda3/envs/sage/bin/python -I tests/install_probes/verify_research_cli.py --install-root <pip target> --checkout <checkout> --engine <native engine> --private-directory <new ignored directory> --output <new receipt>",
+    "PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q --tb=short tests/test_public_research_api.py tests/test_first_suite_hibe_reference.py --junitxml=test-results/a-install/sage-public-final.xml",
+    "python -m pytest -p no:cacheprovider -q --tb=short tests/test_public_research_api.py tests/test_assembly.py tests/test_cli_selection.py tests/test_combination_matrix.py --junitxml=test-results/a-install/isolated-source-windows.xml"
+  ],
+  "source_sha256": {
+    "src/ibme/hibe/mp12_chkp/__init__.py": "b899edd86f1f983845efa20b843d498c73d38b5139e0c7d533314eb1cb18b083",
+    "src/ibme/lattice/research/__init__.py": "89e656c9c2e8a5fedab17c1f160316a3b248f3ae62727275bc4306e1e0b3fb53",
+    "pyproject.toml": "fefda09375ebe4e3fc300268506204e77a22307edf5b5c32e861327678316244",
+    "src/ibme/assembly/registry.py": "aacf7dc386cdbdd3a235ab71a0f5a991c6ccca0e8da2ac691d3bb5e18915992c",
+    "experiments/research/first_suite/hibe_reference.py": "1806b423408ad65654926df27f0f5d3ba4316c4c7a514fab95d3af2896d34106",
+    "experiments/research/first_suite/hibe_registry.py": "960a03b5baab29662dd37a8a67454226bfe427f03e7ec339a64af25f3232cb81",
+    "tests/test_public_research_api.py": "16a4eff556f2f6433862a0c5c345c929f721c6016a2dc9eba5ea04fd7e6ffdee",
+    "tests/install_probes/verify_research_api.py": "7965041fc4cdd71fdb07efd0821db69a6b5ac52dd05982ffad1ffdbc9c280a61",
+    "tests/install_probes/verify_research_cli.py": "484cdc6fd1624ce4e4c3d3ef4f34d0ff80a550c728217e591b3f16441fdc9a88"
+  },
+  "artifact_sha256": {
+    "windows-installed.json": "c0aea5c2b1a60bac50f3909f2178c319f1fbf1cd0d5043d2bf6b5330ea5d9770",
+    "sage-installed.json": "0c6b1be7215df6e64a1e3153968a297c374ec121cf604bab7c6c3cd87d7c070e",
+    "cli-lifecycle.json": "1a8828954b8ee0cd8eb6a326714cb7e66d1ff2972e836933b12f420df5744ffc",
+    "sage-tests.junit.xml": "57cad53a3a42ec3b00e4247148fefd7e248b1d80ae9e4bc5e8944ae4d6d00fa1",
+    "windows-tests.junit.xml": "8a307a4b971c9d08df8437c02d92861bd6e55b6737dd9d86eebaa63005b8d858",
+    "wheel-manifest.json": "8656e071dfe51ece645b9e21a0b39d4298c4d81b2817d2762253aef4dea2697c"
+  },
+  "wire_and_math_changed": false,
+  "new_algorithm_count": 0,
+  "old_n2_public_attack_unchanged": true,
+  "scope": [
+    "installable public entry",
+    "single implementation providers",
+    "optional default registry",
+    "before-entropy/state engine checks",
+    "actual standalone API/CLI and legacy data compatibility"
+  ],
+  "shared_worktree_transfer": {
+    "observed_integration_head": "cd6486f5f93cff4ce84d86cf260838c774a6ca74",
+    "7_own_files_hash_verified_and_committed_in_independent_worktree": true,
+    "other_commits_preserved": true,
+    "final_wheel_contains_pr9": false
+  },
+  "known_failures": [
+    {
+      "scope": "initial source plain-import unit harness",
+      "reason": "pytest sys.path not inherited by fresh child; source-only test now supplies source import root; installed verifier stays -I outside source"
+    }
+  ],
+  "incomplete": [
+    "original CHKP and faithful ABB-ROM",
+    "root and ciphertext hardness for formal parameters",
+    "MP12/CHKP ROM mapping",
+    "target-dimensional sampler/representation",
+    "AR reserve research cards"
+  ],
+  "next_action": "A2 faithful ABB-ROM implementation using published algorithm and public tools; A0/A3 formal-scale/model work remains parallel; no more n2-only sample increments."
+}

@@ -13,8 +13,14 @@ dependencies = []
 dev = ["pytest>=7"]
 hybrid = ["cryptography>=49.0.0,<51"]
 
+[tool.setuptools]
+include-package-data = false
+package-dir = { "ibme" = "src/ibme", "experiments" = "experiments" }
+
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["src", "."]
+include = ["ibme*", "experiments", "experiments.research", "experiments.research.first_suite"]
+namespaces = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

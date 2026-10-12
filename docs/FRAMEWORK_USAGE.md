@@ -15,6 +15,7 @@ python -m ibme.cli matrix
 | 选择 | 当前实现 | 说明 |
 |---|---|---|
 | HIBE `abb10` | 教学 ABB10 | 可以 direct，也可由 Hybrid 包装；不具正式安全参数 |
+| HIBE `mp12-chkp-reference` | 可选 Sage 研究变体 | 显式 `--hibe-params n2-reference`；新根/接收者需配置 native engine，旧状态恢复不需；n2已有公开攻击，见[A安装交付](research/team-a-delivery/2026-10-12-installed-api/README.md) |
 | IBS `sis` | 教学 SIS IBS | 保留已知公开伪造反例 |
 | IBS `luo-matrix` | Luo §3 矩阵研究实现 | 采用显式功能参数；与模格是不同算法实例 |
 | IBS `luo-module` | Luo §4 模格研究实现 | reference 默认；compact 为同算法的无损签名编码 |
