@@ -1,0 +1,137 @@
+{
+  "schema": "IBME/LUO-ABORT-DELIVERY/1",
+  "base_commit": "f079ce10fb6b3d2877465b308caaa30276d9e6f9",
+  "self_hash_excluded": true,
+  "files": {
+    "docs/research/2026-10-11-luo-abort-bound/.gitattributes": "d1b9737e76c7d6b11f3d63edd9d725540820a84f8fb861992d12ded00ec62c36",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/candidate-k64-probe/audit.json": "e9ea8dc0fc6ed8510df4c2342e97a6f73b22cae328a2fa864aaaf01651df5d7b",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/candidate-k64-probe/probe.json": "e02a2cb306b11883804455bd5bdb407f7553530cd62c385e35d99c35643570c8",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/candidate-probe/audit.json": "acb313e3c91c699c6fa011a708268d1b4295b3613ffebb67b990424999f5749b",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/candidate-probe/probe.json": "c2ff663a99e0dd36e4b373663d162908d497599bfc64c13f3d02b8ff8f3ce3d3",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/candidate-probe/source-snapshot/luo_candidate_probe.py": "6d5caadf66773b3b0602dd94b15843d477106ba8e85fe053cbbd123ae56479db",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/candidate-probe/source-snapshot/luo_robust_abort_certificate.py": "3dbf9751592d0f1a07670af0afec480333b142485e38095738b5a1240dc9816d",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/current-certificate.json": "26f1fc02c8bd4e3ee959b5d783626c2840391e30d85e577140fd247c1c857ea8",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/delivery-audit-first.log": "fcedf2d412dab7252a87d35576067a2cb45ca663a4cce87a2264c0f5b2d035a6",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/evidence-tests.xml": "18c4a2a12f60fb601081f00e423f41c3d73ed4dbcc27b66f46fc5e3c406212a4",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/final-regression.xml": "1df0c2b248c8cfbd4248ce24e31c357739b89850788aa5b350e29231fd3cd83a",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/main-review/environment.json": "d4910a156fa42b734b5a89d8e2514ee819e3359fdba0067ec3ec8aeb3734228c",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/main-review/inputs-after.json": "ae3748bdac708b6e8ac9eb8146e448d1fd85f7a1de8a33914d6080d4596059df",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/main-review/inputs-before.json": "ae3748bdac708b6e8ac9eb8146e448d1fd85f7a1de8a33914d6080d4596059df",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/main-review/manifest.json": "de45405a26b7f7ba79444e5a5d9d35cd357e33ad7c3d8b7502f8c669cfed4886",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/main-review/preflight.receipt.json": "f42f69167880c0e8c66158c0b0a551e491cf4bc5280cb2ae6d88625c982a2acc",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/main-review/preflight.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/main-review/preflight.stdout.txt": "70bfb6946e07d00a0493d6901dc6ffc3168184d03165b2980cd5faf8457ae183",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/main-review/public-contract.receipt.json": "3b2b7a45d27582e3d9fc938a4edc2dee0eb9cdff26590cc55446fea4c72730d8",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/main-review/public-contract.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/main-review/public-contract.stdout.txt": "99daec06496978b27955ebb96c9824aa7e3a243aa34bd3a3fd7e73ff795bdfda",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/main-review/summary.json": "68e08f77125cc5d447f747eb08c40610d3cfad4b3e5c447df6d34a0741077518",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/main-review/tests.receipt.json": "017d0033860c4e32a6df4296ed8d157f82dc03758ee5c712d3bc5f2d17b226ba",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/main-review/tests.stderr.txt": "3b7ab7dd7f396ee34dc289846be74a7adaf03402c822581dc9a7d084dc41a0ac",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/main-review/tests.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/preflight.py": "098a16b1c637d011b4f265a529ca04351c7253afa30d94e044a0a9e85098bfc0",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/public_contract_probe.py": "22e2719893dc308a0dc4f5de13e54a6c430fbf0b7b390d27e54b34de37842177",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/report.md": "348af5af19b838d74b023cda78d7b80a2751a2f20782cdab0c81c8d5e6d26026",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/run_evidence.py": "b72ee35705a1eda31439c36bee1c9785f66066d422d6bea679da7efaed61fb96",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/integration-check/test_preflight.py": "fbbdf59e90ddbf61d3ccf21f8278ccebaf270cd41c2e87a64466f5c81219ba13",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/k49-certificate.json": "e1f58079b318d86d379a9e5ea94cfdc7445aaa0f796f89bbb10cdf741c82f068",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/k64-certificate.json": "c6615a15ce05d865ee75723d783c53dd1fc32ca446a7853f224417716401b1be",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/k64-lifetime-certificate.json": "2f9757a3c2635252c6d9eda6f2bb0feda4b852c5569c44171f4d24c7f3386a9e",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/parameter-screen/admission-matrix.json": "edd3828f501ebb901f77b4088d0386145da0d6f6ca7c3704a4b54f778336e819",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/parameter-screen/C64B-ADDENDUM.md": "6c8dfd9ae594b2cd92c560fa50fc19903eb7cd9e7361378476182a42621c153e",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/parameter-screen/C64B-screen.json": "a2c14bff0da89c981e3bfdb3255db98773cd2e62c8d67e380801795d3f141087",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/parameter-screen/C64B-screen.pre-integer-fix.json": "199de4db2e08f3d7b7d81dd3f97c62a7339400fecdd2174e2d9855f0392a0928",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/parameter-screen/conditional-route.json": "0d6dba5be6a1017a24aafdb95a25bea9d47cccfa35c51cc4aa93fd54af701a78",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/parameter-screen/current-profile-rerun.json": "6f542255ecdf3b69510473189538332719ac8be1968568481d7be7792d6e8192",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/parameter-screen/evaluate_conditional_route.py": "11b9b2fcc8b79bd5c199873390748f7a34d6a4ea35e66d36c23effadbcd3963a",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/parameter-screen/main-certificate-observations.json": "9b10b810e20712fe533639f1da320d2b136ec15345d7b8fc565c3a2452cf40f6",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/parameter-screen/REPORT.md": "70e3b612c84c6dab9f26c0c56b4ea98f0dc359be9e0b6964ea88251d2cbaef4e",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/parameter-screen/run_c64b_screen.py": "19e47b7d1528503910b971ffb84504a710649f0881661936b08d6aa98e558b69",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/parameter-screen/run_current_screens.py": "14383eaf20675620fb4480cf2f8cbcb698db7056f5573fac214d9d4477b54220",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/proof-and-probe-tests.xml": "da5c883a16cfc14f5bffa6059510a31a844a564dd819d61605381ccad5a92d0f",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/proof-tests.xml": "441b619a596b46df9db7da8ac414a0bf768fa39f5c222201ddf7d489361bdd86",
+    "docs/research/2026-10-11-luo-abort-bound/evidence/selected-regression.xml": "13d8c5d20b556e5d02f89605bbee6189e3ac51613634053ecd8e0453cc40073c",
+    "docs/research/2026-10-11-luo-abort-bound/README.md": "349c1853b4d5301a55bfab3c791bda039b2f02823bf799ce234caf3f25d42a99",
+    "docs/research/2026-10-11-luo-abort-bound/参数选择与安全边界.md": "67d7c43d3723500d9057c36a56f87aa684b074ae211eddf5523c9d0ac8d879ba",
+    "docs/research/2026-10-11-luo-abort-bound/独立复核与返工.md": "47cb247328685be5e489c3943b33e7eb5c639c7be9e237e2a83a8ae2b4204cda",
+    "docs/research/2026-10-11-luo-abort-bound/鲁棒接受集与中止界.md": "b9cfa20c8bebdd6a20e0145a9fb3aa065ebd0301762e9db2ab6b16189af03387",
+    "experiments/research/audit_luo_abort_delivery.py": "4b4af0f58e815c23a4a1e4b83b922226b699abb18307ebdb5f95f5cdbd3f3cc1",
+    "experiments/research/audit_luo_candidate_probe.py": "a7ae517cfc4007fd908d15fe1f8ea398cdc35d08710e99c51d7d23a32c2023a8",
+    "experiments/research/luo_candidate_probe.py": "3e08126cc333b9520fc23e4e52d2248b2dcc526f82f1e9d1c2edffb4686c2a2f",
+    "experiments/research/luo_robust_abort_certificate.py": "28c0bdaae844ab802c178e6ea820002812e8a6306accb606d14b7692a32eb1b8",
+    "tests/test_luo_candidate_evidence.py": "b46bcee72936df1154865e2487c17e5e91f0658d652810ea649fe6b0fa6825c0",
+    "tests/test_luo_candidate_probe.py": "c5b120016664e1534d95b9b3b7099539695557109dc971cf9929a3fe90d61f0b",
+    "tests/test_luo_robust_abort_certificate.py": "a31662f5f48bd52bd4656a22c281beefb344cf84ade65671c4c87c9baf416cb1"
+  },
+  "checks": {
+    "certificates_recomputed": 4,
+    "candidate_receipts": [
+      {
+        "profile": "availability-candidate",
+        "planned_calls": 54,
+        "successful_calls": 54,
+        "sign_attempts": 293,
+        "stage_rows": 30,
+        "reference_bytes": [
+          29455
+        ],
+        "compact_bytes": [
+          16062
+        ],
+        "codec_verifications": 108,
+        "elapsed_seconds": 35.99390800000401,
+        "source_versions": {
+          "src/ibme/ibs/luo_module.py": "current",
+          "src/ibme/ibs/luo_module_math.py": "current",
+          "src/ibme/ibs/luo_module_codec.py": "current",
+          "src/ibme/core/randomness.py": "current",
+          "src/ibme/core/hashing.py": "current",
+          "src/ibme/core/encoding.py": "current",
+          "experiments/research/luo_robust_abort_certificate.py": "preserved-run-snapshot",
+          "experiments/research/luo_candidate_probe.py": "preserved-run-snapshot"
+        },
+        "security_claim": "none",
+        "backend_admitted": false,
+        "scope": "public evidence consistency; no new crypto execution"
+      },
+      {
+        "profile": "availability-k64",
+        "planned_calls": 54,
+        "successful_calls": 54,
+        "sign_attempts": 315,
+        "stage_rows": 30,
+        "reference_bytes": [
+          29455
+        ],
+        "compact_bytes": [
+          16383
+        ],
+        "codec_verifications": 108,
+        "elapsed_seconds": 44.03944449999835,
+        "source_versions": {
+          "src/ibme/ibs/luo_module.py": "current",
+          "src/ibme/ibs/luo_module_math.py": "current",
+          "src/ibme/ibs/luo_module_codec.py": "current",
+          "src/ibme/core/randomness.py": "current",
+          "src/ibme/core/hashing.py": "current",
+          "src/ibme/core/encoding.py": "current",
+          "experiments/research/luo_robust_abort_certificate.py": "current",
+          "experiments/research/luo_candidate_probe.py": "current"
+        },
+        "security_claim": "none",
+        "backend_admitted": false,
+        "scope": "public evidence consistency; no new crypto execution"
+      }
+    ],
+    "selected_regression": {
+      "tests": 269,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "estimator_completed_tasks": 7,
+    "actual_chkp_integration": false,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "scope": "consistency verification; no estimator or crypto rerun"
+  }
+}

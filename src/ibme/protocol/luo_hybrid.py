@@ -11,6 +11,7 @@ from ibme.hibe.abb10 import (ABB10HIBE, ABB10_DEBUG_PARAMS, ABB10PublicKey, ABB1
 from ibme.ibs.luo_module import (LuoModuleIBSBackend, LuoModuleParams, LuoModulePublicKey,
                                LuoModuleMasterSecret, LuoModuleSigningKey)
 from ibme.ibs.luo_module_codec import LuoModuleCompactIBSBackend
+from ibme.ibs.luo_module_profiles import is_c64b_profile
 from .baseline import PublicKey, SenderKey
 from .byteauth import ByteAuthenticatedIBME, encode_bound_message, COMMITMENT_BYTES
 from .hybrid_hibe import HybridHIBE, HybridHIBEParams, HybridLimits, HybridPublicKey, encoded_identity_bytes
@@ -42,6 +43,16 @@ class LuoHybridResearchIBME(ByteAuthenticatedIBME):
     security_claim = "none"
     backend_admitted = False
 
+    def __init__(self, hibe_backend, ibs_backend, *, ots_rng=None, ibs_params=RESEARCH_IBS_PARAMS):
+        super().__init__(hibe_backend, ibs_backend, ots_rng=ots_rng)
+        self.research_ibs_params = ibs_params
+
+    def setup(self, params, *, ibs_params=None, rng=None):
+        selected = self.research_ibs_params if ibs_params is None else ibs_params
+        if type(selected) is not LuoModuleParams or selected != self.research_ibs_params:
+            raise InvalidParameterError("setup differs from the selected research Luo profile")
+        return super().setup(params, ibs_params=selected, rng=rng)
+
     def encrypt(self, public, ek, receiver_id, message, *, rng=None):
         if not isinstance(public, PublicKey) or not isinstance(ek, SenderKey):
             raise TypeError("encrypt expects IBME public and sender keys")
@@ -56,12 +67,13 @@ class LuoHybridResearchIBME(ByteAuthenticatedIBME):
 class _ProfileDecoder:
     decoder: object
     module: bool
+    expected_ibs_params: LuoModuleParams = RESEARCH_IBS_PARAMS
 
     def from_bytes(self, data):
         value = self.decoder.from_bytes(data)
         if self.module:
             public = value if isinstance(value, LuoModulePublicKey) else value.public_key
-            if public.params != RESEARCH_IBS_PARAMS:
+            if public.params != self.expected_ibs_params:
                 raise SerializationError("state uses a different Luo module parameter profile")
         else:
             public = value if isinstance(value, HybridPublicKey) else value.public_key
@@ -78,14 +90,24 @@ class _ProfileDecoder:
         return value
 
 
-def make_research_runtime(*, ibs_rng=None, ots_rng=None, signature_format="reference"):
+def make_research_runtime(*, ibs_rng=None, ots_rng=None, signature_format="reference", ibs_params=None):
+    """Bind restoration to an explicitly selected research parameter snapshot.
+
+    Selection does not migrate existing keys or grant security admission.
+    setup uses this selection; an explicit mismatch fails before entropy use.
+    Persist the selection in caller state. Legacy callers keep the old profile.
+    """
     if signature_format not in ("reference", "compact"):
         raise InvalidParameterError("unknown research signature format")
+    selected = RESEARCH_IBS_PARAMS if ibs_params is None else ibs_params
+    if (type(selected) is not LuoModuleParams
+            or (selected != RESEARCH_IBS_PARAMS and not is_c64b_profile(selected))):
+        raise InvalidParameterError("unsupported research Luo parameter profile")
     hibe = make_hybrid_abb10()
     backend = LuoModuleCompactIBSBackend if signature_format == "compact" else LuoModuleIBSBackend
-    protocol = LuoHybridResearchIBME(hibe, backend(rng=ibs_rng), ots_rng=ots_rng)
+    protocol = LuoHybridResearchIBME(hibe, backend(rng=ibs_rng), ots_rng=ots_rng, ibs_params=selected)
     readers = {name: _ProfileDecoder(reader, False) for name, reader in hibe.component_decoders().items()}
-    readers.update(ipk=_ProfileDecoder(LuoModulePublicKey, True),
-                   imsk=_ProfileDecoder(LuoModuleMasterSecret, True),
-                   sk=_ProfileDecoder(LuoModuleSigningKey, True))
+    readers.update(ipk=_ProfileDecoder(LuoModulePublicKey, True, selected),
+                   imsk=_ProfileDecoder(LuoModuleMasterSecret, True, selected),
+                   sk=_ProfileDecoder(LuoModuleSigningKey, True, selected))
     return protocol, readers

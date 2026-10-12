@@ -1,0 +1,141 @@
+{
+  "schema": "IBME/LUO-LIFECYCLE-MANIFEST/1",
+  "base_commit": "c43c23280fb6946ec8266563e938c39ce76c3a5b",
+  "scope": "new files from steps 20-21 only",
+  "excludes": [
+    "docs/research/2026-10-11-luo-lifecycle/evidence/manifest.json"
+  ],
+  "file_count": 26,
+  "files": [
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/参数与引用边界.md",
+      "bytes": 5209,
+      "sha256": "b3a3eaa27f8dd16f82aae3d3fe48d3a99581bcb7736d1e71300d682f7704af5c"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/结果卡.json",
+      "bytes": 2330,
+      "sha256": "903f1b15162306e7cb4ccd8cd6dab280515fb31710a9ff8a6951e6100076e690"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/验收收据.md",
+      "bytes": 5678,
+      "sha256": "c19804c467cf829fa729edcb6335d45767216491b70777029c21b92565bee81d"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/benchmark-final.log",
+      "bytes": 233,
+      "sha256": "87c1aa7707afa68977b45c1fcad7b8004124fe4b09122d0e2f6b8f59b119cd16"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/environment-extra.json",
+      "bytes": 544,
+      "sha256": "4abbb0fdd274c7ce9862f87457205e7f47f0431386e9fea65848ac4d3e54c58f"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/final/luo-sign-calls-codex-final.csv",
+      "bytes": 3228,
+      "sha256": "830e15bfc370a397567486df793b3a66c43be17bd0509e0c4f0f996a3946ad6a"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/final/luo-single-call-ledger-codex-final.csv",
+      "bytes": 19935,
+      "sha256": "677bf8a3bf818324f88b5f869e4a3541dd78b8805c69c7ba37cd847f3d1f83e4"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/final/primitive-sizes-codex-final.csv",
+      "bytes": 895,
+      "sha256": "9f08b578e856c62243c59e12ce7e6012401361a2dc141301ee7492dace27fbd4"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/final/run-metadata-codex-final.json",
+      "bytes": 3527,
+      "sha256": "87eb977d4a59212e8ab9d091b32edc426dfd50545d03ef5edb1ef2907968514d"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/final/summary.json",
+      "bytes": 17918,
+      "sha256": "648abcf6401120ca4a9e438d6d3956b327de916400b47a09b79d4e45c6541170"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/pre-abort-fix/luo-sign-calls-codex-final.csv",
+      "bytes": 3225,
+      "sha256": "9d1e2fa57ccf2cdd34e08d842c348404d7a0b4a8202b811ed59637710b3411fa"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/pre-abort-fix/luo-single-call-ledger-codex-final.csv",
+      "bytes": 19920,
+      "sha256": "7f28ac292c296cafe0aa71362717be8062cd45c80118de39b3e536ab715eac55"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/pre-abort-fix/primitive-sizes-codex-final.csv",
+      "bytes": 895,
+      "sha256": "9f08b578e856c62243c59e12ce7e6012401361a2dc141301ee7492dace27fbd4"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/pre-abort-fix/run-metadata-codex-final.json",
+      "bytes": 3527,
+      "sha256": "0d78d7e16a5386c6541ccf496dbada4466dd2197d30635cf4fe0158b0782865d"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/pre-abort-fix/summary.json",
+      "bytes": 17893,
+      "sha256": "d6db4ebef576f42f3af831aa2576a0339e17ee9967a6885850386c440fe9d5bd"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/pytest-205.xml",
+      "bytes": 30287,
+      "sha256": "d19520532a91f4b0f782a7348863a1b95a7dff7fe960e30e14d64ba52b02ee56"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/pytest-final.log",
+      "bytes": 261,
+      "sha256": "ce9a88945325a7ab44758bb78aebd4572df7d7e25395ea4423d5d725507c4e8e"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/pytest-first.xml",
+      "bytes": 30543,
+      "sha256": "07cc4aa5bf47b61f1100f8563e76eb3134915f09795316193834c7f542a08169"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/evidence/pytest.xml",
+      "bytes": 31233,
+      "sha256": "405b2b2e2ea446a4e8d1078e126ad6652783d9b1c1374231ba34b04469891204"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/parameters.csv",
+      "bytes": 10062,
+      "sha256": "5dc73b4672227eddbb8f0f8e16b8c844c14e8a62dd14006d7fafd63f9a675873"
+    },
+    {
+      "path": "docs/research/2026-10-11-luo-lifecycle/README.md",
+      "bytes": 5939,
+      "sha256": "97b49bd928904ebbea10d4de92fdd0eb3111d933bb0518dc6411d5fd7d74852e"
+    },
+    {
+      "path": "experiments/research/audit_luo_lifecycle.py",
+      "bytes": 7121,
+      "sha256": "c456e66c69bcda302f89b96fad73eedcbfe29a42a9a562bfce51ee10ddbf930e"
+    },
+    {
+      "path": "experiments/research/luo_lifecycle_benchmark.py",
+      "bytes": 15202,
+      "sha256": "95ffaa03c6fbdda61fdcc04d0ee6131e2ff6d1b762adfd1d768222f49c882fdb"
+    },
+    {
+      "path": "tests/test_luo_lifecycle_contract.py",
+      "bytes": 5820,
+      "sha256": "4939316e307cda9b231f849959b20b39f51ed21f02e7ca7d7257db236849224b"
+    },
+    {
+      "path": "tests/test_luo_lifecycle_evidence.py",
+      "bytes": 4838,
+      "sha256": "989f91db4acd2c80310ffc87e52098f2824c5aa314364c2def45a37c9deef4e0"
+    },
+    {
+      "path": "tests/test_luo_lifecycle_runner.py",
+      "bytes": 13012,
+      "sha256": "77c5f191809480d6f812eb373a536aca0d66d5817364526f7a04498e83788bf6"
+    }
+  ]
+}

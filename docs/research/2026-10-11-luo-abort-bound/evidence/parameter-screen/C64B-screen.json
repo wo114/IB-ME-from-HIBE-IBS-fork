@@ -1,0 +1,790 @@
+{
+  "schema": "IBME/LUO2024/C64B-SIDECAR/1",
+  "metadata_repair": "Corrected external_fresh_oracle_queries from 18446744073709552000 to exact 18446744073709551616, per run_c64b_screen.py:123 (2**64). Prior JS Number serialization changed the decimal integer. Exact-number audit found no other numeric integer above 2**53. Bounds and estimator results unchanged; no rerun. Original preserved byte-for-byte in C64B-screen.pre-integer-fix.json (SHA256 199de4db2e08f3d7b7d81dd3f97c62a7339400fecdd2174e2d9855f0392a0928).",
+  "profile": "C64B",
+  "timestamp_utc": "2026-10-11T15:07:06.906844+00:00",
+  "overrides": {
+    "kappa": 64,
+    "gamma1": 190000,
+    "gamma2": 60000000000,
+    "gamma3": 27487784448,
+    "max_extract_attempts": 4096,
+    "max_sign_attempts": 4096
+  },
+  "default_parameters": {
+    "degree": 256,
+    "k": 11,
+    "l": 10,
+    "q": 274877844481,
+    "root": 153250464611,
+    "eta": 1,
+    "kappa": 64,
+    "gamma1": 125440,
+    "gamma2": 31470387200,
+    "gamma3": 15270991360,
+    "dropped_bits": 28,
+    "identity_max_bytes": 64,
+    "message_max_bytes": 4096,
+    "max_extract_attempts": 1024,
+    "max_sign_attempts": 1024,
+    "max_uniform_attempts": 128,
+    "max_cached_identities": 64
+  },
+  "parameters": {
+    "degree": 256,
+    "k": 11,
+    "l": 10,
+    "q": 274877844481,
+    "root": 153250464611,
+    "eta": 1,
+    "kappa": 64,
+    "gamma1": 190000,
+    "gamma2": 60000000000,
+    "gamma3": 27487784448,
+    "dropped_bits": 28,
+    "identity_max_bytes": 64,
+    "message_max_bytes": 4096,
+    "max_extract_attempts": 4096,
+    "max_sign_attempts": 4096,
+    "max_uniform_attempts": 128,
+    "max_cached_identities": 64
+  },
+  "constructor_checks": {
+    "constructor_accepts_exact_profile": true,
+    "degree_power_of_two": true,
+    "root_to_N_is_minus_one": true,
+    "root_to_2N_is_one": true,
+    "gamma1_gt_beta1": true,
+    "gamma2_gt_beta2": true,
+    "twice_gamma2_lt_q": true,
+    "beta2_lt_gamma3": true,
+    "dropped_product_lt_gamma3": true,
+    "twice_gamma3_divides_q_minus_one": true,
+    "q_gt_four_gamma3": true,
+    "all_witnesses_twice_B_lt_q_minus_one": true,
+    "fresh_nonzero_block_below_q": true,
+    "caps_at_most_4096": true
+  },
+  "beta1": 64,
+  "beta2": 12160000,
+  "compression": {
+    "sign_z": 59987839999,
+    "extraction_z": 189936,
+    "dropped_low_product": 8589934592,
+    "hint_correction": 54975568897,
+    "uncompressed_error": 63565503489,
+    "source": "PDF page 16, Section 4.4 and Equation (4.1); coefficient infinity norms",
+    "hash_lift": "H1(Power2Round(w),id); does not treat H1 as an independent oracle on every full low-bit lift"
+  },
+  "witnesses": [
+    {
+      "name": "known-identity-tight",
+      "module_rows": 11,
+      "module_columns": 21,
+      "coefficient_rows": 2816,
+      "coefficient_columns": 5376,
+      "block_infinity_bounds": [
+        119999991806,
+        127155318786
+      ],
+      "uniform_screen_bound": 127155318786,
+      "q": 274877844481,
+      "below_q_half": true,
+      "normalized_matrix": "[A|I_k]",
+      "interpretation": "Same cached w1/CID and H2 input; integer witness nonzero uses the conditional cube-guess lemma",
+      "estimates": {},
+      "security_claim": "none",
+      "backend_admitted": false,
+      "q_half_slack": 20567206908,
+      "estimated_in_this_run": false
+    },
+    {
+      "name": "known-identity-paper-loose",
+      "module_rows": 11,
+      "module_columns": 21,
+      "coefficient_rows": 2816,
+      "coefficient_columns": 5376,
+      "block_infinity_bounds": [
+        120024320000,
+        127155326978
+      ],
+      "uniform_screen_bound": 127155326978,
+      "q": 274877844481,
+      "below_q_half": true,
+      "normalized_matrix": "[A|I_k]",
+      "interpretation": "Conservative paper-style strict-bound relaxation of the known-identity branch",
+      "estimates": {},
+      "security_claim": "none",
+      "backend_admitted": false,
+      "q_half_slack": 20567190524,
+      "estimated_in_this_run": false
+    },
+    {
+      "name": "fresh-identity-augmented",
+      "module_rows": 11,
+      "module_columns": 22,
+      "coefficient_rows": 2816,
+      "coefficient_columns": 5632,
+      "block_infinity_bounds": [
+        119975679998,
+        127131006978,
+        128
+      ],
+      "uniform_screen_bound": 127131006978,
+      "q": 274877844481,
+      "below_q_half": true,
+      "normalized_matrix": "[A|I_k|t]",
+      "interpretation": "After the MLWE t-uniform hybrid; same H2 challenge, distinct H1 challenges; final product block proves nonzero",
+      "estimates": {},
+      "security_claim": "none",
+      "backend_admitted": false,
+      "q_half_slack": 20615830524,
+      "estimated_in_this_run": false
+    },
+    {
+      "name": "all-branches-relaxed",
+      "module_rows": 11,
+      "module_columns": 22,
+      "coefficient_rows": 2816,
+      "coefficient_columns": 5632,
+      "block_infinity_bounds": [
+        120024320000,
+        127155326978,
+        128
+      ],
+      "uniform_screen_bound": 127155326978,
+      "q": 274877844481,
+      "below_q_half": true,
+      "normalized_matrix": "[A|I_k|t]",
+      "interpretation": "Relaxed common box; known-identity witnesses append a zero t block",
+      "estimates": {},
+      "security_claim": "none",
+      "backend_admitted": false,
+      "q_half_slack": 20567190524,
+      "estimated_in_this_run": true
+    }
+  ],
+  "nonzero_conditions": {
+    "fresh_identity": {
+      "integer_ring": "Z[X]/(X^N+1), power-of-two N; integral domain",
+      "last_block": "c*(CID-CID')",
+      "coefficient_bound": 128,
+      "bound_below_q": true,
+      "requires_c_nonzero_and_CID_distinct": true,
+      "invertible_mod_q_challenge_not_required": true
+    },
+    "known_identity": {
+      "uniform_key_cube_dimensions": 5376,
+      "cube_radius": 189936,
+      "public_label_dimensions": 2816,
+      "labels_per_coefficient": 1025,
+      "illustrative_guess_union": 1048576,
+      "average_bound_log2": -71461.04204310878,
+      "exact_bound_at_most_2pow_minus128": true,
+      "pointwise_posterior_claim": false,
+      "hypothesis": "Published Extract/Sign oracle simulation with shared cached identity state; view reveals the uniform key only through w1 and independent public randomness; excludes timings and failed programming events"
+    },
+    "scope": "Finite conditional nonzero bridges, not a replacement for the paper's simulator/forking probabilities or a full QROM theorem"
+  },
+  "availability_certificate": {
+    "schema": "IBME/LUO-ROBUST-AVAILABILITY/1",
+    "parameters": {
+      "degree": 256,
+      "k": 11,
+      "l": 10,
+      "q": 274877844481,
+      "root": 153250464611,
+      "eta": 1,
+      "kappa": 64,
+      "gamma1": 190000,
+      "gamma2": 60000000000,
+      "gamma3": 27487784448,
+      "dropped_bits": 28,
+      "identity_max_bytes": 64,
+      "message_max_bytes": 4096,
+      "max_extract_attempts": 4096,
+      "max_sign_attempts": 4096,
+      "max_uniform_attempts": 128,
+      "max_cached_identities": 64
+    },
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "kind": "conservative mathematical bound, not measured acceptance or security strength",
+    "model": "independent ideal source words; ideal XOF challenge decoder",
+    "matrix_scope": "uniform Setup A except the explicit matrix_bad_event; not every adversarial A",
+    "quantifiers": "all valid fixed keys/messages/challenge outputs on the same good A; fresh masks per attempt",
+    "budgets": {
+      "setups": 1,
+      "new_identity_extract_calls": 64,
+      "sign_calls": 65536,
+      "external_fresh_oracle_queries": 18446744073709551616,
+      "operating_system_entropy_failures_included": false,
+      "invalid_input_cache_capacity_or_storage_failures_included": false
+    },
+    "epsilon": "1/100",
+    "precision_bits": 1024,
+    "arithmetic": {
+      "mask_core_length": 119951359999,
+      "mask_full_length": 120000000001,
+      "lowbit_core_threshold": 27463464448,
+      "lowbit_core_residues": 274634644475,
+      "lowbit_buckets": 5,
+      "extract_core_length": 379745
+    },
+    "bounds": {
+      "matrix_bad_event": {
+        "direction": "upper",
+        "numerator": "13089839959169342117499103589201596163776963006101654993754526269024556899983768924369764631362276155117582414134451988086702644671026826941491092873067808238604499050297107189545424285748344426212922399068779118958106",
+        "denominator_power_of_two": 1024,
+        "approx_log2_bound": -302.75315595093116,
+        "approximation_is_not_the_certificate": true
+      },
+      "setup_source_abort": {
+        "direction": "upper",
+        "numerator": "33536",
+        "denominator_power_of_two": 1024,
+        "approx_log2_bound": -1008.9665769984625,
+        "approximation_is_not_the_certificate": true
+      },
+      "sign_retry_given_good_matrix": {
+        "direction": "upper",
+        "numerator": "8061077693818201370335096907614242178944650155650902077627102417096911726994115870751720554032813842382832757124184683622179505841201940441209312825768356026402267171053820392727902575318848529960088611006550827094675258419081270648150424145955352269148636",
+        "denominator_power_of_two": 1024,
+        "approx_log2_bound": -173.8973630766825,
+        "approximation_is_not_the_certificate": true
+      },
+      "sign_source_abort": {
+        "direction": "upper",
+        "numerator": "1944017939060222334746471821337523705668866880273086695770196301801197066356414828482872987548263371013602935354117762864985885786228218250414530014822283099841026353367946707513529146183438456106628770135355814926897589798122466779168",
+        "denominator_power_of_two": 1024,
+        "approx_log2_bound": -245.70978426441263,
+        "approximation_is_not_the_certificate": true
+      },
+      "extract_retry": {
+        "direction": "upper",
+        "numerator": "127572649700952157384947503291499837050520871950161412368701056244170552111646474423927192991898849825603799743077794615438658916307990159335088324979014975242063795288863290872716139923707217805778137364954229917530102855005437471706962808078502951928753622854",
+        "denominator_power_of_two": 1024,
+        "approx_log2_bound": -159.94737626640722,
+        "approximation_is_not_the_certificate": true
+      },
+      "extract_source_abort": {
+        "direction": "upper",
+        "numerator": "1944255216972960064800755535706050194586927281454616426844988221281460852157263896568858935673192977186068894457663975212461167842347616299755466946325850958399036601272732814690197521418881719903770113166611778622479650399509269856320",
+        "denominator_power_of_two": 1024,
+        "approx_log2_bound": -245.70960818641868,
+        "approximation_is_not_the_certificate": true
+      },
+      "challenge_decode_abort_per_fresh_query": {
+        "direction": "upper",
+        "numerator": "237277912737730054283714368526488918060401181529731074791919480263785800849068085985948124929606172465959103546212347475282056119398049340951362819907963260727243910333504126762289177620073434208417148299562091606355827483464638496",
+        "denominator_power_of_two": 1024,
+        "approx_log2_bound": -258.709960363899,
+        "approximation_is_not_the_certificate": true
+      },
+      "external_oracle_decode_abort": {
+        "direction": "upper",
+        "numerator": "4377004930616894008756239632229724445401277902001613021164490417013254529317154404005053367336032649496618833518281889300202084553999249983277683136529562151590052575487555955476595519261985002148508616387761110213093343951241638943085181731692609536",
+        "denominator_power_of_two": 1024,
+        "approx_log2_bound": -194.70996036389897,
+        "approximation_is_not_the_certificate": true
+      },
+      "finite_lifecycle_abort": {
+        "direction": "upper",
+        "numerator": "8692940368607384722573665543194140923305256226971946608368368282577258211809415472807286275480716196001995646773006787703857820387965826765232434004097833376385601879652604470713655794781364268626659128993409237270987648976105120776579354764861638462838078831258",
+        "denominator_power_of_two": 1024,
+        "approx_log2_bound": -153.8569229862777,
+        "approximation_is_not_the_certificate": true
+      },
+      "sign_per_attempt_success_given_good_matrix": {
+        "direction": "lower",
+        "numerator": "5213142112140320608134431475607125062662769131382090150622448766429363546536069897448176997011923934553012051957620523754386784331668795156110223140508250022486417212062016419675155455048445936424579098016909673724605886722695831763264259978962385722117114888449957748126167805476102646409812567993492451095",
+        "denominator_power_of_two": 1024,
+        "approx_log2_bound": -5.107849775608315,
+        "approximation_is_not_the_certificate": true
+      },
+      "extract_per_attempt_success": {
+        "direction": "lower",
+        "numerator": "4800582000049960770112075788354346103422674963451437989531049519248098954129304986034649446153565663958447675921561569656474073551881577908293346317161494588892243891591220294435466299896298836164366525107185936129994310372111058984798595997772898480633086631826776963283292710449923799776043935024717137440",
+        "denominator_power_of_two": 1024,
+        "approx_log2_bound": -5.226793642448683,
+        "approximation_is_not_the_certificate": true
+      }
+    },
+    "claims_not_made": [
+      "exact joint LowBits distribution",
+      "all-public-matrix bound",
+      "SHAKE indistinguishability proof",
+      "EUF-ID-CMA reduction",
+      "security level or production admission",
+      "actual CHKP combination"
+    ]
+  },
+  "availability_proof_review": "Not independently reproved here; external review progress is user-reported",
+  "entropy": {
+    "challenge_count": "351296187477796756408194449961080320765996752345435276171761637422382735949824000",
+    "challenge_bits": 267.5669355104564,
+    "generic_quantum_search_exponent": 133.7834677552282,
+    "C49_bits": 225.34500627391523,
+    "model": "Uniform fixed-weight signed challenges; idealized search scale, not a reduction guarantee",
+    "quantum_search_margin_above_128": 5.783467755228202,
+    "C49_quantum_search_exponent": 112.67250313695762,
+    "finite_budget_caution": "QH in availability certificate counts fresh decoder calls; it is not a QROM reduction. Do not simply subtract 64 from a lattice estimate or identify challenge search exponent with proven IBS security."
+  },
+  "jobs": [
+    {
+      "mode": "classical",
+      "timeout_seconds": 85,
+      "wall_seconds": 16.007166341,
+      "status": "completed",
+      "exit_code": 0,
+      "stderr": "",
+      "command": [
+        "/home/zhang/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/c/Users/A/.dsh/deliverables/CODEX-step22-luo-parameters/run_c64b_screen.py",
+        "--repo",
+        "/mnt/c/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS",
+        "--estimator-path",
+        "/home/zhang/lattice-estimator",
+        "--mode",
+        "classical"
+      ],
+      "result": {
+        "mode": "classical",
+        "input": {
+          "name": "all-branches-relaxed",
+          "module_rows": 11,
+          "module_columns": 22,
+          "coefficient_rows": 2816,
+          "coefficient_columns": 5632,
+          "block_infinity_bounds": [
+            120024320000,
+            127155326978,
+            128
+          ],
+          "uniform_screen_bound": 127155326978,
+          "q": 274877844481,
+          "below_q_half": true,
+          "normalized_matrix": "[A|I_k|t]",
+          "interpretation": "Relaxed common box; known-identity witnesses append a zero t block",
+          "estimates": {},
+          "security_claim": "none",
+          "backend_admitted": false
+        },
+        "estimates": {
+          "lattice": {
+            "attack_goal": "nonzero_kernel_search",
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 188.33999999999997,
+            "cost_fields": {
+              "rop": "4.96580182036740e56",
+              "red": "4.96580182036740e56",
+              "sieve": "1e-100",
+              "beta": "645",
+              "eta": "645",
+              "zeta": "1",
+              "d": "5631",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        },
+        "compute_seconds": 8.891589486,
+        "estimator_commit": "53da5982597709ba0fdf94ea37a84d822310fd84",
+        "estimator_checkout_verified_clean": true,
+        "runtime": {
+          "python": "3.13.15 | packaged by conda-forge | (main, Sep  2 2026, 22:01:58) [GCC 15.3.0]",
+          "sage": "10.9",
+          "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+          "processor": "Intel(R) Core(TM) Ultra 7 255HX",
+          "estimator_import": "/home/zhang/lattice-estimator/estimator/__init__.py"
+        },
+        "warnings": [
+          "red_shape_model is ignored for Euclidean (norm=2) SIS estimates; reduction shape simulators apply only to infinity-norm attacks."
+        ]
+      }
+    },
+    {
+      "mode": "quantum",
+      "timeout_seconds": 85,
+      "wall_seconds": 9.612599209000003,
+      "status": "completed",
+      "exit_code": 0,
+      "stderr": "",
+      "command": [
+        "/home/zhang/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/c/Users/A/.dsh/deliverables/CODEX-step22-luo-parameters/run_c64b_screen.py",
+        "--repo",
+        "/mnt/c/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS",
+        "--estimator-path",
+        "/home/zhang/lattice-estimator",
+        "--mode",
+        "quantum"
+      ],
+      "result": {
+        "mode": "quantum",
+        "input": {
+          "name": "all-branches-relaxed",
+          "module_rows": 11,
+          "module_columns": 22,
+          "coefficient_rows": 2816,
+          "coefficient_columns": 5632,
+          "block_infinity_bounds": [
+            120024320000,
+            127155326978,
+            128
+          ],
+          "uniform_screen_bound": 127155326978,
+          "q": 274877844481,
+          "below_q_half": true,
+          "normalized_matrix": "[A|I_k|t]",
+          "interpretation": "Relaxed common box; known-identity witnesses append a zero t block",
+          "estimates": {},
+          "security_claim": "none",
+          "backend_admitted": false
+        },
+        "estimates": {
+          "lattice": {
+            "attack_goal": "nonzero_kernel_search",
+            "status": "finite_heuristic_estimate",
+            "rop_log2": 170.925,
+            "cost_fields": {
+              "rop": "2.84152845139228e51",
+              "red": "2.84152845139228e51",
+              "sieve": "1e-100",
+              "beta": "645",
+              "eta": "645",
+              "zeta": "1",
+              "d": "5631",
+              "prob": "1",
+              "repetitions": "1",
+              "tag": "infinity"
+            }
+          }
+        },
+        "compute_seconds": 6.089656329,
+        "estimator_commit": "53da5982597709ba0fdf94ea37a84d822310fd84",
+        "estimator_checkout_verified_clean": true,
+        "runtime": {
+          "python": "3.13.15 | packaged by conda-forge | (main, Sep  2 2026, 22:01:58) [GCC 15.3.0]",
+          "sage": "10.9",
+          "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+          "processor": "Intel(R) Core(TM) Ultra 7 255HX",
+          "estimator_import": "/home/zhang/lattice-estimator/estimator/__init__.py"
+        },
+        "warnings": [
+          "red_shape_model is ignored for Euclidean (norm=2) SIS estimates; reduction shape simulators apply only to infinity-norm attacks."
+        ]
+      }
+    }
+  ],
+  "wall_seconds": 26.869229286,
+  "outer_timeout_seconds": 180,
+  "mlwe_rerun": false,
+  "mlwe_input_unchanged": true,
+  "grids_run": false,
+  "repo_head_before": "f079ce10fb6b3d2877465b308caaa30276d9e6f9",
+  "repo_head_after": "f079ce10fb6b3d2877465b308caaa30276d9e6f9",
+  "repository_status_before": "?? docs/research/2026-10-11-luo-abort-bound/\n?? experiments/research/luo_candidate_probe.py\n?? experiments/research/luo_robust_abort_certificate.py\n?? tests/test_luo_candidate_probe.py\n?? tests/test_luo_robust_abort_certificate.py",
+  "repository_status_after": "?? docs/research/2026-10-11-luo-abort-bound/\n?? experiments/research/luo_candidate_probe.py\n?? experiments/research/luo_robust_abort_certificate.py\n?? tests/test_luo_candidate_probe.py\n?? tests/test_luo_robust_abort_certificate.py",
+  "source_sha256_before": {
+    "src/ibme/ibs/luo_module.py": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275",
+    "src/ibme/ibs/luo_module_math.py": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f",
+    "experiments/research/luo_module_security_screen.py": "eda9a0343ff01f8cde04501c9190c3f1c9267ff083720e94899e5738ad3e8f48",
+    "experiments/research/luo_parameter_screen.py": "eed0fc5fb99248d2aa30cab64a7703f2a56bb2ab662583e2e080e0fb993edb7f",
+    "experiments/research/luo_joint_parameter_screen.py": "41232c92af735377e005a4e0e32bc2eff343ce8ae04f3cb8719532a6f34b2e7f",
+    "experiments/research/luo_robust_abort_certificate.py": "28c0bdaae844ab802c178e6ea820002812e8a6306accb606d14b7692a32eb1b8"
+  },
+  "source_sha256_after": {
+    "src/ibme/ibs/luo_module.py": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275",
+    "src/ibme/ibs/luo_module_math.py": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f",
+    "experiments/research/luo_module_security_screen.py": "eda9a0343ff01f8cde04501c9190c3f1c9267ff083720e94899e5738ad3e8f48",
+    "experiments/research/luo_parameter_screen.py": "eed0fc5fb99248d2aa30cab64a7703f2a56bb2ab662583e2e080e0fb993edb7f",
+    "experiments/research/luo_joint_parameter_screen.py": "41232c92af735377e005a4e0e32bc2eff343ce8ae04f3cb8719532a6f34b2e7f",
+    "experiments/research/luo_robust_abort_certificate.py": "28c0bdaae844ab802c178e6ea820002812e8a6306accb606d14b7692a32eb1b8"
+  },
+  "private_material_generated": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "approved_security_bits": null,
+  "limitations": [
+    "Coefficient-lattice heuristic screen, not full module-security reduction",
+    "Structured normalized matrices and block bounds relaxed to a uniform SIS box",
+    "ADPS16 quantum costs do not supply a QROM forking theorem",
+    "No CHKP or composition security admission",
+    "Availability certificate does not prove unforgeability"
+  ],
+  "sources": [
+    {
+      "id": "M",
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/src/ibme/ibs/luo_module.py",
+      "lines": [
+        31,
+        33,
+        53,
+        108,
+        188,
+        240,
+        442,
+        535
+      ],
+      "role": "exact defaults, constructor, samplers and algorithms"
+    },
+    {
+      "id": "R",
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/src/ibme/ibs/luo_module_math.py",
+      "lines": [
+        61,
+        66,
+        137,
+        142
+      ],
+      "role": "fixed root and rounding domain"
+    },
+    {
+      "id": "S",
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/experiments/research/luo_module_security_screen.py",
+      "lines": [
+        78,
+        109,
+        113,
+        147,
+        277,
+        278,
+        300,
+        310
+      ],
+      "role": "compression and witness bounds; conditional nonzero; unchanged estimator API"
+    },
+    {
+      "id": "E",
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/experiments/research/luo_parameter_screen.py",
+      "lines": [
+        26,
+        28,
+        194,
+        205
+      ],
+      "role": "estimator revision and cleanliness verification"
+    },
+    {
+      "id": "J",
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/experiments/research/luo_joint_parameter_screen.py",
+      "lines": [
+        205,
+        211,
+        265,
+        306
+      ],
+      "role": "cost serialization and inherited MLWE mapping"
+    },
+    {
+      "id": "A",
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/experiments/research/luo_robust_abort_certificate.py",
+      "lines": [
+        30,
+        57,
+        68,
+        92,
+        95,
+        167
+      ],
+      "role": "main-owned read-only directed certificate snapshot; not independent proof"
+    },
+    {
+      "id": "P",
+      "path": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS/papers/2024_ibs_without_trapdoors_luo.pdf",
+      "pages": [
+        15,
+        16
+      ],
+      "role": "previously inspected table and Eq4.1; not reread in full"
+    }
+  ],
+  "admission_matrix": [
+    {
+      "gate": "fixed ring",
+      "condition": "q=274877844481, N=256, q=1 mod512, root=153250464611; root^N=-1 and root^(2N)=1 modq",
+      "status": "existing approved modulus plus constructor/root checks pass",
+      "source": "M:53-93; R:61-66"
+    },
+    {
+      "gate": "mask domain",
+      "condition": "1<=kappa=64<=256; gamma1=190000>beta1=64; gamma2=60000000000>beta2=12160000; 120000000000<q",
+      "status": "pass",
+      "source": "M:73-99"
+    },
+    {
+      "gate": "Hint",
+      "condition": "beta2=12160000<gamma3=27487784448; kappa*2^(d-1)=8589934592<gamma3",
+      "status": "pass",
+      "source": "M:83"
+    },
+    {
+      "gate": "rounding",
+      "condition": "alpha=54975568896 even; q-1=5alpha; q>2alpha=109951137792",
+      "status": "pass",
+      "source": "R:137-142"
+    },
+    {
+      "gate": "known-label witness",
+      "condition": "[A|I_k] 2816x5376; blocks (119999991806,127155318786); 2B=254310637572<274877844480",
+      "status": "algebraic bounds pass; nonzero conditional on simulator/cube hypotheses",
+      "source": "S:87-97,113-147"
+    },
+    {
+      "gate": "new-label witness",
+      "condition": "[A|I_k|t] 2816x5632; blocks (119975679998,127131006978,128); 2B=254262013956<274877844480",
+      "status": "algebraic bounds pass; MLWE hybrid and distinct H1 challenges required",
+      "source": "S:98-109,129-147"
+    },
+    {
+      "gate": "common SIS box",
+      "condition": "B=max(120024320000,127155326978,128)=127155326978; 2B=254310653956<274877844480",
+      "status": "pass_nontriviality_only",
+      "source": "S:103-109"
+    },
+    {
+      "gate": "SIS heuristic cost",
+      "condition": "ADPS16 classical=188.340, quantum=170.925 log2(rop), both >= existing heuristic floor128",
+      "status": "screen_above_floor_not_security_admission",
+      "source": "jobs; S:300-310"
+    },
+    {
+      "gate": "challenge space",
+      "condition": "log2(binomial(256,64)*2^64)=267.5669355104564; idealized quantum search exponent=133.7834677552282",
+      "status": "retains kappa64 scale; no QROM theorem or approved128bits",
+      "source": "M:211-230; entropy"
+    },
+    {
+      "gate": "MLWE",
+      "condition": "coefficient input n=2560,m=2816,q=274877844481,Xs=Xe=Uniform(-1,1) unchanged",
+      "status": "not_rerun_prior_identical_input_only",
+      "source": "J:265-306; prior current-profile-rerun.json"
+    },
+    {
+      "gate": "availability numeric substitution",
+      "condition": "epsilon=1/100,QE=64,QS=65536,QH=18446744073709551616; log2(total upper)=-153.8569229862777",
+      "status": "reproduced_directed_certificate_under_main_theorem_and_ideal_source_model",
+      "source": "A:95-167; availability_certificate"
+    },
+    {
+      "gate": "full security",
+      "condition": "precise simulator/forking probabilities, ROM vs QROM, challenge guessing, normalization losses, module assumptions, finite-source replacement and CHKP composition",
+      "status": "not_admitted; security_claim=none; approved_security_bits=null",
+      "source": "nonzero_conditions; limitations"
+    }
+  ],
+  "comparison_to_prior_default": {
+    "source": "current-profile-rerun.json; preserved prior run, not rerun for this request",
+    "common_B": 78279890946,
+    "common_B_C64B": 127155326978,
+    "default_BKZ_beta": 674,
+    "C64B_BKZ_beta": 645,
+    "classical_default_log2_rop": 196.808,
+    "classical_C64B_log2_rop": 188.34,
+    "classical_difference": -8.468,
+    "quantum_default_log2_rop": 178.61,
+    "quantum_C64B_log2_rop": 170.925,
+    "quantum_difference": -7.685,
+    "cause": "gamma3 increases H=2gamma3+1 and U; doubled U plus 2beta2 dominates B. gamma2 also increases response block; unchanged kappa does not keep witness bounds unchanged.",
+    "conclusion": "Both estimates remain above 128 heuristic floor; neither is an IBS security guarantee or evidence for the paper's 200-bit label."
+  },
+  "user_reported_probe": {
+    "independently_rerun_by_sidecar": false,
+    "C64B": {
+      "successful_signs": 54,
+      "sign_attempts": 315,
+      "compact_bytes": 16383,
+      "reference_bytes": 29455
+    },
+    "C49": {
+      "successful_signs": 54,
+      "sign_attempts": 293,
+      "compact_bytes": 16062
+    },
+    "scope": "User/main-agent report only; candidate probe totals are not comparative performance benchmarks; C49 must not inherit default compact16063.",
+    "impacts_admission": false
+  },
+  "estimator_warning_interpretation": {
+    "raw_preserved": true,
+    "source": "estimator/sis_lattice.py at pinned commit, lines337-378",
+    "note": "Requested and returned problem is infinity-norm (tag infinity); warning concerns internal Euclidean comparison, where the shape model is ignored. Do not silently drop warning."
+  },
+  "execution_policy": {
+    "only_new_candidate": "C64B",
+    "independent_estimator_calls": 2,
+    "models": [
+      "classical",
+      "quantum"
+    ],
+    "per_worker_cap_seconds": 85,
+    "total_worker_deadline_seconds": 175,
+    "outer_timeout_seconds": 180,
+    "calls_to_full_audit": false,
+    "mlwe_calls": 0,
+    "broad_grid_calls": 0,
+    "no_install": true,
+    "no_repository_writes": true,
+    "no_private_keys": true,
+    "no_signing_probe_run": true,
+    "script_sha256": "19e47b7d1528503910b971ffb84504a710649f0881661936b08d6aa98e558b69",
+    "executable_command": "wsl -- bash -lc 'PYTHONDONTWRITEBYTECODE=1 GIT_OPTIONAL_LOCKS=0 timeout 180s ~/miniconda3/envs/sage/bin/python -B /mnt/c/Users/A/.dsh/deliverables/CODEX-step22-luo-parameters/run_c64b_screen.py --repo /mnt/c/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS --estimator-path ~/lattice-estimator'"
+  },
+  "prior_artifacts_preserved": {
+    "count": 9,
+    "sha256_manifest": [
+      {
+        "Path": "C:\\Users\\A\\.dsh\\deliverables\\CODEX-step22-luo-parameters\\admission-matrix.json",
+        "Hash": "EDD3828F501EBB901F77B4088D0386145DA0D6F6CA7C3704A4B54F778336E819"
+      },
+      {
+        "Path": "C:\\Users\\A\\.dsh\\deliverables\\CODEX-step22-luo-parameters\\conditional-route.json",
+        "Hash": "0D6DBA5BE6A1017A24AAFDB95A25BEA9D47CCCFA35C51CC4AA93FD54AF701A78"
+      },
+      {
+        "Path": "C:\\Users\\A\\.dsh\\deliverables\\CODEX-step22-luo-parameters\\current-profile-rerun.json",
+        "Hash": "6F542255ECDF3B69510473189538332719AC8BE1968568481D7BE7792D6E8192"
+      },
+      {
+        "Path": "C:\\Users\\A\\.dsh\\deliverables\\CODEX-step22-luo-parameters\\evaluate_conditional_route.py",
+        "Hash": "11B9B2FCC8B79BD5C199873390748F7A34D6A4EA35E66D36C23EFFADBCD3963A"
+      },
+      {
+        "Path": "C:\\Users\\A\\.dsh\\deliverables\\CODEX-step22-luo-parameters\\main-certificate-observations.json",
+        "Hash": "9B10B810E20712FE533639F1DA320D2B136EC15345D7B8FC565C3A2452CF40F6"
+      },
+      {
+        "Path": "C:\\Users\\A\\.dsh\\deliverables\\CODEX-step22-luo-parameters\\paper-page-15.png",
+        "Hash": "B12574794C28F30CFEA54EA10594183C7A17B7BE16CDF4FA37C5BB85C65DE151"
+      },
+      {
+        "Path": "C:\\Users\\A\\.dsh\\deliverables\\CODEX-step22-luo-parameters\\paper-page-16.png",
+        "Hash": "B8E8ABCC01C3B33B34CB506E7472CE23B6EA2505742C00EF546D5F5030D6CC7E"
+      },
+      {
+        "Path": "C:\\Users\\A\\.dsh\\deliverables\\CODEX-step22-luo-parameters\\REPORT.md",
+        "Hash": "70E3B612C84C6DAB9F26C0C56B4EA98F0DC359BE9E0B6964EA88251D2CBAEF4E"
+      },
+      {
+        "Path": "C:\\Users\\A\\.dsh\\deliverables\\CODEX-step22-luo-parameters\\run_current_screens.py",
+        "Hash": "14383EAF20675620FB4480CF2F8CBCB698DB7056F5573FAC214D9D4477B54220"
+      }
+    ],
+    "verified_unchanged_before_new_report_write": true
+  },
+  "readonly_observations": {
+    "repository_head_unchanged": true,
+    "status_unchanged_during_run": true,
+    "selected_sources_unchanged_during_run": true,
+    "user_owned_untracked_files_preserved": true,
+    "earlier_preflight_difference": "Main added tests/test_luo_candidate_probe.py before runner snapshot; not a sidecar write.",
+    "own_repository_changed_files": [],
+    "commit_created": false
+  }
+}
+
