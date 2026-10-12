@@ -49,18 +49,18 @@ def test_listing_and_static_matrix_do_not_consume_entropy(monkeypatch, capsys):
     monkeypatch.setattr(SecureRandom, "read", forbidden)
     assert cli.main(["list-backends", "--json"]) == 0
     catalog = json.loads(capsys.readouterr().out)
-    assert any(row["id"] == "chkp" and not row["available"] for row in catalog["hibe"])
+    assert any(row["id"] == "latte" and not row["available"] for row in catalog["hibe"])
     assert {"sis", "luo-matrix", "luo-module"} <= {row["id"] for row in catalog["ibs"]}
     assert cli.main(["matrix", "--json"]) == 0
     matrix = json.loads(capsys.readouterr().out)
     assert matrix["execution"] == "not_executed"
     assert matrix["rows"] and all(row["execution"] == "not_executed" for row in matrix["rows"])
-    chkp = [row for row in matrix["rows"] if row["hibe"] == "chkp"]
-    assert chkp and all(not row["compatibility"]["ok"] for row in chkp)
+    pending = [row for row in matrix["rows"] if row["hibe"] == "latte"]
+    assert pending and all(not row["compatibility"]["ok"] for row in pending)
 
 
 @pytest.mark.parametrize("options", [
-    ["--hibe", "chkp", "--ibs", "luo-module", "--transport", "hybrid"],
+    ["--hibe", "latte", "--ibs", "luo-module", "--transport", "hybrid"],
     ["--hibe", "unknown", "--ibs", "sis"],
     ["--hibe", "abb10", "--ibs", "unknown"],
     ["--hibe", "abb10", "--ibs", "luo-module", "--transport", "direct"],
@@ -221,9 +221,9 @@ def test_complete_independent_parameter_file_and_fixed_baseline(tmp_path):
     assert output.read_bytes() == message.read_bytes()
 
 
-def test_real_luo_cache_persisted_before_key_publication_and_retry(tmp_path, monkeypatch):
+def test_real_luo_cache_persisted_before_key_publication_and_failed_retry_closed(tmp_path, monkeypatch):
     """Real Luo test parameters exercise persistence; HIBE remains TEST-ONLY."""
-    from ibme.protocol.baseline import SenderKey
+    from ibme.protocol.baseline import MasterSecret, PublicKey
     state = tmp_path / "state"
     assert cli.main(["setup", "--state", str(state), "--hibe", "mock", "--ibs", "luo-module",
                      "--ibs-params", "test-small", "--transport", "hybrid", "--signature-format", "compact",
@@ -243,12 +243,25 @@ def test_real_luo_cache_persisted_before_key_publication_and_retry(tmp_path, mon
         patch.setattr(cli.os, "replace", fail_key_publication)
         assert cli.main(["issue-sender-key", "Bob", *common]) == 2
     assert not output.exists()
-    master, protocol, readers = cli._load_msk(state, False)
+    # Inspect the saved opaque snapshot with the public decoders. Issuance
+    # itself stays closed because master/key publication was not atomic.
+    meta = _meta(state)
+    _, readers, runtime = cli._runtime_for_state(meta, False)
+    master = MasterSecret.from_bytes(cli._read_state_object(state / "msk.bin", meta, "msk"),
+                                     readers["hmsk"], readers["imsk"])
+    public = PublicKey.from_bytes(cli._read_state_object(state / "mpk.bin", meta, "mpk"),
+                                  readers["hpk"], readers["ipk"])
+    runtime.validate_master(public, master)
     assert set(master.imsk.cached_identities) == {b"Alice", b"Bob"}
-    expected = protocol.skgen(master, b"Bob").to_bytes()
-    assert cli.main(["issue-sender-key", "Bob", *common]) == 0
-    recovered = SenderKey.from_bytes(cli._read_state_object(output, _meta(state), "sender"), readers["sk"])
-    assert recovered.to_bytes() == expected
+    assert (state / "msk.bin.pending").exists()
+    before = (state / "msk.bin").read_bytes()
+    def no_entropy(*args, **kwargs):
+        pytest.fail("pending issuer consumed entropy")
+    with monkeypatch.context() as patch:
+        patch.setattr(SecureRandom, "read", no_entropy)
+        assert cli.main(["issue-sender-key", "Bob", *common]) == 2
+        assert cli.main(["issue-receiver-key", "Carol", *common]) == 2
+    assert not output.exists() and (state / "msk.bin").read_bytes() == before
     assert cli._sender_key_path(state, b"Alice").read_bytes() == alice
     assert not list(state.glob(".ibme-state-*.tmp"))
     assert cli.main(["issue-sender-key", "Carol", *common, "--mock"]) == 2
@@ -259,6 +272,8 @@ def test_real_luo_cache_persisted_before_key_publication_and_retry(tmp_path, mon
     original = _meta(state)
     changed = SuiteConfig.from_dict({**original["suite"], "signature_format": "reference"})
     _write_meta(state, cli._selected_metadata(changed, validate_suite(changed), original["public_sha256"]))
+    with pytest.raises(ValueError, match="kind/configuration/context mismatch"):
+        cli._read_state_object(state / "msk.bin", _meta(state), "msk")
     assert cli.main(["issue-sender-key", "Carol", *common]) == 2
     assert not cli._sender_key_path(state, b"Carol").exists()
 

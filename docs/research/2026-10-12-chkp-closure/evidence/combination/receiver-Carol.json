@@ -1,0 +1,27 @@
+{
+  "backend_admitted": false,
+  "checks": [
+    {
+      "name": "address_completed",
+      "passed": true
+    }
+  ],
+  "entropy_bytes": 27045274,
+  "environment": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15"
+  },
+  "executed_checks": 1,
+  "limitation": "n=2 CHKP is publicly attackable; functional acceptance only",
+  "parameters_are_formal": false,
+  "passed": true,
+  "phase": "receiver-Carol",
+  "randomness": "system CSPRNG",
+  "repetition_count": 1,
+  "seconds": 3821.835116576,
+  "security_claim": "none",
+  "sizes": {
+    "receiver_Carol": 461291
+  },
+  "suite_digest": "15ecdc30b10acef85fd0f5f905ecaa3fca960c3d5bbe32f0483af04390fda55c"
+}

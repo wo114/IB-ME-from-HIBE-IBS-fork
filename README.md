@@ -7,6 +7,7 @@
 | 要了解什么 | 唯一入口 |
 |---|---|
 | 当前进度、负责人、外部交付与下一步 | [PROJECT_STATUS](docs/PROJECT_STATUS.md) |
+| CHKP与Luo本轮完成内容、尺寸与证据 | [2026-10-12统一交付README](docs/deliveries/2026-10-12-chkp-luo/README.md) |
 | 模块结构与组合方式 | [ARCHITECTURE](ARCHITECTURE.md) |
 | 公共接口、兼容预检与验收 | [IMPLEMENTATION_SPEC](IMPLEMENTATION_SPEC.md) |
 | 分工、交接与提交 | [三人方案分工](docs/workplans/三人方案分工与统一框架交付.md)、[AGENTS](AGENTS.md)、[AI_WORKFLOW](AI_WORKFLOW.md) |
@@ -25,7 +26,7 @@ IBS 模块 ──┘
 
 统一装配已经支持独立选择 HIBE、IBS 及各自参数，并在发钥前检查版本、能力和容量。CLI 提供 `list-backends`、`check`、`matrix` 与独立选择的 `setup`；真实组合测试由共用驱动执行，静态预检与实际结果分别记录。
 
-当前可运行的研究预设使用**教学 ABB10 + Hybrid + Luo 模格 IBS + BYTEAUTH**。真实 CHKP 公开后端和正式安全组合尚未完成；仓库外的新成果及尚未合并的提交见当前进度表。`security_claim=none`，功能测试不等于安全证明。Boyen–Li 增强隐私不在开发范围。
+除**教学 ABB10 + Hybrid + Luo 模格 IBS + BYTEAUTH**外，真实CHKP完整基研究后端及其Luo C64B组合已完成本轮功能验收；独立MP12紧凑委派变体的可安装入口同时保留。两个HIBE的小参数均有公开攻击，正式安全组合仍未完成。`security_claim=none`，功能测试不等于安全证明；具体版本、数据和边界见统一交付及当前进度表。Boyen–Li增强隐私不在开发范围。
 
 HIBE/IBS 可以由不同成员同时实现，一项阻塞不暂停其它模块；每个模块通过自己的单体契约后进入对应组合的功能测试。正式安全结论另按论文、参数和组合前提核验。
 

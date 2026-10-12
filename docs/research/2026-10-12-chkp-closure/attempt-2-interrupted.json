@@ -1,0 +1,21 @@
+{
+  "attempt": "chkp-lifetime-2026-10-12-r2",
+  "checkout_at_start": "fc9a75c",
+  "setup_passed": true,
+  "setup_seconds": 3.224679963,
+  "setup_entropy_bytes": 1406180,
+  "parent_passed": false,
+  "parent_result": "operator_terminated_after_LLL_resource_stall",
+  "parent_elapsed_seconds_approximate": 750,
+  "parent_observed_rss_KiB": 388980,
+  "rss_is_peak_measurement": false,
+  "parent_entropy_bytes": null,
+  "completed_parent_key": false,
+  "failed_attempt_pending_preserved": true,
+  "diagnosis": "Repeated Python stack locations reached checked_lll; read-only native stack located fpLLL wrapper long-double Babai/row_addmul work. ToBasis and complete-kernel certification had returned. SIGTERM stopped only that owned process.",
+  "old_LLL_schedule": "delta=0.999, eta=0.501, transformation=True",
+  "measurement_source": "Setup JSON receipt and operator process observation; no parent completion receipt existed.",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

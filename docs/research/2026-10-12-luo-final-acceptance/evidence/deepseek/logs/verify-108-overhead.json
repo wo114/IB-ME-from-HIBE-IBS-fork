@@ -1,0 +1,23 @@
+{
+  "parts": {
+    "domain_signature": 11,
+    "sig_length_prefix": 4,
+    "msg_length_prefix": 4,
+    "envelope_overhead": 89
+  },
+  "sum_overhead": 108,
+  "claimed_108": 108,
+  "overhead_is_108": true,
+  "envelope_breakdown": {
+    "magic": 17,
+    "inner_length_field": 8,
+    "commitment": 64,
+    "sum": 89,
+    "equals_envelope_overhead": true
+  },
+  "synthetic_payload_len": 20415,
+  "formula_len": 20415,
+  "formula_matches": true,
+  "compact_outer_at_max_application": 20415,
+  "compact_outer_is_20415": true
+}

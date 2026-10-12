@@ -1,0 +1,158 @@
+{
+  "schema": "IBME/LUO-C64B-PARAMETER-DECISION/1",
+  "generated_utc": "2026-10-11T16:21:07.650097+00:00",
+  "input_head": "e5e0b97752f9291ce7621dd830d665baff86aef8",
+  "decision_scope": "Independent parameter arithmetic/evidence sufficiency audit, not citation review or a security reduction",
+  "candidate_choice": {
+    "recommendation": "approve_explicit_research_candidate_freeze",
+    "arithmetic_and_evidence_eligible": true,
+    "freeze_applied": false,
+    "human_action": "Integrator may formally select this exact research candidate; record profile, budgets, model and source receipt",
+    "is_formal_security_admission": false
+  },
+  "parameters": {
+    "degree": 256,
+    "k": 11,
+    "l": 10,
+    "q": 274877844481,
+    "root": 153250464611,
+    "eta": 1,
+    "kappa": 64,
+    "gamma1": 190000,
+    "gamma2": 60000000000,
+    "gamma3": 27487784448,
+    "dropped_bits": 28,
+    "identity_max_bytes": 64,
+    "message_max_bytes": 4096,
+    "max_extract_attempts": 4096,
+    "max_sign_attempts": 4096,
+    "max_uniform_attempts": 128,
+    "max_cached_identities": 64
+  },
+  "lifecycle_budget": {
+    "setups": 1,
+    "QE": 64,
+    "QS": 65536,
+    "QH_decimal": "18446744073709551616",
+    "epsilon": "1/100",
+    "interpretation": "classical fresh oracle input budget; not quantum superposition queries or unrestricted lifetime",
+    "conditional_abort_log2": -153.8569229862777
+  },
+  "predicates": {
+    "archive_manifest_integrity": true,
+    "current_source_fingerprints_match_receipts": true,
+    "exact_17_field_profile": true,
+    "constructor_ring_rounding": true,
+    "root_crt": true,
+    "fixed_q_prior_sage_prime_evidence": true,
+    "mask_and_hint_inequalities": true,
+    "robust_set_hypotheses": true,
+    "finite_caps_and_xof": true,
+    "budget_exact_integer_not_js_number": true,
+    "certificate_exact_dyadics_match": true,
+    "conditional_lifetime_abort_below_2pow_minus153": true,
+    "both_branch_witness_bounds_match": true,
+    "all_witness_bounds_nontrivial": true,
+    "fresh_branch_small_nonzero_product_condition": true,
+    "challenge_count_exact": true,
+    "single_target_quantum_challenge_proxy_ge_128": true,
+    "sis_classical_archived_model_floor": true,
+    "sis_quantum_archived_model_floor": true,
+    "two_sis_models_present": true,
+    "lwe-classical_same_input_archived_floor": true,
+    "lwe-quantum_same_input_archived_floor": true,
+    "two_mlwe_models_present": true,
+    "c64b_functional_probe_archived": true,
+    "cached_key_restore_stage_evidence": true,
+    "archived_regression_269_passed": true,
+    "non_admission_flags_preserved": true,
+    "default_profile_not_silently_replaced": true
+  },
+  "failed_predicates": [],
+  "reused_screens": {
+    "estimator_commit": "53da5982597709ba0fdf94ea37a84d822310fd84",
+    "SIS_log2_rop": {
+      "classical": 188.33999999999997,
+      "quantum": 170.925
+    },
+    "MLWE_min_log2_rop": {
+      "classical": 196.1991496932277,
+      "quantum": 178.61431478842985
+    },
+    "model": "ADPS16 classical/quantum, LGSA, coefficient heuristic; common infinity box for SIS",
+    "exclusions": "module/algebraic completeness, certified lower bounds, QROM reduction; MLWE excludes BKW and Arora-GB"
+  },
+  "challenge": {
+    "count_decimal": "351296187477796756408194449961080320765996752345435276171761637422382735949824000",
+    "entropy_log2": 267.5669355104564,
+    "quantum_search_proxy_log2": 133.7834677552282,
+    "margin_above_128": 5.783467755228202,
+    "exact_predicate": "comb(256,64)*2**64 >= 2**256",
+    "warning": "Single-target search scale only, not a bit guarantee; no unproved query-loss factor is subtracted",
+    "availability_QH_is_not_quantum_loss": true
+  },
+  "limitations": [
+    {
+      "id": "S1",
+      "blocks": "unqualified IBS bits/NIST claim, not candidate freeze",
+      "reason": "No concrete whole-scheme strength conclusion follows from heuristic costs and entropy; theorem/model coverage and any quantitative losses must support the specific claim.",
+      "route": "Use existing citation/implementation mapping being reviewed by DeepSeek; if it supports only a conditional classical-ROM statement, retain that scope. No demand to redo Luo full 4.4 or QROM."
+    },
+    {
+      "id": "S2",
+      "blocks": "unconditional actual-runtime availability or unrestricted lifetime claim, not scoped candidate freeze",
+      "reason": "Bound assumes uniform Setup A, fresh independent ideal source words, ideal XOF and finite classical budgets; real SHAKE/CSPRNG assumptions and operational exclusions remain explicit."
+    },
+    {
+      "id": "S3",
+      "blocks": "full IB-ME security/backend admission, not independent IBS parameter selection",
+      "reason": "Archived CHKP backend/combination gap is a separate owner dependency; this audit neither resolves nor makes it a freeze prerequisite."
+    }
+  ],
+  "not_required_for_freeze": [
+    "Redo Luo full section4.4 reduction",
+    "New QROM theorem",
+    "Exact joint LowBits uniformity",
+    "Estimator/grid rerun",
+    "Wait for CHKP delivery"
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "approved_security_bits": null,
+  "NIST_category": null,
+  "semantics": "formal candidate choice means recorded engineering/research selection; legacy parameters_are_formal is not flipped to represent selection",
+  "provenance": {
+    "repo": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS",
+    "package": "docs/research/2026-10-11-luo-abort-bound",
+    "screen": "C:\\Users\\A\\.codex\\worktrees\\luo-acceptance-evidence\\IB-ME-from-HIBE-IBS\\docs\\research\\2026-10-11-luo-abort-bound\\evidence\\parameter-screen\\C64B-screen.json",
+    "manifest_sha256": "62773422a6840fa4ddca931f928f86262ca6202e7997035f1cb7ebe68bed0d96",
+    "screen_sha256": "a2c14bff0da89c981e3bfdb3255db98773cd2e62c8d67e380801795d3f141087",
+    "certificate_sha256": "2f9757a3c2635252c6d9eda6f2bb0feda4b852c5569c44171f4d24c7f3386a9e",
+    "proof_sha256": "b9cfa20c8bebdd6a20e0145a9fb3aa065ebd0301762e9db2ab6b16189af03387",
+    "parameter_note_sha256": "67d7c43d3723500d9057c36a56f87aa684b074ae211eddf5523c9d0ac8d879ba",
+    "selected_source_sha256": {
+      "src/ibme/ibs/luo_module.py": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275",
+      "src/ibme/ibs/luo_module_math.py": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f",
+      "experiments/research/luo_module_security_screen.py": "eda9a0343ff01f8cde04501c9190c3f1c9267ff083720e94899e5738ad3e8f48",
+      "experiments/research/luo_parameter_screen.py": "eed0fc5fb99248d2aa30cab64a7703f2a56bb2ab662583e2e080e0fb993edb7f",
+      "experiments/research/luo_joint_parameter_screen.py": "41232c92af735377e005a4e0e32bc2eff343ce8ae04f3cb8719532a6f34b2e7f",
+      "experiments/research/luo_robust_abort_certificate.py": "28c0bdaae844ab802c178e6ea820002812e8a6306accb606d14b7692a32eb1b8",
+      "src/ibme/ibs/luo_module_codec.py": "bb99eb6a18a06be204ab0274de8e295522589d8100cc2c9f944c7cf4980b06df",
+      "src/ibme/core/randomness.py": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
+      "src/ibme/core/hashing.py": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4",
+      "src/ibme/core/encoding.py": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d",
+      "experiments/research/luo_candidate_probe.py": "3e08126cc333b9520fc23e4e52d2248b2dcc526f82f1e9d1c2edffb4686c2a2f"
+    },
+    "manifest_file_count": 58
+  },
+  "execution": {
+    "estimator_runs": 0,
+    "grid_runs": 0,
+    "crypto_lifecycle_runs": 0,
+    "full_test_runs": 0,
+    "certificate_arithmetic_recomputations": 1,
+    "repository_writes": 0,
+    "exit_zero_meaning": "All recorded candidate-evidence predicates pass; not a security approval"
+  }
+}
