@@ -1,0 +1,275 @@
+{
+  "schema": "CHKP-REGRESSION-RECEIPT-INDEX/1",
+  "receipts": [
+    {
+      "receipt": "chkp-cli-harness.xml",
+      "passed": 32,
+      "skipped": 0,
+      "failed": 0,
+      "runtime": "Windows Python",
+      "test_files": [
+        "tests/test_chkp_cli_acceptance.py"
+      ],
+      "replay_arguments": [
+        "-B",
+        "-m",
+        "pytest",
+        "tests/test_chkp_cli_acceptance.py",
+        "-q"
+      ],
+      "tested_change_commit": "0db4da9",
+      "exact_execution_HEAD_recorded": false
+    },
+    {
+      "receipt": "chkp-configuration-gate.xml",
+      "passed": 37,
+      "skipped": 0,
+      "failed": 0,
+      "runtime": "Windows Python",
+      "test_files": [
+        "tests/test_assembly.py",
+        "tests/test_chkp_assembly.py",
+        "tests/test_chkp_configuration_budget.py"
+      ],
+      "replay_arguments": [
+        "-B",
+        "-m",
+        "pytest",
+        "tests/test_assembly.py",
+        "tests/test_chkp_assembly.py",
+        "tests/test_chkp_configuration_budget.py",
+        "-q"
+      ],
+      "tested_change_commit": "0db4da9",
+      "exact_execution_HEAD_recorded": false
+    },
+    {
+      "receipt": "chkp-delivery-audit.xml",
+      "passed": 46,
+      "skipped": 1,
+      "failed": 0,
+      "runtime": "Windows Python",
+      "test_files": [
+        "tests/test_chkp_delivery_audit.py"
+      ],
+      "replay_arguments": [
+        "-B",
+        "-m",
+        "pytest",
+        "tests/test_chkp_delivery_audit.py",
+        "-q"
+      ],
+      "tested_change_commit": "a78faf4",
+      "exact_execution_HEAD_recorded": false
+    },
+    {
+      "receipt": "chkp-determinant-repair.xml",
+      "passed": 65,
+      "skipped": 0,
+      "failed": 0,
+      "runtime": "WSL Sage",
+      "test_files": [
+        "tests/test_chkp_postprocess_equivalence.py",
+        "tests/test_chkp_runtime_core.py",
+        "tests/test_chkp_tobasis.py",
+        "tests/test_first_suite_finite_sampling.py"
+      ],
+      "replay_arguments": [
+        "-B",
+        "-m",
+        "pytest",
+        "tests/test_chkp_postprocess_equivalence.py",
+        "tests/test_chkp_runtime_core.py",
+        "tests/test_chkp_tobasis.py",
+        "tests/test_first_suite_finite_sampling.py",
+        "-q"
+      ],
+      "tested_change_commit": "fa14fd0",
+      "exact_execution_HEAD_recorded": false
+    },
+    {
+      "receipt": "chkp-driver-guards.xml",
+      "passed": 48,
+      "skipped": 0,
+      "failed": 0,
+      "runtime": "Windows Python",
+      "test_files": [
+        "tests/test_chkp_capacity_audit.py",
+        "tests/test_chkp_driver_guards.py"
+      ],
+      "replay_arguments": [
+        "-B",
+        "-m",
+        "pytest",
+        "tests/test_chkp_capacity_audit.py",
+        "tests/test_chkp_driver_guards.py",
+        "-q"
+      ],
+      "tested_change_commit": null,
+      "exact_execution_HEAD_recorded": false
+    },
+    {
+      "receipt": "chkp-final-sage.xml",
+      "passed": 292,
+      "skipped": 25,
+      "failed": 0,
+      "runtime": "WSL Sage",
+      "test_files": [
+        "tests/test_chkp_assembly.py",
+        "tests/test_chkp_backend.py",
+        "tests/test_chkp_backend_wire.py",
+        "tests/test_chkp_parameter_profile.py",
+        "tests/test_chkp_postprocess_equivalence.py",
+        "tests/test_chkp_review_regressions.py",
+        "tests/test_chkp_runtime_core.py",
+        "tests/test_chkp_tobasis.py",
+        "tests/test_cli_receiver_state.py",
+        "tests/test_first_suite_delegation.py",
+        "tests/test_first_suite_finite_sampling.py",
+        "tests/test_first_suite_identity_state.py",
+        "tests/test_first_suite_root_generation.py",
+        "tests/test_first_suite_seed_sage.py",
+        "tests/test_ibme_rounded_noise.py"
+      ],
+      "replay_arguments": [
+        "-B",
+        "-m",
+        "pytest",
+        "tests/test_chkp_assembly.py",
+        "tests/test_chkp_backend.py",
+        "tests/test_chkp_backend_wire.py",
+        "tests/test_chkp_parameter_profile.py",
+        "tests/test_chkp_postprocess_equivalence.py",
+        "tests/test_chkp_review_regressions.py",
+        "tests/test_chkp_runtime_core.py",
+        "tests/test_chkp_tobasis.py",
+        "tests/test_cli_receiver_state.py",
+        "tests/test_first_suite_delegation.py",
+        "tests/test_first_suite_finite_sampling.py",
+        "tests/test_first_suite_identity_state.py",
+        "tests/test_first_suite_root_generation.py",
+        "tests/test_first_suite_seed_sage.py",
+        "tests/test_ibme_rounded_noise.py",
+        "-q"
+      ],
+      "tested_change_commit": null,
+      "exact_execution_HEAD_recorded": false
+    },
+    {
+      "receipt": "chkp-final-windows.xml",
+      "passed": 235,
+      "skipped": 19,
+      "failed": 0,
+      "runtime": "Windows Python",
+      "test_files": [
+        "tests/test_assembly.py",
+        "tests/test_chkp_assembly.py",
+        "tests/test_chkp_backend.py",
+        "tests/test_chkp_backend_wire.py",
+        "tests/test_chkp_parameter_profile.py",
+        "tests/test_chkp_public_attack.py",
+        "tests/test_chkp_review_regressions.py",
+        "tests/test_cli_master_state.py",
+        "tests/test_cli_receiver_state.py",
+        "tests/test_cli_selection.py",
+        "tests/test_cli_state_lock.py",
+        "tests/test_combination_matrix.py"
+      ],
+      "replay_arguments": [
+        "-B",
+        "-m",
+        "pytest",
+        "tests/test_assembly.py",
+        "tests/test_chkp_assembly.py",
+        "tests/test_chkp_backend.py",
+        "tests/test_chkp_backend_wire.py",
+        "tests/test_chkp_parameter_profile.py",
+        "tests/test_chkp_public_attack.py",
+        "tests/test_chkp_review_regressions.py",
+        "tests/test_cli_master_state.py",
+        "tests/test_cli_receiver_state.py",
+        "tests/test_cli_selection.py",
+        "tests/test_cli_state_lock.py",
+        "tests/test_combination_matrix.py",
+        "-q"
+      ],
+      "tested_change_commit": null,
+      "exact_execution_HEAD_recorded": false
+    },
+    {
+      "receipt": "chkp-lll-v2.xml",
+      "passed": 40,
+      "skipped": 0,
+      "failed": 0,
+      "runtime": "WSL Sage",
+      "test_files": [
+        "tests/test_chkp_exact_product_certificate.py",
+        "tests/test_chkp_postprocess_equivalence.py",
+        "tests/test_chkp_runtime_core.py"
+      ],
+      "replay_arguments": [
+        "-B",
+        "-m",
+        "pytest",
+        "tests/test_chkp_exact_product_certificate.py",
+        "tests/test_chkp_postprocess_equivalence.py",
+        "tests/test_chkp_runtime_core.py",
+        "-q"
+      ],
+      "tested_change_commit": "0c9a7f3",
+      "exact_execution_HEAD_recorded": false
+    },
+    {
+      "receipt": "chkp-product-certificate.xml",
+      "passed": 16,
+      "skipped": 0,
+      "failed": 0,
+      "runtime": "WSL Sage",
+      "test_files": [
+        "tests/test_chkp_exact_product_certificate.py"
+      ],
+      "replay_arguments": [
+        "-B",
+        "-m",
+        "pytest",
+        "tests/test_chkp_exact_product_certificate.py",
+        "-q"
+      ],
+      "tested_change_commit": null,
+      "exact_execution_HEAD_recorded": false
+    },
+    {
+      "receipt": "chkp-sampler-equivalence.xml",
+      "passed": 48,
+      "skipped": 0,
+      "failed": 0,
+      "runtime": "WSL Sage",
+      "test_files": [
+        "tests/test_chkp_runtime_core.py",
+        "tests/test_chkp_sampler_equivalence.py",
+        "tests/test_first_suite_finite_sampling.py"
+      ],
+      "replay_arguments": [
+        "-B",
+        "-m",
+        "pytest",
+        "tests/test_chkp_runtime_core.py",
+        "tests/test_chkp_sampler_equivalence.py",
+        "tests/test_first_suite_finite_sampling.py",
+        "-q"
+      ],
+      "tested_change_commit": "0c1a77d",
+      "exact_execution_HEAD_recorded": false
+    }
+  ],
+  "note": "Overlapping runs are not added together as unique test cases. tested_change_commit identifies the reviewed change, not a claim that all historical runs used the final tree. Replay file order is reconstructed from JUnit; it is not the original command transcript.",
+  "earlier_run_boundary": "chkp-final-windows and chkp-final-sage preceded determinant and LLL repairs; those changes have separate targeted reruns.",
+  "skips": {
+    "chkp-final-windows.xml": "19 Sage-dependent checks",
+    "chkp-final-sage.xml": "25 historical optional native/qFALL checks",
+    "chkp-delivery-audit.xml": "1 Windows symlink permission case"
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

@@ -209,7 +209,7 @@ def summarize(results):
                 limitations=["Functional checks do not establish security.",
                              "ABB10 and SIS use teaching parameters; known attacks remain applicable.",
                              "Random signature rejection is a bounded negative input check.",
-                             "No unavailable backend is substituted; CHKP is not implemented."],
+                             "No unavailable backend is substituted; CHKP has a separate Sage lifecycle driver."],
                 results=results)
 
 

@@ -10,11 +10,12 @@ python -m ibme.cli check --hibe abb10 --ibs luo-module --transport hybrid --sign
 python -m ibme.cli matrix
 ```
 
-三条命令只查看登记信息或计算兼容性，不创建密钥、不运行算法。`--json` 输出机器可读结果；`matrix` 明确标记 `not_executed`。CHKP 等尚无公开后端的候选会显示未实现，选择它们不会回退到 ABB10 或 mock。
+三条命令只查看登记信息或计算兼容性，不创建密钥、不运行算法。`--json` 输出机器可读结果；`matrix` 明确标记 `not_executed`。CHKP 已登记研究后端，缺少 Sage 时显示运行依赖缺失；LATTE 等未交付候选显示未实现。选择失败不会回退到 ABB10 或 mock。
 
 | 选择 | 当前实现 | 说明 |
 |---|---|---|
 | HIBE `abb10` | 教学 ABB10 | 可以 direct，也可由 Hybrid 包装；不具正式安全参数 |
+| HIBE `chkp` | CHKP RandBasis 研究后端 | Sage 运行；当前 n=2 可公开攻击，真实阶段证据单列 |
 | IBS `sis` | 教学 SIS IBS | 保留已知公开伪造反例 |
 | IBS `luo-matrix` | Luo §3 矩阵研究实现 | 采用显式功能参数；与模格是不同算法实例 |
 | IBS `luo-module` | Luo §4 模格研究实现 | reference 默认；compact 为同算法的无损签名编码 |
@@ -93,7 +94,13 @@ python -m pytest tests/test_assembly.py tests/test_cli_selection.py tests/test_c
 
 统一检查包括真实生命周期、三种身份错配、对象恢复、截断/追加/重复/错版本、BYTEAUTH 各认证区、IBS 错消息/错身份、无效签名，以及外层签名有效时内部篡改仍被拒绝。每条收据记录配置、检查数、尺寸、时间、环境和失败阶段，不保存秘密对象。
 
-`matrix` 的静态兼容结果与这里的实际运行结果分别统计。空执行、全阻塞或任一失败不能返回整体验收成功；显式选择未实现 CHKP 不会产生假成功。固定随机流只用于测试，有限负面样例不证明不可伪造性；教学 SIS 的已知攻击继续由现有安全缺口测试记录。
+`matrix` 的静态兼容结果与这里的实际运行结果分别统计。空执行、全阻塞或任一失败不能返回整体验收成功。CHKP 的 Sage 真实生命周期通过专属工具执行，默认 ABB10 矩阵不自动生成昂贵的 CHKP 密钥。固定随机流只用于测试，有限负面样例不证明不可伪造性；教学 SIS 的已知攻击继续由现有安全缺口测试记录。
+
+## CHKP 研究后端
+
+在 WSL 的 `~/miniconda3/envs/sage` 中使用 `--hibe chkp --ibs luo-module --transport hybrid`；两边参数仍分别选择。`--ibs-params` 可指向 C64B 完整参数 JSON（格式遵循上文），不能仅修改旧密钥的参数名字。默认 CHKP `hybrid-research` 是 `seed32` 模式，胶囊3919 B、内层种子32 B、编码身份86 B。`direct-research` 为28 B内容的 `framed32` 模式，现有 IBS/包装载荷容量不足时明确拒绝。
+
+此后端的当前 n=2 参数可公开攻击，禁止用来保密。它用于真实算法、固定缓存和框架接入研究。代码、参数、失败状态和复现入口见 [CHKP 专属规范](specs/chkp-hibe.md)；项目当前完成程度统一见 [PROJECT_STATUS](PROJECT_STATUS.md)。
 
 ## 6. 后续加入新算法
 

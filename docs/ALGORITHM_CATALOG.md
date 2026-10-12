@@ -1,6 +1,6 @@
 # HIBE / IBS 算法与候选总表
 
-更新：2026-10-11。按[统一框架](../ARCHITECTURE.md)分别管理 HIBE、IBS 模块，再装配兼容组合。本文登记 **19 条候选/模型路线：8 条 HIBE、11 条 IBS**，覆盖原[17 条基础目录](research/2026-10-10-foundations/catalog.json)及新补充的两条原生路线；这不是 19 个完整后端，也不是 19 个不同困难假设。
+更新：2026-10-12。按[统一框架](../ARCHITECTURE.md)分别管理 HIBE、IBS 模块，再装配兼容组合。本文登记 **19 条候选/模型路线：8 条 HIBE、11 条 IBS**，覆盖原[17 条基础目录](research/2026-10-10-foundations/catalog.json)及新补充的两条原生路线；这不是 19 个完整后端，也不是 19 个不同困难假设。
 
 当前任务和外部包进度以 [PROJECT_STATUS.md](PROJECT_STATUS.md) 为准；本文用于选模块、找原文与代码、识别接入缺口。**最终三组完整组合尚未锁定，第三套 HIBE 不再强制属于 Module-LWE。** 普通签名转换成 IBS 的两个条目保留原 ID，BNN-Falcon / BNN-ML-DSA 不再重复计数。
 
@@ -21,7 +21,7 @@
 | ID / 算法 | 假设与论文模型 | 原文与参数状态 | 实现及接入状态 |
 |---|---|---|---|
 | `abb-rom` — ABB10 CRYPTO 固定维度 HIBE | 普通 LWE，经典 ROM；匿名/两层条件按选定算法映射 | [18 页作者稿](../papers/2010_lattice_basis_delegation_agrawal.pdf)、[算法核验](research/2026-10-04/ABB10两层HIBE算法与参数规范.md)。完整 BasisDel、模可逆 SampleR 与逐层宽度仍需有限实例 | **已有教学后端与公共代数组件**。`src/ibme/hibe/abb10.py` 可以运行，但与忠实固定维度论文实例有差别，不能改名升级为正式 ABB10 |
-| `chkp-rom` — CHKP 两层匿名 ROM HIBE | 普通 LWE，经典 ROM；匿名填充、固定同址解封装状态是具体条件 | [作者全文](../papers/2010_bonsai_trees_cash.pdf) §5.1–5.3；[当前交接](research/team-chkp/README.md)。真实参数、采样宽度、噪声及资源条件未同时闭合 | **已有真实研究组件，优先继续**。根基/扩展/随机化/叶采样/缓存等代码、第七步外部包及已并入的 [first_suite 有限 DelTrap 对照](research/2026-10-11-first-suite-compact/README.md)；独立 n=1 原型含公开种子恢复反例。尚无完整公开 `HIBEBackend`，不能登记真实 CHKP+Luo 已通 |
+| `chkp-rom` — CHKP 两层匿名 ROM HIBE | 普通 LWE，经典 ROM；匿名填充、固定同址解封装状态是具体条件 | [作者全文](../papers/2010_bonsai_trees_cash.pdf) §5.1–5.3；[当前交接](research/team-chkp/README.md)。当前 n=2 有限研究配置不能提供 LWE 保密性 | **公开研究后端及统一装配已实现**：[六方法与对象](../src/ibme/hibe/chkp/__init__.py)、[契约](specs/chkp-hibe.md)。MP12 根转完整基、原 CHKP RandBasis、256 位置叶采样与固定状态；实跑范围见[本轮记录](research/2026-10-12-chkp-closure/README.md)。正式参数/组合安全仍未准入；独立 [first_suite DelTrap](research/2026-10-11-first-suite-compact/README.md)继续作为不同算法 profile 对照 |
 | `latte` — LATTE NTRU/RLWE HIBE | NTRU 结构陷门与 Ring-LWE 密文路线；完整定理依赖待逐项对应。IND-CCA 标签不能代替匿名性 | [作者接受稿](../papers/2024_quantum_safe_hibe_zhao.pdf)；作者源码含具体参数，详见下节 | **有作者 C 源码；已做局部标量 C 诊断，未完整 HIBE 运行/接入**。[固定版本诊断](research/2026-10-11-public-reuse/README.md)复现缓冲区使用问题，修订未正式准入；实际 Delegate 与两层参数存在；Wang 组合要求的匿名性质尚未核实，暂作工程候选 |
 | `gkr2025` — Goyal–Koppula–Rajasree 自适应 HIBE 编译器 | 标准模型论文路线；一般编译器依赖 PKE、OTSE、garbling、可委派 PRF；匿名 LWE 扩展另含 lockable obfuscation | [34 页用户完整稿](../papers/2025_adaptive_hibe_goyal.pdf)已取得；已定位 §3/Theorem 3.1 与匿名扩展。无本项目有限参数闭环 | **仅候选，复杂编译器储备**。无完整后端；须先明确匿名扩展和电路/对象规模，不能简化成一套普通矩阵公式 |
 | `zhang2020` — Zhang 等理想格 HIBE | Ring-LWE 路线；自适应声明、匿名性及模数条件待完整映射 | [19 页原文](../papers/2020_ideal_lattice_hibe_zhang.pdf)；§4.1–4.3 的私钥类型、委派及 SamplePre 输入仍有实施疑点 | **暂缓完整实现**。只有可复用公共环算术基础；先澄清短向量/可委派陷门类型，不能自行补造缺失算法 |
@@ -77,7 +77,7 @@ Sageloli 的 [计数工具](../experiments/research/sageloli_parameter_units.py)
 | 工作包 | 直接可做的内容 | 该包不能替代的工作 |
 |---|---|---|
 | 共同框架 | 已实现独立选择/装配、能力与容量预检、组合测试驱动；新增算法复用[公共入口](FRAMEWORK_USAGE.md)，三位队员按[分工文件](workplans/三人方案分工与统一框架交付.md)认领 | 不把装配成功写成新密码算法或正式安全组合 |
-| CHKP + Luo 各自推进 | 保留现有 owner；CHKP 补真实参数/采样及公开后端，Luo 补自身参数与条件，同时准备接线 | 当前真实研究接线仍是教学 ABB10 + Luo；Luo 模格不是纯 SIS |
+| CHKP + Luo 各自推进 | CHKP 公开研究后端已登记，Luo C64B 研究交付已合入；通过同一装配入口运行独立组合验收 | 测试与正式参数准入分开，执行范围见当前进度；Luo 模格不是纯 SIS，n=2 CHKP 有公开恢复攻击 |
 | BNN 转换共享实现 | 一份机构认证/固定身份状态/三元组编码框架，分别接 ML-DSA 和 Falcon，做替换攻击和完整容量测试 | 两种普通签名 KAT 不等于 IBS 或 IBME 验收；共享代码不默认共用秘密密钥 |
 | 环 HIBE | 先利用 LATTE 已确认源码做有限两层复现；并行核对匿名条件和 Lai 原稿 | 无匿名依据时只能报告 HIBE 工程对照，不能接入后宣称 Wang 组合安全 |
 | 环 SIS / 原生 NTRU IBS | Sageloli 先核固定服务、有限参数与载荷；Xie 路线先按新原稿提取四算法和参数 | 不能拿 SRGG 的 MLWE/MSIS 填 Ring-SIS，也不能把 Falcon 直接称原生 IBS |

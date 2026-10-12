@@ -1,27 +1,27 @@
 # CHKP 交接与验收入口
 
-更新：2026-10-11。此处汇总 CHKP 模块的证据位置；项目全局状态以[当前进度](../../PROJECT_STATUS.md)为准，实施分工见[CHKP 模块任务](../../workplans/2026-10-08/队友任务-CHKP与格工具.md)。公共接口以[统一规范](../../../IMPLEMENTATION_SPEC.md)为准。
+更新：2026-10-12。此处汇总 CHKP 模块的证据位置；项目全局状态以[当前进度](../../PROJECT_STATUS.md)为准，公共接口以[统一规范](../../../IMPLEMENTATION_SPEC.md)和[CHKP 专属契约](../../specs/chkp-hibe.md)为准。最新实现、真实执行与未闭合条件统一见[本轮收尾记录](../2026-10-12-chkp-closure/README.md)。
 
 ## 1. 当前状态与来源边界
 
 | 来源 | 已有内容 | 尚不能据此宣称 |
 |---|---|---|
-| 本 checkout，合并 `upstream/main` 的 `bc22c9c` 后 | `experiments/research/chkp_*` 的完整格基、AP09/GPV/RandBasis、叶路径与固定原像缓存研究组件 | 不存在 `src/ibme/hibe/chkp.py`；未提供完整公开 HIBE 后端或正式参数 |
+| 当前 checkout，`ec0783e`、`cdba26f` 及后续修订 | `src/ibme/hibe/chkp/` 六方法、对象和公开绑定检查；`src/ibme/lattice/chkp/` 共享采样运行时；CHKP 独立选择、CLI 主/父状态保守事务、专用真实组合驱动 | 当前 n=2 研究参数可公开攻击；实现和功能结果不等于正式参数/组合安全准入。各真实执行阶段及失败记录见本轮收尾记录 |
 | 仓库外第七步 Codex 修订包 | 规范集合／持久状态／执行器／收据修复；实际采样与资源问题的研究工具 | A/D 尚需接线；第七步同叶目标帽 32 不满足 32 B 种子的 256 位置需求；F 的成功是教学 ABB10 + Luo 路径 |
 | 已并入本 checkout 的 `first_suite` | H/G、固定 256 位置、根/父/叶状态、有限 CSPRNG 和种子 KEM；[DelTrap 原交付](../2026-10-11-first-suite-compact/README.md)记录真实父陷门、同叶 256 原像及两枚带噪声种子的 512 位恢复 | 原执行参数 n=1 可公开恢复种子；独立 MP12 DelTrap 不等于原 CHKP RandBasis，尚无完整公开 HIBE。研究合同见 [first_suite 专属规范](../../specs/first-suite-research.md) |
 
-本次整理核实了上述本地文件和外部组件源码，没有重新运行密码实验。第七步研究包仍声明 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`、`T2_complete=false`、`T3_complete=false`。
+第七步研究包保持其原有 `T2_complete=false`、`T3_complete=false` 历史状态，不回写旧结果。当前后端的算法/测试/运行证据单独发布，仍声明 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。
 
-## 2. 最新仓库外交付与下一步
+## 2. 历史仓库外交付
 
 以下路径属于当前机器的交付区，**不是本仓库内容**；团队交换时需另行取得对应包。根目录定位：`C:/Users/A/.dsh/deliverables/`。
 
 | 相对该交付区的路径 | 用途与状态 |
 |---|---|
-| `CHKP-step7-codex-rework/report.md` | 最新 Codex 主审与直接修复报告；新增修订经定向回归，尚待 DeepSeek 独立验证这些新增差异 |
+| `CHKP-step7-codex-rework/report.md` | 第七步 Codex 主审与直接修复报告；其中新增修订经该轮定向回归，不能据此声称 DeepSeek 已独立验证后续全部差异 |
 | `CHKP-step7-codex-rework/source_manifest.json` | 清单列 465 个文件；本次核对该清单文件 SHA-256 与发布值一致，未将此表述为本轮重跑全部测试 |
-| `DEEPSEEK-CHKP第八步-加量任务书-参数闭合真实采样与整链并行实现-2026-10-11.md` | **当前任务 v2**：参数／真实采样／状态／生命周期／同叶 256／公共适配器合并推进 |
-| `CHKP-step8-package/` | 预定下一包；截至本次检查目录尚不存在，不能记为已交付或已验收 |
+| `DEEPSEEK-CHKP第八步-加量任务书-参数闭合真实采样与整链并行实现-2026-10-11.md` | 历史任务 v2：参数／真实采样／状态／生命周期／同叶 256／公共适配器；用户后续要求由 Codex 直接实施收尾 |
+| `CHKP-step8-package/` | 原预定包名，不作为当前代码是否完成的判据；当前交付随 Git 和本轮收尾记录发布 |
 | `CHKP-taskbook-history/第八步-v1-修订验证状态接线与参数证书-2026-10-11.md` | 历史 v1；冻结第七步包内的 `next_step8.md` 也是 v1，由上面的 v2 替代 |
 
 第七步清单文件 SHA-256：
@@ -30,7 +30,7 @@
 6e20806345024e92f1e9fe259439ac461f2ddfe7e194db597dce9ddbdc950790
 ```
 
-`first_suite` 已随 `bc22c9c` 并入本 checkout；外部 Luo 第二十二步提交 `886fc12` 尚未合并。相关公共接口预检报告是交付区的 `CODEX-step22-luo-integration/report.md`；所有者后续已复跑 26 项检查和 18 项公共边界；本对话未复跑，不能纳入本次独立实跑统计。
+`first_suite` 已随 `bc22c9c` 并入本 checkout；Luo 第二十二/二十三步已随 `7b9e8a7` 集成，第二十四步终验收以 `c336a51` 纳入。旧交付区的 `CODEX-step22-luo-integration/report.md` 当时报告“公开后端缺失”，该结论只适用于原版本；不能覆盖当前已实现的 CHKP 后端，也不能被当前后端存在自动改写成原时点已完成。
 
 ### 第七步修订的证据边界
 
@@ -42,11 +42,11 @@
 
 以上为第七步报告及相应收据的范围摘要。历史通过数不累加为当前全量测试数。
 
-## 3. 现在要打通什么
+## 3. 当前验收范围
 
-1. 同一配置下的根生成、一级随机化、叶采样、噪声、有限中止与资源条件。AP09 根 173 的矩阵 TV **充分上界为 1，界无信息**，不等于实际 TV 距离为 1。MP12 单体陷门不能直接当作 CHKP 所需短基。
-2. 真实带噪声两层链、同一叶身份的 256 位置、固定状态恢复及 32 B Hybrid。本地 `first_suite` 与第七步格式／状态是不同组件，接线时明确来源与容量，避免重复开发或混用承诺。
-3. 公共 HIBE 对象、规范加载、无随机消耗的密钥绑定验证及组合测试。公共框架和 IBS 可继续独立开发；没有 CHKP 后端只阻塞依赖 CHKP 的组合。
+1. 当前执行参数固定为 MP12 根转完整基、原 CHKP RandBasis 一级、最大深度 SampleD 叶的 127/254/381 维路线。旧 AP09 根173的矩阵 TV 充分上界1仅表示旧证书无信息，不等于真实 TV 为1。
+2. 真实两层链、同叶256位置、32 B seed、公开对象恢复、Hybrid/Luo/BYTEAUTH 和 CLI 均按专用工具逐阶段留证；不复用教学 ABB10 收据冒充当前结果。
+3. 小维公开恢复攻击、资源上限、正式参数缺口必须和成功功能结果一同发布。研究后端已经存在；困难参数和组合安全条件未通过的部分仍单列未完成。
 
 执行采用 G-run／G-chain／G-formal 分层：合法真实调用可以标为研究诊断，正式参数未闭合不阻止全部功能工作；数学采样前提、正式安全与功能结果各自留证。第八步 v2 已把可并行内容合并，不继续按旧 T1—T5 串行等待。
 

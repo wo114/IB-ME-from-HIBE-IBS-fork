@@ -4,7 +4,7 @@
 
 框架沿用 Wang 的两层匿名 HIBE + IBS 通用构造；HIBE 与 IBS 独立实现、独立选参，再装配为兼容组合。不实施 Boyen–Li 的 Ext/ReExt 增强隐私。共同目标包括普通隐私、加强认证、自我伪造防护和完整密文字节篡改拒绝，安全结论须逐项说明前提。
 
-**实现边界：**`BaselineIBME`、`ByteAuthenticatedIBME` 接受两个后端对象；Hybrid 通过显式解码器连接底层 HIBE。[assembly](src/ibme/assembly/__init__.py) 已实现统一注册/配置/预检/装配，CLI 支持独立选择，组合驱动执行已有原语。CHKP 等未交付后端仍明确拒绝。使用方式见 [FRAMEWORK_USAGE](docs/FRAMEWORK_USAGE.md)，实际执行证据见当前状态。
+**实现边界：**`BaselineIBME`、`ByteAuthenticatedIBME` 接受两个后端对象；Hybrid 通过显式解码器连接底层 HIBE。[assembly](src/ibme/assembly/__init__.py) 已实现统一注册/配置/预检/装配，CLI 支持独立选择。CHKP 公开研究后端使用独立参数类型和 Sage 运行环境，算法/状态契约见 [CHKP 规范](docs/specs/chkp-hibe.md)；LATTE 等未交付后端仍明确拒绝。使用方式见 [FRAMEWORK_USAGE](docs/FRAMEWORK_USAGE.md)，实际执行与安全状态见当前进度。
 
 ## 1. 身份与编码
 
@@ -23,7 +23,7 @@ encode_message(id, message) = DOMAIN_MSG || encode_bytes(id) || encode_bytes(mes
 
 ## 2. 参数与组合配置
 
-每个后端使用自己的显式参数类型。旧 `Params` 的字段、uint32 格式和教学约束只见 [教学兼容规范](docs/specs/teaching-lattice.md)；`LuoMatrixParams`、`LuoModuleParams` 和后续 CHKP 参数不自动转换为旧类型。HIBE/IBS 不要求相同 n、q、环或困难假设。代码中矩阵列数称 `m_matrix`，消息称 `message`。
+每个后端使用自己的显式参数类型。旧 `Params` 的字段、uint32 格式和教学约束只见 [教学兼容规范](docs/specs/teaching-lattice.md)；`LuoMatrixParams`、`LuoModuleParams` 和 `CHKPParams` 不自动转换为旧类型。HIBE/IBS 不要求相同 n、q、环或困难假设。代码中矩阵列数称 `m_matrix`，消息称 `message`。
 
 参数记录必须包含论文/算法版本、来源位置、完整数值、身份和消息限额、随机与中止策略、资源上限、已验证条件和安全声明。未完成安全准入时使用 `security_claim=none`、`backend_admitted=false`，另行记录参数是否正式；这些标记允许合法研究运行，不能伪装为已安全准入的默认配置。
 
@@ -90,7 +90,7 @@ load_signature(self, pk, data: bytes) -> signature
 
 ### 3.3 算法专属条件
 
-本地 `first_suite` 独立研究组件的算法、有限采样、根/父/叶状态及资源契约集中在 [first_suite 专属契约](docs/specs/first-suite-research.md)。它们是有限原型，不能记为已注册的 CHKP/HIBE 后端；真实接收状态事务见 [传输与状态契约](docs/specs/transport-and-state.md#21-固定接收状态的磁盘事务)。
+本地 `first_suite` 历史独立研究组件的原版本契约集中在 [first_suite 专属契约](docs/specs/first-suite-research.md)。共享运行时现已集中到 `src/ibme/lattice/chkp/`，旧导入入口保留兼容；原 MP12 DelTrap 实例仍与新 CHKP RandBasis 后端分别统计。主/接收状态磁盘事务见[传输与状态契约](docs/specs/transport-and-state.md)，历史实验结果不自动继承到新后端。
 
 每个模块给出论文算法—实现映射、正确性条件、真实随机分布、失败事件、格式和恢复语义。需要离散高斯的算法必须说明宽度约定并做统计诊断；使用均匀掩码的算法按原论文实现。SIS 方程、gadget、陷门委派或 NTT 仅约束使用它们的后端，不能作为所有 HIBE/IBS 的通用接口要求。
 

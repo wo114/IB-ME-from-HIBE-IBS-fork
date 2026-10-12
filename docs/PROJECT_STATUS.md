@@ -25,9 +25,9 @@
 | Luo 矩阵 IBS | 本地真实研究算法、适配器与历史参数筛查 | 当前暂停继续扩网格，保留为比较实例 |
 | Luo 模格 IBS | 本地真实四算法、NTT/Hint、固定状态及 reference/compact 格式；通用框架允许显式完整参数；第二十三步 C64B helper、研究入口恢复及证据已合入 | 默认参数未改；引用条件和正式参数准入仍未全部完成；各批测试来源和执行版本见下表 |
 | 现有完整研究接线 | **教学 ABB10 + Hybrid + Luo 模格 + BYTEAUTH** | 可以验证工程流程；HIBE 不是 CHKP，不能记为真实 CHKP 组合完成 |
-| CHKP 本仓库 | `experiments/research/chkp_*` 的格基、采样、叶路径和缓存研究模块与测试 | 无 `src/ibme/hibe/chkp.py` 完整公开后端；T2/T3 与真实 32 B 接入未闭合 |
-| CHKP 第七步外部包 | Codex 直接返工包及定向验证，原输入与清单保留 | 第八步加量任务已发；本次目录检查未收到 `CHKP-step8-package/`；第七步新增改动不能冒称已获 DeepSeek 再验 |
-| 本地 `first_suite` 独立研究原型 | 已并入根/H/G/主父叶状态、有限 CSPRNG 采样、共享前导种子 KEM及 MP12 DelTrap；[固定交付](research/2026-10-11-first-suite-compact/README.md)记录 83/166/249 维 n=1 配置的真实父采样、同叶 256 原像、512 噪声位恢复与跨进程恢复 | 与第七步 cap32 不同版本；DelTrap 是独立 MP12 profile，不能改名当作原 CHKP RandBasis。n=1 可公开恢复种子；困难参数/资源、公开 HIBE 后端及 CHKP+Luo 完整组合仍未完成 |
+| CHKP 本仓库 | `src/ibme/hibe/chkp/` 六方法研究后端、`src/ibme/lattice/chkp/` 共享运行时、六对象 wire、固定状态及统一装配已实现；[专属契约](specs/chkp-hibe.md)区分 MP12 根和原 CHKP RandBasis | n=2 是公开可攻击的研究参数；真实执行范围以[本轮记录](research/2026-10-12-chkp-closure/README.md)为准。正式安全参数、工程资源和组合安全准入仍未闭合 |
+| CHKP 第七步外部包 | Codex 直接返工包及该轮定向验证，原输入与清单保留 | 作为当前实施的历史输入；第八步由 Codex 直接收尾，不以收到同名外部包作为完成条件；后续新增改动不能冒称已获 DeepSeek 再验 |
+| 本地 `first_suite` 独立研究原型 | 已并入根/H/G/主父叶状态、有限 CSPRNG 采样、共享前导种子 KEM及 MP12 DelTrap；[固定交付](research/2026-10-11-first-suite-compact/README.md)记录 83/166/249 维 n=1 配置的真实父采样、同叶 256 原像、512 噪声位恢复与跨进程恢复 | 与第七步 cap32 不同版本；DelTrap 是独立 MP12 profile，不能改名当作原 CHKP RandBasis。n=1 可公开恢复种子；该历史 profile 没有独立公开后端，当前原 CHKP 后端及其验收另列 |
 | 本地 CLI 接收状态事务 | [接收状态证据](research/2026-10-10-receiver-persistence/README.md)：锁、pending、保存后输出及已有研究接收密钥复用 | 提供同 OS 本地进程失败后的保守阻止；不宣称防回滚、硬断电或跨 OS 分布式事务 |
 | 其它候选 | [候选基础包](research/2026-10-10-foundations/README.md)、Yu 同态、SRGG 代数/采样等部分实现 | 每项按实际算法和测试单独计数；不把候选卡或公开方程计作完整后端 |
 
@@ -38,7 +38,7 @@
 | Luo 历史提交 `c43c232`、`f079ce10fb6b3d2877465b308caaa30276d9e6f9` | 已合入验收、计时和生命周期材料；负责人记录 54 次 Sign、528 次 attempt、108 次两格式验签、212 项选定测试 | 历史执行证据；合入文件不等于本次重跑这些实验 |
 | Luo 第二十二步，提交 `886fc127304479b87ef210836757004818e5b6ea` | 已合入鲁棒接受集/随机矩阵二阶矩条件式中止界、C49/C64B 研究候选及攻击成本估计。负责人记录 C64B 54 次 Sign／315 次尝试／108 次双格式验签，选定回归 269 passed | 本次复跑候选参数算术与证据检查；未重跑估计器/网格/全部历史回归。条件式可用性界不是安全位数，正式参数仍未准入 |
 | Luo 第二十三步，提交 `e5e0b97752f9291ce7621dd830d665baff86aef8` | 已合入 `c64b_params()` 完整 17 字段 helper 与专属研究入口恢复；负责人此前交付 122 项定向/19 项工具测试，以及框架 `0bf0855` 上 25 项 C64B 检查 | 本次重跑范围见[同步记录](deliveries/2026-10-12-local-sync/README.md)。此前最大 3924 B 应用消息/20415 B 外载荷的 25 项装配收据仍归原执行版本，见[原收据](deliveries/2026-10-11-framework/luo-c64b-owner-receipt.json)；不计 CHKP 完成或正式参数 |
-| Luo 第二十四步进行中的终验收 | 负责人报告在框架 `f98de52` 上复跑 C64B 25 项通过 | 截至本次同步切点尚未交付新提交；未提交产物不纳入当前 checkout，后续以负责人固定交付为准 |
+| Luo 第二十四步终验收 | 负责人固定交付 `c043c4b` 已以 `c336a51` 纳入当前分支；[验收记录](research/2026-10-12-luo-final-acceptance/README.md)包含复跑与独立审查 | 没有改变默认参数或正式安全标记；其中教学 ABB10 接线与本轮 CHKP 实跑分别计数 |
 | `CODEX-step22-luo-integration/report.md` | 静态及公共接口预检报告指出首阻塞 `CHKP_PUBLIC_BACKEND_MISSING` | 负责人后续已复跑 26 项检查及 18 项公共边界；本对话未复跑，仍不是实际 CHKP+Luo 加解密结果 |
 
 第二十二步显式 C64B 候选的 compact 签名由负责人测得 16383 B（默认仍为 16063 B），inner 输入仍为 86/86/32 B；该候选尚未改变本仓库默认参数，未来组合按所选配置重新核算外层容量。
@@ -77,7 +77,7 @@
 本机外部交付根为 `C:/Users/A/.dsh/deliverables/`。可移交时需带包本身及其清单，不能只发送本机路径：
 
 - `CHKP-step7-codex-rework/report.md`、`source_manifest.json`；清单 SHA-256 `6e20806345024e92f1e9fe259439ac461f2ddfe7e194db597dce9ddbdc950790`。
-- 当前 CHKP 任务是 `DEEPSEEK-CHKP第八步-加量任务书-参数闭合真实采样与整链并行实现-2026-10-11.md`。冻结包内旧 `next_step8.md` 不再驱动当前排序。
+- CHKP 第八步任务现由 Codex 直接实施收尾，[本轮记录](research/2026-10-12-chkp-closure/README.md)统一代码、实跑及未闭合条件。旧任务书和冻结包内 `next_step8.md` 保留为历史输入。
 - `CODEX-step22-luo-integration/report.md`：外部接入预检，按上表范围使用。
 
 更新本文时同时标出提交/包版本、核验者和已运行范围；不在 README、AGENTS 或旧报告末尾再追加第二份“最新进度”。
