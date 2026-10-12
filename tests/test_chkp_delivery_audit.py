@@ -146,8 +146,9 @@ def test_changed_bytes_are_not_accepted_by_original_manifest(archive, target):
     assert not result['passed'] and 'SHA-256 mismatch' in result['errors'][0]
 
 
-def test_missing_critical_source_fails_even_when_all_remaining_hashes_match(archive):
-    name = 'src/ibme/hibe/chkp/backend.py'
+@pytest.mark.parametrize('name', ['src/ibme/hibe/chkp/backend.py',
+    'experiments/research/chkp_resume_pre_entropy.py', 'tests/test_chkp_resume_pre_entropy.py'])
+def test_missing_critical_source_fails_even_when_all_remaining_hashes_match(archive, name):
     alter(archive, 'source-manifest.json', lambda m:
           m.update(source_files=[row for row in m['source_files'] if row['path'] != name]))
     result = checker.audit(*archive)
@@ -233,3 +234,106 @@ def test_duplicate_json_keys_rejected_even_with_matching_hash(archive):
     path.write_bytes(raw[:-1] + b',"schema":"'+checker.SCHEMA.encode()+b'"}')
     result = checker.audit(*archive)
     assert not result['passed'] and result['errors'] == ['duplicate JSON field']
+
+
+@pytest.fixture
+def resumed_archive(archive):
+    """Synthetic evidence of a migration; no private state or real result created."""
+    from experiments.research.chkp_resume_pre_entropy import PREFLIGHT_GATES
+    root, _ = archive
+    manifest = json.loads((root/'source-manifest.json').read_bytes())
+    code_hashes = {row['path']: row['sha256'] for row in manifest['source_files']}
+    original = {phase: json.loads((root/f'evidence/lifecycle/{phase}.json').read_bytes())
+                for phase in ('setup', 'parent')}
+    original['leaf'] = dict(phase='leaf', passed=False, entropy_bytes=0, seconds=3,
+                            failure_type='ValueError', randomness='system CSPRNG', **flags())
+    diagnosis = dict(diagnostic='read_only_original_leaf_preflight', entropy_consumed=0,
+        sampler_sample_called=False, state_mutation_called=False, private_geometry_printed=False,
+        preflight_passed=False, original_failure_gate_identified=True, parent_snapshot_unchanged=True,
+        error_type='ValueError', outcome='preflight_exception',
+        safe_error='Scalar squared width outside independent finite profile 1..2^80')
+    preflight_hashes = {name: digest for name, digest in code_hashes.items() if name.startswith('src/ibme/')}
+    preflight = dict(schema='ibme.chkp.leaf-preflight.v1', passed=True, source_parent_unchanged=True,
+        cache_geometry_old_new_ast_unchanged=True, sample_called=False, state_mutation_called=False,
+        gso_recomputed=False, targets=256, entropy_bytes=0, all_gates={name: True for name in PREFLIGHT_GATES},
+        source_parent_relative='test-results/synthetic-r3/parent.bin',
+        private_binding_relative='test-results/synthetic-r3/leaf_full_preflight_binding.json',
+        source_sha256=preflight_hashes, source_relative=sorted(preflight_hashes))
+    values = {'setup.json': original['setup'], 'parent.json': original['parent'], 'leaf.json': original['leaf'],
+        'leaf_preflight_diagnostic_600.json': dict(diagnosis, stack=[{'file': '/fixture/finite_gpv.py',
+                                                                  'function': '__init__', 'line': 197}]),
+        'leaf_full_preflight_receipt.json': preflight}
+    for name, path in checker.RESUME_HISTORY.items():
+        write_json(root/path, values[name])
+    hashes = {name: sha256((root/path).read_bytes()).hexdigest() for name, path in checker.RESUME_HISTORY.items()}
+    resume = dict(schema='IBME/CHKP-ZERO-ENTROPY-RESUME/1', phase='resume', passed=True, **flags(),
+        source_unchanged=True, complete_leaf_preflight_verified=True, full_256_target_entropy_budget_verified=True,
+        ready_for_first_leaf_attempt=True, zero_entropy_restore=True, root_and_master_bytes_unchanged=True,
+        cached_parent_bytes_unchanged=True, public_and_parameters_unchanged=True, old_tombstone_preserved=True,
+        new_sampling_performed=False, basis_postprocessing_performed=False, preflight_executed_this_run=False,
+        entropy_bytes=0, forbidden_calls=0, seconds=0.1, source_label='synthetic-r3',
+        recovery='copy-successful-parent-after-zero-entropy-preflight-failure', source_receipt_sha256=hashes,
+        original_leaf_failure=original['leaf'], original_diagnosis=diagnosis, source_code_sha256=code_hashes)
+    write_json(root/checker.RESUME, resume)
+    for phase in ('setup', 'parent'):
+        write_json(root/f'evidence/lifecycle/{phase}.json', dict(original[phase], reused_actual_result=True,
+            executed_this_run=False, this_run_entropy_bytes=0, source_receipt_sha256=hashes[phase+'.json'],
+            source_relative='test-results/synthetic-r3', recovery_ledger='resume.json'))
+    paths = [row['path'] for row in manifest['evidence_files']] + [checker.RESUME, *checker.RESUME_HISTORY.values()]
+    manifest['evidence_files'] = [dict(path=path, sha256=sha256((root/path).read_bytes()).hexdigest()) for path in paths]
+    write_json(root/'source-manifest.json', manifest)
+    return archive
+
+
+def test_explicit_recovery_keeps_history_separate_without_private_binding_io(resumed_archive, monkeypatch):
+    from experiments.research import chkp_resume_pre_entropy
+    monkeypatch.setattr(chkp_resume_pre_entropy, '_validate_preflight',
+                        lambda *args: pytest.fail('archive audit attempted private source binding IO'))
+    result = checker.audit(*resumed_archive)
+    assert result['passed'] and result['phases_checked'] == 12 and result['evidence_files_checked'] == 18
+    assert result['resumed_lifetime'] is result['historical_failure_preserved'] is True
+    assert result['private_state_read'] is result['experiments_rerun'] is False
+
+
+def test_historical_raw_code_hash_is_preserved_separately_from_current_git_bytes(resumed_archive):
+    # For example CRLF at execution versus canonical LF in the final Git tree.
+    alter(resumed_archive, checker.RESUME, lambda r:
+          r['source_code_sha256'].update({'experiments/research/chkp_resume_pre_entropy.py': 'c'*64}))
+    result = checker.audit(*resumed_archive)
+    assert result['passed'] and result['resumed_lifetime']
+    assert result['historical_source_bytes_verified'] is result['source_commit_verified'] is False
+
+
+@pytest.mark.parametrize('missing', [checker.RESUME, *checker.RESUME_HISTORY.values()])
+def test_reused_lifetime_requires_each_public_history_file(resumed_archive, missing):
+    alter(resumed_archive, 'source-manifest.json', lambda value:
+          value.update(evidence_files=[row for row in value['evidence_files'] if row['path'] != missing]))
+    result = checker.audit(*resumed_archive)
+    assert not result['passed'] and 'recovery history' in result['errors'][0]
+
+
+@pytest.mark.parametrize('name,change', [
+    (checker.RESUME, lambda r: r.update(entropy_bytes=1)),
+    (checker.RESUME, lambda r: r.update(new_sampling_performed=True)),
+    (checker.RESUME, lambda r: r.update(root_and_master_bytes_unchanged=False)),
+    (checker.RESUME, lambda r: r['source_receipt_sha256'].update({'parent.json': 'b'*64})),
+    (checker.RESUME, lambda r: r.update(original_leaf_failure={})),
+    ('evidence/lifecycle/parent.json', lambda r: r.update(seconds=99)),
+    ('evidence/lifecycle/setup.json', lambda r: r.update(reused_actual_result=False)),
+    ('evidence/lifecycle/parent.json', lambda r: r.update(source_relative='test-results/different')),
+    ('evidence/lifecycle/history/leaf-failed.json', lambda r: r.update(passed=True)),
+])
+def test_rehashed_recovery_cannot_hide_failure_or_relabel_new_work(resumed_archive, name, change):
+    alter(resumed_archive, name, change)
+    assert not checker.audit(*resumed_archive)['passed']
+
+
+def test_matching_history_hash_does_not_replace_complete_preflight(resumed_archive):
+    path = checker.RESUME_HISTORY['leaf_full_preflight_receipt.json']
+    alter(resumed_archive, path, lambda r: r.update(all_gates={}))
+    root, _ = resumed_archive
+    digest = sha256((root/path).read_bytes()).hexdigest()
+    alter(resumed_archive, checker.RESUME, lambda r:
+          r['source_receipt_sha256'].update({'leaf_full_preflight_receipt.json': digest}))
+    result = checker.audit(*resumed_archive)
+    assert not result['passed'] and 'preflight' in result['errors'][0]

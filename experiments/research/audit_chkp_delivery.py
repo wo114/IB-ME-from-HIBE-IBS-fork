@@ -43,8 +43,19 @@ REQUIRED_SOURCES = (
     'src/ibme/ibs/luo_module_codec.py', 'src/ibme/ibs/luo_module_math.py',
     'experiments/research/chkp_lifecycle.py', 'experiments/research/chkp_combination.py',
     'experiments/research/chkp_cli_acceptance.py', 'experiments/attacks/chkp_small_dimension.py',
+    'experiments/research/chkp_resume_pre_entropy.py', 'tests/test_chkp_resume_pre_entropy.py',
     'experiments/research/audit_chkp_delivery.py',
 )
+RESUME = 'evidence/lifecycle/resume.json'
+RESUME_HISTORY = {
+    'setup.json': 'evidence/lifecycle/history/setup.json',
+    'parent.json': 'evidence/lifecycle/history/parent.json',
+    'leaf.json': 'evidence/lifecycle/history/leaf-failed.json',
+    'leaf_preflight_diagnostic_600.json': 'evidence/diagnostics/preflight-failure-gate.json',
+    'leaf_full_preflight_receipt.json': 'evidence/diagnostics/preflight-complete.json',
+}
+REUSE_METADATA = frozenset(('reused_actual_result', 'executed_this_run', 'this_run_entropy_bytes',
+                           'source_receipt_sha256', 'source_relative', 'recovery_ledger'))
 HEX256 = re.compile(r'[0-9a-f]{64}\Z')
 LIMIT = 16 * 2**20
 FLAGS = dict(security_claim='none', backend_admitted=False, parameters_are_formal=False)
@@ -176,10 +187,94 @@ def lifecycle_receipt(receipt, phase, params):
          'attack must use only public deterministic inputs')
 
 
+def resume_receipts(evidence, params):
+    """Check an archived explicit migration, never open its private binding path."""
+    phases = {phase: document(evidence[f'evidence/lifecycle/{phase}.json']) for phase in ('setup', 'parent')}
+    indicated = (RESUME in evidence or any(REUSE_METADATA & set(value) for value in phases.values())
+                 or any(RESUME_HISTORY[name] in evidence for name in ('setup.json', 'parent.json', 'leaf.json')))
+    if not indicated:
+        return False
+    need({RESUME, *RESUME_HISTORY.values()} <= set(evidence), 'reused lifecycle omits public recovery history')
+    from experiments.research.chkp_resume_pre_entropy import (
+        SCHEMA as RESUME_SCHEMA, PREFLIGHT, PREFLIGHT_GATES, _validate_evidence)
+    resume = document(evidence[RESUME])
+    safe_flags(resume, required=True)
+    need(resume.get('schema') == RESUME_SCHEMA and resume.get('phase') == 'resume'
+         and resume.get('passed') is True and 'failure_type' not in resume, 'recovery receipt is not successful')
+    need(all(resume.get(key) is True for key in (
+        'source_unchanged', 'complete_leaf_preflight_verified', 'full_256_target_entropy_budget_verified',
+        'ready_for_first_leaf_attempt', 'zero_entropy_restore', 'root_and_master_bytes_unchanged',
+        'cached_parent_bytes_unchanged', 'public_and_parameters_unchanged', 'old_tombstone_preserved')),
+        'recovery lacks unchanged-state, preflight or failure-preservation checks')
+    need(all(resume.get(key) is False for key in (
+        'new_sampling_performed', 'basis_postprocessing_performed', 'preflight_executed_this_run')),
+        'recovery must distinguish copied history from a fresh sampled lifetime')
+    need(all(type(resume.get(key)) is int and resume[key] == 0 for key in ('entropy_bytes', 'forbidden_calls')),
+         'recovery consumed entropy or attempted a forbidden operation')
+    need(resume.get('recovery') == 'copy-successful-parent-after-zero-entropy-preflight-failure',
+         'unknown research recovery policy')
+    seconds = resume.get('seconds')
+    need(type(seconds) in (int, float) and math.isfinite(seconds) and seconds >= 0, 'invalid recovery timing')
+    hashes = {name: sha256(evidence[path]).hexdigest() for name, path in RESUME_HISTORY.items()}
+    need(resume.get('source_receipt_sha256') == hashes, 'recovery source receipt hashes differ from archived history')
+    blobs = {name: evidence[path] for name, path in RESUME_HISTORY.items()}
+    originals, diagnosis = _validate_evidence(blobs)
+    need(resume.get('original_leaf_failure') == originals['leaf'] and resume.get('original_diagnosis') == diagnosis,
+         'recovery changed or omitted the original failure/diagnosis')
+    label = resume.get('source_label')
+    need(type(label) is str and re.fullmatch(r'[A-Za-z0-9_-]+', label), 'invalid recovery source label')
+    origin = 'test-results/' + label
+    for phase, receipt in phases.items():
+        original = originals[phase]
+        safe_flags(original, required=True)
+        lifecycle_receipt(original, phase, params)
+        need(not (REUSE_METADATA & set(original)), 'recovery history itself claims another migration')
+        need(receipt.get('reused_actual_result') is True and receipt.get('executed_this_run') is False
+             and type(receipt.get('this_run_entropy_bytes')) is int and receipt['this_run_entropy_bytes'] == 0
+             and receipt.get('recovery_ledger') == 'resume.json' and receipt.get('source_relative') == origin
+             and receipt.get('source_receipt_sha256') == hashes[phase+'.json'], 'reused phase provenance mismatch')
+        need({key: value for key, value in receipt.items() if key not in REUSE_METADATA} == original,
+             'reused phase changed the original measurements or result')
+    preflight = document(blobs[PREFLIGHT])
+    safe_flags(preflight)
+    need(preflight.get('schema') == 'ibme.chkp.leaf-preflight.v1'
+         and all(preflight.get(key) is True for key in ('passed', 'source_parent_unchanged',
+             'cache_geometry_old_new_ast_unchanged'))
+         and all(preflight.get(key) is False for key in ('sample_called', 'state_mutation_called', 'gso_recomputed')),
+         'archived complete preflight did not pass its non-sampling route')
+    need(type(preflight.get('targets')) is int and preflight['targets'] == 256
+         and type(preflight.get('entropy_bytes')) is int and preflight['entropy_bytes'] == 0,
+         'complete preflight lacks the zero-entropy 256-target gate')
+    gates = preflight.get('all_gates')
+    need(type(gates) is dict and set(gates) == PREFLIGHT_GATES and all(value is True for value in gates.values()),
+         'archived complete preflight omits or fails a required gate')
+    need(preflight.get('source_parent_relative') == origin+'/parent.bin'
+         and preflight.get('private_binding_relative') == origin+'/leaf_full_preflight_binding.json',
+         'complete preflight belongs to another source lifetime')
+    recorded, earlier = resume.get('source_code_sha256'), preflight.get('source_sha256')
+    need(type(recorded) is dict and type(earlier) is dict and earlier
+         and preflight.get('source_relative') == sorted(earlier)
+         and all(recorded.get(name) == digest for name, digest in earlier.items()),
+         'recovery and preflight disagree on their source versions')
+    # Historical raw file hashes may differ from Git's canonical LF bytes.
+    # Keep them unchanged and check their cross-receipt agreement; do not claim
+    # that auditing today's manifest verifies historical execution bytecode.
+    # Historical ignored diagnostic scripts/private binding are never opened.
+    required = {name for name in REQUIRED_SOURCES if name.startswith('src/ibme/')}
+    need(required <= set(earlier) and 'experiments/research/chkp_resume_pre_entropy.py' in recorded,
+         'recovery/preflight source record omits core implementations')
+    for name, digest in recorded.items():
+        need(relative(name).suffix == '.py' and type(digest) is str and HEX256.fullmatch(digest),
+             'invalid historical source hash record')
+    return True
+
+
 def audit(directory=DEFAULT, source_root=BASE):
     result = dict(schema=SCHEMA, passed=False, errors=[], phases_checked=0, source_files_checked=0,
                   evidence_files_checked=0, experiments_rerun=False, private_state_read=False,
                   required_source_coverage_complete=False, source_dependency_closure_proved=False,
+                  resumed_lifetime=False, historical_failure_preserved=False,
+                  historical_source_bytes_verified=False,
                   source_commit_verified=False, **FLAGS,
                   limitation='Public archive consistency only; not authenticity, reproduction, or a security proof.')
     try:
@@ -224,6 +319,8 @@ def audit(directory=DEFAULT, source_root=BASE):
                 need(len(rel.parts) > 1 and rel.parts[0] == 'test-results', 'invalid CLI source provenance')
                 validate_cli_receipt(receipt, phase, suite, BASE.joinpath(*rel.parts))
             result['phases_checked'] += 1
+        resumed = resume_receipts(evidence, params)
+        result.update(resumed_lifetime=resumed, historical_failure_preserved=resumed)
         result.update(passed=True, suite_digest=suite.digest, source_commit=manifest['source_commit'], seed_bytes=32)
     except (OSError, ValueError, TypeError, KeyError, RecursionError, OverflowError) as exc:
         result['errors'].append(str(exc) if isinstance(exc, ValueError) else type(exc).__name__)
