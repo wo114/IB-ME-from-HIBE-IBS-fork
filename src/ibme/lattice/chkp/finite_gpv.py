@@ -28,7 +28,8 @@ from sage.rings.rational import Rational
 from ibme.core.randomness import SecureRandom
 from ibme.lattice.chkp.basis import KernelBasis, ModMatrixReference, _full_rank_field, _integer, _rows
 from .finite_gaussian import (
-    FiniteByteTape, FirstFiniteOptions, FirstFiniteGaussian, exact_integer, exact_rational,
+    FiniteByteTape, FirstFiniteOptions, FirstFiniteGaussian, MAX_SQUARED_WIDTH,
+    exact_integer, exact_rational,
 )
 from .entropy import CheckedEntropy
 
@@ -193,8 +194,8 @@ class FirstFiniteGPV:
         self._widths = tuple(_bounded_rational(self.width_squared / length,
                             "scalar squared width", opts.rational_bits) for length in lengths)
         # Check every coordinate before constructing any expensive scalar profile.
-        if any(not 1 <= v <= 2**80 for v in self._widths):
-            raise ValueError("Scalar squared width outside independent finite profile 1..2^80")
+        if any(not 1 <= v <= MAX_SQUARED_WIDTH for v in self._widths):
+            raise ValueError("Scalar squared width outside independent finite profile 1..2^88")
         self.scalars = tuple(FirstFiniteGaussian(v, v, options=opts) for v in self._widths)
         self.random_tape_bytes = sum(s.random_tape_bytes for s in self.scalars)
         if self.random_tape_bytes > opts.max_tape_bytes:

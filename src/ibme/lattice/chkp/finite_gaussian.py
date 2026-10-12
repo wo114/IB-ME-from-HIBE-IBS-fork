@@ -20,6 +20,12 @@ from ibme.lattice.chkp.tape import FiniteByteTape
 from .entropy import CheckedEntropy
 
 
+# Fixed execution domain, not an 88-bit security claim. The radius and all
+# interval/tail/mass/rejection/tape gates below still certify each width.
+# Enlarging this ceiling does not change any previously accepted sample law.
+MAX_SQUARED_WIDTH = 2**88
+
+
 def exact_integer(value, name, *, minimum=0, maximum=2**32):
     if isinstance(value, bool) or not isinstance(value, (int, type(ZZ(0)))):
         raise ValueError(f"{name} must be an exact integer")
@@ -94,8 +100,8 @@ class FirstFiniteGaussian:
             raise ValueError("Need FirstFiniteOptions")
         self.v_min = exact_rational(width_min_squared, "minimum squared width", max_bits=self.options.rational_bits)
         self.v_max = exact_rational(width_max_squared, "maximum squared width", max_bits=self.options.rational_bits)
-        if not 1 <= self.v_min <= self.v_max <= 2**80:
-            raise ValueError("Public squared widths require 1 <= min <= max <= 2^80")
+        if not 1 <= self.v_min <= self.v_max <= MAX_SQUARED_WIDTH:
+            raise ValueError("Public squared widths require 1 <= min <= max <= 2^88")
         opts = self.options
         self.field = RealIntervalField(opts.precision_bits)
         self.cap_bits = max(opts.mass_bits, opts.tail_bits, opts.precision_bits)+64
