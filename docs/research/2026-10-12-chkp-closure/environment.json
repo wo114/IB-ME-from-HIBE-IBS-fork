@@ -14,7 +14,7 @@
   "measurement_limitations": [
     "Host memory is not an allocation limit or measured process RSS.",
     "Runs share a development machine with other work; elapsed times are observations, not isolated benchmarks.",
-    "Each new cryptographic address in the recorded lifetime is attempted once; interrupted historical attempts are separately retained.",
+    "Successful root and parent checkpoints are reused. The original Alice leaf constructor failed before entropy; an explicit recorded recovery creates the sole continuation, preserving the failure. Subsequent sampled addresses have no retry.",
     "No constant-time or side-channel claim is made."
   ],
   "security_claim": "none",
