@@ -6,9 +6,9 @@
 
 | 来源 | 已有内容 | 尚不能据此宣称 |
 |---|---|---|
-| 当前 checkout，`ec0783e`、`cdba26f` 及后续修订 | `src/ibme/hibe/chkp/` 六方法、对象和公开绑定检查；`src/ibme/lattice/chkp/` 共享采样运行时；CHKP 独立选择、CLI 主/父状态保守事务、专用真实组合驱动 | 当前 n=2 研究参数可公开攻击；实现和功能结果不等于正式参数/组合安全准入。各真实执行阶段及失败记录见本轮收尾记录 |
+| 当前checkout，`ec0783e`、`cdba26f`及后续修订；执行域修复`0765304`、显式恢复`3c53df1` | 六方法、对象及公开绑定、共享采样运行时、独立选择与状态事务已实现；真实CHKP + Luo C64B compact + Hybrid + BYTEAUTH完成生命周期、组合和CLI的12个必要阶段验收 | 研究功能已收尾；n=2实例已被公开数据唯一恢复seed，正式困难参数、资源可用性和组合归约仍未闭合。原失败及根父复用来源完整保留 |
 | 仓库外第七步 Codex 修订包 | 规范集合／持久状态／执行器／收据修复；实际采样与资源问题的研究工具 | A/D 尚需接线；第七步同叶目标帽 32 不满足 32 B 种子的 256 位置需求；F 的成功是教学 ABB10 + Luo 路径 |
-| 已并入本 checkout 的 `first_suite` | H/G、固定 256 位置、根/父/叶状态、有限 CSPRNG 和种子 KEM；[DelTrap 原交付](../2026-10-11-first-suite-compact/README.md)记录真实父陷门、同叶 256 原像及两枚带噪声种子的 512 位恢复 | 原执行参数 n=1 可公开恢复种子；独立 MP12 DelTrap 不等于原 CHKP RandBasis，尚无完整公开 HIBE。研究合同见 [first_suite 专属规范](../../specs/first-suite-research.md) |
+| 已并入本 checkout 的 `first_suite` | H/G、固定 256 位置、根/父/叶状态、有限 CSPRNG 和种子 KEM；[DelTrap 原交付](../2026-10-11-first-suite-compact/README.md)记录真实父陷门、同叶 256 原像及两枚带噪声种子的 512 位恢复 | 原执行参数n=1可公开恢复种子；独立MP12 DelTrap不等于原CHKP RandBasis，该历史profile尚无独立公开HIBE后端。研究合同见[first_suite专属规范](../../specs/first-suite-research.md) |
 
 第七步研究包保持其原有 `T2_complete=false`、`T3_complete=false` 历史状态，不回写旧结果。当前后端的算法/测试/运行证据单独发布，仍声明 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。
 
@@ -44,9 +44,14 @@
 
 ## 3. 当前验收范围
 
-1. 当前执行参数固定为 MP12 根转完整基、原 CHKP RandBasis 一级、最大深度 SampleD 叶的 127/254/381 维路线。旧 AP09 根173的矩阵 TV 充分上界1仅表示旧证书无信息，不等于真实 TV 为1。
-2. 真实两层链、同叶256位置、32 B seed、公开对象恢复、Hybrid/Luo/BYTEAUTH 和 CLI 均按专用工具逐阶段留证；不复用教学 ABB10 收据冒充当前结果。
-3. 小维公开恢复攻击、资源上限、正式参数缺口必须和成功功能结果一同发布。研究后端已经存在；困难参数和组合安全条件未通过的部分仍单列未完成。
+1. 当前执行参数为n=2、q=1099511627791，MP12根转完整基、原CHKP RandBasis一级、最大深度SampleD叶的127/254/381维路线。Bob/Carol × Alice/Eve四个真实叶各有256目标，内层身份86/86 B、seed 32 B。旧AP09根173的矩阵TV充分上界1仍仅表示旧证书无信息。
+2. 12个必要阶段收据齐全：生命周期4阶段、组合6阶段、CLI 2阶段。根和Bob父来自r3已成功对象；原叶零熵准备失败在源目录保留墓碑、pending和收据。`2^88`固定标量执行域修复没有改变实际宽度、概率质量或随机读取；显式恢复没有重新GenTrap、RandBasis或LLL，复制setup/parent按原来源统计。
+3. [组合44项](../2026-10-12-chkp-closure/evidence/combination/checks.json)覆盖四种身份匹配、对象恢复、固定缓存复用、实际IBS拒绝、raw低位修改仍同seed时的Hybrid AAD拒绝、有效新OTS下完整BYTEAUTH到达IBS层拒绝，以及空/最大消息。执行的是两个真实研究后端，没有用教学ABB10或mock代替。
+4. [CLI独立setup](../2026-10-12-chkp-closure/evidence/cli/setup.json)通过8项检查、2个实际命令；[CLI导入状态](../2026-10-12-chkp-closure/evidence/cli/imported.json)通过59项检查、15个实际命令。后者复用已完成组合的主/发送/接收对象，验证重发、0/21/3924 B消息及拒绝行为；不是CLI再次生成根父叶。
+5. 原始胶囊3919 B，C64B compact签名16383 B，应用消息上限3924 B；组合16 B消息的完整密文119054 B，最大消息完整密文122962 B。单次实例与分阶段耗时见原收据，不由这些结果推断总体性能。
+6. [公开恢复负控](../2026-10-12-chkp-closure/evidence/lifecycle/roundtrip.json)从5329个公开误差组合中唯一恢复匹配真实seed的候选。因此`security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`保持不变；正式困难参数、对应资源与组合前提不因功能通过而完成。
+
+公开源码、脱敏收据及清单统一放在[本轮收尾目录](../2026-10-12-chkp-closure/README.md)，旧报告按原版本保留。本地私密执行状态分别位于被Git忽略的`test-results/chkp-lifetime-2026-10-12-r3-resumed/`、`test-results/chkp-combination-2026-10-12/`、`test-results/chkp-cli-2026-10-12/`；原r3目录继续保留失败现场。私钥、缓存及原始进程日志不进入公开提交。本次入口更新只核对既有收据，没有重跑实验。
 
 执行采用 G-run／G-chain／G-formal 分层：合法真实调用可以标为研究诊断，正式参数未闭合不阻止全部功能工作；数学采样前提、正式安全与功能结果各自留证。第八步 v2 已把可并行内容合并，不继续按旧 T1—T5 串行等待。
 
