@@ -168,7 +168,11 @@ class FirstFiniteGaussian:
         return width, shift, fractional, closest, low, high
 
     def integer_weight(self, value, width, fractional, closest):
-        argument = ((value-fractional)**2-(closest-fractional)**2)/width
+        # Exact difference-of-squares identity. This avoids squaring a large
+        # rational center's denominator twice and then cancelling it. The QQ
+        # argument, interval endpoints, integer mass and byte read order are
+        # unchanged, including negative centers and nearest-point ties.
+        argument = (value-closest)*(value+closest-2*fractional)/width
         assert argument >= 0
         if argument >= self.options.mass_bits:
             return 0  # True relative weight <2^-b, already in quantization budget.

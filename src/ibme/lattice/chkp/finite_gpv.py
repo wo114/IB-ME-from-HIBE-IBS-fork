@@ -181,6 +181,18 @@ class FirstFiniteGPV:
             raise ValueError("Whole GPV tape exceeds the resource budget")
         self._path_resources = _admit_paths(self._columns, self._weights, self.scalars,
                                             self.basis.public.q, opts.rational_bits)
+        # The path gate already computes and bounds each common denominator.
+        # Clear it once: all live centers are integer vectors, so one exact
+        # ZZ dot product followed by one rational division is identical to
+        # the coordinate-wise QQ sum. Keep the original weights for the
+        # unchanged path certificate; no profile, center or CDF is replaced.
+        self._integer_weights = []
+        for weights, resource in zip(self._weights, self._path_resources):
+            denominator = ZZ(resource[0])
+            numerators = vector(ZZ, [denominator*w for w in weights])
+            numerators.set_immutable()
+            self._integer_weights.append((numerators, denominator))
+        self._integer_weights = tuple(self._integer_weights)
         a, self._pivots = _full_rank_field(self.basis.public)
         self._field = a.base_ring()
         self._pivot_inverse = a.matrix_from_columns(self._pivots).inverse()
@@ -217,15 +229,16 @@ class FirstFiniteGPV:
     def sample(self, syndrome, *, rng=None) -> tuple[int, ...]:
         target = self._syndrome(syndrome)
         t = self._lift(target)
-        center, v = -t, vector(ZZ, self.dimension)
+        center = -t
         source = CheckedEntropy(SecureRandom() if rng is None else rng, self.random_tape_bytes)
         for i in reversed(range(self.dimension)):
-            projected = sum((x * w for x, w in zip(center, self._weights[i])), QQ(0))
+            numerators, denominator = self._integer_weights[i]
+            projected = QQ(center.dot_product(numerators))/denominator
             z = self.scalars[i].sample(self._widths[i], projected, rng=source)
             step = z * self._columns[i]
             center -= step
-            v += step
-        return tuple(int(x) for x in t + v)
+        # Invariant center=-t-v gives the old output t+v exactly as -center.
+        return tuple(int(-x) for x in center)
 
     def sample_from_tape(self, syndrome, tape) -> tuple[int, ...]:
         target = self._syndrome(syndrome)
