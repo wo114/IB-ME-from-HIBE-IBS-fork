@@ -295,40 +295,43 @@ def test_toy_public_forgery_remains_a_negative_control():
 
 
 def test_source_only_fresh_process_without_experiments(fixture_bytes, tmp_path):
-    """Foreign cwd: Luo must work even when all research imports are forbidden.
+    """Luo works with the optional research namespace actively unavailable.
 
-    An installed optional HIBE may expose the experiments support namespace.
-    Availability is unrelated to whether the independent Luo backend uses it.
+    The full wheel may contain Sage/HIBE support. Namespace installation does
+    not make it a dependency of Luo; block imports to test that boundary.
     """
     p, m, k, s = fixture_bytes
     for name, raw in (("pk", p), ("master", m), ("key", k), ("signature", s)):
         (tmp_path / name).write_bytes(raw)  # private data only in temporary dir
-    env = dict(os.environ, PYTHONPATH=str(Path(__file__).resolve().parents[1] / "src"),
+    optional = tmp_path / "optional-support"
+    (optional / "experiments").mkdir(parents=True)
+    (optional / "experiments" / "__init__.py").write_text(
+        'raise AssertionError("optional namespace must never execute for Luo")\n', encoding="utf-8")
+    env = dict(os.environ, PYTHONPATH=os.pathsep.join((
+                   str(Path(__file__).resolve().parents[1] / "src"), str(optional))),
                PYTHONDONTWRITEBYTECODE="1")
     code = '''
 import importlib.abc
+import importlib.machinery
 import sys
 from pathlib import Path
-
+assert importlib.machinery.PathFinder.find_spec("experiments", [str(Path("optional-support"))]) is not None
 blocked_imports = []
-class ForbidResearchImports(importlib.abc.MetaPathFinder):
+class NoResearchImports(importlib.abc.MetaPathFinder):
     def find_spec(self, fullname, path=None, target=None):
         if fullname == "experiments" or fullname.startswith("experiments."):
             blocked_imports.append(fullname)
-            raise ImportError("research imports forbidden for independent Luo")
-
+            raise ModuleNotFoundError("optional research imports disabled for Luo contract", name=fullname)
 assert not any(n == "experiments" or n.startswith("experiments.") for n in sys.modules)
-sys.meta_path.insert(0, ForbidResearchImports())
-# Prove this guard wins even over an installed optional support package.
+sys.meta_path.insert(0, NoResearchImports())
 try:
     __import__("experiments")
-except ImportError as exc:
-    assert "research imports forbidden" in str(exc)
+except ModuleNotFoundError as exc:
+    assert "disabled for Luo contract" in str(exc)
 else:
-    raise AssertionError("research import guard was bypassed")
+    raise AssertionError("research import blocker did not take effect")
 assert blocked_imports == ["experiments"]
 blocked_imports.clear()
-
 from ibme.ibs.luo import *
 from ibme.core.randomness import DeterministicRandom
 b = LuoIBSBackend(rng=DeterministicRandom(b"luo-m2:child"))
