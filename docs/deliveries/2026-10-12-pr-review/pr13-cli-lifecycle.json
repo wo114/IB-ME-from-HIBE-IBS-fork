@@ -1,0 +1,79 @@
+{
+  "schema": "A-INSTALLED-CLI-LIFECYCLE/1",
+  "installed_root": "/mnt/c/Users/youzi/.codex/worktrees/pr-merge-review/ibme/test-results/pr13-review-install/sage",
+  "isolated_subprocesses": true,
+  "cwd_outside_checkout": true,
+  "source_python_import_roots_added": false,
+  "stages": [
+    {
+      "stage": "setup",
+      "exit_code": 0,
+      "engine_configured": true,
+      "elapsed_seconds": 2.7794874320000105
+    },
+    {
+      "stage": "issue_sender",
+      "exit_code": 0,
+      "engine_configured": false,
+      "elapsed_seconds": 4.5297065160000045
+    },
+    {
+      "stage": "issue_receiver",
+      "exit_code": 0,
+      "engine_configured": true,
+      "elapsed_seconds": 32.761899611000004
+    },
+    {
+      "stage": "encrypt",
+      "exit_code": 0,
+      "engine_configured": false,
+      "elapsed_seconds": 34.451057297000006
+    },
+    {
+      "stage": "first_decrypt",
+      "exit_code": 0,
+      "engine_configured": false,
+      "elapsed_seconds": 74.952500618
+    },
+    {
+      "stage": "restored_decrypt",
+      "exit_code": 0,
+      "engine_configured": false,
+      "elapsed_seconds": 77.684198214
+    },
+    {
+      "stage": "existing_receiver_reuse",
+      "exit_code": 0,
+      "engine_configured": false,
+      "elapsed_seconds": 80.20362608
+    },
+    {
+      "stage": "tamper_rejected",
+      "exit_code": 1,
+      "engine_configured": false,
+      "elapsed_seconds": 82.757845907
+    }
+  ],
+  "message_bytes": 42,
+  "repetitions": 1,
+  "matching_message_recovered": true,
+  "second_process_recovered_without_engine": true,
+  "existing_receiver_reused_without_engine": true,
+  "modified_ciphertext_rejected": true,
+  "complete_ciphertext_bytes": 117505,
+  "elapsed_seconds": 82.760612822,
+  "native_engine_sha256": "27ec5bbb759384e2e535b5e136aa9ca2db501a3ac350c5f217d6bf114f73b284",
+  "parameters": {
+    "n": 2,
+    "q": 549755813911,
+    "r_width_squared": 16
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "known_n2_privacy_attack_unchanged": true,
+  "limitations": [
+    "debugging parameters",
+    "no formal model/security admission"
+  ]
+}

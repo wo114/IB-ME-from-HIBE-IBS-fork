@@ -4,7 +4,7 @@
 
 框架沿用 Wang 的两层匿名 HIBE + IBS 通用构造；HIBE 与 IBS 独立实现、独立选参，再装配为兼容组合。不实施 Boyen–Li 的 Ext/ReExt 增强隐私。共同目标包括普通隐私、加强认证、自我伪造防护和完整密文字节篡改拒绝，安全结论须逐项说明前提。
 
-**实现边界：**`BaselineIBME`、`ByteAuthenticatedIBME` 接受两个后端对象；Hybrid 通过显式解码器连接底层 HIBE。[assembly](src/ibme/assembly/__init__.py) 已实现统一注册/配置/预检/装配，CLI 支持独立选择，组合驱动执行已有原语。CHKP 等未交付后端仍明确拒绝。使用方式见 [FRAMEWORK_USAGE](docs/FRAMEWORK_USAGE.md)，实际执行证据见当前状态。
+**实现边界：**`BaselineIBME`、`ByteAuthenticatedIBME` 接受两个后端对象；Hybrid 通过显式解码器连接底层 HIBE。[assembly](src/ibme/assembly/__init__.py) 已实现统一注册/配置/预检/装配，CLI 支持独立选择，组合驱动执行已有原语。默认 registry 仍拒绝未交付的原 CHKP 等后端；独立 `mp12-chkp-reference` 已提供[可安装公共入口](src/ibme/hibe/mp12_chkp/__init__.py)和默认可选登记，范围见[first_suite 专属契约](docs/specs/first-suite-research.md)。无 Sage 明确 unavailable；需要新根/新接收者时还须显式本机 native engine。此入口不继承原 CHKP 定理或正式安全准入。使用方式见 [FRAMEWORK_USAGE](docs/FRAMEWORK_USAGE.md)，实际执行证据见当前状态。
 
 ## 1. 身份与编码
 
@@ -90,7 +90,7 @@ load_signature(self, pk, data: bytes) -> signature
 
 ### 3.3 算法专属条件
 
-本地 `first_suite` 独立研究组件的算法、有限采样、根/父/叶状态及资源契约集中在 [first_suite 专属契约](docs/specs/first-suite-research.md)。它们是有限原型，不能记为已注册的 CHKP/HIBE 后端；真实接收状态事务见 [传输与状态契约](docs/specs/transport-and-state.md#21-固定接收状态的磁盘事务)。
+本地 `first_suite` 独立研究组件的算法、有限采样、根/父/叶状态及资源契约集中在 [first_suite 专属契约](docs/specs/first-suite-research.md)。旧组件和 n=1 原型不等于完整 HIBE；新增计算型 MP12 变体提供六方法、对象/绑定和自定义 registry，属于明确不安全参数下的真实研究后端。它不等于原 CHKP RandBasis 后端或正式安全实例；真实接收状态事务见 [传输与状态契约](docs/specs/transport-and-state.md#21-固定接收状态的磁盘事务)。
 
 每个模块给出论文算法—实现映射、正确性条件、真实随机分布、失败事件、格式和恢复语义。需要离散高斯的算法必须说明宽度约定并做统计诊断；使用均匀掩码的算法按原论文实现。SIS 方程、gadget、陷门委派或 NTT 仅约束使用它们的后端，不能作为所有 HIBE/IBS 的通用接口要求。
 

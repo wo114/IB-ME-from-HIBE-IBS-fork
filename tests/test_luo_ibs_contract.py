@@ -316,9 +316,11 @@ import importlib.machinery
 import sys
 from pathlib import Path
 assert importlib.machinery.PathFinder.find_spec("experiments", [str(Path("optional-support"))]) is not None
+blocked_imports = []
 class NoResearchImports(importlib.abc.MetaPathFinder):
     def find_spec(self, fullname, path=None, target=None):
         if fullname == "experiments" or fullname.startswith("experiments."):
+            blocked_imports.append(fullname)
             raise ModuleNotFoundError("optional research imports disabled for Luo contract", name=fullname)
 assert not any(n == "experiments" or n.startswith("experiments.") for n in sys.modules)
 sys.meta_path.insert(0, NoResearchImports())
@@ -328,6 +330,8 @@ except ModuleNotFoundError as exc:
     assert "disabled for Luo contract" in str(exc)
 else:
     raise AssertionError("research import blocker did not take effect")
+assert blocked_imports == ["experiments"]
+blocked_imports.clear()
 from ibme.ibs.luo import *
 from ibme.core.randomness import DeterministicRandom
 b = LuoIBSBackend(rng=DeterministicRandom(b"luo-m2:child"))
@@ -338,6 +342,7 @@ assert k.to_bytes() == Path("key").read_bytes()
 s = b.load_signature(p, Path("signature").read_bytes())
 assert b.verify(p, b"Alice", b"message", s)
 assert b.verify(p, b"Alice", b"fresh", b.sign(k, b"fresh"))
+assert blocked_imports == []
 assert not any(n == "experiments" or n.startswith("experiments.") for n in sys.modules)
 print("package-only restore/sign/verify passed")
 '''
