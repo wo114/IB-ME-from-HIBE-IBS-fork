@@ -75,6 +75,8 @@ A 随后按新任务书开始独立分支实施，新增 MP12 变体研究后端
 
 A 第二批已补[可安装公开 API 与默认 CLI](research/team-a-delivery/2026-10-12-installed-api/README.md)：Windows/Sage 均在仓库外验证 provider 来自安装包；Sage 无native/无熵重放原四种匹配，新安装CLI真实8步通过，55项Sage回归通过。默认入口在无Sage时明确 unavailable；缺native只阻止新根/新receiver，并在地址写入前拒绝。原n2攻击/none/false、原CHKP/ABB、正式维度/模型与双角色困难性仍待，不能称A完成。
 
+A2 已有[SampleR/BasisDel原语批次](research/team-a-delivery/2026-10-12-abb-primitives/README.md)：整矩阵Gaussian条件采样、变换子格的完整格补全、真实随机化、非交换两层及直接产品核验。24项新Sage测试/57项含相关回归通过，保存私有84维输入复用成功；旧偏斜基准入失败保持，未调旧guard。仍无ABB TrapGen/位或字节加解密/完整HIBE；m84不满足论文完整选参，不能加后端计数。安装PR的Luo独立性测试已修复，远端Basic/Hybrid通过并被接收；本批原语交付另待新PR。
+
 ## 4. 当前入口与证据定位
 
 - [总体架构](../ARCHITECTURE.md)、[公共接口与验收](../IMPLEMENTATION_SPEC.md)、[协作流程](../AI_WORKFLOW.md)、[通用任务模板](../DELEGATION_PROMPTS.md)。

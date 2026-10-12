@@ -1,0 +1,65 @@
+{
+  "schema": "A-ABB-ROM-BASISDEL-PRIMITIVE/1",
+  "n": 2,
+  "q": 549755813911,
+  "m": 84,
+  "root_is_MP12_computational_input_not_ABB_TrapGen": true,
+  "source_root_gs_squared_bound": 51210,
+  "public_R_width_squared": 27858240,
+  "public_R_frobenius_squared": 31534106700,
+  "sigma_squared": 878484712634208000,
+  "matrix_attempts": null,
+  "saved_input_reused": true,
+  "new_root_or_R_generations": 0,
+  "checked_completion_reduction": true,
+  "complete_target_kernel_verified": true,
+  "ordered_completion_gs_not_increased": true,
+  "randbasis_draws": 84,
+  "independent_vectors": 84,
+  "full_kernel_determinant_matches": true,
+  "total_seconds": 108.50802820700001,
+  "events": [
+    {
+      "stage": "restore_exact_parent_and_public_R_no_generation",
+      "elapsed_seconds": 4.8258999996164675e-05
+    },
+    {
+      "stage": "exact_transform_full_kernel_completion",
+      "elapsed_seconds": 0.07877054799999428
+    },
+    {
+      "stage": "admit_and_execute_real_RandBasis",
+      "elapsed_seconds": 33.918225166
+    }
+  ],
+  "sample_R_certificate": {
+    "profile": "ABB-ROM-FINITE-SAMPLER/1",
+    "source": "ABB10 PDF9 Definition7/SampleR",
+    "q": 549755813911,
+    "dimension": 84,
+    "width_squared": "27858240",
+    "whole_matrix_attempts": 32,
+    "per_column_filtering": false,
+    "ideal_nonsingular_probability_lower": "115770146827255151652968724180001695851055216557584899847301194715071538091153/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+    "ideal_bounded_rank_abort_upper": "1317713155565552380226869031451345602209761297895259223038076177864772301662204240077513945858921/172364133221937103085272756482216056112753534658909761028039668631756215232006744379020625060744018369805777923479247838020220755974022884986972234404720831691332769255536872593544438018353486799545737272878084128768",
+    "output_tv_upper_including_scalar_abort": "940252457609268526836168244273760822775532140072889393652490523002081260464265371664207169162512487/709803441694928604052074031140629428079727891296209043243642772637343054798240159498233447962659731992932150006119314388217384402944",
+    "conditional_success_vs_ideal_invertible_matrix_tv_upper": "456649800059079242911293038535202125301654112173524789103845684323913783595636656865573615344969528399604124511580775078703478701911189278304740613141687175071484991969590534029180928/172364133221937103085272756482215827787853505119288305381520401030693564404950657616626073137901856412913980105150815049894835115644270702697847412565835877742220515765638497185161689309993649394845512400097123679383",
+    "total_failure_upper": "228324900029539621455646519267601062650827056086762394551922842161956891797818328432788125385640329752182289124821838884953949112253489898375408382748708359837404700224872780960449385/172364133221937103085272756482216056112753534658909761028039668631756215232006744379020625060744018369805777923479247838020220755974022884986972234404720831691332769255536872593544438018353486799545737272878084128768",
+    "random_tape_bytes": 91487305728,
+    "conditional_target": "IID ideal Gaussian integer matrix conditioned on mod-q invertibility",
+    "conditional_success_error_not_a_ROM_proof": true,
+    "security_claim": "none",
+    "backend_admitted": false
+  },
+  "private_GS_or_scalar_profiles_published": false,
+  "full_HIBE_implemented": false,
+  "paper_parameter_conditions_admitted": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "limitations": [
+    "not ABB TrapGen",
+    "not two levels or byte HIBE",
+    "finite theorem3/model conditions pending"
+  ]
+}
