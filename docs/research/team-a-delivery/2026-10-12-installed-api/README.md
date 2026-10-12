@@ -63,6 +63,8 @@ unset IBME_QFALL_PRIVATE_ENGINE
 
 随后远端合并 #11/#9/#12，主线达到 `7686fd9`，本分支无冲突同步为 `2b4ec89`。前述原始收据保留7795719基线范围；新增[主线整合复验](main-integration.json)证明包含PR #9的最终 wheel 为143成员，Sage55通过，含C64B回归的Windows122通过/2skip，仓库外新安装API10检查、已生成CLI状态再次无native解密通过。此复验没有生成替代key，Luo原始默认参数未换成C64B；原始130成员 wheel 不冒充整合后候选。
 
+远端Basic回归在46d623c发现唯一失败：Luo旧“source-only”测试断言环境没有任何experiments命名空间，而新wheel明确包含可选支持。修复只改该依赖测试：子进程放置可发现但禁止执行的namespace，并用import finder阻断所有experiments导入，再完成真实Luo恢复/签名/验证、检查未加载任何实验模块。Luo独立性要求保持；相关88项通过/2 Sage skip。IBS算法、采样和参数没有改，远端重新验收另按修复提交统计。
+
 本批实际补齐 A1 的安装/默认入口缺口、A3 的公开工具入口。WIP：原 CHKP/ABB-ROM、目标维度与资源、可引用的 MP12 变体模型、根/密文两角色攻击估计、正式参数仍缺。A2 应使用这些公共工具推进原文算法，不继续仅增加n2样本。
 
 修改清单：`src/ibme/hibe/mp12_chkp/__init__.py`、`src/ibme/lattice/research/__init__.py`、`pyproject.toml`、`src/ibme/assembly/registry.py`、A自有 `hibe_reference.py/hibe_registry.py`、`tests/test_public_research_api.py`、两个安装探针、本目录收据与当前状态/任务登记。准确命令与指纹见[audit.json](audit.json)。
