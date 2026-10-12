@@ -4,7 +4,7 @@
 
 框架沿用 Wang 的两层匿名 HIBE + IBS 通用构造；HIBE 与 IBS 独立实现、独立选参，再装配为兼容组合。不实施 Boyen–Li 的 Ext/ReExt 增强隐私。共同目标包括普通隐私、加强认证、自我伪造防护和完整密文字节篡改拒绝，安全结论须逐项说明前提。
 
-**实现边界：**`BaselineIBME`、`ByteAuthenticatedIBME` 接受两个后端对象；Hybrid 通过显式解码器连接底层 HIBE。[assembly](src/ibme/assembly/__init__.py) 已实现统一注册/配置/预检/装配，CLI 支持独立选择，组合驱动执行已有原语。默认 registry 仍拒绝未交付的原 CHKP 等后端；独立 `mp12-chkp-reference` 已能在 source checkout/Sage 的自定义 registry 运行，范围见[first_suite 专属契约](docs/specs/first-suite-research.md)。它不自动安装到默认 CLI，也不继承原 CHKP 定理。使用方式见 [FRAMEWORK_USAGE](docs/FRAMEWORK_USAGE.md)，实际执行证据见当前状态。
+**实现边界：**`BaselineIBME`、`ByteAuthenticatedIBME` 接受两个后端对象；Hybrid 通过显式解码器连接底层 HIBE。[assembly](src/ibme/assembly/__init__.py) 已实现统一注册/配置/预检/装配，CLI 支持独立选择，组合驱动执行已有原语。默认 registry 仍拒绝未交付的原 CHKP 等后端；独立 `mp12-chkp-reference` 已提供[可安装公共入口](src/ibme/hibe/mp12_chkp/__init__.py)和默认可选登记，范围见[first_suite 专属契约](docs/specs/first-suite-research.md)。无 Sage 明确 unavailable；需要新根/新接收者时还须显式本机 native engine。此入口不继承原 CHKP 定理或正式安全准入。使用方式见 [FRAMEWORK_USAGE](docs/FRAMEWORK_USAGE.md)，实际执行证据见当前状态。
 
 ## 1. 身份与编码
 

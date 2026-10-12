@@ -10,7 +10,7 @@
 
 六方法和 per-call `rng` 满足共同 HIBE 接口；真正 Extract→Derive，固定每叶256原像，并提供 `validate_key_binding`。PK/MSK/两级密钥/密文分别有版本与严格 codec，绑定全参数、公钥与身份路径；失败地址在私有状态中保留，恢复不能重新抽样。缺少 engine 的新进程可以恢复已有状态；新 Setup/委派需要指定的本机转换工具。用户持有的私钥、基、原像、RNG 和生产种子不进入 Git。
 
-当前 profile：n=2、q=549755813911、根/父/叶维度84/168/252、s_R²=16；最多2接收者、每人2子地址。内层身份最多86 B，载荷0—32 B；Hybrid 使用32 B seed，外层共同身份64 B。它是 source checkout/Sage 的研究后端，默认 registry/CLI/wheel 尚未接入；原 `chkp` 的 unavailable 记录不能改名充数。该 profile 已有公开噪声枚举恢复明文反例，不能用于正式推荐或宣称隐私安全。
+当前 profile：n=2、q=549755813911、根/父/叶维度84/168/252、s_R²=16；最多2接收者、每人2子地址。内层身份最多86 B，载荷0—32 B；Hybrid 使用32 B seed，外层共同身份64 B。它已通过[公共安装入口](../../src/ibme/hibe/mp12_chkp/__init__.py)接入 wheel、默认 registry/CLI，数学仍用同一 Sage provider；缺 Sage 明确 unavailable，缺本机 native engine 在新根/新接收者的熵和地址写入前拒绝，旧状态恢复与复用可以继续。原 `chkp` 的 unavailable 记录不能改名充数。该 profile 已有公开噪声枚举恢复明文反例，不能用于正式推荐或宣称隐私安全。
 
 真实采样/方程/规范解析/绑定、固定状态与完整组合的功能分别验收；raw CPA 容错和 Hybrid/BYTEAUTH 拒绝分层处理。正式参数、两角色 LWE 估计、变体模型和分布对应仍待核验，保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。本轮独立复核和版本边界见[PR 合入记录](../deliveries/2026-10-12-pr-review/README.md)；历史探针计数不与本轮测试相加。
 

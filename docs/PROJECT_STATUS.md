@@ -14,9 +14,9 @@
 
 ## 2. 代码与证据状态
 
-2026-10-12 用户授权审查所有 PR 并直接合并合格者：#11（包含 #10）、#9、#12 已依次合入远端 `main`，接收基点 `7686fd9`。本节按合入源码描述；精确 head/合入提交、测试和未完成范围见[本轮审查记录](deliveries/2026-10-12-pr-review/README.md)。旧[分工审查说明](workplans/2026-10-12/PR审查与分工修订说明.md)保留当时尚未合并的版本事实。
+2026-10-12 用户授权审查所有 PR 并直接合并合格者：#11（包含 #10）、#9、#12、后新增的 #13 均已合入远端 `main`，本批接收基点 `94f2168`。本节按合入源码描述；精确 head/合入提交、测试和未完成范围见[本轮审查记录](deliveries/2026-10-12-pr-review/README.md)。旧[分工审查说明](workplans/2026-10-12/PR审查与分工修订说明.md)保留当时尚未合并的版本事实。
 
-已接收文档整理 `2868cf5`、框架最终源码/修订 `57a02e5`、Luo 第二十三步 `e5e0b97` 和 A 的研究后端 `7795719`。历史框架实验单列于[原交付记录](deliveries/2026-10-11-framework/README.md)，本轮不重新累加历史计数。独立审查在固定隔离联合源码执行，350 个唯一 pytest 用例最终通过，另有 25 项最新 C64B assembly 实跑；主分支合入的 src/tests/experiments 与该验证树相同。首轮导入路径失败、复跑与准确范围全部保留。
+已接收文档整理 `2868cf5`、框架修订 `57a02e5`、Luo `e5e0b97`、A研究后端 `7795719` 和安装入口/隔离测试修订 `3c8441f`。历史框架实验单列于[原交付记录](deliveries/2026-10-11-framework/README.md)，本轮不重新累加历史计数。#9—#12 固定源码审查350个唯一 pytest 用例最终通过，另25项 C64B assembly 实跑；该批合入源码与验证树相同。#13 另验173 passed/2明确skip、55 Sage passed、真实安装/CLI和两组远端检查；测试交叠不相加，失败/复跑均保留。
 
 | 模块/产物 | 已有内容 | 尚缺内容及范围 |
 |---|---|---|
@@ -30,8 +30,8 @@
 | CHKP 本仓库 | `experiments/research/chkp_*` 的格基、采样、叶路径和缓存研究模块与测试 | 无 `src/ibme/hibe/chkp.py` 完整公开后端；T2/T3 与真实 32 B 接入未闭合 |
 | CHKP 第七步外部包 | Codex 直接返工包及定向验证，原输入与清单保留 | 第八步加量任务已发；本次目录检查未收到 `CHKP-step8-package/`；第七步新增改动不能冒称已获 DeepSeek 再验 |
 | 旧 `first_suite` 独立研究原型 | 已并入根/H/G/主父叶状态、有限 CSPRNG 采样、共享前导种子 KEM及 MP12 DelTrap；[固定交付](research/2026-10-11-first-suite-compact/README.md)记录 83/166/249 维 n=1 配置的真实父采样、同叶 256 原像、512 噪声位恢复与跨进程恢复 | 与第七步 cap32 不同版本；n=1 可公开恢复种子。旧组件不等于原 CHKP 或新计算型 MP12 完整后端；新后端单列，不能由旧“未实现”描述否定它 |
-| A 的 MP12 变体公开研究后端（已合入） | [2026-10-12 交付](research/team-a-delivery/2026-10-12-hibe-reference/README.md)：计算型 `[I\|Â]` 根、真实 DelTrap/固定256叶，六方法/五类对象/绑定，自定义 registry 接 Luo compact/Hybrid/BYTEAUTH；原交付21项组合收据，本轮在指定 Sage 环境独立重跑48项测试，无 skip | n2/q549755813911 为不安全调试输入，原交付8649次公开枚举实际恢复明文；原 CHKP theorem 不能直接继承。source-checkout/Sage 研究版本，非默认CLI/wheel；正式参数/模型、原 CHKP 和 ABB-ROM 仍待完成，不升级已准入数 |
-| A 的公共安装入口（PR #13 候选） | [第二批](research/team-a-delivery/2026-10-12-installed-api/README.md)：ibme.hibe.mp12_chkp / ibme.lattice.research、单一 provider、wheel与默认可选登记；审查复跑173 passed/2明确skip、55 Sage passed，仓库外安装Windows3/Sage10项 | 无Sage明确unavailable；新根/新接收者需要显式本地engine，旧状态可无engine恢复；原n2公开攻击和none/false保持，本PR仍待最终审查合入 |
+| A 的 MP12 变体公开研究后端（已合入） | [第一批](research/team-a-delivery/2026-10-12-hibe-reference/README.md)：计算型 `[I\|Â]` 根、真实 DelTrap/固定256叶，六方法/五类对象/绑定、自定义 registry；原交付21项组合收据，本轮独立48项Sage测试无skip；安装接入单列 | n2/q549755813911 不安全，原交付8649次公开枚举恢复明文；原 CHKP theorem 不能直接继承。正式参数/模型、原 CHKP 和 ABB-ROM 仍待，不升级已准入数 |
+| A 的公共安装入口（PR #13 已合入） | [第二批](research/team-a-delivery/2026-10-12-installed-api/README.md)：公共HIBE/格工具、单一 provider、wheel与默认可选登记；审查173 passed/2明确skip、55 Sage passed，仓库外安装Windows3/Sage10项，独立实际CLI8步通过 | 无Sage明确unavailable；新根/新接收者需要显式本地engine，旧状态可无engine恢复；原n2公开攻击和none/false保持；正式大尺寸部署/模型仍待 |
 | 本地 CLI 接收状态事务 | [接收状态证据](research/2026-10-10-receiver-persistence/README.md)：锁、pending、保存后输出及已有研究接收密钥复用 | 提供同 OS 本地进程失败后的保守阻止；不宣称防回滚、硬断电或跨 OS 分布式事务 |
 | 其它候选 | [候选基础包](research/2026-10-10-foundations/README.md)、Yu 同态、SRGG 代数/采样等部分实现 | 每项按实际算法和测试单独计数；不把候选卡或公开方程计作完整后端 |
 
@@ -72,7 +72,7 @@
 
 此前的[分工修订](workplans/2026-10-12/PR审查与分工修订说明.md)在 PR #11 工作树完成，当时没有合并。2026-10-12 本轮依用户授权完成 #9/#10/#11/#12 审查与合入，C64B 与 MP12 源码均已接收；没有改变密码算法或提升安全声明。后续按三人任务书推进，不把“代码已合入”写成“项目/正式参数已完成”。
 
-A 随后按新任务书开始独立分支实施，新增 MP12 变体研究后端和真实单配对，范围/攻击/参数缺口见上表交付；此前分工修订的远端两项 CI 已完成通过。A 目标仍 active：公开研究接口已实跑，正式维度/两角色困难性/模型对应和部署工具未闭合，A2/AR 尚未交付。新结果不覆盖原型/旧报告或其它未测组合。
+A 随后按新任务书开始独立分支实施，新增 MP12 变体研究后端和真实单配对，范围/攻击/参数缺口见上表交付。A 目标仍 active：公开接口及安装工具已实跑，正式维度/两角色困难性/模型对应和大尺寸部署工具未闭合，A2/AR 尚未交付。新结果不覆盖原型/旧报告或其它未测组合。
 
 A 第二批已补[可安装公开 API 与默认 CLI](research/team-a-delivery/2026-10-12-installed-api/README.md)：Windows/Sage 均在仓库外验证 provider 来自安装包；Sage 无native/无熵重放原四种匹配，新安装CLI真实8步通过，55项Sage回归通过。默认入口在无Sage时明确 unavailable；缺native只阻止新根/新receiver，并在地址写入前拒绝。原n2攻击/none/false、原CHKP/ABB、正式维度/模型与双角色困难性仍待，不能称A完成。
 

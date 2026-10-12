@@ -188,10 +188,18 @@
     }
   ],
   "archived_evidence_sha256": {
-    "c64b-assembly.json": "4a4544ed5677e6d07f342ea9bd1e3308c71935f3eec515f0c88969f1daa90036",
+    "c64b-assembly.json": "ca4627b04d837e6d300a48f1844d30b991a19d0b6f038ec9e0074df22d602563",
     "certificate-fixed-env.junit.xml": "618b37232423fadd416f64f797e838a0ec4502a205e60654eeb26d11826fc4d0",
     "evidence.junit.xml": "3c0d8b54badd5794b19edd3943f09c8926de91b49ce4aacab8b5bfdea5b02f4b",
-    "initial-integration.junit.xml": "9c16a1f62881c9bc16c812a37651b25758ba7ce38cc5f4fe5abca37f32d51df1",
+    "initial-integration.junit.xml": "8df423db5acb80db7d009bbf19a17cd72887172f67041b088732ac06f2dcbbae",
+    "pr13-cli-lifecycle.json": "75566488d7a6c84f8edb4bf324e94a933324e8b39d820dd5edfaf5f4cd5e0be2",
+    "pr13-installed-independence.junit.xml": "697dd8d73ff31619b9c28b3b21dc87fcc4a6961e8f7dd32d4dc9f8bc0faa3ecf",
+    "pr13-portable.junit.xml": "ac7dad17010aea1b0a299592db383871e71dec615403e21e80a93fd54b69cba7",
+    "pr13-review.json": "66c2622409017b6808becc21d0c4558842587fb452da6a9fee4a58747674748e",
+    "pr13-sage-installed.json": "0c6b1be7215df6e64a1e3153968a297c374ec121cf604bab7c6c3cd87d7c070e",
+    "pr13-sage.junit.xml": "74737fc1726bb67b7a5015a5761659254d5fcbd122c543ce82ce51fb7a17de16",
+    "pr13-wheel-inspection.json": "9fb87cd2f2d009e1afbf0fe3f563c95a828a8e7e5043778b2c1b792478235eb4",
+    "pr13-windows-installed.json": "3c0fef5f022fcba2d409d25d9006006d81d340c0d5baf686ac296b128afde439",
     "sage.junit.xml": "1655d7dbd253732856a881af01baf9d610ae964e26ad3839b08641c4d636d843"
   },
   "native_engine_sha256": "27ec5bbb759384e2e535b5e136aa9ca2db501a3ac350c5f217d6bf114f73b284",
@@ -213,5 +221,16 @@
     "python": "3.13.14",
     "os": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
     "runtime": "~/miniconda3/envs/sage"
+  },
+  "archive_line_endings": "LF; archived hashes describe archived bytes; junit_runs hashes retain original local run bytes.",
+  "additional_pr13_record": "pr13-review.json",
+  "final_source_main": "94f21683983921b2969ab5c5647d9cb2dab402b8",
+  "final_document_checks": {
+    "local_links_checked": 107,
+    "missing_links": 0,
+    "candidate_routes": 19,
+    "task_dependency_dag": true,
+    "code_changes": 0,
+    "diff_check": true
   }
 }
