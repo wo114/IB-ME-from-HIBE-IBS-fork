@@ -42,7 +42,7 @@ parameters_are_formal=false
 |---|---|---|
 | 首次 `chkp-lifetime-2026-10-12` | setup 收据通过：根维127、约4.126 s、1,362,388随机字节；主控记录 parent 在约942 s后终止，停留于巨大 HNF 变换后的行列式工作。没有 parent 成功收据，原目录永久保留 pending | 不是父采样通过；也不能仅据运行中止判定论文采样数学失败 |
 | 行列式修复后 `chkp-lifetime-2026-10-12-r2` | setup通过：3.225 s、1,406,180随机字节；parent约750 s后终止，已越过ToBasis，栈位于δ=.999的LLL wrapper。失败收据及pending保留 | 没有父成功对象；不把确定性后处理超时写成采样分布或数学前提失败 |
-| 固定LLL v2后 `chkp-lifetime-2026-10-12-r3` | 源码`0c9a7f3`；待主控回填各阶段收据、版本及耗时 | 不得覆盖前两次、删除 pending 重抽，或将三次尝试合并成一次成功 |
+| 固定LLL v2后 `chkp-lifetime-2026-10-12-r3` | 根与父使用源码`0c9a7f3`；[父成功收据](evidence/lifecycle/parent.json)：254维、4606.795 s、26,906,498随机字节、459,799 B对象、进程峰值RSS520,976 KiB。叶使用`2976c1a`，[302.890 s后准备阶段失败](attempt-3-leaf-preparation-failed.json)：ValueError、0随机字节，保留pending与失败叶状态；正在只读定位首门 | 父通过仍不是叶通过；不得覆盖失败、删除 pending 重抽，或将不同尝试合并成一次成功 |
 | 真实 CHKP + C64B 组合 | 待 prepare、第二接收者、其余三叶及 checks 的逐阶段收据 | 不用教学 ABB10、旧 first_suite 或 mock 结果代替 |
 | CLI | 待分别填写“导入已生成状态后的 CLI 操作”和“新状态的实际 CLI setup”收据 | 导入状态不能记为由 CLI setup 生成；必须区分二者来源 |
 
@@ -52,7 +52,7 @@ LLL v2固定δ=.75、无变换矩阵，精确复核size≤.5、Lovasz≥.74以�
 
 ## 5. 已执行的定向检查
 
-本轮10份JUnit已集中归档；[逐文件索引](evidence/regression/index.json)列出测试文件、复跑参数和版本边界。多个批次覆盖相同测试，**不相加为独立测试总数**。
+本轮11份JUnit已集中归档；[逐文件索引](evidence/regression/index.json)列出测试文件、复跑参数和版本边界。另有一份明确标注为原输出转录的100项测试记录。多个批次覆盖相同测试，**不相加为独立测试总数**。
 
 | 收据 | 结果 | 范围与版本 |
 |---|---|---|
@@ -66,8 +66,14 @@ LLL v2固定δ=.75、无变换矩阵，精确复核size≤.5、Lovasz≥.74以�
 | [固定LLL v2](evidence/regression/chkp-lll-v2.xml) | 40 passed | 对应`0c9a7f3`，完整格/GS/size/Lovasz检查 |
 | [交付清单检查器](evidence/regression/chkp-delivery-audit.xml) | 46 passed / 1 skipped | Windows只跳过需要符号链接权限的用例；独立WSL普通Python执行47项全过 |
 | [精确采样算术等价](evidence/regression/chkp-sampler-equivalence.xml) | 48 passed | 对应`0c1a77d`；新旧输出、逐次耗熵和中止一致，含ExtendedGPV和大有理数边界 |
+| [采样准备几何等价](evidence/regression/chkp-gs-equivalence-results.json) | 100 passed | 对应`2976c1a`；执行子代理原命令/输出转录，非JUnit，也非主控另行复跑 |
+| [LLL几何缓存等价](evidence/regression/chkp-lll-geometry.xml) | 54 passed | 对应`be09ecb`；14个新增几何/最终输出对照及40个既有约减/格证书用例 |
 
 精确算术优化预存共同分母下的整数权重，以整数点积计算原来的有理投影；Gaussian指数采用精确差平方因式分解。原参数、抽样顺序、整数质量和失败规则不变；额外保存O(d²)整数权重，不预分配随机带。此处不根据小算术探针声称整链加速倍数。
+
+`2976c1a`进一步保留每一个GS中间值及门的顺序，用内部QQ专用位长检查减少通用解析开销。投影改用原始列点积：已减去的更早GS向量与当前GS向量精确正交，因此每次残差及最终权重保持相同；外部输入仍走原类型/文本检查。定向100项通过，包含逐值/逐门、最终值合格但中间值超帽的反例、证书与随机调用轨迹对照。[公开48维探针](evidence/regression/public-gs-gate-probe.json)三次CPU中位数0.984899→0.498563 s；这是公开夹具的局部结果，不代表真实254维或整链加速。此改动不改变参数、分布、安全声明或已在运行的父进程。
+
+`be09ecb`对LLL之后的QQ正交化复用每条GS向量的平方范数，避免Sage原实现对每次投影重新计算；仍是原始列投影，精确输出相同。[公开24/40/64维对照](evidence/regression/chkp-lll-geometry-timing.json)各三轮与Sage逐元素一致，局部墙钟中位加速约2.42/2.68/2.42倍；同机并发负载下的这些数不预测整链耗时。LLL、尺寸约减及Lovász/GS/完整格检查没有删减。r3父使用旧实现已经成功，不把新方法的局部成绩回写成其真实耗时。
 
 真实组合预检在Sage通过两种格式，均标记`sampled=false`：签名29455/16383 B、最大应用消息3924 B、内层86/86/32 B。普通Windows Python按预期报告Sage不可用，没有教学或mock回退。真正采样和密码操作只计入各自阶段收据。
 

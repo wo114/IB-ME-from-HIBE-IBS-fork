@@ -260,6 +260,31 @@
       ],
       "tested_change_commit": "0c1a77d",
       "exact_execution_HEAD_recorded": false
+    },
+    {
+      "receipt": "chkp-lll-geometry.xml",
+      "passed": 54,
+      "skipped": 0,
+      "failed": 0,
+      "runtime": "WSL Sage",
+      "test_files": [
+        "tests/test_chkp_lll_geometry.py",
+        "tests/test_chkp_exact_product_certificate.py",
+        "tests/test_chkp_postprocess_equivalence.py",
+        "tests/test_chkp_runtime_core.py"
+      ],
+      "replay_arguments": [
+        "-B",
+        "-m",
+        "pytest",
+        "tests/test_chkp_lll_geometry.py",
+        "tests/test_chkp_exact_product_certificate.py",
+        "tests/test_chkp_postprocess_equivalence.py",
+        "tests/test_chkp_runtime_core.py",
+        "-q"
+      ],
+      "tested_change_commit": "be09ecb",
+      "exact_execution_HEAD_recorded": false
     }
   ],
   "note": "Overlapping runs are not added together as unique test cases. tested_change_commit identifies the reviewed change, not a claim that all historical runs used the final tree. Replay file order is reconstructed from JUnit; it is not the original command transcript.",
