@@ -28,7 +28,7 @@ def check_object(value,p):
     if pk.params!=p: raise SerializationError("selected MP12 HIBE parameter snapshot mismatch")
 
 
-def backend_spec(binary):
+def backend_spec(binary=None):
     def factory(rng,signature_format):
         if rng is not None or signature_format!="reference":
             raise InvalidParameterError("HIBE uses per-call entropy and reference wire")
