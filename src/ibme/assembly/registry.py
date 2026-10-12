@@ -127,6 +127,25 @@ def _chkp_configuration(params, config):
     expected = "hybrid" if params.message_mode == "seed32" else "direct"
     if config["transport"] != expected:
         raise InvalidParameterError(f"CHKP {params.message_mode} profile requires {expected} transport")
+    # Pure exact arithmetic: no Sage, noise tables, key material, or entropy.
+    # This engineering gate is sufficient, not necessary. Its ideal bound is
+    # conditional on the checked leaf norm; finite TV/abort and security
+    # admission remain separate ledgers. Custom primitive diagnostics may
+    # use other parameters, but the shared protocol must not silently admit
+    # them when this declared decoding budget fails.
+    from ibme.lattice.chkp.joint_parameters import evaluate_noise
+    from ibme.lattice.chkp.noise_budget import RoundedNoiseParams
+    RoundedNoiseParams(params.q, params.alpha, tail_bits=params.noise_tail_bits,
+                       mass_bits=params.noise_mass_bits, precision_bits=params.noise_precision_bits,
+                       max_radius=params.noise_max_radius)
+    noise = evaluate_noise(q=params.q, dimension=params.leaf_dimension,
+                           width_squared=params.leaf_width_squared, alpha=params.alpha,
+                           error_bits=64, seed_bits=256, encapsulations=2**20)
+    if noise['conditional_noise_sufficient'] is not True:
+        raise InvalidParameterError(
+            'CHKP fails the conditional decoding sufficient gate '
+            '(error_bits=64, seed_bits=256, encapsulations=2^20); '
+            'this is an engineering budget, not a necessary condition or security admission')
 
 
 def _equal(actual, expected, label):

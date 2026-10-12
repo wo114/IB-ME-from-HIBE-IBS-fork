@@ -1,5 +1,7 @@
 """Staged real CHKP + Luo C64B / BYTEAUTH acceptance in the shared assembly.
 
+Run: PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m experiments.research.chkp_combination preflight
+
 Run ``preflight`` first; it neither reads private files nor samples anything.
 Then, in WSL Sage, run prepare, receiver-Carol, leaf-Bob-Eve,
 leaf-Carol-Alice, leaf-Carol-Eve, and checks against the same --directory.
