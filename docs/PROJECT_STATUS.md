@@ -72,11 +72,11 @@
 
 此前的[分工修订](workplans/2026-10-12/PR审查与分工修订说明.md)在 PR #11 工作树完成，当时没有合并。2026-10-12 本轮依用户授权完成 #9/#10/#11/#12 审查与合入，C64B 与 MP12 源码均已接收；没有改变密码算法或提升安全声明。后续按三人任务书推进，不把“代码已合入”写成“项目/正式参数已完成”。
 
-A 随后按新任务书开始独立分支实施，新增 MP12 变体研究后端和真实单配对，范围/攻击/参数缺口见上表交付。A 目标仍 active：公开接口及安装工具已实跑，正式维度/两角色困难性/模型对应和大尺寸部署工具未闭合，A2/AR 尚未交付。新结果不覆盖原型/旧报告或其它未测组合。
+A 随后按新任务书开始独立分支实施，新增 MP12 变体研究后端和真实单配对，范围/攻击/参数缺口见上表交付。A 目标仍 active：公开接口及安装工具已实跑，正式维度/两角色困难性/模型对应和大尺寸部署工具未闭合，A2尚未交完整后端、AR仍待。新结果不覆盖原型/旧报告或其它未测组合。
 
 A 第二批已补[可安装公开 API 与默认 CLI](research/team-a-delivery/2026-10-12-installed-api/README.md)：Windows/Sage 均在仓库外验证 provider 来自安装包；Sage 无native/无熵重放原四种匹配，新安装CLI真实8步通过，55项Sage回归通过。默认入口在无Sage时明确 unavailable；缺native只阻止新根/新receiver，并在地址写入前拒绝。原n2攻击/none/false、原CHKP/ABB、正式维度/模型与双角色困难性仍待，不能称A完成。
 
-A2 已有[SampleR/BasisDel原语批次](research/team-a-delivery/2026-10-12-abb-primitives/README.md)：整矩阵Gaussian条件采样、变换子格的完整格补全、真实随机化、非交换两层及直接产品核验。24项新Sage测试/57项含相关回归通过，保存私有84维输入复用成功；旧偏斜基准入失败保持，未调旧guard。仍无ABB TrapGen/位或字节加解密/完整HIBE；m84不满足论文完整选参，不能加后端计数。安装PR的Luo独立性测试已修复，远端Basic/Hybrid通过并被接收；本批原语交付另待新PR。
+A2 已有[SampleR/BasisDel原语批次](research/team-a-delivery/2026-10-12-abb-primitives/README.md)：整矩阵Gaussian条件采样、变换子格的完整格补全、真实随机化、非交换两层及直接产品核验。24项新Sage测试/57项含相关回归通过，保存私有84维输入复用成功；旧偏斜基准入失败保持，未调旧guard。随后[AP09根/原文位加解密批次](research/team-a-delivery/2026-10-12-abb-root-bits/README.md)补真实TrapGen族、208维核验、同一248维真实根的八比特恢复及公开n1攻击，33项新测试纳入116 Sage pass/3旧私有witness skip；三组同输入资源/宽度筛查明确不可执行项。仍无完整ABB两层后端/codec/组合，none/false和已准入数保持；正式域与共享委派/宽Gaussian工具继续。原CHKP最新PR #14已交研究整链，本A2分支尚未合入该PR，不重复编写其实现。
 
 ## 4. 当前入口与证据定位
 

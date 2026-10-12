@@ -1,0 +1,126 @@
+{
+  "schema": "A-ABB-ROOT-BITS-DELIVERY/1",
+  "date": "2026-10-12",
+  "baseline": "facbc8da3b3d22333a44923b117c5835715f1854",
+  "inherited_A2_primitives_commit": "9e4b592",
+  "accepted_main_dependency": "14f11634840e21751f9f8d0122dddf8651ee4eef",
+  "latest_teammate_CHKP_PR": {
+    "number": 14,
+    "head": "87deec24f52c1c776a489566cf76f11d0d4a5aff",
+    "state_at_read": "OPEN",
+    "in_this_branch": false,
+    "own_implementation_repeated": false
+  },
+  "final_source_sha256": {
+    "src/ibme/hibe/abb_rom/trapgen.py": "e632c46da9c563b3ee3d6df18b957d33f1712207f4cf16600415e358e328320a",
+    "src/ibme/hibe/abb_rom/bit_encryption.py": "a38121004f3a06ad85679edccda9e58cb460b9eb7fa6d6bec23c6e76382369a6",
+    "src/ibme/hibe/abb_rom/parameter_screen.py": "aeda6132df6b4cae412e61fc110c91eb5d16ba3f1ef116529bedbba823ace216",
+    "src/ibme/hibe/abb_rom/__init__.py": "03735eddadfcf3934b3a674e3c17458fe58739dfecaf274847f33c5ab4b223c7",
+    "experiments/research/abb_rom/__init__.py": "ad4dd39b162ff765dc45a2eda6a6ab0341e2a2ce6e2dfb8a1aadefdcf717746e",
+    "experiments/research/abb_rom/root_bits_probe.py": "4065012fa372ff34e5ae3fc3f2899c870f32c5fe083dff0207b4e0573b55996c",
+    "experiments/research/abb_rom/parameter_probe.py": "e3c8f8d9eac3080276dba14a164c8bb26471d70b4df5c526957b6481f01aa1ea",
+    "experiments/research/abb_rom/public_attack_probe.py": "5bcab18eb0900451a64be83958e79ede8264e29b34ff697f5f66749a61b25cf4",
+    "experiments/attacks/abb_small_dimension.py": "a4136668a3f136d1eecbeab12b9c859df21c78a59a81c3b558a4fd153e438941",
+    "tests/test_abb_rom_trapgen_and_bits.py": "258533f452d848f322733251c9e57c64df75bcfdb2600a13609b7ebc01956842",
+    "tests/test_abb_rom_parameter_screen.py": "9a30e9c1972dca7eb2663c688fa2a165d9fe41b6580017dd45bbb931430a4503"
+  },
+  "paper_sha256": {
+    "papers/2010_lattice_basis_delegation_agrawal.pdf": "f12232770a19c612e5f430f94a556d74232ac08d9882e34367b60b3bbf205d11",
+    "papers/2009_generating_shorter_bases_alwen_peikert_full.pdf": "cab8f0808bd693f049ac0e6b3273389b8062d552efd15d3ea00f76cb767f3861"
+  },
+  "environment": {
+    "CPU": "Intel Core Ultra 9 275HX",
+    "WSL_reported_MemTotal_kib": 16092856,
+    "Sage": "10.9",
+    "Sage_Python": "3.13.14",
+    "Windows_Python": "3.14.6",
+    "linux": "6.18.33.2-microsoft-standard-WSL2",
+    "shared_machine": true
+  },
+  "tests": [
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q -rs --tb=short tests/test_first_suite_finite_sampling.py tests/test_first_suite_compact_delegation.py tests/test_public_research_api.py tests/test_abb_rom_trapgen_and_bits.py tests/test_abb_rom_parameter_screen.py tests/test_abb_rom_primitives.py tests/test_chkp_genbasis.py --junitxml=test-results/abb-sage-final.junit.xml",
+      "result": "116 passed, 3 skipped",
+      "new_tests": 33,
+      "skips": [
+        "two old native private witnesses absent",
+        "one old 84-dimensional private witness absent"
+      ],
+      "junit": "sage.junit.xml"
+    },
+    {
+      "command": "$env:PYTHONPATH=\"src;.\"; python -m pytest -p no:cacheprovider -q -rs --tb=short tests/test_public_research_api.py tests/test_assembly.py tests/test_cli_selection.py tests/test_cli_receiver_state.py tests/test_cli_state_lock.py --junitxml=test-results/abb-windows-regression.junit.xml",
+      "result": "116 passed, 5 skipped",
+      "skips": "Sage-dependent existing tests",
+      "junit": "windows.junit.xml"
+    }
+  ],
+  "initial_failures": [
+    {
+      "kind": "two public preflight tests selected Hadamard scale below the deterministic required bound",
+      "action": "fixed the test input before entropy; no guard change"
+    },
+    {
+      "kind": "Windows regression command named a nonexistent test file",
+      "result": "no tests collected",
+      "action": "correct filenames then actual regression passed"
+    },
+    {
+      "kind": "original real root/bit run failed only in final git metadata capture under WSL",
+      "artifacts_retained": "complete private root and eight ciphertexts; no final public timings/counters",
+      "action": "host-verified commit before entropy plus incremental receipts; retained-instance validation, root/encryption generations zero"
+    }
+  ],
+  "published_receipt_source_scope": {
+    "root_and_bit_mathematical_provider_hashes_match_final": true,
+    "runner_after_receipt_changes": "removed two basis-dependent diagnostic fields from public export; mathematical providers unchanged; receipt source hash retained"
+  },
+  "same_input_notes": "208-dimensional root is a unit witness; 248-dimensional real root/bit experiment is separate; neither proves two-level ABB correctness",
+  "full_HIBE_backend_complete": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "remaining": [
+    "original two BasisDel steps in a complete executable ABB HIBE",
+    "large dimension/wide Gaussian common tools",
+    "five strict public object codecs and frozen-address/abort recovery",
+    "BackendSpec factory/decoders and real Luo combination",
+    "Theorem3 finite constants, matrix RO and LWE attack estimates",
+    "AR reserve handoff"
+  ],
+  "modified_code_files": [
+    "src/ibme/hibe/abb_rom/trapgen.py",
+    "src/ibme/hibe/abb_rom/bit_encryption.py",
+    "src/ibme/hibe/abb_rom/parameter_screen.py",
+    "src/ibme/hibe/abb_rom/__init__.py",
+    "experiments/research/abb_rom/__init__.py",
+    "experiments/research/abb_rom/root_bits_probe.py",
+    "experiments/research/abb_rom/parameter_probe.py",
+    "experiments/research/abb_rom/public_attack_probe.py",
+    "experiments/attacks/abb_small_dimension.py",
+    "tests/test_abb_rom_trapgen_and_bits.py",
+    "tests/test_abb_rom_parameter_screen.py"
+  ],
+  "changed_files": [
+    "docs/PROJECT_STATUS.md",
+    "docs/workplans/2026-10-12/tasks.json",
+    "src/ibme/hibe/abb_rom/__init__.py",
+    "docs/research/team-a-delivery/2026-10-12-abb-root-bits/README.md",
+    "docs/research/team-a-delivery/2026-10-12-abb-root-bits/audit.json",
+    "docs/research/team-a-delivery/2026-10-12-abb-root-bits/parameter-screen.json",
+    "docs/research/team-a-delivery/2026-10-12-abb-root-bits/public-attack.json",
+    "docs/research/team-a-delivery/2026-10-12-abb-root-bits/root-bit-restoration.json",
+    "docs/research/team-a-delivery/2026-10-12-abb-root-bits/sage.junit.xml",
+    "docs/research/team-a-delivery/2026-10-12-abb-root-bits/windows.junit.xml",
+    "experiments/attacks/abb_small_dimension.py",
+    "experiments/research/abb_rom/__init__.py",
+    "experiments/research/abb_rom/parameter_probe.py",
+    "experiments/research/abb_rom/public_attack_probe.py",
+    "experiments/research/abb_rom/root_bits_probe.py",
+    "src/ibme/hibe/abb_rom/bit_encryption.py",
+    "src/ibme/hibe/abb_rom/parameter_screen.py",
+    "src/ibme/hibe/abb_rom/trapgen.py",
+    "tests/test_abb_rom_parameter_screen.py",
+    "tests/test_abb_rom_trapgen_and_bits.py"
+  ]
+}

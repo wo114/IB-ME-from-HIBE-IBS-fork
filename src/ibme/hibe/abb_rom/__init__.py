@@ -8,13 +8,20 @@ from importlib import import_module
 from ibme.lattice.research import require_sage
 
 __all__ = ["FiniteSampleR", "SampleRResult", "BasisDelPrepared", "prepare_basis_del",
-           "FiniteBasisDel", "prefix_matrices"]
+           "FiniteBasisDel", "prefix_matrices", "ABBTrapGenParams", "ABBTrapGenResult",
+           "abb_trapgen", "ABBBitPublic", "ABBBitCiphertext", "ABBBitEncryptor",
+           "abb_decode_phase", "abb_decrypt_bit", "ABBBitDecryptor", "abb_parameter_screen"]
+
+_TRAPGEN = {"ABBTrapGenParams", "ABBTrapGenResult", "abb_trapgen"}
+_BITS = {"ABBBitPublic", "ABBBitCiphertext", "ABBBitEncryptor", "abb_decode_phase", "abb_decrypt_bit", "ABBBitDecryptor"}
 
 
 def __getattr__(name):
     if name not in __all__:raise AttributeError(name)
     require_sage()
-    value=getattr(import_module("ibme.hibe.abb_rom.primitives"),name)
+    module = ("trapgen" if name in _TRAPGEN else "bit_encryption" if name in _BITS
+              else "parameter_screen" if name == "abb_parameter_screen" else "primitives")
+    value=getattr(import_module("ibme.hibe.abb_rom." + module),name)
     globals()[name]=value
     return value
 
