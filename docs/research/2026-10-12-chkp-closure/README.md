@@ -1,15 +1,15 @@
 # CHKP 公开后端收尾记录
 
-日期：2026-10-12。**本页当前为待实际运行证据回填的记录**，不代表整链已经通过。全项目排序仍由[项目状态](../../PROJECT_STATUS.md)维护；长期接口和算法边界见[CHKP 契约](../../specs/chkp-hibe.md)。
+日期：2026-10-12。**本轮研究实现和实际功能验收已完成，正式安全参数仍未准入。**12个必要阶段收据已齐：真实根、父、四个256目标叶、种子封装/恢复、CHKP + Luo C64B compact + Hybrid + BYTEAUTH组合及CLI。根父复用有独立来源记录，旧失败没有覆盖。全项目排序由[项目状态](../../PROJECT_STATUS.md)维护；长期接口和算法边界见[CHKP契约](../../specs/chkp-hibe.md)。
 
 ## 1. 已实现的范围
 
 | 项目 | 本次代码范围 | 声明边界 |
 |---|---|---|
-| 公开 HIBE 后端 | [CHKP](../../../src/ibme/hibe/chkp/) 的 Setup、Extract、Derive、Encrypt、Decrypt、对象加载 | 公开接口与实际算法实现已存在；真实生命周期是否完成须看对应收据 |
+| 公开 HIBE 后端 | [CHKP](../../../src/ibme/hibe/chkp/) 的 Setup、Extract、Derive、Encrypt、Decrypt、对象加载 | 六方法研究后端与真实生命周期已验收；安全属性按下述参数边界报告 |
 | 根、父、叶 | MP12 GenTrap 转完整格基；CHKP ExtBasis/RandBasis/ToBasis；最大深度 256 个独立索引目标的 SampleD | 父委派没有用 MP12 DelTrap 替代；历史 `first_suite` 的独立 MP12 profile 不计作本后端验收 |
 | 随机性与噪声 | CSPRNG 字节注入；有限 Gaussian；均匀加密向量；实际 `round(qX)` 噪声 | α 是 Gaussian 宽度，非标准差；有限分布误差、中止、资源失败分别记录 |
-| 统一装配 | `hibe=chkp` 可与独立选择的 IBS 进入兼容检查；当前实跑目标是 Hybrid + Luo C64B + BYTEAUTH | reference/compact 是同一 IBS 的两种格式，不能算两套算法 |
+| 统一装配 | `hibe=chkp` 可与独立选择的IBS进入兼容检查；本轮实际通过Hybrid + Luo C64B compact + BYTEAUTH | 该结果仅属于所记录配置；reference/compact是同一IBS的两种格式，不能算两套算法 |
 | 状态与恢复 | 完整公开上下文和参数绑定；固定地址缓存；规范私密对象；CLI 主/接收状态事务 | 同 OS 本地锁与 pending 提供失败后保守阻止；无外部存储认证、防回滚或跨系统锁保证 |
 
 根和采样工具统一从 `src/ibme/lattice/chkp/` 导入，旧实验入口保持兼容，不再复制两套运行时。论文、参数、安全归约与实现对应不因代码迁移而自动成立。
@@ -44,8 +44,8 @@ parameters_are_formal=false
 | 行列式修复后 `chkp-lifetime-2026-10-12-r2` | setup通过：3.225 s、1,406,180随机字节；parent约750 s后终止，已越过ToBasis，栈位于δ=.999的LLL wrapper。失败收据及pending保留 | 没有父成功对象；不把确定性后处理超时写成采样分布或数学前提失败 |
 | 固定LLL v2后 `chkp-lifetime-2026-10-12-r3` | 根与父使用源码`0c9a7f3`；[父成功收据](evidence/lifecycle/parent.json)：254维、4606.795 s、26,906,498随机字节、459,799 B对象、进程峰值RSS520,976 KiB。叶使用`2976c1a`，[302.890 s后准备阶段失败](attempt-3-leaf-preparation-failed.json)：ValueError、0随机字节；已确定为标量平方宽度执行域上限，保留pending与失败叶状态 | 父通过仍不是叶通过；不得覆盖失败、删除 pending 重抽，或将不同尝试合并成一次成功 |
 | 显式继续 `chkp-lifetime-2026-10-12-r3-resumed` | `0765304`将固定标量执行域扩展至`2^88`；`3c53df1`恢复工具实际通过，11.115 s、0随机字节，根/主密钥逐字节不变、父等于原master缓存。[叶256目标真实采样](evidence/lifecycle/leaf.json)通过：347.726 s、42,660,095随机字节、381维、873,447 B对象、峰值RSS335,940 KiB。[封装/恢复](evidence/lifecycle/roundtrip.json)及无熵缓存复用通过；5329个公开误差组合中唯一seed候选与真实seed匹配 | 不把复制的setup/parent记为本轮新生成；公开攻击成功保留为小维参数不安全的负控，不能因功能通过授予安全等级 |
-| 真实 CHKP + C64B 组合 | 待 prepare、第二接收者、其余三叶及 checks 的逐阶段收据 | 不用教学 ABB10、旧 first_suite 或 mock 结果代替 |
-| CLI | [新状态实际setup/catalog](evidence/cli/setup.json)已通过8项检查、2个实际命令；使用`0db4da9`，总耗时3.927 s。导入已生成组合状态后的CLI操作待实际收据 | 导入状态不能记为由CLI setup生成；此次setup不因后续继续而重跑 |
+| 真实 CHKP + C64B 组合 | [prepare](evidence/combination/prepare.json)复用Bob/Alice真实叶并生成Luo C64B发送密钥；[第二接收者Carol](evidence/combination/receiver-Carol.json)通过：3821.835 s、27,045,274随机字节、461,291 B接收密钥。其余三叶及[44项组合检查](evidence/combination/checks.json)全部通过 | 不用教学ABB10、旧first_suite或mock结果代替；不同父基的两次耗时不能直接作为优化加速比 |
+| CLI | [新状态实际setup/catalog](evidence/cli/setup.json)通过8项检查、2个实际命令，使用`0db4da9`，总耗时3.927 s；[导入已生成组合状态](evidence/cli/imported.json)通过59项检查、15个实际命令，120.360 s | 导入状态没有重新生成CHKP根父叶或IBS身份；不能记为由该CLI setup生成 |
 
 ### r3零熵失败的定位与继续原则
 
@@ -56,6 +56,8 @@ parameters_are_formal=false
 用户明确要求从已有成功结果继续。因此修复限定于采样器可执行域及有记录的零熵预检恢复，保持原公钥/上下文/参数/根/父基；不再次GenTrap、RandBasis或LLL，不重抽根父。原r3失败叶状态和pending保留。恢复分支必须核验没有成功叶或耗熵失败，并单列来源、复制结果与第一次实际叶采样；普通后端的失败墓碑规则不因此放开。安全参数和全局抗回滚结论仍未获得准入。
 
 后续[完整预检](evidence/diagnostics/preflight-complete.json)已通过全部17项门，包括ExtendedGPV构造、路径准入、真实身份矩阵绑定及256目标总预算。预检使用与原父快照、`2976c1a`源码及未变化GSO函数严格绑定的本地几何缓存，没有重算GSO或采样。`2^88`只是可执行标量平方宽度上限，实际叶宽度、概率质量、采样顺序、随机带上限及全部误差门保持原值。实际叶调用仍自行执行正常构造检查。[恢复收据](evidence/lifecycle/resume.json)只声明可以进入第一次叶采样；[源setup](evidence/lifecycle/history/setup.json)、[源parent](evidence/lifecycle/history/parent.json)和[源失败](evidence/lifecycle/history/leaf-failed.json)单列且逐字节保留。
+
+[历史完整预检源码](evidence/diagnostics/leaf_full_preflight.py.txt)以非执行文本保存原始字节，SHA-256与原收据一致；静态检查确认其中没有密钥、几何数值或私密文件的固定哈希。原运行依赖本地私密父基及其可信几何缓存，因此公开包允许审查代码和来源链，**不能独立重现同一私密实例的缓存诊断**。私密cache、binding和intent不发布。公开可复用入口是下方生命周期命令及[显式继续工具](../../../experiments/research/chkp_resume_pre_entropy.py)；前者用于新研究实例，后者仅针对满足条件且保留完整本地证据的原实例，均不能把收到的外部pickle当作可信输入。
 
 行列式修复使用精确整数乘积及完整格指数证书，不移除核空间、完整性或上三角检查；LLL 的尺寸约减复用经精确运算保持的有序 GS 向量。这里不填写未经实测的加速倍数。
 
@@ -93,15 +95,29 @@ LLL v2固定δ=.75、无变换矩阵，精确复核size≤.5、Lovasz≥.74以�
 
 运行环境见[环境记录](environment.json)。Sage使用WSL的`~/miniconda3/envs/sage`；真实随机源为系统CSPRNG，固定随机值只用于明确的测试夹具。已有JUnit不是重跑全部历史研究的声明。主控复跑精确采样检查时曾输入不存在的测试文件名，pytest未收集任何测试；纠正文件名后48项通过，未触发密码重抽。
 
-## 6. 收尾条件与未完成的安全工作
+## 6. 研究验收结果与未完成的安全工作
 
-研究整链收尾须具备：根→父→同叶256目标→实际噪声封装/恢复、四种身份匹配、对象跨进程恢复、无熵缓存复用、分层篡改拒绝、公开恢复负控、真实组合和 CLI 收据。失败/超时完整保留，空 checks、跳过或历史通过不得充当本轮完成。
+本轮已实际完成：根→父→同叶256目标→实际噪声封装/恢复、四种身份匹配、对象跨进程恢复、无熵缓存复用、分层篡改拒绝、公开恢复负控、真实组合和CLI。失败/超时完整保留；复制的根父明确标记`reused_actual_result`，其历史测量不算本轮新生成。
+
+另外三个新叶地址分别为[Bob/Eve](evidence/combination/leaf-Bob-Eve.json)305.298 s、[Carol/Alice](evidence/combination/leaf-Carol-Alice.json)284.248 s、[Carol/Eve](evidence/combination/leaf-Carol-Eve.json)282.366 s。每个地址256目标，采样后加载字节往返均通过。本轮每个新地址只实采一次，没有根据失败结果另选样本。
+
+组合44项检查耗时60.855 s，覆盖诚实解密、仅发送者错、仅接收者错、双方错、规范编码、对象恢复、IBS消息/身份绑定、有效外层OTS但旧IBS的完整伪造拒绝、空消息、最大载荷及超限前拒绝。原始低位修改仍可恢复同一seed，而Hybrid完整胶囊AAD拒绝；二者作为不同层的行为同时保留。CLI在已保存的真实状态上验证重复发钥、解密、拒绝无明文输出及状态字节不变，没有隐式重采样。
+
+| 实际尺寸 | 字节数 |
+|---|---:|
+| CHKP内层seed / 编码后的双方身份 | 32 / 86 / 86 |
+| 原始CHKP胶囊 | 3,919 |
+| C64B compact签名 | 16,383 |
+| 完整BYTEAUTH密文，空消息 / 16 B消息 | 119,038 / 119,054 |
+| 最大应用消息 / 其完整密文 | 3,924 / 122,962 |
+
+上述尺寸包括所选包装的实际开销，不将原始胶囊大小当作完整IB-ME密文。时间属于共享开发机上的单次记录，不是稳定性能均值；峰值RSS只在具备该字段的生命周期收据中报告，组合驱动没有测得独立整链峰值。
 
 正式安全与可用的大参数仍单独未完成：需同一参数集同时满足困难性、正确性、有限采样与资源条件，并核对 CHKP/MP12/Wang 组合前提和查询相关损失。[静态容量审计](../../../experiments/research/chkp_capacity_audit.py)对 n=16/64/128 的拒绝只属于当前配置和实现上限，不证明所有 CHKP 构造不可行，也不把 n 值等同安全位数。
 
 沿用已有[参数条件结果](evidence/parameters/profile.json)与[容量比较结果](evidence/parameters/capacity.json)，没有重跑历史采样。固定q/根宽度/统计目标下，n=16/64/128对应叶维2445/9516/18939，均超当前512维执行上限；这些数是静态投影。旧结果早于本次`2^88`执行域修复，实际参数字节没有改变，新标量域及真实叶是否可执行分别由完整预检和叶收据证明，不能用静态表替代。
 
-公开交付只纳入脱敏收据、源码/清单哈希和测试结果；`test-results/` 中私钥、状态、胶囊试验数据及进程日志继续忽略。收尾完成后由主 AI 统一提交，本页最终提交和真实验收结果待回填。
+公开交付只纳入脱敏收据、诊断源码文本、源码/清单哈希和测试结果；`test-results/`中的私钥、状态、胶囊试验数据及进程日志继续忽略。[最终清单](source-manifest.json)记录源码版本，清单不包含自身或审计输出的哈希。[公开审计结果](public-audit-result.json)通过12个阶段、130份源码及48份材料的一致性检查，明确没有重跑实验或读取私钥；18份阶段/恢复收据文件不等于18次密码实验。统一README和发布由IB-ME／Luo对话在收到固定交付后完成。
 
 ## 7. 复跑入口
 
