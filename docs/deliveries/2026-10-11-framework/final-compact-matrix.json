@@ -1,0 +1,279 @@
+{
+  "schema": "ibme-combination-run-v1",
+  "status": "pass",
+  "counts": {
+    "pass": 1,
+    "fail": 0,
+    "blocked": 0,
+    "not_executed": 0
+  },
+  "executed_checks": 33,
+  "environment": {
+    "python": "3.14.7",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "limitations": [
+    "Functional checks do not establish security.",
+    "ABB10 and SIS use teaching parameters; known attacks remain applicable.",
+    "Random signature rejection is a bounded negative input check.",
+    "No unavailable backend is substituted; CHKP is not implemented."
+  ],
+  "results": [
+    {
+      "case": "abb10-hybrid-luo-module-compact-byteauth-v1",
+      "selection": {
+        "hibe": "abb10",
+        "ibs": "luo-module",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "compact"
+      },
+      "status": "pass",
+      "checks": [
+        {
+          "name": "honest_roundtrip",
+          "status": "pass"
+        },
+        {
+          "name": "ciphertext_roundtrip",
+          "status": "pass"
+        },
+        {
+          "name": "wrong_sender",
+          "status": "pass"
+        },
+        {
+          "name": "wrong_receiver",
+          "status": "pass"
+        },
+        {
+          "name": "both_wrong",
+          "status": "pass"
+        },
+        {
+          "name": "public_restore",
+          "status": "pass"
+        },
+        {
+          "name": "master_restore",
+          "status": "pass"
+        },
+        {
+          "name": "sender_restore",
+          "status": "pass"
+        },
+        {
+          "name": "receiver_restore",
+          "status": "pass"
+        },
+        {
+          "name": "restored_decrypt",
+          "status": "pass"
+        },
+        {
+          "name": "fixed_identity_after_restore",
+          "status": "pass"
+        },
+        {
+          "name": "truncated_loader",
+          "status": "pass"
+        },
+        {
+          "name": "truncated_decrypt",
+          "status": "pass"
+        },
+        {
+          "name": "appended_loader",
+          "status": "pass"
+        },
+        {
+          "name": "appended_decrypt",
+          "status": "pass"
+        },
+        {
+          "name": "duplicate_loader",
+          "status": "pass"
+        },
+        {
+          "name": "duplicate_decrypt",
+          "status": "pass"
+        },
+        {
+          "name": "wrong_version_loader",
+          "status": "pass"
+        },
+        {
+          "name": "wrong_version_decrypt",
+          "status": "pass"
+        },
+        {
+          "name": "byteauth_context",
+          "status": "pass"
+        },
+        {
+          "name": "byteauth_inner_bytes",
+          "status": "pass"
+        },
+        {
+          "name": "byteauth_signature",
+          "status": "pass"
+        },
+        {
+          "name": "byteauth_ots_key",
+          "status": "pass"
+        },
+        {
+          "name": "ibs_honest",
+          "status": "pass"
+        },
+        {
+          "name": "ibs_wrong_message",
+          "status": "pass"
+        },
+        {
+          "name": "ibs_wrong_identity",
+          "status": "pass"
+        },
+        {
+          "name": "changed_signature_verify_rejected",
+          "status": "pass"
+        },
+        {
+          "name": "random_signature_wire_rejected",
+          "status": "pass"
+        },
+        {
+          "name": "reused_signature_rejects_altered_payload",
+          "status": "pass"
+        },
+        {
+          "name": "forged_outer_ots_valid",
+          "status": "pass"
+        },
+        {
+          "name": "inner_authentication_rejects",
+          "status": "pass"
+        },
+        {
+          "name": "inner_rejection_reached_ibs",
+          "status": "pass"
+        },
+        {
+          "name": "empty_roundtrip",
+          "status": "pass"
+        }
+      ],
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "randomness": "fixed public test streams",
+      "repetition_count": 1,
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 3924,
+          "signature_max_bytes": 16063,
+          "ibs_input_bytes": 4096,
+          "hibe_payload_bytes": 65536,
+          "protocol_payload_overhead": 16171,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 2452065
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "test_only": false,
+          "persistent_identity_cache": true,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "ea5bab6b9805369c4f16752de78cf352c44c7ffdb763a465da86cad8c28595a1",
+          "hibe": "abb10",
+          "ibs": "luo-module",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "compact",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "partial-legacy-wire",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "abb10",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "m_matrix": 168,
+          "max_message_bytes": 32,
+          "n": 8,
+          "name": "hybrid-abb10-short-debug",
+          "q": 524288,
+          "s": 1.0,
+          "s0": 3.0,
+          "s_prime": 1.0,
+          "security_parameter": 8
+        },
+        "hibe_version": "abb10-debug-v2",
+        "hybrid_limits": {
+          "backend_id": "abb10-debug-v2",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "luo-module",
+        "ibs_params": {
+          "degree": 256,
+          "dropped_bits": 28,
+          "eta": 1,
+          "gamma1": 125440,
+          "gamma2": 31470387200,
+          "gamma3": 15270991360,
+          "identity_max_bytes": 64,
+          "k": 11,
+          "kappa": 64,
+          "l": 10,
+          "max_cached_identities": 64,
+          "max_extract_attempts": 1024,
+          "max_sign_attempts": 1024,
+          "max_uniform_attempts": 128,
+          "message_max_bytes": 4096,
+          "q": 274877844481,
+          "root": 153250464611
+        },
+        "ibs_version": "luo-module-ref1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "compact",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "ea5bab6b9805369c4f16752de78cf352c44c7ffdb763a465da86cad8c28595a1",
+      "classification": "research",
+      "sizes": {
+        "public_key": 252278,
+        "sender_key": 313695,
+        "receiver_key": 85223,
+        "signature": 16063,
+        "ciphertext": 2566874
+      },
+      "message_bytes": 10,
+      "sender_identity_bytes": 5,
+      "receiver_identity_bytes": 3,
+      "elapsed_seconds": 95.63206,
+      "executed_checks": 33
+    }
+  ]
+}

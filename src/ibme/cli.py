@@ -2,6 +2,10 @@
 
 子命令::
 
+    list-backends [--json]
+    check --hibe abb10 --ibs luo-module --transport hybrid [--json]
+    matrix [--json]                 # static checks, no algorithm execution
+    setup --hibe abb10 --ibs sis --state <dir>
     setup --params education --state <dir> [--mock]
     issue-sender-key <NAME> --state <dir> [--mock]
     issue-receiver-key <NAME> --state <dir> [--mock]
@@ -27,6 +31,10 @@
   名、HIBE/IBS 参数名、``identity_bytes``/``max_message_bytes`` 与
   security_claim。issue/encrypt/decrypt 从中读取 ``identity_bytes``
   做长度上限检查；
+* 独立选择写入版本 2：完整 HIBE/IBS 参数、协议、包装、签名格式和
+  容量均冻结；后续命令从状态恢复，不能用旧开关改换后端或降级。
+  本地密钥文件另有配置/公钥摘要绑定的严格外壳；这是配置一致性
+  检查，不是恶意存储认证、防回滚或跨文件原子事务；
 * **旧 state 目录（无 state.json）被拒绝**并提示重跑 setup：密钥文件
   名方案已从 ``sender-<NAME>.bin`` 改为摘要派生，旧 state 本就不可用，
   因此不做向后兼容而是直接升版拒绝；
@@ -91,8 +99,14 @@ _MSK_FILE = "msk.bin"
 #: state 元数据文件（setup 写入；身份长度上限等参数信息的唯一记录处）。
 _META_FILE = "state.json"
 
-#: state 元数据版本；bump 即拒绝旧 state（密钥文件名方案随之变更）。
+#: Legacy preset metadata version; independent suites use version 2 below.
 _STATE_VERSION = 1
+
+# Version 1 presets remain readable. Independent selections use version 2 and
+# bind every local key file to the exact suite and setup public key.
+_SELECTED_STATE_VERSION = 2
+_STATE_OBJECT_MAGIC = b"IBME:CLI-STATE:v2\x00"
+_STATE_OBJECT_KINDS = {"mpk": b"P", "msk": b"M", "sender": b"S", "receiver": b"R"}
 
 #: 身份摘要取 SHA-256 hex 的前 16 个字符（64 bit，用于派生文件名）。
 _DIGEST_HEX_CHARS = 16
@@ -161,7 +175,9 @@ def _check_data_output(state: Path, output: Path | None) -> None:
     # Resolve existing aliases too: a data path may be a symlink to a key, or
     # the authoritative state key itself may have a resolved path outside root.
     if ((target.parent == root and is_reserved(target))
-            or any(target == path.resolve() for path in state.iterdir() if is_reserved(path))):
+            or any(target == path.resolve()
+                   or (target.exists() and path.exists() and os.path.samefile(target, path))
+                   for path in state.iterdir() if is_reserved(path))):
         raise ValueError("data output cannot overwrite protected key state")
 
 
@@ -223,11 +239,13 @@ def _load_state_meta(state: Path) -> dict:
         meta = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique_fields)
     except json.JSONDecodeError as exc:
         raise ValueError(f"corrupt state metadata {path}: {exc}") from exc
+    if isinstance(meta, dict) and type(meta.get("version")) is int and meta["version"] == _SELECTED_STATE_VERSION:
+        return _validate_selected_meta(meta)
     if not isinstance(meta, dict) or type(meta.get("version")) is not int or meta.get("version") != _STATE_VERSION:
         found = meta.get("version") if isinstance(meta, dict) else None
         raise ValueError(
             f"unsupported state metadata in {path}: expected version "
-            f"{_STATE_VERSION}, found {found!r}; re-run 'setup'"
+            f"{_STATE_VERSION} or {_SELECTED_STATE_VERSION}, found {found!r}; re-run 'setup'"
         )
     limit = meta.get("identity_bytes")
     if not isinstance(limit, int) or isinstance(limit, bool) or limit < 1:
@@ -246,6 +264,86 @@ def _load_state_meta(state: Path) -> dict:
     if signature_format == "compact" and meta.get("params_preset") != _RESEARCH_PRESET:
         raise ValueError("compact signatures require luo-module-research")
     return meta
+
+
+def _selected_metadata(suite, report, public_sha256: str) -> dict:
+    return {
+        "version": _SELECTED_STATE_VERSION,
+        "backend": "selected-suite",
+        "suite": suite.to_dict(),
+        "suite_digest": suite.digest,
+        "capacity": report.capacity,
+        "identity_bytes": report.capacity["identity_bytes"],
+        "max_application_bytes": report.capacity["max_application_bytes"],
+        "public_sha256": public_sha256,
+        "default_ciphertext_protocol": suite.protocol,
+        "master_persisted_before_key_publication": True,
+        "security_claim": "none",
+        "backend_admitted": False,
+        "parameters_are_formal": False,
+    }
+
+
+def _validate_selected_meta(meta: dict) -> dict:
+    from ibme.assembly import SuiteConfig, validate_suite
+
+    suite = SuiteConfig.from_dict(meta.get("suite"))
+    report = validate_suite(suite)
+    if not report.ok:
+        raise ValueError("stored suite is incompatible: " + "; ".join(report.errors))
+    public_digest = meta.get("public_sha256")
+    if (type(public_digest) is not str or len(public_digest) != 64
+            or any(c not in "0123456789abcdef" for c in public_digest)):
+        raise ValueError("invalid public_sha256 in selected state")
+    expected = _selected_metadata(suite, report, public_digest)
+    # JSON equality is type-sensitive here (Python dict equality accepts True=1).
+    if json.dumps(meta, sort_keys=True) != json.dumps(expected, sort_keys=True):
+        raise ValueError("selected state metadata differs from its frozen suite; no fallback")
+    return meta
+
+
+def _state_object(raw: bytes, meta: dict, kind: str) -> bytes:
+    """Consistency envelope, not storage authentication or rollback protection."""
+    return (_STATE_OBJECT_MAGIC + bytes.fromhex(meta["suite_digest"])
+            + bytes.fromhex(meta["public_sha256"]) + _STATE_OBJECT_KINDS[kind]
+            + len(raw).to_bytes(4, "big") + raw)
+
+
+def _read_state_object(path: Path, meta: dict, kind: str) -> bytes:
+    raw = _read(path)
+    if meta["version"] != _SELECTED_STATE_VERSION:
+        return raw
+    prefix = (_STATE_OBJECT_MAGIC + bytes.fromhex(meta["suite_digest"])
+              + bytes.fromhex(meta["public_sha256"]) + _STATE_OBJECT_KINDS[kind])
+    offset = len(prefix)
+    if (not raw.startswith(prefix) or len(raw) < offset + 4
+            or int.from_bytes(raw[offset:offset + 4], "big") != len(raw) - offset - 4):
+        raise ValueError(f"selected state object kind/configuration/context mismatch: {path.name}")
+    data = raw[offset + 4:]
+    if kind == "mpk" and hashlib.sha256(data).hexdigest() != meta["public_sha256"]:
+        raise ValueError("selected state public-key digest mismatch")
+    return data
+
+
+def _runtime_for_state(meta: dict, mock: bool, *, legacy_baseline=False):
+    if meta["version"] == _SELECTED_STATE_VERSION:
+        from ibme.assembly import SuiteConfig, build_runtime
+
+        suite = SuiteConfig.from_dict(meta["suite"])
+        if mock and (suite.hibe != "mock" or suite.ibs != "mock"):
+            raise ValueError("--mock conflicts with the frozen selected suite")
+        if legacy_baseline and suite.protocol != "baseline-v1":
+            raise ValueError("--legacy-baseline conflicts with the frozen selected protocol")
+        runtime = build_runtime(suite)
+        return runtime.proto, runtime.decoders, runtime
+    # Version 1 keeps its explicit legacy protocol switch, but a flag must not
+    # reinterpret a stored real backend as mock (or vice versa).
+    if (meta.get("backend") == "mock") != bool(mock):
+        raise ValueError("--mock does not match the backend recorded in state")
+    proto, classes = _make_runtime(mock, legacy_baseline=legacy_baseline,
+                                   preset=meta.get("params_preset", "education"),
+                                   signature_format=meta.get("signature_format", "reference"))
+    return proto, classes, None
 
 
 # ---------------------------------------------------------------------------
@@ -363,11 +461,14 @@ def _persist_research_master(state: Path, master: MasterSecret) -> None:
 
 def _load_msk(state: Path, mock: bool) -> tuple[MasterSecret, BaselineIBME, dict]:
     meta = _load_state_meta(state)
-    proto, classes = _make_runtime(mock, preset=meta.get("params_preset", "education"),
-                                   signature_format=meta.get("signature_format", "reference"))
+    proto, classes, runtime = _runtime_for_state(meta, mock)
     msk = MasterSecret.from_bytes(
-        _read(state / _MSK_FILE), classes["hmsk"], classes["imsk"]
+        _read_state_object(state / _MSK_FILE, meta, "msk"), classes["hmsk"], classes["imsk"]
     )
+    if runtime is not None:
+        public = PublicKey.from_bytes(_read_state_object(state / _MPK_FILE, meta, "mpk"),
+                                      classes["hpk"], classes["ipk"])
+        runtime.validate_master(public, msk)
     if meta.get("params_preset") == _RESEARCH_PRESET:
         public = PublicKey.from_bytes(_read(state / _MPK_FILE), classes["hpk"], classes["ipk"])
         if (msk.hmsk.public_key.to_bytes() != public.hpk.to_bytes()
@@ -381,16 +482,161 @@ def _load_msk(state: Path, mock: bool) -> tuple[MasterSecret, BaselineIBME, dict
 # ---------------------------------------------------------------------------
 
 
+def _selection_requested(args) -> bool:
+    return any(getattr(args, name, None) is not None for name in
+               ("hibe", "ibs", "hibe_params", "ibs_params", "transport", "protocol")) or bool(getattr(args, "allow_mock", False))
+
+
+def _parameter_argument(value):
+    """A registered preset or a JSON parameter file; never import user code."""
+    if value is None:
+        return None
+    if not (value.lower().endswith(".json") or value.startswith("{")):
+        return value
+    def unique_fields(pairs):
+        result = {}
+        for key, field in pairs:
+            if key in result:
+                raise ValueError(f"duplicate parameter field: {key}")
+            result[key] = field
+        return result
+    raw = value if value.startswith("{") else Path(value).read_text(encoding="utf-8")
+    result = json.loads(raw, object_pairs_hook=unique_fields)
+    if not isinstance(result, dict):
+        raise ValueError("parameter JSON must contain an object")
+    return result
+
+
+def _suite_from_args(args):
+    from ibme.assembly import make_suite
+
+    if getattr(args, "params", None) is not None:
+        raise ValueError("--params presets cannot be combined with independent selection flags")
+    if getattr(args, "mock", False):
+        raise ValueError("independent selection uses --hibe mock/--ibs mock with --allow-mock, not --mock")
+    return make_suite(
+        hibe=getattr(args, "hibe", None) or "abb10",
+        ibs=getattr(args, "ibs", None) or "sis",
+        hibe_params=_parameter_argument(getattr(args, "hibe_params", None)),
+        ibs_params=_parameter_argument(getattr(args, "ibs_params", None)),
+        transport=getattr(args, "transport", None) or "direct",
+        protocol=getattr(args, "protocol", None) or "byteauth-v1",
+        signature_format=getattr(args, "signature_format", "reference"),
+        allow_mock=getattr(args, "allow_mock", False),
+    )
+
+
+def _setup_selected(args) -> int:
+    from ibme.assembly import build_runtime, validate_suite
+
+    suite = _suite_from_args(args)
+    report = validate_suite(suite)
+    if not report.ok:
+        raise ValueError("incompatible suite: " + "; ".join(report.errors))
+    # Construct and check dependencies before creating the directory/lock and
+    # before setup consumes entropy. A failed preflight leaves no state artifact.
+    runtime = build_runtime(suite)
+    args.state.mkdir(parents=True, exist_ok=True)
+    with key_issuance_lock(args.state):
+        if any((args.state / name).exists() for name in (_META_FILE, _MPK_FILE, _MSK_FILE)) or any(args.state.glob("*-*.bin")):
+            raise ValueError("selected setup requires a new state directory; existing state cannot be overwritten")
+        public, master = runtime.proto.setup(runtime.hibe_params, ibs_params=runtime.ibs_params)
+        public_raw, master_raw = public.to_bytes(), master.to_bytes()
+        meta = _selected_metadata(suite, report, hashlib.sha256(public_raw).hexdigest())
+        _atomic_write_state(args.state / _MPK_FILE, _state_object(public_raw, meta, "mpk"))
+        _atomic_write_state(args.state / _MSK_FILE, _state_object(master_raw, meta, "msk"))
+        # Metadata is published last. Incomplete setup cannot be mistaken for a
+        # usable state and must not overwrite the already-published keys.
+        _atomic_write_state(args.state / _META_FILE,
+                            (json.dumps(meta, indent=2, sort_keys=True) + "\n").encode("utf-8"))
+    print(f"setup complete: hibe={suite.hibe} ibs={suite.ibs} transport={suite.transport} "
+          f"protocol={suite.protocol} signature_format={suite.signature_format}")
+    print(f"  state version=2 suite_digest={suite.digest}")
+    print(f"  identity_bytes={meta['identity_bytes']} max_application_bytes={meta['max_application_bytes']}")
+    print("  security_claim: none; backend_admitted: false; parameters_are_formal: false")
+    return 0
+
+
+def cmd_list_backends(args) -> int:
+    from ibme.assembly import list_backends
+
+    backends = list_backends()
+    if args.json:
+        print(json.dumps(backends, indent=2, sort_keys=True))
+    else:
+        for category, entries in backends.items():
+            print(category.upper())
+            for entry in entries:
+                print(f"  {entry['id']}: {'available' if entry['available'] else 'not implemented'}; "
+                      f"version={entry['version']}; test_only={entry['test_only']}")
+        print("Availability is implementation status; security_claim: none.")
+    return 0
+
+
+def cmd_check(args) -> int:
+    from ibme.assembly import validate_suite
+
+    suite = _suite_from_args(args)
+    report = validate_suite(suite)
+    result = {"suite": suite.to_dict(), "suite_digest": suite.digest,
+              "execution": "not_executed", "compatibility": report.to_dict()}
+    if args.json:
+        print(json.dumps(result, indent=2, sort_keys=True))
+    else:
+        print("compatible" if report.ok else "incompatible")
+        for error in report.errors:
+            print(f"  {error}")
+        print("  capacity=" + json.dumps(report.capacity, sort_keys=True))
+        print("  execution=not_executed; security_claim=none")
+    return 0 if report.ok else 2
+
+
+def cmd_matrix(args) -> int:
+    from ibme.assembly import list_backends, make_suite, validate_suite
+
+    catalog, rows = list_backends(), []
+    for hibe in catalog["hibe"]:
+        for ibs in catalog["ibs"]:
+            for transport in ("direct", "hybrid"):
+                row = {"hibe": hibe["id"], "ibs": ibs["id"], "transport": transport,
+                       "protocol": "byteauth-v1", "signature_format": "reference", "execution": "not_executed"}
+                try:
+                    suite = make_suite(hibe=hibe["id"], ibs=ibs["id"], transport=transport, allow_mock=args.allow_mock)
+                    report = validate_suite(suite)
+                    row.update(suite_digest=suite.digest, compatibility=report.to_dict())
+                except (IBMEError, ValueError) as exc:
+                    row["compatibility"] = {"ok": False, "errors": [str(exc)], "capacity": {}}
+                rows.append(row)
+    result = {"kind": "static_compatibility_matrix", "execution": "not_executed", "rows": rows}
+    if args.json:
+        print(json.dumps(result, indent=2, sort_keys=True))
+    else:
+        print("HIBE / IBS / transport / compatibility (not_executed)")
+        for row in rows:
+            report = row["compatibility"]
+            status = "compatible" if report["ok"] else "incompatible: " + "; ".join(report["errors"])
+            print(f"{row['hibe']} / {row['ibs']} / {row['transport']} / {status}")
+        print("Static checks only. Use experiments/run_combination_matrix.py for execution evidence.")
+    return 0
+
+
 def cmd_setup(args) -> int:
+    if _selection_requested(args):
+        return _setup_selected(args)
     # Reject incompatible profiles/formats before creating any state artifact.
+    args.params = args.params or "education"
     hibe_params, ibs_params = _params_pair(args.params, args.mock)
     signature_format = getattr(args, "signature_format", "reference")
     proto, _ = _make_runtime(args.mock, preset=args.params, signature_format=signature_format)
     args.state.mkdir(parents=True, exist_ok=True)
     with key_issuance_lock(args.state):
+        if any((args.state / name).is_file()
+               and (args.state / name).read_bytes().startswith(_STATE_OBJECT_MAGIC)
+               for name in (_MPK_FILE, _MSK_FILE)):
+            raise ValueError("selected state objects cannot be overwritten by a legacy setup")
         if (args.state / _META_FILE).exists():
             previous = _load_state_meta(args.state)
-            if previous.get("params_preset") == _RESEARCH_PRESET:
+            if previous.get("params_preset") == _RESEARCH_PRESET or previous["version"] == _SELECTED_STATE_VERSION:
                 raise ValueError("existing research state cannot be overwritten by setup or a different profile")
         return _setup_unlocked(args, proto, hibe_params, ibs_params, signature_format)
 
@@ -440,16 +686,19 @@ def _issue_sender_key_unlocked(args) -> int:
     digest = _identity_digest(identity)
     msk, proto, classes = _load_msk(args.state, args.mock)
     ek = proto.skgen(msk, identity)
-    if meta.get("params_preset") == _RESEARCH_PRESET:
+    if meta["version"] == _SELECTED_STATE_VERSION:
+        _atomic_write_state(args.state / _MSK_FILE, _state_object(msk.to_bytes(), meta, "msk"))
+    elif meta.get("params_preset") == _RESEARCH_PRESET:
         # Preserve the fixed identity key across separately invoked commands.
         _persist_research_master(args.state, msk)
     out = _sender_key_path(args.state, identity)
-    _atomic_write_state(out, ek.to_bytes())
+    encoded = _state_object(ek.to_bytes(), meta, "sender") if meta["version"] == _SELECTED_STATE_VERSION else ek.to_bytes()
+    _atomic_write_state(out, encoded)
     print(
         f"issued sender key: identity={args.name!r} utf8={len(identity)}B "
         f"digest={digest} (sha256[:{_DIGEST_HEX_CHARS}] of UTF-8 bytes)"
     )
-    print(f"  wrote {out} ({len(ek.to_bytes())} bytes)")
+    print(f"  wrote {out} ({len(encoded)} bytes)")
     return 0
 
 
@@ -465,28 +714,43 @@ def _issue_receiver_key_unlocked(args) -> int:
     )
     digest = _identity_digest(identity)
     out = _receiver_key_path(args.state, identity)
+    selected = meta["version"] == _SELECTED_STATE_VERSION
     research = meta.get("params_preset") == _RESEARCH_PRESET
-    if research:
+    if selected or research:
         check_receiver_ready(out)
     msk, proto, classes = _load_msk(args.state, args.mock)
-    # Existing research receiver files retain their fixed leaf addresses.
+    if selected:
+        _, _, runtime = _runtime_for_state(meta, args.mock)
+        public = PublicKey.from_bytes(_read_state_object(args.state / _MPK_FILE, meta, "mpk"),
+                                      classes["hpk"], classes["ipk"])
+    # Existing receivers retain their authoritative private leaf addresses.
     # Delegating again from the master would discard this authoritative cache.
-    if research and out.exists():
-        dk = ReceiverKey.from_bytes(_read(out), classes["sk1"])
-        _check_research_receiver(msk.hmsk.public_key, dk, identity)
+    if (selected or research) and out.exists():
+        dk = ReceiverKey.from_bytes(_read_state_object(out, meta, "receiver"), classes["sk1"])
+        if dk.identity != identity:
+            raise ValueError("receiver key file has a different identity")
+        if selected:
+            runtime.validate_receiver(public, dk)
+        else:
+            _check_research_receiver(msk.hmsk.public_key, dk, identity)
         action = "reused"
     else:
         dk = proto.rkgen(msk, identity)
-        if research:
+        if selected:
+            runtime.validate_receiver(public, dk)
+            _atomic_write_state(args.state / _MSK_FILE, _state_object(msk.to_bytes(), meta, "msk"))
+        elif research:
             _check_research_receiver(msk.hmsk.public_key, dk, identity)
             _persist_research_master(args.state, msk)
-        _atomic_write_state(out, dk.to_bytes())
+        encoded = _state_object(dk.to_bytes(), meta, "receiver") if selected else dk.to_bytes()
+        _atomic_write_state(out, encoded)
         action = "issued"
+    encoded = _state_object(dk.to_bytes(), meta, "receiver") if selected else dk.to_bytes()
     print(
         f"{action} receiver key: identity={args.name!r} utf8={len(identity)}B "
         f"digest={digest} (sha256[:{_DIGEST_HEX_CHARS}] of UTF-8 bytes)"
     )
-    print(f"  wrote {out} ({len(dk.to_bytes())} bytes)")
+    print(f"  wrote {out} ({len(encoded)} bytes)")
     return 0
 
 
@@ -500,13 +764,11 @@ def cmd_encrypt(args) -> int:
     receiver = _parse_identity(
         args.receiver, max_bytes=meta["identity_bytes"], role="receiver identity"
     )
-    proto, classes = _make_runtime(args.mock, legacy_baseline=args.legacy_baseline,
-                                   preset=meta.get("params_preset", "education"),
-                                   signature_format=meta.get("signature_format", "reference"))
+    proto, classes, _ = _runtime_for_state(meta, args.mock, legacy_baseline=args.legacy_baseline)
     pk = PublicKey.from_bytes(
-        _read(args.state / _MPK_FILE), classes["hpk"], classes["ipk"]
+        _read_state_object(args.state / _MPK_FILE, meta, "mpk"), classes["hpk"], classes["ipk"]
     )
-    ek = SenderKey.from_bytes(_read(_sender_key_path(args.state, sender)), classes["sk"])
+    ek = SenderKey.from_bytes(_read_state_object(_sender_key_path(args.state, sender), meta, "sender"), classes["sk"])
     if ek.identity != sender:
         raise ValueError(f"sender key file does not belong to {args.sender!r}")
     message = _read(args.in_path)
@@ -538,21 +800,22 @@ def _decrypt_unlocked(args) -> int:
     sender = _parse_identity(
         args.sender, max_bytes=meta["identity_bytes"], role="sender identity"
     )
-    proto, classes = _make_runtime(args.mock, legacy_baseline=args.legacy_baseline,
-                                   preset=meta.get("params_preset", "education"),
-                                   signature_format=meta.get("signature_format", "reference"))
+    proto, classes, runtime = _runtime_for_state(meta, args.mock, legacy_baseline=args.legacy_baseline)
     pk = PublicKey.from_bytes(
-        _read(args.state / _MPK_FILE), classes["hpk"], classes["ipk"]
+        _read_state_object(args.state / _MPK_FILE, meta, "mpk"), classes["hpk"], classes["ipk"]
     )
     key_path = _receiver_key_path(args.state, receiver)
+    selected = meta["version"] == _SELECTED_STATE_VERSION
     research = meta.get("params_preset") == _RESEARCH_PRESET
-    if research:
+    if selected or research:
         check_receiver_ready(key_path)
     original = _read(key_path)
-    dk = ReceiverKey.from_bytes(original, classes["sk1"])
+    dk = ReceiverKey.from_bytes(_read_state_object(key_path, meta, "receiver"), classes["sk1"])
     if dk.identity != receiver:
         raise ValueError(f"receiver key file does not belong to {args.receiver!r}")
-    if research:
+    if selected:
+        runtime.validate_receiver(pk, dk)
+    elif research:
         _check_research_receiver(pk.hpk, dk, receiver)
     data = _read(args.in_path)
     # 身份/摘要信息打到 stderr：stdout 缺省承载原始明文字节流。
@@ -563,8 +826,9 @@ def _decrypt_unlocked(args) -> int:
         f"digest={_identity_digest(sender)}",
         file=sys.stderr,
     )
-    if research:
-        with receiver_state_transaction(key_path, original, dk.to_bytes, _atomic_write_state):
+    if selected or research:
+        snapshot = (lambda: _state_object(dk.to_bytes(), meta, "receiver")) if selected else dk.to_bytes
+        with receiver_state_transaction(key_path, original, snapshot, _atomic_write_state):
             message = proto.decrypt(pk, dk, sender, data)
     else:
         message = proto.decrypt(pk, dk, sender, data)
@@ -600,25 +864,52 @@ def _add_common(sub) -> None:
     )
 
 
+def _add_selection(sub) -> None:
+    sub.add_argument("--hibe", default=None, help="独立 HIBE 标识；见 list-backends")
+    sub.add_argument("--ibs", default=None, help="独立 IBS 标识；见 list-backends")
+    sub.add_argument("--hibe-params", default=None, help="HIBE 参数预设或完整参数 JSON 文件")
+    sub.add_argument("--ibs-params", default=None, help="IBS 参数预设或完整参数 JSON 文件")
+    sub.add_argument("--transport", choices=("direct", "hybrid"), default=None,
+                     help="明确选择载荷路线（独立选择默认 direct；不自动降级）")
+    sub.add_argument("--protocol", choices=("byteauth-v1", "baseline-v1"), default=None,
+                     help="固定密文协议（独立选择默认 byteauth-v1）")
+    sub.add_argument("--allow-mock", action="store_true", help="允许显式选择 TEST-ONLY mock 原语")
+    sub.add_argument("--signature-format", choices=("reference", "compact"), default="reference",
+                     help="固定签名解码格式；compact 仅适用于已实现该格式的 IBS")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="ibme",
-        description="IB-ME（两层格基 HIBE + SIS-IBS）最小 CLI；默认完整密文字节认证。"
+        description="IB-ME 统一框架 CLI；HIBE 与 IBS 独立选择，默认完整密文字节认证。"
         "教学/调试参数，security_claim: none。身份接受任意非空可打印 "
         "UTF-8 字符串（进算法前转字节）；密钥文件名由身份的 SHA-256 "
         "前 16 hex 派生，不内嵌身份原文。",
     )
     sub = parser.add_subparsers(dest="command", required=True)
 
+    p = sub.add_parser("list-backends", help="显示已实现后端与未交付候选")
+    p.add_argument("--json", action="store_true", help="输出机器可读清单")
+    p.set_defaults(func=cmd_list_backends)
+
+    p = sub.add_parser("check", help="纯静态组合兼容预检；不取熵、不创建状态")
+    _add_selection(p)
+    p.add_argument("--json", action="store_true", help="输出完整选择与容量判据")
+    p.set_defaults(func=cmd_check)
+
+    p = sub.add_parser("matrix", help="列出默认参数的组合兼容表（不会执行密码算法）")
+    p.add_argument("--allow-mock", action="store_true", help="包含显式允许的 TEST-ONLY 组合")
+    p.add_argument("--json", action="store_true", help="输出静态兼容表")
+    p.set_defaults(func=cmd_matrix)
+
     p = sub.add_parser("setup", help="生成 mpk/msk 与 state.json 元数据")
     p.add_argument(
         "--params",
         choices=sorted(_PRESETS),
-        default="education",
-        help="参数预设：education 教学参数或 luo-module-research 研究组合（均无安全声明）",
+        default=None,
+        help="兼容旧组合预设；未给独立选择时默认 education，不能与独立选择混用",
     )
-    p.add_argument("--signature-format", choices=("reference", "compact"), default="reference",
-                   help="研究组合的签名存储格式；compact 为无损位打包，其他预设仅允许 reference")
+    _add_selection(p)
     _add_common(p)
     p.set_defaults(func=cmd_setup)
 

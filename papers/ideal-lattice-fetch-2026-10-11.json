@@ -1,0 +1,199 @@
+{
+  "schema": "independent-paper-source-audit-v1",
+  "producer": "Codex independent source audit; not a paper-fetch tool response",
+  "date": "2026-10-11",
+  "requested_asset": "original scholarly paper PDF and author implementation sources",
+  "paper": {
+    "title": "Trapdoors for Ideal Lattices with Applications",
+    "authors": [
+      "Russell W. F. Lai",
+      "Henry K. F. Cheung",
+      "Sherman S. M. Chow"
+    ],
+    "conference": "Inscrypt 2014",
+    "publication_year": 2015,
+    "series": "LNCS",
+    "volume": 8957,
+    "pages": "239-256",
+    "doi": "10.1007/978-3-319-16745-9_14",
+    "identity_status": "resolved"
+  },
+  "acquisition": {
+    "status": "user_supplied_pdf_archived",
+    "requested_pdf_obtained": true,
+    "pdf_path": "papers/2015_ideal_lattice_trapdoors_lai.pdf",
+    "pdf_sha256": "0985cb1d8cc760a18070a38d30b8de5b532bca52b5c06e05e65b2d712bdf338c",
+    "pdf_page_count": 18,
+    "online_fulltext_available": true,
+    "online_fulltext_url": "https://www.academia.edu/87100350/Trapdoors_for_Ideal_Lattices_with_Applications",
+    "online_fulltext_origin": "linked from coauthor Sherman S. M. Chow's Academia profile",
+    "web_extraction_observed": {
+      "line_count": 95,
+      "line_range": "L0-L94",
+      "missing_lines": [],
+      "last_original_page_marker": 18,
+      "reference_count": 22,
+      "limitations": [
+        "web-extracted text; mathematical layout and formulas may be corrupted",
+        "original page markers are not PDF page-count validation",
+        "availability checked; only selected sections studied; not a full proof audit"
+      ]
+    },
+    "fulltext_republished_locally": true,
+    "local_fulltext_path": "papers/2015_ideal_lattice_trapdoors_lai.pdf",
+    "pdf_bytes": 226438,
+    "local_pdf_provenance": {
+      "source": "user-provided local file",
+      "source_path": "C:/Users/A/Downloads/Trapdoors_for_Ideal_Lattices_with_Applic.pdf",
+      "method": "byte-for-byte copy; source preserved",
+      "verification": [
+        "pdfinfo: 18 pages, unencrypted, 226438 bytes",
+        "pdftotext page 1: exact title and three authors",
+        "pdftotext page 18: page marker and references 20-22",
+        "source and archive SHA-256 match"
+      ],
+      "edition_status": "title and author identity confirmed; exact publisher edition not authenticated",
+      "reading_scope": "identity and first/last page checks only; prior selected sections from online text; no full proof audit",
+      "metadata_note": "Ghostscript 9.26 creation date 2022 is file processing metadata, not publication year"
+    },
+    "prior_online_attempt_status": "degraded; failures retained below; subsequent local acquisition does not change those historical responses"
+  },
+  "workflow": {
+    "primary_skill": "paper-fetch-skill",
+    "mcp_backend_available": false,
+    "cli_available": false,
+    "python_package_available": false,
+    "installs_performed": false,
+    "fallback": "narrow independent lawful source search and response inspection",
+    "backend_result_not_fabricated": true
+  },
+  "sources": [
+    {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-319-16745-9_14",
+      "role": "publisher identity",
+      "status": "metadata_and_subscription_preview; PDF not obtained"
+    },
+    {
+      "url": "https://sites.google.com/view/kfcheung/research",
+      "role": "coauthor publication list",
+      "status": "identity corroborated"
+    },
+    {
+      "url": "https://crypto.ie.cuhk.edu.hk/theory/",
+      "role": "author research group publication list",
+      "status": "identity corroborated"
+    },
+    {
+      "url": "https://cuhk.academia.edu/ShermanSMChow/Papers",
+      "role": "coauthor upload index",
+      "status": "linked exact paper"
+    },
+    {
+      "url": "https://www.academia.edu/87100350/Trapdoors_for_Ideal_Lattices_with_Applications",
+      "role": "author-uploaded article page",
+      "status": "web tool returned all extracted lines; direct HTTP download returned 403 Cloudflare challenge; no bypass or retry through restricted route"
+    },
+    {
+      "url": "https://api.openalex.org/works/https://doi.org/10.1007/978-3-319-16745-9_14",
+      "role": "discovery metadata",
+      "status": "reported historical author PDF and CiteSeer ID 10.1.1.723.8793; no active OA PDF confirmed"
+    },
+    {
+      "url": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1007/978-3-319-16745-9_14?fields=title,authors,year,openAccessPdf,url",
+      "role": "discovery metadata",
+      "status": "openAccessPdf CLOSED with empty URL; conference year 2014"
+    },
+    {
+      "url": "https://home.ie.cuhk.edu.hk/~lwf014/hibe.pdf",
+      "role": "historical original author PDF",
+      "status": "HTTP 403"
+    },
+    {
+      "url": "http://home.ie.cuhk.edu.hk/%7Elwf014/hibe.pdf",
+      "role": "historical original author PDF from OpenAlex",
+      "status": "HTTP 403"
+    },
+    {
+      "url": "https://citeseerx.ist.psu.edu/document?doi=ee4d3f7e8f6fcac5a31ee154ffb701c63753d904&repid=rep1&type=pdf",
+      "role": "indexed paper PDF route",
+      "status": "web open 403; direct HTTP 404"
+    },
+    {
+      "url": "https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=10.1.1.723.8793",
+      "role": "historical CiteSeer identifier route",
+      "status": "direct HTTP 404"
+    },
+    {
+      "url": "https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.723.8793&rep=rep1&type=pdf",
+      "role": "historical CiteSeer download route",
+      "status": "direct HTTP 404"
+    },
+    {
+      "url": "https://archive.org/wayback/available?url=home.ie.cuhk.edu.hk%2F~lwf014%2Fhibe.pdf",
+      "role": "public archive availability",
+      "status": "archived_snapshots empty"
+    }
+  ],
+  "code_search": {
+    "conclusion": "No complete author-provided implementation or concrete parameter package for this paper confirmed in the inspected sources; not a proof of nonexistence.",
+    "author_home": "https://russell-lai.hk/",
+    "resources": "https://russell-lai.hk/resources/",
+    "github": "https://github.com/russell-lai",
+    "public_repositories_inspected": 7,
+    "exact_title_search": {
+      "url": "https://api.github.com/search/repositories?q=%22Trapdoors+for+Ideal+Lattices%22",
+      "total_count": 0
+    },
+    "closest_repository": {
+      "url": "https://github.com/russell-lai/lattice_lib",
+      "commit": "7ea94e102bc107b1f037e30f07f539d694a6d569",
+      "commit_date": "2026-06-04T22:36:54Z",
+      "license": "LGPL-3.0-or-later",
+      "readme_runtime": "SageMath 10.9",
+      "tree_truncated": false,
+      "scope": "general lattice tools over cyclotomic rings",
+      "observed_modules": [
+        "util",
+        "conductor_analyser",
+        "geometric_norms",
+        "subtractive_set",
+        "twisted_trace",
+        "circulant_rep"
+      ],
+      "full_hibe_confirmed": false,
+      "paper_specific_trapdoor_implementation_confirmed": false,
+      "inspection_scope": "README, LICENSE and complete recursive tree, not every function",
+      "external_code_executed": false
+    }
+  },
+  "archived_evidence": {
+    "directory": "C:/Users/A/.dsh/deliverables/ideal-lattice-source-audit-2026-10-11",
+    "files": [
+      {
+        "path": "author_repositories.json",
+        "bytes": 1440,
+        "sha256": "e6516921f78cc59d4b959ddf695a6f743c8ac2c8038120d438f3bd089b4b4b04"
+      },
+      {
+        "path": "lattice_lib_LICENSE",
+        "bytes": 1027,
+        "sha256": "6cab656752ef3bd22086eb82d4784cc86c71f36fcec0d29468cf9cde89a89467"
+      },
+      {
+        "path": "lattice_lib_README.md",
+        "bytes": 3187,
+        "sha256": "8d161e3c12b7b2feb0797586d216b9fa6a095f564299693c9e9490c1cedacc7d"
+      },
+      {
+        "path": "lattice_lib_tree.json",
+        "bytes": 4961,
+        "sha256": "d5c41c6537162e369ede2ad4d43b758b57b4a70eeb84cbc7579a2cf3fc89da1b"
+      }
+    ]
+  },
+  "outstanding": [
+    "paper-specific full HIBE code/parameter package not located",
+    "complete model, algorithm, and parameter mapping before backend admission"
+  ],
+  "safety_claim": "literature-source investigation only; no implementation, correctness or security admission"
+}
