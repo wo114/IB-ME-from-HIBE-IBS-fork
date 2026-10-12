@@ -12,6 +12,7 @@
 | 公共接口、兼容预检与验收 | [IMPLEMENTATION_SPEC](IMPLEMENTATION_SPEC.md) |
 | 分工、交接与提交 | [三人方案分工](docs/workplans/三人方案分工与统一框架交付.md)、[AGENTS](AGENTS.md)、[AI_WORKFLOW](AI_WORKFLOW.md) |
 | 分别选择 HIBE / IBS、预检和运行 | [框架使用指南](docs/FRAMEWORK_USAGE.md) |
+| 通用构造、公共框架与算法专属适配怎么分 | [其他队员复用说明](docs/FRAMEWORK_REUSE_GUIDE.md) |
 | 交给实现者的任务模板 | [DELEGATION_PROMPTS](DELEGATION_PROMPTS.md) |
 | 算法、代码与论文 | [现行算法总表](docs/ALGORITHM_CATALOG.md)、[论文库](papers/index.md) |
 | 已知漏洞与历史记录 | [安全回归](docs/KNOWN_SECURITY_GAPS.md)、[重建历史](docs/history/PROJECT_RESTART-through-2026-10-10.md) |

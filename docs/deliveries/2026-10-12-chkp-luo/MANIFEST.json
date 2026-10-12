@@ -8,7 +8,7 @@
   "hash_basis": "Git index bytes, not platform checkout line endings",
   "scope": "All added/modified PR paths relative to upstream base except this manifest; earlier Luo evidence already merged upstream is referenced, not duplicated.",
   "integrated_tree_before_manifest": "9d0b93750f03f377a6c3b43cc73631e696ec25ed",
-  "file_count": 192,
+  "file_count": 193,
   "files": [
     {
       "path": "IMPLEMENTATION_SPEC.md",
@@ -16,11 +16,15 @@
     },
     {
       "path": "README.md",
-      "sha256": "5fa4bc99015cd6eb92e0928d73608e1300fbd988878101e3943338d3a09c874d"
+      "sha256": "386ef4b5257636cb99fa3202c651b872582d29ee0423b97a37187d1ac0c26f83"
     },
     {
       "path": "docs/ALGORITHM_CATALOG.md",
       "sha256": "09a148bfc939991b441e3971fe84f80290454ac1300be48e81e44797fc55a6d7"
+    },
+    {
+      "path": "docs/FRAMEWORK_REUSE_GUIDE.md",
+      "sha256": "4d8df697d7e2c7b8af3840b19c3c197fbe614efbac162c1df0d75f24d4cc934d"
     },
     {
       "path": "docs/FRAMEWORK_USAGE.md",
@@ -831,5 +835,15 @@
   },
   "security_claim": "none",
   "backend_admitted": false,
-  "parameters_are_formal": false
+  "parameters_are_formal": false,
+  "documentation_followup": {
+    "baseline_commit": "19560c40e565d2a1fc2fc64944382e92f43ef543",
+    "changed_paths": [
+      "README.md",
+      "docs/FRAMEWORK_REUSE_GUIDE.md"
+    ],
+    "scope": "Reuse guide and one README navigation row only; original experiment sources and receipts remain unchanged.",
+    "experiments_rerun": false,
+    "historical_manifests_rewritten": false
+  }
 }
