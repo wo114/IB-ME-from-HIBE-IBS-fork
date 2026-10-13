@@ -1,9 +1,9 @@
 """A-owned registration proposal; does not change the shared default registry."""
 
-from ibme.core.errors import SerializationError
+from ibme.core.errors import SerializationError,InvalidParameterError
 from ibme.lattice.research import sage_available
 from .params import ABBROMParams
-from .profiles import q104_research_params
+from .profiles import q104_research_params,q26_level_quality_research_params
 from .objects import ABBPublicKey, ABBMasterSecret, ABBLevel1Key, ABBLevel2Key
 
 BACKEND_ID = "abb-rom-finite"
@@ -29,14 +29,27 @@ def factory(rng,signature_format):
     return ABBROMHIBE()
 
 
+def validate_configuration(params,config):
+    if config['transport']!='hybrid':
+        raise InvalidParameterError('ABB seed32 research profile requires hybrid transport')
+    from .backend import check_setup_profile
+    try:
+        check_setup_profile(params)  # public conditions/dependencies, no entropy
+    except (ImportError,ValueError,OSError) as exc:
+        raise InvalidParameterError('ABB public profile or local runtime dependency failed') from exc
+
+
 def backend_spec():
     from ibme.assembly.registry import BackendSpec
     if not sage_available():
         return BackendSpec(BACKEND_ID,"hibe",VERSION,available=False,
             reason="ABB finite research requires WSL ~/miniconda3/envs/sage; no fallback")
     return BackendSpec(BACKEND_ID,"hibe",VERSION,ABBROMParams,
-        {"n1-q160-research":ABBROMParams(),"n1-q104-single-address-research":q104_research_params()},factory,
+        {"n1-q160-research":ABBROMParams(),"n1-q104-single-address-research":q104_research_params(),
+         "n1-q26-level-quality-research":q26_level_quality_research_params()},factory,
         dict(hpk=ABBPublicKey,hmsk=ABBMasterSecret,sk1=ABBLevel1Key,sk2=ABBLevel2Key),
         check_object,two_level=True,key_binding=True,persistent_identity_cache=True,
-        reason="WIP finite ABB research; full positive-profile lifecycle not yet verified; none/false",
-        ciphertext_size=ciphertext_size,object_parameter_binding="full-parameter-snapshot")
+        reason="q26 real full lifecycle and Luo combination passed; n1 research negative control, none/false; other profiles WIP",
+        ciphertext_size=ciphertext_size,object_parameter_binding="full-parameter-snapshot",
+        default_preset=lambda transport:'n1-q26-level-quality-research',
+        validate_configuration=validate_configuration)
