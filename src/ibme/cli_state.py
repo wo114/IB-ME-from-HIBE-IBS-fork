@@ -6,10 +6,12 @@ import math
 import os
 from pathlib import Path
 import time
+from threading import local
 
 from ibme.core.errors import IBMEError
 
 LOCK_FILE = ".ibme-issue.lock"
+_owned_locks = local()
 
 
 class StateBusyError(IBMEError):
@@ -18,6 +20,58 @@ class StateBusyError(IBMEError):
 
 class ReceiverStatePendingError(IBMEError):
     """A receiver operation did not confirm durable completion."""
+
+
+class MasterStatePendingError(IBMEError):
+    """An issuance did not confirm both master and issued-key publication."""
+
+
+def master_pending_path(master_path: Path) -> Path:
+    return Path(str(master_path) + ".pending")
+
+
+def check_master_ready(master_path: Path) -> None:
+    if os.path.lexists(master_pending_path(master_path)):
+        raise MasterStatePendingError(
+            "master state pending after an incomplete issuance; automatic "
+            "key issuance/reissuance is blocked until the private state is reviewed"
+        )
+
+
+@contextmanager
+def master_state_transaction(master_path: Path, original: bytes, snapshot, publish, publish_key):
+    """Persist opaque master changes before publishing any issued key.
+
+    The caller holds key_issuance_lock and supplies serializers/publication
+    callbacks. Every incomplete operation conservatively blocks this issuer,
+    including a sampling exception whose FAILED state was saved successfully.
+    A hard exit leaves the marker. There is no automatic marker removal on
+    error, retry, rollback protection, or cross-OS transaction guarantee.
+    """
+    check_master_ready(master_path)
+    marker = master_pending_path(master_path)
+    descriptor = os.open(marker, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    with os.fdopen(descriptor, "wb") as handle:
+        handle.write(b"IBME:MASTER-PENDING:v1\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+
+    def persist():
+        raw = snapshot()
+        if raw != original:
+            publish(master_path, raw)
+
+    try:
+        yield
+    except BaseException:
+        # Preserve tombstones/changed counters even when the primitive aborts.
+        # A serializer/write failure also leaves the marker in place.
+        persist()
+        raise
+    else:
+        persist()
+        publish_key()
+        marker.unlink()
 
 
 def receiver_pending_path(key_path: Path) -> Path:
@@ -75,6 +129,14 @@ def key_issuance_lock(state: Path, *, timeout=30):
     root = Path(state).resolve()
     if not root.is_dir():
         raise ValueError("key state directory does not exist")
+    # A callback may invoke the CLI again. Reopening flock/msvcrt from the
+    # owning thread would wait on itself; other threads must still wait normally.
+    identity = os.path.normcase(str(root))
+    owned = getattr(_owned_locks, "paths", None)
+    if owned is None:
+        owned = _owned_locks.paths = set()
+    if identity in owned:
+        raise StateBusyError("state writer reentry is not permitted")
     descriptor = os.open(root / LOCK_FILE, os.O_RDWR | os.O_CREAT, 0o600)
     acquired = False
     with os.fdopen(descriptor, "r+b", buffering=0) as handle:
@@ -106,7 +168,11 @@ def key_issuance_lock(state: Path, *, timeout=30):
                     if remaining <= 0:
                         raise StateBusyError("state writer busy; requested operation was not performed") from exc
                     time.sleep(min(0.02, remaining))
-            yield
+            owned.add(identity)
+            try:
+                yield
+            finally:
+                owned.remove(identity)
         finally:
             if acquired:
                 unlock()

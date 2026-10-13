@@ -15,7 +15,7 @@ from ibme.core.types import validate_bytes, validate_identity
 from ibme.lattice.params import Params
 from ibme.protocol.baseline import BaselineIBME, PublicKey, MasterSecret, SenderKey, ReceiverKey, DOMAIN_SIGNATURE, MAGIC_CIPHERTEXT, BOTTOM
 from ibme.protocol.byteauth import ByteAuthenticatedIBME, ENVELOPE_OVERHEAD, MAX_INNER_BYTES
-from .registry import BackendSpec, BackendRegistry, default_registry
+from .registry import BackendSpec, BackendRegistry, default_registry, environment_status
 
 SUITE_VERSION = "IBME/SUITE/1"
 STATE_POLICY = "single-writer-commit-before-publish-v1"
@@ -106,7 +106,8 @@ def make_suite(*, hibe="abb10", ibs="sis", hibe_params=None, ibs_params=None,
                 raise InvalidParameterError("unavailable backend has no parameter preset")
             return {}
         if selected is None:
-            selected=("hybrid-research" if spec.role=="hibe" and transport=="hybrid" else
+            selected=(spec.default_preset(transport) if spec.default_preset is not None else
+                      "hybrid-research" if spec.role=="hibe" and transport=="hybrid" else
                       "research" if spec.id.startswith("luo-") else "education")
         if isinstance(selected,spec.params_type):
             return asdict(selected)
@@ -154,6 +155,18 @@ def validate_suite(config, *, registry=None):
                   combination_tested=False,preflight_only=True)
     try:
         data,hs,ins,hp,ip=_resolve(config,registry)
+        runtime_status={spec.role:environment_status(spec) for spec in (hs,ins)}
+        metadata.update(runtime_available=all(row["runtime_available"] for row in runtime_status.values()),
+                        runtime_dependencies=runtime_status,
+                        persistent_identity_cache=hs.persistent_identity_cache or ins.persistent_identity_cache,
+                        primitive_persistent_identity_cache={"hibe":hs.persistent_identity_cache,
+                                                             "ibs":ins.persistent_identity_cache})
+        for spec,params in ((hs,hp),(ins,ip)):
+            if spec.validate_configuration is not None:
+                spec.validate_configuration(params,data)
+            status=runtime_status[spec.role]
+            if not status["runtime_available"]:
+                errors.append(f"{spec.role}: {status['runtime_reason']}")
         if not hs.two_level: errors.append("HIBE lacks two-level delegation")
         if (hs.test_only or ins.test_only) and not data["allow_mock"]:
             errors.append("TEST-ONLY mock selection requires explicit allow_mock=true")
@@ -220,7 +233,7 @@ def validate_suite(config, *, registry=None):
                       ibs_input_bytes=ibs_input,hibe_payload_bytes=payload,protocol_payload_overhead=payload_overhead,
                       signed_input_overhead=signed_overhead,inner_hibe_payload_bytes=32 if data["transport"]=="hybrid" else payload,
                       inner_hibe_identity_bytes=hp.identity_bytes,inner_hibe_ciphertext_max_bytes=capsule)
-        metadata.update(test_only=hs.test_only or ins.test_only,persistent_identity_cache=ins.persistent_identity_cache,
+        metadata.update(test_only=hs.test_only or ins.test_only,
                         state_policy=data["state_policy"],suite_digest=config.digest,
                         hibe=data["hibe"],ibs=data["ibs"],protocol=data["protocol"],transport=data["transport"],
                         signature_format=data["signature_format"],hibe_key_binding_capability=hs.key_binding,

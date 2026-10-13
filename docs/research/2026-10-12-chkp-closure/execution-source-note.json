@@ -1,0 +1,16 @@
+{
+  "schema": "IBME/CHKP-EXECUTION-SOURCE-NOTE/1",
+  "algorithm_baseline_commit": "0765304",
+  "capture_phase": "receiver-Carol",
+  "cryptographic_runtime_src_matches_baseline_git_bytes": true,
+  "driver": {
+    "path": "experiments/research/chkp_combination.py",
+    "executed_working_bytes_sha256": "442bf5bd5e9b15898fee7db25645e9cb1092867b6e4ac765169b952121ff9294",
+    "canonical_git_lf_sha256": "165200f9c62b579d209632f331c3542de656d55fddebf10f68572de6c8b842bb",
+    "difference": "CRLF to LF only",
+    "canonical_content_equal": true
+  },
+  "historical_receipts_rewritten": false,
+  "cryptographic_experiments_repeated_for_format": false,
+  "scope": "Current runtime and combination driver comparison; this does not authenticate prior execution or external native dependencies."
+}

@@ -1,0 +1,445 @@
+{
+  "backend_admitted": false,
+  "checks": [
+    {
+      "name": "import_receiver_Bob_identity",
+      "passed": true
+    },
+    {
+      "name": "import_receiver_Carol_identity",
+      "passed": true
+    },
+    {
+      "name": "import_sender_Alice_identity",
+      "passed": true
+    },
+    {
+      "name": "import_public_opaque_roundtrip",
+      "passed": true
+    },
+    {
+      "name": "import_master_opaque_roundtrip",
+      "passed": true
+    },
+    {
+      "name": "import_sender_opaque_roundtrip",
+      "passed": true
+    },
+    {
+      "name": "import_Bob_opaque_roundtrip",
+      "passed": true
+    },
+    {
+      "name": "import_Carol_opaque_roundtrip",
+      "passed": true
+    },
+    {
+      "name": "import_metadata_v2_valid",
+      "passed": true
+    },
+    {
+      "name": "reissue-sender-Alice_exit",
+      "passed": true
+    },
+    {
+      "name": "sender_reissue_key_and_metadata_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "name": "sender_reissue_no_pending_state",
+      "passed": true
+    },
+    {
+      "name": "reissue-receiver-Bob_exit",
+      "passed": true
+    },
+    {
+      "name": "receiver_reissue_key_and_metadata_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "name": "receiver_reissue_no_pending_state",
+      "passed": true
+    },
+    {
+      "name": "maximum_application_capacity_3924",
+      "passed": true
+    },
+    {
+      "name": "encrypt-empty_exit",
+      "passed": true
+    },
+    {
+      "name": "decrypt-empty_exit",
+      "passed": true
+    },
+    {
+      "name": "empty_plaintext_match",
+      "passed": true
+    },
+    {
+      "name": "empty_key_and_metadata_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "name": "empty_no_pending_state",
+      "passed": true
+    },
+    {
+      "name": "encrypt-small_exit",
+      "passed": true
+    },
+    {
+      "name": "decrypt-small_exit",
+      "passed": true
+    },
+    {
+      "name": "small_plaintext_match",
+      "passed": true
+    },
+    {
+      "name": "small_key_and_metadata_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "name": "small_no_pending_state",
+      "passed": true
+    },
+    {
+      "name": "encrypt-maximum_exit",
+      "passed": true
+    },
+    {
+      "name": "decrypt-maximum_exit",
+      "passed": true
+    },
+    {
+      "name": "maximum_plaintext_match",
+      "passed": true
+    },
+    {
+      "name": "maximum_key_and_metadata_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "name": "maximum_no_pending_state",
+      "passed": true
+    },
+    {
+      "name": "wrong-sender_exit",
+      "passed": true
+    },
+    {
+      "name": "wrong-sender_no_plaintext_published",
+      "passed": true
+    },
+    {
+      "name": "wrong-sender_key_and_metadata_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "name": "wrong-sender_no_pending_state",
+      "passed": true
+    },
+    {
+      "name": "wrong-receiver_exit",
+      "passed": true
+    },
+    {
+      "name": "wrong-receiver_no_plaintext_published",
+      "passed": true
+    },
+    {
+      "name": "wrong-receiver_key_and_metadata_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "name": "wrong-receiver_no_pending_state",
+      "passed": true
+    },
+    {
+      "name": "both-wrong_exit",
+      "passed": true
+    },
+    {
+      "name": "both-wrong_no_plaintext_published",
+      "passed": true
+    },
+    {
+      "name": "both-wrong_key_and_metadata_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "name": "both-wrong_no_pending_state",
+      "passed": true
+    },
+    {
+      "name": "tampered_exit",
+      "passed": true
+    },
+    {
+      "name": "tampered_no_plaintext_published",
+      "passed": true
+    },
+    {
+      "name": "tampered_key_and_metadata_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "name": "tampered_no_pending_state",
+      "passed": true
+    },
+    {
+      "name": "truncated_exit",
+      "passed": true
+    },
+    {
+      "name": "truncated_no_plaintext_published",
+      "passed": true
+    },
+    {
+      "name": "truncated_key_and_metadata_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "name": "truncated_no_pending_state",
+      "passed": true
+    },
+    {
+      "name": "appended_exit",
+      "passed": true
+    },
+    {
+      "name": "appended_no_plaintext_published",
+      "passed": true
+    },
+    {
+      "name": "appended_key_and_metadata_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "name": "appended_no_pending_state",
+      "passed": true
+    },
+    {
+      "name": "over-capacity_exit",
+      "passed": true
+    },
+    {
+      "name": "over_capacity_no_ciphertext",
+      "passed": true
+    },
+    {
+      "name": "final_key_and_metadata_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "name": "final_no_pending_state",
+      "passed": true
+    }
+  ],
+  "ciphertext_sizes": {
+    "empty": 119038,
+    "maximum": 122962,
+    "small": 119059
+  },
+  "commands": [
+    {
+      "expected_exit": 0,
+      "name": "reissue-sender-Alice",
+      "no_entropy_guard": true,
+      "passed": true,
+      "returncode": 0,
+      "seconds": 9.648649120999835,
+      "stderr_bytes": 0,
+      "stdout_bytes": 247,
+      "timeout_seconds": 120
+    },
+    {
+      "expected_exit": 0,
+      "name": "reissue-receiver-Bob",
+      "no_entropy_guard": true,
+      "passed": true,
+      "returncode": 0,
+      "seconds": 11.241240520999781,
+      "stderr_bytes": 0,
+      "stdout_bytes": 250,
+      "timeout_seconds": 120
+    },
+    {
+      "expected_exit": 0,
+      "name": "encrypt-empty",
+      "no_entropy_guard": false,
+      "passed": true,
+      "returncode": 0,
+      "seconds": 3.0201668350000546,
+      "stderr_bytes": 0,
+      "stdout_bytes": 230,
+      "timeout_seconds": 120
+    },
+    {
+      "expected_exit": 0,
+      "name": "decrypt-empty",
+      "no_entropy_guard": true,
+      "passed": true,
+      "returncode": 0,
+      "seconds": 8.699029145000168,
+      "stderr_bytes": 97,
+      "stdout_bytes": 118,
+      "timeout_seconds": 120
+    },
+    {
+      "expected_exit": 0,
+      "name": "encrypt-small",
+      "no_entropy_guard": false,
+      "passed": true,
+      "returncode": 0,
+      "seconds": 2.4282091140003104,
+      "stderr_bytes": 0,
+      "stdout_bytes": 231,
+      "timeout_seconds": 120
+    },
+    {
+      "expected_exit": 0,
+      "name": "decrypt-small",
+      "no_entropy_guard": true,
+      "passed": true,
+      "returncode": 0,
+      "seconds": 8.826107558999865,
+      "stderr_bytes": 97,
+      "stdout_bytes": 119,
+      "timeout_seconds": 120
+    },
+    {
+      "expected_exit": 0,
+      "name": "encrypt-maximum",
+      "no_entropy_guard": false,
+      "passed": true,
+      "returncode": 0,
+      "seconds": 2.9040659350002898,
+      "stderr_bytes": 0,
+      "stdout_bytes": 235,
+      "timeout_seconds": 120
+    },
+    {
+      "expected_exit": 0,
+      "name": "decrypt-maximum",
+      "no_entropy_guard": true,
+      "passed": true,
+      "returncode": 0,
+      "seconds": 8.286113305999606,
+      "stderr_bytes": 97,
+      "stdout_bytes": 123,
+      "timeout_seconds": 120
+    },
+    {
+      "bottom_token": true,
+      "expected_exit": 1,
+      "name": "wrong-sender",
+      "no_entropy_guard": true,
+      "passed": true,
+      "returncode": 1,
+      "seconds": 8.286299383000369,
+      "stderr_bytes": 95,
+      "stdout_bytes": 7,
+      "timeout_seconds": 120
+    },
+    {
+      "bottom_token": true,
+      "expected_exit": 1,
+      "name": "wrong-receiver",
+      "no_entropy_guard": true,
+      "passed": true,
+      "returncode": 1,
+      "seconds": 8.03214477200072,
+      "stderr_bytes": 99,
+      "stdout_bytes": 7,
+      "timeout_seconds": 120
+    },
+    {
+      "bottom_token": true,
+      "expected_exit": 1,
+      "name": "both-wrong",
+      "no_entropy_guard": true,
+      "passed": true,
+      "returncode": 1,
+      "seconds": 8.242229628999667,
+      "stderr_bytes": 97,
+      "stdout_bytes": 7,
+      "timeout_seconds": 120
+    },
+    {
+      "bottom_token": true,
+      "expected_exit": 1,
+      "name": "tampered",
+      "no_entropy_guard": true,
+      "passed": true,
+      "returncode": 1,
+      "seconds": 8.035913247999815,
+      "stderr_bytes": 97,
+      "stdout_bytes": 7,
+      "timeout_seconds": 120
+    },
+    {
+      "bottom_token": true,
+      "expected_exit": 1,
+      "name": "truncated",
+      "no_entropy_guard": true,
+      "passed": true,
+      "returncode": 1,
+      "seconds": 7.883470768999359,
+      "stderr_bytes": 97,
+      "stdout_bytes": 7,
+      "timeout_seconds": 120
+    },
+    {
+      "bottom_token": true,
+      "expected_exit": 1,
+      "name": "appended",
+      "no_entropy_guard": true,
+      "passed": true,
+      "returncode": 1,
+      "seconds": 7.692856849000236,
+      "stderr_bytes": 97,
+      "stdout_bytes": 7,
+      "timeout_seconds": 120
+    },
+    {
+      "expected_exit": 2,
+      "name": "over-capacity",
+      "no_entropy_guard": true,
+      "passed": true,
+      "returncode": 2,
+      "seconds": 1.1097606769999402,
+      "stderr_bytes": 59,
+      "stdout_bytes": 0,
+      "timeout_seconds": 120
+    }
+  ],
+  "entropy_guard": "SecureRandom.read forbidden for reissue/decrypt/capacity rejection subprocesses",
+  "executed_checks": 59,
+  "executed_commands": 15,
+  "limitation": "CLI functional acceptance only; n=2 CHKP has a public attack",
+  "message_lengths": [
+    0,
+    21,
+    3924
+  ],
+  "new_CHKP_parent_or_leaf_sampling": false,
+  "new_IBS_identity_sampling": false,
+  "parameters_are_formal": false,
+  "passed": true,
+  "phase": "imported",
+  "provenance": {
+    "imported_lifetime_was_generated_by_cli_setup": false,
+    "mode": "test import of completed real combination opaque objects",
+    "public_sha256": "632057dc3ee7d3015893ce88fc944207ada5795527f0cc359c988c0e9f22b978",
+    "source": "chkp-combination-2026-10-12",
+    "source_relative": "test-results/chkp-combination-2026-10-12",
+    "suite_digest": "15ecdc30b10acef85fd0f5f905ecaa3fca960c3d5bbe32f0483af04390fda55c"
+  },
+  "repetition_count": 1,
+  "seconds": 120.36011287299971,
+  "security_claim": "none",
+  "suite_digest": "15ecdc30b10acef85fd0f5f905ecaa3fca960c3d5bbe32f0483af04390fda55c"
+}

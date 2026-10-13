@@ -1,0 +1,72 @@
+{
+  "diagnostic": "read_only_original_leaf_preflight",
+  "entropy_consumed": 0,
+  "sampler_sample_called": false,
+  "state_mutation_called": false,
+  "private_geometry_printed": false,
+  "timeout_seconds": 600,
+  "prior_300_second_diagnostic_timed_out": true,
+  "prior_timeout_is_not_algorithm_failure": true,
+  "preflight_passed": false,
+  "error_type": "ValueError",
+  "safe_error": "Scalar squared width outside independent finite profile 1..2^80",
+  "outcome": "preflight_exception",
+  "original_failure_gate_identified": true,
+  "stack": [
+    {
+      "file": "/mnt/c/Users/A/OneDrive/\u6587\u6863/IB-ME-from-HIBE-IBS/test-results/chkp-lifetime-2026-10-12-r3/leaf_preflight_diagnostic_600.py",
+      "function": "<module>",
+      "line": 102
+    },
+    {
+      "file": "/mnt/c/Users/A/OneDrive/\u6587\u6863/IB-ME-from-HIBE-IBS/src/ibme/lattice/chkp/extended_gpv.py",
+      "function": "__init__",
+      "line": 31
+    },
+    {
+      "file": "/mnt/c/Users/A/OneDrive/\u6587\u6863/IB-ME-from-HIBE-IBS/src/ibme/lattice/chkp/finite_gpv.py",
+      "function": "__init__",
+      "line": 197
+    }
+  ],
+  "parent_snapshot_unchanged": true,
+  "seconds": 296.851636,
+  "events": [
+    {
+      "stage": "imports",
+      "seconds": 0.002929
+    },
+    {
+      "stage": "parent_load_start",
+      "seconds": 3.272476
+    },
+    {
+      "stage": "parent_load_done",
+      "seconds": 4.502145
+    },
+    {
+      "stage": "sampler_constructor_start",
+      "seconds": 4.502845
+    },
+    {
+      "stage": "_bounded_basis_start",
+      "seconds": 4.503057
+    },
+    {
+      "stage": "_bounded_basis_done",
+      "seconds": 4.834138
+    },
+    {
+      "stage": "_gs_geometry_start",
+      "seconds": 4.834243
+    },
+    {
+      "stage": "_gs_geometry_done",
+      "seconds": 295.848396
+    },
+    {
+      "stage": "private_geometry_cached_locally",
+      "seconds": 296.825062
+    }
+  ]
+}

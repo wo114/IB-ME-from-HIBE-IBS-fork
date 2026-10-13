@@ -65,12 +65,12 @@ def test_selection_rejects_unsupported_versions_and_policies(field,value):
 
 
 def test_missing_implementations_and_unknown_ids_do_not_fall_back():
-    config=make_suite(hibe="chkp",ibs="luo-module",transport="hybrid")
+    config=make_suite(hibe="latte",ibs="luo-module",transport="hybrid")
     result=validate_suite(config)
     assert not result.ok and "unavailable" in result.errors[0]
     with pytest.raises(InvalidParameterError): build_runtime(config)
     with pytest.raises(InvalidParameterError): make_suite(hibe="typo")
-    assert not next(x for x in list_backends()["hibe"] if x["id"]=="chkp")["available"]
+    assert not next(x for x in list_backends()["hibe"] if x["id"]=="latte")["available"]
 
 
 def test_mock_requires_explicit_optin_independently():

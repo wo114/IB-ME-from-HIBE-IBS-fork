@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "handoff": "4ea086eee8b0f4c31d0b724b5b8a732aff8bbffb",
+  "upstream": "14f11634840e21751f9f8d0122dddf8651ee4eef",
+  "experiments_rerun": false,
+  "private_state_read": false,
+  "historical_execution_authenticated": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "historical_source_commit": "48e5c19c300ccc3a29eba4573159160154b3047c",
+  "historical_source_git_blobs_checked": 130,
+  "chkp_evidence_files_checked": 48,
+  "chkp_phases_checked": 12,
+  "luo_final_files_checked": 40,
+  "historical_failure_preserved": true,
+  "current_source_differences": [
+    "pyproject.toml",
+    "src/ibme/assembly/registry.py"
+  ],
+  "upstream_api_files_preserved": [
+    "pyproject.toml",
+    "src/ibme/hibe/mp12_chkp/__init__.py",
+    "src/ibme/lattice/research/__init__.py",
+    "experiments/research/first_suite/computational_parameter_plan.py",
+    "experiments/research/first_suite/computational_root.py",
+    "experiments/research/first_suite/hibe_probe.py",
+    "experiments/research/first_suite/hibe_reference.py",
+    "experiments/research/first_suite/hibe_registry.py"
+  ],
+  "suite_digest": "15ecdc30b10acef85fd0f5f905ecaa3fca960c3d5bbe32f0483af04390fda55c",
+  "limitation": "Git/content and receipt consistency; not a fresh end-to-end run or security proof."
+}

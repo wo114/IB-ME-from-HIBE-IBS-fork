@@ -1,0 +1,395 @@
+FEFEFEFEFEFEFEFEFEFE.........                                            [100%]
+=================================== ERRORS ====================================
+_ ERROR at teardown of PinsAndIsolation.test_clean_pins_include_exact_source_hashes _
+<frozen os>:377: in walk
+    ???
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-45bg8vr3'
+
+During handling of the above exception, another exception occurred:
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:976: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:956: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:852: in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:689: in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:687: in onerror
+    onexc(os.scandir, err.filename, err)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:928: in onexc
+    _resetperms(path)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:283: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:272: in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-45bg8vr3'
+__ ERROR at teardown of PinsAndIsolation.test_dirty_selected_source_rejected __
+<frozen os>:377: in walk
+    ???
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-fdlcvd2z'
+
+During handling of the above exception, another exception occurred:
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:976: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:956: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:852: in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:689: in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:687: in onerror
+    onexc(os.scandir, err.filename, err)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:928: in onexc
+    _resetperms(path)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:283: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:272: in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-fdlcvd2z'
+_______ ERROR at teardown of PinsAndIsolation.test_head_prefix_verified _______
+<frozen os>:377: in walk
+    ???
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-u7izklx4'
+
+During handling of the above exception, another exception occurred:
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:976: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:956: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:852: in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:689: in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:687: in onerror
+    onexc(os.scandir, err.filename, err)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:928: in onexc
+    _resetperms(path)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:283: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:272: in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-u7izklx4'
+_ ERROR at teardown of PinsAndIsolation.test_loaded_hash_changed_after_pin_rejected _
+<frozen os>:377: in walk
+    ???
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-9am1ufa9'
+
+During handling of the above exception, another exception occurred:
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:976: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:956: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:852: in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:689: in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:687: in onerror
+    onexc(os.scandir, err.filename, err)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:928: in onexc
+    _resetperms(path)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:283: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:272: in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-9am1ufa9'
+_ ERROR at teardown of PinsAndIsolation.test_metadata_output_inside_repository_rejected _
+<frozen os>:377: in walk
+    ???
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-9n9ris0i'
+
+During handling of the above exception, another exception occurred:
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:976: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:956: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:852: in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:689: in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:687: in onerror
+    onexc(os.scandir, err.filename, err)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:928: in onexc
+    _resetperms(path)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:283: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:272: in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-9n9ris0i'
+________ ERROR at teardown of PinsAndIsolation.test_same_root_rejected ________
+<frozen os>:377: in walk
+    ???
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-n3ov9ym_'
+
+During handling of the above exception, another exception occurred:
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:976: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:956: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:852: in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:689: in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:687: in onerror
+    onexc(os.scandir, err.filename, err)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:928: in onexc
+    _resetperms(path)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:283: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:272: in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-n3ov9ym_'
+_ ERROR at teardown of PinsAndIsolation.test_source_loader_bypasses_bytecode_cache _
+<frozen os>:377: in walk
+    ???
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-nzk2ksfc'
+
+During handling of the above exception, another exception occurred:
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:976: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:956: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:852: in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:689: in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:687: in onerror
+    onexc(os.scandir, err.filename, err)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:928: in onexc
+    _resetperms(path)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:283: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:272: in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-nzk2ksfc'
+______ ERROR at teardown of PinsAndIsolation.test_staged_change_rejected ______
+<frozen os>:377: in walk
+    ???
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-u4n02opi'
+
+During handling of the above exception, another exception occurred:
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:976: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:956: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:852: in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:689: in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:687: in onerror
+    onexc(os.scandir, err.filename, err)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:928: in onexc
+    _resetperms(path)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:283: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:272: in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-u4n02opi'
+_ ERROR at teardown of PinsAndIsolation.test_untracked_peer_files_are_not_import_candidates _
+<frozen os>:377: in walk
+    ???
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-bg5pywo5'
+
+During handling of the above exception, another exception occurred:
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:976: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:956: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:852: in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:689: in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:687: in onerror
+    onexc(os.scandir, err.filename, err)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:928: in onexc
+    _resetperms(path)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:283: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:272: in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-bg5pywo5'
+_ ERROR at teardown of PinsAndIsolation.test_worker_ignores_pythonpath_and_user_site _
+<frozen os>:377: in walk
+    ???
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-1kpvzd2b'
+
+During handling of the above exception, another exception occurred:
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:976: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:956: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:852: in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:689: in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\shutil.py:687: in onerror
+    onexc(os.scandir, err.filename, err)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:928: in onexc
+    _resetperms(path)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:283: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:272: in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-1kpvzd2b'
+================================== FAILURES ===================================
+________ PinsAndIsolation.test_clean_pins_include_exact_source_hashes _________
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-45bg8vr3\\src\\ibme'
+
+During handling of the above exception, another exception occurred:
+tests\test_luo_cross_version_harness.py:28: in setUp
+    path.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1015: in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-45bg8vr3\\src'
+____________ PinsAndIsolation.test_dirty_selected_source_rejected _____________
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-fdlcvd2z\\src\\ibme'
+
+During handling of the above exception, another exception occurred:
+tests\test_luo_cross_version_harness.py:28: in setUp
+    path.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1015: in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-fdlcvd2z\\src'
+_________________ PinsAndIsolation.test_head_prefix_verified __________________
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-u7izklx4\\src\\ibme'
+
+During handling of the above exception, another exception occurred:
+tests\test_luo_cross_version_harness.py:28: in setUp
+    path.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1015: in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-u7izklx4\\src'
+________ PinsAndIsolation.test_loaded_hash_changed_after_pin_rejected _________
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-9am1ufa9\\src\\ibme'
+
+During handling of the above exception, another exception occurred:
+tests\test_luo_cross_version_harness.py:28: in setUp
+    path.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1015: in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-9am1ufa9\\src'
+______ PinsAndIsolation.test_metadata_output_inside_repository_rejected _______
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-9n9ris0i\\src\\ibme'
+
+During handling of the above exception, another exception occurred:
+tests\test_luo_cross_version_harness.py:28: in setUp
+    path.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1015: in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-9n9ris0i\\src'
+__________________ PinsAndIsolation.test_same_root_rejected ___________________
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-n3ov9ym_\\src\\ibme'
+
+During handling of the above exception, another exception occurred:
+tests\test_luo_cross_version_harness.py:28: in setUp
+    path.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1015: in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-n3ov9ym_\\src'
+_________ PinsAndIsolation.test_source_loader_bypasses_bytecode_cache _________
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-nzk2ksfc\\src\\ibme'
+
+During handling of the above exception, another exception occurred:
+tests\test_luo_cross_version_harness.py:28: in setUp
+    path.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1015: in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-nzk2ksfc\\src'
+________________ PinsAndIsolation.test_staged_change_rejected _________________
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-u4n02opi\\src\\ibme'
+
+During handling of the above exception, another exception occurred:
+tests\test_luo_cross_version_harness.py:28: in setUp
+    path.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1015: in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-u4n02opi\\src'
+____ PinsAndIsolation.test_untracked_peer_files_are_not_import_candidates _____
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-bg5pywo5\\src\\ibme'
+
+During handling of the above exception, another exception occurred:
+tests\test_luo_cross_version_harness.py:28: in setUp
+    path.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1015: in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-bg5pywo5\\src'
+________ PinsAndIsolation.test_worker_ignores_pythonpath_and_user_site ________
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-1kpvzd2b\\src\\ibme'
+
+During handling of the above exception, another exception occurred:
+tests\test_luo_cross_version_harness.py:28: in setUp
+    path.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1015: in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+C:\Users\A\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:1011: in mkdir
+    os.mkdir(self, mode)
+E   PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\A\\.dsh\\deliverables\\DEEPSEEK-step24-luo-final-check-2026-10-12\\.tmp-pytest\\luo-guard-test-1kpvzd2b\\src'
+=========================== short test summary info ===========================
+FAILED tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_clean_pins_include_exact_source_hashes
+FAILED tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_dirty_selected_source_rejected
+FAILED tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_head_prefix_verified
+FAILED tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_loaded_hash_changed_after_pin_rejected
+FAILED tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_metadata_output_inside_repository_rejected
+FAILED tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_same_root_rejected
+FAILED tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_source_loader_bypasses_bytecode_cache
+FAILED tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_staged_change_rejected
+FAILED tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_untracked_peer_files_are_not_import_candidates
+FAILED tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_worker_ignores_pythonpath_and_user_site
+ERROR tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_clean_pins_include_exact_source_hashes
+ERROR tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_dirty_selected_source_rejected
+ERROR tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_head_prefix_verified
+ERROR tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_loaded_hash_changed_after_pin_rejected
+ERROR tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_metadata_output_inside_repository_rejected
+ERROR tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_same_root_rejected
+ERROR tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_source_loader_bypasses_bytecode_cache
+ERROR tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_staged_change_rejected
+ERROR tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_untracked_peer_files_are_not_import_candidates
+ERROR tests/test_luo_cross_version_harness.py::PinsAndIsolation::test_worker_ignores_pythonpath_and_user_site
+10 failed, 9 passed, 10 errors in 1.99s

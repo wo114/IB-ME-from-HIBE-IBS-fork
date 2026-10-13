@@ -84,7 +84,7 @@ def test_resource_abort_and_entropy_exception_are_not_retried():
         def read(self, count): pytest.fail("invalid width/center consumed entropy")
     with pytest.raises(ValueError): FirstFiniteGaussian(9, 9).sample(10, rng=NoRead())
     with pytest.raises(ValueError): FirstFiniteGaussian(9, 9).sample(9, center=True, rng=NoRead())
-    with pytest.raises(ValueError): FirstFiniteGaussian(2**81, 2**81)
+    with pytest.raises(ValueError): FirstFiniteGaussian(2**88+1, 2**88+1)
     with pytest.raises(ValueError): FirstFiniteGaussian(2**80, 2**80, options=FirstFiniteOptions(max_radius=32))
 
 
