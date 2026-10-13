@@ -165,10 +165,15 @@ class BasisDelPrepared:
     completion_reduced:bool=False
 
 
-def _prepare_basis_del(parent_basis,transformation,limits,*,reduce_completion=False,preconditioner=None):
+def _prepare_basis_del(parent_basis,transformation,limits,*,reduce_completion=False,preconditioner=None,
+                       geometry_engine="python"):
     if type(reduce_completion) is not bool:raise InvalidParameterError("explicit completion reduction flag required")
     if preconditioner not in (None,"flatter") or (preconditioner is not None and not reduce_completion):
         raise InvalidParameterError("known preconditioner requires explicit completion reduction")
+    if geometry_engine not in ("python","flint"):
+        raise InvalidParameterError("known exact geometry engine required")
+    if geometry_engine == "flint" and (limits == LEGACY_BASIS_LIMITS or not reduce_completion):
+        raise InvalidParameterError("native exact geometry requires explicit matrix completion reduction")
     if not isinstance(parent_basis,KernelBasis):raise InvalidParameterError("complete parent basis required")
     m=parent_basis.public.ncols
     exact_int(m,"dimension",1,limits.max_dimension)
@@ -195,7 +200,8 @@ def _prepare_basis_del(parent_basis,transformation,limits,*,reduce_completion=Fa
             # Checking max GS(output) <= this proves the original maximum-GS
             # obligation, without computing a skew private GSO first.
             lower_on_old_max=sum(int(x)**2 for x in transformed.column(0))
-            completed=matrix_checked_lll(completed,lower_on_old_max,limits=limits,preconditioner=preconditioner)
+            completed=matrix_checked_lll(completed,lower_on_old_max,limits=limits,
+                preconditioner=preconditioner,geometry_engine=geometry_engine)
             ordered=None  # LLL may reorder/increase an individual GS coordinate.
         else:
             ordered=True  # Exact triangular ToBasis factorization proves it.
@@ -243,11 +249,13 @@ class FiniteBasisDel:
     PROFILE_ID="ABB-ROM-FINITE-BASISDEL/1"
 
     def __init__(self,parent_basis,transformation,width_squared,*,epsilon_bits=128,
-                 max_vectors=None,options=None,max_tape_bytes=2**40,reduce_completion=False,preconditioner=None):
+                 max_vectors=None,options=None,max_tape_bytes=2**40,reduce_completion=False,preconditioner=None,
+                 geometry_engine="python"):
         self.prepared=_prepare_basis_del(parent_basis,transformation,self.BASIS_LIMITS,
-            reduce_completion=reduce_completion,preconditioner=preconditioner)
+            reduce_completion=reduce_completion,preconditioner=preconditioner,geometry_engine=geometry_engine)
+        geometry_options={} if self.BASIS_LIMITS==LEGACY_BASIS_LIMITS else {"geometry_engine":geometry_engine}
         self.sampler=self.SAMPLER_TYPE(self.prepared.completed_basis,checked_width(width_squared,self.MAX_SQUARED_WIDTH),
-            epsilon_bits=epsilon_bits,options=options)
+            epsilon_bits=epsilon_bits,options=options,**geometry_options)
         count=self.sampler.dimension+64 if max_vectors is None else max_vectors
         kwargs={} if self.BASIS_LIMITS==LEGACY_BASIS_LIMITS else {"basis_limits":self.BASIS_LIMITS}
         self.randomizer=self.RANDOMIZER_TYPE(self.sampler,max_vectors=count,max_tape_bytes=max_tape_bytes,**kwargs)
@@ -313,10 +321,11 @@ class MatrixBasisDel(FiniteBasisDel):
     PROFILE_ID="ABB-ROM-MATRIX-BASISDEL/1"
 
     def __init__(self,parent_basis,transformation,width_squared,*,epsilon_bits=128,
-                 max_vectors=None,options=None,max_tape_bytes=2**44,reduce_completion=False,preconditioner=None):
+                 max_vectors=None,options=None,max_tape_bytes=2**44,reduce_completion=False,preconditioner=None,
+                 geometry_engine="python"):
         super().__init__(parent_basis,transformation,width_squared,epsilon_bits=epsilon_bits,
             max_vectors=max_vectors,options=options,max_tape_bytes=max_tape_bytes,
-            reduce_completion=reduce_completion,preconditioner=preconditioner)
+            reduce_completion=reduce_completion,preconditioner=preconditioner,geometry_engine=geometry_engine)
 
 
 def prefix_matrices(root_public,h1,h2):

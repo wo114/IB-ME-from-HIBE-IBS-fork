@@ -35,3 +35,14 @@ def q76_normalized_root_research_params():
         tau2_squared=413428927595580182811113422848000000,
         epsilon_bits=64,max_parents=2,max_children_per_parent=2,
         normalization="matrix-flatter-rootgs16-lll-075-exact074-v3")
+
+
+def q80_normalized_root_research_params():
+    return replace(ABBROMParams(),name="abb-rom-ap09-n1-q80-normalized-root-research",
+        q=604462909807314587353111,random_rows=160,root_m1=160,root_m2=480,
+        hadamard_scale=35,matrix_gaussian_squared_width=76800,
+        sigma1_squared=70401895956480000,
+        sigma2_squared=12391067385667587435134976000000000,
+        tau2_squared=2379084938048176787545915392000000000000,
+        epsilon_bits=64,max_parents=2,max_children_per_parent=2,
+        normalization="matrix-flatter-rootgs256-nativegram-exact074-v4")

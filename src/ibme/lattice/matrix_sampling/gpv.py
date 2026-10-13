@@ -137,6 +137,23 @@ def _admit_paths(columns, weights, scalars, q, bits):
     return tuple(steps)
 
 
+def _flint_gs_geometry(rows, bits, max_content_bytes):
+    from .exact_gram import gram_geometry
+    b = matrix(ZZ, rows)
+    lengths, _, weights = gram_geometry(b, projection_weights=True)
+    content = 0
+    for value in lengths + tuple(value for row in weights for value in row):
+        _bounded_rational(value, "exact native GS geometry", bits)
+        content += max(1, (_bit_length(value.numerator()) + 7)//8)
+        content += max(1, (_bit_length(value.denominator()) + 7)//8)
+        if content > max_content_bytes:
+            raise ValueError("Exact GPV geometry content exceeds the whole arithmetic budget")
+    columns = tuple(b.columns())
+    for column in columns:
+        column.set_immutable()
+    return columns, lengths, weights
+
+
 class MatrixFiniteGPV:
     """Sample the zero-centered Gaussian on {x in Z^D : A*x=y mod q}.
 
@@ -161,7 +178,13 @@ class MatrixFiniteGPV:
     WIDTH_DOMAIN_ERROR = "Scalar squared width outside the explicitly selected finite profile"
 
     def __init__(self, basis: KernelBasis, width_squared, *, epsilon_bits=32,
-                 options=None, max_dimension=1536, max_arithmetic_content_bytes=2**30):
+                 options=None, max_dimension=1536, max_arithmetic_content_bytes=2**30,
+                 geometry_engine="python"):
+        if geometry_engine not in ("python", "flint"):
+            raise ValueError("unknown exact GPV geometry engine")
+        if geometry_engine == "flint":
+            from .exact_gram import require_provider
+            require_provider()
         opts = self.OPTIONS_TYPE() if options is None else options
         if not isinstance(opts, self.OPTIONS_TYPE):
             raise ValueError(f"Need {self.OPTIONS_TYPE.__name__}")
@@ -175,7 +198,8 @@ class MatrixFiniteGPV:
             raise ValueError("width_squared must be positive")
         self.basis = _bounded_basis(basis, limit, input_bits, self._content_cap)
         self.dimension = self.basis.public.ncols
-        self._columns, lengths, weights = _gs_geometry(self.basis.basis_rows, opts.rational_bits, self._content_cap)
+        geometry = _gs_geometry if geometry_engine == "python" else _flint_gs_geometry
+        self._columns, lengths, weights = geometry(self.basis.basis_rows, opts.rational_bits, self._content_cap)
         # CHKP's implicit ExtBasis consumer needs the actual parent maximum
         # for its full-dimension smoothing gate. Retain the exact value.
         self._max_gs_squared = max(lengths)

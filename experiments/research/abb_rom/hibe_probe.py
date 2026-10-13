@@ -13,6 +13,7 @@ import platform
 from pathlib import Path
 import resource
 import signal
+import shutil
 import threading
 from time import perf_counter
 from sage.version import version as sage_version
@@ -71,13 +72,39 @@ def source_fingerprints():
     import ibme.lattice.matrix_sampling.basis as basis
     import ibme.lattice.matrix_sampling.randbasis as randbasis
     import ibme.lattice.matrix_sampling.modular as modular
+    import ibme.lattice.matrix_sampling.exact_gram as exact_gram
     result={}
     for module in (backend,identity,validation,objects,params,primitives,scalar,gpv,basis,randbasis,modular,
-                   trapgen,bits,screen,profiles,noise,uniform,checked_entropy):
+                   trapgen,bits,screen,profiles,noise,uniform,checked_entropy,exact_gram):
         path=Path(module.__file__)
         result[module.__name__]=hashlib.sha256(path.read_bytes()).hexdigest()
     result[__name__]=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    native_source=Path(__file__).parent/'native'/'exact_gram.cpp'
+    result['native.exact_gram.cpp']=hashlib.sha256(native_source.read_bytes()).hexdigest()
+    for name,selected in (('native.exact_gram',os.environ.get('IBME_EXACT_GRAM_EXECUTABLE')),
+                          ('native.flatter',shutil.which('flatter'))):
+        if selected:
+            result[name]=hashlib.sha256(Path(selected).read_bytes()).hexdigest()
     return result
+
+
+def process_tree_rss(pid,proc_root=Path('/proc')):
+    """Conservative sum of resident memory, including native grandchildren."""
+    entries={}
+    for entry in proc_root.iterdir():
+        if not entry.name.isdecimal():continue
+        try:
+            status={line.split(':',1)[0]:line.split(':',1)[1].strip()
+                    for line in (entry/'status').read_text().splitlines() if ':' in line}
+            entries[int(entry.name)]=(int(status['PPid']),int(status.get('VmRSS','0 kB').split()[0]))
+        except (OSError,KeyError,ValueError):continue  # process exited during observation
+    selected={pid}
+    while True:
+        children={child for child,(parent,_) in entries.items() if parent in selected}
+        expanded=selected|children
+        if expanded==selected:break
+        selected=expanded
+    return sum(entries.get(child,(0,0))[1] for child in selected),selected
 
 
 def paths():
@@ -128,6 +155,7 @@ def run(directory,params,baseline_commit,max_rss_mib):
         full_HIBE_lifecycle=False,full_IBME_combination=False,security_claim="none",
         backend_admitted=False,parameters_are_formal=False,matrix_RO_indifferentiability_verified=False,
         observer_rss_budget_mib=max_rss_mib,
+        observer_rss_scope='sum of parent and all live descendants, shared pages counted per process',
         environment=dict(python=platform.python_version(),sage=sage_version,platform=platform.platform(),
             processor_model=next((line.split(':',1)[1].strip() for line in Path('/proc/cpuinfo').read_text().splitlines()
                 if line.startswith('model name')),'unavailable')))
@@ -135,16 +163,22 @@ def run(directory,params,baseline_commit,max_rss_mib):
     backend=ABBROMHIBE(persist_pending=lambda owner:write_private(directory/"master.bin",master.to_bytes()))
     started=perf_counter()
     stop=threading.Event()
+    peak_tree_rss=[0]
 
     def observe_rss():
         while not stop.wait(1):
-            rss=int(next(line.split()[1] for line in Path('/proc/self/status').read_text().splitlines()
-                if line.startswith('VmRSS:')))
+            rss,descendants=process_tree_rss(os.getpid())
+            peak_tree_rss[0]=max(peak_tree_rss[0],rss)
             if rss>max_rss_mib*1024:
                 (directory/"resource-interruption.json").write_text(json.dumps(dict(
                     reason="declared observer RSS budget exceeded",rss_kib=rss,budget_mib=max_rss_mib,
                     requested_signal="SIGINT",stage=record.get("current_stage"),
                     not_a_paper_or_distribution_failure=True),indent=2)+"\n")
+                # Interrupt this experiment's native children as well. Waiting
+                # for a child does not make parent-only SIGINT a resource stop.
+                for child in descendants-{os.getpid()}:
+                    try:os.kill(child,signal.SIGINT)
+                    except ProcessLookupError:pass
                 os.kill(os.getpid(),signal.SIGINT)
                 return
 
@@ -204,6 +238,7 @@ def run(directory,params,baseline_commit,max_rss_mib):
         stop.set()
     record.update(seconds=perf_counter()-started,private_entropy_bytes=entropy.bytes_used,
         peak_rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
+        peak_process_tree_rss_kib=peak_tree_rss[0],
         source_sha256_after=source_fingerprints())
     record["source_unchanged_during_execution"]=record["source_sha256_after"]==before
     if not record["source_unchanged_during_execution"]:

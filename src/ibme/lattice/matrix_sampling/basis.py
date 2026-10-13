@@ -251,7 +251,8 @@ def _flatter_rows(rows):
     return rows.LLL(algorithm="flatter", delta=QQ(3)/4)
 
 
-def matrix_checked_lll(basis, gs_upper, *, limits=MATRIX_BASIS_LIMITS, preconditioner=None):
+def matrix_checked_lll(basis, gs_upper, *, limits=MATRIX_BASIS_LIMITS, preconditioner=None,
+                       geometry_engine="python"):
     """Fixed delta=.75 proposal, then exact full-lattice/GS/size/Lovasz tests.
 
     Exact column size reduction preserves every GS vector. The original
@@ -263,6 +264,8 @@ def matrix_checked_lll(basis, gs_upper, *, limits=MATRIX_BASIS_LIMITS, precondit
     from .scalar import exact_rational
     if preconditioner not in (None, "flatter"):
         raise ValueError("unknown fixed lattice preconditioner")
+    if geometry_engine not in ("python","flint"):
+        raise ValueError("unknown exact geometry provider")
     if not isinstance(basis, KernelBasis):
         raise ValueError("complete KernelBasis required")
     original = _checked_square(basis.basis_rows, basis.public.ncols, limits=limits)
@@ -280,6 +283,10 @@ def matrix_checked_lll(basis, gs_upper, *, limits=MATRIX_BASIS_LIMITS, precondit
     # equality without maintaining an enormous native transformation matrix.
     rows = initial.LLL(delta=QQ(3)/4, eta=QQ(501)/1000, transformation=False)
     reduced = rows.transpose()
+    if geometry_engine == "flint":
+        from .exact_gram import size_reduce_and_check
+        reduced=size_reduce_and_check(reduced,upper)
+        return KernelBasis(basis.public,reduced)
     _, lengths, weights = _gs_geometry(tuple(tuple(int(x) for x in row) for row in reduced.rows()),
         limits.max_entry_bits, limits.max_transform_content_bytes)
     # Same exact projections, evaluated by native rational vector arithmetic.

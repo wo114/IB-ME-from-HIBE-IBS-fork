@@ -5,6 +5,7 @@ import pytest
 pytest.importorskip('sage.all',reason='prescribed WSL Sage required')
 from ibme.hibe.abb_rom.backend import check_setup_profile
 from ibme.hibe.abb_rom.profiles import q76_normalized_root_research_params
+from ibme.hibe.abb_rom.profiles import q80_normalized_root_research_params
 from ibme.hibe.abb_rom.params import ABBROMParams
 from ibme.hibe.abb_rom.key_validation import validate_basis
 from ibme.hibe.abb_rom.objects import ABBPublicKey
@@ -40,5 +41,21 @@ def test_changing_one_width_does_not_pass_the_complete_recipe():
     from sage.features.flatter import flatter
     if not flatter().is_present(): pytest.skip('local fixed Flatter installation required')
     p=q76_normalized_root_research_params()
+    with pytest.raises(InvalidParameterError,match='same-group'):
+        check_setup_profile(replace(p,sigma2_squared=p.sigma2_squared-1))
+
+
+def test_native_full_profile_exact_public_conditions():
+    from ibme.lattice.matrix_sampling.exact_gram import require_provider
+    if not __import__('os').environ.get('IBME_EXACT_GRAM_EXECUTABLE'):
+        pytest.skip('explicit built native dependency required')
+    require_provider()
+    p=q80_normalized_root_research_params()
+    _,_,report=check_setup_profile(p)
+    assert p.dimension==640 and p.normalized_root_gs_squared_bound==256
+    assert p.identity_max_bytes==86 and p.payload_max_bytes==32
+    assert p.max_parents==p.max_children_per_parent==2
+    assert report['conditional_noise_sufficient'] is True and report['blockers']==[]
+    assert ABBROMParams.from_bytes(p.to_bytes())==p
     with pytest.raises(InvalidParameterError,match='same-group'):
         check_setup_profile(replace(p,sigma2_squared=p.sigma2_squared-1))

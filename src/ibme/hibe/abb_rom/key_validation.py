@@ -43,6 +43,11 @@ def validate_basis(public,path,rows):
     # Public bound and private algebra only; this cannot certify provenance.
     columns = matrix(ZZ,rows).columns()
     if max(sum(int(x)**2 for x in col) for col in columns)>upper:
-        if max(gram_schmidt_squared_lengths(rows))>upper:
+        if p.normalization == "matrix-flatter-rootgs256-nativegram-exact074-v4":
+            from ibme.lattice.matrix_sampling.exact_gram import gram_geometry
+            lengths = gram_geometry(matrix(ZZ,rows),norms_only=True)
+        else:
+            lengths = gram_schmidt_squared_lengths(rows)
+        if max(lengths)>upper:
             raise ValueError("ABB private basis fails declared GS limit")
     return basis
