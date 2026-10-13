@@ -16,7 +16,9 @@ from .trapgen import ABBTrapGenParams, ceil_sqrt, bounded_integer
 
 def abb_parameter_screen(root, *, epsilon_bits=128, error_bits=128,
                          seed_bytes=32, encapsulations=2**20, options=None,
-                         normalized_root_gs_squared_bound=None):
+                         normalized_root_gs_squared_bound=None,
+                         normalized_parent_gs_squared_bound=None,
+                         normalized_leaf_gs_squared_bound=None):
     if not isinstance(root, ABBTrapGenParams):
         raise InvalidParameterError("explicit AP09 root profile required")
     epsilon_bits = bounded_integer(epsilon_bits, "epsilon_bits", 2, 4096)
@@ -37,8 +39,14 @@ def abb_parameter_screen(root, *, epsilon_bits=128, error_bits=128,
     r_operator_squared = m**2 * scalar.radius**2  # deterministic Frobenius >= spectral
     sigma1_squared = 4 * root_gs * r_operator_squared * factor
     parent_gs_squared = sigma1_squared * m  # bounded RandBasis norm event
+    if normalized_parent_gs_squared_bound is not None:
+        parent_gs_squared = bounded_integer(normalized_parent_gs_squared_bound,
+            "declared normalized parent quality",1,parent_gs_squared)
     sigma2_squared = 4 * parent_gs_squared * r_operator_squared * factor
     leaf_gs_squared = sigma2_squared * m
+    if normalized_leaf_gs_squared_bound is not None:
+        leaf_gs_squared = bounded_integer(normalized_leaf_gs_squared_bound,
+            "declared normalized leaf quality",1,leaf_gs_squared)
     tau_squared = 4 * leaf_gs_squared * factor
     d_squared = tau_squared * m
     q_alpha = 4
@@ -76,6 +84,10 @@ def abb_parameter_screen(root, *, epsilon_bits=128, error_bits=128,
         "root": certificate, "epsilon_bits": epsilon_bits, "error_bits": error_bits,
         "normalized_root_gs_squared_bound": normalized_root_gs_squared_bound,
         "normalized_root_quality_must_be_checked": normalized_root_gs_squared_bound is not None,
+        "normalized_parent_gs_squared_bound": normalized_parent_gs_squared_bound,
+        "normalized_leaf_gs_squared_bound": normalized_leaf_gs_squared_bound,
+        "normalized_level_quality_must_be_checked": (normalized_parent_gs_squared_bound is not None or
+                                                     normalized_leaf_gs_squared_bound is not None),
         "matrix_gaussian_squared_width": str(r_squared), "finite_R_support_radius": scalar.radius,
         "transformation_operator_squared_sufficient_bound": str(r_operator_squared),
         "sigma1_squared": str(sigma1_squared), "parent_gs_squared_on_success": str(parent_gs_squared),
@@ -99,6 +111,7 @@ def abb_parameter_screen(root, *, epsilon_bits=128, error_bits=128,
         "matrix_RO_indifferentiability_verified": False, "LWE_hardness_verified": False,
         "disclosure": "public sufficient bounds only; no private basis/GS or sampled outputs",
         "not_covered": ["bad norm events", "root/SampleR/GPV TV and ABORT", "BasisDel completion resources",
+                        "normalization quality rejection and its conditioning at root/parent/leaf",
                         "ROM instantiation and security reductions", "hardware process RSS/time"],
         "security_claim": "none", "backend_admitted": False, "parameters_are_formal": False,
     }

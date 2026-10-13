@@ -46,3 +46,17 @@ def q80_normalized_root_research_params():
         tau2_squared=2379084938048176787545915392000000000000,
         epsilon_bits=64,max_parents=2,max_children_per_parent=2,
         normalization="matrix-flatter-rootgs256-nativegram-exact074-v4")
+
+
+def q22_all_level_research_params():
+    """Full lengths, with actual quality gates at root AND both issued levels.
+
+    This n=1 negative control is a functional research instance. Acceptance
+    conditioning and formal high-n parameters remain unproved.
+    """
+    return replace(ABBROMParams(),name="abb-rom-ap09-n1-q22-all-level-quality-research",
+        q=2097169,random_rows=44,root_m1=44,root_m2=132,hadamard_scale=20,
+        matrix_gaussian_squared_width=74752,
+        sigma1_squared=5044531837796352,sigma2_squared=5044531837796352,
+        tau2_squared=74752,epsilon_bits=64,max_parents=2,max_children_per_parent=2,
+        normalization="matrix-flatter-allgs256-nativegram-exact074-v5")
