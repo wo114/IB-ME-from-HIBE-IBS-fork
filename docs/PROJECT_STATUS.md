@@ -42,7 +42,7 @@
 | A 的 MP12 变体公开研究后端（已合入） | [第一批](research/team-a-delivery/2026-10-12-hibe-reference/README.md)：计算型 `[I\|Â]` 根、真实 DelTrap/固定256叶，六方法/五类对象/绑定、自定义 registry；原交付21项组合收据，本轮独立48项Sage测试无skip；安装接入单列 | n2/q549755813911 不安全，原交付8649次公开枚举恢复明文；原 CHKP theorem 不能直接继承。正式参数/模型和ABB-ROM仍待；原CHKP新增成果在上行单列，不升级已准入数 |
 | A 的公共安装入口（PR #13 已合入） | [第二批](research/team-a-delivery/2026-10-12-installed-api/README.md)：公共HIBE/格工具、单一 provider、wheel与默认可选登记；审查173 passed/2明确skip、55 Sage passed，仓库外安装Windows3/Sage10项，独立实际CLI8步通过 | 无Sage明确unavailable；新根/新接收者需要显式本地engine，旧状态可无engine恢复；原n2公开攻击和none/false保持；正式大尺寸部署/模型仍待 |
 | 本地 CLI 接收状态事务 | [接收状态证据](research/2026-10-10-receiver-persistence/README.md)：锁、pending、保存后输出及已有研究接收密钥复用 | 提供同 OS 本地进程失败后的保守阻止；不宣称防回滚、硬断电或跨 OS 分布式事务 |
-| Yu IBS 独立研究实现（本地分支，未推送） | [本轮交付](research/2026-10-13-yu/README.md)：`3ddc623` 补 BPR 矩阵 PRF/密钥输入电路、四算法、真实 AP09→RandBasis/LLL→GPV、固定身份密钥与公开验签；联合472项通过/无skip，最终3整链、12签名、24验签和120项负例/方程对照 | 仅小参数核心代码；q=3公开可伪造、部分错误上下文被接受。密钥输入NC1与Lemma7谱界、正式参数、公共后端及Wang/HIBE组合未准入；`security_claim=none` |
+| Yu IBS 独立研究实现（fork PR 交付） | [本轮交付](research/2026-10-13-yu/README.md)：`3ddc623` 补 BPR 矩阵 PRF/密钥输入电路、四算法、真实 AP09→RandBasis/LLL→GPV、固定身份密钥与公开验签；合入上游`e030d05`后重跑472项通过/无skip，`3d15c6e`另跑3整链、12签名、24验签和120项负例/方程对照；新旧批次分别留证 | 仅小参数核心代码；q=3公开可伪造、部分错误上下文被接受。密钥输入NC1与Lemma7谱界、正式参数、公共后端及Wang/HIBE组合未准入；`security_claim=none` |
 | 其它候选 | [候选基础包](research/2026-10-10-foundations/README.md)、SRGG 代数/采样等部分实现；此行未重新审查后续远端PR | 每项按实际算法和测试单独计数；不把候选卡或公开方程计作完整后端 |
 
 ### 外部交付与接收记录

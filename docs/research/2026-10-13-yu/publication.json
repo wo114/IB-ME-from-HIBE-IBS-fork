@@ -1,0 +1,71 @@
+{
+  "schema": "IBME/YU2026/PUBLICATION/1",
+  "date": "2026-10-13",
+  "upstream_base": "e030d05ecd8b41c1e484806dcf2df643dbdb7c43",
+  "branch": "codex/yu-ibs-standalone-2026-10-13",
+  "delivery": "fork wo114/IB-ME-from-HIBE-IBS -> pull request to youzi258/IB-ME-from-HIBE-IBS main",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "scope": "Yu standalone research implementation and complete public evidence package; no shared backend or HIBE integration",
+  "upstream_integration": {
+    "merge_commit": "142b80f9706e9b3888462f900ee6aeeb38b40d9a",
+    "conflicts": 0,
+    "changed_dependency_paths": [
+      "experiments/research/chkp_basis.py",
+      "experiments/research/chkp_tobasis.py",
+      "experiments/research/gaussian_reference.py"
+    ],
+    "reason": "Upstream compatibility aliases now import promoted kernels in src/ibme/lattice/chkp. The lifecycle driver now hashes aliases and implementation files plus finite-tape dependencies."
+  },
+  "pytest": {
+    "source_revision": "142b80f9706e9b3888462f900ee6aeeb38b40d9a",
+    "command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 ~/miniconda3/envs/sage/bin/python -m pytest -q -p no:cacheprovider --tb=short tests/test_yu_circuits.py tests/test_yu_bpr.py tests/test_yu_evaluation.py tests/test_yu_prf_homomorphism.py tests/test_yu_trapdoors.py tests/test_yu_standalone.py tests/test_yu_homomorphic_reference.py tests/test_chkp_genbasis.py tests/test_chkp_basis.py tests/test_chkp_gpv.py tests/test_chkp_randbasis.py tests/test_chkp_basis_reduce.py --junitxml=build/outputs/yu-publication-2026-10-13/pytest.xml",
+    "exit_code": 0,
+    "passed": 472,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "warnings": 16,
+    "warning_reason": "record_property/xunit2 JUnit reporting compatibility",
+    "seconds": 34.358,
+    "evidence": "publication-pytest.xml",
+    "redaction": "hostname XML attribute removed; all testcases, properties, and outcomes retained",
+    "following_code_change": "Only the lifecycle audit source-file list changed in 3d15c6e; no tested algorithm or test file changed."
+  },
+  "lifecycle": {
+    "source_revision": "3d15c6e21f959fd1b4a6e51ded44fd66a7f636c1",
+    "command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.yu.lifecycle_audit --attempts 3 --source-revision 3d15c6e21f959fd1b4a6e51ded44fd66a7f636c1 --output docs/research/2026-10-13-yu/publication-lifecycle.json",
+    "exit_code": 0,
+    "attempts": 3,
+    "completed": 3,
+    "honest_signatures": 12,
+    "honest_verifications_objects_and_bytes": 24,
+    "negative_or_equation_differential_checks": 120,
+    "source_hashes_verified": 22,
+    "evidence": "publication-lifecycle.json"
+  },
+  "history": {
+    "retained": [
+      "validation.json",
+      "lifecycle.json",
+      "development-lifecycle.json"
+    ],
+    "combined_into_current_counts": false,
+    "rule": "Original source receipts remain attributed to their recorded revision and hashes. They are not relabelled as current-upstream runs."
+  },
+  "limitations": [
+    "Tiny correctness configuration n=1,q=3,m=15,w=2 remains publicly forgeable.",
+    "Key-input NC1, Yu Lemma7 spectral bound, formal parameters and security admission remain open.",
+    "Finite sampling aborts and deterministic LLL remain explicit adaptations.",
+    "No HIBE/IBME integration or automatic claim about remote CI."
+  ],
+  "material_policy": {
+    "secret_keys": false,
+    "random_seeds": false,
+    "actual_signatures": false,
+    "private_task_books": false,
+    "new_paper_pdfs": false,
+    "local_memory_files": false
+  }
+}
