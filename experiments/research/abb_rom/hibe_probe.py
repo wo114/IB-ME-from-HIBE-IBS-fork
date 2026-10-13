@@ -6,6 +6,7 @@ only reuses already issued addresses; it never decrypts without fresh GPV.
 """
 
 import argparse
+import ast
 import hashlib
 import json
 import os
@@ -15,6 +16,7 @@ import resource
 import signal
 import shutil
 import threading
+import traceback
 from time import perf_counter
 from sage.version import version as sage_version
 
@@ -107,9 +109,31 @@ def process_tree_rss(pid,proc_root=Path('/proc')):
     return sum(entries.get(child,(0,0))[1] for child in selected),selected
 
 
-def paths():
+def safe_failure_chain(exc):
+    """Publish only literal raise messages already present in pinned source."""
+    files=[Path(__file__).parents[3]/'src'/'ibme'/'lattice'/'matrix_sampling',
+           Path(__file__).parents[3]/'src'/'ibme'/'hibe'/'abb_rom']
+    allowed=set()
+    for folder in files:
+        for path in folder.glob('*.py'):
+            for node in ast.walk(ast.parse(path.read_text())):
+                if isinstance(node,ast.Raise) and isinstance(node.exc,ast.Call) and node.exc.args:
+                    value=node.exc.args[0]
+                    if isinstance(value,ast.Constant) and isinstance(value.value,str):allowed.add(value.value)
+    output=[];seen=set()
+    while exc is not None and id(exc) not in seen and len(output)<16:
+        seen.add(id(exc));message=str(exc)
+        frames=[dict(file=Path(frame.filename).name,function=frame.name,line=frame.lineno)
+                for frame in traceback.extract_tb(exc.__traceback__)]
+        output.append(dict(type=type(exc).__name__,code=message if message in allowed else 'nonliteral error text omitted',
+                           frames=frames))
+        exc=exc.__cause__ if exc.__cause__ is not None else exc.__context__
+    return output
+
+
+def paths(parent_name=b'Bob',child_name=b'Alice'):
     limits=HybridLimits(backend_id=VERSION.encode("ascii"))
-    return encoded_identity(b"Bob",limits,b"P"),encoded_identity(b"Alice",limits,b"C")
+    return encoded_identity(parent_name,limits,b"P"),encoded_identity(child_name,limits,b"C")
 
 
 def restore_only(directory):
@@ -142,7 +166,7 @@ def restore_only(directory):
         decryption_rerun=False,fresh_SamplePre_still_required_for_decryption=True)
 
 
-def run(directory,params,baseline_commit,max_rss_mib):
+def run(directory,params,baseline_commit,max_rss_mib,*,resume_root=None,parent_name=b'Bob',child_name=b'Alice'):
     check_setup_profile(params)  # full public gate before directory or entropy
     directory.mkdir(parents=True,exist_ok=False)
     pending=directory/"pending"
@@ -152,6 +176,7 @@ def run(directory,params,baseline_commit,max_rss_mib):
         parent_identity_bytes=86,child_identity_bytes=86,payload_bytes=32,repetitions=1,
         rng="default system CSPRNG, explicitly counted",root_generations=0,
         baseline_commit=baseline_commit,source_sha256_before=before,stages=[],
+        public_test_parent=parent_name.decode('ascii'),public_test_child=child_name.decode('ascii'),
         full_HIBE_lifecycle=False,full_IBME_combination=False,security_claim="none",
         backend_admitted=False,parameters_are_formal=False,matrix_RO_indifferentiability_verified=False,
         observer_rss_budget_mib=max_rss_mib,
@@ -195,9 +220,29 @@ def run(directory,params,baseline_commit,max_rss_mib):
             private_entropy_bytes=entropy.bytes_used-used))
         return result
 
-    parent_id,child_id=paths()
+    parent_id,child_id=paths(parent_name,child_name)
     try:
-        public,master=stage("actual AP09 setup",lambda:backend.setup(params,rng=entropy))
+        if resume_root is None:
+            public,master=stage("actual AP09 setup",lambda:backend.setup(params,rng=entropy))
+            record['new_root_generations']=1
+        else:
+            prior=json.loads((resume_root/'receipt.json').read_text())
+            if prior['source_unchanged_during_execution'] is not True or prior['root_generations']!=1:
+                raise ValueError('source-pinned actual root receipt required')
+            if any(before.get(name)!=digest for name,digest in prior['source_sha256_before'].items()
+                   if name.startswith(('ibme.','native.'))):
+                raise ValueError('root reuse changed arithmetic or parameter source')
+            def restore_root():
+                restored=ABBMasterSecret.from_bytes((resume_root/'master.bin').read_bytes())
+                public=ABBPublicKey.from_bytes((resume_root/'public.bin').read_bytes())
+                if restored.public_key!=public or public.params!=params:
+                    raise ValueError('root reuse public/profile mismatch')
+                if parent_id in restored.parents:
+                    raise ValueError('root reuse requires a distinct unissued parent address')
+                return public,restored
+            public,master=stage('restore actual source-pinned AP09 root without RNG',restore_root)
+            record.update(new_root_generations=0,root_origin_baseline=prior['baseline_commit'],
+                          prior_parent_addresses_retained=len(master.parents))
         record["root_generations"]=1
         write_private(directory/"public.bin",public.to_bytes())
         write_private(directory/"master.bin",master.to_bytes())
@@ -226,7 +271,7 @@ def run(directory,params,baseline_commit,max_rss_mib):
             wire_bytes=dict(public=len(public.to_bytes()),master=len(master.to_bytes()),
                 parent=len(parent.to_bytes()),leaf=len(leaf.to_bytes()),ciphertext=len(ct.to_bytes())))
     except (Exception,KeyboardInterrupt) as exc:
-        record.update(status="failed",failure_type=type(exc).__name__)
+        record.update(status="failed",failure_type=type(exc).__name__,failure_chain=safe_failure_chain(exc))
         if master is not None:
             # This file remains the sole authoritative state, including FAILED.
             write_private(directory/"master.bin",master.to_bytes())
@@ -256,6 +301,9 @@ def main():
     parser.add_argument("--baseline-commit",default="uncommitted-WIP")
     parser.add_argument("--restore-only",action="store_true")
     parser.add_argument("--max-rss-mib",type=int,default=8192)
+    parser.add_argument('--resume-root',type=Path)
+    parser.add_argument('--parent-name',default='Bob')
+    parser.add_argument('--child-name',default='Alice')
     args=parser.parse_args()
     if args.restore_only:
         if args.params_file:parser.error("restore uses embedded exact parameters")
@@ -263,7 +311,8 @@ def main():
         return 0
     params=q104_research_params() if args.params_file is None else ABBROMParams.from_bytes(args.params_file.read_bytes())
     if not 1024<=args.max_rss_mib<=16384:parser.error("observer RSS budget must be 1024..16384 MiB")
-    return run(args.private_directory,params,args.baseline_commit,args.max_rss_mib)
+    return run(args.private_directory,params,args.baseline_commit,args.max_rss_mib,
+        resume_root=args.resume_root,parent_name=args.parent_name.encode('ascii'),child_name=args.child_name.encode('ascii'))
 
 
 if __name__=="__main__":raise SystemExit(main())

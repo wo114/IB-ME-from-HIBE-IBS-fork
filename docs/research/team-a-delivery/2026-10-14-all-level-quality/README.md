@@ -11,3 +11,7 @@
 软件为WSL指定Sage环境，使用已固定FLINT工具和Flatter d2b8026，OMP8/OpenBLAS1，默认计数系统CSPRNG；独立源码与二进制哈希及8 GiB全进程树观察器保留。命令和实际新实例结果随后记录。
 
 扩大回归：`tests/test_abb*.py tests/test_matrix_finite_sampling.py tests/test_chkp_matrix_profiles.py`实际183 passed、7 skipped，48.30秒。3项需要已完成的完整真实ABB实例，4项需要外部旧证据；skip不计通过。JUnit位于evidence，测试在预先固定的新实例启动前执行。
+
+首个新实例实际根通过0.817秒（6081私有随机字节），父阶段在87.984秒后失败，累计13659642私有随机字节，峰值进程树531188 KiB；源指纹未变，FAILED地址保留。旧观察器只记录外层ABBSamplingAbort，精确内层失败原因未保存，不能猜测为质量或采样失败。收据保留在evidence。
+
+修复观察器仅公开已固定源码中的literal错误字符串及文件/函数/行号，动态错误值、局部变量、矩阵均不公开。下一步用同一已生成根的只读副本，对新的未签发Carol地址执行一次诊断；数学/参数源码必须与原根收据一致，Bob失败地址保留、不重试，原状态文件不写。仅从这种合法新地址诊断结果判定实际阻塞，不反复调参数重抽根。
