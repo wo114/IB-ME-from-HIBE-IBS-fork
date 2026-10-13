@@ -39,7 +39,7 @@ PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest \
 
 [coordinator-integration-proposal.patch](coordinator-integration-proposal.patch) 以 PR14 固定 head 为基点，包含 8 个路径：4 处冲突入口保留 A 当前窄适配，队友 4 个 runtime 文件变为公共引擎桥接；未改身份、协议、参数快照、固定地址或旧证据。原精确 rank helper 只保留兼容诊断，实际 RandBasis 由公共引擎执行。
 
-该 patch 是接收者可审查的提案，**尚未应用到当前分支的队友文件**。应用前先接收本批新增 A 模块、GPV/scalar 兼容改动和测试样例；用 `git apply --check` 在独立副本验证。候选副本的联合树来自 PR15 + PR14，只在忽略目录中解决冲突、放入桥接。当前分支没有制造待解决的 Git merge 状态。
+该 patch 是接收者可审查的提案，**尚未应用到当前分支的队友文件**。应用前先接收本批新增 A 模块、GPV/scalar 兼容改动和测试样例；提案是零上下文 patch，用 `git apply --unidiff-zero --check` 在独立副本验证，实际应用也需 `--unidiff-zero`。候选副本的联合树来自 PR15 + PR14，只在忽略目录中解决冲突、放入桥接。当前分支没有制造待解决的 Git merge 状态。
 
 统筹仍须负责实际共享入口合并、安装包/CLI/状态与完整组合复核，并为新组合记录新源码指纹；本批不能覆盖原 PR14 130 份历史源清单或改写其 44 项组合证据。源文件/测试变更与参考混合树逐项列在验证 JSON；新 backend 不由此登记或升级已准入数量。
 

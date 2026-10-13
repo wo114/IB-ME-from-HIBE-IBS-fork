@@ -138,7 +138,7 @@
 +        return super().sample(rng=SecureRandom() if rng is None else rng)
 --- a/src/ibme/lattice/chkp/finite_gaussian.py
 +++ b/src/ibme/lattice/chkp/finite_gaussian.py
-@@ -1,240 +1,4 @@
+@@ -1,16 +1 @@
 -"""Independent first-suite wide finite Gaussian profile; not backend admission.
 -
 -Same finite rejection equations as the prior bounded reference, with independent
@@ -156,7 +156,7 @@
 -from sage.all import QQ, ZZ, RealIntervalField
 -
 +"""Candidate shared-engine bridge; not applied to the peer PR."""
- from ibme.core.randomness import SecureRandom
+@@ -18,223 +3,2 @@
 -from ibme.lattice.chkp.gaussian import SamplingAbort, draw_uniform_integer, interval_bounds
 -from ibme.lattice.chkp.tape import FiniteByteTape
 -from .entropy import CheckedEntropy
@@ -384,7 +384,7 @@
 +from ibme.lattice.matrix_sampling.chkp_profiles import (CHKPFiniteOptions as FirstFiniteOptions, CHKPFiniteGaussian as FirstFiniteGaussian, MAX_SQUARED_WIDTH)
 --- a/src/ibme/lattice/chkp/finite_gpv.py
 +++ b/src/ibme/lattice/chkp/finite_gpv.py
-@@ -1,311 +1,10 @@
+@@ -1 +1,6 @@
 -"""Independent first-suite finite GPV with system CSPRNG and wide scalar profile.
 +"""Candidate CHKP explicit 512/2048-bit profile over the shared engine."""
 +from ibme.core.randomness import SecureRandom
@@ -392,7 +392,7 @@
 +from ibme.lattice.matrix_sampling.chkp_profiles import (CHKPFiniteGPV as FirstFiniteGPV, MAX_INPUT_BITS, MAX_SQUARED_WIDTH)
 +MAX_DIMENSION=256
 +EXTENDED_MAX_DIMENSION=512
- 
+@@ -3,97 +8 @@
 -GPV08 (2008-08-25 author version), section 4.2, PDF pp. 15--17:
 -descending randomized nearest plane with c=-t, then return t+v, where
 -A*t=y (mod q). The scalar oracle is the project's bounded online Gaussian,
@@ -491,7 +491,7 @@
 -
 -
 +_bounded_qq = _bounded_rational
- def _gs_geometry(rows, bits):
+@@ -101,211 +10 @@
 -    columns = tuple(matrix(ZZ, rows).columns())
 -    orthogonal, squared, weights = [], [], []
 -    for column in columns:
@@ -706,7 +706,7 @@
 +    return _shared_geometry(rows, bits, gate=_bounded_qq)
 --- a/src/ibme/lattice/chkp/finite_randbasis.py
 +++ b/src/ibme/lattice/chkp/finite_randbasis.py
-@@ -1,24 +1,7 @@
+@@ -1,9 +1 @@
 -"""Independent first-suite finite/CSPRNG RandBasis; existing ToBasis domain.
 -
 -CHKP author 2011-06-14, section 3.4; project T2 finite contract C4--C6.
@@ -717,7 +717,7 @@
 -from dataclasses import dataclass, field
 -
 +"""Candidate RandBasis bridge; legacy rank helper retained only for diagnostics."""
- from sage.all import GF, QQ, ZZ, matrix, vector
+@@ -11,11 +3,2 @@
 -
 -from ibme.core.randomness import SecureRandom
 -from .finite_gpv import FirstFiniteGPV
@@ -731,13 +731,7 @@
 -
 +from ibme.lattice.matrix_sampling.scalar import exact_integer
 +from ibme.lattice.matrix_sampling.chkp_profiles import (CHKPFiniteRandBasis as FirstFiniteRandBasis, CHKPFiniteRandResult as FirstFiniteRandResult)
- class _ExactIncrementalRank:
-     """One-sided modular independence witness with exact rational fallback.
- 
-@@ -67,107 +50,3 @@
-         return False
- 
- 
+@@ -70,104 +52,0 @@
 -@dataclass(frozen=True)
 -class FirstFiniteRandResult:
 -    # The nested KernelBasis certifies algebra only. Its historical T1
@@ -844,7 +838,7 @@
 -        }
 --- a/src/ibme/lattice/chkp/tobasis.py
 +++ b/src/ibme/lattice/chkp/tobasis.py
-@@ -1,124 +1,9 @@
+@@ -1,20 +1,5 @@
 -"""Exact, deterministic ToBasis: full lattice and ordered GS bounds ONLY.
 -
 -Peikert, pargauss author version 2011-04-13, Lemma 5.4 (PDF 16).
@@ -870,14 +864,14 @@
 +from ibme.lattice.matrix_sampling.basis import _checked_square as _shared_square
 +MAX_DIMENSION=192
 +EXTENDED_MAX_DIMENSION=512
- def _dimension_limit(value):
+@@ -22,5 +7 @@
 -    if type(value) is not int or not 1 <= value <= EXTENDED_MAX_DIMENSION:
 -        raise ValueError("explicit ToBasis dimension budget must be in 1..512")
 -    return value
 -
 -
 +    return _basis_limits(value).max_dimension
- def _checked_square(rows, dimension):
+@@ -28,97 +9 @@
 -    if hasattr(rows, "rows") and callable(rows.rows):
 -        if rows.nrows() != dimension or rows.ncols() != dimension:
 -            raise ValueError("vector matrix must have the full lattice dimension")
