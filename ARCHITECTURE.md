@@ -1,10 +1,12 @@
 # IB-ME 统一框架与独立原语
 
-更新：2026-10-11。接口和验收细节以 [IMPLEMENTATION_SPEC.md](IMPLEMENTATION_SPEC.md) 为准；实际完成情况、外部交付和当前任务统一查 [PROJECT_STATUS.md](docs/PROJECT_STATUS.md)。本文件描述模块职责，不累计逐轮进度。
+更新：2026-10-12。接口和验收细节以 [IMPLEMENTATION_SPEC.md](IMPLEMENTATION_SPEC.md) 为准；实际完成情况、外部交付和当前任务统一查 [PROJECT_STATUS.md](docs/PROJECT_STATUS.md)。本文件描述模块职责，不累计逐轮进度。
 
 ## 1. 项目目标
 
 采用指导论文第三章、Wang 等论文 §4 的两层匿名 HIBE + IBS 通用构造。共享一套协议、编码、状态管理和验收工具；HIBE 与 IBS 分别实现，再选择兼容组件组成实例。每个模块只实现一次，供多个组合复用。最终按场景选择三组有实际优势的完整组合，其余保留为比较对象。
+
+有 h 个 HIBE 和 i 个 IBS 时，主要实施 h+i 个原语，共用协议接入后对 h×i 的候选配对逐一预检。准备公开支持的可行配对必须实际执行完整组合验收；全部结果进入平台和比较材料，最后三个代表用于报告重点。三人的多个原语和公共协调任务见[交付计划](docs/workplans/三人方案分工与统一框架交付.md)。
 
 分别统计困难假设、原语算法、参数配置和完整组合。两个原语可以属于不同格家族；第三套 HIBE 不再强制覆盖 Module-LWE。候选组合仍须经过各自验证，不能把参数调整计为新算法，也不能把配置接线计为已完成安全实例。
 
@@ -39,6 +41,7 @@ CLI / 应用 / 统一评测
 | 容量适配 | [hybrid_hibe.py](src/ibme/protocol/hybrid_hibe.py) | 用内层 HIBE 封装种子，外层 HKDF/AES-GCM 处理载荷 |
 | 字节认证 | [byteauth.py](src/ibme/protocol/byteauth.py) | 在基线外增加密文字节认证及加密内容绑定 |
 | 当前研究配置 | [luo_hybrid.py](src/ibme/protocol/luo_hybrid.py) | 教学 ABB10 + Luo 模格 IBS + Hybrid + BYTEAUTH 的专用配置 |
+| 可选 HIBE 研究配置 | [mp12_chkp](src/ibme/hibe/mp12_chkp/__init__.py)、[公共格工具](src/ibme/lattice/research/__init__.py) | MP12 计算型根/DelTrap + CHKP H/G，真实六方法/固定叶/对象恢复；安装包保持单一 provider，Sage 下默认可选，缺 Sage 明确 unavailable；原 CHKP/正式安全准入保持分开 |
 | 用户入口 | [cli.py](src/ibme/cli.py) | 独立 `--hibe` / `--ibs`、两边选参；旧预设保留 |
 | 统一选择与装配 | [assembly](src/ibme/assembly/__init__.py)、[registry](src/ibme/assembly/registry.py) | 显式后端登记、严格配置快照、无随机性的能力/容量预检、公开对象恢复 |
 | 组合验收 | [run_combination_matrix.py](experiments/run_combination_matrix.py) | 同一驱动执行各已实现组合；静态兼容与真实执行分开记录 |

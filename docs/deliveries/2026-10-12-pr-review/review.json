@@ -1,0 +1,261 @@
+{
+  "date": "2026-10-12",
+  "isolated_test_source_head": "ea62d6543a16a07bd3c5a3a2c94cfe0f5d1dd3e9",
+  "merged_main_before_document_sync": "7686fd906198e74d3ce140c542908ae253e20ef5",
+  "source_tree_equivalent": true,
+  "pytest_unique_passes": 350,
+  "pytest_unresolved_failures": 0,
+  "junit_runs": [
+    {
+      "file": "pr-review-integration.xml",
+      "sha256": "9c16a1f62881c9bc16c812a37651b25758ba7ce38cc5f4fe5abca37f32d51df1",
+      "tests": 244,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "pr-review-certificate-fixed-env.xml",
+      "sha256": "618b37232423fadd416f64f797e838a0ec4502a205e60654eeb26d11826fc4d0",
+      "tests": 39,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "pr-review-evidence.xml",
+      "sha256": "3c0d8b54badd5794b19edd3943f09c8926de91b49ce4aacab8b5bfdea5b02f4b",
+      "tests": 69,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "pr-review-sage.xml",
+      "sha256": "1655d7dbd253732856a881af01baf9d610ae964e26ad3839b08641c4d636d843",
+      "tests": 48,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "assembly_probe": {
+    "status": "functional_teaching_assembly_pass",
+    "target_head": "ea62d6543a16a07bd3c5a3a2c94cfe0f5d1dd3e9",
+    "profile_sha256": "d9367da68cee4451b15dc74f79817f638f14f29722b26355a1ef47dc45b860ef",
+    "checks": [
+      "reference_preflight",
+      "reference_signature_capacity",
+      "reference_application_capacity",
+      "reference_inner_contract",
+      "reference_canonical_config",
+      "reference_build_without_entropy",
+      "compact_preflight",
+      "compact_signature_capacity",
+      "compact_application_capacity",
+      "compact_inner_contract",
+      "compact_canonical_config",
+      "compact_build_without_entropy",
+      "wrong_setup_snapshot",
+      "max_message_roundtrip",
+      "canonical_all_state",
+      "restored_fixed_key_cache",
+      "restored_decrypt",
+      "oversize_before_entropy",
+      "wrong_sender",
+      "wrong_receiver",
+      "both_wrong",
+      "byteauth_mutation",
+      "default_decoder_rejects_C64B",
+      "actual_compact_signature_size",
+      "actual_teaching_outer_payload"
+    ],
+    "capacity": {
+      "reference": {
+        "identity_bytes": 64,
+        "max_application_bytes": 3924,
+        "signature_max_bytes": 29455,
+        "ibs_input_bytes": 4096,
+        "hibe_payload_bytes": 65536,
+        "protocol_payload_overhead": 29563,
+        "signed_input_overhead": 172,
+        "inner_hibe_payload_bytes": 32,
+        "inner_hibe_identity_bytes": 86,
+        "inner_hibe_ciphertext_max_bytes": 2452065
+      },
+      "compact": {
+        "identity_bytes": 64,
+        "max_application_bytes": 3924,
+        "signature_max_bytes": 16383,
+        "ibs_input_bytes": 4096,
+        "hibe_payload_bytes": 65536,
+        "protocol_payload_overhead": 16491,
+        "signed_input_overhead": 172,
+        "inner_hibe_payload_bytes": 32,
+        "inner_hibe_identity_bytes": 86,
+        "inner_hibe_ciphertext_max_bytes": 2452065
+      }
+    },
+    "signature_bytes": 16383,
+    "outer_payload_bytes": 20415,
+    "application_bytes": 3924,
+    "private_artifacts_saved": false,
+    "source_sha256": {
+      "src/ibme/__init__.py": "f0e3dd70a3752229d5209b58ef760914242569406374c427a463a45823090bb8",
+      "src/ibme/assembly/__init__.py": "57843b8fc922b5979536c166a4e40f25f638b95dcc6c8686487cf6bd62171536",
+      "src/ibme/assembly/registry.py": "33f133efecdd5251908039ae9c6cdf1885bf8654db4ad6312e24c5dd0237134b",
+      "src/ibme/core/__init__.py": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac",
+      "src/ibme/core/encoding.py": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d",
+      "src/ibme/core/errors.py": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e",
+      "src/ibme/core/hashing.py": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4",
+      "src/ibme/core/lamport_ots.py": "6322e025e01c299e20769ba6cd3a3bb02b9a14a98cf7fc530c81950adda046a5",
+      "src/ibme/core/randomness.py": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
+      "src/ibme/core/types.py": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56",
+      "src/ibme/hibe/__init__.py": "8b471e5f2ca4a5b22cb2a695d6f75d1891962ff135ff0662e64f47abbde4cd1e",
+      "src/ibme/hibe/abb10.py": "a7121a89e3645e87fa059564b745ed1487dfb7f9510a10973c42d0b5e94a9d32",
+      "src/ibme/hibe/api.py": "b81ec0a7ec48c8b5f2fbbed7182b0c22952167d355f92943918a419ab8a5ac4a",
+      "src/ibme/hibe/mock.py": "48f53e2fdd383cd361ea304056f289f6f4dfee23558b3825038d4b363113002a",
+      "src/ibme/ibs/__init__.py": "09f78edc872e40b5c0644b187db5e8f6aa2fb9a74455eb41571b9e71a63920c4",
+      "src/ibme/ibs/api.py": "e08bfaf4c73c0471966103156f3b88debda5f37b06b493c63dde7b4372da661c",
+      "src/ibme/ibs/luo.py": "728319d4ca14c004b258717b3ffecf083760920f15fa79bfe0af761de81a67bf",
+      "src/ibme/ibs/luo_module.py": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275",
+      "src/ibme/ibs/luo_module_codec.py": "bb99eb6a18a06be204ab0274de8e295522589d8100cc2c9f944c7cf4980b06df",
+      "src/ibme/ibs/luo_module_math.py": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f",
+      "src/ibme/ibs/luo_reference.py": "993a9da05f302c73464860028e54a3dad95557a23ca334df4dbb5f4090c236b0",
+      "src/ibme/ibs/mock.py": "c91902e02252a07dba1a777f1fa444de05058ca2f2c228356c82f3ca951b51a8",
+      "src/ibme/ibs/sis_ibs.py": "a66f160d1c0ceb35080db2fa039dbe7f41bb7a71ebf223a6e35965d70486ed61",
+      "src/ibme/lattice/__init__.py": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f",
+      "src/ibme/lattice/gadget.py": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d",
+      "src/ibme/lattice/gaussian.py": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c",
+      "src/ibme/lattice/modmat.py": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94",
+      "src/ibme/lattice/params.py": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be",
+      "src/ibme/lattice/trapdoor.py": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8",
+      "src/ibme/protocol/__init__.py": "362828a85b5b1190ae145b8dde11d83a2f61cc58079aaef860ae7cde8e05b240",
+      "src/ibme/protocol/baseline.py": "3bffb26ce97294c8268430719c8ed1fbf66b118bb11bc5930e7e27f8dcab0b16",
+      "src/ibme/protocol/byteauth.py": "d174c0be104ab756c70fdb7fea8ade13b3afb8d6b59e6295019db42efe2f7414",
+      "src/ibme/protocol/hybrid_hibe.py": "00f67d1065b25fe63e41ba1752266e73f03ed586f2a008a8333682ef0d158655"
+    },
+    "elapsed_seconds": 24.004251099890098,
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "scope": "C64B compact teaching ABB10 Hybrid and BYTEAUTH; reference preflight only; no CLI/CHKP"
+  },
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.6",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "physical_memory_bytes": 33778278400,
+    "cryptography": "49.0.0"
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "initial_invocation_notes": [
+    "首次 Windows 测试命令含未展开的文件通配符，未收集测试；随后明确文件列表。",
+    "旧工作树出现并行未提交代码，第一次联合测试中止且不计数；最终在新隔离工作树重跑。",
+    "C64B 固定源探针最初使用不匹配的 head 参数，在源版本检查处拒绝且未消费熵；随后改用 git rev-parse HEAD 的完整值。",
+    "隔离 checkout 未安装 Python 包：首轮 243 passed/1 failed，失败证书子进程找不到 ibme；设置 PYTHONPATH=src 后39项证书测试通过，同一源码无代码修改。"
+  ],
+  "fixtures": "从既有真实 n2 交付复制到本机隔离、被忽略测试目录；实际48项含根生成/绑定/恢复/负控。旧21项完整探针收据未重新生成。",
+  "pr_results": [
+    {
+      "number": 10,
+      "state": "MERGED",
+      "reviewed_head": "2868cf54411188562440820eba266ca3dd278fd9",
+      "merge_commit": "f61eb5727f2b1556da9dc9d7a2889660325ec977",
+      "contained_in": 11
+    },
+    {
+      "number": 11,
+      "state": "MERGED",
+      "reviewed_head": "57a02e597ddde9cef30dd16bf2874ab9cd192b17",
+      "merge_commit": "4bda55121467e3059d9618417172293d9594d53a"
+    },
+    {
+      "number": 9,
+      "state": "MERGED",
+      "reviewed_head": "e5e0b97752f9291ce7621dd830d665baff86aef8",
+      "merge_commit": "00e4345b32399b22e4f579ba4ba5c54c2652a582"
+    },
+    {
+      "number": 12,
+      "state": "MERGED",
+      "reviewed_head": "77957196f1d7fabb80cf2a18a05064fbd7ecc32c",
+      "merge_commit": "7686fd906198e74d3ce140c542908ae253e20ef5",
+      "retargeted_base": "main"
+    }
+  ],
+  "archived_evidence_sha256": {
+    "c64b-assembly.json": "ca4627b04d837e6d300a48f1844d30b991a19d0b6f038ec9e0074df22d602563",
+    "certificate-fixed-env.junit.xml": "618b37232423fadd416f64f797e838a0ec4502a205e60654eeb26d11826fc4d0",
+    "evidence.junit.xml": "3c0d8b54badd5794b19edd3943f09c8926de91b49ce4aacab8b5bfdea5b02f4b",
+    "initial-integration.junit.xml": "8df423db5acb80db7d009bbf19a17cd72887172f67041b088732ac06f2dcbbae",
+    "pr13-cli-lifecycle.json": "75566488d7a6c84f8edb4bf324e94a933324e8b39d820dd5edfaf5f4cd5e0be2",
+    "pr13-installed-independence.junit.xml": "697dd8d73ff31619b9c28b3b21dc87fcc4a6961e8f7dd32d4dc9f8bc0faa3ecf",
+    "pr13-portable.junit.xml": "ac7dad17010aea1b0a299592db383871e71dec615403e21e80a93fd54b69cba7",
+    "pr13-review.json": "66c2622409017b6808becc21d0c4558842587fb452da6a9fee4a58747674748e",
+    "pr13-sage-installed.json": "0c6b1be7215df6e64a1e3153968a297c374ec121cf604bab7c6c3cd87d7c070e",
+    "pr13-sage.junit.xml": "74737fc1726bb67b7a5015a5761659254d5fcbd122c543ce82ce51fb7a17de16",
+    "pr13-wheel-inspection.json": "9fb87cd2f2d009e1afbf0fe3f563c95a828a8e7e5043778b2c1b792478235eb4",
+    "pr13-windows-installed.json": "3c0fef5f022fcba2d409d25d9006006d81d340c0d5baf686ac296b128afde439",
+    "sage.junit.xml": "1655d7dbd253732856a881af01baf9d610ae964e26ad3839b08641c4d636d843"
+  },
+  "native_engine_sha256": "27ec5bbb759384e2e535b5e136aa9ca2db501a3ac350c5f217d6bf114f73b284",
+  "parameters_scope": {
+    "luo": "既有默认/C64B及测试源码内小参数；未改变默认和数值。",
+    "mp12_reference": {
+      "n": 2,
+      "q": 549755813911,
+      "r_width_squared": 16,
+      "identity_bytes": 86,
+      "max_receivers": 2,
+      "max_children": 2,
+      "security_claim": "none"
+    },
+    "purpose": "功能/攻击负控/恢复与证据核验，非性能/正式参数实验。"
+  },
+  "sage_environment": {
+    "sage": "10.9",
+    "python": "3.13.14",
+    "os": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "runtime": "~/miniconda3/envs/sage"
+  },
+  "archive_line_endings": "LF; archived hashes describe archived bytes; junit_runs hashes retain original local run bytes.",
+  "additional_pr13_record": "pr13-review.json",
+  "final_source_main": "94f21683983921b2969ab5c5647d9cb2dab402b8",
+  "final_document_checks": {
+    "local_links_checked": 107,
+    "missing_links": 0,
+    "candidate_routes": 19,
+    "task_dependency_dag": true,
+    "code_changes": 0,
+    "diff_check": true
+  },
+  "local_primary_sync": {
+    "status": "not_performed_to_preserve_existing_untracked_file",
+    "primary_head": "bc22c9cb834dee51e9c8b7a37040fa0c5349fcdb",
+    "collision": "papers/2016_ntru_ibs_xie.pdf",
+    "reason": "本地未跟踪版本与远端同名已跟踪文件不同；保护检查在任何 merge/文件写入之前拒绝。",
+    "existing_files": [
+      {
+        "path": "papers/2016_ntru_ibs_xie.pdf",
+        "sha256": "05cfdfbbff7d37855ca36e44309a79ff5b189632762bd71660fe0aaa2d391e88",
+        "bytes": 686954
+      },
+      {
+        "path": "papers/2021_module_trapdoors_bert.pdf",
+        "sha256": "eacffb2ad4dee159e59c2c3e85f83ed7296ab26e13a930b1ce5203fa7ab9432a",
+        "bytes": 555517
+      },
+      {
+        "path": "papers/structured-survey-manifest-2026-10-11.json",
+        "sha256": "8d9e67f63813381108a6f18c3580efbac5c01f2eb3d56adb7e97788aa264005a",
+        "bytes": 2571
+      }
+    ],
+    "updated_managed_worktree": "pr-merge-review",
+    "primary_worktree_preserved": true
+  }
+}

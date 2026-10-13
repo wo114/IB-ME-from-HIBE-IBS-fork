@@ -1,0 +1,108 @@
+{
+  "head": "3c8441f84f8cedf17aa545129a1498d1d9f3c24c",
+  "code_matches_initial_pr13": true,
+  "junit_runs": [
+    {
+      "file": "pr13-final-guard.xml",
+      "sha256": "ac7dad17010aea1b0a299592db383871e71dec615403e21e80a93fd54b69cba7",
+      "tests": 175,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2
+    },
+    {
+      "file": "pr13-review-sage.xml",
+      "sha256": "74737fc1726bb67b7a5015a5761659254d5fcbd122c543ce82ce51fb7a17de16",
+      "tests": 55,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "pr13-installed-independence.xml",
+      "sha256": "697dd8d73ff31619b9c28b3b21dc87fcc4a6961e8f7dd32d4dc9f8bc0faa3ecf",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "api_checks": [
+    3,
+    10
+  ],
+  "cli_stages": 8,
+  "cli_seconds": 82.760612822,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "github": {
+    "headRefOid": "3c8441f84f8cedf17aa545129a1498d1d9f3c24c",
+    "mergeCommit": {
+      "oid": "94f21683983921b2969ab5c5647d9cb2dab402b8"
+    },
+    "mergedAt": "2026-10-12T05:42:42Z",
+    "state": "MERGED",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-12T01:57:20Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38193716279/job/114631731842",
+        "name": "basic-checks",
+        "startedAt": "2026-10-12T01:54:43Z",
+        "status": "COMPLETED",
+        "workflowName": "Basic checks and known gaps"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-12T01:57:04Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38193714658/job/114631727312",
+        "name": "basic-checks",
+        "startedAt": "2026-10-12T01:54:44Z",
+        "status": "COMPLETED",
+        "workflowName": "Basic checks and known gaps"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-12T02:07:06Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38193716279/job/114631732027",
+        "name": "hybrid-research",
+        "startedAt": "2026-10-12T01:54:43Z",
+        "status": "COMPLETED",
+        "workflowName": "Basic checks and known gaps"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-12T02:09:17Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38193714658/job/114631727123",
+        "name": "hybrid-research",
+        "startedAt": "2026-10-12T01:54:42Z",
+        "status": "COMPLETED",
+        "workflowName": "Basic checks and known gaps"
+      }
+    ]
+  },
+  "corrective_commits": [
+    "9fdc9b2",
+    "350b435",
+    "3c8441f"
+  ],
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.6",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "physical_memory_bytes": 33778278400,
+    "cryptography": "49.0.0"
+  },
+  "sage_environment": {
+    "sage": "10.9",
+    "python": "3.13.14",
+    "os": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "runtime": "~/miniconda3/envs/sage"
+  },
+  "scope": "合并前独立安装/API/CLI/回归；有Sage时真实采样与恢复，Windows两个Sage条件skip不记pass。"
+}

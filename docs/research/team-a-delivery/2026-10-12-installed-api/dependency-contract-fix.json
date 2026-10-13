@@ -1,0 +1,24 @@
+{
+  "scope": "A optional-support packaging / Luo independent import contract",
+  "failed_ci_commit": "46d623c",
+  "failed_jobs": [
+    114625320803,
+    114625306840
+  ],
+  "observed_failure_count": 1,
+  "failure": "physical namespace absence assertion despite optional namespace installed",
+  "fix": "force namespace discoverability, actively deny all experiments imports, run real Luo restore/sign/verify, assert no research modules loaded",
+  "algorithm_or_parameter_changes": false,
+  "test_counts": {
+    "tests": 90,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 2
+  },
+  "passed": 88,
+  "source_sha256": "e684558ed1cf7d88fba0027d3f8cbaa8cf22cb54d1d37b57c3e4739eac09e122",
+  "command": "python -m pytest -p no:cacheprovider -q --tb=short tests/test_luo_ibs_contract.py tests/test_public_research_api.py --junitxml=test-results/a-install/luo-independence-release.xml",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "next": "remote CI revalidation; A2 remains pending"
+}

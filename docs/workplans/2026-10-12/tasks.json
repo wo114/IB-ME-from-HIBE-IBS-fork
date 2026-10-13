@@ -1,0 +1,699 @@
+{
+  "schema": "IBME_TEAM_PLAN/1",
+  "date": "2026-10-13",
+  "planning_only": false,
+  "baseline": {
+    "main": "bc22c9cb834dee51e9c8b7a37040fa0c5349fcdb",
+    "pr11": "f98de52f25e117fa7e365c686c23e0c142d004b1",
+    "pr10_included": "2868cf54411188562440820eba266ca3dd278fd9",
+    "pr9_not_merged": "e5e0b97752f9291ce7621dd830d665baff86aef8"
+  },
+  "human_priority": "当前按用户授权在已审PR14上实施B的尚缺IBS算法，核对全部截图路线；历史A目标保留在原收据。",
+  "deadline_assumed": null,
+  "scope": "固定 Wang 两层匿名 HIBE+IBS；不做 Boyen–Li 增强隐私。",
+  "composition_policy": {
+    "shared_framework": true,
+    "primitive_implementations": "h+i",
+    "candidate_pairs": "h×i；仅就绪/适配配对进入真实验收",
+    "initial_matrix_target": {
+      "hibe": 2,
+      "ibs": 3,
+      "already_completed": false
+    },
+    "all_ready_compatible_pairs_must_be_tested": true,
+    "report_representatives": 3,
+    "implementation_count_limit": null
+  },
+  "dependency_policy": "依赖描述验收所需产物；准备/核验/对象工作可先做。真实 T3/T4 按每个配对等待相应 HIBE/IBS，T5 按每个已验收 case，T6/T8/T9 可先搭骨架再滚动填结果，不等待全队所有任务关闭。",
+  "priority_order": [
+    "P0",
+    "P1",
+    "P2",
+    "P3"
+  ],
+  "roles": {
+    "A": "矩阵HIBE与陷门工具",
+    "B": "原生格基IBS；当前用户授权工作范围",
+    "C": "结构 HIBE、认证转换工程对照和 NTRU 工具",
+    "coordinator": "主集成 Codex 执行；队长协调；三人交算法数据/章节"
+  },
+  "task_cards": {
+    "A": "A-矩阵HIBE任务.md",
+    "B": "B-原生格IBS任务.md",
+    "C": "C-结构HIBE与工程IBS任务.md",
+    "coordinator": "统筹-接入评测与作品交付.md"
+  },
+  "coordination_task_ids": [
+    "T0",
+    "T1",
+    "T2",
+    "T3",
+    "T4",
+    "T5",
+    "T6",
+    "T7",
+    "T8",
+    "T9",
+    "T10"
+  ],
+  "tasks": [
+    {
+      "id": "A0",
+      "owner": "A",
+      "priority": "P0",
+      "title": "同组参数与资源可行性",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "research_profile_and_projection_done_formal_roles_pending",
+      "deliverables": [
+        "研究配置/目标配置全参数与原文条件表",
+        "根父叶尺寸/资源和第一阻塞",
+        "下一真实路径输入选择"
+      ],
+      "evidence": "../../research/team-a-delivery/2026-10-12-hibe-reference/README.md"
+    },
+    {
+      "id": "A3",
+      "owner": "A",
+      "priority": "P0",
+      "title": "矩阵 Gaussian/陷门/委派公共工具",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "public_api_packaged_target_dimensions_and_tools_pending",
+      "deliverables": [
+        "现有有限工具接收与公开接口",
+        "真实分布/委派、异常/资源测试",
+        "消费者和误差口径"
+      ],
+      "evidence": "../../research/team-a-delivery/2026-10-12-installed-api/README.md"
+    },
+    {
+      "id": "A1",
+      "owner": "A",
+      "priority": "P0",
+      "title": "CHKP/明确命名 MP12 变体公开 HIBE",
+      "depends_on": [
+        "A0",
+        "A3"
+      ],
+      "execution_state": "mp12_and_original_chkp_research_api_done_formal_pending",
+      "deliverables": [
+        "六方法及真实 Extract→Derive",
+        "对象/绑定/固定状态与严格 codec",
+        "BackendSpec 提案与算法章节"
+      ],
+      "evidence": "../../deliveries/2026-10-12-chkp-luo/README.md"
+    },
+    {
+      "id": "A2",
+      "owner": "A",
+      "priority": "P1",
+      "title": "ABB-ROM 忠实固定维度实例",
+      "depends_on": [
+        "A3"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "BasisDel/SampleR 两层算法与条件",
+        "完整后端/codec/单体测试",
+        "与 A1 可比数据"
+      ]
+    },
+    {
+      "id": "AR",
+      "owner": "A",
+      "priority": "P3",
+      "title": "GKR/标准模型 HIBE 储备核验",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "模型/对象/成本差异卡",
+        "缺失模块和重启条件"
+      ]
+    },
+    {
+      "id": "B1",
+      "owner": "B",
+      "priority": "P0",
+      "title": "Luo 模格交接与收尾",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "pr14_fixed_research_delivery_received_maintenance",
+      "deliverables": [
+        "PR9 固定版本及 C64B 17 字段核验",
+        "真实生命周期/恢复/编码与登记提案",
+        "最新装配接口复跑收据"
+      ],
+      "evidence": "../../research/2026-10-12-luo-final-acceptance/README.md"
+    },
+    {
+      "id": "B2",
+      "owner": "B",
+      "priority": "P1",
+      "title": "Luo 矩阵实际对照",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "现有参考/后端维护与必要接入",
+        "筛查失败负控",
+        "与模格同口径数据"
+      ]
+    },
+    {
+      "id": "B3",
+      "owner": "B",
+      "priority": "P1",
+      "title": "Foo–Li 固定种子 IBS",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "real_four_algorithm_runtime_exists_common_adapter_pending",
+      "deliverables": [
+        "固定服务/经典 ROM 条件与资源决定",
+        "五方法/codec/恢复与真实单体",
+        "参数/登记提案及章节"
+      ],
+      "completed_scope": "setup/extract/sign_raw/verify、固定用户种子和严格恢复；未准入正式安全参数"
+    },
+    {
+      "id": "B4",
+      "owner": "B",
+      "priority": "P2",
+      "title": "Wang+PW 转换 SIS 备选",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "research_five_methods_done_formal_and_default_registration_pending",
+      "deliverables": [
+        "自适应转换和固定服务规格",
+        "真实原像/参数/状态/后端",
+        "SIS 比较收据"
+      ],
+      "completed_scope": "真实MP12/PW转换、完整五方法、规范对象、固定已发key多消息与跨进程恢复；q17 debug公开伪造负控",
+      "evidence": "../../research/team-b-delivery/2026-10-13-wang-pw/README.md"
+    },
+    {
+      "id": "B5",
+      "owner": "B",
+      "priority": "P2",
+      "title": "Sageloli SIS/RSIS 与 SRGG 分批实施",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "srgg_full_research_IBS_done_formal_and_sageloli_pending",
+      "deliverables": [
+        "各原文固定服务/有限成本/采样门槛",
+        "按通过次序交独立后端",
+        "RSIS 容量和复合模数工具"
+      ],
+      "completed_scope": "完整SRGG四算法/五方法、数值连续SampleF/Schur/真实gadget、签验、固定身份cache和恢复；ζ一致factor2解释，none/false",
+      "evidence": "../../research/team-b-delivery/2026-10-13-srgg-full/README.md"
+    },
+    {
+      "id": "BR",
+      "owner": "B",
+      "priority": "P3",
+      "title": "Yu PRF/电路/有限参数储备",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "PRF/电路和范数增长成本卡",
+        "现有组件与完整 IBS 缺口"
+      ]
+    },
+    {
+      "id": "C1",
+      "owner": "C",
+      "priority": "P1",
+      "title": "LATTE/Lai 资格核验与结构 HIBE",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "匿名/委派/采样/代码选择表",
+        "LATTE 缓冲问题复验与差分",
+        "先合格者完整六方法，后补另一条"
+      ]
+    },
+    {
+      "id": "C2",
+      "owner": "C",
+      "priority": "P1",
+      "title": "共享认证转换与 ML-DSA/Falcon IBS",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "原文转换/固定身份/严格对象规格",
+        "固定官方库/许可/KAT，先 ML-DSA",
+        "完整 IBS 验收后接第二适配及尺寸"
+      ]
+    },
+    {
+      "id": "C3",
+      "owner": "C",
+      "priority": "P2",
+      "title": "Xie 原生 NTRU IBS 核验与实施",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "模数/逆元原文冲突澄清",
+        "实际采样/拒绝与有限参数",
+        "合格后四算法和共同后端"
+      ]
+    },
+    {
+      "id": "CR",
+      "owner": "C",
+      "priority": "P3",
+      "title": "Zhang 理想格 HIBE 储备核验",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "密钥/陷门/Derive 类型疑点表",
+        "原文参数冲突和实施入口"
+      ]
+    },
+    {
+      "id": "T0",
+      "owner": "coordinator",
+      "priority": "P0",
+      "title": "PR 审查与版本接收",
+      "depends_on": [],
+      "execution_state": "reviewed_merged_current_pr_batch",
+      "deliverables": [
+        "本轮分工/路线修订",
+        "PR9/10/11 独立代码与证据接收",
+        "固定基线/owner/差分/合并结论"
+      ],
+      "completed_scope": "#9—#13固定版本均已审查合入；未来交付继续逐批接收，不代表全部候选完成。"
+    },
+    {
+      "id": "T1",
+      "owner": "coordinator",
+      "priority": "P0",
+      "title": "公共 registry/装配与兼容预检",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "共享接口/登记示例",
+        "独立严格参数/格式/容量/能力",
+        "公开 factory/decoder 接线"
+      ]
+    },
+    {
+      "id": "T2",
+      "owner": "coordinator",
+      "priority": "P0",
+      "title": "CLI/状态/公私绑定",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "固定发钥/恢复/pending/中止",
+        "跨公钥/profile/版本拒绝",
+        "统一入口和事务边界"
+      ]
+    },
+    {
+      "id": "T3",
+      "owner": "coordinator",
+      "priority": "P0",
+      "title": "全就绪池真实配对矩阵",
+      "depends_on": [
+        "T1",
+        "T2"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "预检状态/独立配置与 runner",
+        "每个就绪配对真实生命周期/恢复",
+        "增量 2×3 及后续全可行池收据"
+      ]
+    },
+    {
+      "id": "T4",
+      "owner": "coordinator",
+      "priority": "P0",
+      "title": "组合攻击与故障验收",
+      "depends_on": [
+        "T3"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "四种匹配/伪造/接收者重签",
+        "wire/参数/恢复/并发/中止负控",
+        "第一拒绝层与实际失败"
+      ]
+    },
+    {
+      "id": "T5",
+      "owner": "coordinator",
+      "priority": "P1",
+      "title": "公平完整评测",
+      "depends_on": [
+        "T4"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "相同输入/目标/包装/环境",
+        "原语与端到端冷热/尺寸/资源",
+        "原始数据/统计/失败和消融基线"
+      ]
+    },
+    {
+      "id": "T6",
+      "owner": "coordinator",
+      "priority": "P1",
+      "title": "选择/结果展示与导出",
+      "depends_on": [
+        "T1"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "假设→算法→运行配置模型",
+        "全配对状态/限制/已有测量",
+        "导出与三代表证据展示"
+      ]
+    },
+    {
+      "id": "T7",
+      "owner": "coordinator",
+      "priority": "P2",
+      "title": "组合联合优化验证",
+      "depends_on": [
+        "T5"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "同工作基线 A/B/C 定义",
+        "合法公共操作复用与消融",
+        "整体收益/条件或无收益原因"
+      ]
+    },
+    {
+      "id": "T8",
+      "owner": "coordinator",
+      "priority": "P1",
+      "title": "作品设计报告滚动主编",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "本轮报告骨架",
+        "三人算法/条件/数据章节整合",
+        "三代表和全部比较/限制/引用"
+      ]
+    },
+    {
+      "id": "T9",
+      "owner": "coordinator",
+      "priority": "P1",
+      "title": "支撑材料滚动索引",
+      "depends_on": [
+        "T0"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "本轮收件/索引模板",
+        "原文/许可/参数/攻击/数据/环境指纹",
+        "可重放与秘密隔离审查"
+      ]
+    },
+    {
+      "id": "T10",
+      "owner": "coordinator",
+      "priority": "P2",
+      "title": "答辩/演示/复现与冻结发布",
+      "depends_on": [
+        "T6",
+        "T8",
+        "T9"
+      ],
+      "execution_state": "planned",
+      "deliverables": [
+        "PPT/演示/录像/问答",
+        "干净环境复跑及故障步骤",
+        "同版本源码/作品/支撑与发布包"
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "id": "chkp-rom",
+      "kind": "hibe",
+      "owner": "A",
+      "priority": "P0",
+      "task_id": "A1",
+      "availability_inferred_from_plan": false,
+      "next_step": "正式困难参数、资源和组合条件；已有PR14六方法/整链/CLI不重写"
+    },
+    {
+      "id": "abb-rom",
+      "kind": "hibe",
+      "owner": "A",
+      "priority": "P1",
+      "task_id": "A2",
+      "availability_inferred_from_plan": false,
+      "next_step": "PR15原文根/位/委派组件WIP；修保存恢复目录缺根快照再推进两层HIBE"
+    },
+    {
+      "id": "latte",
+      "kind": "hibe",
+      "owner": "C",
+      "priority": "P1",
+      "task_id": "C1",
+      "availability_inferred_from_plan": false,
+      "next_step": "复验作者代码缓冲/采样、真实两层及匿名条件"
+    },
+    {
+      "id": "lai-ideal-hibe",
+      "kind": "hibe",
+      "owner": "C",
+      "priority": "P1",
+      "task_id": "C1",
+      "availability_inferred_from_plan": false,
+      "next_step": "§5.1–5.2/定理10、标签逆元/真实委派和有限参数"
+    },
+    {
+      "id": "gkr2025",
+      "kind": "hibe",
+      "owner": "A",
+      "priority": "P3",
+      "task_id": "AR",
+      "availability_inferred_from_plan": false,
+      "next_step": "编译器/匿名扩展/混淆依赖、对象与有限成本"
+    },
+    {
+      "id": "zhang2020",
+      "kind": "hibe",
+      "owner": "C",
+      "priority": "P3",
+      "task_id": "CR",
+      "availability_inferred_from_plan": false,
+      "next_step": "澄清可委派陷门/逆元/模数方向，实施真实SamplePre"
+    },
+    {
+      "id": "abb-standard-selective",
+      "kind": "hibe",
+      "owner": "A",
+      "priority": "P3",
+      "task_id": "AR",
+      "availability_inferred_from_plan": false,
+      "next_step": "提取§8/Theorem33算法及列数/宽度，独立模型实例"
+    },
+    {
+      "id": "chkp-standard",
+      "kind": "hibe",
+      "owner": "A",
+      "priority": "P3",
+      "task_id": "AR",
+      "availability_inferred_from_plan": false,
+      "next_step": "§5.4可容许哈希、层深/维度/匿名范围，独立于ROM"
+    },
+    {
+      "id": "luo-module",
+      "kind": "ibs",
+      "owner": "B",
+      "priority": "P0",
+      "task_id": "B1",
+      "availability_inferred_from_plan": false,
+      "next_step": "固定PR14终验版本维护，参数或目标变化定向复核"
+    },
+    {
+      "id": "luo-matrix",
+      "kind": "ibs",
+      "owner": "B",
+      "priority": "P1",
+      "task_id": "B2",
+      "availability_inferred_from_plan": false,
+      "next_step": "保留真实四算法、必要接入和失败参数负控"
+    },
+    {
+      "id": "foo-li",
+      "kind": "ibs",
+      "owner": "B",
+      "priority": "P1",
+      "task_id": "B3",
+      "availability_inferred_from_plan": false,
+      "next_step": "复用已有真实四算法/恢复，补共同对象、五方法、稳健服务与模型条件"
+    },
+    {
+      "id": "wang-pw",
+      "kind": "ibs",
+      "owner": "B",
+      "priority": "P2",
+      "task_id": "B4",
+      "availability_inferred_from_plan": false,
+      "next_step": "已有本批研究五方法；后继正式参数/固定服务映射/默认登记/真实HIBE配对"
+    },
+    {
+      "id": "sageloli-sis",
+      "kind": "ibs",
+      "owner": "B",
+      "priority": "P2",
+      "task_id": "B5",
+      "availability_inferred_from_plan": false,
+      "next_step": "固定服务游戏、q=3^k复合模数陷门/SampleD，再独立四算法"
+    },
+    {
+      "id": "sageloli-rsis",
+      "kind": "ibs",
+      "owner": "B",
+      "priority": "P2",
+      "task_id": "B5",
+      "availability_inferred_from_plan": false,
+      "next_step": "复合模数环采样、固定服务与真实wire/MB容量，不能套素数NTT"
+    },
+    {
+      "id": "srgg2025",
+      "kind": "ibs",
+      "owner": "B",
+      "priority": "P2",
+      "task_id": "B5",
+      "availability_inferred_from_plan": false,
+      "next_step": "完整研究IBS已交；核连续数值总误差、ζ/原文强前提/HNF分布与正式参数，之后默认登记/真实HIBE配对"
+    },
+    {
+      "id": "yu2026",
+      "kind": "ibs",
+      "owner": "B",
+      "priority": "P3",
+      "task_id": "BR",
+      "availability_inferred_from_plan": false,
+      "next_step": "真实PRF有限电路与范数增长，之后委派/采样/Figure5四算法"
+    },
+    {
+      "id": "cert-ml-dsa",
+      "kind": "ibs",
+      "owner": "C",
+      "priority": "P1",
+      "task_id": "C2",
+      "availability_inferred_from_plan": false,
+      "next_step": "普通签名KAT、共享认证转换/机构证书/用户键/消息绑定和完整IBS"
+    },
+    {
+      "id": "cert-falcon",
+      "kind": "ibs",
+      "owner": "C",
+      "priority": "P1",
+      "task_id": "C2",
+      "availability_inferred_from_plan": false,
+      "next_step": "同转换核心、独立格式/熵/解析适配与完整认证载荷"
+    },
+    {
+      "id": "xie-ntru-ibs",
+      "kind": "ibs",
+      "owner": "C",
+      "priority": "P2",
+      "task_id": "C3",
+      "availability_inferred_from_plan": false,
+      "next_step": "澄清模数/逆元，真实Gaussian/拒绝与原生四算法"
+    }
+  ],
+  "gates": {
+    "source_spec": "版本/算法/定理/冲突/有限输入和真实关键实验",
+    "primitive": "公开契约/真实随机与算法/严格对象/状态/参数/单体证据",
+    "assembly": "BackendSpec 提案由统筹接收；不读私有字段",
+    "research_run": "真实配对的合法执行、失败/攻击/恢复和版本收据",
+    "formal": "单独核实际参数/分布/估计/引用与模型，不能从功能继承"
+  },
+  "new_cryptographic_parameters": true,
+  "security_statement": {
+    "scope": "本批新增真实研究算法和debug参数，未新增正式参数、安全等级或准入结论。",
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "known_pending": [
+    "新的提交/PR 和未来算法仍须逐版本审查；本轮五个 PR 已合入。",
+    "C64B 明确 opt-in，默认参数未改；条件界/模型和正式安全准入仍待核。",
+    "MP12 n2研究后端、公共工具、wheel/默认可选CLI已实跑；Sage/native仍为运行依赖，正式大尺寸/两角色攻击估计/变体模型待完成。",
+    "扩展 2×3 及全就绪池的真实组合仍未齐备。",
+    "LATTE/Lai 匿名/采样/委派与 Xie 原文冲突须先核验。",
+    "完整展示/报告/支撑/答辩产物仍待实施，当前提供任务和模板。"
+  ],
+  "last_a_evidence_date": "2026-10-12",
+  "baseline_describes_original_plan_only": true,
+  "latest_pr_acceptance": {
+    "date": "2026-10-12",
+    "main_before_document_sync": "94f21683983921b2969ab5c5647d9cb2dab402b8",
+    "prs": [
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "states": "MERGED",
+    "code_review_source_head": "ea62d6543a16a07bd3c5a3a2c94cfe0f5d1dd3e9",
+    "merged_source_tree_equivalent": true,
+    "report": "../../deliveries/2026-10-12-pr-review/README.md",
+    "additional_pr13_head": "3c8441f84f8cedf17aa545129a1498d1d9f3c24c",
+    "code_review_source_head_scope": "#9—#12固定源码；#13安装与隔离修订另记录，不混同版本。"
+  },
+  "latest_b_delivery": {
+    "date": "2026-10-13",
+    "base_pr14": "87deec24f52c1c776a489566cf76f11d0d4a5aff",
+    "path": "../../research/team-b-delivery/2026-10-13-wang-pw/README.md",
+    "research_only": true,
+    "security_claim": "none",
+    "backend_admitted": false
+  },
+  "new_parameter_status": "研究debug档；没有新增正式安全参数或安全等级",
+  "current_remote_pr_review": {
+    "date": "2026-10-13",
+    "pr14_head": "87deec24f52c1c776a489566cf76f11d0d4a5aff",
+    "pr15_head": "0a9e512a204b4e81c844b6998f4e43205cdb2f60",
+    "both_open": true,
+    "remote_merge_performed": false,
+    "report": "../../research/team-b-delivery/2026-10-13-wang-pw/pr-review.md"
+  },
+  "latest_b_full_srgg": {
+    "date": "2026-10-13",
+    "base": "3b50a40",
+    "path": "../../research/team-b-delivery/2026-10-13-srgg-full/README.md",
+    "full_IBS_implemented": true,
+    "security_claim": "none",
+    "backend_admitted": false
+  }
+}

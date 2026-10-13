@@ -4,7 +4,7 @@
 
 框架沿用 Wang 的两层匿名 HIBE + IBS 通用构造；HIBE 与 IBS 独立实现、独立选参，再装配为兼容组合。不实施 Boyen–Li 的 Ext/ReExt 增强隐私。共同目标包括普通隐私、加强认证、自我伪造防护和完整密文字节篡改拒绝，安全结论须逐项说明前提。
 
-**实现边界：**`BaselineIBME`、`ByteAuthenticatedIBME` 接受两个后端对象；Hybrid 通过显式解码器连接底层 HIBE。[assembly](src/ibme/assembly/__init__.py) 已实现统一注册/配置/预检/装配，CLI 支持独立选择。CHKP 公开研究后端使用独立参数类型和 Sage 运行环境，算法/状态契约见 [CHKP 规范](docs/specs/chkp-hibe.md)；LATTE 等未交付后端仍明确拒绝。使用方式见 [FRAMEWORK_USAGE](docs/FRAMEWORK_USAGE.md)，实际执行与安全状态见当前进度。
+**实现边界：**`BaselineIBME`、`ByteAuthenticatedIBME` 接受两个后端对象；Hybrid 通过显式解码器连接底层 HIBE。[assembly](src/ibme/assembly/__init__.py) 已实现统一注册/配置/预检/装配，CLI 支持独立选择。原 CHKP 完整基委派的 `chkp` 研究后端已登记，范围见 [CHKP契约](docs/specs/chkp-hibe.md)；独立 MP12 紧凑委派变体 `mp12-chkp-reference` 的[可安装公共入口](src/ibme/hibe/mp12_chkp/__init__.py)与登记同时保留，范围见[first_suite 契约](docs/specs/first-suite-research.md)。两者都需要 Sage；MP12变体新根/新接收者还须显式本机 native engine。无依赖时明确拒绝，不回退。LATTE等未交付后端仍不可用，研究接口不代表继承定理或正式安全准入。使用方式见 [FRAMEWORK_USAGE](docs/FRAMEWORK_USAGE.md)，实际执行证据见当前状态。
 
 ## 1. 身份与编码
 
@@ -90,7 +90,7 @@ load_signature(self, pk, data: bytes) -> signature
 
 ### 3.3 算法专属条件
 
-本地 `first_suite` 历史独立研究组件的原版本契约集中在 [first_suite 专属契约](docs/specs/first-suite-research.md)。共享运行时现已集中到 `src/ibme/lattice/chkp/`，旧导入入口保留兼容；原 MP12 DelTrap 实例仍与新 CHKP RandBasis 后端分别统计。主/接收状态磁盘事务见[传输与状态契约](docs/specs/transport-and-state.md)，历史实验结果不自动继承到新后端。
+本地 `first_suite` 的版本契约见 [first_suite 专属契约](docs/specs/first-suite-research.md)。共享有限采样实现集中到 `src/ibme/lattice/chkp/`，旧研究导入入口保持兼容；计算型 MP12 DelTrap 变体与 CHKP RandBasis 后端分别登记和统计。旧n=1原型、两种n=2研究后端均不能当成正式安全实例，历史实验不自动继承到新后端。主/接收状态磁盘事务见 [传输与状态契约](docs/specs/transport-and-state.md)。
 
 每个模块给出论文算法—实现映射、正确性条件、真实随机分布、失败事件、格式和恢复语义。需要离散高斯的算法必须说明宽度约定并做统计诊断；使用均匀掩码的算法按原论文实现。SIS 方程、gadget、陷门委派或 NTT 仅约束使用它们的后端，不能作为所有 HIBE/IBS 的通用接口要求。
 

@@ -288,4 +288,9 @@ def default_registry():
         specs.append(BackendSpec(identifier,"hibe","unavailable-v1",available=False,reason="public backend not delivered; no mock fallback"))
     for identifier in ("srgg2025","yu2026","sageloli-sis","sageloli-rsis","foo-li","wang-pw","cert-ml-dsa","cert-falcon","xie-ntru-ibs"):
         specs.append(BackendSpec(identifier,"ibs","unavailable-v1",available=False,reason="public backend not delivered; no mock fallback"))
+    # Public optional entry, with no Sage import on non-Sage hosts. The caller
+    # supplies the private arithmetic executable through an explicit local
+    # environment setting; suite JSON cannot specify executables or imports.
+    from ibme.hibe.mp12_chkp import default_backend_spec
+    specs.append(default_backend_spec())
     return BackendRegistry(specs)
