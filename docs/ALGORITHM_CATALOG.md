@@ -45,7 +45,7 @@
 |---|---|---|---|
 | `luo-matrix` — Luo 2024 矩阵 IBS | SIS 主定理，经典 ROM；公开主密钥关系还须筛查 LWE 式恢复路径；固定身份服务条件单列 | [原文](../papers/2024_ibs_without_trapdoors_luo.pdf) §3；现有参数网格未通过完整筛查，[扩参暂停决策](research/2026-10-11/IBS版本决策-模格版主线.md) | **可运行研究后端，当前暂缓扩参**。[luo.py](../src/ibme/ibs/luo.py)、[矩阵参考](../src/ibme/ibs/luo_reference.py)保留；不能为填“纯 SIS”一栏恢复不合格参数 |
 | `luo-module` — Luo 2024 模格 IBS | MLWE + MSIS，当前按经典 ROM 条件引用；不自动升级 QROM。固定身份与重复签名语义需对应论文 | 同一原文 §4 Algorithms 13–16；[专属契约](specs/luo-ibs.md)。外部已交有明确前提的总中止界及研究候选；引用条件与正式参数尚未全部准入 | **可运行研究后端，Luo当前主线**。[模块实现](../src/ibme/ibs/luo_module.py)、[compact codec](../src/ibme/ibs/luo_module_codec.py)已有；显式C64B compact与真实CHKP/Hybrid/BYTEAUTH的完整接线和CLI已通过，教学HIBE接线保留为历史对照。两个格式不是两个IBS；参数与实跑边界见[项目状态](PROJECT_STATUS.md) |
-| `srgg2025` — Jia 等 SRGG 椭球 G+G IBS | MLWE/MSIS 及底层 sEUF-CMA 条件；论文 QROM 结论有前提，不能由代数测试继承 | [12 页完整稿](../papers/2025_efficient_ibs_jia.pdf)已取得；原稿宽度记号、ζ 尺度、q/Q/2Q 和底层条件仍待处理 | **已有真实组件**：公开关系、HNF、[高斯gadget](research/2026-10-10-srgg-sampling/README.md)，本批新增[完整相关扰动目标的有限GPV采样及实际提取](research/team-b-delivery/2026-10-13-wang-pw/srgg-next-step.md)。不是逐行literal SampleF；卷积/HNF密钥分布、XOF/固定服务和完整Sign/Verify仍缺，未取得作者C原型 |
+| `srgg2025` — Jia 等 SRGG 椭球 G+G IBS | MLWE/MSIS及底层sEUF-CMA条件；原文QROM结论不能由功能测试继承 | [12页缓存原稿](../papers/2025_efficient_ibs_jia.pdf)；主噪声按Table3，签名采用明确ζ一致factor2解释，未宣称作者勘误 | **完整研究IBS已实现**：[五方法/连续SampleF与Schur/真gadget/Sign/Verify/固定缓存与恢复](research/team-b-delivery/2026-10-13-srgg-full/README.md)。32次真签验及恢复通过；n8档Q>2γ但挑战仅8bit、公开固定点伪造可行。连续数值总误差、HNF分布、强结论/正式参数、默认登记和真实HIBE配对仍未准入 |
 | `yu2026` — Yu–Liu–Li 标准模型 IBS | SIS + PRF；若选 LWE-PRF 须额外记录 LWE。原文有固定密钥服务模型；实现适配仍需核对 | [26 页完整稿](../papers/2026_ibs_ibme_yu.pdf)已取得；§3.1 游戏、Figure 5/Theorem 3 已定位，无有限完整配置 | **已有同态组件**：[gadget/NAND/匹配电路参考](../experiments/research/candidates/yu/homomorphic_reference.py)、[独立证据](research/2026-10-10-yu/README.md)。未实现真实 PRF、完整范数增长、委派/采样或 IBS 后端 |
 | `sageloli-sis` — Sageloli 等矩阵 IBS | SIS，论文 ROM/QROM 路线；安全游戏 OSign 每次 KeyExt，与长期固定身份密钥服务的对应待核 | [73 页 HAL 完整稿](../papers/2023_shorter_faster_ibs_sageloli.pdf) §5/§6、Figure 5/6、Table 2；复合模数 `q=3^k` 参数未准入 | **仅候选与参数计数**。未核得作者完整实现；复合模数陷门与 SampleD 须先实现单体，不能套现有素数域工具 |
 | `sageloli-rsis` — Sageloli 等 Ring-SIS IBS | Ring-SIS，论文 ROM/QROM 路线；固定密钥游戏缺口与矩阵条目分别处理 | 同一原文 §7、Figure 7/8、Table 4、Appendix E；[单位账本](research/2026-10-10-foundations/sageloli-units.json)保留原标签与 bit/byte 换算 | **仅候选与环基础**。原文部分实例签名为 MB 量级；尚无真实 wire 或 IBS，不预设能装入当前 64 KiB 载荷 |
@@ -60,6 +60,8 @@
 SRGG [第二轮记录](research/2026-10-10-srgg-sampling/README.md)包含真正有限误差离散高斯 gadget 和小环重建，而完整 SampleP/签名分布仍未完成。Yu [记录](research/2026-10-10-yu/README.md)包含同态等式与电路，不含实际 PRF 和完整签名。两者不能再写成“只有论文”，也不能写成“完整 IBS 已实现”。
 
 2026-10-13 SRGG新增真实相关扰动/提取组件；原始近似方程与HNF精确方程分别验收。分布参考替代、literal SampleF、重建后的key分布及完整IBS仍分开判断，详见B交付。
+
+同日后续完整SRGG实现已接入数值连续Gaussian/固定r随机舍入、原文下块与上块Schur、XOF/挑战和完整签验；组件历史范围不被覆盖，当前新增完整范围见上述独立交付。
 
 Sageloli 的 [计数工具](../experiments/research/sageloli_parameter_units.py)纠正 bit/byte 阅读口径；附录计数不是序列化实测。固定发钥服务的适配问题并不因原文标题含“tight / QROM”而消失。
 

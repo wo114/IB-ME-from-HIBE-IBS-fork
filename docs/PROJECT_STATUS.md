@@ -4,6 +4,8 @@
 
 2026-10-13 B增量：本地分叉克隆完成，在已审PR14 `87deec2` 上新增 [Wang+PW完整研究签名链与交付](research/team-b-delivery/2026-10-13-wang-pw/README.md)，含真实MP12采样、PW转换、冻结五方法与严格恢复；debug参数仍none/false。SRGG相关扰动/提取按独立组件交付，不计完整IBS。上游PR15仍为WIP，B基础不包含它。
 
+同日新授权完整SRGG：已完成 [SRGG完整研究IBS](research/team-b-delivery/2026-10-13-srgg-full/README.md)，含真实连续SampleF/随机舍入、Schur条件、XOF/H/挑战、四算法/五方法、固定身份缓存和恢复；组件批次与完整批次分别留证。正式安全与默认安装/真实HIBE配对未准入。
+
 ## 1. 已确认的组织方式
 
 采用**一个 IB-ME 框架、独立 HIBE 模块、独立 IBS 模块、兼容组合的统一装配和验收**。协议、编码、持久状态、命令行和评测复用；每个原语由自己的负责人完成算法、对象、参数、采样及单体测试。
@@ -32,6 +34,7 @@
 | Luo 模格 IBS | 真实算法、NTT/Hint、固定状态及reference/compact；C64B完整17字段、正确性条件/中止界、原文安全引用映射和第二十四步终验收收尾；实际CHKP组合已核对compact16383 B | 默认参数不变、C64B仍显式选择；研究候选不是正式安全等级，不自动补写完整基础归约/QROM；版本变化定向复核 |
 | Wang+PW IBS | [完整研究五方法](../experiments/research/candidates/wang_pw/)、秘密委派/真实原像、四域哈希/两个盐、固定key多消息及跨进程恢复；32次新真签验与公开伪造负控单列B交付 | q17调试参数不安全；正式参数/根近均匀、固定服务安全映射、默认登记/安装与真实CHKP配对未完成，不能计已准入安全组合 |
 | Foo–Li IBS | 已有setup/extract/sign_raw/verify、固定用户种子与严格恢复的真实研究生命周期，本批真实采样回归复验 | 共同五方法/对象、稳健服务与模型/参数仍待；不是因sign_raw命名而未实现算法 |
+| SRGG IBS | [完整研究后端](../experiments/research/candidates/srgg/backend.py)、数值连续SampleF/Schur/真gadget、签验及固定cache恢复；32次系统随机签验、恢复同key、规范加载、原文范数重试和错误拒绝均执行 | ζ一致factor2与原文Table3字面差异、连续数值总TV、HNF/强前提尚未证；n8挑战弱可公开伪造，不授安全等级；默认登记和真实HIBE组合待统筹 |
 | 既有内置完整研究接线 | **教学 ABB10 + Hybrid + Luo 模格 + BYTEAUTH** | 可以验证工程流程；HIBE 不是 CHKP，不能记为真实 CHKP 组合完成 |
 | CHKP 本仓库 | `src/ibme/hibe/chkp/`公开六方法、`src/ibme/lattice/chkp/`有限工具；原CHKP父RandBasis/ToBasis与同叶256目标真实运行、保存/恢复、Hybrid+C64B+BYTEAUTH及CLI完成 | MP12仅用于此后端根生成；n2/q1099511627791可公开攻击，G-formal未准入，状态无外部防回滚保证 |
 | CHKP 历史第七步外部包 | 原输入、返工和清单保留供追溯；现行功能收尾由[完整交付](research/2026-10-12-chkp-closure/README.md)替代 | 不因旧第八步目录名未出现否定新的固定提交；历史未执行/失败/恢复不能改写为同一次全新成功 |

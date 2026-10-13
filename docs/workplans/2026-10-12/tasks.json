@@ -207,14 +207,14 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "srgg_correlated_perturbation_extraction_component_done_other_IBS_pending",
+      "execution_state": "srgg_full_research_IBS_done_formal_and_sageloli_pending",
       "deliverables": [
         "各原文固定服务/有限成本/采样门槛",
         "按通过次序交独立后端",
         "RSIS 容量和复合模数工具"
       ],
-      "completed_scope": "SRGG完整相关扰动目标finite-GPV参考及真实gadget提取/HNF两套方程；不是literal SampleF或完整IBS；Sageloli两条仍待",
-      "evidence": "../../research/team-b-delivery/2026-10-13-wang-pw/srgg-next-step.md"
+      "completed_scope": "完整SRGG四算法/五方法、数值连续SampleF/Schur/真实gadget、签验、固定身份cache和恢复；ζ一致factor2解释，none/false",
+      "evidence": "../../research/team-b-delivery/2026-10-13-srgg-full/README.md"
     },
     {
       "id": "BR",
@@ -591,7 +591,7 @@
       "priority": "P2",
       "task_id": "B5",
       "availability_inferred_from_plan": false,
-      "next_step": "真实相关扰动/提取；literal SampleF、卷积/HNF分布与完整IBS仍分开推进"
+      "next_step": "完整研究IBS已交；核连续数值总误差、ζ/原文强前提/HNF分布与正式参数，之后默认登记/真实HIBE配对"
     },
     {
       "id": "yu2026",
@@ -687,5 +687,13 @@
     "both_open": true,
     "remote_merge_performed": false,
     "report": "../../research/team-b-delivery/2026-10-13-wang-pw/pr-review.md"
+  },
+  "latest_b_full_srgg": {
+    "date": "2026-10-13",
+    "base": "3b50a40",
+    "path": "../../research/team-b-delivery/2026-10-13-srgg-full/README.md",
+    "full_IBS_implemented": true,
+    "security_claim": "none",
+    "backend_admitted": false
   }
 }
