@@ -1,0 +1,199 @@
+{
+  "schema": "A-MATRIX-HIBE-RESERVE-COSTS/1",
+  "measured": false,
+  "scope": "finite literal counts, no keys, no executable/safe parameter selection",
+  "format_assumption": "signed entry is one sign byte + LP4 + >=one magnitude byte; no headers",
+  "scale_input": {
+    "n": 128,
+    "q_bits": 61,
+    "root_block_m": 46849,
+    "strict_m_gt_6_n_logq": true
+  },
+  "abb_standard": {
+    "source": "ABB EUROCRYPT full PDF32-34, \u00a78.2/\u00a78.3/Theorem33",
+    "measured": false,
+    "n": 128,
+    "root_block_m": 46849,
+    "q_bits": 61,
+    "depth": 2,
+    "seed_bytes": 32,
+    "full_basis_dimensions": [
+      46849,
+      93698,
+      140547
+    ],
+    "full_basis_entries": [
+      2194828801,
+      8779315204,
+      19753459209
+    ],
+    "entrywise_signed_format_min_basis_bytes": [
+      13168972806,
+      52675891224,
+      118520755254
+    ],
+    "public_residue_count": 23986816,
+    "public_residue_bytes": 191894528,
+    "bit_ciphertext_residue_count": 140548,
+    "independent_bit_seed_residue_bytes": 287842304,
+    "rademacher_symbols_per_bit": 4389657602,
+    "independent_bit_seed_rademacher_symbols": 1123752346112,
+    "unknown": [
+      "finite sigma/alpha/omega constants",
+      "actual sampler TV/ABORT/workspace",
+      "identity full-rank-difference map and codec",
+      "adaptive/anonymous composition mapping"
+    ],
+    "parameters_are_formal": false,
+    "backend_admitted": false,
+    "security_claim": "none"
+  },
+  "chkp_standard_grids": [
+    {
+      "source": "CHKP author full PDF26-29, (5.3)/Theorem5.4/Corollary5.5",
+      "measured": false,
+      "n": 128,
+      "root_block_m": 46849,
+      "q_bits": 61,
+      "hash_output_bits": 128,
+      "depth": 2,
+      "seed_bytes": 32,
+      "matrix_blocks_in_master_public": 513,
+      "public_matrix_residue_count": 3076292736,
+      "public_matrix_residue_bytes": 24610341888,
+      "full_basis_dimensions": [
+        46849,
+        6043521,
+        12040193
+      ],
+      "full_basis_entries": [
+        2194828801,
+        36524146077441,
+        144966247477249
+      ],
+      "entrywise_signed_format_min_basis_bytes": [
+        13168972806,
+        219144876464646,
+        869797484863494
+      ],
+      "anon_padded_leading_residues_per_seed": 12040193,
+      "shared_leading_seed_residue_bytes": 96323592,
+      "reduction_denominator": "Delta(identity_domain_bits,Q)^depth; depth2 and Delta=Theta(Q^-2) gives Theta(Q^-4)",
+      "unknown": [
+        "actual admissible hash construction, output length and finite Delta",
+        "identity hash domain and two-level mapping",
+        "sigma/noise and hardness",
+        "actual finite key generation and codec/GS/resource budgets"
+      ],
+      "parameters_are_formal": false,
+      "backend_admitted": false,
+      "security_claim": "none"
+    },
+    {
+      "source": "CHKP author full PDF26-29, (5.3)/Theorem5.4/Corollary5.5",
+      "measured": false,
+      "n": 128,
+      "root_block_m": 46849,
+      "q_bits": 61,
+      "hash_output_bits": 256,
+      "depth": 2,
+      "seed_bytes": 32,
+      "matrix_blocks_in_master_public": 1025,
+      "public_matrix_residue_count": 6146588800,
+      "public_matrix_residue_bytes": 49172710400,
+      "full_basis_dimensions": [
+        46849,
+        12040193,
+        24033537
+      ],
+      "full_basis_entries": [
+        2194828801,
+        144966247477249,
+        577610900730369
+      ],
+      "entrywise_signed_format_min_basis_bytes": [
+        13168972806,
+        869797484863494,
+        3465665404382214
+      ],
+      "anon_padded_leading_residues_per_seed": 24033537,
+      "shared_leading_seed_residue_bytes": 192270344,
+      "reduction_denominator": "Delta(identity_domain_bits,Q)^depth; depth2 and Delta=Theta(Q^-2) gives Theta(Q^-4)",
+      "unknown": [
+        "actual admissible hash construction, output length and finite Delta",
+        "identity hash domain and two-level mapping",
+        "sigma/noise and hardness",
+        "actual finite key generation and codec/GS/resource budgets"
+      ],
+      "parameters_are_formal": false,
+      "backend_admitted": false,
+      "security_claim": "none"
+    },
+    {
+      "source": "CHKP author full PDF26-29, (5.3)/Theorem5.4/Corollary5.5",
+      "measured": false,
+      "n": 128,
+      "root_block_m": 46849,
+      "q_bits": 61,
+      "hash_output_bits": 16384,
+      "depth": 2,
+      "seed_bytes": 32,
+      "matrix_blocks_in_master_public": 65537,
+      "public_matrix_residue_count": 393003892864,
+      "public_matrix_residue_bytes": 3144031142912,
+      "full_basis_dimensions": [
+        46849,
+        767620865,
+        1535194881
+      ],
+      "full_basis_entries": [
+        2194828801,
+        589241792383348225,
+        2356823322648604161
+      ],
+      "entrywise_signed_format_min_basis_bytes": [
+        13168972806,
+        3535450754300089350,
+        14140939935891624966
+      ],
+      "anon_padded_leading_residues_per_seed": 1535194881,
+      "shared_leading_seed_residue_bytes": 12281561096,
+      "reduction_denominator": "Delta(identity_domain_bits,Q)^depth; depth2 and Delta=Theta(Q^-2) gives Theta(Q^-4)",
+      "unknown": [
+        "actual admissible hash construction, output length and finite Delta",
+        "identity hash domain and two-level mapping",
+        "sigma/noise and hardness",
+        "actual finite key generation and codec/GS/resource budgets"
+      ],
+      "parameters_are_formal": false,
+      "backend_admitted": false,
+      "security_claim": "none"
+    }
+  ],
+  "gkr": {
+    "source": "GKR PDF14-16 \u00a73.1, PDF32-34 AppendixB",
+    "measured": false,
+    "proposed_framed_binary_path_bits": 1456,
+    "convenience_verification_key_bits": 128,
+    "key_node_count_including_root": 1457,
+    "chain_message_material_bits": 559488,
+    "Q_garbled_circuit_count": 1457,
+    "T_garbled_circuit_count": 1,
+    "OTSE_encryption_circuits_inside_Q": 372992,
+    "anonymizing_lockable_obfuscations_per_ciphertext": 1,
+    "concrete_ciphertext_bytes": null,
+    "concrete_key_bytes": null,
+    "unknown": [
+      "concrete PKE/OTSE/garbling/delegatable PRF implementations and gate counts",
+      "lockable obfuscator parameters/implementation/output and Dec circuit bounds",
+      "fixed two-component byte encoding model mapping"
+    ],
+    "not_the_complete_anonymous_LWE_cost": true,
+    "parameters_are_formal": false,
+    "backend_admitted": false,
+    "security_claim": "none"
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
