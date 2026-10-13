@@ -32,7 +32,7 @@ def main():
     expected=[(byte>>shift)&1 for byte in message for shift in reversed(range(8))]
     results=[]
     for block,bit in zip(ciphertext.blocks,expected,strict=True):
-        attack=recover_n1_bit(bit_public,ABBBitCiphertext(block[0],tuple(block[1:])),radius)
+        attack=recover_n1_bit(bit_public,ABBBitCiphertext(public.params.q,block[0],tuple(block[1:])),radius)
         results.append(attack['candidate_bits']==[bit])
     record=dict(schema='ABB-FULL-BYTE-PUBLIC-N1-ATTACK/1',status='passed' if all(results) else 'failed',
         params=public.params.to_record(),payload_bytes=32,identity_bytes=[86,86],actual_noisy_bits=len(results),
