@@ -30,4 +30,14 @@
 
 最终代码回归Sage227 pass/3旧私有witness skip，Windows前批137 pass/8 Sage skip；AR7 pass，测试重叠不求和。隔离wheel/Sage -I的71个provider全部来自安装包，实际失败状态恢复与禁止重发通过。详细命令、文件SHA、参数和已知失败均在各批审计；测试不替代安全证明。
 
+真实纵向完成后用 `tests/test_abb_real_lifecycle_contract.py`读取该同一实物，不生成替代key。入口要求completed/通过收据、源指纹未变、root1、实际86 B/32 B与系统熵；核五对象规范往返、实际公钥/路径、整树固定key复用私有熵0及context/wire控制。完整32 B固定测试熵的重复Enc及新SamplePre Dec由显式 `IBME_ABB_REAL_REPLAY=1`启用。当前运行目录尚无completed，该三项检查全部**明确skip**，不算算法通过、也不加到227 pass。
+
+```bash
+IBME_ABB_REAL_PRIVATE_DIR=test-results/abb-q104-canonical-vertical/private \
+IBME_ABB_REAL_REPLAY=1 PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest \
+  -p no:cacheprovider -q -rs tests/test_abb_real_lifecycle_contract.py
+```
+
+此入口尚不覆盖完整Hybrid+Luo组合或同公钥下两receiver/多sender诚实错配，相关验收仍待。当前单地址容量仅为最小纵向切片；不能以容量拒绝替代多身份算法/组合验收，也不将前一个中断实物拼入此实例。
+
 交接文件组：ABB专属params/profiles/identity/objects/key_validation/backend/registration；matrix_sampling scalar/GPV/basis/RandBasis/modular及认领兼容入口；ABB/工具专属tests；delegation/hibe/reserve-costs探针；四个日期批次的公开收据与README。具体逐文件列表可由上述提交的Git stat和审计source清单取得，私钥/实际基/seed/运行状态/native原始栈不在提交中。
