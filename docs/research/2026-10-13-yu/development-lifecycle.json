@@ -1,0 +1,204 @@
+{
+  "schema": "IBME/YU2026/INDEPENDENT-LIFECYCLE/1",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "scope": "real Figure5 research dataflow with finite Gaussian and explicit LLL adaptations",
+  "source_revision": "2650ab3d7344720f616764cdc45fd94dd91de180",
+  "source_sha256": {
+    "experiments/research/candidates/yu/circuits.py": "1c5452df81fe381a3e256bbb2e0d72b1a6b267ce7ee72dbcdeb0059c777079bc",
+    "experiments/research/candidates/yu/bpr.py": "b0ebc46c90713df304bd3df30cffdbb49a0d83d6fdb198b7cd315ca3ea007630",
+    "experiments/research/candidates/yu/evaluation.py": "3f07fbc22b9d1edd9962455144a1ff125b95793b5035740fc2c2049c36830cbf",
+    "experiments/research/candidates/yu/trapdoors.py": "eaefe74f099d8d886da61b99a68dc810cc3bf306ebbb3eca837fabe3cdc9d6ce",
+    "experiments/research/candidates/yu/standalone.py": "578dd513701e50e46689875220bfdb719447d0937ab4a2be6cd170ca0a4bb61e",
+    "experiments/research/candidates/yu/profiles.py": "3b03d252c91eb9cb890e358036b4a0067a449d91e1ad9439b264196f926425b5",
+    "experiments/research/candidates/yu/lifecycle_audit.py": "20c9a6c3dd42e65ab3abc95bb0f62a436278f90e41f438a92079bf3f2594e1e1",
+    "experiments/research/chkp_basis.py": "e8924704c6808fb96849e89c2f34cd59615178771738b604f55627c2e7b5f677",
+    "experiments/research/chkp_genbasis.py": "d9bf8a0d71b0ae3ccccd32b24e1a7ebdc9652a44e7e4640d97c423c6bb389aa8",
+    "experiments/research/chkp_basis_reduce.py": "101f0c13a1027ffe1d82b9386b1be5a270a7024d8aeebb8ca7a7b722f2913218",
+    "experiments/research/chkp_gpv.py": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+    "experiments/research/chkp_randbasis.py": "69d970490202fcf69da4389d4435e1538f6c1c49b83441365291260134dc2282",
+    "experiments/research/chkp_tobasis.py": "d7f3b2c2fe5762a4d45cd26ecc2d5f1f7170d189b2be0555dc5afc90b115f92a",
+    "experiments/research/gaussian_reference.py": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c",
+    "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+    "src/ibme/core/randomness.py": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
+    "papers/2026_ibs_ibme_yu.pdf": "f10d8672d952d9923a00c883a7d65feb36a15fb67fbef1c52ee64254f5301948"
+  },
+  "source_identity_note": "content hashes identify executed files; Git revision alone does not include uncommitted files",
+  "environment": {
+    "os": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15",
+    "sage": "10.9",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "constant_time": false,
+    "hardware_acceleration": "none requested; Sage exact integer arithmetic"
+  },
+  "parameters": {
+    "n": 1,
+    "q": 3,
+    "m": 15,
+    "w": 2,
+    "signature_dimension": 19,
+    "gamma_squared": 32768,
+    "delta_squared": 67108864,
+    "max_vectors": 32,
+    "epsilon_bits": 16,
+    "postprocess": "deterministic LLL",
+    "identity_bits": 2,
+    "message_bits": 2,
+    "salt_bits": 4,
+    "bpr_n": 2,
+    "bpr_m": 2,
+    "bpr_q": 32,
+    "bpr_p": 2,
+    "bpr_gaussian_width": 2,
+    "bpr_ticket_bits": 32
+  },
+  "randomness": "independent OS CSPRNG bytes; no seed exported; no ROM in algorithm",
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "failed",
+      "stage": "setup",
+      "exception_type": "SamplingAbort",
+      "honest_signatures_before_failure": 0
+    },
+    {
+      "attempt": 2,
+      "status": "completed",
+      "honest_signatures": 4
+    },
+    {
+      "attempt": 3,
+      "status": "completed",
+      "honest_signatures": 4
+    }
+  ],
+  "honest_signatures": 8,
+  "negative_or_differential_checks": 80,
+  "context_mutation_results": {
+    "wrong_identity": {
+      "accepted": 6,
+      "rejected": 2
+    },
+    "wrong_message": {
+      "accepted": 8,
+      "rejected": 0
+    },
+    "r_hat": {
+      "accepted": 6,
+      "rejected": 2
+    },
+    "r_tilde": {
+      "accepted": 6,
+      "rejected": 2
+    },
+    "salt": {
+      "accepted": 6,
+      "rejected": 2
+    }
+  },
+  "public_q_times_e1_forgery_accepts": 8,
+  "signature_encoding_bytes": [
+    345
+  ],
+  "timings": {
+    "setup": {
+      "count": 2,
+      "seconds": [
+        0.052541583,
+        0.01348412499999796
+      ],
+      "median_seconds": 0.03301285399999898
+    },
+    "keygen": {
+      "count": 4,
+      "seconds": [
+        6.778139341000001,
+        4.591014159,
+        4.632231513000004,
+        6.263108977999998
+      ],
+      "median_seconds": 5.447670245500001
+    },
+    "sign": {
+      "count": 8,
+      "seconds": [
+        0.14679364699999908,
+        0.10476127500000132,
+        0.14151177500000145,
+        0.1405402099999975,
+        0.22734498900000233,
+        0.21046370299999495,
+        0.0351045869999993,
+        0.24837751100000105
+      ],
+      "median_seconds": 0.14415271100000027
+    },
+    "verify": {
+      "count": 8,
+      "seconds": [
+        0.14537291799999963,
+        0.11500166000000078,
+        0.17068161099999912,
+        0.20394512400000053,
+        0.2282139769999958,
+        0.1936634280000007,
+        0.04043775200000255,
+        0.25232643600000415
+      ],
+      "median_seconds": 0.1821725194999999
+    }
+  },
+  "circuits": {
+    "identity": {
+      "input_bits": 2,
+      "uniform_key_bits": 276,
+      "output_bits": 4,
+      "all_one_input_gate_count": 7904,
+      "all_one_input_depth": 118,
+      "finite_key_distribution": {
+        "support_count": 13,
+        "ticket_bits": 32,
+        "tail_tv_upper": "509110506130523509405045701131155568531830349749/13164036458569648337239753460458804039861886925068638906788872192",
+        "quantization_tv_upper": "2258048943391230046342696271235486081/803474626072600670256627575380873290176950997286013138497902",
+        "dyadic_tv_upper": "3/1073741824",
+        "coefficient_tv_upper": "14775855584390477274657088493783748148078923736793003909156599459921896794290903960051486753814687421636296176960099/5288484635577665281445035626755241057786413264811382952819764351414777017952020874099035125120599092882537856041425769070592",
+        "key_distribution_tv_upper": "14775855584390477274657088493783748148078923736793003909156599459921896794290903960051486753814687421636296176960099/661060579447208160180629453344405132223301658101422869102470543926847127244002609262379390640074886610317232005178221133824",
+        "rejection_abort_used": false,
+        "total_function": true,
+        "security_claim": "none",
+        "constant_time": false
+      }
+    },
+    "signing": {
+      "input_bits": 8,
+      "uniform_key_bits": 1044,
+      "output_bits": 4,
+      "all_one_input_gate_count": 31616,
+      "all_one_input_depth": 158,
+      "finite_key_distribution": {
+        "support_count": 13,
+        "ticket_bits": 32,
+        "tail_tv_upper": "509110506130523509405045701131155568531830349749/13164036458569648337239753460458804039861886925068638906788872192",
+        "quantization_tv_upper": "2258048943391230046342696271235486081/803474626072600670256627575380873290176950997286013138497902",
+        "dyadic_tv_upper": "3/1073741824",
+        "coefficient_tv_upper": "14775855584390477274657088493783748148078923736793003909156599459921896794290903960051486753814687421636296176960099/5288484635577665281445035626755241057786413264811382952819764351414777017952020874099035125120599092882537856041425769070592",
+        "key_distribution_tv_upper": "14775855584390477274657088493783748148078923736793003909156599459921896794290903960051486753814687421636296176960099/165265144861802040045157363336101283055825414525355717275617635981711781811000652315594847660018721652579308001294555283456",
+        "rejection_abort_used": false,
+        "total_function": true,
+        "security_claim": "none",
+        "constant_time": false
+      }
+    }
+  },
+  "all_requested_attempts_completed": false,
+  "limitations": [
+    "Toy profile is publicly forgeable, and wrong-context signatures can be accepted.",
+    "BPR parameter hardness, Yu key-input NC1 and Lemma7 spectral bound are not established.",
+    "Finite Gaussian, bounded abort and deterministic LLL are explicit implementation adaptations.",
+    "No shared backend, HIBE/IBME integration, formal security level or production timing claim.",
+    "Timings include compilation and validation; tiny parameters cannot rank secure algorithms."
+  ]
+}
