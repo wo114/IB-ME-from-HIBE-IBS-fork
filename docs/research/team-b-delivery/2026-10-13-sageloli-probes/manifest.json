@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-13",
+  "base_commit": "44a4fef1f667be3d4b070c75a0b9edd777f0be03",
+  "scope": "Completed math-probe and specification batch only; no complete IBS backend",
+  "profile_randomness": "Published deterministic TEST streams, never production secrets",
+  "environment": {
+    "python": "3.12.13",
+    "sage": "10.7",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "rng": "DeterministicRandom test streams"
+  },
+  "pytest": {
+    "tests": 62,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "commands": [
+    "source ~/miniconda3/etc/profile.d/conda.sh && conda activate sage",
+    "PYTHONPATH=.pytest-tmp-sage-deps:src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest tests/test_sageloli_probe.py tests/test_srgg_full_sampling.py tests/test_candidate_foundations.py --basetemp=.pytest-tmp-sageloli-regression --junitxml=docs/research/team-b-delivery/2026-10-13-sageloli-probes/sage-regression.junit.xml -q",
+    "PYTHONPATH=src python -m experiments.research.candidates.sageloli.probe --kind both --output docs/research/team-b-delivery/2026-10-13-sageloli-probes/probe-result.json",
+    "PYTHONPATH=src python -m experiments.research.candidates.sageloli.width_check --output docs/research/team-b-delivery/2026-10-13-sageloli-probes/width-check-result.json"
+  ],
+  "files": [
+    {
+      "path": "experiments/research/candidates/sageloli/probe.py",
+      "sha256": "c394ebae943c81b2fbfbe73a850e00dc076029d7b3fdd5e3d63d9c851df4ad69",
+      "bytes": 10525
+    },
+    {
+      "path": "experiments/research/candidates/sageloli/width_check.py",
+      "sha256": "d9088d2f45accd1e2f17a27c30e97fed1e3878c12518063da4e17e04d78de264",
+      "bytes": 2866
+    },
+    {
+      "path": "experiments/research/candidates/srgg/full_sampling.py",
+      "sha256": "a639481162e40caa209af1f0e6f0a97a2699f599fb0ed7cdda595ab13f56ab6f",
+      "bytes": 20502
+    },
+    {
+      "path": "experiments/research/online_mp12_reference.py",
+      "sha256": "67ef14da368416138ad6598c0161afd023542f5912c55e79369328523cfe6d5b",
+      "bytes": 26205
+    },
+    {
+      "path": "src/ibme/lattice/chkp/gaussian.py",
+      "sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c",
+      "bytes": 14680
+    },
+    {
+      "path": "src/ibme/ibs/luo_module_math.py",
+      "sha256": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f",
+      "bytes": 7100
+    },
+    {
+      "path": "tests/test_sageloli_probe.py",
+      "sha256": "4e95381920dc14eed9296c071c9f921368b08ef5278cfae73f69546a97ee05e2",
+      "bytes": 3562
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-13-sageloli-probes/probe-result.json",
+      "sha256": "0bd5977f80645f416bf78b7123f864ad4bf3caa1e15955d3ee3741a2bc3328bd",
+      "bytes": 2337
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-13-sageloli-probes/width-check-result.json",
+      "sha256": "406d29cc476725570281a6a096667db8b194ed33ebc54a366859b3797a241903",
+      "bytes": 1613
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-13-sageloli-probes/sage-regression.junit.xml",
+      "sha256": "40fd94286212c2795896e91ca4c3a33dcdffcac21ced53732d0d3c13d4491ec1",
+      "bytes": 8859
+    },
+    {
+      "path": "papers/2023_shorter_faster_ibs_sageloli.pdf",
+      "sha256": "0e92f184828bc8643a774e9c334b14689346387981e766c311c596239ef73e3e",
+      "bytes": 1444868
+    }
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "remaining": [
+    "Hash/nonce identity-message binding",
+    "Full IBS five methods and canonical objects",
+    "Fixed issuance/failure/cache/recovery",
+    "Wire capacity and protocol tests",
+    "Parameter and service-model admission",
+    "Global ring perturbation or certified block interpretation and full TV"
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "schema": "IBME/YU2026/VALIDATION/1",
+  "date": "2026-10-13",
+  "implementation_commit": "3ddc623594bca4fc0a6ea744d6a7ca870a4260b2",
+  "scope": "Independent bounded Yu IBS research implementation; no public backend or formal parameter admission",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "environment": {
+    "cpu": "Intel Core Ultra 7 255HX",
+    "physical_cores_reported_by_windows": 20,
+    "logical_processors_reported_by_windows": 20,
+    "execution": "WSL2 Linux, conda ~/miniconda3/envs/sage",
+    "sage": "10.9",
+    "python": "3.13.15",
+    "pytest": "9.1.1",
+    "parallel_load": "not controlled; not a comparative performance benchmark"
+  },
+  "pytest": {
+    "command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 ~/miniconda3/envs/sage/bin/python -m pytest -q -p no:cacheprovider --tb=short tests/test_yu_circuits.py tests/test_yu_bpr.py tests/test_yu_evaluation.py tests/test_yu_prf_homomorphism.py tests/test_yu_trapdoors.py tests/test_yu_standalone.py tests/test_yu_homomorphic_reference.py tests/test_chkp_genbasis.py tests/test_chkp_basis.py tests/test_chkp_gpv.py tests/test_chkp_randbasis.py tests/test_chkp_basis_reduce.py --junitxml=build/outputs/yu-source/final-tests.xml",
+    "exit_code": 0,
+    "passed": 472,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "wall_seconds": 29.435,
+    "warnings": 16,
+    "warning_reason": "record_property with pytest xunit2 JUnit format; no algorithm/test failure",
+    "groups": {
+      "new_yu_tests": 253,
+      "existing_yu_reference": 47,
+      "reused_lattice_regression": 172
+    },
+    "test_source_sha256": {
+      "tests/test_yu_circuits.py": "e3bb7acbf7a329450c284f4cd669056662e984815f69f33eed0ee00296fc9d63",
+      "tests/test_yu_bpr.py": "1cb4e5c4b3a9240cb81291e9d97207590f82c81a485275a60cebadd2ef493758",
+      "tests/test_yu_evaluation.py": "4f574eb2d41b0eda70a89c350be1c823e69c961584b19574998e1c6da1946a81",
+      "tests/test_yu_prf_homomorphism.py": "894f64b1dde6fd01972b653dce6898726ab569adfced319413a98d6c1bd68a9e",
+      "tests/test_yu_trapdoors.py": "51968be8e49376764e877fd5e67149f2de214bbe190f789cec3c2fd0444b54d0",
+      "tests/test_yu_standalone.py": "4686cb5697d95567753eb4fd15a163c7c42391692043c632bbdf5dbda8de6f1a",
+      "tests/test_yu_homomorphic_reference.py": "c67211b93c733d8f0d74d4210127918362fa1d3d80055c0c4b7ac01ca3268d95",
+      "tests/test_chkp_genbasis.py": "f104748215958b56881d94cfe4f69541d214a3bed9eb66ff525d32a8e91c40da",
+      "tests/test_chkp_basis.py": "33abe1eb0534d29748ff8da17f007c6f966e7a341b3d889f691f892c8b8daeb1",
+      "tests/test_chkp_gpv.py": "db826100928a73fbe3466b388c82eb54a62a2fbd3de0b3c31faf838a00835099",
+      "tests/test_chkp_randbasis.py": "8abf3a1c788f84759988edcfaa1df8f04978865ccd2167d5f1e1e037d48e95d9",
+      "tests/test_chkp_basis_reduce.py": "923316b34fbc49650c56a36e1dfc483027471ec9812e94cd1e704022493cf91e"
+    }
+  },
+  "lifecycle": {
+    "command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.yu.lifecycle_audit --attempts 3 --source-revision 3ddc623594bca4fc0a6ea744d6a7ca870a4260b2 --output docs/research/2026-10-13-yu/lifecycle.json",
+    "receipt": "lifecycle.json",
+    "exit_code": 0,
+    "attempts": 3,
+    "completed": 3,
+    "honest_signatures": 12,
+    "honest_verifications_objects_and_bytes": 24,
+    "negative_or_equation_differential_checks": 120
+  },
+  "development_history": {
+    "receipt": "development-lifecycle.json",
+    "scope": "Earlier uncommitted execution revision identified by file hashes, not final acceptance",
+    "attempts": 3,
+    "completed": 2,
+    "setup_sampling_aborts": 1,
+    "honest_signatures": 8,
+    "merged_into_final_statistics": false,
+    "driver_issue": "An earlier run could not write a receipt because WSL git did not resolve the Windows-managed worktree pointer; it is not counted as an acceptance run."
+  },
+  "review_fixes": [
+    "Verify revalidates every signed-integer coordinate, including objects with bypassed constructors.",
+    "Random source wrapper validates memoryview.nbytes before passing bytes to shared samplers.",
+    "Public/private evaluation handles circuits with only literal constants.",
+    "Evidence collection handles Windows-managed worktree identity and checks that source hashes stay fixed during a run."
+  ],
+  "source_policy": {
+    "random_seeds": false,
+    "secret_keys": false,
+    "actual_signatures": false,
+    "private_geometry": false,
+    "uploaded_paper_pdf": false
+  },
+  "limits": [
+    "The toy q=3 profile accepts the public q*e1 forgery and some wrong-context signatures.",
+    "BPR hardness parameters, key-input NC1 circuit family and Yu Lemma7 spectral norm guarantee are not admitted.",
+    "Finite sampling bounds and explicit deterministic LLL are implementation adaptations; failures are not silently retried.",
+    "No formal no-bug claim, production timing guarantee or HIBE/IBME integration."
+  ]
+}
