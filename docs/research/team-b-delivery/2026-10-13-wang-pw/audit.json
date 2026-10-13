@@ -1,0 +1,370 @@
+{
+  "schema_version": 1,
+  "algorithm": "Wang Figure 4 + PW Figure 5 / MP12 Algorithms 1,3,4",
+  "parameters": {
+    "q": 17,
+    "n": 1,
+    "m_bar": 5,
+    "generation_width_squared": 4,
+    "master_quality": 128,
+    "user_quality": 406350,
+    "r_squared": 9,
+    "gamma": 5,
+    "salt_bytes": 32,
+    "inner_identity_bytes": 32,
+    "inner_message_bytes": 32,
+    "identity_max_bytes": 256,
+    "message_max_bytes": 4096,
+    "tail_bits": 24,
+    "mass_bits": 64,
+    "precision_bits": 128,
+    "gaussian_abort_bits": 24,
+    "max_uniform_trials": 64
+  },
+  "environment": {
+    "python": "3.12.13",
+    "sage": "10.7",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "rng": "SecureRandom"
+  },
+  "input": {
+    "identity_bytes": 5,
+    "repetitions": 32,
+    "mode": "same issued identity; fresh message salts and SampleD draws"
+  },
+  "timings_seconds": {
+    "setup": 0.0329521850000134,
+    "key_extract": 0.10117503700000441,
+    "sign": [
+      0.01138023300001123,
+      0.010890528999993876,
+      0.01041156300000523,
+      0.01124258900000541,
+      0.010749541999999224,
+      0.010485854999998878,
+      0.01121449199999347,
+      0.011128670999994483,
+      0.010376041000000669,
+      0.010679501999987906,
+      0.010722999999998706,
+      0.010827759999997966,
+      0.009714717000008477,
+      0.009731079999994563,
+      0.010764913000002707,
+      0.010255190999998831,
+      0.010540820000002782,
+      0.010514599000003955,
+      0.010013557999997147,
+      0.010792987000002086,
+      0.010987742000011735,
+      0.010604995000008444,
+      0.011023080000001073,
+      0.01107850600000404,
+      0.010864965999999754,
+      0.010908444999998324,
+      0.010681054000002632,
+      0.010402222999999822,
+      0.010277754000000527,
+      0.010248099999998317,
+      0.010103649000001269,
+      0.010834536999993816
+    ],
+    "verify": [
+      4.958899999962796e-05,
+      4.36259999929689e-05,
+      4.0605000009463765e-05,
+      3.853099998707421e-05,
+      4.3613000002551416e-05,
+      4.0355999999519554e-05,
+      4.3563000005519825e-05,
+      3.93150000093101e-05,
+      4.219000000205142e-05,
+      4.004900000609268e-05,
+      3.9607000005048576e-05,
+      4.8873000011440126e-05,
+      0.00011854000000255382,
+      4.845099999783997e-05,
+      4.048799999623043e-05,
+      4.1678999991745513e-05,
+      0.00012044800000410305,
+      4.8282999998150444e-05,
+      4.792200000736102e-05,
+      6.204900000739144e-05,
+      6.369300000130806e-05,
+      3.642499999045867e-05,
+      3.754499999786276e-05,
+      4.716299999074636e-05,
+      4.2071999999393483e-05,
+      4.4561999999359614e-05,
+      3.979899999251302e-05,
+      3.981900000837868e-05,
+      4.054800000119485e-05,
+      4.0138999992223034e-05,
+      7.215700000529068e-05,
+      4.61919999992233e-05
+    ]
+  },
+  "wire_bytes": {
+    "public_key": 400,
+    "master_secret": 911,
+    "user_key": 1140,
+    "signature_min": 340,
+    "signature_max": 353
+  },
+  "samples": [
+    {
+      "message_bytes": 25,
+      "signature_bytes": 347,
+      "norm_squared": 56223231,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 346,
+      "norm_squared": 104021188,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 345,
+      "norm_squared": 48264483,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 342,
+      "norm_squared": 37054963,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 346,
+      "norm_squared": 38093776,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 343,
+      "norm_squared": 43493029,
+      "verified": true,
+      "wrong_message_accepted": true
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 345,
+      "norm_squared": 60175275,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 343,
+      "norm_squared": 111895914,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 343,
+      "norm_squared": 33124472,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 349,
+      "norm_squared": 79750084,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 341,
+      "norm_squared": 66860029,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 343,
+      "norm_squared": 27663536,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 353,
+      "norm_squared": 113872039,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 344,
+      "norm_squared": 69788499,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 345,
+      "norm_squared": 70627577,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 340,
+      "norm_squared": 24694760,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 346,
+      "norm_squared": 51883165,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 347,
+      "norm_squared": 55472133,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 348,
+      "norm_squared": 41106214,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 348,
+      "norm_squared": 62052017,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 348,
+      "norm_squared": 53694336,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 347,
+      "norm_squared": 109927628,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 342,
+      "norm_squared": 49476680,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 342,
+      "norm_squared": 58527409,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 344,
+      "norm_squared": 27301441,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 343,
+      "norm_squared": 29792139,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 349,
+      "norm_squared": 39482500,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 344,
+      "norm_squared": 52431025,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 344,
+      "norm_squared": 43207022,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 347,
+      "norm_squared": 74943152,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 342,
+      "norm_squared": 34191104,
+      "verified": true,
+      "wrong_message_accepted": false
+    },
+    {
+      "message_bytes": 25,
+      "signature_bytes": 342,
+      "norm_squared": 85323355,
+      "verified": true,
+      "wrong_message_accepted": false
+    }
+  ],
+  "honest_verified": 32,
+  "restored_key_verified": true,
+  "debug_public_forgery_accepted": true,
+  "sampler_classes": {
+    "master": {
+      "quality_class_upper": 128,
+      "spherical_width_squared": "8127",
+      "public_byte_budget": 283160,
+      "per_sample_tv_upper_including_abort": "67479941666284933814486541345369798161/44601490397061246283071436545296723011960832",
+      "independent_uniform_bytes_assumed": true
+    },
+    "user": {
+      "quality_class_upper": 406350,
+      "spherical_width_squared": "25600113",
+      "public_byte_budget": 419160,
+      "per_sample_tv_upper_including_abort": "190860511603055499762957813690130741925/89202980794122492566142873090593446023921664",
+      "independent_uniform_bytes_assumed": true
+    }
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "limitations": [
+    "UNSAFE debug profile: B_verify >> q; successful public forgery expected",
+    "n=1,q=17: message-oracle collisions can accept incorrect messages",
+    "root public-matrix near-uniformity not certified; no SIS security level",
+    "SHAKE candidate is not an ideal random oracle; fixed-service reduction remains conditional",
+    "variable time; finite sampling errors/aborts; fresh independent uniform bytes assumed",
+    "timings are local research measurements, not a secure-parameter performance comparison",
+    "wire sizes are actual canonical JSON research objects; secrets stay in process memory"
+  ]
+}

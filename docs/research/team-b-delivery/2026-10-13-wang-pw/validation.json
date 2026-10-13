@@ -1,0 +1,133 @@
+{
+  "date": "2026-10-13",
+  "branch": "codex/b-ibs-wang-pw-2026-10-12",
+  "base_pr14": "87deec24f52c1c776a489566cf76f11d0d4a5aff",
+  "source_commits": {
+    "wang_pw": "918be70f0247fdbd3354c7717653aa5a28bcec4d",
+    "srgg_component": "c6c92873d737e6b590ca2b13f500344dc54f427b"
+  },
+  "code_files": [
+    {
+      "path": "experiments/research/candidates/wang_pw/__init__.py",
+      "sha256": "c55aee574c6accdc243abbbf3344c7fee1795fe314c03ffa44d284c010d1bba6"
+    },
+    {
+      "path": "experiments/research/candidates/wang_pw/audit.py",
+      "sha256": "ef136cb83f188025bf5d8e46a0f69f38a87428c48b784dbad0f4d3a830fdc60b"
+    },
+    {
+      "path": "experiments/research/candidates/wang_pw/backend.py",
+      "sha256": "f24067f6436122d874d0a502d1f9afcacb7b08664f799e1be10daaa1baa0a1df"
+    },
+    {
+      "path": "experiments/research/candidates/wang_pw/codec.py",
+      "sha256": "2f08b4c501bf3707cf048aed8a795859e782facfc5814645e5214374b378347c"
+    },
+    {
+      "path": "experiments/research/candidates/wang_pw/engine.py",
+      "sha256": "1bef58a42599990e8ba6d545c82563d88e8e4a30dfb55f4a3ea0fe058427f951"
+    },
+    {
+      "path": "experiments/research/candidates/wang_pw/hashing.py",
+      "sha256": "17ac4878d5b9541c21a1f5a4bac948248557e4a089b1f61a436df16970fa41a0"
+    },
+    {
+      "path": "experiments/research/candidates/wang_pw/objects.py",
+      "sha256": "75160d38b2b4e2eaa14df560019abd12d3168518c06156dcde40f0243bb488ef"
+    },
+    {
+      "path": "experiments/research/candidates/wang_pw/params.py",
+      "sha256": "0f9f361c7cb4da1b08a9c33964d32e3f97b795296772e1ef66dfe075cc4c8798"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/perturbation.py",
+      "sha256": "9da652bfc7f3d6d08fc3626370571df4d950b82de856c3b8f4c2a8f6e0adf835"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/perturbation_audit.py",
+      "sha256": "3a8c6f0ab5d95d848a2b786363c3857fba0ee89e2b5f5cfa93bbc069dccb82fb"
+    },
+    {
+      "path": "tests/test_wang_pw_reference.py",
+      "sha256": "fccaef8c6692273dcece149cb051f275b51e741486ea8cef670c98a755d1e2e2"
+    },
+    {
+      "path": "tests/test_srgg_perturbation.py",
+      "sha256": "6c4e4fa00b9c1eceafa62d0e79b7281a59610feb31e4b16fb664b7f6e183e8d4"
+    }
+  ],
+  "validation": {
+    "wang-pw.junit.xml": {
+      "path": "wang-pw.junit.xml",
+      "cases": 14,
+      "passed": 14,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0
+    },
+    "sage-regression.junit.xml": {
+      "path": "sage-regression.junit.xml",
+      "cases": 233,
+      "passed": 233,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0
+    },
+    "windows-regression.junit.xml": {
+      "path": "windows-regression.junit.xml",
+      "cases": 129,
+      "passed": 121,
+      "skipped": 8,
+      "failures": 0,
+      "errors": 0
+    },
+    "sage-collection-environment-failure.junit.xml": {
+      "path": "sage-collection-environment-failure.junit.xml",
+      "cases": 1,
+      "passed": 0,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 1
+    }
+  },
+  "overlap_policy": "Separate runs overlap; do not sum them into a unique case count. Windows8 skips require Sage; same Wang actual lifecycle is executed in Sage.",
+  "commands": {
+    "sage": "PYTHONPATH=.pytest-tmp-sage-deps:src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest tests/test_wang_pw_reference.py tests/test_srgg_perturbation.py tests/test_srgg_sampling.py tests/test_srgg_geometry.py tests/test_srgg_algebra.py tests/test_foo_li_runtime_reference.py tests/test_online_sampling_reference.py --basetemp=.pytest-tmp-b-sage-final --junitxml=docs/research/team-b-delivery/2026-10-13-wang-pw/sage-regression.junit.xml -q",
+    "windows": "$env:PYTHONPATH='src'; & 'C:/Users/LENOVO/AppData/Local/Programs/Python/Python314/python.exe' -m pytest tests/test_luo_c64b_profile.py tests/test_luo_ibs_contract.py tests/test_wang_pw_reference.py --basetemp=.pytest-tmp-b-windows-final --junitxml=docs/research/team-b-delivery/2026-10-13-wang-pw/windows-regression.junit.xml -q",
+    "wang_audit": "PYTHONPATH=src python -m experiments.research.candidates.wang_pw.audit --repetitions 32 --output docs/research/team-b-delivery/2026-10-13-wang-pw/audit.json",
+    "srgg_audit": "PYTHONPATH=src python -m experiments.research.candidates.srgg.perturbation_audit --repetitions 64"
+  },
+  "environment": "Windows existing Python3.14 for cryptography-dependent Luo/hybrid checks; WSL conda ~/miniconda3/envs/sage Python3.12 for true Gaussian/MP12/SRGG. pytest pure dependencies copied to ignored workspace; no installed environment changed.",
+  "environment_failure": {
+    "scope": "Initial combined Sage collection",
+    "cause": "Sage environment has no cryptography package; test_luo_c64b_profile imports Hybrid",
+    "resolution": "Preserved error JUnit; reran crypto-dependent cases in existing Windows environment, real Sage cases separately; no assertions suppressed"
+  },
+  "independent_review": {
+    "wang_pw": "14 Sage passed, no skip;2 memoryview resource bugs repaired with RED/GREEN regression;public zero-class probes verified",
+    "srgg": "21 Sage passed, no skip; distribution/shape/secret whitelist and equations inspected"
+  },
+  "actual_research": {
+    "wang_honest_verified": 32,
+    "wang_restore_verified": true,
+    "wang_debug_public_forgery_accepted": true,
+    "srgg_attempts": 64,
+    "srgg_raw_equation_passes": 64,
+    "srgg_hnf_equation_passes": 64,
+    "srgg_observed_aborts": 0
+  },
+  "planning": {
+    "HIBE": 8,
+    "IBS": 11,
+    "all_route_ids_mapped": true,
+    "historical_17_entry_catalog_preserved": true
+  },
+  "limits": [
+    "Wang q17 profile is publicly forgeable and has small-hash collisions; no formal security parameter",
+    "SRGG component is finite-GPV distributional reference, not literal SampleF or full IBS; HNF Gaussian distribution unclaimed",
+    "Protocol wiring test uses mock HIBE; no new real CHKP+Wang combination claimed",
+    "Default registry/install promotion, formal parameters/model and remaining B IBS algorithms pending"
+  ],
+  "security_claim": "none",
+  "backend_admitted": false
+}
