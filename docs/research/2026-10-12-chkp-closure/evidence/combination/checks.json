@@ -1,0 +1,210 @@
+{
+  "backend_admitted": false,
+  "checks": [
+    {
+      "name": "fixed_leaf_reuse_Bob_Alice",
+      "passed": true
+    },
+    {
+      "name": "fixed_leaf_reuse_Bob_Eve",
+      "passed": true
+    },
+    {
+      "name": "fixed_leaf_reuse_Carol_Alice",
+      "passed": true
+    },
+    {
+      "name": "fixed_leaf_reuse_Carol_Eve",
+      "passed": true
+    },
+    {
+      "name": "honest_roundtrip",
+      "passed": true
+    },
+    {
+      "name": "ciphertext_roundtrip",
+      "passed": true
+    },
+    {
+      "name": "wrong_sender",
+      "passed": true
+    },
+    {
+      "name": "wrong_receiver",
+      "passed": true
+    },
+    {
+      "name": "both_wrong",
+      "passed": true
+    },
+    {
+      "name": "public_restore",
+      "passed": true
+    },
+    {
+      "name": "master_restore",
+      "passed": true
+    },
+    {
+      "name": "sender_restore",
+      "passed": true
+    },
+    {
+      "name": "receiver_restore",
+      "passed": true
+    },
+    {
+      "name": "fixed_IBS_identity_after_restore",
+      "passed": true
+    },
+    {
+      "name": "fixed_IBS_cache_no_entropy",
+      "passed": true
+    },
+    {
+      "name": "restored_decrypt",
+      "passed": true
+    },
+    {
+      "name": "truncated_loader",
+      "passed": true
+    },
+    {
+      "name": "truncated_decrypt",
+      "passed": true
+    },
+    {
+      "name": "appended_loader",
+      "passed": true
+    },
+    {
+      "name": "appended_decrypt",
+      "passed": true
+    },
+    {
+      "name": "duplicate_loader",
+      "passed": true
+    },
+    {
+      "name": "duplicate_decrypt",
+      "passed": true
+    },
+    {
+      "name": "wrong_version_loader",
+      "passed": true
+    },
+    {
+      "name": "wrong_version_decrypt",
+      "passed": true
+    },
+    {
+      "name": "byteauth_context",
+      "passed": true
+    },
+    {
+      "name": "byteauth_inner_bytes",
+      "passed": true
+    },
+    {
+      "name": "byteauth_signature",
+      "passed": true
+    },
+    {
+      "name": "byteauth_ots_key",
+      "passed": true
+    },
+    {
+      "name": "C64B_compact_signature_size",
+      "passed": true
+    },
+    {
+      "name": "ibs_honest",
+      "passed": true
+    },
+    {
+      "name": "ibs_wrong_message",
+      "passed": true
+    },
+    {
+      "name": "ibs_wrong_identity",
+      "passed": true
+    },
+    {
+      "name": "changed_signature_verify_rejected",
+      "passed": true
+    },
+    {
+      "name": "random_signature_wire_rejected",
+      "passed": true
+    },
+    {
+      "name": "raw_low_coefficient_change_keeps_seed",
+      "passed": true
+    },
+    {
+      "name": "hybrid_AAD_rejects_same_seed_capsule_change",
+      "passed": true
+    },
+    {
+      "name": "old_IBS_rejects_new_OTS_bound_message",
+      "passed": true
+    },
+    {
+      "name": "forged_outer_OTS_is_valid",
+      "passed": true
+    },
+    {
+      "name": "full_BYTEAUTH_rejects_valid_OTS_old_IBS",
+      "passed": true
+    },
+    {
+      "name": "full_BYTEAUTH_rejection_reaches_IBS",
+      "passed": true
+    },
+    {
+      "name": "capacity_frozen_3924",
+      "passed": true
+    },
+    {
+      "name": "empty_message_roundtrip",
+      "passed": true
+    },
+    {
+      "name": "maximum_message_roundtrip",
+      "passed": true
+    },
+    {
+      "name": "capacity_plus_one_rejects_before_entropy",
+      "passed": true
+    }
+  ],
+  "entropy_bytes": 671770,
+  "environment": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15"
+  },
+  "executed_checks": 44,
+  "inner_identity_bytes": 86,
+  "limitation": "n=2 CHKP is publicly attackable; functional acceptance only",
+  "max_message_bytes": 3924,
+  "message_bytes": 16,
+  "parameters_are_formal": false,
+  "passed": true,
+  "phase": "checks",
+  "randomness": "system CSPRNG",
+  "raw_identity_bytes": {
+    "receiver": 3,
+    "sender": 5
+  },
+  "repetition_count": 1,
+  "seconds": 60.85478491199956,
+  "security_claim": "none",
+  "sizes": {
+    "ciphertext": 119054,
+    "empty_ciphertext": 119038,
+    "maximum_ciphertext": 122962,
+    "raw_capsule": 3919,
+    "signature": 16383
+  },
+  "suite_digest": "15ecdc30b10acef85fd0f5f905ecaa3fca960c3d5bbe32f0483af04390fda55c"
+}

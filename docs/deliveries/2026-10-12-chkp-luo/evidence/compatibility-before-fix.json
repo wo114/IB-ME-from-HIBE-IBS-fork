@@ -1,0 +1,16 @@
+{
+  "schema": "IBME/PUBLICATION-COMPATIBILITY-REVIEW/1",
+  "reported_by": "Codex read-only subagent Herschel; not a second main-agent rerun",
+  "files": ["tests/test_public_research_api.py", "tests/test_luo_ibs_contract.py", "tests/test_chkp_runtime_core.py"],
+  "selection": "not test_engine_is_explicit_local_configuration and not test_source_only_fresh_process_without_experiments",
+  "windows": {"passed": 85, "failed": 1, "skipped": 3, "deselected": 2},
+  "sage": {"passed": 98, "failed": 1, "skipped": 0, "deselected": 2},
+  "sole_failure": "The old test required chkp.available=False even though the real CHKP backend is now delivered.",
+  "fix": "Require delivered CHKP; separately check Sage execution, distinct IDs/versions/parameter types/factories/decoders from MP12.",
+  "cryptographic_implementation_changed_for_fix": false,
+  "excluded_tests_passed": false,
+  "final_rerun": "Main-agent windows-public-api.xml and sage-public-api.xml run all three files without deselection.",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

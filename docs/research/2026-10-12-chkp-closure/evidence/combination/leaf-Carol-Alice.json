@@ -1,0 +1,32 @@
+{
+  "backend_admitted": false,
+  "checks": [
+    {
+      "name": "new_leaf_canonical_restore",
+      "passed": true
+    },
+    {
+      "name": "address_completed",
+      "passed": true
+    }
+  ],
+  "entropy_bytes": 42913673,
+  "environment": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15"
+  },
+  "executed_checks": 2,
+  "limitation": "n=2 CHKP is publicly attackable; functional acceptance only",
+  "parameters_are_formal": false,
+  "passed": true,
+  "phase": "leaf-Carol-Alice",
+  "randomness": "system CSPRNG",
+  "repetition_count": 1,
+  "seconds": 284.2479323519992,
+  "security_claim": "none",
+  "sizes": {
+    "leaf": 876984,
+    "receiver": 1327926
+  },
+  "suite_digest": "15ecdc30b10acef85fd0f5f905ecaa3fca960c3d5bbe32f0483af04390fda55c"
+}

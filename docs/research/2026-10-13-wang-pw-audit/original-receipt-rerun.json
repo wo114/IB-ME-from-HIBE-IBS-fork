@@ -1,0 +1,111 @@
+{
+  "artifact": "wang-pw-ibs",
+  "boundaries": [
+    "research reference only: no security level, no formal parameters, not admitted as a protocol backend",
+    "sign() uses MP12 SampleD WITH perturbation: p ~ N(0, s^2 I - sigma^2 T T^T) (adaptive s, Cholesky), exact finite-box gadget coset sampling, z = p + T z_g; Cov(z) = s^2 I per the MP12 Lemma 5.3 construction; the exact congruence F z = h2 (mod q) is re-checked before returning; the unperturbed two-step sampler is retained only as sign_unperturbed for comparison",
+    "the kernel basis is verified COMPLETE (det = q^n, every generator is an integer combination of the basis) with an exact completeness self-check; the Sage cross-check script wang_kernel_exact.sage agrees (det = 49 = q^n)"
+  ],
+  "checks": {
+    "A_times_TA_equals_G": true,
+    "F_id_times_T_id_equals_G_for_all_identities": true,
+    "all_passed": true,
+    "delegation_relation_for_all_identities": true,
+    "hash_domains_separated": true,
+    "honest_signatures_verified": "16/16",
+    "identity_hashes_are_distinct": true,
+    "kernel_basis_annihilates_A": true,
+    "kernel_basis_dimension_is_m": true,
+    "kernel_basis_is_complete_not_sublattice": true,
+    "negative_cross_identity_rejections_sufficient": true,
+    "negative_wrong_identity_and_tamper_rejected": true,
+    "parameter_context_bound": true,
+    "public_key_matches_trapgen_form": true,
+    "public_key_roundtrip": true,
+    "pw_cross_identity_rejections_sufficient": true,
+    "pw_identity_salt_reused": true,
+    "pw_message_salt_fresh": true,
+    "pw_signature_salt_bound": true,
+    "pw_verify_accepts_honest": true,
+    "pw_verify_rejects_unknown_identity_key": true,
+    "signature_roundtrip": true
+  },
+  "environment": {
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.7"
+  },
+  "measurements": {
+    "cross_identity_rejections": "8/8 (expected ~48/49 per attempt at q=7)",
+    "delegation_kernel_basis_width": {
+      "identity": [
+        "Alice",
+        "Bob",
+        "Carol",
+        "Dave"
+      ],
+      "width": [
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "kernel_basis_determinant": 49,
+    "kernel_basis_expected_index": 49,
+    "kernel_basis_seconds": 0.45166040000003704,
+    "kernel_basis_width": 2.0,
+    "kernel_index_recorded": 49,
+    "key_extract_seconds": {
+      "count": 4,
+      "max": 2.5216417999999976,
+      "mean": 1.8857730250001623
+    },
+    "message_hash_distinct_pairs": 15,
+    "perturbed_sample_width": {
+      "covariance_psd": true,
+      "expected_e_norm_squared": 67195.17,
+      "s": 61.098813409099854,
+      "sigma": 1.0
+    },
+    "pw_cross_identity_rejections": "7/8 (expected ~48/49 per attempt at q=7)",
+    "setup_seconds": 0.6892593000011402,
+    "sign_seconds": {
+      "count": 16,
+      "max": 0.864658700000291,
+      "mean": 0.3765680812499568
+    },
+    "signature_norm": {
+      "count": 16,
+      "max": 375.0053332954079,
+      "mean": 255.81211738504132,
+      "min": 161.32575739788115,
+      "verify_bound": 848.528137423857
+    },
+    "unperturbed_comparison_norm": {
+      "count": 8,
+      "max": 32.09361307176243,
+      "mean": 23.353623102759805,
+      "min": 19.493588689617926
+    }
+  },
+  "params": {
+    "backend_admitted": false,
+    "internal_id_bits": 256,
+    "internal_msg_bits": 256,
+    "k": 3,
+    "m": 12,
+    "m_bar": 6,
+    "n": 2,
+    "name": "wang-pw-receipt",
+    "parameters_are_formal": false,
+    "q": 7,
+    "s0": 3.0,
+    "s_del": 1.0,
+    "s_sig": 1.0,
+    "salt_bits": 128,
+    "security_claim": "none",
+    "verify_bound": 848.528137423857,
+    "verify_width": 200.0,
+    "w": 6
+  }
+}

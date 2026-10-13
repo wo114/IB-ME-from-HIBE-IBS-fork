@@ -1,0 +1,492 @@
+{
+  "backend_admitted": false,
+  "boundaries": [
+    "static research gates do not imply actual sampling completion",
+    "larger n is not automatically a corresponding security level",
+    "refusal concerns this implementation/profile, not all CHKP constructions",
+    "wire minima are integer payload lower bounds; entropy ceilings are upper bounds",
+    "published n=2 low-cost recovery attacks are not repaired by statistical accuracy"
+  ],
+  "comparison": {
+    "conservative_actual_finite_mass_floor": 31,
+    "dimensions_compared": [
+      2,
+      16,
+      64,
+      128
+    ],
+    "epsilon_bits": 128,
+    "fixed_noise_width": 4,
+    "floor_verified_by": "chkp_parameter_profile --finite verifies actual mass >= 31.9 > 31",
+    "q": 1099511627791,
+    "regularity_bits": 64,
+    "root_r_width_squared": 1024,
+    "rows": [
+      {
+        "actual_finite_mass_floor": 31,
+        "actual_geometry_or_sampling_executed": false,
+        "backend_admitted": false,
+        "conditional_noise": {
+          "alpha": "4/1099511627791",
+          "assumed_preimage_norm_squared_upper": "31586166437543360640",
+          "backend_admitted": false,
+          "conditional_lifetime_failure_upper": "1/68719476736",
+          "conditional_noise_sufficient": true,
+          "conditional_per_bit_failure_upper": "1/18446744073709551616",
+          "continuous_margin": "220027361341",
+          "continuous_squared_upper": "32849613095045095066640",
+          "dimension": 381,
+          "encapsulations": 1048576,
+          "error_bits": 64,
+          "excluded": [
+            "key norm bad event",
+            "sampler TV and abort",
+            "basis/resource failures",
+            "finite continuous-noise implementation",
+            "security estimation"
+          ],
+          "integer_phase_radius": 274877906947,
+          "l1_integer_upper": 109701091211,
+          "lwe_hardness_or_reduction_verified": false,
+          "noise_definition": "CHKP section 2.3.1: round(q*continuous Gaussian width alpha) mod q",
+          "noise_implementation_verified": false,
+          "preimage_norm_measured_or_certified": false,
+          "q": 1099511627791,
+          "q_times_alpha": "4",
+          "rounding_error_upper": "54850545606",
+          "security_claim": "none",
+          "seed_bits": 256,
+          "shared_preamble_independence_required": false,
+          "width_squared": "82903323983053440"
+        },
+        "constructor_rejection": null,
+        "current_params_constructor_accepts": true,
+        "dimensions": {
+          "leaf": 381,
+          "parent": 254,
+          "root": 127
+        },
+        "entropy_column_minimality": {
+          "previous_column_count_fails": true,
+          "sufficient": true
+        },
+        "entropy_envelope_is_not_measured_use_or_a_lower_bound": true,
+        "envelope_within_stage_budgets": {
+          "leaf": true,
+          "parent": true,
+          "root": true
+        },
+        "fixed_noise_width_4_satisfies_2sqrt_n": true,
+        "k": 41,
+        "m_bar": 45,
+        "n": 2,
+        "n_does_not_name_security_bits": true,
+        "parameters_are_formal": false,
+        "private_integer_wire_lower_bytes": {
+          "leaf_preimages": 585216,
+          "parent_basis": 387096,
+          "root_basis": 96774
+        },
+        "private_wire_lower_bound_is_not_RSS_or_full_serialized_size": true,
+        "public_entropy_envelope_bytes": {
+          "leaf": 274861129728,
+          "parent": 273429561344,
+          "root": 10398700800
+        },
+        "public_widths": {
+          "leaf_width_squared": 82903323983053440,
+          "parent_width_squared": 591288114680,
+          "root_gs_squared_bound": 1078992910
+        },
+        "q": 1099511627791,
+        "resource_refusal_reasons": [],
+        "resource_status": "static_caps_fit",
+        "root_r_width_squared": 1024,
+        "root_regularity_target_bits": 64,
+        "root_regularity_upper_conditional": "19680890642091964122842974621904339461/784637716923335095479473677900958302012794430558004314112",
+        "scalar_call_counts": {
+          "leaf_gaussian_coordinates": 97536,
+          "leaf_vector_samples": 256,
+          "parent_candidates_limit": 382,
+          "parent_candidates_minimum": 254,
+          "parent_gaussian_coordinates_upper": 97028,
+          "root_gaussian_coordinates": 3690
+        },
+        "security_claim": "none",
+        "seed_bytes": 32,
+        "seed_positions": 256
+      },
+      {
+        "actual_finite_mass_floor": 31,
+        "actual_geometry_or_sampling_executed": false,
+        "backend_admitted": false,
+        "conditional_noise": {
+          "alpha": "4/1099511627791",
+          "assumed_preimage_norm_squared_upper": "38390766523158621600000",
+          "backend_admitted": false,
+          "conditional_lifetime_failure_upper": null,
+          "conditional_noise_sufficient": false,
+          "conditional_per_bit_failure_upper": null,
+          "continuous_margin": "-4569330597782",
+          "continuous_squared_upper": "39926397184084966464001040",
+          "dimension": 2445,
+          "encapsulations": 1048576,
+          "error_bits": 64,
+          "excluded": [
+            "key norm bad event",
+            "sampler TV and abort",
+            "basis/resource failures",
+            "finite continuous-noise implementation",
+            "security estimation"
+          ],
+          "integer_phase_radius": 274877906947,
+          "l1_integer_upper": 9688417009457,
+          "lwe_hardness_or_reduction_verified": false,
+          "noise_definition": "CHKP section 2.3.1: round(q*continuous Gaussian width alpha) mod q",
+          "noise_implementation_verified": false,
+          "preimage_norm_measured_or_certified": false,
+          "q": 1099511627791,
+          "q_times_alpha": "4",
+          "rounding_error_upper": "4844208504729",
+          "security_claim": "none",
+          "seed_bits": 256,
+          "shared_preamble_independence_required": false,
+          "width_squared": "15701744999246880000"
+        },
+        "constructor_rejection": "CHKP dimensions or RandBasis budget exceed the profile",
+        "current_params_constructor_accepts": false,
+        "dimensions": {
+          "leaf": 2445,
+          "parent": 1630,
+          "root": 815
+        },
+        "entropy_column_minimality": {
+          "previous_column_count_fails": true,
+          "sufficient": true
+        },
+        "entropy_envelope_is_not_measured_use_or_a_lower_bound": true,
+        "envelope_within_stage_budgets": {
+          "leaf": false,
+          "parent": false,
+          "root": false
+        },
+        "fixed_noise_width_4_satisfies_2sqrt_n": false,
+        "k": 41,
+        "m_bar": 159,
+        "n": 16,
+        "n_does_not_name_security_bits": true,
+        "parameters_are_formal": false,
+        "private_integer_wire_lower_bytes": {
+          "leaf_preimages": 3755520,
+          "parent_basis": 15941400,
+          "root_basis": 3985350
+        },
+        "private_wire_lower_bound_is_not_RSS_or_full_serialized_size": true,
+        "public_entropy_envelope_bytes": {
+          "leaf": 1763872604160,
+          "parent": 8075229265920,
+          "root": 293936609280
+        },
+        "public_widths": {
+          "leaf_width_squared": 15701744999246880000,
+          "parent_width_squared": 17079738284000,
+          "root_gs_squared_bound": 30499532650
+        },
+        "q": 1099511627791,
+        "resource_refusal_reasons": [
+          "full leaf dimension exceeds explicit maximum 512",
+          "parent complete-basis entries exceed private-state maximum 2^20"
+        ],
+        "resource_status": "blocked",
+        "root_r_width_squared": 1024,
+        "root_regularity_target_bits": 64,
+        "root_regularity_upper_conditional": "120220066508066008167966358912044077381/3138550867693340381917894711603833208051177722232017256448",
+        "scalar_call_counts": {
+          "leaf_gaussian_coordinates": 625920,
+          "leaf_vector_samples": 256,
+          "parent_candidates_limit": 1758,
+          "parent_candidates_minimum": 1630,
+          "parent_gaussian_coordinates_upper": 2865540,
+          "root_gaussian_coordinates": 104304
+        },
+        "security_claim": "none",
+        "seed_bytes": 32,
+        "seed_positions": 256
+      },
+      {
+        "actual_finite_mass_floor": 31,
+        "actual_geometry_or_sampling_executed": false,
+        "backend_admitted": false,
+        "conditional_noise": {
+          "alpha": "4/1099511627791",
+          "assumed_preimage_norm_squared_upper": "8247049137135695628318720",
+          "backend_admitted": false,
+          "conditional_lifetime_failure_upper": null,
+          "conditional_noise_sufficient": false,
+          "conditional_per_bit_failure_upper": null,
+          "continuous_margin": "-279591136575961/2",
+          "continuous_squared_upper": "8576931102621123453451469840",
+          "dimension": 9516,
+          "encapsulations": 1048576,
+          "error_bits": 64,
+          "excluded": [
+            "key norm bad event",
+            "sampler TV and abort",
+            "basis/resource failures",
+            "finite continuous-noise implementation",
+            "security estimation"
+          ],
+          "integer_phase_radius": 274877906947,
+          "l1_integer_upper": 280140892389854,
+          "lwe_hardness_or_reduction_verified": false,
+          "noise_definition": "CHKP section 2.3.1: round(q*continuous Gaussian width alpha) mod q",
+          "noise_implementation_verified": false,
+          "preimage_norm_measured_or_certified": false,
+          "q": 1099511627791,
+          "q_times_alpha": "4",
+          "rounding_error_upper": "280140892389855/2",
+          "security_claim": "none",
+          "seed_bits": 256,
+          "shared_preamble_independence_required": false,
+          "width_squared": "866650813065962129920"
+        },
+        "constructor_rejection": "parent_max_vectors is outside its exact integer domain",
+        "current_params_constructor_accepts": false,
+        "dimensions": {
+          "leaf": 9516,
+          "parent": 6344,
+          "root": 3172
+        },
+        "entropy_column_minimality": {
+          "previous_column_count_fails": true,
+          "sufficient": true
+        },
+        "entropy_envelope_is_not_measured_use_or_a_lower_bound": true,
+        "envelope_within_stage_budgets": {
+          "leaf": false,
+          "parent": false,
+          "root": false
+        },
+        "fixed_noise_width_4_satisfies_2sqrt_n": false,
+        "k": 41,
+        "m_bar": 548,
+        "n": 64,
+        "n_does_not_name_security_bits": true,
+        "parameters_are_formal": false,
+        "private_integer_wire_lower_bytes": {
+          "leaf_preimages": 14616576,
+          "parent_basis": 241478016,
+          "root_basis": 60369504
+        },
+        "private_wire_lower_bound_is_not_RSS_or_full_serialized_size": true,
+        "public_entropy_envelope_bytes": {
+          "leaf": 6865035460608,
+          "parent": 115704451825664,
+          "root": 4052258160640
+        },
+        "public_widths": {
+          "leaf_width_squared": 866650813065962129920,
+          "parent_width_squared": 238827837179440,
+          "root_gs_squared_bound": 420471544330
+        },
+        "q": 1099511627791,
+        "resource_refusal_reasons": [
+          "full leaf dimension exceeds explicit maximum 512",
+          "MP12 root full-basis dimension exceeds maximum 1024",
+          "RandBasis total candidate bound exceeds maximum 4096",
+          "parent complete-basis entries exceed private-state maximum 2^20",
+          "root_basis integer bytes alone exceed private object maximum 16 MiB",
+          "parent_basis integer bytes alone exceed private object maximum 16 MiB"
+        ],
+        "resource_status": "blocked",
+        "root_r_width_squared": 1024,
+        "root_regularity_target_bits": 64,
+        "root_regularity_upper_conditional": "79801919497855862445730921801650890861/6277101735386680763835789423207666416102355444464034512896",
+        "scalar_call_counts": {
+          "leaf_gaussian_coordinates": 2436096,
+          "leaf_vector_samples": 256,
+          "parent_candidates_limit": 6472,
+          "parent_candidates_minimum": 6344,
+          "parent_gaussian_coordinates_upper": 41058368,
+          "root_gaussian_coordinates": 1437952
+        },
+        "security_claim": "none",
+        "seed_bytes": 32,
+        "seed_positions": 256
+      },
+      {
+        "actual_finite_mass_floor": 31,
+        "actual_geometry_or_sampling_executed": false,
+        "backend_admitted": false,
+        "conditional_noise": {
+          "alpha": "4/1099511627791",
+          "assumed_preimage_norm_squared_upper": "128758822433924069128135680",
+          "backend_admitted": false,
+          "conditional_lifetime_failure_upper": null,
+          "conditional_noise_sufficient": false,
+          "conditional_per_bit_failure_upper": null,
+          "continuous_margin": "-780520123690158",
+          "continuous_squared_upper": "133909175331281031893261108240",
+          "dimension": 18939,
+          "encapsulations": 1048576,
+          "error_bits": 64,
+          "excluded": [
+            "key norm bad event",
+            "sampler TV and abort",
+            "basis/resource failures",
+            "finite continuous-noise implementation",
+            "security estimation"
+          ],
+          "integer_phase_radius": 274877906947,
+          "l1_integer_upper": 1561590003194209,
+          "lwe_hardness_or_reduction_verified": false,
+          "noise_definition": "CHKP section 2.3.1: round(q*continuous Gaussian width alpha) mod q",
+          "noise_implementation_verified": false,
+          "preimage_norm_measured_or_certified": false,
+          "q": 1099511627791,
+          "q_times_alpha": "4",
+          "rounding_error_upper": "780795001597105",
+          "security_claim": "none",
+          "seed_bits": 256,
+          "shared_preamble_independence_required": false,
+          "width_squared": "6798607235541690117120"
+        },
+        "constructor_rejection": "n is outside its exact integer domain",
+        "current_params_constructor_accepts": false,
+        "dimensions": {
+          "leaf": 18939,
+          "parent": 12626,
+          "root": 6313
+        },
+        "entropy_column_minimality": {
+          "previous_column_count_fails": true,
+          "sufficient": true
+        },
+        "entropy_envelope_is_not_measured_use_or_a_lower_bound": true,
+        "envelope_within_stage_budgets": {
+          "leaf": false,
+          "parent": false,
+          "root": false
+        },
+        "fixed_noise_width_4_satisfies_2sqrt_n": false,
+        "k": 41,
+        "m_bar": 1065,
+        "n": 128,
+        "n_does_not_name_security_bits": true,
+        "parameters_are_formal": false,
+        "private_integer_wire_lower_bytes": {
+          "leaf_preimages": 29090304,
+          "parent_basis": 956495256,
+          "root_basis": 239123814
+        },
+        "private_wire_lower_bound_is_not_RSS_or_full_serialized_size": true,
+        "public_entropy_envelope_bytes": {
+          "leaf": 13662978834432,
+          "parent": 453795916808192,
+          "root": 15750565478400
+        },
+        "public_widths": {
+          "leaf_width_squared": 6798607235541690117120,
+          "parent_width_squared": 934827939308120,
+          "root_gs_squared_bound": 1634314579210
+        },
+        "q": 1099511627791,
+        "resource_refusal_reasons": [
+          "CHKPParams.n exceeds current maximum 64",
+          "full leaf dimension exceeds explicit maximum 512",
+          "MP12 root full-basis dimension exceeds maximum 1024",
+          "RandBasis total candidate bound exceeds maximum 4096",
+          "parent complete-basis entries exceed private-state maximum 2^20",
+          "root_basis integer bytes alone exceed private object maximum 16 MiB",
+          "parent_basis integer bytes alone exceed private object maximum 16 MiB",
+          "leaf_preimages integer bytes alone exceed private object maximum 16 MiB"
+        ],
+        "resource_status": "blocked",
+        "root_r_width_squared": 1024,
+        "root_regularity_target_bits": 64,
+        "root_regularity_upper_conditional": "25256893673229021593629460624002040173/1569275433846670190958947355801916604025588861116008628224",
+        "scalar_call_counts": {
+          "leaf_gaussian_coordinates": 4848384,
+          "leaf_vector_samples": 256,
+          "parent_candidates_limit": 12754,
+          "parent_candidates_minimum": 12626,
+          "parent_gaussian_coordinates_upper": 161032004,
+          "root_gaussian_coordinates": 5589120
+        },
+        "security_claim": "none",
+        "seed_bytes": 32,
+        "seed_positions": 256
+      }
+    ]
+  },
+  "current": {
+    "dimensions": [
+      127,
+      254,
+      381
+    ],
+    "encoded_identity_limit_bytes": 86,
+    "framed_length_prefix_bytes": 4,
+    "framed_mode_plaintext_bytes": 28,
+    "raw_cpa_all_byte_integrity_claim": false,
+    "raw_seed_capsule_bytes": 3919,
+    "seed_mode_plaintext_bytes": 32,
+    "seed_positions": 256,
+    "static_profile_checks": {
+      "actual_geometry_or_sampling_checked": false,
+      "backend_admitted": false,
+      "budgets_are_not_preallocated_memory": true,
+      "conditional_continuous_margin": "220027361341",
+      "conditional_continuous_squared_upper": 32849613095045095066640,
+      "conditional_lifetime_error_upper": "1/68719476736",
+      "conditional_noise_sufficient": true,
+      "conditional_per_bit_error_upper": "1/18446744073709551616",
+      "conditional_preimage_norm_squared_upper": 31586166437543360640,
+      "conditional_rounding_error_upper": "54850545606",
+      "n2_is_not_a_security_parameter": true,
+      "parameters_are_formal": false,
+      "pending_execution_checks": [
+        "finite root mass and radius",
+        "complete private kernel bases and public GS bound",
+        "GPV scalar widths, rational centers and resource envelopes",
+        "RandBasis rank/norm/ToBasis and checked reduction",
+        "fixed 256 leaf syndromes and actual preimage norms",
+        "measured entropy and persistence lifecycle"
+      ],
+      "profile_id": "chkp-mp12-root-randbasis-n2-v1",
+      "root_mass_floor": "319/10",
+      "root_mass_floor_requires_finite_sampler_check": true,
+      "root_radius": 171,
+      "root_regularity_upper_conditional": "41347807146778777898945909704524976069/3138550867693340381917894711603833208051177722232017256448",
+      "scalar_call_limits": {
+        "leaf": 97536,
+        "parent": 97028,
+        "root": 3690
+      },
+      "security_claim": "none",
+      "selected_modulus_sufficient": true,
+      "static_numeric_gates_pass": true,
+      "worst_entropy_bytes": {
+        "chain": 558689391872,
+        "leaf": 274861129728,
+        "parent": 273429561344,
+        "root": 10398700800,
+        "scalar": 2818048
+      }
+    }
+  },
+  "large_matrices_allocated": false,
+  "parameters_are_formal": false,
+  "profile_id": "chkp-mp12-root-randbasis-n2-v1",
+  "random_bytes_consumed": 0,
+  "remaining_for_formal_admission": [
+    "a simultaneously correct and computationally hard LWE parameter set",
+    "measured generation/sampling and bounded resource gates for that same set",
+    "finite root, delegation, leaf, noise and implementation-failure ledgers",
+    "paper/Wang composition assumptions and query-dependent reduction losses",
+    "independent estimation beyond one attack or a dimension label"
+  ],
+  "schema": "IBME/CHKP-CAPACITY-AUDIT/1",
+  "scope": "one root, one parent issuance, one fixed 32-byte/256-position leaf",
+  "security_claim": "none"
+}

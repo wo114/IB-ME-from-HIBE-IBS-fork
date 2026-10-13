@@ -4,6 +4,7 @@ Descriptors describe engineering capabilities, not admitted security properties.
 Parameter and object checks belong here, outside the shared Wang protocol.
 """
 from dataclasses import dataclass, fields, replace
+import importlib.util
 import math
 
 from ibme.core.errors import InvalidParameterError, SerializationError
@@ -36,6 +37,11 @@ class BackendSpec:
     # Public adapter capability: the IBS base class does not prescribe an
     # attribute called public_key on every implementation's master object.
     master_public_key: object = None
+    # Optional backend-owned policy/dependency hooks. They must not generate
+    # keys, consume entropy, write state, or load an algorithm from JSON.
+    default_preset: object = None
+    validate_configuration: object = None
+    validate_environment: object = None
 
     def parse_params(self, values):
         if not self.available:
@@ -63,6 +69,9 @@ class BackendRegistry:
             raise InvalidParameterError("invalid backend descriptor")
         if not spec.id or not spec.version or (spec.role, spec.id) in self._specs:
             raise InvalidParameterError("duplicate/empty backend identifier or version")
+        if any(hook is not None and not callable(hook) for hook in
+               (spec.default_preset, spec.validate_configuration, spec.validate_environment)):
+            raise InvalidParameterError("backend policy/dependency hooks must be callable")
         if spec.available:
             required = (spec.factory, spec.check_object)
             keys = {"hpk", "hmsk", "sk1", "sk2"} if spec.role == "hibe" else {"ipk", "imsk", "sk"}
@@ -89,9 +98,54 @@ class BackendRegistry:
                            two_level=s.two_level, key_binding=s.key_binding,
                            object_parameter_binding=s.object_parameter_binding,
                            master_public_key_capability=callable(s.master_public_key),
-                           persistent_identity_cache=s.persistent_identity_cache)
+                           persistent_identity_cache=s.persistent_identity_cache,
+                           **environment_status(s))
                        for s in self._specs.values() if s.role == role]
                 for role in ("hibe", "ibs")}
+
+
+def environment_status(spec):
+    """Installed runtime support, distinct from implementation/security status."""
+    if not spec.available:
+        return dict(runtime_available=False, runtime_reason=spec.reason)
+    try:
+        if spec.validate_environment is not None:
+            spec.validate_environment()
+    except (InvalidParameterError, ImportError, ValueError, OSError) as exc:
+        return dict(runtime_available=False, runtime_reason=str(exc))
+    return dict(runtime_available=True, runtime_reason="")
+
+
+def _chkp_environment():
+    # find_spec on the parent first avoids a ModuleNotFoundError on Windows.
+    # No sage.all import or sampler construction is needed for discovery.
+    if importlib.util.find_spec("sage") is None or importlib.util.find_spec("sage.all") is None:
+        raise InvalidParameterError("CHKP execution requires SageMath in WSL ~/miniconda3/envs/sage; no fallback")
+
+
+def _chkp_configuration(params, config):
+    expected = "hybrid" if params.message_mode == "seed32" else "direct"
+    if config["transport"] != expected:
+        raise InvalidParameterError(f"CHKP {params.message_mode} profile requires {expected} transport")
+    # Pure exact arithmetic: no Sage, noise tables, key material, or entropy.
+    # This engineering gate is sufficient, not necessary. Its ideal bound is
+    # conditional on the checked leaf norm; finite TV/abort and security
+    # admission remain separate ledgers. Custom primitive diagnostics may
+    # use other parameters, but the shared protocol must not silently admit
+    # them when this declared decoding budget fails.
+    from ibme.lattice.chkp.joint_parameters import evaluate_noise
+    from ibme.lattice.chkp.noise_budget import RoundedNoiseParams
+    RoundedNoiseParams(params.q, params.alpha, tail_bits=params.noise_tail_bits,
+                       mass_bits=params.noise_mass_bits, precision_bits=params.noise_precision_bits,
+                       max_radius=params.noise_max_radius)
+    noise = evaluate_noise(q=params.q, dimension=params.leaf_dimension,
+                           width_squared=params.leaf_width_squared, alpha=params.alpha,
+                           error_bits=64, seed_bits=256, encapsulations=2**20)
+    if noise['conditional_noise_sufficient'] is not True:
+        raise InvalidParameterError(
+            'CHKP fails the conditional decoding sufficient gate '
+            '(error_bits=64, seed_bits=256, encapsulations=2^20); '
+            'this is an engineering budget, not a necessary condition or security admission')
 
 
 def _equal(actual, expected, label):
@@ -165,6 +219,9 @@ def _module_size(p, fmt):
 def default_registry():
     from ibme.hibe.abb10 import ABB10HIBE, ABB10PublicKey, ABB10MasterSecret, ABB10Level1SecretKey, ABB10Level2SecretKey, ABB10_DEBUG_PARAMS
     from ibme.hibe.mock import MockHIBE, MockHIBEPublicKey, MockHIBEMasterSecret, MockHIBELevel1SecretKey, MockHIBELevel2SecretKey
+    from ibme.hibe.chkp import (CHKPHIBE, CHKPParams, CHKPPublicKey, CHKPMasterSecret,
+        CHKPLevel1SecretKey, CHKPLevel2SecretKey, research_params,
+        check_object as chkp_check, ciphertext_size as chkp_ciphertext_size)
     from ibme.ibs.sis_ibs import SisIBSBackend, SisPublicKey, SisMasterSecret, SisSigningKey, IBS_EDUCATION_PARAMS
     from ibme.ibs.mock import MockIBSBackend, MockPublicKey, MockMasterSecret, MockSigningKey
     from ibme.ibs.luo import LuoIBSBackend, LuoMatrixParams, LuoPublicKey, LuoMasterSecret, LuoSigningKey
@@ -197,6 +254,16 @@ def default_registry():
                     lambda rng, fmt: MockHIBE(), hs(MockHIBEPublicKey,MockHIBEMasterSecret,MockHIBELevel1SecretKey,MockHIBELevel2SecretKey),
                     _mock_hibe_check, test_only=True, two_level=True,key_binding=True,reason="TEST-ONLY; no cryptographic security",
                     ciphertext_size=_mock_ciphertext_size,object_parameter_binding="test-only-partial-wire"),
+        BackendSpec("chkp", "hibe", CHKPParams.version, CHKPParams,
+                    {"hybrid-research": research_params(),
+                     "direct-research": research_params(message_mode="framed32")},
+                    lambda rng, fmt: CHKPHIBE(),
+                    hs(CHKPPublicKey, CHKPMasterSecret, CHKPLevel1SecretKey, CHKPLevel2SecretKey),
+                    chkp_check, two_level=True, key_binding=True, persistent_identity_cache=True,
+                    reason="CHKP research with explicit MP12 root; n=2, no security admission",
+                    ciphertext_size=chkp_ciphertext_size, object_parameter_binding="full-parameter-snapshot",
+                    default_preset=lambda transport: "hybrid-research" if transport == "hybrid" else "direct-research",
+                    validate_configuration=_chkp_configuration, validate_environment=_chkp_environment),
         BackendSpec("sis", "ibs", "sis-teaching-v1", Params, {"education": sis},
                     lambda rng, fmt: SisIBSBackend(rng=rng), ins(SisPublicKey,SisMasterSecret,SisSigningKey),
                     _sis_check,_sis_size,reason="teaching SIS; known forgery control retained",
@@ -217,7 +284,7 @@ def default_registry():
                     signature_formats=("reference","compact"),persistent_identity_cache=True,reason="research module backend; none/false",
                     object_parameter_binding="full-parameter-snapshot",master_public_key=lambda obj:obj.public_key),
     ]
-    for identifier in ("chkp", "latte", "lai-ideal-hibe", "gkr2025", "zhang2020", "abb-standard-selective", "chkp-standard"):
+    for identifier in ("latte", "lai-ideal-hibe", "gkr2025", "zhang2020", "abb-standard-selective", "chkp-standard"):
         specs.append(BackendSpec(identifier,"hibe","unavailable-v1",available=False,reason="public backend not delivered; no mock fallback"))
     for identifier in ("srgg2025","yu2026","sageloli-sis","sageloli-rsis","foo-li","wang-pw","cert-ml-dsa","cert-falcon","xie-ntru-ibs"):
         specs.append(BackendSpec(identifier,"ibs","unavailable-v1",available=False,reason="public backend not delivered; no mock fallback"))

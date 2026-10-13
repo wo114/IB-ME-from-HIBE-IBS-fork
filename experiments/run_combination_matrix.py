@@ -42,7 +42,7 @@ def case_definitions():
                                                   transport="hybrid", allow_mock=True)
     cases["abb10-hybrid-mock-byteauth"] = dict(hibe="abb10", ibs="mock",
                                              transport="hybrid", allow_mock=True)
-    cases["chkp-pending"] = dict(hibe="chkp", ibs="luo-module", transport="hybrid")
+    cases["latte-pending"] = dict(hibe="latte", ibs="luo-module", transport="hybrid")
     return cases
 
 
@@ -209,7 +209,7 @@ def summarize(results):
                 limitations=["Functional checks do not establish security.",
                              "ABB10 and SIS use teaching parameters; known attacks remain applicable.",
                              "Random signature rejection is a bounded negative input check.",
-                             "No unavailable backend is substituted; CHKP is not implemented."],
+                             "No unavailable backend is substituted; CHKP has a separate Sage lifecycle driver."],
                 results=results)
 
 

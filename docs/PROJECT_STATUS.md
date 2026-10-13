@@ -2,6 +2,10 @@
 
 更新：2026-10-13（本次仅补 Yu 独立实现，其它模块保留原验收版本）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
 
+2026-10-13 B增量：本地分叉克隆完成，在已审PR14 `87deec2` 上新增 [Wang+PW完整研究签名链与交付](research/team-b-delivery/2026-10-13-wang-pw/README.md)，含真实MP12采样、PW转换、冻结五方法与严格恢复；debug参数仍none/false。SRGG相关扰动/提取按独立组件交付，不计完整IBS。上游PR15仍为WIP，B基础不包含它。
+
+同日新授权完整SRGG：已完成 [SRGG完整研究IBS](research/team-b-delivery/2026-10-13-srgg-full/README.md)，含真实连续SampleF/随机舍入、Schur条件、XOF/H/挑战、四算法/五方法、固定身份缓存和恢复；组件批次与完整批次分别留证。正式安全与默认安装/真实HIBE配对未准入。
+
 ## 1. 已确认的组织方式
 
 采用**一个 IB-ME 框架、独立 HIBE 模块、独立 IBS 模块、兼容组合的统一装配和验收**。协议、编码、持久状态、命令行和评测复用；每个原语由自己的负责人完成算法、对象、参数、采样及单体测试。
@@ -18,6 +22,8 @@
 
 已接收文档整理 `2868cf5`、框架修订 `57a02e5`、Luo `e5e0b97`、A研究后端 `7795719` 和安装入口/隔离测试修订 `3c8441f`。历史框架实验单列于[原交付记录](deliveries/2026-10-11-framework/README.md)，本轮不重新累加历史计数。#9—#12 固定源码审查350个唯一 pytest 用例最终通过，另25项 C64B assembly 实跑；该批合入源码与验证树相同。#13 另验173 passed/2明确skip、55 Sage passed、真实安装/CLI和两组远端检查；测试交叠不相加，失败/复跑均保留。
 
+后续统一交付另行接收 Luo终验收 `c336a51`（原工作树`c043c4b`同树）及CHKP完整链最终提交`4ea086e`，并与上游`14f1163`集成；[通俗README及材料入口](deliveries/2026-10-12-chkp-luo/README.md)区分两种HIBE和原始执行版本。原CHKP真实根/父/四个256目标叶、44项组合检查、CLI新建8项与导入59项已通过；没有重跑昂贵历史采样，发布回归单列。n=2公开恢复攻击成功，正式参数、安全等级与公平横向基准仍未完成。
+
 | 模块/产物 | 已有内容 | 尚缺内容及范围 |
 |---|---|---|
 | 统一框架与协议 | `assembly` 已实现后端注册、独立选择/参数快照、能力/容量预检；复用 Baseline/BYTEAUTH/Hybrid；CLI 与真实组合驱动共用装配入口 | 本轮已补齐用户要求的三项框架工作；候选原语须各自实现并通过单体/组合验收，静态预检不等于安全准入 |
@@ -25,12 +31,15 @@
 | HIBE 公共接口 | 六个 HIBE 方法、规范对象；Hybrid 使用独立的公开密钥绑定验证能力 | 接口存在不等于每个候选已实现 |
 | 教学 ABB10 + 教学 SIS | 实际代码、CLI、历史攻击与回归 | 教学参数及公开认证反例；不能计入已准入安全组合 |
 | Luo 矩阵 IBS | 本地真实研究算法、适配器与历史参数筛查 | 当前暂停继续扩网格，保留为比较实例 |
-| Luo 模格 IBS | 真实四算法、NTT/Hint、固定状态及 reference/compact；已合入 C64B 完整17字段 helper、研究入口 profile 绑定/恢复，最新公共 assembly 的 C64B 25项真实检查通过 | 默认参数不变；C64B 仍显式选择，引用条件和正式参数准入未全部完成，历史与本轮证据分列 |
+| Luo 模格 IBS | 真实算法、NTT/Hint、固定状态及reference/compact；C64B完整17字段、正确性条件/中止界、原文安全引用映射和第二十四步终验收收尾；实际CHKP组合已核对compact16383 B | 默认参数不变、C64B仍显式选择；研究候选不是正式安全等级，不自动补写完整基础归约/QROM；版本变化定向复核 |
+| Wang+PW IBS | [完整研究五方法](../experiments/research/candidates/wang_pw/)、秘密委派/真实原像、四域哈希/两个盐、固定key多消息及跨进程恢复；32次新真签验与公开伪造负控单列B交付 | q17调试参数不安全；正式参数/根近均匀、固定服务安全映射、默认登记/安装与真实CHKP配对未完成，不能计已准入安全组合 |
+| Foo–Li IBS | 已有setup/extract/sign_raw/verify、固定用户种子与严格恢复的真实研究生命周期，本批真实采样回归复验 | 共同五方法/对象、稳健服务与模型/参数仍待；不是因sign_raw命名而未实现算法 |
+| SRGG IBS | [完整研究后端](../experiments/research/candidates/srgg/backend.py)、数值连续SampleF/Schur/真gadget、签验及固定cache恢复；32次系统随机签验、恢复同key、规范加载、原文范数重试和错误拒绝均执行 | ζ一致factor2与原文Table3字面差异、连续数值总TV、HNF/强前提尚未证；n8挑战弱可公开伪造，不授安全等级；默认登记和真实HIBE组合待统筹 |
 | 既有内置完整研究接线 | **教学 ABB10 + Hybrid + Luo 模格 + BYTEAUTH** | 可以验证工程流程；HIBE 不是 CHKP，不能记为真实 CHKP 组合完成 |
-| CHKP 本仓库 | `experiments/research/chkp_*` 的格基、采样、叶路径和缓存研究模块与测试 | 无 `src/ibme/hibe/chkp.py` 完整公开后端；T2/T3 与真实 32 B 接入未闭合 |
-| CHKP 第七步外部包 | Codex 直接返工包及定向验证，原输入与清单保留 | 第八步加量任务已发；本次目录检查未收到 `CHKP-step8-package/`；第七步新增改动不能冒称已获 DeepSeek 再验 |
+| CHKP 本仓库 | `src/ibme/hibe/chkp/`公开六方法、`src/ibme/lattice/chkp/`有限工具；原CHKP父RandBasis/ToBasis与同叶256目标真实运行、保存/恢复、Hybrid+C64B+BYTEAUTH及CLI完成 | MP12仅用于此后端根生成；n2/q1099511627791可公开攻击，G-formal未准入，状态无外部防回滚保证 |
+| CHKP 历史第七步外部包 | 原输入、返工和清单保留供追溯；现行功能收尾由[完整交付](research/2026-10-12-chkp-closure/README.md)替代 | 不因旧第八步目录名未出现否定新的固定提交；历史未执行/失败/恢复不能改写为同一次全新成功 |
 | 旧 `first_suite` 独立研究原型 | 已并入根/H/G/主父叶状态、有限 CSPRNG 采样、共享前导种子 KEM及 MP12 DelTrap；[固定交付](research/2026-10-11-first-suite-compact/README.md)记录 83/166/249 维 n=1 配置的真实父采样、同叶 256 原像、512 噪声位恢复与跨进程恢复 | 与第七步 cap32 不同版本；n=1 可公开恢复种子。旧组件不等于原 CHKP 或新计算型 MP12 完整后端；新后端单列，不能由旧“未实现”描述否定它 |
-| A 的 MP12 变体公开研究后端（已合入） | [第一批](research/team-a-delivery/2026-10-12-hibe-reference/README.md)：计算型 `[I\|Â]` 根、真实 DelTrap/固定256叶，六方法/五类对象/绑定、自定义 registry；原交付21项组合收据，本轮独立48项Sage测试无skip；安装接入单列 | n2/q549755813911 不安全，原交付8649次公开枚举恢复明文；原 CHKP theorem 不能直接继承。正式参数/模型、原 CHKP 和 ABB-ROM 仍待，不升级已准入数 |
+| A 的 MP12 变体公开研究后端（已合入） | [第一批](research/team-a-delivery/2026-10-12-hibe-reference/README.md)：计算型 `[I\|Â]` 根、真实 DelTrap/固定256叶，六方法/五类对象/绑定、自定义 registry；原交付21项组合收据，本轮独立48项Sage测试无skip；安装接入单列 | n2/q549755813911 不安全，原交付8649次公开枚举恢复明文；原 CHKP theorem 不能直接继承。正式参数/模型和ABB-ROM仍待；原CHKP新增成果在上行单列，不升级已准入数 |
 | A 的公共安装入口（PR #13 已合入） | [第二批](research/team-a-delivery/2026-10-12-installed-api/README.md)：公共HIBE/格工具、单一 provider、wheel与默认可选登记；审查173 passed/2明确skip、55 Sage passed，仓库外安装Windows3/Sage10项，独立实际CLI8步通过 | 无Sage明确unavailable；新根/新接收者需要显式本地engine，旧状态可无engine恢复；原n2公开攻击和none/false保持；正式大尺寸部署/模型仍待 |
 | 本地 CLI 接收状态事务 | [接收状态证据](research/2026-10-10-receiver-persistence/README.md)：锁、pending、保存后输出及已有研究接收密钥复用 | 提供同 OS 本地进程失败后的保守阻止；不宣称防回滚、硬断电或跨 OS 分布式事务 |
 | Yu IBS 独立研究实现（本地分支，未推送） | [本轮交付](research/2026-10-13-yu/README.md)：`3ddc623` 补 BPR 矩阵 PRF/密钥输入电路、四算法、真实 AP09→RandBasis/LLL→GPV、固定身份密钥与公开验签；联合472项通过/无skip，最终3整链、12签名、24验签和120项负例/方程对照 | 仅小参数核心代码；q=3公开可伪造、部分错误上下文被接受。密钥输入NC1与Lemma7谱界、正式参数、公共后端及Wang/HIBE组合未准入；`security_claim=none` |
@@ -43,11 +52,12 @@
 | 邻居 Luo 工作树 `luo-acceptance-evidence`，历史提交 `f079ce10fb6b3d2877465b308caaa30276d9e6f9` | 负责人已核的上一批 54 次 Sign、528 次 attempt、108 次两格式验签、212 项选定测试 | 保留历史基点与原统计；后续源码接收按下列固定提交和本轮审查记录 |
 | Luo 第二十二步，提交 `886fc127304479b87ef210836757004818e5b6ea` | 鲁棒接受集/随机矩阵二阶矩条件式中止界、C49/C64B 候选及攻击成本估计，已随 #9 接收。负责人原记录 C64B 54次 Sign／315次尝试／108次双格式验签、269项回归 | 原54次性能批次没有在本轮重跑，相关条件式证书与证据工具已独立验；条件式可用性界不是安全位数，正式参数仍未准入 |
 | Luo 第二十三步，提交 `e5e0b97752f9291ce7621dd830d665baff86aef8` | 已合入 helper 与专属入口。原交付122/19项及`0bf0855`的25项收据保留；本轮在最终联合 assembly 独立重跑25项，compact 最大3924 B应用消息/20415 B外载荷真实往返、全对象/profile恢复与错配拒绝 | 新25项的 reference 是容量预检、compact 是实际运行；研究专用入口两格式另有实际 pytest 回归。原性能统计不相加，不计原 CHKP 完成或正式参数 |
-| `CODEX-step22-luo-integration/report.md` | 静态及公共接口预检报告指出首阻塞 `CHKP_PUBLIC_BACKEND_MISSING` | 负责人后续已复跑 26 项检查及 18 项公共边界；本对话未复跑，仍不是实际 CHKP+Luo 加解密结果 |
+| `CODEX-step22-luo-integration/report.md` | 历史静态预检当时指出 `CHKP_PUBLIC_BACKEND_MISSING` | 当时结果不算真实组合；该缺口现由`4ea086e`真实组合收据关闭，旧文档不覆盖当前状态 |
+| Luo第二十四步/CHKP本轮固定交付 | [Luo终验收](research/2026-10-12-luo-final-acceptance/README.md)、[CHKP完整材料](research/2026-10-12-chkp-closure/README.md)及[统一说明](deliveries/2026-10-12-chkp-luo/README.md) | 原始收据、Git版本及发布集成分别记录；正式安全仍none/false/false |
 
-第二十二步显式 C64B 候选的 compact 签名由负责人测得 16383 B（默认仍为 16063 B），inner 输入仍为 86/86/32 B；该候选尚未改变本仓库默认参数，未来组合按所选配置重新核算外层容量。
+第二十二步显式 C64B 候选的 compact 签名由负责人测得16383 B，本次真实CHKP组合再次核对该尺寸；默认参数对应的16063 B保持原状。inner输入为86/86/32 B；显式C64B没有改成全局默认，其它配置仍需分别核算容量。
 
-第二十二步固定入口为上述外部提交中的 `docs/research/2026-10-11-luo-abort-bound/README.md`；工作树位于 `C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS`。C64B 的 κ=64、γ1=190000、γ2=60000000000、γ3=(q−1)/10，两项重试帽各4096。负责人在理想随机源／理想 XOF 及明确查询预算下给出正常调用总中止上界 <2^-153；MSIS 模型成本指数为经典188.340／量子170.925。以上是该固定交付的条件与结果，未授予整个 IBS 或组合相应安全等级。
+第二十二步固定入口现为本地[中止界与参数材料](research/2026-10-11-luo-abort-bound/README.md)，第二十三步入口为[C64B 交付](research/2026-10-11-luo-c64b-handoff/README.md)。后续独立工作树位于 `C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS`。C64B 的 κ=64、γ1=190000、γ2=60000000000、γ3=(q−1)/10，两项重试帽各4096。负责人在理想随机源／理想 XOF 及明确查询预算下给出正常调用总中止上界 <2^-153；MSIS 模型成本指数为经典188.340／量子170.925。以上是该固定交付的条件与结果，未授予整个 IBS 或组合相应安全等级。
 
 目前相关研究组合保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。这些标识约束安全表述；可执行的真实研究配置仍可进行功能接入和测量。
 
@@ -58,8 +68,8 @@
 | 并行线 | 本轮要交付的实物 | 依赖与停止边界 |
 |---|---|---|
 | 公共框架 | 已有[独立选择与测试入口](FRAMEWORK_USAGE.md)；维护新原语登记、容量/能力声明和其真实组合收据 | 不等待 CHKP；不重复开发协议；新增接口语义逐项协调 |
-| CHKP | 合法研究参数与资源账本、真实根→第一层→叶采样、固定解封装、同叶 256 目标及 32 B 种子、公开后端和对象加载 | 按[CHKP 当前任务](workplans/2026-10-08/队友任务-CHKP与格工具.md)并行；失败给出具体首阻塞、收据与可继续项 |
-| Luo IBS | 条件与参数对应、总中止/LowBits 问题处置、真实生命周期证据 | 负责人独立推进；不重复重写已发表基础归约，不把 sketch 升级成完整定理 |
+| CHKP | 本轮真实研究后端、根→父→固定256目标叶、32 B种子、对象加载、C64B组合及CLI均已收尾 | 后续范围是正式困难参数、资源可用性和组合前提；沿用已完成结果，旧[模块任务卡](workplans/2026-10-08/队友任务-CHKP与格工具.md)不要求重复根父实验 |
+| Luo IBS | 本版本研究级收尾：C64B、原文引用/数值对应、条件式中止界、实现与交接材料齐备 | 精确LowBits联合分布非现有界的必要输入；不自动开启下一轮，只对参数/版本/目标变化定向验证 |
 | 其它 HIBE/IBS | 每个认领模块的来源、对象、算法、真实最小实例和单体契约 | 与首套并行；优先有合法源码/明确有限参数的路线，复杂或条件不明的列储备 |
 | 组合与交付 | 接入已具备研究契约的真实原语，四种匹配、错误输入、字节篡改、固定状态恢复、尺寸/时间/内存 | 原语未到可做预检；诚实端到端及对应攻击必须用该真实组合执行，不用 mock 顶替 |
 
@@ -75,7 +85,7 @@
 
 A 随后按新任务书开始独立分支实施，新增 MP12 变体研究后端和真实单配对，范围/攻击/参数缺口见上表交付。A 目标仍 active：公开接口及安装工具已实跑，正式维度/两角色困难性/模型对应和大尺寸部署工具未闭合，A2/AR 尚未交付。新结果不覆盖原型/旧报告或其它未测组合。
 
-A 第二批已补[可安装公开 API 与默认 CLI](research/team-a-delivery/2026-10-12-installed-api/README.md)：Windows/Sage 均在仓库外验证 provider 来自安装包；Sage 无native/无熵重放原四种匹配，新安装CLI真实8步通过，55项Sage回归通过。默认入口在无Sage时明确 unavailable；缺native只阻止新根/新receiver，并在地址写入前拒绝。原n2攻击/none/false、原CHKP/ABB、正式维度/模型与双角色困难性仍待，不能称A完成。
+A 第二批已补[可安装公开 API 与默认 CLI](research/team-a-delivery/2026-10-12-installed-api/README.md)：Windows/Sage 均在仓库外验证 provider 来自安装包；Sage 无native/无熵重放原四种匹配，新安装CLI真实8步通过，55项Sage回归通过。默认入口在无Sage时明确 unavailable；缺native只阻止新根/新receiver，并在地址写入前拒绝。原n2攻击/none/false、ABB、正式维度/模型与双角色困难性仍待；原CHKP本轮功能收尾不替代A后续范围，不能称A全部完成。
 
 ## 4. 当前入口与证据定位
 
@@ -89,7 +99,7 @@ A 第二批已补[可安装公开 API 与默认 CLI](research/team-a-delivery/20
 本机外部交付根为 `C:/Users/A/.dsh/deliverables/`。可移交时需带包本身及其清单，不能只发送本机路径：
 
 - `CHKP-step7-codex-rework/report.md`、`source_manifest.json`；清单 SHA-256 `6e20806345024e92f1e9fe259439ac461f2ddfe7e194db597dce9ddbdc950790`。
-- 当前 CHKP 任务是 `DEEPSEEK-CHKP第八步-加量任务书-参数闭合真实采样与整链并行实现-2026-10-11.md`。冻结包内旧 `next_step8.md` 不再驱动当前排序。
+- CHKP 第八步研究功能由Codex直接完成收尾，[本轮记录](research/2026-10-12-chkp-closure/README.md)统一代码、真实12阶段证据及未闭合的安全条件。旧任务书和冻结包内`next_step8.md`保留为历史输入。
 - `CODEX-step22-luo-integration/report.md`：外部接入预检，按上表范围使用。
 
 更新本文时同时标出提交/包版本、核验者和已运行范围；不在 README、AGENTS 或旧报告末尾再追加第二份“最新进度”。

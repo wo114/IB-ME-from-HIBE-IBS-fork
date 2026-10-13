@@ -1,0 +1,20 @@
+{
+  "diagnostic": "single_fixed_2_pow_88_candidate_no_runtime_change",
+  "entropy_consumed": 0,
+  "gso_recomputed": false,
+  "private_geometry_printed": false,
+  "fixed_candidate_width_squared_cap_bits": 88,
+  "max_radius_unchanged": true,
+  "precision_and_mass_options_unchanged": true,
+  "original_2_pow_80_gate_passed": false,
+  "candidate_2_pow_88_gate_passed": true,
+  "all_original_scalar_certificates_passed": true,
+  "all_radii_within_original_max_radius": true,
+  "all_tail_bounds_within_original_target": true,
+  "all_quantization_bounds_below_one": true,
+  "all_rejection_trials_within_original_budget": true,
+  "whole_parent_gpv_tape_within_original_budget": true,
+  "scope_limit": "scalar profiles only; _admit_paths/ExtBasis/256-target stage not tested",
+  "parent_snapshot_unchanged": true,
+  "seconds": 1.865955
+}

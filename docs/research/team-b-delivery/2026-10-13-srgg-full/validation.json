@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-13",
+  "base": "3b50a40",
+  "source_commit": "fc66882b462e10e9d7ef8ca6b85c734c5c5fe22f",
+  "code_files": [
+    {
+      "path": "experiments/research/candidates/srgg/backend.py",
+      "sha256": "41088d067f534872997d241fec8f010221b30293cb50f2356ec1fe73aef890e2"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/config.py",
+      "sha256": "94c3be05b35559db42add52fd4b7b3d0ad180f4c6cc1672654728067533af80e"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/full_audit.py",
+      "sha256": "855838f41fd6e14fd6e5d637da6c095ee56a55bfb2c92d7ef1100dd00e0b1ef3"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/full_sampling.py",
+      "sha256": "a639481162e40caa209af1f0e6f0a97a2699f599fb0ed7cdda595ab13f56ab6f"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/hashing.py",
+      "sha256": "7944b247c7abc79f6a74f4d599cbd80c0a7030acf61943e9d1a5e66f340be78b"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/objects.py",
+      "sha256": "4fd2b9d941249914f2b43e573de1a138b473b12e5ab20e103a920b9db5ca21fd"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/runtime.py",
+      "sha256": "a1ac5b86292a22acb82548cd0f83d300ef52dc59382afbb6562c33f2ce66d8c9"
+    },
+    {
+      "path": "tests/test_srgg_ibs_backend.py",
+      "sha256": "34480dc10dc1bff68f91ab28b488fe6a782607236656b3c15a617315156ac23d"
+    },
+    {
+      "path": "tests/test_srgg_full_sampling.py",
+      "sha256": "6c1e91ee5e9f0318deea01d7c6d5e911997f7d1963603f00e6512c8bb2526352"
+    }
+  ],
+  "validation": {
+    "sage-regression.junit.xml": {
+      "path": "sage-regression.junit.xml",
+      "passed": 167,
+      "skipped": 0,
+      "errors": 0,
+      "failures": 0
+    },
+    "windows-regression.junit.xml": {
+      "path": "windows-regression.junit.xml",
+      "passed": 53,
+      "skipped": 11,
+      "errors": 0,
+      "failures": 0
+    }
+  },
+  "overlap_policy": "Do not sum overlapping Windows/Sage cases; Windows11 Sage skips are actually executed in Sage.",
+  "commands": {
+    "sage": "PYTHONPATH=.pytest-tmp-sage-deps:src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest tests/test_srgg_ibs_backend.py tests/test_srgg_full_sampling.py tests/test_srgg_perturbation.py tests/test_srgg_sampling.py tests/test_srgg_geometry.py tests/test_srgg_algebra.py tests/test_wang_pw_reference.py --basetemp=.pytest-tmp-srgg-complete-verified --junitxml=docs/research/team-b-delivery/2026-10-13-srgg-full/sage-regression.junit.xml -q",
+    "windows": "$env:PYTHONPATH='src'; & 'C:/Users/LENOVO/AppData/Local/Programs/Python/Python314/python.exe' -m pytest tests/test_srgg_ibs_backend.py tests/test_srgg_algebra.py tests/test_srgg_geometry.py --basetemp=.pytest-tmp-srgg-windows-verified --junitxml=docs/research/team-b-delivery/2026-10-13-srgg-full/windows-regression.junit.xml -q",
+    "audit": "PYTHONPATH=src python -m experiments.research.candidates.srgg.full_audit --repetitions 32 --output docs/research/team-b-delivery/2026-10-13-srgg-full/audit.json"
+  },
+  "TDD_and_review": [
+    "missing complete backend observed1fail; implemented and9 honest lifecycle tests passed",
+    "fullSampling observed26 missing-feature failures; two further rational admission failures fixed;28pass",
+    "Config precision relation reproduced as failure then fixed",
+    "wrong signature shape caused16attempts; regression failed then fixed to1 immediate error",
+    "full backend now13 tests: real sign/cache/resume/wire/protocol/fixed-point/legitimate norm retry"
+  ],
+  "actual": {
+    "honest_verified": 32,
+    "restored_key_verified": true,
+    "restored_cache_same_key": true,
+    "Q_gt_2gamma_exact": true,
+    "wire_bytes": {
+      "public_key": 785,
+      "master_secret_with_one_cached_user": 5377,
+      "signing_key": 1796,
+      "signature_min": 465,
+      "signature_max": 491
+    }
+  },
+  "full_IBS_implemented": true,
+  "default_registry_or_package_promoted": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "limits": [
+    "Explicit zeta-consistent factor2 interpretation, not confirmed author erratum",
+    "Continuous ticket/precision total TV unproved; gadget component errors are not full IBS security",
+    "n8 profile 8bit challenge supports actual public fixed-point forgery despite Q>2gamma",
+    "HNF key distribution/strong theorem mapping and author n512 formal parameters unclosed",
+    "Trusted plaintext issuer cache, no external state authentication/rollback or concurrency transaction",
+    "Common protocol test uses mock HIBE; no new real CHKP combination claimed"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "IBME/LUO-STEP24-CODEX-RECEIPT/1",
+  "date_local": "2026-10-12",
+  "reviewed_commit": "e5e0b97752f9291ce7621dd830d665baff86aef8",
+  "command_exit_codes": {
+    "delivery_normal": 0,
+    "delivery_optimized": 0,
+    "selection_normal": 0,
+    "selection_optimized": 0,
+    "selection_known_bad_budget": 2,
+    "committed_blob_hashes": 0,
+    "targeted_pytest": 0,
+    "assembly_f98de52": 0
+  },
+  "tested_files": [
+    "tests/test_luo_c64b_profile.py",
+    "tests/test_luo_cross_version_harness.py"
+  ],
+  "pytest": {
+    "tests": 51,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "parameter_predicates": 28,
+  "negative_failed_predicates": [
+    "budget_exact_integer_not_js_number"
+  ],
+  "assembly": {
+    "head": "f98de52f25e117fa7e365c686c23e0c142d004b1",
+    "checks": 25,
+    "elapsed_seconds": 32.91124010000203,
+    "signature_bytes": 16383,
+    "outer_payload_bytes": 20415,
+    "application_bytes": 3924,
+    "scope": "C64B compact teaching ABB10 Hybrid and BYTEAUTH; reference preflight only; no CLI/CHKP"
+  },
+  "committed_hashes": {
+    "commit": "e5e0b97752f9291ce7621dd830d665baff86aef8",
+    "manifest_entries": 25,
+    "git_blob_and_worktree_mismatch": []
+  },
+  "scope": "New targeted reruns plus historical evidence audit, not full repo or formal security approval",
+  "cryptographic_source_changes": 0,
+  "estimator_reruns": 0,
+  "CHKP_runs": 0,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

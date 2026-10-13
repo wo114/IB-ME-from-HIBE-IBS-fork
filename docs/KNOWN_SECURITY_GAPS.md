@@ -5,6 +5,10 @@
 本检查保留老师的两层匿名 HIBE + IBS 通用构造，仅增加自动验收证据。
 现有教学 IBS 公开伪造/冒名未修复；默认 CLI 的完整密文字节认证已实现并通过原低位反例回归，整体仍 `security_claim: none`。
 
+2026-10-12 CHKP研究参数负控：新公开后端的n=2配置已完成真实根、父、256目标叶采样及种子封装/恢复。[公开攻击收据](research/2026-10-12-chkp-closure/evidence/lifecycle/roundtrip.json)只用公开上下文、胶囊、测试身份和公开有限噪声支持，枚举5329个前导误差组合得到唯一seed候选，SHA-256与真实seed匹配。该配置不能提供保密性，Hybrid AEAD和BYTEAUTH不修复这一底层问题；这不是对一般CHKP或大参数LWE的攻击声明。
+
+同轮曾在叶采样构造阶段因标量执行域上限拒绝，实测耗熵为零；修复执行域后[显式复用原根父继续](research/2026-10-12-chkp-closure/README.md)，原失败墓碑保留。这个有条件的研究迁移不提供一般失败重试或全局防回滚保证。当前`security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`保持；具体组合完成状态仍由PROJECT_STATUS及该轮收据维护。
+
 2026-10-10 首套接入修复：[状态与配置报告](research/2026-10-10-mainline/README.md)记录修改前10项真实反例（8种HIBE快照漂移、同身份并发不同钥、不同身份并发丢缓存）及修复。另补齐线程/快照互斥、原子密钥发布、安全重试和配置切换保护。它们是状态/实现缺口，不是新的密码伪造攻击；本轮不改变原教育两个XFAIL、Luo引用条件或none/false。
 
 同日后续：[密钥绑定修复](research/2026-10-10-key-binding/README.md)记录8个原失败用例（跨公钥混钥、坏私钥方程、运行时缺少早拒绝）及28项新增检查。Hybrid现强制调用原语验证器，保持私有矩阵在原语内部；这不提升教学HIBE或整体安全声明，不关闭旧education两个认证目标。

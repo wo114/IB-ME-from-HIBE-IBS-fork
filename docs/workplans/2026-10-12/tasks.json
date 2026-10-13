@@ -1,14 +1,14 @@
 {
   "schema": "IBME_TEAM_PLAN/1",
-  "date": "2026-10-12",
-  "planning_only": true,
+  "date": "2026-10-13",
+  "planning_only": false,
   "baseline": {
     "main": "bc22c9cb834dee51e9c8b7a37040fa0c5349fcdb",
     "pr11": "f98de52f25e117fa7e365c686c23e0c142d004b1",
     "pr10_included": "2868cf54411188562440820eba266ca3dd278fd9",
     "pr9_not_merged": "e5e0b97752f9291ce7621dd830d665baff86aef8"
   },
-  "human_priority": "先完成 PR 审查、候选排序、三人分工、统筹和作品材料安排，再推进用户 A 的实现目标。",
+  "human_priority": "当前按用户授权在已审PR14上实施B的尚缺IBS算法，核对全部截图路线；历史A目标保留在原收据。",
   "deadline_assumed": null,
   "scope": "固定 Wang 两层匿名 HIBE+IBS；不做 Boyen–Li 增强隐私。",
   "composition_policy": {
@@ -32,8 +32,8 @@
     "P3"
   ],
   "roles": {
-    "A": "矩阵 HIBE 与陷门工具；用户负责",
-    "B": "原生格基 IBS；接收现有 Luo owner",
+    "A": "矩阵HIBE与陷门工具",
+    "B": "原生格基IBS；当前用户授权工作范围",
     "C": "结构 HIBE、认证转换工程对照和 NTRU 工具",
     "coordinator": "主集成 Codex 执行；队长协调；三人交算法数据/章节"
   },
@@ -98,13 +98,13 @@
         "A0",
         "A3"
       ],
-      "execution_state": "public_api_installed_cli_done_formal_and_original_backend_pending",
+      "execution_state": "mp12_and_original_chkp_research_api_done_formal_pending",
       "deliverables": [
         "六方法及真实 Extract→Derive",
         "对象/绑定/固定状态与严格 codec",
         "BackendSpec 提案与算法章节"
       ],
-      "evidence": "../../research/team-a-delivery/2026-10-12-installed-api/README.md"
+      "evidence": "../../deliveries/2026-10-12-chkp-luo/README.md"
     },
     {
       "id": "A2",
@@ -143,12 +143,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "planned",
+      "execution_state": "pr14_fixed_research_delivery_received_maintenance",
       "deliverables": [
         "PR9 固定版本及 C64B 17 字段核验",
         "真实生命周期/恢复/编码与登记提案",
         "最新装配接口复跑收据"
-      ]
+      ],
+      "evidence": "../../research/2026-10-12-luo-final-acceptance/README.md"
     },
     {
       "id": "B2",
@@ -173,12 +174,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "planned",
+      "execution_state": "real_four_algorithm_runtime_exists_common_adapter_pending",
       "deliverables": [
         "固定服务/经典 ROM 条件与资源决定",
         "五方法/codec/恢复与真实单体",
         "参数/登记提案及章节"
-      ]
+      ],
+      "completed_scope": "setup/extract/sign_raw/verify、固定用户种子和严格恢复；未准入正式安全参数"
     },
     {
       "id": "B4",
@@ -188,12 +190,14 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "planned",
+      "execution_state": "research_five_methods_done_formal_and_default_registration_pending",
       "deliverables": [
         "自适应转换和固定服务规格",
         "真实原像/参数/状态/后端",
         "SIS 比较收据"
-      ]
+      ],
+      "completed_scope": "真实MP12/PW转换、完整五方法、规范对象、固定已发key多消息与跨进程恢复；q17 debug公开伪造负控",
+      "evidence": "../../research/team-b-delivery/2026-10-13-wang-pw/README.md"
     },
     {
       "id": "B5",
@@ -203,12 +207,14 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "planned",
+      "execution_state": "srgg_full_research_IBS_done_formal_and_sageloli_pending",
       "deliverables": [
         "各原文固定服务/有限成本/采样门槛",
         "按通过次序交独立后端",
         "RSIS 容量和复合模数工具"
-      ]
+      ],
+      "completed_scope": "完整SRGG四算法/五方法、数值连续SampleF/Schur/真实gadget、签验、固定身份cache和恢复；ζ一致factor2解释，none/false",
+      "evidence": "../../research/team-b-delivery/2026-10-13-srgg-full/README.md"
     },
     {
       "id": "BR",
@@ -458,7 +464,8 @@
       "owner": "A",
       "priority": "P0",
       "task_id": "A1",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "正式困难参数、资源和组合条件；已有PR14六方法/整链/CLI不重写"
     },
     {
       "id": "abb-rom",
@@ -466,7 +473,8 @@
       "owner": "A",
       "priority": "P1",
       "task_id": "A2",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "PR15原文根/位/委派组件WIP；修保存恢复目录缺根快照再推进两层HIBE"
     },
     {
       "id": "latte",
@@ -474,7 +482,8 @@
       "owner": "C",
       "priority": "P1",
       "task_id": "C1",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "复验作者代码缓冲/采样、真实两层及匿名条件"
     },
     {
       "id": "lai-ideal-hibe",
@@ -482,7 +491,8 @@
       "owner": "C",
       "priority": "P1",
       "task_id": "C1",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "§5.1–5.2/定理10、标签逆元/真实委派和有限参数"
     },
     {
       "id": "gkr2025",
@@ -490,7 +500,8 @@
       "owner": "A",
       "priority": "P3",
       "task_id": "AR",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "编译器/匿名扩展/混淆依赖、对象与有限成本"
     },
     {
       "id": "zhang2020",
@@ -498,7 +509,8 @@
       "owner": "C",
       "priority": "P3",
       "task_id": "CR",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "澄清可委派陷门/逆元/模数方向，实施真实SamplePre"
     },
     {
       "id": "abb-standard-selective",
@@ -506,7 +518,8 @@
       "owner": "A",
       "priority": "P3",
       "task_id": "AR",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "提取§8/Theorem33算法及列数/宽度，独立模型实例"
     },
     {
       "id": "chkp-standard",
@@ -514,7 +527,8 @@
       "owner": "A",
       "priority": "P3",
       "task_id": "AR",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "§5.4可容许哈希、层深/维度/匿名范围，独立于ROM"
     },
     {
       "id": "luo-module",
@@ -522,7 +536,8 @@
       "owner": "B",
       "priority": "P0",
       "task_id": "B1",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "固定PR14终验版本维护，参数或目标变化定向复核"
     },
     {
       "id": "luo-matrix",
@@ -530,7 +545,8 @@
       "owner": "B",
       "priority": "P1",
       "task_id": "B2",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "保留真实四算法、必要接入和失败参数负控"
     },
     {
       "id": "foo-li",
@@ -538,7 +554,8 @@
       "owner": "B",
       "priority": "P1",
       "task_id": "B3",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "复用已有真实四算法/恢复，补共同对象、五方法、稳健服务与模型条件"
     },
     {
       "id": "wang-pw",
@@ -546,7 +563,8 @@
       "owner": "B",
       "priority": "P2",
       "task_id": "B4",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "已有本批研究五方法；后继正式参数/固定服务映射/默认登记/真实HIBE配对"
     },
     {
       "id": "sageloli-sis",
@@ -554,7 +572,8 @@
       "owner": "B",
       "priority": "P2",
       "task_id": "B5",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "固定服务游戏、q=3^k复合模数陷门/SampleD，再独立四算法"
     },
     {
       "id": "sageloli-rsis",
@@ -562,7 +581,8 @@
       "owner": "B",
       "priority": "P2",
       "task_id": "B5",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "复合模数环采样、固定服务与真实wire/MB容量，不能套素数NTT"
     },
     {
       "id": "srgg2025",
@@ -570,7 +590,8 @@
       "owner": "B",
       "priority": "P2",
       "task_id": "B5",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "完整研究IBS已交；核连续数值总误差、ζ/原文强前提/HNF分布与正式参数，之后默认登记/真实HIBE配对"
     },
     {
       "id": "yu2026",
@@ -578,7 +599,8 @@
       "owner": "B",
       "priority": "P3",
       "task_id": "BR",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "真实PRF有限电路与范数增长，之后委派/采样/Figure5四算法"
     },
     {
       "id": "cert-ml-dsa",
@@ -586,7 +608,8 @@
       "owner": "C",
       "priority": "P1",
       "task_id": "C2",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "普通签名KAT、共享认证转换/机构证书/用户键/消息绑定和完整IBS"
     },
     {
       "id": "cert-falcon",
@@ -594,7 +617,8 @@
       "owner": "C",
       "priority": "P1",
       "task_id": "C2",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "同转换核心、独立格式/熵/解析适配与完整认证载荷"
     },
     {
       "id": "xie-ntru-ibs",
@@ -602,7 +626,8 @@
       "owner": "C",
       "priority": "P2",
       "task_id": "C3",
-      "availability_inferred_from_plan": false
+      "availability_inferred_from_plan": false,
+      "next_step": "澄清模数/逆元，真实Gaussian/拒绝与原生四算法"
     }
   ],
   "gates": {
@@ -612,9 +637,9 @@
     "research_run": "真实配对的合法执行、失败/攻击/恢复和版本收据",
     "formal": "单独核实际参数/分布/估计/引用与模型，不能从功能继承"
   },
-  "new_cryptographic_parameters": null,
+  "new_cryptographic_parameters": true,
   "security_statement": {
-    "scope": "本轮计划未新增密码或准入结论；既有未准入研究配置继续以下标记",
+    "scope": "本批新增真实研究算法和debug参数，未新增正式参数、安全等级或准入结论。",
     "security_claim": "none",
     "backend_admitted": false,
     "parameters_are_formal": false
@@ -645,5 +670,30 @@
     "report": "../../deliveries/2026-10-12-pr-review/README.md",
     "additional_pr13_head": "3c8441f84f8cedf17aa545129a1498d1d9f3c24c",
     "code_review_source_head_scope": "#9—#12固定源码；#13安装与隔离修订另记录，不混同版本。"
+  },
+  "latest_b_delivery": {
+    "date": "2026-10-13",
+    "base_pr14": "87deec24f52c1c776a489566cf76f11d0d4a5aff",
+    "path": "../../research/team-b-delivery/2026-10-13-wang-pw/README.md",
+    "research_only": true,
+    "security_claim": "none",
+    "backend_admitted": false
+  },
+  "new_parameter_status": "研究debug档；没有新增正式安全参数或安全等级",
+  "current_remote_pr_review": {
+    "date": "2026-10-13",
+    "pr14_head": "87deec24f52c1c776a489566cf76f11d0d4a5aff",
+    "pr15_head": "0a9e512a204b4e81c844b6998f4e43205cdb2f60",
+    "both_open": true,
+    "remote_merge_performed": false,
+    "report": "../../research/team-b-delivery/2026-10-13-wang-pw/pr-review.md"
+  },
+  "latest_b_full_srgg": {
+    "date": "2026-10-13",
+    "base": "3b50a40",
+    "path": "../../research/team-b-delivery/2026-10-13-srgg-full/README.md",
+    "full_IBS_implemented": true,
+    "security_claim": "none",
+    "backend_admitted": false
   }
 }
