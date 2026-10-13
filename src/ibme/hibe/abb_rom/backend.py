@@ -44,8 +44,8 @@ def check_setup_profile(p):
     if not isinstance(p,ABBROMParams):
         raise InvalidParameterError("ABB requires independent ABBROMParams, no old Params conversion")
     if p.normalization == "matrix-flatter-lll-075-0501-exact074-v2":
-        from sage.features.flatter import Flatter
-        Flatter().require()  # fixed local dependency, before any private RNG
+        from sage.features.flatter import flatter as FlatterEngine
+        FlatterEngine().require()  # fixed local dependency, before any private RNG
     public_size=len(header(b"PK",p))+4+(p.n*p.dimension+p.n)*((p.q.bit_length()+7)//8)
     minimum_master_size=len(header(b"MSK",p))+4+public_size+64+6*p.dimension**2+4
     if minimum_master_size>p.max_blob_bytes:
