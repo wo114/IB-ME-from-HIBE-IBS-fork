@@ -39,6 +39,13 @@ PUBLIC_SOURCE_FILES = (
     "experiments/research/chkp_tobasis.py",
     "experiments/research/gaussian_reference.py",
     "experiments/research/online_gaussian_reference.py",
+    "experiments/research/mp12_sampled_reference.py",
+    "experiments/research/general_gadget_reference.py",
+    # Upstream promotes these kernels to src; hash their implementations as
+    # well as the compatibility aliases above so receipts pin executed code.
+    "src/ibme/lattice/chkp/basis.py",
+    "src/ibme/lattice/chkp/tobasis.py",
+    "src/ibme/lattice/chkp/gaussian.py",
     "src/ibme/core/randomness.py",
     "papers/2026_ibs_ibme_yu.pdf",
 )
