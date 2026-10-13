@@ -29,6 +29,14 @@
 
 这些预算与正条件阶段、Sage1536维工具域、formal高n尺寸/难度分开核验；n1仍是困难性负控。formal目标必须重新选完整profile、估计根/密文两角色并解决可执行工具/模型问题，不能通过把这些不同上界都称“128位”放行。
 
+## 提升n时必须重新核验的条件
+
+已逐页核[ABB CRYPTO原稿](../../../../papers/2010_lattice_basis_delegation_agrawal.pdf)PDF8 §2.6/Theorem2：引用的Regev quantum reduction前提是 `q*alpha > 2*sqrt(n)`。当前研究recipe固定qalpha4，对n1/2/3满足这一数值前提；n4为相等，**不满足严格不等式**，更高n也不能直接沿用该noise。满足前提本身仍不证明LWE成本或安全等级；不满足只能说这一引用不适用，不能仅据此声称攻击已成功。
+
+账本加入同q的n1/2/3/4/16/128/256尺寸试算。n128的这条noise前提需要整数scaled width至少23；源中现recipe只接受4，研究代码未在运行中改参数。即使只采用保守Setup维度条件，n128/qbits104至少m79873，已超过当前n64/维度1536输入域；按现格式root basis仅entry至少38278176774 B，raw32 B系数在不计头时265820672 B。AP09全部块/统计距离/有限宽度等还可能使对象更大，这不是完整或安全preset。提升noise后的条件正确性未评估，保持null，不拼接当前n1噪声通过项。
+
+正式候选的第一阻塞因此同时包含：独立参数域/可执行完整基工具、正确noise及有限同组条件、真正的根/密文困难性估计。新试算没有创建高n矩阵或密钥；不能把降低n或只改参数记成另一密码算法。
+
 ## 复算与验证
 
 ```bash
@@ -39,6 +47,6 @@ PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider
   tests/test_abb_public_budget_ledger.py
 ```
 
-Sage **3 passed**：[JUnit](tests.junit.xml)。检查不读熵、当前896/2^28调用范围、完整Setup包含u0、独立rank/geometry/噪声项及缺失项保持null；不是原语安全证明或新真实采样。
+Sage **4 passed**：[JUnit](tests.junit.xml)。检查不读熵、当前896/2^28调用范围、完整Setup包含u0、独立rank/geometry/噪声项及缺失项保持null；另检查严格Regev边界与高n输入域。不是原语安全证明或新真实采样。
 
 `security_claim=none / backend_admitted=false / parameters_are_formal=false`。本批只改A专属账本/测试/说明，不修改运行中的primitive、共享protocol/registry/CLI或其它队员文件。

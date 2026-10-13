@@ -8,6 +8,7 @@ uniform or indifferentiable. Missing resource/scalar/norm/model terms stay null.
 import argparse
 from fractions import Fraction
 import json
+from math import isqrt
 from pathlib import Path
 
 from ibme.hibe.abb_rom.backend import check_setup_profile
@@ -18,6 +19,26 @@ from ibme.hibe.abb_rom.registration import ciphertext_size
 
 def rational(value):
     return str(Fraction(value))
+
+
+def formal_scale_projection(params):
+    """Dimension-only same-q inputs; never generate or admit a high-n profile."""
+    scaled=Fraction(params.noise_width_numerator,params.noise_width_denominator)
+    logq=(params.q-1).bit_length()
+    width=(params.q.bit_length()+7)//8
+    rows=[]
+    for n in (1,2,3,4,16,128,256):
+        minimum=6*n*logq+1  # implementation's conservative strict Setup relation
+        rows.append(dict(n=n,q_bits=logq,scaled_noise=rational(scaled),
+            Regev_Theorem2_strict_prerequisite=scaled*scaled>4*n,
+            smallest_integer_scaled_noise_for_this_prerequisite=isqrt(4*n)+1,
+            Setup_dimension_condition_minimum=minimum,
+            current_n_parameter_cap_passes=n<=64,current_matrix_dimension_cap_passes=minimum<=1536,
+            entrywise_signed_root_basis_format_min_bytes=6*minimum*minimum,
+            raw_32B_residue_bytes_before_header=256*(minimum+1)*width,
+            phase_noise_after_increasing_scaled_noise=None,actual_execution=False,
+            not_a_secure_or_complete_parameter_profile=True))
+    return rows
 
 
 def public_budget_ledger(params):
@@ -45,6 +66,8 @@ def public_budget_ledger(params):
         conditions=dict(same_group_widths_and_phase_bound=True,
             actual_basis_scalar_GS_path_admission='must be checked on each real basis before sampling',
             all_native_workspace_admitted=False,matrix_SHAKE_indifferentiability_verified=False,
+            Regev_Theorem2_strict_noise_prerequisite=Fraction(params.noise_width_numerator,
+                params.noise_width_denominator)**2>4*params.n,
             LWE_hardness_verified=False),
         terms=dict(
             AP09_actual_root_vs_uniform_TV_including_abort=rational(root_tv),
@@ -84,6 +107,8 @@ def public_budget_ledger(params):
             Hybrid_capsule_limit_bytes=4*2**20,Hybrid_component_limit_bytes=16*2**20,
             process_RSS_bound=None),
         evidence='public formula projection; no sampler or key execution',
+        formal_scale_projection=formal_scale_projection(params),
+        formal_projection_source='ABB CRYPTO author PDF8 §2.6/Theorem2; strict q*alpha >2*sqrt(n)',
         not_a_probability_bound_for_whole_system=True,security_claim='none',
         backend_admitted=False,parameters_are_formal=False)
 

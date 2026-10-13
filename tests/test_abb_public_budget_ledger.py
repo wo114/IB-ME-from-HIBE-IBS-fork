@@ -41,3 +41,16 @@ def test_missing_runtime_model_and_private_scalar_terms_remain_null():
         assert result['terms'][name] is None
     assert result['not_a_probability_bound_for_whole_system'] is True
     assert result['parameters_are_formal'] is False and result['backend_admitted'] is False
+
+
+def test_fixed_scaled_noise_cannot_be_reused_as_a_high_n_hardness_claim():
+    result=public_budget_ledger(q104_research_params())
+    rows={row['n']:row for row in result['formal_scale_projection']}
+    assert rows[3]['Regev_Theorem2_strict_prerequisite'] is True
+    assert rows[4]['Regev_Theorem2_strict_prerequisite'] is False
+    assert rows[128]['smallest_integer_scaled_noise_for_this_prerequisite']==23
+    assert rows[128]['Setup_dimension_condition_minimum']==79873
+    assert not rows[128]['current_n_parameter_cap_passes']
+    assert not rows[128]['current_matrix_dimension_cap_passes']
+    assert rows[128]['actual_execution'] is False
+    assert rows[128]['phase_noise_after_increasing_scaled_noise'] is None
