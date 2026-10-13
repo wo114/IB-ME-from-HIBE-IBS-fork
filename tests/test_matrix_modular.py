@@ -63,3 +63,38 @@ def test_proved_padic_completion_matches_legacy_full_lattice_output():
     assert native.target_public==legacy.target_public
     assert native.completed_basis.basis_rows==legacy.completed_basis.basis_rows
     assert native.transformed_sublattice_index==legacy.transformed_sublattice_index
+
+
+@pytest.mark.parametrize("rows,q", [(((1,2,3,4),),101),(((0,1,0,2),(0,0,1,3)),101),
+    (((1,0,0),(0,1,0)),7),(((0,0,1),),7),(((0,1,1),(1,0,1)),2)])
+def test_direct_public_canonical_kernel_matches_unique_column_hnf(rows,q):
+    from ibme.lattice.research import ModMatrixReference,KernelBasis
+    from experiments.research.chkp_basis import complete_kernel_basis
+    from ibme.lattice.matrix_sampling import matrix_canonical_basis
+    public=ModMatrixReference(rows,q)
+    anchor=complete_kernel_basis(public)
+    expected=matrix(ZZ,anchor.basis_rows).transpose().hermite_form().transpose()
+    direct=matrix_canonical_basis(anchor)
+    assert matrix(ZZ,direct.basis_rows)==expected
+    # Different complete private representation must give the same anchor.
+    transformation=identity_matrix(ZZ,public.ncols)
+    transformation[0,1]=-17
+    other=KernelBasis(public,matrix(ZZ,anchor.basis_rows)*transformation)
+    assert matrix_canonical_basis(other).basis_rows==direct.basis_rows
+
+
+def test_integral_triangular_factors_match_rational_solutions_and_reject_fractions():
+    from sage.all import QQ
+    from ibme.lattice.matrix_sampling.basis import _integral_lower_solve,_integral_right_upper_solve
+    lower=matrix(ZZ,[[2,0,0],[3,5,0],[4,-7,11]])
+    z=matrix(ZZ,[[3,-2,1],[-8,7,4],[0,12,-5]])
+    rhs=lower*z
+    assert _integral_lower_solve(lower,rhs)==matrix(QQ,lower).solve_right(matrix(QQ,rhs))
+    invalid=matrix(ZZ,rhs.rows());invalid[0,0]+=1
+    with pytest.raises(ValueError,match="not in"):_integral_lower_solve(lower,invalid)
+    upper=matrix(ZZ,[[2,5,1],[0,3,4],[0,0,7]])
+    product=z*upper
+    assert _integral_right_upper_solve(product,upper)==z
+    assert matrix(QQ,z)==matrix(QQ,upper).transpose().solve_right(matrix(QQ,product).transpose()).transpose()
+    invalid=matrix(ZZ,product.rows());invalid[0,0]+=1
+    with pytest.raises(ArithmeticError,match="not integral"):_integral_right_upper_solve(invalid,upper)

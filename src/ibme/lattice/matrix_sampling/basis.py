@@ -8,7 +8,7 @@ randomized basis substitute, lattice truncation or security admission.
 
 from itertools import islice
 
-from sage.all import QQ, ZZ, matrix, identity_matrix, vector
+from sage.all import GF, QQ, ZZ, matrix, identity_matrix, vector
 
 from experiments.research.chkp_basis import KernelBasis, gram_schmidt_squared_lengths
 
@@ -31,6 +31,40 @@ class MatrixBasisLimits:
 
 MATRIX_BASIS_LIMITS = MatrixBasisLimits()
 LEGACY_BASIS_LIMITS = MatrixBasisLimits(192, 8192, 2**40)
+
+
+def _integral_lower_solve(lower,right):
+    """Exact B*Z=S with canonical lower B; reject any nonintegral coordinate."""
+    d=lower.nrows()
+    z=matrix(ZZ,d,right.ncols())
+    for i in range(d):
+        diagonal=lower[i,i]
+        if diagonal<=0:raise ValueError("positive lower diagonal required")
+        numerator=right.row(i)
+        if any(lower[i,k] for k in range(i)):
+            numerator=numerator-lower.row(i)*z
+        if any(value%diagonal for value in numerator):
+            raise ValueError("sampled vectors are not in the complete input lattice")
+        z.set_row(i,tuple(value//diagonal for value in numerator))
+    if lower*z!=right:raise ArithmeticError("exact lower factorization failed")
+    return z
+
+
+def _integral_right_upper_solve(right,upper):
+    """Exact U*R=Z, exploiting the already checked upper row HNF."""
+    d=upper.nrows()
+    u=matrix(ZZ,right.nrows(),d)
+    for j in range(d):
+        diagonal=upper[j,j]
+        if diagonal<=0:raise ValueError("positive upper diagonal required")
+        numerator=right.column(j)
+        if any(upper[k,j] for k in range(j)):
+            numerator=numerator-u*upper.column(j)
+        if any(value%diagonal for value in numerator):
+            raise ArithmeticError("ToBasis transformation is not integral")
+        u.set_column(j,tuple(value//diagonal for value in numerator))
+    if u*upper!=right:raise ArithmeticError("exact upper factorization failed")
+    return u
 
 
 def _checked_square(rows, dimension, *, limits=MATRIX_BASIS_LIMITS):
@@ -75,6 +109,33 @@ The result depends on the lattice, not on the secret basis used to sample.
     if not 1 <= d <= limits.max_dimension:
         raise ValueError("basis exceeds the research dimension resource limit")
     b = _checked_square(basis.basis_rows, d, limits=limits)
+    if limits != LEGACY_BASIS_LIMITS:
+        # The canonical lattice depends only on its public mod-q row space.
+        # Rightmost field pivots yield its LOWER column HNF directly: reverse
+        # coordinates, solve pivot variables, choose canonical [0,q) lifts,
+        # then reverse rows and columns back. No private-basis HNF workspace.
+        # This public algebraic anchor is NOT a short/cryptographic trapdoor;
+        # ToBasis must still complete the actual sampled/transformed vectors.
+        a=matrix(GF(basis.public.q),tuple(row[::-1] for row in basis.public.rows))
+        pivots=tuple(a.pivots())
+        if len(pivots)!=basis.public.nrows:
+            raise ValueError("public kernel matrix lost full rank")
+        free=tuple(i for i in range(d) if i not in pivots)
+        upper=matrix(ZZ,d,d)
+        for coordinate in pivots:upper[coordinate,coordinate]=basis.public.q
+        for coordinate in free:upper[coordinate,coordinate]=1
+        if free:
+            solved=-a.matrix_from_columns(pivots).inverse()*a.matrix_from_columns(free)
+            for j,coordinate in enumerate(free):
+                for i,pivot in enumerate(pivots):upper[pivot,coordinate]=int(solved[i,j])
+        h=matrix(ZZ,tuple(tuple(row)[::-1] for row in upper.rows()[::-1]))
+        # Full-kernel containment/index plus these canonical lower-HNF
+        # inequalities uniquely determine the same B as the general HNF.
+        if (any(h[i,j]!=0 for i in range(d) for j in range(i+1,d)) or
+                any(h[i,i] not in (1,basis.public.q) for i in range(d)) or
+                any(not 0<=h[i,j]<h[i,i] for i in range(d) for j in range(i))):
+            raise ArithmeticError("direct public canonical column HNF failed")
+        return KernelBasis(basis.public,h)
     h = b.transpose().hermite_form().transpose()
     return KernelBasis(basis.public, h)
 
@@ -94,10 +155,13 @@ No randomness, LLL approximation, mod-q basis reduction, or retry occurs.
     if s.det() == 0:
         raise ValueError("sampled vectors must have full integer rank")
     b = matrix(ZZ, canonical.basis_rows)
-    coordinates = matrix(QQ, b).solve_right(matrix(QQ, s))
-    if any(x.denominator() != 1 for x in coordinates.list()):
-        raise ValueError("sampled vectors are not in the complete input lattice")
-    z = matrix(ZZ, coordinates)
+    if limits != LEGACY_BASIS_LIMITS:
+        z=_integral_lower_solve(b,s)
+    else:
+        coordinates = matrix(QQ, b).solve_right(matrix(QQ, s))
+        if any(x.denominator() != 1 for x in coordinates.list()):
+            raise ValueError("sampled vectors are not in the complete input lattice")
+        z = matrix(ZZ, coordinates)
     if any(abs(int(x)).bit_length() > limits.max_entry_bits for x in z.list()):
         raise ValueError("integer coordinates exceed the entry bit budget")
     # A declared admission estimate before constructing Hermite transforms.
@@ -116,10 +180,7 @@ No randomness, LLL approximation, mod-q basis reduction, or retry occurs.
         r = z.hermite_form(algorithm="padic",proof=True)
         if any(r[i,j] != 0 for i in range(d) for j in range(i)) or any(r[i,i] == 0 for i in range(d)):
             raise ArithmeticError("HNF unexpectedly lost its triangular full-rank form")
-        rational_u = matrix(QQ, r).transpose().solve_right(matrix(QQ, z).transpose()).transpose()
-        if any(x.denominator() != 1 for x in rational_u.list()):
-            raise ArithmeticError("ToBasis transformation is not integral")
-        u = matrix(ZZ, rational_u)
+        u = _integral_right_upper_solve(z,r)
         if u*r != z:
             raise ArithmeticError("ToBasis integer factorization failed")
         t = b*u

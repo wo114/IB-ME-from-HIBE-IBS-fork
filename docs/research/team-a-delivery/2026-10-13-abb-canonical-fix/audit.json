@@ -1,0 +1,17 @@
+{
+  "schema": "A-ABB-CANONICAL-AUDIT/1",
+  "baseline": "9da3eca2d687352c07b4e3d559f7f1e25515a805",
+  "final_basis_sha256": "6200ca564a7ef1dc5cc7f6aa9253cab7521669f027ede75f985412f23ea40942",
+  "tests_command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q -rs --tb=short tests/test_matrix_modular.py tests/test_matrix_finite_sampling.py tests/test_first_suite_finite_sampling.py tests/test_first_suite_compact_delegation.py tests/test_chkp_tobasis.py tests/test_chkp_randbasis.py tests/test_abb_rom_primitives.py tests/test_abb_rom_trapgen_and_bits.py tests/test_abb_rom_parameter_screen.py tests/test_abb_rom_config_oracle.py tests/test_abb_rom_objects.py tests/test_abb_rom_backend_state.py tests/test_abb_rom_real_saved_state.py tests/test_public_research_api.py --junitxml=test-results/abb-canonical-sage-passed.junit.xml",
+  "tests_result": "227 passed, 3 skipped",
+  "transient_test_failure": "Matrix.copy unavailable; fixture changed to independent matrix construction; final rerun passed",
+  "installed_wheel_sha256": "5604767fb9ca421a9a5a85f25bab96d329ed7859df5f48beb1199467358aae03",
+  "installation": "outside checkout /tmp; Sage -I; 71 installed providers; source checkout providers 0; actual failed state restored, reissue private entropy calls 0",
+  "original_q104_probe_terminal": "exit 1 / KeyboardInterrupt; source unchanged; authoritative failed parent retained",
+  "original_q104_restore_result": "passed-failed-address-restore; private entropy calls 0",
+  "new_canonical_public_observation_source": "direct-canonical-public.json predates triangular solvers; canonical function unchanged; not a full HIBE result",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "complete_HIBE_lifecycle": false
+}
