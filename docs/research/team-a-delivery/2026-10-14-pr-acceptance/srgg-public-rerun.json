@@ -1,0 +1,325 @@
+{
+  "schema": "IBME/SRGG-FULL-RESEARCH-IBS/1",
+  "parameters": {
+    "degree": 8,
+    "rank": 1,
+    "p": 257,
+    "base": 31,
+    "digits": 3,
+    "r_squared": 4,
+    "master_first_squared": 8388608,
+    "master_second_squared": 8388608,
+    "signature_first_squared": 137438953472,
+    "signature_second_squared": 137438953472,
+    "user_norm_squared": 536870912,
+    "signature_noise_factor": 2,
+    "identity_max_bytes": 256,
+    "message_max_bytes": 4096,
+    "max_users": 16,
+    "setup_max_attempts": 32,
+    "sign_max_attempts": 16,
+    "precision_bits": 192,
+    "ticket_bits": 128,
+    "scalar_tail_bits": 24,
+    "scalar_mass_bits": 64,
+    "gadget_tail_bits": 16
+  },
+  "implementation": {
+    "algorithms": "SRGG1-8; continuous SampleF+fixed-r rounding; cached identity service",
+    "signature_shape_interpretation": "zeta-consistent factor2; differs from literal Table3 factor1",
+    "wire": "canonical JSON reference, no ANS claim",
+    "continuous_stage_total_TV_certified": false
+  },
+  "environment": {
+    "python": "3.13.14",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "rng": "SecureRandom"
+  },
+  "samples": [
+    {
+      "message_bytes": 23,
+      "signature_bytes": 488,
+      "norm_squared": 1091318700791,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 477,
+      "norm_squared": 934100091146,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 480,
+      "norm_squared": 967969745552,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 478,
+      "norm_squared": 864574804987,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 486,
+      "norm_squared": 1393742598639,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 477,
+      "norm_squared": 1014605716406,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 479,
+      "norm_squared": 1097020077564,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 485,
+      "norm_squared": 1010691512143,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 480,
+      "norm_squared": 1188463746763,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 476,
+      "norm_squared": 1029007071540,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 477,
+      "norm_squared": 712763349587,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 466,
+      "norm_squared": 834932827237,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 473,
+      "norm_squared": 1011858026658,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 466,
+      "norm_squared": 935653599316,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 468,
+      "norm_squared": 951288051060,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 476,
+      "norm_squared": 894384448494,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 474,
+      "norm_squared": 1175294165248,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 482,
+      "norm_squared": 912837400601,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 484,
+      "norm_squared": 1012779049878,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 483,
+      "norm_squared": 827173168784,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 488,
+      "norm_squared": 1198589550009,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 478,
+      "norm_squared": 1291752239027,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 484,
+      "norm_squared": 1399257037008,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 469,
+      "norm_squared": 856928017653,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 479,
+      "norm_squared": 901379191905,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 476,
+      "norm_squared": 1226258528629,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 484,
+      "norm_squared": 1101636596271,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 474,
+      "norm_squared": 805938365470,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 483,
+      "norm_squared": 916928848730,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 481,
+      "norm_squared": 1302516303401,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 481,
+      "norm_squared": 1028386229828,
+      "verified": true
+    },
+    {
+      "message_bytes": 23,
+      "signature_bytes": 479,
+      "norm_squared": 1112503518937,
+      "verified": true
+    }
+  ],
+  "wire_bytes": {
+    "public_key": 790,
+    "master_secret_with_one_cached_user": 5380,
+    "signing_key": 1795,
+    "signature_min": 466,
+    "signature_max": 488
+  },
+  "timings_seconds": {
+    "setup": 0.7199576440000328,
+    "key_extract": 0.112322727999981,
+    "sign": [
+      0.19496730600002365,
+      0.18503122900000335,
+      0.18542035800004442,
+      0.18657972800002653,
+      0.18525338099999544,
+      0.18563263400000096,
+      0.21334548700002642,
+      0.1861970500000325,
+      0.18414846199999602,
+      0.18370560300002126,
+      0.18465058800001088,
+      0.18442382499995347,
+      0.18891216800000166,
+      0.1942695459999868,
+      0.22622960600000397,
+      0.19283656800001836,
+      0.19366128400002935,
+      0.19261885499997788,
+      0.1976148509999689,
+      0.19147767799995563,
+      0.19276127000000542,
+      0.19184023999997635,
+      0.226116874000013,
+      0.19576824699998951,
+      0.1976830660000246,
+      0.19285861499997736,
+      0.19471312899997884,
+      0.19405235300001777,
+      0.1915691060000313,
+      0.22844446399994922,
+      0.1923088210000401,
+      0.19744440800002394
+    ],
+    "verify": [
+      0.00017313800003648794,
+      0.00016403500001160864,
+      0.00016554199999063712,
+      0.0003144309999925099,
+      0.0001687310000306752,
+      0.00016336400000227513,
+      0.00018253799999001785,
+      0.00016773200002262456,
+      0.0001697949999766024,
+      0.00022056199998132797,
+      0.00015805199996066222,
+      0.00016605199999730758,
+      0.00016892399997914254,
+      0.00016997099999116472,
+      0.00018010600001616694,
+      0.00016431599999577884,
+      0.00016517500000645668,
+      0.00016787700002396377,
+      0.000161699999978282,
+      0.0001670460000013918,
+      0.00017219099999010723,
+      0.00016442999998389496,
+      0.00018398100002059437,
+      0.00016871299999365874,
+      0.00017579899997599568,
+      0.0001660230000197771,
+      0.00016780900000412657,
+      0.0001693270000373559,
+      0.00017089499999656255,
+      0.00016718099999479819,
+      0.00017957500000420623,
+      0.00016945400000167865
+    ]
+  },
+  "honest_verified": 32,
+  "restored_key_verified": true,
+  "restored_cache_same_key": true,
+  "Q_gt_2gamma_exact": true,
+  "full_IBS_implemented": true,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "limitations": [
+    "manual n8 research profile; 8-bit challenge is publicly forgeable by fixed-point enumeration",
+    "floating continuous stage/fixed tickets have no complete total-TV certificate",
+    "HNF key distribution and zeta/Table3 difference not certified as author theorem",
+    "variable time; trusted plaintext cache; no cross-process issuance transaction or rollback protection",
+    "functional complete implementation, not a formal security grade or secure-parameter performance ranking"
+  ]
+}

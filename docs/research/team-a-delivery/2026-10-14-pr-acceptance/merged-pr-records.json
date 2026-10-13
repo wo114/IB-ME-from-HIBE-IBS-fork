@@ -1,0 +1,62 @@
+[
+  {
+    "headRefOid": "87deec24f52c1c776a489566cf76f11d0d4a5aff",
+    "mergeCommit": {
+      "oid": "dc397e3efa44e320e08e7fa8ecfa7e457a469f2c"
+    },
+    "mergedAt": "2026-10-13T12:09:32Z",
+    "number": 14,
+    "state": "MERGED",
+    "title": "feat(delivery): CHKP与Luo整链研究成果及统一说明"
+  },
+  {
+    "headRefOid": "d892615d1cbc17a3c1ac007f643ad1c32843fc5a",
+    "mergeCommit": {
+      "oid": "d7b6ebc29dd49552b949840c931313cfbaf3421b"
+    },
+    "mergedAt": "2026-10-13T12:09:37Z",
+    "number": 16,
+    "state": "MERGED",
+    "title": "fix(ibs): 交付修正后的 Wang–Pan–Wagner 独立实现与核验证据"
+  },
+  {
+    "headRefOid": "3b50a40fe2645086167e4d107f40cc814a7ae5c0",
+    "mergeCommit": {
+      "oid": "f4b788d8fdae2d6efe028d71bad0531978d490a8"
+    },
+    "mergedAt": "2026-10-13T12:48:03Z",
+    "number": 17,
+    "state": "MERGED",
+    "title": "feat(ibs): B的Wang-PW研究后端与SRGG采样组件"
+  },
+  {
+    "headRefOid": "44a4fef1f667be3d4b070c75a0b9edd777f0be03",
+    "mergeCommit": {
+      "oid": "e030d05ecd8b41c1e484806dcf2df643dbdb7c43"
+    },
+    "mergedAt": "2026-10-13T12:48:16Z",
+    "number": 18,
+    "state": "MERGED",
+    "title": "feat(ibs): B的完整SRGG研究实现与固定身份恢复"
+  },
+  {
+    "headRefOid": "bb3d479a5c4f823f1383e7ebe7e367bd14aaf1fd",
+    "mergeCommit": {
+      "oid": "40ffe731bd1200c48897a8a5d2d3fbce21364d29"
+    },
+    "mergedAt": "2026-10-13T16:08:35Z",
+    "number": 19,
+    "state": "MERGED",
+    "title": "feat(sageloli): B的SIS与RSIS真实采样验证及原文规格"
+  },
+  {
+    "headRefOid": "9b02711332982b059536c2e326f02a2c2b55e7f8",
+    "mergeCommit": {
+      "oid": "4dad51e7870ad546f76cb2485bb058d734f2e43a"
+    },
+    "mergedAt": "2026-10-13T16:32:28Z",
+    "number": 20,
+    "state": "MERGED",
+    "title": "feat(yu): deliver standalone IBS implementation and Sage validation"
+  }
+]
