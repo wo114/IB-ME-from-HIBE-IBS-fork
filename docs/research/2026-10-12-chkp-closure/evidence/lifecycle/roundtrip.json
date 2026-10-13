@@ -1,0 +1,51 @@
+{
+  "actual_seed_sha256": "4ae224dde8d0dee69076e77859adf788f417a7bbd389dcdcba269a40d482477c",
+  "backend_admitted": false,
+  "ciphertext_bytes": 3919,
+  "entropy_bytes": 10254,
+  "identities_are_public_test_labels": true,
+  "parameters_are_formal": false,
+  "passed": true,
+  "phase": "roundtrip",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "process_max_rss_KiB": 255132,
+  "public_attack": {
+    "backend_admitted": false,
+    "capsule_sha256": "81482d4af6cb7233b61934174a5e50029560af71598ed508c350ff24b246a029",
+    "distinct_seed_candidates": 1,
+    "enumerated_error_tuples": 5329,
+    "finite_noise_radius": 36,
+    "limitation": "Weak n<=2 research-profile diagnostic; finite support is an explicit assumption, not a general LWE break.",
+    "max_candidates": 10000,
+    "n": 2,
+    "parameters_are_formal": false,
+    "pivot_checks": 1,
+    "preamble_candidates": 1,
+    "preamble_coordinates": 381,
+    "private_seed_input": false,
+    "private_state_loaded": false,
+    "public_context_sha256": "0d6ccef86044fb8a2e3498d2172979cbdb3baeaac26f2975df4818cd5a378e28",
+    "q": 1099511627791,
+    "randomness_used": false,
+    "recovered_seed_sha256": [
+      "4ae224dde8d0dee69076e77859adf788f417a7bbd389dcdcba269a40d482477c"
+    ],
+    "schema": "IBME:CHKP:PUBLIC-SMALL-DIMENSION-ATTACK:v1",
+    "security_claim": "none",
+    "seed_bits": 256,
+    "selected_public_positions": [
+      0,
+      1
+    ],
+    "status": "candidate_found",
+    "surviving_candidates": 1,
+    "unique_seed_candidate": true
+  },
+  "public_attack_matches_seed": true,
+  "python": "3.13.15",
+  "randomness": "system CSPRNG",
+  "raw_roundtrip": true,
+  "seconds": 3.863158080000005,
+  "security_claim": "none",
+  "zero_entropy_restore": true
+}

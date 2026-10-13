@@ -1,0 +1,22 @@
+{
+  "backend_admitted": false,
+  "entropy_bytes": 26906498,
+  "executed_this_run": false,
+  "identities_are_public_test_labels": true,
+  "parameters_are_formal": false,
+  "parent_bytes": 459799,
+  "parent_dimension": 254,
+  "passed": true,
+  "phase": "parent",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "process_max_rss_KiB": 520976,
+  "python": "3.13.15",
+  "randomness": "system CSPRNG",
+  "recovery_ledger": "resume.json",
+  "reused_actual_result": true,
+  "seconds": 4606.795416511,
+  "security_claim": "none",
+  "source_receipt_sha256": "1c1f3c0d979c8a1e956ab7469cd7143420c2744cc64afb898ccc0c966ee71e3b",
+  "source_relative": "test-results/chkp-lifetime-2026-10-12-r3",
+  "this_run_entropy_bytes": 0
+}

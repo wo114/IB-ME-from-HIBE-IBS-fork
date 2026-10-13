@@ -63,10 +63,21 @@ class NoEntropy:
 
 def test_default_registry_includes_optional_descriptor_without_aliasing_chkp(monkeypatch):
     from ibme.assembly import default_registry
+    from ibme.assembly.registry import environment_status
     monkeypatch.delenv(mp12_chkp.ENGINE_ENV,raising=False)
     registry=default_registry()
-    assert registry.get("hibe",mp12_chkp.BACKEND_ID).available is research.sage_available()
-    assert not registry.get("hibe","chkp").available
+    mp12 = registry.get("hibe",mp12_chkp.BACKEND_ID)
+    chkp = registry.get("hibe","chkp")
+    assert mp12.available is research.sage_available()
+    # Implementation delivery and executable Sage support are separate gates.
+    assert chkp.available
+    assert environment_status(chkp)["runtime_available"] is research.sage_available()
+    assert chkp.id != mp12.id and chkp.version != mp12.version
+    assert chkp.params_type is not mp12.params_type
+    if research.sage_available():
+        assert type(chkp.factory(None, "reference")) is not type(mp12.factory(None, "reference"))
+        assert set(chkp.decoders) == set(mp12.decoders)
+        assert all(chkp.decoders[name] is not mp12.decoders[name] for name in chkp.decoders)
     assert registry.get("hibe","abb10").available
 
 

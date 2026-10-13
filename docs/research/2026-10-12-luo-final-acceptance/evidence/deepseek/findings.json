@@ -1,0 +1,82 @@
+{
+  "schema": "IBME/DEEPSEEK-STEP24-C64B-FINAL-CHECK/1",
+  "date": "2026-10-12",
+  "reviewer": "DeepSeek (independent re-check; not an author of the step-22/step-23 evidence)",
+  "subject": {
+    "commit": "e5e0b97752f9291ce7621dd830d665baff86aef8",
+    "commit_file_count": 26,
+    "manifest_entry_count": 25,
+    "pr": "fork PR9 (updated in step 23)",
+    "work_repo": "C:/Users/A/.codex/worktrees/luo-acceptance-evidence/IB-ME-from-HIBE-IBS",
+    "work_repo_head_at_run": "e5e0b97752f9291ce7621dd830d665baff86aef8",
+    "work_repo_dirty": null,
+    "work_repo_scope_note": "Reviewed tracked files unchanged; Codex concurrently added step-24 docs. No claim that the entire worktree stayed clean.",
+    "shared_framework": "C:/Users/A/OneDrive/文档/IB-ME-from-HIBE-IBS",
+    "shared_framework_head_at_run": "f98de52f25e117fa7e365c686c23e0c142d004b1",
+    "shared_framework_stable_pin": "0bf0855464a9902ad95c91ea5bdfb4d12e78f5b9",
+    "shared_framework_dirty_untouched": true
+  },
+  "overall": {
+    "verdict": "delivered_materials_match_actual_scope",
+    "new_reproducible_defects": [],
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "approved_security_bits": null,
+    "nist_category": null,
+    "stop_condition_met": true
+  },
+  "runs": [
+    {"id": "A1", "command": "python audit_luo_c64b_delivery.py", "cwd": "experiments/research", "mode": "normal", "exit_code": 0, "status": "evidence_consistent", "manifest_files": 25, "pytest_passed": [122, 19], "parameter_predicates": 28, "isolated_wire_checks": 111, "assembly_checks": 25},
+    {"id": "A2", "command": "python -O audit_luo_c64b_delivery.py", "mode": "optimized", "exit_code": 0, "identical_to": "A1", "note": "does not depend on assert statements removed by -O"},
+    {"id": "A3", "command": "python experiments/research/audit_luo_c64b_selection.py --repo .", "exit_code": 0, "failed_predicates": [], "predicates_passed": 28, "recommendation": "approve_explicit_research_candidate_freeze", "input_head": "e5e0b97752f9291ce7621dd830d665baff86aef8", "repository_writes": 0},
+    {"id": "A4", "command": "same as A3 with --screen C64B-screen.pre-integer-fix.json", "kind": "negative_control", "exit_code": 2, "failed_predicates": ["budget_exact_integer_not_js_number"], "recommendation": "hold_for_failed_predicates", "note": "corrupted historical large integer rejected; not silently fixed"},
+    {"id": "A5", "command": "python -B -m pytest -q tests/test_luo_c64b_profile.py", "exit_code": 0, "passed": 32, "failed": 0, "seconds": 81.05, "note": "reference+compact full roundtrip, restore, cache, negatives, sizes"},
+    {"id": "B1", "command": "python experiments/research/luo_assembly_handoff.py --target-root <pristine 0bf0855 snapshot> --head <snapshot head> --profile-json docs/research/2026-10-11-luo-c64b-handoff/profile.json", "exit_code": 0, "status": "functional_teaching_assembly_pass", "checks": 25, "signature_bytes": 16383, "outer_payload_bytes": 20415, "application_bytes": 3924, "profile_sha256": "d9367da68cee4451b15dc74f79817f638f14f29722b26355a1ef47dc45b860ef", "private_artifacts_saved": false, "seconds": 44.79, "framework_source_modified": false, "note": "snapshot rebuilt read-only via git archive of 0bf0855 + fresh local git init limited to src/tests/conftest.py/pyproject.toml"},
+    {"id": "B2", "command": "logs/verify-assembly-source-pin.py", "exit_code": 0, "source_files_compared": 33, "hash_mismatches": [], "profile_hash_identical": true, "check_names_identical": true, "note": "live smoke source hashes identical to archived evidence/assembly-final.json"},
+    {"id": "B3", "command": "logs/verify-108-overhead.py", "exit_code": 0, "overhead_parts": {"domain_signature": 11, "sig_length_prefix": 4, "msg_length_prefix": 4, "envelope_overhead": 89}, "overhead_total": 108, "synthetic_payload_len": 20415, "formula_len": 20415, "note": "arithmetic only; no Setup/Extract/Sign"},
+    {"id": "B4", "command": "python -B -m pytest -q tests/test_luo_cross_version_harness.py", "exit_code": 1, "passed": 9, "failed": 10, "errors": 10, "classification": "environment_limitation_not_code_defect", "root_cause": "DSH file sandbox denies Python subprocess writes/deletes under the system temp area (WinError 5); the 10 PinsAndIsolation tests build disposable git fixtures via tempfile.TemporaryDirectory", "control": "the 9 tempfile-free ReportingAndTransport tests pass; workspace writes from Python succeed", "archived_reference": "cross-version-harness.xml = 19 passed in step 23"}
+  ],
+  "section_A_checks": {
+    "commit_vs_manifest": {"commit_file_count": 26, "manifest_entries": 25, "only_excluded": "docs/research/2026-10-11-luo-c64b-handoff/MANIFEST.json (self-non-hashing)", "independent_sha256_recompute_mismatches": 0},
+    "regression_122": {"testcase_elements": 122, "failures": 0, "errors": 0, "skipped": 0, "by_class": {"test_luo_module_backend": 47, "test_luo_c64b_profile": 32, "test_luo_hybrid_ibme": 25, "test_research_state_integrity": 18}, "note": "32 profile cases and the earlier 30-case subset are both subsets of 122; never added"},
+    "tool_19": {"testcase_elements": 19, "failures": 0, "errors": 0, "skipped": 0},
+    "isolated_wire_111": {"contexts": 3, "checks_per_context": 37, "total": 111, "independent_signatures": 1, "selected_source_sets_identical": true, "status": "functional_wire_compatible", "note": "37 x 3 is a check-entry count, not a cryptographic experiment count"},
+    "assembly_25": {"distinct_checks": 25, "target_head": "0bf0855464a9902ad95c91ea5bdfb4d12e78f5b9", "same_source_head_as_cross_version": true},
+    "check_types_never_summed": ["122 pytest cases", "19 pytest cases", "28 parameter predicates", "111 cross-version check entries", "25 assembly check entries", "54 probe sign calls", "269 archived full regression"],
+    "profile_17_fields": {"wire_field_count": 17, "matches_factory_and_json": true, "classvars_not_on_wire": ["security_claim", "backend_admitted"], "params_to_bytes_length": 136, "QH_decimal": "18446744073709551616", "QH_equals_2_pow_64": true, "QH_is_float": false},
+    "history_preserved": {"cross-version.json.status": "failed_closed", "cross-version.json.failure.code": "head_pin_mismatch", "parameter-decision.json.input_head": "886fc127304479b87ef210836757004818e5b6ea", "parameter-decision-optimized.json.input_head": "886fc127304479b87ef210836757004818e5b6ea", "this_run_selection_head": "e5e0b97752f9291ce7621dd830d665baff86aef8", "negative_control_exit": 2, "estimator_or_grid_rerun": false}
+  },
+  "section_B_review": [
+    {"area": "defaults_preserved", "verdict": "pass", "evidence": "luo_hybrid.py:24,93,100-105; luo_module.py:53-69; selection predicate default_profile_not_silently_replaced"},
+    {"area": "setup_rejects_wrong_snapshot_before_entropy", "verdict": "pass", "evidence": "luo_hybrid.py:50-54; test_luo_c64b_profile.py:89-94 (NoEntropy)"},
+    {"area": "public_restorer_parameter_isolation", "verdict": "pass", "evidence": "luo_hybrid.py:66-90,110-112; test_luo_c64b_profile.py:66-70,124-130"},
+    {"area": "no_automatic_signature_format_downgrade", "verdict": "pass", "evidence": "luo_hybrid.py:100-101; luo_cross_version.py:262-263"},
+    {"area": "secret_wire_never_written_to_disk", "verdict": "pass", "evidence": "luo_cross_version.py:159-164,304,313-320,343-344; test_luo_cross_version_harness.py:114-119; assembly-final.json private_artifacts_saved=false"},
+    {"area": "helper_type_strictness", "verdict": "pass", "evidence": "luo_module_profiles.py:24-26; test_luo_c64b_profile.py:84-86"},
+    {"area": "handoff_and_decision_tools_read_only", "verdict": "pass", "evidence": "audit_luo_c64b_delivery.py:93-97; audit_luo_c64b_selection.py:228-230; luo_assembly_handoff.py:37-43,148-149; luo_cross_version.py:361-365"},
+    {"area": "shared_framework_make_suite_accepts_full_17_field_params", "verdict": "pass", "evidence": "shared src/ibme/assembly/__init__.py:103-124; registry.py:40-51,213-218; live 25-check run"}
+  ],
+  "section_C_security_wording": {
+    "separated_categories": {"research_candidate_freeze": true, "conditional_availability": true, "heuristic_attack_cost": true, "concrete_security_level": true},
+    "forbidden_claims_absent": ["128-bit IBS security", "NIST category", "QROM theorem", "153-bit security", "full reduction rewritten", "distribution equivalence of seed-expanded A and uniform A"],
+    "conditional_bound": {"log2_upper_bound": -153.8569229862777, "scope": "one Setup, <=64 new identities, <=65536 signatures, classical fresh oracle queries <=2**64, explicit uniform Setup, ideal fresh sources, ideal XOF", "is_bit_security": false, "is_measured_frequency": false},
+    "heuristic_costs": {"MSIS_classical_log2_rop": 188.340, "MSIS_quantum_log2_rop": 170.925, "MLWE_classical_log2_rop": 196.199, "MLWE_quantum_log2_rop": 178.614, "estimator_commit": "53da5982597709ba0fdf94ea37a84d822310fd84", "is_lower_bound": false},
+    "overhead_108_recheck": {"domain_signature_bytes": 11, "sig_length_prefix_bytes": 4, "msg_length_prefix_bytes": 4, "envelope_overhead_bytes": 89, "envelope_breakdown": {"magic_envelope": 17, "inner_length_field": 8, "commitment": 64}, "total": 108, "compact_outer_payload_at_max_message": 20415, "main_codex_earlier_objection_was_wrong": true, "reinstated_decomposition": true, "basis": ["baseline.py:133", "encoding.py:46-60", "byteauth.py:21,23,26", "tests/luo_acceptance/test_luo_payload_contract.py:68,83"]}
+  },
+  "open_boundaries": [
+    {"id": "OB1", "item": "real CHKP anonymous HIBE backend and full-chain integration", "owner": "other conversation / shared-framework owner", "blocks_this_freeze": false},
+    {"id": "OB2", "item": "CLI publish/receive and state persistence acceptance", "owner": "shared-framework owner", "blocks_this_freeze": false},
+    {"id": "OB3", "item": "Real SHAKE remains a disclosed computational instantiation assumption. A future concrete strength claim needs its own quantitative support. QROM is only needed for a QROM claim, not automatically for a classical concrete claim.", "owner": "scope of future claims, not a new mandatory task", "blocks_this_freeze": false},
+    {"id": "OB4", "item": "exact joint LowBits distribution", "owner": "optional", "blocks_this_freeze": false, "note": "explicitly not a prerequisite of the conditional availability bound"},
+    {"id": "OB5", "item": "0bf0855 -> f98de52 assembly compatibility", "owner": "Codex", "blocks_this_freeze": false, "status": "closed_for_f98de52_by_codex_run", "note": "Codex separately reran 25 checks on actual f98de52. This is not DeepSeek's snapshot rerun and does not certify any later commit.", "evidence": "docs/research/2026-10-12-luo-final-acceptance/evidence/codex-assembly-f98de52.json"}
+  ],
+  "environment_limitations": [
+    {"id": "ENV1", "item": "Python subprocess writes/deletes in the OS temp area are denied by this session's file sandbox (WinError 5), while workspace writes succeed", "impact": "10 tempfile-dependent PinsAndIsolation tests of tests/test_luo_cross_version_harness.py cannot run in this session", "not_impacted": "9 tempfile-free tests pass; tested code unchanged", "archived_evidence": "cross-version-harness.xml = 19 passed (step 23)"},
+    {"id": "ENV2", "item": ".tmp-pytest/ holds 10 directories created by that aborted run with deny-access permissions; this session could not read or delete them", "attempted_repair": "skill diagnose-windows-sandbox-acl requires an unconfined run; escalation to danger-full-access was requested once and refused because no approval channel was available (fail-closed)", "workaround": "none attempted; no ACL edited, no junction created, no sandbox bypass", "residual_effect": "recursive walks of the deliverable directory may report these paths as unreadable; deliverables and manifest avoid them", "recommended_action": "in a session with approval or full access, delete C:/Users/A/.dsh/deliverables/DEEPSEEK-step24-luo-final-check-2026-10-12/.tmp-pytest"}
+  ],
+  "not_done": ["edited tracked protocol/CLI/framework/CHKP files or either reviewed repository's Git history", "read user real keys, RNG state or private wire", "reran 54 signs, 269 or 122 full regression", "reran estimator or parameter grid", "modified any reviewed repository file", "bypassed the sandbox, built a junction, or edited ACLs", "claimed any unpersisted artifact exists"],
+  "correction_provenance": {"edited_by": "Codex on 2026-10-12 after independent review", "original_reports_preserved": "DEEPSEEK-step24-before-codex-corrections-2026-10-12", "private_fixture_git_operations": "DeepSeek exported a source snapshot and initialized/committed a private fixture repo; the reviewed repositories were not changed", "freeze_applied_false_meaning": "The arithmetic checker is read-only; C64B was already explicitly selected in e5e0b97", "system_scope": "Actual CHKP integration and applicable CLI delivery remain system tasks even with no bit-security claim; they belong to the other conversation", "codex_targeted_tests": "51 passed including the same 19 harness tests; not counted as a DeepSeek rerun"},
+  "verification_scripts": ["logs/verify-assembly-source-pin.py", "logs/verify-108-overhead.py"],
+  "raw_outputs": ["logs/audit-delivery.stdout.txt", "logs/audit-delivery-O.stdout.txt", "logs/audit-selection.json", "logs/audit-selection-negative-control.json", "logs/pytest-c64b-profile.txt", "logs/assembly-handoff-pinned-live.json", "logs/verify-assembly-source-pin.json", "logs/verify-108-overhead.json", "logs/pytest-cross-version-harness.txt"]
+}

@@ -1,0 +1,73 @@
+{
+  "scope": "standalone Wang Fig.4 IBS plus Pan-Wagner Fig.5 implementation only",
+  "date": "2026-10-13",
+  "baseline_commit": "4ea086e",
+  "source_sha256": "2043096d809993f9a1f3ee7a5d2c0a689c1737dc4351ba380c0267f726ea1e89",
+  "security_claim": "none",
+  "parameters_are_formal": false,
+  "backend_admitted": false,
+  "runs": [
+    {
+      "command": "PYTHONPATH=src python -m pytest tests/test_wang_pw_ibs.py tests/test_wang_pw_boundary_regressions.py tests/test_wang_pw_sampling_regressions.py tests/test_wang_pw_linear_regressions.py -q --tb=short --junitxml=docs/research/2026-10-13-wang-pw-audit/pytest-results.xml",
+      "exit_code": 0,
+      "passed": 396,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "reported_seconds": 36.77,
+      "evidence": "pytest-results.xml"
+    },
+    {
+      "command": "python experiments/research/wang_pw_receipt.py --out docs/research/2026-10-13-wang-pw-audit/corrected-receipt.json",
+      "exit_code": 0,
+      "checks_passed": 15,
+      "honest_signatures": "16/16",
+      "evidence": "corrected-receipt.json"
+    },
+    {
+      "command": "WSL ~/miniconda3/envs/sage/bin/python experiments/research/wang_kernel_exact.sage --out docs/research/2026-10-13-wang-pw-audit/sage-kernel-oracle.json",
+      "exit_code": 0,
+      "complete_bases_verified": 3,
+      "evidence": "sage-kernel-oracle.json"
+    },
+    {
+      "command": "python -B experiments/research/wang_pw_linear_audit.py --expected-sha256 <source_sha256> --baseline-source <frozen original wang_pw.py> --output docs/research/2026-10-13-wang-pw-audit/linear-audit.json",
+      "exit_code": 0,
+      "current_version": {
+        "gf_matrices": 1909,
+        "gf_rhs": 40607,
+        "determinants": 20568,
+        "integer_kernel_matrices": 2109,
+        "completeness_candidates": 5664,
+        "trapdoor_bases": 1077,
+        "invalid_trapdoor_relations_rejected": 180,
+        "wrong_lattice": 0,
+        "completeness_false_positive": 0,
+        "completeness_false_negative": 0
+      },
+      "evidence": "linear-audit.json"
+    },
+    {
+      "command": "python experiments/research/wang_pw_independent_audit.py --subject <frozen original wang_pw.py> --out <historical rerun>",
+      "exit_code": 1,
+      "expected_exit": true,
+      "original_version_passed": 3,
+      "original_version_failed": 17,
+      "source_sha256": "119f1168003b99a39172ce1cb2513658a2ad56ca4925b6c33bcdeb09890c1b8d",
+      "interpretation": "historical defects reproduced; not a failure of current implementation",
+      "evidence": "independent-audit.json"
+    }
+  ],
+  "review": {
+    "independent_boundary_tests": 292,
+    "independent_reviewers": 2,
+    "known_unresolved_defects_in_reviewed_scope": [],
+    "scope_limit": "finite regression and bounded arithmetic enumeration; no universal bug-free guarantee"
+  },
+  "intentional_limits": [
+    "finite numerical Gaussian with bounded rejection; no full statistical-distance certificate",
+    "pure Python small-input reference implementation; no constant-time or production-security claim",
+    "no common backend/CLI/HIBE integration or formal parameter selection in this task",
+    "old test receipts retained only as historical evidence; current source pinned by hash"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-12",
+  "host_cpu": "Intel(R) Core(TM) Ultra 7 255HX",
+  "physical_cores": 20,
+  "logical_processors": 20,
+  "host_physical_memory_bytes": 33676681216,
+  "execution_environment": "WSL Ubuntu-24.04",
+  "kernel": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "3.13.15",
+  "sage": "10.9",
+  "fpylll": "0.6.4",
+  "interpreter_documentation_path": "~/miniconda3/envs/sage/bin/python",
+  "randomness": "System CSPRNG through counted SecureRandom.read; fixed random sources occur only in separately identified tests",
+  "measurement_limitations": [
+    "Host memory is not an allocation limit or measured process RSS.",
+    "Runs share a development machine with other work; elapsed times are observations, not isolated benchmarks.",
+    "Successful root and parent checkpoints are reused. The original Alice leaf constructor failed before entropy; an explicit recorded recovery creates the sole continuation, preserving the failure. Subsequent sampled addresses have no retry.",
+    "No constant-time or side-channel claim is made."
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

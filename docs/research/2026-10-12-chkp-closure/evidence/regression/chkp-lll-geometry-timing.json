@@ -1,0 +1,64 @@
+{
+  "public_fixtures_only": true,
+  "private_input_read": false,
+  "algorithm": "same QQ original-column recurrence with cached norms",
+  "limitation": "local contended timings; not whole-pipeline prediction",
+  "results": [
+    {
+      "dimension": 24,
+      "repetitions": 3,
+      "exact_equal": true,
+      "original_seconds": [
+        0.17879672399976698,
+        0.05860215299981064,
+        0.06283179100046254
+      ],
+      "cached_seconds": [
+        0.027225587999964773,
+        0.02601061500081414,
+        0.021617866000269714
+      ],
+      "median_speedup": 2.415621122318557
+    },
+    {
+      "dimension": 40,
+      "repetitions": 3,
+      "exact_equal": true,
+      "original_seconds": [
+        0.5513411479996648,
+        0.5150749709991942,
+        0.5447789160007233
+      ],
+      "cached_seconds": [
+        0.2075582300003589,
+        0.19148031100030494,
+        0.20345721600006073
+      ],
+      "median_speedup": 2.677609212939199
+    },
+    {
+      "dimension": 64,
+      "repetitions": 3,
+      "exact_equal": true,
+      "original_seconds": [
+        3.637836335999964,
+        3.520731252000587,
+        3.4262969490000614
+      ],
+      "cached_seconds": [
+        1.6113565499999822,
+        1.4574126420002358,
+        1.4096262169996407
+      ],
+      "median_speedup": 2.415740848225754
+    }
+  ],
+  "environment": {
+    "python": "3.13.15",
+    "sage": "10.9",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "processor": "x86_64"
+  },
+  "security_claim": "none",
+  "parameters_are_formal": false
+}

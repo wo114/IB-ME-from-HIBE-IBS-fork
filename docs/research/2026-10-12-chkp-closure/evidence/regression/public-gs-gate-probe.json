@@ -1,0 +1,53 @@
+{
+  "fixture": "PUBLIC-GS fixed dense diagonally dominant, d=48",
+  "rational_bits": 8192,
+  "randomness_used": false,
+  "private_inputs_read": false,
+  "sage_version": "10.9",
+  "exact_output_equality": true,
+  "checks_per_call": 56496,
+  "records": [
+    {
+      "repeat": 0,
+      "method": "legacy",
+      "cpu_seconds": 0.9987089890000003,
+      "wall_seconds": 1.066169226999591
+    },
+    {
+      "repeat": 0,
+      "method": "cached_exact_internal_gate",
+      "cpu_seconds": 0.50070557,
+      "wall_seconds": 0.5345724010003323
+    },
+    {
+      "repeat": 1,
+      "method": "legacy",
+      "cpu_seconds": 0.9679757020000004,
+      "wall_seconds": 1.0333916850004243
+    },
+    {
+      "repeat": 1,
+      "method": "cached_exact_internal_gate",
+      "cpu_seconds": 0.49770881099999986,
+      "wall_seconds": 0.5313396920000741
+    },
+    {
+      "repeat": 2,
+      "method": "legacy",
+      "cpu_seconds": 0.9848990860000004,
+      "wall_seconds": 1.05146698200042
+    },
+    {
+      "repeat": 2,
+      "method": "cached_exact_internal_gate",
+      "cpu_seconds": 0.4985631909999997,
+      "wall_seconds": 0.5322753519994876
+    }
+  ],
+  "median_cpu_speedup": 1.9754749323240774,
+  "limitations": "Public fixture only; shared host; no prediction of real 254-dimensional GSO.",
+  "source_sha256": {
+    "src/ibme/lattice/chkp/finite_gpv.py": "89d170fab902d6e2beb8d53b32233d0eb4b407dc5e20c0e2e7f6599d8e45b32b",
+    "tests/test_chkp_gs_equivalence.py": "20d08588868271dbc9b732053a59fdb367896644ba502eaf7238b8792d611979"
+  }
+}

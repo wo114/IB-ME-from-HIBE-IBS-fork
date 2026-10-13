@@ -1,0 +1,140 @@
+"""Complete zero-entropy preflight using a strictly bound private GS cache."""
+import ast
+from hashlib import sha256
+import json
+from pathlib import Path
+import pickle
+import signal
+import subprocess
+import time
+
+from sage.all import QQ
+from ibme.core.randomness import SecureRandom
+from ibme.hibe.chkp.objects import CHKPLevel1SecretKey
+from ibme.hibe.chkp.backend import _options
+from ibme.protocol.hybrid_hibe import encoded_identity, HybridLimits
+from ibme.lattice.chkp.basis import ModMatrixReference
+from ibme.lattice.chkp.extended_gpv import ExtendedGPV
+from ibme.lattice.chkp import finite_gaussian, finite_gpv
+
+BASE = Path(__file__).resolve().parent
+REPO = BASE.parents[1]
+PARENT = BASE/"parent.bin"
+RECEIPT = BASE/"leaf_full_preflight_receipt.json"
+BINDING = BASE/"leaf_full_preflight_binding.json"
+START = time.monotonic()
+relative = lambda path: path.relative_to(REPO).as_posix()
+source_paths = sorted((REPO/"src/ibme").rglob("*.py")) + [Path(__file__).resolve()]
+source_hashes = {relative(path): sha256(path.read_bytes()).hexdigest() for path in source_paths}
+snapshot = PARENT.read_bytes()
+result = {
+    "schema": "ibme.chkp.leaf-preflight.v1", "passed": False,
+    "all_gates": {}, "targets": 256, "entropy_bytes": 0,
+    "sample_called": False, "state_mutation_called": False,
+    "gso_recomputed": False, "source_parent_unchanged": False,
+    "cache_geometry_old_new_ast_unchanged": False,
+    "source_parent_relative": relative(PARENT),
+    "source_relative": sorted(source_hashes), "source_sha256": source_hashes,
+    "private_binding_relative": relative(BINDING),
+    "security_claim": "none", "backend_admitted": False,
+    "parameters_are_formal": False,
+    "cache_source_commit": "2976c1a",
+}
+
+def gate(name, condition):
+    result["all_gates"][name] = bool(condition)
+    if not condition:
+        raise ValueError("diagnostic gate: "+name)
+
+def forbidden(*args, **kwargs):
+    raise RuntimeError("sample or entropy call forbidden during preflight")
+
+SecureRandom.read = forbidden
+finite_gaussian.FirstFiniteGaussian.sample = forbidden
+finite_gpv.FirstFiniteGPV.sample = forbidden
+ExtendedGPV.sample = forbidden
+signal.signal(signal.SIGALRM, lambda *args: (_ for _ in ()).throw(TimeoutError("preflight deadline")))
+signal.alarm(120)
+
+def function_ast(source, name):
+    tree = ast.parse(source)
+    node = next(node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == name)
+    return ast.dump(node, include_attributes=False)
+
+try:
+    # Trusted private file produced locally by leaf_preflight_diagnostic_600.
+    # It is never supplied by an external source or used as a key wire format.
+    cache = pickle.loads((BASE/"private_leaf_geometry.pkl").read_bytes())
+    gate("cache_parent_sha_binding", cache["parent_snapshot_sha256"] == sha256(snapshot).digest())
+    path = "src/ibme/lattice/chkp/finite_gpv.py"
+    old_source = subprocess.run(["git", "show", "2976c1a:"+path], cwd=REPO,
+                                check=True, capture_output=True).stdout
+    gate("cache_source_is_commit_2976c1a", cache["finite_gpv_source_sha256"] == sha256(old_source).digest())
+    new_source = (REPO/path).read_bytes()
+    for name in ("_gs_geometry", "_bounded_qq", "_bounded_rational"):
+        gate(name+"_ast_unchanged", function_ast(old_source, name) == function_ast(new_source, name))
+    result["cache_geometry_old_new_ast_unchanged"] = True
+    parent = CHKPLevel1SecretKey.from_bytes(snapshot)
+    p = parent.params
+    geometry = cache["geometry"]
+    gate("cache_rational_bit_budget_binding", cache["rational_bits"] == p.rational_bits)
+    gate("cache_columns_exactly_match_parent", tuple(tuple(int(x) for x in column) for column in geometry[0])
+         == tuple(zip(*parent.state._basis.basis_rows)))
+    cached_calls = []
+    def bound_geometry(rows, bits):
+        gate("gpv_actual_rows_match_cached_parent", rows == parent.state._basis.basis_rows)
+        gate("gpv_actual_bit_budget_matches_cache", bits == cache["rational_bits"])
+        cached_calls.append(True)
+        return geometry
+    finite_gpv._gs_geometry = bound_geometry
+    sender = encoded_identity(b"Alice", HybridLimits(backend_id=b"chkp"), b"C")
+    extension = ModMatrixReference(parent.public_key.oracle.h((parent.identity, sender)), p.q)
+    sampler = ExtendedGPV(parent.state._basis, extension, p.leaf_width_squared,
+                          epsilon_bits=p.epsilon_bits, options=_options(p), max_dimension=p.max_dimension)
+    gate("extended_gpv_complete_constructor", True)
+    gate("exact_geometry_cache_used_once", len(cached_calls) == 1)
+    gate("adaptive_paths_admitted", len(sampler.parent._path_resources) == sampler.parent.dimension)
+    gate("real_leaf_identity_matrix_binding", sampler.basis.public.rows ==
+         parent.public_key.oracle.leaf_rows(parent.identity, sender))
+    gate("256_total_budget", 256*sampler.random_tape_bytes <= p.leaf_entropy_budget)
+    gate("full_extended_smoothing_gate", sampler.width_squared >=
+         4*max(QQ(1), sampler.parent._max_gs_squared)*(2*sampler.dimension*(1+2**p.epsilon_bits)-1).bit_length())
+    gate("source_parent_unchanged", PARENT.read_bytes() == snapshot)
+    gate("source_files_unchanged_during_preflight", all(sha256((REPO/name).read_bytes()).hexdigest() == digest
+                                                       for name, digest in source_hashes.items()))
+    result["source_parent_unchanged"] = True
+    result["passed"] = True
+except BaseException as exc:
+    result["error_type"] = type(exc).__name__
+    safe = {
+        "Scalar squared width outside independent finite profile 1..2^88",
+        "Public radius cannot certify the tail target", "Public Gaussian rejection budget insufficient",
+        "Adaptive center denominator exceeds rational bit budget", "Adaptive center numerator exceeds rational bit budget",
+        "GPV residual/coefficient exceeds the arithmetic bit budget", "Whole GPV tape exceeds the resource budget",
+        "extended SampleD tape exceeds the explicit budget", "preflight deadline",
+        "extended width fails the full-dimension smoothing condition",
+        "sample or entropy call forbidden during preflight",
+    }
+    message = str(exc)
+    result["first_gate"] = message if message in safe or message.startswith("diagnostic gate: ") else "message withheld"
+    result["stack"] = []
+    tb = exc.__traceback__
+    while tb is not None:
+        result["stack"].append({"file": tb.tb_frame.f_code.co_filename,
+                                "function": tb.tb_frame.f_code.co_name, "line": tb.tb_lineno})
+        tb = tb.tb_next
+finally:
+    signal.alarm(0)
+    result["source_parent_unchanged"] = PARENT.read_bytes() == snapshot
+    result["seconds"] = round(time.monotonic()-START, 6)
+    encoded = (json.dumps(result, indent=2)+"\n").encode()
+    RECEIPT.write_bytes(encoded)
+    private = {"schema": "ibme.chkp.leaf-preflight-binding.v1",
+               "source_parent_relative": relative(PARENT),
+               "parent_snapshot_sha256": sha256(snapshot).hexdigest(),
+               "receipt_sha256": sha256(encoded).hexdigest()}
+    BINDING.write_text(json.dumps(private, indent=2)+"\n", encoding="utf-8")
+    print(json.dumps({"passed": result["passed"], "first_gate": result.get("first_gate"),
+                      "entropy_bytes": 0, "sample_called": False, "gso_recomputed": False,
+                      "source_parent_unchanged": result["source_parent_unchanged"],
+                      "seconds": result["seconds"], "receipt_relative": relative(RECEIPT)}), flush=True)

@@ -1,0 +1,23 @@
+{
+  "attempt": "chkp-lifetime-2026-10-12",
+  "algorithm_source_commit": "ec0783e",
+  "checkout_before_attempt": "cdba26f",
+  "setup_passed": true,
+  "setup_seconds": 4.125678421,
+  "setup_entropy_bytes": 1362388,
+  "parent_passed": false,
+  "parent_result": "operator_terminated_after_deterministic_postprocessing_stall",
+  "parent_elapsed_seconds_approximate": 942,
+  "parent_observed_rss_KiB": 376124,
+  "rss_is_peak_measurement": false,
+  "parent_entropy_bytes": null,
+  "completed_parent_key": false,
+  "failed_attempt_pending_preserved": true,
+  "diagnosis": "Read-only native stack located Sage integer determinant modular reconstruction after HNF transformation. SIGINT did not stop the invocation; SIGTERM stopped only that owned process.",
+  "repair_commit": "fa14fd0",
+  "repair": "Exact integer product and determinant-ratio certificate retains complete-kernel validation without computing the huge transformation determinant.",
+  "measurement_source": "Setup JSON receipt and operator process observation; no parent completion receipt existed.",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

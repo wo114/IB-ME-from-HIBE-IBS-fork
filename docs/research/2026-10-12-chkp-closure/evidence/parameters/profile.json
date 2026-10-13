@@ -1,0 +1,157 @@
+{
+  "checks": {
+    "actual_geometry_or_sampling_checked": false,
+    "backend_admitted": false,
+    "budgets_are_not_preallocated_memory": true,
+    "conditional_continuous_margin": "220027361341",
+    "conditional_continuous_squared_upper": 32849613095045095066640,
+    "conditional_lifetime_error_upper": "1/68719476736",
+    "conditional_noise_sufficient": true,
+    "conditional_per_bit_error_upper": "1/18446744073709551616",
+    "conditional_preimage_norm_squared_upper": 31586166437543360640,
+    "conditional_rounding_error_upper": "54850545606",
+    "n2_is_not_a_security_parameter": true,
+    "parameters_are_formal": false,
+    "pending_execution_checks": [
+      "finite root mass and radius",
+      "complete private kernel bases and public GS bound",
+      "GPV scalar widths, rational centers and resource envelopes",
+      "RandBasis rank/norm/ToBasis and checked reduction",
+      "fixed 256 leaf syndromes and actual preimage norms",
+      "measured entropy and persistence lifecycle"
+    ],
+    "profile_id": "chkp-mp12-root-randbasis-n2-v1",
+    "root_mass_floor": "319/10",
+    "root_mass_floor_requires_finite_sampler_check": true,
+    "root_radius": 171,
+    "root_regularity_upper_conditional": "41347807146778777898945909704524976069/3138550867693340381917894711603833208051177722232017256448",
+    "scalar_call_limits": {
+      "leaf": 97536,
+      "parent": 97028,
+      "root": 3690
+    },
+    "security_claim": "none",
+    "selected_modulus_sufficient": true,
+    "static_numeric_gates_pass": true,
+    "worst_entropy_bytes": {
+      "chain": 558689391872,
+      "leaf": 274861129728,
+      "parent": 273429561344,
+      "root": 10398700800,
+      "scalar": 2818048
+    }
+  },
+  "finite": {
+    "actual_geometry_or_sampling_checked": false,
+    "actual_root_mass_lower": "11629419588729710248789180926208072549657836007299138587741181022557677178803309191390731106723007934715227554999030631918040253890574557/363419362147803445274661903944002267176820680343659030140745099590319644056698961663095525356881782780381260803133088966767300814307328",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "random_bytes_consumed": 0,
+    "root_generated": false,
+    "root_mass_floor_pass": true,
+    "root_profile_worst_entropy_bytes": 1466066880,
+    "root_radius": 171,
+    "root_regularity_upper_conditional": "2089048948616953095/170141183460469231731687303715884105728",
+    "scalar_profiles": [
+      {
+        "gaussian_trials": 1066,
+        "radius": 5,
+        "tv_upper_including_abort": "18347988930009884968171346100451838812429166886375440918794239241869170558403589374184762693039203998117203/6243497100631984462763194459586332611497196285329942301718313919250743477639531240240612206126983942319653862242813245790895951358576570612580352",
+        "width_squared": 1,
+        "worst_entropy_bytes": 238784
+      },
+      {
+        "gaussian_trials": 1009,
+        "radius": 7,
+        "tv_upper_including_abort": "69993566391261034863229134514409188779877317108508410320082591782687301611870822816937238788986888809/23817051317718446589520242536874132581700120107002038199303870846751188192899823151552628349788604516295066307994130118526061826166445047808",
+        "width_squared": 2,
+        "worst_entropy_bytes": 226016
+      },
+      {
+        "gaussian_trials": 977,
+        "radius": 10,
+        "tv_upper_including_abort": "68653932979538585748028666244993448876606886309012551215640587083190516448685475655599295839951089/23258839177459420497578361852416145099316523541994177929007686373780457219628733546438113622840434097944400691400517693873107252115668992",
+        "width_squared": 4,
+        "worst_entropy_bytes": 218848
+      },
+      {
+        "gaussian_trials": 955,
+        "radius": 171,
+        "tv_upper_including_abort": "1493757215910831859150397796454690383114079431152507082113608220856534877544117663584464322414371/363419362147803445274661903944002267176820680343659030140745099590319644056698961663095525356881782780381260803133088966767300814307328",
+        "width_squared": 1024,
+        "worst_entropy_bytes": 397280
+      },
+      {
+        "gaussian_trials": 1000,
+        "radius": 4325396,
+        "tv_upper_including_abort": "4271886018789744203401235259250044149671707257798902374418043245626770480259078119553749695228625/726838724295606890549323807888004534353641360687318060281490199180639288113397923326191050713763565560762521606266177933534601628614656",
+        "width_squared": 591288114680,
+        "worst_entropy_bytes": 608000
+      },
+      {
+        "gaussian_trials": 1029,
+        "radius": 1666962473,
+        "tv_upper_including_abort": "533996739212386240131556039054267976914741810104692954059983480007295094595089560934629987648091/90854840536950861318665475986000566794205170085914757535186274897579911014174740415773881339220445695095315200783272241691825203576832",
+        "width_squared": 82903323983053440,
+        "worst_entropy_bytes": 823200
+      },
+      {
+        "gaussian_trials": 1068,
+        "radius": 6609106409027,
+        "tv_upper_including_abort": "4271974071791652388275300704195247725571306344220777774232702336553400767009275946911449580008557/726838724295606890549323807888004534353641360687318060281490199180639288113397923326191050713763565560762521606266177933534601628614656",
+        "width_squared": 1208925819614629174706176,
+        "worst_entropy_bytes": 1264512
+      }
+    ],
+    "security_claim": "none"
+  },
+  "profile": {
+    "algorithm": "MP12-statistical-root / CHKP-RandBasis / GPV-leaf",
+    "alpha_denominator": 1099511627791,
+    "alpha_numerator": 4,
+    "backend_admitted": false,
+    "chain_entropy_budget": 1099511627776,
+    "encapsulation_budget": 1048576,
+    "epsilon_bits": 128,
+    "error_bits": 64,
+    "finite_options": {
+      "gaussian_abort_bits": 128,
+      "mass_bits": 256,
+      "max_gaussian_trials": 2048,
+      "max_radius": 281474976710656,
+      "max_tape_bytes": 1099511627776,
+      "max_uniform_trials": 192,
+      "precision_bits": 320,
+      "rational_bits": 8192,
+      "tail_bits": 128
+    },
+    "geometry_and_sampling_executed": false,
+    "identity_encoded_bytes": 86,
+    "k": 41,
+    "leaf_dimension": 381,
+    "leaf_entropy_budget": 549755813888,
+    "leaf_width_squared": 82903323983053440,
+    "m_bar": 45,
+    "max_dimension": 512,
+    "max_private_bytes": 16777216,
+    "n": 2,
+    "parameters_are_formal": false,
+    "parent_dimension": 254,
+    "parent_entropy_budget": 549755813888,
+    "parent_gs_squared_bound": 150187181128720,
+    "parent_max_vectors": 382,
+    "parent_width_squared": 591288114680,
+    "profile_id": "chkp-mp12-root-randbasis-n2-v1",
+    "q": 1099511627791,
+    "r_width_squared": 1024,
+    "regularity_bits": 64,
+    "root_dimension": 127,
+    "root_entropy_budget": 17179869184,
+    "root_gs_squared_bound": 1078992910,
+    "root_mass_lower": "319/10",
+    "root_radius": 171,
+    "schema": "IBME/CHKP-RESEARCH-PARAMETERS/1",
+    "security_claim": "none",
+    "seed_bits": 256
+  }
+}

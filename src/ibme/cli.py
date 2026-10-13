@@ -73,7 +73,8 @@ import tempfile
 from pathlib import Path
 
 from ibme.core.errors import IBMEError
-from ibme.cli_state import (LOCK_FILE, check_receiver_ready, key_issuance_lock,
+from ibme.cli_state import (LOCK_FILE, check_master_ready, check_receiver_ready,
+                            key_issuance_lock, master_state_transaction,
                             receiver_state_transaction)
 from ibme.protocol.baseline import (
     BASELINE_DEBUG_IBS_PARAMS,
@@ -168,7 +169,7 @@ def _check_data_output(state: Path, output: Path | None) -> None:
     if output is None:
         return
     root, target = state.resolve(), output.resolve()
-    reserved = {_MPK_FILE, _MSK_FILE, _META_FILE, LOCK_FILE}
+    reserved = {_MPK_FILE, _MSK_FILE, _MSK_FILE + ".pending", _META_FILE, LOCK_FILE}
     def is_reserved(path):
         return (path.name in reserved or path.name.startswith(".ibme-state-")
                 or path.name.startswith(("sender-", "receiver-")))
@@ -454,12 +455,8 @@ def _atomic_write_state(path: Path, raw: bytes) -> None:
             temporary.unlink()
 
 
-def _persist_research_master(state: Path, master: MasterSecret) -> None:
-    """Commit the identity cache before exposing the issued key."""
-    _atomic_write_state(state / _MSK_FILE, master.to_bytes())
-
-
 def _load_msk(state: Path, mock: bool) -> tuple[MasterSecret, BaselineIBME, dict]:
+    check_master_ready(state / _MSK_FILE)
     meta = _load_state_meta(state)
     proto, classes, runtime = _runtime_for_state(meta, mock)
     msk = MasterSecret.from_bytes(
@@ -538,6 +535,7 @@ def _setup_selected(args) -> int:
     runtime = build_runtime(suite)
     args.state.mkdir(parents=True, exist_ok=True)
     with key_issuance_lock(args.state):
+        check_master_ready(args.state / _MSK_FILE)
         if any((args.state / name).exists() for name in (_META_FILE, _MPK_FILE, _MSK_FILE)) or any(args.state.glob("*-*.bin")):
             raise ValueError("selected setup requires a new state directory; existing state cannot be overwritten")
         public, master = runtime.proto.setup(runtime.hibe_params, ibs_params=runtime.ibs_params)
@@ -630,6 +628,7 @@ def cmd_setup(args) -> int:
     proto, _ = _make_runtime(args.mock, preset=args.params, signature_format=signature_format)
     args.state.mkdir(parents=True, exist_ok=True)
     with key_issuance_lock(args.state):
+        check_master_ready(args.state / _MSK_FILE)
         if any((args.state / name).is_file()
                and (args.state / name).read_bytes().startswith(_STATE_OBJECT_MAGIC)
                for name in (_MPK_FILE, _MSK_FILE)):
@@ -684,16 +683,21 @@ def _issue_sender_key_unlocked(args) -> int:
         args.name, max_bytes=meta["identity_bytes"], role="sender identity"
     )
     digest = _identity_digest(identity)
+    check_master_ready(args.state / _MSK_FILE)
     msk, proto, classes = _load_msk(args.state, args.mock)
-    ek = proto.skgen(msk, identity)
-    if meta["version"] == _SELECTED_STATE_VERSION:
-        _atomic_write_state(args.state / _MSK_FILE, _state_object(msk.to_bytes(), meta, "msk"))
-    elif meta.get("params_preset") == _RESEARCH_PRESET:
-        # Preserve the fixed identity key across separately invoked commands.
-        _persist_research_master(args.state, msk)
     out = _sender_key_path(args.state, identity)
-    encoded = _state_object(ek.to_bytes(), meta, "sender") if meta["version"] == _SELECTED_STATE_VERSION else ek.to_bytes()
-    _atomic_write_state(out, encoded)
+    selected = meta["version"] == _SELECTED_STATE_VERSION
+    if selected or meta.get("params_preset") == _RESEARCH_PRESET:
+        master_path = args.state / _MSK_FILE
+        snapshot = (lambda: _state_object(msk.to_bytes(), meta, "msk")) if selected else msk.to_bytes
+        with master_state_transaction(master_path, _read(master_path), snapshot,
+                                      _atomic_write_state, lambda: _atomic_write_state(out, encoded)):
+            ek = proto.skgen(msk, identity)
+            encoded = _state_object(ek.to_bytes(), meta, "sender") if selected else ek.to_bytes()
+    else:
+        ek = proto.skgen(msk, identity)
+        encoded = ek.to_bytes()
+        _atomic_write_state(out, encoded)
     print(
         f"issued sender key: identity={args.name!r} utf8={len(identity)}B "
         f"digest={digest} (sha256[:{_DIGEST_HEX_CHARS}] of UTF-8 bytes)"
@@ -718,6 +722,7 @@ def _issue_receiver_key_unlocked(args) -> int:
     research = meta.get("params_preset") == _RESEARCH_PRESET
     if selected or research:
         check_receiver_ready(out)
+    check_master_ready(args.state / _MSK_FILE)
     msk, proto, classes = _load_msk(args.state, args.mock)
     if selected:
         _, _, runtime = _runtime_for_state(meta, args.mock)
@@ -735,15 +740,21 @@ def _issue_receiver_key_unlocked(args) -> int:
             _check_research_receiver(msk.hmsk.public_key, dk, identity)
         action = "reused"
     else:
-        dk = proto.rkgen(msk, identity)
-        if selected:
-            runtime.validate_receiver(public, dk)
-            _atomic_write_state(args.state / _MSK_FILE, _state_object(msk.to_bytes(), meta, "msk"))
-        elif research:
-            _check_research_receiver(msk.hmsk.public_key, dk, identity)
-            _persist_research_master(args.state, msk)
-        encoded = _state_object(dk.to_bytes(), meta, "receiver") if selected else dk.to_bytes()
-        _atomic_write_state(out, encoded)
+        if selected or research:
+            master_path = args.state / _MSK_FILE
+            snapshot = (lambda: _state_object(msk.to_bytes(), meta, "msk")) if selected else msk.to_bytes
+            with master_state_transaction(master_path, _read(master_path), snapshot,
+                                          _atomic_write_state, lambda: _atomic_write_state(out, encoded)):
+                dk = proto.rkgen(msk, identity)
+                if selected:
+                    runtime.validate_receiver(public, dk)
+                else:
+                    _check_research_receiver(msk.hmsk.public_key, dk, identity)
+                encoded = _state_object(dk.to_bytes(), meta, "receiver") if selected else dk.to_bytes()
+        else:
+            dk = proto.rkgen(msk, identity)
+            encoded = dk.to_bytes()
+            _atomic_write_state(out, encoded)
         action = "issued"
     encoded = _state_object(dk.to_bytes(), meta, "receiver") if selected else dk.to_bytes()
     print(
