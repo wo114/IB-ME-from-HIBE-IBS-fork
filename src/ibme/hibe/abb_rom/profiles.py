@@ -60,3 +60,13 @@ def q22_all_level_research_params():
         sigma1_squared=5044531837796352,sigma2_squared=5044531837796352,
         tau2_squared=74752,epsilon_bits=64,max_parents=2,max_children_per_parent=2,
         normalization="matrix-flatter-allgs256-nativegram-exact074-v5")
+
+
+def q26_level_quality_research_params():
+    """Separate complete recipe with a fixed 2^16 parent/leaf quality gate."""
+    return replace(ABBROMParams(),name="abb-rom-ap09-n1-q26-level-quality-research",
+        q=33554467,random_rows=52,root_m1=52,root_m2=156,hadamard_scale=23,
+        matrix_gaussian_squared_width=74752,sigma1_squared=7045668434608128,
+        sigma2_squared=1803691119259680768,tau2_squared=19136512,
+        epsilon_bits=64,max_parents=2,max_children_per_parent=2,
+        normalization="matrix-flatter-rootgs256-levelgs65536-nativegram-exact074-v6")

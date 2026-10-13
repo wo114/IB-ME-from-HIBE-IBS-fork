@@ -98,7 +98,8 @@ class ABBROMParams:
                 "matrix-flatter-lll-075-0501-exact074-v2",
                 "matrix-flatter-rootgs16-lll-075-exact074-v3",
                 "matrix-flatter-rootgs256-nativegram-exact074-v4",
-                "matrix-flatter-allgs256-nativegram-exact074-v5") or
+                "matrix-flatter-allgs256-nativegram-exact074-v5",
+                "matrix-flatter-rootgs256-levelgs65536-nativegram-exact074-v6") or
                 self.matrix_oracle != "shake256-block-tape-engineering-v1"):
             raise InvalidParameterError("unknown ABB finite implementation version")
         if (self.security_claim != "none" or self.backend_admitted is not False or
@@ -113,12 +114,15 @@ class ABBROMParams:
     def normalized_root_gs_squared_bound(self):
         if self.normalization == "matrix-flatter-rootgs16-lll-075-exact074-v3":return 16
         if self.normalization in ("matrix-flatter-rootgs256-nativegram-exact074-v4",
-                "matrix-flatter-allgs256-nativegram-exact074-v5"):return 256
+                "matrix-flatter-allgs256-nativegram-exact074-v5",
+                "matrix-flatter-rootgs256-levelgs65536-nativegram-exact074-v6"):return 256
         return None
 
     @property
     def normalized_level_gs_squared_bound(self):
-        return 256 if self.normalization == "matrix-flatter-allgs256-nativegram-exact074-v5" else None
+        if self.normalization == "matrix-flatter-allgs256-nativegram-exact074-v5":return 256
+        if self.normalization == "matrix-flatter-rootgs256-levelgs65536-nativegram-exact074-v6":return 65536
+        return None
 
     @property
     def identity_bytes(self):

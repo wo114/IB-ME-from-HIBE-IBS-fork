@@ -46,7 +46,8 @@ def validate_basis(public,path,rows):
     columns = matrix(ZZ,rows).columns()
     if max(sum(int(x)**2 for x in col) for col in columns)>upper:
         if p.normalization in ("matrix-flatter-rootgs256-nativegram-exact074-v4",
-                              "matrix-flatter-allgs256-nativegram-exact074-v5"):
+                              "matrix-flatter-allgs256-nativegram-exact074-v5",
+                              "matrix-flatter-rootgs256-levelgs65536-nativegram-exact074-v6"):
             from ibme.lattice.matrix_sampling.exact_gram import gram_geometry
             lengths = gram_geometry(matrix(ZZ,rows),norms_only=True)
         else:

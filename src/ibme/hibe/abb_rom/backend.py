@@ -44,13 +44,15 @@ def check_setup_profile(p):
     if not isinstance(p,ABBROMParams):
         raise InvalidParameterError("ABB requires independent ABBROMParams, no old Params conversion")
     if p.normalization in ("matrix-flatter-rootgs256-nativegram-exact074-v4",
-                          "matrix-flatter-allgs256-nativegram-exact074-v5"):
+                          "matrix-flatter-allgs256-nativegram-exact074-v5",
+                          "matrix-flatter-rootgs256-levelgs65536-nativegram-exact074-v6"):
         from ibme.lattice.matrix_sampling.exact_gram import require_provider
         require_provider()
     if p.normalization in ("matrix-flatter-lll-075-0501-exact074-v2",
             "matrix-flatter-rootgs16-lll-075-exact074-v3",
             "matrix-flatter-rootgs256-nativegram-exact074-v4",
-            "matrix-flatter-allgs256-nativegram-exact074-v5"):
+            "matrix-flatter-allgs256-nativegram-exact074-v5",
+            "matrix-flatter-rootgs256-levelgs65536-nativegram-exact074-v6"):
         from sage.features.flatter import flatter as FlatterEngine
         FlatterEngine().require()  # fixed local dependency, before any private RNG
     public_size=len(header(b"PK",p))+4+(p.n*p.dimension+p.n)*((p.q.bit_length()+7)//8)
@@ -98,7 +100,8 @@ class ABBROMHIBE:
     @staticmethod
     def _reduction_options(p):
         if p.normalization in ("matrix-flatter-rootgs256-nativegram-exact074-v4",
-                              "matrix-flatter-allgs256-nativegram-exact074-v5"):
+                              "matrix-flatter-allgs256-nativegram-exact074-v5",
+                              "matrix-flatter-rootgs256-levelgs65536-nativegram-exact074-v6"):
             return {"preconditioner":"flatter","geometry_engine":"flint"}
         return ({"preconditioner": "flatter"} if p.normalization in (
             "matrix-flatter-lll-075-0501-exact074-v2",
@@ -229,7 +232,8 @@ class ABBROMHIBE:
         if ct.payload_bytes==0:return b""
         basis = validate_basis(pk,(sk_child.parent_identity,sk_child.child_identity),sk_child.basis)
         geometry = "flint" if p.normalization in ("matrix-flatter-rootgs256-nativegram-exact074-v4",
-                  "matrix-flatter-allgs256-nativegram-exact074-v5") else "python"
+                  "matrix-flatter-allgs256-nativegram-exact074-v5",
+                  "matrix-flatter-rootgs256-levelgs65536-nativegram-exact074-v6") else "python"
         sampler = MatrixFiniteGPV(basis,p.tau2_squared,epsilon_bits=p.epsilon_bits,
             options=finite_options(p),geometry_engine=geometry)
         if len(ct.blocks)*sampler.random_tape_bytes>p.max_tape_bytes:
