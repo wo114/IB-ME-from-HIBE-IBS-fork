@@ -1,0 +1,139 @@
+{
+  "artifact": "corrected-standalone-wang-pw",
+  "source_sha256": "2043096d809993f9a1f3ee7a5d2c0a689c1737dc4351ba380c0267f726ea1e89",
+  "driver_sha256": "41645b0c719053acb7a3ece73124e048c09b399cc5c8caadd767f4e2fffa4374",
+  "params": {
+    "name": "wang-pw-corrected-receipt",
+    "n": 2,
+    "q": 7,
+    "k": 3,
+    "w": 6,
+    "m_bar": 6,
+    "m": 12,
+    "s0": 3.0,
+    "s_del": 1.0,
+    "s_sig": 1.0,
+    "verify_width": 200.0,
+    "verify_bound": 848.528137423857,
+    "salt_bits": 128,
+    "internal_id_bits": 256,
+    "internal_msg_bits": 256,
+    "security_claim": "none",
+    "parameters_are_formal": false,
+    "backend_admitted": false
+  },
+  "environment": {
+    "python": "3.14.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel"
+  },
+  "checks": {
+    "master_trapdoor_equation": true,
+    "master_basis_complete": true,
+    "delegated_equations": true,
+    "user_keys_have_no_master_trapdoor_fields": true,
+    "all_user_bases_complete": true,
+    "all_honest_signatures_verify": true,
+    "distinct_hash_wrong_messages_rejected": true,
+    "nonzero_column_tampering_rejected": true,
+    "canonical_wire_roundtrip": true,
+    "wire_truncation_append_rejected": true,
+    "independent_extraction_uses_new_salt_fixture": true,
+    "independent_user_sign_verify_without_authority": true,
+    "same_key_r_reused_new_s_drawn_fixture": true,
+    "invalid_pw_types_and_short_salts_rejected": true,
+    "cross_identity_decisions_match_equations": true,
+    "all_passed": true
+  },
+  "measurements": {
+    "setup_seconds": 0.024582800000644056,
+    "master_basis_seconds": 0.29594079999878886,
+    "master_basis_index": 49,
+    "expected_index": 49,
+    "key_extract_seconds": [
+      0.4119119999995746,
+      0.3859040000006644,
+      0.3318737000008696,
+      0.38859730000149284
+    ],
+    "user_basis_seconds": [
+      0.9614193999987037,
+      1.089449400000376,
+      1.0723608000007516,
+      1.1520433000005141
+    ],
+    "honest_accepted": 16,
+    "honest_attempted": 16,
+    "message_hash_collisions": 0,
+    "distinct_wrong_messages_rejected": 16,
+    "sign_seconds": [
+      0.024520000000848086,
+      0.01640369999950053,
+      0.022167900000567897,
+      0.01811730000008538,
+      0.01787289999992936,
+      0.010293100000126287,
+      0.022601800001211814,
+      0.016685200000210898,
+      0.03239129999928991,
+      0.012548200000310317,
+      0.012355300001217984,
+      0.01854030000140483,
+      0.011929300000701915,
+      0.015826900000320165,
+      0.021000500000809552,
+      0.011543000000528991
+    ],
+    "max_signature_norm": 476.60360888268565,
+    "verify_bound": 848.528137423857,
+    "public_wire_bytes": 118,
+    "signature_wire_bytes": [
+      41,
+      59,
+      59,
+      59,
+      41,
+      59,
+      41,
+      59,
+      59,
+      59,
+      59,
+      41,
+      59,
+      59,
+      59,
+      59
+    ],
+    "cross_identity_attempts": 32,
+    "cross_identity_rejected": 32,
+    "cross_identity_accepted_toy_collisions": 0
+  },
+  "inputs": {
+    "identity_lengths_bytes": [
+      5,
+      3,
+      5,
+      4
+    ],
+    "message_lengths_bytes": [
+      0,
+      1,
+      11,
+      64
+    ],
+    "repetitions": "4 identities x 4 messages; single process; no accelerator",
+    "randomness": "public deterministic test fixture in driver",
+    "hash_model": "domain-separated SHAKE instantiation; no ideal-RO equivalence proof"
+  },
+  "boundaries": [
+    "research parameters only; no security-level claim or backend admission",
+    "SamplePre: G-trapdoor -> MP12 Lemma 5.3 full basis -> exact LLL -> GPV08 4.2",
+    "not MP12 Algorithm 3 perturbation sampling",
+    "scalar Gaussian: finite 12*sigma+1 window, Decimal(80), 128-bit thresholds, finite budget",
+    "GPV distribution requires width hypotheses; neither exact infinite Gaussian nor security proven",
+    "H2 has only 49 values here; message and cross-identity collisions are explicitly counted",
+    "user_basis_seconds measures lazy basis generation; sign_seconds uses prepared bases; no optimized benchmark claim"
+  ],
+  "elapsed_seconds": 8.33210329999929
+}
