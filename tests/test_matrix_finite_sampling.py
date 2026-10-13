@@ -328,3 +328,21 @@ def test_immutable_original_provider_differential():
         assert left.basis.basis_rows == right.basis.basis_rows
         assert left.draws_used == right.draws_used
         assert original_basis.to_basis(matrix(ZZ, basis.basis_rows)*2, basis).basis_rows == matrix_to_basis(matrix(ZZ, basis.basis_rows)*2, basis).basis_rows
+
+
+def test_exact_normalizer_native_projections_match_fixed_original_source():
+    original = Path(__file__).resolve().parents[1]/"test-results/matrix-source-before-native-vectors/basis.py"
+    if not original.is_file():
+        pytest.skip("explicit 0a9e512 Matrix normalizer source snapshot required")
+    name="ibme.lattice.matrix_sampling._normalizer_reference_0a9e512"
+    spec=importlib.util.spec_from_file_location(name,original)
+    module=importlib.util.module_from_spec(spec)
+    sys.modules[name]=module
+    spec.loader.exec_module(module)
+    from ibme.lattice.matrix_sampling import matrix_checked_lll
+    for dimension in (8,16,37):
+        public=ModMatrixReference((tuple((j*j+3)%101 for j in range(dimension)),),101)
+        basis=complete_kernel_basis(public)
+        before=module.matrix_checked_lll(basis,101**2*dimension)
+        after=matrix_checked_lll(basis,101**2*dimension)
+        assert before.basis_rows==after.basis_rows

@@ -1,0 +1,15 @@
+{
+  "schema": "ABB-POSITIVE-PARENT-INTERRUPTION/1",
+  "pid": 311,
+  "observed_utc": "2026-10-13T03:36:00.740841+00:00",
+  "command_verified": true,
+  "reason": "observed generic wide-field elimination exceeds observer 8 GiB RSS budget",
+  "observer_rss_cap_kib": 8388608,
+  "usage_kib": {
+    "VmHWM": 9733756,
+    "VmRSS": 9733756
+  },
+  "signal": "SIGINT",
+  "private_sampling_bytes": null,
+  "not_a_distribution_or_paper_failure": true
+}

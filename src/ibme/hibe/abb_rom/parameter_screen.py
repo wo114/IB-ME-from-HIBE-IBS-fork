@@ -10,6 +10,7 @@ from fractions import Fraction
 
 from ibme.core.errors import InvalidParameterError
 from ibme.lattice.research import FirstFiniteGaussian, FirstFiniteOptions
+from ibme.lattice.matrix_sampling import MatrixFiniteGaussian, MatrixFiniteOptions
 from .trapgen import ABBTrapGenParams, ceil_sqrt, bounded_integer
 
 
@@ -26,7 +27,9 @@ def abb_parameter_screen(root, *, epsilon_bits=128, error_bits=128,
     factor = (2 * m * (1 + 2**epsilon_bits) - 1).bit_length()
     root_gs = root.gs_squared_bound
     r_squared = 4 * root_gs * factor
-    scalar = FirstFiniteGaussian(r_squared, r_squared, options=opts)
+    scalar_class = FirstFiniteGaussian if isinstance(opts,FirstFiniteOptions) else MatrixFiniteGaussian
+    if not isinstance(opts,MatrixFiniteOptions):raise InvalidParameterError("explicit finite matrix/legacy options required")
+    scalar = scalar_class(r_squared, r_squared, options=opts)
     r_operator_squared = m**2 * scalar.radius**2  # deterministic Frobenius >= spectral
     sigma1_squared = 4 * root_gs * r_operator_squared * factor
     parent_gs_squared = sigma1_squared * m  # bounded RandBasis norm event
@@ -41,18 +44,26 @@ def abb_parameter_screen(root, *, epsilon_bits=128, error_bits=128,
     bits = 8 * seed_bytes
     sufficient = error_upper < Fraction(root.q, 5) and root.q >= 23
     blockers = []
-    if m > 192:
-        blockers.append("BasisDel/ToBasis existing hard dimension 192")
-    if m > 256:
-        blockers.append("public finite GPV existing hard dimension 256")
-    if root.q > 2**61 - 1:
-        blockers.append("existing SampleR hard modulus 2^61-1")
-    if sigma2_squared > 2**80:
+    legacy = isinstance(opts,FirstFiniteOptions)
+    dimension_cap = 192 if legacy else 1536
+    gpv_cap = 256 if legacy else 1536
+    q_cap = 2**61-1 if legacy else 2**256-1
+    scalar_cap = 2**80 if legacy else 2**192
+    if m > dimension_cap:
+        blockers.append("BasisDel/ToBasis existing hard dimension 192" if legacy else "Matrix ToBasis dimension exceeds 1536")
+    if m > gpv_cap:
+        blockers.append("public finite GPV existing hard dimension 256" if legacy else "Matrix GPV dimension exceeds 1536")
+    if root.q > q_cap:
+        blockers.append("existing SampleR hard modulus 2^61-1" if legacy else "Matrix SampleR modulus exceeds 2^256-1")
+    if sigma2_squared > scalar_cap:
         # Coordinate variance can be even larger if a GS length is <1. This
         # is a necessary support obstacle for any lattice of determinant q^n:
         # min GS^2 <= (q^(2n))^(1/m), handled explicitly below.
-        if sigma2_squared**m > (2**80)**m * root.q**(2 * root.n):
-            blockers.append("at least one leaf GPV scalar exceeds squared width 2^80")
+        if sigma2_squared**m > scalar_cap**m * root.q**(2 * root.n):
+            blockers.append("at least one leaf GPV scalar exceeds squared width 2^80" if legacy else
+                "at least one leaf GPV scalar exceeds squared width 2^192")
+    if not legacy and tau_squared**m > scalar_cap**m * root.q**(2*root.n):
+        blockers.append("at least one decryption GPV scalar exceeds squared width 2^192")
     if not sufficient:
         blockers.append("conditional ABB phase-noise sufficient bound fails")
     certificate = root.certificate()
@@ -76,6 +87,8 @@ def abb_parameter_screen(root, *, epsilon_bits=128, error_bits=128,
         "root_parent_leaf_dimensions": [m] * 3,
         "finite_R_scalar_certificate": scalar.certificate(), "blockers": blockers,
         "available_complete_execution": False,
+        "selected_finite_tool_profile": "legacy-first-suite" if legacy else "matrix-wide-v1",
+        "blockers_are_not_complete_runtime_admission": True,
         "paper_Theorem3_omega_constants_verified": False,
         "matrix_RO_indifferentiability_verified": False, "LWE_hardness_verified": False,
         "disclosure": "public sufficient bounds only; no private basis/GS or sampled outputs",

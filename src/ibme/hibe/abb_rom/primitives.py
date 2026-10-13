@@ -130,10 +130,13 @@ class FiniteSampleR:
             for attempt in range(1,self.max_matrices+1):
                 rows=tuple(tuple(self.scalar.sample(self.width_squared,0,rng=source)
                     for _ in range(self.dimension)) for _ in range(self.dimension))
-                if matrix(GF(self.q),rows).is_invertible():
+                if self._invertible(rows):
                     return SampleRResult(self.q,rows,attempt,self.width_squared)
             raise SamplingAbort("whole SampleR matrix attempts exhausted; no fallback")
         finally:self.last_entropy_bytes=source.bytes_used
+
+    def _invertible(self,rows):
+        return matrix(GF(self.q),rows).is_invertible()
 
     def certificate(self):
         return dict(profile=self.PROFILE_ID,source="ABB10 PDF9 Definition7/SampleR",
@@ -170,10 +173,15 @@ def _prepare_basis_del(parent_basis,transformation,limits,*,reduce_completion=Fa
     q=parent_basis.public.q
     if q<=2:raise InvalidParameterError("ABB-ROM requires odd prime q")
     r=signed_square(transformation,m,max_entry_bits=limits.max_entry_bits)
-    rmod=matrix(GF(q),r)
-    if not rmod.is_invertible():raise InvalidParameterError("R is singular modulo q")
-    a=matrix(GF(q),parent_basis.public.rows)
-    target=ModMatrixReference(tuple(tuple(int(x) for x in row) for row in (a*rmod.inverse()).rows()),q)
+    if limits != LEGACY_BASIS_LIMITS:
+        from ibme.lattice.matrix_sampling.modular import modular_inverse
+        inverse=modular_inverse(r,q)
+        target=ModMatrixReference(matrix(ZZ,parent_basis.public.rows)*inverse,q)
+    else:
+        rmod=matrix(GF(q),r)
+        if not rmod.is_invertible():raise InvalidParameterError("R is singular modulo q")
+        a=matrix(GF(q),parent_basis.public.rows)
+        target=ModMatrixReference(tuple(tuple(int(x) for x in row) for row in (a*rmod.inverse()).rows()),q)
     transformed=r*matrix(ZZ,parent_basis.basis_rows)
     if any(abs(int(x)).bit_length()>limits.max_entry_bits for x in transformed.list()):
         raise InvalidParameterError("transformed basis arithmetic resource budget")
@@ -276,6 +284,21 @@ class MatrixSampleR(FiniteSampleR):
     def __init__(self,q,dimension,width_squared,*,max_matrices=32,options=None,max_tape_bytes=2**44):
         super().__init__(q,dimension,width_squared,max_matrices=max_matrices,
             options=options,max_tape_bytes=max_tape_bytes)
+
+    def _invertible(self,rows):
+        from ibme.lattice.matrix_sampling.modular import modular_determinant
+        return modular_determinant(rows,self.q)!=0
+
+    def certificate(self):
+        result=super().certificate()
+        # Exact native arithmetic preserves the whole-matrix criterion.
+        # Allocation/native failures remain possible and input-dependent;
+        # the stochastic rank/scalar bound cannot cover those failures.
+        result.update(deterministic_modular_engine="PARI-matdetmod-exact-v1",
+            rank_and_scalar_failure_upper=result["total_failure_upper"],
+            total_failure_upper=None,runtime_arithmetic_failure_upper=None,
+            conditional_success_vs_ideal_invertible_matrix_tv_upper=None)
+        return result
 
 
 class MatrixBasisDel(FiniteBasisDel):

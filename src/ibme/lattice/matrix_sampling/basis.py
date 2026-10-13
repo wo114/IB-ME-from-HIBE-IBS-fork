@@ -8,7 +8,7 @@ randomized basis substitute, lattice truncation or security admission.
 
 from itertools import islice
 
-from sage.all import QQ, ZZ, matrix, identity_matrix
+from sage.all import QQ, ZZ, matrix, identity_matrix, vector
 
 from experiments.research.chkp_basis import KernelBasis, gram_schmidt_squared_lengths
 
@@ -109,7 +109,11 @@ No randomness, LLL approximation, mod-q basis reduction, or retry occurs.
         # Row HNF gives the same unique upper triangular R as R=V*Z,
         # without requesting the often enormous V. U=Z*R^-1 equals V^-1.
         # This keeps the exact same output T, using a triangular solve.
-        r = z.hermite_form()
+        # Predeclared exact p-adic engine with proof enabled. The default
+        # FLINT recursive HNF exhausted the observer budget at dimension1280.
+        # This computes the same unique row HNF, never a sampled substitute,
+        # stabilized determinant heuristic or retry of private randomness.
+        r = z.hermite_form(algorithm="padic",proof=True)
         if any(r[i,j] != 0 for i in range(d) for j in range(i)) or any(r[i,i] == 0 for i in range(d)):
             raise ArithmeticError("HNF unexpectedly lost its triangular full-rank form")
         rational_u = matrix(QQ, r).transpose().solve_right(matrix(QQ, z).transpose()).transpose()
@@ -202,13 +206,20 @@ def matrix_checked_lll(basis, gs_upper, *, limits=MATRIX_BASIS_LIMITS):
     reduced, column_transform = rows.transpose(), transform.transpose()
     _, lengths, weights = _gs_geometry(tuple(tuple(int(x) for x in row) for row in reduced.rows()),
         limits.max_entry_bits, limits.max_transform_content_bytes)
+    # Same exact projections, evaluated by native rational vector arithmetic.
+    # GS vectors do not change under upper triangular column size reduction.
+    # Cache current columns and fixed weights instead of a Python per-entry
+    # rational sum for every pair. This changes no nearest-integer decision.
+    weight_vectors = tuple(vector(QQ,row) for row in weights)
+    columns = list(vector(QQ,column) for column in reduced.columns())
     for j in range(reduced.ncols()):
         for i in reversed(range(j)):
-            mu = sum((x*w for x,w in zip(reduced.column(j),weights[i])), QQ(0))
+            mu = columns[j].dot_product(weight_vectors[i])
             nearest = ZZ((mu+QQ(1)/2).floor())
             if nearest:
                 reduced.add_multiple_of_column(j,i,-nearest)
                 column_transform.add_multiple_of_column(j,i,-nearest)
+                columns[j] -= nearest*columns[i]
     if original*column_transform != reduced:
         raise ArithmeticError("LLL exact integer transformation failed")
     result = KernelBasis(basis.public,reduced)
@@ -218,7 +229,7 @@ def matrix_checked_lll(basis, gs_upper, *, limits=MATRIX_BASIS_LIMITS):
         raise ArithmeticError("LLL public GS bound failed")
     for j in range(reduced.ncols()):
         for i in range(j):
-            mu = sum((x*w for x,w in zip(reduced.column(j),weights[i])), QQ(0))
+            mu = columns[j].dot_product(weight_vectors[i])
             if abs(mu) > QQ(1)/2:
                 raise ArithmeticError("LLL exact size reduction failed")
             if i == j-1 and lengths[j]+mu**2*lengths[i] < QQ(74)/100*lengths[i]:

@@ -17,6 +17,8 @@ _PROVIDERS = {
     "matrix_checked_lll": ("basis", "matrix_checked_lll"),
     "MatrixFiniteRandBasis": ("randbasis", "MatrixFiniteRandBasis"),
     "MatrixFiniteRandResult": ("randbasis", "MatrixFiniteRandResult"),
+    "matrix_modular_inverse": ("modular", "modular_inverse"),
+    "matrix_modular_determinant": ("modular", "modular_determinant"),
 }
 __all__ = list(_PROVIDERS)
 

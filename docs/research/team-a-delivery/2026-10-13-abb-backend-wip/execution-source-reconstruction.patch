@@ -1,0 +1,154 @@
+--- a/src/ibme/hibe/abb_rom/backend.py
++++ b/src/ibme/hibe/abb_rom/backend.py
+@@ -19 +19 @@
+-from .objects import ABBPublicKey, ABBMasterSecret, ABBLevel1Key, ABBLevel2Key, ABBCiphertext, header
++from .objects import ABBPublicKey, ABBMasterSecret, ABBLevel1Key, ABBLevel2Key, ABBCiphertext
+@@ -46,4 +45,0 @@
+-    public_size=len(header(b"PK",p))+4+(p.n*p.dimension+p.n)*((p.q.bit_length()+7)//8)
+-    minimum_master_size=len(header(b"MSK",p))+4+public_size+64+6*p.dimension**2+4
+-    if minimum_master_size>p.max_blob_bytes:
+-        raise InvalidParameterError("ABB master wire lower bound exceeds selected profile before entropy")
+@@ -60,2 +55,0 @@
+-    if report["blockers"]:
+-        raise InvalidParameterError("ABB known public finite-tool admission condition failed")
+@@ -72,3 +66 @@
+-    def __init__(self,*,persist_pending=None):
+-        if persist_pending is not None and not callable(persist_pending):
+-            raise TypeError("optional single-writer pending-state persister must be callable")
++    def __init__(self):
+@@ -76 +67,0 @@
+-        self._persist_pending = persist_pending
+@@ -108,3 +99 @@
+-                if (not isinstance(stored,ABBLevel1Key) or stored.identity!=identity or
+-                        not self.validate_key_binding(pk,stored)):
+-                    raise InvalidParameterError("cached ABB parent address binding failed")
++                if not self.validate_key_binding(pk,stored):raise InvalidParameterError("cached ABB parent binding failed")
+@@ -115,2 +103,0 @@
+-            if self._persist_pending is not None:
+-                self._persist_pending(msk)  # durable FAILED/PENDING before any issuance entropy
+@@ -140,3 +127 @@
+-                if (not isinstance(stored,ABBLevel2Key) or stored.parent_identity!=sk_parent.identity or
+-                        stored.child_identity!=identity or not self.validate_key_binding(pk,stored)):
+-                    raise InvalidParameterError("cached ABB child address binding failed")
++                if not self.validate_key_binding(pk,stored):raise InvalidParameterError("cached ABB child binding failed")
+@@ -147,2 +131,0 @@
+-            if self._persist_pending is not None:
+-                self._persist_pending(sk_parent)
+@@ -173,5 +156,2 @@
+-        encryptor = ABBBitEncryptor(public,scaled/p.q,uniform_trials=p.uniform_trials,
+-            tail_bits=p.finite_tail_bits,mass_bits=p.finite_mass_bits,precision_bits=p.finite_precision_bits)
+-        if 8*len(message)*encryptor.random_tape_bytes>p.max_tape_bytes:
+-            raise InvalidParameterError("ABB complete encryption tape exceeds selected profile")
+-        source = CheckedEntropy(SecureRandom() if rng is None else rng,p.max_tape_bytes)
++        encryptor = ABBBitEncryptor(public,scaled/p.q)
++        source = SecureRandom() if rng is None else rng
+@@ -200,3 +180 @@
+-        if len(ct.blocks)*sampler.random_tape_bytes>p.max_tape_bytes:
+-            raise InvalidParameterError("ABB complete decryption tape exceeds selected profile")
+-        source = CheckedEntropy(SecureRandom() if rng is None else rng,p.max_tape_bytes)
++        source = SecureRandom() if rng is None else rng
+@@ -209,5 +186,0 @@
+-                if len(x)!=p.dimension or any(sum(a*b for a,b in zip(row,x))%p.q!=target
+-                        for row,target in zip(basis.public.rows,pk.u0)):
+-                    raise ArithmeticError("ABB fresh SamplePre equation failed")
+-                if sum(a*a for a in x)>p.tau2_squared*p.dimension:
+-                    raise SamplingAbort("ABB SamplePre norm event failed; no retry")
+@@ -235 +208 @@
+-        except (TypeError,ValueError,ArithmeticError,IBMEError,SamplingAbort):
++        except (ValueError,ArithmeticError,IBMEError,SamplingAbort):
+--- a/src/ibme/hibe/abb_rom/identity.py
++++ b/src/ibme/hibe/abb_rom/identity.py
+@@ -72,3 +71,0 @@
+-    options = MatrixFiniteOptions(tail_bits=params.finite_tail_bits,mass_bits=params.finite_mass_bits,
+-        precision_bits=params.finite_precision_bits,gaussian_abort_bits=params.finite_abort_bits,
+-        max_uniform_trials=params.uniform_trials,max_tape_bytes=params.max_tape_bytes)
+@@ -75,0 +73,3 @@
++        options = MatrixFiniteOptions(tail_bits=params.finite_tail_bits,mass_bits=params.finite_mass_bits,
++            precision_bits=params.finite_precision_bits,gaussian_abort_bits=params.finite_abort_bits,
++            max_uniform_trials=params.uniform_trials,max_tape_bytes=params.max_tape_bytes)
+@@ -78 +78 @@
+-    if (type(sampler) is not MatrixSampleR or sampler.q != params.q or sampler.dimension != params.dimension or
++    if (sampler.q != params.q or sampler.dimension != params.dimension or
+@@ -80,2 +80 @@
+-            sampler.max_matrices != params.sample_r_max_matrices or
+-            sampler.max_tape_bytes != params.max_tape_bytes or sampler.scalar.options != options):
++            sampler.max_matrices != params.sample_r_max_matrices):
+--- a/src/ibme/hibe/abb_rom/key_validation.py
++++ b/src/ibme/hibe/abb_rom/key_validation.py
+@@ -5 +5 @@
+-from sage.all import ZZ, matrix
++from sage.all import GF, ZZ, matrix
+@@ -9 +8,0 @@
+-from ibme.lattice.matrix_sampling.modular import modular_inverse
+@@ -19 +18 @@
+-    result = matrix(ZZ,a)
++    result = matrix(GF(params.q),a)
+@@ -22 +21 @@
+-        result = (result*modular_inverse(transform,params.q)).apply_map(lambda x:x%params.q)
++        result = result*matrix(GF(params.q),transform).inverse()
+--- a/src/ibme/hibe/abb_rom/objects.py
++++ b/src/ibme/hibe/abb_rom/objects.py
+@@ -126,2 +125,0 @@
+-        if len(header(b"PK",p))+4+(p.n*p.dimension+p.n)*((p.q.bit_length()+7)//8)>p.max_blob_bytes:
+-            raise SerializationError("ABB public wire exceeds selected profile budget")
+@@ -269,3 +266,0 @@
+-            # State is mutable: re-check current addresses at every write,
+-            # rather than trusting only the initial constructor.
+-            self.__post_init__()
+@@ -306 +300,0 @@
+-            self.__post_init__()
+@@ -335,3 +328,0 @@
+-        p=self.params
+-        if len(header(b"CT",p))+64+4+8*self.payload_bytes*(p.dimension+1)*((p.q.bit_length()+7)//8)>p.max_blob_bytes:
+-            raise SerializationError("ABB ciphertext wire exceeds selected profile budget")
+--- a/src/ibme/hibe/abb_rom/primitives.py
++++ b/src/ibme/hibe/abb_rom/primitives.py
+@@ -133 +133 @@
+-                if self._invertible(rows):
++                if matrix(GF(self.q),rows).is_invertible():
+@@ -137,3 +136,0 @@
+-
+-    def _invertible(self,rows):
+-        return matrix(GF(self.q),rows).is_invertible()
+@@ -176,9 +173,4 @@
+-    if limits != LEGACY_BASIS_LIMITS:
+-        from ibme.lattice.matrix_sampling.modular import modular_inverse
+-        inverse=modular_inverse(r,q)
+-        target=ModMatrixReference(matrix(ZZ,parent_basis.public.rows)*inverse,q)
+-    else:
+-        rmod=matrix(GF(q),r)
+-        if not rmod.is_invertible():raise InvalidParameterError("R is singular modulo q")
+-        a=matrix(GF(q),parent_basis.public.rows)
+-        target=ModMatrixReference(tuple(tuple(int(x) for x in row) for row in (a*rmod.inverse()).rows()),q)
++    rmod=matrix(GF(q),r)
++    if not rmod.is_invertible():raise InvalidParameterError("R is singular modulo q")
++    a=matrix(GF(q),parent_basis.public.rows)
++    target=ModMatrixReference(tuple(tuple(int(x) for x in row) for row in (a*rmod.inverse()).rows()),q)
+@@ -288,15 +279,0 @@
+-    def _invertible(self,rows):
+-        from ibme.lattice.matrix_sampling.modular import modular_determinant
+-        return modular_determinant(rows,self.q)!=0
+-
+-    def certificate(self):
+-        result=super().certificate()
+-        # Exact native arithmetic preserves the whole-matrix criterion.
+-        # Allocation/native failures remain possible and input-dependent;
+-        # the stochastic rank/scalar bound cannot cover those failures.
+-        result.update(deterministic_modular_engine="PARI-matdetmod-exact-v1",
+-            rank_and_scalar_failure_upper=result["total_failure_upper"],
+-            total_failure_upper=None,runtime_arithmetic_failure_upper=None,
+-            conditional_success_vs_ideal_invertible_matrix_tv_upper=None)
+-        return result
+-
+--- a/src/ibme/hibe/abb_rom/params.py
++++ b/src/ibme/hibe/abb_rom/params.py
+@@ -108,9 +107,0 @@
+-    @property
+-    def identity_bytes(self):
+-        """Public assembly/Hybrid capability alias; no Params conversion."""
+-        return self.identity_max_bytes
+-
+-    @property
+-    def max_message_bytes(self):
+-        return self.payload_max_bytes
+-

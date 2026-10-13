@@ -171,7 +171,10 @@ class MatrixFiniteGPV:
             raise ValueError("width_squared must be positive")
         self.basis = _bounded_basis(basis, limit, input_bits, self._content_cap)
         self.dimension = self.basis.public.ncols
-        self._columns, lengths, self._weights = _gs_geometry(self.basis.basis_rows, opts.rational_bits, self._content_cap)
+        self._columns, lengths, weights = _gs_geometry(self.basis.basis_rows, opts.rational_bits, self._content_cap)
+        # Retain the same exact rational weights in native vectors. Every
+        # projection/center and entropy decision remains exactly unchanged.
+        self._weights = tuple(vector(QQ,row) for row in weights)
         scale = 1 << self.epsilon_bits
         self._smoothing_factor = (2 * self.dimension * (1 + scale) - 1).bit_length()
         if self.width_squared < 4 * max(lengths) * self._smoothing_factor:
@@ -223,10 +226,10 @@ class MatrixFiniteGPV:
     def sample(self, syndrome, *, rng=None) -> tuple[int, ...]:
         target = self._syndrome(syndrome)
         t = self._lift(target)
-        center, v = -t, vector(ZZ, self.dimension)
+        center, v = vector(QQ,-t), vector(ZZ, self.dimension)
         source = CheckedEntropy(SecureRandom() if rng is None else rng, self.random_tape_bytes)
         for i in reversed(range(self.dimension)):
-            projected = sum((x * w for x, w in zip(center, self._weights[i])), QQ(0))
+            projected = center.dot_product(self._weights[i])
             z = self.scalars[i].sample(self._widths[i], projected, rng=source)
             step = z * self._columns[i]
             center -= step

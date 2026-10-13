@@ -1,0 +1,76 @@
+{
+  "schema": "IBME-A2-BACKEND-WIP-AUDIT/1",
+  "date": "2026-10-13",
+  "baseline": "0a9e512a204b4e81c844b6998f4e43205cdb2f60",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "full_positive_HIBE_lifecycle": false,
+  "final_source_sha256": {
+    "src/ibme/hibe/abb_rom/__init__.py": "f71b36a98291ae4fd3301f7790527cdc2b5049479347100db4051c71d92a822e",
+    "src/ibme/hibe/abb_rom/backend.py": "0987d7c1aeef984e58ab68867383a2a28b93f22c45064221c40bcdd56b719b00",
+    "src/ibme/hibe/abb_rom/identity.py": "77f2a3375fb6d2ce05f91287a529bd0de811fdb1eaef4730ac4b53159a98ad9b",
+    "src/ibme/hibe/abb_rom/key_validation.py": "05c6b4c1718a77dfcd222e12a04792714275711f504384331a0c5a7d2cdb1622",
+    "src/ibme/hibe/abb_rom/objects.py": "6ba821f920cf610d73639c771dce79da8928663b45918da99991b7feacee6bb2",
+    "src/ibme/hibe/abb_rom/params.py": "49506f37c7a3516b06e5b80b4bd55815828db1daf0915b035d9c0cdd0ba2af54",
+    "src/ibme/hibe/abb_rom/profiles.py": "3f4bb4a2f8053a9a1a5e0ca9537f721b4e5184361ded8e186d3deb73281cda33",
+    "src/ibme/hibe/abb_rom/registration.py": "8cc7ce96a33e6438af9760642257e2b76ea4a8a657f6aab39763409fa8969492",
+    "src/ibme/hibe/abb_rom/primitives.py": "b3fbf01e6e5d9661026fc33d58f11bde179e8ebe89a34285edccbebf84c0ad6e",
+    "src/ibme/hibe/abb_rom/parameter_screen.py": "3ad9f7e2a24990af526e49c458c22767b410bd23e66ce5b0c2e662b88cd74d6a",
+    "src/ibme/hibe/abb_rom/trapgen.py": "e632c46da9c563b3ee3d6df18b957d33f1712207f4cf16600415e358e328320a",
+    "src/ibme/hibe/abb_rom/bit_encryption.py": "a38121004f3a06ad85679edccda9e58cb460b9eb7fa6d6bec23c6e76382369a6",
+    "src/ibme/lattice/matrix_sampling/__init__.py": "db15615ccef53acf421db6f65f45e2fb865445f66309f3c44bb133694de3f71b",
+    "src/ibme/lattice/matrix_sampling/scalar.py": "67a4e027bf24702a862cb2fffde4874726549fe18046657e17876c16a467acc0",
+    "src/ibme/lattice/matrix_sampling/gpv.py": "fca4e69f9e8c251ddd954f66eff5ac92196f5684143406ec147e79f44f5f3dd4",
+    "src/ibme/lattice/matrix_sampling/basis.py": "ddf9a119ba18ba87b0059c8b05f465ef1eb38317e4302b959d0e68ad3cfe3e20",
+    "src/ibme/lattice/matrix_sampling/randbasis.py": "5a5425c35d54d639f2360bee058b570dba2a94e74c09f7b48d2927c17886c93d",
+    "src/ibme/lattice/matrix_sampling/modular.py": "f97bb1e133c91f3093546de87fb48b2e4ba82bc79a46c8f1dd15c9b3c112fd4e",
+    "experiments/research/abb_rom/hibe_probe.py": "f68edc431df438a969c844ead7728c182963be6e5466951aff58a9b8eb7a7a34"
+  },
+  "original_WIP_execution_source_reconstruction": {
+    "patch": "execution-source-reconstruction.patch",
+    "git_apply_option": "--unidiff-zero",
+    "applied_to_current_source_in_new_ignored_directory": true,
+    "byte_exact_verification": true,
+    "reconstructed_sha256": {
+      "src/ibme/hibe/abb_rom/backend.py": "8503396be45dc5aafec5fafb80c6df23f4196ec59323a282ff2a371c7dcb6644",
+      "src/ibme/hibe/abb_rom/identity.py": "77e892bcc44233b7c8309091372644c2b8b6d444ce2dd0add09755ff403f805c",
+      "src/ibme/hibe/abb_rom/key_validation.py": "8aeb7a898d9d12073343837a1657bbaa6dca1da32ff46027c54139b17c6ffaf7",
+      "src/ibme/hibe/abb_rom/objects.py": "8e17c9eca27196c719c1bd7a4918e58fe99239c0c0af0aac5a90081492f7a6cd",
+      "src/ibme/hibe/abb_rom/primitives.py": "7dd185bf10e125b76396a240eea093e192656de17593ed6a2e89c39d4daf1d3a",
+      "src/ibme/hibe/abb_rom/params.py": "8bb3e3d300c0d8b5bb0553a24fd89beaf1105b4af87091e36a5c86751abcd02e"
+    },
+    "remaining_executed_providers": "0a9e512 committed sources; initial native modular observation did not capture full source pin"
+  },
+  "tests": [
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q -rs --tb=short tests/test_abb_rom_config_oracle.py tests/test_abb_rom_objects.py tests/test_abb_rom_backend_state.py tests/test_abb_rom_real_saved_state.py tests/test_matrix_modular.py tests/test_matrix_finite_sampling.py tests/test_first_suite_finite_sampling.py tests/test_first_suite_compact_delegation.py tests/test_chkp_tobasis.py tests/test_chkp_randbasis.py tests/test_abb_rom_primitives.py tests/test_abb_rom_trapgen_and_bits.py tests/test_abb_rom_parameter_screen.py tests/test_public_research_api.py --junitxml=test-results/abb-backend-sage-final.junit.xml",
+      "result": "221 passed, 3 skipped",
+      "junit": "sage.junit.xml",
+      "skips": "two old native private witnesses and one old 84-dimensional private witness absent"
+    },
+    {
+      "command": "$env:PYTHONPATH=\"src;.\"; python -m pytest -p no:cacheprovider -q -rs --tb=short tests/test_abb_rom_config_oracle.py tests/test_abb_rom_objects.py tests/test_public_research_api.py tests/test_assembly.py tests/test_cli_selection.py tests/test_cli_receiver_state.py tests/test_cli_state_lock.py --junitxml=test-results/abb-backend-windows-final.junit.xml",
+      "result": "137 passed, 8 skipped",
+      "junit": "windows.junit.xml",
+      "skips": "explicit Sage dependencies"
+    }
+  ],
+  "true_private_witness_restore": "test_abb_rom_real_saved_state.py passed on actual saved n1/q160/m1280 root and failed parent state, new private entropy0",
+  "real_runs": {
+    "setup": "positive-setup.json",
+    "parent": "interrupted-parent.json",
+    "interrupt": "interrupt-request.json",
+    "public_modular_only": "public-modular-observation.json",
+    "public_estimated_selection": "compatible-profile-screen.json"
+  },
+  "selected_new_instance_full_configuration": "selected-q104-params.json",
+  "cautions": [
+    "historical Setup and interrupted parent predate final source; do not relabel them final-source successes",
+    "last native frame was FLINT integer HNF; the interrupt request retained an earlier wide-field reason",
+    "old parent private entropy count unknown; original private state never retried",
+    "only explicit public algebra issuance instrumentation in state tests; not actual BasisDel evidence",
+    "condition noise sufficient does not cover root/distribution/resource/model or hardness obligations",
+    "new q104 single-address profile is an independent predeclared n1 negative control, not a fallback"
+  ]
+}

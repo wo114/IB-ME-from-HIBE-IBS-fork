@@ -1,0 +1,17 @@
+{
+  "schema": "ABB-POSITIVE-PARENT/1",
+  "status": "failed",
+  "root_generations": 0,
+  "identity_bytes": 3,
+  "full_HIBE_lifecycle": false,
+  "failure_type": "KeyboardInterrupt",
+  "failed_address_retained": true,
+  "seconds": 1325.744592919,
+  "peak_rss_kib": 9732540,
+  "source_sha256": {
+    "src/ibme/hibe/abb_rom/backend.py": "8503396be45dc5aafec5fafb80c6df23f4196ec59323a282ff2a371c7dcb6644",
+    "src/ibme/hibe/abb_rom/identity.py": "77e892bcc44233b7c8309091372644c2b8b6d444ce2dd0add09755ff403f805c",
+    "src/ibme/hibe/abb_rom/key_validation.py": "8aeb7a898d9d12073343837a1657bbaa6dca1da32ff46027c54139b17c6ffaf7",
+    "src/ibme/hibe/abb_rom/objects.py": "8e17c9eca27196c719c1bd7a4918e58fe99239c0c0af0aac5a90081492f7a6cd"
+  }
+}
