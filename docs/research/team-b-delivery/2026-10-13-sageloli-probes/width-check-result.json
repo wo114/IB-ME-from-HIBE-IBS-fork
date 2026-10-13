@@ -1,0 +1,36 @@
+[
+  {
+    "kind": "matrix",
+    "C_upper": 38,
+    "epsilon_bits": 64,
+    "r_squared": 16,
+    "sid": 16384,
+    "ssign": 268435456,
+    "table_width_inequalities_pass": true,
+    "sid_requirement": "12590.1414080130328994265627568408767594895513444823182271?",
+    "sid_smoothing_requirement": "46.8213127017680510481132870219653616974799326680650294613?",
+    "ssign_requirement": "1.39867493082709810983861771123412752863794417083355190694?e8",
+    "ssign_smoothing_requirement": "47.0193627632731429659374289592558326971094419430047238813?",
+    "smoothing_r_squared_requirement": "15.00322081038030835097629299753004696174269640640950275761?",
+    "scope": "Width formulas only; security, regularity and numerical Gaussian TV unproved",
+    "security_claim": "none",
+    "backend_admitted": false
+  },
+  {
+    "kind": "ring",
+    "C_upper": 38,
+    "epsilon_bits": 64,
+    "r_squared": 16,
+    "sid": 262144,
+    "ssign": 8589934592,
+    "table_width_inequalities_pass": true,
+    "sid_requirement": "174839.943655344671177478182032541851135800680108633297488?",
+    "sid_smoothing_requirement": "47.6484545370711751920303445313656591983731961692375029079?",
+    "ssign_requirement": "7.1716743650101106955002812598218749428529936189658938343?e9",
+    "ssign_smoothing_requirement": "47.8131221449501671355330934109892186914327298949929138582?",
+    "smoothing_r_squared_requirement": "15.4819835153597763135747791296495134541460844308020873029?",
+    "scope": "Width formulas only; security, regularity and numerical Gaussian TV unproved",
+    "security_claim": "none",
+    "backend_admitted": false
+  }
+]
