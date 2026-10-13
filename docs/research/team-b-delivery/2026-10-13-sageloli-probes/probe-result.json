@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "scope": "real sampling math probes, not complete IBS",
+  "environment": {
+    "python": "3.12.13",
+    "sage": "10.7",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "rng": "DeterministicRandom test streams"
+  },
+  "results": [
+    {
+      "kind": "matrix",
+      "parameters": {
+        "n": 2,
+        "k": 4,
+        "m": 16
+      },
+      "q": 81,
+      "root_coefficient_dimension": 16,
+      "coefficient_dimension": 24,
+      "delegation_sample_calls": 8,
+      "perturbation_mode": "global",
+      "block_size": 1,
+      "sid_squared": 268435456,
+      "ssign_squared": 72057594037927936,
+      "r_squared": 16,
+      "timings_seconds": {
+        "root_generation_and_plan": 0.015227649000010501,
+        "delegation": 0.11804703500000358,
+        "user_plan": 0.027061641000003078,
+        "signature_math": 0.0031342830000085087,
+        "total": 0.16374855499999796
+      },
+      "root_relation": true,
+      "delegated_relation": true,
+      "sign_equation": true,
+      "raw_split_norm_passed": true,
+      "centered_split_norm_passed": true,
+      "profile_norm_check_is_vacuous": true,
+      "continuous_tv_certified": false,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "complete_ibs_backend": false
+    },
+    {
+      "kind": "ring",
+      "parameters": {
+        "d": 4,
+        "k": 9,
+        "l": 22
+      },
+      "q": 19683,
+      "root_coefficient_dimension": 88,
+      "coefficient_dimension": 124,
+      "delegation_sample_calls": 9,
+      "perturbation_mode": "block-schur",
+      "block_size": 4,
+      "sid_squared": 68719476736,
+      "ssign_squared": 73786976294838206464,
+      "r_squared": 16,
+      "timings_seconds": {
+        "root_generation_and_plan": 1.94480905799999,
+        "delegation": 0.2057988789999996,
+        "user_plan": 13.312549955999998,
+        "signature_math": 0.07838472799998897,
+        "total": 15.54185769
+      },
+      "root_relation": true,
+      "delegated_relation": true,
+      "sign_equation": true,
+      "raw_split_norm_passed": true,
+      "centered_split_norm_passed": true,
+      "profile_norm_check_is_vacuous": true,
+      "continuous_tv_certified": false,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "complete_ibs_backend": false
+    }
+  ]
+}
