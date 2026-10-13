@@ -10,7 +10,8 @@
 | 已完成实物契约 | 真实五对象/公钥身份绑定、源未变、固定树恢复私有熵0、wire/context控制、32 B固定测试熵重放；3 passed，56.16 s，无skip | [JUnit](evidence/real-contract-tests.xml) |
 | ABB+Luo+C64B/compact+Hybrid+BYTEAUTH | 同一真实ABB密钥，32 B应用消息，Luo独立参数；诚实恢复、三个身份错配、截断/追加/重复/版本/字节/OTS签名修改、新OTS重签、可解析IBS签名修改、随机IBS伪造、组合对象恢复共22检查通过，320.500262 s | [组合收据](evidence/abb-luo-combination.json)，冻结e712713 |
 | A登记提案 | 现有BackendSpec的完整参数/四密钥decoder/密文reader/尺寸/绑定/缓存及前置依赖检查；调用者自有registry装配q26+Luo不消耗私有熵，2 passed | [JUnit](evidence/registration-tests.xml)，默认公共registry由统筹接入 |
-| 两接收者×两发送者 | 同一完成根的独立状态副本，实际生成额外Carol父和三个新叶，四叶诚实恢复及真正错误私钥数学对照、完整树恢复 | 正在执行，尚不计通过 |
+| 两接收者×两发送者 | 同一完成根的独立状态副本，实际生成额外Carol父和三个新叶；四条完整32 B诚实路径、真正错误接收/发送/双错私钥的数学对照、四叶绑定与完整树恢复私有熵0，共26检查通过，945.580302 s | [两层多地址收据](evidence/two-by-two.json)，冻结e50882e；运行数学/采样源码未变，runner在Git中从该提交至归档也未变 |
+| 真实字节API的公开n1攻击 | 只读取public.bin，默认系统随机数新加密32 B，攻击仅用公钥/身份及密文唯一恢复256原始比特；新根/私钥/私钥文件读取均0，10.781997 s | [负控收据](evidence/public-attack.json)，这确认当前研究配置不安全 |
 
 真实系统随机数与固定测试熵分别记录，不能把两者重复测试数相加。原语收据的唯一根、同组配置、完整输入和结束源码/二进制指纹均核对；没有把两个失败实例或不同配置的阶段拼成成功。原始私钥、矩阵、seed、密文和运行状态都留在忽略的本地私有目录。
 
@@ -50,3 +51,5 @@ export PYTHONPATH="$PWD/src:$PWD"
 代码交接分组：`src/ibme/hibe/abb_rom/{backend,params,profiles,primitives,parameter_screen,key_validation,registration}.py`；`src/ibme/lattice/matrix_sampling/{gpv,basis,exact_gram}.py`；`experiments/research/abb_rom/`三个真实probe与本地C++构建；对应六组新tests和研究证据。当前实现提交d6aea49、988bc13、27b7b78、94a3d3d、732b032、e712713、e50882e、b56bd72、986e786；合并f5ca17a保留已独立审核合并的PR14、16—20及其模块边界。
 
 统筹可直接把`abb_rom.registration.backend_spec()`加入调用者自有registry，选择`n1-q26-level-quality-research`、Luo的`c64b_params()`、compact/Hybrid/BYTEAUTH；保留所有none/false。公共默认registry/CLI及正式安全准入由统筹处理；A没有擅自替换其它后端默认或原始状态。
+
+CI旧27b7b78有两项发送者快照发布测试要求失败后自动重试，与已合入的`transport-and-state`§2.3明确保留pending/禁止重发冲突；实现符合现规范。本轮只修旧测试断言，保留主状态先提交、临时文件清理、主缓存是否成功保存的原检查，并增加pending保留、重试在重新加载/采样前拒绝、无密钥发布和主字节不变的检查。Windows相关45 passed/3需要WSL的skip，14.46秒；不修改CLI或放松状态规则，见[JUnit](evidence/state-transaction-tests.xml)。
