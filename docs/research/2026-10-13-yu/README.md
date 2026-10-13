@@ -92,7 +92,7 @@ Yu 的标准模型安全定理是文献结论；这份实现尚未核齐密钥�
 
 ## 7. 同步最新上游后的发布复核
 
-本次以 `upstream/main e030d05` 为发布基线，通过 fork 的 `codex/yu-ibs-standalone-2026-10-13` 分支向队长仓库提交 PR。此处记录发布复核；前六节中的原始批次和失败记录保持原样，不把多次运行合并成更大的通过数。
+本次以 `upstream/main e030d05` 为发布基线，通过 [wo114/IB-ME-from-HIBE-IBS-fork](https://github.com/wo114/IB-ME-from-HIBE-IBS-fork) 的 `codex/yu-ibs-standalone-2026-10-13` 分支向队长仓库提交 PR。旧同名仓库被 GitHub 标记为独立仓库，跨库 PR 被拒绝；现保留旧库并另建正确关联的 fork。此处记录发布复核；前六节中的原始批次和失败记录保持原样，不把多次运行合并成更大的通过数。
 
 上游把三个格工具实现迁移到 `src/ibme/lattice/chkp/`，原实验目录成为兼容入口。发布前先合入该变更，然后重跑同一组 **472 项测试，全部通过、无跳过**。16 个警告仍仅为 JUnit 属性格式兼容提示。可核对[本次测试报告](publication-pytest.xml)；只移除了机器主机名，断言和测试结果未删改。
 
