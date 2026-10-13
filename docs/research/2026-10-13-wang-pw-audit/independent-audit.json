@@ -1,0 +1,241 @@
+{
+  "scope": "standalone code only; no interface integration or formal parameter selection",
+  "subject_sha256": "119f1168003b99a39172ce1cb2513658a2ad56ca4925b6c33bcdeb09890c1b8d",
+  "expected_frozen_sha256": "119f1168003b99a39172ce1cb2513658a2ad56ca4925b6c33bcdeb09890c1b8d",
+  "environment": {
+    "python": "3.14.7",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "parameters": {
+    "name": "codex-independent-audit",
+    "n": 2,
+    "q": 7,
+    "k": 3,
+    "w": 6,
+    "m_bar": 6,
+    "m": 12,
+    "s0": 3.0,
+    "s_del": 1.0,
+    "s_sig": 1.0,
+    "verify_width": 200.0,
+    "verify_bound": 848.528137423857,
+    "salt_bits": 128,
+    "internal_id_bits": 256,
+    "internal_msg_bits": 256,
+    "security_claim": "none",
+    "parameters_are_formal": false,
+    "backend_admitted": false
+  },
+  "checks": [
+    {
+      "id": "C01",
+      "requirement": "honest standalone signature verifies",
+      "status": "PASS",
+      "observed": {}
+    },
+    {
+      "id": "C02",
+      "requirement": "delegated trapdoor satisfies F*T=G",
+      "status": "PASS",
+      "observed": {}
+    },
+    {
+      "id": "F01",
+      "requirement": "issued user key must not reveal the master trapdoor",
+      "status": "FAIL",
+      "observed": {
+        "master_reconstructed_exactly": true,
+        "unissued_identity_signature_accepted": true
+      }
+    },
+    {
+      "id": "F02",
+      "requirement": "paper DelTrap path must use the supplied master trapdoor",
+      "status": "FAIL",
+      "observed": {
+        "public_only_extraction_and_signing": true,
+        "limitation": "toy execution plus source dataflow; not a general SIS attack"
+      }
+    },
+    {
+      "id": "F03",
+      "requirement": "H1/H2 transcripts must include the actual mpk as in Wang Fig.4",
+      "status": "FAIL",
+      "observed": {
+        "different_public_matrices": true,
+        "H1_identical": true,
+        "H2_identical": true,
+        "limitation": "dependency check, not a cross-public-key forgery test"
+      }
+    },
+    {
+      "id": "F04",
+      "requirement": "coset sampler must target center -particular before adding particular",
+      "status": "FAIL",
+      "observed": {
+        "expected": [
+          0,
+          -1
+        ],
+        "actual": [
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "F05",
+      "requirement": "GPV center updates must subtract z_i times the original basis vector",
+      "status": "FAIL",
+      "observed": {
+        "expected_second_center": "-1/2",
+        "actual_second_center": "0"
+      }
+    },
+    {
+      "id": "F06",
+      "requirement": "GPV coordinate widths must be sigma / GS norm",
+      "status": "FAIL",
+      "observed": {
+        "expected": [
+          2.0,
+          3.0
+        ],
+        "actual": [
+          6.0,
+          6.0
+        ]
+      }
+    },
+    {
+      "id": "F07",
+      "requirement": "gadget sampler must cover the modular coset, including short lifts",
+      "status": "FAIL",
+      "observed": {
+        "valid_missing_vector": [
+          -1,
+          0,
+          0
+        ],
+        "witness_syndrome": 6,
+        "omitted_mass_in_coordinate_box": 0.734932121950828,
+        "scope": "q=7,k=3,sigma=1, coordinate box [-8,8]^3; not an infinite-tail bound"
+      }
+    },
+    {
+      "id": "F08",
+      "requirement": "round(L * integer Gaussian) is not the MP12 discrete perturbation law",
+      "status": "FAIL",
+      "observed": {
+        "source_contains_integer_gaussian_rounding": true,
+        "diagonal_factor": 2,
+        "actual_odd_probability": 0,
+        "target_D_Z_sigma2_odd_mass_in_box": 0.499999997324712,
+        "scope": "constructive support counterexample; full covariance equality not established"
+      }
+    },
+    {
+      "id": "F09",
+      "requirement": "dependent-input LLL must preserve the integer span",
+      "status": "FAIL",
+      "observed": {
+        "input_generators": [
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "actual": [
+          [
+            2
+          ]
+        ],
+        "expected_lattice": "Z"
+      }
+    },
+    {
+      "id": "F10",
+      "requirement": "kernel completeness predicate must check both inclusions",
+      "status": "FAIL",
+      "observed": {
+        "actual": true,
+        "witness": "basis [1] is not in kernel of A=[1] mod 7 (kernel is 7Z)"
+      }
+    },
+    {
+      "id": "F11",
+      "requirement": "accepted Gaussian input domain must not contain impossible rejection loops",
+      "status": "FAIL",
+      "observed": {
+        "center": "1/2",
+        "sigma": 0.01,
+        "largest_possible_acceptance_threshold": 0.0177445678223346,
+        "smallest_squared_distance": 0.25,
+        "loop_entered": false
+      }
+    },
+    {
+      "id": "F12",
+      "requirement": "verification must reject over-norm integer vectors without float overflow",
+      "status": "FAIL",
+      "observed": {
+        "returned": null,
+        "raised": "OverflowError"
+      }
+    },
+    {
+      "id": "F13",
+      "requirement": "integer signature constructor must reject non-integer coordinates",
+      "status": "FAIL",
+      "observed": {
+        "fractional_coordinate_silently_truncated": true
+      }
+    },
+    {
+      "id": "F14",
+      "requirement": "public-key wire parser must reject noncanonical coefficients >=q",
+      "status": "FAIL",
+      "observed": {
+        "alternate_encoding_of_same_public_key_accepted": true
+      }
+    },
+    {
+      "id": "F15",
+      "requirement": "signature wire parser must enforce canonical coefficient width",
+      "status": "FAIL",
+      "observed": {
+        "alternate_encoding_of_same_signature_accepted": true
+      }
+    },
+    {
+      "id": "F16",
+      "requirement": "outer verifier must reject invalid identity types without throwing",
+      "status": "FAIL",
+      "observed": {
+        "returned": null,
+        "raised": "TypeError"
+      }
+    },
+    {
+      "id": "F17",
+      "requirement": "requested salt entropy must not be silently floored to whole bytes",
+      "status": "FAIL",
+      "observed": {
+        "requested_bits": 9,
+        "actual_generated_bits": 8
+      }
+    },
+    {
+      "id": "C03",
+      "requirement": "zero signature is rejected",
+      "status": "PASS",
+      "observed": {}
+    }
+  ],
+  "passed": 3,
+  "failed": 17,
+  "verdict": "FAIL",
+  "seconds": 6.194917500000884
+}
