@@ -118,6 +118,7 @@ class MatrixFiniteGaussian:
     MAX_SQUARED_WIDTH = 2**192
     OPTIONS_TYPE = MatrixFiniteOptions
     PROFILE_ID = "MATRIX-FINITE-DGS/1"
+    WIDTH_DOMAIN_ERROR = "Public squared widths exceed the explicitly selected finite profile"
 
     def __init__(self, width_min_squared, width_max_squared, *, options=None):
         self.options = self.OPTIONS_TYPE() if options is None else options
@@ -126,7 +127,7 @@ class MatrixFiniteGaussian:
         self.v_min = exact_rational(width_min_squared, "minimum squared width", max_bits=self.options.rational_bits)
         self.v_max = exact_rational(width_max_squared, "maximum squared width", max_bits=self.options.rational_bits)
         if not 1 <= self.v_min <= self.v_max <= self.MAX_SQUARED_WIDTH:
-            raise ValueError("Public squared widths exceed the explicitly selected finite profile")
+            raise ValueError(self.WIDTH_DOMAIN_ERROR)
         opts = self.options
         self.field = RealIntervalField(opts.precision_bits)
         self.cap_bits = max(opts.mass_bits, opts.tail_bits, opts.precision_bits)+64

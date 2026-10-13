@@ -1,0 +1,79 @@
+{
+  "schema": "IBME/CHKP-SHARED-PROFILES/1",
+  "date": "2026-10-13",
+  "pr14_head": "87deec24f52c1c776a489566cf76f11d0d4a5aff",
+  "pr15_base": "bf47453a3bde50048dd6a4c386ac560fedb9229a",
+  "review_commit": "ebb2ae7",
+  "scope": "A-owned engines and profile proposal; optional peer runtime tested in isolated candidate only",
+  "validation_history": {
+    "chkp-profiles-core-final.junit.xml": {
+      "tests": 67,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 7
+    },
+    "chkp-shared-integration.junit.xml": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 1,
+      "skipped": 0
+    },
+    "chkp-shared-integration-final.junit.xml": {
+      "tests": 162,
+      "failures": 40,
+      "errors": 0,
+      "skipped": 2
+    },
+    "chkp-shared-integration-repaired.junit.xml": {
+      "tests": 162,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2
+    },
+    "chkp-shared-broad.junit.xml": {
+      "tests": 1126,
+      "failures": 7,
+      "errors": 0,
+      "skipped": 4
+    },
+    "chkp-shared-errors-repaired.junit.xml": {
+      "tests": 59,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0
+    },
+    "chkp-shared-broad-final.junit.xml": {
+      "tests": 1126,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 4
+    }
+  },
+  "final_candidate_source_sha256": {
+    "src/ibme/lattice/matrix_sampling/scalar.py": "6365371e7fdbdc86b022d5a55e53d59a0f58564ca715efac873f9fdde66c9b68",
+    "src/ibme/lattice/matrix_sampling/gpv.py": "b51a204d433093c3ffaf9d3dad6e601fbac05f2631758d837f16f888cdaf3e2a",
+    "src/ibme/lattice/matrix_sampling/chkp_profiles.py": "674e67f4a1cd95396746ba717fca7c479028bb5351007bc4cdbdfec56305db75",
+    "tests/test_chkp_matrix_profiles.py": "8067bcde1d98d2754f606ec78d6fbabc11219758f6507386f0d91dc4c8a04000",
+    "tests/fixtures/chkp_shared_profile_controls.json": "23a3365eab50292f5002516b8423e358df964b828dfe2e984f5962265eefec5a",
+    "experiments/research/chkp_tobasis.py": "0293834acff71a1599d14dccc92558f7198c8ffabbcb255c6965452c355abd4a",
+    "experiments/research/first_suite/finite_gaussian.py": "5c55da74e4aaa40e2375e48a419884dc7cfe5ace537951a6e4b649c3959fd5b0",
+    "experiments/research/first_suite/finite_gpv.py": "f1d59d1eeace1c98cd12e91a6c2305e93969ee9d0e137c5c85b07e031fc87699",
+    "experiments/research/first_suite/finite_randbasis.py": "503b36bec17b6fc41f33426812ad56ffa0bff6deaec15ade7fc7224c1472271f",
+    "src/ibme/lattice/chkp/finite_gaussian.py": "bd087124b957fd45ad6205dececd4cbc1011807793bff42c2b73359b8ef55433",
+    "src/ibme/lattice/chkp/finite_gpv.py": "c266109ac28a3cdd0dc84086fab4432de65f9b383135c280cbc484088f65622e",
+    "src/ibme/lattice/chkp/finite_randbasis.py": "e1aa4f14beb8116381f6e1ebce1d7fc893f68645df42bc9e49ac7ab125c3202a",
+    "src/ibme/lattice/chkp/tobasis.py": "4d54c20fa120d31b69903a029e4d287c688f67e397563e96b1df8a79f3a0adde"
+  },
+  "private_entropy_recovery": {
+    "status": "passed-failed-address-restore",
+    "failed_parent_retained": true,
+    "new_private_entropy_calls": 0
+  },
+  "new_real_hibe_instance_generated": false,
+  "peer_source_modified_in_active_branch": false,
+  "registry_or_protocol_modified": false,
+  "remote_pr_merged": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

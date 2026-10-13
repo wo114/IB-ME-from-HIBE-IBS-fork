@@ -73,7 +73,10 @@ def _bounded_basis(basis, max_dimension, bits, max_content_bytes=2**30):
     return KernelBasis(ModMatrixReference(a_rows, q), rows)
 
 
-def _gs_geometry(rows, bits, max_content_bytes=2**30):
+def _gs_geometry(rows, bits, max_content_bytes=2**30, *, gate=None):
+    # Compatibility diagnostics may name their exact rational gate from a
+    # different module. Live GPV always uses the default bounded gate.
+    checked = _bounded_rational if gate is None else gate
     columns = tuple(matrix(ZZ, rows).columns())
     orthogonal, squared, weights = [], [], []
     content = sum(max(1, (_bit_length(x) + 7)//8) for column in columns for x in column)
@@ -85,11 +88,11 @@ def _gs_geometry(rows, bits, max_content_bytes=2**30):
         for g, norm in zip(orthogonal, squared):
             current -= (current.dot_product(g) / norm) * g
             for entry in current:
-                _bounded_rational(entry, "GS intermediate", bits)
-        norm = _bounded_rational(current.dot_product(current), "GS squared length", bits)
+                checked(entry, "GS intermediate", bits)
+        norm = checked(current.dot_product(current), "GS squared length", bits)
         if norm <= 0:
             raise ValueError("Basis must have full integer rank")
-        weight = tuple(_bounded_rational(x / norm, "GS weight", bits) for x in current)
+        weight = tuple(checked(x / norm, "GS weight", bits) for x in current)
         content += rational_content(norm) + sum(rational_content(x) for x in current) + sum(rational_content(x) for x in weight)
         if content > max_content_bytes:
             raise ValueError("Exact GPV geometry content exceeds the whole arithmetic budget")
@@ -155,6 +158,7 @@ class MatrixFiniteGPV:
     OPTIONS_TYPE = MatrixFiniteOptions
     SCALAR_CLASS = MatrixFiniteGaussian
     PROFILE_ID = "MATRIX-FINITE-GPV/1"
+    WIDTH_DOMAIN_ERROR = "Scalar squared width outside the explicitly selected finite profile"
 
     def __init__(self, basis: KernelBasis, width_squared, *, epsilon_bits=32,
                  options=None, max_dimension=1536, max_arithmetic_content_bytes=2**30):
@@ -172,9 +176,13 @@ class MatrixFiniteGPV:
         self.basis = _bounded_basis(basis, limit, input_bits, self._content_cap)
         self.dimension = self.basis.public.ncols
         self._columns, lengths, weights = _gs_geometry(self.basis.basis_rows, opts.rational_bits, self._content_cap)
+        # CHKP's implicit ExtBasis consumer needs the actual parent maximum
+        # for its full-dimension smoothing gate. Retain the exact value.
+        self._max_gs_squared = max(lengths)
         # Retain the same exact rational weights in native vectors. Every
         # projection/center and entropy decision remains exactly unchanged.
-        self._weights = tuple(vector(QQ,row) for row in weights)
+        self._weights = weights
+        self._projection_weights = tuple(vector(QQ,row) for row in weights)
         scale = 1 << self.epsilon_bits
         self._smoothing_factor = (2 * self.dimension * (1 + scale) - 1).bit_length()
         if self.width_squared < 4 * max(lengths) * self._smoothing_factor:
@@ -183,7 +191,7 @@ class MatrixFiniteGPV:
                             "scalar squared width", opts.rational_bits) for length in lengths)
         # Check every coordinate before constructing any expensive scalar profile.
         if any(not 1 <= v <= self.SCALAR_CLASS.MAX_SQUARED_WIDTH for v in self._widths):
-            raise ValueError("Scalar squared width outside the explicitly selected finite profile")
+            raise ValueError(self.WIDTH_DOMAIN_ERROR)
         self.scalars = tuple(self.SCALAR_CLASS(v, v, options=opts) for v in self._widths)
         self.random_tape_bytes = sum(s.random_tape_bytes for s in self.scalars)
         if self.random_tape_bytes > opts.max_tape_bytes:
@@ -229,7 +237,7 @@ class MatrixFiniteGPV:
         center, v = vector(QQ,-t), vector(ZZ, self.dimension)
         source = CheckedEntropy(SecureRandom() if rng is None else rng, self.random_tape_bytes)
         for i in reversed(range(self.dimension)):
-            projected = center.dot_product(self._weights[i])
+            projected = center.dot_product(self._projection_weights[i])
             z = self.scalars[i].sample(self._widths[i], projected, rng=source)
             step = z * self._columns[i]
             center -= step

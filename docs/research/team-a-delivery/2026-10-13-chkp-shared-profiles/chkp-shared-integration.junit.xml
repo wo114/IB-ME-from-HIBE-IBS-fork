@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="1" time="4.055" timestamp="2026-10-13T19:33:17.703316+08:00" hostname="DESKTOP-U5VPLDO"><testcase classname="" name="tests.test_chkp_sampler_equivalence" time="0.000"><error message="collection failure">ImportError while importing test module '/mnt/c/Users/youzi/.codex/worktrees/a-abb-continuation/ibme/test-results/pr-review-2026-10-13/integration/tests/test_chkp_sampler_equivalence.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/home/youzi/miniconda3/envs/sage/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_chkp_sampler_equivalence.py:16: in &lt;module&gt;
+    from ibme.lattice.chkp.finite_gaussian import (
+E   ImportError: cannot import name 'interval_bounds' from 'ibme.lattice.chkp.finite_gaussian' (/mnt/c/Users/youzi/.codex/worktrees/a-abb-continuation/ibme/test-results/pr-review-2026-10-13/integration/src/ibme/lattice/chkp/finite_gaussian.py)</error></testcase></testsuite></testsuites>

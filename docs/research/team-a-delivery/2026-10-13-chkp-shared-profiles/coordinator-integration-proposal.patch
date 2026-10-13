@@ -1,0 +1,978 @@
+--- a/experiments/research/chkp_tobasis.py
++++ b/experiments/research/chkp_tobasis.py
+@@ -1,4 +1,26 @@
+-"""Compatibility import for the promoted CHKP runtime; see ibme.lattice.chkp.tobasis."""
+-import sys
+-from ibme.lattice.chkp import tobasis as _runtime
+-sys.modules[__name__] = _runtime
++"""Original 192-dimensional ToBasis compatibility interface.
++
++Exact mathematics lives once in ibme.lattice.matrix_sampling.basis. This
++entry retains dimension192/entry8192 and the original column/GS semantics.
++No widening is implicit; new matrix consumers select their own limits.
++"""
++
++from ibme.lattice.matrix_sampling.basis import (
++    LEGACY_BASIS_LIMITS, _checked_square as _matrix_checked_square,
++    canonical_basis as _matrix_canonical_basis, to_basis as _matrix_to_basis,
++)
++
++MAX_DIMENSION = 192
++MAX_ENTRY_BITS = 8192
++
++
++def _checked_square(rows, dimension):
++    return _matrix_checked_square(rows, dimension, limits=LEGACY_BASIS_LIMITS)
++
++
++def canonical_basis(basis):
++    return _matrix_canonical_basis(basis, limits=LEGACY_BASIS_LIMITS)
++
++
++def to_basis(vectors_rows, basis):
++    return _matrix_to_basis(vectors_rows, basis, limits=LEGACY_BASIS_LIMITS)
+--- a/experiments/research/first_suite/finite_gaussian.py
++++ b/experiments/research/first_suite/finite_gaussian.py
+@@ -1,4 +1,26 @@
+-"""Compatibility import for the promoted CHKP runtime; see ibme.lattice.chkp.finite_gaussian."""
+-import sys
+-from ibme.lattice.chkp import finite_gaussian as _runtime
+-sys.modules[__name__] = _runtime
++"""Compatibility entry for the original FIRST-SUITE-FINITE-DGS/1 profile.
++
++Mathematics lives once in ibme.lattice.matrix_sampling.scalar. Original option
++bounds, per-call RNG injection, profile ID and resource guards are retained.
++The new matrix profile must be selected through its own public class.
++"""
++
++from ibme.core.randomness import SecureRandom
++from ibme.lattice.matrix_sampling.scalar import (
++    FirstFiniteOptions, MatrixFiniteGaussian, exact_integer, exact_rational,
++    interval_upper, capped_exp_minus_pi, FiniteByteTape, SamplingAbort,
++)
++from .entropy import CheckedEntropy
++
++
++class FirstFiniteGaussian(MatrixFiniteGaussian):
++    MAX_SQUARED_WIDTH = 2**80
++    OPTIONS_TYPE = FirstFiniteOptions
++    PROFILE_ID = "FIRST-SUITE-FINITE-DGS/1"
++
++    def sample(self, width_squared, center=0, *, rng=None):
++        # Keep this module's old injectable system-entropy seam. Validation
++        # still precedes the first byte read, and errors are never retried.
++        self.checked_inputs(width_squared, center)
++        source = SecureRandom() if rng is None else rng
++        return super().sample(width_squared, center, rng=source)
+--- a/experiments/research/first_suite/finite_gpv.py
++++ b/experiments/research/first_suite/finite_gpv.py
+@@ -1,4 +1,32 @@
+-"""Compatibility import for the promoted CHKP runtime; see ibme.lattice.chkp.finite_gpv."""
+-import sys
+-from ibme.lattice.chkp import finite_gpv as _runtime
+-sys.modules[__name__] = _runtime
++"""Compatibility entry for FIRST-SUITE-FINITE-GPV/1.
++
++One implementation lives in ibme.lattice.matrix_sampling.gpv. Original
++limits, error/coset semantics, entropy injection and certificate remain.
++"""
++
++from ibme.core.randomness import SecureRandom
++from ibme.lattice.matrix_sampling.gpv import (
++    MatrixFiniteGPV, _bit_length, _bounded_rational, _bounded_basis,
++    _gs_geometry, _admit_paths,
++)
++from .finite_gaussian import FirstFiniteOptions, FirstFiniteGaussian
++
++MAX_DIMENSION = 256
++MAX_INPUT_BITS = 1024
++
++
++class FirstFiniteGPV(MatrixFiniteGPV):
++    MAX_DIMENSION = 256
++    MAX_INPUT_BITS = 1024
++    OPTIONS_TYPE = FirstFiniteOptions
++    SCALAR_CLASS = FirstFiniteGaussian
++    PROFILE_ID = "FIRST-SUITE-FINITE-GPV/1"
++
++    def __init__(self, basis, width_squared, *, epsilon_bits=32,
++                 options=None, max_dimension=256):
++        super().__init__(basis, width_squared, epsilon_bits=epsilon_bits,
++                         options=options, max_dimension=max_dimension)
++
++    def sample(self, syndrome, *, rng=None):
++        self._syndrome(syndrome)
++        return super().sample(syndrome, rng=SecureRandom() if rng is None else rng)
+--- a/experiments/research/first_suite/finite_randbasis.py
++++ b/experiments/research/first_suite/finite_randbasis.py
+@@ -1,4 +1,26 @@
+-"""Compatibility import for the promoted CHKP runtime; see ibme.lattice.chkp.finite_randbasis."""
+-import sys
+-from ibme.lattice.chkp import finite_randbasis as _runtime
+-sys.modules[__name__] = _runtime
++"""Original first-suite RandBasis profile, now a single-engine consumer."""
++
++from dataclasses import dataclass
++from ibme.core.randomness import SecureRandom
++from ibme.lattice.matrix_sampling.randbasis import MatrixFiniteRandBasis, MatrixFiniteRandResult
++from ibme.lattice.matrix_sampling.basis import LEGACY_BASIS_LIMITS
++from .finite_gpv import FirstFiniteGPV
++
++
++@dataclass(frozen=True)
++class FirstFiniteRandResult(MatrixFiniteRandResult):
++    pass
++
++
++class FirstFiniteRandBasis(MatrixFiniteRandBasis):
++    SAMPLER_TYPE = FirstFiniteGPV
++    RESULT_TYPE = FirstFiniteRandResult
++    BASIS_LIMITS = LEGACY_BASIS_LIMITS
++    MAX_TAPE_BYTES = 2**40
++    PROFILE_ID = "FIRST-SUITE-FINITE-RANDBASIS/1"
++
++    def __init__(self, sampler, *, max_vectors, max_tape_bytes=2**40):
++        super().__init__(sampler, max_vectors=max_vectors, max_tape_bytes=max_tape_bytes)
++
++    def sample(self, *, rng=None):
++        return super().sample(rng=SecureRandom() if rng is None else rng)
+--- a/src/ibme/lattice/chkp/finite_gaussian.py
++++ b/src/ibme/lattice/chkp/finite_gaussian.py
+@@ -1,240 +1,4 @@
+-"""Independent first-suite wide finite Gaussian profile; not backend admission.
+-
+-Same finite rejection equations as the prior bounded reference, with independent
+-explicit width/radius/tape limits and recomputed certificates. Old limits are
+-unchanged. No CDF, center cache, seeded native RNG or continuous Gaussian. Width and resource admission is
+-public; intervals require correctly-rounded MPFR/MPFI. Variable time, explicit
+-abort, uniform-byte assumption, no security level. Use WSL ~/miniconda3/envs/sage.
+-"""
+-
+-from __future__ import annotations
+-
+-from dataclasses import dataclass
+-from fractions import Fraction
+-
+-from sage.all import QQ, ZZ, RealIntervalField
+-
++"""Candidate shared-engine bridge; not applied to the peer PR."""
+ from ibme.core.randomness import SecureRandom
+-from ibme.lattice.chkp.gaussian import SamplingAbort, draw_uniform_integer, interval_bounds
+-from ibme.lattice.chkp.tape import FiniteByteTape
+-from .entropy import CheckedEntropy
+-
+-
+-# Fixed execution domain, not an 88-bit security claim. The radius and all
+-# interval/tail/mass/rejection/tape gates below still certify each width.
+-# Enlarging this ceiling does not change any previously accepted sample law.
+-MAX_SQUARED_WIDTH = 2**88
+-
+-
+-def exact_integer(value, name, *, minimum=0, maximum=2**32):
+-    if isinstance(value, bool) or not isinstance(value, (int, type(ZZ(0)))):
+-        raise ValueError(f"{name} must be an exact integer")
+-    result = int(value)
+-    if not minimum <= result <= maximum:
+-        raise ValueError(f"{name} outside resource range")
+-    return result
+-
+-
+-def exact_rational(value, name, *, max_bits=8192):
+-    if isinstance(value, bool) or not isinstance(value, (str, int, Fraction, type(QQ(0)), type(ZZ(0)))):
+-        raise ValueError(f"{name} must be an exact rational")
+-    try:
+-        result = QQ(value)
+-    except (ValueError, TypeError, ZeroDivisionError) as exc:
+-        raise ValueError(f"Invalid {name}") from exc
+-    if max(abs(int(result.numerator())).bit_length(), int(result.denominator()).bit_length()) > max_bits:
+-        raise ValueError(f"{name} exceeds the public rational bit budget")
+-    return result
+-
+-
+-def interval_upper(value):
+-    # No artificial minimum: small values are enclosed by capped exp explicitly.
+-    return interval_bounds(value)[1]
+-
+-
+-def capped_exp_minus_pi(value, field, cap_bits):
+-    """Rigorous enclosure, with safe clipping before expensive huge exponents."""
+-    value = QQ(value)
+-    if value < 0:
+-        raise ValueError("Negative exponent argument")
+-    if value >= cap_bits:
+-        # pi > ln(2), so exp(-pi*value) <= 2^-cap_bits. Prevent MPFR
+-        # underflow endpoints from becoming rationals with billion-bit denominators.
+-        return field(0, QQ(1)/2**cap_bits)
+-    return (-field.pi()*field(value)).exp()
+-
+-
+-@dataclass(frozen=True)
+-class FirstFiniteOptions:
+-    tail_bits: int = 128
+-    mass_bits: int = 256
+-    precision_bits: int = 320
+-    gaussian_abort_bits: int = 128
+-    max_uniform_trials: int = 192
+-    max_gaussian_trials: int = 100000
+-    max_radius: int = 2**48
+-    rational_bits: int = 8192
+-    max_tape_bytes: int = 2**40
+-
+-    def __post_init__(self):
+-        ranges = {"tail_bits": (8, 1024), "mass_bits": (32, 2048),
+-            "precision_bits": (96, 4096), "gaussian_abort_bits": (8, 1024),
+-            "max_uniform_trials": (1, 4096), "max_gaussian_trials": (1, 1000000),
+-            "max_radius": (1, 2**48), "rational_bits": (128, 8192),
+-            "max_tape_bytes": (1, 2**40)}
+-        for name, (low, high) in ranges.items():
+-            object.__setattr__(self, name, exact_integer(getattr(self, name), name,
+-                minimum=low, maximum=high))
+-
+-
+-class FirstFiniteGaussian:
+-    """D_Z,s,c via a uniform-box proposal and interval-rounded Bernoulli.
+-
+-    One public width class covers every rational center within its input bit
+-    budget. No support enumeration is used while constructing or sampling.
+-    """
+-
+-    def __init__(self, width_min_squared, width_max_squared, *, options=None):
+-        self.options = FirstFiniteOptions() if options is None else options
+-        if not isinstance(self.options, FirstFiniteOptions):
+-            raise ValueError("Need FirstFiniteOptions")
+-        self.v_min = exact_rational(width_min_squared, "minimum squared width", max_bits=self.options.rational_bits)
+-        self.v_max = exact_rational(width_max_squared, "maximum squared width", max_bits=self.options.rational_bits)
+-        if not 1 <= self.v_min <= self.v_max <= MAX_SQUARED_WIDTH:
+-            raise ValueError("Public squared widths require 1 <= min <= max <= 2^88")
+-        opts = self.options
+-        self.field = RealIntervalField(opts.precision_bits)
+-        self.cap_bits = max(opts.mass_bits, opts.tail_bits, opts.precision_bits)+64
+-        e = (opts.mass_bits-1).bit_length()
+-        if opts.precision_bits < e+24:
+-            raise ValueError("Insufficient precision for the uniform weight rounding budget")
+-        self.weight_width = QQ(2)**(e+8-opts.precision_bits)
+-        self.tail_target = QQ(1)/2**opts.tail_bits
+-
+-        def tail_at(radius):
+-            a = capped_exp_minus_pi((QQ((radius+1)**2)-QQ(1)/4)/self.v_max,
+-                self.field, self.cap_bits)
+-            ratio = capped_exp_minus_pi(QQ(2*(radius+1)+1)/self.v_max,
+-                self.field, self.cap_bits)
+-            denominator = 1-ratio
+-            if interval_bounds(denominator)[0] <= 0:
+-                return None
+-            return interval_upper(2*a/denominator)
+-
+-        # Monotone true geometric-tail bound, evaluated with enclosing intervals.
+-        # A final upper endpoint check is authoritative; no assumption that
+-        # finite-precision endpoints themselves are strictly monotone is needed.
+-        high = opts.max_radius
+-        tail = tail_at(high)
+-        if tail is None or tail > self.tail_target:
+-            raise ValueError("Public radius cannot certify the tail target")
+-        low = 0
+-        while low+1 < high:
+-            middle = (low+high)//2
+-            trial = tail_at(middle)
+-            if trial is not None and trial <= self.tail_target:
+-                high = middle
+-            else:
+-                low = middle
+-        self.radius = high
+-        self.tail_upper = tail_at(high)
+-        assert self.tail_upper is not None and self.tail_upper <= self.tail_target
+-        self.max_support_count = 2*high+2
+-        a = capped_exp_minus_pi(self.v_min, self.field, self.cap_bits)
+-        self.theta = interval_upper(2*a/(1-a**3))
+-        if not 0 <= self.theta < 1:
+-            raise ValueError("Poisson normalizer bound not certified")
+-        self.quantization_error = self.max_support_count*(self.weight_width+QQ(1)/2**opts.mass_bits)
+-        normalizer_min = interval_bounds(self.field(self.v_min).sqrt()*(1-self.field(self.theta)))[0]
+-        self.acceptance_mass_lower = max(QQ(1), normalizer_min-self.tail_upper-self.quantization_error)
+-        self.acceptance_probability_lower = self.acceptance_mass_lower/self.max_support_count
+-        if not 0 < self.acceptance_probability_lower <= 1:
+-            raise ValueError("Invalid uniform acceptance lower bound")
+-        ln2_upper = interval_upper(self.field(2).log())
+-        self.gaussian_trials = int((opts.gaussian_abort_bits*ln2_upper/self.acceptance_probability_lower).ceil())+1
+-        if self.gaussian_trials > opts.max_gaussian_trials:
+-            raise ValueError("Public Gaussian rejection budget insufficient")
+-        self.abort_upper = QQ(1)/2**opts.gaussian_abort_bits + self.gaussian_trials*QQ(1)/2**opts.max_uniform_trials
+-        self.tv_upper = min(QQ(1), self.tail_upper+self.quantization_error+self.abort_upper)
+-        self.bernoulli_bytes = (opts.mass_bits+7)//8
+-        self.candidate_bytes = ((self.max_support_count-1).bit_length()+7)//8
+-        self.random_tape_bytes = self.gaussian_trials*(opts.max_uniform_trials*self.candidate_bytes+self.bernoulli_bytes)
+-        if self.random_tape_bytes > opts.max_tape_bytes:
+-            raise ValueError("Public scalar tape exceeds resource budget")
+-
+-    def checked_inputs(self, width_squared, center):
+-        width = exact_rational(width_squared, "squared width", max_bits=self.options.rational_bits)
+-        center = exact_rational(center, "center", max_bits=self.options.rational_bits)
+-        if not self.v_min <= width <= self.v_max:
+-            raise ValueError("Width outside the public class")
+-        shift = int(center.floor())
+-        fractional = center-shift
+-        closest = 0 if fractional <= QQ(1)/2 else 1
+-        low, high = -self.radius, self.radius+int(fractional != 0)
+-        return width, shift, fractional, closest, low, high
+-
+-    def integer_weight(self, value, width, fractional, closest):
+-        # Exact difference-of-squares identity. This avoids squaring a large
+-        # rational center's denominator twice and then cancelling it. The QQ
+-        # argument, interval endpoints, integer mass and byte read order are
+-        # unchanged, including negative centers and nearest-point ties.
+-        argument = (value-closest)*(value+closest-2*fractional)/width
+-        assert argument >= 0
+-        if argument >= self.options.mass_bits:
+-            return 0  # True relative weight <2^-b, already in quantization budget.
+-        weight = capped_exp_minus_pi(argument, self.field, self.cap_bits)
+-        lower = interval_bounds(weight)[0]
+-        mass = int((2**self.options.mass_bits*lower).floor())
+-        assert 0 <= mass <= 2**self.options.mass_bits
+-        return mass
+-
+-    def sample(self, width_squared, center=0, *, rng=None):
+-        width, shift, fractional, closest, low, high = self.checked_inputs(width_squared, center)
+-        rng = CheckedEntropy(SecureRandom() if rng is None else rng, self.random_tape_bytes)
+-        for _ in range(self.gaussian_trials):
+-            value = low+draw_uniform_integer(rng, high-low+1,
+-                max_trials=self.options.max_uniform_trials)
+-            mass = self.integer_weight(value, width, fractional, closest)
+-            data = rng.read(self.bernoulli_bytes)
+-            if not isinstance(data, (bytes, bytearray, memoryview)) or len(data) != self.bernoulli_bytes:
+-                raise ValueError("Invalid Bernoulli random byte source")
+-            ticket = int.from_bytes(data, "big") & ((1 << self.options.mass_bits)-1)
+-            if ticket < mass:
+-                return shift+value
+-        raise SamplingAbort("Online Gaussian rejection budget exhausted; no retry or fallback")
+-
+-    def sample_from_tape(self, width_squared, center, tape):
+-        self.checked_inputs(width_squared, center)
+-        source = FiniteByteTape(tape)
+-        if len(source.data) != self.random_tape_bytes:
+-            raise ValueError("Scalar tape must have the public fixed length")
+-        return self.sample(width_squared, center, rng=source)
+-
+-    def finite_distribution(self, width_squared, center=0, *, max_points=4096):
+-        """Normalized integer weights; abort excluded, enumeration only for QA."""
+-        width, shift, fractional, closest, low, high = self.checked_inputs(width_squared, center)
+-        limit = exact_integer(max_points, "enumeration limit", minimum=1)
+-        if high-low+1 > limit:
+-            raise ValueError("Audit enumeration exceeds max_points")
+-        masses = {shift+x: self.integer_weight(x, width, fractional, closest) for x in range(low, high+1)}
+-        total = sum(masses.values())
+-        assert total > 0
+-        return {x: QQ(m)/total for x, m in masses.items() if m}
+-
+-    def certificate(self):
+-        return {"profile": "FIRST-SUITE-FINITE-DGS/1", "algorithm": "finite uniform-box rejection Gaussian, independent wide profile",
+-            "squared_width_class": [str(self.v_min), str(self.v_max)],
+-            "uniform_in_rational_center": True, "rational_input_bit_budget": self.options.rational_bits,
+-            "radius": self.radius, "max_support_count": self.max_support_count,
+-            "support_or_centers_precomputed": 0, "CDF_tables": 0,
+-            "tail_upper": str(self.tail_upper), "relative_weight_interval_width_upper": str(self.weight_width),
+-            "integer_weight_quantization_tv_upper": str(self.quantization_error),
+-            "Poisson_theta_upper": str(self.theta),
+-            "acceptance_mass_lower": str(self.acceptance_mass_lower),
+-            "acceptance_probability_lower": str(self.acceptance_probability_lower),
+-            "max_gaussian_trials": self.gaussian_trials, "abort_upper": str(self.abort_upper),
+-            "tv_upper_including_abort": str(self.tv_upper), "public_tape_bytes": self.random_tape_bytes,
+-            "tape_exhaustion_at_public_length_upper": "0", "finite_options": dict(self.options.__dict__),
+-            "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+-            "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+-            "production_random_api": True, "native_Sage_rng_used": False, "constant_time": False, "security_claim": "none"}
++from ibme.lattice.matrix_sampling.scalar import (RealIntervalField, FiniteByteTape, interval_bounds, exact_integer, exact_rational, interval_upper, capped_exp_minus_pi)
++from ibme.lattice.matrix_sampling.chkp_profiles import (CHKPFiniteOptions as FirstFiniteOptions, CHKPFiniteGaussian as FirstFiniteGaussian, MAX_SQUARED_WIDTH)
+--- a/src/ibme/lattice/chkp/finite_gpv.py
++++ b/src/ibme/lattice/chkp/finite_gpv.py
+@@ -1,311 +1,10 @@
+-"""Independent first-suite finite GPV with system CSPRNG and wide scalar profile.
++"""Candidate CHKP explicit 512/2048-bit profile over the shared engine."""
++from ibme.core.randomness import SecureRandom
++from ibme.lattice.matrix_sampling.gpv import (_bit_length, _bounded_rational, _bounded_basis, _gs_geometry as _shared_geometry, _admit_paths)
++from ibme.lattice.matrix_sampling.chkp_profiles import (CHKPFiniteGPV as FirstFiniteGPV, MAX_INPUT_BITS, MAX_SQUARED_WIDTH)
++MAX_DIMENSION=256
++EXTENDED_MAX_DIMENSION=512
+ 
+-GPV08 (2008-08-25 author version), section 4.2, PDF pp. 15--17:
+-descending randomized nearest plane with c=-t, then return t+v, where
+-A*t=y (mod q). The scalar oracle is the project's bounded online Gaussian,
+-not GPV's ideal oracle and NOT the MP12 vector/perturbation sampler.
+-
+-The project's T2 contract (2026-10-09), C1-exec and C2-exec/C3, supplies
+-the conservative finite width and TV bounds. These finite adaptations are
+-not verbatim GPV theorems. All GS/coset arithmetic is exact ZZ/QQ; scalar
+-rounding/truncation/abort errors remain in each scalar's actual certificate.
+-All adaptive rational centers are admitted BEFORE entropy is consumed.
+-
+-Variable time, bounded research dimensions, no security level or backend
+-admission. Certificates contain basis-dependent diagnostic profiles: publish
+-them only for PUBLIC TEST BASES, not as a secret-key serialization format.
+-"""
+-
+-from __future__ import annotations
+-
+-from itertools import islice
+-from math import lcm
+-import re
+-
+-from sage.all import QQ, ZZ, matrix, vector
+-from sage.rings.rational import Rational
+-
+-from ibme.core.randomness import SecureRandom
+-from ibme.lattice.chkp.basis import KernelBasis, ModMatrixReference, _full_rank_field, _integer, _rows
+-from .finite_gaussian import (
+-    FiniteByteTape, FirstFiniteOptions, FirstFiniteGaussian, MAX_SQUARED_WIDTH,
+-    exact_integer, exact_rational,
+-)
+-from .entropy import CheckedEntropy
+-
+-
+-MAX_DIMENSION = 256
+-EXTENDED_MAX_DIMENSION = 512
+-MAX_INPUT_BITS = 1024
+-
+-
+-def _bit_length(value):
+-    return abs(int(value)).bit_length()
+-
+-
+-def _bounded_rational(value, name, bits):
+-    # Guard text BEFORE QQ parses it (notably unbounded decimal exponents).
+-    if isinstance(value, str):
+-        if len(value) > 2 * bits + 4:
+-            raise ValueError(f"{name} exceeds the rational text resource limit")
+-        value = value.strip()
+-        if not re.fullmatch(r"[+-]?[0-9]+(?:/[0-9]+)?", value):
+-            raise ValueError(f"{name} requires integer or fraction text")
+-    return exact_rational(value, name, max_bits=bits)
+-
+-
+-def _bounded_qq(value, name, bits):
+-    """Gate an internal QQ result without reparsing or copying its big integers.
+-
+-    Only exact QQ vector arithmetic calls this helper. Public inputs retain
+-    _bounded_rational and its type/text gates. Sage Integer.nbits() measures
+-    the magnitude, including for negative numerators, exactly like the
+-    former abs(int(numerator)).bit_length(). Keep every intermediate gate.
+-    """
+-    if not isinstance(value, Rational):
+-        raise ValueError(f"{name} must be an internal QQ value")
+-    if value.numerator().nbits() > bits or value.denominator().nbits() > bits:
+-        raise ValueError(f"{name} exceeds the public rational bit budget")
+-    return value
+-
+-
+-def _bounded_basis(basis, max_dimension, bits):
+-    """Bound and type-check ALL input entries before field/GS/determinant work."""
+-    if not isinstance(basis, KernelBasis) or not isinstance(basis.public, ModMatrixReference):
+-        raise ValueError("Need a validated KernelBasis")
+-    public = basis.public
+-    rows, a_rows = basis.basis_rows, public.rows
+-    if not isinstance(rows, (tuple, list)) or not isinstance(a_rows, (tuple, list)):
+-        raise ValueError("Basis/public rows must be finite sequences")
+-    dimension, n = len(rows), len(a_rows)
+-    if not 1 <= n <= dimension <= max_dimension:
+-        raise ValueError("Basis exceeds the dimension resource limit")
+-    for group in (rows, a_rows):
+-        if any(not isinstance(row, (tuple, list)) or len(row) != dimension for row in group):
+-            raise ValueError("Invalid basis/public matrix dimensions")
+-    q = _integer(public.q)
+-    if q < 2 or _bit_length(q) > bits:
+-        raise ValueError("Modulus exceeds the input bit resource limit")
+-    # _rows rejects bool, float and implicit finite-field lifts in the basis.
+-    rows = _rows(rows)
+-    a_rows = _rows(a_rows, modulus=q)
+-    if any(_bit_length(x) > bits for group in (rows, a_rows) for row in group for x in row):
+-        raise ValueError("Matrix entry exceeds the input bit resource limit")
+-    if any(not 0 <= x < q for row in a_rows for x in row):
+-        raise ValueError("Public entries must be canonical residues")
+-    # Revalidate containment/completeness only AFTER the cheap resource gate.
+-    return KernelBasis(ModMatrixReference(a_rows, q), rows)
+-
+-
++_bounded_qq = _bounded_rational
+ def _gs_geometry(rows, bits):
+-    columns = tuple(matrix(ZZ, rows).columns())
+-    orthogonal, squared, weights = [], [], []
+-    for column in columns:
+-        original = vector(QQ, column)
+-        current = vector(QQ, column)
+-        for g, norm in zip(orthogonal, squared):
+-            # Earlier exact GS vectors are orthogonal to g. Thus original.g
+-            # equals current.g, without the growing denominators of current.
+-            # Every subsequent current and its gate position remain identical.
+-            current -= (original.dot_product(g) / norm) * g
+-            for entry in current:
+-                _bounded_qq(entry, "GS intermediate", bits)
+-        norm = _bounded_qq(current.dot_product(current), "GS squared length", bits)
+-        if norm <= 0:
+-            raise ValueError("Basis must have full integer rank")
+-        weight = tuple(_bounded_qq(x / norm, "GS weight", bits) for x in current)
+-        current.set_immutable()
+-        column.set_immutable()
+-        orthogonal.append(current)
+-        squared.append(norm)
+-        weights.append(weight)
+-    return columns, tuple(squared), tuple(weights)
+-
+-
+-def _admit_paths(columns, weights, scalars, q, bits):
+-    """Deterministic envelope for EVERY syndrome and EVERY non-aborted path.
+-
+-    Residual c starts at -t with |c_j| <= q-1 and remains integral. Thus
+-    c'_i=sum_j c_j*w_ij has denominator dividing lcm_j den(w_ij), and a
+-    reduced numerator no larger than ceil(den * sum_j M_j*|w_ij|).
+-    The scalar support gives |z_i| <= ceil(|c'_i|_upper)+radius_i+1.
+-    Update M_j <- M_j + |z_i|_upper*|b_ji| in descending order. Reject
+-    the whole input if ANY possible center exceeds the scalar bit budget.
+-    This is conservative: rejection is not a cryptographic impossibility.
+-    """
+-    dimension = len(columns)
+-    bounds = [q - 1] * dimension
+-    steps = [None] * dimension
+-    for i in reversed(range(dimension)):
+-        denominator = 1
+-        for w in weights[i]:
+-            denominator = lcm(denominator, int(w.denominator()))
+-            if _bit_length(denominator) > bits:
+-                raise ValueError("Adaptive center denominator exceeds rational bit budget")
+-        upper = sum((QQ(m) * abs(w) for m, w in zip(bounds, weights[i])), QQ(0))
+-        numerator = int((upper * denominator).ceil())
+-        if _bit_length(numerator) > bits:
+-            raise ValueError("Adaptive center numerator exceeds rational bit budget")
+-        z_bound = int(upper.ceil()) + scalars[i].radius + 1
+-        bounds = [m + z_bound * abs(int(b)) for m, b in zip(bounds, columns[i])]
+-        if max(map(_bit_length, bounds + [z_bound])) > bits:
+-            raise ValueError("GPV residual/coefficient exceeds the arithmetic bit budget")
+-        # Private diagnostics for testing the induction, never raw certificate data.
+-        steps[i] = (denominator, numerator, z_bound, tuple(bounds))
+-    return tuple(steps)
+-
+-
+-class FirstFiniteGPV:
+-    """Sample the zero-centered Gaussian on {x in Z^D : A*x=y mod q}.
+-
+-    width_squared is s^2 in exp(-pi*||x||^2/s^2), not statistical variance.
+-    Canonical syndromes are exact integers in [0,q); matching prime-field
+-    elements are allowed, foreign fields need explicit caller-chosen lifts.
+-    A successful output solves the equation exactly. SamplingAbort and RNG
+-    errors propagate; there is no outer retry, zero fallback, or rejection of
+-    zero. The TV bound includes scalar abort, assuming independent uniform
+-    bytes. Arbitrary failing/malformed entropy providers are not that model.
+-
+-    Per-coordinate exact-width classes avoid a huge global rejection box for
+-    skew bases. Scalars and other admitted state must not be mutated by users.
+-    The default dimension budget remains 256; a distinct explicit profile may
+-    request up to 512. All input, arithmetic, width and entropy gates still run.
+-    """
+-
+-    def __init__(self, basis: KernelBasis, width_squared, *, epsilon_bits=32,
+-                 options: FirstFiniteOptions | None = None, max_dimension=256):
+-        opts = FirstFiniteOptions() if options is None else options
+-        if not isinstance(opts, FirstFiniteOptions):
+-            raise ValueError("Need FirstFiniteOptions")
+-        limit = exact_integer(max_dimension, "max_dimension", minimum=1, maximum=EXTENDED_MAX_DIMENSION)
+-        self.epsilon_bits = exact_integer(epsilon_bits, "epsilon_bits", minimum=2, maximum=4096)
+-        input_bits = min(MAX_INPUT_BITS, opts.rational_bits)
+-        self.width_squared = _bounded_rational(width_squared, "width_squared", input_bits)
+-        if self.width_squared <= 0:
+-            raise ValueError("width_squared must be positive")
+-        self.basis = _bounded_basis(basis, limit, input_bits)
+-        self.dimension = self.basis.public.ncols
+-        self._columns, lengths, self._weights = _gs_geometry(self.basis.basis_rows, opts.rational_bits)
+-        self._max_gs_squared = max(lengths)
+-        scale = 1 << self.epsilon_bits
+-        self._smoothing_factor = (2 * self.dimension * (1 + scale) - 1).bit_length()
+-        if self.width_squared < 4 * max(lengths) * self._smoothing_factor:
+-            raise ValueError("Width fails the T2 C1-exec sufficient condition")
+-        self._widths = tuple(_bounded_rational(self.width_squared / length,
+-                            "scalar squared width", opts.rational_bits) for length in lengths)
+-        # Check every coordinate before constructing any expensive scalar profile.
+-        if any(not 1 <= v <= MAX_SQUARED_WIDTH for v in self._widths):
+-            raise ValueError("Scalar squared width outside independent finite profile 1..2^88")
+-        self.scalars = tuple(FirstFiniteGaussian(v, v, options=opts) for v in self._widths)
+-        self.random_tape_bytes = sum(s.random_tape_bytes for s in self.scalars)
+-        if self.random_tape_bytes > opts.max_tape_bytes:
+-            raise ValueError("Whole GPV tape exceeds the resource budget")
+-        self._path_resources = _admit_paths(self._columns, self._weights, self.scalars,
+-                                            self.basis.public.q, opts.rational_bits)
+-        # The path gate already computes and bounds each common denominator.
+-        # Clear it once: all live centers are integer vectors, so one exact
+-        # ZZ dot product followed by one rational division is identical to
+-        # the coordinate-wise QQ sum. Keep the original weights for the
+-        # unchanged path certificate; no profile, center or CDF is replaced.
+-        self._integer_weights = []
+-        for weights, resource in zip(self._weights, self._path_resources):
+-            denominator = ZZ(resource[0])
+-            numerators = vector(ZZ, [denominator*w for w in weights])
+-            numerators.set_immutable()
+-            self._integer_weights.append((numerators, denominator))
+-        self._integer_weights = tuple(self._integer_weights)
+-        a, self._pivots = _full_rank_field(self.basis.public)
+-        self._field = a.base_ring()
+-        self._pivot_inverse = a.matrix_from_columns(self._pivots).inverse()
+-        self._pivot_inverse.set_immutable()
+-        denominator = scale - 2 * self.dimension - 1
+-        self.geometry_tv = min(QQ(1), QQ(self.dimension) / denominator) if denominator > 0 else QQ(1)
+-        self.scalar_tv = sum((s.tv_upper for s in self.scalars), QQ(0))
+-        self.tv_upper = min(QQ(1), self.geometry_tv + self.scalar_tv)
+-        self._max_dimension, self._input_bits = limit, input_bits
+-
+-    def _syndrome(self, syndrome):
+-        if isinstance(syndrome, (str, bytes, bytearray, memoryview)):
+-            raise ValueError("Syndrome must be a finite vector of exact residues")
+-        try:
+-            # Bounded consumption rejects wrong length even for an iterator.
+-            values = tuple(islice(iter(syndrome), self.basis.public.nrows + 1))
+-        except TypeError as exc:
+-            raise ValueError("Syndrome must be a finite vector of exact residues") from exc
+-        if len(values) != self.basis.public.nrows:
+-            raise ValueError("Wrong syndrome dimension")
+-        q = self.basis.public.q
+-        values = tuple(_integer(x, modulus=q) for x in values)
+-        if any(not 0 <= x < q for x in values):
+-            raise ValueError("Syndrome must contain canonical residues in [0,q)")
+-        return values
+-
+-    def _lift(self, syndrome):
+-        solved = self._pivot_inverse * vector(self._field, syndrome)
+-        t = [0] * self.dimension
+-        for i, pivot in enumerate(self._pivots):
+-            t[pivot] = int(solved[i])
+-        return vector(ZZ, t)
+-
+-    def sample(self, syndrome, *, rng=None) -> tuple[int, ...]:
+-        target = self._syndrome(syndrome)
+-        t = self._lift(target)
+-        center = -t
+-        source = CheckedEntropy(SecureRandom() if rng is None else rng, self.random_tape_bytes)
+-        for i in reversed(range(self.dimension)):
+-            numerators, denominator = self._integer_weights[i]
+-            projected = QQ(center.dot_product(numerators))/denominator
+-            z = self.scalars[i].sample(self._widths[i], projected, rng=source)
+-            step = z * self._columns[i]
+-            center -= step
+-        # Invariant center=-t-v gives the old output t+v exactly as -center.
+-        return tuple(int(-x) for x in center)
+-
+-    def sample_from_tape(self, syndrome, tape) -> tuple[int, ...]:
+-        target = self._syndrome(syndrome)
+-        if not isinstance(tape, (bytes, bytearray, memoryview)):
+-            raise ValueError("GPV tape must have the public fixed length")
+-        size = tape.nbytes if isinstance(tape, memoryview) else len(tape)
+-        if size != self.random_tape_bytes:
+-            raise ValueError("GPV tape must have the public fixed length")
+-        return self.sample(target, rng=FiniteByteTape(tape))
+-
+-    def certificate(self):
+-        """JSON-safe diagnostic copy, PUBLIC TEST EVIDENCE ONLY (see module doc)."""
+-        steps = self._path_resources
+-        return {
+-            "profile": "FIRST-SUITE-FINITE-GPV/1", "algorithm": "GPV08 section 4.2, descending general-column-basis SampleD",
+-            "source": "papers/2008_gpv_trapdoors_full.pdf, author 2008-08-25, pp.15-17",
+-            "finite_conditions": "T2 contract 2026-10-09, C1-exec, C2-exec, C3 (project adaptations)",
+-            "security_claim": "none", "backend_admitted": False, "constant_time": False,
+-            "public_test_evidence_only": True,
+-            "disclosure": "basis-dependent scalar width/resource diagnostics; no raw basis or samples",
+-            "dimension": self.dimension, "public_rows": self.basis.public.nrows,
+-            "q": str(self.basis.public.q), "width_squared": str(self.width_squared),
+-            "epsilon_bits": self.epsilon_bits, "integer_smoothing_factor": self._smoothing_factor,
+-            "C1_exec_verified": True, "complete_kernel_basis_verified": True,
+-            "coset_convention": "A*t=y, GPV center=-t, output=t+v",
+-            "per_coordinate_profiles": [s.certificate() for s in self.scalars],
+-            "coordinate_profile_order": "basis columns 0..D-1; sampling visits D-1..0",
+-            "geometry_tv_upper": str(self.geometry_tv), "scalar_tv_upper_sum": str(self.scalar_tv),
+-            "arithmetic_tv_upper": "0",
+-            "arithmetic_reason": "exact ZZ/QQ outside scalar; all adaptive centers pre-admitted",
+-            "tv_upper_including_abort": str(self.tv_upper),
+-            "random_tape_bytes": self.random_tape_bytes, "tape_exhaustion_at_public_length_upper": "0",
+-            "path_resources": {
+-                "all_canonical_syndromes": True, "all_nonaborted_paths": True,
+-                "initial_coordinate_abs_upper": str(self.basis.public.q - 1),
+-                "max_center_denominator_bits": max(_bit_length(s[0]) for s in steps),
+-                "max_center_numerator_bits": max(_bit_length(s[1]) for s in steps),
+-                "max_coefficient_bits": max(_bit_length(s[2]) for s in steps),
+-                "max_residual_bits": max(_bit_length(x) for s in steps for x in s[3]),
+-                "rational_bit_budget": self.scalars[0].options.rational_bits,
+-                "max_dimension": self._max_dimension, "input_bit_budget": self._input_bits,
+-                "centers_or_CDFs_precomputed": 0,
+-            },
+-            "production_random_api": True, "native_Sage_rng_used": False,
+-            "randomness": "independent uniform bytes; defaults to SecureRandom; seeded tests are not security evidence",
+-            "failure_semantics": "SamplingAbort and RNG errors propagate, no retries/fallback; invalid inputs rejected before sampling",
+-            "not_covered": ["arbitrary faulty entropy sources", "side channels", "GenBasis/RandBasis",
+-                            "HIBE correctness/noise", "security reduction or attack estimates"],
+-        }
++    return _shared_geometry(rows, bits, gate=_bounded_qq)
+--- a/src/ibme/lattice/chkp/finite_randbasis.py
++++ b/src/ibme/lattice/chkp/finite_randbasis.py
+@@ -1,24 +1,7 @@
+-"""Independent first-suite finite/CSPRNG RandBasis; existing ToBasis domain.
+-
+-CHKP author 2011-06-14, section 3.4; project T2 finite contract C4--C6.
+-No retry after ABORT, no conditioning the report on a successful invocation.
+-No security level or production backend; not constant time.
+-"""
+-
+-from dataclasses import dataclass, field
+-
++"""Candidate RandBasis bridge; legacy rank helper retained only for diagnostics."""
+ from sage.all import GF, QQ, ZZ, matrix, vector
+-
+-from ibme.core.randomness import SecureRandom
+-from .finite_gpv import FirstFiniteGPV
+-from .extended_gpv import ExtendedGPV
+-from ibme.lattice.chkp.tobasis import MAX_ENTRY_BITS, canonical_basis, to_basis
+-from ibme.lattice.chkp.gaussian import SamplingAbort
+-from ibme.lattice.chkp.tape import FiniteByteTape
+-from ibme.lattice.chkp.finite_gaussian import exact_integer
+-from .entropy import CheckedEntropy
+-
+-
++from ibme.lattice.matrix_sampling.scalar import exact_integer
++from ibme.lattice.matrix_sampling.chkp_profiles import (CHKPFiniteRandBasis as FirstFiniteRandBasis, CHKPFiniteRandResult as FirstFiniteRandResult)
+ class _ExactIncrementalRank:
+     """One-sided modular independence witness with exact rational fallback.
+ 
+@@ -67,107 +50,3 @@
+         return False
+ 
+ 
+-@dataclass(frozen=True)
+-class FirstFiniteRandResult:
+-    # The nested KernelBasis certifies algebra only. Its historical T1
+-    # is_randomized=False flag is not repurposed as a cryptographic claim.
+-    basis: object = field(repr=False)
+-    draws_used: int
+-    independent_vectors: int
+-    security_claim: str = field(default="none", init=False)
+-    backend_admitted: bool = field(default=False, init=False)
+-
+-
+-class FirstFiniteRandBasis:
+-    """Select independent zero-syndrome samples, with K TOTAL attempts.
+-
+-The reference ideal process uses the same finite K, norm-ABORT rule and
+-canonical lattice basis. K*delta_D bounds actual-vs-ideal output TV (including
+-ABORT); rank/norm terms additionally bound failure of that ideal process.
+-"""
+-
+-    def __init__(self, sampler, *, max_vectors, max_tape_bytes=2**40, max_dimension=192):
+-        if not isinstance(sampler, (FirstFiniteGPV, ExtendedGPV)):
+-            raise ValueError("RandBasis needs an admitted research GPV sampler")
+-        self.sampler = sampler
+-        self.dimension = sampler.dimension
+-        self.max_vectors = exact_integer(max_vectors, "max_vectors",
+-                                          minimum=self.dimension, maximum=4096)
+-        self.max_tape_bytes = exact_integer(max_tape_bytes, "max_tape_bytes",
+-                                           minimum=1, maximum=2**40)
+-        self.random_tape_bytes = self.max_vectors*sampler.random_tape_bytes
+-        if self.random_tape_bytes > self.max_tape_bytes:
+-            raise ValueError("Whole RandBasis tape exceeds the resource budget")
+-        self.max_dimension = exact_integer(max_dimension, "max_dimension", minimum=1, maximum=512)
+-        self.canonical = canonical_basis(sampler.basis, max_dimension=self.max_dimension)
+-        self.norm_squared_limit = sampler.width_squared * self.dimension
+-        # Pre-admit the full bounded set of candidate coordinates to ToBasis.
+-        ceiling = ZZ(self.norm_squared_limit.ceil()).isqrt() + 1
+-        inverse = matrix(QQ, self.canonical.basis_rows).inverse()
+-        coordinate_limit = max(sum(abs(x) for x in row) * ceiling
+-                               for row in inverse.rows())
+-        if (int(ceiling).bit_length() > MAX_ENTRY_BITS
+-                or int(coordinate_limit.ceil()).bit_length() > MAX_ENTRY_BITS):
+-            raise ValueError("all-candidate ToBasis coordinates exceed resource budget")
+-        bits = sampler.epsilon_bits
+-        eps = QQ(1) / 2**bits
+-        self.rank_upper = min(QQ(1), QQ(2)**(self.dimension-self.max_vectors)
+-                              + 2*self.max_vectors*eps)
+-        self.tail_upper = min(QQ(1), (1+eps)/(1-eps)*QQ(2)**(-self.dimension))
+-        self.output_tv_upper = min(QQ(1), self.max_vectors*sampler.tv_upper)
+-        self.failure_upper = min(QQ(1), self.rank_upper
+-                                 + self.max_vectors*self.tail_upper
+-                                 + self.output_tv_upper)
+-
+-    def sample(self, *, rng=None):
+-        rng = CheckedEntropy(SecureRandom() if rng is None else rng, self.random_tape_bytes)
+-        chosen = []
+-        rank = _ExactIncrementalRank(self.dimension)
+-        zero = (0,) * self.sampler.basis.public.nrows
+-        for count in range(1, self.max_vectors + 1):
+-            candidate = vector(ZZ, self.sampler.sample(zero, rng=rng))
+-            if candidate.dot_product(candidate) > self.norm_squared_limit:
+-                raise SamplingAbort("RandBasis norm budget exceeded; entire call aborted")
+-            # The modular fast path is only a proof of Q-independence. Every
+-            # modular dependency is checked exactly; no candidate is dropped
+-            # because of its rank over a finite field.
+-            if rank.add(candidate):
+-                chosen.append(candidate)
+-            if len(chosen) == self.dimension:
+-                result = to_basis(matrix(ZZ, chosen).transpose(), self.canonical,
+-                                  max_dimension=self.max_dimension)
+-                return FirstFiniteRandResult(result, count, len(chosen))
+-        raise SamplingAbort("RandBasis rank budget exhausted; no retry or fallback")
+-
+-    def sample_from_tape(self, tape):
+-        if not isinstance(tape, (bytes, bytearray, memoryview)):
+-            raise ValueError("RandBasis tape must have the configured fixed length")
+-        size = tape.nbytes if isinstance(tape, memoryview) else len(tape)
+-        if size != self.random_tape_bytes:
+-            raise ValueError("RandBasis tape must have the configured fixed length")
+-        return self.sample(rng=FiniteByteTape(tape))
+-
+-    def certificate(self):
+-        return {
+-            "profile": "FIRST-SUITE-FINITE-RANDBASIS/1", "algorithm": "CHKP RandBasis, independent finite K/norm-abort adaptation",
+-            "dimension": self.dimension, "max_vectors": self.max_vectors,
+-            "width_squared": str(self.sampler.width_squared),
+-            "candidate_norm_squared_limit": str(self.norm_squared_limit),
+-            "ideal_rank_exhaustion_upper": str(self.rank_upper),
+-            "one_ideal_norm_tail_upper": str(self.tail_upper),
+-            "actual_vs_bounded_ideal_output_tv_upper": str(self.output_tv_upper),
+-            "rank_or_norm_or_sampling_failure_upper": str(self.failure_upper),
+-            "failure_bound_nonvacuous": self.failure_upper < 1,
+-            "output_gs_squared_upper_on_success": str(self.norm_squared_limit),
+-            "public_random_tape_bytes": self.random_tape_bytes,
+-            "whole_call_random_tape_cap": self.max_tape_bytes,
+-            "public_test_evidence_only": True,
+-            "disclosure": "basis-dependent tape/profile diagnostics are excluded from the parent-basis output-TV comparison",
+-            "canonical_complete_lattice_basis": True,
+-            "all_candidate_tobasis_coordinate_resources_checked": True,
+-            "parent_basis_comparison": "at common s,K,norm cutoff and canonical postprocessor, TV <= K*(delta_D0+delta_D1); NOT exact basis independence",
+-            "ordinary_column_norm_preservation": False,
+-            "spectral_norm_preservation": False,
+-            "randomness_assumption": "independent uniform bytes; deterministic seeds only test executions",
+-            "production_random_api": True, "native_Sage_rng_used": False, "constant_time": False, "security_claim": "none", "backend_admitted": False,
+-        }
+--- a/src/ibme/lattice/chkp/tobasis.py
++++ b/src/ibme/lattice/chkp/tobasis.py
+@@ -1,124 +1,9 @@
+-"""Exact, deterministic ToBasis: full lattice and ordered GS bounds ONLY.
+-
+-Peikert, pargauss author version 2011-04-13, Lemma 5.4 (PDF 16).
+-The proof's claim about singular values of triangular integer matrices is
+-false; this implementation does NOT promise spectral/ordinary norm bounds.
+-Input and output vectors are COLUMNS. WSL ~/miniconda3/envs/sage required.
+-"""
+-
+-from itertools import islice
+-
+-from sage.all import QQ, ZZ, matrix
+-
+-from .basis import KernelBasis
+-
+-
+-MAX_DIMENSION = 192
+-EXTENDED_MAX_DIMENSION = 512
+-MAX_ENTRY_BITS = 8192
+-
+-
++"""Candidate deterministic shared-engine ToBasis bridge."""
++from ibme.lattice.matrix_sampling.chkp_profiles import (chkp_canonical_basis as canonical_basis, chkp_to_basis as to_basis, _basis_limits, MAX_ENTRY_BITS)
++from ibme.lattice.matrix_sampling.basis import _checked_square as _shared_square
++MAX_DIMENSION=192
++EXTENDED_MAX_DIMENSION=512
+ def _dimension_limit(value):
+-    if type(value) is not int or not 1 <= value <= EXTENDED_MAX_DIMENSION:
+-        raise ValueError("explicit ToBasis dimension budget must be in 1..512")
+-    return value
+-
+-
++    return _basis_limits(value).max_dimension
+ def _checked_square(rows, dimension):
+-    if hasattr(rows, "rows") and callable(rows.rows):
+-        if rows.nrows() != dimension or rows.ncols() != dimension:
+-            raise ValueError("vector matrix must have the full lattice dimension")
+-        rows = rows.rows()
+-    try:
+-        outer = tuple(islice(iter(rows), dimension+1))
+-        if len(outer) != dimension:
+-            raise ValueError("vector matrix must have the full lattice dimension")
+-        rows = tuple(tuple(islice(iter(row), dimension+1)) for row in outer)
+-    except TypeError as exc:
+-        raise ValueError("expected a square integer column-vector matrix") from exc
+-    if len(rows) != dimension or any(len(row) != dimension for row in rows):
+-        raise ValueError("vector matrix must have the full lattice dimension")
+-    checked = []
+-    for row in rows:
+-        out = []
+-        for value in row:
+-            if isinstance(value, bool) or not isinstance(value, (int, type(ZZ(0)))):
+-                raise ValueError("vector matrix entries must be exact integers")
+-            value = int(value)
+-            if abs(value).bit_length() > MAX_ENTRY_BITS:
+-                raise ValueError("integer matrix exceeds the entry bit budget")
+-            out.append(value)
+-        checked.append(out)
+-    return matrix(ZZ, checked)
+-
+-
+-def canonical_basis(basis, *, max_dimension=MAX_DIMENSION):
+-    """Canonical COLUMN HNF of the complete lattice, never of sampled S.
+-
+-Sage HNF acts on rows. Transposing both before and after is essential.
+-The result depends on the lattice, not on the secret basis used to sample.
+-"""
+-    if not isinstance(basis, KernelBasis):
+-        raise ValueError("need a validated complete KernelBasis")
+-    d = basis.public.ncols
+-    if not 1 <= d <= _dimension_limit(max_dimension):
+-        raise ValueError("basis exceeds the research dimension resource limit")
+-    b = _checked_square(basis.basis_rows, d)
+-    h = b.transpose().hermite_form().transpose()
+-    return KernelBasis(basis.public, h)
+-
+-
+-def to_basis(vectors_rows, basis, *, max_dimension=MAX_DIMENSION):
+-    """Complete a full-rank set S in Lambda using canonical B for Lambda.
+-
+-Compute Z=B^-1 S over QQ and REQUIRE integral coordinates. Row HNF gives
+-R=V Z with V unimodular and R upper triangular, so U=V^-1 and T=B U.
+-Then S=T R, L(T)=L(B), and tilde(s_i)=r_ii tilde(t_i).
+-As each r_ii is a nonzero integer, ordered GS lengths cannot increase.
+-No randomness, LLL approximation, mod-q basis reduction, or retry occurs.
+-"""
+-    canonical = canonical_basis(basis, max_dimension=max_dimension)
+-    d = canonical.public.ncols
+-    s = _checked_square(vectors_rows, d)
+-    b = matrix(ZZ, canonical.basis_rows)
+-    coordinates = matrix(QQ, b).solve_right(matrix(QQ, s))
+-    if any(x.denominator() != 1 for x in coordinates.list()):
+-        raise ValueError("sampled vectors are not in the complete input lattice")
+-    z = matrix(ZZ, coordinates)
+-    if any(abs(int(x)).bit_length() > MAX_ENTRY_BITS for x in z.list()):
+-        raise ValueError("integer coordinates exceed the entry bit budget")
+-    r, v = z.hermite_form(transformation=True)
+-    if (v * z != r
+-            or any(r[i, j] != 0 for i in range(d) for j in range(i))):
+-        raise ArithmeticError("HNF transformation failed its exact contract")
+-    if any(r[i, i] == 0 for i in range(d)):
+-        raise ValueError("sampled vectors must have full integer rank")
+-    # T R = S determines T uniquely. Solve one column at a time using the
+-    # exact upper-triangular R instead of inverting the generally large V.
+-    # This gives precisely B*V^-1, not an alternative short basis.
+-    t = matrix(ZZ, d, d)
+-    for j in range(d):
+-        numerator = s.column(j)
+-        for i in range(j):
+-            if r[i, j]:
+-                numerator -= r[i, j] * t.column(i)
+-        diagonal = r[j, j]
+-        if any(entry % diagonal for entry in numerator):
+-            raise ArithmeticError("ToBasis triangular solution is not integral")
+-        t.set_column(j, [entry // diagonal for entry in numerator])
+-    if t * r != s:
+-        raise ArithmeticError("ToBasis factorization check failed")
+-    # Exact factorization certificate for the ordered GS postcondition:
+-    # S=T*R, upper-triangular R, and nonzero integer r_ii imply
+-    # GS(S)_i=r_ii*GS(T)_i and |r_ii|>=1. Therefore no GS length increases.
+-    # Computing both rational GS decompositions repeats this exact consequence
+-    # and is especially expensive for the large integer HNF transformations.
+-    # Small-matrix tests independently verify both GS decompositions and the
+-    # old B*V^-1 output. Complete-lattice validation is retained below.
+-    # The final exact product certificate also verifies HNF unimodularity:
+-    # S=B*Z, V*Z=R, and |det(B)|=q^n give
+-    # |det(V)|=|prod diag(R)|*q^n/|det(S)|=1. Computing det(V) separately
+-    # can dominate the whole sampler when HNF coefficients are very large.
+-    # Neither this certificate nor construction below trusts Sage's claimed
+-    # transformation: both matrix identities and the determinant ratio run.
+-    return KernelBasis.from_upper_triangular_product(canonical.public, t, r, s)
++    return _shared_square(rows, dimension, limits=_basis_limits(512))
