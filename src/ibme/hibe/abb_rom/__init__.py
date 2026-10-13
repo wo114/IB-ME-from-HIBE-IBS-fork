@@ -10,7 +10,8 @@ from ibme.lattice.research import require_sage
 __all__ = ["FiniteSampleR", "SampleRResult", "BasisDelPrepared", "prepare_basis_del",
            "FiniteBasisDel", "prefix_matrices", "ABBTrapGenParams", "ABBTrapGenResult",
            "abb_trapgen", "ABBBitPublic", "ABBBitCiphertext", "ABBBitEncryptor",
-           "abb_decode_phase", "abb_decrypt_bit", "ABBBitDecryptor", "abb_parameter_screen"]
+           "abb_decode_phase", "abb_decrypt_bit", "ABBBitDecryptor", "abb_parameter_screen",
+           "MatrixSampleR", "MatrixBasisDel", "prepare_matrix_basis_del"]
 
 _TRAPGEN = {"ABBTrapGenParams", "ABBTrapGenResult", "abb_trapgen"}
 _BITS = {"ABBBitPublic", "ABBBitCiphertext", "ABBBitEncryptor", "abb_decode_phase", "abb_decrypt_bit", "ABBBitDecryptor"}

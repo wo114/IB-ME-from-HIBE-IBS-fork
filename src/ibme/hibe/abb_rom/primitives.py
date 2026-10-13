@@ -22,6 +22,9 @@ from experiments.research.first_suite.finite_randbasis import FirstFiniteRandBas
 from experiments.research.first_suite.entropy import CheckedEntropy
 from experiments.research.first_suite.finite_gaussian import capped_exp_minus_pi,interval_upper
 from experiments.research.ibme_root_sampler_audit import checked_sage_lll
+from ibme.lattice.matrix_sampling import (MatrixFiniteOptions,MatrixFiniteGaussian,
+    MatrixFiniteGPV,MatrixFiniteRandBasis,MatrixBasisLimits,matrix_to_basis,matrix_checked_lll)
+from ibme.lattice.matrix_sampling.basis import LEGACY_BASIS_LIMITS
 
 
 def exact_int(value,name,low,high):
@@ -30,15 +33,19 @@ def exact_int(value,name,low,high):
     return int(value)
 
 
-def exact_width(value):
+def checked_width(value,maximum):
     if isinstance(value,bool) or not isinstance(value,(int,Fraction,type(ZZ(0)),type(QQ(0)))):
         raise InvalidParameterError("exact Gaussian squared width required")
     result=QQ(value)
-    if not 1<=result<=2**80:raise InvalidParameterError("width outside finite profile")
+    if not 1<=result<=maximum:raise InvalidParameterError("width outside explicitly selected finite profile")
     return result
 
 
-def signed_square(value,dimension):
+def exact_width(value):
+    return checked_width(value,2**80)
+
+
+def signed_square(value,dimension,*,max_entry_bits=MAX_ENTRY_BITS):
     if hasattr(value,"rows") and callable(value.rows):
         if value.dimensions()!=(dimension,dimension):raise InvalidParameterError("R shape")
         value=value.rows()
@@ -54,7 +61,7 @@ def signed_square(value,dimension):
         for x in row:
             if isinstance(x,bool) or not isinstance(x,(int,type(ZZ(0)))):
                 raise InvalidParameterError("R must retain signed exact integers, not field entries")
-            if abs(int(x)).bit_length()>MAX_ENTRY_BITS:
+            if abs(int(x)).bit_length()>max_entry_bits:
                 raise InvalidParameterError("R coefficient resource budget")
             out.append(int(x))
         checked.append(out)
@@ -76,15 +83,23 @@ class FiniteSampleR:
     ideal modular nonsingularity lower bound uses a per-entry residue mass
     upper bound and successive subspace codimensions, not paper hidden O().
     """
+    MAX_DIMENSION=MAX_DIMENSION
+    MAX_Q=2**61-1
+    MAX_SQUARED_WIDTH=2**80
+    OPTIONS_TYPE=FirstFiniteOptions
+    SCALAR_TYPE=FirstFiniteGaussian
+    MAX_TAPE_BYTES=2**40
+    PROFILE_ID="ABB-ROM-FINITE-SAMPLER/1"
+
     def __init__(self,q,dimension,width_squared,*,max_matrices=32,options=None,max_tape_bytes=2**40):
-        self.q=exact_int(q,"q",3,2**61-1)
+        self.q=exact_int(q,"q",3,self.MAX_Q)
         if not ZZ(self.q).is_prime(proof=True):raise InvalidParameterError("odd prime q required")
-        self.dimension=exact_int(dimension,"dimension",1,MAX_DIMENSION)
-        self.width_squared=exact_width(width_squared)
+        self.dimension=exact_int(dimension,"dimension",1,self.MAX_DIMENSION)
+        self.width_squared=checked_width(width_squared,self.MAX_SQUARED_WIDTH)
         self.max_matrices=exact_int(max_matrices,"matrix attempts",1,1024)
-        self.max_tape_bytes=exact_int(max_tape_bytes,"whole SampleR tape",1,2**40)
-        self.scalar=FirstFiniteGaussian(self.width_squared,self.width_squared,
-            options=FirstFiniteOptions() if options is None else options)
+        self.max_tape_bytes=exact_int(max_tape_bytes,"whole SampleR tape",1,self.MAX_TAPE_BYTES)
+        self.scalar=self.SCALAR_TYPE(self.width_squared,self.width_squared,
+            options=self.OPTIONS_TYPE() if options is None else options)
         self.random_tape_bytes=self.max_matrices*self.dimension**2*self.scalar.random_tape_bytes
         if self.random_tape_bytes>self.max_tape_bytes:
             raise InvalidParameterError("whole SampleR tape exceeded before entropy")
@@ -121,7 +136,7 @@ class FiniteSampleR:
         finally:self.last_entropy_bytes=source.bytes_used
 
     def certificate(self):
-        return dict(profile="ABB-ROM-FINITE-SAMPLER/1",source="ABB10 PDF9 Definition7/SampleR",
+        return dict(profile=self.PROFILE_ID,source="ABB10 PDF9 Definition7/SampleR",
             q=self.q,dimension=self.dimension,width_squared=str(self.width_squared),
             whole_matrix_attempts=self.max_matrices,per_column_filtering=False,
             ideal_nonsingular_probability_lower=str(self.ideal_nonsingular_lower),
@@ -142,28 +157,42 @@ class BasisDelPrepared:
     transformed_rows:tuple=field(repr=False)
     completed_basis:KernelBasis=field(repr=False)
     transformed_sublattice_index:int
-    ordered_gs_not_increased:bool
+    ordered_gs_not_increased:bool|None
     max_gs_not_increased:bool
     completion_reduced:bool=False
 
 
-def prepare_basis_del(parent_basis,transformation,*,reduce_completion=False):
+def _prepare_basis_del(parent_basis,transformation,limits,*,reduce_completion=False):
     if type(reduce_completion) is not bool:raise InvalidParameterError("explicit completion reduction flag required")
     if not isinstance(parent_basis,KernelBasis):raise InvalidParameterError("complete parent basis required")
     m=parent_basis.public.ncols
-    exact_int(m,"dimension",1,MAX_DIMENSION)
+    exact_int(m,"dimension",1,limits.max_dimension)
     q=parent_basis.public.q
     if q<=2:raise InvalidParameterError("ABB-ROM requires odd prime q")
-    r=signed_square(transformation,m)
+    r=signed_square(transformation,m,max_entry_bits=limits.max_entry_bits)
     rmod=matrix(GF(q),r)
     if not rmod.is_invertible():raise InvalidParameterError("R is singular modulo q")
     a=matrix(GF(q),parent_basis.public.rows)
     target=ModMatrixReference(tuple(tuple(int(x) for x in row) for row in (a*rmod.inverse()).rows()),q)
     transformed=r*matrix(ZZ,parent_basis.basis_rows)
-    if any(abs(int(x)).bit_length()>MAX_ENTRY_BITS for x in transformed.list()):
+    if any(abs(int(x)).bit_length()>limits.max_entry_bits for x in transformed.list()):
         raise InvalidParameterError("transformed basis arithmetic resource budget")
     anchor=complete_kernel_basis(target)
-    completed=to_basis(transformed,anchor)
+    completed=matrix_to_basis(transformed,anchor,limits=limits)
+    if limits!=LEGACY_BASIS_LIMITS:
+        if reduce_completion:
+            # The first GS squared length of R*T is its first-column norm.
+            # Checking max GS(output) <= this proves the original maximum-GS
+            # obligation, without computing a skew private GSO first.
+            lower_on_old_max=sum(int(x)**2 for x in transformed.column(0))
+            completed=matrix_checked_lll(completed,lower_on_old_max,limits=limits)
+            ordered=None  # LLL may reorder/increase an individual GS coordinate.
+        else:
+            ordered=True  # Exact triangular ToBasis factorization proves it.
+        return BasisDelPrepared(parent_basis.public,target,
+            tuple(tuple(int(x) for x in row) for row in r.rows()),
+            tuple(tuple(int(x) for x in row) for row in transformed.rows()),completed,
+            abs(int(r.det())),ordered,True,reduce_completion)
     old=gram_schmidt_squared_lengths(transformed)
     if reduce_completion:
         # Explicit concrete realization of the completion-quality obligation:
@@ -184,15 +213,33 @@ def prepare_basis_del(parent_basis,transformation,*,reduce_completion=False):
         abs(int(r.det())),ordered,maximum,reduce_completion)
 
 
+def prepare_basis_del(parent_basis,transformation,*,reduce_completion=False):
+    return _prepare_basis_del(parent_basis,transformation,LEGACY_BASIS_LIMITS,
+        reduce_completion=reduce_completion)
+
+
+def prepare_matrix_basis_del(parent_basis,transformation,*,reduce_completion=False,basis_limits=None):
+    limits=MatrixBasisLimits() if basis_limits is None else basis_limits
+    if not isinstance(limits,MatrixBasisLimits):raise InvalidParameterError("explicit MatrixBasisLimits required")
+    return _prepare_basis_del(parent_basis,transformation,limits,reduce_completion=reduce_completion)
+
+
 class FiniteBasisDel:
     """Original transform/completion/randomization sequence with finite oracle."""
+    BASIS_LIMITS=LEGACY_BASIS_LIMITS
+    MAX_SQUARED_WIDTH=2**80
+    SAMPLER_TYPE=FirstFiniteGPV
+    RANDOMIZER_TYPE=FirstFiniteRandBasis
+    PROFILE_ID="ABB-ROM-FINITE-BASISDEL/1"
+
     def __init__(self,parent_basis,transformation,width_squared,*,epsilon_bits=128,
                  max_vectors=None,options=None,max_tape_bytes=2**40,reduce_completion=False):
-        self.prepared=prepare_basis_del(parent_basis,transformation,reduce_completion=reduce_completion)
-        self.sampler=FirstFiniteGPV(self.prepared.completed_basis,exact_width(width_squared),
+        self.prepared=_prepare_basis_del(parent_basis,transformation,self.BASIS_LIMITS,reduce_completion=reduce_completion)
+        self.sampler=self.SAMPLER_TYPE(self.prepared.completed_basis,checked_width(width_squared,self.MAX_SQUARED_WIDTH),
             epsilon_bits=epsilon_bits,options=options)
         count=self.sampler.dimension+64 if max_vectors is None else max_vectors
-        self.randomizer=FirstFiniteRandBasis(self.sampler,max_vectors=count,max_tape_bytes=max_tape_bytes)
+        kwargs={} if self.BASIS_LIMITS==LEGACY_BASIS_LIMITS else {"basis_limits":self.BASIS_LIMITS}
+        self.randomizer=self.RANDOMIZER_TYPE(self.sampler,max_vectors=count,max_tape_bytes=max_tape_bytes,**kwargs)
         self.random_tape_bytes=self.randomizer.random_tape_bytes
 
     def sample(self,*,rng=None):
@@ -205,7 +252,7 @@ class FiniteBasisDel:
 
     def public_test_certificate(self):
         """Basis-dependent diagnostic; only publish for explicitly public inputs."""
-        return dict(profile="ABB-ROM-FINITE-BASISDEL/1",source="ABB10 PDF10 section3.1",
+        return dict(profile=self.PROFILE_ID,source="ABB10 PDF10 section3.1",
             dimension=self.sampler.dimension,q=self.prepared.target_public.q,
             transformed_sublattice_index=self.prepared.transformed_sublattice_index,
             complete_kernel_verified=True,
@@ -214,6 +261,35 @@ class FiniteBasisDel:
             completion_reduced=self.prepared.completion_reduced,
             RandBasis=self.randomizer.certificate(),not_full_HIBE=True,
             theorem3_finite_constants_or_ROM_mapping_verified=False,security_claim="none",backend_admitted=False)
+
+
+class MatrixSampleR(FiniteSampleR):
+    """Same whole-matrix Gaussian/invertibility algorithm, explicit wide input."""
+    MAX_DIMENSION=1536
+    MAX_Q=2**256-1
+    MAX_SQUARED_WIDTH=2**192
+    OPTIONS_TYPE=MatrixFiniteOptions
+    SCALAR_TYPE=MatrixFiniteGaussian
+    MAX_TAPE_BYTES=2**44
+    PROFILE_ID="ABB-ROM-MATRIX-SAMPLER/1"
+
+    def __init__(self,q,dimension,width_squared,*,max_matrices=32,options=None,max_tape_bytes=2**44):
+        super().__init__(q,dimension,width_squared,max_matrices=max_matrices,
+            options=options,max_tape_bytes=max_tape_bytes)
+
+
+class MatrixBasisDel(FiniteBasisDel):
+    """Same transform/completion/randomization, explicitly selected wide tools."""
+    BASIS_LIMITS=MatrixBasisLimits()
+    MAX_SQUARED_WIDTH=2**192
+    SAMPLER_TYPE=MatrixFiniteGPV
+    RANDOMIZER_TYPE=MatrixFiniteRandBasis
+    PROFILE_ID="ABB-ROM-MATRIX-BASISDEL/1"
+
+    def __init__(self,parent_basis,transformation,width_squared,*,epsilon_bits=128,
+                 max_vectors=None,options=None,max_tape_bytes=2**44,reduce_completion=False):
+        super().__init__(parent_basis,transformation,width_squared,epsilon_bits=epsilon_bits,
+            max_vectors=max_vectors,options=options,max_tape_bytes=max_tape_bytes,reduce_completion=reduce_completion)
 
 
 def prefix_matrices(root_public,h1,h2):
