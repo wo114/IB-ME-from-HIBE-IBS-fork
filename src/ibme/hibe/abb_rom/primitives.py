@@ -165,8 +165,10 @@ class BasisDelPrepared:
     completion_reduced:bool=False
 
 
-def _prepare_basis_del(parent_basis,transformation,limits,*,reduce_completion=False):
+def _prepare_basis_del(parent_basis,transformation,limits,*,reduce_completion=False,preconditioner=None):
     if type(reduce_completion) is not bool:raise InvalidParameterError("explicit completion reduction flag required")
+    if preconditioner not in (None,"flatter") or (preconditioner is not None and not reduce_completion):
+        raise InvalidParameterError("known preconditioner requires explicit completion reduction")
     if not isinstance(parent_basis,KernelBasis):raise InvalidParameterError("complete parent basis required")
     m=parent_basis.public.ncols
     exact_int(m,"dimension",1,limits.max_dimension)
@@ -193,7 +195,7 @@ def _prepare_basis_del(parent_basis,transformation,limits,*,reduce_completion=Fa
             # Checking max GS(output) <= this proves the original maximum-GS
             # obligation, without computing a skew private GSO first.
             lower_on_old_max=sum(int(x)**2 for x in transformed.column(0))
-            completed=matrix_checked_lll(completed,lower_on_old_max,limits=limits)
+            completed=matrix_checked_lll(completed,lower_on_old_max,limits=limits,preconditioner=preconditioner)
             ordered=None  # LLL may reorder/increase an individual GS coordinate.
         else:
             ordered=True  # Exact triangular ToBasis factorization proves it.
@@ -241,8 +243,9 @@ class FiniteBasisDel:
     PROFILE_ID="ABB-ROM-FINITE-BASISDEL/1"
 
     def __init__(self,parent_basis,transformation,width_squared,*,epsilon_bits=128,
-                 max_vectors=None,options=None,max_tape_bytes=2**40,reduce_completion=False):
-        self.prepared=_prepare_basis_del(parent_basis,transformation,self.BASIS_LIMITS,reduce_completion=reduce_completion)
+                 max_vectors=None,options=None,max_tape_bytes=2**40,reduce_completion=False,preconditioner=None):
+        self.prepared=_prepare_basis_del(parent_basis,transformation,self.BASIS_LIMITS,
+            reduce_completion=reduce_completion,preconditioner=preconditioner)
         self.sampler=self.SAMPLER_TYPE(self.prepared.completed_basis,checked_width(width_squared,self.MAX_SQUARED_WIDTH),
             epsilon_bits=epsilon_bits,options=options)
         count=self.sampler.dimension+64 if max_vectors is None else max_vectors
@@ -310,9 +313,10 @@ class MatrixBasisDel(FiniteBasisDel):
     PROFILE_ID="ABB-ROM-MATRIX-BASISDEL/1"
 
     def __init__(self,parent_basis,transformation,width_squared,*,epsilon_bits=128,
-                 max_vectors=None,options=None,max_tape_bytes=2**44,reduce_completion=False):
+                 max_vectors=None,options=None,max_tape_bytes=2**44,reduce_completion=False,preconditioner=None):
         super().__init__(parent_basis,transformation,width_squared,epsilon_bits=epsilon_bits,
-            max_vectors=max_vectors,options=options,max_tape_bytes=max_tape_bytes,reduce_completion=reduce_completion)
+            max_vectors=max_vectors,options=options,max_tape_bytes=max_tape_bytes,
+            reduce_completion=reduce_completion,preconditioner=preconditioner)
 
 
 def prefix_matrices(root_public,h1,h2):

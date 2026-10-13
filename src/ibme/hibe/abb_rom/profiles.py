@@ -17,3 +17,9 @@ def q104_research_params():
         sigma2_squared=4393678979852224267713637199190156629954789376,
         tau2_squared=2032480746647800128450186859247772935764045927022592,
         max_parents=1,max_children_per_parent=1)
+
+
+def q104_flatter_research_params():
+    """Same widths/noise; fixed external reduction for a separate instance."""
+    return replace(q104_research_params(),name="abb-rom-ap09-n1-q104-flatter-research",
+        normalization="matrix-flatter-lll-075-0501-exact074-v2")

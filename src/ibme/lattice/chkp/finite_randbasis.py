@@ -48,5 +48,3 @@ class _ExactIncrementalRank:
             # Keep using exact checks whenever that deficit is present.
             return retain()
         return False
-
-

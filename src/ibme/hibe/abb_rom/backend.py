@@ -43,6 +43,9 @@ def root_parameters(p):
 def check_setup_profile(p):
     if not isinstance(p,ABBROMParams):
         raise InvalidParameterError("ABB requires independent ABBROMParams, no old Params conversion")
+    if p.normalization == "matrix-flatter-lll-075-0501-exact074-v2":
+        from sage.features.flatter import Flatter
+        Flatter().require()  # fixed local dependency, before any private RNG
     public_size=len(header(b"PK",p))+4+(p.n*p.dimension+p.n)*((p.q.bit_length()+7)//8)
     minimum_master_size=len(header(b"MSK",p))+4+public_size+64+6*p.dimension**2+4
     if minimum_master_size>p.max_blob_bytes:
@@ -82,6 +85,11 @@ class ABBROMHIBE:
             self._oracle_samplers[encoded] = sampler
         return self._oracle_samplers[encoded]
 
+    @staticmethod
+    def _reduction_options(p):
+        return ({"preconditioner": "flatter"} if p.normalization ==
+            "matrix-flatter-lll-075-0501-exact074-v2" else {})
+
     def setup(self,params,*,rng=None):
         root,sampler,_ = check_setup_profile(params)
         self._oracle_samplers[params.to_bytes()] = sampler
@@ -117,8 +125,10 @@ class ABBROMHIBE:
             try:
                 transformation = prefix_matrix(pk.context,(identity,),p,sampler=sampler)
                 delegated = MatrixBasisDel(basis,transformation,p.sigma1_squared,epsilon_bits=p.epsilon_bits,
-                    options=finite_options(p),max_tape_bytes=p.max_tape_bytes,reduce_completion=True).sample(rng=rng)
-                normalized = matrix_checked_lll(delegated.basis,p.sigma1_squared*p.dimension)
+                    options=finite_options(p),max_tape_bytes=p.max_tape_bytes,reduce_completion=True,
+                    **self._reduction_options(p)).sample(rng=rng)
+                normalized = matrix_checked_lll(delegated.basis,p.sigma1_squared*p.dimension,
+                    **self._reduction_options(p))
                 result = ABBLevel1Key(pk,identity,normalized.basis_rows)
                 result.to_bytes()
                 msk.parents[identity] = result
@@ -149,8 +159,10 @@ class ABBROMHIBE:
             try:
                 transformation = prefix_matrix(pk.context,(sk_parent.identity,identity),p,sampler=sampler)
                 delegated = MatrixBasisDel(basis,transformation,p.sigma2_squared,epsilon_bits=p.epsilon_bits,
-                    options=finite_options(p),max_tape_bytes=p.max_tape_bytes,reduce_completion=True).sample(rng=rng)
-                normalized = matrix_checked_lll(delegated.basis,p.sigma2_squared*p.dimension)
+                    options=finite_options(p),max_tape_bytes=p.max_tape_bytes,reduce_completion=True,
+                    **self._reduction_options(p)).sample(rng=rng)
+                normalized = matrix_checked_lll(delegated.basis,p.sigma2_squared*p.dimension,
+                    **self._reduction_options(p))
                 result = ABBLevel2Key(pk,sk_parent.identity,identity,normalized.basis_rows)
                 result.to_bytes()
                 sk_parent.children[identity] = result

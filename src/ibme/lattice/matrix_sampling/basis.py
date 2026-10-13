@@ -247,7 +247,11 @@ def admit_transform_content(dimension, coordinate_bits, *, limits=MATRIX_BASIS_L
     return content
 
 
-def matrix_checked_lll(basis, gs_upper, *, limits=MATRIX_BASIS_LIMITS):
+def _flatter_rows(rows):
+    return rows.LLL(algorithm="flatter", delta=QQ(3)/4)
+
+
+def matrix_checked_lll(basis, gs_upper, *, limits=MATRIX_BASIS_LIMITS, preconditioner=None):
     """Fixed delta=.75 proposal, then exact full-lattice/GS/size/Lovasz tests.
 
     Exact column size reduction preserves every GS vector. The original
@@ -257,14 +261,25 @@ def matrix_checked_lll(basis, gs_upper, *, limits=MATRIX_BASIS_LIMITS):
     """
     from .gpv import _gs_geometry
     from .scalar import exact_rational
+    if preconditioner not in (None, "flatter"):
+        raise ValueError("unknown fixed lattice preconditioner")
     if not isinstance(basis, KernelBasis):
         raise ValueError("complete KernelBasis required")
     original = _checked_square(basis.basis_rows, basis.public.ncols, limits=limits)
     upper = exact_rational(gs_upper, "public GS upper", max_bits=limits.max_entry_bits)
     if upper <= 0:
         raise ValueError("positive GS bound required")
-    rows, transform = original.transpose().LLL(delta=QQ(3)/4, eta=QQ(501)/1000, transformation=True)
-    reduced, column_transform = rows.transpose(), transform.transpose()
+    initial = original.transpose()
+    if preconditioner == "flatter":
+        # Flatter's output is only a proposal. Before it can enter GPV/LLL,
+        # independently check the complete original public kernel lattice.
+        proposal = _flatter_rows(initial)
+        checked = KernelBasis(basis.public, proposal.transpose())
+        initial = matrix(ZZ, checked.basis_rows).transpose()
+    # Both complete bases have index q^n and satisfy A*T=0. This proves
+    # equality without maintaining an enormous native transformation matrix.
+    rows = initial.LLL(delta=QQ(3)/4, eta=QQ(501)/1000, transformation=False)
+    reduced = rows.transpose()
     _, lengths, weights = _gs_geometry(tuple(tuple(int(x) for x in row) for row in reduced.rows()),
         limits.max_entry_bits, limits.max_transform_content_bytes)
     # Same exact projections, evaluated by native rational vector arithmetic.
@@ -279,13 +294,10 @@ def matrix_checked_lll(basis, gs_upper, *, limits=MATRIX_BASIS_LIMITS):
             nearest = ZZ((mu+QQ(1)/2).floor())
             if nearest:
                 reduced.add_multiple_of_column(j,i,-nearest)
-                column_transform.add_multiple_of_column(j,i,-nearest)
                 columns[j] -= nearest*columns[i]
-    if original*column_transform != reduced:
-        raise ArithmeticError("LLL exact integer transformation failed")
     result = KernelBasis(basis.public,reduced)
-    # Both complete bases have determinant q^n; together with the exact
-    # transform this verifies unimodularity without a giant det(transform).
+    # The validated input and output are both the full same kernel. Native
+    # arithmetic cannot substitute a sublattice or foreign public matrix.
     if max(lengths) > upper:
         raise ArithmeticError("LLL public GS bound failed")
     for j in range(reduced.ncols()):
