@@ -23,3 +23,15 @@ def q104_flatter_research_params():
     """Same widths/noise; fixed external reduction for a separate instance."""
     return replace(q104_research_params(),name="abb-rom-ap09-n1-q104-flatter-research",
         normalization="matrix-flatter-lll-075-0501-exact074-v2")
+
+
+def q76_normalized_root_research_params():
+    """Public screened full profile; root quality is a mandatory actual gate."""
+    return replace(ABBROMParams(),name="abb-rom-ap09-n1-q76-normalized-root-research",
+        q=37778931862957161709601,random_rows=152,root_m1=152,root_m2=456,
+        hadamard_scale=33,matrix_gaussian_squared_width=4800,
+        sigma1_squared=244228428595200,
+        sigma2_squared=2266605962695066791727595520000,
+        tau2_squared=413428927595580182811113422848000000,
+        epsilon_bits=64,max_parents=2,max_children_per_parent=2,
+        normalization="matrix-flatter-rootgs16-lll-075-exact074-v3")

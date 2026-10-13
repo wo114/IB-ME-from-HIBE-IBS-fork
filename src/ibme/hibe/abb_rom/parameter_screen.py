@@ -15,7 +15,8 @@ from .trapgen import ABBTrapGenParams, ceil_sqrt, bounded_integer
 
 
 def abb_parameter_screen(root, *, epsilon_bits=128, error_bits=128,
-                         seed_bytes=32, encapsulations=2**20, options=None):
+                         seed_bytes=32, encapsulations=2**20, options=None,
+                         normalized_root_gs_squared_bound=None):
     if not isinstance(root, ABBTrapGenParams):
         raise InvalidParameterError("explicit AP09 root profile required")
     epsilon_bits = bounded_integer(epsilon_bits, "epsilon_bits", 2, 4096)
@@ -26,6 +27,9 @@ def abb_parameter_screen(root, *, epsilon_bits=128, error_bits=128,
     m = root.dimension
     factor = (2 * m * (1 + 2**epsilon_bits) - 1).bit_length()
     root_gs = root.gs_squared_bound
+    if normalized_root_gs_squared_bound is not None:
+        root_gs = bounded_integer(normalized_root_gs_squared_bound,
+            "declared normalized root quality",1,root.gs_squared_bound)
     r_squared = 4 * root_gs * factor
     scalar_class = FirstFiniteGaussian if isinstance(opts,FirstFiniteOptions) else MatrixFiniteGaussian
     if not isinstance(opts,MatrixFiniteOptions):raise InvalidParameterError("explicit finite matrix/legacy options required")
@@ -70,6 +74,8 @@ def abb_parameter_screen(root, *, epsilon_bits=128, error_bits=128,
     return {
         "profile": "ABB-ROM-SAME-INPUT-SCREEN/1", "measured": False,
         "root": certificate, "epsilon_bits": epsilon_bits, "error_bits": error_bits,
+        "normalized_root_gs_squared_bound": normalized_root_gs_squared_bound,
+        "normalized_root_quality_must_be_checked": normalized_root_gs_squared_bound is not None,
         "matrix_gaussian_squared_width": str(r_squared), "finite_R_support_radius": scalar.radius,
         "transformation_operator_squared_sufficient_bound": str(r_operator_squared),
         "sigma1_squared": str(sigma1_squared), "parent_gs_squared_on_success": str(parent_gs_squared),

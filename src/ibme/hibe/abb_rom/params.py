@@ -95,7 +95,8 @@ class ABBROMParams:
         if self.dimension <= 6*self.n*(self.q-1).bit_length():
             raise InvalidParameterError("conservative strict ABB Setup dimension condition failed")
         if (self.normalization not in ("matrix-fixed-lll-075-0501-exact074-v1",
-                "matrix-flatter-lll-075-0501-exact074-v2") or
+                "matrix-flatter-lll-075-0501-exact074-v2",
+                "matrix-flatter-rootgs16-lll-075-exact074-v3") or
                 self.matrix_oracle != "shake256-block-tape-engineering-v1"):
             raise InvalidParameterError("unknown ABB finite implementation version")
         if (self.security_claim != "none" or self.backend_admitted is not False or
@@ -105,6 +106,10 @@ class ABBROMParams:
     @property
     def dimension(self):
         return self.root_m1+self.root_m2
+
+    @property
+    def normalized_root_gs_squared_bound(self):
+        return 16 if self.normalization == "matrix-flatter-rootgs16-lll-075-exact074-v3" else None
 
     @property
     def identity_bytes(self):

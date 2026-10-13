@@ -36,6 +36,8 @@ def validate_basis(public,path,rows):
         from .trapgen import ABBTrapGenParams
         upper = ABBTrapGenParams(p.n,p.q,p.random_rows,p.root_m1,p.root_m2,
             hadamard_scale=p.hadamard_scale,uniform_trials=p.uniform_trials).gs_squared_bound
+        if p.normalized_root_gs_squared_bound is not None:
+            upper = p.normalized_root_gs_squared_bound
     else:
         upper = (p.sigma1_squared if len(path)==1 else p.sigma2_squared)*p.dimension
     # Public bound and private algebra only; this cannot certify provenance.

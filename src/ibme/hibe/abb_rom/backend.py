@@ -43,7 +43,8 @@ def root_parameters(p):
 def check_setup_profile(p):
     if not isinstance(p,ABBROMParams):
         raise InvalidParameterError("ABB requires independent ABBROMParams, no old Params conversion")
-    if p.normalization == "matrix-flatter-lll-075-0501-exact074-v2":
+    if p.normalization in ("matrix-flatter-lll-075-0501-exact074-v2",
+            "matrix-flatter-rootgs16-lll-075-exact074-v3"):
         from sage.features.flatter import flatter as FlatterEngine
         FlatterEngine().require()  # fixed local dependency, before any private RNG
     public_size=len(header(b"PK",p))+4+(p.n*p.dimension+p.n)*((p.q.bit_length()+7)//8)
@@ -52,7 +53,8 @@ def check_setup_profile(p):
         raise InvalidParameterError("ABB master wire lower bound exceeds selected profile before entropy")
     root = root_parameters(p)
     report = abb_parameter_screen(root,epsilon_bits=p.epsilon_bits,error_bits=p.error_bits,
-        encapsulations=p.encapsulation_budget,options=finite_options(p))
+        encapsulations=p.encapsulation_budget,options=finite_options(p),
+        normalized_root_gs_squared_bound=p.normalized_root_gs_squared_bound)
     for name in ("matrix_gaussian_squared_width","sigma1_squared","sigma2_squared","decryption_tau_squared"):
         actual = p.tau2_squared if name=="decryption_tau_squared" else getattr(p,name)
         if actual != int(report[name]):
@@ -87,8 +89,9 @@ class ABBROMHIBE:
 
     @staticmethod
     def _reduction_options(p):
-        return ({"preconditioner": "flatter"} if p.normalization ==
-            "matrix-flatter-lll-075-0501-exact074-v2" else {})
+        return ({"preconditioner": "flatter"} if p.normalization in (
+            "matrix-flatter-lll-075-0501-exact074-v2",
+            "matrix-flatter-rootgs16-lll-075-exact074-v3") else {})
 
     def setup(self,params,*,rng=None):
         root,sampler,_ = check_setup_profile(params)
@@ -96,9 +99,13 @@ class ABBROMHIBE:
         source = CheckedEntropy(SecureRandom() if rng is None else rng,params.max_tape_bytes)
         try:
             generated = abb_trapgen(root,rng=source)
+            actual_basis = generated.basis
+            if params.normalized_root_gs_squared_bound is not None:
+                actual_basis = matrix_checked_lll(actual_basis,
+                    params.normalized_root_gs_squared_bound,preconditioner="flatter")
             u0 = tuple(draw_uniform_integer(source,params.q,max_trials=params.uniform_trials) for _ in range(params.n))
             pk = ABBPublicKey(params,generated.basis.public.rows,u0)
-            msk = ABBMasterSecret(pk,generated.basis.basis_rows)
+            msk = ABBMasterSecret(pk,actual_basis.basis_rows)
             msk.to_bytes()  # private wire resource gate before returning state
             return pk,msk
         except SamplingAbort as exc:
