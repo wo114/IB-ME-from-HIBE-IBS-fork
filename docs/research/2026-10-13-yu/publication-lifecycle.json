@@ -1,0 +1,218 @@
+{
+  "schema": "IBME/YU2026/INDEPENDENT-LIFECYCLE/1",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "scope": "real Figure5 research dataflow with finite Gaussian and explicit LLL adaptations",
+  "source_revision": "3d15c6e21f959fd1b4a6e51ded44fd66a7f636c1",
+  "source_sha256": {
+    "experiments/research/candidates/yu/circuits.py": "1c5452df81fe381a3e256bbb2e0d72b1a6b267ce7ee72dbcdeb0059c777079bc",
+    "experiments/research/candidates/yu/bpr.py": "b0ebc46c90713df304bd3df30cffdbb49a0d83d6fdb198b7cd315ca3ea007630",
+    "experiments/research/candidates/yu/evaluation.py": "3f07fbc22b9d1edd9962455144a1ff125b95793b5035740fc2c2049c36830cbf",
+    "experiments/research/candidates/yu/trapdoors.py": "eaefe74f099d8d886da61b99a68dc810cc3bf306ebbb3eca837fabe3cdc9d6ce",
+    "experiments/research/candidates/yu/standalone.py": "c0aa2a5a754c15f6153ba4c605b838cc1b59e89bd14a69dd2efd5181626c976d",
+    "experiments/research/candidates/yu/profiles.py": "3b03d252c91eb9cb890e358036b4a0067a449d91e1ad9439b264196f926425b5",
+    "experiments/research/candidates/yu/lifecycle_audit.py": "71f7f59418eb8bf3d04946a76ce617f5b0f7de83f3b076a655b5058ae6ad1393",
+    "experiments/research/chkp_basis.py": "bdfbc85416e6f1b1bc08c773f35ef944ff6c107f2efab47a49ac07cea5ae6a99",
+    "experiments/research/chkp_genbasis.py": "d9bf8a0d71b0ae3ccccd32b24e1a7ebdc9652a44e7e4640d97c423c6bb389aa8",
+    "experiments/research/chkp_basis_reduce.py": "101f0c13a1027ffe1d82b9386b1be5a270a7024d8aeebb8ca7a7b722f2913218",
+    "experiments/research/chkp_gpv.py": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+    "experiments/research/chkp_randbasis.py": "69d970490202fcf69da4389d4435e1538f6c1c49b83441365291260134dc2282",
+    "experiments/research/chkp_tobasis.py": "bb4b3a101db4fc3e23371af7a4b9fb15aa9c50a4fc9fd78d4d15b3564b275653",
+    "experiments/research/gaussian_reference.py": "0e003b3a813b9fbdf7919e98dcbf7906cf2676e54ac14d28ac6e826b28436f13",
+    "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+    "experiments/research/mp12_sampled_reference.py": "a01b198a7bbcefbb54b387f6ab0b24961b5e74c3689ea4e2f30c74c35ba1061b",
+    "experiments/research/general_gadget_reference.py": "69e68a33baab3c85fe84525ce92a45e81723c667c64b526fa2dc321b2b098ab0",
+    "src/ibme/lattice/chkp/basis.py": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d",
+    "src/ibme/lattice/chkp/tobasis.py": "aeacc166c3772d91deb74439893cf9f6d2cf3600347677096e5d2e81d982053c",
+    "src/ibme/lattice/chkp/gaussian.py": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c",
+    "src/ibme/core/randomness.py": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
+    "papers/2026_ibs_ibme_yu.pdf": "f10d8672d952d9923a00c883a7d65feb36a15fb67fbef1c52ee64254f5301948"
+  },
+  "source_identity_note": "content hashes identify executed files; Git revision alone does not include uncommitted files",
+  "environment": {
+    "os": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15",
+    "sage": "10.9",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "constant_time": false,
+    "hardware_acceleration": "none requested; Sage exact integer arithmetic"
+  },
+  "parameters": {
+    "n": 1,
+    "q": 3,
+    "m": 15,
+    "w": 2,
+    "signature_dimension": 19,
+    "gamma_squared": 32768,
+    "delta_squared": 67108864,
+    "max_vectors": 32,
+    "epsilon_bits": 16,
+    "postprocess": "deterministic LLL",
+    "identity_bits": 2,
+    "message_bits": 2,
+    "salt_bits": 4,
+    "bpr_n": 2,
+    "bpr_m": 2,
+    "bpr_q": 32,
+    "bpr_p": 2,
+    "bpr_gaussian_width": 2,
+    "bpr_ticket_bits": 32
+  },
+  "randomness": "independent OS CSPRNG bytes; no seed exported; no ROM in algorithm",
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "completed",
+      "honest_signatures": 4
+    },
+    {
+      "attempt": 2,
+      "status": "completed",
+      "honest_signatures": 4
+    },
+    {
+      "attempt": 3,
+      "status": "completed",
+      "honest_signatures": 4
+    }
+  ],
+  "honest_signatures": 12,
+  "negative_or_differential_checks": 120,
+  "context_mutation_results": {
+    "wrong_identity": {
+      "accepted": 7,
+      "rejected": 5
+    },
+    "wrong_message": {
+      "accepted": 8,
+      "rejected": 4
+    },
+    "r_hat": {
+      "accepted": 12,
+      "rejected": 0
+    },
+    "r_tilde": {
+      "accepted": 9,
+      "rejected": 3
+    },
+    "salt": {
+      "accepted": 8,
+      "rejected": 4
+    }
+  },
+  "public_q_times_e1_forgery_accepts": 12,
+  "signature_encoding_bytes": [
+    345
+  ],
+  "timings": {
+    "setup": {
+      "count": 3,
+      "seconds": [
+        0.0529100610000004,
+        0.010284379999998094,
+        0.014070760999999266
+      ],
+      "median_seconds": 0.014070760999999266
+    },
+    "keygen": {
+      "count": 6,
+      "seconds": [
+        5.445793965999999,
+        3.7292480350000012,
+        4.041275820999999,
+        4.563757394,
+        5.30410346,
+        4.045889958000004
+      ],
+      "median_seconds": 4.304823676000002
+    },
+    "sign": {
+      "count": 12,
+      "seconds": [
+        0.08928175700000018,
+        0.18642341400000007,
+        0.12043438799999961,
+        0.1482655240000028,
+        0.06896488699999992,
+        0.1675929449999991,
+        0.08176872500000343,
+        0.2146767249999968,
+        0.03701140199999742,
+        0.10748881900000384,
+        0.13422533800000025,
+        0.12070493499999913
+      ],
+      "median_seconds": 0.12056966149999937
+    },
+    "verify": {
+      "count": 12,
+      "seconds": [
+        0.0769065470000001,
+        0.16916811799999998,
+        0.10430288600000281,
+        0.14210856700000107,
+        0.08095479899999702,
+        0.1613615469999985,
+        0.1077231219999959,
+        0.22527659699999703,
+        0.03618292500000564,
+        0.11637705900000128,
+        0.12305220500000047,
+        0.09927892999999699
+      ],
+      "median_seconds": 0.11205009049999859
+    }
+  },
+  "circuits": {
+    "identity": {
+      "input_bits": 2,
+      "uniform_key_bits": 276,
+      "output_bits": 4,
+      "all_one_input_gate_count": 7904,
+      "all_one_input_depth": 118,
+      "finite_key_distribution": {
+        "support_count": 13,
+        "ticket_bits": 32,
+        "tail_tv_upper": "509110506130523509405045701131155568531830349749/13164036458569648337239753460458804039861886925068638906788872192",
+        "quantization_tv_upper": "2258048943391230046342696271235486081/803474626072600670256627575380873290176950997286013138497902",
+        "dyadic_tv_upper": "3/1073741824",
+        "coefficient_tv_upper": "14775855584390477274657088493783748148078923736793003909156599459921896794290903960051486753814687421636296176960099/5288484635577665281445035626755241057786413264811382952819764351414777017952020874099035125120599092882537856041425769070592",
+        "key_distribution_tv_upper": "14775855584390477274657088493783748148078923736793003909156599459921896794290903960051486753814687421636296176960099/661060579447208160180629453344405132223301658101422869102470543926847127244002609262379390640074886610317232005178221133824",
+        "rejection_abort_used": false,
+        "total_function": true,
+        "security_claim": "none",
+        "constant_time": false
+      }
+    },
+    "signing": {
+      "input_bits": 8,
+      "uniform_key_bits": 1044,
+      "output_bits": 4,
+      "all_one_input_gate_count": 31616,
+      "all_one_input_depth": 158,
+      "finite_key_distribution": {
+        "support_count": 13,
+        "ticket_bits": 32,
+        "tail_tv_upper": "509110506130523509405045701131155568531830349749/13164036458569648337239753460458804039861886925068638906788872192",
+        "quantization_tv_upper": "2258048943391230046342696271235486081/803474626072600670256627575380873290176950997286013138497902",
+        "dyadic_tv_upper": "3/1073741824",
+        "coefficient_tv_upper": "14775855584390477274657088493783748148078923736793003909156599459921896794290903960051486753814687421636296176960099/5288484635577665281445035626755241057786413264811382952819764351414777017952020874099035125120599092882537856041425769070592",
+        "key_distribution_tv_upper": "14775855584390477274657088493783748148078923736793003909156599459921896794290903960051486753814687421636296176960099/165265144861802040045157363336101283055825414525355717275617635981711781811000652315594847660018721652579308001294555283456",
+        "rejection_abort_used": false,
+        "total_function": true,
+        "security_claim": "none",
+        "constant_time": false
+      }
+    }
+  },
+  "all_requested_attempts_completed": true,
+  "limitations": [
+    "Toy profile is publicly forgeable, and wrong-context signatures can be accepted.",
+    "BPR parameter hardness, Yu key-input NC1 and Lemma7 spectral bound are not established.",
+    "Finite Gaussian, bounded abort and deterministic LLL are explicit implementation adaptations.",
+    "No shared backend, HIBE/IBME integration, formal security level or production timing claim.",
+    "Timings include compilation and validation; tiny parameters cannot rank secure algorithms."
+  ]
+}

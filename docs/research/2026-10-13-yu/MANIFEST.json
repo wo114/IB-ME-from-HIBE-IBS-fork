@@ -1,0 +1,118 @@
+{
+  "schema": "IBME/YU2026/DELIVERY-MANIFEST/1",
+  "upstream_base": "e030d05ecd8b41c1e484806dcf2df643dbdb7c43",
+  "scope": "All PR files except this manifest; SHA-256 over the public file bytes (LF for text). Historical and publication runs remain separate.",
+  "excludes_self": "docs/research/2026-10-13-yu/MANIFEST.json",
+  "files": [
+    {
+      "path": "docs/PROJECT_STATUS.md",
+      "sha256": "03a3e175119e343e1a6426059cc5d2e08ddaff06acf9ff59bc5f3a1ed10714f8",
+      "bytes": 19791
+    },
+    {
+      "path": "docs/research/2026-10-13-yu/README.md",
+      "sha256": "df1e719449a97d491a6bcef69850320f65c959800bd321859ecfa518678e3480",
+      "bytes": 11196
+    },
+    {
+      "path": "docs/research/2026-10-13-yu/SOURCE_MAPPING.md",
+      "sha256": "822a33c073c6cf5c48a2079a9c2828624d4f114005a12dc1b751d376e49d0370",
+      "bytes": 5824
+    },
+    {
+      "path": "docs/research/2026-10-13-yu/development-lifecycle.json",
+      "sha256": "e7f3d8edeeeea8db0066a8089aed04de664532f8967653bdbdb33c24459cb194",
+      "bytes": 8378
+    },
+    {
+      "path": "docs/research/2026-10-13-yu/lifecycle.json",
+      "sha256": "5a6ed83838e110fbc793b5deed96de5bfe24c93945754c45896fda47e3a59509",
+      "bytes": 8642
+    },
+    {
+      "path": "docs/research/2026-10-13-yu/publication-lifecycle.json",
+      "sha256": "1d86890467d047e70cb3684fd4e16e32f588a76b1d255fcdeffe9f4918cf760d",
+      "bytes": 9193
+    },
+    {
+      "path": "docs/research/2026-10-13-yu/publication-pytest.xml",
+      "sha256": "598ce6004c8d454fefdf536645f03b11c19900d0eb376cdf7a01dc3cd55434f5",
+      "bytes": 78836
+    },
+    {
+      "path": "docs/research/2026-10-13-yu/publication.json",
+      "sha256": "1492fb542c82f0d83614350e97a8162a0ef4e10365a61a8788c123915b3d3114",
+      "bytes": 3641
+    },
+    {
+      "path": "docs/research/2026-10-13-yu/validation.json",
+      "sha256": "d67c69f07b8b207710586942a1c56a695b281ed7807448b3227c1f0d6f093b43",
+      "bytes": 4974
+    },
+    {
+      "path": "experiments/research/candidates/yu/bpr.py",
+      "sha256": "b0ebc46c90713df304bd3df30cffdbb49a0d83d6fdb198b7cd315ca3ea007630",
+      "bytes": 10530
+    },
+    {
+      "path": "experiments/research/candidates/yu/circuits.py",
+      "sha256": "1c5452df81fe381a3e256bbb2e0d72b1a6b267ce7ee72dbcdeb0059c777079bc",
+      "bytes": 8212
+    },
+    {
+      "path": "experiments/research/candidates/yu/evaluation.py",
+      "sha256": "3f07fbc22b9d1edd9962455144a1ff125b95793b5035740fc2c2049c36830cbf",
+      "bytes": 8583
+    },
+    {
+      "path": "experiments/research/candidates/yu/lifecycle_audit.py",
+      "sha256": "71f7f59418eb8bf3d04946a76ce617f5b0f7de83f3b076a655b5058ae6ad1393",
+      "bytes": 11997
+    },
+    {
+      "path": "experiments/research/candidates/yu/profiles.py",
+      "sha256": "3b03d252c91eb9cb890e358036b4a0067a449d91e1ad9439b264196f926425b5",
+      "bytes": 835
+    },
+    {
+      "path": "experiments/research/candidates/yu/standalone.py",
+      "sha256": "c0aa2a5a754c15f6153ba4c605b838cc1b59e89bd14a69dd2efd5181626c976d",
+      "bytes": 14903
+    },
+    {
+      "path": "experiments/research/candidates/yu/trapdoors.py",
+      "sha256": "eaefe74f099d8d886da61b99a68dc810cc3bf306ebbb3eca837fabe3cdc9d6ce",
+      "bytes": 9208
+    },
+    {
+      "path": "tests/test_yu_bpr.py",
+      "sha256": "1cb4e5c4b3a9240cb81291e9d97207590f82c81a485275a60cebadd2ef493758",
+      "bytes": 11551
+    },
+    {
+      "path": "tests/test_yu_circuits.py",
+      "sha256": "e3bb7acbf7a329450c284f4cd669056662e984815f69f33eed0ee00296fc9d63",
+      "bytes": 5058
+    },
+    {
+      "path": "tests/test_yu_evaluation.py",
+      "sha256": "4f574eb2d41b0eda70a89c350be1c823e69c961584b19574998e1c6da1946a81",
+      "bytes": 4730
+    },
+    {
+      "path": "tests/test_yu_prf_homomorphism.py",
+      "sha256": "894f64b1dde6fd01972b653dce6898726ab569adfced319413a98d6c1bd68a9e",
+      "bytes": 1810
+    },
+    {
+      "path": "tests/test_yu_standalone.py",
+      "sha256": "4686cb5697d95567753eb4fd15a163c7c42391692043c632bbdf5dbda8de6f1a",
+      "bytes": 18183
+    },
+    {
+      "path": "tests/test_yu_trapdoors.py",
+      "sha256": "51968be8e49376764e877fd5e67149f2de214bbe190f789cec3c2fd0444b54d0",
+      "bytes": 13053
+    }
+  ]
+}
