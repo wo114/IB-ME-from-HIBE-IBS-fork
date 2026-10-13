@@ -1,0 +1,372 @@
+{
+  "audit_script_sha256": "de41e1cceeba4b5eeeccef663da8b2ddf3f17f7ae77cab80ad6e40a69aedab28",
+  "lemma_source_sha256": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+  "started_at_utc": "2026-10-13T05:14:02.496587+00:00",
+  "elapsed_seconds": 9.525397000001249,
+  "exit_code": 0,
+  "runs": {
+    "baseline": {
+      "source_sha256": "119f1168003b99a39172ce1cb2513658a2ad56ca4925b6c33bcdeb09890c1b8d",
+      "started_at_utc": "2026-10-13T05:14:02.535444+00:00",
+      "elapsed_seconds": 3.2364911000004213,
+      "exit_code": 0,
+      "diagnostics": {
+        "gf": {
+          "counts": {
+            "matrices": 1909,
+            "rhs": 40607,
+            "random_matrices": 160,
+            "failures": 0
+          },
+          "elapsed_seconds": 0.24672859999918728
+        },
+        "bareiss": {
+          "counts": {
+            "exhaustive": 19768,
+            "random": 800,
+            "singular": 8084,
+            "row_swap_first_pivot": 6025
+          },
+          "elapsed_seconds": 0.29442890000063926
+        },
+        "integer_kernel": {
+          "counts": {
+            "exhaustive": 1749,
+            "random": 360,
+            "failures": 0
+          },
+          "elapsed_seconds": 2.364291600000797
+        },
+        "lll": {
+          "counts": {
+            "one_dim": 120,
+            "one_dim_wrong_lattice": 60,
+            "independent_2d": 496,
+            "dependent_2d_full_rank": 624,
+            "dependent_2d_wrong_lattice": 32,
+            "random_3d_full_rank": 249,
+            "random_3d_wrong_lattice": 204
+          },
+          "counterexamples": {
+            "2d": {
+              "in": [
+                [
+                  -1,
+                  -1
+                ],
+                [
+                  -1,
+                  1
+                ],
+                [
+                  -1,
+                  0
+                ]
+              ],
+              "out": [
+                [
+                  -1,
+                  -1
+                ],
+                [
+                  -1,
+                  1
+                ]
+              ],
+              "expected_index": 1,
+              "actual_index": 2
+            },
+            "3d": {
+              "in": [
+                [
+                  1,
+                  0,
+                  -2
+                ],
+                [
+                  1,
+                  2,
+                  -1
+                ],
+                [
+                  0,
+                  -3,
+                  0
+                ],
+                [
+                  1,
+                  1,
+                  2
+                ]
+              ],
+              "out": [
+                [
+                  0,
+                  -1,
+                  1
+                ],
+                [
+                  1,
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  -1,
+                  -1
+                ]
+              ],
+              "expected_index": 1,
+              "actual_index": 3
+            }
+          },
+          "elapsed_seconds": 0.19471060000068974
+        },
+        "completeness": {
+          "counts": {
+            "square_basis_cases": 5664,
+            "false_positive": 836,
+            "false_negative": 0,
+            "chained_false_positive": 0,
+            "chained_false_negative": 0
+          },
+          "counterexamples": {
+            "1": {
+              "A": [
+                [
+                  1
+                ]
+              ],
+              "B": [
+                [
+                  -1
+                ]
+              ],
+              "det": -1,
+              "expected_det": 3
+            },
+            "2": {
+              "A": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "B": [
+                [
+                  -2,
+                  -1
+                ],
+                [
+                  -1,
+                  -1
+                ]
+              ],
+              "det": 1,
+              "expected_det": 3
+            }
+          },
+          "elapsed_seconds": 0.13585590000002412
+        }
+      },
+      "counterexamples": {
+        "lll_dependent_1d": {
+          "input": [
+            [
+              2
+            ],
+            [
+              1
+            ]
+          ],
+          "expected_lattice_index_in_Z": 1,
+          "actual": [
+            [
+              2
+            ]
+          ]
+        },
+        "completeness_strict_superlattice": {
+          "A": [
+            [
+              1
+            ]
+          ],
+          "q": 3,
+          "basis": [
+            [
+              1
+            ]
+          ],
+          "expected": false,
+          "actual": true,
+          "membership_shape_check": false
+        },
+        "redundant_generators_interface_boundary": {
+          "A": [
+            [
+              1
+            ]
+          ],
+          "q": 3,
+          "basis": [
+            [
+              6
+            ],
+            [
+              9
+            ]
+          ],
+          "generated_lattice": "3Z; not an independent square basis",
+          "actual": false
+        },
+        "delaying_zero_GS_deletion_is_insufficient": {
+          "input": [
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "size_reduced_residual": -1,
+          "residual_GS_norm": 0
+        }
+      }
+    },
+    "current": {
+      "source_sha256": "2043096d809993f9a1f3ee7a5d2c0a689c1737dc4351ba380c0267f726ea1e89",
+      "started_at_utc": "2026-10-13T05:14:05.795925+00:00",
+      "elapsed_seconds": 6.2252224999992904,
+      "exit_code": 0,
+      "diagnostics": {
+        "gf": {
+          "counts": {
+            "matrices": 1909,
+            "rhs": 40607,
+            "random_matrices": 160,
+            "failures": 0
+          },
+          "elapsed_seconds": 0.2705184999995254
+        },
+        "bareiss": {
+          "counts": {
+            "exhaustive": 19768,
+            "random": 800,
+            "singular": 8084,
+            "row_swap_first_pivot": 6025
+          },
+          "elapsed_seconds": 0.2948928999994678
+        },
+        "integer_kernel": {
+          "counts": {
+            "exhaustive": 1749,
+            "random": 360,
+            "failures": 0
+          },
+          "elapsed_seconds": 2.032539199999519
+        },
+        "lll": {
+          "counts": {
+            "one_dim": 120,
+            "one_dim_wrong_lattice": 0,
+            "independent_2d": 496,
+            "dependent_2d_full_rank": 624,
+            "dependent_2d_wrong_lattice": 0,
+            "random_3d_full_rank": 249,
+            "random_3d_wrong_lattice": 0
+          },
+          "counterexamples": {},
+          "elapsed_seconds": 0.1253139000000374
+        },
+        "completeness": {
+          "counts": {
+            "square_basis_cases": 5664,
+            "false_positive": 0,
+            "false_negative": 0,
+            "chained_false_positive": 0,
+            "chained_false_negative": 0
+          },
+          "counterexamples": {},
+          "elapsed_seconds": 0.05445730000064941
+        },
+        "trapdoor_kernel": {
+          "counts": {
+            "exhaustive": 897,
+            "random": 180,
+            "block_formula": 1077,
+            "complete_raw_and_reduced": 1077,
+            "bidirectional_integer_coordinates": 1077,
+            "invalid_relation_rejected": 180
+          },
+          "elapsed_seconds": 3.345717899999727,
+          "counterexamples": {}
+        }
+      },
+      "counterexamples": {
+        "lll_dependent_1d": {
+          "input": [
+            [
+              2
+            ],
+            [
+              1
+            ]
+          ],
+          "expected_lattice_index_in_Z": 1,
+          "actual": [
+            [
+              1
+            ]
+          ]
+        },
+        "completeness_strict_superlattice": {
+          "A": [
+            [
+              1
+            ]
+          ],
+          "q": 3,
+          "basis": [
+            [
+              1
+            ]
+          ],
+          "expected": false,
+          "actual": false,
+          "membership_shape_check": false
+        },
+        "redundant_generators_interface_boundary": {
+          "A": [
+            [
+              1
+            ]
+          ],
+          "q": 3,
+          "basis": [
+            [
+              6
+            ],
+            [
+              9
+            ]
+          ],
+          "generated_lattice": "3Z; not an independent square basis",
+          "actual": false
+        },
+        "delaying_zero_GS_deletion_is_insufficient": {
+          "input": [
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "size_reduced_residual": -1,
+          "residual_GS_norm": 0
+        }
+      }
+    }
+  }
+}
