@@ -1,0 +1,442 @@
+{
+  "hibe": [
+    {
+      "available": true,
+      "id": "abb10",
+      "key_binding": true,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "partial-legacy-wire",
+      "parameter_presets": [
+        "education",
+        "hybrid-research"
+      ],
+      "persistent_identity_cache": false,
+      "reason": "teaching ABB10; not security admitted",
+      "runtime_available": true,
+      "runtime_reason": "",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": true,
+      "version": "abb10-debug-v2"
+    },
+    {
+      "available": true,
+      "id": "mock",
+      "key_binding": true,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "test-only-partial-wire",
+      "parameter_presets": [
+        "education",
+        "hybrid-research"
+      ],
+      "persistent_identity_cache": false,
+      "reason": "TEST-ONLY; no cryptographic security",
+      "runtime_available": true,
+      "runtime_reason": "",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": true,
+      "two_level": true,
+      "version": "mock-hibe-v1"
+    },
+    {
+      "available": true,
+      "id": "chkp",
+      "key_binding": true,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "full-parameter-snapshot",
+      "parameter_presets": [
+        "direct-research",
+        "hybrid-research"
+      ],
+      "persistent_identity_cache": true,
+      "reason": "CHKP research with explicit MP12 root; n=2, no security admission",
+      "runtime_available": true,
+      "runtime_reason": "",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": true,
+      "version": "chkp-ro-mp12-root-finite-v1"
+    },
+    {
+      "available": false,
+      "id": "latte",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    },
+    {
+      "available": false,
+      "id": "lai-ideal-hibe",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    },
+    {
+      "available": false,
+      "id": "gkr2025",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    },
+    {
+      "available": false,
+      "id": "zhang2020",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    },
+    {
+      "available": false,
+      "id": "abb-standard-selective",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    },
+    {
+      "available": false,
+      "id": "chkp-standard",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    },
+    {
+      "available": true,
+      "id": "mp12-chkp-reference",
+      "key_binding": true,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "full-parameter-snapshot",
+      "parameter_presets": [
+        "n2-reference"
+      ],
+      "persistent_identity_cache": true,
+      "reason": "Source-checkout Sage/qFALL reference; n2 is insecure; no formal or original-CHKP theorem admission",
+      "runtime_available": true,
+      "runtime_reason": "",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": true,
+      "version": "mp12-chkp-finite-v1"
+    }
+  ],
+  "ibs": [
+    {
+      "available": true,
+      "id": "sis",
+      "key_binding": false,
+      "master_public_key_capability": true,
+      "object_parameter_binding": "partial-legacy-wire",
+      "parameter_presets": [
+        "education"
+      ],
+      "persistent_identity_cache": false,
+      "reason": "teaching SIS; known forgery control retained",
+      "runtime_available": true,
+      "runtime_reason": "",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "sis-teaching-v1"
+    },
+    {
+      "available": true,
+      "id": "mock",
+      "key_binding": false,
+      "master_public_key_capability": true,
+      "object_parameter_binding": "test-only-partial-wire",
+      "parameter_presets": [
+        "education"
+      ],
+      "persistent_identity_cache": false,
+      "reason": "TEST-ONLY; public master material",
+      "runtime_available": true,
+      "runtime_reason": "",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": true,
+      "two_level": false,
+      "version": "mock-ibs-v1"
+    },
+    {
+      "available": true,
+      "id": "luo-matrix",
+      "key_binding": false,
+      "master_public_key_capability": true,
+      "object_parameter_binding": "full-parameter-snapshot",
+      "parameter_presets": [
+        "research",
+        "test-small"
+      ],
+      "persistent_identity_cache": true,
+      "reason": "functional research parameters; none/false",
+      "runtime_available": true,
+      "runtime_reason": "",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "luo-matrix-ref1"
+    },
+    {
+      "available": true,
+      "id": "luo-module",
+      "key_binding": false,
+      "master_public_key_capability": true,
+      "object_parameter_binding": "full-parameter-snapshot",
+      "parameter_presets": [
+        "research",
+        "test-small"
+      ],
+      "persistent_identity_cache": true,
+      "reason": "research module backend; none/false",
+      "runtime_available": true,
+      "runtime_reason": "",
+      "signature_formats": [
+        "reference",
+        "compact"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "luo-module-ref1"
+    },
+    {
+      "available": false,
+      "id": "srgg2025",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    },
+    {
+      "available": false,
+      "id": "yu2026",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    },
+    {
+      "available": false,
+      "id": "sageloli-sis",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    },
+    {
+      "available": false,
+      "id": "sageloli-rsis",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    },
+    {
+      "available": false,
+      "id": "foo-li",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    },
+    {
+      "available": false,
+      "id": "wang-pw",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    },
+    {
+      "available": false,
+      "id": "cert-ml-dsa",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    },
+    {
+      "available": false,
+      "id": "cert-falcon",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    },
+    {
+      "available": false,
+      "id": "xie-ntru-ibs",
+      "key_binding": false,
+      "master_public_key_capability": false,
+      "object_parameter_binding": "backend-specific",
+      "parameter_presets": [],
+      "persistent_identity_cache": false,
+      "reason": "public backend not delivered; no mock fallback",
+      "runtime_available": false,
+      "runtime_reason": "public backend not delivered; no mock fallback",
+      "signature_formats": [
+        "reference"
+      ],
+      "test_only": false,
+      "two_level": false,
+      "version": "unavailable-v1"
+    }
+  ]
+}

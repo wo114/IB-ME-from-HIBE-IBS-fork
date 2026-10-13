@@ -1,0 +1,24 @@
+{
+  "14": {
+    "exit_code": 0,
+    "diagnostic_lines": 0
+  },
+  "15": {
+    "exit_code": 0,
+    "diagnostic_lines": 0
+  },
+  "16": {
+    "exit_code": 0,
+    "diagnostic_lines": 0
+  },
+  "merge_check": {
+    "exit_code": 1,
+    "worktree_or_index_modified": false,
+    "conflicts": [
+      "CONFLICT (content): Merge conflict in experiments/research/chkp_tobasis.py",
+      "CONFLICT (content): Merge conflict in experiments/research/first_suite/finite_gaussian.py",
+      "CONFLICT (content): Merge conflict in experiments/research/first_suite/finite_gpv.py",
+      "CONFLICT (content): Merge conflict in experiments/research/first_suite/finite_randbasis.py"
+    ]
+  }
+}
