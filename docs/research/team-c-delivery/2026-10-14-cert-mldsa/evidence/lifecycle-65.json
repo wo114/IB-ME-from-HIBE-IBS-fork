@@ -1,7 +1,7 @@
 {
   "schema": "CERTIFIED-IBS-REAL/1",
   "status": "passed",
-  "source_commit": "a2ffb8cb6e89dfb7bf2a4c89d2d80c354b63db0b",
+  "source_commit": "c61b8ebeb2752fd4af54ea20d4556767dea0dc79",
   "parameters": {
     "base_algorithm": "ml-dsa-65",
     "identity_bytes": 64,
@@ -32,7 +32,7 @@
   "source_sha256_before": {
     "ibme/ibs/certified/__init__.py": "4a8a4ff59d305a297547328a40b4ae4ef51070b5f07fd5e30ba86a1ae8dfd2c3",
     "ibme/ibs/certified/backend.py": "aec3b9a86edb6e65963572ba0235ade4971a46a9ff2ff3a170e0916e3702908f",
-    "ibme/ibs/certified/codec.py": "7d079d700aded9639d4e4b578a0f06f0dfd82235ed660eb883d2dbbb8d4143f5",
+    "ibme/ibs/certified/codec.py": "375c6af2ba7d25d6f6dd1e16807c9544b53fda8c3521a603ac7691f20cbb9a95",
     "ibme/ibs/certified/mldsa.py": "fd8fed18dc289030e2adad85ecd8b8fc6c2f7e17c662042ab93c2bad5268d4e0",
     "ibme/ibs/certified/native/__init__.py": "62f466791afbf57c1bc80709057afab22f70ba89bc9e5f4dd4e18523a981c518",
     "ibme/ibs/certified/native/bridge.c": "8947a86b262082879898d5b812d8bcb3960d3ab66495b47557bdae9ef6b645ae",
@@ -76,27 +76,27 @@
   "stages": [
     {
       "name": "authority-keygen",
-      "seconds": 0.052911248999990335,
+      "seconds": 0.06902973799999756,
       "entropy_bytes": 32
     },
     {
       "name": "identity-keygen-and-certificate-0",
-      "seconds": 0.06514428900000269,
+      "seconds": 0.085258316000008,
       "entropy_bytes": 64
     },
     {
       "name": "identity-keygen-and-certificate-1",
-      "seconds": 0.06693089700000598,
+      "seconds": 0.08278386699998919,
       "entropy_bytes": 64
     },
     {
       "name": "32-fresh-signatures-and-public-only-verification",
-      "seconds": 3.9311737749999907,
+      "seconds": 3.9090347550000075,
       "entropy_bytes": 1024
     },
     {
       "name": "fresh-process-zero-entropy-restoration",
-      "seconds": 2.3959437809999997,
+      "seconds": 2.2230120850000077,
       "entropy_bytes": 0
     }
   ],
@@ -147,13 +147,13 @@
     "certificate_bytes": 3309,
     "user_signature_bytes": 3309
   },
-  "public_key_sha256": "36fffd718b172e95a6f8e6ad62d1d2100a406142d411a197c622c4e651fcd73c",
-  "seconds": 6.717794905000005,
+  "public_key_sha256": "f3a635050b6057fcf207179a8b13bdecb37bd305eb83e47960b9e2b023f23179",
+  "seconds": 6.557538503999993,
   "entropy_bytes": 1184,
   "source_sha256_after": {
     "ibme/ibs/certified/__init__.py": "4a8a4ff59d305a297547328a40b4ae4ef51070b5f07fd5e30ba86a1ae8dfd2c3",
     "ibme/ibs/certified/backend.py": "aec3b9a86edb6e65963572ba0235ade4971a46a9ff2ff3a170e0916e3702908f",
-    "ibme/ibs/certified/codec.py": "7d079d700aded9639d4e4b578a0f06f0dfd82235ed660eb883d2dbbb8d4143f5",
+    "ibme/ibs/certified/codec.py": "375c6af2ba7d25d6f6dd1e16807c9544b53fda8c3521a603ac7691f20cbb9a95",
     "ibme/ibs/certified/mldsa.py": "fd8fed18dc289030e2adad85ecd8b8fc6c2f7e17c662042ab93c2bad5268d4e0",
     "ibme/ibs/certified/native/__init__.py": "62f466791afbf57c1bc80709057afab22f70ba89bc9e5f4dd4e18523a981c518",
     "ibme/ibs/certified/native/bridge.c": "8947a86b262082879898d5b812d8bcb3960d3ab66495b47557bdae9ef6b645ae",
@@ -194,7 +194,7 @@
     "ibme/core/randomness.py": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
     "experiments/research/certified_ibs_probe.py": "8a1cf678379bdf6c2f4b5389183eee9749ca3cc8fad253aa67ed8bfc7d79b47b"
   },
-  "parent_peak_RSS_KiB": 27256,
-  "maximum_observed_child_RSS_KiB": 27256,
+  "parent_peak_RSS_KiB": 27136,
+  "maximum_observed_child_RSS_KiB": 27136,
   "source_unchanged": true
 }

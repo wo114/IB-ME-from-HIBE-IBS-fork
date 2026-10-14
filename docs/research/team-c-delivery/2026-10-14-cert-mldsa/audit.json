@@ -1,6 +1,6 @@
 {
   "schema": "CERTIFIED-IBS-DELIVERY/1",
-  "implementation_commit": "a2ffb8cb6e89dfb7bf2a4c89d2d80c354b63db0b",
+  "implementation_commit": "c61b8ebeb2752fd4af54ea20d4556767dea0dc79",
   "base_commit": "c67dc65864dcafe4c2bb4767502dac32c5442bde",
   "pull_request": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/24",
   "route": "cert-ml-dsa",
@@ -23,15 +23,15 @@
   },
   "official_sample_vectors_are_subset_of_primitive_pytests": true,
   "primitive_sage": {
-    "tests": 245,
-    "passed": 245,
+    "tests": 246,
+    "passed": 246,
     "failure": 0,
     "error": 0,
     "skipped": 0
   },
   "primitive_windows": {
-    "tests": 245,
-    "passed": 13,
+    "tests": 246,
+    "passed": 14,
     "failure": 0,
     "error": 0,
     "skipped": 232
@@ -89,23 +89,32 @@
   ],
   "test_commands": [
     "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.ibs.certified.native.build",
-    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python ci/run.py run cert-ml-dsa --output test-results/cert-mldsa/primitive-final",
-    "python -m pytest -q tests/test_cert_ml_dsa_contract.py tests/test_cert_ml_dsa_native.py tests/test_cert_ml_dsa_vectors.py --junitxml=test-results/cert-mldsa/windows-final.xml",
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python ci/run.py run cert-ml-dsa --output test-results/cert-mldsa/primitive-reviewed",
+    "python -m pytest -q tests/test_cert_ml_dsa_contract.py tests/test_cert_ml_dsa_native.py tests/test_cert_ml_dsa_vectors.py --junitxml=test-results/cert-mldsa/windows-reviewed.xml",
     "python ci/run.py run framework --output test-results/cert-mldsa/framework-before-review",
-    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.certified_ibs_probe --private-directory test-results/cert-mldsa/real-{44,65,87}-a2ffb8c --algorithm ml-dsa-{44,65,87} --source-commit a2ffb8cb6e89dfb7bf2a4c89d2d80c354b63db0b (three separate invocations)"
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.certified_ibs_probe --private-directory test-results/cert-mldsa/real-{44,65,87}-c61b8eb --algorithm ml-dsa-{44,65,87} --source-commit c61b8ebeb2752fd4af54ea20d4556767dea0dc79 (three separate invocations)"
   ],
   "evidence_sha256": {
     ".gitattributes": "a045c6b033f02c3da33d9dee10cf83b0bec49dcf3b5eae149e606124c59c6e08",
     "framework-windows.json": "9df26318f7ef0cbfce46c81eac94ebb5b58a96838a620c328879e865e0b49c58",
     "framework-windows.xml": "49063974cf784058d257aa2cec29eb2c7fff66016393b09d8a7246662dde8318",
-    "installed.json": "082a3e2d38dca72e90b03587d81213c8ee9100369d33eb669f07ca03367901dc",
-    "lifecycle-44.json": "159984b91fc5566600d60120793e56865ad60e3bac8d5f235b7e990c343437af",
-    "lifecycle-65.json": "d25e80686ea65ff993980343dc5a68cb18950f2559d650386b0a6ad2efa73a39",
-    "lifecycle-87.json": "1005c3ee9cb848ee0a2e81e29d501263354093893d829df494093de5d2a93507",
+    "installed.json": "0d38fbe951532a18e63d2da8ad46353df76ecc26e46d008eace1f919bffd9770",
+    "lifecycle-44.json": "0726ddd5520ed865e17842e2cb9a06d7bec7edcbd77007af3352e26d2d24055c",
+    "lifecycle-65.json": "9330f438707b939b35d733995e68ba44f99f907f47d29b6ede4cb63165142582",
+    "lifecycle-87.json": "45e89663e802aea431f461a2306b63aeac3e1eab6d6483de955bb0de0802e321",
     "native-build.json": "e2caa0123bf9bd1a62109c6965b06bddd7e92e354f3db3a2ef0315b9fb62fff5",
-    "primitive-sage.json": "e6c6ce42233d1f64256fe5a79207064788f39e5654947ee11b29b11585329d51",
-    "primitive-sage.xml": "c9b3b46c8fac20657ab36c860910cb300bebb0830c514eb74c496d4f6ca9657d",
-    "primitive-windows.xml": "a39c73aa36fd8a247daccadf2b9d81034c683aaba8126545f1b12deebee8e236",
-    "source-check.json": "6e97deb84c1076d9c72d26f9aba09bf7187caf3fc16d500a79c667ceb0819a3f"
-  }
+    "primitive-sage.json": "8ae2276af612f6eb45cdfdd3a31a4b36e20e9b13065f7a9f6fb3a823f40f9923",
+    "primitive-sage.xml": "6bb5277a3421e278451e1e9f35fffb0cc688918737ad03040356cc248f9d3f64",
+    "primitive-windows.xml": "d9f6991571f46cf1c36074071ab0356b93b59fed6ed97d54c4379f311bd1363e",
+    "source-check.json": "88b08ee91c30145f631a5112b64eda976c60f23a6738ff51eaaaa5314bc11c05"
+  },
+  "initial_implementation_commit": "a2ffb8cb6e89dfb7bf2a4c89d2d80c354b63db0b",
+  "security_review_fixes": [
+    {
+      "issue": "multidimensional or non-byte input views could bypass len-based size cap",
+      "commit": "c61b8ebeb2752fd4af54ea20d4556767dea0dc79",
+      "resolution": "pin buffer, check nbytes before copy, reject released views",
+      "regression_passed": true
+    }
+  ]
 }

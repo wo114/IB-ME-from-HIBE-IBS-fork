@@ -13,7 +13,7 @@ PR #15 固定 `0435285` 已经复核并合入远端 main（`010b75e`）：四项
 
 C1 按用户新授权优先实现较易落地的结构HIBE，已交[LATTE-3独立研究后端](research/team-c-delivery/2026-10-14-latte-hibe/README.md)，算法冻结`51c40f8`：N1024同根两次真正Delegate、四把终层密钥、32 B带噪声、2×2错配/篡改、五类对象与新进程恢复通过；116项相关Sage回归、13 provider隔离安装通过。新增的是单独HIBE，默认登记/CLI与真实IBS配对继续由统筹接入；匿名、修订后TV/RD和正式安全仍none/false/false。
 
-C2 已交[认证转换ML-DSA独立IBS](research/team-c-delivery/2026-10-14-cert-mldsa/README.md)，实现 `a2ffb8c`：固定官方ML-DSA参考代码，机构证书/用户公钥/消息签名、五方法、固定发钥/pending、严格对象与恢复完成；245项Sage专项无skip（含210官方向量）。44/65/87各一份系统随机同根双用户、32次新签名与新进程零熵恢复通过，仓库外安装32个provider及原实物复用通过。三个参数仍是一条算法路线；Falcon、默认登记、真实HIBE配对、强不可伪造/量子模型映射及正式安全继续待办，none/false/false。
+C2 已交[认证转换ML-DSA独立IBS](research/team-c-delivery/2026-10-14-cert-mldsa/README.md)，初始实现 `a2ffb8c`、末次代码修订 `c61b8eb`：固定官方ML-DSA参考代码，机构证书/用户公钥/消息签名、五方法、固定发钥/pending、严格对象与恢复完成；246项Sage专项无skip（含210官方向量）。44/65/87各一份系统随机同根双用户、32次新签名与新进程零熵恢复通过，仓库外安装32个provider及原实物复用通过。三个参数仍是一条算法路线；Falcon、默认登记、真实HIBE配对、强不可伪造/量子模型映射及正式安全继续待办，none/false/false。
 
 ## 1. 已确认的组织方式
 
