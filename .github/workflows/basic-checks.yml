@@ -87,6 +87,9 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Install research test dependencies in Sage
         run: sage -python -m pip install -e ".[hybrid]" cryptography==50.0.2 pytest==9.1.1
+      - name: Build pinned ML-DSA engines for their independent IBS suite
+        if: ${{ matrix.id == 'cert-ml-dsa' }}
+        run: sage -python -m ibme.ibs.certified.native.build
       - name: Run actual Sage suite
         run: sage -python ci/run.py run "${{ matrix.id }}"
       - name: Publish actual counts and scope

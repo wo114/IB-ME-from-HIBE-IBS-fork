@@ -1,6 +1,6 @@
 # IB-ME 统一接口与验收规范
 
-本文件是共享框架的唯一通用接口和验收规范。架构见 [ARCHITECTURE.md](ARCHITECTURE.md)，当前实现与外部交付进度见 [PROJECT_STATUS.md](docs/PROJECT_STATUS.md)。方案专属约束分别见 [Luo IBS](docs/specs/luo-ibs.md)、[传输与状态](docs/specs/transport-and-state.md)、[教学格工具](docs/specs/teaching-lattice.md)。研究记录和任务书不得自行改写这些接口。
+本文件是共享框架的唯一通用接口和验收规范。架构见 [ARCHITECTURE.md](ARCHITECTURE.md)，当前实现与外部交付进度见 [PROJECT_STATUS.md](docs/PROJECT_STATUS.md)。方案专属约束分别见 [Luo IBS](docs/specs/luo-ibs.md)、[认证转换 IBS](docs/specs/certified-ibs.md)、[传输与状态](docs/specs/transport-and-state.md)、[教学格工具](docs/specs/teaching-lattice.md)。研究记录和任务书不得自行改写这些接口。
 
 框架沿用 Wang 的两层匿名 HIBE + IBS 通用构造；HIBE 与 IBS 独立实现、独立选参，再装配为兼容组合。不实施 Boyen–Li 的 Ext/ReExt 增强隐私。共同目标包括普通隐私、加强认证、自我伪造防护和完整密文字节篡改拒绝，安全结论须逐项说明前提。
 

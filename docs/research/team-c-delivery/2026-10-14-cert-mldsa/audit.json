@@ -1,0 +1,120 @@
+{
+  "schema": "CERTIFIED-IBS-DELIVERY/1",
+  "implementation_commit": "c61b8ebeb2752fd4af54ea20d4556767dea0dc79",
+  "base_commit": "c67dc65864dcafe4c2bb4767502dac32c5442bde",
+  "pull_request": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/24",
+  "route": "cert-ml-dsa",
+  "task": "C2",
+  "state": "independent_primitive_functionality_complete",
+  "backend": "ibme.ibs.certified.CertifiedIBS",
+  "ordinary_signature": "FIPS204 pure external ML-DSA",
+  "conversion": "BNN certification; Galindo-Herranz-Kiltz 2006 section 3/Theorem 1",
+  "conversion_core_count": 1,
+  "primitive_algorithm_count": 1,
+  "parameter_set_count": 3,
+  "complete_IBME_count": 0,
+  "vendor_commit": "d35ba3fe5449bee3e6d43e1f296c3ca818bd36be",
+  "vendor_source_patch_count": 0,
+  "acvp_commit": "975de31eb83d87039ec88934fdc47d8c312b892d",
+  "official_sample_vectors": {
+    "keyGen": 75,
+    "sigGen": 90,
+    "sigVer": 45
+  },
+  "official_sample_vectors_are_subset_of_primitive_pytests": true,
+  "primitive_sage": {
+    "tests": 246,
+    "passed": 246,
+    "failure": 0,
+    "error": 0,
+    "skipped": 0
+  },
+  "primitive_windows": {
+    "tests": 246,
+    "passed": 14,
+    "failure": 0,
+    "error": 0,
+    "skipped": 232
+  },
+  "framework_windows": {
+    "tests": 432,
+    "passed": 427,
+    "failure": 0,
+    "error": 0,
+    "skipped": 5
+  },
+  "framework_windows_status": "partial",
+  "repetitions_per_real_parameter_set": 1,
+  "system_random_real_instances": 3,
+  "system_random_new_signatures": 96,
+  "identities_per_instance": 2,
+  "identity_bytes": 64,
+  "message_bytes": 32,
+  "fresh_process_entropy_calls": 0,
+  "fresh_process_key_generations": 0,
+  "fresh_process_verified_signatures": 96,
+  "installed_provider_modules": 32,
+  "installed_saved_instances_reused": 3,
+  "installed_fresh_restored_key_signatures": 3,
+  "installed_imports_or_native_sources_from_repository": false,
+  "source_git_blob_match_files": 48,
+  "git_revision_metadata_limit": "WSL unavailable; source bytes independently matched; Windows framework pre-commit dirty receipt retained",
+  "development_failures": [
+    {
+      "kind": "duplicate C namespace linker symbol",
+      "fixed": true,
+      "scope": "own bridge only"
+    },
+    {
+      "kind": "installed checker script directory was under repository",
+      "fixed": true,
+      "scope": "checker moved outside repo; no primitive source change"
+    }
+  ],
+  "default_registry_registered": false,
+  "default_CLI_integrated": false,
+  "Falcon_implemented": false,
+  "real_HIBE_composition_executed": false,
+  "quantum_or_strong_UF_mapping_complete": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "teaching_parameters": false,
+  "tested_security_model": "No security proof from tests. ML-DSA SHAKE/RO and classical BNN are conditional references only.",
+  "limitations": [
+    "Full BNN reduction, fixed issuance/corruption, query losses and QROM/strong-UF mapping pending",
+    "Snapshot rollback/multiple writers/storage authentication outside primitive",
+    "No production side-channel/secret-erasure assurance",
+    "Single-run concurrent timings are not fair benchmarks"
+  ],
+  "test_commands": [
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.ibs.certified.native.build",
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python ci/run.py run cert-ml-dsa --output test-results/cert-mldsa/primitive-reviewed",
+    "python -m pytest -q tests/test_cert_ml_dsa_contract.py tests/test_cert_ml_dsa_native.py tests/test_cert_ml_dsa_vectors.py --junitxml=test-results/cert-mldsa/windows-reviewed.xml",
+    "python ci/run.py run framework --output test-results/cert-mldsa/framework-before-review",
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.certified_ibs_probe --private-directory test-results/cert-mldsa/real-{44,65,87}-c61b8eb --algorithm ml-dsa-{44,65,87} --source-commit c61b8ebeb2752fd4af54ea20d4556767dea0dc79 (three separate invocations)"
+  ],
+  "evidence_sha256": {
+    ".gitattributes": "a045c6b033f02c3da33d9dee10cf83b0bec49dcf3b5eae149e606124c59c6e08",
+    "framework-windows.json": "9df26318f7ef0cbfce46c81eac94ebb5b58a96838a620c328879e865e0b49c58",
+    "framework-windows.xml": "49063974cf784058d257aa2cec29eb2c7fff66016393b09d8a7246662dde8318",
+    "installed.json": "0d38fbe951532a18e63d2da8ad46353df76ecc26e46d008eace1f919bffd9770",
+    "lifecycle-44.json": "0726ddd5520ed865e17842e2cb9a06d7bec7edcbd77007af3352e26d2d24055c",
+    "lifecycle-65.json": "9330f438707b939b35d733995e68ba44f99f907f47d29b6ede4cb63165142582",
+    "lifecycle-87.json": "45e89663e802aea431f461a2306b63aeac3e1eab6d6483de955bb0de0802e321",
+    "native-build.json": "e2caa0123bf9bd1a62109c6965b06bddd7e92e354f3db3a2ef0315b9fb62fff5",
+    "primitive-sage.json": "8ae2276af612f6eb45cdfdd3a31a4b36e20e9b13065f7a9f6fb3a823f40f9923",
+    "primitive-sage.xml": "6bb5277a3421e278451e1e9f35fffb0cc688918737ad03040356cc248f9d3f64",
+    "primitive-windows.xml": "d9f6991571f46cf1c36074071ab0356b93b59fed6ed97d54c4379f311bd1363e",
+    "source-check.json": "88b08ee91c30145f631a5112b64eda976c60f23a6738ff51eaaaa5314bc11c05"
+  },
+  "initial_implementation_commit": "a2ffb8cb6e89dfb7bf2a4c89d2d80c354b63db0b",
+  "security_review_fixes": [
+    {
+      "issue": "multidimensional or non-byte input views could bypass len-based size cap",
+      "commit": "c61b8ebeb2752fd4af54ea20d4556767dea0dc79",
+      "resolution": "pin buffer, check nbytes before copy, reject released views",
+      "regression_passed": true
+    }
+  ]
+}
