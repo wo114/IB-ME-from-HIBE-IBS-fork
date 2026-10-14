@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "rng": "public fixed deterministic TEST stream; same seed for two width diagnostics",
+  "rows": [
+    {
+      "standard_deviation": 3,
+      "samples": 4096,
+      "mean_over_sigma": -0.0032552083333333335,
+      "second_moment_over_sigma_squared": 1.0049913194444444
+    },
+    {
+      "standard_deviation": 6777.587966298392,
+      "samples": 4096,
+      "mean_over_sigma": -0.0325827956449946,
+      "second_moment_over_sigma_squared": 1.0160775849072083
+    }
+  ],
+  "distribution_proof": false,
+  "total_TV_or_RD": null
+}

@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "isolated_interpreter": true,
+  "source_repository_fallback": false,
+  "providers": {
+    "ibme.hibe.latte": "ibme/hibe/latte/__init__.py",
+    "ibme.hibe.latte.backend": "ibme/hibe/latte/backend.py",
+    "ibme.hibe.latte.params": "ibme/hibe/latte/params.py",
+    "ibme.hibe.latte.objects": "ibme/hibe/latte/objects.py",
+    "ibme.hibe.latte.codec": "ibme/hibe/latte/codec.py",
+    "ibme.hibe.latte.engine": "ibme/hibe/latte/engine.py",
+    "ibme.hibe.latte.math": "ibme/hibe/latte/math.py",
+    "ibme.hibe.latte.registration": "ibme/hibe/latte/registration.py",
+    "ibme.hibe.latte.native.build": "ibme/hibe/latte/native/build.py",
+    "ibme.core.randomness": "ibme/core/randomness.py",
+    "ibme.core.encoding": "ibme/core/encoding.py",
+    "ibme.core.types": "ibme/core/types.py",
+    "ibme.core.errors": "ibme/core/errors.py"
+  },
+  "saved_real_key_reused": true,
+  "saved_key_restore_entropy_calls": 0,
+  "saved_key_regenerations": 0,
+  "separate_fresh_installed_HIBE_lifecycle": true,
+  "n": 1024,
+  "q": 68718428161,
+  "message_bytes": 32,
+  "native_source_id": "4a17a037c266ba982a027ff7fedffe0d391c9fe7fb2c5f8a0326b4ab67393414",
+  "native_binary_sha256": "d5d965ab4fcc06ccd179f35e8e718bf6faae8b77d8e438567522f5f0b86e6e93",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
