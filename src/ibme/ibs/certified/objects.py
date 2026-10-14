@@ -7,8 +7,8 @@ from ibme.core.hashing import hash_identity, shake256
 from ibme.core.types import validate_identity
 from ibme.ibs.api import IBSPublicKey, IBSMasterSecret, IBSSigningKey, IBSSignature
 from .codec import Cursor, blob, decode, encode, framed
-from .mldsa import PROFILES
-from .ordinary import ordinary
+from .ordinary import ordinary, PROFILES
+from .falcon import PROFILES as FALCON_PROFILES, canonical_public
 from .params import CertifiedIBSParams
 
 PK_MAGIC = b"IBME/CERTIBS/PK/1\0"
@@ -39,6 +39,8 @@ class CertifiedPublicKey(IBSPublicKey):
         if type(self.params) is not CertifiedIBSParams:
             raise SerializationError("certified IBS public parameters type")
         exact(self.authority_public, PROFILES[self.params.base_algorithm].public_key_bytes)
+        if self.params.base_algorithm in FALCON_PROFILES and not canonical_public(self.params.base_algorithm,self.authority_public):
+            raise SerializationError("noncanonical Falcon authority public key")
 
     @property
     def context(self):
@@ -117,6 +119,8 @@ class CertifiedSignature(IBSSignature):
         profile = PROFILES[self.algorithm]
         exact(self.context, 32)
         exact(self.user_public, profile.public_key_bytes)
+        if self.algorithm in FALCON_PROFILES and not canonical_public(self.algorithm,self.user_public):
+            raise SerializationError("noncanonical Falcon user public key")
         exact(self.certificate, profile.signature_bytes)
         exact(self.message_signature, profile.signature_bytes)
 

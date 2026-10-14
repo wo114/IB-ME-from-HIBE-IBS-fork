@@ -1,0 +1,310 @@
+{
+  "status": "research_functional_pass",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "parameters": {
+    "q": 3,
+    "n": 1,
+    "m_bar": 1,
+    "master_quality": 8,
+    "user_quality": 3402,
+    "generation_width_squared": 1,
+    "master_r_squared": 9,
+    "user_r_squared": 9,
+    "gamma": 5,
+    "epsilon0": "1/65536",
+    "identity_max_bytes": 256,
+    "message_max_bytes": 4096,
+    "max_users": 16,
+    "tail_bits": 24,
+    "mass_bits": 64,
+    "precision_bits": 128,
+    "gaussian_abort_bits": 24,
+    "max_uniform_trials": 64,
+    "max_gaussian_trials": 100000,
+    "max_radius": 1073741824,
+    "rational_bits": 8192,
+    "max_tape_bytes": 268435456
+  },
+  "rng": "system CSPRNG for setup and per-user seeds",
+  "oracle": "finite deterministic SHAKE candidate; not a QROM theorem",
+  "identity_bytes": [
+    8,
+    8
+  ],
+  "message_bytes": [
+    0,
+    5,
+    3,
+    32,
+    256,
+    4096
+  ],
+  "counts": {
+    "roots": 3,
+    "users": 6,
+    "signatures": 36,
+    "verifications": 36,
+    "recovery_replays": 36,
+    "wrong_identity_accepts": 16,
+    "wrong_message_accepts": 14,
+    "random_vector_accepts": 17,
+    "altered_public_context_rejects": 36,
+    "truncated_rejects": 36,
+    "fresh_process_recoveries": 3
+  },
+  "sizes_bytes": {
+    "public_key": [
+      502,
+      502,
+      502
+    ],
+    "master_secret": [
+      1628,
+      1626,
+      1626
+    ],
+    "signing_key": [
+      631,
+      631,
+      631,
+      631,
+      631,
+      631
+    ],
+    "signature": [
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104
+    ]
+  },
+  "timing_seconds": {
+    "setup": {
+      "samples": [
+        0.07602993999998375,
+        0.017719489000000976,
+        0.018481020999985276
+      ],
+      "median": 0.018481020999985276,
+      "quartiles_inclusive": [
+        0.018100254999993126,
+        0.018481020999985276,
+        0.047255480499984515
+      ]
+    },
+    "key_extract": {
+      "samples": [
+        0.15239005999998767,
+        0.008090237999994088,
+        0.008606292999985499,
+        0.0074720399999819165,
+        0.008462586999996802,
+        0.008469406000017443
+      ],
+      "median": 0.008465996500007122,
+      "quartiles_inclusive": [
+        0.008183325249994766,
+        0.008465996500007122,
+        0.008572071249993485
+      ]
+    },
+    "cached_extract": {
+      "samples": [
+        0.0033903750000092714,
+        0.004274490000000242,
+        0.0030331289999878663,
+        0.00330325800001674,
+        0.0032641290000015033,
+        0.0031143690000021707
+      ],
+      "median": 0.0032836935000091216,
+      "quartiles_inclusive": [
+        0.003151809000002004,
+        0.0032836935000091216,
+        0.0033685957500111385
+      ]
+    },
+    "sign": {
+      "samples": [
+        0.004958494000021574,
+        0.0033589549999817336,
+        0.0025161439999976665,
+        0.0032915860000173325,
+        0.002451494000013099,
+        0.0024259559999961766,
+        0.0030109010000103353,
+        0.0027505369999971663,
+        0.0028611200000057124,
+        0.004474068999996916,
+        0.002769389999997429,
+        0.0032399789999999484,
+        0.0030658120000168765,
+        0.0026788179999925887,
+        0.0024114390000136154,
+        0.0022950009999931353,
+        0.0027532000000007884,
+        0.002978950999988683,
+        0.0029862439999988055,
+        0.0036992290000057437,
+        0.0024406340000098226,
+        0.002707915999991428,
+        0.0026854269999887492,
+        0.0031239319999940562,
+        0.0031540539999923567,
+        0.004220476000000417,
+        0.0028398510000045007,
+        0.0027985319999856983,
+        0.0024624079999853166,
+        0.002895326000015075,
+        0.003097666000002164,
+        0.0029419070000074043,
+        0.006511195000001635,
+        0.0031149960000220744,
+        0.005061917000006133,
+        0.002888458999990462
+      ],
+      "median": 0.0029186165000112396,
+      "quartiles_inclusive": [
+        0.0027022937499907584,
+        0.0029186165000112396,
+        0.0031755352499942546
+      ]
+    },
+    "verify": {
+      "samples": [
+        0.0004790140000068277,
+        0.0005126830000108384,
+        0.00044738699997992626,
+        0.0005913850000069942,
+        0.00042114000001447494,
+        0.0004243349999910606,
+        0.00047928000000752036,
+        0.00044835200000648,
+        0.0004538000000025022,
+        0.0006929180000270208,
+        0.00044256900000050337,
+        0.00042972500000360014,
+        0.0005022969999970428,
+        0.00044013999999492626,
+        0.00041903500002149485,
+        0.0004175169999882655,
+        0.0004356950000214965,
+        0.000662645999994993,
+        0.00047808399997961715,
+        0.0004330100000231596,
+        0.0004686790000221208,
+        0.0004194839999911437,
+        0.00043763699997612093,
+        0.0004973739999911686,
+        0.00042723299998215225,
+        0.0004441669999835085,
+        0.0004539770000064891,
+        0.0010262289999900531,
+        0.0004084310000109781,
+        0.0004707870000117964,
+        0.0007157080000013138,
+        0.0004289080000035028,
+        0.0007712320000052841,
+        0.0005190569999911077,
+        0.0008362570000031155,
+        0.0005041140000230371
+      ],
+      "median": 0.00045388850000449565,
+      "quartiles_inclusive": [
+        0.00043218875001826973,
+        0.00045388850000449565,
+        0.0005062562500199874
+      ]
+    },
+    "restore_master": {
+      "samples": [
+        0.03232194999998228,
+        0.0314483189999919,
+        0.029202510999994047
+      ],
+      "median": 0.0314483189999919,
+      "quartiles_inclusive": [
+        0.030325414999992972,
+        0.0314483189999919,
+        0.03188513449998709
+      ]
+    },
+    "restore_signing": {
+      "samples": [
+        0.004952277999990429,
+        0.003759745999985853,
+        0.0035121040000092307,
+        0.0039498350000144455,
+        0.004813752000018212,
+        0.003643936000003123
+      ],
+      "median": 0.0038547905000001492,
+      "quartiles_inclusive": [
+        0.0036728884999988054,
+        0.0038547905000001492,
+        0.0045977727500172705
+      ]
+    }
+  },
+  "environment": {
+    "system": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "python": "3.13.15"
+  },
+  "source_sha256": {
+    "src/ibme/ibs/foo_li/__init__.py": "f4a73ae166b3b13f5974d454df86b5ca32aa4f5b241233294eabeede62e7ae7a",
+    "src/ibme/ibs/foo_li/backend.py": "856e877cae54d882e3d19fc7e14b1ba0f9e37f7d0728f18643679309e3566890",
+    "src/ibme/ibs/foo_li/codec.py": "88e5afb187f5bb692fbdec7d25bc97a4f427146e7e75b5db62c31b49c1b6d09d",
+    "src/ibme/ibs/foo_li/keys.py": "1bb7d5b6ad248d71bd1965550987984671a45a9af7ebbacf8a74b2f5a946dd9f",
+    "src/ibme/ibs/foo_li/objects.py": "964440c97892790beb1d0a864eab58ca806a7e004ad84ae7b12d3252a98f74be",
+    "src/ibme/ibs/foo_li/params.py": "eb693790305db1ee21a5674d80e71d13375a1a6d4f8da12907cd0791be6cb479",
+    "src/ibme/ibs/foo_li/registration.py": "129afc2e88c345caa012432a7f2fbec9fa928a982e7e09ef02ec5030c3de8cb5",
+    "src/ibme/ibs/foo_li/service.py": "d99ab2b1188dfc41ce509e7c7545fef4f417e51f126d27bd447dd0e7184c5e37",
+    "src/ibme/ibs/foo_li/state_validation.py": "92c8cddd1919be60d40225bff8384404b520fd0364c35dde24e5de0754198cd1",
+    "experiments/research/foo_li_backend_audit.py": "0b5e112e08892a806ca838cf17d092ebfc869847938cca58ffd9b91f9d5bfc4e",
+    "experiments/research/foo_li_runtime_reference.py": "84b28a8f8cb71f8520f6365c7b200fbe6d91cbb7aa2aadc4edb11fc73ef99b5e",
+    "experiments/research/foo_li_public_verifier.py": "b3a4e49263709ef460fab6ec4235c6dee1d4a9434dba4d943f65e801595c163b",
+    "experiments/research/foo_li_initialization.py": "efb60ea254c2dd81a4d99707794c48054d8c10c7c916cc09ffd7b85e7e1228bf",
+    "experiments/research/online_mp12_reference.py": "67ef14da368416138ad6598c0161afd023542f5912c55e79369328523cfe6d5b",
+    "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa"
+  },
+  "limits": [
+    "q=3 is publicly forgeable; wrong-message/identity acceptance is retained",
+    "No HIBE combination, comparable secure-parameter benchmark, or formal security admission",
+    "No persisted secret, seed, private snapshot or actual signature is included"
+  ]
+}

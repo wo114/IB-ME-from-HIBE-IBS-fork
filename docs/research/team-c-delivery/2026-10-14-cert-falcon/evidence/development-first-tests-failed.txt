@@ -1,0 +1,19 @@
+........................................................................ [ 31%]
+........................................................................ [ 62%]
+.........................................................FF............. [ 94%]
+.............                                                            [100%]
+=================================== FAILURES ===================================
+_ test_portable_discriminated_objects_and_explicit_descriptor[falcon-padded-512] _
+tests/test_cert_falcon_contract.py:36: in test_portable_discriminated_objects_and_explicit_descriptor
+    assert spec.backend_id=="cert-falcon" and spec.persistent_identity_cache
+           ^^^^^^^^^^^^^^^
+E   AttributeError: 'BackendSpec' object has no attribute 'backend_id'
+_ test_portable_discriminated_objects_and_explicit_descriptor[falcon-padded-1024] _
+tests/test_cert_falcon_contract.py:36: in test_portable_discriminated_objects_and_explicit_descriptor
+    assert spec.backend_id=="cert-falcon" and spec.persistent_identity_cache
+           ^^^^^^^^^^^^^^^
+E   AttributeError: 'BackendSpec' object has no attribute 'backend_id'
+=========================== short test summary info ============================
+FAILED tests/test_cert_falcon_contract.py::test_portable_discriminated_objects_and_explicit_descriptor[falcon-padded-512]
+FAILED tests/test_cert_falcon_contract.py::test_portable_discriminated_objects_and_explicit_descriptor[falcon-padded-1024]
+2 failed, 227 passed in 43.14s
