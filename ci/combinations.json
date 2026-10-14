@@ -1,0 +1,30 @@
+[
+  {
+    "name": "teaching-abb10-hybrid-wang-pw-research-byteauth-v1",
+    "parameter_labels": {"hibe": "teaching", "ibs": "research"},
+    "selection": {
+      "hibe": "abb10",
+      "hibe_params": "hybrid-research",
+      "ibs": "wang-pw",
+      "ibs_params": "research",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false
+    }
+  },
+  {
+    "name": "teaching-abb10-hybrid-srgg2025-research-byteauth-v1",
+    "parameter_labels": {"hibe": "teaching", "ibs": "research"},
+    "selection": {
+      "hibe": "abb10",
+      "hibe_params": "hybrid-research",
+      "ibs": "srgg2025",
+      "ibs_params": "research",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false
+    }
+  }
+]

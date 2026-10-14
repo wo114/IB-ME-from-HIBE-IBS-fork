@@ -571,6 +571,20 @@ def cmd_list_backends(args) -> int:
     return 0
 
 
+def cmd_list_algorithms(args) -> int:
+    from ibme.assembly.catalog import algorithm_catalog
+    result = algorithm_catalog()
+    if args.json:
+        print(json.dumps(result, indent=2, sort_keys=True))
+    else:
+        for row in result["routes"]:
+            adapter = "registered" if row["adapter_available"] else "awaiting adapter"
+            print(f"{row['role']} / {row['id']} / {adapter} / "
+                  f"{row['combination_status']} / not_executed")
+        print("Catalog routes are not completed algorithms or security admissions.")
+    return 0
+
+
 def cmd_check(args) -> int:
     from ibme.assembly import validate_suite
 
@@ -902,6 +916,10 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("list-backends", help="显示已实现后端与未交付候选")
     p.add_argument("--json", action="store_true", help="输出机器可读清单")
     p.set_defaults(func=cmd_list_backends)
+
+    p = sub.add_parser("list-algorithms", help="列出全部19条候选路线、适配器和待组合验收状态")
+    p.add_argument("--json", action="store_true", help="输出路线与实际后端的对应关系")
+    p.set_defaults(func=cmd_list_algorithms)
 
     p = sub.add_parser("check", help="纯静态组合兼容预检；不取熵、不创建状态")
     _add_selection(p)

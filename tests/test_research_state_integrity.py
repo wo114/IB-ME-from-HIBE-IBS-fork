@@ -176,39 +176,72 @@ def test_setup_cannot_overwrite_existing_research_state_by_switching_profile(ini
 
 
 @pytest.mark.parametrize("fail_master", [True,False])
-def test_snapshot_publication_failure_retains_blocking_marker(initial,tmp_path,monkeypatch,fail_master):
+def test_snapshot_publication_failure_retains_blocking_marker(initial,tmp_path,monkeypatch,fail_master,capsys):
     from types import SimpleNamespace
     from ibme import cli
+    from ibme.cli_state import MasterStatePendingError, master_pending_path
+    from ibme.core.randomness import SecureRandom
+    from ibme.protocol.baseline import BaselineIBME
+
     _,_,_,_,readers=initial
     state=write_initial_state(tmp_path,initial)
+    master_path=state/"msk.bin"
+    original_master=master_path.read_bytes()
+    marker=master_pending_path(master_path)
+    assert not marker.exists()
     output=_sender_key_path(state,b"Alice")
-    destination=state/"msk.bin" if fail_master else output
+    destination=master_path if fail_master else output
+    publications={}
     original=cli.os.replace
     def fail(source,target):
-        if Path(target)==destination: raise OSError("injected publication failure")
+        target=Path(target)
+        assert marker.is_file()
+        publications[target]=Path(source).read_bytes()
+        if target==destination: raise OSError("injected publication failure")
         return original(source,target)
     args=SimpleNamespace(state=state,name="Alice",mock=False)
     with monkeypatch.context() as patch:
         patch.setattr(cli.os,"replace",fail)
-        with pytest.raises(OSError): cli.cmd_issue_sender_key(args)
+        with pytest.raises(OSError,match="injected publication failure"):
+            cli.cmd_issue_sender_key(args)
+    assert capsys.readouterr().out==""
+    assert marker.is_file()
     assert not output.exists()
     assert not list(state.glob(".ibme-state-*.tmp"))
-    restored=MasterSecret.from_bytes((state/"msk.bin").read_bytes(),readers["hmsk"],readers["imsk"])
+    # A failed master replacement must stop before key publication. A failed
+    # key replacement leaves the newly cached identity in the durable master.
+    assert list(publications)==([master_path] if fail_master else [master_path,output])
+    durable_master=master_path.read_bytes()
+    assert publications[master_path]!=original_master
+    assert durable_master==(original_master if fail_master else publications[master_path])
+    restored=MasterSecret.from_bytes(durable_master,readers["hmsk"],readers["imsk"])
     assert restored.imsk.cached_identities==(() if fail_master else (b"Alice",))
-    # transport-and-state §2.3: either publication failure leaves the issuer
-    # blocked, including a successfully saved fixed key awaiting publication.
-    from ibme.cli_state import MasterStatePendingError,master_pending_path
-    marker=master_pending_path(state/'msk.bin')
-    assert marker.is_file()
-    before=(state/'msk.bin').read_bytes()
+    # A publication failure leaves the issuer blocked, including a
+    # successfully saved fixed key awaiting publication.
     def forbidden(*args,**kwargs):
-        pytest.fail('pending issuer loaded state or attempted another extraction')
+        pytest.fail("pending issuer must not load, issue, draw randomness, or publish")
+
     with monkeypatch.context() as patch:
-        patch.setattr(cli,'_load_msk',forbidden)
-        with pytest.raises(MasterStatePendingError,match='pending'):
-            cli.cmd_issue_sender_key(args)
-    assert marker.is_file() and not output.exists()
-    assert (state/'msk.bin').read_bytes()==before
+        patch.setattr(SecureRandom,"read",forbidden)
+        if not fail_master:
+            protocol,_=make_research_runtime()
+            cached_digest=sha256(protocol.skgen(restored,b"Alice").to_bytes()).digest()
+            assert sha256(publications[output]).digest()==cached_digest
+        patch.setattr(cli,"_load_msk",forbidden)
+        patch.setattr(BaselineIBME,"skgen",forbidden)
+        patch.setattr(BaselineIBME,"rkgen",forbidden)
+        patch.setattr(cli,"_atomic_write_state",forbidden)
+        before_retry={path.name:path.read_bytes() for path in state.iterdir() if path.is_file()}
+        for command,name in ((cli.cmd_issue_sender_key,"Alice"),
+                             (cli.cmd_issue_sender_key,"Carol"),
+                             (cli.cmd_issue_receiver_key,"Bob")):
+            with pytest.raises(MasterStatePendingError,match="pending"):
+                command(SimpleNamespace(state=state,name=name,mock=False))
+            assert capsys.readouterr().out==""
+            assert marker.is_file()
+            assert not output.exists()
+            assert not list(state.glob(".ibme-state-*.tmp"))
+            assert {path.name:path.read_bytes() for path in state.iterdir() if path.is_file()}==before_retry
 
 
 @pytest.mark.parametrize("second_operation", ["extract","snapshot"])

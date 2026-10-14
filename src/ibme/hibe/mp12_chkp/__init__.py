@@ -25,7 +25,7 @@ _PROVIDERS.update({
     for name in ("backend_spec", "research_registry", "research_suite")
 })
 __all__ = ["BACKEND_ID", "BACKEND_VERSION", "ENGINE_ENV", "configured_engine",
-           "default_backend_spec", "sage_available", *_PROVIDERS]
+           "default_backend_spec", "backend_metadata", "sage_available", *_PROVIDERS]
 
 
 def configured_engine():
@@ -44,6 +44,26 @@ def default_backend_spec():
     # conversion. Setup/new-receiver admission owns the engine-file check.
     provider = import_module("experiments.research.first_suite.hibe_registry")
     return provider.backend_spec(binary)
+
+
+def backend_metadata():
+    """Public discovery only; importing the real provider initializes Sage.
+
+    This record has no factories, decoders or parameter objects. Runtime
+    selection still obtains the complete, validated default_backend_spec.
+    """
+    present = sage_available()
+    reason = ("Source-checkout Sage/qFALL reference; n2 is insecure; no formal or original-CHKP theorem admission"
+              if present else "requires SageMath in WSL ~/miniconda3/envs/sage; no fallback")
+    return dict(
+        id=BACKEND_ID, version=BACKEND_VERSION, available=present,
+        test_only=False, reason=reason,
+        parameter_presets=["n2-reference"] if present else [],
+        signature_formats=["reference"], two_level=present, key_binding=present,
+        object_parameter_binding="full-parameter-snapshot" if present else "backend-specific",
+        master_public_key_capability=False, persistent_identity_cache=present,
+        runtime_available=present, runtime_reason="" if present else reason,
+    )
 
 
 def __getattr__(name):

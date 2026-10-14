@@ -1,4 +1,4 @@
-name: Basic checks and known gaps
+name: Catalog CI
 
 on:
   push:
@@ -13,97 +13,39 @@ on:
 permissions:
   contents: read
 
-jobs:
-  basic-checks:
-    runs-on: windows-latest
-    timeout-minutes: 15
-    env:
-      PYTHONDONTWRITEBYTECODE: '1'
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
-        with:
-          python-version: '3.14'
-      - name: Install test dependencies
-        run: python -m pip install -e . pytest==9.1.1
-      - name: Run basic checks and report known security gaps
-        run: >-
-          python -m pytest -p no:cacheprovider -ra --tb=short
-          tests/test_encoding.py tests/test_lattice_core.py
-          tests/test_prepared_hashing.py tests/test_known_security_gaps.py
-          tests/test_luo_matrix_reference.py
-          tests/test_luo_ibs_contract.py tests/test_luo_parameter_screen.py
-          tests/test_luo_joint_parameters.py
-          tests/test_luo_module_math.py tests/test_luo_module_backend.py
-          tests/test_luo_module_security_screen.py
-          tests/test_luo_module_codec.py
-          tests/test_candidate_foundations.py
-          tests/test_yu_homomorphic_reference.py
-          tests/test_srgg_algebra.py tests/test_srgg_geometry.py
-          tests/test_srgg_sampling.py
-          tests/test_cli_state_lock.py
-          tests/test_ibme_handoff_screen.py
-          tests/test_public_reuse_gpv.py tests/test_latte_reuse_probe.py
-          tests/test_first_suite_identity_state.py tests/test_first_suite_seed_sage.py
-          tests/test_first_suite_delegation.py
-          tests/test_first_suite_finite_sampling.py
-          tests/test_first_suite_root_generation.py
-          tests/test_first_suite_compact_delegation.py
-          tests/test_ibme_joint_parameters.py tests/test_ibme_root_sampler_audit.py
-          tests/test_ibme_noise_budget.py tests/test_ibme_rounded_noise.py
-          tests/test_ibme_chain_audit.py
-          tests/test_byteauth.py
-          --junitxml=test-results/basic.xml
-      - name: Enforce security targets when explicitly requested
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.strict_security }}
-        run: >-
-          python -m pytest -p no:cacheprovider --runxfail -ra --tb=short
-          tests/test_known_security_gaps.py
-          --junitxml=test-results/strict-security.xml
-      - name: Explain validation scope
-        if: always()
-        shell: pwsh
-        run: |
-          @'
-          ## Validation scope
-          This job checks selected Windows basics, Luo research accounting, byte authentication, and the original three security targets.
-          **XFAIL means an unfixed vulnerability, not a security pass.**
-          Strict XPASS requires reviewing a changed result and removing its XFAIL marker.
-          Run with `strict_security=true` to enforce these targets; the education instance currently fails.
-          The c1 low-bit tamper target now passes through the default byte-authenticated version; two insecure-IBS authentication targets remain XFAIL.
-          The unwrapped tolerance and wrapped public-IBS forgery remain explicit negative controls, not security successes.
-          This is not the full protocol suite, Sage research validation, Lean compilation, or a security proof.
-          The Luo reference uses hand-selected research parameters and includes an accepted toy forgery control.
-          The module backend runs the exact 38-bit research modulus and public-only Verify, including strict object formats and Hint boundaries; it is not registered as the default CLI IBS.
-          Module admission tests check exact Hint/fork bounds and conditional nonzero controls. Pinned Sage cost estimates and oracle assumptions are separate; no security grade follows from these checks.
-          MODULE-COMPACT/1 checks lossless mathematical/hash-input equivalence and strict canonical decoding. It changes transport size, not security parameters or the algorithm count.
-          Candidate handoff tests validate sources, metadata boundaries and Sageloli counting units. Candidate entries are not implemented/admitted backends; Sage algebra prerequisites run separately.
-          Yu component tests check binary-gadget NAND equations, matching circuits and exact integer witnesses. The paper's spectral bound, real PRF and full IBS are not implemented/admitted by this reference.
-          SRGG component checks cover module relations, HNF correction, commitment recovery and exact shape/Schur positivity. Deterministic digits are not Gaussian sampling; sampler-width and underlying security conditions remain pending.
-          SRGG random-gadget tests require Sage and are explicitly skipped on this Windows job. Local Sage checks cover finite Gaussian draws, width mapping, coset-normalizer bias and aborts; correlated perturbation and a complete IBS remain pending.
-          Local state lock checks cover contention, bounded failure and release after process exit. These are state-management checks, not cryptographic security evidence.
-          The CHKP handoff screen joins current finite AP09/GPV constraints and the 32-byte hybrid seed requirement. Sage constructor comparisons run locally; paper-only preflight success is not backend admission.
-          Public-code reuse checks validate bounded fixture/source metadata on Windows. Actual qFALL native conversion, Sage GPV/256-position diagnostics and the LATTE C entropy-flow counterexample require explicit local builds and are skipped here; they do not admit a HIBE or inherit existing finite-sampler certificates.
-          First-suite seed-state checks cover canonical H/G, full public context and ordered identities, 256 fixed addresses, private wire/equation/norm validation, failure tombstones and fresh-process reuse. Portable tests use explicitly public toy vectors only. Actual Gaussian sampling and rounded-noise KEM diagnostics require Sage and run locally; the raw KEM is not a complete HIBE, AEAD wrapper or admitted IBME instance.
-          Owned master/parent tree tests require Sage and run locally. They cover complete kernel/GS binding, single issuance, nested fixed leaf snapshots, failure tombstones, consistent lock order and whole-tree resource checks. A sufficient exact column-norm certificate avoids duplicate GS during restore, with exact GS fallback retained. These private-state objects are not an implemented/admitted seven-method HIBE or a substitute for production sampling and formal parameters.
-          Independent finite/CSPRNG sampler tests require Sage and run locally. The wide scalar/256-dimension GPV profiles recompute tail/rounding/abort/path/tape certificates, preserve original limits and default to OS byte sources. Their sampler TV bounds are not security levels, and the prior native parent/root remain unadmitted.
-          Joint parameter checks cover the whole current finite dimension domain and conditional rounded-continuous-Gaussian decode budgets, including odd moduli and shared-preamble union accounting. Actual Sage root/LLL diagnostics run locally; larger numeric plans do not override any backend cap or certify LWE hardness.
-          Rounded-noise metadata checks enforce exact q/alpha binding and an explicit finite-error ledger with D+L shared-preamble draws. Actual erf/CDF sampling and independent quadrature require Sage and run locally; no HIBE backend or security grade follows from this support component.
-          Same-input root/parent/terminal-leaf chain, cache restore and rounded-noise phase checks require Sage and run locally. Default tape and 256-bit admissions remain explicit rejection controls; noiseless equations cannot replace honest-noise decode counts. Explicit finite-error options and diagnostic LLL are not backend admission.
-          Its small functional profiles also admit public master recovery. The external Sage SIS/LWE cost screen and public-only LLL recovery control run separately.
-          See the pytest log and JUnit artifact for actual passed, failed, and skipped outcomes.
-          '@ | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
-      - name: Upload test reports
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: windows-basic-test-results
-          path: test-results/*.xml
-          if-no-files-found: warn
+concurrency:
+  group: catalog-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
-  hybrid-research:
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      portable: ${{ steps.plan.outputs.portable }}
+      sage: ${{ steps.plan.outputs.sage }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.14'
+      - name: Discover all 19 routes and delivered test suites
+        id: plan
+        run: python ci/run.py plan
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: catalog-plan
+          path: ci-results/plan.json
+          if-no-files-found: error
+
+  portable:
+    needs: plan
     runs-on: windows-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.portable) }}
+    name: portable / ${{ matrix.id }}
     env:
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
@@ -111,37 +53,84 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: '3.14'
-      - name: Install research dependencies
+      - name: Install research test dependencies
         run: python -m pip install -e ".[hybrid]" cryptography==50.0.2 pytest==9.1.1
-      - name: Check real hybrid composition and attack controls
-        run: >-
-          python -m pytest -p no:cacheprovider -ra --tb=short
-          tests/test_hybrid_hibe.py tests/test_luo_hybrid_ibme.py
-          tests/test_luo_compact_ibme.py
-          tests/test_research_state_integrity.py
-          tests/test_hybrid_key_binding.py
-          tests/test_cli_receiver_state.py
-          --junitxml=test-results/hybrid.xml
-      - name: Explain research scope
-        if: always()
-        shell: pwsh
-        run: |
-          @'
-          ## Hybrid research scope
-          This job checks HYBRID-HIBE/1, fixed-width injective identity encoding, the real debug ABB10 + Luo module combination, fresh-process state and attack controls.
-          Explicit reference/compact signature formats have separate decoders; both real research paths retain public forgery and recipient re-signing controls.
-          Research-state checks enforce fixed HIBE parameter snapshots, serialized identity issuance/cache snapshots, atomic key publication and refusal to overwrite research keys by switching profiles.
-          Hybrid key-binding checks require a primitive validator and reject same-parameter public/secret mixups, bad private equations and invalid emitted keys. Algebraic validity does not certify sampling or security.
-          Receiver-state checks cover fresh-process reuse, concurrent decrypts, failed sampling, atomic private snapshots and pending markers after incomplete operations. The portable stateful driver is test-only; three real small-parameter CHKP Gaussian-cache bridge checks require Sage and run locally.
-          All checks are unmarked; there are no security XFAILs in this job.
-          The education profile's two vulnerabilities remain explicit XFAILs in the other job.
-          A functional real composition is not an admitted secure instance: the HIBE is educational and Luo's parameter/proof mapping is still under review.
-          No NIST, CCA, QROM, full anonymity proof or end-to-end optimization claim follows from a green test result.
-          '@ | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
-      - name: Upload hybrid reports
+      - name: Run selected suite
+        run: python ci/run.py run "${{ matrix.id }}"
+      - name: Publish actual counts and scope
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: windows-hybrid-research-test-results
-          path: test-results/hybrid.xml
-          if-no-files-found: warn
+          name: catalog-${{ matrix.id }}
+          path: ci-results/*
+          if-no-files-found: error
+
+  sage:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: ${{ fromJSON(needs.plan.outputs.sage) }}
+    name: sage / ${{ matrix.id }}
+    # Official Sage 10.9 Linux amd64 image; fixed digest for reproducibility.
+    container:
+      image: sagemath/sagemath@sha256:2401ffa8e9fc85c7ea17d3649bde5958b4dbf0858b3e504098c4102720151711
+      options: --user root
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Install research test dependencies in Sage
+        run: sage -python -m pip install -e ".[hybrid]" cryptography==50.0.2 pytest==9.1.1
+      - name: Run actual Sage suite
+        run: sage -python ci/run.py run "${{ matrix.id }}"
+      - name: Publish actual counts and scope
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: catalog-${{ matrix.id }}
+          path: ci-results/*
+          if-no-files-found: error
+
+  coverage:
+    if: always()
+    needs: [plan, portable, sage]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.14'
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: catalog-*
+          path: ci-results
+          merge-multiple: true
+      - name: Report every route; reject missing or failing scheduled receipts
+        run: python ci/run.py summary
+
+  strict-security:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.strict_security }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.14'
+      - run: mkdir -p ci-results
+      - run: python -m pip install -e . pytest==9.1.1
+      - name: Enforce known education-profile security targets
+        run: python -m pytest -p no:cacheprovider --runxfail -ra --tb=short tests/test_known_security_gaps.py --junitxml=ci-results/strict.xml
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: strict-security
+          path: ci-results/*.xml
+          if-no-files-found: error
