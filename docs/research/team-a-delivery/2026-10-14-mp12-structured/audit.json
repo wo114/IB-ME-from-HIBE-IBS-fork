@@ -1,0 +1,202 @@
+{
+  "schema": "A/MP12-STRUCTURED-DELIVERY/1",
+  "generated_at_utc": "2026-10-14T03:29:38.743015+00:00",
+  "algorithm_execution_source_commit": "5e4f3328551a3502d31d84c2833ae3461a41d70e",
+  "input_screen_source_commit": "d0b0c204fb01f193f9df854818e4856502c87892",
+  "source_sha256": {
+    "src/ibme/lattice/matrix_sampling/mp12_structured.py": "a99cdba2fa1da1941f5fa3a68cd6281a72df3e1f05046bc2011e435e98f1897c",
+    "experiments/research/matrix_structured_probe.py": "3dd16c7c8ad6f936d3c15f5ffb1acd4365ddd0b40e890fe7752c50ea5cf1dee8",
+    "experiments/research/matrix_structured_parameter_screen.py": "d71bb2980da924fcf6e2de3026076771386d67b686621e022d0d4f3decada66c",
+    "tests/test_mp12_structured_sampling.py": "e662b5db43a57b5ee1c177d583ac7583921e0d88a823899e97ff0ac6f2dc1c45",
+    "tests/install_probes/verify_mp12_structured.py": "6d5c34e5bd0fb1df7872d781c86b9e173c80dae93a479c885b050e3b7d29756a",
+    "docs/PROJECT_STATUS.md": "8ae0e4b1f31c58b04e324f318caf9b2d2facac0a2e4e786a63a001174f287d54"
+  },
+  "evidence_sha256": {
+    "pr15-sage.xml": "2a1dfe7eb16fc159ae3b85549974c90423b24ab19ed429b61e27340728229da3",
+    "pr15-source-check.json": "8729f253b7c9714c820b79578b447565beac3f50089fcdaa0632cc7306140dba",
+    "pr15-first-invocation.log": "8b1fd74bd9e3e044e6114a3d47aa0a0a12efe978de84cc62403f30639ba2e09b",
+    "new-first-attempt.xml": "4171b1c7c1098d923f64b52b23de3c629d6457e82a29004173623481c70eb12b",
+    "final-sage.xml": "360f75fa4c7b4665daa145a4fa13f4da1a13e999bdfc30e0cd4863f64feace54",
+    "windows.xml": "8b462690d372e139d3b3b7b728fb016a846ff887e87394b747cfe54e47230d62",
+    "two-level.json": "c1a5f6d5d901a1444595ff4b876b7bd6ce58837ad13a4bfd9289532ab2592edd",
+    "n128.json": "c26bcb461536809873e8d9cc7f52cd036691de1f9afcca9294b670cc9d699132",
+    "two-level.log": "2df078eb8b892b599b8f13c7e15313815b3fc2c6c004c90eb934e24183c99294",
+    "n128.log": "cf4186f179b95dfdedb1e6bebc097ab1a7a28cb66271d7dde45a46577491c707",
+    "input-screen.json": "44879d94590e4e6f64a4984f1657b64283cdbfc28c50828104b618507515d47b",
+    "installed.json": "46f759bd151b29ff5a365508e83371c10f6d23115e22c971c8d0e62ac8eeff38"
+  },
+  "paper_sha256": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+  "paper_source": "https://eprint.iacr.org/2011/501; author PDF section5.4 Algorithm3 visually checked on PDF28",
+  "wheel": {
+    "file": "ibme-0.1.0-py3-none-any.whl",
+    "sha256": "b26b4c010599ab410e5fbb21d627fa5bcd8c6bf94edc95c14ed26645ed3cc207",
+    "source_commit": "d0b0c20",
+    "native_tools_required_for_new_sampler": false,
+    "isolated_installed_providers": 6
+  },
+  "pr15_review": {
+    "pr": {
+      "headRefOid": "04352853bb0d93988ee8148e09101730b28af343",
+      "mergeCommit": {
+        "oid": "010b75e47de1e4a8e899a2f2ffe973a8522fe720"
+      },
+      "mergedAt": "2026-10-14T02:31:32Z",
+      "number": 15,
+      "state": "MERGED",
+      "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/15"
+    },
+    "head_reviewed": "04352853bb0d93988ee8148e09101730b28af343",
+    "four_remote_checks": "success",
+    "sage_passed": 330,
+    "sage_explicit_skipped": 21,
+    "real_ABB_contracts_passed": 3,
+    "source_and_tools_matching": 23,
+    "initial_invocation": "wrong nonexistent filename; no tests ran; corrected result retained",
+    "accepted_scope": "research functionality; no security admission"
+  },
+  "tests": {
+    "pr15-sage.xml": {
+      "tests": "351",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "21",
+      "time": "138.555"
+    },
+    "new-first-attempt.xml": {
+      "tests": "22",
+      "errors": "0",
+      "failures": "7",
+      "skipped": "0",
+      "time": "3.170"
+    },
+    "final-sage.xml": {
+      "tests": "99",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "2",
+      "time": "11.440"
+    },
+    "windows.xml": {
+      "tests": "23",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "6",
+      "time": "0.124"
+    }
+  },
+  "xml_evidence_encoding": {
+    "new-first-attempt.xml": {
+      "original_sha256": "4c1f771bc240c91c917cb8561ea3a47092073b95dc44d3ab863a6fcd3d967055",
+      "encoding": "trailing spaces/tabs represented as XML numeric references; parsed content equal"
+    }
+  },
+  "real_runs": [
+    {
+      "n": 2,
+      "q": 257,
+      "root_R_squared": 16,
+      "source_unchanged": true,
+      "source_commit": "5e4f3328551a3502d31d84c2833ae3461a41d70e",
+      "seconds": 1.8486385849999962,
+      "system_entropy_bytes": 1246273,
+      "peak_process_RSS_KiB": 228028,
+      "restore": {
+        "status": "passed",
+        "fresh_process": true,
+        "entropy_calls": 0,
+        "reused_delegated_levels": 2
+      }
+    },
+    {
+      "n": 128,
+      "q": 65537,
+      "root_R_squared": 529,
+      "source_unchanged": true,
+      "source_commit": "5e4f3328551a3502d31d84c2833ae3461a41d70e",
+      "seconds": 108.62471230100002,
+      "system_entropy_bytes": 203298088,
+      "peak_process_RSS_KiB": 780212,
+      "restore": {
+        "status": "passed",
+        "fresh_process": true,
+        "entropy_calls": 0,
+        "reused_delegated_levels": 0
+      }
+    }
+  ],
+  "fixed_entropy_tests_separate_from_system_runs": true,
+  "root_estimator_statuses": {
+    "error": 2,
+    "finite_estimate": 6
+  },
+  "application_message_seed": null,
+  "identity_matrix_RO_used": false,
+  "primitive_address_bytes": 86,
+  "environment": {
+    "python": "3.13.14",
+    "sage": "10.9",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "hardware": "Intel(R) Core(TM) Ultra 9 275HX",
+  "OMP_NUM_THREADS": 8,
+  "OPENBLAS_NUM_THREADS": 1,
+  "timing_boundary": "one run each, Sage startup excluded, stages include preparation/sampling/codec/child restore as recorded; no fair performance comparison",
+  "memory_boundary": "Linux ru_maxrss of parent process; not process-tree or workspace guarantee",
+  "private_states": {
+    "locators": [
+      "test-results/mp12-structured-two-level/private",
+      "test-results/mp12-structured-n128/private"
+    ],
+    "ignored": true,
+    "not_in_Git": true,
+    "not_in_delivery": true,
+    "source_R_samples_seeds_not_copied": true
+  },
+  "commands": [
+    "PYTHONPATH=src:. OMP_NUM_THREADS=8 OPENBLAS_NUM_THREADS=1 ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q -rs tests/test_abb_*.py tests/test_matrix_*.py tests/test_chkp_matrix_profiles.py tests/test_first_suite_finite_sampling.py tests/test_first_suite_hibe_reference.py tests/test_chkp_backend.py tests/test_chkp_backend_wire.py --junitxml=test-results/pr15-premerge-sage-corrected.xml (PATH has fixed Flatter, exact Gram configured, IBME_ABB_REAL_PRIVATE_DIR=test-results/abb-q26-levels/private IBME_ABB_REAL_REPLAY=1)",
+    "PYTHONPATH=src:. OMP_NUM_THREADS=8 OPENBLAS_NUM_THREADS=1 ~/miniconda3/envs/sage/bin/python -u -m experiments.research.matrix_structured_probe --private-directory test-results/mp12-structured-two-level/private --baseline-commit 5e4f3328551a3502d31d84c2833ae3461a41d70e --n 2 --q 257 --root-squared 16 --samples 8 --delegate",
+    "PYTHONPATH=src:. OMP_NUM_THREADS=8 OPENBLAS_NUM_THREADS=1 ~/miniconda3/envs/sage/bin/python -u -m experiments.research.matrix_structured_probe --private-directory test-results/mp12-structured-n128/private --baseline-commit 5e4f3328551a3502d31d84c2833ae3461a41d70e --n 128 --q 65537 --root-squared 529 --samples 4",
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.matrix_structured_parameter_screen --estimator-path /mnt/d/zcode_projects/ibme/test-results/lattice-estimator --output test-results/mp12-structured-actual-input-screen.json",
+    "PYTHONPATH=src:. OMP_NUM_THREADS=8 OPENBLAS_NUM_THREADS=1 ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q tests/test_mp12_structured_sampling.py tests/test_matrix_finite_sampling.py tests/test_chkp_matrix_profiles.py tests/test_matrix_hibe_scaled_screen.py --junitxml=test-results/mp12-structured-handoff-sage.xml",
+    "$env:PYTHONPATH='src;.'; python -m pytest -p no:cacheprovider -q tests/test_matrix_hibe_scaled_screen.py tests/test_mp12_structured_sampling.py --junitxml=test-results/mp12-structured-handoff-windows.xml",
+    "python -m pip wheel --no-deps --no-build-isolation --wheel-dir test-results/mp12-structured-wheel .",
+    "~/miniconda3/envs/sage/bin/python -m pip install --no-deps --target test-results/mp12-structured-installed test-results/mp12-structured-wheel/ibme-0.1.0-py3-none-any.whl",
+    "~/miniconda3/envs/sage/bin/python -I tests/install_probes/verify_mp12_structured.py test-results/mp12-structured-installed test-results/mp12-structured-two-level/private/root.bin test-results/mp12-structured-installed-final.json"
+  ],
+  "changed_files": [
+    "docs/PROJECT_STATUS.md",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/README.md",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/audit.json",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/evidence/final-sage.xml",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/evidence/input-screen.json",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/evidence/installed.json",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/evidence/n128.json",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/evidence/n128.log",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/evidence/new-first-attempt.xml",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/evidence/pr15-first-invocation.log",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/evidence/pr15-sage.xml",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/evidence/pr15-source-check.json",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/evidence/two-level.json",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/evidence/two-level.log",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/evidence/windows.xml",
+    "docs/research/team-a-delivery/2026-10-14-mp12-structured/files-changed.txt",
+    "experiments/research/matrix_structured_parameter_screen.py",
+    "experiments/research/matrix_structured_probe.py",
+    "src/ibme/lattice/matrix_sampling/mp12_structured.py",
+    "tests/install_probes/verify_mp12_structured.py",
+    "tests/test_mp12_structured_sampling.py"
+  ],
+  "cross_boundary_reason": "User authorized integration/review/merge; only docs/PROJECT_STATUS.md updated outside A paths to record actual merge and tool state.",
+  "full_HIBE_implemented": false,
+  "full_IBME_implemented": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "remaining_WIP": [
+    "HIBE H/G/nk extension adaptation, six methods and strict suite capacity/wire",
+    "formal parameters and both-role attack/reduction mapping",
+    "concrete convolution term and total numerical/resource/norm failure bounds",
+    "full32B noisy lifecycle, combination, installed CLI and attacks"
+  ],
+  "tests_are_not_security_proofs": true
+}
