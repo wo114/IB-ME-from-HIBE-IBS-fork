@@ -111,13 +111,14 @@ def test_git_metadata_is_best_effort_when_git_is_unavailable(monkeypatch, tmp_pa
 def test_missing_receipts_and_pending_routes_are_visible():
     planned = run.plan()
     rows = {row["id"]: row for row in planned["rows"]}
-    assert rows["cert-falcon"]["status"] == "awaiting_tests"
+    assert rows["xie-ntru-ibs"]["status"] == "awaiting_tests"
+    assert rows["cert-falcon"]["status"] == "scheduled"
     assert rows["wang-pw"]["status"] == rows["srgg2025"]["status"] == "scheduled"
     text, failed = run.render_summary(planned, {})
     assert failed and "awaiting_tests" in text and "not_executed" in text
     receipts = {row["id"]: {"status": "passed"} for row in planned["rows"] if row["test_files"]}
     text, failed = run.render_summary(planned, receipts)
-    assert not failed and "| cert-falcon | primitive | awaiting_tests |" in text
+    assert not failed and "| xie-ntru-ibs | primitive | awaiting_tests |" in text
     receipts["wang-pw"]["status"] = "failed"
     assert run.render_summary(planned, receipts)[1]
 
