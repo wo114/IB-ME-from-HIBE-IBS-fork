@@ -255,8 +255,8 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "ml_dsa_independent_ibs_vectors_real_restore_and_install_passed_falcon_composition_and_admission_pending",
-      "evidence": "../../research/team-c-delivery/2026-10-14-cert-mldsa/README.md",
+      "execution_state": "ml_dsa_and_falcon_independent_ibs_vectors_real_restore_and_install_passed_composition_and_admission_pending",
+      "evidence": "../../research/team-c-delivery/2026-10-14-cert-falcon/README.md",
       "deliverables": [
         "原文转换/固定身份/严格对象规格",
         "固定官方库/许可/KAT，先 ML-DSA",
@@ -621,7 +621,7 @@
       "priority": "P1",
       "task_id": "C2",
       "availability_inferred_from_plan": false,
-      "next_step": "同转换核心、独立格式/熵/解析适配与完整认证载荷"
+        "next_step": "已完成独立转换IBS/200官方向量/实物恢复安装；统筹登记/实际HIBE组合、强UF/量子与正式准入待办"
     },
     {
       "id": "xie-ntru-ibs",

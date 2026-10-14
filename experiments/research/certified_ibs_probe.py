@@ -23,6 +23,8 @@ from ibme.ibs import certified
 from ibme.ibs.certified import (CertifiedIBS, CertifiedIBSParams, CertifiedPublicKey,
                                CertifiedMasterSecret, CertifiedSigningKey)
 from ibme.ibs.certified.mldsa import MLDSA
+from ibme.ibs.certified.falcon import Falcon, PROFILES as FALCON_PROFILES
+from ibme.ibs.certified.ordinary import ordinary, PROFILES
 
 IDENTITIES = (b"A" * 63 + b"0", b"A" * 63 + b"1")
 MESSAGE = hashlib.sha256(b"independent certification IBS real lifecycle").digest()
@@ -62,7 +64,9 @@ def fingerprints():
 
 def restore(directory):
     operations = []
-    original = MLDSA._run
+    params = CertifiedIBSParams.from_bytes((directory/"params.bin").read_bytes())
+    provider = Falcon if params.base_algorithm in FALCON_PROFILES else MLDSA
+    original = provider._run
     def no_entropy(*args, **kwargs):
         raise AssertionError("restore consumed entropy")
     def checked(engine, operation, data):
@@ -70,7 +74,7 @@ def restore(directory):
             raise AssertionError("restore regenerated private material")
         operations.append(operation)
         return original(engine, operation, data)
-    with patch.object(SecureRandom, "read", no_entropy), patch.object(MLDSA, "_run", checked):
+    with patch.object(SecureRandom, "read", no_entropy), patch.object(provider, "_run", checked):
         backend = CertifiedIBS()
         pk = CertifiedPublicKey.from_bytes((directory/"public.bin").read_bytes())
         params = CertifiedIBSParams.from_bytes((directory/"params.bin").read_bytes())
@@ -107,10 +111,10 @@ def run(args):
     backend = CertifiedIBS(rng)
     report = dict(schema="CERTIFIED-IBS-REAL/1", status="started", source_commit=args.source_commit,
         parameters=asdict(params), repetitions=1, identities=2, identity_bytes=64, message_bytes=32,
-        entropy="system CSPRNG; 32 B per keygen and hedged ML-DSA signing operation",
+        entropy="system CSPRNG; 32 B per keygen/signing seed; provider-specific expansion",
         standalone_IBS=True, HIBE_IBS_combination=False, security_claim="none", backend_admitted=False,
         parameters_are_formal=False, teaching_parameters=False,
-        random_oracle_model="ML-DSA SHAKE instantiation; no complete IBS QROM/strong-UF mapping claimed",
+        random_oracle_model="provider SHAKE instantiation; no complete IBS QROM/strong-UF mapping claimed",
         environment=dict(python=sys.version.split()[0], platform=platform.platform(),
             cpu=next((line.split(":",1)[1].strip() for line in Path("/proc/cpuinfo").read_text().splitlines()
                       if line.startswith("model name")), "unknown")),
@@ -123,7 +127,7 @@ def run(args):
         report["stages"].append(dict(name=name, seconds=time.monotonic()-t, entropy_bytes=rng.bytes-before))
         return value
     try:
-        engine = MLDSA(params.base_algorithm)
+        engine = ordinary(params)
         report["native"] = dict(metadata=engine.metadata, binary_sha256=engine.binary_sha256)
         pk, master = stage("authority-keygen", lambda: backend.setup(params))
         save(directory/"public.bin", pk.to_bytes())
@@ -177,7 +181,7 @@ def run(args):
             public_key_sha256=hashlib.sha256(pk.to_bytes()).hexdigest())
         if len({s.to_bytes() for s in sigs}) != 32:
             raise ValueError("hedged signatures unexpectedly repeated")
-        if MLDSA(params.base_algorithm).binary_sha256 != report["native"]["binary_sha256"]:
+        if ordinary(params).binary_sha256 != report["native"]["binary_sha256"]:
             raise ValueError("native executable changed during lifecycle")
     except BaseException as exc:
         report.update(status="failed", error_type=type(exc).__name__, automatic_retry=False)
@@ -200,7 +204,7 @@ def run(args):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--private-directory",required=True,type=Path)
-    parser.add_argument("--algorithm",choices=("ml-dsa-44","ml-dsa-65","ml-dsa-87"),default="ml-dsa-44")
+    parser.add_argument("--algorithm",choices=tuple(PROFILES),default="ml-dsa-44")
     parser.add_argument("--source-commit",default="uncommitted")
     parser.add_argument("--restore-only",action="store_true")
     run(parser.parse_args())

@@ -234,11 +234,12 @@
       "tests": [
         "tests/test_cert_falcon*.py"
       ],
-      "source_markers": [],
-      "source_stage": "candidate",
+      "source_markers": ["src/ibme/ibs/certified/falcon.py", "src/ibme/ibs/certified/falcon_native/bridge.c"],
+      "source_stage": "standalone_primitive",
       "allow_skips": false,
       "environment": "sage",
-      "layer": "primitive"
+      "layer": "primitive",
+      "scope": "BNN certification IBS + Falcon v1.2 padded 512/1024; all official KATs, Gaussian author selftest and fixed-state contracts. Not FN-DSA/FIPS 206, HIBE composition or security admission."
     },
     {
       "id": "xie-ntru-ibs",

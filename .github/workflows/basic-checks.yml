@@ -90,6 +90,9 @@ jobs:
       - name: Build pinned ML-DSA engines for their independent IBS suite
         if: ${{ matrix.id == 'cert-ml-dsa' }}
         run: sage -python -m ibme.ibs.certified.native.build
+      - name: Build pinned Falcon engines and author selftest
+        if: ${{ matrix.id == 'cert-falcon' }}
+        run: sage -python -m ibme.ibs.certified.falcon_native.build --selftest
       - name: Run actual Sage suite
         run: sage -python ci/run.py run "${{ matrix.id }}"
       - name: Publish actual counts and scope
