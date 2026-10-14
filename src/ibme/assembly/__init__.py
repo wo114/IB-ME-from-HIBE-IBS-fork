@@ -15,7 +15,7 @@ from ibme.core.types import validate_bytes, validate_identity
 from ibme.lattice.params import Params
 from ibme.protocol.baseline import BaselineIBME, PublicKey, MasterSecret, SenderKey, ReceiverKey, DOMAIN_SIGNATURE, MAGIC_CIPHERTEXT, BOTTOM
 from ibme.protocol.byteauth import ByteAuthenticatedIBME, ENVELOPE_OVERHEAD, MAX_INNER_BYTES
-from .registry import BackendSpec, BackendRegistry, default_registry, environment_status
+from .registry import BackendSpec, BackendRegistry, default_registry, default_backend_catalog, environment_status
 
 SUITE_VERSION = "IBME/SUITE/1"
 STATE_POLICY = "single-writer-commit-before-publish-v1"
@@ -92,7 +92,7 @@ class SuiteConfig:
 
 
 def list_backends(*, registry=None):
-    return (registry or default_registry()).list()
+    return registry.list() if registry is not None else default_backend_catalog()
 
 
 def make_suite(*, hibe="abb10", ibs="sis", hibe_params=None, ibs_params=None,
@@ -106,9 +106,14 @@ def make_suite(*, hibe="abb10", ibs="sis", hibe_params=None, ibs_params=None,
                 raise InvalidParameterError("unavailable backend has no parameter preset")
             return {}
         if selected is None:
-            selected=(spec.default_preset(transport) if spec.default_preset is not None else
-                      "hybrid-research" if spec.role=="hibe" and transport=="hybrid" else
-                      "research" if spec.id.startswith("luo-") else "education")
+            if spec.default_preset is not None:
+                selected=spec.default_preset(transport)
+                if type(selected) is not str or selected not in spec.presets:
+                    raise InvalidParameterError(f"{spec.id}: default_preset must select a declared preset")
+            elif len(spec.presets)==1:
+                selected=next(iter(spec.presets))
+            else:
+                raise InvalidParameterError(f"{spec.id}: select parameters explicitly; no default preset declared")
         if isinstance(selected,spec.params_type):
             return asdict(selected)
         if type(selected) is str:
