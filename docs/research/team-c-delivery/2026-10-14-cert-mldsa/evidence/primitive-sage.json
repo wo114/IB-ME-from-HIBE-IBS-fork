@@ -1,0 +1,46 @@
+{
+  "id": "cert-ml-dsa",
+  "layer": "primitive",
+  "environment": "sage",
+  "files": [
+    "tests/test_cert_ml_dsa_contract.py",
+    "tests/test_cert_ml_dsa_native.py",
+    "tests/test_cert_ml_dsa_vectors.py"
+  ],
+  "status": "passed",
+  "security_claim": "none",
+  "combination_accepted": false,
+  "command": [
+    "/home/youzi/miniconda3/envs/sage/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "tests/test_cert_ml_dsa_contract.py",
+    "tests/test_cert_ml_dsa_native.py",
+    "tests/test_cert_ml_dsa_vectors.py",
+    "--junitxml=<repo>/test-results/cert-mldsa/primitive-final/cert-ml-dsa.xml"
+  ],
+  "exit_code": 0,
+  "counts": {
+    "tests": 245,
+    "passed": 245,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xfailed": 0
+  },
+  "skip_reasons": [],
+  "source_sha256": {
+    "tests/test_cert_ml_dsa_contract.py": "ccb7a01d834e960681da681e3ff5dee9709af03a3a455baaeff33b4ad2a2e8e4",
+    "tests/test_cert_ml_dsa_native.py": "83f80b492a1cd97fe50096aacebe3f40d2c161f3b7b02d930afa3625ba395d7a",
+    "tests/test_cert_ml_dsa_vectors.py": "bc5433850236a64843febd50218c4880541bbe534265dcffc9682728a36ed25c",
+    "ci/run.py": "942c38b3c973aadad93332818a347705f3c36cd4e972230e13427d9ca54fc839",
+    "ci/suites.json": "44a348201fc765136c37548325a7fea5e013edd588617893d39eda887c549be8",
+    "src/ibme/assembly/catalog.py": "0db1b38ce793180d84f535595ebcd3e2ba9cd38cf94d8d0cf6011ff66fed0295"
+  },
+  "revision": "unavailable",
+  "working_tree_dirty": null
+}

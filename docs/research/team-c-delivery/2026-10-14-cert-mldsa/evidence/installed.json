@@ -1,0 +1,111 @@
+{
+  "status": "passed",
+  "source_commit": "a2ffb8cb6e89dfb7bf2a4c89d2d80c354b63db0b",
+  "cwd": "/tmp",
+  "wheel_sha256": "b34203956b3fdd62a080b7171779754655b32f00254c20e58fd8eb2a86a70f74",
+  "wheel_bytes": 1010569,
+  "installed_site": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site",
+  "providers": {
+    "ibme": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/__init__.py",
+    "ibme.core.errors": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/core/errors.py",
+    "ibme.core.types": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/core/types.py",
+    "ibme.core.hashing": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/core/hashing.py",
+    "ibme.core.encoding": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/core/encoding.py",
+    "ibme.core.randomness": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/core/randomness.py",
+    "ibme.core": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/core/__init__.py",
+    "ibme.lattice.params": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/lattice/params.py",
+    "ibme.lattice.modmat": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/lattice/modmat.py",
+    "ibme.lattice.gadget": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/lattice/gadget.py",
+    "ibme.lattice.gaussian": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/lattice/gaussian.py",
+    "ibme.lattice.trapdoor": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/lattice/trapdoor.py",
+    "ibme.lattice": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/lattice/__init__.py",
+    "ibme.ibs.api": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/api.py",
+    "ibme.ibs.mock": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/mock.py",
+    "ibme.ibs.sis_ibs": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/sis_ibs.py",
+    "ibme.ibs.luo_reference": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/luo_reference.py",
+    "ibme.ibs.luo": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/luo.py",
+    "ibme.ibs.luo_module_math": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/luo_module_math.py",
+    "ibme.ibs.luo_module": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/luo_module.py",
+    "ibme.ibs.luo_module_codec": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/luo_module_codec.py",
+    "ibme.ibs": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/__init__.py",
+    "ibme.ibs.certified": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/certified/__init__.py",
+    "ibme.ibs.certified.codec": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/certified/codec.py",
+    "ibme.ibs.certified.native": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/certified/native/__init__.py",
+    "ibme.ibs.certified.native.build": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/certified/native/build.py",
+    "ibme.ibs.certified.mldsa": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/certified/mldsa.py",
+    "ibme.ibs.certified.ordinary": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/certified/ordinary.py",
+    "ibme.ibs.certified.params": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/certified/params.py",
+    "ibme.ibs.certified.objects": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/certified/objects.py",
+    "ibme.ibs.certified.backend": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/certified/backend.py",
+    "experiments.research.certified_ibs_probe": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/experiments/research/certified_ibs_probe.py"
+  },
+  "records": [
+    {
+      "parameter_set": "ML-DSA-44",
+      "restore": {
+        "status": "passed",
+        "fresh_process": true,
+        "external_entropy_calls": 0,
+        "key_generations": 0,
+        "new_signatures": 0,
+        "matched_verifications": 32,
+        "native_operation_counts": {
+          "meta": 69,
+          "public": 5,
+          "signature": 64,
+          "verify": 68
+        },
+        "provider_path": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/certified/__init__.py"
+      },
+      "fresh_signature_from_restored_key": true,
+      "master_snapshot_unchanged": true,
+      "installed_native_binary_sha256": "bb222a5f6252dc85a20b517b878c03ddb7d00db70483c99d73a91e9ee2c488a8"
+    },
+    {
+      "parameter_set": "ML-DSA-65",
+      "restore": {
+        "status": "passed",
+        "fresh_process": true,
+        "external_entropy_calls": 0,
+        "key_generations": 0,
+        "new_signatures": 0,
+        "matched_verifications": 32,
+        "native_operation_counts": {
+          "meta": 69,
+          "public": 5,
+          "signature": 64,
+          "verify": 68
+        },
+        "provider_path": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/certified/__init__.py"
+      },
+      "fresh_signature_from_restored_key": true,
+      "master_snapshot_unchanged": true,
+      "installed_native_binary_sha256": "0dff2265dd0efefb9afb12b078e0a099dd7ecaf8576c083360001767c4311407"
+    },
+    {
+      "parameter_set": "ML-DSA-87",
+      "restore": {
+        "status": "passed",
+        "fresh_process": true,
+        "external_entropy_calls": 0,
+        "key_generations": 0,
+        "new_signatures": 0,
+        "matched_verifications": 32,
+        "native_operation_counts": {
+          "meta": 69,
+          "public": 5,
+          "signature": 64,
+          "verify": 68
+        },
+        "provider_path": "/home/youzi/.cache/ibme-native-tools/certified-installed-a2ffb8c/site/ibme/ibs/certified/__init__.py"
+      },
+      "fresh_signature_from_restored_key": true,
+      "master_snapshot_unchanged": true,
+      "installed_native_binary_sha256": "c75ffeb44f3198c4dd1f809042dce7b0647adefeed81ed199d1e51c07d99cd58"
+    }
+  ],
+  "private_state_regenerated": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

@@ -1,0 +1,110 @@
+{
+  "schema": "CERTIFIED-IBS-DELIVERY/1",
+  "implementation_commit": "a2ffb8cb6e89dfb7bf2a4c89d2d80c354b63db0b",
+  "base_commit": "c67dc65864dcafe4c2bb4767502dac32c5442bde",
+  "pull_request": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/24",
+  "route": "cert-ml-dsa",
+  "task": "C2",
+  "state": "independent_primitive_functionality_complete",
+  "backend": "ibme.ibs.certified.CertifiedIBS",
+  "ordinary_signature": "FIPS204 pure external ML-DSA",
+  "conversion": "BNN certification; Galindo-Herranz-Kiltz 2006 section 3/Theorem 1",
+  "conversion_core_count": 1,
+  "primitive_algorithm_count": 1,
+  "parameter_set_count": 3,
+  "complete_IBME_count": 0,
+  "vendor_commit": "d35ba3fe5449bee3e6d43e1f296c3ca818bd36be",
+  "vendor_source_patch_count": 0,
+  "acvp_commit": "975de31eb83d87039ec88934fdc47d8c312b892d",
+  "official_sample_vectors": {
+    "keyGen": 75,
+    "sigGen": 90,
+    "sigVer": 45
+  },
+  "official_sample_vectors_are_subset_of_primitive_pytests": true,
+  "primitive_sage": {
+    "tests": 245,
+    "passed": 245,
+    "failure": 0,
+    "error": 0,
+    "skipped": 0
+  },
+  "primitive_windows": {
+    "tests": 245,
+    "passed": 13,
+    "failure": 0,
+    "error": 0,
+    "skipped": 232
+  },
+  "framework_windows": {
+    "tests": 432,
+    "passed": 427,
+    "failure": 0,
+    "error": 0,
+    "skipped": 5
+  },
+  "framework_windows_status": "partial",
+  "repetitions_per_real_parameter_set": 1,
+  "system_random_real_instances": 3,
+  "system_random_new_signatures": 96,
+  "identities_per_instance": 2,
+  "identity_bytes": 64,
+  "message_bytes": 32,
+  "fresh_process_entropy_calls": 0,
+  "fresh_process_key_generations": 0,
+  "fresh_process_verified_signatures": 96,
+  "installed_provider_modules": 32,
+  "installed_saved_instances_reused": 3,
+  "installed_fresh_restored_key_signatures": 3,
+  "installed_imports_or_native_sources_from_repository": false,
+  "source_git_blob_match_files": 48,
+  "git_revision_metadata_limit": "WSL unavailable; source bytes independently matched; Windows framework pre-commit dirty receipt retained",
+  "development_failures": [
+    {
+      "kind": "duplicate C namespace linker symbol",
+      "fixed": true,
+      "scope": "own bridge only"
+    },
+    {
+      "kind": "installed checker script directory was under repository",
+      "fixed": true,
+      "scope": "checker moved outside repo; no primitive source change"
+    }
+  ],
+  "default_registry_registered": false,
+  "default_CLI_integrated": false,
+  "Falcon_implemented": false,
+  "real_HIBE_composition_executed": false,
+  "quantum_or_strong_UF_mapping_complete": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "teaching_parameters": false,
+  "tested_security_model": "No security proof from tests. ML-DSA SHAKE/RO and classical BNN are conditional references only.",
+  "limitations": [
+    "Full BNN reduction, fixed issuance/corruption, query losses and QROM/strong-UF mapping pending",
+    "Snapshot rollback/multiple writers/storage authentication outside primitive",
+    "No production side-channel/secret-erasure assurance",
+    "Single-run concurrent timings are not fair benchmarks"
+  ],
+  "test_commands": [
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.ibs.certified.native.build",
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python ci/run.py run cert-ml-dsa --output test-results/cert-mldsa/primitive-final",
+    "python -m pytest -q tests/test_cert_ml_dsa_contract.py tests/test_cert_ml_dsa_native.py tests/test_cert_ml_dsa_vectors.py --junitxml=test-results/cert-mldsa/windows-final.xml",
+    "python ci/run.py run framework --output test-results/cert-mldsa/framework-before-review",
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.certified_ibs_probe --private-directory test-results/cert-mldsa/real-{44,65,87}-a2ffb8c --algorithm ml-dsa-{44,65,87} --source-commit a2ffb8cb6e89dfb7bf2a4c89d2d80c354b63db0b (three separate invocations)"
+  ],
+  "evidence_sha256": {
+    "framework-windows.json": "9df26318f7ef0cbfce46c81eac94ebb5b58a96838a620c328879e865e0b49c58",
+    "framework-windows.xml": "49063974cf784058d257aa2cec29eb2c7fff66016393b09d8a7246662dde8318",
+    "installed.json": "082a3e2d38dca72e90b03587d81213c8ee9100369d33eb669f07ca03367901dc",
+    "lifecycle-44.json": "159984b91fc5566600d60120793e56865ad60e3bac8d5f235b7e990c343437af",
+    "lifecycle-65.json": "d25e80686ea65ff993980343dc5a68cb18950f2559d650386b0a6ad2efa73a39",
+    "lifecycle-87.json": "1005c3ee9cb848ee0a2e81e29d501263354093893d829df494093de5d2a93507",
+    "native-build.json": "e2caa0123bf9bd1a62109c6965b06bddd7e92e354f3db3a2ef0315b9fb62fff5",
+    "primitive-sage.json": "e6c6ce42233d1f64256fe5a79207064788f39e5654947ee11b29b11585329d51",
+    "primitive-sage.xml": "c9b3b46c8fac20657ab36c860910cb300bebb0830c514eb74c496d4f6ca9657d",
+    "primitive-windows.xml": "a39c73aa36fd8a247daccadf2b9d81034c683aaba8126545f1b12deebee8e236",
+    "source-check.json": "6e97deb84c1076d9c72d26f9aba09bf7187caf3fc16d500a79c667ceb0819a3f"
+  }
+}
