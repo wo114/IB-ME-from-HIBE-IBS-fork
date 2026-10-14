@@ -1,0 +1,271 @@
+{
+  "status": "passed",
+  "files": 53,
+  "rows": [
+    {
+      "path": "experiments/research/latte_hibe_probe.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/core/encoding.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/core/errors.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/core/randomness.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/core/types.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/__init__.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/backend.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/codec.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/engine.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/math.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/__init__.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/bridge.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/build.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/compat/libXKCP.a.headers/SimpleFIPS202.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/shake.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/LICENSE",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/UPSTREAM.json",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/cpucycles.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/cpucycles.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/decrypt.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/decrypt.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/delegate.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/delegate.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/encode.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/encode.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/encrypt.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/encrypt.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/extract.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/extract.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/fastrandombytes.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/fastrandombytes.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/fft.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/fft.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/keygen.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/keygen.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/mat.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/mat.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/ntt.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/ntt.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/param.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/poly.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/poly.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/randombytes.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/randombytes.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/red.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/sample_fft.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/sample_fft.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/sample_z.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/sample_z.h",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/native/upstream/test.c",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/objects.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/params.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    },
+    {
+      "path": "src/ibme/hibe/latte/registration.py",
+      "execution_sha256_matches": true,
+      "git_blob_exact": true
+    }
+  ]
+}
