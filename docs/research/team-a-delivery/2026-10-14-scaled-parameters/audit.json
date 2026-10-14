@@ -1,0 +1,170 @@
+{
+  "schema": "A/SCALED-PARAMETERS-DELIVERY/1",
+  "generated_at_utc": "2026-10-14T01:46:18.194113+00:00",
+  "execution_source_commit": "399633ab08dc637281142db0aa5373701bd4aa02",
+  "execution_source_unchanged_after_both_runs": true,
+  "source_sha256": {
+    "experiments/research/abb_rom/scaled_parameter_screen.py": "5341a71418187dee1ed722e23f035a4891c1fcff876c0f95ca224abbc71b9e78",
+    "src/ibme/hibe/abb_rom/params.py": "dffc31745ae5606e06d1879c2de4401bef6896a9bade77dcf7d1a8bcb85eb5e0",
+    "src/ibme/hibe/abb_rom/trapgen.py": "e632c46da9c563b3ee3d6df18b957d33f1712207f4cf16600415e358e328320a",
+    "src/ibme/lattice/matrix_sampling/scalar.py": "6365371e7fdbdc86b022d5a55e53d59a0f58564ca715efac873f9fdde66c9b68",
+    "src/ibme/lattice/matrix_sampling/chkp_profiles.py": "674e67f4a1cd95396746ba717fca7c479028bb5351007bc4cdbdfec56305db75",
+    "experiments/research/first_suite/hibe_reference.py": "1806b423408ad65654926df27f0f5d3ba4316c4c7a514fab95d3af2896d34106",
+    "experiments/research/first_suite/computational_root.py": "1c50724fcbbc58e1fe217ea40e2d094c01e964dca915c869bd663a2955884e82"
+  },
+  "final_test_source_sha256": "d8ab090c5726a51293e7a218c40f82f700c917df54e1cad551214b56c7ee02bf",
+  "evidence_sha256": {
+    "scaled-25.json": "f83e6195ef5a37b5cdba1f354bf967741d2283cfa69574ed1b8b95e96dccd3f4",
+    "scaled-25.log": "28813ee23c9c20434c0fd0f4ea9af39d3f22c1b1e1ed7784d0ad2036a9c449e2",
+    "scaled-n4096.json": "fc16cf91d3e566f074ef3a6a5d45b01e71f81c2ff70ca9c3cd6c3ccc19b2211a",
+    "scaled-n4096.log": "c56566c165c56cf6e9eb4facccf867af75410e0ff57b7fb4fe249c49ede39b24",
+    "final-sage.xml": "b3757c4f1ad46a150595ee8f8c3e7cc2a85d60cd722644e11732a7f5bb09fd8e",
+    "final-windows.xml": "1d513443bf4f046564d91f8a950615cbe04605fe7e24f49640d6b9d8dfa06c60",
+    "related-regression.xml": "b6fe677f88c8ed290b0eeb229c286d860024a499c42559eb1860f8434e85de19",
+    "final-regression.xml": "aaa4260783d3229c83b63bf265f796241e6f6de93a8c8a0b3ab6f108809c45b8",
+    "first-attempt.xml": "19920d43b7fde1a371262f95e5986d9eda894501a98805d0c5662b18664764d2"
+  },
+  "paper_sha256": {
+    "2010_lattice_basis_delegation_agrawal.pdf": "f12232770a19c612e5f430f94a556d74232ac08d9882e34367b60b3bbf205d11",
+    "2010_bonsai_trees_cash.pdf": "b1d8a2ae0e9d4e5c9145bbc6dc864090605c12a5b76149aa0684d62a8815d2ce",
+    "2011_lattice_trapdoors_micciancio.pdf": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84"
+  },
+  "estimator": {
+    "repository": "https://github.com/malb/lattice-estimator",
+    "commit": "53da5982597709ba0fdf94ea37a84d822310fd84",
+    "clean_checkout_after_both_runs": true,
+    "local_evidence_locator": "D:/zcode_projects/ibme/test-results/lattice-estimator",
+    "locator_is_not_a_portable_script_dependency": true
+  },
+  "environment": {
+    "python": "3.13.14",
+    "sage": "10.9",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "hardware": "Intel(R) Core(TM) Ultra 9 275HX",
+  "common_inputs": {
+    "identity_bytes_per_level": 86,
+    "seed_bytes": 32,
+    "epsilon_bits": 128,
+    "noise_error_bits": 128,
+    "encapsulations": 1048576,
+    "noise_width_rule": "smallest integer chi > 2*sqrt(n)",
+    "finite_tail_bits": 128,
+    "finite_mass_bits": 256,
+    "finite_precision_bits": 320
+  },
+  "projections": {
+    "rows": 30,
+    "dimensions": [
+      128,
+      512,
+      2048,
+      4096,
+      8192,
+      16384
+    ],
+    "families": [
+      "mp12-chkp",
+      "chkp-rom",
+      "abb-rom"
+    ],
+    "modulus_bits": [
+      61,
+      104,
+      160
+    ],
+    "rows_passing_conditional_noise": 4,
+    "rows_fitting_all_current_execution_gates": 0,
+    "root_lwe_roles": 6,
+    "ciphertext_lwe_roles": 30,
+    "model_calls": 144,
+    "model_statuses": {
+      "finite_estimate": 98,
+      "error": 18,
+      "no_finite_estimate": 28
+    },
+    "repetitions_per_projection": 1
+  },
+  "commands": [
+    "PYTHONPATH=src:. OMP_NUM_THREADS=8 OPENBLAS_NUM_THREADS=1 ~/miniconda3/envs/sage/bin/python -u -m experiments.research.abb_rom.scaled_parameter_screen --estimator-path /mnt/d/zcode_projects/ibme/test-results/lattice-estimator --output test-results/matrix-hibe-scaled-screen-20261014.json",
+    "PYTHONPATH=src:. OMP_NUM_THREADS=8 OPENBLAS_NUM_THREADS=1 ~/miniconda3/envs/sage/bin/python -u -m experiments.research.abb_rom.scaled_parameter_screen --dimensions 4096 --estimator-path /mnt/d/zcode_projects/ibme/test-results/lattice-estimator --output test-results/matrix-hibe-scaled-screen-n4096-20261014.json",
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q tests/test_matrix_hibe_scaled_screen.py --junitxml=test-results/scaled-screen-final-sage.xml",
+    "$env:PYTHONPATH='src;.'; python -m pytest -p no:cacheprovider -q tests/test_matrix_hibe_scaled_screen.py --junitxml=test-results/scaled-screen-final-windows.xml",
+    "PATH=\"$HOME/.cache/ibme-native-tools/flatter-d2b8026/bin:$PATH\" IBME_EXACT_GRAM_EXECUTABLE=\"$HOME/.cache/ibme-native-tools/exact-gram-v1/bin/ibme-exact-gram\" PYTHONPATH=src:. OMP_NUM_THREADS=8 OPENBLAS_NUM_THREADS=1 ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q tests/test_matrix_hibe_scaled_screen.py tests/test_abb_rom_parameter_screen.py tests/test_abb_all_level_quality.py tests/test_abb_public_budget_ledger.py --junitxml=test-results/scaled-screen-final-regression.xml"
+  ],
+  "tests": {
+    "final-sage.xml": {
+      "tests": "22",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "time": "2.324"
+    },
+    "final-windows.xml": {
+      "tests": "22",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "5",
+      "time": "0.073"
+    },
+    "related-regression.xml": {
+      "tests": "42",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "10",
+      "time": "2.900"
+    },
+    "final-regression.xml": {
+      "tests": "43",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "time": "30.934"
+    },
+    "first-attempt.xml": {
+      "tests": "21",
+      "errors": "0",
+      "failures": "2",
+      "skipped": "0",
+      "time": "2.583"
+    }
+  },
+  "failed_development_test_explanation": "Sage Rational exposes numerator()/denominator(); explicit integer conversion fixed before source freeze; final new tests 22 passed",
+  "no_security_or_executability_inferred_from_missing_estimates": true,
+  "root_or_key_generations": 0,
+  "private_entropy_bytes": 0,
+  "actual_high_dimension_matrices": 0,
+  "process_peak_RSS": null,
+  "high_dimension_stage_times": null,
+  "source_review": "only member A analysis/test/material paths; no shared algorithm/registry/protocol/CLI edits",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "remaining_WIP": [
+    "deployable high-dimensional representation/sampler",
+    "literal PMF and full attack/model mapping",
+    "all-path sampler/workspace/failure bounds",
+    "formal parameter selection"
+  ],
+  "changed_files": [
+    "docs/research/team-a-delivery/2026-10-14-scaled-parameters/README.md",
+    "docs/research/team-a-delivery/2026-10-14-scaled-parameters/audit.json",
+    "docs/research/team-a-delivery/2026-10-14-scaled-parameters/evidence/final-regression.xml",
+    "docs/research/team-a-delivery/2026-10-14-scaled-parameters/evidence/final-sage.xml",
+    "docs/research/team-a-delivery/2026-10-14-scaled-parameters/evidence/final-windows.xml",
+    "docs/research/team-a-delivery/2026-10-14-scaled-parameters/evidence/first-attempt.xml",
+    "docs/research/team-a-delivery/2026-10-14-scaled-parameters/evidence/related-regression.xml",
+    "docs/research/team-a-delivery/2026-10-14-scaled-parameters/evidence/scaled-25.json",
+    "docs/research/team-a-delivery/2026-10-14-scaled-parameters/evidence/scaled-25.log",
+    "docs/research/team-a-delivery/2026-10-14-scaled-parameters/evidence/scaled-n4096.json",
+    "docs/research/team-a-delivery/2026-10-14-scaled-parameters/evidence/scaled-n4096.log",
+    "docs/research/team-a-delivery/2026-10-14-scaled-parameters/files-changed.txt",
+    "experiments/research/abb_rom/scaled_parameter_screen.py",
+    "tests/test_matrix_hibe_scaled_screen.py"
+  ],
+  "first_attempt_evidence_encoding": {
+    "original_raw_sha256": "6c842d796acd3d42720554205fe4a6670e480bc1bc0d29bbd63dea62e158d550",
+    "encoding": "XML numeric references for trailing spaces/tabs; parsed XML content verified identical",
+    "reason": "preserve failure text while satisfying git diff --check"
+  }
+}

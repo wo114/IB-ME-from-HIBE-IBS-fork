@@ -1,0 +1,7 @@
+{"family": "mp12-chkp", "n": 4096, "q_bits": 61, "role": "root_lwe", "costs": {"primal_usvp-classical": 269.224, "dual-classical": 271.852, "primal_usvp-quantum": 244.33, "dual-quantum": 246.715}}
+{"family": "mp12-chkp", "n": 4096, "q_bits": 61, "role": "ciphertext_lwe", "costs": {"primal_usvp-classical": 266.596, "dual-classical": null, "primal_usvp-quantum": 241.94500000000002, "dual-quantum": null}}
+{"family": "chkp-rom", "n": 4096, "q_bits": 61, "role": "ciphertext_lwe", "costs": {"primal_usvp-classical": 266.596, "dual-classical": null, "primal_usvp-quantum": 241.94500000000002, "dual-quantum": null}}
+{"family": "abb-rom", "n": 4096, "q_bits": 61, "role": "ciphertext_lwe", "costs": {"primal_usvp-classical": 266.596, "dual-classical": null, "primal_usvp-quantum": 241.94500000000002, "dual-quantum": null}}
+{"family": "abb-rom", "n": 4096, "q_bits": 104, "role": "ciphertext_lwe", "costs": {"primal_usvp-classical": 119.72, "dual-classical": 290.832, "primal_usvp-quantum": 108.65, "dual-quantum": 263.94}}
+{"family": "abb-rom", "n": 4096, "q_bits": 160, "role": "ciphertext_lwe", "costs": {"primal_usvp-classical": 58.983999999999995, "dual-classical": 157.97199999999998, "primal_usvp-quantum": 53.53, "dual-quantum": 143.3650000000319}}
+5 public projections; zero key generations; no security admission

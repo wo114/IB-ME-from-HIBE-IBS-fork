@@ -112,3 +112,33 @@ def test_abb_unconditioned_widths_match_existing_screen_on_identical_root():
     # n=1 projection uses chi=3 rather than the frozen backend's chi=4;
     # only the geometry chain above is identical, not its noise configuration.
     assert row["noise"]["scaled_continuous_width"] == 3
+
+
+def test_estimator_error_and_infinity_remain_unknown(monkeypatch, tmp_path):
+    pytest.importorskip("sage.all", reason="estimator interface requires prescribed WSL Sage")
+    import sys
+    from types import SimpleNamespace
+    from sage.all import oo
+    from experiments.research import luo_parameter_screen
+    from experiments.research.abb_rom.scaled_parameter_screen import run_estimators
+    monkeypatch.setattr(luo_parameter_screen, "verify_estimator_checkout",
+        lambda path: (tmp_path, "fixed-test-estimator"))
+    def failed_estimate(*args, **kwargs):
+        raise KeyError("beta")
+    lwe = SimpleNamespace(Parameters=lambda **kw: kw,
+        primal_usvp=lambda *args, **kwargs: {"rop": oo}, dual=failed_estimate)
+    fake = SimpleNamespace(__file__=str(tmp_path/"estimator"/"__init__.py"), LWE=lwe,
+        ND=SimpleNamespace(UniformMod=lambda q: q, DiscreteGaussian=lambda s: s))
+    monkeypatch.setitem(sys.modules, "estimator", fake)
+    monkeypatch.setitem(sys.modules, "estimator.reduction", SimpleNamespace(ADPS16=lambda **kw: kw))
+    row = mp12_projection(128)
+    row["estimator_results"] = {}
+    report = {"rows": [row], "secure_candidate_selected": False}
+    saves = []
+    run_estimators(report, tmp_path, checkpoint=lambda: saves.append(True))
+    assert len(saves) == 8 and report["estimator"]["completed"] is True
+    assert report["secure_candidate_selected"] is False
+    for role in row["estimator_results"].values():
+        for key, value in role.items():
+            assert value["rop_log2"] is None
+            assert value["status"] == ("error" if key.startswith("dual") else "no_finite_estimate")
