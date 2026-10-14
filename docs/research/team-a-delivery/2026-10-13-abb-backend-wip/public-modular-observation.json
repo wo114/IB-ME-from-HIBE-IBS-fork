@@ -1,0 +1,19 @@
+{
+  "schema": "ABB-PUBLIC-NATIVE-MODULAR/1",
+  "status": "passed",
+  "private_entropy_bytes": 0,
+  "dimension": 1280,
+  "q_bits": 160,
+  "identity_bytes": 3,
+  "actual_key_issuance": false,
+  "matrix_input_public": true,
+  "stage": "native exact inverse / independently checked two integer equations",
+  "determinant_seconds": 79.63774017699984,
+  "nonzero_modular_determinant": true,
+  "sample_seconds": 274.32418407599994,
+  "matrices_sampled": 1,
+  "public_tape_bytes": 682916242,
+  "inverse_seconds": 197.24532013099997,
+  "seconds": 471.572605692,
+  "peak_rss_kib": 1219792
+}

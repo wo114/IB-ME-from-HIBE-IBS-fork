@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="21" time="2.583" timestamp="2026-10-14T09:37:06.212307+08:00" hostname="DESKTOP-U5VPLDO"><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_strict_regev_boundary_including_square_dimensions[1]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_strict_regev_boundary_including_square_dimensions[2]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_strict_regev_boundary_including_square_dimensions[3]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_strict_regev_boundary_including_square_dimensions[4]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_strict_regev_boundary_including_square_dimensions[16]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_strict_regev_boundary_including_square_dimensions[128]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_strict_regev_boundary_including_square_dimensions[256]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_strict_regev_boundary_including_square_dimensions[16384]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_noise_dimension_is_exact_and_bounded[True]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_noise_dimension_is_exact_and_bounded[0]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_noise_dimension_is_exact_and_bounded[-1]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_noise_dimension_is_exact_and_bounded[16385]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_noise_dimension_is_exact_and_bounded[1.0]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_noise_dimension_is_exact_and_bounded[4]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_chkp_noise_matches_independent_exact_inequality_above_old_dimension_cap[381-82903323983053440-4]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_chkp_noise_matches_independent_exact_inequality_above_old_dimension_cap[65537-4722366482869645213696-23]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_chkp_noise_matches_independent_exact_inequality_above_old_dimension_cap[1048576-1237940039285380274899124224-129]" time="0.000" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_no_pooling_independent_abb_vectors_and_no_extra_root_lwe_role" time="1.671" /><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_statistical_chkp_and_computational_mp12_keep_distinct_root_roles" time="0.070"><failure message="TypeError: unsupported operand type(s) for *: 'method' and 'int'">def test_statistical_chkp_and_computational_mp12_keep_distinct_root_roles():
+        pytest.importorskip("sage.all", reason="scalar certificates require prescribed WSL Sage")
+        from ibme.lattice.chkp.joint_parameters import evaluate_noise
+&gt;       cp, mp = chkp_projection(128), mp12_projection(128)
+                 ^^^^^^^^^^^^^^^^^^^^
+
+tests/test_matrix_hibe_scaled_screen.py:58:&#32;
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#32;
+experiments/research/abb_rom/scaled_parameter_screen.py:177: in chkp_projection
+    if Fraction(scalar.acceptance_mass_lower) &lt;= Fraction(319, 10):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/youzi/miniconda3/envs/sage/lib/python3.13/fractions.py:1018: in __le__
+    return a._richcmp(b, operator.le)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#32;
+
+self = Fraction(&lt;bound method Rational.numerator of 1162941958872971024878918092620807254965783600729913858774118102255767717...274661903944002267176820680343659030140745099590319644056698961663095525356881782780381260803133088966767300814307328&gt;)
+other = Fraction(319, 10), op = &lt;built-in function le&gt;
+
+    def _richcmp(self, other, op):
+        """Helper for comparison operators, for internal use only.
+&#32;&#32;&#32;&#32;
+        Implement comparison between a Rational instance `self`, and
+        either another Rational instance or a float `other`.  If
+        `other` is not a Rational instance or a float, return
+        NotImplemented. `op` should be one of the six standard
+        comparison operators.
+&#32;&#32;&#32;&#32;
+        """
+        # convert other to a Rational instance where reasonable.
+        if isinstance(other, numbers.Rational):
+&gt;           return op(self._numerator * other.denominator,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      self._denominator * other.numerator)
+E           TypeError: unsupported operand type(s) for *: 'method' and 'int'
+
+/home/youzi/miniconda3/envs/sage/lib/python3.13/fractions.py:998: TypeError</failure></testcase><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_no_keys_samples_or_entropy_and_large_sizes_are_lower_bounds" time="0.004"><failure message="TypeError: unsupported operand type(s) for *: 'method' and 'int'">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x77ff552dcb00&gt;
+
+    def test_no_keys_samples_or_entropy_and_large_sizes_are_lower_bounds(monkeypatch):
+        pytest.importorskip("sage.all", reason="scalar certificates require prescribed WSL Sage")
+        from ibme.core.randomness import SecureRandom, DeterministicRandom
+        from ibme.lattice.matrix_sampling import MatrixFiniteGaussian
+        def forbidden(*args, **kwargs):
+            raise AssertionError("public projection attempted sampling")
+        monkeypatch.setattr(SecureRandom, "read", forbidden)
+        monkeypatch.setattr(DeterministicRandom, "read", forbidden)
+        monkeypatch.setattr(MatrixFiniteGaussian, "sample", forbidden)
+&gt;       report = build_report((128,))
+                 ^^^^^^^^^^^^^^^^^^^^
+
+tests/test_matrix_hibe_scaled_screen.py:85:&#32;
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#32;
+experiments/research/abb_rom/scaled_parameter_screen.py:268: in build_report
+    rows.extend((mp12_projection(n), chkp_projection(n)))
+                                     ^^^^^^^^^^^^^^^^^^
+experiments/research/abb_rom/scaled_parameter_screen.py:177: in chkp_projection
+    if Fraction(scalar.acceptance_mass_lower) &lt;= Fraction(319, 10):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/youzi/miniconda3/envs/sage/lib/python3.13/fractions.py:1018: in __le__
+    return a._richcmp(b, operator.le)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#32;
+
+self = Fraction(&lt;bound method Rational.numerator of 1162941958872971024878918092620807254965783600729913858774118102255767717...274661903944002267176820680343659030140745099590319644056698961663095525356881782780381260803133088966767300814307328&gt;)
+other = Fraction(319, 10), op = &lt;built-in function le&gt;
+
+    def _richcmp(self, other, op):
+        """Helper for comparison operators, for internal use only.
+&#32;&#32;&#32;&#32;
+        Implement comparison between a Rational instance `self`, and
+        either another Rational instance or a float `other`.  If
+        `other` is not a Rational instance or a float, return
+        NotImplemented. `op` should be one of the six standard
+        comparison operators.
+&#32;&#32;&#32;&#32;
+        """
+        # convert other to a Rational instance where reasonable.
+        if isinstance(other, numbers.Rational):
+&gt;           return op(self._numerator * other.denominator,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      self._denominator * other.numerator)
+E           TypeError: unsupported operand type(s) for *: 'method' and 'int'
+
+/home/youzi/miniconda3/envs/sage/lib/python3.13/fractions.py:998: TypeError</failure></testcase><testcase classname="tests.test_matrix_hibe_scaled_screen" name="test_abb_unconditioned_widths_match_existing_screen_on_identical_root" time="0.096" /></testsuite></testsuites>

@@ -1,0 +1,127 @@
+{
+  "schema": "A-ABB-ROM-PRIMITIVE-AUDIT/1",
+  "date": "2026-10-12",
+  "baseline": "c026f9f",
+  "scope": "A2 real primitives, not complete HIBE",
+  "goal_complete": false,
+  "requirement_audit": {
+    "SampleR": "real IID Gaussian matrices, whole modular invertibility retry and finite/conditional error ledger",
+    "BasisDel": "transform, full-kernel completion, explicit checked reduction, real RandBasis",
+    "prefix": "H2*H1; fixed column count; actual two real calls and direct product",
+    "TrapGen": "not implemented as original ABB",
+    "HIBE_Encrypt_Decrypt": "not implemented",
+    "full_backend_or_CLI": "not registered",
+    "formal_parameters_and_models": "not admitted"
+  },
+  "command_results": [
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q --tb=short tests/test_abb_rom_primitives.py",
+      "result": "24 passed in 3.33s"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q --tb=short tests/test_abb_rom_primitives.py tests/test_first_suite_compact_delegation.py tests/test_first_suite_finite_sampling.py",
+      "result": "57 passed in 12.00s; includes 24 above, not added twice"
+    },
+    {
+      "command": "python -m pytest -p no:cacheprovider -q --tb=short tests/test_public_research_api.py tests/test_luo_ibs_contract.py",
+      "result": "88 passed, 2 Sage skips"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python tests/install_probes/verify_abb_basis_del.py --saved-input-directory test-results/abb-basis-real/private --reduce-completion --private-directory test-results/abb-basis-reduced/private --output test-results/abb-basis-reduced/result.json",
+      "result": "exit0, same root/R restored, actual Gaussian randomizer, 84 independent columns/full determinant q^2"
+    }
+  ],
+  "tests": {
+    "sage-regression.junit.xml": {
+      "tests": 57,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "abb-unit.junit.xml": {
+      "tests": 24,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "windows-regression.junit.xml": {
+      "tests": 90,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 2
+    }
+  },
+  "source_sha256": {
+    "src/ibme/hibe/abb_rom/__init__.py": "ddf18ee305a37b3bd8198faf249320705d4e3968d9b47d837f988f2947797eaf",
+    "src/ibme/hibe/abb_rom/primitives.py": "88725a013df4636e7aa2cf9f2fcb26a369ff3047f0db180281276be9543c770d",
+    "src/ibme/hibe/abb_rom/parameter_gate.py": "7623917cf78b46f4388a43d31137a1ffbea5e5f04a5c5191b1f6dafa82efb593",
+    "tests/test_abb_rom_primitives.py": "9cc8526a573ac572733adad16813997055c0eeeb7d7bfc09ffd030a35d62bc15",
+    "tests/install_probes/verify_abb_basis_del.py": "46a82f8f3f544be8b7bf84c006e3bc2c910cdebb0f2bfd652e8923c8f5f3c844"
+  },
+  "artifact_sha256": {
+    "basis-del.json": "9504c94338e3d597a26bfd1024b98c1b25e9168516eee7e69151274e1e047e17",
+    "sage-regression.junit.xml": "e6b92e53ef256aa627a05ead0a6df09f330e11cc7dc06a940c431162ae0fce59",
+    "abb-unit.junit.xml": "51fe9b470680ce35b9c6083e5ce6a78baa488ab025ddb8e2bf0e32f7981d868e",
+    "windows-regression.junit.xml": "44ee3f3482ebedfdb03acc5f07af2de4c95fc3024b82b313b2c13a511f285eb1"
+  },
+  "paper": {
+    "path": "papers/2010_lattice_basis_delegation_agrawal.pdf",
+    "sha256": "f12232770a19c612e5f430f94a556d74232ac08d9882e34367b60b3bbf205d11",
+    "pages": [
+      7,
+      9,
+      10,
+      12,
+      13
+    ]
+  },
+  "parameters": {
+    "unit_fixture": {
+      "n": 2,
+      "m": 16,
+      "q": 101,
+      "R_width_squared": 16,
+      "public_algebraic_input": true
+    },
+    "private_primitive": {
+      "n": 2,
+      "m": 84,
+      "q": 549755813911,
+      "R_width_squared": 27858240,
+      "delegation_width_squared": 878484712634208000,
+      "root_is_MP12_not_ABB_TrapGen": true
+    },
+    "message_and_identity_lengths": null,
+    "reason_not_applicable": "no HIBE messages or identity hashing in primitive benchmark",
+    "actual_invocations": 1
+  },
+  "environment": {
+    "CPU": "Intel Core Ultra9 275HX",
+    "Sage": "10.9",
+    "Python": "3.13.14",
+    "WindowsPython": "3.14.6",
+    "runtime": "WSL ~/miniconda3/envs/sage"
+  },
+  "provenance_boundary": "84-dim actual run before max-vs-ordered diagnostic separation; same matrix/width/reduced basis; its original stronger ordered check passed. Final source independently validates saved output; final 24/57 tests cover separated quality flags.",
+  "known_failures": [
+    {
+      "stage": "source probe import",
+      "state": "before private directory/entropy; invocation requires src:. or installed wheel"
+    },
+    {
+      "stage": "original 84-dim completed basis GPV admission",
+      "state": "initial process terminal; deterministic saved-input constructor reconfirmed scalar-width rejection before randomness; old pending retained, no resampling"
+    },
+    {
+      "stage": "first two-level reduction test",
+      "state": "overly strict ordered-coordinate check, before entropy; corrected to original maximum GS quality, ordered guarantee only original completion path/diagnostic. All maximum/full-lattice checks remain enforced."
+    }
+  ],
+  "guard_changes": false,
+  "private_artifacts_in_git": false,
+  "new_complete_HIBE_count": 0,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "next": "Complete faithful ABB Setup/parameter chain and SamplePre/bit-to-byte HIBE; preserve model/parameter gates; do not substitute primitive tests for full goal."
+}

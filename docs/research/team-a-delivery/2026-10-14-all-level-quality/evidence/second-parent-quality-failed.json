@@ -1,0 +1,181 @@
+{
+  "schema": "ABB-REAL-HIBE-VERTICAL/1",
+  "status": "failed",
+  "params": {
+    "name": "abb-rom-ap09-n1-q22-all-level-quality-research",
+    "n": 1,
+    "q": 2097169,
+    "random_rows": 44,
+    "root_m1": 44,
+    "root_m2": 132,
+    "hadamard_scale": 20,
+    "matrix_gaussian_squared_width": 74752,
+    "sigma1_squared": 5044531837796352,
+    "sigma2_squared": 5044531837796352,
+    "tau2_squared": 74752,
+    "noise_width_numerator": 4,
+    "noise_width_denominator": 1,
+    "epsilon_bits": 64,
+    "error_bits": 128,
+    "encapsulation_budget": 1048576,
+    "identity_max_bytes": 86,
+    "payload_max_bytes": 32,
+    "max_parents": 2,
+    "max_children_per_parent": 2,
+    "sample_r_max_matrices": 5,
+    "uniform_trials": 192,
+    "finite_tail_bits": 128,
+    "finite_mass_bits": 256,
+    "finite_precision_bits": 320,
+    "finite_abort_bits": 128,
+    "max_tape_bytes": 17592186044416,
+    "max_blob_bytes": 134217728,
+    "normalization": "matrix-flatter-allgs256-nativegram-exact074-v5",
+    "matrix_oracle": "shake256-block-tape-engineering-v1",
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "parent_identity_bytes": 86,
+  "child_identity_bytes": 86,
+  "payload_bytes": 32,
+  "repetitions": 1,
+  "rng": "default system CSPRNG, explicitly counted",
+  "root_generations": 1,
+  "baseline_commit": "732b0325c4d00c05902aa96ac666bf5d9ed10b35",
+  "source_sha256_before": {
+    "ibme.hibe.abb_rom.backend": "0520a99130a81898c3ce1e36ba1572ed088cd3f5f6dcfadc378d91f419d03d8d",
+    "ibme.hibe.abb_rom.identity": "77f2a3375fb6d2ce05f91287a529bd0de811fdb1eaef4730ac4b53159a98ad9b",
+    "ibme.hibe.abb_rom.key_validation": "2b620756b7c413b6756ced50b109de5465695eeeee48e5869ba800e96c8bf44c",
+    "ibme.hibe.abb_rom.objects": "6ba821f920cf610d73639c771dce79da8928663b45918da99991b7feacee6bb2",
+    "ibme.hibe.abb_rom.params": "87e4636154835b46bf7a655ab448e12ef221b43d0c9647580ab711dcb9ede481",
+    "ibme.hibe.abb_rom.primitives": "51b1fe5e251f353344b6f1642a9176dcbc48a40ebda13029b1c069faa9d5231b",
+    "ibme.lattice.matrix_sampling.scalar": "6365371e7fdbdc86b022d5a55e53d59a0f58564ca715efac873f9fdde66c9b68",
+    "ibme.lattice.matrix_sampling.gpv": "9b699e1fc2f0b2a2e84c0b9b37bcd290f1af9427d11c39a420ff9b0b91e220c0",
+    "ibme.lattice.matrix_sampling.basis": "3cc32bccfb51c5a4af5950212c5e70eac537cd786a30e9a4ecc2bf7fb512cc10",
+    "ibme.lattice.matrix_sampling.randbasis": "5a5425c35d54d639f2360bee058b570dba2a94e74c09f7b48d2927c17886c93d",
+    "ibme.lattice.matrix_sampling.modular": "f97bb1e133c91f3093546de87fb48b2e4ba82bc79a46c8f1dd15c9b3c112fd4e",
+    "ibme.hibe.abb_rom.trapgen": "e632c46da9c563b3ee3d6df18b957d33f1712207f4cf16600415e358e328320a",
+    "ibme.hibe.abb_rom.bit_encryption": "a38121004f3a06ad85679edccda9e58cb460b9eb7fa6d6bec23c6e76382369a6",
+    "ibme.hibe.abb_rom.parameter_screen": "166a593d0d89f8f7f125a9149fd19910c79ffd433c424b531b6055853ee281de",
+    "ibme.hibe.abb_rom.profiles": "9e0ba337e74c6e13c060e313d50b6cef9cfc892419934971ab7b869e5a098d65",
+    "ibme.lattice.chkp.rounded_noise": "f093b75e82116f39b5817a01ee89ead1bcbaec8df6d231380354b4e992638411",
+    "ibme.lattice.chkp.gaussian": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c",
+    "ibme.lattice.chkp.entropy": "fe449ebd5ccadfb8a8b73652b874fcd69e0683292368d9c03ef8c6d215fcc8d6",
+    "ibme.lattice.matrix_sampling.exact_gram": "668ded4456a40b191a4db3db861172a643ebd3c328aa512aeb5eadefb94485c7",
+    "__main__": "b7fcd20ab24754b6468876073c8a8314eccc3f8047c6d69c009ad6fd5e14b573",
+    "native.exact_gram.cpp": "6c0d6b5599f1d6ca2125b264cc50f6d9dfb70007e41435f903d9ce780103b3ee",
+    "native.exact_gram": "d86d35ac3cadb9c09bc3a5cb4afd38554eb3c2ed8b5c8be410f0aec961c48de6",
+    "native.flatter": "2cc4c8b83f0e8b69ae5f019bc1d9ad796c9a632671e878dbb68709e363abad58"
+  },
+  "stages": [
+    {
+      "stage": "restore actual source-pinned AP09 root without RNG",
+      "status": "passed",
+      "seconds": 0.04450061400029881,
+      "private_entropy_bytes": 0
+    }
+  ],
+  "public_test_parent": "Carol",
+  "public_test_child": "Alice",
+  "full_HIBE_lifecycle": false,
+  "full_IBME_combination": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "matrix_RO_indifferentiability_verified": false,
+  "observer_rss_budget_mib": 8192,
+  "observer_rss_scope": "sum of parent and all live descendants, shared pages counted per process",
+  "environment": {
+    "python": "3.13.14",
+    "sage": "10.9",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "processor_model": "Intel(R) Core(TM) Ultra 9 275HX"
+  },
+  "current_stage": "actual parent SampleR/BasisDel",
+  "new_root_generations": 0,
+  "root_origin_baseline": "94a3d3d684e5dac27da99fc61f4721e1af544e3a",
+  "prior_parent_addresses_retained": 1,
+  "failure_type": "ABBSamplingAbort",
+  "failure_chain": [
+    {
+      "type": "ABBSamplingAbort",
+      "code": "ABB parent issuance failed; address retained",
+      "frames": [
+        {
+          "file": "hibe_probe.py",
+          "function": "run",
+          "line": 251
+        },
+        {
+          "file": "hibe_probe.py",
+          "function": "stage",
+          "line": 218
+        },
+        {
+          "file": "hibe_probe.py",
+          "function": "<lambda>",
+          "line": 251
+        },
+        {
+          "file": "backend.py",
+          "function": "extract",
+          "line": 158
+        }
+      ]
+    },
+    {
+      "type": "ArithmeticError",
+      "code": "LLL public GS bound failed",
+      "frames": [
+        {
+          "file": "backend.py",
+          "function": "extract",
+          "line": 149
+        },
+        {
+          "file": "basis.py",
+          "function": "matrix_checked_lll",
+          "line": 288
+        },
+        {
+          "file": "exact_gram.py",
+          "function": "size_reduce_and_check",
+          "line": 106
+        }
+      ]
+    }
+  ],
+  "failed_parent_retained": true,
+  "failed_child_retained": null,
+  "seconds": 85.58766759900027,
+  "private_entropy_bytes": 13539567,
+  "peak_rss_kib": 356604,
+  "peak_process_tree_rss_kib": 526728,
+  "source_sha256_after": {
+    "ibme.hibe.abb_rom.backend": "0520a99130a81898c3ce1e36ba1572ed088cd3f5f6dcfadc378d91f419d03d8d",
+    "ibme.hibe.abb_rom.identity": "77f2a3375fb6d2ce05f91287a529bd0de811fdb1eaef4730ac4b53159a98ad9b",
+    "ibme.hibe.abb_rom.key_validation": "2b620756b7c413b6756ced50b109de5465695eeeee48e5869ba800e96c8bf44c",
+    "ibme.hibe.abb_rom.objects": "6ba821f920cf610d73639c771dce79da8928663b45918da99991b7feacee6bb2",
+    "ibme.hibe.abb_rom.params": "87e4636154835b46bf7a655ab448e12ef221b43d0c9647580ab711dcb9ede481",
+    "ibme.hibe.abb_rom.primitives": "51b1fe5e251f353344b6f1642a9176dcbc48a40ebda13029b1c069faa9d5231b",
+    "ibme.lattice.matrix_sampling.scalar": "6365371e7fdbdc86b022d5a55e53d59a0f58564ca715efac873f9fdde66c9b68",
+    "ibme.lattice.matrix_sampling.gpv": "9b699e1fc2f0b2a2e84c0b9b37bcd290f1af9427d11c39a420ff9b0b91e220c0",
+    "ibme.lattice.matrix_sampling.basis": "3cc32bccfb51c5a4af5950212c5e70eac537cd786a30e9a4ecc2bf7fb512cc10",
+    "ibme.lattice.matrix_sampling.randbasis": "5a5425c35d54d639f2360bee058b570dba2a94e74c09f7b48d2927c17886c93d",
+    "ibme.lattice.matrix_sampling.modular": "f97bb1e133c91f3093546de87fb48b2e4ba82bc79a46c8f1dd15c9b3c112fd4e",
+    "ibme.hibe.abb_rom.trapgen": "e632c46da9c563b3ee3d6df18b957d33f1712207f4cf16600415e358e328320a",
+    "ibme.hibe.abb_rom.bit_encryption": "a38121004f3a06ad85679edccda9e58cb460b9eb7fa6d6bec23c6e76382369a6",
+    "ibme.hibe.abb_rom.parameter_screen": "166a593d0d89f8f7f125a9149fd19910c79ffd433c424b531b6055853ee281de",
+    "ibme.hibe.abb_rom.profiles": "9e0ba337e74c6e13c060e313d50b6cef9cfc892419934971ab7b869e5a098d65",
+    "ibme.lattice.chkp.rounded_noise": "f093b75e82116f39b5817a01ee89ead1bcbaec8df6d231380354b4e992638411",
+    "ibme.lattice.chkp.gaussian": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c",
+    "ibme.lattice.chkp.entropy": "fe449ebd5ccadfb8a8b73652b874fcd69e0683292368d9c03ef8c6d215fcc8d6",
+    "ibme.lattice.matrix_sampling.exact_gram": "668ded4456a40b191a4db3db861172a643ebd3c328aa512aeb5eadefb94485c7",
+    "__main__": "b7fcd20ab24754b6468876073c8a8314eccc3f8047c6d69c009ad6fd5e14b573",
+    "native.exact_gram.cpp": "6c0d6b5599f1d6ca2125b264cc50f6d9dfb70007e41435f903d9ce780103b3ee",
+    "native.exact_gram": "d86d35ac3cadb9c09bc3a5cb4afd38554eb3c2ed8b5c8be410f0aec961c48de6",
+    "native.flatter": "2cc4c8b83f0e8b69ae5f019bc1d9ad796c9a632671e878dbb68709e363abad58"
+  },
+  "source_unchanged_during_execution": true
+}

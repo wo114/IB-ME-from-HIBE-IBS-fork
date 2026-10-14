@@ -1,0 +1,34 @@
+{
+  "schema": "IBME/ABB-ORPHANED-PENDING-OBSERVATION/1",
+  "date": "2026-10-13",
+  "observed_process_present": false,
+  "observed_pid": 310,
+  "authoritative_pending_retained": true,
+  "completed_marker_present": false,
+  "final_receipt_present": false,
+  "last_recorded_stage": "actual parent SampleR/BasisDel",
+  "recorded_stages": [
+    {
+      "stage": "actual AP09 setup",
+      "status": "passed",
+      "seconds": 6.180573204,
+      "private_entropy_bytes": 135174
+    }
+  ],
+  "root_generations": 1,
+  "recorded_source_commit": "d5a2a774c6985dfd06d56cdbeef3d3d715906cf9",
+  "runtime_termination_cause": null,
+  "parent_private_entropy_bytes": null,
+  "final_rss_kib": null,
+  "final_source_fingerprint": null,
+  "source_changes_during_execution": null,
+  "failed_address_restore": {
+    "status": "passed-failed-address-restore",
+    "failed_parent_retained": true,
+    "new_private_entropy_calls": 0
+  },
+  "full_HIBE_lifecycle": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

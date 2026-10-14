@@ -31,6 +31,7 @@
 | 统一框架与协议 | `assembly` 已实现后端注册、独立选择/参数快照、能力/容量预检；复用 Baseline/BYTEAUTH/Hybrid；CLI 与真实组合驱动共用装配入口 | 本轮已补齐用户要求的三项框架工作；候选原语须各自实现并通过单体/组合验收，静态预检不等于安全准入 |
 | 可选 CLI / 状态 | `--hibe/--ibs` 和两边参数独立；v2 状态绑定完整配置、公钥摘要及对象类型；旧预设保留 | 摘要是存储一致性检查，没有外部认证或反回滚保证；持久化按所选公开对象保存，不改原语算法 |
 | HIBE 公共接口 | 六个 HIBE 方法、规范对象；Hybrid 使用独立的公开密钥绑定验证能力 | 接口存在不等于每个候选已实现 |
+| ABB-ROM独立完整研究后端 | [A本轮交付](research/team-a-delivery/2026-10-14-abb-complete/README.md)：真实AP09、两次BasisDel/高斯RandBasis、同组86/86 B身份及32 Bseed、256新SamplePre；同公钥2×2多地址和Luo+C64B+Hybrid+BYTEAUTH完整攻击验收已通过 | q26/n1被公开输入恢复全部256比特，none/false/false；正式参数/规范化条件化/矩阵RO/工作区失败界未准入；默认registry/CLI待统筹接入，旧q104/q80中止不能拼接为通过 |
 | 教学 ABB10 + 教学 SIS | 实际代码、CLI、历史攻击与回归 | 教学参数及公开认证反例；不能计入已准入安全组合 |
 | Luo 矩阵 IBS | 本地真实研究算法、适配器与历史参数筛查 | 当前暂停继续扩网格，保留为比较实例 |
 | Luo 模格 IBS | 真实算法、NTT/Hint、固定状态及reference/compact；C64B完整17字段、正确性条件/中止界、原文安全引用映射和第二十四步终验收收尾；实际CHKP组合已核对compact16383 B | 默认参数不变、C64B仍显式选择；研究候选不是正式安全等级，不自动补写完整基础归约/QROM；版本变化定向复核 |
@@ -86,9 +87,19 @@
 
 此前的[分工修订](workplans/2026-10-12/PR审查与分工修订说明.md)在 PR #11 工作树完成，当时没有合并。2026-10-12 本轮依用户授权完成 #9/#10/#11/#12 审查与合入，C64B 与 MP12 源码均已接收；没有改变密码算法或提升安全声明。后续按三人任务书推进，不把“代码已合入”写成“项目/正式参数已完成”。
 
-A 随后按新任务书开始独立分支实施，新增 MP12 变体研究后端和真实单配对，范围/攻击/参数缺口见上表交付。A 目标仍 active：公开接口及安装工具已实跑，正式维度/两角色困难性/模型对应和大尺寸部署工具未闭合，A2/AR 尚未交付。新结果不覆盖原型/旧报告或其它未测组合。
+A 随后按新任务书开始独立分支实施，新增 MP12 变体研究后端和真实单配对，范围/攻击/参数缺口见上表交付。2026-10-14的A2真实完整生命周期、2×2及Luo组合已通过（见上表新交付）；正式维度/两角色困难性/模型对应和大尺寸部署工具仍未闭合，AR储备说明已交。下方按日期的WIP/中止保留为历史，不覆盖新结果或其它未测组合。
 
 A 第二批已补[可安装公开 API 与默认 CLI](research/team-a-delivery/2026-10-12-installed-api/README.md)：Windows/Sage 均在仓库外验证 provider 来自安装包；Sage 无native/无熵重放原四种匹配，新安装CLI真实8步通过，55项Sage回归通过。默认入口在无Sage时明确 unavailable；缺native只阻止新根/新receiver，并在地址写入前拒绝。原n2攻击/none/false、ABB、正式维度/模型与双角色困难性仍待；原CHKP本轮功能收尾不替代A后续范围，不能称A全部完成。
+
+A2 已有[SampleR/BasisDel原语批次](research/team-a-delivery/2026-10-12-abb-primitives/README.md)：整矩阵Gaussian条件采样、变换子格的完整格补全、真实随机化、非交换两层及直接产品核验。24项新Sage测试/57项含相关回归通过，保存私有84维输入复用成功；旧偏斜基准入失败保持，未调旧guard。随后[AP09根/原文位加解密批次](research/team-a-delivery/2026-10-12-abb-root-bits/README.md)补真实TrapGen族、208维核验、同一248维真实根的八比特恢复及公开n1攻击，33项新测试纳入116 Sage pass/3旧私有witness skip；三组同输入资源/宽度筛查明确不可执行项。仍无完整ABB两层后端/codec/组合，none/false和已准入数保持；正式域与共享委派/宽Gaussian工具继续。原CHKP最新PR #14已交研究整链，本A2分支尚未合入该PR，不重复编写其实现。
+
+A3 已补[单源矩阵有限工具](research/team-a-delivery/2026-10-12-matrix-tools/README.md)：旧scalar/GPV/RandBasis/ToBasis兼容入口与显式宽profile共用数学源，实际257维GPV、2^192平方宽度及ABB双委派消费者测试通过；Sage168 pass/3旧私有witness skip、Windows116 pass/5 Sage skip，隔离安装调用通过。2026-10-13，同一248维真实AP09根/R的两次BasisDel/RandBasis、固定规约和最终SamplePre实际九阶段通过，约10.29小时/峰值RSS1184036 KiB；首轮中断与来源链保留。同组两层噪声界仍失败，没有身份oracle/五类对象/完整HIBE，宽profile和实现后处理不增加已准入数。
+
+2026-10-13，A2交[研究后端/五类对象/固定状态与容量筛查](research/team-a-delivery/2026-10-13-abb-backend-wip/README.md)，独立BackendSpec可供统筹接入，默认registry/协议/CLI未改。真实q160和q104 Setup通过，父过程的中断/FAILED及零私有熵禁止重发证据保留，不能称完整HIBE通过；新q104单地址配置的4MiB capsule容量预检通过。[规范核格与精确三角计算](research/team-a-delivery/2026-10-13-abb-canonical-fix/README.md)相关Sage最终227 pass/3旧私有witness skip，仓库外隔离安装71个provider通过。正条件完整父/叶/256bit/Luo组合及正式域仍WIP；不得据接口或公开代数测试增加已准入数。
+
+A 后续先完成[PR14/15/16固定版本复核](research/team-a-delivery/2026-10-13-pr-review/README.md)，再交[CHKP共享引擎配置与8文件接入提案](research/team-a-delivery/2026-10-13-chkp-shared-profiles/README.md)：当前A分支60 pass/7待接实际扩展消费者skip，独立候选副本1122 pass/4外部witness skip；未修改队友源码或默认registry，统筹仍需实际共享合并、安装/CLI与组合复核，不升级正式准入。ABB规范q104实例的进程已不在运行，仍是父pending且无完成收据；同一master只读恢复确认FAILED及重发私有熵0，终止原因和父总耗熵未知，不能继续写为正在运行或完整通过。
+
+AR交[三个储备说明](research/team-a-delivery/2026-10-13-reserves/README.md)：固定原稿下GKR匿名LWE的LO缺口、ABB标准模型的选择性结论、CHKP标准模型的admissible hash/维度/归约条件；有限对象计数7项通过。完成的是模型/缺失模块/成本与重启材料，三项backend均未编码或登记。
 
 ## 4. 当前入口与证据定位
 

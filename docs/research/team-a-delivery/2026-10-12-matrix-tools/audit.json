@@ -1,0 +1,101 @@
+{
+  "schema": "A3-SINGLE-MATRIX-ENGINE-DELIVERY/1",
+  "date": "2026-10-12",
+  "baseline": "f6090c9b25245228c4c7bea27d8fc2cb1e6935dd",
+  "source_sha256": {
+    "experiments/research/chkp_tobasis.py": "0293834acff71a1599d14dccc92558f7198c8ffabbcb255c6965452c355abd4a",
+    "experiments/research/first_suite/finite_gaussian.py": "5c55da74e4aaa40e2375e48a419884dc7cfe5ace537951a6e4b649c3959fd5b0",
+    "experiments/research/first_suite/finite_gpv.py": "f1d59d1eeace1c98cd12e91a6c2305e93969ee9d0e137c5c85b07e031fc87699",
+    "experiments/research/first_suite/finite_randbasis.py": "503b36bec17b6fc41f33426812ad56ffa0bff6deaec15ade7fc7224c1472271f",
+    "src/ibme/hibe/abb_rom/__init__.py": "a7b225b554a0480d242bdabdd455e74027d0cc941c09f915c8fe918e70a189a8",
+    "src/ibme/hibe/abb_rom/primitives.py": "7dd185bf10e125b76396a240eea093e192656de17593ed6a2e89c39d4daf1d3a",
+    "experiments/research/abb_rom/delegation_probe.py": "a4d6f6b8b5cf57462a62d64ceaf7809fe7b9fcca925cac0b44a14e3fb0a1b745",
+    "tests/test_matrix_finite_sampling.py": "b160ad31810f63a1eb246170e3562737325c4406b444b149ddff7ccf612cbbf9",
+    "src/ibme/lattice/matrix_sampling/__init__.py": "89826c2fd59bd2d457e05393d978ed905c69e8a13d6a2f9920f33ffb2445a9ad",
+    "src/ibme/lattice/matrix_sampling/scalar.py": "67a4e027bf24702a862cb2fffde4874726549fe18046657e17876c16a467acc0",
+    "src/ibme/lattice/matrix_sampling/gpv.py": "d3093af0e0a6ba167d1f9ca2d3fb9857eea5cf8aa8636ee4647ee2de375cd4d9",
+    "src/ibme/lattice/matrix_sampling/basis.py": "dd4ecfdae521836618a3cd8cc68c87d753a87be8e757759840f4240e997d8c97",
+    "src/ibme/lattice/matrix_sampling/randbasis.py": "5a5425c35d54d639f2360bee058b570dba2a94e74c09f7b48d2927c17886c93d"
+  },
+  "frozen_original_sources_from_baseline": {
+    "finite_gaussian.py": "9892f3b8bd85c11f08948f1d0cf3849efa4752ad339c366b842263c991d60549",
+    "finite_gpv.py": "4ddeda10288c2683a573c2d4a44b33737d87bb83e2b08e3e72d0feb22b0748e3",
+    "finite_randbasis.py": "c117a4585849ef9e3f73447da7d4fb1bed98ddf331d576053aed75f8549f4644",
+    "tobasis.py": "d7f3b2c2fe5762a4d45cd26ecc2d5f1f7170d189b2be0555dc5afc90b115f92a"
+  },
+  "claimed_compatibility_files": [
+    "experiments/research/chkp_tobasis.py",
+    "experiments/research/first_suite/finite_gaussian.py",
+    "experiments/research/first_suite/finite_gpv.py",
+    "experiments/research/first_suite/finite_randbasis.py"
+  ],
+  "teammate_PR14_src_chkp_files_changed": false,
+  "legacy_profiles_not_widened": true,
+  "new_matrix_profile_explicit": true,
+  "source_migration_not_new_primitive_algorithm": true,
+  "tests": [
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider -q -rs --tb=short tests/test_matrix_finite_sampling.py tests/test_first_suite_finite_sampling.py tests/test_first_suite_compact_delegation.py tests/test_chkp_tobasis.py tests/test_chkp_randbasis.py tests/test_abb_rom_primitives.py tests/test_abb_rom_trapgen_and_bits.py tests/test_abb_rom_parameter_screen.py tests/test_public_research_api.py --junitxml=test-results/matrix-tools-sage-final.junit.xml",
+      "result": "168 passed, 3 skipped",
+      "new_matrix_tests": 28,
+      "skips": "two old private native witnesses and one old 84-dim private witness absent",
+      "junit": "sage.junit.xml"
+    },
+    {
+      "command": "$env:PYTHONPATH=\"src;.\"; python -m pytest -p no:cacheprovider -q -rs --tb=short tests/test_public_research_api.py tests/test_assembly.py tests/test_cli_selection.py tests/test_cli_receiver_state.py tests/test_cli_state_lock.py --junitxml=test-results/matrix-tools-windows-regression.junit.xml",
+      "result": "116 passed, 5 skipped",
+      "skips": "existing Sage-dependent tests",
+      "junit": "windows.junit.xml"
+    }
+  ],
+  "real_248_dim_delegation": {
+    "first_attempt": "interrupted before parent RandBasis, old delta=.999 LLL",
+    "final_attempt": "nine stages passed from same retained root/R; no new root or first R; independent second R and two RandBasis",
+    "source_hashes_verified": true,
+    "elapsed_seconds": 37046.205246447,
+    "entropy_bytes": 90940890,
+    "process_peak_rss_kib": 1184036,
+    "raw_identity_oracle_and_HIBE_NOT_tested": true
+  },
+  "diagnostic_only": {
+    "gdb_native_stack": "verified old fplll delta=.999 bottleneck; raw private argument values NOT published",
+    "py_spy_install": "both mirror and direct index failed; not used"
+  },
+  "initial_test_failure": "test assumed prescribed QQ accepts decimal string 9.0; checked actual QQ rejection and corrected test, no sampling algorithm change",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "not_done": [
+    "full original ABB HIBE and five public codecs",
+    "formal high-n parameters and LWE/matrix RO mapping",
+    "shared CLI/combination acceptance for ABB",
+    "AR reserves"
+  ],
+  "completed_date": "2026-10-13",
+  "latest_new_test_only_run": "28 passed, includes added exact support-range assertion; no sampling-provider changes",
+  "changed_files": [
+    "docs/PROJECT_STATUS.md",
+    "docs/workplans/2026-10-12/tasks.json",
+    "experiments/research/chkp_tobasis.py",
+    "experiments/research/first_suite/finite_gaussian.py",
+    "experiments/research/first_suite/finite_gpv.py",
+    "experiments/research/first_suite/finite_randbasis.py",
+    "src/ibme/hibe/abb_rom/__init__.py",
+    "src/ibme/hibe/abb_rom/primitives.py",
+    "docs/research/team-a-delivery/2026-10-12-matrix-tools/README.md",
+    "docs/research/team-a-delivery/2026-10-12-matrix-tools/audit.json",
+    "docs/research/team-a-delivery/2026-10-12-matrix-tools/delegation-complete.json",
+    "docs/research/team-a-delivery/2026-10-12-matrix-tools/installation.json",
+    "docs/research/team-a-delivery/2026-10-12-matrix-tools/interrupted-preparation.json",
+    "docs/research/team-a-delivery/2026-10-12-matrix-tools/running-observation.json",
+    "docs/research/team-a-delivery/2026-10-12-matrix-tools/sage.junit.xml",
+    "docs/research/team-a-delivery/2026-10-12-matrix-tools/windows.junit.xml",
+    "experiments/research/abb_rom/delegation_probe.py",
+    "src/ibme/lattice/matrix_sampling/__init__.py",
+    "src/ibme/lattice/matrix_sampling/basis.py",
+    "src/ibme/lattice/matrix_sampling/gpv.py",
+    "src/ibme/lattice/matrix_sampling/randbasis.py",
+    "src/ibme/lattice/matrix_sampling/scalar.py",
+    "tests/test_matrix_finite_sampling.py"
+  ]
+}

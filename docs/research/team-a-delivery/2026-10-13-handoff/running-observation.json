@@ -1,0 +1,45 @@
+{
+  "schema": "A-HANDOFF-RUNNING-OBSERVATION/1",
+  "observed_utc": "2026-10-13T05:25:17.687585+00:00",
+  "status": "running",
+  "baseline_commit": "d5a2a774c6985dfd06d56cdbeef3d3d715906cf9",
+  "current_stage": "actual parent SampleR/BasisDel",
+  "root_generations": 1,
+  "completed_stages": [
+    {
+      "stage": "actual AP09 setup",
+      "status": "passed",
+      "seconds": 6.180573204,
+      "private_entropy_bytes": 135174
+    }
+  ],
+  "parent_private_Gaussian_bytes_so_far": null,
+  "source_current_matches_execution_start": {
+    "ibme.hibe.abb_rom.backend": true,
+    "ibme.hibe.abb_rom.identity": true,
+    "ibme.hibe.abb_rom.key_validation": true,
+    "ibme.hibe.abb_rom.objects": true,
+    "ibme.hibe.abb_rom.params": true,
+    "ibme.hibe.abb_rom.primitives": true,
+    "ibme.lattice.matrix_sampling.scalar": true,
+    "ibme.lattice.matrix_sampling.gpv": true,
+    "ibme.lattice.matrix_sampling.basis": true,
+    "ibme.lattice.matrix_sampling.randbasis": true,
+    "ibme.lattice.matrix_sampling.modular": true,
+    "ibme.hibe.abb_rom.trapgen": true,
+    "ibme.hibe.abb_rom.bit_encryption": true,
+    "ibme.hibe.abb_rom.parameter_screen": true,
+    "ibme.hibe.abb_rom.profiles": true,
+    "experiments.research.ibme_rounded_noise": true,
+    "experiments.research.gaussian_reference": true,
+    "experiments.research.first_suite.entropy": true,
+    "__main__": true
+  },
+  "full_HIBE_lifecycle": false,
+  "complete_IBME_combination": false,
+  "not_a_pass_receipt": true,
+  "observer_rss_budget_mib": 8192,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

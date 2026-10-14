@@ -1,0 +1,47 @@
+{
+  "source_sha256": "2043096d809993f9a1f3ee7a5d2c0a689c1737dc4351ba380c0267f726ea1e89",
+  "oracle": "Sage HNF of GF kernel lifts plus qI; two-sided integer inclusion",
+  "results": [
+    {
+      "basis": "public_kernel",
+      "dimension": 12,
+      "expected_index": 49,
+      "python_index": 49,
+      "sage_index": 49,
+      "sage_reduced_max_gs": 1.6059101370939324,
+      "checks": {
+        "annihilates": true,
+        "same_determinant": true,
+        "both_integer_inclusions": true
+      }
+    },
+    {
+      "basis": "master_trapdoor",
+      "dimension": 12,
+      "expected_index": 49,
+      "python_index": 49,
+      "sage_index": 49,
+      "sage_reduced_max_gs": 1.6059101370939324,
+      "checks": {
+        "annihilates": true,
+        "same_determinant": true,
+        "both_integer_inclusions": true
+      }
+    },
+    {
+      "basis": "user_trapdoor",
+      "dimension": 18,
+      "expected_index": 49,
+      "python_index": 49,
+      "sage_index": 49,
+      "sage_reduced_max_gs": 1.4142135623730951,
+      "checks": {
+        "annihilates": true,
+        "same_determinant": true,
+        "both_integer_inclusions": true
+      }
+    }
+  ],
+  "all_passed": true,
+  "security_claim": "none"
+}

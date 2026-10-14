@@ -1,0 +1,12 @@
+{
+  "schema": "ABB-Q104-OPERATOR-INTERRUPTION/1",
+  "pid": 309,
+  "observed_utc": "2026-10-13T04:42:17.125892+00:00",
+  "command_verified": true,
+  "signal": "SIGINT",
+  "reason": "general canonical HNF bottleneck; direct exact q-kernel canonicalization verified independently on public small cases",
+  "private_issuance_entropy_before_interrupt": null,
+  "not_a_distribution_or_paper_failure": true,
+  "no_live_source_changes": true,
+  "no_failed_address_reissue": true
+}
