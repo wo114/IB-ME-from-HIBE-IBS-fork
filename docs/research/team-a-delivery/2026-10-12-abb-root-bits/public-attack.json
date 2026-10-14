@@ -1,0 +1,91 @@
+{
+  "schema": "ABB-REAL-ROOT-N1-PUBLIC-ATTACK/1",
+  "n": 1,
+  "q": "549755813911",
+  "dimension": 248,
+  "noise_radius": 46,
+  "seconds": 0.0006914959999999581,
+  "actual_ciphertexts": 8,
+  "checks": [
+    {
+      "public_error_combinations": 93,
+      "candidate_pairs": 1,
+      "private_inputs": false,
+      "security_negative_control": true,
+      "actual_bit_is_candidate": true,
+      "unique_actual_bit": true,
+      "index": 0
+    },
+    {
+      "public_error_combinations": 93,
+      "candidate_pairs": 1,
+      "private_inputs": false,
+      "security_negative_control": true,
+      "actual_bit_is_candidate": true,
+      "unique_actual_bit": true,
+      "index": 1
+    },
+    {
+      "public_error_combinations": 93,
+      "candidate_pairs": 1,
+      "private_inputs": false,
+      "security_negative_control": true,
+      "actual_bit_is_candidate": true,
+      "unique_actual_bit": true,
+      "index": 2
+    },
+    {
+      "public_error_combinations": 93,
+      "candidate_pairs": 1,
+      "private_inputs": false,
+      "security_negative_control": true,
+      "actual_bit_is_candidate": true,
+      "unique_actual_bit": true,
+      "index": 3
+    },
+    {
+      "public_error_combinations": 93,
+      "candidate_pairs": 1,
+      "private_inputs": false,
+      "security_negative_control": true,
+      "actual_bit_is_candidate": true,
+      "unique_actual_bit": true,
+      "index": 4
+    },
+    {
+      "public_error_combinations": 93,
+      "candidate_pairs": 1,
+      "private_inputs": false,
+      "security_negative_control": true,
+      "actual_bit_is_candidate": true,
+      "unique_actual_bit": true,
+      "index": 5
+    },
+    {
+      "public_error_combinations": 93,
+      "candidate_pairs": 1,
+      "private_inputs": false,
+      "security_negative_control": true,
+      "actual_bit_is_candidate": true,
+      "unique_actual_bit": true,
+      "index": 6
+    },
+    {
+      "public_error_combinations": 93,
+      "candidate_pairs": 1,
+      "private_inputs": false,
+      "security_negative_control": true,
+      "actual_bit_is_candidate": true,
+      "unique_actual_bit": true,
+      "index": 7
+    }
+  ],
+  "all_actual_bits_unique": true,
+  "new_root_generations": 0,
+  "new_encryptions": 0,
+  "entropy_bytes": 0,
+  "attack_function_uses_only_public_input": true,
+  "input_loader_projects_public_fields_from_retained_probe_artifact": true,
+  "security_claim": "none",
+  "backend_admitted": false
+}

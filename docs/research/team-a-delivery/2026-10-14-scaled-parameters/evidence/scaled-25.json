@@ -1,0 +1,3978 @@
+{
+  "schema": "A/MATRIX-HIBE-SCALED-SCREEN/1",
+  "rows": [
+    {
+      "family": "mp12-chkp",
+      "root_algorithm": "MP12 computational [I|Ahat] GenTrap",
+      "parent_algorithm": "MP12 Algorithm4 DelTrap",
+      "leaf_algorithm": "CHKP fixed256 SampleD",
+      "n": 128,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "root_dimension": 8064,
+      "parent_dimension": 16128,
+      "leaf_dimension": 24192,
+      "root_gs_squared_bound": "10573905930",
+      "parent_width_squared": "6048274191960",
+      "parent_gs_squared_bound": "3929113750916530176010",
+      "leaf_width_squared": "2263169520527921381381760",
+      "root_R_width_squared": 529,
+      "root_statistical_uniformity_upper": null,
+      "root_lwe": {
+        "n": 128,
+        "q": 2305843009213693951,
+        "m": 128,
+        "secret": "small-Gaussian",
+        "squared_width": 529,
+        "distribution": "ideal D_Z,s in both secret and error; finite PMF coupling separate",
+        "independent_columns": 7808,
+        "target_columns_for_alternative_trapdoor": 7808,
+        "attack_goal": "one root column search/decision; not full trapdoor recovery",
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "ciphertext_lwe": {
+        "n": 128,
+        "q": 2305843009213693951,
+        "m": 24192,
+        "secret": "uniform-mod-q",
+        "squared_width": 529,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": null,
+        "fresh_vector_per_bit": false,
+        "known_plaintext_samples_per_vector": 24448,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": true,
+        "assumed_preimage_norm_squared": "54750597040611474058387537920",
+        "rounding_error_upper": "18197022033882858",
+        "continuous_squared_upper": "3736235492648367601218423975266961",
+        "phase_radius": "576460752303423487",
+        "scaled_continuous_width": 23,
+        "alpha": "23/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": "1/1267650600228229401496703205376",
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 8257536,
+        "root_full_basis": 390168576,
+        "parent_stored_full_basis": 1560674304,
+        "leaf_material": 37158912,
+        "capsule_coefficients": 195584,
+        "compact_parent_intermediate": 259850240
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": true,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "DelTrap_prefix_within_current_cap": false,
+        "leaf_unit_scalar_width_within_cap": true,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "root_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "146",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.05279249299999833
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.680439620583575,
+            "cost_fields": {
+              "rop": "3282.18221860709",
+              "mem": "41",
+              "m": "128",
+              "beta": "40",
+              "d": "256",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006045309000000998
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "146",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.04034467500000005
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.600929216079646,
+            "cost_fields": {
+              "rop": "1553.09376410665",
+              "mem": "41",
+              "m": "128",
+              "beta": "40",
+              "d": "256",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.005170952000000284
+          }
+        },
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "146",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.056536061000002746
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.680439620583575,
+            "cost_fields": {
+              "rop": "3282.18221860709",
+              "mem": "41",
+              "m": "771",
+              "beta": "40",
+              "d": "899",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.007089806999999837
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "146",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.056664843999996606
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.600929216079646,
+            "cost_fields": {
+              "rop": "1553.09376410665",
+              "mem": "41",
+              "m": "771",
+              "beta": "40",
+              "d": "899",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.005389331999992919
+          }
+        }
+      }
+    },
+    {
+      "family": "chkp-rom",
+      "root_algorithm": "MP12 statistical GenTrap/full-basis",
+      "parent_algorithm": "CHKP ExtBasis/RandBasis/ToBasis",
+      "leaf_algorithm": "CHKP fixed256 SampleD",
+      "n": 128,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "m_bar": 1620,
+      "root_dimension": 9428,
+      "parent_dimension": 18856,
+      "leaf_dimension": 28284,
+      "root_R_width_squared": 1024,
+      "root_R_support_radius": 171,
+      "root_entropy_mass_floor": "319/10",
+      "root_regularity_target_bits": 128,
+      "root_gs_squared_bound": "3698682393610",
+      "parent_width_squared": "2130441058719360",
+      "parent_gs_squared_bound": "40171596603212252160",
+      "leaf_width_squared": "23138839643450257244160",
+      "root_statistical_uniformity_upper": "1/340282366920938463463374607431768211456",
+      "root_uniformity_scope": "ideal LHL term only; finite sampler/rank/abort contributions separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "statistical root; not the computational [I|Ahat] root",
+      "ciphertext_lwe": {
+        "n": 128,
+        "q": 2305843009213693951,
+        "m": 28284,
+        "secret": "uniform-mod-q",
+        "squared_width": 529,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": null,
+        "fresh_vector_per_bit": false,
+        "known_plaintext_samples_per_vector": 28540,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": true,
+        "assumed_preimage_norm_squared": "654458940475347075893821440",
+        "rounding_error_upper": "2151204120510460",
+        "continuous_squared_upper": "44660932556978159806070268955281",
+        "phase_radius": "576460752303423487",
+        "scaled_continuous_width": 23,
+        "alpha": "23/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": "1/1267650600228229401496703205376",
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 9654272,
+        "root_full_basis": 533323104,
+        "parent_stored_full_basis": 2133292416,
+        "leaf_material": 43444224,
+        "capsule_coefficients": 228320
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": true,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_unit_scalar_width_within_cap": true
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "146",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.05788657899999805
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.680439620583575,
+            "cost_fields": {
+              "rop": "3282.18221860709",
+              "mem": "41",
+              "m": "771",
+              "beta": "40",
+              "d": "899",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006815434999992931
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "146",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.06060265299998946
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.600929216079646,
+            "cost_fields": {
+              "rop": "1553.09376410665",
+              "mem": "41",
+              "m": "771",
+              "beta": "40",
+              "d": "899",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.005369701999995868
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 128,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "random_rows": 15616,
+      "m1": 15616,
+      "m2": 46848,
+      "hadamard_scale": 423,
+      "root_dimension": 62464,
+      "parent_dimension": 62464,
+      "leaf_dimension": 62464,
+      "root_gs_squared_bound": "2833929221",
+      "matrix_R_width_squared": "1643678948180",
+      "matrix_R_support_radius": 7230079,
+      "transformation_operator_squared_bound": "203960312471604702478336",
+      "parent_width_squared": "335245271873791353486333155716628480",
+      "parent_gs_squared_bound": "20940760662324503104170314238683481374720",
+      "leaf_width_squared": "2477228771086860230114338531520859013609679557210121054572878233600",
+      "decrypt_width_squared": "89747818415158389700039984379092983707146713839712340900647354270482432000",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-3888",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 128,
+        "q": 2305843009213693951,
+        "m": 62464,
+        "secret": "uniform-mod-q",
+        "squared_width": 529,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 62465,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "5606007729484453654223297584255664134283212333283791662018036337151414632448000",
+        "rounding_error_upper": "295877367677267989216726884449509055701594",
+        "continuous_squared_upper": "427043244801207741564113916778259471093235950764921195824181208244460988058776601600",
+        "phase_radius": "2305843009213693951/5",
+        "scaled_continuous_width": 23,
+        "alpha": "23/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 63963136,
+        "root_full_basis": 23410507776,
+        "parent_stored_full_basis": 23410507776,
+        "leaf_material": 23410507776,
+        "capsule_coefficients": 127928320
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "146",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.06093979299998864
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.680439620583575,
+            "cost_fields": {
+              "rop": "3282.18221860709",
+              "mem": "41",
+              "m": "771",
+              "beta": "40",
+              "d": "899",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.007434411000005525
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "146",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.06190894600000263
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.600929216079646,
+            "cost_fields": {
+              "rop": "1553.09376410665",
+              "mem": "41",
+              "m": "771",
+              "beta": "40",
+              "d": "899",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006085455999993883
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 128,
+      "q": 10141204801825835211973625643089,
+      "q_bits": 104,
+      "random_rows": 26624,
+      "m1": 26624,
+      "m2": 79872,
+      "hadamard_scale": 510,
+      "root_dimension": 106496,
+      "parent_dimension": 106496,
+      "leaf_dimension": 106496,
+      "root_gs_squared_bound": "7006611461",
+      "matrix_R_width_squared": "4091861093224",
+      "matrix_R_support_radius": 11433494,
+      "transformation_operator_squared_bound": "1482601817785821955096576",
+      "parent_width_squared": "6066600694940983072268896509859201024",
+      "parent_gs_squared_bound": "646068707608434933264348402713965472251904",
+      "leaf_width_squared": "559391781943844561609767875008288368564850560928015847789103610331136",
+      "decrypt_width_squared": "34790624530576735532985202336259484009630477996568545824070652802121601122304",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-6639",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 128,
+        "q": 10141204801825835211973625643089,
+        "m": 106496,
+        "secret": "uniform-mod-q",
+        "squared_width": 529,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 106497,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "3705062350008300027320792108002290009089607384722563856080228240814742033120886784",
+        "rounding_error_upper": "9931947442804003276094981766793440595145485",
+        "continuous_squared_upper": "282236829574232262881188659619182443732410800907567925312836472396762651431510984054416",
+        "phase_radius": "10141204801825835211973625643089/5",
+        "scaled_continuous_width": 23,
+        "alpha": "23/10141204801825835211973625643089",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 177209344,
+        "root_full_basis": 68048388096,
+        "parent_stored_full_basis": 68048388096,
+        "leaf_material": 68048388096,
+        "capsule_coefficients": 354422016
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "141",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.07172719500000824
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.680439620583575,
+            "cost_fields": {
+              "rop": "3282.18221860709",
+              "mem": "41",
+              "m": "1050",
+              "beta": "40",
+              "d": "1178",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.008209540999999376
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "141",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.07295552300000452
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.600929216079646,
+            "cost_fields": {
+              "rop": "1553.09376410665",
+              "mem": "41",
+              "m": "1050",
+              "beta": "40",
+              "d": "1178",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006537278999999785
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 128,
+      "q": 730750818665451459101842416358141509827966271787,
+      "q_bits": 160,
+      "random_rows": 40960,
+      "m1": 40960,
+      "m2": 122880,
+      "hadamard_scale": 555,
+      "root_dimension": 163840,
+      "parent_dimension": 163840,
+      "leaf_dimension": 163840,
+      "root_gs_squared_bound": "12753469445",
+      "matrix_R_width_squared": "7499040033660",
+      "matrix_R_support_radius": 15501455,
+      "transformation_operator_squared_bound": "6450372665352745123840000",
+      "parent_width_squared": "48371602849506393709254514468454400000",
+      "parent_gs_squared_bound": "7925203410863127545324259650511568896000000",
+      "leaf_width_squared": "30058863083889612994033471314912990292362404041788460703416320000000000",
+      "decrypt_width_squared": "2895808347066710825450157036858382465746385891585493384168865162854400000000000",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-10223",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 128,
+        "q": 730750818665451459101842416358141509827966271787,
+        "m": 163840,
+        "secret": "uniform-mod-q",
+        "squared_width": 529,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 163841,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": true,
+        "assumed_preimage_norm_squared": "474449239583409901641753728918877383187887864477367236062226868282064896000000000000",
+        "rounding_error_upper": "139403876751460787957405563454176737940350720",
+        "continuous_squared_upper": "36141645274505832667462232054124403541720611795497925754673171054798131544198012899426304",
+        "phase_radius": "730750818665451459101842416358141509827966271787/5",
+        "scaled_continuous_width": 23,
+        "alpha": "23/730750818665451459101842416358141509827966271787",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": "1/1267650600228229401496703205376",
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 419430400,
+        "root_full_basis": 161061273600,
+        "parent_stored_full_basis": 161061273600,
+        "leaf_material": 161061273600,
+        "capsule_coefficients": 838865920
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "137",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.09055229000000509
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.680439620583575,
+            "cost_fields": {
+              "rop": "3282.18221860709",
+              "mem": "41",
+              "m": "1342",
+              "beta": "40",
+              "d": "1470",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.008408011000000215
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "137",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.083598343999995
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.600929216079646,
+            "cost_fields": {
+              "rop": "1553.09376410665",
+              "mem": "41",
+              "m": "1342",
+              "beta": "40",
+              "d": "1470",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006402836000006573
+          }
+        }
+      }
+    },
+    {
+      "family": "mp12-chkp",
+      "root_algorithm": "MP12 computational [I|Ahat] GenTrap",
+      "parent_algorithm": "MP12 Algorithm4 DelTrap",
+      "leaf_algorithm": "CHKP fixed256 SampleD",
+      "n": 512,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "root_dimension": 32256,
+      "parent_dimension": 64512,
+      "leaf_dimension": 96768,
+      "root_gs_squared_bound": "676729978890",
+      "parent_width_squared": "392503387756200",
+      "parent_gs_squared_bound": "4079683980370465259520010",
+      "leaf_width_squared": "2382535444536351711559685840",
+      "root_R_width_squared": 2116,
+      "root_statistical_uniformity_upper": null,
+      "root_lwe": {
+        "n": 512,
+        "q": 2305843009213693951,
+        "m": 512,
+        "secret": "small-Gaussian",
+        "squared_width": 2116,
+        "distribution": "ideal D_Z,s in both secret and error; finite PMF coupling separate",
+        "independent_columns": 31232,
+        "target_columns_for_alternative_trapdoor": 31232,
+        "attack_goal": "one root column search/decision; not full trapdoor recovery",
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "ciphertext_lwe": {
+        "n": 512,
+        "q": 2305843009213693951,
+        "m": 96768,
+        "secret": "uniform-mod-q",
+        "squared_width": 2116,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": null,
+        "fresh_vector_per_bit": false,
+        "known_plaintext_samples_per_vector": 97024,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "230553189896893682424207679365120",
+        "rounding_error_upper": "2361682190724580107",
+        "continuous_squared_upper": "62932720927015687129241424990220888644",
+        "phase_radius": "576460752303423487",
+        "scaled_continuous_width": 46,
+        "alpha": "46/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 132120576,
+        "root_full_basis": 6242697216,
+        "parent_stored_full_basis": 24970788864,
+        "leaf_material": 148635648,
+        "capsule_coefficients": 776192,
+        "compact_parent_intermediate": 4157603840
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": true,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "DelTrap_prefix_within_current_cap": false,
+        "leaf_unit_scalar_width_within_cap": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "root_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "739",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.07131961399998943
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.680439620583575,
+            "cost_fields": {
+              "rop": "3282.18221860709",
+              "mem": "41",
+              "m": "512",
+              "beta": "40",
+              "d": "1024",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006026215999995088
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "739",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.07283035600001142
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.600929216079646,
+            "cost_fields": {
+              "rop": "1553.09376410665",
+              "mem": "41",
+              "m": "512",
+              "beta": "40",
+              "d": "1024",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.004863573999998039
+          }
+        },
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "741",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.09489999800000248
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 30.368427898405237,
+            "cost_fields": {
+              "rop": "1.38614198648367e9",
+              "mem": "326443368",
+              "m": "1623",
+              "beta": "104",
+              "d": "2135",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.022285744999990698
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "741",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.09393992200000412
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 27.562993964096528,
+            "cost_fields": {
+              "rop": "1.98284128805150e8",
+              "mem": "326443368",
+              "m": "1623",
+              "beta": "104",
+              "d": "2135",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.014747638999992319
+          }
+        }
+      }
+    },
+    {
+      "family": "chkp-rom",
+      "root_algorithm": "MP12 statistical GenTrap/full-basis",
+      "parent_algorithm": "CHKP ExtBasis/RandBasis/ToBasis",
+      "leaf_algorithm": "CHKP fixed256 SampleD",
+      "n": 512,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "m_bar": 6310,
+      "root_dimension": 37542,
+      "parent_dimension": 75084,
+      "leaf_dimension": 112626,
+      "root_R_width_squared": 1024,
+      "root_R_support_radius": 171,
+      "root_entropy_mass_floor": "319/10",
+      "root_regularity_target_bits": 128,
+      "root_gs_squared_bound": "57626384947210",
+      "parent_width_squared": "33653808809170640",
+      "parent_gs_squared_bound": "2526862580627768333760",
+      "leaf_width_squared": "1475687747086616706915840",
+      "root_statistical_uniformity_upper": "1/340282366920938463463374607431768211456",
+      "root_uniformity_scope": "ideal LHL term only; finite sampler/rank/abort contributions separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "statistical root; not the computational [I|Ahat] root",
+      "ciphertext_lwe": {
+        "n": 512,
+        "q": 2305843009213693951,
+        "m": 112626,
+        "secret": "uniform-mod-q",
+        "squared_width": 2116,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": null,
+        "fresh_vector_per_bit": false,
+        "known_plaintext_samples_per_vector": 112882,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": true,
+        "assumed_preimage_norm_squared": "166200808203377293233103395840",
+        "rounding_error_upper": "136815687056395589/2",
+        "continuous_squared_upper": "45366837410426679470080835342342724",
+        "phase_radius": "576460752303423487",
+        "scaled_continuous_width": 46,
+        "alpha": "46/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": "1/1267650600228229401496703205376",
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 153772032,
+        "root_full_basis": 8456410584,
+        "parent_stored_full_basis": 33825642336,
+        "leaf_material": 172993536,
+        "capsule_coefficients": 903056
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": true,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_unit_scalar_width_within_cap": true
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "741",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.09308076300000323
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 30.368427898405237,
+            "cost_fields": {
+              "rop": "1.38614198648367e9",
+              "mem": "326443368",
+              "m": "1623",
+              "beta": "104",
+              "d": "2135",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.016388037999988114
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "741",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.0918772490000066
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 27.562993964096528,
+            "cost_fields": {
+              "rop": "1.98284128805150e8",
+              "mem": "326443368",
+              "m": "1623",
+              "beta": "104",
+              "d": "2135",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.014059126000006472
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 512,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "random_rows": 62464,
+      "m1": 62464,
+      "m2": 187392,
+      "hadamard_scale": 846,
+      "root_dimension": 249856,
+      "parent_dimension": 249856,
+      "leaf_dimension": 249856,
+      "root_gs_squared_bound": "45024113669",
+      "matrix_R_width_squared": "26474178837372",
+      "matrix_R_support_radius": 29216651,
+      "transformation_operator_squared_bound": "53289351064913201946689536",
+      "parent_width_squared": "1410791810220012142815103027304718139392",
+      "parent_gs_squared_bound": "352494798534331353955210381990247655435927552",
+      "leaf_width_squared": "11045120811779279046820989244841254390705303536133059521434369352307572736",
+      "decrypt_width_squared": "1622697546862179044767232992190325196741909820350548291235053403867414605393297408",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-15598",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 512,
+        "q": 2305843009213693951,
+        "m": 249856,
+        "secret": "uniform-mod-q",
+        "squared_width": 2116,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 249857,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "405440718268796607409361766496705892357146620073506593854825503276696743645147717173248",
+        "rounding_error_upper": "5032439669379267509910661736576538674608153128",
+        "continuous_squared_upper": "123539408619375401464062167698612272224792004149216405852948167727867645535771797939523837504",
+        "phase_radius": "2305843009213693951/5",
+        "scaled_continuous_width": 46,
+        "alpha": "46/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 1023410176,
+        "root_full_basis": 374568124416,
+        "parent_stored_full_basis": 374568124416,
+        "leaf_material": 374568124416,
+        "capsule_coefficients": 511707136
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "741",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.0922174990000002
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 30.368427898405237,
+            "cost_fields": {
+              "rop": "1.38614198648367e9",
+              "mem": "326443368",
+              "m": "1623",
+              "beta": "104",
+              "d": "2135",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.017293803000001162
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "741",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.09356309000000351
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 27.562993964096528,
+            "cost_fields": {
+              "rop": "1.98284128805150e8",
+              "mem": "326443368",
+              "m": "1623",
+              "beta": "104",
+              "d": "2135",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.01418550200000368
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 512,
+      "q": 10141204801825835211973625643089,
+      "q_bits": 104,
+      "random_rows": 106496,
+      "m1": 106496,
+      "m2": 319488,
+      "hadamard_scale": 1019,
+      "root_dimension": 425984,
+      "parent_dimension": 425984,
+      "leaf_dimension": 425984,
+      "root_gs_squared_bound": "111233368069",
+      "matrix_R_width_squared": "65850153896848",
+      "matrix_R_support_radius": 46181423,
+      "transformation_operator_squared_bound": "387009117083139878969933824",
+      "parent_width_squared": "25484609919408027388351458884702282186752",
+      "parent_gs_squared_bound": "10856036071909109138999507861541016975041363968",
+      "leaf_width_squared": "2487219881645659315493532653985688402674006562814465613792707980469567750144",
+      "decrypt_width_squared": "627233397445263166407908632332660177206612934899142733455316766480590222298586284032",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-26605",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 512,
+        "q": 10141204801825835211973625643089,
+        "m": 425984,
+        "secret": "uniform-mod-q",
+        "squared_width": 2116,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 425985,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "267191391577322984679106550835595912927181804460076418168229657452467745255640979617087488",
+        "rounding_error_upper": "168685548988105642577138174116162239027400669455",
+        "continuous_squared_upper": "81414285779176622723662482465809417052564004761902380098533465832823174457164808017219847966976",
+        "phase_radius": "10141204801825835211973625643089/5",
+        "scaled_continuous_width": 46,
+        "alpha": "46/10141204801825835211973625643089",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 2835349504,
+        "root_full_basis": 1088774209536,
+        "parent_stored_full_basis": 1088774209536,
+        "leaf_material": 1088774209536,
+        "capsule_coefficients": 1417678080
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "610",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.09897265300000413
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.680439620583575,
+            "cost_fields": {
+              "rop": "3282.18221860709",
+              "mem": "41",
+              "m": "1837",
+              "beta": "40",
+              "d": "2349",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.008693187000005764
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "610",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.09091321799999719
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.600929216079646,
+            "cost_fields": {
+              "rop": "1553.09376410665",
+              "mem": "41",
+              "m": "1837",
+              "beta": "40",
+              "d": "2349",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006205469000008179
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 512,
+      "q": 730750818665451459101842416358141509827966271787,
+      "q_bits": 160,
+      "random_rows": 163840,
+      "m1": 163840,
+      "m2": 491520,
+      "hadamard_scale": 1109,
+      "root_dimension": 655360,
+      "parent_dimension": 655360,
+      "leaf_dimension": 655360,
+      "root_gs_squared_bound": "202595368965",
+      "matrix_R_width_squared": "120746839903140",
+      "matrix_R_support_radius": 62628162,
+      "transformation_operator_squared_bound": "1684609299680152248542822400",
+      "parent_width_squared": "203411249407820137963420862687358222336000",
+      "parent_gs_squared_bound": "133307596411909005615707496570787084590120960000",
+      "leaf_width_squared": "133844445113572202363079985399399586628122902988611469270549811255312384000000",
+      "decrypt_width_squared": "52278912147579884410238187141884905803193548918759381850683924485351788291031040000000",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-40941",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 512,
+        "q": 730750818665451459101842416358141509827966271787,
+        "m": 655360,
+        "secret": "uniform-mod-q",
+        "squared_width": 2116,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 655361,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "34261507865037953047093698325305691867180924219398148489664216750720147974410102374400000000",
+        "rounding_error_upper": "2369262638165684287300271066562922305975338067373",
+        "continuous_squared_upper": "10439618492508524445261638254513945534697496336334578576977438936323991012894029708501936490090496",
+        "phase_radius": "730750818665451459101842416358141509827966271787/5",
+        "scaled_continuous_width": 46,
+        "alpha": "46/730750818665451459101842416358141509827966271787",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 6710886400,
+        "root_full_basis": 2576980377600,
+        "parent_stored_full_basis": 2576980377600,
+        "leaf_material": 2576980377600,
+        "capsule_coefficients": 3355448320
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "569",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.1074326009999993
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.680439620583575,
+            "cost_fields": {
+              "rop": "3282.18221860709",
+              "mem": "41",
+              "m": "2422",
+              "beta": "40",
+              "d": "2934",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.008109118000007243
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "569",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.14534834599999158
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.600929216079646,
+            "cost_fields": {
+              "rop": "1553.09376410665",
+              "mem": "41",
+              "m": "2422",
+              "beta": "40",
+              "d": "2934",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006799892999993062
+          }
+        }
+      }
+    },
+    {
+      "family": "mp12-chkp",
+      "root_algorithm": "MP12 computational [I|Ahat] GenTrap",
+      "parent_algorithm": "MP12 Algorithm4 DelTrap",
+      "leaf_algorithm": "CHKP fixed256 SampleD",
+      "n": 2048,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "root_dimension": 129024,
+      "parent_dimension": 258048,
+      "leaf_dimension": 387072,
+      "root_gs_squared_bound": "42374298337290",
+      "parent_width_squared": "24916087422326520",
+      "parent_gs_squared_bound": "4143648829793617651433472010",
+      "leaf_width_squared": "2453040107237821649648615429920",
+      "root_R_width_squared": 8281,
+      "root_statistical_uniformity_upper": null,
+      "root_lwe": {
+        "n": 2048,
+        "q": 2305843009213693951,
+        "m": 2048,
+        "secret": "small-Gaussian",
+        "squared_width": 8281,
+        "distribution": "ideal D_Z,s in both secret and error; finite PMF coupling separate",
+        "independent_columns": 124928,
+        "target_columns_for_alternative_trapdoor": 124928,
+        "attack_goal": "one root column search/decision; not full trapdoor recovery",
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "ciphertext_lwe": {
+        "n": 2048,
+        "q": 2305843009213693951,
+        "m": 387072,
+        "secret": "uniform-mod-q",
+        "squared_width": 8281,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": null,
+        "fresh_vector_per_bit": false,
+        "known_plaintext_samples_per_vector": 387328,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "949503140388758101572788871689994240",
+        "rounding_error_upper": "303119646161609498494",
+        "continuous_squared_upper": "1014305780217150453247030139393964657954009",
+        "phase_radius": "576460752303423487",
+        "scaled_continuous_width": 91,
+        "alpha": "91/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 2113929216,
+        "root_full_basis": 99883155456,
+        "parent_stored_full_basis": 399532621824,
+        "leaf_material": 594542592,
+        "capsule_coefficients": 3098624,
+        "compact_parent_intermediate": 66521661440
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": true,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "DelTrap_prefix_within_current_cap": false,
+        "leaf_unit_scalar_width_within_cap": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "root_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 103.66,
+            "cost_fields": {
+              "rop": "1.60239414910193e31",
+              "red": "1.60239414910193e31",
+              "delta": "1.00432288531835",
+              "beta": "355",
+              "d": "4096",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.22782721899999103
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 105.12000000015114,
+            "cost_fields": {
+              "rop": "4.40832032292614e31",
+              "mem": "11051588559068006669992668",
+              "m": "2048",
+              "beta": "360",
+              "d": "4096",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.018741405999989524
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 94.075,
+            "cost_fields": {
+              "rop": "2.08639648357059e28",
+              "red": "2.08639648357059e28",
+              "delta": "1.00432288531835",
+              "beta": "355",
+              "d": "4096",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.2597343590000065
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 95.40000012747178,
+            "cost_fields": {
+              "rop": "5.22710982152879e28",
+              "mem": "11051588559068006669992668",
+              "m": "2048",
+              "beta": "360",
+              "d": "4096",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.014216903999994202
+          }
+        },
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 102.49199999999999,
+            "cost_fields": {
+              "rop": "7.13126073610701e30",
+              "red": "7.13126073610701e30",
+              "delta": "1.00435641584203",
+              "beta": "351",
+              "d": "4411",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.3068908820000047
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 243.528,
+            "cost_fields": {
+              "rop": "2.03813423532695e73",
+              "mem": "10379035511836155365554480411394130326969114349286542372",
+              "m": "6307",
+              "beta": "834",
+              "d": "8355",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.01973518500000182
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 93.015,
+            "cost_fields": {
+              "rop": "1.00070264268784e28",
+              "red": "1.00070264268784e28",
+              "delta": "1.00435641584203",
+              "beta": "351",
+              "d": "4411",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.27365706199999806
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 221.01000000000002,
+            "cost_fields": {
+              "rop": "3.39343349071511e66",
+              "mem": "10379035511836155365554480411394130326969114349286542372",
+              "m": "6307",
+              "beta": "834",
+              "d": "8355",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.01422993999999278
+          }
+        }
+      }
+    },
+    {
+      "family": "chkp-rom",
+      "root_algorithm": "MP12 statistical GenTrap/full-basis",
+      "parent_algorithm": "CHKP ExtBasis/RandBasis/ToBasis",
+      "leaf_algorithm": "CHKP fixed256 SampleD",
+      "n": 2048,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "m_bar": 25067,
+      "root_dimension": 149995,
+      "parent_dimension": 299990,
+      "leaf_dimension": 449985,
+      "root_R_width_squared": 1024,
+      "root_R_support_radius": 171,
+      "root_entropy_mass_floor": "319/10",
+      "root_regularity_target_bits": 128,
+      "root_gs_squared_bound": "915702435164170",
+      "parent_width_squared": "542095841617188640",
+      "parent_gs_squared_bound": "162623331526740420113600",
+      "leaf_width_squared": "96273012263830328707251200",
+      "root_statistical_uniformity_upper": "1/340282366920938463463374607431768211456",
+      "root_uniformity_scope": "ideal LHL term only; finite sampler/rank/abort contributions separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "statistical root; not the computational [I|Ahat] root",
+      "ciphertext_lwe": {
+        "n": 2048,
+        "q": 2305843009213693951,
+        "m": 449985,
+        "secret": "uniform-mod-q",
+        "squared_width": 8281,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": null,
+        "fresh_vector_per_bit": false,
+        "known_plaintext_samples_per_vector": 450241,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "43321411423539690463332431232000",
+        "rounding_error_upper": "4415199352172165241/2",
+        "continuous_squared_upper": "46278054431784850797764406331153836249",
+        "phase_radius": "576460752303423487",
+        "scaled_continuous_width": 91,
+        "alpha": "91/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 2457518080,
+        "root_full_basis": 134991000150,
+        "parent_stored_full_basis": 539964000600,
+        "leaf_material": 691176960,
+        "capsule_coefficients": 3601928
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": true,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_unit_scalar_width_within_cap": true
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 102.49199999999999,
+            "cost_fields": {
+              "rop": "7.13126073610701e30",
+              "red": "7.13126073610701e30",
+              "delta": "1.00435641584203",
+              "beta": "351",
+              "d": "4411",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.30929716599999324
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 243.528,
+            "cost_fields": {
+              "rop": "2.03813423532695e73",
+              "mem": "10379035511836155365554480411394130326969114349286542372",
+              "m": "6307",
+              "beta": "834",
+              "d": "8355",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.01530328399999803
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 93.015,
+            "cost_fields": {
+              "rop": "1.00070264268784e28",
+              "red": "1.00070264268784e28",
+              "delta": "1.00435641584203",
+              "beta": "351",
+              "d": "4411",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.3044133359999961
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 221.01000000000002,
+            "cost_fields": {
+              "rop": "3.39343349071511e66",
+              "mem": "10379035511836155365554480411394130326969114349286542372",
+              "m": "6307",
+              "beta": "834",
+              "d": "8355",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.013792916999989302
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 2048,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "random_rows": 249856,
+      "m1": 249856,
+      "m2": 749568,
+      "hadamard_scale": 1691,
+      "root_dimension": 999424,
+      "parent_dimension": 999424,
+      "leaf_dimension": 999424,
+      "root_gs_squared_bound": "716995772421",
+      "matrix_R_width_squared": "427329480362916",
+      "matrix_R_support_radius": 118180880,
+      "transformation_operator_squared_bound": "13950635369499020916844134400",
+      "parent_width_squared": "5961517763180533254661233869259517879910400",
+      "parent_gs_squared_bound": "5958083928948941267506548998550824397611571609600",
+      "leaf_width_squared": "49538957610608719761677617829263886374618760370109455002396813529086731223040000",
+      "decrypt_width_squared": "29508212209930905446900555346750961304135920058625218085963998046838410450449895260160000",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-62444",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 2048,
+        "q": 2305843009213693951,
+        "m": 999424,
+        "secret": "uniform-mod-q",
+        "squared_width": 8281,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 999425,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "29491215479697985245363140626871232750424737768671449960346482783963431526030436120490147840000",
+        "rounding_error_upper": "85840300179434483391068758116221685601534276830147",
+        "continuous_squared_upper": "35167212775782578277626712124481377690502484498687596614959364433694847241920500921301488176945684544",
+        "phase_radius": "2305843009213693951/5",
+        "scaled_continuous_width": 91,
+        "alpha": "91/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 16374562816,
+        "root_full_basis": 5993089990656,
+        "parent_stored_full_basis": 5993089990656,
+        "leaf_material": 5993089990656,
+        "capsule_coefficients": 2046822400
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 102.49199999999999,
+            "cost_fields": {
+              "rop": "7.13126073610701e30",
+              "red": "7.13126073610701e30",
+              "delta": "1.00435641584203",
+              "beta": "351",
+              "d": "4411",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.30710107600000924
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 243.528,
+            "cost_fields": {
+              "rop": "2.03813423532695e73",
+              "mem": "10379035511836155365554480411394130326969114349286542372",
+              "m": "6307",
+              "beta": "834",
+              "d": "8355",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.015773276999993868
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 93.015,
+            "cost_fields": {
+              "rop": "1.00070264268784e28",
+              "red": "1.00070264268784e28",
+              "delta": "1.00435641584203",
+              "beta": "351",
+              "d": "4411",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.3035916799999967
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 221.01000000000002,
+            "cost_fields": {
+              "rop": "3.39343349071511e66",
+              "mem": "10379035511836155365554480411394130326969114349286542372",
+              "m": "6307",
+              "beta": "834",
+              "d": "8355",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.01333102599998881
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 2048,
+      "q": 10141204801825835211973625643089,
+      "q_bits": 104,
+      "random_rows": 425984,
+      "m1": 425984,
+      "m2": 1277952,
+      "hadamard_scale": 2038,
+      "root_dimension": 1703936,
+      "parent_dimension": 1703936,
+      "leaf_dimension": 1703936,
+      "root_gs_squared_bound": "1774513455109",
+      "matrix_R_width_squared": "1064708073065400",
+      "matrix_R_support_radius": 186956078,
+      "transformation_operator_squared_bound": "101481232871983060687796568064",
+      "parent_width_squared": "108047887903430212863373630768416676223385600",
+      "parent_gs_squared_bound": "184106685922619263185565410917012837617370765721600",
+      "leaf_width_squared": "11210024080441422587337502547492194830941555833918053170112964530216151484989440000",
+      "decrypt_width_squared": "11460698154918621502666508844458196294873138528853795107881762597855032978036179861504000000",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-106475",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 2048,
+        "q": 10141204801825835211973625643089,
+        "m": 1703936,
+        "secret": "uniform-mod-q",
+        "squared_width": 8281,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 1703937,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "19528296171299416248767560414390721161900956172301020220943619033938713472463056168491679744000000",
+        "rounding_error_upper": "2884222896420249024182628777876078072726802602424541",
+        "continuous_squared_upper": "23286790165612387097670360161986016919605061801056302571029617524850287890443034083696859323038704139664",
+        "phase_radius": "10141204801825835211973625643089/5",
+        "scaled_continuous_width": 91,
+        "alpha": "91/10141204801825835211973625643089",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 45365592064,
+        "root_full_basis": 17420387352576,
+        "parent_stored_full_basis": 17420387352576,
+        "leaf_material": 17420387352576,
+        "capsule_coefficients": 5670702336
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 40.588,
+            "cost_fields": {
+              "rop": "1.65274352355805e12",
+              "red": "1.65274352355805e12",
+              "delta": "1.00778497316053",
+              "beta": "139",
+              "d": "4076",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.24641747899998734
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 113.00400000002047,
+            "cost_fields": {
+              "rop": "1.04134258760316e34",
+              "mem": "577142980802051272494046280",
+              "m": "6288",
+              "beta": "387",
+              "d": "8336",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.017662816999987285
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 36.835,
+            "cost_fields": {
+              "rop": "1.22585722280928e11",
+              "red": "1.22585722280928e11",
+              "delta": "1.00778497316053",
+              "beta": "139",
+              "d": "4076",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.2862935060000069
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 102.55500002862163,
+            "cost_fields": {
+              "rop": "7.44957014703903e30",
+              "mem": "577142980802051272494046280",
+              "m": "6288",
+              "beta": "387",
+              "d": "8336",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.013711611000005064
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 2048,
+      "q": 730750818665451459101842416358141509827966271787,
+      "q_bits": 160,
+      "random_rows": 655360,
+      "m1": 655360,
+      "m2": 1966080,
+      "hadamard_scale": 2218,
+      "root_dimension": 2621440,
+      "parent_dimension": 2621440,
+      "leaf_dimension": 2621440,
+      "root_gs_squared_bound": "3232786677765",
+      "matrix_R_width_squared": "1952603153370060",
+      "matrix_R_support_radius": 253551251,
+      "transformation_operator_squared_bound": "441785399892547417463691673600",
+      "parent_width_squared": "862631564943041053625847722197820601532416000",
+      "parent_gs_squared_bound": "2261336889604285539616942252878254837681136599040000",
+      "leaf_width_squared": "603411475727621578597015196417526220809250626079957194716543468473198131019776000000",
+      "decrypt_width_squared": "955411415274575451842405147964043001512033984583549965064712368836605827182610884853760000000",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-163819",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 2048,
+        "q": 730750818665451459101842416358141509827966271787,
+        "m": 2621440,
+        "secret": "uniform-mod-q",
+        "squared_width": 8281,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 2621441,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "2504553700457383072477754551078860885883706368546701220419239592163031979609583477991040614400000000",
+        "rounding_error_upper": "81028002891142530500635294100578116475639934735881857/2",
+        "continuous_squared_upper": "2986590123862212848139113102997702767424428031062719070711613131753694998756834918783801354352039489783696",
+        "phase_radius": "730750818665451459101842416358141509827966271787/5",
+        "scaled_continuous_width": 91,
+        "alpha": "91/730750818665451459101842416358141509827966271787",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 107374182400,
+        "root_full_basis": 41231686041600,
+        "parent_stored_full_basis": 41231686041600,
+        "leaf_material": 41231686041600,
+        "capsule_coefficients": 13421777920
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 12.264,
+            "cost_fields": {
+              "rop": "4918.49083897941",
+              "red": "4918.49083897941",
+              "delta": "1.01246781683130",
+              "beta": "42",
+              "d": "4214",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.259003117000006
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 56.64800011957163,
+            "cost_fields": {
+              "rop": "1.12913853812491e17",
+              "mem": "254554144291935",
+              "m": "6271",
+              "beta": "194",
+              "d": "8319",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.014854958000000806
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 11.13,
+            "cost_fields": {
+              "rop": "2241.11350018200",
+              "red": "2241.11350018200",
+              "delta": "1.01246781683130",
+              "beta": "42",
+              "d": "4214",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.22230521200000908
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 51.410004512555915,
+            "cost_fields": {
+              "rop": "2.99194382701172e15",
+              "mem": "254554144291935",
+              "m": "6271",
+              "beta": "194",
+              "d": "8319",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.013763687999997387
+          }
+        }
+      }
+    },
+    {
+      "family": "mp12-chkp",
+      "root_algorithm": "MP12 computational [I|Ahat] GenTrap",
+      "parent_algorithm": "MP12 Algorithm4 DelTrap",
+      "leaf_algorithm": "CHKP fixed256 SampleD",
+      "n": 8192,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "root_dimension": 516096,
+      "parent_dimension": 1032192,
+      "leaf_dimension": 1548288,
+      "root_gs_squared_bound": "2711955093585930",
+      "parent_width_squared": "1616325235777214280",
+      "parent_gs_squared_bound": "4300825604452000944019734528010",
+      "leaf_width_squared": "2580495362671200566411840716806000",
+      "root_R_width_squared": 33124,
+      "root_statistical_uniformity_upper": null,
+      "root_lwe": {
+        "n": 8192,
+        "q": 2305843009213693951,
+        "m": 8192,
+        "secret": "small-Gaussian",
+        "squared_width": 33124,
+        "distribution": "ideal D_Z,s in both secret and error; finite PMF coupling separate",
+        "independent_columns": 499712,
+        "target_columns_for_alternative_trapdoor": 499712,
+        "attack_goal": "one root column search/decision; not full trapdoor recovery",
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "ciphertext_lwe": {
+        "n": 8192,
+        "q": 2305843009213693951,
+        "m": 1548288,
+        "secret": "uniform-mod-q",
+        "squared_width": 33124,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": null,
+        "fresh_vector_per_bit": false,
+        "known_plaintext_samples_per_vector": 1548544,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "3995350004079467782568656039742128128000",
+        "rounding_error_upper": "78650826232889575501091/2",
+        "continuous_squared_upper": "17072114586031549517044736983193954522435760996",
+        "phase_radius": "576460752303423487",
+        "scaled_continuous_width": 182,
+        "alpha": "182/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 33822867456,
+        "root_full_basis": 1598130487296,
+        "parent_stored_full_basis": 6392521949184,
+        "leaf_material": 2378170368,
+        "capsule_coefficients": 12388352,
+        "compact_parent_intermediate": 1064346583040
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "DelTrap_prefix_within_current_cap": false,
+        "leaf_unit_scalar_width_within_cap": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "root_lwe": {
+          "primal_usvp-classical": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.018142339999997148
+          },
+          "dual-classical": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006291688000004569
+          },
+          "primal_usvp-quantum": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.0188398100000029
+          },
+          "dual-quantum": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.005258945999997877
+          }
+        },
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.019383947999997986
+          },
+          "dual-classical": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006309137000002352
+          },
+          "primal_usvp-quantum": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.018335418999996023
+          },
+          "dual-quantum": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.0049909569999897485
+          }
+        }
+      }
+    },
+    {
+      "family": "chkp-rom",
+      "root_algorithm": "MP12 statistical GenTrap/full-basis",
+      "parent_algorithm": "CHKP ExtBasis/RandBasis/ToBasis",
+      "leaf_algorithm": "CHKP fixed256 SampleD",
+      "n": 8192,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "m_bar": 100092,
+      "root_dimension": 599804,
+      "parent_dimension": 1199608,
+      "leaf_dimension": 1799412,
+      "root_R_width_squared": 1024,
+      "root_R_support_radius": 171,
+      "root_entropy_mass_floor": "319/10",
+      "root_regularity_target_bits": 128,
+      "root_gs_squared_bound": "14625521704304650",
+      "parent_width_squared": "8775313022582790000",
+      "parent_gs_squared_bound": "10526935704394495546320000",
+      "leaf_width_squared": "6316161422636697327792000000",
+      "root_statistical_uniformity_upper": "1/340282366920938463463374607431768211456",
+      "root_uniformity_scope": "ideal LHL term only; finite sampler/rank/abort contributions separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "statistical root; not the computational [I|Ahat] root",
+      "ciphertext_lwe": {
+        "n": 8192,
+        "q": 2305843009213693951,
+        "m": 1799412,
+        "secret": "uniform-mod-q",
+        "squared_width": 33124,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": null,
+        "fresh_vector_per_bit": false,
+        "known_plaintext_samples_per_vector": 1799668,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "11365376657829544811996858304000000",
+        "rounding_error_upper": "71503487926496244610",
+        "continuous_squared_upper": "48564208997399013663483327545558788272996",
+        "phase_radius": "576460752303423487",
+        "scaled_continuous_width": 182,
+        "alpha": "182/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 39308754944,
+        "root_full_basis": 2158589030496,
+        "parent_stored_full_basis": 8634356121984,
+        "leaf_material": 2763896832,
+        "capsule_coefficients": 14397344
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_unit_scalar_width_within_cap": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.01695492300000012
+          },
+          "dual-classical": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.007097121999990463
+          },
+          "primal_usvp-quantum": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.018503515000006132
+          },
+          "dual-quantum": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.004874659999998698
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 8192,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "random_rows": 999424,
+      "m1": 999424,
+      "m2": 2998272,
+      "hadamard_scale": 3381,
+      "root_dimension": 3997696,
+      "parent_dimension": 3997696,
+      "leaf_dimension": 3997696,
+      "root_gs_squared_bound": "11444859961349",
+      "matrix_R_width_squared": "6912695416654796",
+      "matrix_R_support_radius": 478518919,
+      "transformation_operator_squared_bound": "3659466343058981612442276069376",
+      "parent_width_squared": "25296776217066309533527659273282725781539127296",
+      "parent_gs_squared_bound": "101128821095861117356945389366165259725955843034710016",
+      "leaf_width_squared": "223526820336576273407652013929148119387398068502298771463611879374407290309124674289664",
+      "decrypt_width_squared": "539729734433558771625592802587805831050644320151056936848937194859440518211134390241091938942976",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-249834",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 8192,
+        "q": 2305843009213693951,
+        "m": 3997696,
+        "secret": "uniform-mod-q",
+        "squared_width": 33124,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 3997697,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "2157675400426100167092545844534061019567836596090599712213248828140805921890579107329252279944579383296",
+        "rounding_error_upper": "2936959366007949884858083350112168494120478206178876159/2",
+        "continuous_squared_upper": "10291800954774836438607382351825858158551762794882324390383168338469092866138664502749924066376166432584729600",
+        "phase_radius": "2305843009213693951/5",
+        "scaled_continuous_width": 182,
+        "alpha": "182/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 261993005056,
+        "root_full_basis": 95889439850496,
+        "parent_stored_full_basis": 95889439850496,
+        "leaf_material": 95889439850496,
+        "capsule_coefficients": 8187283456
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.018485699999999383
+          },
+          "dual-classical": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.00627945600000146
+          },
+          "primal_usvp-quantum": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.01871267399999965
+          },
+          "dual-quantum": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.004954667000006907
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 8192,
+      "q": 10141204801825835211973625643089,
+      "q_bits": 104,
+      "random_rows": 1703936,
+      "m1": 1703936,
+      "m2": 5111808,
+      "hadamard_scale": 4076,
+      "root_dimension": 6815744,
+      "parent_dimension": 6815744,
+      "leaf_dimension": 6815744,
+      "root_gs_squared_bound": "28350497816581",
+      "matrix_R_width_squared": "17237102672481248",
+      "matrix_R_support_radius": 757276049,
+      "transformation_operator_squared_bound": "26640046732220086968424056487936",
+      "parent_width_squared": "459197220722976198785282136130660701701698224128",
+      "parent_gs_squared_bound": "3129770701959300689013594007639733893659139460911071232",
+      "leaf_width_squared": "50693360558888053926315307016590590238003063770572301472718062738781208132856558351548416",
+      "decrypt_width_squared": "210071884585999363333735677511143011249645795956544488519952534280510724679715120590691332293394432",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-425961",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 8192,
+        "q": 10141204801825835211973625643089,
+        "m": 6815744,
+        "secret": "uniform-mod-q",
+        "squared_width": 33124,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 6815745,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "1431796186935717644645728941582507912066705835916042358362935365807185288671420254875280903930709339537408",
+        "rounding_error_upper": "98786417438481875144443716027426123342495936595717713643/2",
+        "continuous_squared_upper": "6829461633032454421619298066380974859418849231679150166481061853341317272006236926615375287180628421268661324864",
+        "phase_radius": "10141204801825835211973625643089/5",
+        "scaled_continuous_width": 182,
+        "alpha": "182/10141204801825835211973625643089",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 725849473024,
+        "root_full_basis": 278726197641216,
+        "parent_stored_full_basis": 278726197641216,
+        "leaf_material": 278726197641216,
+        "capsule_coefficients": 22682799360
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 307.476,
+            "cost_fields": {
+              "rop": "3.62659406746661e92",
+              "red": "3.62659406746661e92",
+              "delta": "1.00196448300206",
+              "beta": "1053",
+              "d": "17160",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 1.3396838719999948
+          },
+          "dual-classical": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.007036427000002732
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 279.045,
+            "cost_fields": {
+              "rop": "1.00210940953066e84",
+              "red": "1.00210940953066e84",
+              "delta": "1.00196448300206",
+              "beta": "1053",
+              "d": "17160",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 1.369558603999991
+          },
+          "dual-quantum": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.005924168000007057
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 8192,
+      "q": 730750818665451459101842416358141509827966271787,
+      "q_bits": 160,
+      "random_rows": 2621440,
+      "m1": 2621440,
+      "m2": 7864320,
+      "hadamard_scale": 4435,
+      "root_dimension": 10485760,
+      "parent_dimension": 10485760,
+      "leaf_dimension": 10485760,
+      "root_gs_squared_bound": "51631473295365",
+      "matrix_R_width_squared": "31598461656763380",
+      "matrix_R_support_radius": 1026787843,
+      "transformation_operator_squared_bound": "115920771443462018906752181862400",
+      "parent_width_squared": "3662918051678665974821865894066421548724518912000",
+      "parent_gs_squared_bound": "38408479589570088532148128517365920418753611426693120000",
+      "leaf_width_squared": "2724832437403979235346015998743672216039605253642476645415230379823826995309818413056000000",
+      "decrypt_width_squared": "17486026655045887375774966520019706406148384124873691176570674137815393198456007492006282526720000000",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-655337",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 8192,
+        "q": 730750818665451459101842416358141509827966271787,
+        "m": 10485760,
+        "secret": "uniform-mod-q",
+        "squared_width": 33124,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 10485761,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "183354278858413964009406112936961836645334480321235555991637712047339137384642065119379797067379507200000000",
+        "rounding_error_upper": "693290877460969265430219195734630558954470055791016066409",
+        "continuous_squared_upper": "874573507138478996714049804229045038293768542967127345015883117487021118379298449751467646948967918868132602475584",
+        "phase_radius": "730750818665451459101842416358141509827966271787/5",
+        "scaled_continuous_width": 182,
+        "alpha": "182/730750818665451459101842416358141509827966271787",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 1717986918400,
+        "root_full_basis": 659706976665600,
+        "parent_stored_full_basis": 659706976665600,
+        "leaf_material": 659706976665600,
+        "capsule_coefficients": 53687096320
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 164.10399999999998,
+            "cost_fields": {
+              "rop": "2.51319628135733e49",
+              "red": "2.51319628135733e49",
+              "delta": "1.00313049379242",
+              "beta": "562",
+              "d": "16628",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 1.2415315960000015
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 397.11999999999995,
+            "cost_fields": {
+              "rop": "3.50777620783826e119",
+              "mem": "12139818143440225712832670185524800036476353078921445425207717369075326323141909989899496",
+              "m": "24847",
+              "beta": "1360",
+              "d": "33039",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.023833335999995597
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 148.93,
+            "cost_fields": {
+              "rop": "6.79825192346120e44",
+              "red": "6.79825192346120e44",
+              "delta": "1.00313049379242",
+              "beta": "562",
+              "d": "16628",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 1.2769243670000066
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 360.40000000000003,
+            "cost_fields": {
+              "rop": "3.09892051675715e108",
+              "mem": "12139818143440225712832670185524800036476353078921445425207717369075326323141909989899496",
+              "m": "24847",
+              "beta": "1360",
+              "d": "33039",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.01617089200000521
+          }
+        }
+      }
+    },
+    {
+      "family": "mp12-chkp",
+      "root_algorithm": "MP12 computational [I|Ahat] GenTrap",
+      "parent_algorithm": "MP12 Algorithm4 DelTrap",
+      "leaf_algorithm": "CHKP fixed256 SampleD",
+      "n": 16384,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "root_dimension": 1032192,
+      "parent_dimension": 2064384,
+      "leaf_dimension": 3096576,
+      "root_gs_squared_bound": "21630469988679690",
+      "parent_width_squared": "12978281993207814000",
+      "parent_gs_squared_bound": "138133900932002973195278745600010",
+      "leaf_width_squared": "83432876162929795809948362342406040",
+      "root_R_width_squared": 66049,
+      "root_statistical_uniformity_upper": null,
+      "root_lwe": {
+        "n": 16384,
+        "q": 2305843009213693951,
+        "m": 16384,
+        "secret": "small-Gaussian",
+        "squared_width": 66049,
+        "distribution": "ideal D_Z,s in both secret and error; finite PMF coupling separate",
+        "independent_columns": 999424,
+        "target_columns_for_alternative_trapdoor": 999424,
+        "attack_goal": "one root column search/decision; not full trapdoor recovery",
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "ciphertext_lwe": {
+        "n": 16384,
+        "q": 2305843009213693951,
+        "m": 3096576,
+        "secret": "uniform-mod-q",
+        "squared_width": 66049,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": null,
+        "fresh_vector_per_bit": false,
+        "known_plaintext_samples_per_vector": 3096832,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "258356241937100495389986660068798325719040",
+        "rounding_error_upper": "894438224939329671766357/2",
+        "continuous_squared_upper": "2201278113657758029981706529504043819388785132161",
+        "phase_radius": "576460752303423487",
+        "scaled_continuous_width": 257,
+        "alpha": "257/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 135291469824,
+        "root_full_basis": 6392521949184,
+        "parent_stored_full_basis": 25570087796736,
+        "leaf_material": 4756340736,
+        "capsule_coefficients": 24774656,
+        "compact_parent_intermediate": 4257386332160
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "DelTrap_prefix_within_current_cap": false,
+        "leaf_unit_scalar_width_within_cap": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "root_lwe": {
+          "primal_usvp-classical": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.02167666600000473
+          },
+          "dual-classical": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.00738538999999605
+          },
+          "primal_usvp-quantum": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.02131297799999743
+          },
+          "dual-quantum": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006332645000000525
+          }
+        },
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.022911857000011082
+          },
+          "dual-classical": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.00906722099999513
+          },
+          "primal_usvp-quantum": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.02136556800000733
+          },
+          "dual-quantum": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006193393000003766
+          }
+        }
+      }
+    },
+    {
+      "family": "chkp-rom",
+      "root_algorithm": "MP12 statistical GenTrap/full-basis",
+      "parent_algorithm": "CHKP ExtBasis/RandBasis/ToBasis",
+      "leaf_algorithm": "CHKP fixed256 SampleD",
+      "n": 16384,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "m_bar": 200125,
+      "root_dimension": 1199549,
+      "parent_dimension": 2399098,
+      "leaf_dimension": 3598647,
+      "root_R_width_squared": 1024,
+      "root_R_support_radius": 171,
+      "root_entropy_mass_floor": "319/10",
+      "root_regularity_target_bits": 128,
+      "root_gs_squared_bound": "58484844564480010",
+      "parent_width_squared": "35324846116945926040",
+      "parent_gs_squared_bound": "84747767669472737270711920",
+      "leaf_width_squared": "51187651672361533311509999680",
+      "root_statistical_uniformity_upper": "1/340282366920938463463374607431768211456",
+      "root_uniformity_scope": "ideal LHL term only; finite sampler/rank/abort contributions separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "statistical root; not the computational [I|Ahat] root",
+      "ciphertext_lwe": {
+        "n": 16384,
+        "q": 2305843009213693951,
+        "m": 3598647,
+        "secret": "uniform-mod-q",
+        "squared_width": 66049,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": null,
+        "fresh_vector_per_bit": false,
+        "known_plaintext_samples_per_vector": 3598903,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "184206289127788814766865525818432960",
+        "rounding_error_upper": "814182663627057239061/2",
+        "continuous_squared_upper": "1569496713587570722023234443806836544700481",
+        "phase_radius": "576460752303423487",
+        "scaled_continuous_width": 257,
+        "alpha": "257/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 157227286528,
+        "root_full_basis": 8633506820406,
+        "parent_stored_full_basis": 34534027281624,
+        "leaf_material": 5527521792,
+        "capsule_coefficients": 28791224
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_unit_scalar_width_within_cap": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.020719628000009038
+          },
+          "dual-classical": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.0085765379999998
+          },
+          "primal_usvp-quantum": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.021989472000001342
+          },
+          "dual-quantum": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.005829289000004678
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 16384,
+      "q": 2305843009213693951,
+      "q_bits": 61,
+      "random_rows": 1998848,
+      "m1": 1998848,
+      "m2": 5996544,
+      "hadamard_scale": 4782,
+      "root_dimension": 7995392,
+      "parent_dimension": 7995392,
+      "leaf_dimension": 7995392,
+      "root_gs_squared_bound": "45766073548805",
+      "matrix_R_width_squared": "27825772717673440",
+      "matrix_R_support_radius": 963252738,
+      "transformation_operator_squared_bound": "59314384331537037320432035823616",
+      "parent_width_squared": "1650468577298080254730118831486612467289727959040",
+      "parent_gs_squared_bound": "13196143259180452484027154264317409428068552605884743680",
+      "leaf_width_squared": "475894436685183083474698827807486592129837954456783191326873748354295838137567973254103040",
+      "decrypt_width_squared": "2313417243725669361242555039838904350003878960154958233590968297581985666806070770669738203220541440",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-499689",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 16384,
+        "q": 2305843009213693951,
+        "m": 7995392,
+        "secret": "uniform-mod-q",
+        "squared_width": 66049,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 7995393,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "18496677723146267005523834625087657128786213806991271821187359198740627544495923791246659472123891265044480",
+        "rounding_error_upper": "384562334471567662452679469773116951319398715288798824961/2",
+        "continuous_squared_upper": "175922937638796641680489500453947711860684891546267177924502595615562394189430604591532562617744748183710729266176",
+        "phase_radius": "2305843009213693951/5",
+        "scaled_continuous_width": 257,
+        "alpha": "257/2305843009213693951",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 1047972020224,
+        "root_full_basis": 383557759401984,
+        "parent_stored_full_basis": 383557759401984,
+        "leaf_material": 383557759401984,
+        "capsule_coefficients": 16374564864
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.020205479000011906
+          },
+          "dual-classical": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.007449604000001386
+          },
+          "primal_usvp-quantum": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.020312383999993244
+          },
+          "dual-quantum": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.0059595719999947505
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 16384,
+      "q": 10141204801825835211973625643089,
+      "q_bits": 104,
+      "random_rows": 3407872,
+      "m1": 3407872,
+      "m2": 10223616,
+      "hadamard_scale": 5765,
+      "root_dimension": 13631488,
+      "parent_dimension": 13631488,
+      "leaf_dimension": 13631488,
+      "root_gs_squared_bound": "113379301654533",
+      "matrix_R_width_squared": "69388132612574196",
+      "matrix_R_support_radius": 1524402844,
+      "transformation_operator_squared_bound": "431803374377934619214779865104384",
+      "parent_width_squared": "29962029803893150135095181136865117953994484875264",
+      "parent_gs_squared_bound": "408427049727411829348748340525003213008460372643342712832",
+      "leaf_width_squared": "107932429094826808986220829081331288839341154075414917198480835517383583328757569010748358656",
+      "decrypt_width_squared": "900423122554393295369664374946997714556863876247323757752996098082135121816290820410063130687843598336",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-851944",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 16384,
+        "q": 10141204801825835211973625643089,
+        "m": 13631488,
+        "secret": "uniform-mod-q",
+        "squared_width": 66049,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 13631489,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "12274106990022741553112035491117499982009315246698878835924873275053447927417306522929930645213771756594003968",
+        "rounding_error_upper": "6467502264112690691597283948102913469321318983445101451245",
+        "continuous_squared_upper": "116739718932097736185175543830006044908889589833006851786670555798628382877435310790203182108165482329579308094054464",
+        "phase_radius": "10141204801825835211973625643089/5",
+        "scaled_continuous_width": 257,
+        "alpha": "257/10141204801825835211973625643089",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 2903397892096,
+        "root_full_basis": 1114904790564864,
+        "parent_stored_full_basis": 1114904790564864,
+        "leaf_material": 1114904790564864,
+        "capsule_coefficients": 45365595392
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.02494328900000653
+          },
+          "dual-classical": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.007299506999999039
+          },
+          "primal_usvp-quantum": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "KeyError",
+            "error": "'beta'",
+            "elapsed_seconds": 0.02366456800000094
+          },
+          "dual-quantum": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.005768329000005679
+          }
+        }
+      }
+    },
+    {
+      "family": "abb-rom",
+      "root_algorithm": "AP09 Algorithm1/section3.3",
+      "parent_algorithm": "ABB SampleR/BasisDel/RandBasis",
+      "leaf_algorithm": "ABB BasisDel/fresh SamplePre per bit",
+      "n": 16384,
+      "q": 730750818665451459101842416358141509827966271787,
+      "q_bits": 160,
+      "random_rows": 5242880,
+      "m1": 5242880,
+      "m2": 15728640,
+      "hadamard_scale": 6271,
+      "root_dimension": 20971520,
+      "parent_dimension": 20971520,
+      "leaf_dimension": 20971520,
+      "root_gs_squared_bound": "206375883898885",
+      "matrix_R_width_squared": "127127544481713160",
+      "matrix_R_support_radius": 2066321821,
+      "transformation_operator_squared_bound": "1877827703500689619108806157926400",
+      "parent_width_squared": "238723624905777190572458254229358762923785191424000",
+      "parent_gs_squared_bound": "5006397274184004467634119727736081883831419617652244480000",
+      "leaf_width_squared": "5791109321654925855120485630455897454989295440358023787818484212728276288261162430103552000000",
+      "decrypt_width_squared": "74812192816143989772212641954232172958678379213840295464454036390739825258793555605717789588848640000000",
+      "normalized_quality_conditioning_used": false,
+      "paper_strict_setup_dimension_sufficient": true,
+      "root_LHL_dyadic_upper": "2^-1310696",
+      "root_regularity_target_bits": 128,
+      "root_uniformity_scope": "LHL term only; rank/uniform-byte abort separate",
+      "root_lwe": null,
+      "root_lwe_absence_reason": "AP09 statistical root; no computational MP12 root LWE role",
+      "ciphertext_lwe": {
+        "n": 16384,
+        "q": 730750818665451459101842416358141509827966271787,
+        "m": 20971520,
+        "secret": "uniform-mod-q",
+        "squared_width": 66049,
+        "distribution": "rounded-continuous-Gaussian",
+        "estimator_distribution": "DiscreteGaussian(sigma=chi/sqrt(2*pi)) comparator ONLY",
+        "attack_goal": "recover fresh encryption vector from public preamble, then decode message",
+        "independently_encrypted_seed_bits": 256,
+        "fresh_vector_per_bit": true,
+        "known_plaintext_samples_per_vector": 20971521,
+        "samples_from_different_fresh_vectors_pooled": false,
+        "literal_noise_distribution_estimate": false,
+        "multi_target_or_reduction_loss_applied": false
+      },
+      "noise": {
+        "conditional_noise_sufficient": false,
+        "assumed_preimage_norm_squared": "1568925397887620004387752864996019099846382803250636033138707113249128060211294227256422738718331030732800000000",
+        "rounding_error_upper": "90695576463667979536380399047694763673932450827550133142240",
+        "continuous_squared_upper": "14922137319131435568452163213137577435708538239153781346957157063902519522303779504108488283720890771842685718357650576",
+        "phase_radius": "730750818665451459101842416358141509827966271787/5",
+        "scaled_continuous_width": 257,
+        "alpha": "257/730750818665451459101842416358141509827966271787",
+        "error_bits": 128,
+        "bits_per_seed": 256,
+        "encapsulations": 1048576,
+        "conditional_ideal_noise_lifetime_upper": null,
+        "preimage_norm_event_proved": false,
+        "total_sampler_TV_or_failure_upper": null,
+        "strict_Regev_noise_prerequisite": true
+      },
+      "minimum_wire_bytes": {
+        "public_root_residues": 6871947673600,
+        "root_full_basis": 2638827906662400,
+        "parent_stored_full_basis": 2638827906662400,
+        "leaf_material": 2638827906662400,
+        "capsule_coefficients": 107374187520
+      },
+      "current_execution_gates": {
+        "root_n_within_current_cap": false,
+        "root_dimension_within_current_cap": false,
+        "parent_dimension_within_current_cap": false,
+        "leaf_dimension_within_current_cap": false,
+        "modulus_within_current_cap": true,
+        "root_wire_not_excluded_by_lower_bound": false,
+        "parent_wire_not_excluded_by_lower_bound": false,
+        "leaf_wire_not_excluded_by_lower_bound": false,
+        "Hybrid_capsule_not_excluded_by_lower_bound": false,
+        "Hybrid_parent_not_excluded_by_lower_bound": false,
+        "leaf_scalar_not_excluded_by_determinant_bound": false,
+        "decrypt_scalar_not_excluded_by_determinant_bound": false,
+        "byte_backend_current_noise_recipe": false
+      },
+      "projection_only": true,
+      "root_or_key_generated": false,
+      "private_entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "estimator_results": {
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 412.304,
+            "cost_fields": {
+              "rop": "1.30578396821153e124",
+              "red": "1.30578396821153e124",
+              "delta": "1.00156778778987",
+              "beta": "1412",
+              "d": "33631",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 2.8534906510000013
+          },
+          "dual-classical": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.008025213999999892
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 374.18,
+            "cost_fields": {
+              "rop": "4.35916971369343e112",
+              "red": "4.35916971369343e112",
+              "delta": "1.00156778778987",
+              "beta": "1412",
+              "d": "33631",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 2.8201001770000005
+          },
+          "dual-quantum": {
+            "status": "no_finite_estimate",
+            "rop_log2": null,
+            "cost_fields": {
+              "rop": "+Infinity",
+              "mem": "+Infinity",
+              "m": "+Infinity",
+              "beta": "47",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006067561999998361
+          }
+        }
+      }
+    }
+  ],
+  "common_inputs": {
+    "identity_bytes_per_level": 86,
+    "seed_bytes": 32,
+    "epsilon_bits": 128,
+    "noise_error_bits": 128,
+    "encapsulations": 1048576,
+    "noise_width_rule": "smallest integer chi > 2*sqrt(n)",
+    "finite_tail_bits": 128,
+    "finite_mass_bits": 256,
+    "finite_precision_bits": 320
+  },
+  "environment": {
+    "python": "3.13.14",
+    "sage": "10.9",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "source_sha256": {
+    "experiments/research/abb_rom/scaled_parameter_screen.py": "5341a71418187dee1ed722e23f035a4891c1fcff876c0f95ca224abbc71b9e78",
+    "src/ibme/hibe/abb_rom/params.py": "dffc31745ae5606e06d1879c2de4401bef6896a9bade77dcf7d1a8bcb85eb5e0",
+    "src/ibme/hibe/abb_rom/trapgen.py": "e632c46da9c563b3ee3d6df18b957d33f1712207f4cf16600415e358e328320a",
+    "src/ibme/lattice/matrix_sampling/scalar.py": "6365371e7fdbdc86b022d5a55e53d59a0f58564ca715efac873f9fdde66c9b68",
+    "src/ibme/lattice/matrix_sampling/chkp_profiles.py": "674e67f4a1cd95396746ba717fca7c479028bb5351007bc4cdbdfec56305db75",
+    "experiments/research/first_suite/hibe_reference.py": "1806b423408ad65654926df27f0f5d3ba4316c4c7a514fab95d3af2896d34106",
+    "experiments/research/first_suite/computational_root.py": "1c50724fcbbc58e1fe217ea40e2d094c01e964dca915c869bd663a2955884e82"
+  },
+  "size_scope": "codec coefficient/entry LOWER bounds; no headers, nested caches, workspace or RSS",
+  "projected_process_peak_RSS": null,
+  "projected_stage_seconds": null,
+  "root_or_key_generations": 0,
+  "private_entropy_bytes": 0,
+  "secure_candidate_selected": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "unresolved": [
+    "literal finite/rounded-noise attack estimates",
+    "all relevant attack families",
+    "query/multi-target/256-bit reduction losses",
+    "formal HIBE/ROM mapping",
+    "full sampler TV and aborts",
+    "complete-basis runtime and workspace"
+  ],
+  "estimator": {
+    "repository": "https://github.com/malb/lattice-estimator",
+    "commit": "53da5982597709ba0fdf94ea37a84d822310fd84",
+    "models": "ADPS16 classical/quantum Core-SVP; primal-uSVP LGSA and plain dual",
+    "attack_families": [
+      "primal_usvp",
+      "dual"
+    ],
+    "excluded_attacks": [
+      "BDD/hybrid",
+      "BKW",
+      "algebraic"
+    ],
+    "scope": "Gaussian comparators; estimated costs are not proven security bits",
+    "completed": true
+  }
+}

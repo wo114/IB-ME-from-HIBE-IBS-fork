@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "isolated_interpreter": true,
+  "providers": {
+    "ibme.lattice.matrix_sampling.mp12_structured": "ibme/lattice/matrix_sampling/mp12_structured.py",
+    "ibme.lattice.matrix_sampling.scalar": "ibme/lattice/matrix_sampling/scalar.py",
+    "ibme.lattice.matrix_sampling.gpv": "ibme/lattice/matrix_sampling/gpv.py",
+    "ibme.lattice.chkp.basis": "ibme/lattice/chkp/basis.py",
+    "ibme.lattice.chkp.entropy": "ibme/lattice/chkp/entropy.py",
+    "ibme.core.randomness": "ibme/core/randomness.py"
+  },
+  "n": 2,
+  "q": 257,
+  "total_dimension": 22,
+  "rng": "explicit deterministic TEST entropy; saved real root reused",
+  "full_kernel_bases_expanded": 0,
+  "native_Gram_qFALL_dependencies_configured": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

@@ -1,0 +1,209 @@
+{
+  "schema": "MP12-STRUCTURED-ACTUAL-INPUT-SCREEN/1",
+  "rows": [
+    {
+      "family": "mp12-structured-tool-diagnostic",
+      "n": 2,
+      "q": 257,
+      "q_bits": 9,
+      "root_R_squared": 16,
+      "prefix": 4,
+      "gadget_columns": 18,
+      "total_dimension": 22,
+      "root_R_entries": 72,
+      "public_root_frobenius_bound": 1152,
+      "finite_root_R_scalar_coupling_upper": "4940105021797836759382923236960991221631869424600676101677861819545427752533993592179877327858383519/23258839177459420497578361852416145099316523541994177929007686373780457219628733546438113622840434097944400691400517693873107252115668992",
+      "ideal_root_R_norm_abort_upper": "2^-72",
+      "finite_R_support_injective_mod_q": true,
+      "SampleD_r_squared": 536,
+      "SampleD_output_squared": 6271200,
+      "root_lwe": {
+        "n": 2,
+        "q": 257,
+        "m": 2,
+        "secret": "small-Gaussian",
+        "squared_width": 16,
+        "independent_columns": 18,
+        "target_columns_for_alternative_trapdoor": 18,
+        "distribution": "ideal small Gaussian secret/error; finite PMF and whole-R norm cutoff separate",
+        "attack_goal": "one root column search/decision, not a full trapdoor recovery attack"
+      },
+      "ciphertext_lwe": null,
+      "ciphertext_role_absence_reason": "no noisy encryption/HIBE implemented in this tool batch",
+      "estimator_results": {
+        "root_lwe": {
+          "primal_usvp-classical": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "AssertionError",
+            "error": "",
+            "elapsed_seconds": 0.017954204000000473
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.684390189156328,
+            "cost_fields": {
+              "rop": "3291.18221860709",
+              "mem": "12610",
+              "m": "2",
+              "beta": "40",
+              "d": "4",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.01709150000000026
+          },
+          "primal_usvp-quantum": {
+            "status": "error",
+            "rop_log2": null,
+            "exception_type": "AssertionError",
+            "error": "",
+            "elapsed_seconds": 0.003676629000000098
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.609265337983041,
+            "cost_fields": {
+              "rop": "1562.09376410665",
+              "mem": "12610",
+              "m": "2",
+              "beta": "40",
+              "d": "4",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.007693587000000335
+          }
+        }
+      },
+      "root_or_key_generated": false,
+      "entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false
+    },
+    {
+      "family": "mp12-structured-tool-diagnostic",
+      "n": 128,
+      "q": 65537,
+      "q_bits": 17,
+      "root_R_squared": 529,
+      "prefix": 256,
+      "gadget_columns": 2176,
+      "total_dimension": 2432,
+      "root_R_entries": 557056,
+      "public_root_frobenius_bound": 294682624,
+      "finite_root_R_scalar_coupling_upper": "67023479764287201013068534798727418317178609861840085360206354432655918594342685097177935360077073/22181357552966518876627313473144669627491496603006532601363836644916970462445004984319795248833116624779129687691228574631793262592",
+      "ideal_root_R_norm_abort_upper": "2^-557056",
+      "finite_R_support_injective_mod_q": true,
+      "SampleD_r_squared": 564,
+      "SampleD_output_squared": 1662022272000,
+      "root_lwe": {
+        "n": 128,
+        "q": 65537,
+        "m": 128,
+        "secret": "small-Gaussian",
+        "squared_width": 529,
+        "independent_columns": 2176,
+        "target_columns_for_alternative_trapdoor": 2176,
+        "distribution": "ideal small Gaussian secret/error; finite PMF and whole-R norm cutoff separate",
+        "attack_goal": "one root column search/decision, not a full trapdoor recovery attack"
+      },
+      "ciphertext_lwe": null,
+      "ciphertext_role_absence_reason": "no noisy encryption/HIBE implemented in this tool batch",
+      "estimator_results": {
+        "root_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 21.607999999999997,
+            "cost_fields": {
+              "rop": "3.19636337923670e6",
+              "red": "3.19636337923670e6",
+              "delta": "1.01060252764894",
+              "beta": "74",
+              "d": "256",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.055381854000000175
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 25.412555572655723,
+            "cost_fields": {
+              "rop": "4.46623421047391e7",
+              "mem": "23915809",
+              "m": "128",
+              "beta": "87",
+              "d": "256",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.017097640000000247
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 19.61,
+            "cost_fields": {
+              "rop": "800199.388147513",
+              "red": "800199.388147513",
+              "delta": "1.01060252764894",
+              "beta": "74",
+              "d": "256",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.05383279200000057
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 23.09806836262598,
+            "cost_fields": {
+              "rop": "8.97865778479561e6",
+              "mem": "23915809",
+              "m": "128",
+              "beta": "87",
+              "d": "256",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.012466882000000012
+          }
+        }
+      },
+      "root_or_key_generated": false,
+      "entropy_bytes": 0,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false
+    }
+  ],
+  "ciphertext_estimates_executed": false,
+  "whole_service_or_HIBE_security_estimated": false,
+  "cost_goal": "limited Gaussian comparator for root role only; no safety admission",
+  "root_or_key_generations": 0,
+  "entropy_bytes": 0,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "estimator": {
+    "repository": "https://github.com/malb/lattice-estimator",
+    "commit": "53da5982597709ba0fdf94ea37a84d822310fd84",
+    "models": "ADPS16 classical/quantum Core-SVP; primal-uSVP LGSA and plain dual",
+    "attack_families": [
+      "primal_usvp",
+      "dual"
+    ],
+    "excluded_attacks": [
+      "BDD/hybrid",
+      "BKW",
+      "algebraic"
+    ],
+    "scope": "Gaussian comparators; estimated costs are not proven security bits",
+    "completed": true
+  }
+}

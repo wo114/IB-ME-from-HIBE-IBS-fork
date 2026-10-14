@@ -1,0 +1,215 @@
+{
+  "schema": "MP12-STRUCTURED-REAL-PROBE/1",
+  "status": "passed",
+  "baseline_commit": "5e4f3328551a3502d31d84c2833ae3461a41d70e",
+  "n": 2,
+  "q": 257,
+  "root_R_squared": 16,
+  "samples_per_selected_level": 8,
+  "repetitions": 1,
+  "address_bytes_per_level": 86,
+  "RNG": "default system CSPRNG through explicit byte counter; no deterministic source",
+  "source_sha256_before": {
+    "experiments/research/matrix_structured_probe.py": "3dd16c7c8ad6f936d3c15f5ffb1acd4365ddd0b40e890fe7752c50ea5cf1dee8",
+    "src/ibme/lattice/matrix_sampling/mp12_structured.py": "a99cdba2fa1da1941f5fa3a68cd6281a72df3e1f05046bc2011e435e98f1897c",
+    "src/ibme/lattice/matrix_sampling/scalar.py": "6365371e7fdbdc86b022d5a55e53d59a0f58564ca715efac873f9fdde66c9b68",
+    "src/ibme/lattice/matrix_sampling/gpv.py": "9b699e1fc2f0b2a2e84c0b9b37bcd290f1af9427d11c39a420ff9b0b91e220c0",
+    "src/ibme/lattice/chkp/joint_parameters.py": "887fb6c938d25ef2466ec7af1ca5311f3e55269c6aa72ee57a51db74e8763c92"
+  },
+  "stages": [
+    {
+      "name": "structured-computational-root",
+      "seconds": 0.013971588000003976,
+      "system_entropy_bytes": 26930
+    },
+    {
+      "name": "root-SampleD-preparation",
+      "seconds": 0.10146689700000167,
+      "system_entropy_bytes": 0
+    },
+    {
+      "name": "root-fresh-preimages",
+      "seconds": 0.05972083199999645,
+      "system_entropy_bytes": 136022
+    },
+    {
+      "name": "uniform-public-first-extension",
+      "seconds": 9.615700000153993e-05,
+      "system_entropy_bytes": 140
+    },
+    {
+      "name": "Algorithm4-root-to-parent",
+      "seconds": 0.12115579299999979,
+      "system_entropy_bytes": 285551
+    },
+    {
+      "name": "uniform-public-second-extension",
+      "seconds": 8.255799999545843e-05,
+      "system_entropy_bytes": 128
+    },
+    {
+      "name": "Algorithm4-parent-to-leaf",
+      "seconds": 0.1985473669999962,
+      "system_entropy_bytes": 431669
+    },
+    {
+      "name": "leaf-SampleD-preparation",
+      "seconds": 0.04455890100000204,
+      "system_entropy_bytes": 0
+    },
+    {
+      "name": "leaf-fresh-preimages",
+      "seconds": 0.22655721000000284,
+      "system_entropy_bytes": 365833
+    },
+    {
+      "name": "fresh-process-zero-entropy-restore",
+      "seconds": 0.9466128769999997,
+      "system_entropy_bytes": 0
+    }
+  ],
+  "environment": {
+    "python": "3.13.14",
+    "sage": "10.9",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "full_HIBE_backend": false,
+  "message_or_seed_encryption": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "current_stage": "fresh-process-zero-entropy-restore",
+  "root_sampler": {
+    "profile": "IBME/MP12-STRUCTURED/1/SAMPLED",
+    "paper": "MP12 section5.4, Algorithm3, Theorem5.5; H=I; Sigma_G=5I",
+    "n": 2,
+    "q": 257,
+    "prefix_dimension": 4,
+    "gadget_columns": 18,
+    "total_dimension": 22,
+    "r_squared": "536",
+    "gadget_squared": "2680",
+    "output_squared": "6271200",
+    "declared_R_frobenius_squared_bound": "1152",
+    "ideal_perturbation_acceptance_lower": "1/4",
+    "public_perturbation_trace_bound_ratio": "1/2",
+    "ideal_perturbation_abort_upper": "19323349832288915105454068722019581055401465761603328550184537628902466746415537000017939429786029354390082329294586119505153509101332940884098040478728639542560550133727399482778062322407372338121043399668242276591791504658985882995272436541441/179769313486231590772930519078902473361797697894230657273430081157732675805500963132708477322407536021120113879871393357658789768814416622492847430639474124377767893424865485276302219601246094119453082952085005768838150682342462881473913110540827237163350510684586298239947245938479716304835356329624224137216",
+    "finite_perturbation_coupling_upper": "46763318424297101989147068720861098401220578638489733997735336597268023192337384236857458031377671/709803441694928604052074031140629428079727891296209043243642772637343054798240159498233447962659731992932150006119314388217384402944",
+    "gadget_finite_coupling_upper": "5515307051722585793803571651101311348299835974259236452636925012368925700913625096598472633784719253487601613989018244252621793405779221/41221733578850755676750420169941198336886902223265884832270983957170856492302113552876226319315788534194254158643596466025622511790873910718843040763805964529908223534170112",
+    "concrete_convolution_theorem_term": null,
+    "full_sample_TV_or_failure_upper": null,
+    "arithmetic_resource_abort_upper": null,
+    "all_proposal_precision_rational_paths_admitted": true,
+    "finite_terms_assume_directed_MPFR_MPFI_weight_bound": true,
+    "expanded_full_kernel_bases": 0,
+    "gadget_basis_dimension": 9,
+    "schur_dimension": 4,
+    "stored_R_entries": 72,
+    "finite_options": {
+      "tail_bits": 128,
+      "mass_bits": 256,
+      "precision_bits": 320,
+      "gaussian_abort_bits": 128,
+      "max_uniform_trials": 192,
+      "max_gaussian_trials": 100000,
+      "max_radius": 5192296858534827628530496329220096,
+      "rational_bits": 65536,
+      "max_tape_bytes": 17592186044416
+    },
+    "max_perturbation_trials": 512,
+    "public_random_tape_bytes": 4556726976,
+    "constant_time": false,
+    "public_diagnostics_exclude_private_geometry": true,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "root_sample_count": 8,
+  "root_perturbation_trials": [
+    2,
+    1,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "leaf_sampler": {
+    "profile": "IBME/MP12-STRUCTURED/1/SAMPLED",
+    "paper": "MP12 section5.4, Algorithm3, Theorem5.5; H=I; Sigma_G=5I",
+    "n": 2,
+    "q": 257,
+    "prefix_dimension": 40,
+    "gadget_columns": 18,
+    "total_dimension": 58,
+    "r_squared": "536",
+    "gadget_squared": "2680",
+    "output_squared": "51369804903638112480",
+    "declared_R_frobenius_squared_bound": "9583918825305600",
+    "ideal_perturbation_acceptance_lower": "1/4",
+    "public_perturbation_trace_bound_ratio": "1/2",
+    "ideal_perturbation_abort_upper": "19323349832288915105454068722019581055401465761603328550184537628902466746415537000017939429786029354390082329294586119505153509101332940884098040478728639542560550133727399482778062322407372338121043399668242276591791504658985882995272436541441/179769313486231590772930519078902473361797697894230657273430081157732675805500963132708477322407536021120113879871393357658789768814416622492847430639474124377767893424865485276302219601246094119453082952085005768838150682342462881473913110540827237163350510684586298239947245938479716304835356329624224137216",
+    "finite_perturbation_coupling_upper": "123887247920118988461860602509693496154131726037478696489310235891777179287701284898605873017871965/709803441694928604052074031140629428079727891296209043243642772637343054798240159498233447962659731992932150006119314388217384402944",
+    "gadget_finite_coupling_upper": "5515307051722585793803571651101311348299835974259236452636925012368925700913625096598472633784719253487601613989018244252621793405779221/41221733578850755676750420169941198336886902223265884832270983957170856492302113552876226319315788534194254158643596466025622511790873910718843040763805964529908223534170112",
+    "concrete_convolution_theorem_term": null,
+    "full_sample_TV_or_failure_upper": null,
+    "arithmetic_resource_abort_upper": null,
+    "all_proposal_precision_rational_paths_admitted": true,
+    "finite_terms_assume_directed_MPFR_MPFI_weight_bound": true,
+    "expanded_full_kernel_bases": 0,
+    "gadget_basis_dimension": 9,
+    "schur_dimension": 40,
+    "stored_R_entries": 720,
+    "finite_options": {
+      "tail_bits": 128,
+      "mass_bits": 256,
+      "precision_bits": 320,
+      "gaussian_abort_bits": 128,
+      "max_uniform_trials": 192,
+      "max_gaussian_trials": 100000,
+      "max_radius": 5192296858534827628530496329220096,
+      "rational_bits": 65536,
+      "max_tape_bytes": 17592186044416
+    },
+    "max_perturbation_trials": 512,
+    "public_random_tape_bytes": 30761394880,
+    "constant_time": false,
+    "public_diagnostics_exclude_private_geometry": true,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "leaf_sample_count": 8,
+  "leaf_perturbation_trials": [
+    1,
+    1,
+    1,
+    2,
+    1,
+    2,
+    1,
+    2
+  ],
+  "restore": {
+    "status": "passed",
+    "fresh_process": true,
+    "entropy_calls": 0,
+    "reused_delegated_levels": 2
+  },
+  "root_generations": 1,
+  "expanded_full_kernel_bases": 0,
+  "levels_delegated": 2,
+  "private_state_files_excluded_from_public_delivery": true,
+  "seconds": 1.8486385849999962,
+  "system_entropy_bytes": 1246273,
+  "peak_process_rss_kib": 228028,
+  "source_sha256_after": {
+    "experiments/research/matrix_structured_probe.py": "3dd16c7c8ad6f936d3c15f5ffb1acd4365ddd0b40e890fe7752c50ea5cf1dee8",
+    "src/ibme/lattice/matrix_sampling/mp12_structured.py": "a99cdba2fa1da1941f5fa3a68cd6281a72df3e1f05046bc2011e435e98f1897c",
+    "src/ibme/lattice/matrix_sampling/scalar.py": "6365371e7fdbdc86b022d5a55e53d59a0f58564ca715efac873f9fdde66c9b68",
+    "src/ibme/lattice/matrix_sampling/gpv.py": "9b699e1fc2f0b2a2e84c0b9b37bcd290f1af9427d11c39a420ff9b0b91e220c0",
+    "src/ibme/lattice/chkp/joint_parameters.py": "887fb6c938d25ef2466ec7af1ca5311f3e55269c6aa72ee57a51db74e8763c92"
+  },
+  "source_unchanged_during_execution": true
+}

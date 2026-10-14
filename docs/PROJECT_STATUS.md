@@ -1,10 +1,16 @@
 # 当前进度与并行任务
 
-更新：2026-10-12。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
+更新：2026-10-14（本次补C1 LATTE独立HIBE与安装实物，其它模块保留原验收版本）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
+
+PR #15 固定 `0435285` 已经复核并合入远端 main（`010b75e`）：四项 CI 通过，本地330 passed/21明确skip，三项真实ABB实物契约全部执行，23个运行源码/工具指纹一致。A随后交[结构化MP12工具](research/team-a-delivery/2026-10-14-mp12-structured/README.md)：系统随机的两次DelTrap与新原像/恢复、独立n128/2432维真实采样已经通过；这是A3工具执行域的推进，没有替换已有HIBE或获得正式安全准入。下方带日期的B基础/旧PR状态保留各自版本事实。
 
 2026-10-13 B增量：本地分叉克隆完成，在已审PR14 `87deec2` 上新增 [Wang+PW完整研究签名链与交付](research/team-b-delivery/2026-10-13-wang-pw/README.md)，含真实MP12采样、PW转换、冻结五方法与严格恢复；debug参数仍none/false。SRGG相关扰动/提取按独立组件交付，不计完整IBS。上游PR15仍为WIP，B基础不包含它。
 
 同日新授权完整SRGG：已完成 [SRGG完整研究IBS](research/team-b-delivery/2026-10-13-srgg-full/README.md)，含真实连续SampleF/随机舍入、Schur条件、XOF/H/挑战、四算法/五方法、固定身份缓存和恢复；组件批次与完整批次分别留证。正式安全与默认安装/真实HIBE配对未准入。
+
+同日 Sageloli 已完成批次单独交付：[矩阵／环真实采样探针与原文规格](research/team-b-delivery/2026-10-13-sageloli-probes/README.md)，包含三进制陷门、8列矩阵／9列环委派、两条签名数学链和192-bit宽度区间核验；尚无完整IBS五方法、对象或服务，不计完整后端。两套调试参数仍none/false。
+
+C1 按用户新授权优先实现较易落地的结构HIBE，已交[LATTE-3独立研究后端](research/team-c-delivery/2026-10-14-latte-hibe/README.md)，算法冻结`51c40f8`：N1024同根两次真正Delegate、四把终层密钥、32 B带噪声、2×2错配/篡改、五类对象与新进程恢复通过；116项相关Sage回归、13 provider隔离安装通过。新增的是单独HIBE，默认登记/CLI与真实IBS配对继续由统筹接入；匿名、修订后TV/RD和正式安全仍none/false/false。
 
 ## 1. 已确认的组织方式
 
@@ -29,12 +35,16 @@
 | 统一框架与协议 | `assembly` 已实现后端注册、独立选择/参数快照、能力/容量预检；复用 Baseline/BYTEAUTH/Hybrid；CLI 与真实组合驱动共用装配入口 | 本轮已补齐用户要求的三项框架工作；候选原语须各自实现并通过单体/组合验收，静态预检不等于安全准入 |
 | 可选 CLI / 状态 | `--hibe/--ibs` 和两边参数独立；v2 状态绑定完整配置、公钥摘要及对象类型；旧预设保留 | 摘要是存储一致性检查，没有外部认证或反回滚保证；持久化按所选公开对象保存，不改原语算法 |
 | HIBE 公共接口 | 六个 HIBE 方法、规范对象；Hybrid 使用独立的公开密钥绑定验证能力 | 接口存在不等于每个候选已实现 |
+| LATTE-3独立研究HIBE | [C1交付](research/team-c-delivery/2026-10-14-latte-hibe/README.md)：固定作者MIT代码、COSAC缓冲修订、真实NTRU根/Delegate/Extract/32 B加解密、严格六方法/五对象/固定树恢复、显式BackendSpec和安装；同根2×2实物通过 | 原作者ID-IND-CCA不自动提供匿名条件；整体有限分布/数值/中止与安全映射未准入，默认registry/CLI及真实IBS组合待接，不计安全组合 |
+| ABB-ROM独立完整研究后端 | [A本轮交付](research/team-a-delivery/2026-10-14-abb-complete/README.md)：真实AP09、两次BasisDel/高斯RandBasis、同组86/86 B身份及32 Bseed、256新SamplePre；同公钥2×2多地址和Luo+C64B+Hybrid+BYTEAUTH完整攻击验收已通过 | q26/n1被公开输入恢复全部256比特，none/false/false；正式参数/规范化条件化/矩阵RO/工作区失败界未准入；默认registry/CLI待统筹接入，旧q104/q80中止不能拼接为通过 |
+| A3 结构化 MP12 工具 | [本批交付](research/team-a-delivery/2026-10-14-mp12-structured/README.md)：分块gadget、精确低秩扰动、Algorithm3/4、固定地址状态与安装；n2同根22→40→58两次真实委派及16次批次原像/零熵恢复；独立n128根/2432维4原像/恢复，无全维核格基 | 仅H=I/nk列扩展的独立工具；n128/q65537根角色比较成本约21.608/19.610，参数未安全准入；具体卷积总误差、正式参数/HIBE H/G适配/32 B带噪声及组合仍WIP，未新增后端或组合数 |
 | 教学 ABB10 + 教学 SIS | 实际代码、CLI、历史攻击与回归 | 教学参数及公开认证反例；不能计入已准入安全组合 |
 | Luo 矩阵 IBS | 本地真实研究算法、适配器与历史参数筛查 | 当前暂停继续扩网格，保留为比较实例 |
 | Luo 模格 IBS | 真实算法、NTT/Hint、固定状态及reference/compact；C64B完整17字段、正确性条件/中止界、原文安全引用映射和第二十四步终验收收尾；实际CHKP组合已核对compact16383 B | 默认参数不变、C64B仍显式选择；研究候选不是正式安全等级，不自动补写完整基础归约/QROM；版本变化定向复核 |
 | Wang+PW IBS | [完整研究五方法](../experiments/research/candidates/wang_pw/)、秘密委派/真实原像、四域哈希/两个盐、固定key多消息及跨进程恢复；32次新真签验与公开伪造负控单列B交付 | q17调试参数不安全；正式参数/根近均匀、固定服务安全映射、默认登记/安装与真实CHKP配对未完成，不能计已准入安全组合 |
 | Foo–Li IBS | 已有setup/extract/sign_raw/verify、固定用户种子与严格恢复的真实研究生命周期，本批真实采样回归复验 | 共同五方法/对象、稳健服务与模型/参数仍待；不是因sign_raw命名而未实现算法 |
 | SRGG IBS | [完整研究后端](../experiments/research/candidates/srgg/backend.py)、数值连续SampleF/Schur/真gadget、签验及固定cache恢复；32次系统随机签验、恢复同key、规范加载、原文范数重试和错误拒绝均执行 | ζ一致factor2与原文Table3字面差异、连续数值总TV、HNF/强前提尚未证；n8挑战弱可公开伪造，不授安全等级；默认登记和真实HIBE组合待统筹 |
+| Sageloli SIS／RSIS | [已完成数学验证批次](research/team-b-delivery/2026-10-13-sageloli-probes/README.md)：复合模数三进制Gaussian、根／委派／一次签名原像、环旋转结构与两块范数、Table2/4宽度核验；可重放源码和公开收据 | 尚无H1/H2／盐／规范对象／完整五方法／恢复与组合；环采用明确block-Schur数值解释，总TV与固定服务模型待核；调试范数约束过弱，不授安全等级 |
 | 既有内置完整研究接线 | **教学 ABB10 + Hybrid + Luo 模格 + BYTEAUTH** | 可以验证工程流程；HIBE 不是 CHKP，不能记为真实 CHKP 组合完成 |
 | CHKP 本仓库 | `src/ibme/hibe/chkp/`公开六方法、`src/ibme/lattice/chkp/`有限工具；原CHKP父RandBasis/ToBasis与同叶256目标真实运行、保存/恢复、Hybrid+C64B+BYTEAUTH及CLI完成 | MP12仅用于此后端根生成；n2/q1099511627791可公开攻击，G-formal未准入，状态无外部防回滚保证 |
 | CHKP 历史第七步外部包 | 原输入、返工和清单保留供追溯；现行功能收尾由[完整交付](research/2026-10-12-chkp-closure/README.md)替代 | 不因旧第八步目录名未出现否定新的固定提交；历史未执行/失败/恢复不能改写为同一次全新成功 |
@@ -42,7 +52,8 @@
 | A 的 MP12 变体公开研究后端（已合入） | [第一批](research/team-a-delivery/2026-10-12-hibe-reference/README.md)：计算型 `[I\|Â]` 根、真实 DelTrap/固定256叶，六方法/五类对象/绑定、自定义 registry；原交付21项组合收据，本轮独立48项Sage测试无skip；安装接入单列 | n2/q549755813911 不安全，原交付8649次公开枚举恢复明文；原 CHKP theorem 不能直接继承。正式参数/模型和ABB-ROM仍待；原CHKP新增成果在上行单列，不升级已准入数 |
 | A 的公共安装入口（PR #13 已合入） | [第二批](research/team-a-delivery/2026-10-12-installed-api/README.md)：公共HIBE/格工具、单一 provider、wheel与默认可选登记；审查173 passed/2明确skip、55 Sage passed，仓库外安装Windows3/Sage10项，独立实际CLI8步通过 | 无Sage明确unavailable；新根/新接收者需要显式本地engine，旧状态可无engine恢复；原n2公开攻击和none/false保持；正式大尺寸部署/模型仍待 |
 | 本地 CLI 接收状态事务 | [接收状态证据](research/2026-10-10-receiver-persistence/README.md)：锁、pending、保存后输出及已有研究接收密钥复用 | 提供同 OS 本地进程失败后的保守阻止；不宣称防回滚、硬断电或跨 OS 分布式事务 |
-| 其它候选 | [候选基础包](research/2026-10-10-foundations/README.md)、Yu 同态、SRGG 代数/采样等部分实现 | 每项按实际算法和测试单独计数；不把候选卡或公开方程计作完整后端 |
+| Yu IBS 独立研究实现（fork PR 交付） | [本轮交付](research/2026-10-13-yu/README.md)：`3ddc623` 补 BPR 矩阵 PRF/密钥输入电路、四算法、真实 AP09→RandBasis/LLL→GPV、固定身份密钥与公开验签；合入上游`e030d05`后重跑472项通过/无skip，`3d15c6e`另跑3整链、12签名、24验签和120项负例/方程对照；新旧批次分别留证 | 仅小参数核心代码；q=3公开可伪造、部分错误上下文被接受。密钥输入NC1与Lemma7谱界、正式参数、公共后端及Wang/HIBE组合未准入；`security_claim=none` |
+| 其它候选 | [候选基础包](research/2026-10-10-foundations/README.md)、SRGG 代数/采样等部分实现；此行未重新审查后续远端PR | 每项按实际算法和测试单独计数；不把候选卡或公开方程计作完整后端 |
 
 ### 外部交付与接收记录
 
@@ -82,9 +93,19 @@
 
 此前的[分工修订](workplans/2026-10-12/PR审查与分工修订说明.md)在 PR #11 工作树完成，当时没有合并。2026-10-12 本轮依用户授权完成 #9/#10/#11/#12 审查与合入，C64B 与 MP12 源码均已接收；没有改变密码算法或提升安全声明。后续按三人任务书推进，不把“代码已合入”写成“项目/正式参数已完成”。
 
-A 随后按新任务书开始独立分支实施，新增 MP12 变体研究后端和真实单配对，范围/攻击/参数缺口见上表交付。A 目标仍 active：公开接口及安装工具已实跑，正式维度/两角色困难性/模型对应和大尺寸部署工具未闭合，A2/AR 尚未交付。新结果不覆盖原型/旧报告或其它未测组合。
+A 随后按新任务书开始独立分支实施，新增 MP12 变体研究后端和真实单配对，范围/攻击/参数缺口见上表交付。2026-10-14的A2真实完整生命周期、2×2及Luo组合已通过（见上表新交付）；正式维度/两角色困难性/模型对应和大尺寸部署工具仍未闭合，AR储备说明已交。下方按日期的WIP/中止保留为历史，不覆盖新结果或其它未测组合。
 
 A 第二批已补[可安装公开 API 与默认 CLI](research/team-a-delivery/2026-10-12-installed-api/README.md)：Windows/Sage 均在仓库外验证 provider 来自安装包；Sage 无native/无熵重放原四种匹配，新安装CLI真实8步通过，55项Sage回归通过。默认入口在无Sage时明确 unavailable；缺native只阻止新根/新receiver，并在地址写入前拒绝。原n2攻击/none/false、ABB、正式维度/模型与双角色困难性仍待；原CHKP本轮功能收尾不替代A后续范围，不能称A全部完成。
+
+A2 已有[SampleR/BasisDel原语批次](research/team-a-delivery/2026-10-12-abb-primitives/README.md)：整矩阵Gaussian条件采样、变换子格的完整格补全、真实随机化、非交换两层及直接产品核验。24项新Sage测试/57项含相关回归通过，保存私有84维输入复用成功；旧偏斜基准入失败保持，未调旧guard。随后[AP09根/原文位加解密批次](research/team-a-delivery/2026-10-12-abb-root-bits/README.md)补真实TrapGen族、208维核验、同一248维真实根的八比特恢复及公开n1攻击，33项新测试纳入116 Sage pass/3旧私有witness skip；三组同输入资源/宽度筛查明确不可执行项。仍无完整ABB两层后端/codec/组合，none/false和已准入数保持；正式域与共享委派/宽Gaussian工具继续。原CHKP最新PR #14已交研究整链，本A2分支尚未合入该PR，不重复编写其实现。
+
+A3 已补[单源矩阵有限工具](research/team-a-delivery/2026-10-12-matrix-tools/README.md)：旧scalar/GPV/RandBasis/ToBasis兼容入口与显式宽profile共用数学源，实际257维GPV、2^192平方宽度及ABB双委派消费者测试通过；Sage168 pass/3旧私有witness skip、Windows116 pass/5 Sage skip，隔离安装调用通过。2026-10-13，同一248维真实AP09根/R的两次BasisDel/RandBasis、固定规约和最终SamplePre实际九阶段通过，约10.29小时/峰值RSS1184036 KiB；首轮中断与来源链保留。同组两层噪声界仍失败，没有身份oracle/五类对象/完整HIBE，宽profile和实现后处理不增加已准入数。
+
+2026-10-13，A2交[研究后端/五类对象/固定状态与容量筛查](research/team-a-delivery/2026-10-13-abb-backend-wip/README.md)，独立BackendSpec可供统筹接入，默认registry/协议/CLI未改。真实q160和q104 Setup通过，父过程的中断/FAILED及零私有熵禁止重发证据保留，不能称完整HIBE通过；新q104单地址配置的4MiB capsule容量预检通过。[规范核格与精确三角计算](research/team-a-delivery/2026-10-13-abb-canonical-fix/README.md)相关Sage最终227 pass/3旧私有witness skip，仓库外隔离安装71个provider通过。正条件完整父/叶/256bit/Luo组合及正式域仍WIP；不得据接口或公开代数测试增加已准入数。
+
+A 后续先完成[PR14/15/16固定版本复核](research/team-a-delivery/2026-10-13-pr-review/README.md)，再交[CHKP共享引擎配置与8文件接入提案](research/team-a-delivery/2026-10-13-chkp-shared-profiles/README.md)：当前A分支60 pass/7待接实际扩展消费者skip，独立候选副本1122 pass/4外部witness skip；未修改队友源码或默认registry，统筹仍需实际共享合并、安装/CLI与组合复核，不升级正式准入。ABB规范q104实例的进程已不在运行，仍是父pending且无完成收据；同一master只读恢复确认FAILED及重发私有熵0，终止原因和父总耗熵未知，不能继续写为正在运行或完整通过。
+
+AR交[三个储备说明](research/team-a-delivery/2026-10-13-reserves/README.md)：固定原稿下GKR匿名LWE的LO缺口、ABB标准模型的选择性结论、CHKP标准模型的admissible hash/维度/归约条件；有限对象计数7项通过。完成的是模型/缺失模块/成本与重启材料，三项backend均未编码或登记。
 
 ## 4. 当前入口与证据定位
 

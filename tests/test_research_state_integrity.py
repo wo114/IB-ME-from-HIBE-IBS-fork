@@ -176,7 +176,7 @@ def test_setup_cannot_overwrite_existing_research_state_by_switching_profile(ini
 
 
 @pytest.mark.parametrize("fail_master", [True,False])
-def test_snapshot_publication_failure_has_safe_retry_semantics(initial,tmp_path,monkeypatch,fail_master):
+def test_snapshot_publication_failure_retains_blocking_marker(initial,tmp_path,monkeypatch,fail_master):
     from types import SimpleNamespace
     from ibme import cli
     _,_,_,_,readers=initial
@@ -195,11 +195,20 @@ def test_snapshot_publication_failure_has_safe_retry_semantics(initial,tmp_path,
     assert not list(state.glob(".ibme-state-*.tmp"))
     restored=MasterSecret.from_bytes((state/"msk.bin").read_bytes(),readers["hmsk"],readers["imsk"])
     assert restored.imsk.cached_identities==(() if fail_master else (b"Alice",))
-    if not fail_master:
-        protocol,_=make_research_runtime()
-        cached_digest=sha256(protocol.skgen(restored,b"Alice").to_bytes()).digest()
-    assert cli.cmd_issue_sender_key(args)==0
-    if not fail_master: assert sha256(output.read_bytes()).digest()==cached_digest
+    # transport-and-state §2.3: either publication failure leaves the issuer
+    # blocked, including a successfully saved fixed key awaiting publication.
+    from ibme.cli_state import MasterStatePendingError,master_pending_path
+    marker=master_pending_path(state/'msk.bin')
+    assert marker.is_file()
+    before=(state/'msk.bin').read_bytes()
+    def forbidden(*args,**kwargs):
+        pytest.fail('pending issuer loaded state or attempted another extraction')
+    with monkeypatch.context() as patch:
+        patch.setattr(cli,'_load_msk',forbidden)
+        with pytest.raises(MasterStatePendingError,match='pending'):
+            cli.cmd_issue_sender_key(args)
+    assert marker.is_file() and not output.exists()
+    assert (state/'msk.bin').read_bytes()==before
 
 
 @pytest.mark.parametrize("second_operation", ["extract","snapshot"])

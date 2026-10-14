@@ -22,5 +22,8 @@ where = ["src", "."]
 include = ["ibme*", "experiments", "experiments.research", "experiments.research.first_suite"]
 namespaces = true
 
+[tool.setuptools.package-data]
+"ibme.hibe.latte" = ["native/*.c", "native/upstream/*", "native/compat/libXKCP.a.headers/*.h"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
