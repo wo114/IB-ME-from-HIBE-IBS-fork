@@ -92,6 +92,17 @@ def test_junit_counts_actual_cases_not_claimed_totals(tmp_path):
     assert run.junit_result(xml) == dict(tests=5, passed=1, failed=1, errors=1, skipped=1, xfailed=1)
 
 
+def test_git_metadata_is_best_effort_when_git_is_unavailable(monkeypatch, tmp_path):
+    def missing_git(*args, **kwargs):
+        raise FileNotFoundError("git")
+
+    monkeypatch.setattr(run.subprocess, "run", missing_git)
+    assert run.git_metadata(tmp_path) == {
+        "revision": "unavailable",
+        "working_tree_dirty": None,
+    }
+
+
 def test_missing_receipts_and_pending_routes_are_visible():
     planned = run.plan()
     rows = {row["id"]: row for row in planned["rows"]}

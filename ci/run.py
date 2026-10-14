@@ -174,14 +174,20 @@ def append_summary(text):
 def git_metadata(root):
     """Best-effort provenance; mounted CI worktrees may reject Git ownership."""
     safe = root.resolve().as_posix()
-    revision = subprocess.run(
-        ["git", "-c", f"safe.directory={safe}", "rev-parse", "HEAD"],
-        cwd=root, capture_output=True, text=True,
-    )
-    dirty = subprocess.run(
-        ["git", "-c", f"safe.directory={safe}", "status", "--porcelain", "--untracked-files=no"],
-        cwd=root, capture_output=True, text=True,
-    )
+    try:
+        revision = subprocess.run(
+            ["git", "-c", f"safe.directory={safe}", "rev-parse", "HEAD"],
+            cwd=root, capture_output=True, text=True,
+        )
+        dirty = subprocess.run(
+            ["git", "-c", f"safe.directory={safe}", "status", "--porcelain", "--untracked-files=no"],
+            cwd=root, capture_output=True, text=True,
+        )
+    except OSError:
+        # The official Sage container used by CI has Sage and Python but no
+        # Git binary.  Provenance is useful when available, but it must not
+        # turn a successful algorithm suite into a failed job.
+        return {"revision": "unavailable", "working_tree_dirty": None}
     return {
         "revision": revision.stdout.strip() if revision.returncode == 0 else "unavailable",
         "working_tree_dirty": bool(dirty.stdout.strip()) if dirty.returncode == 0 else None,
