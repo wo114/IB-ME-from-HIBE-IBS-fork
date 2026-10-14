@@ -95,6 +95,7 @@
     "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.certified_ibs_probe --private-directory test-results/cert-mldsa/real-{44,65,87}-a2ffb8c --algorithm ml-dsa-{44,65,87} --source-commit a2ffb8cb6e89dfb7bf2a4c89d2d80c354b63db0b (three separate invocations)"
   ],
   "evidence_sha256": {
+    ".gitattributes": "a045c6b033f02c3da33d9dee10cf83b0bec49dcf3b5eae149e606124c59c6e08",
     "framework-windows.json": "9df26318f7ef0cbfce46c81eac94ebb5b58a96838a620c328879e865e0b49c58",
     "framework-windows.xml": "49063974cf784058d257aa2cec29eb2c7fff66016393b09d8a7246662dde8318",
     "installed.json": "082a3e2d38dca72e90b03587d81213c8ee9100369d33eb669f07ca03367901dc",
