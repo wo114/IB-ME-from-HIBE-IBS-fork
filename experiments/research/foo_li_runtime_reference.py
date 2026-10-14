@@ -35,6 +35,38 @@ def framed(*fields):
     return b"".join(encode_bytes(x) for x in fields)
 
 
+def public_context(config, epoch, public):
+    """The same public hash context for an issuer and an independent verifier."""
+    return framed(VERSION.encode(), canonical_json(asdict(config)), epoch,
+        canonical_json([[int(x) for x in row] for row in public.rows()]))
+
+
+def modular_hash(oracle, context, config, domain, fields, count):
+    length = count*config.options.max_uniform_trials*(((config.q-1).bit_length()+7)//8)
+    source = oracle.stream(domain, context, tuple(fields), length)
+    return tuple(draw_uniform_integer(source, config.q,
+        max_trials=config.options.max_uniform_trials) for _ in range(count))
+
+
+def verify_equation(config, public, identity, message, signature, identity_matrix_for, syndrome_for):
+    """Figure 2 Ver using only the public matrix and the two public oracles."""
+    if not isinstance(signature, tuple) or len(signature) != 2:
+        return False
+    output, bit = signature
+    if type(bit) is not int or bit not in (0, 1) or not isinstance(output, tuple):
+        return False
+    if len(output) != config.m+config.w or any(type(x) is not int for x in output):
+        return False
+    if sum(x*x for x in output) > (config.m+config.w)*config.t_squared:
+        return False
+    try:
+        f = public.augment(identity_matrix_for(identity, bit))
+        u = syndrome_for(identity, message)
+    except SamplingAbort:
+        return False
+    return tuple(int(x) % config.q for x in f*vector(ZZ, output)) == u
+
+
 class AddressStream:
     """Counter-block SHAKE candidate; chunk-invariant and explicitly finite.
 
@@ -189,8 +221,7 @@ class ResearchSession:
         self.generated = GeneratedTrapdoor(config.q, self.master.a_bar, self.master.public_matrix(),
             self.master.trapdoor, self.generator.gadget, owned_tag)
         self.user_tape_bytes = user_probe.random_tape_bytes
-        self.context = framed(VERSION.encode(), canonical_json(asdict(config)), self.epoch,
-            canonical_json([[int(x) for x in row] for row in generated.public.rows()]))
+        self.context = public_context(config, self.epoch, self.generated.public)
         self.oracle = ShakeOracleCandidate() if oracle is None else oracle
         self.users, self.failures = {}, {}
 
@@ -234,10 +265,7 @@ class ResearchSession:
         return self.oracle.stream(domain, self.context, tuple(fields), length)
 
     def _modular_hash(self, domain, fields, count):
-        c = self.config
-        length = count*c.options.max_uniform_trials*(((c.q-1).bit_length()+7)//8)
-        source = self._stream(domain, fields, length)
-        return tuple(draw_uniform_integer(source, c.q, max_trials=c.options.max_uniform_trials) for _ in range(count))
+        return modular_hash(self.oracle, self.context, self.config, domain, fields, count)
 
     def identity_matrix(self, identity, bit):
         identity = self._identity(identity)
@@ -308,22 +336,8 @@ class ResearchSession:
 
     def verify(self, identity, message, signature):
         identity, message = self._identity(identity), self._message(message)
-        if not isinstance(signature, tuple) or len(signature) != 2:
-            return False
-        output, bit = signature
-        if type(bit) is not int or bit not in (0, 1) or not isinstance(output, tuple):
-            return False
-        c = self.config
-        if len(output) != c.m+c.w or any(type(x) is not int for x in output):
-            return False
-        if sum(x*x for x in output) > (c.m+c.w)*c.t_squared:
-            return False
-        try:
-            f = self.generated.public.augment(self.identity_matrix(identity, bit))
-            u = self.syndrome(identity, message)
-        except SamplingAbort:
-            return False
-        return tuple(int(x) % c.q for x in f*vector(ZZ, output)) == u
+        return verify_equation(self.config, self.generated.public, identity, message,
+            signature, self.identity_matrix, self.syndrome)
 
     def dump_secret_state(self):
         """PLAINTEXT research snapshot. Never include output in logs/reports."""
