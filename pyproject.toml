@@ -24,6 +24,7 @@ namespaces = true
 
 [tool.setuptools.package-data]
 "ibme.hibe.latte" = ["native/*.c", "native/upstream/*", "native/compat/libXKCP.a.headers/*.h"]
+"ibme.ibs.certified" = ["native/*.c", "native/upstream/*", "native/upstream/ref/*.c", "native/upstream/ref/*.h"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

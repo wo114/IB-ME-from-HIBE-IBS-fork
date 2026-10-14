@@ -222,11 +222,12 @@
       "tests": [
         "tests/test_cert_ml_dsa*.py"
       ],
-      "source_markers": [],
-      "source_stage": "candidate",
+      "source_markers": ["src/ibme/ibs/certified/backend.py"],
+      "source_stage": "standalone_primitive",
       "allow_skips": false,
       "environment": "sage",
-      "layer": "primitive"
+      "layer": "primitive",
+      "scope": "BNN certification IBS + pure external ML-DSA-44/65/87; official vectors and fixed identity lifecycle, not a complete HIBE pairing or security admission."
     },
     {
       "id": "cert-falcon",
