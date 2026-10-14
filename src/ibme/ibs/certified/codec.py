@@ -21,9 +21,16 @@ def encode(magic, *values):
 def decode(data, magic, count, *, limit=MAX_OBJECT):
     if not isinstance(data, (bytes, bytearray, memoryview)):
         raise SerializationError("certified IBS object must be bytes")
-    if len(data) > limit:
-        raise SerializationError("certified IBS object exceeds resource limit")
-    data = bytes(data)
+    try:
+        # nbytes counts the entire view, including non-byte formats and extra
+        # dimensions. Holding a view also prevents resizing a bytearray between
+        # the limit check and the bounded copy.
+        with memoryview(data) as view:
+            if view.nbytes > limit:
+                raise SerializationError("certified IBS object exceeds resource limit")
+            data = view.tobytes()
+    except ValueError as exc:
+        raise SerializationError("invalid or released certified IBS input buffer") from exc
     if not data.startswith(magic):
         raise SerializationError("certified IBS object magic/version mismatch")
     offset = len(magic)

@@ -69,6 +69,19 @@ def test_complete_parameters_and_public_codec_are_portable():
             CertifiedIBSParams.from_bytes(data)
 
 
+def test_buffer_limits_use_all_dimensions_before_copying():
+    with pytest.raises(SerializationError,match="resource limit"):
+        decode(memoryview(b"x"*32).cast("B",shape=[1,32]),b"x",0,limit=16)
+    with pytest.raises(SerializationError,match="resource limit"):
+        decode(memoryview(b"x"*32).cast("I"),b"x",0,limit=16)
+    released=memoryview(b"x");released.release()
+    with pytest.raises(SerializationError,match="released"):
+        decode(released,b"x",0)
+    public=CertifiedPublicKey(CertifiedIBSParams(),bytes(1312))
+    raw=public.to_bytes()
+    assert CertifiedPublicKey.from_bytes(memoryview(raw).cast("B",shape=[1,len(raw)]))==public
+
+
 def test_explicit_descriptor_does_not_start_native_engine_or_consume_entropy(monkeypatch):
     from ibme.assembly.registry import BackendRegistry
     from ibme.ibs.certified.registration import backend_spec, signature_size
