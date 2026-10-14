@@ -1,0 +1,71 @@
+{
+  "id": "foo-li",
+  "layer": "primitive",
+  "environment": "sage",
+  "files": [
+    "tests/test_foo_li_backend.py",
+    "tests/test_foo_li_fixed_key_audit.py",
+    "tests/test_foo_li_matrix_mass_audit.py",
+    "tests/test_foo_li_oracle_model.py",
+    "tests/test_foo_li_parameter_screen.py",
+    "tests/test_foo_li_public_verifier.py",
+    "tests/test_foo_li_runtime_reference.py",
+    "tests/test_foo_li_seed_slot_audit.py",
+    "tests/test_foo_li_service.py"
+  ],
+  "status": "passed",
+  "security_claim": "none",
+  "combination_accepted": false,
+  "command": [
+    "~/miniconda3/envs/sage/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "tests/test_foo_li_backend.py",
+    "tests/test_foo_li_fixed_key_audit.py",
+    "tests/test_foo_li_matrix_mass_audit.py",
+    "tests/test_foo_li_oracle_model.py",
+    "tests/test_foo_li_parameter_screen.py",
+    "tests/test_foo_li_public_verifier.py",
+    "tests/test_foo_li_runtime_reference.py",
+    "tests/test_foo_li_seed_slot_audit.py",
+    "tests/test_foo_li_service.py",
+    "--junitxml=<repo>/build/outputs/foo-li-backend/final-ci/foo-li.xml"
+  ],
+  "exit_code": 0,
+  "counts": {
+    "tests": 294,
+    "passed": 294,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xfailed": 0
+  },
+  "skip_reasons": [],
+  "source_sha256": {
+    "tests/test_foo_li_backend.py": "57fd9d4098a4fc52e882b48172159eb570bab51602b3bb6bc55365dc8d1e7d97",
+    "tests/test_foo_li_fixed_key_audit.py": "b139c7d3b7bedf183eba4e0c192fb3f26017b0243dd3bf24feac823c1be3d994",
+    "tests/test_foo_li_matrix_mass_audit.py": "54d13e17b3435f9888c6b74fc9292fb929ce6edf74f3e34e61715fcf653d6ef1",
+    "tests/test_foo_li_oracle_model.py": "92a1b598a762294c313ff888393625d0c124490a5a80303104a7e8aa3d289213",
+    "tests/test_foo_li_parameter_screen.py": "c57fc7921ebcfbff0f36e52e7a260531024953b1e955fb6ce9394b9729e8ea22",
+    "tests/test_foo_li_public_verifier.py": "c5eaa539d8ee0f1373f0bb3c815af5a2d5a9b3bb81c8e7194276188d4fceae29",
+    "tests/test_foo_li_runtime_reference.py": "9261e550bf1062fd3a186f4c1d92554f8c6a126d762df25b62284378827cc0ee",
+    "tests/test_foo_li_seed_slot_audit.py": "017f7345facc06d47f2265df81155832cfd09929ae9c7ef168d90327fb479b6a",
+    "tests/test_foo_li_service.py": "85725b9e5b513b7d2b9c46df77346c086e21442bf6800110773de4a768baae4b",
+    "ci/run.py": "942c38b3c973aadad93332818a347705f3c36cd4e972230e13427d9ca54fc839",
+    "ci/suites.json": "4aeaaf9a4ac6ebcc32504feb8b35416e594e12cd13a362850b67427cac4b1787",
+    "src/ibme/assembly/catalog.py": "0db1b38ce793180d84f535595ebcd3e2ba9cd38cf94d8d0cf6011ff66fed0295"
+  },
+  "revision": "unavailable",
+  "working_tree_dirty": null,
+  "publication_notes": {
+    "code_commit": "46529e08a5bc390f477f1ba539122f4b24fcf44c",
+    "source_verification": "Source hashes checked after the run against the committed implementation. The runner revision field remains unchanged.",
+    "redactions": [
+      "Local WSL username removed from command[0]; raw local receipt retained."
+    ]
+  }
+}
