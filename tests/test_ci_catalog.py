@@ -25,6 +25,11 @@ def test_all_nineteen_routes_match_catalog_and_ci():
     assert all(route.id in catalog for route in ROUTES)
 
 
+def test_discovery_matches_executable_registry_capabilities():
+    from ibme.assembly.registry import default_backend_catalog, default_registry
+    assert default_backend_catalog() == default_registry().list()
+
+
 def write_config(root, config):
     (root / "ci").mkdir(exist_ok=True)
     (root / "ci/suites.json").write_text(json.dumps(config), encoding="utf-8")
@@ -126,18 +131,25 @@ def test_stale_receipts_cannot_survive_new_invocation(tmp_path):
             run.run_suite("framework", output)
 
 
-def test_cli_lists_routes_without_runtime_or_entropy():
+@pytest.mark.parametrize("command", ["list-algorithms", "list-backends"])
+def test_cli_lists_routes_without_runtime_or_entropy(command):
     script = """
 import os
+import sys
 def forbidden(*args, **kwargs):
     raise AssertionError("catalog consumed entropy")
 os.urandom = forbidden
 from ibme.cli import main
-raise SystemExit(main(['list-algorithms', '--json']))
+code = main([sys.argv[1], '--json'])
+assert 'sage.all' not in sys.modules, 'catalog loaded Sage arithmetic'
+raise SystemExit(code)
 """
     env = dict(os.environ, PYTHONPATH=str(run.ROOT / "src") + os.pathsep + str(run.ROOT))
-    result = subprocess.run([sys.executable, "-B", "-c", script],
+    result = subprocess.run([sys.executable, "-B", "-c", script, command],
                             env=env, capture_output=True, text=True, timeout=30)
     assert result.returncode == 0, result.stderr
     data = json.loads(result.stdout)
-    assert len(data["routes"]) == 19 and data["execution"] == "not_executed"
+    if command == "list-algorithms":
+        assert len(data["routes"]) == 19 and data["execution"] == "not_executed"
+    else:
+        assert any(row["id"] == "mp12-chkp-reference" for row in data["hibe"])

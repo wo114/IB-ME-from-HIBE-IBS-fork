@@ -18,8 +18,9 @@
 | ABB-ROM、CHKP-ROM | 有 | 研究/教学后端分别记录，不能由 CI 代替安全证明 |
 | Luo 矩阵、Luo 模格 | 有 | 原有单体与组合回归继续保留 |
 | Wang–PW、SRGG | 有 | 已通过公共注册表和独立 Sage 单体测试 |
-| Yu | 有组件，未登记完整 IBS 适配器 | 测试可被目录发现，完整 IBS 仍待交付 |
-| LATTE、Foo–Li、SageLoli、ML-DSA、Falcon、Xie-NTRU | 部分来源/组件或候选 | 没有完整公共后端时保持待实现 |
+| Yu、Foo–Li | 已有独立 IBS 研究实现，未登记公共适配器 | 独立实现与公共登记分别统计；不能写成只有组件 |
+| LATTE | 已有独立 LATTE-3 HIBE，默认适配器未登记 | 本 CI 选择公开契约/复用诊断；完整原生六方法和真实实物见独立交付，不当作本 CI 重跑 |
+| SageLoli、ML-DSA、Falcon、Xie-NTRU | 部分来源/组件或候选 | 没有完整公共后端时保持待实现 |
 | GKR、Zhang、ABB标准模型、CHKP标准模型、Lai | 候选/模型路线 | 不能因为出现在目录里就算已实现 |
 
 “有适配器”只表示公共接口可以描述或构造；“测试通过”只表示本次输入和环境下的功能观察；两者都不表示正式参数、安全等级、完整归约或所有组合已经成立。所有路线和收据默认 security_claim=none。
@@ -52,3 +53,21 @@
     PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python ci/run.py run srgg2025
 
 这些命令只建立可审查的运行证据。它们不重新证明原论文定理，不给参数标注 NIST 等级，也不把有限攻击测试写成一般安全证明。
+
+## 集成审查修正
+
+PR22 的独立 LATTE-3 已先合入；本分支合并该基线并保留候选源码打包及 LATTE 原生源码包两项配置。LATTE 的公开元数据检查纳入本 CI；完整原生 `tests/test_latte_hibe.py` 仍使用指定 WSL 构建，证据见 [C1 交付](../../research/team-c-delivery/2026-10-14-latte-hibe/README.md)，本容器未执行该文件。
+
+最初远端 ABB 任务为 **181 passed / 39 skipped / 0 failed**，因误设 `allow_skips=false` 而退出失败。跳过来自通用契约中不适用的 mock/ABB 分支、可选 native/Flatter 及未提供的私有实物；修正为允许输出 **partial**。逐项 skip 原因仍进 JSON，未降低断言失败、全部跳过、空执行、缺失收据及旧 JUnit 的拒绝条件；它不等于 ABB 完整单体验收。当前默认 registry 的 ABB 仍是教学实现，另行交付的真实 ABB 研究路径不由这次教学回归替代。
+
+合并后的 Sage 集成回归最初为 **193 passed / 1 failed**：新的目录命令经旧 MP12 默认登记提前导入 `sage.all`，其模块初始化读取系统随机数。已将默认后端展示拆成无算法加载的公开 metadata；实际选用仍调用原完整登记及其参数校验，算法、wire 和安全声明不变。测试同时比较展示 metadata 与实际登记能力，并在冷启动子进程禁止 `os.urandom`、检查两个列表命令都不加载 `sage.all`。该文件同时进入 portable 和 Sage 任务，防止仅 Windows 看不到这条初始化路径。跨公共装配与 MP12 入口仅为这一展示边界修正。
+
+修正后的本地结果（各套件有重叠，不相加）：
+
+- Windows：`python -m pytest -p no:cacheprovider -q tests/test_ci_catalog.py tests/test_registry_extension_contract.py tests/test_combination_extension_contract.py tests/test_cli_selection.py tests/test_research_state_integrity.py tests/test_latte_metadata.py` → **172 passed / 2 skipped**。
+- 指定 WSL Sage：`python -m pytest -p no:cacheprovider -q tests/test_latte_hibe.py tests/test_assembly.py tests/test_hybrid_key_binding.py tests/test_ci_catalog.py tests/test_registry_extension_contract.py tests/test_combination_extension_contract.py tests/test_registered_compositions.py` → **196 passed / 0 skipped**；这里的 `python` 为 `~/miniconda3/envs/sage/bin/python`，OMP8/OpenBLAS1。
+- 同一 Sage 环境：`python ci/run.py run abb-rom --output <新目录>` → **181 passed / 39 skipped**、收据 `partial`；`python ci/run.py run latte --output <新目录>` → **14 passed**，不包含独立原生测试文件。
+- Windows Python3.14/setuptools84.0.0：`python -m pip wheel . --no-deps --no-build-isolation --wheel-dir test-results/c-structure-hibe/pr23-wheel` 成功；wheel SHA256 `7b2b96f3f2f542bebe2931f8d8af878c627cf516626ede5e51f6a7990bd45f54`。最初 Sage 构建隔离因镜像取依赖停滞而中止，其无隔离构建也因环境缺 setuptools 失败；最终使用上述已有 Windows 构建环境，没有改变算法或安装 Sage 依赖。
+- 将该 wheel 以 `--no-index --no-deps --target test-results/c-structure-hibe/pr23-installed` 安装到新目录；指定 Sage `python -I tests/install_probes/verify_latte_hibe.py <安装目录> <已有实物目录> <新收据>` 通过：13个 provider 来自安装包、原私钥零新取熵恢复解密，另建独立实例完成六方法。两个候选源包和19条路线的安装后冷启动展示在 Windows/Sage 均通过，未导入 `sage.all`、未取熵。真实 LATTE 参数和输入仍以 C1 交付为准，这些检查不升级安全声明。
+
+本次审查修正文件为 `ci/suites.json`、本说明、`src/ibme/assembly/{__init__,catalog,registry}.py`、`src/ibme/hibe/mp12_chkp/__init__.py`、`tests/test_ci_catalog.py`；PR原有范围不另算新原语。原生构建、私钥状态、完整 C1 证据和参数声明均保留。

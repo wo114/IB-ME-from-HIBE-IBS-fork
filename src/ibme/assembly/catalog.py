@@ -42,9 +42,9 @@ def algorithm_catalog(*, registry=None):
     An available registry descriptor means an interface can be constructed,
     not that this route has passed any particular combination test.
     """
-    from .registry import default_registry
-    registry = registry if registry is not None else default_registry()
-    registered = {(s["id"], role): s for role, specs in registry.list().items()
+    from .registry import default_backend_catalog
+    listing = registry.list() if registry is not None else default_backend_catalog()
+    registered = {(s["id"], role): s for role, specs in listing.items()
                   for s in specs}
     rows = []
     for route in ROUTES:

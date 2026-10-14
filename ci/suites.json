@@ -11,9 +11,10 @@
         "src/ibme/hibe/abb10.py"
       ],
       "source_stage": "teaching_backend",
-      "allow_skips": false,
+      "allow_skips": true,
       "environment": "sage",
       "layer": "primitive",
+      "scope": "ABB teaching contracts and research regression. Cross-backend inapplicability, optional native/Flatter tools and private real-state witnesses are explicit skips; any skip makes the receipt partial, never a complete primitive execution.",
       "exclude": [
         "tests/test_abb_standard*.py"
       ]
@@ -39,15 +40,17 @@
     {
       "id": "latte",
       "tests": [
+        "tests/test_latte_metadata.py",
         "tests/test_latte_reuse_probe.py"
       ],
       "source_markers": [
-        "experiments/research/reuse/latte_scalar_probe.py"
+        "src/ibme/hibe/latte/__init__.py"
       ],
-      "source_stage": "component",
+      "source_stage": "standalone_source",
       "allow_skips": true,
       "environment": "sage",
-      "layer": "primitive"
+      "layer": "primitive",
+      "scope": "Public LATTE codec/configuration and earlier reuse diagnostics. The standalone LATTE-3 implementation is delivered, but tests/test_latte_hibe.py needs the prescribed WSL native build and is not scheduled by this container job. Its real lifecycle evidence is separate; no full native rerun or default registry admission follows."
     },
     {
       "id": "gkr2025",
@@ -292,6 +295,7 @@
       "layer": "support",
       "allow_skips": true,
       "tests": [
+        "tests/test_ci_catalog.py",
         "tests/test_known_security_gaps.py",
         "tests/test_ibme_handoff_screen.py",
         "tests/test_ibme_joint_parameters.py",
@@ -306,7 +310,7 @@
         "tests/test_mp12_trapdoor_chain.py",
         "tests/test_online_sampling_reference.py"
       ],
-      "scope": "Shared mathematical support and explicit insecure-profile negative controls. Native-only skips remain incomplete evidence."
+      "scope": "Shared mathematical support, cold Sage discovery boundaries and explicit insecure-profile negative controls. Native-only skips remain incomplete evidence."
     },
     {
       "id": "chkp-composition-regression",

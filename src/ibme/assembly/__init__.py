@@ -15,7 +15,7 @@ from ibme.core.types import validate_bytes, validate_identity
 from ibme.lattice.params import Params
 from ibme.protocol.baseline import BaselineIBME, PublicKey, MasterSecret, SenderKey, ReceiverKey, DOMAIN_SIGNATURE, MAGIC_CIPHERTEXT, BOTTOM
 from ibme.protocol.byteauth import ByteAuthenticatedIBME, ENVELOPE_OVERHEAD, MAX_INNER_BYTES
-from .registry import BackendSpec, BackendRegistry, default_registry, environment_status
+from .registry import BackendSpec, BackendRegistry, default_registry, default_backend_catalog, environment_status
 
 SUITE_VERSION = "IBME/SUITE/1"
 STATE_POLICY = "single-writer-commit-before-publish-v1"
@@ -92,7 +92,7 @@ class SuiteConfig:
 
 
 def list_backends(*, registry=None):
-    return (registry or default_registry()).list()
+    return registry.list() if registry is not None else default_backend_catalog()
 
 
 def make_suite(*, hibe="abb10", ibs="sis", hibe_params=None, ibs_params=None,

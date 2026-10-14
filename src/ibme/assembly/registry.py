@@ -290,7 +290,7 @@ def _srgg_spec():
         default_preset=lambda transport: "research", validate_environment=lambda: _sage_environment("SRGG"))
 
 
-def default_registry():
+def _portable_specs():
     from ibme.hibe.abb10 import ABB10HIBE, ABB10PublicKey, ABB10MasterSecret, ABB10Level1SecretKey, ABB10Level2SecretKey, ABB10_DEBUG_PARAMS
     from ibme.hibe.mock import MockHIBE, MockHIBEPublicKey, MockHIBEMasterSecret, MockHIBELevel1SecretKey, MockHIBELevel2SecretKey
     from ibme.hibe.chkp import (CHKPHIBE, CHKPParams, CHKPPublicKey, CHKPMasterSecret,
@@ -373,9 +373,26 @@ def default_registry():
     # "reference" is the existing suite spelling for their canonical-json-v1
     # encoding, not a second algorithm or a different signature representation.
     specs.extend((_wang_pw_spec(), _srgg_spec()))
+    return specs
+
+
+def default_registry():
+    specs = _portable_specs()
     # Public optional entry, with no Sage import on non-Sage hosts. The caller
     # supplies the private arithmetic executable through an explicit local
     # environment setting; suite JSON cannot specify executables or imports.
     from ibme.hibe.mp12_chkp import default_backend_spec
     specs.append(default_backend_spec())
     return BackendRegistry(specs)
+
+
+def default_backend_catalog():
+    """Discovery metadata without importing optional Sage arithmetic providers.
+
+    Executable selection continues to use default_registry. A metadata entry
+    cannot be used as a BackendSpec or substitute for its parameter validation.
+    """
+    from ibme.hibe.mp12_chkp import backend_metadata
+    listing = BackendRegistry(_portable_specs()).list()
+    listing["hibe"].append(backend_metadata())
+    return listing
