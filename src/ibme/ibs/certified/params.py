@@ -3,7 +3,7 @@ from dataclasses import asdict, dataclass
 import json
 
 from ibme.core.errors import InvalidParameterError, SerializationError
-from .mldsa import PROFILES
+from .ordinary import PROFILES
 
 VERSION = "IBME/CERTIBS/1"
 
