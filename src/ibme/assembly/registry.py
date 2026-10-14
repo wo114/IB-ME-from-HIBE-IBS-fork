@@ -39,6 +39,8 @@ class BackendSpec:
     master_public_key: object = None
     # Optional backend-owned policy/dependency hooks. They must not generate
     # keys, consume entropy, write state, or load an algorithm from JSON.
+    # default_preset(transport) selects a declared name. Without the hook,
+    # a sole preset is unambiguous; multiple presets require explicit selection.
     default_preset: object = None
     validate_configuration: object = None
     validate_environment: object = None
@@ -69,6 +71,10 @@ class BackendRegistry:
             raise InvalidParameterError("invalid backend descriptor")
         if not spec.id or not spec.version or (spec.role, spec.id) in self._specs:
             raise InvalidParameterError("duplicate/empty backend identifier or version")
+        if any(type(value) is not bool for value in
+               (spec.available, spec.test_only, spec.two_level, spec.key_binding,
+                spec.persistent_identity_cache)):
+            raise InvalidParameterError("backend availability/capability flags must be explicit booleans")
         if any(hook is not None and not callable(hook) for hook in
                (spec.default_preset, spec.validate_configuration, spec.validate_environment)):
             raise InvalidParameterError("backend policy/dependency hooks must be callable")
@@ -116,11 +122,15 @@ def environment_status(spec):
     return dict(runtime_available=True, runtime_reason="")
 
 
-def _chkp_environment():
+def _sage_environment(label):
     # find_spec on the parent first avoids a ModuleNotFoundError on Windows.
     # No sage.all import or sampler construction is needed for discovery.
     if importlib.util.find_spec("sage") is None or importlib.util.find_spec("sage.all") is None:
-        raise InvalidParameterError("CHKP execution requires SageMath in WSL ~/miniconda3/envs/sage; no fallback")
+        raise InvalidParameterError(f"{label} execution requires SageMath in WSL ~/miniconda3/envs/sage; no fallback")
+
+
+def _chkp_environment():
+    _sage_environment("CHKP")
 
 
 def _chkp_configuration(params, config):
@@ -216,6 +226,70 @@ def _module_size(p, fmt):
             + width*p.k*p.degree + p.k*p.degree)
 
 
+def _research_object_check(value, params, types, field, label):
+    # Only public object contracts, never private matrices or trapdoors.
+    if not isinstance(value, types):
+        raise SerializationError(f"{label}: unexpected object type")
+    _equal(getattr(getattr(value, "public_key", value), field), params, label)
+
+
+def _missing_candidate(identifier, exc):
+    # Wheels currently omit candidates. Missing optional code is a reported
+    # non-registration, not permission to substitute another implementation.
+    # Unexpected missing dependencies still surface instead of being hidden.
+    if exc.name not in ("experiments", "experiments.research", "experiments.research.candidates") and not (exc.name or "").startswith("experiments.research.candidates."):
+        raise exc
+    return BackendSpec(identifier, "ibs", "unavailable-v1", available=False,
+                       reason="not registered: optional experiments.research.candidates package missing; no fallback")
+
+
+def _wang_pw_spec():
+    try:
+        from experiments.research.candidates.wang_pw import (
+            Backend, Params as WangParams, PublicKey, MasterSecret, SigningKey, Signature)
+    except ModuleNotFoundError as exc:
+        return _missing_candidate("wang-pw", exc)
+
+    def signature_size(params, fmt):
+        # Conservative bound from the delivered proposal: every valid z_i is
+        # bounded by isqrt(B^2). Simultaneous extrema need not be a valid vector.
+        bound = math.isqrt(params.signature_bound_squared)
+        return len(Signature(bytes(32), bytes(params.salt_bytes), bytes(params.salt_bytes),
+                             (-bound,) * params.dimension).to_bytes())
+
+    return BackendSpec(
+        "wang-pw", "ibs", "WangPW-research-v1", WangParams, {"research": WangParams()},
+        lambda rng, fmt: Backend(rng=rng), dict(ipk=PublicKey, imsk=MasterSecret, sk=SigningKey),
+        lambda obj, p: _research_object_check(obj, p, (PublicKey, MasterSecret, SigningKey), "params", "Wang-PW"),
+        signature_size, signature_formats=("reference", "canonical-json-v1"),
+        reason="unsafe q17 research profile; public forgery control; caller owns issuance policy; no security admission",
+        object_parameter_binding="full-parameter-snapshot", master_public_key=lambda obj: obj.public_key,
+        default_preset=lambda transport: "research", validate_environment=lambda: _sage_environment("Wang-PW"))
+
+
+def _srgg_spec():
+    try:
+        from experiments.research.candidates.srgg.backend import Backend
+        from experiments.research.candidates.srgg.config import Config
+        from experiments.research.candidates.srgg.objects import PublicKey, MasterSecret, SigningKey, Signature
+    except ModuleNotFoundError as exc:
+        return _missing_candidate("srgg2025", exc)
+
+    def signature_size(params, fmt):
+        bound = math.isqrt(params.signature_bound_squared)
+        return len(Signature(bytes(32), ((-bound,) * params.degree,) * (params.algebra.columns + 1),
+                             (1,) * params.degree).to_bytes())
+
+    return BackendSpec(
+        "srgg2025", "ibs", "SRGG-zeta2-research-v1", Config, {"research": Config()},
+        lambda rng, fmt: Backend(rng=rng), dict(ipk=PublicKey, imsk=MasterSecret, sk=SigningKey),
+        lambda obj, p: _research_object_check(obj, p, (PublicKey, MasterSecret, SigningKey), "config", "SRGG"),
+        signature_size, signature_formats=("reference", "canonical-json-v1"), persistent_identity_cache=True,
+        reason="degree8 zeta2 research profile; finite numeric error and formal parameters unadmitted",
+        object_parameter_binding="full-parameter-snapshot", master_public_key=lambda obj: obj.public_key,
+        default_preset=lambda transport: "research", validate_environment=lambda: _sage_environment("SRGG"))
+
+
 def default_registry():
     from ibme.hibe.abb10 import ABB10HIBE, ABB10PublicKey, ABB10MasterSecret, ABB10Level1SecretKey, ABB10Level2SecretKey, ABB10_DEBUG_PARAMS
     from ibme.hibe.mock import MockHIBE, MockHIBEPublicKey, MockHIBEMasterSecret, MockHIBELevel1SecretKey, MockHIBELevel2SecretKey
@@ -248,12 +322,14 @@ def default_registry():
                     lambda rng, fmt: ABB10HIBE(), hs(ABB10PublicKey,ABB10MasterSecret,ABB10Level1SecretKey,ABB10Level2SecretKey),
                     _abb_check, two_level=True, key_binding=True,
                     reason="teaching ABB10; not security admitted",ciphertext_size=_abb_ciphertext_size,
-                    object_parameter_binding="partial-legacy-wire"),
+                    object_parameter_binding="partial-legacy-wire",
+                    default_preset=lambda transport: "hybrid-research" if transport == "hybrid" else "education"),
         BackendSpec("mock", "hibe", "mock-hibe-v1", Params,
                     {"education": mock, "hybrid-research": replace(mock,identity_bytes=86,max_message_bytes=32)},
                     lambda rng, fmt: MockHIBE(), hs(MockHIBEPublicKey,MockHIBEMasterSecret,MockHIBELevel1SecretKey,MockHIBELevel2SecretKey),
                     _mock_hibe_check, test_only=True, two_level=True,key_binding=True,reason="TEST-ONLY; no cryptographic security",
-                    ciphertext_size=_mock_ciphertext_size,object_parameter_binding="test-only-partial-wire"),
+                    ciphertext_size=_mock_ciphertext_size,object_parameter_binding="test-only-partial-wire",
+                    default_preset=lambda transport: "hybrid-research" if transport == "hybrid" else "education"),
         BackendSpec("chkp", "hibe", CHKPParams.version, CHKPParams,
                     {"hybrid-research": research_params(),
                      "direct-research": research_params(message_mode="framed32")},
@@ -267,27 +343,36 @@ def default_registry():
         BackendSpec("sis", "ibs", "sis-teaching-v1", Params, {"education": sis},
                     lambda rng, fmt: SisIBSBackend(rng=rng), ins(SisPublicKey,SisMasterSecret,SisSigningKey),
                     _sis_check,_sis_size,reason="teaching SIS; known forgery control retained",
-                    object_parameter_binding="partial-legacy-wire",master_public_key=lambda obj:obj.public_key),
+                    object_parameter_binding="partial-legacy-wire",master_public_key=lambda obj:obj.public_key,
+                    default_preset=lambda transport: "education"),
         BackendSpec("mock", "ibs", "mock-ibs-v1", Params, {"education": replace(mock,max_message_bytes=4096)},
                     lambda rng, fmt: MockIBSBackend(rng=rng), ins(MockPublicKey,MockMasterSecret,MockSigningKey),
                     lambda obj,p: None,lambda p,fmt:len(b"IBS1-M-SIG")+32,test_only=True,reason="TEST-ONLY; public master material",
-                    object_parameter_binding="test-only-partial-wire",master_public_key=lambda obj:obj.public_key),
+                    object_parameter_binding="test-only-partial-wire",master_public_key=lambda obj:obj.public_key,
+                    default_preset=lambda transport: "education"),
         BackendSpec("luo-matrix", "ibs", "luo-matrix-ref1", LuoMatrixParams,
                     {"research":matrix,"test-small":replace(LuoMatrixParams(),identity_max_bytes=64,message_max_bytes=4096)},
                     lambda rng,fmt:LuoIBSBackend(rng=rng),ins(LuoPublicKey,LuoMasterSecret,LuoSigningKey),
                     _luo_check,_matrix_size,persistent_identity_cache=True,reason="functional research parameters; none/false",
-                    object_parameter_binding="full-parameter-snapshot",master_public_key=lambda obj:obj.public_key),
+                    object_parameter_binding="full-parameter-snapshot",master_public_key=lambda obj:obj.public_key,
+                    default_preset=lambda transport: "research"),
         BackendSpec("luo-module", "ibs", "luo-module-ref1", LuoModuleParams,
                     {"research":LuoModuleParams(),"test-small":tiny},
                     lambda rng,fmt:(LuoModuleCompactIBSBackend if fmt=="compact" else LuoModuleIBSBackend)(rng=rng),
                     ins(LuoModulePublicKey,LuoModuleMasterSecret,LuoModuleSigningKey),_luo_check,_module_size,
                     signature_formats=("reference","compact"),persistent_identity_cache=True,reason="research module backend; none/false",
-                    object_parameter_binding="full-parameter-snapshot",master_public_key=lambda obj:obj.public_key),
+                    object_parameter_binding="full-parameter-snapshot",master_public_key=lambda obj:obj.public_key,
+                    default_preset=lambda transport: "research"),
     ]
     for identifier in ("latte", "lai-ideal-hibe", "gkr2025", "zhang2020", "abb-standard-selective", "chkp-standard"):
         specs.append(BackendSpec(identifier,"hibe","unavailable-v1",available=False,reason="public backend not delivered; no mock fallback"))
-    for identifier in ("srgg2025","yu2026","sageloli-sis","sageloli-rsis","foo-li","wang-pw","cert-ml-dsa","cert-falcon","xie-ntru-ibs"):
+    for identifier in ("yu2026","sageloli-sis","sageloli-rsis","foo-li","cert-ml-dsa","cert-falcon","xie-ntru-ibs"):
         specs.append(BackendSpec(identifier,"ibs","unavailable-v1",available=False,reason="public backend not delivered; no mock fallback"))
+    # The registration-proposal.json files are evidence, not executable config.
+    # These explicit imports reuse delivered five-method backends/public wire.
+    # "reference" is the existing suite spelling for their canonical-json-v1
+    # encoding, not a second algorithm or a different signature representation.
+    specs.extend((_wang_pw_spec(), _srgg_spec()))
     # Public optional entry, with no Sage import on non-Sage hosts. The caller
     # supplies the private arithmetic executable through an explicit local
     # environment setting; suite JSON cannot specify executables or imports.

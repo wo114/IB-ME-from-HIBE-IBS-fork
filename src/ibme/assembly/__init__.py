@@ -106,9 +106,14 @@ def make_suite(*, hibe="abb10", ibs="sis", hibe_params=None, ibs_params=None,
                 raise InvalidParameterError("unavailable backend has no parameter preset")
             return {}
         if selected is None:
-            selected=(spec.default_preset(transport) if spec.default_preset is not None else
-                      "hybrid-research" if spec.role=="hibe" and transport=="hybrid" else
-                      "research" if spec.id.startswith("luo-") else "education")
+            if spec.default_preset is not None:
+                selected=spec.default_preset(transport)
+                if type(selected) is not str or selected not in spec.presets:
+                    raise InvalidParameterError(f"{spec.id}: default_preset must select a declared preset")
+            elif len(spec.presets)==1:
+                selected=next(iter(spec.presets))
+            else:
+                raise InvalidParameterError(f"{spec.id}: select parameters explicitly; no default preset declared")
         if isinstance(selected,spec.params_type):
             return asdict(selected)
         if type(selected) is str:
