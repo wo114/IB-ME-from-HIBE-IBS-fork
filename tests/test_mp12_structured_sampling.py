@@ -203,3 +203,17 @@ def test_concurrent_same_address_performs_one_real_delegation(root, issued):
 def test_noncanonical_or_noninteger_snapshots_rejected(raw):
     with pytest.raises(ValueError):
         tool.StructuredTrapdoor.from_bytes(raw)
+
+
+def test_actual_high_dimension_input_screen_has_only_root_role_and_no_entropy(monkeypatch):
+    from experiments.research.matrix_structured_parameter_screen import input_row
+    def forbidden(*args, **kwargs):
+        raise AssertionError("public input screening attempted sampling")
+    monkeypatch.setattr(tool.SecureRandom, "read", forbidden)
+    monkeypatch.setattr(tool.MatrixFiniteGaussian, "sample", forbidden)
+    row = input_row(128, 65537, 529)
+    assert row["total_dimension"] == 2432 and row["root_R_entries"] == 557056
+    assert row["ciphertext_lwe"] is None and row["root_lwe"]["m"] == 128
+    assert row["root_lwe"]["independent_columns"] == 2176
+    assert row["root_or_key_generated"] is False and row["entropy_bytes"] == 0
+    assert row["finite_R_support_injective_mod_q"]
