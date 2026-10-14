@@ -1,0 +1,105 @@
+{
+  "id": "framework",
+  "layer": "framework",
+  "environment": "portable",
+  "files": [
+    "tests/test_assembly.py",
+    "tests/test_byteauth.py",
+    "tests/test_candidate_foundations.py",
+    "tests/test_ci_catalog.py",
+    "tests/test_cli_master_state.py",
+    "tests/test_cli_selection.py",
+    "tests/test_cli_state_lock.py",
+    "tests/test_combination_extension_contract.py",
+    "tests/test_encoding.py",
+    "tests/test_lattice_core.py",
+    "tests/test_prepared_context_stream.py",
+    "tests/test_prepared_hashing.py",
+    "tests/test_public_research_api.py",
+    "tests/test_registry_extension_contract.py"
+  ],
+  "status": "partial",
+  "security_claim": "none",
+  "combination_accepted": false,
+  "command": [
+    "C:\\Users\\youzi\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "tests/test_assembly.py",
+    "tests/test_byteauth.py",
+    "tests/test_candidate_foundations.py",
+    "tests/test_ci_catalog.py",
+    "tests/test_cli_master_state.py",
+    "tests/test_cli_selection.py",
+    "tests/test_cli_state_lock.py",
+    "tests/test_combination_extension_contract.py",
+    "tests/test_encoding.py",
+    "tests/test_lattice_core.py",
+    "tests/test_prepared_context_stream.py",
+    "tests/test_prepared_hashing.py",
+    "tests/test_public_research_api.py",
+    "tests/test_registry_extension_contract.py",
+    "--junitxml=<repo>\\test-results\\cert-falcon\\framework-final\\framework.xml"
+  ],
+  "exit_code": 0,
+  "counts": {
+    "tests": 432,
+    "passed": 427,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 5,
+    "xfailed": 0
+  },
+  "skip_reasons": [
+    {
+      "test": ".tests.test_prepared_context_stream",
+      "reason": "collection skipped",
+      "type": ""
+    },
+    {
+      "test": "tests.test_public_research_api.test_missing_engine_still_constructs_a_restore_capable_real_backend",
+      "reason": "prescribed Sage needed for actual backend construction",
+      "type": "pytest.skip"
+    },
+    {
+      "test": "tests.test_public_research_api.test_public_tools_are_same_provider_objects_not_forked_implementations",
+      "reason": "prescribed Sage needed for actual provider identity",
+      "type": "pytest.skip"
+    },
+    {
+      "test": "tests.test_registry_extension_contract.test_real_ibs_recovery_and_protocol_bridge_with_test_only_hibe[wang-pw-2026-10-13-wang-pw-374-False]",
+      "reason": "real candidate sampling requires prescribed WSL Sage",
+      "type": "pytest.skip"
+    },
+    {
+      "test": "tests.test_registry_extension_contract.test_real_ibs_recovery_and_protocol_bridge_with_test_only_hibe[srgg2025-2026-10-13-srgg-full-579-True]",
+      "reason": "real candidate sampling requires prescribed WSL Sage",
+      "type": "pytest.skip"
+    }
+  ],
+  "source_sha256": {
+    "tests/test_assembly.py": "078081fc1e5cb6612eebdd441e0b1567fe85a15bf4b7c41fa22fb16406d4d0aa",
+    "tests/test_byteauth.py": "b9470d89a62cc29f0e533ce34ffb59bf8ad87805bb67f7e6483d7114806260e9",
+    "tests/test_candidate_foundations.py": "e8af716ba80799c183c20b1c54d64ad7ff458e87cd99d2076b7b0775b703fbeb",
+    "tests/test_ci_catalog.py": "822d4d0bb9d3ef4634cd8c71384816b6669b05e01de010c39bc441f874330791",
+    "tests/test_cli_master_state.py": "03920268ffafb089fab3b634a4038077aa3da37f9cad8cd4becb3375005277b3",
+    "tests/test_cli_selection.py": "153599abe36f291dffc2bf88112510a5edf540177c756aa1c0340ba23fd03904",
+    "tests/test_cli_state_lock.py": "adfcda0ccb92e4cf52faebfa1d3ce34ffb4d2a2790c52b5c7eb78e1901a2f2b6",
+    "tests/test_combination_extension_contract.py": "eba5061e52a8d2357be6284505b6eaa746ca4025b7b8517204daaa5002510f21",
+    "tests/test_encoding.py": "3e725da253e956de1f550ca4e2d9f31964a09f8716657ac987f00bdbdea42555",
+    "tests/test_lattice_core.py": "0b8957c8f9ceeec3558af0cccfeb9a140610bbe7a2efd9cbff3e5e2a2082835f",
+    "tests/test_prepared_context_stream.py": "d4b6800c760c20e881134091569839daf0dc1583d7abcaf07b5bca8c87b43242",
+    "tests/test_prepared_hashing.py": "17846d8b2e88c5019ef44c13aa2af8264f09f9e0a19ed519a311a23026fe8360",
+    "tests/test_public_research_api.py": "baec6c6b734e629cc97262014124bbdf57cadff65a1888875c421fc035618903",
+    "tests/test_registry_extension_contract.py": "e1793a3a6947f8e90dfc0938ffb0c23bf3259d3a56832d6679dc2fb7796769bb",
+    "ci/run.py": "942c38b3c973aadad93332818a347705f3c36cd4e972230e13427d9ca54fc839",
+    "ci/suites.json": "4aeaaf9a4ac6ebcc32504feb8b35416e594e12cd13a362850b67427cac4b1787",
+    "src/ibme/assembly/catalog.py": "0db1b38ce793180d84f535595ebcd3e2ba9cd38cf94d8d0cf6011ff66fed0295"
+  },
+  "revision": "cf48c28d7e60f8597f0ba1965d2a67584a9d3811",
+  "working_tree_dirty": false
+}

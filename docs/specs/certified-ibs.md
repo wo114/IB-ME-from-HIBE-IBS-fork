@@ -28,7 +28,7 @@ PK/MSK/SK/SIG 各有独立 magic/version；字段采用固定递增1字节tag、
 
 每次原生操作独立进程、严格长度和EOF、公开资源/超时限制。生产熵由Python安全随机源输入；C桥只读取显式32 B tape，不调用原vendor的操作系统随机源。原vendor保持不变；链接包装限制 ExpandMask 的16位nonce使用范围，界外直接中止，不换种子重试。成功路径与上游一致，有限中止事件及整体查询损失仍需映射。
 
-基元参数为 FIPS204 标准参数，完整认证 IBS/IBME 的正式准入继续 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。原文 Theorem 1 为经典标准签名到 IBS 的条件性依据；不据此宣称完整量子安全、NIST等级、强不可伪造或 Wang 组合已准入。参数集、格式或库复用不新增密码算法或原创性。
+ML-DSA基元参数为 FIPS204 标准参数，完整认证 IBS/IBME 的正式准入继续 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。原文 Theorem 1 为经典标准签名到 IBS 的条件性依据；不据此宣称完整量子安全、NIST等级、强不可伪造或 Wang 组合已准入。参数集、格式或库复用不新增密码算法或原创性。
 
 ## 5. Falcon v1.2 第二适配
 
