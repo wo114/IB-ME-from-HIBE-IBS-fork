@@ -1,0 +1,55 @@
+{
+  "id": "wang-pw",
+  "layer": "primitive",
+  "environment": "sage",
+  "files": [
+    "tests/test_wang_pw_boundary_regressions.py",
+    "tests/test_wang_pw_ibs.py",
+    "tests/test_wang_pw_linear_regressions.py",
+    "tests/test_wang_pw_reference.py",
+    "tests/test_wang_pw_sampling_regressions.py",
+    "tests/test_wang_pw_service.py"
+  ],
+  "status": "passed",
+  "security_claim": "none",
+  "combination_accepted": false,
+  "command": [
+    "~/miniconda3/envs/sage/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "tests/test_wang_pw_boundary_regressions.py",
+    "tests/test_wang_pw_ibs.py",
+    "tests/test_wang_pw_linear_regressions.py",
+    "tests/test_wang_pw_reference.py",
+    "tests/test_wang_pw_sampling_regressions.py",
+    "tests/test_wang_pw_service.py",
+    "--junitxml=<repo>/build/outputs/wang-pw-service-2026-10-15/ci-accepted/wang-pw.xml"
+  ],
+  "exit_code": 0,
+  "counts": {
+    "tests": 496,
+    "passed": 496,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xfailed": 0
+  },
+  "skip_reasons": [],
+  "source_sha256": {
+    "tests/test_wang_pw_boundary_regressions.py": "0e8cf124126917fa885cfd04d5fc50c5e8d21ec30cc4a017667ce1744f770707",
+    "tests/test_wang_pw_ibs.py": "d212dd7625a3b6e8120cd678c67946378628bd17961a96e55f8c06f9c64e9dbd",
+    "tests/test_wang_pw_linear_regressions.py": "a1c677d3c31f1ce4233afff2b3d9410a9d29933c8d265115591d0d92bef3815c",
+    "tests/test_wang_pw_reference.py": "fccaef8c6692273dcece149cb051f275b51e741486ea8cef670c98a755d1e2e2",
+    "tests/test_wang_pw_sampling_regressions.py": "c12423b2ec85b99bb400980b0e3612d7833c2cc26ba039927324d9fffedbe9ca",
+    "tests/test_wang_pw_service.py": "b1ab6413354f784fd098fc1552ed18772aca3c5982e45f43bc1d7f2c1060aa47",
+    "ci/run.py": "942c38b3c973aadad93332818a347705f3c36cd4e972230e13427d9ca54fc839",
+    "ci/suites.json": "36bdb34c68f261498630877e107f45a824d9ef1ca1239684e121e05c733efd2b",
+    "src/ibme/assembly/catalog.py": "0db1b38ce793180d84f535595ebcd3e2ba9cd38cf94d8d0cf6011ff66fed0295"
+  },
+  "revision": "unavailable",
+  "working_tree_dirty": null
+}
