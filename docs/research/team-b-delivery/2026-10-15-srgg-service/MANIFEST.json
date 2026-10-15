@@ -1,0 +1,36 @@
+{
+  "schema": "IBME/SRGG-FIXED-ISSUER-DELIVERY/1",
+  "files": {
+    "src/ibme/ibs/srgg_service.py": {
+      "sha256": "57c4e77478db26ef8fb250d69ac591b628f4edad61e8de07bcd5ff7ded2fe543",
+      "bytes": 19920
+    },
+    "tests/test_srgg_service.py": {
+      "sha256": "3ca4be4920875825c51e8cf7b192ef0238825aa051d55a6bc3bbf711d9bee24b",
+      "bytes": 7804
+    },
+    "experiments/research/candidates/srgg/service_audit.py": {
+      "sha256": "2755d834f5159a786a3fff3355f1fa8686bd16f47cac55a75ba915016387b59b",
+      "bytes": 3411
+    },
+    "docs/specs/srgg-issuer.md": {
+      "sha256": "c19b5caa72dd787eceee75ef178f6476b372315aedf3cb386bd30325e98e8981",
+      "bytes": 1739
+    },
+    "docs/research/team-b-delivery/2026-10-15-srgg-service/README.md": {
+      "sha256": "76898d6b16c77a5cabbced11cf438fff364167511755499693d91e8c3db96b0c",
+      "bytes": 3605
+    }
+  },
+  "verification": {
+    "service_sage": "11 passed / 0 failed / 0 skipped",
+    "srgg_sage": "143 passed / 0 failed / 0 skipped",
+    "service_windows": "3 passed / 8 skipped (Sage unavailable)",
+    "algebra_geometry": "36 binary challenges / 9 covariance checks",
+    "sampling": "36864 scalar samples / 27 finite joint laws",
+    "perturbation": "64 approximate and 64 HNF equations passed",
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  }
+}
