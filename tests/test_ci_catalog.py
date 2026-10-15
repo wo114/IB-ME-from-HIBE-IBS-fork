@@ -108,17 +108,24 @@ def test_git_metadata_is_best_effort_when_git_is_unavailable(monkeypatch, tmp_pa
     }
 
 
-def test_missing_receipts_and_pending_routes_are_visible():
+def test_missing_receipts_and_pending_routes_are_visible(monkeypatch):
     planned = run.plan()
     rows = {row["id"]: row for row in planned["rows"]}
-    assert rows["xie-ntru-ibs"]["status"] == "awaiting_tests"
+    assert rows["xie-ntru-ibs"]["status"] == "scheduled"
+    assert rows["xie-ntru-ibs"]["source_stage"] == "corrected_equation_study"
     assert rows["cert-falcon"]["status"] == "scheduled"
     assert rows["wang-pw"]["status"] == rows["srgg2025"]["status"] == "scheduled"
+    # Simulate absent tests instead of making a newly delivered algorithm the
+    # permanent pending fixture. Existing qualification tests are not backends.
+    selected = run.selected_files
+    monkeypatch.setattr(run, "selected_files", lambda spec, root=run.ROOT:
+                        [] if spec["id"] == "gkr2025" else selected(spec, root))
+    planned = run.plan()
     text, failed = run.render_summary(planned, {})
     assert failed and "awaiting_tests" in text and "not_executed" in text
     receipts = {row["id"]: {"status": "passed"} for row in planned["rows"] if row["test_files"]}
     text, failed = run.render_summary(planned, receipts)
-    assert not failed and "| xie-ntru-ibs | primitive | awaiting_tests |" in text
+    assert not failed and "| gkr2025 | primitive | awaiting_tests |" in text
     receipts["wang-pw"]["status"] = "failed"
     assert run.render_summary(planned, receipts)[1]
 

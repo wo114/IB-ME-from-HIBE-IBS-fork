@@ -1,0 +1,112 @@
+......................................F.....F.....                       [100%]
+=================================== FAILURES ===================================
+_______________ test_concurrent_fixed_issuance_and_capacity[16] ________________
+tests/test_xie_public.py:86: in test_concurrent_fixed_issuance_and_capacity
+    keys=list(workers.map(lambda _:copy.extract(b"concurrent",rng=rng),range(16)))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/youzi/miniconda3/envs/sage/lib/python3.13/concurrent/futures/_base.py:625: in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/youzi/miniconda3/envs/sage/lib/python3.13/concurrent/futures/_base.py:318: in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+/home/youzi/miniconda3/envs/sage/lib/python3.13/concurrent/futures/_base.py:453: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+/home/youzi/miniconda3/envs/sage/lib/python3.13/concurrent/futures/_base.py:402: in __get_result
+    raise self._exception
+/home/youzi/miniconda3/envs/sage/lib/python3.13/concurrent/futures/thread.py:59: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_xie_public.py:86: in <lambda>
+    keys=list(workers.map(lambda _:copy.extract(b"concurrent",rng=rng),range(16)))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+experiments/research/candidates/xie/objects.py:133: in extract
+    if self._sampler is None:self._sampler=preimage_sampler(self)
+                                           ^^^^^^^^^^^^^^^^^^^^^^
+experiments/research/candidates/xie/runtime.py:99: in preimage_sampler
+    basis=KernelBasis(ModMatrixReference(tuple(tuple(int(x) for x in row) for row in public.rows()),p.q),
+<string>:5: in __init__
+    ???
+src/ibme/lattice/chkp/basis.py:135: in __post_init__
+    a, _ = _full_rank_field(self.public)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/ibme/lattice/chkp/basis.py:114: in _full_rank_field
+    a = matrix(GF(public.q), public.rows)
+               ^^^^^^^^^^^^
+sage/structure/factory.pyx:370: in sage.structure.factory.UniqueFactory.__call__
+    ???
+/home/youzi/miniconda3/envs/sage/lib/python3.13/site-packages/sage/misc/decorators.py:656: in wrapper
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+/home/youzi/miniconda3/envs/sage/lib/python3.13/site-packages/sage/rings/finite_rings/finite_field_constructor.py:679: in create_key_and_extra_args
+    p, n = order.perfect_power()
+           ^^^^^^^^^^^^^^^^^^^^^
+sage/rings/integer.pyx:5023: in sage.rings.integer.Integer.perfect_power
+    ???
+sage/rings/integer.pyx:6352: in sage.rings.integer.Integer.__pari__
+    ???
+sage/libs/pari/convert_sage.pyx:401: in sage.libs.pari.convert_sage.new_gen_from_integer
+    ???
+sage/libs/pari/convert_sage.pyx:410: in sage.libs.pari.convert_sage.new_gen_from_integer
+    ???
+sage/libs/pari/convert_gmp.pyx:52: in sage.libs.pari.convert_gmp.new_gen_from_mpz_t
+    ???
+E   cysignals.signals.SignalError: Segmentation fault
+_______________ test_concurrent_fixed_issuance_and_capacity[32] ________________
+tests/test_xie_public.py:86: in test_concurrent_fixed_issuance_and_capacity
+    keys=list(workers.map(lambda _:copy.extract(b"concurrent",rng=rng),range(16)))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/youzi/miniconda3/envs/sage/lib/python3.13/concurrent/futures/_base.py:625: in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/youzi/miniconda3/envs/sage/lib/python3.13/concurrent/futures/_base.py:318: in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+/home/youzi/miniconda3/envs/sage/lib/python3.13/concurrent/futures/_base.py:453: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+/home/youzi/miniconda3/envs/sage/lib/python3.13/concurrent/futures/_base.py:402: in __get_result
+    raise self._exception
+/home/youzi/miniconda3/envs/sage/lib/python3.13/concurrent/futures/thread.py:59: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_xie_public.py:86: in <lambda>
+    keys=list(workers.map(lambda _:copy.extract(b"concurrent",rng=rng),range(16)))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+experiments/research/candidates/xie/objects.py:133: in extract
+    if self._sampler is None:self._sampler=preimage_sampler(self)
+                                           ^^^^^^^^^^^^^^^^^^^^^^
+experiments/research/candidates/xie/runtime.py:99: in preimage_sampler
+    basis=KernelBasis(ModMatrixReference(tuple(tuple(int(x) for x in row) for row in public.rows()),p.q),
+<string>:5: in __init__
+    ???
+src/ibme/lattice/chkp/basis.py:135: in __post_init__
+    a, _ = _full_rank_field(self.public)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/ibme/lattice/chkp/basis.py:114: in _full_rank_field
+    a = matrix(GF(public.q), public.rows)
+               ^^^^^^^^^^^^
+sage/structure/factory.pyx:370: in sage.structure.factory.UniqueFactory.__call__
+    ???
+/home/youzi/miniconda3/envs/sage/lib/python3.13/site-packages/sage/misc/decorators.py:656: in wrapper
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+/home/youzi/miniconda3/envs/sage/lib/python3.13/site-packages/sage/rings/finite_rings/finite_field_constructor.py:679: in create_key_and_extra_args
+    p, n = order.perfect_power()
+           ^^^^^^^^^^^^^^^^^^^^^
+sage/rings/integer.pyx:5023: in sage.rings.integer.Integer.perfect_power
+    ???
+sage/rings/integer.pyx:6352: in sage.rings.integer.Integer.__pari__
+    ???
+sage/libs/pari/convert_sage.pyx:401: in sage.libs.pari.convert_sage.new_gen_from_integer
+    ???
+sage/libs/pari/convert_sage.pyx:410: in sage.libs.pari.convert_sage.new_gen_from_integer
+    ???
+sage/libs/pari/convert_gmp.pyx:52: in sage.libs.pari.convert_gmp.new_gen_from_mpz_t
+    ???
+E   cysignals.signals.SignalError: Segmentation fault
+=========================== short test summary info ============================
+FAILED tests/test_xie_public.py::test_concurrent_fixed_issuance_and_capacity[16]
+FAILED tests/test_xie_public.py::test_concurrent_fixed_issuance_and_capacity[32]
+2 failed, 48 passed in 6.61s

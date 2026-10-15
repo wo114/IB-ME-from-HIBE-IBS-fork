@@ -101,11 +101,12 @@
       "tests": [
         "tests/test_lai*.py"
       ],
-      "source_markers": [],
-      "source_stage": "candidate",
+      "source_markers": ["experiments/research/candidates/lai/qualification.py"],
+      "source_stage": "qualification_only",
       "allow_skips": false,
       "environment": "sage",
-      "layer": "primitive"
+      "layer": "primitive",
+      "scope": "Exact tag nonunit and delegation type qualification only. No Lai HIBE, sampling, encryption or anonymous backend is implemented."
     },
     {
       "id": "luo-matrix",
@@ -246,11 +247,12 @@
       "tests": [
         "tests/test_xie*.py"
       ],
-      "source_markers": [],
-      "source_stage": "candidate",
+      "source_markers": ["experiments/research/candidates/xie/runtime.py"],
+      "source_stage": "corrected_equation_study",
       "allow_skips": false,
       "environment": "sage",
-      "layer": "primitive"
+      "layer": "primitive",
+      "scope": "Literal-source conflict witnesses plus an explicitly corrected small NTRU/GPV/rejection equation study. Public verification, snapshots and insecure-parameter attacks are tested; no faithful Xie reproduction, common IBSBackend, HIBE composition or security admission. Fresh Sage work requires the main thread."
     }
   ],
   "groups": [

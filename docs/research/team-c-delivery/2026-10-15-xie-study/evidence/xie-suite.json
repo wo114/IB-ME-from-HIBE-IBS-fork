@@ -1,0 +1,43 @@
+{
+  "id": "xie-ntru-ibs",
+  "layer": "primitive",
+  "environment": "sage",
+  "files": [
+    "tests/test_xie_public.py",
+    "tests/test_xie_study.py"
+  ],
+  "status": "passed",
+  "security_claim": "none",
+  "combination_accepted": false,
+  "command": [
+    "/home/youzi/miniconda3/envs/sage/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "tests/test_xie_public.py",
+    "tests/test_xie_study.py",
+    "--junitxml=<repo>/test-results/c-2026-10-15/ci-xie/xie-ntru-ibs.xml"
+  ],
+  "exit_code": 0,
+  "counts": {
+    "tests": 53,
+    "passed": 53,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xfailed": 0
+  },
+  "skip_reasons": [],
+  "source_sha256": {
+    "tests/test_xie_public.py": "edf93ee116febebef3c554422a1c4ce789c8b838140e04880e40187bd5eba13b",
+    "tests/test_xie_study.py": "c7b8d174b71f502e797aa9601111411e3e98251cbca55691ec73337061d9ed34",
+    "ci/run.py": "942c38b3c973aadad93332818a347705f3c36cd4e972230e13427d9ca54fc839",
+    "ci/suites.json": "3ad5cacc503349bb6d7888e383da76eaae5d651dbac1779b3f2da938f85f2add",
+    "src/ibme/assembly/catalog.py": "0db1b38ce793180d84f535595ebcd3e2ba9cd38cf94d8d0cf6011ff66fed0295"
+  },
+  "revision": "unavailable",
+  "working_tree_dirty": null
+}
