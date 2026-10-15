@@ -35,7 +35,7 @@ class Params:
     gaussian_width: object = 2
 
     def __post_init__(self):
-        _integer(self.input_bits, "input_bits", 1, 64)
+        _integer(self.input_bits, "input_bits", 1, 128)
         _integer(self.dimension, "dimension", 1, 8)
         _integer(self.columns, "columns", 1, 8)
         _integer(self.modulus_bits, "modulus_bits", 1, 16)
