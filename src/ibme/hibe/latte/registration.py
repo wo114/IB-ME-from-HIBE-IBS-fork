@@ -1,9 +1,12 @@
-"""Explicit optional registration proposal; default registry is unchanged."""
+"""Descriptor for the LATTE-3 research implementation."""
+import importlib.util
 from ibme.core.errors import InvalidParameterError,SerializationError
-from .params import LATTEParams,Q,N,VERSION
+from .params import LATTEParams,Q,N
 from .objects import (LATTEPublicKey,LATTEMasterSecret,LATTELevel1SecretKey,LATTELevel2SecretKey,LATTECiphertext)
-from .backend import LATTEHIBE
-from .engine import Native
+
+# The Hybrid transport requires a short lowercase identifier. This assembly
+# version selects the same frozen IBME/LATTE3/COSAC-FIX/1 primitive wire.
+ASSEMBLY_VERSION="latte3-cosac-fix-v1"
 
 
 def check_object(value,params):
@@ -20,11 +23,16 @@ def ciphertext_size(params,payload_bytes,identity_bytes):
 
 
 def environment():
-    from .math import rings
-    rings(); Native(LATTEParams())
+    # Discovery checks public dependencies/ABI without loading Sage arithmetic,
+    # constructing rings, generating keys or consuming entropy.
+    if importlib.util.find_spec("sage") is None or importlib.util.find_spec("sage.all") is None:
+        raise InvalidParameterError("LATTE requires WSL ~/miniconda3/envs/sage; no fallback")
+    from .engine import Native
+    Native(LATTEParams())
 
 
 def factory(rng,signature_format):
+    from .backend import LATTEHIBE
     return LATTEHIBE()
 
 
@@ -36,10 +44,10 @@ def configuration(params,config):
 
 def backend_spec():
     from ibme.assembly.registry import BackendSpec
-    return BackendSpec("latte3-research","hibe",VERSION,LATTEParams,
+    return BackendSpec("latte3-research","hibe",ASSEMBLY_VERSION,LATTEParams,
         {"seed32":LATTEParams(),"framed32":LATTEParams(message_mode="framed32")},factory,
         {"hpk":LATTEPublicKey,"hmsk":LATTEMasterSecret,"sk1":LATTELevel1SecretKey,"sk2":LATTELevel2SecretKey},
         check_object,two_level=True,key_binding=True,persistent_identity_cache=True,
         ciphertext_size=ciphertext_size,object_parameter_binding="full-parameter-snapshot",
-        default_preset=lambda config:"seed32" if config["transport"]=="hybrid" else "framed32",
+        default_preset=lambda transport:"seed32" if transport=="hybrid" else "framed32",
         validate_environment=environment,validate_configuration=configuration)

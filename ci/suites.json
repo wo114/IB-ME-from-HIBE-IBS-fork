@@ -222,7 +222,9 @@
       "tests": [
         "tests/test_cert_ml_dsa*.py"
       ],
-      "source_markers": ["src/ibme/ibs/certified/backend.py"],
+      "source_markers": [
+        "src/ibme/ibs/certified/backend.py"
+      ],
       "source_stage": "standalone_primitive",
       "allow_skips": false,
       "environment": "sage",
@@ -234,7 +236,10 @@
       "tests": [
         "tests/test_cert_falcon*.py"
       ],
-      "source_markers": ["src/ibme/ibs/certified/falcon.py", "src/ibme/ibs/certified/falcon_native/bridge.c"],
+      "source_markers": [
+        "src/ibme/ibs/certified/falcon.py",
+        "src/ibme/ibs/certified/falcon_native/bridge.c"
+      ],
       "source_stage": "standalone_primitive",
       "allow_skips": false,
       "environment": "sage",
@@ -265,6 +270,7 @@
         "tests/test_prepared_hashing.py",
         "tests/test_prepared_context_stream.py",
         "tests/test_assembly.py",
+        "tests/test_c_registration.py",
         "tests/test_cli_selection.py",
         "tests/test_cli_master_state.py",
         "tests/test_cli_state_lock.py",
