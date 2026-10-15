@@ -1,4 +1,4 @@
-"""Optional common-interface descriptor; default catalogue stays unregistered."""
+"""Common-interface descriptors for the two certification IBS routes."""
 from ibme.core.errors import InvalidParameterError, SerializationError
 from .params import CertifiedIBSParams, VERSION
 from .objects import CertifiedPublicKey, CertifiedMasterSecret, CertifiedSigningKey, CertifiedSignature
@@ -6,7 +6,7 @@ from .backend import CertifiedIBS
 from .mldsa import MLDSA, NativeFailure
 from .falcon import Falcon, PROFILES as FALCON_PROFILES
 from .mldsa import PROFILES as MLDSA_PROFILES
-from .ordinary import PROFILES
+from .ordinary import PROFILES, ordinary
 
 
 def check_object(value, params):
@@ -25,10 +25,20 @@ def signature_size(params, signature_format):
 
 
 def environment():
-    try:
-        MLDSA()
-    except NativeFailure as exc:
-        raise InvalidParameterError(str(exc)) from exc
+    _family_environment(MLDSA, MLDSA_PROFILES)
+
+
+def _family_environment(constructor, profiles):
+    # Discovery has no selected parameters. Any valid family member establishes
+    # family availability; configuration validation checks the exact selection.
+    failures=[]
+    for profile in profiles:
+        try:
+            constructor(profile)
+            return
+        except NativeFailure as exc:
+            failures.append(str(exc))
+    raise InvalidParameterError("; ".join(dict.fromkeys(failures)))
 
 
 def factory(rng, signature_format):
@@ -46,11 +56,22 @@ def master_public_key(master):
 def mldsa_configuration(params,config):
     if params.base_algorithm not in MLDSA_PROFILES:
         raise InvalidParameterError("cert-ml-dsa requires an ML-DSA profile")
+    _selected_environment(params)
 
 
 def falcon_configuration(params,config):
     if params.base_algorithm not in FALCON_PROFILES:
         raise InvalidParameterError("cert-falcon requires a padded Falcon v1.2 profile")
+    _selected_environment(params)
+
+
+def _selected_environment(params):
+    # A working default binary does not establish that another selected profile
+    # is installed. Check its ABI before any Setup or entropy/state changes.
+    try:
+        ordinary(params)
+    except NativeFailure as exc:
+        raise InvalidParameterError(str(exc)) from exc
 
 
 def backend_spec():
@@ -65,10 +86,7 @@ def backend_spec():
 
 
 def falcon_environment():
-    try:
-        Falcon()
-    except NativeFailure as exc:
-        raise InvalidParameterError(str(exc)) from exc
+    _family_environment(Falcon, FALCON_PROFILES)
 
 
 def falcon_backend_spec():

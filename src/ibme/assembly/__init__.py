@@ -210,6 +210,14 @@ def validate_suite(config, *, registry=None):
             if hp.max_message_bytes<32: errors.append("Hybrid inner HIBE cannot hold the 32-byte seed")
             if importlib.util.find_spec("cryptography") is None:
                 raise InvalidParameterError("Hybrid requires installed cryptography extra")
+            # Validate the exact same transport limits as construction, including
+            # the explicit backend identifier grammar. Invalid metadata must not
+            # be advertised as a planned/runnable combination.
+            from ibme.protocol.hybrid_hibe import HybridLimits
+            HybridLimits(backend_id=limits["backend_id"].encode("ascii"),
+                         identity_max_bytes=limits["identity_max_bytes"],
+                         max_payload_bytes=limits["max_payload_bytes"],
+                         max_capsule_bytes=limits["max_capsule_bytes"])
             capsule=hs.ciphertext_size(hp,32,hp.identity_bytes)
             if capsule>limits["max_capsule_bytes"]:
                 errors.append("Hybrid capsule budget cannot contain the selected HIBE seed ciphertext")

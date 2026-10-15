@@ -1,0 +1,78 @@
+{
+  "schema": "LAI-QUALIFICATION/1",
+  "stage": "qualification_only",
+  "HIBE_implemented": false,
+  "algebra": {
+    "n": 8,
+    "q": 17,
+    "root": 3,
+    "tag": [
+      14,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "annihilator": [
+      11,
+      15,
+      5,
+      13,
+      10,
+      9,
+      3,
+      1
+    ],
+    "inverse_error": "ArithmeticError",
+    "roots": [
+      3,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      14
+    ],
+    "unit_count": 4294967296,
+    "total_count": 6975757441,
+    "nonunit_fraction": "2680790145/6975757441",
+    "nonzero_nonunit_fraction": "20943673/54498105",
+    "decrypt_literal_zero_check_passes": true,
+    "decrypt_sum_invertible": false
+  },
+  "dimensions": {
+    "gadget": 5,
+    "root_public": 7,
+    "root_trapdoor": [
+      2,
+      5
+    ],
+    "parent_public": 12,
+    "parent_trapdoor": [
+      7,
+      5
+    ],
+    "leaf_public": 17,
+    "leaf_trapdoor": [
+      12,
+      5
+    ],
+    "algorithm9_printed_rows": 12,
+    "algorithm9_required_rows": 7
+  },
+  "unresolved": [
+    "unit-domain sampling and per-query/whole-lifetime abort accounting",
+    "Alg9 trapdoor row count and Alg7 target-lattice type",
+    "two-level public identity vector/encryption/noise definition omitted by 'Derive=Extract'",
+    "finite perturbation/ring convolution distribution and anonymous HIBE theorem mapping"
+  ],
+  "adopted_scheme_modifications": [],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "teaching_parameters": true
+}

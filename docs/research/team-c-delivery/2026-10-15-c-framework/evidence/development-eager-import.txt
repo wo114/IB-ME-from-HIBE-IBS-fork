@@ -1,0 +1,65 @@
+........................................................................ [ 48%]
+...............................................Fss...................... [ 96%]
+.....                                                                    [100%]
+================================== FAILURES ===================================
+_ test_fresh_plain_python_listing_and_preflight_never_import_sage_or_samplers _
+
+    def test_fresh_plain_python_listing_and_preflight_never_import_sage_or_samplers():
+        # Fresh process catches eager imports even when other tests loaded modules.
+        script = """
+    import importlib.abc
+    import importlib.util
+    import sys
+    class NoSamplers(importlib.abc.MetaPathFinder):
+        def find_spec(self, fullname, path=None, target=None):
+            if fullname.startswith('sage.') or fullname.endswith(('.engine', '.runtime', '.sampling', '.full_sampling')):
+                raise AssertionError('static discovery imported runtime: ' + fullname)
+    sys.meta_path.insert(0, NoSamplers())
+    original = importlib.util.find_spec
+    importlib.util.find_spec = lambda name, *a, **kw: None if name == 'sage' else original(name, *a, **kw)
+    from ibme.assembly import default_registry, make_suite, validate_suite, build_runtime
+    from ibme.core.errors import InvalidParameterError
+    registry = default_registry()
+    rows = {row['id']: row for row in registry.list()['ibs']}
+    for identifier in ('wang-pw', 'srgg2025'):
+        assert rows[identifier]['available'] is True
+        assert rows[identifier]['runtime_available'] is False
+        config = make_suite(hibe='mock', ibs=identifier, allow_mock=True, registry=registry)
+        report = validate_suite(config, registry=registry)
+        assert not report.ok and 'SageMath' in ' '.join(report.errors)
+        assert report.capacity['signature_max_bytes'] > 0
+        assert report.metadata['combination_tested'] is False
+        try:
+            build_runtime(config, registry=registry)
+        except InvalidParameterError:
+            pass
+        else:
+            raise AssertionError('missing runtime was accepted')
+    """
+        result = subprocess.run([sys.executable, "-c", script], capture_output=True, text=True, timeout=30)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: Traceback (most recent call last):
+E           File "<string>", line 14, in <module>
+E             registry = default_registry()
+E           File "C:\Users\youzi\.codex\worktrees\abb-research-quality\ibme\src\ibme\assembly\registry.py", line 387, in default_registry
+E             specs = _portable_specs()
+E           File "C:\Users\youzi\.codex\worktrees\abb-research-quality\ibme\src\ibme\assembly\registry.py", line 376, in _portable_specs
+E             from ibme.hibe.latte.registration import backend_spec as latte_spec
+E           File "C:\Users\youzi\.codex\worktrees\abb-research-quality\ibme\src\ibme\hibe\latte\__init__.py", line 3, in <module>
+E             from .backend import LATTEHIBE
+E           File "C:\Users\youzi\.codex\worktrees\abb-research-quality\ibme\src\ibme\hibe\latte\backend.py", line 9, in <module>
+E             from .engine import Native,NativeOperationError,pack,unpack
+E           File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+E           File "<frozen importlib._bootstrap>", line 1333, in _find_and_load_unlocked
+E           File "<frozen importlib._bootstrap>", line 1267, in _find_spec
+E           File "<string>", line 8, in find_spec
+E             raise AssertionError('static discovery imported runtime: ' + fullname)
+E         AssertionError: static discovery imported runtime: ibme.hibe.latte.engine
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\youzi\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-c', "\nimport imp...scovery imported runtime: \' + fullname)\nAssertionError: static discovery imported runtime: ibme.hibe.latte.engine\n').returncode
+
+tests\test_registry_extension_contract.py:229: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_registry_extension_contract.py::test_fresh_plain_python_listing_and_preflight_never_import_sage_or_samplers
+1 failed, 146 passed, 2 skipped in 41.89s

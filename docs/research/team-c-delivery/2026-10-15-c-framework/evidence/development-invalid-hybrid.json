@@ -1,0 +1,1362 @@
+{
+  "schema": "ibme-combination-run-v1",
+  "status": "incomplete",
+  "counts": {
+    "pass": 0,
+    "fail": 10,
+    "blocked": 0,
+    "not_executed": 0,
+    "planned": 0,
+    "unavailable": 0,
+    "preflight_failed": 0
+  },
+  "executed_checks": 0,
+  "executed_cases": 0,
+  "security_proof_count": 0,
+  "evidence_counts": {
+    "test_only": {
+      "cases": 0,
+      "checks": 0
+    },
+    "research": {
+      "cases": 0,
+      "checks": 0
+    }
+  },
+  "environment": {
+    "python": "3.13.14",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "limitations": [
+    "Functional checks do not establish security.",
+    "Research classification excludes mock; it does not certify parameters or security.",
+    "Preset/format/transport variants are not distinct primitive algorithms.",
+    "Random signature rejection is a bounded negative input check.",
+    "No unavailable backend is substituted; dependency/policy gates remain in force.",
+    "Restore checks use fresh objects/backends in one process, not crash or disk transactions."
+  ],
+  "results": [
+    {
+      "case": "latte3-hybrid-cert-ml-dsa-ml-dsa-44-reference-byteauth-v1",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "cert-ml-dsa",
+        "ibs_params": "ml-dsa-44",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "reference",
+        "allow_mock": false
+      },
+      "status": "fail",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "IBME/LATTE3/COSAC-FIX/1",
+        "hybrid_limits": {
+          "backend_id": "IBME/LATTE3/COSAC-FIX/1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "cert-ml-dsa",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "ml-dsa-44",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "05f1c284f81fad34c0acb4bf215bc7db467cd962b712de66015bed970750ed53",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 59191,
+          "signature_max_bytes": 6237,
+          "ibs_input_bytes": 65536,
+          "hibe_payload_bytes": 65536,
+          "protocol_payload_overhead": 6345,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "05f1c284f81fad34c0acb4bf215bc7db467cd962b712de66015bed970750ed53",
+          "hibe": "latte",
+          "ibs": "cert-ml-dsa",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "reference",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "planning_status": "planned",
+      "failed_stage": "build_runtime",
+      "error_type": "InvalidParameterError",
+      "error": "invalid explicit hybrid backend identifier",
+      "elapsed_seconds": 0.28167,
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    },
+    {
+      "case": "latte3-hybrid-cert-ml-dsa-ml-dsa-65-reference-byteauth-v1",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "cert-ml-dsa",
+        "ibs_params": "ml-dsa-65",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "reference",
+        "allow_mock": false
+      },
+      "status": "fail",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "IBME/LATTE3/COSAC-FIX/1",
+        "hybrid_limits": {
+          "backend_id": "IBME/LATTE3/COSAC-FIX/1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "cert-ml-dsa",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "ml-dsa-65",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "ee3a1bba2fd1235ebaa21ae8b4af248a001ca6da6efd2cbbfe41b626bce20a30",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 56773,
+          "signature_max_bytes": 8655,
+          "ibs_input_bytes": 65536,
+          "hibe_payload_bytes": 65536,
+          "protocol_payload_overhead": 8763,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "ee3a1bba2fd1235ebaa21ae8b4af248a001ca6da6efd2cbbfe41b626bce20a30",
+          "hibe": "latte",
+          "ibs": "cert-ml-dsa",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "reference",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "planning_status": "planned",
+      "failed_stage": "build_runtime",
+      "error_type": "InvalidParameterError",
+      "error": "invalid explicit hybrid backend identifier",
+      "elapsed_seconds": 0.28047,
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    },
+    {
+      "case": "latte3-hybrid-cert-ml-dsa-ml-dsa-87-reference-byteauth-v1",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "cert-ml-dsa",
+        "ibs_params": "ml-dsa-87",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "reference",
+        "allow_mock": false
+      },
+      "status": "fail",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "IBME/LATTE3/COSAC-FIX/1",
+        "hybrid_limits": {
+          "backend_id": "IBME/LATTE3/COSAC-FIX/1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "cert-ml-dsa",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "ml-dsa-87",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "0161f3213db2ca322fd63337531b71ca7e917f059fa47668ed1096ec7618a7a9",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 53497,
+          "signature_max_bytes": 11931,
+          "ibs_input_bytes": 65536,
+          "hibe_payload_bytes": 65536,
+          "protocol_payload_overhead": 12039,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "0161f3213db2ca322fd63337531b71ca7e917f059fa47668ed1096ec7618a7a9",
+          "hibe": "latte",
+          "ibs": "cert-ml-dsa",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "reference",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "planning_status": "planned",
+      "failed_stage": "build_runtime",
+      "error_type": "InvalidParameterError",
+      "error": "invalid explicit hybrid backend identifier",
+      "elapsed_seconds": 0.284906,
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    },
+    {
+      "case": "latte3-hybrid-cert-falcon-falcon-padded-512-reference-byteauth-v1",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "cert-falcon",
+        "ibs_params": "falcon-padded-512",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "reference",
+        "allow_mock": false
+      },
+      "status": "fail",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "IBME/LATTE3/COSAC-FIX/1",
+        "hybrid_limits": {
+          "backend_id": "IBME/LATTE3/COSAC-FIX/1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "cert-falcon",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "falcon-padded-512",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "25de0699dbe1780f3fdb0d9de634d1bbe003ba17d4b423b1c78215c724b62b48",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 63106,
+          "signature_max_bytes": 2322,
+          "ibs_input_bytes": 65536,
+          "hibe_payload_bytes": 65536,
+          "protocol_payload_overhead": 2430,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "25de0699dbe1780f3fdb0d9de634d1bbe003ba17d4b423b1c78215c724b62b48",
+          "hibe": "latte",
+          "ibs": "cert-falcon",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "reference",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "planning_status": "planned",
+      "failed_stage": "build_runtime",
+      "error_type": "InvalidParameterError",
+      "error": "invalid explicit hybrid backend identifier",
+      "elapsed_seconds": 0.230497,
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    },
+    {
+      "case": "latte3-hybrid-cert-falcon-falcon-padded-1024-reference-byteauth-v1",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "cert-falcon",
+        "ibs_params": "falcon-padded-1024",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "reference",
+        "allow_mock": false
+      },
+      "status": "fail",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "IBME/LATTE3/COSAC-FIX/1",
+        "hybrid_limits": {
+          "backend_id": "IBME/LATTE3/COSAC-FIX/1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "cert-falcon",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "falcon-padded-1024",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "d1eaaa80c7ad0b68b5239e6fb910b9135afca63500f0a1771116ceea193efb07",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 60981,
+          "signature_max_bytes": 4447,
+          "ibs_input_bytes": 65536,
+          "hibe_payload_bytes": 65536,
+          "protocol_payload_overhead": 4555,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "d1eaaa80c7ad0b68b5239e6fb910b9135afca63500f0a1771116ceea193efb07",
+          "hibe": "latte",
+          "ibs": "cert-falcon",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "reference",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "planning_status": "planned",
+      "failed_stage": "build_runtime",
+      "error_type": "InvalidParameterError",
+      "error": "invalid explicit hybrid backend identifier",
+      "elapsed_seconds": 0.249147,
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    },
+    {
+      "case": "latte3-hybrid-luo-module-research-reference-byteauth-v1",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "luo-module",
+        "ibs_params": "research",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "reference",
+        "allow_mock": false
+      },
+      "status": "fail",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "IBME/LATTE3/COSAC-FIX/1",
+        "hybrid_limits": {
+          "backend_id": "IBME/LATTE3/COSAC-FIX/1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "luo-module",
+        "ibs_params": {
+          "degree": 256,
+          "dropped_bits": 28,
+          "eta": 1,
+          "gamma1": 125440,
+          "gamma2": 31470387200,
+          "gamma3": 15270991360,
+          "identity_max_bytes": 64,
+          "k": 11,
+          "kappa": 64,
+          "l": 10,
+          "max_cached_identities": 64,
+          "max_extract_attempts": 1024,
+          "max_sign_attempts": 1024,
+          "max_uniform_attempts": 128,
+          "message_max_bytes": 4096,
+          "q": 274877844481,
+          "root": 153250464611
+        },
+        "ibs_version": "luo-module-ref1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "208139efc9c2dff75c4256b17310dca1567d6e5b0c28388ac2e91da7eb92d0f4",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 3924,
+          "signature_max_bytes": 29455,
+          "ibs_input_bytes": 4096,
+          "hibe_payload_bytes": 65536,
+          "protocol_payload_overhead": 29563,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "208139efc9c2dff75c4256b17310dca1567d6e5b0c28388ac2e91da7eb92d0f4",
+          "hibe": "latte",
+          "ibs": "luo-module",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "reference",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "planning_status": "planned",
+      "failed_stage": "build_runtime",
+      "error_type": "InvalidParameterError",
+      "error": "invalid explicit hybrid backend identifier",
+      "elapsed_seconds": 0.129398,
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    },
+    {
+      "case": "latte3-hybrid-luo-module-research-compact-byteauth-v1",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "luo-module",
+        "ibs_params": "research",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "compact",
+        "allow_mock": false
+      },
+      "status": "fail",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "IBME/LATTE3/COSAC-FIX/1",
+        "hybrid_limits": {
+          "backend_id": "IBME/LATTE3/COSAC-FIX/1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "luo-module",
+        "ibs_params": {
+          "degree": 256,
+          "dropped_bits": 28,
+          "eta": 1,
+          "gamma1": 125440,
+          "gamma2": 31470387200,
+          "gamma3": 15270991360,
+          "identity_max_bytes": 64,
+          "k": 11,
+          "kappa": 64,
+          "l": 10,
+          "max_cached_identities": 64,
+          "max_extract_attempts": 1024,
+          "max_sign_attempts": 1024,
+          "max_uniform_attempts": 128,
+          "message_max_bytes": 4096,
+          "q": 274877844481,
+          "root": 153250464611
+        },
+        "ibs_version": "luo-module-ref1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "compact",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "6ab9004827dfed7eddf52101992941bd033dac390d4745ea540e44340bf06eb2",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 3924,
+          "signature_max_bytes": 16063,
+          "ibs_input_bytes": 4096,
+          "hibe_payload_bytes": 65536,
+          "protocol_payload_overhead": 16171,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "6ab9004827dfed7eddf52101992941bd033dac390d4745ea540e44340bf06eb2",
+          "hibe": "latte",
+          "ibs": "luo-module",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "compact",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "planning_status": "planned",
+      "failed_stage": "build_runtime",
+      "error_type": "InvalidParameterError",
+      "error": "invalid explicit hybrid backend identifier",
+      "elapsed_seconds": 0.09884,
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    },
+    {
+      "case": "latte3-hybrid-luo-matrix-research-reference-byteauth-v1",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "luo-matrix",
+        "ibs_params": "research",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "reference",
+        "allow_mock": false
+      },
+      "status": "fail",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "IBME/LATTE3/COSAC-FIX/1",
+        "hybrid_limits": {
+          "backend_id": "IBME/LATTE3/COSAC-FIX/1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "luo-matrix",
+        "ibs_params": {
+          "eta": 1,
+          "gamma1": 4096,
+          "gamma2": 131072,
+          "identity_max_bytes": 64,
+          "k": 32,
+          "kappa": 8,
+          "m": 8,
+          "max_cached_identities": 128,
+          "max_extract_attempts": 4096,
+          "max_sign_attempts": 4096,
+          "max_uniform_attempts": 64,
+          "message_max_bytes": 4096,
+          "n": 4,
+          "q": 2147483647
+        },
+        "ibs_version": "luo-matrix-ref1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "1a9985bc9672bcaa35f7e1f7188dfc5ffc454c4c1de377e6b47e28e1f23338f9",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 3924,
+          "signature_max_bytes": 947,
+          "ibs_input_bytes": 4096,
+          "hibe_payload_bytes": 65536,
+          "protocol_payload_overhead": 1055,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "1a9985bc9672bcaa35f7e1f7188dfc5ffc454c4c1de377e6b47e28e1f23338f9",
+          "hibe": "latte",
+          "ibs": "luo-matrix",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "reference",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "planning_status": "planned",
+      "failed_stage": "build_runtime",
+      "error_type": "InvalidParameterError",
+      "error": "invalid explicit hybrid backend identifier",
+      "elapsed_seconds": 0.144985,
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    },
+    {
+      "case": "latte3-hybrid-wang-pw-research-reference-byteauth-v1",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "wang-pw",
+        "ibs_params": "research",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "reference",
+        "allow_mock": false
+      },
+      "status": "fail",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "IBME/LATTE3/COSAC-FIX/1",
+        "hybrid_limits": {
+          "backend_id": "IBME/LATTE3/COSAC-FIX/1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "wang-pw",
+        "ibs_params": {
+          "gamma": 5,
+          "gaussian_abort_bits": 24,
+          "generation_width_squared": 4,
+          "identity_max_bytes": 256,
+          "inner_identity_bytes": 32,
+          "inner_message_bytes": 32,
+          "m_bar": 5,
+          "mass_bits": 64,
+          "master_quality": 128,
+          "max_uniform_trials": 64,
+          "message_max_bytes": 4096,
+          "n": 1,
+          "precision_bits": 128,
+          "q": 17,
+          "r_squared": 9,
+          "salt_bytes": 32,
+          "tail_bits": 24,
+          "user_quality": 406350
+        },
+        "ibs_version": "WangPW-research-v1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "1987444b33b7ca8a8cc39481b7960b8907b64a4adf931be86b6c189527c13290",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 3924,
+          "signature_max_bytes": 374,
+          "ibs_input_bytes": 4096,
+          "hibe_payload_bytes": 65536,
+          "protocol_payload_overhead": 482,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": false
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "1987444b33b7ca8a8cc39481b7960b8907b64a4adf931be86b6c189527c13290",
+          "hibe": "latte",
+          "ibs": "wang-pw",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "reference",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "planning_status": "planned",
+      "failed_stage": "build_runtime",
+      "error_type": "InvalidParameterError",
+      "error": "invalid explicit hybrid backend identifier",
+      "elapsed_seconds": 0.146473,
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    },
+    {
+      "case": "latte3-hybrid-srgg2025-research-reference-byteauth-v1",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "srgg2025",
+        "ibs_params": "research",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "reference",
+        "allow_mock": false
+      },
+      "status": "fail",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "IBME/LATTE3/COSAC-FIX/1",
+        "hybrid_limits": {
+          "backend_id": "IBME/LATTE3/COSAC-FIX/1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "srgg2025",
+        "ibs_params": {
+          "base": 31,
+          "degree": 8,
+          "digits": 3,
+          "gadget_tail_bits": 16,
+          "identity_max_bytes": 256,
+          "master_first_squared": 8388608,
+          "master_second_squared": 8388608,
+          "max_users": 16,
+          "message_max_bytes": 4096,
+          "p": 257,
+          "precision_bits": 192,
+          "r_squared": 4,
+          "rank": 1,
+          "scalar_mass_bits": 64,
+          "scalar_tail_bits": 24,
+          "setup_max_attempts": 32,
+          "sign_max_attempts": 16,
+          "signature_first_squared": 137438953472,
+          "signature_noise_factor": 2,
+          "signature_second_squared": 137438953472,
+          "ticket_bits": 128,
+          "user_norm_squared": 536870912
+        },
+        "ibs_version": "SRGG-zeta2-research-v1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "7470c63caea24246270d96e6d999371cdb90267ebf0403d589f728b112189620",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 3924,
+          "signature_max_bytes": 579,
+          "ibs_input_bytes": 4096,
+          "hibe_payload_bytes": 65536,
+          "protocol_payload_overhead": 687,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "7470c63caea24246270d96e6d999371cdb90267ebf0403d589f728b112189620",
+          "hibe": "latte",
+          "ibs": "srgg2025",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "reference",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "planning_status": "planned",
+      "failed_stage": "build_runtime",
+      "error_type": "InvalidParameterError",
+      "error": "invalid explicit hybrid backend identifier",
+      "elapsed_seconds": 0.137131,
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    }
+  ],
+  "mode": "execute"
+}

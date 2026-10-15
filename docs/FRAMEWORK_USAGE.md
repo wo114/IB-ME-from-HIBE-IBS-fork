@@ -10,13 +10,16 @@ python -m ibme.cli check --hibe abb10 --ibs luo-module --transport hybrid --sign
 python -m ibme.cli matrix
 ```
 
-三条命令只查看登记信息或计算兼容性，不创建密钥、不运行算法。`--json` 输出机器可读结果；`matrix` 明确标记 `not_executed`。CHKP 已登记研究后端，缺少 Sage 时显示运行依赖缺失；LATTE 等未交付候选显示未实现。选择失败不会回退到 ABB10 或 mock。
+三条命令只查看登记信息或计算兼容性，不创建密钥、不运行算法。`--json` 输出机器可读结果；`matrix` 明确标记 `not_executed`。CHKP、LATTE、认证ML-DSA/Falcon已有研究后端登记；缺少Sage或所选参数的native引擎时显示明确依赖失败，Lai等仍显示未实现。选择失败不会回退到 ABB10 或 mock。
 
 | 选择 | 当前实现 | 说明 |
 |---|---|---|
 | HIBE `abb10` | 教学 ABB10 | 可以 direct，也可由 Hybrid 包装；不具正式安全参数 |
 | HIBE `mp12-chkp-reference` | 可选 Sage 研究变体 | 显式 `--hibe-params n2-reference`；新根/接收者需配置 native engine，旧状态恢复不需；n2已有公开攻击，见[A安装交付](research/team-a-delivery/2026-10-12-installed-api/README.md) |
 | HIBE `chkp` | CHKP RandBasis 研究后端 | Sage运行；`hybrid-research`用于32 B种子；当前n=2可公开攻击，见[统一交付](deliveries/2026-10-12-chkp-luo/README.md) |
+| HIBE `latte` | LATTE-3/COSAC-FIX研究后端 | `--hibe-params seed32 --transport hybrid`；需Sage及LATTE引擎，匿名/正式条件未准入；[真实组合/CLI](research/team-c-delivery/2026-10-15-c-framework/README.md) |
+| IBS `cert-ml-dsa` | 认证转换研究IBS | `--ibs-params ml-dsa-44`、`ml-dsa-65`或`ml-dsa-87`，reference格式；需对应ML-DSA引擎 |
+| IBS `cert-falcon` | 同一转换的Falcon v1.2适配 | `--ibs-params falcon-padded-512`或`falcon-padded-1024`，reference格式；需对应Falcon引擎，不等同FN-DSA |
 | IBS `sis` | 教学 SIS IBS | 保留已知公开伪造反例 |
 | IBS `luo-matrix` | Luo §3 矩阵研究实现 | 采用显式功能参数；与模格是不同算法实例 |
 | IBS `luo-module` | Luo §4 模格研究实现 | reference 默认；compact 为同算法的无损签名编码 |
@@ -102,6 +105,20 @@ python -m pytest tests/test_assembly.py tests/test_cli_selection.py tests/test_c
 在 WSL 的 `~/miniconda3/envs/sage` 中使用 `--hibe chkp --ibs luo-module --transport hybrid`；两边参数仍分别选择。`--ibs-params` 可指向 C64B 完整参数 JSON（格式遵循上文），不能仅修改旧密钥的参数名字。默认 CHKP `hybrid-research` 是 `seed32` 模式，胶囊3919 B、内层种子32 B、编码身份86 B。`direct-research` 为28 B内容的 `framed32` 模式，现有 IBS/包装载荷容量不足时明确拒绝。
 
 此后端的当前 n=2 参数可公开攻击，禁止用来保密。它用于真实算法、固定缓存和框架接入研究。代码、参数、失败状态和复现入口见 [CHKP 专属规范](specs/chkp-hibe.md)；项目当前完成程度统一见 [PROJECT_STATUS](PROJECT_STATUS.md)。
+
+## LATTE 与认证 IBS 研究调用
+
+在指定WSL Sage环境、按各原语交付构建native引擎后，可使用独立选择。例如新建一套LATTE + Falcon状态：
+
+```sh
+export PYTHONPATH="$PWD/src:$PWD"
+~/miniconda3/envs/sage/bin/python -m ibme.cli check --hibe latte --hibe-params seed32 --ibs cert-falcon --ibs-params falcon-padded-512 --transport hybrid
+~/miniconda3/envs/sage/bin/python -m ibme.cli setup --state latte-falcon-new-state --hibe latte --hibe-params seed32 --ibs cert-falcon --ibs-params falcon-padded-512 --transport hybrid
+```
+
+后续发钥/加解密沿用上文命令，从状态恢复冻结选择。换成 `--ibs cert-ml-dsa --ibs-params ml-dsa-44` 可建另一套独立状态。所选参数的引擎在Setup前检查，未安装时不会自动改选参数。两类认证IBS各自机构/用户密钥独立。
+
+明确选定的LATTE矩阵可运行 `python -m experiments.run_combination_matrix --suite-file ci/c-combinations.json --output test-results/c-framework/new.json`。本地10配置338检查、五档系统随机CLI和原状态安装恢复见[C交付](research/team-c-delivery/2026-10-15-c-framework/README.md)；这不表示每个默认池配对都已实跑或安全准入。LATTE匿名性/修订采样、转换强UF/量子模型与正式参数仍待。
 
 ## 6. 后续加入新算法
 

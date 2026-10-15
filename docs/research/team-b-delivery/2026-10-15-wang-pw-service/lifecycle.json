@@ -1,0 +1,260 @@
+{
+  "schema": "IBME/WangPW-FIXED-ISSUER-AUDIT/1",
+  "parameters": {
+    "q": 17,
+    "n": 1,
+    "m_bar": 5,
+    "generation_width_squared": 4,
+    "master_quality": 128,
+    "user_quality": 406350,
+    "r_squared": 9,
+    "gamma": 5,
+    "salt_bytes": 32,
+    "inner_identity_bytes": 32,
+    "inner_message_bytes": 32,
+    "identity_max_bytes": 256,
+    "message_max_bytes": 4096,
+    "tail_bits": 24,
+    "mass_bits": 64,
+    "precision_bits": 128,
+    "gaussian_abort_bits": 24,
+    "max_uniform_trials": 64
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "completed",
+      "honest_signatures": 6
+    },
+    {
+      "attempt": 2,
+      "status": "completed",
+      "honest_signatures": 6
+    },
+    {
+      "attempt": 3,
+      "status": "completed",
+      "honest_signatures": 6
+    }
+  ],
+  "counts": {
+    "roots": 3,
+    "users": 6,
+    "signatures": 18,
+    "verifications": 18,
+    "cached_recoveries": 6,
+    "restored_key_signatures": 6,
+    "fresh_process_signatures": 6,
+    "wrong_identity_accepts": 1,
+    "wrong_message_accepts": 3,
+    "wrong_context_rejects": 18,
+    "truncated_rejects": 18,
+    "public_forgery_accepts": 3
+  },
+  "all_requested_attempts_completed": true,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "randomness": "OS CSPRNG; fixed requested independent roots, no reroll; SHAKE instantiation with classical ROM claims conditional",
+  "identity_bytes": [
+    5,
+    3
+  ],
+  "message_bytes": [
+    0,
+    5,
+    16
+  ],
+  "max_users": 2,
+  "sizes_bytes": {
+    "public_key": [
+      401,
+      400,
+      399
+    ],
+    "issuer_snapshot": [
+      6602,
+      6616,
+      6590
+    ],
+    "signing_key": [
+      1128,
+      1127,
+      1133,
+      1134,
+      1134,
+      1123
+    ],
+    "signature": [
+      346,
+      348,
+      347,
+      347,
+      343,
+      343,
+      348,
+      347,
+      345,
+      348,
+      342,
+      345,
+      348,
+      346,
+      346,
+      342,
+      350,
+      344
+    ]
+  },
+  "source_sha256": {
+    "experiments/research/candidates/wang_pw/__init__.py": "c55aee574c6accdc243abbbf3344c7fee1795fe314c03ffa44d284c010d1bba6",
+    "experiments/research/candidates/wang_pw/audit.py": "ef136cb83f188025bf5d8e46a0f69f38a87428c48b784dbad0f4d3a830fdc60b",
+    "experiments/research/candidates/wang_pw/backend.py": "f24067f6436122d874d0a502d1f9afcacb7b08664f799e1be10daaa1baa0a1df",
+    "experiments/research/candidates/wang_pw/codec.py": "2f08b4c501bf3707cf048aed8a795859e782facfc5814645e5214374b378347c",
+    "experiments/research/candidates/wang_pw/engine.py": "1bef58a42599990e8ba6d545c82563d88e8e4a30dfb55f4a3ea0fe058427f951",
+    "experiments/research/candidates/wang_pw/hashing.py": "17ac4878d5b9541c21a1f5a4bac948248557e4a089b1f61a436df16970fa41a0",
+    "experiments/research/candidates/wang_pw/objects.py": "75160d38b2b4e2eaa14df560019abd12d3168518c06156dcde40f0243bb488ef",
+    "experiments/research/candidates/wang_pw/params.py": "0f9f361c7cb4da1b08a9c33964d32e3f97b795296772e1ef66dfe075cc4c8798",
+    "experiments/research/gaussian_reference.py": "0e003b3a813b9fbdf7919e98dcbf7906cf2676e54ac14d28ac6e826b28436f13",
+    "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+    "experiments/research/online_mp12_reference.py": "67ef14da368416138ad6598c0161afd023542f5912c55e79369328523cfe6d5b",
+    "experiments/research/wang_pw_service_audit.py": "434ae4d7c6fc9d718dab86ce2c3f93edec7f63ba5b874cae669a4fcf66336fbd",
+    "src/ibme/cli_state.py": "531aa3d7f4c9d6e1929847b3ed603b2427911e9fa4c1f98db440d8ae70d35567",
+    "src/ibme/core/__init__.py": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac",
+    "src/ibme/core/encoding.py": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d",
+    "src/ibme/core/errors.py": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e",
+    "src/ibme/core/hashing.py": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4",
+    "src/ibme/core/lamport_ots.py": "6322e025e01c299e20769ba6cd3a3bb02b9a14a98cf7fc530c81950adda046a5",
+    "src/ibme/core/randomness.py": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
+    "src/ibme/core/types.py": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56",
+    "src/ibme/ibs/wang_pw_service.py": "a36103a4f0aeb79ff10faec15ae7f41a2100d7cd65719e32d8bcfbf282c79d09",
+    "src/ibme/lattice/chkp/__init__.py": "820d7a2834b36d5cea29d0c165fa01c425af1739c103ea6323da8bacfd62c921",
+    "src/ibme/lattice/chkp/basis.py": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d",
+    "src/ibme/lattice/chkp/basis_reduce.py": "df6718f883e090a35fb4bacda155104341b89d4b5206b4215f6f2cbc37c48ebc",
+    "src/ibme/lattice/chkp/delegation_state.py": "6b035047384aa33a79d19bc1271a86637687cd1e5a9345b28cfbf1f59c308984",
+    "src/ibme/lattice/chkp/entropy.py": "fe449ebd5ccadfb8a8b73652b874fcd69e0683292368d9c03ef8c6d215fcc8d6",
+    "src/ibme/lattice/chkp/extended_gpv.py": "3e86014f3f468d056ce1fab99f047c40c4242a3e9d521ca66c88f0ff769f0632",
+    "src/ibme/lattice/chkp/finite_gaussian.py": "bd087124b957fd45ad6205dececd4cbc1011807793bff42c2b73359b8ef55433",
+    "src/ibme/lattice/chkp/finite_gpv.py": "c266109ac28a3cdd0dc84086fab4432de65f9b383135c280cbc484088f65622e",
+    "src/ibme/lattice/chkp/finite_randbasis.py": "09147b4b5015c158d08e7cdcd53c825a034de23a8b35946d7c2d8cd94441d8e6",
+    "src/ibme/lattice/chkp/gaussian.py": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c",
+    "src/ibme/lattice/chkp/identity.py": "1921bcebea84321e14508b251906795f235ee60c46843c8f66a2a8f367d99718",
+    "src/ibme/lattice/chkp/joint_parameters.py": "887fb6c938d25ef2466ec7af1ca5311f3e55269c6aa72ee57a51db74e8763c92",
+    "src/ibme/lattice/chkp/leaf_state.py": "c799db9542cb6cb314ef742eb3df553c19d12b57588afb8fd5f157c4539c5568",
+    "src/ibme/lattice/chkp/noise_budget.py": "4d493f2c305fd614705ab28f6fc3920b0ae06b195b0b0960719ff51314508790",
+    "src/ibme/lattice/chkp/root_basis.py": "30ee87fd3ee23ae5f1fd8d8276f4f621abe3149b546578eb9239bc751c86b5da",
+    "src/ibme/lattice/chkp/root_generation.py": "9ce55d6aca23435d3b772d14cfe48cca04cd9923fd20ba6d2376804b8ded2fff",
+    "src/ibme/lattice/chkp/rounded_noise.py": "f093b75e82116f39b5817a01ee89ead1bcbaec8df6d231380354b4e992638411",
+    "src/ibme/lattice/chkp/seed_kem.py": "62e3a03c498268e7a7aa5e7c0926a34f7bf7e4f0fb8eacccbd6c8ddb1cb202f1",
+    "src/ibme/lattice/chkp/tape.py": "a4cef3ab500cca076c365e53de8a72084651daa90af86bdfa4598a38817e7f84",
+    "src/ibme/lattice/chkp/tobasis.py": "4d54c20fa120d31b69903a029e4d287c688f67e397563e96b1df8a79f3a0adde",
+    "src/ibme/lattice/research/__init__.py": "89e656c9c2e8a5fedab17c1f160316a3b248f3ae62727275bc4306e1e0b3fb53"
+  },
+  "timings_seconds": {
+    "initialize": {
+      "samples": [
+        0.1189396099999982,
+        0.08672500300000507,
+        0.1328946430000002
+      ],
+      "median": 0.1189396099999982
+    },
+    "key_extract": {
+      "samples": [
+        0.16150357200000087,
+        0.10404928600000218,
+        0.053083155000003046,
+        0.03885265899999979,
+        0.042171891000002404,
+        0.1159281589999992
+      ],
+      "median": 0.07856622050000261
+    },
+    "cached_extract": {
+      "samples": [
+        0.00085678499999986,
+        0.0011407470000008857,
+        0.0010818290000003117,
+        0.0017761759999999072,
+        0.0016672779999993281,
+        0.000902646999996648
+      ],
+      "median": 0.0011112880000005987
+    },
+    "sign": {
+      "samples": [
+        0.03720166799999802,
+        0.02148856999999893,
+        0.016157228000000856,
+        0.019866222000000988,
+        0.01675898099999884,
+        0.014479929000000169,
+        0.014024077999998497,
+        0.011201258999996355,
+        0.01122111600000153,
+        0.023831853000004344,
+        0.01824189099999529,
+        0.016385755999998253,
+        0.01278313400000286,
+        0.012380794000002027,
+        0.012149072999996235,
+        0.013718335000000081,
+        0.011400809000001288,
+        0.01573951399999629
+      ],
+      "median": 0.01510972149999823
+    },
+    "verify": {
+      "samples": [
+        0.000296623000000551,
+        8.851100000129009e-05,
+        4.743099999870992e-05,
+        7.215500000157249e-05,
+        6.108200000198849e-05,
+        0.00011256000000159361,
+        4.9257000000579865e-05,
+        4.895800000070949e-05,
+        8.001699999482526e-05,
+        8.941999999478867e-05,
+        8.724399999948673e-05,
+        6.0148000002868685e-05,
+        6.488799999715411e-05,
+        4.8161999998797e-05,
+        5.047300000171617e-05,
+        5.3637000000605894e-05,
+        5.210299999447443e-05,
+        6.227999999453004e-05
+      ],
+      "median": 6.168099999825927e-05
+    },
+    "restore_key": {
+      "samples": [
+        0.000171295999997767,
+        0.00019570199999918714,
+        0.0002342959999950267,
+        0.0002401429999991933,
+        0.00014657999999911908,
+        0.00013931899999874986
+      ],
+      "median": 0.00018349899999847707
+    }
+  },
+  "environment": {
+    "os": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "logical_cpus": 20,
+    "python": "3.13.15",
+    "sage": "10.9",
+    "constant_time": false,
+    "acceleration": "No algorithm-specific acceleration; Sage exact arithmetic"
+  },
+  "limitations": [
+    "q=17,n=1 debug profile is publicly forgeable; fixed issuance does not repair it",
+    "Wrong identity/message acceptance is measured, never hidden by a service whitelist",
+    "Local measurements include validation/storage and are not secure-parameter benchmark rankings",
+    "Snapshot, keys, salts, random seeds, actual signatures and secret-derived digests are not exported",
+    "Formal parameters, root near-uniformity, fixed-service security mapping and all HIBE pairings remain separate",
+    "Trusted local plaintext storage; no malicious rollback, NFS or mixed Windows/WSL writer guarantee"
+  ]
+}
