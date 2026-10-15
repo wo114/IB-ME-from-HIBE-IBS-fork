@@ -19,13 +19,21 @@ from ibme.core.randomness import SecureRandom
 from ibme.hibe.mp12_structured import (StructuredPublicKey, StructuredMasterSecret,
     StructuredMP12HIBE)
 from ibme.ibs.luo_module_profiles import c64b_params
-from ibme.protocol.baseline import PublicKey, MasterSecret, SenderKey, ReceiverKey
+from ibme.protocol.baseline import PublicKey, MasterSecret, SenderKey, ReceiverKey, BOTTOM
 from ibme.protocol.hybrid_hibe import HybridPublicKey, HybridMasterSecret
 from experiments.run_combination_matrix import run_case, summarize
-from experiments.research.structured_hibe_probe import save, sources
+from experiments.research.structured_hibe_probe import save, sources as _sources
 
 RECEIVERS, SENDERS = (b"Bob", b"Carol"), (b"Alice", b"Charlie")
 MESSAGE = bytes(range(32))
+
+
+def sources():
+    result = _sources()
+    for name, path in ((__name__, Path(__file__).resolve()),
+            ("experiments.run_combination_matrix", Path(__file__).resolve().parents[1]/"run_combination_matrix.py")):
+        result[name] = dict(path=str(path), sha256=hashlib.sha256(path.read_bytes()).hexdigest())
+    return result
 
 
 class NoEntropy:
@@ -71,7 +79,7 @@ def generate(directory, commit):
         for i, j, wire in wires:
             for r, receiver in enumerate(receivers):
                 for s, sender in enumerate(SENDERS):
-                    if (r, s) != (i, j): assert p.decrypt(public, receiver, sender, wire, rng=guard) is None
+                    if (r, s) != (i, j): assert p.decrypt(public, receiver, sender, wire, rng=guard) is BOTTOM
         assert guard.calls == 0
         event("twelve-wrong-identity-paths")
         restored = restore(directory)
@@ -111,6 +119,55 @@ def restore(directory):
         assert master.to_bytes() == (directory/"master.bin").read_bytes()
     return dict(status="passed", entropy_reads=guard.calls, restored_matching_paths=4,
         new_hibe_roots=0, new_hibe_keys=0, new_ibs_keys=0, state_unchanged=True)
+
+
+def finish_saved_tree(directory, commit):
+    """Finish acceptance only after the original four real leaves were saved.
+
+    Intended for a harness failure after issuance, never for a failed sampler.
+    No receiver or leaf address is reopened, and the failure record is retained.
+    """
+    from ibme.assembly import SuiteConfig
+    if (directory/"completed").exists() or (directory/"receipt.json").exists():
+        raise ValueError("tree acceptance already completed")
+    failed = json.loads((directory/"failure.json").read_bytes())
+    events = json.loads((directory/"progress.json").read_bytes())
+    if (failed["exception"] != "AssertionError" or
+            failed["last_event"] != "real-leaf-1-1-and-noisy-roundtrip" or
+            events[-1]["name"] != failed["last_event"]):
+        raise ValueError("all original four-leaf generation stages must have completed")
+    before = {p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in directory.glob("*.bin")}
+    guard = NoEntropy()
+    with patch.object(SecureRandom, "read", lambda *a, **k: guard.read(0)):
+        config = SuiteConfig.from_json((directory/"suite.json").read_bytes())
+        runtime = build_runtime(config); d = runtime.decoders; p = runtime.proto
+        public = PublicKey.from_bytes((directory/"public.bin").read_bytes(), d["hpk"], d["ipk"])
+        receivers = [ReceiverKey.from_bytes((directory/f"receiver-{i}.bin").read_bytes(), d["sk1"]) for i in range(2)]
+        checks = 0
+        for i in range(2):
+            for j in range(2):
+                raw = (directory/f"ciphertext-{i}-{j}.bin").read_bytes()
+                for r, receiver in enumerate(receivers):
+                    for s, sender in enumerate(SENDERS):
+                        value = p.decrypt(public, receiver, sender, raw, rng=guard)
+                        assert value == MESSAGE if (r,s)==(i,j) else value is BOTTOM
+                        checks += 1
+        restored = restore(directory)
+    assert guard.calls == 0
+    assert before == {p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in directory.glob("*.bin")}
+    report = dict(schema="A-STRUCTURED-DEFAULT-FRAMEWORK/1", status="passed", source_commit=commit,
+        original_generation_source_commit="6bc93cf", original_launch_label="a-capacity-fix",
+        original_harness_failure_retained=True, acceptance_finished_from_original_objects=True,
+        regenerated_roots_or_keys_or_ciphertexts=0, acceptance_entropy_reads=guard.calls,
+        suite=config.to_dict(), events=events, receivers=2, fixed_leaves=4,
+        matching_paths=4, wrong_identity_paths=12, identity_checks=checks,
+        message_bytes=32, inner_identity_bytes=86, system_randomness=True, repetitions=1,
+        new_hibe_roots=1, restored=restored, original_generation_seconds=events[-1]["elapsed_seconds"],
+        providers=sources(), security_claim="none", backend_admitted=False, parameters_are_formal=False,
+        limitations=["Original harness compared None instead of protocol BOTTOM; no mathematical sampler failed",
+            "generation and final read-only acceptance are separate executions", "n2 public seed attack applies"])
+    save(directory/"receipt.json", report); save(directory/"completed", b"passed without regeneration\n")
+    return report
 
 
 def matrix(directory, output, commit):
@@ -163,9 +220,11 @@ def main():
     parser.add_argument("--private-directory", required=True, type=Path)
     parser.add_argument("--source-commit", default="development")
     parser.add_argument("--restore-only", action="store_true")
+    parser.add_argument("--finish-saved-tree", action="store_true")
     parser.add_argument("--matrix-output", type=Path)
     args = parser.parse_args()
-    if args.restore_only: result = restore(args.private_directory)
+    if args.finish_saved_tree: result = finish_saved_tree(args.private_directory, args.source_commit)
+    elif args.restore_only: result = restore(args.private_directory)
     elif args.matrix_output: result = matrix(args.private_directory, args.matrix_output, args.source_commit)
     else: result = generate(args.private_directory, args.source_commit)
     print(json.dumps(dict(status=result["status"])), flush=True)
