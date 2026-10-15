@@ -2,6 +2,7 @@
 
 from ibme.core.errors import InvalidParameterError
 from ibme.lattice.research import sage_available
+from importlib.util import find_spec
 from . import BACKEND_ID, BACKEND_VERSION
 from .params import StructuredHIBEParams
 from .objects import (StructuredPublicKey, StructuredMasterSecret,
@@ -12,6 +13,14 @@ from .objects import (StructuredPublicKey, StructuredMasterSecret,
 def environment():
     if not sage_available():
         raise InvalidParameterError("structured MP12 H/G requires WSL ~/miniconda3/envs/sage; no fallback")
+    try:
+        found = find_spec("experiments.research.first_suite.entropy")
+    except ModuleNotFoundError as exc:
+        if exc.name not in ("experiments", "experiments.research", "experiments.research.first_suite"):
+            raise
+        found = None
+    if found is None:
+        raise InvalidParameterError("structured H/G requires the packaged research support modules; install the complete ibme wheel or expose the project root; no fallback")
 
 
 def factory(rng, signature_format):

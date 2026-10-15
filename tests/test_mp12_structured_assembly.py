@@ -75,3 +75,23 @@ def test_complete_capacity_preflight_needs_no_sampler_or_factory(monkeypatch):
     assert report.capacity["inner_hibe_payload_bytes"] == 32
     assert report.capacity["inner_hibe_identity_bytes"] == 86
     assert report.capacity["max_application_bytes"] >= 32
+
+
+def test_missing_optional_reference_provider_does_not_disable_other_routes(monkeypatch):
+    from ibme.hibe import mp12_chkp
+    monkeypatch.setattr(mp12_chkp,"sage_available",lambda:True)
+    monkeypatch.setattr(mp12_chkp,"_provider_available",lambda:False)
+    assert not mp12_chkp.default_backend_spec().available
+    assert not mp12_chkp.backend_metadata()["available"]
+    registry=default_registry()
+    assert registry.get("hibe","mock").available
+    assert registry.get("hibe","mp12-structured-hg").available
+    assert not registry.get("hibe","mp12-chkp-reference").available
+
+
+def test_missing_packaged_support_is_reported_before_selected_factory(monkeypatch):
+    monkeypatch.setattr(registration,"sage_available",lambda:True)
+    def missing(name): raise ModuleNotFoundError("missing optional package",name="experiments")
+    monkeypatch.setattr(registration,"find_spec",missing)
+    with pytest.raises(InvalidParameterError,match="packaged research support"):
+        registration.environment()
