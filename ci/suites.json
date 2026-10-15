@@ -298,6 +298,8 @@
       "layer": "primitive",
       "allow_skips": false,
       "tests": [
+        "tests/test_structured_identity_view.py",
+        "tests/test_mp12_target_screen.py",
         "tests/test_mp12_distribution_budget.py",
         "tests/test_mp12_public_service_budget.py",
         "tests/test_mp12_structured_sampling.py",
