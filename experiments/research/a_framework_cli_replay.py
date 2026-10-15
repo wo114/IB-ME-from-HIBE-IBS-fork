@@ -110,6 +110,8 @@ def run(args):
         if row["code"] != expected or row["fresh_preimages"] != preimages:
             raise RuntimeError(name+" CLI result or sampling count mismatch")
         if args.kind == "structured" and row["entropy_reads"] != 0: raise AssertionError("zero-entropy restore failed")
+        if preimages == 0 and row["entropy_bytes"] != 0: raise AssertionError("cached issuance or rejection consumed entropy")
+        if args.kind == "abb" and preimages and row["entropy_bytes"] <= 0: raise AssertionError("ABB replay did not use fresh entropy")
         if site and not row["isolated"]: raise AssertionError("installed child not isolated")
         (directory/"progress.json").write_text(json.dumps(dict(stage=name, commands=len(records))))
         return row
