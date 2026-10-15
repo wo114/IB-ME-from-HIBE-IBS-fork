@@ -11,6 +11,18 @@ def _require(condition, message):
         raise ValueError(message)
 
 
+def _source_variant(raw, relative, expected):
+    """Keep receipt byte hashes intact; report Python checkout newline variants."""
+    observed = hashlib.sha256(raw).hexdigest()
+    if observed == expected:
+        return None
+    _require(PurePosixPath(relative).suffix == ".py" and b"\r\n" in raw
+             and hashlib.sha256(raw.replace(b"\r\n", b"\n")).hexdigest() == expected,
+             "source mismatch: " + relative)
+    return dict(path=relative, observed_sha256=observed, evidence_sha256=expected,
+                conversion="Python source CRLF to LF only")
+
+
 def check(repo):
     repo = Path(repo).resolve()
     folder = repo / "docs/research/team-b-delivery/2026-10-15-wang-pw-service"
@@ -18,13 +30,23 @@ def check(repo):
     def load(name):
         return json.loads((folder / name).read_text(encoding="utf-8"))
 
-    def digest(relative):
+    def content(relative):
         name = PurePosixPath(relative)
         _require(not name.is_absolute() and ".." not in name.parts and "\\" not in relative,
                  "unsafe evidence path")
         path = repo.joinpath(*name.parts).resolve()
         _require(path.is_relative_to(repo) and path.is_file(), "missing/escaped evidence file")
-        return hashlib.sha256(path.read_bytes()).hexdigest()
+        return path.read_bytes()
+
+    def digest(relative):
+        return hashlib.sha256(content(relative)).hexdigest()
+
+    variants = {}
+
+    def check_source(relative, expected):
+        variant = _source_variant(content(relative), relative, expected)
+        if variant is not None:
+            variants[relative] = variant
 
     manifest = load("MANIFEST.json")
     _require(bool(manifest["files_sha256"]), "empty delivery manifest")
@@ -46,7 +68,7 @@ def check(repo):
         data = load(name)
         for source, expected in data["source_sha256"].items():
             relative = "src/" + source if source.startswith("ibme/") else source
-            _require(digest(relative) == expected, name + " source mismatch: " + relative)
+            check_source(relative, expected)
             checked += 1
     lifecycle, installed = load("lifecycle.json"), load("installed.json")
     for data in (lifecycle, installed):
@@ -69,12 +91,13 @@ def check(repo):
     for provider in installed["source_providers"].values():
         source = provider["file"]
         relative = "src/" + source if source.startswith("ibme/") else source
-        _require(digest(relative) == provider["sha256"], "installed source mismatch: " + relative)
+        check_source(relative, provider["sha256"])
         checked += 1
     return dict(status="passed", manifest_files=len(manifest["files_sha256"]),
         source_checks=checked, wang_pw_tests=len(cases),
         real_source_roots=lifecycle["counts"]["roots"],
         installed_providers=len(installed["source_providers"]),
+        source_line_ending_variants=[variants[name] for name in sorted(variants)],
         scope="Read-only artifact consistency; no crypto rerun, remote CI or security proof")
 
 

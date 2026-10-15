@@ -67,3 +67,5 @@ python experiments/research/wang_pw_service_delivery_check.py
 CI 输出目录须使用新路径。安装复核先在已有 setuptools 的构建环境执行 `python -m pip wheel --no-index --no-deps --no-build-isolation . -w build/outputs/wang-wheel`，再由指定 Sage Python 运行同一 audit 模块，加 `--wheel build/outputs/wang-wheel/ibme-0.1.0-py3-none-any.whl --output <新的收据文件>`。本轮使用已有 Windows 构建运行时生成纯 Python wheel，再由 Sage 在仓库外临时安装；未改全局依赖，也未联网安装其它包。
 
 [MANIFEST](MANIFEST.json) 列出本批代码、文档和脱敏证据的 SHA-256，不包含清单自身。公开包只保留尺寸、计数、耗时和源码指纹，不含私钥、生产种子、发钥状态、实际签名、密文或秘密派生摘要。只读交付检查同时核对最终源码、CI、真实运行及实际安装来源；它不代替重新执行密码算法，也不证明远端 Actions 已通过。
+
+清单要求本批文件的字节哈希完全一致。运行收据保留实际执行源码的原始哈希；对其它 Python 源码，检查器额外允许唯一一种差异：工作副本将 LF 换行转成 CRLF，转换回 LF 后必须与收据完全一致，并在 `source_line_ending_variants` 中列出文件及两种原始哈希。本次主目录有一处这样的历史换行差异，测试工作副本没有；任何其它内容变化仍会失败。
