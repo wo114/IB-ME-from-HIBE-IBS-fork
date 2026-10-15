@@ -240,12 +240,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "planned",
+      "execution_state": "latte_independent_backend_done_lai_exact_unit_and_type_qualification_blocked_anonymity_formal_pending",
       "deliverables": [
         "匿名/委派/采样/代码选择表",
         "LATTE 缓冲问题复验与差分",
         "先合格者完整六方法，后补另一条"
-      ]
+      ],
+      "evidence": "../../research/team-c-delivery/2026-10-15-lai-qualification/README.md"
     },
     {
       "id": "C2",
@@ -271,12 +272,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "planned",
+      "execution_state": "literal_conflicts_executable_corrected_ntru_gpv_rejection_study_real_restore_install_and_public_attacks_passed_not_ibs_backend",
       "deliverables": [
         "模数/逆元原文冲突澄清",
         "实际采样/拒绝与有限参数",
         "合格后四算法和共同后端"
-      ]
+      ],
+      "evidence": "../../research/team-c-delivery/2026-10-15-xie-study/README.md"
     },
     {
       "id": "CR",
@@ -486,7 +488,7 @@
       "priority": "P1",
       "task_id": "C1",
       "availability_inferred_from_plan": false,
-      "next_step": "复验作者代码缓冲/采样、真实两层及匿名条件"
+      "next_step": "独立HIBE/真实两层/恢复安装已交；匿名/有限误差和统筹登记/真实配对待核"
     },
     {
       "id": "lai-ideal-hibe",
@@ -495,7 +497,7 @@
       "priority": "P1",
       "task_id": "C1",
       "availability_inferred_from_plan": false,
-      "next_step": "§5.1–5.2/定理10、标签逆元/真实委派和有限参数"
+      "next_step": "已有15项精确资格反例；单位域/Algorithm7与9类型/两层公开参数须澄清，不补造Derive"
     },
     {
       "id": "gkr2025",
@@ -621,7 +623,7 @@
       "priority": "P1",
       "task_id": "C2",
       "availability_inferred_from_plan": false,
-        "next_step": "已完成独立转换IBS/200官方向量/实物恢复安装；统筹登记/实际HIBE组合、强UF/量子与正式准入待办"
+      "next_step": "已完成独立转换IBS/200官方向量/实物恢复安装；统筹登记/实际HIBE组合、强UF/量子与正式准入待办"
     },
     {
       "id": "xie-ntru-ibs",
@@ -630,7 +632,7 @@
       "priority": "P2",
       "task_id": "C3",
       "availability_inferred_from_plan": false,
-      "next_step": "澄清模数/逆元，真实Gaussian/拒绝与原生四算法"
+      "next_step": "已有修订NTRU/GPV/拒绝研究核与实物/安装/公开伪造；先闭合修订规格与正式分布/模型，不冒认原稿后端"
     }
   ],
   "gates": {

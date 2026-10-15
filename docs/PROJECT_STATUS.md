@@ -1,6 +1,6 @@
 # 当前进度与并行任务
 
-更新：2026-10-14（本次补C1 LATTE与C2认证转换ML-DSA/Falcon独立原语，其它模块保留原验收版本）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
+更新：2026-10-15（本次补C1 Lai资格与C3 Xie修订方程研究核，其它模块保留原验收版本）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
 
 PR #15 固定 `0435285` 已经复核并合入远端 main（`010b75e`）：四项 CI 通过，本地330 passed/21明确skip，三项真实ABB实物契约全部执行，23个运行源码/工具指纹一致。A随后交[结构化MP12工具](research/team-a-delivery/2026-10-14-mp12-structured/README.md)：系统随机的两次DelTrap与新原像/恢复、独立n128/2432维真实采样已经通过；这是A3工具执行域的推进，没有替换已有HIBE或获得正式安全准入。下方带日期的B基础/旧PR状态保留各自版本事实。
 2026-10-14 CI增量：新增[19条路线的通用目录、数据驱动测试和组合验收](deliveries/2026-10-14-catalog-ci/README.md)。框架不再按 Luo 名称猜参数或测试范围；公共框架、每条算法路线和明确选定的组合分别显示。Wang–PW、SRGG 已接入公共注册表并通过本地 Sage 单体测试，两个真实教学 ABB10+研究 IBS 组合也有独立收据；所有结果仍为功能/研究运行证据，security_claim=none，未升级为正式安全准入。
@@ -14,6 +14,8 @@ PR #15 固定 `0435285` 已经复核并合入远端 main（`010b75e`）：四项
 C1 按用户新授权优先实现较易落地的结构HIBE，已交[LATTE-3独立研究后端](research/team-c-delivery/2026-10-14-latte-hibe/README.md)，算法冻结`51c40f8`：N1024同根两次真正Delegate、四把终层密钥、32 B带噪声、2×2错配/篡改、五类对象与新进程恢复通过；116项相关Sage回归、13 provider隔离安装通过。新增的是单独HIBE，默认登记/CLI与真实IBS配对继续由统筹接入；匿名、修订后TV/RD和正式安全仍none/false/false。
 
 C2 已交[认证转换ML-DSA独立IBS](research/team-c-delivery/2026-10-14-cert-mldsa/README.md)，初始实现 `a2ffb8c`、末次代码修订 `c61b8eb`：五方法、固定发钥/pending、对象与恢复完成；246项Sage无skip（含210官方向量），三参数实物与安装通过。现补[同一转换核心的Falcon独立IBS](research/team-c-delivery/2026-10-14-cert-falcon/README.md)，实现 `14c44a6`：固定Falcon v1.2作者代码与512/1024两档，237项专项无skip含200官方向量和Gaussian自检；两档各同根双用户/32份新签名/新进程零熵恢复通过，完整IBS签名2322/4447 B。仓库外34 provider、五份原实例160次零熵验签与5次恢复SK新签名通过。默认登记、真实HIBE配对、强UF/量子模型映射及正式准入仍待，none/false/false；参数档不多计算法。
+
+C1/C3本批新增：[Lai精确资格反例](research/team-c-delivery/2026-10-15-lai-qualification/README.md)15项无skip，确认标签单位与委派类型仍需澄清，没有新增Lai HIBE；[Xie修订方程研究核](research/team-c-delivery/2026-10-15-xie-study/README.md)实现 `7c139f4`，53项无skip，两个教学域各同根双身份/32新签名/原对象零熵恢复及仓库外安装通过。实际默认参数的公开零挑战伪造与模q平移反例均保留，修订核不冒充原稿复现或共同IBSBackend，不登记可用组合；原稿/正式参数/整体误差和模型仍WIP，none/false/false。
 
 ## 1. 已确认的组织方式
 

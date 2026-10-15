@@ -1,6 +1,6 @@
 # HIBE / IBS 算法与候选总表
 
-更新：2026-10-14（本次补LATTE独立实现并核正ABB/Yu滞后描述，其它条目保留原核验范围）。按[统一框架](../ARCHITECTURE.md)分别管理 HIBE、IBS 模块，再装配兼容组合。本文登记 **19 条候选/模型路线：8 条 HIBE、11 条 IBS**，覆盖原[17 条基础目录](research/2026-10-10-foundations/catalog.json)及新补充的两条原生路线；这不是 19 个完整后端，也不是 19 个不同困难假设。
+更新：2026-10-15（本次补Lai资格与Xie修订方程研究核，其它条目保留原核验范围）。按[统一框架](../ARCHITECTURE.md)分别管理 HIBE、IBS 模块，再装配兼容组合。本文登记 **19 条候选/模型路线：8 条 HIBE、11 条 IBS**，覆盖原[17 条基础目录](research/2026-10-10-foundations/catalog.json)及新补充的两条原生路线；这不是 19 个完整后端，也不是 19 个不同困难假设。
 
 当前任务和外部包进度以 [PROJECT_STATUS.md](PROJECT_STATUS.md) 为准；本文用于选模块、找原文与代码、识别接入缺口。**最终三组完整组合尚未锁定，第三套 HIBE 不再强制属于 Module-LWE。** 普通签名转换成 IBS 的两个条目保留原 ID，BNN-Falcon / BNN-ML-DSA 不再重复计数。
 
@@ -27,7 +27,7 @@
 | `zhang2020` — Zhang 等理想格 HIBE | Ring-LWE 路线；自适应声明、匿名性及模数条件待完整映射 | [19 页原文](../papers/2020_ideal_lattice_hibe_zhang.pdf)；§4.1–4.3 的私钥类型、委派及 SamplePre 输入仍有实施疑点 | **暂缓完整实现**。只有可复用公共环算术基础；先澄清短向量/可委派陷门类型，不能自行补造缺失算法 |
 | `abb-standard-selective` — ABB 标准模型选择性 HIBE | 普通 LWE，标准模型选择性身份；§7 自适应 IBE 不等于 §8 自适应 HIBE | [40 页作者稿](../papers/2010_lattice_hibe_standard_agrawal.pdf) §8/Theorem 33；参数条件待独立实例化 | **模型对照**。没有完整后端；不能直接登记为满足当前自适应匿名组合前提 |
 | `chkp-standard` — CHKP §5.4 变体 | LWE 及可容许哈希条件，标准模型条件路线；匿名扩展范围另核 | [同一 CHKP 原文](../papers/2010_bonsai_trees_cash.pdf) §5.4/Theorem 5.4/Corollary 5.5；额外维度与归约成本未闭合 | **模型对照**。不能用 ROM 实现切一个开关就算消除随机预言机；不与 `chkp-rom` 参数共用结论 |
-| `lai-ideal-hibe` — Lai–Cheung–Chow，理想格陷门 HIBE | 原文 PLWE 与 INDr-ID-CCA 声明含收件人匿名性；选读 §5.1–5.2/定理10，尚需具体两层模型映射 | Inscrypt 2014／出版2015；[18 页 PDF](../papers/2015_ideal_lattice_trapdoors_lai.pdf)由用户提供并原样归档，标题/作者已核。符号参数不能直接当有限可运行配置 | **新增文献候选**。[来源核验](research/2026-10-11-catalog/ideal-lattice-sources.md)未确认对应作者 HIBE 代码；已查 lattice_lib 仅通用格工具。实施前仍需按 PDF 核准算法、公式和参数 |
+| `lai-ideal-hibe` — Lai–Cheung–Chow，理想格陷门 HIBE | 原文 PLWE 与 INDr-ID-CCA 声明含收件人匿名性；选读 §5.1–5.2/定理10，尚需具体两层模型映射 | Inscrypt 2014／出版2015；[18 页 PDF](../papers/2015_ideal_lattice_trapdoors_lai.pdf)由用户提供并原样归档，标题/作者已核。符号参数不能直接当有限可运行配置 | **资格核验WIP，非HIBE实现**：[精确非单位/委派类型反例与15项无skip测试](research/team-c-delivery/2026-10-15-lai-qualification/README.md)。标签单位域、Algorithm7/9类型及两层公开参数仍需澄清，未自行补造Derive；通用lattice_lib不是作者HIBE。 |
 
 ### LATTE：本轮已确认的外部代码
 
@@ -53,7 +53,7 @@
 | `wang-pw` — Wang 基本 IBS + Pan–Wagner 转换 | SIS；基本 IBS 仅非自适应，转换/固定密钥服务按经典 ROM 条件核验；两个盐本身不是安全证明 | [Wang 原文](../papers/2022_identity_matchmaking_wang.pdf)、[PW 原文](../papers/2021_short_ibs_pan.pdf)、[固定服务审查](research/2026-10-04-round3/Wang与PanWagner固定密钥接入审查.md) | **已有完整研究签名链**：[B交付](research/team-b-delivery/2026-10-13-wang-pw/README.md)、[真实MP12采样/转换/五方法/规范恢复](../experiments/research/candidates/wang_pw/)。q17调试档可公开伪造，正式参数、固定服务安全映射、默认registry/安装和真实HIBE配对仍待；不是旧教学SIS加两个盐 |
 | `cert-ml-dsa` — BNN 认证转换 + ML-DSA | 底层 ML-DSA 模格假设及通用转换条件；具体模型、多用户/腐化与查询损失须映射，不自动继承完整 IBS 的 QROM 或安全等级 | [BNN 重述/通用构造](../papers/2006_generic_ibs_galindo.pdf) §3/Theorem1、[FIPS204](../papers/2024_ml_dsa_fips204.pdf)；[严格转换契约](specs/certified-ibs.md) | **完整独立IBS已实现**：[C2交付](research/team-c-delivery/2026-10-14-cert-mldsa/README.md)，五方法、机构证书/用户公钥/消息签名、固定身份/pending、严格恢复及可选BackendSpec。246项专项含210官方向量；三个参数的同根双用户/新签名/零熵恢复与安装通过。默认登记、真实HIBE组合、强UF/量子模型和正式准入待办；三参数不计三算法 |
 | `cert-falcon` — BNN 认证转换 + Falcon | Falcon 为 NTRU 结构格上的 SIS 签名，再加转换条件；不把 NTRU 当成与 SIS 完全不相关的保证 | [Falcon v1.2](../papers/2020_falcon_spec_fouque.pdf)及上述转换原文；固定作者20211101源码与round3 KAT，不等同FN-DSA/FIPS206 | **完整独立IBS已实现**：[C2交付](research/team-c-delivery/2026-10-14-cert-falcon/README.md)，共用原转换核心，512/1024各有独立格式/ID、固定服务、严格恢复与可选descriptor。237项无skip含200官方向量/Gaussian自检；两档实物/恢复/隔离安装通过，完整签名2322/4447 B。默认登记、实际HIBE组合及强UF/量子/正式准入仍待，none/false/false；两参数不计两算法 |
-| `xie-ntru-ibs` — Xie–Hu–Gao–Gao 原生 NTRU IBS | 原文定义的 NTRU 格 SIS／γ-SVP，经典 ROM 的存在不可伪造声明；Extract 保存同一身份秘密。组合前提仍需逐项核验 | [8 页官方 PDF](../papers/2016_ntru_ibs_xie.pdf)已归档；§3 四算法及表2数值可读，但模数/可逆性文字有需澄清差异，不能直接冻结参数 | **新增候选，尚无本库后端**。[来源与代码核验](research/2026-10-11-catalog/ntru-ibs-sources.md)未确认原作者 IBS 实现；已取得 DLP 上游 IBE/陷门参考代码，不是本方案代码 |
+| `xie-ntru-ibs` — Xie–Hu–Gao–Gao 原生 NTRU IBS | 原文定义的 NTRU 格 SIS／γ-SVP，经典 ROM 的存在不可伪造声明；Extract 保存同一身份秘密。组合前提仍需逐项核验 | [8 页官方 PDF](../papers/2016_ntru_ibs_xie.pdf)已归档；§3 四算法及表2数值可读，但模数/可逆性文字有需澄清差异，不能直接冻结参数 | **原稿冲突已可执行核验，新增修订研究核，非共同后端**：[C3交付](research/team-c-delivery/2026-10-15-xie-study/README.md)含真实NTRU/GPV/拒绝链、严格对象/纯公开验签、53项无skip、两档系统随机/恢复/安装。单位/基坐标/GPV修订明确命名；教学参数有公开伪造，不继承原稿安全定理，不登记IBSBackend或HIBE组合，none/false/false。 |
 
 ### 已有组件的具体边界
 
