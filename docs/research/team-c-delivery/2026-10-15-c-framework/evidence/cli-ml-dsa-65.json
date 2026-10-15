@@ -1,0 +1,790 @@
+{
+  "backend_admitted": false,
+  "ciphertext_bytes": 144513,
+  "commands": [
+    {
+      "code": 0,
+      "entropy_bytes": 64,
+      "entropy_reads": 2,
+      "exception": null,
+      "expected_code": 0,
+      "name": "setup",
+      "native_calls": {
+        "latte:meta": 3,
+        "latte:setup": 1,
+        "mldsa:keypair": 1,
+        "mldsa:meta": 6,
+        "mldsa:public": 1
+      },
+      "seconds": 3.8601417310000006
+    },
+    {
+      "code": 0,
+      "entropy_bytes": 64,
+      "entropy_reads": 2,
+      "exception": null,
+      "expected_code": 0,
+      "name": "sender",
+      "native_calls": {
+        "latte:meta": 3,
+        "mldsa:keypair": 1,
+        "mldsa:meta": 11,
+        "mldsa:public": 4,
+        "mldsa:sign": 1,
+        "mldsa:verify": 1
+      },
+      "seconds": 2.7029436920000016
+    },
+    {
+      "code": 0,
+      "entropy_bytes": 32,
+      "entropy_reads": 1,
+      "exception": null,
+      "expected_code": 0,
+      "name": "receiver",
+      "native_calls": {
+        "latte:delegate": 1,
+        "latte:meta": 5,
+        "mldsa:meta": 14,
+        "mldsa:public": 6,
+        "mldsa:verify": 3
+      },
+      "seconds": 3.3892475960000006
+    },
+    {
+      "code": 0,
+      "entropy_bytes": 32,
+      "entropy_reads": 1,
+      "exception": null,
+      "expected_code": 0,
+      "name": "other-receiver",
+      "native_calls": {
+        "latte:delegate": 1,
+        "latte:meta": 5,
+        "mldsa:meta": 14,
+        "mldsa:public": 6,
+        "mldsa:verify": 3
+      },
+      "seconds": 3.5135450220000006
+    },
+    {
+      "code": 0,
+      "entropy_bytes": 0,
+      "entropy_reads": 0,
+      "exception": null,
+      "expected_code": 0,
+      "name": "same-sender",
+      "native_calls": {
+        "latte:meta": 3,
+        "mldsa:meta": 12,
+        "mldsa:public": 6,
+        "mldsa:verify": 3
+      },
+      "seconds": 3.0764026290000004
+    },
+    {
+      "code": 0,
+      "entropy_bytes": 0,
+      "entropy_reads": 0,
+      "exception": null,
+      "expected_code": 0,
+      "name": "same-receiver",
+      "native_calls": {
+        "latte:meta": 4,
+        "mldsa:meta": 12,
+        "mldsa:public": 4,
+        "mldsa:verify": 2
+      },
+      "seconds": 2.938679452999999
+    },
+    {
+      "code": 0,
+      "entropy_bytes": 65644,
+      "entropy_reads": 5,
+      "exception": null,
+      "expected_code": 0,
+      "name": "encrypt",
+      "native_calls": {
+        "latte:encrypt": 1,
+        "latte:meta": 3,
+        "mldsa:meta": 7,
+        "mldsa:public": 2,
+        "mldsa:sign": 1,
+        "mldsa:verify": 2
+      },
+      "seconds": 2.229975724999999
+    },
+    {
+      "code": 0,
+      "entropy_bytes": 0,
+      "entropy_reads": 0,
+      "exception": null,
+      "expected_code": 0,
+      "name": "decrypt",
+      "native_calls": {
+        "latte:decrypt": 1,
+        "latte:extract": 1,
+        "latte:meta": 4,
+        "mldsa:meta": 6,
+        "mldsa:signature": 2,
+        "mldsa:verify": 2
+      },
+      "seconds": 3.0350889090000024
+    },
+    {
+      "code": 1,
+      "entropy_bytes": 0,
+      "entropy_reads": 0,
+      "exception": null,
+      "expected_code": 1,
+      "name": "wrong-sender",
+      "native_calls": {
+        "latte:decrypt": 1,
+        "latte:extract": 1,
+        "latte:meta": 4,
+        "mldsa:meta": 4
+      },
+      "seconds": 2.9917047839999995
+    },
+    {
+      "code": 1,
+      "entropy_bytes": 0,
+      "entropy_reads": 0,
+      "exception": null,
+      "expected_code": 1,
+      "name": "wrong-receiver",
+      "native_calls": {
+        "latte:decrypt": 1,
+        "latte:extract": 1,
+        "latte:meta": 4,
+        "mldsa:meta": 4
+      },
+      "seconds": 2.9040648189999985
+    },
+    {
+      "code": 1,
+      "entropy_bytes": 0,
+      "entropy_reads": 0,
+      "exception": null,
+      "expected_code": 1,
+      "name": "both-wrong",
+      "native_calls": {
+        "latte:decrypt": 1,
+        "latte:extract": 1,
+        "latte:meta": 4,
+        "mldsa:meta": 4
+      },
+      "seconds": 2.7567989940000004
+    },
+    {
+      "code": 1,
+      "entropy_bytes": 0,
+      "entropy_reads": 0,
+      "exception": null,
+      "expected_code": 1,
+      "name": "truncated",
+      "native_calls": {
+        "latte:meta": 2,
+        "mldsa:meta": 4
+      },
+      "seconds": 2.3401476259999967
+    },
+    {
+      "code": 1,
+      "entropy_bytes": 0,
+      "entropy_reads": 0,
+      "exception": null,
+      "expected_code": 1,
+      "name": "appended",
+      "native_calls": {
+        "latte:meta": 2,
+        "mldsa:meta": 4
+      },
+      "seconds": 2.2700629849999956
+    },
+    {
+      "code": 1,
+      "entropy_bytes": 0,
+      "entropy_reads": 0,
+      "exception": null,
+      "expected_code": 1,
+      "name": "duplicate",
+      "native_calls": {
+        "latte:meta": 2,
+        "mldsa:meta": 4
+      },
+      "seconds": 2.2288421520000057
+    },
+    {
+      "code": 1,
+      "entropy_bytes": 0,
+      "entropy_reads": 0,
+      "exception": null,
+      "expected_code": 1,
+      "name": "changed",
+      "native_calls": {
+        "latte:meta": 2,
+        "mldsa:meta": 4
+      },
+      "seconds": 2.456715186000004
+    }
+  ],
+  "entropy_bytes": 65836,
+  "identity_bytes": 64,
+  "message_bytes": 32,
+  "parameters": {
+    "allow_mock": false,
+    "backend_admitted": false,
+    "hibe": "latte",
+    "hibe_params": {
+      "identity_bytes": 86,
+      "max_children": 2,
+      "max_receivers": 2,
+      "message_mode": "seed32",
+      "native_timeout_seconds": 60
+    },
+    "hibe_version": "latte3-cosac-fix-v1",
+    "hybrid_limits": {
+      "backend_id": "latte3-cosac-fix-v1",
+      "identity_max_bytes": 64,
+      "max_capsule_bytes": 4194304,
+      "max_payload_bytes": 65536
+    },
+    "ibs": "cert-ml-dsa",
+    "ibs_params": {
+      "backend_admitted": false,
+      "base_algorithm": "ml-dsa-65",
+      "identity_bytes": 64,
+      "max_identities": 16,
+      "message_max_bytes": 65536,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "timeout_seconds": 30
+    },
+    "ibs_version": "IBME/CERTIBS/1",
+    "parameters_are_formal": false,
+    "protocol": "byteauth-v1",
+    "security_claim": "none",
+    "signature_format": "reference",
+    "state_policy": "single-writer-commit-before-publish-v1",
+    "transport": "hybrid",
+    "version": "IBME/SUITE/1"
+  },
+  "parameters_are_formal": false,
+  "profile": "ml-dsa-65",
+  "providers": {
+    "experiments.research.candidates.srgg.algebra": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/candidates/srgg/algebra.py",
+      "sha256": "da04d7b4198a7442dd35889edc73b4f8fa29aec93bb04418ab2dfde9c590c68b"
+    },
+    "experiments.research.candidates.srgg.backend": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/candidates/srgg/backend.py",
+      "sha256": "41088d067f534872997d241fec8f010221b30293cb50f2356ec1fe73aef890e2"
+    },
+    "experiments.research.candidates.srgg.config": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/candidates/srgg/config.py",
+      "sha256": "94c3be05b35559db42add52fd4b7b3d0ad180f4c6cc1672654728067533af80e"
+    },
+    "experiments.research.candidates.srgg.hashing": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/candidates/srgg/hashing.py",
+      "sha256": "7944b247c7abc79f6a74f4d599cbd80c0a7030acf61943e9d1a5e66f340be78b"
+    },
+    "experiments.research.candidates.srgg.objects": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/candidates/srgg/objects.py",
+      "sha256": "4fd2b9d941249914f2b43e573de1a138b473b12e5ab20e103a920b9db5ca21fd"
+    },
+    "experiments.research.candidates.wang_pw": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/candidates/wang_pw/__init__.py",
+      "sha256": "c55aee574c6accdc243abbbf3344c7fee1795fe314c03ffa44d284c010d1bba6"
+    },
+    "experiments.research.candidates.wang_pw.backend": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/candidates/wang_pw/backend.py",
+      "sha256": "f24067f6436122d874d0a502d1f9afcacb7b08664f799e1be10daaa1baa0a1df"
+    },
+    "experiments.research.candidates.wang_pw.codec": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/candidates/wang_pw/codec.py",
+      "sha256": "2f08b4c501bf3707cf048aed8a795859e782facfc5814645e5214374b378347c"
+    },
+    "experiments.research.candidates.wang_pw.hashing": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/candidates/wang_pw/hashing.py",
+      "sha256": "17ac4878d5b9541c21a1f5a4bac948248557e4a089b1f61a436df16970fa41a0"
+    },
+    "experiments.research.candidates.wang_pw.objects": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/candidates/wang_pw/objects.py",
+      "sha256": "75160d38b2b4e2eaa14df560019abd12d3168518c06156dcde40f0243bb488ef"
+    },
+    "experiments.research.candidates.wang_pw.params": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/candidates/wang_pw/params.py",
+      "sha256": "0f9f361c7cb4da1b08a9c33964d32e3f97b795296772e1ef66dfe075cc4c8798"
+    },
+    "experiments.research.chkp_basis": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/basis.py",
+      "sha256": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d"
+    },
+    "experiments.research.chkp_genbasis": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/chkp_genbasis.py",
+      "sha256": "d9bf8a0d71b0ae3ccccd32b24e1a7ebdc9652a44e7e4640d97c423c6bb389aa8"
+    },
+    "experiments.research.chkp_gpv": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/chkp_gpv.py",
+      "sha256": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0"
+    },
+    "experiments.research.chkp_paper_preflight": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/chkp_paper_preflight.py",
+      "sha256": "0a24ad05e1150f241c6104fc0a6816523531c6ea1e1d34a67d5c1a02d20770dc"
+    },
+    "experiments.research.chkp_tobasis": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/chkp_tobasis.py",
+      "sha256": "0293834acff71a1599d14dccc92558f7198c8ffabbcb255c6965452c355abd4a"
+    },
+    "experiments.research.first_suite": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/first_suite/__init__.py",
+      "sha256": "98a3203836217e8d437e31a13137e43f5d3759be61d7b2e901ff700e676ba931"
+    },
+    "experiments.research.first_suite.compact_delegation": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/first_suite/compact_delegation.py",
+      "sha256": "75798c6d64fbe81ea7252099835bc2f0fb552f25a771be43e9d90d76f5112dbe"
+    },
+    "experiments.research.first_suite.computational_root": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/first_suite/computational_root.py",
+      "sha256": "1c50724fcbbc58e1fe217ea40e2d094c01e964dca915c869bd663a2955884e82"
+    },
+    "experiments.research.first_suite.delegation_state": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/delegation_state.py",
+      "sha256": "6b035047384aa33a79d19bc1271a86637687cd1e5a9345b28cfbf1f59c308984"
+    },
+    "experiments.research.first_suite.entropy": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/entropy.py",
+      "sha256": "fe449ebd5ccadfb8a8b73652b874fcd69e0683292368d9c03ef8c6d215fcc8d6"
+    },
+    "experiments.research.first_suite.finite_gaussian": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/first_suite/finite_gaussian.py",
+      "sha256": "5c55da74e4aaa40e2375e48a419884dc7cfe5ace537951a6e4b649c3959fd5b0"
+    },
+    "experiments.research.first_suite.finite_gpv": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/first_suite/finite_gpv.py",
+      "sha256": "f1d59d1eeace1c98cd12e91a6c2305e93969ee9d0e137c5c85b07e031fc87699"
+    },
+    "experiments.research.first_suite.hibe_reference": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/first_suite/hibe_reference.py",
+      "sha256": "1806b423408ad65654926df27f0f5d3ba4316c4c7a514fab95d3af2896d34106"
+    },
+    "experiments.research.first_suite.hibe_registry": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/first_suite/hibe_registry.py",
+      "sha256": "960a03b5baab29662dd37a8a67454226bfe427f03e7ec339a64af25f3232cb81"
+    },
+    "experiments.research.first_suite.identity": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/identity.py",
+      "sha256": "1921bcebea84321e14508b251906795f235ee60c46843c8f66a2a8f367d99718"
+    },
+    "experiments.research.first_suite.leaf_state": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/leaf_state.py",
+      "sha256": "c799db9542cb6cb314ef742eb3df553c19d12b57588afb8fd5f157c4539c5568"
+    },
+    "experiments.research.first_suite.private_basis_bridge": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/first_suite/private_basis_bridge.py",
+      "sha256": "6ee978a9a13655036ef751dc23fde8b2e5261c8ee0215864889b77a71f4cb00f"
+    },
+    "experiments.research.first_suite.root_generation": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/root_generation.py",
+      "sha256": "9ce55d6aca23435d3b772d14cfe48cca04cd9923fd20ba6d2376804b8ded2fff"
+    },
+    "experiments.research.first_suite.seed_kem": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/seed_kem.py",
+      "sha256": "62e3a03c498268e7a7aa5e7c0926a34f7bf7e4f0fb8eacccbd6c8ddb1cb202f1"
+    },
+    "experiments.research.gaussian_reference": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/gaussian.py",
+      "sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c"
+    },
+    "experiments.research.general_gadget_reference": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/general_gadget_reference.py",
+      "sha256": "69e68a33baab3c85fe84525ce92a45e81723c667c64b526fa2dc321b2b098ab0"
+    },
+    "experiments.research.ibme_handoff_screen": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/ibme_handoff_screen.py",
+      "sha256": "bede9415ecad753b4a88df7c882e4a5994a7b7481fd31a017a920a3325c016dd"
+    },
+    "experiments.research.ibme_joint_parameters": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/ibme_joint_parameters.py",
+      "sha256": "74b63d07714a997ce50c8444ac758c40c4df6a48efd3db7b3cad11d764494ba3"
+    },
+    "experiments.research.ibme_noise_budget": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/noise_budget.py",
+      "sha256": "4d493f2c305fd614705ab28f6fc3920b0ae06b195b0b0960719ff51314508790"
+    },
+    "experiments.research.ibme_root_sampler_audit": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/ibme_root_sampler_audit.py",
+      "sha256": "00bc6af3eae975d1428af5cd51af9b5f8e8d4dc467270fb0f7279a36713b00dc"
+    },
+    "experiments.research.ibme_rounded_noise": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/rounded_noise.py",
+      "sha256": "f093b75e82116f39b5817a01ee89ead1bcbaec8df6d231380354b4e992638411"
+    },
+    "experiments.research.mp12_sampled_reference": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/mp12_sampled_reference.py",
+      "sha256": "a01b198a7bbcefbb54b387f6ab0b24961b5e74c3689ea4e2f30c74c35ba1061b"
+    },
+    "experiments.research.online_gaussian_reference": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/online_gaussian_reference.py",
+      "sha256": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa"
+    },
+    "ibme.assembly": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/assembly/__init__.py",
+      "sha256": "7a1ba4f52c312cec497ff443f4e275e0d5f52105cafe917eeeb34e52f958373d"
+    },
+    "ibme.assembly.registry": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/assembly/registry.py",
+      "sha256": "45ada439bb64a67a1ad19e50049a160efeda20fe422a7181a5ac3a1d86134215"
+    },
+    "ibme.cli": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/cli.py",
+      "sha256": "3736f56c5e9d83a2621c6e78b61e5b9513e30938f4722b7e29a6cc455b021e84"
+    },
+    "ibme.cli_state": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/cli_state.py",
+      "sha256": "531aa3d7f4c9d6e1929847b3ed603b2427911e9fa4c1f98db440d8ae70d35567"
+    },
+    "ibme.core": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/__init__.py",
+      "sha256": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac"
+    },
+    "ibme.core.encoding": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/encoding.py",
+      "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+    },
+    "ibme.core.errors": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/errors.py",
+      "sha256": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e"
+    },
+    "ibme.core.hashing": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/hashing.py",
+      "sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4"
+    },
+    "ibme.core.lamport_ots": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/lamport_ots.py",
+      "sha256": "6322e025e01c299e20769ba6cd3a3bb02b9a14a98cf7fc530c81950adda046a5"
+    },
+    "ibme.core.randomness": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/randomness.py",
+      "sha256": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202"
+    },
+    "ibme.core.types": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/types.py",
+      "sha256": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56"
+    },
+    "ibme.hibe": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/__init__.py",
+      "sha256": "8b471e5f2ca4a5b22cb2a695d6f75d1891962ff135ff0662e64f47abbde4cd1e"
+    },
+    "ibme.hibe.abb10": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/abb10.py",
+      "sha256": "a7121a89e3645e87fa059564b745ed1487dfb7f9510a10973c42d0b5e94a9d32"
+    },
+    "ibme.hibe.api": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/api.py",
+      "sha256": "b81ec0a7ec48c8b5f2fbbed7182b0c22952167d355f92943918a419ab8a5ac4a"
+    },
+    "ibme.hibe.chkp": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/chkp/__init__.py",
+      "sha256": "d241115e0b4cd894352d3e0693275a5fc9a35430f402c537c141481cba05ae4c"
+    },
+    "ibme.hibe.chkp.backend": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/chkp/backend.py",
+      "sha256": "8889baefe5241d2daef46db6c96c6c9f54106904126d50ebbba79df3ed9fda67"
+    },
+    "ibme.hibe.chkp.objects": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/chkp/objects.py",
+      "sha256": "2943f8085f431e4feaeb1c865e055fbda5af165e8d121dc71d40acd223e24a89"
+    },
+    "ibme.hibe.chkp.params": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/chkp/params.py",
+      "sha256": "fbbb52373c55ab1848f884c16cf3fd1315e5570a3c283ed5c88c8f44db64e87d"
+    },
+    "ibme.hibe.latte": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/__init__.py",
+      "sha256": "1cbcade113fb2cb372331a22e1567386ed948a6d708b5d6aded64c48d691206e"
+    },
+    "ibme.hibe.latte.backend": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/backend.py",
+      "sha256": "c93dcc104546b403ebbdc5cfedcbd778c5e37ff5fd11eb563fbe2eedb71f200a"
+    },
+    "ibme.hibe.latte.codec": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/codec.py",
+      "sha256": "0db1ef3924687e2d7338c2404fbf2e02e33e4882ebae769d538d9ce3cd82416e"
+    },
+    "ibme.hibe.latte.engine": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/engine.py",
+      "sha256": "9f39a46ab193c2433a8312b016ba35623dd5a4730b493c98b5768e3538a05630"
+    },
+    "ibme.hibe.latte.math": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/math.py",
+      "sha256": "044ca86fdfc90aeed1da1ccd56b1c34afe9def4dc37dff9510bc07961398b07b"
+    },
+    "ibme.hibe.latte.native": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/native/__init__.py",
+      "sha256": "cd15ca790f3fa0d4b2c60d5f992f0bfe44938ae42a87f65b6c0bd28f66b4d0af"
+    },
+    "ibme.hibe.latte.native.build": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/native/build.py",
+      "sha256": "c061fe3d01c206c2fe3020a7884681e7ad16799540e6936ac6754265bb01efde"
+    },
+    "ibme.hibe.latte.objects": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/objects.py",
+      "sha256": "f96f6454d87898c8315b5d48f7106fe309eb19310d8db2ed4ee68940ba1c985e"
+    },
+    "ibme.hibe.latte.params": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/params.py",
+      "sha256": "dd0a34bdacb6b70355d78f4a171b060181ac75d03008bcace4acbd451fd958d3"
+    },
+    "ibme.hibe.latte.registration": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/registration.py",
+      "sha256": "0b74bcf06ec6ad467f28166de44a94ffd815c59d3b7ed45cbf5d5776d116e633"
+    },
+    "ibme.hibe.mock": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/mock.py",
+      "sha256": "48f53e2fdd383cd361ea304056f289f6f4dfee23558b3825038d4b363113002a"
+    },
+    "ibme.hibe.mp12_chkp": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/mp12_chkp/__init__.py",
+      "sha256": "e368640e6f8b38b2a2fcb028d775ecc81117865c0c91078a4709f246ddb442f9"
+    },
+    "ibme.ibs": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/__init__.py",
+      "sha256": "09f78edc872e40b5c0644b187db5e8f6aa2fb9a74455eb41571b9e71a63920c4"
+    },
+    "ibme.ibs.api": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/api.py",
+      "sha256": "e08bfaf4c73c0471966103156f3b88debda5f37b06b493c63dde7b4372da661c"
+    },
+    "ibme.ibs.certified": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/__init__.py",
+      "sha256": "4a8a4ff59d305a297547328a40b4ae4ef51070b5f07fd5e30ba86a1ae8dfd2c3"
+    },
+    "ibme.ibs.certified.backend": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/backend.py",
+      "sha256": "aec3b9a86edb6e65963572ba0235ade4971a46a9ff2ff3a170e0916e3702908f"
+    },
+    "ibme.ibs.certified.codec": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/codec.py",
+      "sha256": "375c6af2ba7d25d6f6dd1e16807c9544b53fda8c3521a603ac7691f20cbb9a95"
+    },
+    "ibme.ibs.certified.falcon": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/falcon.py",
+      "sha256": "4cda3936882f82e6e4e5e9859ff9c6b44053f8dd3591c3c8f26cffb0b358de4d"
+    },
+    "ibme.ibs.certified.falcon_native.build": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/falcon_native/build.py",
+      "sha256": "3c74136824514a6eef41ee5587250f3127799f71aef114ff7853ee26cc787454"
+    },
+    "ibme.ibs.certified.mldsa": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/mldsa.py",
+      "sha256": "fd8fed18dc289030e2adad85ecd8b8fc6c2f7e17c662042ab93c2bad5268d4e0"
+    },
+    "ibme.ibs.certified.native": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/native/__init__.py",
+      "sha256": "62f466791afbf57c1bc80709057afab22f70ba89bc9e5f4dd4e18523a981c518"
+    },
+    "ibme.ibs.certified.native.build": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/native/build.py",
+      "sha256": "0896118146222ac587f635be99bf340573d7808f8017b8be4ae58f440facc801"
+    },
+    "ibme.ibs.certified.objects": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/objects.py",
+      "sha256": "218dd536c74930642086ca3af06668b65de5a1b009b5122b3a0763acf0e45848"
+    },
+    "ibme.ibs.certified.ordinary": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/ordinary.py",
+      "sha256": "407770e79bfd38475e562d7a0920b5dcf5740ac6c117efc7d70b635a6db8b2cc"
+    },
+    "ibme.ibs.certified.params": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/params.py",
+      "sha256": "53e67f001dd02ff5d48be8cf68276bb36466268f640a52abbd08b48c770010aa"
+    },
+    "ibme.ibs.certified.registration": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/registration.py",
+      "sha256": "f5026454e81c07521f7eac83e77632a0a5d18ffba794fca2e19eb435eb891733"
+    },
+    "ibme.ibs.luo": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/luo.py",
+      "sha256": "728319d4ca14c004b258717b3ffecf083760920f15fa79bfe0af761de81a67bf"
+    },
+    "ibme.ibs.luo_module": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/luo_module.py",
+      "sha256": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275"
+    },
+    "ibme.ibs.luo_module_codec": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/luo_module_codec.py",
+      "sha256": "bb99eb6a18a06be204ab0274de8e295522589d8100cc2c9f944c7cf4980b06df"
+    },
+    "ibme.ibs.luo_module_math": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/luo_module_math.py",
+      "sha256": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f"
+    },
+    "ibme.ibs.luo_reference": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/luo_reference.py",
+      "sha256": "993a9da05f302c73464860028e54a3dad95557a23ca334df4dbb5f4090c236b0"
+    },
+    "ibme.ibs.mock": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/mock.py",
+      "sha256": "c91902e02252a07dba1a777f1fa444de05058ca2f2c228356c82f3ca951b51a8"
+    },
+    "ibme.ibs.sis_ibs": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/sis_ibs.py",
+      "sha256": "a66f160d1c0ceb35080db2fa039dbe7f41bb7a71ebf223a6e35965d70486ed61"
+    },
+    "ibme.lattice": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/__init__.py",
+      "sha256": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f"
+    },
+    "ibme.lattice.chkp": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/__init__.py",
+      "sha256": "820d7a2834b36d5cea29d0c165fa01c425af1739c103ea6323da8bacfd62c921"
+    },
+    "ibme.lattice.chkp.basis": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/basis.py",
+      "sha256": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d"
+    },
+    "ibme.lattice.chkp.delegation_state": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/delegation_state.py",
+      "sha256": "6b035047384aa33a79d19bc1271a86637687cd1e5a9345b28cfbf1f59c308984"
+    },
+    "ibme.lattice.chkp.entropy": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/entropy.py",
+      "sha256": "fe449ebd5ccadfb8a8b73652b874fcd69e0683292368d9c03ef8c6d215fcc8d6"
+    },
+    "ibme.lattice.chkp.finite_gaussian": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/finite_gaussian.py",
+      "sha256": "bd087124b957fd45ad6205dececd4cbc1011807793bff42c2b73359b8ef55433"
+    },
+    "ibme.lattice.chkp.gaussian": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/gaussian.py",
+      "sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c"
+    },
+    "ibme.lattice.chkp.identity": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/identity.py",
+      "sha256": "1921bcebea84321e14508b251906795f235ee60c46843c8f66a2a8f367d99718"
+    },
+    "ibme.lattice.chkp.joint_parameters": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/joint_parameters.py",
+      "sha256": "887fb6c938d25ef2466ec7af1ca5311f3e55269c6aa72ee57a51db74e8763c92"
+    },
+    "ibme.lattice.chkp.leaf_state": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/leaf_state.py",
+      "sha256": "c799db9542cb6cb314ef742eb3df553c19d12b57588afb8fd5f157c4539c5568"
+    },
+    "ibme.lattice.chkp.noise_budget": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/noise_budget.py",
+      "sha256": "4d493f2c305fd614705ab28f6fc3920b0ae06b195b0b0960719ff51314508790"
+    },
+    "ibme.lattice.chkp.root_generation": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/root_generation.py",
+      "sha256": "9ce55d6aca23435d3b772d14cfe48cca04cd9923fd20ba6d2376804b8ded2fff"
+    },
+    "ibme.lattice.chkp.rounded_noise": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/rounded_noise.py",
+      "sha256": "f093b75e82116f39b5817a01ee89ead1bcbaec8df6d231380354b4e992638411"
+    },
+    "ibme.lattice.chkp.seed_kem": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/seed_kem.py",
+      "sha256": "62e3a03c498268e7a7aa5e7c0926a34f7bf7e4f0fb8eacccbd6c8ddb1cb202f1"
+    },
+    "ibme.lattice.gadget": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/gadget.py",
+      "sha256": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d"
+    },
+    "ibme.lattice.gaussian": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/gaussian.py",
+      "sha256": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c"
+    },
+    "ibme.lattice.matrix_sampling": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/matrix_sampling/__init__.py",
+      "sha256": "db15615ccef53acf421db6f65f45e2fb865445f66309f3c44bb133694de3f71b"
+    },
+    "ibme.lattice.matrix_sampling.basis": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/matrix_sampling/basis.py",
+      "sha256": "3cc32bccfb51c5a4af5950212c5e70eac537cd786a30e9a4ecc2bf7fb512cc10"
+    },
+    "ibme.lattice.matrix_sampling.chkp_profiles": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/matrix_sampling/chkp_profiles.py",
+      "sha256": "674e67f4a1cd95396746ba717fca7c479028bb5351007bc4cdbdfec56305db75"
+    },
+    "ibme.lattice.matrix_sampling.gpv": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/matrix_sampling/gpv.py",
+      "sha256": "9b699e1fc2f0b2a2e84c0b9b37bcd290f1af9427d11c39a420ff9b0b91e220c0"
+    },
+    "ibme.lattice.matrix_sampling.randbasis": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/matrix_sampling/randbasis.py",
+      "sha256": "5a5425c35d54d639f2360bee058b570dba2a94e74c09f7b48d2927c17886c93d"
+    },
+    "ibme.lattice.matrix_sampling.scalar": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/matrix_sampling/scalar.py",
+      "sha256": "6365371e7fdbdc86b022d5a55e53d59a0f58564ca715efac873f9fdde66c9b68"
+    },
+    "ibme.lattice.modmat": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/modmat.py",
+      "sha256": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94"
+    },
+    "ibme.lattice.params": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/params.py",
+      "sha256": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be"
+    },
+    "ibme.lattice.research": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/research/__init__.py",
+      "sha256": "89e656c9c2e8a5fedab17c1f160316a3b248f3ae62727275bc4306e1e0b3fb53"
+    },
+    "ibme.lattice.trapdoor": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/trapdoor.py",
+      "sha256": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8"
+    },
+    "ibme.protocol": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/__init__.py",
+      "sha256": "362828a85b5b1190ae145b8dde11d83a2f61cc58079aaef860ae7cde8e05b240"
+    },
+    "ibme.protocol.baseline": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/baseline.py",
+      "sha256": "3bffb26ce97294c8268430719c8ed1fbf66b118bb11bc5930e7e27f8dcab0b16"
+    },
+    "ibme.protocol.byteauth": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/byteauth.py",
+      "sha256": "d174c0be104ab756c70fdb7fea8ade13b3afb8d6b59e6295019db42efe2f7414"
+    },
+    "ibme.protocol.hybrid_hibe": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/hybrid_hibe.py",
+      "sha256": "00f67d1065b25fe63e41ba1752266e73f03ed586f2a008a8333682ef0d158655"
+    }
+  },
+  "public_key_bytes": 15111,
+  "randomness": "default CLI system CSPRNG; no deterministic injection or outer retry",
+  "repetitions": 1,
+  "restore": {
+    "command": {
+      "code": 0,
+      "entropy_bytes": 0,
+      "entropy_reads": 0,
+      "exception": null,
+      "expected_code": 0,
+      "name": "zero-entropy-restore",
+      "native_calls": {
+        "latte:decrypt": 1,
+        "latte:meta": 3,
+        "mldsa:meta": 6,
+        "mldsa:signature": 2,
+        "mldsa:verify": 2
+      },
+      "seconds": 2.199074318000001
+    },
+    "entropy_bytes": 0,
+    "new_root_or_keys_or_signature": false,
+    "original_state_unchanged": true,
+    "status": "passed"
+  },
+  "route": "cert-ml-dsa",
+  "safety": "Research composition; LATTE anonymity/conversion model and formal parameters unadmitted",
+  "schema": "C-FRAMEWORK-CLI/1",
+  "security_claim": "none",
+  "source_commit": "9c9fd5aeac2fee68556d980dd0f5e328e530fbdd",
+  "state_version": 2,
+  "status": "passed",
+  "total_seconds": 51.620723772
+}

@@ -1,0 +1,102 @@
+....FF.......................F.......................................... [ 88%]
+.........                                                                [100%]
+================================== FAILURES ===================================
+__ test_cross_family_profile_never_falls_back[cert-ml-dsa-falcon-padded-512] __
+
+route = 'cert-ml-dsa', profile = 'falcon-padded-512'
+
+    @pytest.mark.parametrize("route,profile",[("cert-ml-dsa","falcon-padded-512"),("cert-falcon","ml-dsa-44")])
+    def test_cross_family_profile_never_falls_back(route,profile):
+>       config=make_suite(hibe="latte",ibs=route,ibs_params=CertifiedIBSParams(base_algorithm=profile),transport="hybrid")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_c_registration.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\ibme\assembly\__init__.py:128: in make_suite
+    hibe_params=params(hs,hibe_params),ibs=ibs,ibs_version=ins.version,ibs_params=params(ins,ibs_params),
+                ^^^^^^^^^^^^^^^^^^^^^^
+src\ibme\assembly\__init__.py:110: in params
+    selected=spec.default_preset(transport)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+config = 'hybrid'
+
+>   default_preset=lambda config:"seed32" if config["transport"]=="hybrid" else "framed32",
+                                             ^^^^^^^^^^^^^^^^^^^
+    validate_environment=environment,validate_configuration=configuration)
+E   TypeError: string indices must be integers, not 'str'
+
+src\ibme\hibe\latte\registration.py:48: TypeError
+______ test_cross_family_profile_never_falls_back[cert-falcon-ml-dsa-44] ______
+
+route = 'cert-falcon', profile = 'ml-dsa-44'
+
+    @pytest.mark.parametrize("route,profile",[("cert-ml-dsa","falcon-padded-512"),("cert-falcon","ml-dsa-44")])
+    def test_cross_family_profile_never_falls_back(route,profile):
+>       config=make_suite(hibe="latte",ibs=route,ibs_params=CertifiedIBSParams(base_algorithm=profile),transport="hybrid")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_c_registration.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\ibme\assembly\__init__.py:128: in make_suite
+    hibe_params=params(hs,hibe_params),ibs=ibs,ibs_version=ins.version,ibs_params=params(ins,ibs_params),
+                ^^^^^^^^^^^^^^^^^^^^^^
+src\ibme\assembly\__init__.py:110: in params
+    selected=spec.default_preset(transport)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+config = 'hybrid'
+
+>   default_preset=lambda config:"seed32" if config["transport"]=="hybrid" else "framed32",
+                                             ^^^^^^^^^^^^^^^^^^^
+    validate_environment=environment,validate_configuration=configuration)
+E   TypeError: string indices must be integers, not 'str'
+
+src\ibme\hibe\latte\registration.py:48: TypeError
+____________ test_listing_and_static_matrix_do_not_consume_entropy ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000014949A5B020>
+capsys = <_pytest.capture.CaptureFixture object at 0x0000014949E15D30>
+
+    def test_listing_and_static_matrix_do_not_consume_entropy(monkeypatch, capsys):
+        def forbidden(*args, **kwargs):
+            pytest.fail("static CLI command consumed entropy")
+        monkeypatch.setattr(SecureRandom, "read", forbidden)
+        assert cli.main(["list-backends", "--json"]) == 0
+        catalog = json.loads(capsys.readouterr().out)
+        assert any(row["id"] == "lai-ideal-hibe" and not row["available"] for row in catalog["hibe"])
+        assert {"sis", "luo-matrix", "luo-module"} <= {row["id"] for row in catalog["ibs"]}
+>       assert cli.main(["matrix", "--json"]) == 0
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_cli_selection.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\ibme\cli.py:983: in main
+    return args.func(args)
+           ^^^^^^^^^^^^^^^
+src\ibme\cli.py:616: in cmd_matrix
+    suite = make_suite(hibe=hibe["id"], ibs=ibs["id"], transport=transport, allow_mock=args.allow_mock)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\ibme\assembly\__init__.py:128: in make_suite
+    hibe_params=params(hs,hibe_params),ibs=ibs,ibs_version=ins.version,ibs_params=params(ins,ibs_params),
+                ^^^^^^^^^^^^^^^^^^^^^^
+src\ibme\assembly\__init__.py:110: in params
+    selected=spec.default_preset(transport)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+config = 'direct'
+
+>   default_preset=lambda config:"seed32" if config["transport"]=="hybrid" else "framed32",
+                                             ^^^^^^^^^^^^^^^^^^^
+    validate_environment=environment,validate_configuration=configuration)
+E   TypeError: string indices must be integers, not 'str'
+
+src\ibme\hibe\latte\registration.py:48: TypeError
+=========================== short test summary info ===========================
+FAILED tests/test_c_registration.py::test_cross_family_profile_never_falls_back[cert-ml-dsa-falcon-padded-512]
+FAILED tests/test_c_registration.py::test_cross_family_profile_never_falls_back[cert-falcon-ml-dsa-44]
+FAILED tests/test_cli_selection.py::test_listing_and_static_matrix_do_not_consume_entropy
+3 failed, 78 passed in 4.74s

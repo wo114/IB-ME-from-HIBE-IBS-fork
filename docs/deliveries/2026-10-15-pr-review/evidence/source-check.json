@@ -1,0 +1,57 @@
+{
+  "evidence": {
+    ".gitattributes": "eb4dae18d952078ef650cf426de083f20f083966cd4822c5db6d0f0c841c8eba",
+    "foo-li.json": "b4dcba440f1f267bc902e2cb659e089d1804aece5484be6ade9d1cee4c717f60",
+    "foo-li.xml": "d14b95370fe514cc5bb707c2d449d6c21801f30445df249a5ec287046a9db4bc",
+    "pr-27.json": "caf24a9c1f93e452829916454650ec09248ac7b6fe170e530289cd6abc7e61ce",
+    "pr-28.json": "19c5f9d9448e28dab931e999ead5b1d6add4417b07b9ec6683ba0e1ec2dc0f45",
+    "pr-29.json": "89bc9346be993c73d2c7d09b88be6e1d0dcc9191b2ac12bc9e9ac66e618a225e",
+    "yu2026.json": "2b8230c186d70e2e0f8abce578ae39d616d3fb9b07dd3a5dedb76960b521f4f9",
+    "yu2026.xml": "b995fba18a453679be85cf976f6d34c34d12b92b45bedfcac0b4e0df067624ff"
+  },
+  "independent_cryptographic_review": false,
+  "local_receipts_against_exact_heads": {
+    "27": {
+      "delivery_manifest_files": 20,
+      "head": "cf1325053c4dbb1a3632f75cb45d240e83b83bca",
+      "manifest_files": 12,
+      "passed": 294,
+      "skipped": 0
+    },
+    "28": {
+      "delivery_manifest_files": 28,
+      "head": "577c3e4c6c0c7a84d630628df1e9aa774daa5d2f",
+      "manifest_files": 13,
+      "passed": 550,
+      "skipped": 0
+    }
+  },
+  "remote_checks": {
+    "27": {
+      "checks": {
+        "SKIPPED": 1,
+        "SUCCESS": 20
+      },
+      "head": "cf1325053c4dbb1a3632f75cb45d240e83b83bca",
+      "merge": "2ddeeeb8128eab87019b24326bbd8b65c76b4adc"
+    },
+    "28": {
+      "checks": {
+        "SKIPPED": 1,
+        "SUCCESS": 20
+      },
+      "head": "577c3e4c6c0c7a84d630628df1e9aa774daa5d2f",
+      "merge": "96ea8c223e87b81d19b37f524fce596cbb45d3d5"
+    },
+    "29": {
+      "checks": {
+        "SKIPPED": 2,
+        "SUCCESS": 44
+      },
+      "head": "818d899b0b25b0e07c5c98f672759baa80ab11c3",
+      "merge": "e887cff5a20c096f6cf79d37c7181d19feef89f9"
+    }
+  },
+  "security_claim": "none",
+  "status": "passed"
+}

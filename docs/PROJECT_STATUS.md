@@ -1,6 +1,6 @@
 # 当前进度与并行任务
 
-更新：2026-10-15（本次补C1 Lai资格与C3 Xie修订方程研究核，其它模块保留原验收版本）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
+更新：2026-10-15（补C1/C2默认登记、真实组合/CLI/安装，CR原文资格，以及PR27—29接收；其它模块保留各自验收版本）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
 
 PR #15 固定 `0435285` 已经复核并合入远端 main（`010b75e`）：四项 CI 通过，本地330 passed/21明确skip，三项真实ABB实物契约全部执行，23个运行源码/工具指纹一致。A随后交[结构化MP12工具](research/team-a-delivery/2026-10-14-mp12-structured/README.md)：系统随机的两次DelTrap与新原像/恢复、独立n128/2432维真实采样已经通过；这是A3工具执行域的推进，没有替换已有HIBE或获得正式安全准入。下方带日期的B基础/旧PR状态保留各自版本事实。
 2026-10-14 CI增量：新增[19条路线的通用目录、数据驱动测试和组合验收](deliveries/2026-10-14-catalog-ci/README.md)。框架不再按 Luo 名称猜参数或测试范围；公共框架、每条算法路线和明确选定的组合分别显示。Wang–PW、SRGG 已接入公共注册表并通过本地 Sage 单体测试，两个真实教学 ABB10+研究 IBS 组合也有独立收据；所有结果仍为功能/研究运行证据，security_claim=none，未升级为正式安全准入。
@@ -16,6 +16,10 @@ C1 按用户新授权优先实现较易落地的结构HIBE，已交[LATTE-3独�
 C2 已交[认证转换ML-DSA独立IBS](research/team-c-delivery/2026-10-14-cert-mldsa/README.md)，初始实现 `a2ffb8c`、末次代码修订 `c61b8eb`：五方法、固定发钥/pending、对象与恢复完成；246项Sage无skip（含210官方向量），三参数实物与安装通过。现补[同一转换核心的Falcon独立IBS](research/team-c-delivery/2026-10-14-cert-falcon/README.md)，实现 `14c44a6`：固定Falcon v1.2作者代码与512/1024两档，237项专项无skip含200官方向量和Gaussian自检；两档各同根双用户/32份新签名/新进程零熵恢复通过，完整IBS签名2322/4447 B。仓库外34 provider、五份原实例160次零熵验签与5次恢复SK新签名通过。默认登记、真实HIBE配对、强UF/量子模型映射及正式准入仍待，none/false/false；参数档不多计算法。
 
 C1/C3本批新增：[Lai精确资格反例](research/team-c-delivery/2026-10-15-lai-qualification/README.md)15项无skip，确认标签单位与委派类型仍需澄清，没有新增Lai HIBE；[Xie修订方程研究核](research/team-c-delivery/2026-10-15-xie-study/README.md)实现 `7c139f4`，53项无skip，两个教学域各同根双身份/32新签名/原对象零熵恢复及仓库外安装通过。实际默认参数的公开零挑战伪造与模q平移反例均保留，修订核不冒充原稿复现或共同IBSBackend，不登记可用组合；原稿/正式参数/整体误差和模型仍WIP，none/false/false。
+
+2026-10-15 C与统筹接入：[LATTE＋两类认证IBS统一框架交付](research/team-c-delivery/2026-10-15-c-framework/README.md)，实现`37a124d`、最终运行源码`9c9fd5a`。默认登记和CLI已接通；10个配置（一个HIBE×六种IBS算法，参数/格式不多算）338检查全部通过，C专项543 passed/0skip，Windows框架435 passed/5明确skip。五档认证IBS各完成15条系统随机CLI命令及原状态零熵恢复；仓库外安装重放原5份状态、121 provider与209份源码核对通过。匿名/修订采样/转换模型和正式参数仍未准入。CR另交[Zhang类型与模数资格](research/team-c-delivery/2026-10-15-zhang-qualification/README.md)，未补造Derive或实现HIBE。
+
+同批[PR27—29审查记录](deliveries/2026-10-15-pr-review/README.md)：Foo–Li、Yu共同五方法/对象/固定服务已合入，分别定向294/550项Sage无skip，默认登记/实际HIBE组合及安全准入仍待。PR29接收Lai与Xie研究材料；自审和回归不等于独立密码学安全审查。
 
 ## 1. 已确认的组织方式
 
@@ -40,15 +44,15 @@ C1/C3本批新增：[Lai精确资格反例](research/team-c-delivery/2026-10-15-
 | 统一框架与协议 | `assembly` 已实现后端注册、独立选择/参数快照、能力/容量预检；复用 Baseline/BYTEAUTH/Hybrid；CLI 与真实组合驱动共用装配入口 | 本轮已补齐用户要求的三项框架工作；候选原语须各自实现并通过单体/组合验收，静态预检不等于安全准入 |
 | 可选 CLI / 状态 | `--hibe/--ibs` 和两边参数独立；v2 状态绑定完整配置、公钥摘要及对象类型；旧预设保留 | 摘要是存储一致性检查，没有外部认证或反回滚保证；持久化按所选公开对象保存，不改原语算法 |
 | HIBE 公共接口 | 六个 HIBE 方法、规范对象；Hybrid 使用独立的公开密钥绑定验证能力 | 接口存在不等于每个候选已实现 |
-| LATTE-3独立研究HIBE | [C1交付](research/team-c-delivery/2026-10-14-latte-hibe/README.md)：固定作者MIT代码、COSAC缓冲修订、真实NTRU根/Delegate/Extract/32 B加解密、严格六方法/五对象/固定树恢复、显式BackendSpec和安装；同根2×2实物通过 | 原作者ID-IND-CCA不自动提供匿名条件；整体有限分布/数值/中止与安全映射未准入，默认registry/CLI及真实IBS组合待接，不计安全组合 |
+| LATTE-3研究HIBE | [独立C1](research/team-c-delivery/2026-10-14-latte-hibe/README.md)六方法/五对象、真实2×2与恢复；[本轮公共接入](research/team-c-delivery/2026-10-15-c-framework/README.md)默认registry、Hybrid/BYTEAUTH、CLI/安装与10个配置338检查通过 | 原作者ID-IND-CCA不自动提供匿名性；修订采样有限误差/中止和正式映射未准入，none/false/false |
 | ABB-ROM独立完整研究后端 | [A本轮交付](research/team-a-delivery/2026-10-14-abb-complete/README.md)：真实AP09、两次BasisDel/高斯RandBasis、同组86/86 B身份及32 Bseed、256新SamplePre；同公钥2×2多地址和Luo+C64B+Hybrid+BYTEAUTH完整攻击验收已通过 | q26/n1被公开输入恢复全部256比特，none/false/false；正式参数/规范化条件化/矩阵RO/工作区失败界未准入；默认registry/CLI待统筹接入，旧q104/q80中止不能拼接为通过 |
 | A3 结构化 MP12 工具 | [本批交付](research/team-a-delivery/2026-10-14-mp12-structured/README.md)：分块gadget、精确低秩扰动、Algorithm3/4、固定地址状态与安装；n2同根22→40→58两次真实委派及16次批次原像/零熵恢复；独立n128根/2432维4原像/恢复，无全维核格基 | 仅H=I/nk列扩展的独立工具；n128/q65537根角色比较成本约21.608/19.610，参数未安全准入；具体卷积总误差、正式参数/HIBE H/G适配/32 B带噪声及组合仍WIP，未新增后端或组合数 |
 | 教学 ABB10 + 教学 SIS | 实际代码、CLI、历史攻击与回归 | 教学参数及公开认证反例；不能计入已准入安全组合 |
 | Luo 矩阵 IBS | 本地真实研究算法、适配器与历史参数筛查 | 当前暂停继续扩网格，保留为比较实例 |
 | Luo 模格 IBS | 真实算法、NTT/Hint、固定状态及reference/compact；C64B完整17字段、正确性条件/中止界、原文安全引用映射和第二十四步终验收收尾；实际CHKP组合已核对compact16383 B | 默认参数不变、C64B仍显式选择；研究候选不是正式安全等级，不自动补写完整基础归约/QROM；版本变化定向复核 |
-| Wang+PW IBS | [完整研究五方法](../experiments/research/candidates/wang_pw/)、秘密委派/真实原像、四域哈希/两个盐、固定key多消息及跨进程恢复；32次新真签验与公开伪造负控单列B交付 | q17调试参数不安全；正式参数/根近均匀、固定服务安全映射、默认登记/安装与真实CHKP配对未完成，不能计已准入安全组合 |
-| Foo–Li IBS | 已有setup/extract/sign_raw/verify、固定用户种子与严格恢复的真实研究生命周期，本批真实采样回归复验 | 共同五方法/对象、稳健服务与模型/参数仍待；不是因sign_raw命名而未实现算法 |
-| SRGG IBS | [完整研究后端](../experiments/research/candidates/srgg/backend.py)、数值连续SampleF/Schur/真gadget、签验及固定cache恢复；32次系统随机签验、恢复同key、规范加载、原文范数重试和错误拒绝均执行 | ζ一致factor2与原文Table3字面差异、连续数值总TV、HNF/强前提尚未证；n8挑战弱可公开伪造，不授安全等级；默认登记和真实HIBE组合待统筹 |
+| Wang+PW IBS | [完整研究五方法](../experiments/research/candidates/wang_pw/)、真实采样/恢复；默认已登记，本轮LATTE+Hybrid+BYTEAUTH公共组合32检查通过 | q17调试参数不安全；正式参数/根近均匀、固定服务安全映射及其它未测配对仍待，不计已准入安全组合 |
+| Foo–Li IBS | [PR27独立共同后端](research/team-b-delivery/2026-10-15-foo-li-backend/README.md)：完整五方法/四对象、固定发钥/pending/持久服务、可选descriptor；统筹294项Sage无skip并核对固定head后合入 | q3/n1公开伪造及错误上下文负控保留；默认registry/真实HIBE配对、模型和正式参数未准入 |
+| SRGG IBS | [完整研究后端](../experiments/research/candidates/srgg/backend.py)、真实SampleF/Schur/挑战、固定cache与恢复；默认已登记，本轮LATTE公共组合34检查通过 | ζ factor2、连续数值总TV、HNF/强前提未证；n8公开伪造负控保留；正式参数与其它未测组合不自动通过 |
 | Sageloli SIS／RSIS | [已完成数学验证批次](research/team-b-delivery/2026-10-13-sageloli-probes/README.md)：复合模数三进制Gaussian、根／委派／一次签名原像、环旋转结构与两块范数、Table2/4宽度核验；可重放源码和公开收据 | 尚无H1/H2／盐／规范对象／完整五方法／恢复与组合；环采用明确block-Schur数值解释，总TV与固定服务模型待核；调试范数约束过弱，不授安全等级 |
 | 既有内置完整研究接线 | **教学 ABB10 + Hybrid + Luo 模格 + BYTEAUTH** | 可以验证工程流程；HIBE 不是 CHKP，不能记为真实 CHKP 组合完成 |
 | CHKP 本仓库 | `src/ibme/hibe/chkp/`公开六方法、`src/ibme/lattice/chkp/`有限工具；原CHKP父RandBasis/ToBasis与同叶256目标真实运行、保存/恢复、Hybrid+C64B+BYTEAUTH及CLI完成 | MP12仅用于此后端根生成；n2/q1099511627791可公开攻击，G-formal未准入，状态无外部防回滚保证 |
@@ -57,7 +61,7 @@ C1/C3本批新增：[Lai精确资格反例](research/team-c-delivery/2026-10-15-
 | A 的 MP12 变体公开研究后端（已合入） | [第一批](research/team-a-delivery/2026-10-12-hibe-reference/README.md)：计算型 `[I\|Â]` 根、真实 DelTrap/固定256叶，六方法/五类对象/绑定、自定义 registry；原交付21项组合收据，本轮独立48项Sage测试无skip；安装接入单列 | n2/q549755813911 不安全，原交付8649次公开枚举恢复明文；原 CHKP theorem 不能直接继承。正式参数/模型和ABB-ROM仍待；原CHKP新增成果在上行单列，不升级已准入数 |
 | A 的公共安装入口（PR #13 已合入） | [第二批](research/team-a-delivery/2026-10-12-installed-api/README.md)：公共HIBE/格工具、单一 provider、wheel与默认可选登记；审查173 passed/2明确skip、55 Sage passed，仓库外安装Windows3/Sage10项，独立实际CLI8步通过 | 无Sage明确unavailable；新根/新接收者需要显式本地engine，旧状态可无engine恢复；原n2公开攻击和none/false保持；正式大尺寸部署/模型仍待 |
 | 本地 CLI 接收状态事务 | [接收状态证据](research/2026-10-10-receiver-persistence/README.md)：锁、pending、保存后输出及已有研究接收密钥复用 | 提供同 OS 本地进程失败后的保守阻止；不宣称防回滚、硬断电或跨 OS 分布式事务 |
-| Yu IBS 独立研究实现（fork PR 交付） | [本轮交付](research/2026-10-13-yu/README.md)：`3ddc623` 补 BPR 矩阵 PRF/密钥输入电路、四算法、真实 AP09→RandBasis/LLL→GPV、固定身份密钥与公开验签；合入上游`e030d05`后重跑472项通过/无skip，`3d15c6e`另跑3整链、12签名、24验签和120项负例/方程对照；新旧批次分别留证 | 仅小参数核心代码；q=3公开可伪造、部分错误上下文被接受。密钥输入NC1与Lemma7谱界、正式参数、公共后端及Wang/HIBE组合未准入；`security_claim=none` |
+| Yu IBS 独立研究后端 | [PR28交付](research/team-b-delivery/2026-10-15-yu-backend/README.md)：真实PRF/陷门/采样及完整共同五方法/对象、固定issuer/恢复和条件审计；统筹550项Sage无skip、110项源码检查后合入 | q3公开伪造；1—4 B容量不够Wang帧，descriptor明确阻止组合；主线程Sage限制、NC1/Lemma7/模型和正式参数待核，none/false/false |
 | 其它候选 | [候选基础包](research/2026-10-10-foundations/README.md)、SRGG 代数/采样等部分实现；此行未重新审查后续远端PR | 每项按实际算法和测试单独计数；不把候选卡或公开方程计作完整后端 |
 
 ### 外部交付与接收记录

@@ -176,13 +176,14 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "real_four_algorithm_runtime_exists_common_adapter_pending",
+      "execution_state": "pr27_common_five_methods_codec_fixed_issuer_294_sage_passed_merged_default_registration_and_formal_pending",
       "deliverables": [
         "固定服务/经典 ROM 条件与资源决定",
         "五方法/codec/恢复与真实单体",
         "参数/登记提案及章节"
       ],
-      "completed_scope": "setup/extract/sign_raw/verify、固定用户种子和严格恢复；未准入正式安全参数"
+      "completed_scope": "真实四算法、共同五方法/四对象、固定发钥/pending/持久服务及安装；默认登记/组合和正式参数未准入",
+      "evidence": "../../research/team-b-delivery/2026-10-15-foo-li-backend/README.md"
     },
     {
       "id": "B4",
@@ -226,11 +227,12 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "planned",
+      "execution_state": "pr28_common_five_methods_codec_fixed_issuer_550_sage_passed_merged_capacity_blocks_wang_formal_pending",
       "deliverables": [
         "PRF/电路和范数增长成本卡",
         "现有组件与完整 IBS 缺口"
-      ]
+      ],
+      "evidence": "../../research/team-b-delivery/2026-10-15-yu-backend/README.md"
     },
     {
       "id": "C1",
@@ -240,13 +242,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "latte_independent_backend_done_lai_exact_unit_and_type_qualification_blocked_anonymity_formal_pending",
+      "execution_state": "latte_default_registry_cli_10_combinations_and_install_passed_lai_qualification_blocked_anonymity_formal_pending",
       "deliverables": [
         "匿名/委派/采样/代码选择表",
         "LATTE 缓冲问题复验与差分",
         "先合格者完整六方法，后补另一条"
       ],
-      "evidence": "../../research/team-c-delivery/2026-10-15-lai-qualification/README.md"
+      "evidence": "../../research/team-c-delivery/2026-10-15-c-framework/README.md"
     },
     {
       "id": "C2",
@@ -256,8 +258,8 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "ml_dsa_and_falcon_independent_ibs_vectors_real_restore_and_install_passed_composition_and_admission_pending",
-      "evidence": "../../research/team-c-delivery/2026-10-14-cert-falcon/README.md",
+      "execution_state": "ml_dsa_falcon_five_profiles_default_registry_real_latte_cli_and_original_state_installed_restore_passed_model_formal_pending",
+      "evidence": "../../research/team-c-delivery/2026-10-15-c-framework/README.md",
       "deliverables": [
         "原文转换/固定身份/严格对象规格",
         "固定官方库/许可/KAT，先 ML-DSA",
@@ -288,11 +290,12 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "planned",
+      "execution_state": "source_type_and_modulus_qualification_done_derivation_and_anonymity_blocked_not_hibe_backend",
       "deliverables": [
         "密钥/陷门/Derive 类型疑点表",
         "原文参数冲突和实施入口"
-      ]
+      ],
+      "evidence": "../../research/team-c-delivery/2026-10-15-zhang-qualification/README.md"
     },
     {
       "id": "T0",
@@ -488,7 +491,7 @@
       "priority": "P1",
       "task_id": "C1",
       "availability_inferred_from_plan": false,
-      "next_step": "独立HIBE/真实两层/恢复安装已交；匿名/有限误差和统筹登记/真实配对待核"
+      "next_step": "默认登记/CLI、10个配置338检查与原状态安装恢复已过；匿名性、修订采样总误差及正式参数待核"
     },
     {
       "id": "lai-ideal-hibe",
@@ -515,7 +518,7 @@
       "priority": "P3",
       "task_id": "CR",
       "availability_inferred_from_plan": false,
-      "next_step": "澄清可委派陷门/逆元/模数方向，实施真实SamplePre"
+      "next_step": "原文类型/两层长度与q条件资格已交；先澄清可委派陷门、SampleLeft目标和匿名映射，不补造Derive"
     },
     {
       "id": "abb-standard-selective",
@@ -560,7 +563,7 @@
       "priority": "P1",
       "task_id": "B3",
       "availability_inferred_from_plan": false,
-      "next_step": "复用已有真实四算法/恢复，补共同对象、五方法、稳健服务与模型条件"
+      "next_step": "PR27五方法/对象/固定服务已接收；默认登记/真实HIBE组合与固定服务模型、正式参数待核"
     },
     {
       "id": "wang-pw",
@@ -605,7 +608,7 @@
       "priority": "P3",
       "task_id": "BR",
       "availability_inferred_from_plan": false,
-      "next_step": "真实PRF有限电路与范数增长，之后委派/采样/Figure5四算法"
+      "next_step": "PR28五方法/对象/issuer已接收；1—4 B容量阻止Wang组合，主线程/NC1/Lemma7/正式参数与默认登记待核"
     },
     {
       "id": "cert-ml-dsa",
@@ -614,7 +617,7 @@
       "priority": "P1",
       "task_id": "C2",
       "availability_inferred_from_plan": false,
-      "next_step": "普通签名KAT、共享认证转换/机构证书/用户键/消息绑定和完整IBS"
+      "next_step": "三档独立IBS/KAT及真实LATTE组合、CLI、原状态安装恢复已过；强UF/量子/固定服务与正式准入待核"
     },
     {
       "id": "cert-falcon",
@@ -623,7 +626,7 @@
       "priority": "P1",
       "task_id": "C2",
       "availability_inferred_from_plan": false,
-      "next_step": "已完成独立转换IBS/200官方向量/实物恢复安装；统筹登记/实际HIBE组合、强UF/量子与正式准入待办"
+      "next_step": "两档独立IBS/KAT及真实LATTE组合、CLI、原状态安装恢复已过；强UF/量子/固定服务与正式准入待核"
     },
     {
       "id": "xie-ntru-ibs",
@@ -650,11 +653,11 @@
     "parameters_are_formal": false
   },
   "known_pending": [
-    "新的提交/PR 和未来算法仍须逐版本审查；本轮五个 PR 已合入。",
+    "新的提交/PR和未来算法仍须逐版本审查；2026-10-15固定head的PR27—29已合入，其它批次按各自记录。",
     "C64B 明确 opt-in，默认参数未改；条件界/模型和正式安全准入仍待核。",
     "MP12 n2研究后端、公共工具、wheel/默认可选CLI已实跑；Sage/native仍为运行依赖，正式大尺寸/两角色攻击估计/变体模型待完成。",
     "扩展 2×3 及全就绪池的真实组合仍未齐备。",
-    "LATTE/Lai 匿名/采样/委派与 Xie 原文冲突须先核验。",
+    "LATTE/认证IBS已接公共框架；匿名/有限采样/转换模型和正式参数待核。Lai/Zhang类型条件与Xie原稿冲突尚未澄清。",
     "完整展示/报告/支撑/答辩产物仍待实施，当前提供任务和模板。"
   ],
   "last_a_evidence_date": "2026-10-12",
@@ -686,12 +689,16 @@
   },
   "new_parameter_status": "研究debug档；没有新增正式安全参数或安全等级",
   "current_remote_pr_review": {
-    "date": "2026-10-13",
-    "pr14_head": "87deec24f52c1c776a489566cf76f11d0d4a5aff",
-    "pr15_head": "0a9e512a204b4e81c844b6998f4e43205cdb2f60",
-    "both_open": true,
-    "remote_merge_performed": false,
-    "report": "../../research/team-b-delivery/2026-10-13-wang-pw/pr-review.md"
+    "date": "2026-10-15",
+    "prs": [
+      27,
+      28,
+      29
+    ],
+    "states": "MERGED",
+    "remote_merge_performed": true,
+    "report": "../../deliveries/2026-10-15-pr-review/README.md",
+    "scope": "Fixed heads only; no independent cryptographic security certification"
   },
   "latest_b_full_srgg": {
     "date": "2026-10-13",
@@ -700,5 +707,28 @@
     "full_IBS_implemented": true,
     "security_claim": "none",
     "backend_admitted": false
+  },
+  "historical_remote_pr_review_2026_10_13": {
+    "date": "2026-10-13",
+    "pr14_head": "87deec24f52c1c776a489566cf76f11d0d4a5aff",
+    "pr15_head": "0a9e512a204b4e81c844b6998f4e43205cdb2f60",
+    "both_open": true,
+    "remote_merge_performed": false,
+    "report": "../../research/team-b-delivery/2026-10-13-wang-pw/pr-review.md"
+  },
+  "latest_c_delivery": {
+    "date": "2026-10-15",
+    "source_commit": "9c9fd5aeac2fee68556d980dd0f5e328e530fbdd",
+    "report": "../../research/team-c-delivery/2026-10-15-c-framework/README.md",
+    "selected_configurations": 10,
+    "executed_checks": 338,
+    "sage_passed": 543,
+    "windows_passed": 435,
+    "windows_skipped": 5,
+    "cli_profiles": 5,
+    "installed_original_states": 5,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
   }
 }
