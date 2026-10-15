@@ -37,6 +37,10 @@ PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m \
 
 本批源码和文档指纹、测试计数与安全标识见同目录 [MANIFEST.json](MANIFEST.json)；清单不包含自身。
 
+本轮修订将新建 POSIX issuer 目录的权限固定为 `0700`，并让公开生命周期审计在检查失败时返回非零，同时在收据生成后清理临时明文状态目录；这些是本地服务卫生改进，不改变 SRGG 签名方程或安全声明。
+
+脱敏的实际生命周期收据见 [service.json](service.json)，其中的三个布尔检查由审计命令强制验证后才写出。
+
 采样和代数数值核验沿用独立脚本，输出在 `build/outputs/srgg-service-2026-10-15/numeric/`：
 
 ```bash

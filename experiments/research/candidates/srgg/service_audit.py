@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import shutil
 import tempfile
 from time import perf_counter
 
@@ -19,8 +20,15 @@ from .config import Config
 
 
 def audit_report():
+    temp_root = Path(tempfile.mkdtemp(prefix="ibme-srgg-issuer-"))
+    try:
+        return _audit_report_at(temp_root / "issuer")
+    finally:
+        shutil.rmtree(temp_root, ignore_errors=True)
+
+
+def _audit_report_at(root):
     config = Config()
-    root = Path(tempfile.mkdtemp(prefix="ibme-srgg-issuer-")) / "issuer"
     started = perf_counter()
     issuer = FixedIssuer(root, Backend(rng=DeterministicRandom(b"srgg-service-audit-root")))
     public = issuer.initialize(config, max_users=2)
@@ -35,6 +43,13 @@ def audit_report():
     signature = signer.sign(cached, b"srgg-persistent-service")
     verified = signer.verify(restored_public, b"Alice", b"srgg-persistent-service", signature)
 
+    checks = {
+        "public_key_restored": restored_public.to_bytes() == public.to_bytes(),
+        "cached_identity_same_key": cached.to_bytes() == first.to_bytes(),
+        "post_restore_signature_verified": verified,
+    }
+    if not all(checks.values()):
+        raise AssertionError(f"SRGG service audit failed: {checks!r}")
     return {
         "schema": "IBME/SRGG-FIXED-ISSUER-AUDIT/1",
         "parameters": config.record(),
@@ -43,11 +58,7 @@ def audit_report():
             "state_bytes_one_issued_identity": after_first,
             "setup_seconds": setup_seconds,
         },
-        "checks": {
-            "public_key_restored": restored_public.to_bytes() == public.to_bytes(),
-            "cached_identity_same_key": cached.to_bytes() == first.to_bytes(),
-            "post_restore_signature_verified": verified,
-        },
+        "checks": checks,
         "test_coverage": [
             "tests/test_srgg_service.py covers pending/failed blocking, atomic-save faults and hard-exit recovery.",
             "tests/test_srgg_service.py covers two-process same-identity serialization under the local lock.",

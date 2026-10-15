@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import shutil
+import stat
 import subprocess
 import sys
 
@@ -83,6 +84,15 @@ def test_initialize_reuses_an_existing_empty_directory(tmp_path):
     with pytest.raises(AssertionError):
         issuer.initialize(Config())
     assert empty.is_dir()
+
+
+def test_new_issuer_directory_is_private_on_posix(tmp_path):
+    target = tmp_path / "private"
+    issuer = FixedIssuer(target, SetupFailBackend())
+    with pytest.raises(AssertionError):
+        issuer.initialize(Config())
+    if os.name != "nt":
+        assert stat.S_IMODE(target.stat().st_mode) == 0o700
 
 
 @pytest.fixture(scope="module")

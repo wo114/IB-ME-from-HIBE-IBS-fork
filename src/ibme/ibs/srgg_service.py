@@ -283,7 +283,7 @@ class FixedIssuer:
     def _directory(self, *, create=False):
         if create:
             if not os.path.lexists(self.path):
-                self.path.mkdir(parents=False, exist_ok=False)
+                self.path.mkdir(mode=0o700, parents=False, exist_ok=False)
         info = self.path.lstat()
         if (not stat.S_ISDIR(info.st_mode)
                 or getattr(info, "st_file_attributes", 0)
