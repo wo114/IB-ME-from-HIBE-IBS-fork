@@ -49,18 +49,18 @@ def test_listing_and_static_matrix_do_not_consume_entropy(monkeypatch, capsys):
     monkeypatch.setattr(SecureRandom, "read", forbidden)
     assert cli.main(["list-backends", "--json"]) == 0
     catalog = json.loads(capsys.readouterr().out)
-    assert any(row["id"] == "latte" and not row["available"] for row in catalog["hibe"])
+    assert any(row["id"] == "lai-ideal-hibe" and not row["available"] for row in catalog["hibe"])
     assert {"sis", "luo-matrix", "luo-module"} <= {row["id"] for row in catalog["ibs"]}
     assert cli.main(["matrix", "--json"]) == 0
     matrix = json.loads(capsys.readouterr().out)
     assert matrix["execution"] == "not_executed"
     assert matrix["rows"] and all(row["execution"] == "not_executed" for row in matrix["rows"])
-    pending = [row for row in matrix["rows"] if row["hibe"] == "latte"]
+    pending = [row for row in matrix["rows"] if row["hibe"] == "lai-ideal-hibe"]
     assert pending and all(not row["compatibility"]["ok"] for row in pending)
 
 
 @pytest.mark.parametrize("options", [
-    ["--hibe", "latte", "--ibs", "luo-module", "--transport", "hybrid"],
+    ["--hibe", "lai-ideal-hibe", "--ibs", "luo-module", "--transport", "hybrid"],
     ["--hibe", "unknown", "--ibs", "sis"],
     ["--hibe", "abb10", "--ibs", "unknown"],
     ["--hibe", "abb10", "--ibs", "luo-module", "--transport", "direct"],

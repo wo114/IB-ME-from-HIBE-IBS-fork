@@ -222,13 +222,13 @@ def test_native_rejects_truncated_private_inputs_without_output(operation):
     assert result.returncode==65 and result.stdout==b""
 
 
-def test_explicit_spec_and_installed_payload_are_not_silent_global_registration(saved):
+def test_explicit_spec_and_default_route_select_the_same_delivered_engine(saved):
     from ibme.assembly.registry import BackendRegistry,default_registry
     spec=backend_spec(); registry=BackendRegistry([spec])
     assert registry.get("hibe","latte3-research").two_level
-    assert default_registry().get("hibe","latte").available is False
+    assert default_registry().get("hibe","latte").factory is spec.factory
     assert spec.ciphertext_size(LATTEParams(),32,86)>3*N*8
-    assert spec.default_preset({"transport":"hybrid"})=="seed32"
+    assert spec.default_preset("hybrid")=="seed32"
 
 
 def test_short_entropy_after_pending_is_not_retried(saved):

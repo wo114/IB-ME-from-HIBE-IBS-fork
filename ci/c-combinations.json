@@ -1,0 +1,172 @@
+[
+  {
+    "name": "latte3-hybrid-cert-ml-dsa-ml-dsa-44-reference-byteauth-v1",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "cert-ml-dsa",
+      "ibs_params": "ml-dsa-44",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false
+    }
+  },
+  {
+    "name": "latte3-hybrid-cert-ml-dsa-ml-dsa-65-reference-byteauth-v1",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "cert-ml-dsa",
+      "ibs_params": "ml-dsa-65",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false
+    }
+  },
+  {
+    "name": "latte3-hybrid-cert-ml-dsa-ml-dsa-87-reference-byteauth-v1",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "cert-ml-dsa",
+      "ibs_params": "ml-dsa-87",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false
+    }
+  },
+  {
+    "name": "latte3-hybrid-cert-falcon-falcon-padded-512-reference-byteauth-v1",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "cert-falcon",
+      "ibs_params": "falcon-padded-512",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false
+    }
+  },
+  {
+    "name": "latte3-hybrid-cert-falcon-falcon-padded-1024-reference-byteauth-v1",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "cert-falcon",
+      "ibs_params": "falcon-padded-1024",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false
+    }
+  },
+  {
+    "name": "latte3-hybrid-luo-module-research-reference-byteauth-v1",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "luo-module",
+      "ibs_params": "research",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false
+    }
+  },
+  {
+    "name": "latte3-hybrid-luo-module-research-compact-byteauth-v1",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "luo-module",
+      "ibs_params": "research",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "compact",
+      "allow_mock": false
+    }
+  },
+  {
+    "name": "latte3-hybrid-luo-matrix-research-reference-byteauth-v1",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "luo-matrix",
+      "ibs_params": "research",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false
+    }
+  },
+  {
+    "name": "latte3-hybrid-wang-pw-research-reference-byteauth-v1",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "wang-pw",
+      "ibs_params": "research",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false
+    }
+  },
+  {
+    "name": "latte3-hybrid-srgg2025-research-reference-byteauth-v1",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "srgg2025",
+      "ibs_params": "research",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false
+    }
+  }
+]
