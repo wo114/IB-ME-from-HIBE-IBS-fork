@@ -101,11 +101,12 @@
       "tests": [
         "tests/test_lai*.py"
       ],
-      "source_markers": [],
-      "source_stage": "candidate",
+      "source_markers": ["experiments/research/candidates/lai/qualification.py"],
+      "source_stage": "qualification_only",
       "allow_skips": false,
       "environment": "sage",
-      "layer": "primitive"
+      "layer": "primitive",
+      "scope": "Exact tag nonunit and delegation type qualification only. No Lai HIBE, sampling, encryption or anonymous backend is implemented."
     },
     {
       "id": "luo-matrix",
