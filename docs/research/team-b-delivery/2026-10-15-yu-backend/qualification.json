@@ -1,0 +1,984 @@
+{
+  "schema": "yu-circuit-qualification-v1",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "python": "3.13.15",
+  "sage": "10.9",
+  "source_sha256": {
+    "experiments/research/candidates/yu/qualification.py": "4fac9845193fab160c25539c879f67ea707039154e51a732b2485543616577d2",
+    "experiments/research/candidates/yu/bpr.py": "4b0801092d0865e2320c9e6a999d40603115ce1a0bd81606fdefdd5f80f6c55c",
+    "experiments/research/candidates/yu/circuits.py": "1c5452df81fe381a3e256bbb2e0d72b1a6b267ce7ee72dbcdeb0059c777079bc",
+    "experiments/research/candidates/yu/evaluation.py": "3f07fbc22b9d1edd9962455144a1ff125b95793b5035740fc2c2049c36830cbf",
+    "experiments/research/candidates/yu/profiles.py": "3b03d252c91eb9cb890e358036b4a0067a449d91e1ad9439b264196f926425b5",
+    "experiments/research/candidates/yu/standalone.py": "c0aa2a5a754c15f6153ba4c605b838cc1b59e89bd14a69dd2efd5181626c976d",
+    "experiments/research/candidates/yu/trapdoors.py": "eaefe74f099d8d886da61b99a68dc810cc3bf306ebbb3eca837fabe3cdc9d6ce",
+    "src/ibme/ibs/yu/params.py": "c15428cc34c09c2d111be9a0e8d2a812ca4e134603a8b862196e56e647f9d025",
+    "src/ibme/ibs/yu/codec.py": "901dc532368bc2fdf26f6379c79d545a9dad63f0933a3e70f7a69b4243355b3a",
+    "papers/2026_ibs_ibme_yu.pdf": "f10d8672d952d9923a00c883a7d65feb36a15fb67fbef1c52ee64254f5301948"
+  },
+  "input_provenance": "deterministic public algebra fixtures, no secret samples or production seeds",
+  "byte_config": {
+    "n": 1,
+    "q": 3,
+    "random_rows": 3,
+    "m1": 3,
+    "m2": 12,
+    "hadamard_scale": 8,
+    "max_uniform_trials": 192,
+    "prf_dimension": 1,
+    "prf_columns": 1,
+    "prf_modulus_bits": 5,
+    "prf_ticket_bits": 32,
+    "prf_gaussian_width": 2,
+    "identity_max_bytes": 1,
+    "message_max_bytes": 1,
+    "salt_bits": 4,
+    "gamma_squared": 32768,
+    "delta_squared": 67108864,
+    "max_vectors": 32,
+    "epsilon_bits": 16,
+    "postprocess": true,
+    "max_users": 16
+  },
+  "conditions": {
+    "legacy": {
+      "n": 1,
+      "m": 15,
+      "q": 3,
+      "w": 2,
+      "signature_dimension": 19,
+      "identity_bits": 2,
+      "message_bits": 2,
+      "salt_bits": 4,
+      "gamma_squared": 32768,
+      "delta_squared": 67108864,
+      "max_vectors": 32,
+      "epsilon_bits": 16,
+      "postprocess": true,
+      "input_concatenation": "checked",
+      "gamma_C1_exec": {
+        "required_squared": "32384",
+        "supplied_squared": "32768",
+        "smoothing_factor": 22,
+        "sufficient_gate": true,
+        "full_sampler_admission": false
+      },
+      "delta_C1_exec_using_raw_randbasis_bound": {
+        "required_squared": "49020928",
+        "supplied_squared": "67108864",
+        "smoothing_factor": 22,
+        "sufficient_gate": true,
+        "full_sampler_admission": false
+      },
+      "delta_after_LLL": "pending actual basis admission",
+      "ap09": {
+        "algorithm": "AP09 second construction, Algorithm 1 / section 3.3",
+        "parameters": {
+          "n": 1,
+          "q": 3,
+          "random_rows": 3,
+          "m1": 3,
+          "m2": 12,
+          "hadamard_scale": 8,
+          "max_uniform_trials": 192
+        },
+        "hadamard_width": 8,
+        "gs_squared_bound": 368,
+        "quality_gate": "4*d*m2 <= Cprime^2*w; deterministic Frobenius sufficient condition",
+        "quality_bad_probability_inside_admitted_domain": "0",
+        "unconditioned_paper_matrix_tv_upper": "1",
+        "ideal_A1_rank_abort_upper": "1/27",
+        "uniform_integer_abort_upper": "3/6277101735386680763835789423207666416102355444464034512896",
+        "actual_output_vs_uniform_including_abort_tv_upper": "1",
+        "public_random_tape_bytes_upper": 612,
+        "rounding": "sqrt rounded upward to 2^-80; not a security level",
+        "randomness_assumption": "independent uniform bytes; fixed seed tests are not proof",
+        "near_uniform_bound_nonvacuous": false,
+        "dimension_optimality_claim": false,
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "prf": [
+        {
+          "name": "identity",
+          "input_bits": 2,
+          "key_bits": 276,
+          "dimension": 2,
+          "columns": 2,
+          "output_bits": 4,
+          "q": 32,
+          "gaussian_width": "2",
+          "c1_growth1_rhs_squared": "1024",
+          "c1_growth1_diagnostic_pass": true,
+          "theorem_status": "pending: C, asymptotic family, LWE hardness and key-input NC1 unmapped",
+          "finite_distribution": {
+            "support_count": 13,
+            "ticket_bits": 32,
+            "tail_tv_upper": "509110506130523509405045701131155568531830349749/13164036458569648337239753460458804039861886925068638906788872192",
+            "quantization_tv_upper": "2258048943391230046342696271235486081/803474626072600670256627575380873290176950997286013138497902",
+            "dyadic_tv_upper": "3/1073741824",
+            "coefficient_tv_upper": "14775855584390477274657088493783748148078923736793003909156599459921896794290903960051486753814687421636296176960099/5288484635577665281445035626755241057786413264811382952819764351414777017952020874099035125120599092882537856041425769070592",
+            "key_distribution_tv_upper": "14775855584390477274657088493783748148078923736793003909156599459921896794290903960051486753814687421636296176960099/661060579447208160180629453344405132223301658101422869102470543926847127244002609262379390640074886610317232005178221133824",
+            "rejection_abort_used": false,
+            "total_function": true,
+            "security_claim": "none",
+            "constant_time": false
+          }
+        },
+        {
+          "name": "signing",
+          "input_bits": 8,
+          "key_bits": 1044,
+          "dimension": 2,
+          "columns": 2,
+          "output_bits": 4,
+          "q": 32,
+          "gaussian_width": "2",
+          "c1_growth1_rhs_squared": "4294967296",
+          "c1_growth1_diagnostic_pass": false,
+          "theorem_status": "pending: C, asymptotic family, LWE hardness and key-input NC1 unmapped",
+          "finite_distribution": {
+            "support_count": 13,
+            "ticket_bits": 32,
+            "tail_tv_upper": "509110506130523509405045701131155568531830349749/13164036458569648337239753460458804039861886925068638906788872192",
+            "quantization_tv_upper": "2258048943391230046342696271235486081/803474626072600670256627575380873290176950997286013138497902",
+            "dyadic_tv_upper": "3/1073741824",
+            "coefficient_tv_upper": "14775855584390477274657088493783748148078923736793003909156599459921896794290903960051486753814687421636296176960099/5288484635577665281445035626755241057786413264811382952819764351414777017952020874099035125120599092882537856041425769070592",
+            "key_distribution_tv_upper": "14775855584390477274657088493783748148078923736793003909156599459921896794290903960051486753814687421636296176960099/165265144861802040045157363336101283055825414525355717275617635981711781811000652315594847660018721652579308001294555283456",
+            "rejection_abort_used": false,
+            "total_function": true,
+            "security_claim": "none",
+            "constant_time": false
+          }
+        }
+      ],
+      "verifier_norm_squared_limit": 1275068416,
+      "public_qe1_forgery": {
+        "norm_squared": 9,
+        "accepted_by_equation_for_every_public_matrix": true,
+        "passes_norm": true,
+        "status": "failed"
+      },
+      "beta": {
+        "status": "pending",
+        "formula": "beta >= polynomial(kappa) * delta * sqrt(m+2w)",
+        "reason": "reduction polynomial/constants and admissible SIS instance not supplied"
+      },
+      "lemma7": {
+        "status": "pending",
+        "paper": "s1(R_C) <= O(4^d*m^(3/2))",
+        "reason": "coarse bound and finitely measured norms do not establish this theorem mapping"
+      },
+      "overall_formal_status": "not_admitted",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false
+    },
+    "byte": {
+      "n": 1,
+      "m": 15,
+      "q": 3,
+      "w": 2,
+      "signature_dimension": 19,
+      "identity_bits": 40,
+      "message_bits": 40,
+      "salt_bits": 4,
+      "gamma_squared": 32768,
+      "delta_squared": 67108864,
+      "max_vectors": 32,
+      "epsilon_bits": 16,
+      "postprocess": true,
+      "input_concatenation": "checked",
+      "gamma_C1_exec": {
+        "required_squared": "32384",
+        "supplied_squared": "32768",
+        "smoothing_factor": 22,
+        "sufficient_gate": true,
+        "full_sampler_admission": false
+      },
+      "delta_C1_exec_using_raw_randbasis_bound": {
+        "required_squared": "49020928",
+        "supplied_squared": "67108864",
+        "smoothing_factor": 22,
+        "sufficient_gate": true,
+        "full_sampler_admission": false
+      },
+      "delta_after_LLL": "pending actual basis admission",
+      "ap09": {
+        "algorithm": "AP09 second construction, Algorithm 1 / section 3.3",
+        "parameters": {
+          "n": 1,
+          "q": 3,
+          "random_rows": 3,
+          "m1": 3,
+          "m2": 12,
+          "hadamard_scale": 8,
+          "max_uniform_trials": 192
+        },
+        "hadamard_width": 8,
+        "gs_squared_bound": 368,
+        "quality_gate": "4*d*m2 <= Cprime^2*w; deterministic Frobenius sufficient condition",
+        "quality_bad_probability_inside_admitted_domain": "0",
+        "unconditioned_paper_matrix_tv_upper": "1",
+        "ideal_A1_rank_abort_upper": "1/27",
+        "uniform_integer_abort_upper": "3/6277101735386680763835789423207666416102355444464034512896",
+        "actual_output_vs_uniform_including_abort_tv_upper": "1",
+        "public_random_tape_bytes_upper": 612,
+        "rounding": "sqrt rounded upward to 2^-80; not a security level",
+        "randomness_assumption": "independent uniform bytes; fixed seed tests are not proof",
+        "near_uniform_bound_nonvacuous": false,
+        "dimension_optimality_claim": false,
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "prf": [
+        {
+          "name": "identity",
+          "input_bits": 40,
+          "key_bits": 1285,
+          "dimension": 1,
+          "columns": 1,
+          "output_bits": 1,
+          "q": 32,
+          "gaussian_width": "2",
+          "c1_growth1_rhs_squared": "7737125245533626718119526400",
+          "c1_growth1_diagnostic_pass": false,
+          "theorem_status": "pending: C, asymptotic family, LWE hardness and key-input NC1 unmapped",
+          "finite_distribution": {
+            "support_count": 13,
+            "ticket_bits": 32,
+            "tail_tv_upper": "509110506130523509405045701131155568531830349749/13164036458569648337239753460458804039861886925068638906788872192",
+            "quantization_tv_upper": "2258048943391230046342696271235486081/803474626072600670256627575380873290176950997286013138497902",
+            "dyadic_tv_upper": "3/1073741824",
+            "coefficient_tv_upper": "14775855584390477274657088493783748148078923736793003909156599459921896794290903960051486753814687421636296176960099/5288484635577665281445035626755241057786413264811382952819764351414777017952020874099035125120599092882537856041425769070592",
+            "key_distribution_tv_upper": "73879277921952386373285442468918740740394618683965019545782997299609483971454519800257433769073437108181480884800495/661060579447208160180629453344405132223301658101422869102470543926847127244002609262379390640074886610317232005178221133824",
+            "rejection_abort_used": false,
+            "total_function": true,
+            "security_claim": "none",
+            "constant_time": false
+          }
+        },
+        {
+          "name": "signing",
+          "input_bits": 84,
+          "key_bits": 2693,
+          "dimension": 1,
+          "columns": 1,
+          "output_bits": 1,
+          "q": 32,
+          "gaussian_width": "2",
+          "c1_growth1_rhs_squared": "10559852086279015414625484983957599218372874263796383744",
+          "c1_growth1_diagnostic_pass": false,
+          "theorem_status": "pending: C, asymptotic family, LWE hardness and key-input NC1 unmapped",
+          "finite_distribution": {
+            "support_count": 13,
+            "ticket_bits": 32,
+            "tail_tv_upper": "509110506130523509405045701131155568531830349749/13164036458569648337239753460458804039861886925068638906788872192",
+            "quantization_tv_upper": "2258048943391230046342696271235486081/803474626072600670256627575380873290176950997286013138497902",
+            "dyadic_tv_upper": "3/1073741824",
+            "coefficient_tv_upper": "14775855584390477274657088493783748148078923736793003909156599459921896794290903960051486753814687421636296176960099/5288484635577665281445035626755241057786413264811382952819764351414777017952020874099035125120599092882537856041425769070592",
+            "key_distribution_tv_upper": "310292967272200022767798858369458711109657398472653082092288588658359832680108983161081221830108435854362219716162079/1322121158894416320361258906688810264446603316202845738204941087853694254488005218524758781280149773220634464010356442267648",
+            "rejection_abort_used": false,
+            "total_function": true,
+            "security_claim": "none",
+            "constant_time": false
+          }
+        }
+      ],
+      "verifier_norm_squared_limit": 1275068416,
+      "public_qe1_forgery": {
+        "norm_squared": 9,
+        "accepted_by_equation_for_every_public_matrix": true,
+        "passes_norm": true,
+        "status": "failed"
+      },
+      "beta": {
+        "status": "pending",
+        "formula": "beta >= polynomial(kappa) * delta * sqrt(m+2w)",
+        "reason": "reduction polynomial/constants and admissible SIS instance not supplied"
+      },
+      "lemma7": {
+        "status": "pending",
+        "paper": "s1(R_C) <= O(4^d*m^(3/2))",
+        "reason": "coarse bound and finitely measured norms do not establish this theorem mapping"
+      },
+      "overall_formal_status": "not_admitted",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false
+    }
+  },
+  "cases": [
+    {
+      "profile": "legacy-identity",
+      "input_case": "raw-zero",
+      "resources": {
+        "input_count": 276,
+        "output_count": 4,
+        "gates": 0,
+        "depth": 0,
+        "peak_live_wire_slots": 276,
+        "final_live_wire_slots": 276,
+        "wire_table_slots": 276,
+        "sha256": "66e4e4110bbc54f282b86c0c2730dfece8017f0f7c37c6e7b2759a7628089a36",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 0,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 0,
+      "norm_bounds": [],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 3,
+        "w": 2
+      }
+    },
+    {
+      "profile": "legacy-identity",
+      "input_case": "raw-one",
+      "resources": {
+        "input_count": 276,
+        "output_count": 4,
+        "gates": 7904,
+        "depth": 118,
+        "peak_live_wire_slots": 314,
+        "final_live_wire_slots": 28,
+        "wire_table_slots": 8180,
+        "sha256": "c0f7557a492eddbec26d3628e4cf0197093f17a4d7b6678995ac557a5bb88ace",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 2,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 0,
+      "norm_bounds": [],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 3,
+        "w": 2
+      }
+    },
+    {
+      "profile": "legacy-identity",
+      "input_case": "raw-alternating",
+      "resources": {
+        "input_count": 276,
+        "output_count": 4,
+        "gates": 3952,
+        "depth": 100,
+        "peak_live_wire_slots": 314,
+        "final_live_wire_slots": 152,
+        "wire_table_slots": 4228,
+        "sha256": "8ba200e6ac7b3199a256c66e4793d0bdb4e5781088d51e134897434f0dd9d452",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 1,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 2,
+      "norm_bounds": [
+        {
+          "match": true,
+          "lower": 111,
+          "upper": 190,
+          "frobenius": 190,
+          "one_times_infinity": 280,
+          "rows": 15,
+          "columns": 2,
+          "arithmetic": "exact integers",
+          "combined_depth": 105,
+          "coarse_squared": 4.705272128739459e+101,
+          "nonzero_witness": true,
+          "lemma7_status": "not_established"
+        },
+        {
+          "match": false,
+          "lower": 0,
+          "upper": 0,
+          "frobenius": 0,
+          "one_times_infinity": 0,
+          "rows": 15,
+          "columns": 2,
+          "arithmetic": "exact integers",
+          "combined_depth": 104,
+          "coarse_squared": 5.228080143043843e+100,
+          "nonzero_witness": false,
+          "lemma7_status": "not_established"
+        }
+      ],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 3,
+        "w": 2
+      }
+    },
+    {
+      "profile": "legacy-signing",
+      "input_case": "raw-zero",
+      "resources": {
+        "input_count": 1044,
+        "output_count": 4,
+        "gates": 0,
+        "depth": 0,
+        "peak_live_wire_slots": 1044,
+        "final_live_wire_slots": 1044,
+        "wire_table_slots": 1044,
+        "sha256": "6f8f63dc591c779b8dc20593ab5158f84db77fe5fb064f3bf9d7955536410b7b",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 0,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 0,
+      "norm_bounds": [],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 3,
+        "w": 2
+      }
+    },
+    {
+      "profile": "legacy-signing",
+      "input_case": "raw-one",
+      "resources": {
+        "input_count": 1044,
+        "output_count": 4,
+        "gates": 31616,
+        "depth": 158,
+        "peak_live_wire_slots": 1082,
+        "final_live_wire_slots": 52,
+        "wire_table_slots": 32660,
+        "sha256": "0ded10581a9985bb5e021c88b04bb87189038b166491a5e89b5e4264d61aec82",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 8,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 0,
+      "norm_bounds": [],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 3,
+        "w": 2
+      }
+    },
+    {
+      "profile": "legacy-signing",
+      "input_case": "raw-alternating",
+      "resources": {
+        "input_count": 1044,
+        "output_count": 4,
+        "gates": 15808,
+        "depth": 138,
+        "peak_live_wire_slots": 1082,
+        "final_live_wire_slots": 548,
+        "wire_table_slots": 16852,
+        "sha256": "65ec7d47901dc9c5cdfb89df4dcad7f6875e78c62483656126dad776d52e2e37",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 4,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 2,
+      "norm_bounds": [
+        {
+          "match": true,
+          "lower": 5863,
+          "upper": 5863,
+          "frobenius": 5863,
+          "one_times_infinity": 10127,
+          "rows": 15,
+          "columns": 2,
+          "arithmetic": "exact integers",
+          "combined_depth": 143,
+          "coarse_squared": 8.58618228919663e+137,
+          "nonzero_witness": true,
+          "lemma7_status": "not_established"
+        },
+        {
+          "match": false,
+          "lower": 0,
+          "upper": 0,
+          "frobenius": 0,
+          "one_times_infinity": 0,
+          "rows": 15,
+          "columns": 2,
+          "arithmetic": "exact integers",
+          "combined_depth": 142,
+          "coarse_squared": 9.54020254355181e+136,
+          "nonzero_witness": false,
+          "lemma7_status": "not_established"
+        }
+      ],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 3,
+        "w": 2
+      }
+    },
+    {
+      "profile": "byte-identity",
+      "input_case": "raw-zero",
+      "resources": {
+        "input_count": 1285,
+        "output_count": 1,
+        "gates": 0,
+        "depth": 0,
+        "peak_live_wire_slots": 1285,
+        "final_live_wire_slots": 1285,
+        "wire_table_slots": 1285,
+        "sha256": "104c447c7f117dfd09bafcf83b167c36b33222a872c47ad08b51dc3602454f93",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 0,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 0,
+      "norm_bounds": [],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 3,
+        "w": 2
+      }
+    },
+    {
+      "profile": "byte-identity",
+      "input_case": "raw-one",
+      "resources": {
+        "input_count": 1285,
+        "output_count": 1,
+        "gates": 34000,
+        "depth": 184,
+        "peak_live_wire_slots": 1323,
+        "final_live_wire_slots": 45,
+        "wire_table_slots": 35285,
+        "sha256": "ec99123d103f6294bb27b0da3ebaeb5cb494605094772c1fe544c2fa1a0677b2",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 40,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 0,
+      "norm_bounds": [],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 3,
+        "w": 2
+      }
+    },
+    {
+      "profile": "byte-identity",
+      "input_case": "raw-alternating",
+      "resources": {
+        "input_count": 1285,
+        "output_count": 1,
+        "gates": 17000,
+        "depth": 167,
+        "peak_live_wire_slots": 1323,
+        "final_live_wire_slots": 665,
+        "wire_table_slots": 18285,
+        "sha256": "c8104fbdf9925de95ce3838fd6dd7532864a241005414a5bdb35ffa5a0c89e6f",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 20,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 2,
+      "norm_bounds": [
+        {
+          "match": true,
+          "lower": 0,
+          "upper": 0,
+          "frobenius": 0,
+          "one_times_infinity": 0,
+          "rows": 15,
+          "columns": 2,
+          "arithmetic": "exact integers",
+          "combined_depth": 168,
+          "coarse_squared": 6.164002987369684e+161,
+          "nonzero_witness": false,
+          "lemma7_status": "not_established"
+        },
+        {
+          "match": false,
+          "lower": 0,
+          "upper": 0,
+          "frobenius": 0,
+          "one_times_infinity": 0,
+          "rows": 15,
+          "columns": 2,
+          "arithmetic": "exact integers",
+          "combined_depth": 167,
+          "coarse_squared": 6.848892208188539e+160,
+          "nonzero_witness": false,
+          "lemma7_status": "not_established"
+        }
+      ],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 3,
+        "w": 2
+      }
+    },
+    {
+      "profile": "byte-identity",
+      "input_case": "valid-byte-ff-max-salt",
+      "resources": {
+        "input_count": 1285,
+        "output_count": 1,
+        "gates": 7650,
+        "depth": 150,
+        "peak_live_wire_slots": 1323,
+        "final_live_wire_slots": 1006,
+        "wire_table_slots": 8935,
+        "sha256": "ba91876f0af30bda605483848fe7ca86bdae3c809c95f9d1c0f3f8c650f93a42",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 9,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 2,
+      "norm_bounds": [
+        {
+          "match": true,
+          "lower": 0,
+          "upper": 0,
+          "frobenius": 0,
+          "one_times_infinity": 0,
+          "rows": 15,
+          "columns": 2,
+          "arithmetic": "exact integers",
+          "combined_depth": 151,
+          "coarse_squared": 3.6960699345818863e+145,
+          "nonzero_witness": false,
+          "lemma7_status": "not_established"
+        },
+        {
+          "match": false,
+          "lower": 0,
+          "upper": 0,
+          "frobenius": 0,
+          "one_times_infinity": 0,
+          "rows": 15,
+          "columns": 2,
+          "arithmetic": "exact integers",
+          "combined_depth": 150,
+          "coarse_squared": 4.1067443717576514e+144,
+          "nonzero_witness": false,
+          "lemma7_status": "not_established"
+        }
+      ],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 3,
+        "w": 2
+      }
+    },
+    {
+      "profile": "byte-signing",
+      "input_case": "raw-zero",
+      "resources": {
+        "input_count": 2693,
+        "output_count": 1,
+        "gates": 0,
+        "depth": 0,
+        "peak_live_wire_slots": 2693,
+        "final_live_wire_slots": 2693,
+        "wire_table_slots": 2693,
+        "sha256": "79fe8a7d421b1c33731c2cea9a75fc272b3799ad9ad598bfb4efadb8f63d3a1e",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 0,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 0,
+      "norm_bounds": [],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 3,
+        "w": 2
+      }
+    },
+    {
+      "profile": "byte-signing",
+      "input_case": "raw-one",
+      "resources": {
+        "input_count": 2693,
+        "output_count": 1,
+        "gates": 71400,
+        "depth": 201,
+        "peak_live_wire_slots": 2731,
+        "final_live_wire_slots": 89,
+        "wire_table_slots": 74093,
+        "sha256": "26560eb9995268925ac6c2ca4eda5afe760285f1119ebdde884bf27b6c933a62",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 84,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 0,
+      "norm_bounds": [],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 3,
+        "w": 2
+      }
+    },
+    {
+      "profile": "byte-signing",
+      "input_case": "raw-alternating",
+      "resources": {
+        "input_count": 2693,
+        "output_count": 1,
+        "gates": 35700,
+        "depth": 184,
+        "peak_live_wire_slots": 2731,
+        "final_live_wire_slots": 1391,
+        "wire_table_slots": 38393,
+        "sha256": "9790ffd16340b68bc4b252e16465f6ef35913a831e0c9a7c436ad3ff3cd89e14",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 42,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 2,
+      "norm_bounds": [
+        {
+          "match": true,
+          "lower": 0,
+          "upper": 0,
+          "frobenius": 0,
+          "one_times_infinity": 0,
+          "rows": 15,
+          "columns": 2,
+          "arithmetic": "exact integers",
+          "combined_depth": 185,
+          "coarse_squared": 1.0279819781765176e+178,
+          "nonzero_witness": false,
+          "lemma7_status": "not_established"
+        },
+        {
+          "match": false,
+          "lower": 0,
+          "upper": 0,
+          "frobenius": 0,
+          "one_times_infinity": 0,
+          "rows": 15,
+          "columns": 2,
+          "arithmetic": "exact integers",
+          "combined_depth": 184,
+          "coarse_squared": 1.1422021979739084e+177,
+          "nonzero_witness": false,
+          "lemma7_status": "not_established"
+        }
+      ],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 3,
+        "w": 2
+      }
+    },
+    {
+      "profile": "byte-signing",
+      "input_case": "valid-byte-ff-max-salt",
+      "resources": {
+        "input_count": 2693,
+        "output_count": 1,
+        "gates": 18700,
+        "depth": 167,
+        "peak_live_wire_slots": 2731,
+        "final_live_wire_slots": 2011,
+        "wire_table_slots": 21393,
+        "sha256": "e14f72c0003163006bf3409f2dfe4040ea58b059249732cd5dc2ce45414fda95",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 22,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 2,
+      "norm_bounds": [
+        {
+          "match": true,
+          "lower": 0,
+          "upper": 0,
+          "frobenius": 0,
+          "one_times_infinity": 0,
+          "rows": 15,
+          "columns": 2,
+          "arithmetic": "exact integers",
+          "combined_depth": 168,
+          "coarse_squared": 6.164002987369684e+161,
+          "nonzero_witness": false,
+          "lemma7_status": "not_established"
+        },
+        {
+          "match": false,
+          "lower": 0,
+          "upper": 0,
+          "frobenius": 0,
+          "one_times_infinity": 0,
+          "rows": 15,
+          "columns": 2,
+          "arithmetic": "exact integers",
+          "combined_depth": 167,
+          "coarse_squared": 6.848892208188539e+160,
+          "nonzero_witness": false,
+          "lemma7_status": "not_established"
+        }
+      ],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 3,
+        "w": 2
+      }
+    },
+    {
+      "profile": "auxiliary-q257-algebra-only",
+      "input_case": "valid-byte-ff",
+      "resources": {
+        "input_count": 1285,
+        "output_count": 1,
+        "gates": 7650,
+        "depth": 150,
+        "peak_live_wire_slots": 1323,
+        "final_live_wire_slots": 1006,
+        "wire_table_slots": 8935,
+        "sha256": "ba91876f0af30bda605483848fe7ca86bdae3c809c95f9d1c0f3f8c650f93a42",
+        "caps": {
+          "inputs": 8192,
+          "gates": 500000,
+          "depth": 4096
+        },
+        "nc1_family_verified": false,
+        "memory_note": "wire slots only; NOT Python bytes or process RSS"
+      },
+      "selected_factors": 9,
+      "semantic_comparisons": 3,
+      "homomorphism_checks": 2,
+      "norm_bounds": [
+        {
+          "match": true,
+          "lower": 6.043284753373155e+38,
+          "upper": 1.2055163255668627e+39,
+          "frobenius": 1.2055163255668627e+39,
+          "one_times_infinity": 2.973240230295398e+39,
+          "rows": 15,
+          "columns": 9,
+          "arithmetic": "exact integers",
+          "combined_depth": 151,
+          "coarse_squared": 1.35e+304,
+          "nonzero_witness": true,
+          "lemma7_status": "not_established"
+        },
+        {
+          "match": false,
+          "lower": 2.581614134289167e+37,
+          "upper": 5.149571617397303e+37,
+          "frobenius": 5.149571617397303e+37,
+          "one_times_infinity": 1.536984483634619e+38,
+          "rows": 15,
+          "columns": 9,
+          "arithmetic": "exact integers",
+          "combined_depth": 150,
+          "coarse_squared": 1.35e+302,
+          "nonzero_witness": true,
+          "lemma7_status": "not_established"
+        }
+      ],
+      "fixture_arithmetic": {
+        "n": 1,
+        "m": 15,
+        "q": 257,
+        "w": 9
+      }
+    }
+  ],
+  "scope": "finite semantics/bounds; not NC1 family, PRF security, full IBS lifecycle or HIBE composition",
+  "verified_implementation_commit": "bbb8e47f66cd366d228917eec9c4452d622367ef"
+}

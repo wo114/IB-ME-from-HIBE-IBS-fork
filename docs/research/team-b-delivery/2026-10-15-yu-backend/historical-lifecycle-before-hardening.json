@@ -1,0 +1,218 @@
+{
+  "schema": "IBME/Yu-BYTE-BACKEND-AUDIT/1",
+  "parameters": {
+    "n": 1,
+    "q": 3,
+    "random_rows": 3,
+    "m1": 3,
+    "m2": 12,
+    "hadamard_scale": 8,
+    "max_uniform_trials": 192,
+    "prf_dimension": 1,
+    "prf_columns": 1,
+    "prf_modulus_bits": 5,
+    "prf_ticket_bits": 32,
+    "prf_gaussian_width": 2,
+    "identity_max_bytes": 1,
+    "message_max_bytes": 1,
+    "salt_bits": 4,
+    "gamma_squared": 32768,
+    "delta_squared": 67108864,
+    "max_vectors": 32,
+    "epsilon_bits": 16,
+    "postprocess": true,
+    "max_users": 16
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "completed",
+      "honest_signatures": 6
+    },
+    {
+      "attempt": 2,
+      "status": "completed",
+      "honest_signatures": 6
+    },
+    {
+      "attempt": 3,
+      "status": "failed",
+      "stage": "setup",
+      "exception_type": "YuSamplingAbort",
+      "honest_signatures": 0
+    }
+  ],
+  "counts": {
+    "roots": 2,
+    "users": 4,
+    "signatures": 12,
+    "verifications": 12,
+    "restored_key_signatures": 4,
+    "wrong_identity_accepts": 12,
+    "wrong_message_accepts": 12,
+    "public_forgery_accepts": 2,
+    "wrong_context_rejects": 12,
+    "truncated_rejects": 12
+  },
+  "all_requested_attempts_completed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "randomness": "OS CSPRNG; independent roots, no conditioning/retries; no ROM in Yu core",
+  "identity_bytes": [
+    1,
+    1
+  ],
+  "message_bytes": [
+    0,
+    1,
+    1
+  ],
+  "sizes_bytes": {
+    "public_key": [
+      32275,
+      32275
+    ],
+    "master_secret": [
+      34254,
+      34265
+    ],
+    "signing_key": [
+      32974,
+      32974,
+      32980,
+      32980
+    ],
+    "signature": [
+      256,
+      248,
+      244,
+      254,
+      246,
+      250,
+      247,
+      250,
+      250,
+      252,
+      255,
+      249
+    ]
+  },
+  "timings": {
+    "setup": {
+      "samples": [
+        0.06553328500000077,
+        0.020450427000000104,
+        0.0002638810000021863
+      ],
+      "median": 0.020450427000000104
+    },
+    "key_extract": {
+      "samples": [
+        4.3363440130000015,
+        3.773285788999999,
+        3.8330448950000005,
+        3.8100012060000026
+      ],
+      "median": 3.8215230505000015
+    },
+    "cached_extract": {
+      "samples": [
+        0.000024244999998757066,
+        0.000018973999999616353,
+        0.000013864999999668726,
+        0.000006562000002929835
+      ],
+      "median": 0.00001641949999964254
+    },
+    "sign": {
+      "samples": [
+        0.10897523500000261,
+        0.1674013199999962,
+        0.08368617400000034,
+        0.15249234700000613,
+        0.20063499799999818,
+        0.18226420900000306,
+        0.09631193199999899,
+        0.1267676989999984,
+        0.12019862200000375,
+        0.164333053,
+        0.3250419849999986,
+        0.17529877700000185
+      ],
+      "median": 0.15841270000000307
+    },
+    "verify": {
+      "samples": [
+        0.0504404309999984,
+        0.05684261100000043,
+        0.03587443899999698,
+        0.09127939100000049,
+        0.13597698299999905,
+        0.10956511199999852,
+        0.05080752899999652,
+        0.062163941000001444,
+        0.06324928499999771,
+        0.08450687800000622,
+        0.1331152529999997,
+        0.10739658099999616
+      ],
+      "median": 0.07387808150000197
+    },
+    "restore_master": {
+      "samples": [
+        0.08455635099999625,
+        0.07201076799999839
+      ],
+      "median": 0.07828355949999732
+    },
+    "restore_key": {
+      "samples": [
+        0.020419801999999265,
+        0.08594669699999713,
+        0.06387807899999842,
+        0.07144564099999684
+      ],
+      "median": 0.06766185999999763
+    }
+  },
+  "environment": {
+    "os": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "python": "3.13.15",
+    "sage": "10.9",
+    "constant_time": false,
+    "acceleration": "no backend acceleration requested; Sage exact integer implementation"
+  },
+  "source_sha256": {
+    "src/ibme/ibs/yu/__init__.py": "f8dec426cc7679c5f71306e41d6120fdd80c50b794025f903ea931939a32a66f",
+    "src/ibme/ibs/yu/backend.py": "cbfd76d88509d5a0e943ce853a1daaa817d83a6d60132b7c4a86619c6114a236",
+    "src/ibme/ibs/yu/codec.py": "6e93a1a72bf06f54f5adda40c3975e9c6704191086fd6e9c8bf4390a93bb31b9",
+    "src/ibme/ibs/yu/keys.py": "0210f5f95e2afbd9ed7cdf669ffd8d04909f4e01c33fa13fa888a1a22c04b00f",
+    "src/ibme/ibs/yu/objects.py": "13683ee92abd1b15f93abea9e0293215daf0ab61de3b77719fa81ebb96f85aa4",
+    "src/ibme/ibs/yu/params.py": "c15428cc34c09c2d111be9a0e8d2a812ca4e134603a8b862196e56e647f9d025",
+    "src/ibme/ibs/yu/registration.py": "321ef46b59b58f023b18db2bb0f13cfcdc14d9118548ea89028ef22c9541a1ad",
+    "src/ibme/ibs/yu/runtime.py": "7aec90099a83ad34efba8e958dd93caec70dbde99b2b897f869edb7f45f82c9a",
+    "src/ibme/ibs/yu/service.py": "06ba7848611626f5c1ef68746b740fd5f9839640b0d108c5fd43144217be52dd",
+    "experiments/research/candidates/yu/audit.py": "c4419c82eeeebce2188bfbfae2008dd473e3fa86d1ba7335bc516496d89720ef",
+    "experiments/research/candidates/yu/bpr.py": "4b0801092d0865e2320c9e6a999d40603115ce1a0bd81606fdefdd5f80f6c55c",
+    "experiments/research/candidates/yu/circuits.py": "1c5452df81fe381a3e256bbb2e0d72b1a6b267ce7ee72dbcdeb0059c777079bc",
+    "experiments/research/candidates/yu/evaluation.py": "3f07fbc22b9d1edd9962455144a1ff125b95793b5035740fc2c2049c36830cbf",
+    "experiments/research/candidates/yu/homomorphic_reference.py": "09c15b1cd2d488a39be2acf2f6f21890067e1a34d58ac086dc7e72d81154ce38",
+    "experiments/research/candidates/yu/lifecycle_audit.py": "71f7f59418eb8bf3d04946a76ce617f5b0f7de83f3b076a655b5058ae6ad1393",
+    "experiments/research/candidates/yu/profiles.py": "3b03d252c91eb9cb890e358036b4a0067a449d91e1ad9439b264196f926425b5",
+    "experiments/research/candidates/yu/qualification.py": "4fac9845193fab160c25539c879f67ea707039154e51a732b2485543616577d2",
+    "experiments/research/candidates/yu/standalone.py": "c0aa2a5a754c15f6153ba4c605b838cc1b59e89bd14a69dd2efd5181626c976d",
+    "experiments/research/candidates/yu/trapdoors.py": "eaefe74f099d8d886da61b99a68dc810cc3bf306ebbb3eca837fabe3cdc9d6ce",
+    "experiments/research/yu_backend_audit.py": "85f894752f232a6613de7e6d47752f5dabdb9e3329814609003d18f3fdd743e3"
+  },
+  "limitations": [
+    "q=3 is publicly forgeable; mutation acceptance is expected and reported",
+    "New byte-domain PRF n=1 differs from legacy bit-domain PRF n=2; not a fair performance comparison",
+    "Includes compilation and validation; no secure-parameter timing claim",
+    "No private keys, seeds, state, witnesses or actual signatures exported",
+    "No Wang combination, key-input NC1 family proof, Lemma7 mapping or security admission"
+  ],
+  "history_note": "Earlier development batch before parameter/byte-subclass hardening; hashes are historical, NOT the repaired checkout. Preserve setup abort. No sampler or parameter change in hardening."
+}
