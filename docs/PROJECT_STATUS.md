@@ -17,7 +17,7 @@ C2 已交[认证转换ML-DSA独立IBS](research/team-c-delivery/2026-10-14-cert-
 
 C1/C3本批新增：[Lai精确资格反例](research/team-c-delivery/2026-10-15-lai-qualification/README.md)15项无skip，确认标签单位与委派类型仍需澄清，没有新增Lai HIBE；[Xie修订方程研究核](research/team-c-delivery/2026-10-15-xie-study/README.md)实现 `7c139f4`，53项无skip，两个教学域各同根双身份/32新签名/原对象零熵恢复及仓库外安装通过。实际默认参数的公开零挑战伪造与模q平移反例均保留，修订核不冒充原稿复现或共同IBSBackend，不登记可用组合；原稿/正式参数/整体误差和模型仍WIP，none/false/false。
 
-2026-10-15 C与统筹接入：[LATTE＋两类认证IBS统一框架交付](research/team-c-delivery/2026-10-15-c-framework/README.md)，实现`37a124d`、最终运行源码`9c9fd5a`。默认登记和CLI已接通；10个配置（一个HIBE×六种IBS算法，参数/格式不多算）338检查全部通过，C专项543 passed/0skip，Windows框架435 passed/5明确skip。五档认证IBS各完成15条系统随机CLI命令及原状态零熵恢复；仓库外安装重放原5份状态、121 provider与209份源码核对通过。匿名/修订采样/转换模型和正式参数仍未准入。CR另交[Zhang类型与模数资格](research/team-c-delivery/2026-10-15-zhang-qualification/README.md)，未补造Derive或实现HIBE。
+2026-10-15 C与统筹接入：[LATTE＋两类认证IBS统一框架交付](research/team-c-delivery/2026-10-15-c-framework/README.md)，实现`37a124d`、首批`9c9fd5a`、最终选参门槛`30aebdf`。默认登记和CLI已接通；10个配置（一个HIBE×六种IBS算法，参数/格式不多算）338检查全部通过，最终C专项545 passed/0skip，Windows框架437 passed/5明确skip。首批五档认证IBS各完成15条系统随机CLI命令及原状态零熵恢复，最终安装再逐档验证只含所选引擎时可恢复、只含其它档时拒绝；仓库外安装重放原5份状态、121 provider与209份源码核对通过。匿名/修订采样/转换模型和正式参数仍未准入。CR另交[Zhang类型与模数资格](research/team-c-delivery/2026-10-15-zhang-qualification/README.md)，未补造Derive或实现HIBE。
 
 同批[PR27—29审查记录](deliveries/2026-10-15-pr-review/README.md)：Foo–Li、Yu共同五方法/对象/固定服务已合入，分别定向294/550项Sage无skip，默认登记/实际HIBE组合及安全准入仍待。PR29接收Lai与Xie研究材料；自审和回归不等于独立密码学安全审查。
 

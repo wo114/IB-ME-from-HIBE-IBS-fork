@@ -1,7 +1,7 @@
 # C1/C2：LATTE 与认证 IBS 接入统一框架
 
 本批由统筹接收 C 的独立原语，默认登记 `latte`（同一 LATTE-3/COSAC-FIX 实现）、`cert-ml-dsa`、`cert-falcon`，复用公共 SuiteConfig、Hybrid、BYTEAUTH、CLI 和状态事务。
-实现提交 **`37a124d`**（`feat(assembly): integrate C primitives and Hybrid preflight`）；最终运行源码固定于 **`9c9fd5aeac2fee68556d980dd0f5e328e530fbdd`**，之后只有交付文档更新。同批 CR 资格提交 **`23546d5`**（`docs(hibe): qualify Zhang delegation types and modulus conditions`）。没有另写组合密码协议，没有新增算法计数或改变已有原语数学/私有分布。
+实现提交 **`37a124d`**（`feat(assembly): integrate C primitives and Hybrid preflight`）；首批运行源码固定于 **`9c9fd5aeac2fee68556d980dd0f5e328e530fbdd`**。最终依赖门槛修订为 **`30aebdf9d0b54a48644e1d69febe1019d5d6b802`**（`fix(assembly): allow independently installed signature profiles`），另有下节定向/完整回归。同批 CR 资格提交 **`23546d5`**（`docs(hibe): qualify Zhang delegation types and modulus conditions`）。没有另写组合密码协议，没有新增算法计数或改变已有原语数学/私有分布。
 
 ## 接入内容
 
@@ -9,7 +9,7 @@ LATTE 参数钩子按共同接口接收 transport 字符串；共同版本标识
 
 跨边界范围为默认 registry、共同 Hybrid 预检、CI 框架测试清单和旧 pending 断言、框架用法/目录/状态/任务同步；没有修改基线协议、BYTEAUTH 或 Hybrid 密码运算。完整变更路径见 [files-changed.txt](files-changed.txt)，源码和证据指纹见 [source-check.json](evidence/source-check.json)。私钥、主状态、原像、随机种子和完整诊断不进 Git。
 
-## 固定源码验收
+## 首批固定源码验收（9c9fd5a）
 
 | 批次 | 命令/入口 | 结果与边界 |
 |---|---|---|
@@ -22,7 +22,7 @@ LATTE 参数钩子按共同接口接收 transport 字符串；共同版本标识
 
 计数属于各自批次，不能把 pytest、组合断言、历史独立原语或安装复放相加为新增算法/签名数。组合检查覆盖四种匹配、严格 wire、对象恢复、声明支持时的固定发钥、裸 IBS 负例，以及持有新 OTS 密钥重签后仍在 IBS 验证被拒绝的内部消息篡改。CLI 覆盖三个身份错配和截断/追加/重复字段/位修改；错误均返回 BOTTOM 或明确失败且不发布明文。
 
-最终文档同步后，`python -m pytest -q tests/test_ci_catalog.py` 另有25 passed（0.77 s），并核对5份文档本地链接、任务JSON和上述两份JUnit计数；不计作新密码运行。
+首批文档同步后，`python -m pytest -q tests/test_ci_catalog.py` 另有25 passed（0.77 s），并核对5份文档本地链接、任务JSON和上述两份JUnit计数；不计作新密码运行。
 
 零熵恢复禁止 native Setup/Delegate/Extract 和普通 Keypair/Sign；只允许公开元数据、规范格式检查、验签和已有叶的 Decrypt，后者仍有原算法的确定性重加密检查。
 
@@ -37,6 +37,17 @@ LATTE 参数钩子按共同接口接收 transport 字符串；共同版本标识
 | Falcon padded-1024 | 53.800 | 140303 | [falcon-padded-1024](evidence/cli-falcon-padded-1024.json) |
 
 每档15条命令共消费65836 B外部熵；内部确定性展开不在该计数内。总时间含解释器启动、状态读取和负例，未建立相同安全目标的基线，不作速度优胜结论。
+
+## 最终选参门槛修订（30aebdf）
+
+审查发现原无参环境检查只探测默认ML-DSA-44/Falcon-1024，导致仅安装所选其它档位时误阻断。现在无参发现检查该族任一有效引擎，具体配置仍单独检查所选档位；可用其它档不能替代缺失的所选档。没有改普通签名、转换、状态或HIBE算法。
+
+- 指定Sage重跑完整C集合：**545 passed / 0 skipped**，83.96 s，含新增2项选择边界；[JUnit](evidence/profile-sage.xml)。原543项被包含，不与本次相加。
+- Windows框架重跑：**437 passed / 5 skipped**；[收据](evidence/profile-framework.json)。Windows登记/目录定向35 passed；[日志](evidence/profile-windows.txt)。最初直接调用漏设PYTHONPATH时34 passed/1 failed（子进程找不到ibme），按复跑说明设置后通过，不把环境失败算成功。
+- 同一10配置矩阵在修订源码重跑，**10/10、338检查通过**；[最终收据](evidence/profile-combinations.json)，不与首批累计。
+- 新wheel在仓库外逐档仅链接**所选的一个native引擎**，5份原CLI状态全部零熵解密；再换成仅含其它档的目录，5个缺失选择均拒绝。没有新根/密钥/签名，原状态字节不变，121个provider来自安装包；[脚本](evidence/profile-install-check.py)与[收据](evidence/profile-installed.json)。这项复用原系统随机实例，不重新声称5套新Setup。
+
+最终wheel为1340115 B，SHA256 `472ebdf3bcc862475e0652828c4d5da039dcd8771b4edde3588e8a44c4ce1adb`；仍复用已核ABI引擎，没有重编译原生算术。[源码核对](evidence/source-check.json)分别绑定首批9c9fd5a收据与最终30aebdf的provider/工作树；两版本只改了登记依赖检查和对应测试，209份来源中的其余内容相同。首批五套系统随机CLI仍准确绑定9c9fd5a，不改写其版本。
 
 ## 参数、环境和复跑
 

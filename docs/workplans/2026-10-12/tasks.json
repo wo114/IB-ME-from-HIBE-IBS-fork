@@ -718,17 +718,19 @@
   },
   "latest_c_delivery": {
     "date": "2026-10-15",
-    "source_commit": "9c9fd5aeac2fee68556d980dd0f5e328e530fbdd",
+    "source_commit": "30aebdf9d0b54a48644e1d69febe1019d5d6b802",
     "report": "../../research/team-c-delivery/2026-10-15-c-framework/README.md",
     "selected_configurations": 10,
     "executed_checks": 338,
-    "sage_passed": 543,
-    "windows_passed": 435,
+    "sage_passed": 545,
+    "windows_passed": 437,
     "windows_skipped": 5,
     "cli_profiles": 5,
     "installed_original_states": 5,
     "security_claim": "none",
     "backend_admitted": false,
-    "parameters_are_formal": false
+    "parameters_are_formal": false,
+    "system_random_cli_source_commit": "9c9fd5aeac2fee68556d980dd0f5e328e530fbdd",
+    "only_selected_native_profile_verified": true
   }
 }
