@@ -33,3 +33,8 @@ def test_full_chain_rejects_invalid_and_resource_or_noise_blocked_inputs(changes
     lambda raw: raw.replace(b'"parent_width_squared":"28288000"', b'"parent_width_squared":"1"')])
 def test_complete_parameter_snapshot_cannot_be_relaxed_or_reencoded(mutate):
     with pytest.raises(SerializationError): StructuredHIBEParams.from_bytes(mutate(StructuredHIBEParams().to_bytes()))
+
+
+def test_deep_json_is_a_bounded_serialization_failure():
+    with pytest.raises(SerializationError):
+        StructuredHIBEParams.from_bytes(MAGIC+b"["*1100+b"0"+b"]"*1100)

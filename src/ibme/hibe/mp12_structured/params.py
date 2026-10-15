@@ -126,5 +126,5 @@ class StructuredHIBEParams:
             if result.to_bytes() != raw:
                 raise ValueError("noncanonical or inconsistent structured HIBE parameters")
             return result
-        except (KeyError, TypeError, ValueError, InvalidParameterError) as exc:
+        except (KeyError, TypeError, ValueError, RecursionError, InvalidParameterError) as exc:
             raise SerializationError("invalid structured HIBE parameter snapshot") from exc

@@ -79,7 +79,7 @@ class StructuredPublicKey:
             result = cls(p, o)
             if result.to_bytes() != bytes(raw): raise ValueError("noncanonical public key")
             return result
-        except (TypeError, ValueError, InvalidParameterError, EncodingError) as exc:
+        except (TypeError, ValueError, RecursionError, InvalidParameterError, EncodingError) as exc:
             raise SerializationError("invalid structured HIBE public key") from exc
 
 
@@ -139,7 +139,7 @@ class StructuredLevel1Key:
             leaves = FixedSeedState.from_bytes(r.blob(MAX_BYTES), expected_scope=seed_scope(public, receiver))
             r.finish()
             return cls(public, receiver, t, leaves)
-        except (TypeError, ValueError, InvalidParameterError, EncodingError) as exc:
+        except (TypeError, ValueError, RecursionError, InvalidParameterError, EncodingError) as exc:
             raise SerializationError("invalid structured HIBE first-level key") from exc
 
 
@@ -215,7 +215,7 @@ class StructuredMasterSecret:
             entries.finish()
             if result.to_bytes() != bytes(raw): raise ValueError("noncanonical structured master")
             return result
-        except (TypeError, ValueError, InvalidParameterError, EncodingError) as exc:
+        except (TypeError, ValueError, RecursionError, InvalidParameterError, EncodingError) as exc:
             raise SerializationError("invalid structured HIBE master snapshot") from exc
 
 
@@ -256,7 +256,7 @@ class StructuredLevel2Key:
             key = state.lookup(sender)
             if _single_leaf(key) != snapshot: raise ValueError("leaf must contain exactly one ready address")
             return cls(public, key)
-        except (KeyError, TypeError, ValueError, InvalidParameterError, EncodingError) as exc:
+        except (KeyError, TypeError, ValueError, RecursionError, InvalidParameterError, EncodingError) as exc:
             raise SerializationError("invalid structured HIBE fixed leaf") from exc
 
 

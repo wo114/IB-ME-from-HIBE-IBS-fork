@@ -145,3 +145,9 @@ def test_concurrent_failed_address_gets_exactly_one_attempt(monkeypatch):
         raise AssertionError("failed slot was issued")
     with ThreadPoolExecutor(max_workers=2) as pool: assert list(pool.map(attempt, range(2))) == ["failed", "failed"]
     assert len(attempts) == 1
+
+
+def test_deep_private_json_is_a_serialization_failure(witness):
+    from ibme.hibe.mp12_structured.objects import _frame
+    raw = _frame(b"MASTER", witness[1].to_bytes(), b"["*1100+b"0"+b"]"*1100, bytes(4))
+    with pytest.raises(SerializationError): StructuredMasterSecret.from_bytes(raw)
