@@ -1,0 +1,55 @@
+{
+  "schema": "ZHANG2020-SOURCE-QUALIFICATION/1",
+  "source_pdf_sha256": "6b31a181e1461b491c69cd41ce637a63db14f0404c3105f2827e64347e191c60",
+  "pages_checked": [
+    5,
+    10,
+    11,
+    12
+  ],
+  "stage": "type_and_condition_qualification_only",
+  "HIBE_implemented": false,
+  "cryptographic_experiments_executed": 0,
+  "shape_example": {
+    "m": 8,
+    "k": 3,
+    "root_public_length": 8,
+    "root_trapdoor": [
+      5,
+      3
+    ],
+    "layers": [
+      {
+        "depth": 1,
+        "public_length": 16,
+        "required_g_trapdoor": [
+          13,
+          3
+        ],
+        "printed_short_secret_length": 16,
+        "required_decrypt_preimage_length": 16
+      },
+      {
+        "depth": 2,
+        "public_length": 24,
+        "required_g_trapdoor": [
+          21,
+          3
+        ],
+        "printed_short_secret_length": 16,
+        "required_decrypt_preimage_length": 24
+      }
+    ]
+  },
+  "printed_modulus_inequality": "q <= C",
+  "printed_tail_lower_bound": "T >= q/C",
+  "error_upper_bound": "2 exp(-pi T^2)",
+  "inequality_direction_or_extra_conditions_unresolved": true,
+  "security_theorem": "Theorem 5: IND-ID-CPA, standard model, RLWE",
+  "anonymity_mapping_established": false,
+  "authors_clarification_obtained": false,
+  "adopted_repairs": [],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
