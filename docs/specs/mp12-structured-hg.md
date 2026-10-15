@@ -12,7 +12,7 @@
 - 叶矩阵 `[A₀|H(rcv)|H(rcv,phi)]` 有 3m 列；G 为 256 个带位置域分隔的目标。
 - **H 的每一块始终 n×m，未缩成 n×w。**
 
-`StructuredLeftSampler` 把扩展 E 放到原 gadget 前，将 R 补零行，得到 `[Ā|E|G−ĀR]` 的有效结构化陷门；实际 Algorithm 3 采样后，逆置换回 `[A|E]` 的坐标。所有输出坐标实际采样；不把零向量拼到原像。坐标置换是正交变换，保留球形高斯、范数和余类方程；有限实现误差沿用原工具的未闭合账本。
+`StructuredLeftSampler` 把扩展 E 放到原 gadget 前，将 R 补零行，得到 `[Ā|E|G−ĀR]` 的有效结构化陷门；实际 Algorithm 3 采样后，逆置换回 `[A|E]` 的坐标。所有输出坐标实际采样；不把零向量拼到原像。坐标置换是正交变换，保留球形高斯、范数和余类方程；有限实现误差按下述显式模型累计。
 
 完整 H 委派将 H 的前 `m−w` 列用于上述 SampleLeft，最后 w 列用于 Algorithm 4：逐列采样 `A_ext·R' = G−H_tail`，产生恰好 `[A|H]` 的新结构化陷门。接收者后不再生成一个多余的终端陷门：直接对完整第二块 H 做 SampleLeft，固定采样 256 个目标原像。没有调用 ToBasis、完整核格基转换、Flatter 或原 CHKP RandBasis。
 
@@ -32,9 +32,13 @@
 
 宽度来自公开声明的 B，而非实际有利的秘密谱：`r²=4·smoothing_factor(w,128)`；`s²=max(7r²(1+B),10r²(w+B))`；父每列检查 `||x||²≤88·s_parent²`，固定叶每个原像检查 `||x||²≤252·s_leaf²`。整父委派维持原工具 `2^44 B` 门，256 目标消费者使用既有 `CheckedEntropy` 上限 `2^48 B`；这些是最坏请求量，不是分配的内存或实际消费量。
 
-所有标量沿用 tail128 / mass256 / precision320 / Gaussian-abort128；扰动最多512次；只展开40维 gadget 核基和受限 Schur 逆。rounded-continuous 噪声是独立、实际有向 CDF 的 `round(q·Gaussian_α)`，tail128 / mass256 / precision320。同组条件解码界在每位128 bits、256位、`2^20` 次封装下通过，**排除范数坏事件、全部 SampleD TV/abort、资源/内存失败和安全估计**。完整卷积项与全 SampleD TV/失败界仍为 null。
+所有标量沿用 tail128 / mass256 / precision320 / Gaussian-abort128；扰动最多512次；只展开40维 gadget 核基和受限 Schur 逆。rounded-continuous 噪声是独立、实际有向 CDF 的 `round(q·Gaussian_α)`，tail128 / mass256 / precision320。同组条件解码界在每位128 bits、256位、`2^20` 次封装下通过；原每位预算不能直接当成整段服务预算。
 
-prefix≤512、总列≤8192、R项≤2²²等原工具门未放宽；另预检全部固定树的最坏快照。n128/q65537 的旧2432维根不能通过完整 H/G 委派的 prefix 门，仍只算根/原像诊断，不能作为本后端高维实例。调大 n 不自动得到安全等级。
+`mp12_bounds` 将 Theorem5.5 证明(5.1)的两个 normalizer 因子展开。令 `ε=2^-128`，卷积 TV 的具体保守上界为 `min(1,2ε/(1−ε)^2)`。证书新增 `distribution_budget` 和 `modeled_sample_TV_including_abort_upper`，累计有限球形 proposal、Bernoulli 量化、512次扰动中止及 n 个 gadget GPV；各标量自己的中止已计入其 TV。范数门另按 Poisson normalizer 和指数 Markov 得到 `(3/10)^D·(1+ε)/(1−ε)` 的向上 dyadic 界；所需目标余类 smoothing 用 Lemma5.3 的 `GS²≤10(B+1)` 与 Lemma2.3 检查。证明、前提与复核见[具体有限账本](../research/team-a-delivery/2026-10-15-finite-budget/README.md)。
+
+同组最大2个接收者、4叶，共160次父 SampleD、1024次叶 SampleD；固定钥复用无新增采样。在 `2^20` 次封装、至多 `2^20` 个不同H地址和 `2^20` 条不同G路径的**理想随机流/正确有向算术模型**内，累计偏差或诚实失败上界落在 `(2^-98,2^-97]`。当前128-bit累计概率目标未通过，这个指数不表示LWE安全位数。实际 SHAKE 的随机预言机实现论证、机器/内存/熵源故障仍无总界；`full_sample_TV_or_failure_upper` 和完整实现/安全失败界保持null。公开参数投影也不替代每把真实陷门的精确算术路径准入。
+
+prefix≤512、总列≤8192、R项≤2²²等原工具门未放宽；另预检全部固定树的最坏快照。对当前全部 n=2…128、模数位数2…61，以每区间最大q、最小合法根宽和噪声作15240个双口径乐观区间检查，完整H/G的必要条件仅容许 `n≤5`。通过区间还须核素性、随机带、快照、真实路径和困难性；该结果没有准入任何参数。n128/q65537 的旧2432维根仍只算根/原像诊断。进入正式困难维度须改变实际实现域与资源算法，单纯增加参数n不能越过本版本限制。
 
 ## 对象、状态与错误
 
