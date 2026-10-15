@@ -32,6 +32,21 @@ def selection(transport="direct", protocol="byteauth-v1", fmt="reference"):
                 signature_format=fmt)
 
 
+def test_explicit_saved_instance_hook_keeps_all_common_checks_and_classification():
+    called=[]
+    def setup(runtime,source):
+        called.append(True)
+        pk,master=runtime.proto.setup(runtime.hibe_params,ibs_params=runtime.ibs_params,rng=source)
+        return pk,master,{"test_only_fixture":True}
+    receipt=runner.run_case("explicit-fixture",runner.case_definitions()["mock-direct-mock-byteauth"],
+        setup_callback=setup,identities=(b"Alice",b"Bob",b"Carol",b"Charlie"))
+    assert called==[True] and receipt["status"]=="pass"
+    assert receipt["setup_source"]=="explicit research harness"
+    assert receipt["classification"]=="test_only" and receipt["security_proof_count"]==0
+    assert {"honest_roundtrip","wrong_sender","wrong_receiver","both_wrong","restored_decrypt"} <= {
+        row["name"] for row in receipt["checks"] if row["status"]=="pass"}
+
+
 @pytest.mark.parametrize("transport,protocol,fmt", tuple(itertools.product(
     runner.TRANSPORTS, runner.PROTOCOLS, ("reference", "compact"))))
 def test_arbitrary_id_runs_every_transport_protocol_and_format(registry, transport, protocol, fmt):

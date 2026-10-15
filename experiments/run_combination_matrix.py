@@ -177,7 +177,7 @@ class _VerificationObserver:
         return answer
 
 
-def run_case(name, options, *, registry=None):
+def run_case(name, options, *, registry=None, setup_callback=None, identities=None):
     """Run actual calls for one configuration; every check has an outcome."""
     started = time.perf_counter()
     registry = registry if registry is not None else default_registry()
@@ -214,8 +214,23 @@ def run_case(name, options, *, registry=None):
         result.update(execution="executed", preflight_only=False, repetition_count=1,
                       randomness="fixed public test streams")
         width = runtime.capacity["identity_bytes"]
-        alice, bob, carol, eve = (value[:width] for value in (b"Alice", b"Bob", b"Carol", b"Eve"))
-        public, master = p.setup(runtime.hibe_params, ibs_params=runtime.ibs_params, rng=rng("setup"))
+        if identities is None:
+            identities=tuple(value[:width] for value in (b"Alice",b"Bob",b"Carol",b"Eve"))
+        if (not isinstance(identities,(tuple,list)) or len(identities)!=4
+                or any(type(value) is not bytes or not 1<=len(value)<=width for value in identities)
+                or len(set(identities))!=4):
+            raise ValueError("four distinct bounded byte identities required")
+        alice,bob,carol,eve=identities
+        if setup_callback is None:
+            public,master=p.setup(runtime.hibe_params,ibs_params=runtime.ibs_params,rng=rng("setup"))
+            result["setup_source"]="new primitive Setup"
+        else:
+            # Python-only research harness hook; JSON cannot supply code or
+            # select a substitute backend. All later checks use the same
+            # registered factories, decoders and actual protocol operations.
+            public,master,provenance=setup_callback(runtime,rng("setup"))
+            result["setup_source"]="explicit research harness"
+            result["setup_provenance"]=provenance
         sender = p.skgen(master, alice)
         fixed_ibs = runtime.metadata["primitive_persistent_identity_cache"]["ibs"]
         if fixed_ibs:
