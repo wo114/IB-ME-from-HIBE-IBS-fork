@@ -1,0 +1,293 @@
+{
+  "schema": "A-FRAMEWORK-STRUCTURED-DELIVERY/1",
+  "runtime_source_revision": "3a5e830966d1dabea743db0f22164beccafb9266",
+  "base": "288f02f",
+  "pull_request": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/32",
+  "current_PR_CI": "reviewed separately at final head; not inferred from historical receipts",
+  "public_files": {
+    "evidence/abb-matrix-a.json": {
+      "sha256": "77166b75a1a8a266a9e34aad8d63e00650db2b6df4e421a1ff3f8f35739a06bf",
+      "bytes": 65375,
+      "source_revision": "dbb3079"
+    },
+    "evidence/abb-matrix-b.json": {
+      "sha256": "87a8d15cf66e3512c3780da85e948d6240f0bdc34e8714fcd62af79da0157eaa",
+      "bytes": 67101,
+      "source_revision": "dbb3079"
+    },
+    "evidence/abb-cli-new-mldsa.json": {
+      "sha256": "58db4f14a24ff46a0729f79540ce4bad35af53a385780cdb43a8399cd6827477",
+      "bytes": 38731,
+      "source_revision": "7bc69f6"
+    },
+    "evidence/abb-cli-saved-falcon.json": {
+      "sha256": "6f504339ebd2efa8db0d3c72206dde29846edb731d74633b2b4198fd86ee1a6f",
+      "bytes": 39942,
+      "source_revision": "7bc69f6"
+    },
+    "evidence/structured-primitive.json": {
+      "sha256": "734b4c1e90eee4fdcea94a724f126ded3c3be1289cfdda1a07a2b61be371898a",
+      "bytes": 18013,
+      "source_revision": "3afd7ff"
+    },
+    "evidence/structured-primitive-restore.json": {
+      "sha256": "659335c7dd42271d499039a6883441d718b8f5e207cef4357c2ff2432e95777d",
+      "bytes": 137,
+      "source_revision": "3afd7ff"
+    },
+    "evidence/structured-framework.json": {
+      "sha256": "278a1e1e5437d5465785486869fa7ce3b0a6d5b47fc0fbc70a5c5d4c21354c04",
+      "bytes": 34820,
+      "source_revision": "b0d5140"
+    },
+    "evidence/structured-matrix.json": {
+      "sha256": "2f44eceb0cbd645b9cd4bca7e1e2f00d91087cd067686396e585b02ded8511e7",
+      "bytes": 81617,
+      "source_revision": "b0d5140"
+    },
+    "evidence/structured-budget.json": {
+      "sha256": "cefaae4fc5682fa01226982d9f4d6f526db86b2dfb025cf1cf84778147407952",
+      "bytes": 8481,
+      "source_revision": "04f6772"
+    },
+    "evidence/structured-cli.json": {
+      "sha256": "f0cf489b62cd929f4ab2322003328723045d9f9d274c1744f04639e8517c793f",
+      "bytes": 36400,
+      "source_revision": "ac2875c"
+    },
+    "evidence/installed-abb-mldsa.json": {
+      "sha256": "f0d1cd9f39e2b6f4ef8b8d4be40c325b5032c302790311d6cad52660ee396550",
+      "bytes": 31694,
+      "source_revision": "3a5e830"
+    },
+    "evidence/installed-abb-falcon.json": {
+      "sha256": "5a2459a16acd62a2b4109f22c7925cbeef2cee0e64f883d7e60e03eea044ae17",
+      "bytes": 31694,
+      "source_revision": "3a5e830"
+    },
+    "evidence/installed-structured.json": {
+      "sha256": "dc51402ace5391c93d713c52bcdfb1e2ed763a26d08f60fa192ce77d834b149e",
+      "bytes": 32686,
+      "source_revision": "3a5e830"
+    },
+    "evidence/installed-summary.json": {
+      "sha256": "2a8d2c7b65a20d7e9c753a04bb941dd53c76a8e3cadb841593250061337df1c2",
+      "bytes": 1043,
+      "source_revision": "3a5e830"
+    },
+    "evidence/structured-final.xml": {
+      "sha256": "0293421130e798da72c2158cc43fbb6c7663e5ae602f5cd6925de0d79fae84bf",
+      "bytes": 12936,
+      "source_revision": "3a5e830",
+      "counts": {
+        "tests": 93,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    "evidence/structured-final.json": {
+      "sha256": "4fb2bfca913947cb84fadf6b4dcd2d4f43e970600a864976e8f1750f91fa9219",
+      "bytes": 1954,
+      "source_revision": "3a5e830"
+    },
+    "evidence/framework-sage.xml": {
+      "sha256": "fd9ab516009947d2b57fbef86a3e703e4458b28e66b0beabf5d2a12bed3d33ef",
+      "bytes": 62074,
+      "source_revision": "3a5e830",
+      "counts": {
+        "tests": 478,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    "evidence/framework-sage.json": {
+      "sha256": "479cf546e2b82ef6f095f0b77b55e5aa3b555890895d261d8b027b952e531e8a",
+      "bytes": 4250,
+      "source_revision": "3a5e830"
+    },
+    "evidence/framework-windows.xml": {
+      "sha256": "fcdc56dcef6ebf65d7f766997d1ccafe33460a5f37abf474549774b62d1f5a6e",
+      "bytes": 62550,
+      "source_revision": "3a5e830",
+      "counts": {
+        "tests": 472,
+        "failed": 0,
+        "skipped": 5
+      }
+    },
+    "evidence/framework-windows.json": {
+      "sha256": "3d7fd139f2149453aa34d250cbe0d99b147b529e8ef24e6d604e4656f8afcd43",
+      "bytes": 5564,
+      "source_revision": "3a5e830"
+    },
+    "evidence/abb-real-contract.xml": {
+      "sha256": "c21aff36f016a5a61acc5e7c239e9a8d3b47714650773e360f8391cdc96454c0",
+      "bytes": 690,
+      "source_revision": "3a5e830",
+      "counts": {
+        "tests": 3,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    "evidence/pr31-wang-pw.xml": {
+      "sha256": "59cb57d5f14700a8449243b04d98aa867a4c658a401e24ae41216976fef7d900",
+      "bytes": 74368,
+      "source_revision": "31adede",
+      "counts": {
+        "tests": 496,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    "evidence/pr31-wang-pw.json": {
+      "sha256": "93096c9fa807399a7c43a1ecb6524071636a76d8e4af3a64592502ed5914474c",
+      "bytes": 2109,
+      "source_revision": "31adede"
+    },
+    "evidence/pr31-delivery-check.json": {
+      "sha256": "75ca923be2b4e30cccc4f86da5a5e62eafba0722cbeec8dc1dcd92f830efa4ed",
+      "bytes": 386,
+      "source_revision": "31adede"
+    },
+    "evidence/pr31-head.json": {
+      "sha256": "b544b78ea22415f22056d55263e7b7d147c098ea10c6e8468495cb4e56a35631",
+      "bytes": 7046,
+      "source_revision": "31adede"
+    },
+    "evidence/development-framework-failed.xml": {
+      "sha256": "3468daf6e25b45936c1593a3d325e50bfb7f8ad66579d2273cb53c634b65222d",
+      "bytes": 63128,
+      "source_revision": "ac2875c",
+      "counts": {
+        "tests": 476,
+        "failed": 1,
+        "skipped": 0
+      }
+    },
+    "evidence/development-capacity-block.txt": {
+      "sha256": "b8cf926f57a6ed02e38e1d91cf76ba5ff5a437c0d6f7a5e7c56af643b0d00e63",
+      "bytes": 1214,
+      "source_revision": "e04a376"
+    },
+    "evidence/development-structured-acceptance-failure.json": {
+      "sha256": "e91d82adc3def087ed63f8f744b8f8e911e1d4b63272e3597f29540af625b396",
+      "bytes": 138,
+      "source_revision": "6bc93cf"
+    },
+    "evidence/abb-matrix.json": {
+      "sha256": "9e7bfbaef7c1c1f15ccc0a54c7377a75cabbf74397fff085d6ee5b2c99553f9b",
+      "bytes": 98168,
+      "source_revision": "dbb3079"
+    }
+  },
+  "matrix_receipts": [
+    "evidence/abb-matrix.json",
+    "evidence/structured-matrix.json"
+  ],
+  "installed_receipts": [
+    "evidence/installed-abb-mldsa.json",
+    "evidence/installed-abb-falcon.json",
+    "evidence/installed-structured.json"
+  ],
+  "algorithm_route_counts": {
+    "hibe": 8,
+    "ibs": 11
+  },
+  "new_literature_algorithms": 0,
+  "new_hardness_classes": 0,
+  "actual_combinations": 12,
+  "actual_combination_checks": 404,
+  "hardware": {
+    "cpu": "Intel Core Ultra 9 275HX",
+    "physical_cores": 24,
+    "logical_processors": 24
+  },
+  "software": {
+    "sage": "10.9",
+    "sage_python": "3.13.14",
+    "windows_python": "3.14",
+    "omp_abb_cli": 8,
+    "omp_matrices_and_structured": 4,
+    "openblas_threads": 1
+  },
+  "native_ABB_binaries_sha256": [
+    "2cc4c8b83f0e8b69ae5f019bc1d9ad796c9a632671e878dbb68709e363abad58  /home/youzi/.cache/ibme-native-tools/flatter-d2b8026/bin/flatter",
+    "d86d35ac3cadb9c09bc3a5cb4afd38554eb3c2ed8b5c8be410f0aec961c48de6  /home/youzi/.cache/ibme-native-tools/exact-gram-v1/bin/ibme-exact-gram"
+  ],
+  "original_ABB_witness": "existing genuine completed 2x2; not regenerated for matrix cases",
+  "structured_primitive": "one real system-entropy root, literal 86-byte identities, two receivers/four leaves, 227.087847 seconds",
+  "structured_framework": {
+    "original_generation_revision": "6bc93cf",
+    "original_launch_label": "a-capacity-fix",
+    "acceptance_revision": "b0d5140",
+    "generation_assertion_bug": "None instead of protocol BOTTOM after every key and honest ciphertext had been saved",
+    "original_failure_preserved": true,
+    "finished_without_any_new_entropy_or_regeneration": true
+  },
+  "source_cli_revision": {
+    "receipt_launch_label": "structured-final-codec",
+    "resolved_runtime_revision": "ac2875c"
+  },
+  "test_counts": {
+    "structured": {
+      "passed": 93,
+      "skipped": 0
+    },
+    "framework_sage": {
+      "passed": 478,
+      "skipped": 0
+    },
+    "framework_windows": {
+      "passed": 467,
+      "skipped": 5
+    },
+    "ABB_saved_real_contract": {
+      "passed": 3,
+      "skipped": 0
+    },
+    "PR31_review": {
+      "passed": 496,
+      "skipped": 0
+    }
+  },
+  "test_counts_are_not_additive": true,
+  "failures_retained": [
+    "initial framework capacity metadata missing; no entropy consumed",
+    "framework acceptance assertion used None instead of BOTTOM; original completed key tree reused",
+    "src-only outside-checkout Sage discovery failed on missing optional experiments provider; fixed and rerun",
+    "installed-final shell initially had CRLF before any install or crypto operation; LF launcher used",
+    "early test-only SuiteConfig attribute and CLI exit-code assumptions corrected without changing acceptance criteria"
+  ],
+  "safety": {
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "uses_ROM": true,
+    "teaching_or_research_parameters": true,
+    "public_ABB_n1_attack_unchanged": true,
+    "public_structured_n2_attack_succeeded": true,
+    "full_SampleD_TV_or_failure_upper": null,
+    "formal_security_estimation": null,
+    "functional_tests_are_not_security_proofs": true,
+    "constant_time": false,
+    "anti_rollback": false
+  },
+  "deferred_by_user": [
+    "GKR",
+    "ABB standard model",
+    "CHKP standard model"
+  ],
+  "remaining": [
+    "formal hardness/complete parameter admission",
+    "concrete convolution and global finite failure budget",
+    "full HIBE/IBS construction-model mapping",
+    "comparable full-IBME baselines and representative three-scheme selection"
+  ],
+  "verification_output": "verification.json",
+  "paper_source_fingerprints": {
+    "papers/2011_lattice_trapdoors_micciancio.pdf": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84",
+    "papers/2010_bonsai_trees_cash.pdf": "b1d8a2ae0e9d4e5c9145bbc6dc864090605c12a5b76149aa0684d62a8815d2ce",
+    "papers/2010_lattice_basis_delegation_agrawal.pdf": "f12232770a19c612e5f430f94a556d74232ac08d9882e34367b60b3bbf205d11"
+  }
+}

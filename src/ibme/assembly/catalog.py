@@ -14,8 +14,8 @@ class AlgorithmRoute:
 
 
 ROUTES = (
-    AlgorithmRoute("abb-rom", "hibe", ("abb10",)),
-    AlgorithmRoute("chkp-rom", "hibe", ("chkp", "mp12-chkp-reference")),
+    AlgorithmRoute("abb-rom", "hibe", ("abb-rom", "abb10")),
+    AlgorithmRoute("chkp-rom", "hibe", ("chkp", "mp12-chkp-reference", "mp12-structured-hg")),
     AlgorithmRoute("latte", "hibe", ("latte",)),
     AlgorithmRoute("gkr2025", "hibe", ("gkr2025",)),
     AlgorithmRoute("zhang2020", "hibe", ("zhang2020",)),

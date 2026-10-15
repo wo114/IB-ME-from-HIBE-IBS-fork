@@ -8,13 +8,14 @@
         "tests/test_hibe_contract.py"
       ],
       "source_markers": [
+        "src/ibme/hibe/abb_rom/backend.py",
         "src/ibme/hibe/abb10.py"
       ],
-      "source_stage": "teaching_backend",
+      "source_stage": "research_backend",
       "allow_skips": true,
       "environment": "sage",
       "layer": "primitive",
-      "scope": "ABB teaching contracts and research regression. Cross-backend inapplicability, optional native/Flatter tools and private real-state witnesses are explicit skips; any skip makes the receipt partial, never a complete primitive execution.",
+      "scope": "Delivered ABB-ROM AP09/BasisDel research backend and separate legacy teaching contracts. Native/Flatter and saved-real-state requirements remain explicit skips; actual CLI/composition receipts are separate. Any skip makes this job partial.",
       "exclude": [
         "tests/test_abb_standard*.py"
       ]
@@ -101,7 +102,9 @@
       "tests": [
         "tests/test_lai*.py"
       ],
-      "source_markers": ["experiments/research/candidates/lai/qualification.py"],
+      "source_markers": [
+        "experiments/research/candidates/lai/qualification.py"
+      ],
       "source_stage": "qualification_only",
       "allow_skips": false,
       "environment": "sage",
@@ -252,7 +255,9 @@
       "tests": [
         "tests/test_xie*.py"
       ],
-      "source_markers": ["experiments/research/candidates/xie/runtime.py"],
+      "source_markers": [
+        "experiments/research/candidates/xie/runtime.py"
+      ],
       "source_stage": "corrected_equation_study",
       "allow_skips": false,
       "environment": "sage",
@@ -281,8 +286,25 @@
         "tests/test_public_research_api.py",
         "tests/test_ci_catalog.py",
         "tests/test_registry_extension_contract.py",
-        "tests/test_combination_extension_contract.py"
+        "tests/test_combination_extension_contract.py",
+        "tests/test_abb_assembly.py",
+        "tests/test_mp12_structured_params.py",
+        "tests/test_mp12_structured_assembly.py"
       ]
+    },
+    {
+      "id": "a-structured-hg",
+      "environment": "sage",
+      "layer": "primitive",
+      "allow_skips": false,
+      "tests": [
+        "tests/test_mp12_structured_sampling.py",
+        "tests/test_mp12_full_extension.py",
+        "tests/test_mp12_structured_params.py",
+        "tests/test_mp12_structured_hibe.py",
+        "tests/test_mp12_structured_assembly.py"
+      ],
+      "scope": "Real structured MP12 Algorithm3/4, full CHKP H/G extension, deterministic 256-target noisy seed lifecycle, strict codecs and fixed failed issuance; n2 research negative control, no security admission."
     },
     {
       "id": "luo-composition-regression",

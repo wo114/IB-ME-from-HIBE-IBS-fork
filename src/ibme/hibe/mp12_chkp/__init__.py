@@ -7,6 +7,7 @@ are separate runtime requirements; an unavailable backend never falls back.
 """
 
 from importlib import import_module
+from importlib.util import find_spec
 from pathlib import Path
 import os
 
@@ -34,11 +35,32 @@ def configured_engine():
     return None if not value else Path(value).expanduser().resolve()
 
 
+def _provider_available():
+    # A src-only checkout import outside the repository need not contain the
+    # optional experiments package. Inspect its provider without importing Sage
+    # arithmetic; missing optional code must not disable unrelated selections.
+    try:
+        return find_spec("experiments.research.first_suite.hibe_registry") is not None
+    except ModuleNotFoundError as exc:
+        if exc.name not in ("experiments", "experiments.research", "experiments.research.first_suite"):
+            raise
+        return False
+
+
+def _unavailable_reason():
+    if not sage_available():
+        return "requires SageMath in WSL ~/miniconda3/envs/sage; no fallback"
+    if not _provider_available():
+        return "optional experiments.research.first_suite provider missing; install the complete ibme wheel or expose the project root; no fallback"
+    return ""
+
+
 def default_backend_spec():
     from ibme.assembly.registry import BackendSpec
-    if not sage_available():
+    reason = _unavailable_reason()
+    if reason:
         return BackendSpec(BACKEND_ID, "hibe", BACKEND_VERSION, available=False,
-            reason="requires SageMath in WSL ~/miniconda3/envs/sage; no fallback")
+            reason=reason)
     binary = configured_engine()
     # Decode/reuse/derive from a stored full parent basis do not invoke native
     # conversion. Setup/new-receiver admission owns the engine-file check.
@@ -52,9 +74,10 @@ def backend_metadata():
     This record has no factories, decoders or parameter objects. Runtime
     selection still obtains the complete, validated default_backend_spec.
     """
-    present = sage_available()
+    missing = _unavailable_reason()
+    present = not missing
     reason = ("Source-checkout Sage/qFALL reference; n2 is insecure; no formal or original-CHKP theorem admission"
-              if present else "requires SageMath in WSL ~/miniconda3/envs/sage; no fallback")
+              if present else missing)
     return dict(
         id=BACKEND_ID, version=BACKEND_VERSION, available=present,
         test_only=False, reason=reason,

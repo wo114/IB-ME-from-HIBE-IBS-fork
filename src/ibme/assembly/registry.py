@@ -380,6 +380,10 @@ def _portable_specs():
     specs.extend((replace(latte_spec(), id="latte", reason="LATTE-3 research; anonymity/formal mapping pending; none/false"),
                   replace(certified_spec(), reason="BNN + ML-DSA research; conversion/model admission pending; none/false"),
                   replace(falcon_backend_spec(), reason="BNN + Falcon v1.2 research; conversion/model admission pending; none/false")))
+    from ibme.hibe.abb_rom.registration import backend_spec as abb_spec
+    specs.append(replace(abb_spec(),id="abb-rom"))
+    from ibme.hibe.mp12_structured.registration import backend_spec as structured_spec
+    specs.append(structured_spec())
     return specs
 
 
