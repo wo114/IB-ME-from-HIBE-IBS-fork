@@ -25,10 +25,20 @@ def signature_size(params, signature_format):
 
 
 def environment():
-    try:
-        MLDSA()
-    except NativeFailure as exc:
-        raise InvalidParameterError(str(exc)) from exc
+    _family_environment(MLDSA, MLDSA_PROFILES)
+
+
+def _family_environment(constructor, profiles):
+    # Discovery has no selected parameters. Any valid family member establishes
+    # family availability; configuration validation checks the exact selection.
+    failures=[]
+    for profile in profiles:
+        try:
+            constructor(profile)
+            return
+        except NativeFailure as exc:
+            failures.append(str(exc))
+    raise InvalidParameterError("; ".join(dict.fromkeys(failures)))
 
 
 def factory(rng, signature_format):
@@ -76,10 +86,7 @@ def backend_spec():
 
 
 def falcon_environment():
-    try:
-        Falcon()
-    except NativeFailure as exc:
-        raise InvalidParameterError(str(exc)) from exc
+    _family_environment(Falcon, FALCON_PROFILES)
 
 
 def falcon_backend_spec():

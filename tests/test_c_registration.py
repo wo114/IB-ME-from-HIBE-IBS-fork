@@ -73,6 +73,27 @@ def test_cross_family_profile_never_falls_back(route,profile):
     assert not report.ok and any(route+" requires" in error for error in report.errors)
 
 
+@pytest.mark.parametrize("route,profile,constructor",[
+    ("cert-ml-dsa","ml-dsa-65","MLDSA"),
+    ("cert-falcon","falcon-padded-512","Falcon"),
+])
+def test_selected_profile_works_without_the_default_family_binary(monkeypatch,route,profile,constructor):
+    from ibme.ibs.certified import registration
+    checked=[]
+    def available(algorithm):
+        checked.append(algorithm)
+        if algorithm!=profile:raise NativeFailure("unselected engine absent")
+        return object()
+    monkeypatch.setattr(registration,constructor,available)
+    monkeypatch.setattr(registration,"ordinary",lambda params:available(params.base_algorithm))
+    registry=default_registry()
+    config=make_suite(hibe="mock",ibs=route,ibs_params=profile,allow_mock=True,registry=registry)
+    report=validate_suite(config,registry=registry)
+    assert report.ok,report.errors
+    assert profile in checked and report.metadata["runtime_available"]
+    assert build_runtime(config,registry=registry).ibs_params.base_algorithm==profile
+
+
 def test_latte_environment_gate_precedes_arithmetic(monkeypatch):
     from ibme.hibe.latte import registration
     monkeypatch.setattr(registration.importlib.util,"find_spec",lambda name:None)
