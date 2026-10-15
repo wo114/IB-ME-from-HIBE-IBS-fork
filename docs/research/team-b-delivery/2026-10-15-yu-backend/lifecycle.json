@@ -1,0 +1,245 @@
+{
+  "schema": "IBME/Yu-BYTE-BACKEND-AUDIT/1",
+  "parameters": {
+    "n": 1,
+    "q": 3,
+    "random_rows": 3,
+    "m1": 3,
+    "m2": 12,
+    "hadamard_scale": 8,
+    "max_uniform_trials": 192,
+    "prf_dimension": 1,
+    "prf_columns": 1,
+    "prf_modulus_bits": 5,
+    "prf_ticket_bits": 32,
+    "prf_gaussian_width": 2,
+    "identity_max_bytes": 1,
+    "message_max_bytes": 1,
+    "salt_bits": 4,
+    "gamma_squared": 32768,
+    "delta_squared": 67108864,
+    "max_vectors": 32,
+    "epsilon_bits": 16,
+    "postprocess": true,
+    "max_users": 16
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "completed",
+      "honest_signatures": 6
+    },
+    {
+      "attempt": 2,
+      "status": "completed",
+      "honest_signatures": 6
+    },
+    {
+      "attempt": 3,
+      "status": "completed",
+      "honest_signatures": 6
+    }
+  ],
+  "counts": {
+    "roots": 3,
+    "users": 6,
+    "signatures": 18,
+    "verifications": 18,
+    "restored_key_signatures": 6,
+    "wrong_identity_accepts": 16,
+    "wrong_message_accepts": 18,
+    "public_forgery_accepts": 3,
+    "wrong_context_rejects": 18,
+    "truncated_rejects": 18
+  },
+  "all_requested_attempts_completed": true,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "randomness": "OS CSPRNG; independent roots, no conditioning/retries; no ROM in Yu core",
+  "identity_bytes": [
+    1,
+    1
+  ],
+  "message_bytes": [
+    0,
+    1,
+    1
+  ],
+  "sizes_bytes": {
+    "public_key": [
+      32275,
+      32275,
+      32275
+    ],
+    "master_secret": [
+      34258,
+      34251,
+      34250
+    ],
+    "signing_key": [
+      32980,
+      32977,
+      32975,
+      32972,
+      32978,
+      32969
+    ],
+    "signature": [
+      248,
+      248,
+      249,
+      250,
+      248,
+      249,
+      250,
+      247,
+      252,
+      253,
+      252,
+      247,
+      250,
+      251,
+      251,
+      249,
+      252,
+      249
+    ]
+  },
+  "timings": {
+    "setup": {
+      "samples": [
+        0.04807520599999293,
+        0.0210789879999993,
+        0.06467971500001113
+      ],
+      "median": 0.04807520599999293
+    },
+    "key_extract": {
+      "samples": [
+        4.545036738999997,
+        4.329965674999997,
+        4.161896424999981,
+        3.8392218449999973,
+        4.1517457879999995,
+        3.96259268
+      ],
+      "median": 4.15682110649999
+    },
+    "cached_extract": {
+      "samples": [
+        0.000031360999997787076,
+        0.000012781999998878746,
+        0.000025402000005669834,
+        0.00003605300000231182,
+        0.00001871599999958562,
+        0.000008473000008279996
+      ],
+      "median": 0.000022059000002627727
+    },
+    "sign": {
+      "samples": [
+        0.07222054999999727,
+        0.14309133199999735,
+        0.115195614000001,
+        0.15452160600000298,
+        0.2102426360000038,
+        0.19063477999998213,
+        0.08276075700001684,
+        0.13810679900001332,
+        0.09873618599999645,
+        0.1601286499999901,
+        0.22351182399998493,
+        0.17781951900002468,
+        0.10037909600001171,
+        0.16924857200001497,
+        0.13845138700000348,
+        0.1922906629999943,
+        0.2595661189999987,
+        0.202015614000004
+      ],
+      "median": 0.15732512799999654
+    },
+    "verify": {
+      "samples": [
+        0.03603835900000263,
+        0.08302776600000072,
+        0.06272045900000478,
+        0.10464701600000126,
+        0.12609874499997886,
+        0.10457405099998596,
+        0.04074001399999361,
+        0.05987078600000473,
+        0.05346920400000954,
+        0.09772317599998814,
+        0.11649194599999646,
+        0.12780616500000974,
+        0.04416979299998047,
+        0.0798509329999888,
+        0.048717924000015955,
+        0.09417385899999431,
+        0.13910346700001242,
+        0.11688496200000031
+      ],
+      "median": 0.08860081249999752
+    },
+    "restore_master": {
+      "samples": [
+        0.11782046700000137,
+        0.06388421799999833,
+        0.07230161699999371
+      ],
+      "median": 0.07230161699999371
+    },
+    "restore_key": {
+      "samples": [
+        0.02314688799999942,
+        0.04632459499998731,
+        0.023989137999990362,
+        0.09317767400000321,
+        0.022033813000007285,
+        0.11248140300000387
+      ],
+      "median": 0.03515686649998884
+    }
+  },
+  "environment": {
+    "os": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "python": "3.13.15",
+    "sage": "10.9",
+    "constant_time": false,
+    "acceleration": "no backend acceleration requested; Sage exact integer implementation"
+  },
+  "source_sha256": {
+    "src/ibme/ibs/yu/__init__.py": "f8dec426cc7679c5f71306e41d6120fdd80c50b794025f903ea931939a32a66f",
+    "src/ibme/ibs/yu/backend.py": "6f51718a25b0929ae65ee20b7313705095c17293e0df3de9d83a58dc6cd6f67f",
+    "src/ibme/ibs/yu/codec.py": "901dc532368bc2fdf26f6379c79d545a9dad63f0933a3e70f7a69b4243355b3a",
+    "src/ibme/ibs/yu/keys.py": "8a5c13aff0a702c8fc36061e87394a28f88e1927fe3e5c27a980402f8743729f",
+    "src/ibme/ibs/yu/objects.py": "13683ee92abd1b15f93abea9e0293215daf0ab61de3b77719fa81ebb96f85aa4",
+    "src/ibme/ibs/yu/params.py": "c15428cc34c09c2d111be9a0e8d2a812ca4e134603a8b862196e56e647f9d025",
+    "src/ibme/ibs/yu/registration.py": "6537615917ee9109d335f706507bdbc42d5800b04fee5d8ee37cd9b76787bd78",
+    "src/ibme/ibs/yu/runtime.py": "7aec90099a83ad34efba8e958dd93caec70dbde99b2b897f869edb7f45f82c9a",
+    "src/ibme/ibs/yu/service.py": "06ba7848611626f5c1ef68746b740fd5f9839640b0d108c5fd43144217be52dd",
+    "experiments/research/candidates/yu/audit.py": "c4419c82eeeebce2188bfbfae2008dd473e3fa86d1ba7335bc516496d89720ef",
+    "experiments/research/candidates/yu/bpr.py": "4b0801092d0865e2320c9e6a999d40603115ce1a0bd81606fdefdd5f80f6c55c",
+    "experiments/research/candidates/yu/circuits.py": "1c5452df81fe381a3e256bbb2e0d72b1a6b267ce7ee72dbcdeb0059c777079bc",
+    "experiments/research/candidates/yu/evaluation.py": "3f07fbc22b9d1edd9962455144a1ff125b95793b5035740fc2c2049c36830cbf",
+    "experiments/research/candidates/yu/homomorphic_reference.py": "09c15b1cd2d488a39be2acf2f6f21890067e1a34d58ac086dc7e72d81154ce38",
+    "experiments/research/candidates/yu/lifecycle_audit.py": "71f7f59418eb8bf3d04946a76ce617f5b0f7de83f3b076a655b5058ae6ad1393",
+    "experiments/research/candidates/yu/profiles.py": "3b03d252c91eb9cb890e358036b4a0067a449d91e1ad9439b264196f926425b5",
+    "experiments/research/candidates/yu/qualification.py": "4fac9845193fab160c25539c879f67ea707039154e51a732b2485543616577d2",
+    "experiments/research/candidates/yu/standalone.py": "c0aa2a5a754c15f6153ba4c605b838cc1b59e89bd14a69dd2efd5181626c976d",
+    "experiments/research/candidates/yu/trapdoors.py": "eaefe74f099d8d886da61b99a68dc810cc3bf306ebbb3eca837fabe3cdc9d6ce",
+    "experiments/research/yu_backend_audit.py": "85f894752f232a6613de7e6d47752f5dabdb9e3329814609003d18f3fdd743e3"
+  },
+  "limitations": [
+    "q=3 is publicly forgeable; mutation acceptance is expected and reported",
+    "New byte-domain PRF n=1 differs from legacy bit-domain PRF n=2; not a fair performance comparison",
+    "Includes compilation and validation; no secure-parameter timing claim",
+    "No private keys, seeds, state, witnesses or actual signatures exported",
+    "No Wang combination, key-input NC1 family proof, Lemma7 mapping or security admission"
+  ],
+  "verified_implementation_commit": "bbb8e47f66cd366d228917eec9c4452d622367ef"
+}

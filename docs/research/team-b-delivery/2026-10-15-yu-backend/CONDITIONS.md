@@ -164,3 +164,5 @@ PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q \
 2. 保留此处的失败、退化与待核标签，勿把“本批代码可合入”写成“全部理论条件成立”。
 3. 若主线改变输入编码、PRF配置、参数或公开求值，重跑相关核验；改变线程防护不由本侧支改算法。
 4. 默认1字节容量、q=3不安全、固定小服务限制应出现在总README。完整HIBE组合／正式参数另行验收，本批无相关结论。
+
+主线接收补记：最终修复版重新执行本核验，15/45/14计数不变；公开材料在同目录[qualification.json](qualification.json)，最终参数/codec及其它执行源散列以该文件为准。完整后端、服务、返工与550项回归见[README](README.md)和[REVIEW](REVIEW.md)，不将侧支155项与整套结果累加。
