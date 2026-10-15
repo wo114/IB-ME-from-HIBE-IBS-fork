@@ -1,0 +1,6173 @@
+{
+  "schema": "STRUCTURED-HG-EXHAUSTIVE-OPTIMISTIC-DOMAIN/1",
+  "domain": {
+    "n_min": 2,
+    "n_max": 128,
+    "modulus_bits_min": 2,
+    "modulus_bits_max": 61,
+    "root_R_squared_min": "4*n",
+    "root_R_squared_max": "1208925819614629174706176",
+    "q_alpha_min": 1,
+    "q_alpha_max": 1024,
+    "error_bits": 128,
+    "seed_bits": 256,
+    "encapsulations": 1048576
+  },
+  "evaluated_intervals": 15240,
+  "rows": [
+    {
+      "n": 2,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "noise_not_excluded_q_bits": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ]
+    },
+    {
+      "n": 3,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "noise_not_excluded_q_bits": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ]
+    },
+    {
+      "n": 4,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "noise_not_excluded_q_bits": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ]
+    },
+    {
+      "n": 5,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "noise_not_excluded_q_bits": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ]
+    },
+    {
+      "n": 6,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "noise_not_excluded_q_bits": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 7,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "noise_not_excluded_q_bits": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 8,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "noise_not_excluded_q_bits": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 9,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "noise_not_excluded_q_bits": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 10,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "noise_not_excluded_q_bits": [
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 11,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "noise_not_excluded_q_bits": [
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 12,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "noise_not_excluded_q_bits": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 13,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "noise_not_excluded_q_bits": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 14,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "noise_not_excluded_q_bits": [
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 15,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "noise_not_excluded_q_bits": [
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 16,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "noise_not_excluded_q_bits": [
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 17,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "noise_not_excluded_q_bits": [
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 18,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "noise_not_excluded_q_bits": [
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 19,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "noise_not_excluded_q_bits": [
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 20,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "noise_not_excluded_q_bits": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 21,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "noise_not_excluded_q_bits": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 22,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "noise_not_excluded_q_bits": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 23,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "noise_not_excluded_q_bits": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 24,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "noise_not_excluded_q_bits": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 25,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "noise_not_excluded_q_bits": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 26,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "noise_not_excluded_q_bits": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 27,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "noise_not_excluded_q_bits": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 28,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "noise_not_excluded_q_bits": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 29,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "noise_not_excluded_q_bits": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 30,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "noise_not_excluded_q_bits": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 31,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "noise_not_excluded_q_bits": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 32,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "noise_not_excluded_q_bits": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 33,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4
+      ],
+      "noise_not_excluded_q_bits": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 34,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4
+      ],
+      "noise_not_excluded_q_bits": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 35,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4
+      ],
+      "noise_not_excluded_q_bits": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 36,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4
+      ],
+      "noise_not_excluded_q_bits": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 37,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3
+      ],
+      "noise_not_excluded_q_bits": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 38,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3
+      ],
+      "noise_not_excluded_q_bits": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 39,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3
+      ],
+      "noise_not_excluded_q_bits": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 40,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3
+      ],
+      "noise_not_excluded_q_bits": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 41,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3
+      ],
+      "noise_not_excluded_q_bits": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 42,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2,
+        3
+      ],
+      "noise_not_excluded_q_bits": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 43,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 44,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 45,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 46,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 47,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 48,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 49,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 50,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 51,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 52,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 53,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 54,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 55,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 56,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 57,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 58,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 59,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 60,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 61,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 62,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 63,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 64,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 65,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 66,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 67,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 68,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 69,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 70,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 71,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 72,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 73,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 74,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 75,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 76,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 77,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 78,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 79,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 80,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 81,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 82,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 83,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 84,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 85,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 86,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 87,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 88,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 89,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 90,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 91,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 92,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 93,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 94,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 95,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 96,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 97,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 98,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 99,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 100,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 101,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 102,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 103,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 104,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 105,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 106,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 107,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 108,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 109,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 110,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 111,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 112,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 113,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 114,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 115,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 116,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 117,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 118,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 119,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 120,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 121,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 122,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 123,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 124,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 125,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 126,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 127,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 128,
+      "strict_Regev_scaled_noise_prerequisite": false,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 2,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "noise_not_excluded_q_bits": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ]
+    },
+    {
+      "n": 3,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "noise_not_excluded_q_bits": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ]
+    },
+    {
+      "n": 4,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "noise_not_excluded_q_bits": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ]
+    },
+    {
+      "n": 5,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "noise_not_excluded_q_bits": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ]
+    },
+    {
+      "n": 6,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "noise_not_excluded_q_bits": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 7,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "noise_not_excluded_q_bits": [
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 8,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "noise_not_excluded_q_bits": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 9,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "noise_not_excluded_q_bits": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 10,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "noise_not_excluded_q_bits": [
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 11,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "noise_not_excluded_q_bits": [
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 12,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "noise_not_excluded_q_bits": [
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 13,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "noise_not_excluded_q_bits": [
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 14,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "noise_not_excluded_q_bits": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 15,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "noise_not_excluded_q_bits": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 16,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "noise_not_excluded_q_bits": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 17,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "noise_not_excluded_q_bits": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 18,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "noise_not_excluded_q_bits": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 19,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "noise_not_excluded_q_bits": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 20,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "noise_not_excluded_q_bits": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 21,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "noise_not_excluded_q_bits": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 22,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "noise_not_excluded_q_bits": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 23,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "noise_not_excluded_q_bits": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 24,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "noise_not_excluded_q_bits": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 25,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "noise_not_excluded_q_bits": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 26,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "noise_not_excluded_q_bits": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 27,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "noise_not_excluded_q_bits": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 28,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "noise_not_excluded_q_bits": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 29,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "noise_not_excluded_q_bits": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 30,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "noise_not_excluded_q_bits": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 31,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "noise_not_excluded_q_bits": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 32,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "noise_not_excluded_q_bits": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 33,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4
+      ],
+      "noise_not_excluded_q_bits": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 34,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4
+      ],
+      "noise_not_excluded_q_bits": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 35,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4
+      ],
+      "noise_not_excluded_q_bits": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 36,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3,
+        4
+      ],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 37,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3
+      ],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 38,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3
+      ],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 39,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3
+      ],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 40,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3
+      ],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 41,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3
+      ],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 42,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2,
+        3
+      ],
+      "noise_not_excluded_q_bits": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 43,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 44,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 45,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 46,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 47,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 48,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 49,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 50,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 51,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [
+        2
+      ],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 52,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 53,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 54,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 55,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 56,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 57,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 58,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 59,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 60,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 61,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 62,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 63,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 64,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 65,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 66,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 67,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 68,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 69,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 70,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 71,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 72,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 73,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 74,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 75,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 76,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 77,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 78,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 79,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 80,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 81,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 82,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 83,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 84,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 85,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 86,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 87,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 88,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 89,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 90,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 91,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 92,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 93,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 94,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 95,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 96,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 97,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 98,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 99,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 100,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 101,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 102,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 103,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 104,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 105,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 106,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 107,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 108,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 109,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 110,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 111,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 112,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 113,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 114,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 115,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 116,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 117,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 118,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 119,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 120,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 121,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 122,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 123,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 124,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 125,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 126,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 127,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    },
+    {
+      "n": 128,
+      "strict_Regev_scaled_noise_prerequisite": true,
+      "resource_not_excluded_q_bits": [],
+      "noise_not_excluded_q_bits": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "combined_not_excluded_q_bits": []
+    }
+  ],
+  "optimistic_intervals_by_prerequisite": {
+    "false": {
+      "2": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "3": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "4": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "5": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ]
+    },
+    "true": {
+      "2": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "3": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "4": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "5": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ]
+    }
+  },
+  "complete_HG_necessary_n_upper": 5,
+  "argument": [
+    "root and delegated squared widths are nondecreasing in root R squared width",
+    "with fixed modulus bit length the widths and dimensions are independent of q",
+    "q=2^k-1 maximizes the decode phase radius within its bit interval",
+    "q*alpha=1 minimizes continuous-noise width in the implemented integer domain",
+    "primality, snapshots, tape and actual-key precision can only exclude further inputs"
+  ],
+  "secret_list_enumeration": {
+    "reason": "the first n public root columns are I; each rounded-noise coordinate is in [-8192,8192]",
+    "true_secret_in_list": true,
+    "entries_upper": "1180951952670750490625",
+    "exponent_ceiling": 71,
+    "unique_recovery_or_payload_distinguishing_proved": false,
+    "enumeration_runtime_measured": false,
+    "not_an_attack_success_or_security_estimate": true
+  },
+  "consequence": "increasing n within this version cannot reach a large-dimensional full H/G profile; implementation domain must change",
+  "no_feasible_interval_is_a_security_admission": true,
+  "root_or_key_generations": 0,
+  "entropy_reads": 0,
+  "sampler_calls": 0,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

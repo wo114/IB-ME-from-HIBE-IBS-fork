@@ -298,13 +298,15 @@
       "layer": "primitive",
       "allow_skips": false,
       "tests": [
+        "tests/test_mp12_distribution_budget.py",
+        "tests/test_mp12_public_service_budget.py",
         "tests/test_mp12_structured_sampling.py",
         "tests/test_mp12_full_extension.py",
         "tests/test_mp12_structured_params.py",
         "tests/test_mp12_structured_hibe.py",
         "tests/test_mp12_structured_assembly.py"
       ],
-      "scope": "Real structured MP12 Algorithm3/4, full CHKP H/G extension, deterministic 256-target noisy seed lifecycle, strict codecs and fixed failed issuance; n2 research negative control, no security admission."
+      "scope": "Real structured MP12 Algorithm3/4 and full CHKP H/G, 256-target noisy seed lifecycle, strict codec/fixed failure, concrete conditional sampler/service budgets and exhaustive optimistic domain exclusion; current lifetime target fails, no security admission."
     },
     {
       "id": "luo-composition-regression",

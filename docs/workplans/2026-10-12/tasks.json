@@ -1,6 +1,6 @@
 {
   "schema": "IBME_TEAM_PLAN/1",
-  "date": "2026-10-13",
+  "date": "2026-10-15",
   "planning_only": false,
   "baseline": {
     "main": "bc22c9cb834dee51e9c8b7a37040fa0c5349fcdb",
@@ -8,7 +8,7 @@
     "pr10_included": "2868cf54411188562440820eba266ca3dd278fd9",
     "pr9_not_merged": "e5e0b97752f9291ce7621dd830d665baff86aef8"
   },
-  "human_priority": "当前按用户授权在已审PR14上实施B的尚缺IBS算法，核对全部截图路线；历史A目标保留在原收据。",
+  "human_priority": "当前用户要求继续A的剩余任务；优先完整参数域、有限累计误差和模型/可比评测缺口。GKR、ABB标准模型、CHKP标准模型暂缓，不占当前实现。B/C各自已交证据保留。",
   "deadline_assumed": null,
   "scope": "固定 Wang 两层匿名 HIBE+IBS；不做 Boyen–Li 增强隐私。",
   "composition_policy": {
@@ -33,7 +33,7 @@
   ],
   "roles": {
     "A": "矩阵HIBE与陷门工具",
-    "B": "原生格基IBS；当前用户授权工作范围",
+    "B": "原生格基IBS；按独立任务书与各自已交版本推进",
     "C": "结构 HIBE、认证转换工程对照和 NTRU 工具",
     "coordinator": "主集成 Codex 执行；队长协调；三人交算法数据/章节"
   },
@@ -65,13 +65,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "complete_group_HG_noise_and_resource_chain_verified_formal_parameters_pending",
+      "execution_state": "full_HG_current_domain_exhaustively_limited_to_n_le5_formal_parameters_unavailable",
       "deliverables": [
         "研究配置/目标配置全参数与原文条件表",
         "根父叶尺寸/资源和第一阻塞",
         "下一真实路径输入选择"
       ],
-      "evidence": "../../research/team-a-delivery/2026-10-15-framework-and-structured/README.md"
+      "evidence": "../../research/team-a-delivery/2026-10-15-finite-budget/README.md"
     },
     {
       "id": "A3",
@@ -81,13 +81,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "structured_full_HG_SampleLeft_DelTrap_consumers_passed_total_TV_pending",
+      "execution_state": "structured_convolution_and_service_model_bounded_128bit_lifetime_target_not_met",
       "deliverables": [
         "现有有限工具接收与公开接口",
         "真实分布/委派、异常/资源测试",
         "消费者和误差口径"
       ],
-      "evidence": "../../research/team-a-delivery/2026-10-15-framework-and-structured/README.md"
+      "evidence": "../../research/team-a-delivery/2026-10-15-finite-budget/README.md"
     },
     {
       "id": "A1",
