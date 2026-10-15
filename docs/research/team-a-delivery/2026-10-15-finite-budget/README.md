@@ -80,6 +80,7 @@ Pr[||X||²>D·s²]
 在仓库根，Sage只用指定WSL环境；输出必须新建：
 
 ```sh
+mkdir -p test-results
 export PYTHONPATH="$PWD/src:$PWD"
 export OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=1
 ~/miniconda3/envs/sage/bin/python -m experiments.research.structured_service_budget --output test-results/my-service.json
@@ -88,6 +89,12 @@ export OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=1
 ```
 
 公共账本没有生成根、密钥、Gaussian样本或消耗随机字节。所有原语诚实生命周期和异常语义仍由专项中的真实Gaussian测试验证；本批不重复生成昂贵系统根。已有同根2×2状态用原只读预算脚本复核实际父/叶证书，禁止新发钥/新采样/读熵。
+
+运行代码冻结提交 `c7e07a286d65fae33b7066f4516dbde3eadcbc7f`（`feat(audit): bound structured HIBE sampling and complete parameter domain`）。最终Sage严格专项 **112 passed / 0 skip**；Windows纯分数/完整域检查 **12 passed / 0 skip**，集合有交叠，不相加。额外32项公共投影/CI目录检查通过，其中公共toy陷门用非对角精确Schur路径独立核对投影；不把它计为新系统根。
+
+wheel SHA256 `e75d0e70736bbfd83031c332f1aead2e07674c99d5b7c390e5cf6abc93d9c70c`，1,385,913 B。在仓库外cwd和 `python -I` 下，44个项目provider仅来自安装目录；公共账本/完整域结果与源码逐字规范JSON摘要一致，根/发钥/采样/熵均0。此安装验证没有重跑HIBE端到端生命周期。硬件为Ultra9 275HX（24核/24逻辑），WSL Linux6.18.33.2、Sage10.9/Python3.13.14、Windows Python3.14.6，OMP4/OpenBLAS1。参数输入和固定查询次数见上文，未做端到端性能基准。
+
+[audit.json](audit.json)逐项列出8份公开证据和原始摘要，[文件清单](files-changed.txt)列出22条改动路径。[源码核对](evidence/source-validation.json)验证53份不同源码及44次安装provider比对，全部与固定Git内容一致，换行变体0；这些计数不表示新增密码学测试。WSL无法读取此Windows链接worktree的Git元数据，原CI JSON的 `revision=unavailable` 保留；源码归属由Windows Git、测试记录中的文件摘要和独立Git blob比对核验，没有伪造原始revision字段。
 
 初次公共账本遇到Sage QQ和Python Fraction混用的类型错误，修正为Sage内部用QQ、JSON边界用精确分数；未修改任何概率/资源门。失败命令、最终源码、实际测试与文件清单随audit交付。Windows可执行纯分数/域筛查；Sage专项执行全部真实机制，不将缺Sage跳过写成通过。
 

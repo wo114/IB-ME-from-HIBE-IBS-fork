@@ -1,0 +1,156 @@
+{
+  "schema": "A-FINITE-BUDGET-DELIVERY/1",
+  "created_utc": "2026-10-15T15:47:58.224444+00:00",
+  "runtime_source_revision": "c7e07a286d65fae33b7066f4516dbde3eadcbc7f",
+  "base": "991277a95ccf700db0cd8b6c803a2f2fed6de055",
+  "public_files": {
+    "evidence/service-budget.json": {
+      "sha256": "bca3c2d2e38fc87a921e8f6f57e98687f2cb92d1ebc278d5c158f1ce2ca692b9",
+      "bytes": 49095,
+      "source_revision": "c7e07a286d65fae33b7066f4516dbde3eadcbc7f"
+    },
+    "evidence/domain-screen.json": {
+      "sha256": "75653b43f0a67e271ca2b7caf615e08ca06eb33e64944c37a6f3aed5ebcaace0",
+      "bytes": 103191,
+      "source_revision": "c7e07a286d65fae33b7066f4516dbde3eadcbc7f"
+    },
+    "evidence/strict-sage.json": {
+      "sha256": "6ac5cc56fe1ab6eff62dc7b34295381e8501c7b22bd8e36b5c4a77708b3a37a7",
+      "bytes": 2367,
+      "source_revision": "c7e07a286d65fae33b7066f4516dbde3eadcbc7f"
+    },
+    "evidence/strict-sage.xml": {
+      "sha256": "37352f06f469893366798027fbcfe17e8180e3a231d77b384a7a4ad6895645c3",
+      "bytes": 15674,
+      "source_revision": "c7e07a286d65fae33b7066f4516dbde3eadcbc7f"
+    },
+    "evidence/portable.xml": {
+      "sha256": "43a78866997eb3a143aa8097e8480ec4fb551633ae2f3a9d542b46cd41469514",
+      "bytes": 1942,
+      "source_revision": "c7e07a286d65fae33b7066f4516dbde3eadcbc7f"
+    },
+    "evidence/installed.json": {
+      "sha256": "85ffa2c4cc9cfa0c4fb2dcbc32cac8d07b14a8ac75874135aedade4dead5c720",
+      "bytes": 8416,
+      "source_revision": "c7e07a286d65fae33b7066f4516dbde3eadcbc7f"
+    },
+    "evidence/saved-tree-budget.json": {
+      "sha256": "1fd438928dfc2d40617c7b19abf54b863db2f1e6bdad6d90a96bd319ff81f664",
+      "bytes": 16838,
+      "source_revision": "c7e07a286d65fae33b7066f4516dbde3eadcbc7f"
+    },
+    "evidence/source-validation.json": {
+      "sha256": "9570fa6014af2451468678c7b18be363810d9dd5d679b318704b0c18c9c9aee1",
+      "bytes": 13130,
+      "source_revision": "c7e07a286d65fae33b7066f4516dbde3eadcbc7f"
+    }
+  },
+  "public_file_count": 8,
+  "changed_file_count": 22,
+  "file_list_sha256": "f3636d0dbd5a325ba7755954315a9cf4d986f5ef998bbb272a190ecedb18944a",
+  "XML_normalizations": {
+    "strict-sage.xml": {
+      "removed_testsuite_hostname_attributes": 0
+    },
+    "portable.xml": {
+      "removed_testsuite_hostname_attributes": 1
+    }
+  },
+  "native_WSL_git_metadata_available": false,
+  "source_binding": "Windows Git blob comparison and exact provider/test-source hashes; raw CI revision=unavailable retained",
+  "observed_tests": [
+    {
+      "command": "~/miniconda3/envs/sage/bin/python ci/run.py run a-structured-hg --output <fresh-output>",
+      "passed": 112,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "command": "python -m pytest -q -p no:cacheprovider tests/test_mp12_distribution_budget.py --junitxml=<fresh-output>",
+      "passed": 12,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "command": "~/miniconda3/envs/sage/bin/python -m pytest -q -p no:cacheprovider tests/test_mp12_public_service_budget.py tests/test_ci_catalog.py --junitxml=<fresh-output>",
+      "passed": 32,
+      "skipped": 0,
+      "failed": 0,
+      "overlaps_final_suite": true
+    }
+  ],
+  "installed": {
+    "wheel_sha256": "e75d0e70736bbfd83031c332f1aead2e07674c99d5b7c390e5cf6abc93d9c70c",
+    "wheel_bytes": 1385913,
+    "providers": 44,
+    "outside_checkout": true,
+    "isolated_python": true,
+    "original_key_roots_reexecuted": false,
+    "public_reports_reexecuted": true
+  },
+  "actual_saved_tree": {
+    "same_original_2x2_tree": true,
+    "new_roots": 0,
+    "new_keys": 0,
+    "sampling_calls": 0,
+    "entropy_reads": 0,
+    "certificate_comparison": "parent/leaf match public ledger"
+  },
+  "initial_failure": {
+    "kind": "public reporting type error before any key, sample or entropy",
+    "reason": "Sage QQ vs Python Fraction comparison/addition",
+    "fix": "use QQ inside Sage arithmetic and exact Fraction at JSON boundary",
+    "raw_terminal_archived": false,
+    "math_or_resource_gates_relaxed": false
+  },
+  "environment": {
+    "cpu": "Intel Core Ultra 9 275HX",
+    "cores": 24,
+    "logical_processors": 24,
+    "WSL_kernel": "Linux 6.18.33.2-microsoft-standard-WSL2",
+    "Sage": "10.9",
+    "Sage_Python": "3.13.14",
+    "Windows_Python": "3.14.6",
+    "OMP_NUM_THREADS": 4,
+    "OPENBLAS_NUM_THREADS": 1
+  },
+  "input": {
+    "n": 2,
+    "q": 549755813911,
+    "root_R_squared": 16,
+    "q_alpha": 4,
+    "identity_max_bytes": 86,
+    "seed_bytes": 32,
+    "receivers": 2,
+    "children_each": 2,
+    "encapsulations": 1048576,
+    "distinct_H_queries": 1048576,
+    "distinct_G_paths": 1048576,
+    "public_budget_executions_single_final_per_environment": true,
+    "performance_benchmark": false
+  },
+  "outcome": {
+    "concrete_convolution_term_computed": true,
+    "modeled_probability_exponent": 97,
+    "cumulative_target_128_met": false,
+    "full_HG_domain_necessary_n_upper": 5,
+    "static_intervals": 15240,
+    "static_intervals_are_not_cryptographic_executions": true,
+    "complete_A_delivery": false
+  },
+  "WIP": [
+    "versioned reallocation to meet the chosen lifetime probability target",
+    "large-dimensional complete-group resource algorithm and formal parameters",
+    "computational-root/ROM/fixed-service construction and theorem mapping",
+    "same-security-goal full IBME baselines and ablations"
+  ],
+  "user_deferred": [
+    "GKR",
+    "ABB-standard-model",
+    "CHKP-standard-model"
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "security_proof_count": 0
+}

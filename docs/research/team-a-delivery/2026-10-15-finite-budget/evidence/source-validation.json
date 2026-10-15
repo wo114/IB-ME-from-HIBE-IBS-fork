@@ -1,0 +1,232 @@
+{
+  "schema": "A-FINITE-BUDGET-SOURCE-VALIDATION/1",
+  "status": "passed",
+  "source_revision": "c7e07a286d65fae33b7066f4516dbde3eadcbc7f",
+  "installed_provider_comparisons": 44,
+  "unique_source_files": 53,
+  "newline_variants": [],
+  "source_files": {
+    "src/ibme/lattice/chkp/basis.py": {
+      "worktree_sha256": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d",
+      "git_blob_sha256": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d"
+    },
+    "experiments/research/first_suite/__init__.py": {
+      "worktree_sha256": "98a3203836217e8d437e31a13137e43f5d3759be61d7b2e901ff700e676ba931",
+      "git_blob_sha256": "98a3203836217e8d437e31a13137e43f5d3759be61d7b2e901ff700e676ba931"
+    },
+    "src/ibme/lattice/chkp/entropy.py": {
+      "worktree_sha256": "fe449ebd5ccadfb8a8b73652b874fcd69e0683292368d9c03ef8c6d215fcc8d6",
+      "git_blob_sha256": "fe449ebd5ccadfb8a8b73652b874fcd69e0683292368d9c03ef8c6d215fcc8d6"
+    },
+    "src/ibme/lattice/chkp/gaussian.py": {
+      "worktree_sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c",
+      "git_blob_sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c"
+    },
+    "experiments/research/general_gadget_reference.py": {
+      "worktree_sha256": "69e68a33baab3c85fe84525ce92a45e81723c667c64b526fa2dc321b2b098ab0",
+      "git_blob_sha256": "69e68a33baab3c85fe84525ce92a45e81723c667c64b526fa2dc321b2b098ab0"
+    },
+    "experiments/research/mp12_sampled_reference.py": {
+      "worktree_sha256": "a01b198a7bbcefbb54b387f6ab0b24961b5e74c3689ea4e2f30c74c35ba1061b",
+      "git_blob_sha256": "a01b198a7bbcefbb54b387f6ab0b24961b5e74c3689ea4e2f30c74c35ba1061b"
+    },
+    "experiments/research/structured_feasibility.py": {
+      "worktree_sha256": "d5bc00fdc67e884698b8e2f023ccef8332e408831b8b1fae0786b88b9fff395c",
+      "git_blob_sha256": "d5bc00fdc67e884698b8e2f023ccef8332e408831b8b1fae0786b88b9fff395c"
+    },
+    "experiments/research/structured_service_budget.py": {
+      "worktree_sha256": "1b6a83a6675ffac569b2709cd8f645b7b6cb451ad9fcc8d8adb491108c187daf",
+      "git_blob_sha256": "1b6a83a6675ffac569b2709cd8f645b7b6cb451ad9fcc8d8adb491108c187daf"
+    },
+    "src/ibme/__init__.py": {
+      "worktree_sha256": "f0e3dd70a3752229d5209b58ef760914242569406374c427a463a45823090bb8",
+      "git_blob_sha256": "f0e3dd70a3752229d5209b58ef760914242569406374c427a463a45823090bb8"
+    },
+    "src/ibme/core/__init__.py": {
+      "worktree_sha256": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac",
+      "git_blob_sha256": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac"
+    },
+    "src/ibme/core/encoding.py": {
+      "worktree_sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d",
+      "git_blob_sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+    },
+    "src/ibme/core/errors.py": {
+      "worktree_sha256": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e",
+      "git_blob_sha256": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e"
+    },
+    "src/ibme/core/hashing.py": {
+      "worktree_sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4",
+      "git_blob_sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4"
+    },
+    "src/ibme/core/randomness.py": {
+      "worktree_sha256": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
+      "git_blob_sha256": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202"
+    },
+    "src/ibme/core/types.py": {
+      "worktree_sha256": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56",
+      "git_blob_sha256": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56"
+    },
+    "src/ibme/hibe/__init__.py": {
+      "worktree_sha256": "8b471e5f2ca4a5b22cb2a695d6f75d1891962ff135ff0662e64f47abbde4cd1e",
+      "git_blob_sha256": "8b471e5f2ca4a5b22cb2a695d6f75d1891962ff135ff0662e64f47abbde4cd1e"
+    },
+    "src/ibme/hibe/abb10.py": {
+      "worktree_sha256": "a7121a89e3645e87fa059564b745ed1487dfb7f9510a10973c42d0b5e94a9d32",
+      "git_blob_sha256": "a7121a89e3645e87fa059564b745ed1487dfb7f9510a10973c42d0b5e94a9d32"
+    },
+    "src/ibme/hibe/api.py": {
+      "worktree_sha256": "b81ec0a7ec48c8b5f2fbbed7182b0c22952167d355f92943918a419ab8a5ac4a",
+      "git_blob_sha256": "b81ec0a7ec48c8b5f2fbbed7182b0c22952167d355f92943918a419ab8a5ac4a"
+    },
+    "src/ibme/hibe/chkp/__init__.py": {
+      "worktree_sha256": "d241115e0b4cd894352d3e0693275a5fc9a35430f402c537c141481cba05ae4c",
+      "git_blob_sha256": "d241115e0b4cd894352d3e0693275a5fc9a35430f402c537c141481cba05ae4c"
+    },
+    "src/ibme/hibe/chkp/backend.py": {
+      "worktree_sha256": "8889baefe5241d2daef46db6c96c6c9f54106904126d50ebbba79df3ed9fda67",
+      "git_blob_sha256": "8889baefe5241d2daef46db6c96c6c9f54106904126d50ebbba79df3ed9fda67"
+    },
+    "src/ibme/hibe/chkp/objects.py": {
+      "worktree_sha256": "2943f8085f431e4feaeb1c865e055fbda5af165e8d121dc71d40acd223e24a89",
+      "git_blob_sha256": "2943f8085f431e4feaeb1c865e055fbda5af165e8d121dc71d40acd223e24a89"
+    },
+    "src/ibme/hibe/chkp/params.py": {
+      "worktree_sha256": "fbbb52373c55ab1848f884c16cf3fd1315e5570a3c283ed5c88c8f44db64e87d",
+      "git_blob_sha256": "fbbb52373c55ab1848f884c16cf3fd1315e5570a3c283ed5c88c8f44db64e87d"
+    },
+    "src/ibme/hibe/mock.py": {
+      "worktree_sha256": "48f53e2fdd383cd361ea304056f289f6f4dfee23558b3825038d4b363113002a",
+      "git_blob_sha256": "48f53e2fdd383cd361ea304056f289f6f4dfee23558b3825038d4b363113002a"
+    },
+    "src/ibme/hibe/mp12_structured/__init__.py": {
+      "worktree_sha256": "f4dadff91890ecc854ab9daea99e32aba66ad842174224057320c21c7c6e065a",
+      "git_blob_sha256": "f4dadff91890ecc854ab9daea99e32aba66ad842174224057320c21c7c6e065a"
+    },
+    "src/ibme/hibe/mp12_structured/params.py": {
+      "worktree_sha256": "4a81ff486947870d43acf780443aea6898eeb0389ece58ed214f625abd700085",
+      "git_blob_sha256": "4a81ff486947870d43acf780443aea6898eeb0389ece58ed214f625abd700085"
+    },
+    "src/ibme/lattice/__init__.py": {
+      "worktree_sha256": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f",
+      "git_blob_sha256": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f"
+    },
+    "src/ibme/lattice/chkp/__init__.py": {
+      "worktree_sha256": "820d7a2834b36d5cea29d0c165fa01c425af1739c103ea6323da8bacfd62c921",
+      "git_blob_sha256": "820d7a2834b36d5cea29d0c165fa01c425af1739c103ea6323da8bacfd62c921"
+    },
+    "src/ibme/lattice/chkp/joint_parameters.py": {
+      "worktree_sha256": "887fb6c938d25ef2466ec7af1ca5311f3e55269c6aa72ee57a51db74e8763c92",
+      "git_blob_sha256": "887fb6c938d25ef2466ec7af1ca5311f3e55269c6aa72ee57a51db74e8763c92"
+    },
+    "src/ibme/lattice/chkp/noise_budget.py": {
+      "worktree_sha256": "4d493f2c305fd614705ab28f6fc3920b0ae06b195b0b0960719ff51314508790",
+      "git_blob_sha256": "4d493f2c305fd614705ab28f6fc3920b0ae06b195b0b0960719ff51314508790"
+    },
+    "src/ibme/lattice/chkp/rounded_noise.py": {
+      "worktree_sha256": "f093b75e82116f39b5817a01ee89ead1bcbaec8df6d231380354b4e992638411",
+      "git_blob_sha256": "f093b75e82116f39b5817a01ee89ead1bcbaec8df6d231380354b4e992638411"
+    },
+    "src/ibme/lattice/gadget.py": {
+      "worktree_sha256": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d",
+      "git_blob_sha256": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d"
+    },
+    "src/ibme/lattice/gaussian.py": {
+      "worktree_sha256": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c",
+      "git_blob_sha256": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c"
+    },
+    "src/ibme/lattice/matrix_sampling/__init__.py": {
+      "worktree_sha256": "db15615ccef53acf421db6f65f45e2fb865445f66309f3c44bb133694de3f71b",
+      "git_blob_sha256": "db15615ccef53acf421db6f65f45e2fb865445f66309f3c44bb133694de3f71b"
+    },
+    "src/ibme/lattice/matrix_sampling/gpv.py": {
+      "worktree_sha256": "9b699e1fc2f0b2a2e84c0b9b37bcd290f1af9427d11c39a420ff9b0b91e220c0",
+      "git_blob_sha256": "9b699e1fc2f0b2a2e84c0b9b37bcd290f1af9427d11c39a420ff9b0b91e220c0"
+    },
+    "src/ibme/lattice/matrix_sampling/mp12_bounds.py": {
+      "worktree_sha256": "43c09691ff43355261b7f2a52148c8e9f0b0a7be0e28fd56e4b040791e57e28b",
+      "git_blob_sha256": "43c09691ff43355261b7f2a52148c8e9f0b0a7be0e28fd56e4b040791e57e28b"
+    },
+    "src/ibme/lattice/matrix_sampling/mp12_structured.py": {
+      "worktree_sha256": "fe4bfcd86006c118da0b1f159adcaca622f926d70fd4e19841d4f08262ac3cd3",
+      "git_blob_sha256": "fe4bfcd86006c118da0b1f159adcaca622f926d70fd4e19841d4f08262ac3cd3"
+    },
+    "src/ibme/lattice/matrix_sampling/scalar.py": {
+      "worktree_sha256": "6365371e7fdbdc86b022d5a55e53d59a0f58564ca715efac873f9fdde66c9b68",
+      "git_blob_sha256": "6365371e7fdbdc86b022d5a55e53d59a0f58564ca715efac873f9fdde66c9b68"
+    },
+    "src/ibme/lattice/modmat.py": {
+      "worktree_sha256": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94",
+      "git_blob_sha256": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94"
+    },
+    "src/ibme/lattice/params.py": {
+      "worktree_sha256": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be",
+      "git_blob_sha256": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be"
+    },
+    "src/ibme/lattice/research/__init__.py": {
+      "worktree_sha256": "89e656c9c2e8a5fedab17c1f160316a3b248f3ae62727275bc4306e1e0b3fb53",
+      "git_blob_sha256": "89e656c9c2e8a5fedab17c1f160316a3b248f3ae62727275bc4306e1e0b3fb53"
+    },
+    "src/ibme/lattice/trapdoor.py": {
+      "worktree_sha256": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8",
+      "git_blob_sha256": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8"
+    },
+    "tests/test_mp12_distribution_budget.py": {
+      "worktree_sha256": "fa6b3e6863c4a6894ee7b883fa0ae13c16acb2ebd5ec69bb0460c5fc35ce0461",
+      "git_blob_sha256": "fa6b3e6863c4a6894ee7b883fa0ae13c16acb2ebd5ec69bb0460c5fc35ce0461"
+    },
+    "tests/test_mp12_full_extension.py": {
+      "worktree_sha256": "87bddd6ccace1865f92c682780d243143b095933cf70fc6ae976248956ee4716",
+      "git_blob_sha256": "87bddd6ccace1865f92c682780d243143b095933cf70fc6ae976248956ee4716"
+    },
+    "tests/test_mp12_public_service_budget.py": {
+      "worktree_sha256": "89a323838a091b9628631fdb9854d4ee8786b5a97b4a8f4b7a600a349e4dae67",
+      "git_blob_sha256": "89a323838a091b9628631fdb9854d4ee8786b5a97b4a8f4b7a600a349e4dae67"
+    },
+    "tests/test_mp12_structured_assembly.py": {
+      "worktree_sha256": "e4ae96de0dfe6cb24ffd53b9644086675c4a0f8fc4f8057c79acb95ce642d5c2",
+      "git_blob_sha256": "e4ae96de0dfe6cb24ffd53b9644086675c4a0f8fc4f8057c79acb95ce642d5c2"
+    },
+    "tests/test_mp12_structured_hibe.py": {
+      "worktree_sha256": "1f17372ce9e833ce2d2ac00f42eb7687db2c051fe30f0fcef715dd1ce0a43b50",
+      "git_blob_sha256": "1f17372ce9e833ce2d2ac00f42eb7687db2c051fe30f0fcef715dd1ce0a43b50"
+    },
+    "tests/test_mp12_structured_params.py": {
+      "worktree_sha256": "e4e89ff1ebf2b20d1d0fdccbbcbd5244682a7bccefea3e30d2dc23d410cfc356",
+      "git_blob_sha256": "e4e89ff1ebf2b20d1d0fdccbbcbd5244682a7bccefea3e30d2dc23d410cfc356"
+    },
+    "tests/test_mp12_structured_sampling.py": {
+      "worktree_sha256": "e662b5db43a57b5ee1c177d583ac7583921e0d88a823899e97ff0ac6f2dc1c45",
+      "git_blob_sha256": "e662b5db43a57b5ee1c177d583ac7583921e0d88a823899e97ff0ac6f2dc1c45"
+    },
+    "ci/run.py": {
+      "worktree_sha256": "942c38b3c973aadad93332818a347705f3c36cd4e972230e13427d9ca54fc839",
+      "git_blob_sha256": "942c38b3c973aadad93332818a347705f3c36cd4e972230e13427d9ca54fc839"
+    },
+    "ci/suites.json": {
+      "worktree_sha256": "b793e074b320562c35b531eb5130a67a33979916d39c35e987cebb21d6b416ef",
+      "git_blob_sha256": "b793e074b320562c35b531eb5130a67a33979916d39c35e987cebb21d6b416ef"
+    },
+    "src/ibme/assembly/catalog.py": {
+      "worktree_sha256": "1a1d186d32e8d604522b764d5477b1569a2e75f1e58ee8985f34d28f013196fa",
+      "git_blob_sha256": "1a1d186d32e8d604522b764d5477b1569a2e75f1e58ee8985f34d28f013196fa"
+    },
+    "tests/install_probes/verify_mp12_budget.py": {
+      "worktree_sha256": "79a3f3347a0d711bdaade63f87fa6c0f8c5dc70ee4f0b563af97d3abb8ae2655",
+      "git_blob_sha256": "79a3f3347a0d711bdaade63f87fa6c0f8c5dc70ee4f0b563af97d3abb8ae2655"
+    },
+    "experiments/research/structured_hg_budget.py": {
+      "worktree_sha256": "5438fe21a982905ece8b1d9faa9533c96b559c8d35054c69e397039c29733441",
+      "git_blob_sha256": "5438fe21a982905ece8b1d9faa9533c96b559c8d35054c69e397039c29733441"
+    }
+  },
+  "actual_saved_tree_parent_and_leaf_match_public_projection": true,
+  "actual_saved_tree_entropy_reads": 0,
+  "actual_saved_tree_sampling_calls": 0,
+  "JUnit_counts_verified": true,
+  "modeled_probability_exponent": 97,
+  "complete_HG_necessary_n_upper": 5,
+  "validation_is_read_only_and_not_a_cryptographic_reexecution": true,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
