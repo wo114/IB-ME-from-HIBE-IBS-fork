@@ -140,7 +140,15 @@ def _split_ok(z, first, second, bound, q, *, canonical=True):
         return False
     if canonical and any(int(v) != algebra.centered(v, q) for v in z):
         return False
-    a = _matrix_norm((z[:first],), q) if False else sum(algebra.centered(v, q) ** 2 for v in z[:first])
+    return _split_norm_ok(z, first, second, bound, q)
+
+
+def _split_norm_ok(z, first, second, bound, q):
+    """Check the two coefficient blocks without requiring a nonzero vector."""
+    z = _flat(z)
+    if not z or len(z) != first + second:
+        return False
+    a = sum(algebra.centered(v, q) ** 2 for v in z[:first])
     b = sum(algebra.centered(v, q) ** 2 for v in z[first:first + second])
     return a <= 2 * first * bound and b <= 2 * second * bound
 
@@ -153,7 +161,7 @@ def _matrix_trapdoor_ok(trapdoor, first, second, bound, q):
     if columns < 1 or any(len(row) != columns for row in trapdoor):
         return False
     values = tuple(value for row in trapdoor for value in row)
-    return _split_ok(values, first * columns, second * columns, bound, q, canonical=False)
+    return _split_norm_ok(values, first * columns, second * columns, bound, q)
 
 
 def _ring_trapdoor_ok(trapdoor, d, first, second, bound, q):
@@ -164,7 +172,7 @@ def _ring_trapdoor_ok(trapdoor, d, first, second, bound, q):
     if columns < 1 or any(len(row) != columns for row in trapdoor):
         return False
     values = tuple(value for row in trapdoor for poly in row for value in poly)
-    return _split_ok(values, d * first * columns, d * second * columns, bound, q, canonical=False)
+    return _split_norm_ok(values, d * first * columns, d * second * columns, bound, q)
 
 
 class SISBackend:
@@ -195,8 +203,14 @@ class SISBackend:
         with msk._cache_lock:
             current = msk.states.get(identity)
             if current is not None:
-                if current[0] == "issued" and current[1] is not None:
-                    return current[1]
+                cached = current[1]
+                if (current[0] == "issued" and isinstance(cached, SisSigningKey)
+                        and cached.identity == identity
+                        and cached.public_key.context == pk.context):
+                    return cached
+                if current[0] == "issued":
+                    msk.states[identity] = ("failed", None)
+                    raise SamplingAbort("cached SIS signing key binding is invalid")
                 raise SamplingAbort("identity pending/failed; automatic reissue is blocked")
             if len(msk.states) >= params.max_users:
                 raise SamplingAbort("identity issuance capacity exhausted")
@@ -307,8 +321,14 @@ class RSISBackend:
         with msk._cache_lock:
             current = msk.states.get(identity)
             if current is not None:
-                if current[0] == "issued" and current[1] is not None:
-                    return current[1]
+                cached = current[1]
+                if (current[0] == "issued" and isinstance(cached, RsisSigningKey)
+                        and cached.identity == identity
+                        and cached.public_key.context == pk.context):
+                    return cached
+                if current[0] == "issued":
+                    msk.states[identity] = ("failed", None)
+                    raise SamplingAbort("cached RSIS signing key binding is invalid")
                 raise SamplingAbort("identity pending/failed; automatic reissue is blocked")
             if len(msk.states) >= p.max_users:
                 raise SamplingAbort("identity issuance capacity exhausted")
