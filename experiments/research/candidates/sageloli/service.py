@@ -75,16 +75,37 @@ def _object_classes():
 
 def _decode_master(raw: bytes):
     """Decode either route without exposing private parser diagnostics."""
-    master_classes, _, _ = _object_classes()
     try:
         from . import objects
     except Exception:
         objects = None
+    # The generic decoder dispatches the serialized kind to the concrete
+    # ``SisMasterSecret``/``RsisMasterSecret`` subclass.  Prefer it whenever
+    # present: calling a route-specific inherited classmethod directly would
+    # otherwise reconstruct an RSIS snapshot as a SIS instance and the RSIS
+    # backend would reject the recovered master on restart.
+    generic = getattr(objects, "MasterSecret", None) if objects is not None else None
+    parser = getattr(generic, "from_bytes", None)
+    if callable(parser):
+        try:
+            return parser(raw)
+        except Exception:
+            pass
+    master_classes, _, _ = _object_classes()
     for cls in master_classes:
         parser = getattr(cls, "from_bytes", None)
         if callable(parser):
             try:
-                return parser(raw)
+                result = parser(raw)
+                # Route-aware service recovery must never hand a concrete
+                # backend the other route's master object.
+                route = getattr(getattr(result, "public_key", None), "route", None)
+                name = cls.__name__.lower()
+                if "sis" in name and "rsis" not in name and route != "sis":
+                    continue
+                if "rsis" in name and route != "rsis":
+                    continue
+                return result
             except Exception:
                 continue
         parser = getattr(cls, "_from", None)
@@ -355,6 +376,11 @@ class FixedIssuer:
         if len(raw) != info.st_size:
             raise IssuerStateError("issuer snapshot size changed during the bounded read")
         master = _decode_master(raw)
+        backend_route = getattr(self.backend, "route", None)
+        master_route = getattr(_public_of(master), "route", None)
+        if backend_route in ("sis", "rsis") and master_route in ("sis", "rsis"):
+            if backend_route != master_route:
+                raise IssuerStateError("issuer snapshot route does not match backend")
         return master, raw
 
     def _existing(self) -> None:
@@ -391,6 +417,18 @@ class FixedIssuer:
             if isinstance(exc, (TypeError, ValueError)):
                 raise
             raise TypeError("Sageloli parameters are invalid") from exc
+        # Reject an obvious route/backend mismatch before creating a pending
+        # marker.  A failed setup from a real sampler remains fail-closed, but
+        # a caller typo must not poison an otherwise empty issuer directory.
+        backend_route = getattr(self.backend, "route", None)
+        if backend_route in ("sis", "rsis"):
+            try:
+                from .config import SISParams, RSISParams
+                expected = SISParams if backend_route == "sis" else RSISParams
+                if not isinstance(params, expected):
+                    raise TypeError("Sageloli parameter route does not match backend")
+            except ImportError:
+                pass
         self._directory(create=True)
         self._check_empty()
         with self._locked():
@@ -398,8 +436,19 @@ class FixedIssuer:
             self._begin()
             try:
                 public, master = self.backend.setup(params)
-                if _public_of(master) is not public and not _public_equal(_public_of(master), public):
+                master_public = _public_of(master)
+                if master_public is not public and not _public_equal(master_public, public):
                     raise IssuerStateError("setup returned inconsistent public keys")
+                # A setup adapter must persist the exact public parameter
+                # profile requested by the caller.  This prevents a route or
+                # teaching-profile mix-up from becoming a recoverable state
+                # file that only fails much later during extraction.
+                public_params = getattr(public, "params", None)
+                master_params = getattr(master_public, "params", None)
+                if public_params is not None and public_params != params:
+                    raise IssuerStateError("setup returned mismatched public parameters")
+                if master_params is not None and master_params != params:
+                    raise IssuerStateError("master/public parameter mismatch")
                 raw = _raw_bytes(master)
                 self._atomic_write(raw)
                 self._finish()
@@ -433,6 +482,17 @@ class FixedIssuer:
                 raise IssuerPendingError(
                     "Sageloli identity pending/failed; automatic reissue is blocked"
                 )
+            # Native backends enforce the same capacity, but the service must
+            # check it before reserving a new ledger entry.  Otherwise a full
+            # ledger would temporarily grow to max_users + 1, the backend
+            # would reject the request, and the failed marker could leave an
+            # unreadable snapshot on disk.
+            states = _state_map(master)
+            limit = getattr(getattr(_public_of(master), "params", None),
+                            "max_users", None)
+            if (states is not None and type(limit) is int
+                    and len(states) >= limit):
+                raise IssuerStateError("identity issuance capacity exhausted")
             self._begin()
 
             # Backends may opt into callbacks (Foo--Li/Yu pattern).  The
@@ -456,7 +516,6 @@ class FixedIssuer:
                 # entry and reject an already-present identity, so remove the
                 # in-memory reservation immediately after the snapshot write;
                 # the on-disk marker/ledger still blocks crash recovery.
-                states = _state_map(master)
                 if states is not None:
                     _set_entry(master, identity, "pending", None)
                     persist(master)
