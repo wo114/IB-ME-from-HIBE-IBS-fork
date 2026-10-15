@@ -28,6 +28,8 @@ from experiments.research.candidates.sageloli import (
 )
 from experiments.research.candidates.sageloli import hashing
 from experiments.research.candidates.sageloli import backend as backend_module
+from experiments.research.candidates.sageloli import codec
+from experiments.research.candidates.sageloli import objects as objects_module
 from experiments.research.candidates.sageloli.objects import MasterSecret
 from experiments.research.candidates.sageloli.objects import (
     RsisMasterSecret,
@@ -304,10 +306,59 @@ def test_matrix_route_supports_n_one_and_profile_sigmas():
 def test_matrix_route_accepts_zero_delegated_trapdoor(monkeypatch):
     """A zero H1-G target has a valid zero identity trapdoor."""
     params = SISParams(n=1, k=1, m=2, q=3)
-    monkeypatch.setattr(backend_module, "sis_h1", lambda *args: ((1,),))
+    zero_target_h1 = lambda *args: ((1,),)
+    monkeypatch.setattr(backend_module, "sis_h1", zero_target_h1)
+    monkeypatch.setattr(hashing, "sis_h1", zero_target_h1)
     backend = SISBackend(rng=DeterministicRandom(b"sageloli-zero-trapdoor"))
     public, master = backend.setup(params)
     key = backend.key_extract(master, b"zero-target")
     assert key.trapdoor == ((0,), (0,))
     signature = backend.sign(key, b"message")
     assert backend.verify(public, b"zero-target", b"message", signature) is True
+
+
+@pytest.mark.parametrize("route,params_type,backend_type", ROUTES)
+def test_recovery_rejects_corrupted_issued_key(route, params_type, backend_type):
+    """A valid wire envelope cannot bypass the issued-key equation check."""
+    params = params_type()
+    backend = backend_of(backend_type, f"{route}-corrupt-key".encode())
+    public, master = backend.setup(params)
+    key = backend.key_extract(master, b"alice")
+
+    key_kind = b"SIS-SK" if route == "sis" else b"RSIS-SK"
+    key_fields = codec.decode(key.to_bytes(), key_kind, 4)
+    trap = objects_module._tensor_from_bytes(
+        key_fields[3], objects_module._shape(params, "identity"))
+    if route == "sis":
+        rows = [list(row) for row in trap]
+        rows[0][0] += 1
+        bad_trap = tuple(tuple(row) for row in rows)
+    else:
+        ring = backend_module._collapse_ring_matrix(
+            trap, params.d, params.l, params.k)
+        ring_rows = [list(row) for row in ring]
+        first_poly = list(ring_rows[0][0])
+        first_poly[0] += 1
+        ring_rows[0][0] = tuple(first_poly)
+        bad_trap = backend_module._expand_ring_matrix(
+            tuple(tuple(row) for row in ring_rows), params.d)
+    bad_key = codec.encode(
+        key_kind, key_fields[0], key_fields[1], key_fields[2],
+        objects_module._tensor_bytes(
+            bad_trap, objects_module._shape(params, "identity")))
+
+    master_kind = b"SIS-MSK" if route == "sis" else b"RSIS-MSK"
+    master_fields = codec.decode(master.to_bytes(), master_kind, 3)
+    state_raw = master_fields[2]
+    count, pos = codec.read_u32(state_raw)
+    assert count == 1
+    identity, pos = codec.read_blob(state_raw, pos, what="identity")
+    status, pos = codec.read_blob(state_raw, pos, what="status")
+    _, pos = codec.read_blob(state_raw, pos, what="key")
+    assert pos == len(state_raw)
+    bad_state = (codec.u32(count) + codec.blob(identity) + codec.blob(status)
+                 + codec.blob(bad_key))
+    bad_master = codec.encode(master_kind, master_fields[0], master_fields[1], bad_state)
+
+    with pytest.raises(SerializationError, match="invalid Sageloli object"):
+        MasterSecret.from_bytes(bad_master)

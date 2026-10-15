@@ -10,6 +10,7 @@ interface.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+import math
 from typing import ClassVar
 
 
@@ -52,7 +53,8 @@ class SISParams:
             raise ValueError("Sageloli uses q=3^k, a composite modulus")
         for name in ("trapdoor_sigma", "signing_sigma"):
             value = getattr(self, name)
-            if isinstance(value, bool) or not isinstance(value, (int, float)) or value <= 0:
+            if (isinstance(value, bool) or not isinstance(value, (int, float))
+                    or not math.isfinite(float(value)) or value <= 0):
                 raise ValueError(f"invalid {name}")
         _integer(self.identity_bound_squared, 1, 2**70, "identity_bound_squared")
         _integer(self.signature_bound_squared, 1, 2**70, "signature_bound_squared")
@@ -127,7 +129,8 @@ class RSISParams:
             raise ValueError("Sageloli uses q=3^k, a composite modulus")
         for name in ("trapdoor_sigma", "signing_sigma"):
             value = getattr(self, name)
-            if isinstance(value, bool) or not isinstance(value, (int, float)) or value <= 0:
+            if (isinstance(value, bool) or not isinstance(value, (int, float))
+                    or not math.isfinite(float(value)) or value <= 0):
                 raise ValueError(f"invalid {name}")
         _integer(self.identity_bound_squared, 1, 2**70, "identity_bound_squared")
         _integer(self.signature_bound_squared, 1, 2**70, "signature_bound_squared")

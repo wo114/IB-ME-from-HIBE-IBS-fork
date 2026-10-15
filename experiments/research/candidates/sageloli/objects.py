@@ -19,6 +19,8 @@ from ibme.core.types import validate_identity
 from ibme.ibs.api import IBSPublicKey, IBSMasterSecret, IBSSigningKey, IBSSignature
 
 from . import codec
+from . import algebra
+from . import hashing
 from .config import SISParams, RSISParams
 
 MAX_WIRE = codec.MAX_WIRE_BYTES
@@ -48,6 +50,108 @@ def _params_from_bytes(raw):
 
 def _is_sis(params): return isinstance(params, SISParams)
 def _is_rsis(params): return isinstance(params, RSISParams)
+
+
+def _check_concrete_route(cls, kind, sis_kind, rsis_kind):
+    """Reject decoding a route envelope through the other concrete class."""
+    expected = {
+        "SisPublicKey": sis_kind,
+        "RsisPublicKey": rsis_kind,
+        "SisMasterSecret": b"SIS-MSK",
+        "RsisMasterSecret": b"RSIS-MSK",
+        "SisSigningKey": b"SIS-SK",
+        "RsisSigningKey": b"RSIS-SK",
+    }.get(getattr(cls, "__name__", ""))
+    if expected is not None and kind != expected:
+        raise SerializationError("Sageloli concrete route/class mismatch")
+
+
+def _check_concrete_params(cls, params):
+    expected = {
+        "SisPublicKey": "sis", "RsisPublicKey": "rsis",
+        "SisMasterSecret": "sis", "RsisMasterSecret": "rsis",
+        "SisSigningKey": "sis", "RsisSigningKey": "rsis",
+    }.get(getattr(cls, "__name__", ""))
+    if expected == "sis" and not _is_sis(params):
+        raise SerializationError("Sageloli concrete route/parameter mismatch")
+    if expected == "rsis" and not _is_rsis(params):
+        raise SerializationError("Sageloli concrete route/parameter mismatch")
+
+
+def _check_ring_expansion(value, params, shape, *, modulus=None):
+    """Validate every expanded negacyclic block, not only its first column."""
+    if not _is_rsis(params):
+        return
+    d = params.d
+    rows, cols = shape
+    for i in range(rows // d):
+        for j in range(cols // d):
+            block = tuple(tuple(value[i * d + r][j * d + c] for c in range(d)) for r in range(d))
+            polynomial = tuple(value[i * d + r][j * d] for r in range(d))
+            expected = tuple(
+                tuple(
+                    algebra.poly_mul(polynomial, tuple(int(c == h) for h in range(d)))[r]
+                    for c in range(d)
+                )
+                for r in range(d)
+            )
+            if modulus is not None:
+                expected = tuple(tuple(x % modulus for x in row) for row in expected)
+            if block != expected:
+                raise SerializationError("RSIS expanded matrix is not negacyclic")
+
+
+def _collapse_ring_matrix(value, d, rows, cols):
+    if len(value) != rows * d or len(value[0]) != cols * d:
+        raise SerializationError("RSIS expanded matrix dimensions do not match")
+    return tuple(
+        tuple(tuple(value[i * d + h][j * d] for h in range(d))
+              for j in range(cols))
+        for i in range(rows)
+    )
+
+
+def _signing_key_equation(key, public_key):
+    """Check the delegated trapdoor equation bound to an issued key.
+
+    The state ledger is local persistence rather than an authenticated key
+    store, so recovery must reject a key whose trapdoor was altered while the
+    identity and public-key context still look valid.
+    """
+    params = public_key.params
+    try:
+        if _is_sis(params):
+            h = hashing.sis_h1(
+                public_key.context, key.identity_salt, key.identity,
+                params.n, params.k, params.q)
+            gadget = algebra.gadget_matrix(params.n, params.k)
+            target = tuple(
+                tuple((h[i][j] - gadget[i][j]) % params.q
+                      for j in range(params.nk))
+                for i in range(params.n)
+            )
+            observed = algebra.matmul(public_key.a, key.trapdoor, params.q)
+        else:
+            h = hashing.rsis_h1(
+                public_key.context, key.identity_salt, key.identity,
+                params.k, params.d, params.q)
+            gadget = tuple((3 ** j,) + (0,) * (params.d - 1)
+                           for j in range(params.k))
+            target = tuple(algebra.poly_sub(h[j], gadget[j], params.q)
+                           for j in range(params.k))
+            public_ring = (tuple(
+                tuple(public_key.a[row][j * params.d + 0]
+                      for row in range(params.d))
+                for j in range(params.l)
+            ),)
+            trap_ring = _collapse_ring_matrix(
+                key.trapdoor, params.d, params.l, params.k)
+            observed = algebra.ring_matmul(
+                public_ring, trap_ring, params.d, params.q)[0]
+    except (AttributeError, TypeError, ValueError, IndexError, OverflowError) as exc:
+        raise SerializationError("invalid signing-key trapdoor equation") from exc
+    if tuple(observed) != tuple(target):
+        raise SerializationError("signing-key trapdoor equation mismatch")
 
 
 def _shape(params, kind):
@@ -130,7 +234,9 @@ class PublicKey(IBSPublicKey):
 
     def __post_init__(self):
         if not _is_sis(self.params) and not _is_rsis(self.params): raise SerializationError("Sageloli parameters required")
+        _check_concrete_params(type(self), self.params)
         object.__setattr__(self, "a", _flatten(self.a, _shape(self.params, "public"), signed=False, modulus=self.params.q))
+        _check_ring_expansion(self.a, self.params, _shape(self.params, "public"), modulus=self.params.q)
 
     @property
     def context(self): return sha256(self.to_bytes()).digest()
@@ -152,6 +258,7 @@ class PublicKey(IBSPublicKey):
             fields = codec.decode(raw, b"RSIS-PK", 2); params = _params_from_bytes(fields[0]); kind = b"RSIS-PK"
             if not _is_rsis(params): raise SerializationError("RSIS key has non-RSIS parameters")
         else: raise SerializationError("Sageloli public-key kind mismatch")
+        _check_concrete_route(cls, kind, b"SIS-PK", b"RSIS-PK")
         target = cls if cls is not PublicKey else (SisPublicKey if kind == b"SIS-PK" else RsisPublicKey)
         return _restore(target, raw, kind, 2, lambda f: {"params": params, "a": _tensor_from_bytes(f[1], _shape(params, "public"), signed=False)})
 
@@ -167,8 +274,10 @@ class MasterSecret(IBSMasterSecret):
 
     def __post_init__(self):
         if not isinstance(self.public_key, PublicKey): raise SerializationError("Sageloli public key required")
+        _check_concrete_params(type(self), self.public_key.params)
         p = self.public_key.params
         object.__setattr__(self, "trapdoor", _flatten(self.trapdoor, _shape(p, "root")))
+        _check_ring_expansion(self.trapdoor, p, _shape(p, "root"))
         if not isinstance(self.states, dict) or len(self.states) > p.max_users: raise SerializationError("invalid issuance ledger")
         for identity, entry in self.states.items():
             identity = validate_identity(identity, max_bytes=p.identity_max_bytes)
@@ -177,6 +286,7 @@ class MasterSecret(IBSMasterSecret):
             if status not in ("pending", "failed", "issued"): raise SerializationError("invalid ledger status")
             if status == "issued":
                 if not isinstance(key, SigningKey) or key.identity != identity or key.public_key.context != self.public_key.context: raise SerializationError("issued key binding mismatch")
+                _signing_key_equation(key, self.public_key)
             elif key is not None: raise SerializationError("unissued ledger entry contains key")
         object.__setattr__(self, "_cache_lock", RLock())
 
@@ -196,6 +306,8 @@ class MasterSecret(IBSMasterSecret):
             for identity in sorted(self.states):
                 status, key = self.states[identity]
                 out.extend(codec.blob(identity)); out.extend(codec.blob(status.encode("ascii")))
+                if status == "issued":
+                    _signing_key_equation(key, self.public_key)
                 out.extend(codec.blob(key.to_bytes() if key is not None else b""))
             return bytes(out)
 
@@ -210,6 +322,7 @@ class MasterSecret(IBSMasterSecret):
         if raw.startswith(codec.MAGIC + codec.blob(b"SIS-MSK")): kind = b"SIS-MSK"
         elif raw.startswith(codec.MAGIC + codec.blob(b"RSIS-MSK")): kind = b"RSIS-MSK"
         else: raise SerializationError("Sageloli master-key kind mismatch")
+        _check_concrete_route(cls, kind, b"SIS-MSK", b"RSIS-MSK")
         fields = codec.decode(raw, kind, 3); pk = PublicKey.from_bytes(fields[0]); p = pk.params
         if (kind == b"SIS-MSK") != _is_sis(p): raise SerializationError("master route/parameter mismatch")
         trap = _tensor_from_bytes(fields[1], _shape(p, "root")); state_raw = fields[2]; count, pos = codec.read_u32(state_raw)
@@ -243,10 +356,13 @@ class SigningKey(IBSSigningKey):
 
     def __post_init__(self):
         if not isinstance(self.public_key, PublicKey): raise SerializationError("Sageloli public key required")
+        _check_concrete_params(type(self), self.public_key.params)
         p = self.public_key.params
         object.__setattr__(self, "_identity", validate_identity(self._identity, max_bytes=p.identity_max_bytes))
-        if type(self.identity_salt) is not bytes or not 1 <= len(self.identity_salt) <= 64: raise SerializationError("invalid identity salt")
+        if type(self.identity_salt) is not bytes or len(self.identity_salt) != p.salt_bytes: raise SerializationError("invalid identity salt")
         object.__setattr__(self, "trapdoor", _flatten(self.trapdoor, _shape(p, "identity")))
+        _check_ring_expansion(self.trapdoor, p, _shape(p, "identity"))
+        _signing_key_equation(self, self.public_key)
 
     @property
     def identity(self): return self._identity
@@ -265,8 +381,10 @@ class SigningKey(IBSSigningKey):
         if raw.startswith(codec.MAGIC + codec.blob(b"SIS-SK")): kind = b"SIS-SK"
         elif raw.startswith(codec.MAGIC + codec.blob(b"RSIS-SK")): kind = b"RSIS-SK"
         else: raise SerializationError("Sageloli signing-key kind mismatch")
+        _check_concrete_route(cls, kind, b"SIS-SK", b"RSIS-SK")
         fields = codec.decode(raw, kind, 4); pk = PublicKey.from_bytes(fields[0]); p = pk.params
         if (kind == b"SIS-SK") != _is_sis(p): raise SerializationError("signing-key route/parameter mismatch")
+        if len(fields[2]) != p.salt_bytes: raise SerializationError("signing-key salt length mismatch")
         trap = _tensor_from_bytes(fields[3], _shape(p, "identity"))
         target = cls if cls is not SigningKey else (SisSigningKey if kind == b"SIS-SK" else RsisSigningKey)
         return _restore(target, raw, kind, 4, lambda _: {"public_key": pk, "_identity": fields[1], "identity_salt": fields[2], "trapdoor": trap})
@@ -297,6 +415,8 @@ class Signature(IBSSignature):
         if not isinstance(public_key, PublicKey): raise TypeError("Sageloli public key required")
         fields = codec.decode(raw, b"SIG", 4)
         if fields[0] != public_key.context: raise SerializationError("cross-public-key signature")
+        if len(fields[1]) != public_key.params.salt_bytes or len(fields[2]) != public_key.params.salt_bytes:
+            raise SerializationError("signature salt length mismatch")
         shape = _shape(public_key.params, "signature")
         z = codec.unpack_ints(fields[3], expected=_product(shape)) if len(shape) == 1 else _tensor_from_bytes(fields[3], shape)
         return _restore(cls, raw, b"SIG", 4, lambda _: {"context": fields[0], "identity_salt": fields[1], "message_salt": fields[2], "z": z})
