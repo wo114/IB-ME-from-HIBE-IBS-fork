@@ -382,6 +382,8 @@ def _portable_specs():
                   replace(falcon_backend_spec(), reason="BNN + Falcon v1.2 research; conversion/model admission pending; none/false")))
     from ibme.hibe.abb_rom.registration import backend_spec as abb_spec
     specs.append(replace(abb_spec(),id="abb-rom"))
+    from ibme.hibe.mp12_structured.registration import backend_spec as structured_spec
+    specs.append(structured_spec())
     return specs
 
 

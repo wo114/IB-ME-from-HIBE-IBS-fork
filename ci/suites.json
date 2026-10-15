@@ -287,8 +287,24 @@
         "tests/test_ci_catalog.py",
         "tests/test_registry_extension_contract.py",
         "tests/test_combination_extension_contract.py",
-        "tests/test_abb_assembly.py"
+        "tests/test_abb_assembly.py",
+        "tests/test_mp12_structured_params.py",
+        "tests/test_mp12_structured_assembly.py"
       ]
+    },
+    {
+      "id": "a-structured-hg",
+      "environment": "sage",
+      "layer": "primitive",
+      "allow_skips": false,
+      "tests": [
+        "tests/test_mp12_structured_sampling.py",
+        "tests/test_mp12_full_extension.py",
+        "tests/test_mp12_structured_params.py",
+        "tests/test_mp12_structured_hibe.py",
+        "tests/test_mp12_structured_assembly.py"
+      ],
+      "scope": "Real structured MP12 Algorithm3/4, full CHKP H/G extension, deterministic 256-target noisy seed lifecycle, strict codecs and fixed failed issuance; n2 research negative control, no security admission."
     },
     {
       "id": "luo-composition-regression",
