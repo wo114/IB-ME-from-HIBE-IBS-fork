@@ -1,6 +1,6 @@
 {
   "schema": "A-FINITE-BUDGET-DELIVERY/1",
-  "created_utc": "2026-10-15T15:47:58.224444+00:00",
+  "created_utc": "2026-10-15T15:50:48.948567+00:00",
   "runtime_source_revision": "c7e07a286d65fae33b7066f4516dbde3eadcbc7f",
   "base": "991277a95ccf700db0cd8b6c803a2f2fed6de055",
   "public_files": {
@@ -20,13 +20,13 @@
       "source_revision": "c7e07a286d65fae33b7066f4516dbde3eadcbc7f"
     },
     "evidence/strict-sage.xml": {
-      "sha256": "37352f06f469893366798027fbcfe17e8180e3a231d77b384a7a4ad6895645c3",
-      "bytes": 15674,
+      "sha256": "8afe101feff237a3e1790dd752a682f064ba2d99bd1b4e8d9a905c06e4b3ba95",
+      "bytes": 15673,
       "source_revision": "c7e07a286d65fae33b7066f4516dbde3eadcbc7f"
     },
     "evidence/portable.xml": {
-      "sha256": "43a78866997eb3a143aa8097e8480ec4fb551633ae2f3a9d542b46cd41469514",
-      "bytes": 1942,
+      "sha256": "287e12c40c59d1121ed0c3f5cf8e6124752486e0d17ad55840d771c5a42f071f",
+      "bytes": 1941,
       "source_revision": "c7e07a286d65fae33b7066f4516dbde3eadcbc7f"
     },
     "evidence/installed.json": {
@@ -50,10 +50,12 @@
   "file_list_sha256": "f3636d0dbd5a325ba7755954315a9cf4d986f5ef998bbb272a190ecedb18944a",
   "XML_normalizations": {
     "strict-sage.xml": {
-      "removed_testsuite_hostname_attributes": 0
+      "removed_testsuite_hostname_attributes": 0,
+      "CRLF_to_LF_count": 1
     },
     "portable.xml": {
-      "removed_testsuite_hostname_attributes": 1
+      "removed_testsuite_hostname_attributes": 1,
+      "CRLF_to_LF_count": 1
     }
   },
   "native_WSL_git_metadata_available": false,
@@ -103,6 +105,7 @@
     "raw_terminal_archived": false,
     "math_or_resource_gates_relaxed": false
   },
+  "export_repair": "Windows ElementTree XML declaration CRLF normalized to LF before hashing; original JUnit assertions/results unchanged",
   "environment": {
     "cpu": "Intel Core Ultra 9 275HX",
     "cores": 24,
