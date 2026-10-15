@@ -1,0 +1,31 @@
+{
+  "schema": "IBME/WangPW-FIXED-ISSUER-DELIVERY/1",
+  "base_revision": "a30276655d2db2646a75bf59956900a29ca853bf",
+  "implementation_revision": "aa7af804edc37060f52de5bad3a48455696dd5a5",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "manifest_excludes_itself": true,
+  "validation": {
+    "wang_pw_tests": 496,
+    "new_service_tests": 86,
+    "source_roots": 3,
+    "source_users": 6,
+    "source_main_signatures": 18,
+    "installed_providers": 41,
+    "private_material_exported": false
+  },
+  "files_sha256": {
+    "src/ibme/ibs/wang_pw_service.py": "a36103a4f0aeb79ff10faec15ae7f41a2100d7cd65719e32d8bcfbf282c79d09",
+    "tests/test_wang_pw_service.py": "b1ab6413354f784fd098fc1552ed18772aca3c5982e45f43bc1d7f2c1060aa47",
+    "experiments/research/wang_pw_service_audit.py": "434ae4d7c6fc9d718dab86ce2c3f93edec7f63ba5b874cae669a4fcf66336fbd",
+    "experiments/research/wang_pw_service_delivery_check.py": "1148098c8f71500e01d4609459c1e0bd59faa765a67e483ef696cf502f87c76f",
+    "docs/specs/wang-pw-issuer.md": "13145c904311309b739b4b22a4202cbff5e1ce6108abd6585f3bad8f3b5887c2",
+    "docs/research/team-b-delivery/2026-10-15-wang-pw-service/README.md": "5d3cb88be78a80f0a3dfa887756914affa363e068941811d900448e18d28b5b9",
+    "docs/research/team-b-delivery/2026-10-15-wang-pw-service/REVIEW.md": "fff3a6c685dd45dee25ab831dccb4f37141315679a73385abfae41f105a459f4",
+    "docs/research/team-b-delivery/2026-10-15-wang-pw-service/ci.json": "db346b7c917e4cdc98f94c3f7a27043ca6d56e32e64d0e637ca19c16ae8a9c6f",
+    "docs/research/team-b-delivery/2026-10-15-wang-pw-service/ci.xml": "6b6e8a9dd483cbdc82d54b5d7719cd423041510632bddde8ea174363d11541c0",
+    "docs/research/team-b-delivery/2026-10-15-wang-pw-service/lifecycle.json": "0d5bd2e42943c100abb6f032d9a9bd36b0a2e98197c5002ed4ce84275d36a30a",
+    "docs/research/team-b-delivery/2026-10-15-wang-pw-service/installed.json": "38eca73f4a849d20260ce6d4acb53c0d7b3602fda58f36d949118046e7197332"
+  }
+}
