@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "date": "2026-10-15",
+  "scope": "Foo-Li standalone research IBS backend; no shared registry/CLI or HIBE combination",
+  "base_commit": "8ba7ebfb560804481a0245f6e85621fe69c13511",
+  "implementation_commit": "46529e08a5bc390f477f1ba539122f4b24fcf44c",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "excluded": [
+    "MANIFEST.json itself (self-hash omitted)",
+    "local raw outputs, secrets, seeds, private snapshots, wheel binary and unrelated user changes"
+  ],
+  "ci_provenance": "Local WSL Sage CI run, not remote Actions. Runner Git revision unavailable retained; source hashes independently checked against implementation files.",
+  "test_summary": {
+    "pytest_passed": 294,
+    "pytest_skipped": 0,
+    "real_signatures": 36,
+    "recovery_replays": 36,
+    "fresh_process_recoveries": 3,
+    "installed_checks": 15,
+    "installed_provider_hashes": 53
+  },
+  "files": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-15-foo-li-backend/ci-result.json",
+      "sha256": "02e9aa9fa6574c394cb7af95988eba716a5bf5cddb1f6f852c8b04aaade2c596",
+      "bytes": 3024
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-15-foo-li-backend/installed.json",
+      "sha256": "24d9c6c79e8ad3e293a38a9f0b466ad6c2a903a41404c8ce9327eec2a1497b89",
+      "bytes": 9180
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-15-foo-li-backend/junit.xml",
+      "sha256": "f9f532b7e07a722a25555ca2bb1bb380fd02dd8c234de5f8719c1853c458fc16",
+      "bytes": 51657
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-15-foo-li-backend/lifecycle.json",
+      "sha256": "6508d3b304ab239585074a5ca4003e7ce2606f352ca80fa8d1a165935f4569bf",
+      "bytes": 8623
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-15-foo-li-backend/README.md",
+      "sha256": "20e33214c0f6711677fa9898b38c213dd485243d8e0b8afc7a9bb6f79a160205",
+      "bytes": 7499
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-15-foo-li-backend/REVIEW.md",
+      "sha256": "afd8bf10dd027b9803a5858ecaa84c8cf3d14ded58932674baa70e6efc33365b",
+      "bytes": 4196
+    },
+    {
+      "path": "docs/specs/foo-li-ibs.md",
+      "sha256": "8e92823130ad22cf7e1ead14bb0a05c4095a7449ca03f81618ba22d01ddd47af",
+      "bytes": 6274
+    },
+    {
+      "path": "experiments/research/foo_li_backend_audit.py",
+      "sha256": "0b5e112e08892a806ca838cf17d092ebfc869847938cca58ffd9b91f9d5bfc4e",
+      "bytes": 6818
+    },
+    {
+      "path": "experiments/research/foo_li_installed_audit.py",
+      "sha256": "e2ab80befa81966603f9a59726011ccc82ba90358589b92ee211fee410f830ee",
+      "bytes": 3805
+    },
+    {
+      "path": "src/ibme/ibs/foo_li/__init__.py",
+      "sha256": "f4a73ae166b3b13f5974d454df86b5ca32aa4f5b241233294eabeede62e7ae7a",
+      "bytes": 412
+    },
+    {
+      "path": "src/ibme/ibs/foo_li/backend.py",
+      "sha256": "856e877cae54d882e3d19fc7e14b1ba0f9e37f7d0728f18643679309e3566890",
+      "bytes": 6241
+    },
+    {
+      "path": "src/ibme/ibs/foo_li/codec.py",
+      "sha256": "88e5afb187f5bb692fbdec7d25bc97a4f427146e7e75b5db62c31b49c1b6d09d",
+      "bytes": 3547
+    },
+    {
+      "path": "src/ibme/ibs/foo_li/keys.py",
+      "sha256": "1bb7d5b6ad248d71bd1965550987984671a45a9af7ebbacf8a74b2f5a946dd9f",
+      "bytes": 6284
+    },
+    {
+      "path": "src/ibme/ibs/foo_li/objects.py",
+      "sha256": "964440c97892790beb1d0a864eab58ca806a7e004ad84ae7b12d3252a98f74be",
+      "bytes": 3654
+    },
+    {
+      "path": "src/ibme/ibs/foo_li/params.py",
+      "sha256": "eb693790305db1ee21a5674d80e71d13375a1a6d4f8da12907cd0791be6cb479",
+      "bytes": 4593
+    },
+    {
+      "path": "src/ibme/ibs/foo_li/registration.py",
+      "sha256": "129afc2e88c345caa012432a7f2fbec9fa928a982e7e09ef02ec5030c3de8cb5",
+      "bytes": 1839
+    },
+    {
+      "path": "src/ibme/ibs/foo_li/service.py",
+      "sha256": "d99ab2b1188dfc41ce509e7c7545fef4f417e51f126d27bd447dd0e7184c5e37",
+      "bytes": 10990
+    },
+    {
+      "path": "src/ibme/ibs/foo_li/state_validation.py",
+      "sha256": "92c8cddd1919be60d40225bff8384404b520fd0364c35dde24e5de0754198cd1",
+      "bytes": 4756
+    },
+    {
+      "path": "tests/test_foo_li_backend.py",
+      "sha256": "57fd9d4098a4fc52e882b48172159eb570bab51602b3bb6bc55365dc8d1e7d97",
+      "bytes": 16124
+    },
+    {
+      "path": "tests/test_foo_li_service.py",
+      "sha256": "85725b9e5b513b7d2b9c46df77346c086e21442bf6800110773de4a768baae4b",
+      "bytes": 20757
+    }
+  ]
+}
