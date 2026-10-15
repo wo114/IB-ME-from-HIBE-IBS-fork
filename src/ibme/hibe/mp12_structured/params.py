@@ -88,6 +88,9 @@ class StructuredHIBEParams:
     @property
     def alpha(self): return Fraction(self.q_alpha, self.q)
 
+    @property
+    def max_message_bytes(self): return 32
+
     def noise_budget(self):
         return evaluate_noise(q=self.q, dimension=self.leaf_dimension,
             width_squared=self.leaf_width_squared, alpha=self.alpha,

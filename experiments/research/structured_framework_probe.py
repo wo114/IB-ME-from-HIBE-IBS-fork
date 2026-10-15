@@ -39,14 +39,14 @@ def generate(directory, commit):
     directory.mkdir(parents=True, exist_ok=False)
     save(directory/"started", b"one system-random structured framework tree; no retry\n")
     start, events = time.perf_counter(), []
-    config = make_suite(hibe="mp12-structured-hg", ibs="luo-module", ibs_params=c64b_params(),
-        transport="hybrid", protocol="byteauth-v1", signature_format="compact")
-    runtime = build_runtime(config)
     def event(name):
         events.append(dict(name=name, elapsed_seconds=time.perf_counter()-start))
         save(directory/"progress.json", events)
         print(name, "passed", flush=True)
     try:
+        config = make_suite(hibe="mp12-structured-hg", ibs="luo-module", ibs_params=c64b_params(),
+            transport="hybrid", protocol="byteauth-v1", signature_format="compact")
+        runtime = build_runtime(config)
         p = runtime.proto
         public, master = p.setup(runtime.hibe_params, ibs_params=runtime.ibs_params)
         event("real-setup")

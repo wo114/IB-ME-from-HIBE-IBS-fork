@@ -64,3 +64,14 @@ def test_direct_transport_rejected_before_arithmetic(monkeypatch):
     monkeypatch.setattr(registration,"environment",lambda:pytest.fail("invalid transport reached Sage"))
     with pytest.raises(InvalidParameterError,match="hybrid"):
         registration.configuration(StructuredHIBEParams(),dict(transport="direct"))
+
+
+def test_complete_capacity_preflight_needs_no_sampler_or_factory(monkeypatch):
+    monkeypatch.setattr(registration,"environment",lambda:None)
+    monkeypatch.setattr(registration,"factory",lambda *a,**k:pytest.fail("preflight invoked factory"))
+    config = make_suite(hibe="mp12-structured-hg",ibs="luo-module",transport="hybrid",signature_format="compact")
+    report = validate_suite(config)
+    assert report.ok, report.errors
+    assert report.capacity["inner_hibe_payload_bytes"] == 32
+    assert report.capacity["inner_hibe_identity_bytes"] == 86
+    assert report.capacity["max_application_bytes"] >= 32
