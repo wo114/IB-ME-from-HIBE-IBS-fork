@@ -1,6 +1,6 @@
 # HIBE / IBS 算法与候选总表
 
-更新：2026-10-15（补C1/C2框架实跑、CR资格与PR27/28共同后端，其它条目保留各自核验范围）。按[统一框架](../ARCHITECTURE.md)分别管理 HIBE、IBS 模块，再装配兼容组合。本文登记 **19 条候选/模型路线：8 条 HIBE、11 条 IBS**，覆盖原[17 条基础目录](research/2026-10-10-foundations/catalog.json)及新补充的两条原生路线；这不是 19 个完整后端，也不是 19 个不同困难假设。
+更新：2026-10-15（补A的真实ABB默认接入、结构化MP12 H/G变体与12组合，C1/C2框架实跑及CR资格；其它条目保留各自核验范围）。按[统一框架](../ARCHITECTURE.md)分别管理 HIBE、IBS 模块，再装配兼容组合。本文登记 **19 条候选/模型路线：8 条 HIBE、11 条 IBS**，覆盖原[17 条基础目录](research/2026-10-10-foundations/catalog.json)及新补充的两条原生路线；这不是 19 个完整后端，也不是 19 个不同困难假设。
 
 当前任务和外部包进度以 [PROJECT_STATUS.md](PROJECT_STATUS.md) 为准；本文用于选模块、找原文与代码、识别接入缺口。**最终三组完整组合尚未锁定，第三套 HIBE 不再强制属于 Module-LWE。** 普通签名转换成 IBS 的两个条目保留原 ID，BNN-Falcon / BNN-ML-DSA 不再重复计数。
 
@@ -16,11 +16,13 @@
 
 “全文已取得”“有数值参数”“代码存在”“实跑通过”“满足组合前提”分别记录。除非单列外部来源，表中实现状态均指当前仓库；本次新增LATTE公共组合、系统随机CLI与原状态安装恢复；CHKP等旧批次保留其原版本范围，不累加为本轮实跑。
 
+A本批另完成[默认ABB与结构化H/G](research/team-a-delivery/2026-10-15-framework-and-structured/README.md)：`abb-rom` 与 `mp12-structured-hg` 分别执行六种IBS共同验收，共12配置404检查；新结构化profile属于CHKP-ROM路线下明确区分的MP12实现选择，**不新增论文算法、路线或困难假设计数**。CLI与安装证据区分ABB每次新解密256个原像和结构化固定叶零熵恢复。两组参数均可公开攻击；三条GKR/标准模型储备按用户要求暂缓，不新增后端或验收结论。
+
 ## 2. HIBE：8 条路线
 
 | ID / 算法 | 假设与论文模型 | 原文与参数状态 | 实现及接入状态 |
 |---|---|---|---|
-| `abb-rom` — ABB10 CRYPTO 固定维度 HIBE | 普通 LWE，经典 ROM；匿名/两层条件按选定算法映射 | [18页作者稿](../papers/2010_lattice_basis_delegation_agrawal.pdf)、[算法核验](research/2026-10-04/ABB10两层HIBE算法与参数规范.md)；BasisDel/SampleR等已有真实研究实例，正式宽度/归约与困难参数未准入。 | **独立完整研究HIBE已实现**：[abb_rom](../src/ibme/hibe/abb_rom/)、[真实整链/2×2与Luo组合](research/team-a-delivery/2026-10-14-abb-complete/README.md)。旧abb10.py仍是另列教学实现。当前q26/n1可公开恢复消息，none/false/false；默认registry/CLI和正式参数仍待，不因候选表旧描述否定已有后端。 |
+| `abb-rom` — ABB10 CRYPTO 固定维度 HIBE | 普通 LWE，经典 ROM；匿名/两层条件按选定算法映射 | [18页作者稿](../papers/2010_lattice_basis_delegation_agrawal.pdf)、[算法核验](research/2026-10-04/ABB10两层HIBE算法与参数规范.md)；BasisDel/SampleR等已有真实研究实例，正式宽度/归约与困难参数未准入。 | **独立完整研究HIBE及默认框架接入已实现**：[abb_rom](../src/ibme/hibe/abb_rom/)、[原整链/2×2](research/team-a-delivery/2026-10-14-abb-complete/README.md)、[默认CLI/六种IBS组合与安装](research/team-a-delivery/2026-10-15-framework-and-structured/README.md)。旧abb10.py仍是另列教学实现。当前q26/n1可公开恢复消息，none/false/false；正式参数/整体条件化及失败界仍待。 |
 | `chkp-rom` — CHKP 两层匿名 ROM HIBE | 普通 LWE，经典 ROM；匿名填充、固定同址解封装状态是具体条件 | [作者全文](../papers/2010_bonsai_trees_cash.pdf) §5.1–5.3；[当前交接](research/team-chkp/README.md)。当前n=2实例已被公开数据唯一恢复seed，不能提供LWE保密性 | **可运行研究后端，真实统一组合和CLI验收已通过**：[六方法与对象](../src/ibme/hibe/chkp/__init__.py)、[契约](specs/chkp-hibe.md)。MP12根转完整基、原CHKP RandBasis、四个真实叶各256目标/32 B seed；已接入Luo C64B compact + Hybrid + BYTEAUTH。[12阶段收据](research/2026-10-12-chkp-closure/README.md)保留根父复用与原失败来源。正式困难参数、资源和组合安全仍未准入；独立[first_suite DelTrap](research/2026-10-11-first-suite-compact/README.md)继续作为不同算法profile对照 |
 | `latte` — LATTE NTRU/RLWE HIBE | NTRU 结构陷门与 Ring-LWE 密文路线；完整定理依赖待逐项对应。IND-CCA 标签不能代替匿名性 | [作者接受稿](../papers/2024_quantum_safe_hibe_zhao.pdf)、固定作者代码`18cfbf9`；保留原LATTE-3数值，接收者匿名性及修订后分布/模型未准入。 | **独立研究HIBE已实现**：[六方法/五类对象](../src/ibme/hibe/latte/__init__.py)、[契约](specs/latte-hibe.md)、[C1交付](research/team-c-delivery/2026-10-14-latte-hibe/README.md)。真实N1024/q68718428161同根两次Delegate、四叶、32 B带噪声、2×2与恢复通过；COSAC缓冲修复保留原版差异。[默认登记/CLI、10配置338检查与原状态安装复放](research/team-c-delivery/2026-10-15-c-framework/README.md)已通过；匿名/采样总误差/正式参数仍none/false/false。 |
 | `gkr2025` — Goyal–Koppula–Rajasree 自适应 HIBE 编译器 | 标准模型论文路线；一般编译器依赖 PKE、OTSE、garbling、可委派 PRF；匿名 LWE 扩展另含 lockable obfuscation | [34 页用户完整稿](../papers/2025_adaptive_hibe_goyal.pdf)已取得；已定位 §3/Theorem 3.1 与匿名扩展。无本项目有限参数闭环 | **仅候选，复杂编译器储备**。无完整后端；须先明确匿名扩展和电路/对象规模，不能简化成一套普通矩阵公式 |

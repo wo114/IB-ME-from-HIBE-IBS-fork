@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "source_commit": "3a5e830",
+  "wheel_sha256": "25e1cb51292b54f95cb2a5e8462e1eab878abcbc64a0de2b11d84e67f157cb3b",
+  "wheel_bytes": 1377173,
+  "launcher_sha256": "1a5d15a92f19dbfcd026e77df709741a2cc5f69e3182c75f6c860a31a9cf2750",
+  "installed_root": "/tmp/ibme-a-installed.34r65TI7/site",
+  "outside_checkout": true,
+  "isolated": true,
+  "python": "3.13.14",
+  "sage": "10.9",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "native_binaries": [
+    {
+      "path": "/home/youzi/.cache/ibme-native-tools/certified-signatures-v1/bin/ibme-mldsa44",
+      "sha256": "bb222a5f6252dc85a20b517b878c03ddb7d00db70483c99d73a91e9ee2c488a8"
+    },
+    {
+      "path": "/home/youzi/.cache/ibme-native-tools/certified-falcon-v1/bin/ibme-falcon512",
+      "sha256": "8cb117604117cfc15661051838f0a24edb41ffe648292ef691e3a37ab46fd7eb"
+    }
+  ],
+  "receipts": 3,
+  "new_hibe_roots": 0,
+  "new_hibe_keys": 0,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
