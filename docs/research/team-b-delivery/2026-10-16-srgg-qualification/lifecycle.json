@@ -1,0 +1,528 @@
+{
+  "schema": "IBME/SRGG-QUALIFICATION-LIFECYCLE/1",
+  "environment": {
+    "python": "3.13.15",
+    "sage": "10.9",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "processor": "x86_64"
+  },
+  "profiles": [
+    {
+      "profile": "baseline-n8",
+      "parameters": {
+        "degree": 8,
+        "rank": 1,
+        "p": 257,
+        "base": 31,
+        "digits": 3,
+        "r_squared": 4,
+        "master_first_squared": 8388608,
+        "master_second_squared": 8388608,
+        "signature_first_squared": 137438953472,
+        "signature_second_squared": 137438953472,
+        "user_norm_squared": 536870912,
+        "signature_noise_factor": 2,
+        "identity_max_bytes": 256,
+        "message_max_bytes": 4096,
+        "max_users": 16,
+        "setup_max_attempts": 32,
+        "sign_max_attempts": 16,
+        "precision_bits": 192,
+        "ticket_bits": 128,
+        "scalar_tail_bits": 24,
+        "scalar_mass_bits": 64,
+        "gadget_tail_bits": 16
+      },
+      "roots_requested": 3,
+      "rng": "SecureRandom",
+      "roots": [
+        {
+          "root_index": 0,
+          "setup_succeeded": true,
+          "identities": [
+            {
+              "identity_bytes": 5,
+              "issuance_succeeded": true,
+              "signatures": [
+                {
+                  "message_bytes": 0,
+                  "verified": true,
+                  "signature_bytes": 476,
+                  "sign_seconds": 0.5406977239999975
+                },
+                {
+                  "message_bytes": 32,
+                  "verified": true,
+                  "signature_bytes": 489,
+                  "sign_seconds": 0.5279628580000093
+                },
+                {
+                  "message_bytes": 4096,
+                  "verified": true,
+                  "signature_bytes": 480,
+                  "sign_seconds": 0.5253861420000021
+                }
+              ],
+              "restore_succeeded": true,
+              "issuance_seconds": 0.44581387899999925,
+              "signing_key_bytes": 1804,
+              "cached_same_key": true,
+              "restored_public_matches": true,
+              "truncated_wire_rejected": true,
+              "appended_wire_rejected": true
+            },
+            {
+              "identity_bytes": 3,
+              "issuance_succeeded": true,
+              "signatures": [
+                {
+                  "message_bytes": 0,
+                  "verified": true,
+                  "signature_bytes": 481,
+                  "sign_seconds": 0.4814747980000078
+                },
+                {
+                  "message_bytes": 32,
+                  "verified": true,
+                  "signature_bytes": 485,
+                  "sign_seconds": 0.6707545929999981
+                },
+                {
+                  "message_bytes": 4096,
+                  "verified": true,
+                  "signature_bytes": 478,
+                  "sign_seconds": 0.4934142089999938
+                }
+              ],
+              "restore_succeeded": true,
+              "issuance_seconds": 0.25278487499998903,
+              "signing_key_bytes": 1792,
+              "cached_same_key": true,
+              "restored_public_matches": true,
+              "truncated_wire_rejected": true,
+              "appended_wire_rejected": true
+            }
+          ],
+          "setup_seconds": 4.035082391000003,
+          "public_key_bytes": 785,
+          "trusted_plaintext_state_bytes": 25485,
+          "public_negative_control": {
+            "evaluated_pairs": 20,
+            "accepted": true,
+            "user_secret_or_issuance_used": false
+          }
+        },
+        {
+          "root_index": 1,
+          "setup_succeeded": true,
+          "identities": [
+            {
+              "identity_bytes": 5,
+              "issuance_succeeded": true,
+              "signatures": [
+                {
+                  "message_bytes": 0,
+                  "verified": true,
+                  "signature_bytes": 472,
+                  "sign_seconds": 0.4143235379999908
+                },
+                {
+                  "message_bytes": 32,
+                  "verified": true,
+                  "signature_bytes": 475,
+                  "sign_seconds": 0.3914840799999979
+                },
+                {
+                  "message_bytes": 4096,
+                  "verified": true,
+                  "signature_bytes": 483,
+                  "sign_seconds": 0.3982680240000036
+                }
+              ],
+              "restore_succeeded": true,
+              "issuance_seconds": 0.19585002999998835,
+              "signing_key_bytes": 1792,
+              "cached_same_key": true,
+              "restored_public_matches": true,
+              "truncated_wire_rejected": true,
+              "appended_wire_rejected": true
+            },
+            {
+              "identity_bytes": 3,
+              "issuance_succeeded": true,
+              "signatures": [
+                {
+                  "message_bytes": 0,
+                  "verified": true,
+                  "signature_bytes": 476,
+                  "sign_seconds": 0.43890796299999124
+                },
+                {
+                  "message_bytes": 32,
+                  "verified": true,
+                  "signature_bytes": 487,
+                  "sign_seconds": 0.4591630070000008
+                },
+                {
+                  "message_bytes": 4096,
+                  "verified": true,
+                  "signature_bytes": 475,
+                  "sign_seconds": 0.4437304359999956
+                }
+              ],
+              "restore_succeeded": true,
+              "issuance_seconds": 0.289781241,
+              "signing_key_bytes": 1789,
+              "cached_same_key": true,
+              "restored_public_matches": true,
+              "truncated_wire_rejected": true,
+              "appended_wire_rejected": true
+            }
+          ],
+          "setup_seconds": 0.2701478999999978,
+          "public_key_bytes": 788,
+          "trusted_plaintext_state_bytes": 25413
+        },
+        {
+          "root_index": 2,
+          "setup_succeeded": true,
+          "identities": [
+            {
+              "identity_bytes": 5,
+              "issuance_succeeded": true,
+              "signatures": [
+                {
+                  "message_bytes": 0,
+                  "verified": true,
+                  "signature_bytes": 478,
+                  "sign_seconds": 0.4392195060000006
+                },
+                {
+                  "message_bytes": 32,
+                  "verified": true,
+                  "signature_bytes": 475,
+                  "sign_seconds": 0.5223312139999905
+                },
+                {
+                  "message_bytes": 4096,
+                  "verified": true,
+                  "signature_bytes": 480,
+                  "sign_seconds": 0.45884298100000365
+                }
+              ],
+              "restore_succeeded": true,
+              "issuance_seconds": 0.22741633199999,
+              "signing_key_bytes": 1810,
+              "cached_same_key": true,
+              "restored_public_matches": true,
+              "truncated_wire_rejected": true,
+              "appended_wire_rejected": true
+            },
+            {
+              "identity_bytes": 3,
+              "issuance_succeeded": true,
+              "signatures": [
+                {
+                  "message_bytes": 0,
+                  "verified": true,
+                  "signature_bytes": 478,
+                  "sign_seconds": 0.45519521800000007
+                },
+                {
+                  "message_bytes": 32,
+                  "verified": true,
+                  "signature_bytes": 477,
+                  "sign_seconds": 0.4693913930000093
+                },
+                {
+                  "message_bytes": 4096,
+                  "verified": true,
+                  "signature_bytes": 487,
+                  "sign_seconds": 0.50367344
+                }
+              ],
+              "restore_succeeded": true,
+              "issuance_seconds": 0.23740328899999952,
+              "signing_key_bytes": 1796,
+              "cached_same_key": true,
+              "restored_public_matches": true,
+              "truncated_wire_rejected": true,
+              "appended_wire_rejected": true
+            }
+          ],
+          "setup_seconds": 0.29224478399999043,
+          "public_key_bytes": 790,
+          "trusted_plaintext_state_bytes": 25559
+        }
+      ],
+      "root_reselection": false,
+      "security_claim": "none",
+      "parameters_are_formal": false,
+      "backend_admitted": false
+    },
+    {
+      "profile": "density-width3-n8",
+      "parameters": {
+        "degree": 8,
+        "rank": 1,
+        "p": 257,
+        "base": 31,
+        "digits": 4,
+        "r_squared": 9,
+        "master_first_squared": 8388608,
+        "master_second_squared": 8388608,
+        "signature_first_squared": 274877906944,
+        "signature_second_squared": 274877906944,
+        "user_norm_squared": 536870912,
+        "signature_noise_factor": 2,
+        "identity_max_bytes": 256,
+        "message_max_bytes": 4096,
+        "max_users": 16,
+        "setup_max_attempts": 32,
+        "sign_max_attempts": 16,
+        "precision_bits": 256,
+        "ticket_bits": 192,
+        "scalar_tail_bits": 64,
+        "scalar_mass_bits": 96,
+        "gadget_tail_bits": 64
+      },
+      "roots_requested": 3,
+      "rng": "SecureRandom",
+      "roots": [
+        {
+          "root_index": 0,
+          "setup_succeeded": true,
+          "identities": [
+            {
+              "identity_bytes": 5,
+              "issuance_succeeded": true,
+              "signatures": [
+                {
+                  "message_bytes": 0,
+                  "verified": true,
+                  "signature_bytes": 538,
+                  "sign_seconds": 0.9078802309999929
+                },
+                {
+                  "message_bytes": 32,
+                  "verified": true,
+                  "signature_bytes": 544,
+                  "sign_seconds": 0.9007060910000035
+                },
+                {
+                  "message_bytes": 4096,
+                  "verified": true,
+                  "signature_bytes": 544,
+                  "sign_seconds": 0.842607165000004
+                }
+              ],
+              "restore_succeeded": true,
+              "issuance_seconds": 0.44309507200000553,
+              "signing_key_bytes": 2082,
+              "cached_same_key": true,
+              "restored_public_matches": true,
+              "truncated_wire_rejected": true,
+              "appended_wire_rejected": true
+            },
+            {
+              "identity_bytes": 3,
+              "issuance_succeeded": true,
+              "signatures": [
+                {
+                  "message_bytes": 0,
+                  "verified": true,
+                  "signature_bytes": 541,
+                  "sign_seconds": 0.6952155419999997
+                },
+                {
+                  "message_bytes": 32,
+                  "verified": true,
+                  "signature_bytes": 550,
+                  "sign_seconds": 0.6841393339999939
+                },
+                {
+                  "message_bytes": 4096,
+                  "verified": true,
+                  "signature_bytes": 535,
+                  "sign_seconds": 0.6471630250000118
+                }
+              ],
+              "restore_succeeded": true,
+              "issuance_seconds": 0.47348154999998826,
+              "signing_key_bytes": 2067,
+              "cached_same_key": true,
+              "restored_public_matches": true,
+              "truncated_wire_rejected": true,
+              "appended_wire_rejected": true
+            }
+          ],
+          "setup_seconds": 0.8512762120000019,
+          "public_key_bytes": 909,
+          "trusted_plaintext_state_bytes": 29381,
+          "public_negative_control": {
+            "evaluated_pairs": 49,
+            "accepted": true,
+            "user_secret_or_issuance_used": false
+          }
+        },
+        {
+          "root_index": 1,
+          "setup_succeeded": true,
+          "identities": [
+            {
+              "identity_bytes": 5,
+              "issuance_succeeded": true,
+              "signatures": [
+                {
+                  "message_bytes": 0,
+                  "verified": true,
+                  "signature_bytes": 550,
+                  "sign_seconds": 0.6930059970000002
+                },
+                {
+                  "message_bytes": 32,
+                  "verified": true,
+                  "signature_bytes": 546,
+                  "sign_seconds": 0.6647514910000041
+                },
+                {
+                  "message_bytes": 4096,
+                  "verified": true,
+                  "signature_bytes": 543,
+                  "sign_seconds": 0.6584732370000097
+                }
+              ],
+              "restore_succeeded": true,
+              "issuance_seconds": 0.40533596200000943,
+              "signing_key_bytes": 2080,
+              "cached_same_key": true,
+              "restored_public_matches": true,
+              "truncated_wire_rejected": true,
+              "appended_wire_rejected": true
+            },
+            {
+              "identity_bytes": 3,
+              "issuance_succeeded": true,
+              "signatures": [
+                {
+                  "message_bytes": 0,
+                  "verified": true,
+                  "signature_bytes": 544,
+                  "sign_seconds": 0.7826822820000103
+                },
+                {
+                  "message_bytes": 32,
+                  "verified": true,
+                  "signature_bytes": 543,
+                  "sign_seconds": 0.7190586870000004
+                },
+                {
+                  "message_bytes": 4096,
+                  "verified": true,
+                  "signature_bytes": 546,
+                  "sign_seconds": 0.7067635490000015
+                }
+              ],
+              "restore_succeeded": true,
+              "issuance_seconds": 0.7647941399999922,
+              "signing_key_bytes": 2080,
+              "cached_same_key": true,
+              "restored_public_matches": true,
+              "truncated_wire_rejected": true,
+              "appended_wire_rejected": true
+            }
+          ],
+          "setup_seconds": 0.5852828639999927,
+          "public_key_bytes": 907,
+          "trusted_plaintext_state_bytes": 29431
+        },
+        {
+          "root_index": 2,
+          "setup_succeeded": true,
+          "identities": [
+            {
+              "identity_bytes": 5,
+              "issuance_succeeded": true,
+              "signatures": [
+                {
+                  "message_bytes": 0,
+                  "verified": true,
+                  "signature_bytes": 560,
+                  "sign_seconds": 0.7251458570000011
+                },
+                {
+                  "message_bytes": 32,
+                  "verified": true,
+                  "signature_bytes": 551,
+                  "sign_seconds": 0.7865081839999988
+                },
+                {
+                  "message_bytes": 4096,
+                  "verified": true,
+                  "signature_bytes": 549,
+                  "sign_seconds": 0.7960232810000036
+                }
+              ],
+              "restore_succeeded": true,
+              "issuance_seconds": 0.4313271709999924,
+              "signing_key_bytes": 2065,
+              "cached_same_key": true,
+              "restored_public_matches": true,
+              "truncated_wire_rejected": true,
+              "appended_wire_rejected": true
+            },
+            {
+              "identity_bytes": 3,
+              "issuance_succeeded": true,
+              "signatures": [
+                {
+                  "message_bytes": 0,
+                  "verified": true,
+                  "signature_bytes": 547,
+                  "sign_seconds": 0.7902270240000036
+                },
+                {
+                  "message_bytes": 32,
+                  "verified": true,
+                  "signature_bytes": 556,
+                  "sign_seconds": 0.855396116999998
+                },
+                {
+                  "message_bytes": 4096,
+                  "verified": true,
+                  "signature_bytes": 543,
+                  "sign_seconds": 0.7663783200000012
+                }
+              ],
+              "restore_succeeded": true,
+              "issuance_seconds": 0.47250907500000494,
+              "signing_key_bytes": 2069,
+              "cached_same_key": true,
+              "restored_public_matches": true,
+              "truncated_wire_rejected": true,
+              "appended_wire_rejected": true
+            }
+          ],
+          "setup_seconds": 0.571885652000006,
+          "public_key_bytes": 901,
+          "trusted_plaintext_state_bytes": 29261
+        }
+      ],
+      "root_reselection": false,
+      "security_claim": "none",
+      "parameters_are_formal": false,
+      "backend_admitted": false
+    }
+  ],
+  "limits": [
+    "Both profiles retain an 8-bit publicly forgeable challenge; neither is a formal candidate.",
+    "Small-root measurements do not estimate rare abort probability or a distribution distance.",
+    "This audits the standalone persistent issuer, not a selected HIBE composition.",
+    "Timings include validation and trusted local persistence; no constant-time claim.",
+    "Peak memory is cumulative process ru_maxrss, not a per-profile allocation measurement."
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "process_peak_rss_kib": 230508
+}

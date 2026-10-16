@@ -1,0 +1,2318 @@
+{
+  "backend_admitted": false,
+  "cases": [
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 2,
+        "fixture": "diagonal",
+        "leaf_degree": 2,
+        "name": "f-diagonal-2",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.0007791190000148163,
+          "entropy_bytes": 113,
+          "entropy_read_calls": 27,
+          "index": 0,
+          "output_dimension": 2,
+          "output_norm_squared": 9,
+          "output_sha256": "7c131fd95efadcf93597f1a2013987488f734db930f130f0e470e3b115b3228a",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.00043664999998327403,
+          "entropy_bytes": 162,
+          "entropy_read_calls": 34,
+          "index": 1,
+          "output_dimension": 2,
+          "output_norm_squared": 45,
+          "output_sha256": "62d263f88c825aad36879eaa362484bfff14d217e46a45c36f62885bac241161",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 2.8252999982214533e-05,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.7044781090000356,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.0075748550000298565,
+      "process_wall_seconds": 2.3803312879999794,
+      "public_certificate": {
+        "algorithm": "Peikert continuous Gaussian and fixed-width Gaussian rounding",
+        "backend_admitted": false,
+        "block_size": 2,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 2,
+        "dimension": 2,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 12272,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211576,
+        "ru_maxrss_raw": 211576,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 212348,
+        "ru_maxrss_raw": 212348,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 212348,
+        "ru_maxrss_raw": 212348,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d646961676f6e616c2d32"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.7136458770000331
+    },
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 4,
+        "fixture": "diagonal",
+        "leaf_degree": 4,
+        "name": "f-diagonal-4",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.0006346580000240465,
+          "entropy_bytes": 184,
+          "entropy_read_calls": 33,
+          "index": 0,
+          "output_dimension": 4,
+          "output_norm_squared": 4,
+          "output_sha256": "9f343f83c68ee74c7911ad1e1af56dff029ac7088e4aaad41dbaaa423439d976",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.0004749639999772626,
+          "entropy_bytes": 197,
+          "entropy_read_calls": 39,
+          "index": 1,
+          "output_dimension": 4,
+          "output_norm_squared": 14,
+          "output_sha256": "68b25f12a2179e2dc75cf0047d5ed9983ef59c0ebf910f0a9952bee8225f2439",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 2.9939000000922533e-05,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.3894906250000076,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.007359478000012132,
+      "process_wall_seconds": 1.8552185620000046,
+      "public_certificate": {
+        "algorithm": "Peikert continuous Gaussian and fixed-width Gaussian rounding",
+        "backend_admitted": false,
+        "block_size": 4,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 4,
+        "dimension": 4,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 24544,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211604,
+        "ru_maxrss_raw": 211604,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 212672,
+        "ru_maxrss_raw": 212672,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 212672,
+        "ru_maxrss_raw": 212672,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d646961676f6e616c2d34"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.3982188190000215
+    },
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 8,
+        "fixture": "diagonal",
+        "leaf_degree": 8,
+        "name": "f-diagonal-8",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.0007742710000115949,
+          "entropy_bytes": 335,
+          "entropy_read_calls": 61,
+          "index": 0,
+          "output_dimension": 8,
+          "output_norm_squared": 70,
+          "output_sha256": "bccd8fdf0bef96de10de2fea88518e87f73b1986ec84eb4d5150a737840292ad",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.0005012199999896438,
+          "entropy_bytes": 353,
+          "entropy_read_calls": 65,
+          "index": 1,
+          "output_dimension": 8,
+          "output_norm_squared": 132,
+          "output_sha256": "daa179cf98137b16b2b0e0edf4d7e77771b3233711af66c5d8fb0200a8fe8699",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 2.487199998313372e-05,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 0.9380062060000114,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.00756670599997733,
+      "process_wall_seconds": 1.2887050819999786,
+      "public_certificate": {
+        "algorithm": "Peikert continuous Gaussian and fixed-width Gaussian rounding",
+        "backend_admitted": false,
+        "block_size": 8,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 8,
+        "dimension": 8,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 49088,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211580,
+        "ru_maxrss_raw": 211580,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 212540,
+        "ru_maxrss_raw": 212540,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 212540,
+        "ru_maxrss_raw": 212540,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d646961676f6e616c2d38"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 0.9470798649999779
+    },
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 16,
+        "fixture": "diagonal",
+        "leaf_degree": 16,
+        "name": "f-diagonal-16",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.0012272700000153236,
+          "entropy_bytes": 810,
+          "entropy_read_calls": 164,
+          "index": 0,
+          "output_dimension": 16,
+          "output_norm_squared": 146,
+          "output_sha256": "ac41a37571e9ae0e91e75ab070b04f6dd428aab958d74c534a02ba87f801000a",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.001997031000030347,
+          "entropy_bytes": 1179,
+          "entropy_read_calls": 260,
+          "index": 1,
+          "output_dimension": 16,
+          "output_norm_squared": 241,
+          "output_sha256": "3c434d7905dab7b3e38317ffa7f3ba75fdf2ea1f32b8b26afc63d73b227b538c",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 4.6214999997573614e-05,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 0.9163370219999933,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.0069160280000346575,
+      "process_wall_seconds": 1.2826654469999994,
+      "public_certificate": {
+        "algorithm": "Peikert continuous Gaussian and fixed-width Gaussian rounding",
+        "backend_admitted": false,
+        "block_size": 16,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 16,
+        "dimension": 16,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 98176,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211964,
+        "ru_maxrss_raw": 211964,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 212868,
+        "ru_maxrss_raw": 212868,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 212868,
+        "ru_maxrss_raw": 212868,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d646961676f6e616c2d3136"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 0.9267631710000046
+    },
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 32,
+        "fixture": "diagonal",
+        "leaf_degree": 32,
+        "name": "f-diagonal-32",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.00403506500003914,
+          "entropy_bytes": 2062,
+          "entropy_read_calls": 455,
+          "index": 0,
+          "output_dimension": 32,
+          "output_norm_squared": 349,
+          "output_sha256": "764db59868755c0ef69b4901b9f68a21fcd1689d5b8adaf83bb75a1f18342126",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.0030720259999839072,
+          "entropy_bytes": 2258,
+          "entropy_read_calls": 504,
+          "index": 1,
+          "output_dimension": 32,
+          "output_norm_squared": 327,
+          "output_sha256": "4a7fa1b30b20e4add9130f5542cdcfa252254c8f926e7b59a28f7ec391437542",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 8.20030000454608e-05,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 0.8747802650000267,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.013675512000020262,
+      "process_wall_seconds": 1.2415932750000138,
+      "public_certificate": {
+        "algorithm": "Peikert continuous Gaussian and fixed-width Gaussian rounding",
+        "backend_admitted": false,
+        "block_size": 32,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 32,
+        "dimension": 32,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 196352,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211516,
+        "ru_maxrss_raw": 211516,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 212584,
+        "ru_maxrss_raw": 212584,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 212584,
+        "ru_maxrss_raw": 212584,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d646961676f6e616c2d3332"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 0.8959443460000216
+    },
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 64,
+        "fixture": "diagonal",
+        "leaf_degree": 64,
+        "name": "f-diagonal-64",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [],
+      "fixture_construction_seconds": 0.00022871799995982656,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 0.8799711499999603,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.04715691399997013,
+      "process_wall_seconds": 1.2331441239999776,
+      "public_certificate": null,
+      "rejection_reason": "numerical factors exceed the rational resource reserve",
+      "rejection_type": "ValueError",
+      "rss_after_import": {
+        "ru_maxrss_kib": 211852,
+        "ru_maxrss_raw": 211852,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 213260,
+        "ru_maxrss_raw": 213260,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 213260,
+        "ru_maxrss_raw": 213260,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "preflight_rejected",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d646961676f6e616c2d3634"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 0.927551085999994
+    },
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 128,
+        "fixture": "diagonal",
+        "leaf_degree": 128,
+        "name": "f-diagonal-128",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [],
+      "fixture_construction_seconds": 0.0012022149999779685,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.1021922410000116,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.35521484500003453,
+      "process_wall_seconds": 2.3355883180000205,
+      "public_certificate": null,
+      "rejection_reason": "numerical factors exceed the rational resource reserve",
+      "rejection_type": "ValueError",
+      "rss_after_import": {
+        "ru_maxrss_kib": 211476,
+        "ru_maxrss_raw": 211476,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 214924,
+        "ru_maxrss_raw": 214924,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 214924,
+        "ru_maxrss_raw": 214924,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "preflight_rejected",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d646961676f6e616c2d313238"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.4588266200000248
+    },
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 2,
+        "fixture": "rank-one",
+        "leaf_degree": 2,
+        "name": "f-rank-one-2",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.00030664500002330897,
+          "entropy_bytes": 127,
+          "entropy_read_calls": 27,
+          "index": 0,
+          "output_dimension": 2,
+          "output_norm_squared": 53,
+          "output_sha256": "2efdfcd9d7ca5dfc06c62d7aa2f73099dae0ffa39b5a22260fd77970d20df4f3",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.00013885799995705383,
+          "entropy_bytes": 86,
+          "entropy_read_calls": 14,
+          "index": 1,
+          "output_dimension": 2,
+          "output_norm_squared": 5,
+          "output_sha256": "990b9e009b6063528fd7b9ad7f982b5c9f4c83e50c0a0ab5204afcda32785fd5",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 2.5613999980578228e-05,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.0833095190000108,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.00699087100002771,
+      "process_wall_seconds": 1.4935414649999643,
+      "public_certificate": {
+        "algorithm": "Peikert continuous Gaussian and fixed-width Gaussian rounding",
+        "backend_admitted": false,
+        "block_size": 2,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 2,
+        "dimension": 2,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 12272,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211456,
+        "ru_maxrss_raw": 211456,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 212212,
+        "ru_maxrss_raw": 212212,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 212212,
+        "ru_maxrss_raw": 212212,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d72616e6b2d6f6e652d32"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.0909713069999611
+    },
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 8,
+        "fixture": "rank-one",
+        "leaf_degree": 8,
+        "name": "f-rank-one-8",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.0011785949999989498,
+          "entropy_bytes": 444,
+          "entropy_read_calls": 93,
+          "index": 0,
+          "output_dimension": 8,
+          "output_norm_squared": 89,
+          "output_sha256": "189b8c1c6cb18ae103390bf4518156794b1576ef6e05e4411cf373a089da53bd",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.0012788859999659508,
+          "entropy_bytes": 522,
+          "entropy_read_calls": 108,
+          "index": 1,
+          "output_dimension": 8,
+          "output_norm_squared": 100,
+          "output_sha256": "1365480747c6bf2775fe45f4daee8179974a00ac1997742296d66e9850b3ed0a",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 4.049300002861855e-05,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.0523672969999893,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.007410265999965304,
+      "process_wall_seconds": 1.4787652850000086,
+      "public_certificate": {
+        "algorithm": "Peikert continuous Gaussian and fixed-width Gaussian rounding",
+        "backend_admitted": false,
+        "block_size": 8,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 8,
+        "dimension": 8,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 49088,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211640,
+        "ru_maxrss_raw": 211640,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 212568,
+        "ru_maxrss_raw": 212568,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 212568,
+        "ru_maxrss_raw": 212568,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d72616e6b2d6f6e652d38"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.0625170590000153
+    },
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 32,
+        "fixture": "rank-one",
+        "leaf_degree": 32,
+        "name": "f-rank-one-32",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.005746906000013041,
+          "entropy_bytes": 1764,
+          "entropy_read_calls": 374,
+          "index": 0,
+          "output_dimension": 32,
+          "output_norm_squared": 195,
+          "output_sha256": "44bd7d72a415b3b250aec539f8deedf83b4a37c844c8991eb93d7eff2776cd25",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.0038465799999585215,
+          "entropy_bytes": 2003,
+          "entropy_read_calls": 445,
+          "index": 1,
+          "output_dimension": 32,
+          "output_norm_squared": 297,
+          "output_sha256": "6b21b461f3b0de604783ca4de87761d23c8d44aecb028094aeb9aef851986efa",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 0.0001465070000108426,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.0677439849999928,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.017915490999996564,
+      "process_wall_seconds": 1.490898389999984,
+      "public_certificate": {
+        "algorithm": "Peikert continuous Gaussian and fixed-width Gaussian rounding",
+        "backend_admitted": false,
+        "block_size": 32,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 32,
+        "dimension": 32,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 196352,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211512,
+        "ru_maxrss_raw": 211512,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 212412,
+        "ru_maxrss_raw": 212412,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 212412,
+        "ru_maxrss_raw": 212412,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d72616e6b2d6f6e652d3332"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.0956865200000152
+    },
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 64,
+        "fixture": "rank-one",
+        "leaf_degree": 64,
+        "name": "f-rank-one-64",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [],
+      "fixture_construction_seconds": 0.0004233409999869764,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.0890220020000356,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.07149124099998971,
+      "process_wall_seconds": 1.5704109489999496,
+      "public_certificate": null,
+      "rejection_reason": "numerical factors exceed the rational resource reserve",
+      "rejection_type": "ValueError",
+      "rss_after_import": {
+        "ru_maxrss_kib": 211716,
+        "ru_maxrss_raw": 211716,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 212928,
+        "ru_maxrss_raw": 212928,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 212928,
+        "ru_maxrss_raw": 212928,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "preflight_rejected",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d72616e6b2d6f6e652d3634"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.161143428999992
+    },
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 128,
+        "fixture": "rank-one",
+        "leaf_degree": 128,
+        "name": "f-rank-one-128",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [],
+      "fixture_construction_seconds": 0.0009505649999823618,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.126758051999957,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.4169302720000019,
+      "process_wall_seconds": 1.9443613859999687,
+      "public_certificate": null,
+      "rejection_reason": "numerical factors exceed the rational resource reserve",
+      "rejection_type": "ValueError",
+      "rss_after_import": {
+        "ru_maxrss_kib": 211428,
+        "ru_maxrss_raw": 211428,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 215032,
+        "ru_maxrss_raw": 215032,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 215032,
+        "ru_maxrss_raw": 215032,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "preflight_rejected",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d72616e6b2d6f6e652d313238"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.5448066509999876
+    },
+    {
+      "case": {
+        "algorithm": "p",
+        "dimension": 4,
+        "fixture": "diagonal",
+        "leaf_degree": 2,
+        "name": "p-diagonal-4-leaf2",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.0009757379999655313,
+          "entropy_bytes": 385,
+          "entropy_read_calls": 87,
+          "index": 0,
+          "output_dimension": 4,
+          "output_norm_squared": 60,
+          "output_sha256": "a4122cb0d7c39053eb9186a7608eb4aec3f414095c2a502510673a0b6361f6a8",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.0004537600000276143,
+          "entropy_bytes": 286,
+          "entropy_read_calls": 65,
+          "index": 1,
+          "output_dimension": 4,
+          "output_norm_squared": 105,
+          "output_sha256": "c3a3a339d509573767a551c13e3c4f5086763cc49a3ba4afa1cd4af463c55d6e",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 4.029199999422417e-05,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.0591709400000013,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.05229978700003812,
+      "process_wall_seconds": 1.5410398559999976,
+      "public_certificate": {
+        "algorithm": "last-polynomial-block-first Schur with SampleF leaves",
+        "backend_admitted": false,
+        "block_size": 2,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 4,
+        "dimension": 4,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 24544,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211812,
+        "ru_maxrss_raw": 211812,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 221448,
+        "ru_maxrss_raw": 221448,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 221448,
+        "ru_maxrss_raw": 221448,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a702d646961676f6e616c2d342d6c65616632"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.1132435869999995
+    },
+    {
+      "case": {
+        "algorithm": "p",
+        "dimension": 8,
+        "fixture": "diagonal",
+        "leaf_degree": 4,
+        "name": "p-diagonal-8-leaf4",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.0009956279999983053,
+          "entropy_bytes": 510,
+          "entropy_read_calls": 103,
+          "index": 0,
+          "output_dimension": 8,
+          "output_norm_squared": 21,
+          "output_sha256": "d94558ccf0a5dac8ee5fb05868ec2b40807fb2d846ddb9b4fc04e4c8a6a50f6b",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.000686099999995804,
+          "entropy_bytes": 478,
+          "entropy_read_calls": 106,
+          "index": 1,
+          "output_dimension": 8,
+          "output_norm_squared": 186,
+          "output_sha256": "db806a86b2e53c9acf1cc7183172080e22bb878703072259e0a1a8084676a9dc",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 3.960899999810863e-05,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.1033884230000126,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.0624981970000249,
+      "process_wall_seconds": 1.574408070000004,
+      "public_certificate": {
+        "algorithm": "last-polynomial-block-first Schur with SampleF leaves",
+        "backend_admitted": false,
+        "block_size": 4,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 8,
+        "dimension": 8,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 49088,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211752,
+        "ru_maxrss_raw": 211752,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 221912,
+        "ru_maxrss_raw": 221912,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 221912,
+        "ru_maxrss_raw": 221912,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a702d646961676f6e616c2d382d6c65616634"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.1678190760000007
+    },
+    {
+      "case": {
+        "algorithm": "p",
+        "dimension": 16,
+        "fixture": "diagonal",
+        "leaf_degree": 8,
+        "name": "p-diagonal-16-leaf8",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.0014883009999948627,
+          "entropy_bytes": 854,
+          "entropy_read_calls": 173,
+          "index": 0,
+          "output_dimension": 16,
+          "output_norm_squared": 149,
+          "output_sha256": "a8644d5dca91da15f200bf743f10e645e797b5380844219896ae57a79692811e",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.0009417240000288984,
+          "entropy_bytes": 726,
+          "entropy_read_calls": 150,
+          "index": 1,
+          "output_dimension": 16,
+          "output_norm_squared": 261,
+          "output_sha256": "836f35a4a8eb0e62288732e8c1a8b7747eb7c44606449a0713b5b7c5bacd2462",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 5.731900000682799e-05,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.082412507000015,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.06943498399999726,
+      "process_wall_seconds": 1.5987707909999926,
+      "public_certificate": {
+        "algorithm": "last-polynomial-block-first Schur with SampleF leaves",
+        "backend_admitted": false,
+        "block_size": 8,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 16,
+        "dimension": 16,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 98176,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211700,
+        "ru_maxrss_raw": 211700,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 221892,
+        "ru_maxrss_raw": 221892,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 221892,
+        "ru_maxrss_raw": 221892,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a702d646961676f6e616c2d31362d6c65616638"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.1545709380000062
+    },
+    {
+      "case": {
+        "algorithm": "p",
+        "dimension": 32,
+        "fixture": "diagonal",
+        "leaf_degree": 16,
+        "name": "p-diagonal-32-leaf16",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.0027211290000082045,
+          "entropy_bytes": 2043,
+          "entropy_read_calls": 436,
+          "index": 0,
+          "output_dimension": 32,
+          "output_norm_squared": 224,
+          "output_sha256": "cf52069adebda443ac5ebb21eab9a7a03a04c8bead2ee50192ae56e7ce36634f",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.002448672000014085,
+          "entropy_bytes": 2040,
+          "entropy_read_calls": 440,
+          "index": 1,
+          "output_dimension": 32,
+          "output_norm_squared": 270,
+          "output_sha256": "81e68684b3025924bab487ef24130026c270a611f965af4a0994846f77ebb90b",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 8.08510000069873e-05,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.1685723140000164,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.0508797869999853,
+      "process_wall_seconds": 1.66682152300001,
+      "public_certificate": {
+        "algorithm": "last-polynomial-block-first Schur with SampleF leaves",
+        "backend_admitted": false,
+        "block_size": 16,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 32,
+        "dimension": 32,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 196352,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211428,
+        "ru_maxrss_raw": 211428,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 222328,
+        "ru_maxrss_raw": 222328,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 222328,
+        "ru_maxrss_raw": 222328,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a702d646961676f6e616c2d33322d6c6561663136"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.2248915029999807
+    },
+    {
+      "case": {
+        "algorithm": "p",
+        "dimension": 64,
+        "fixture": "diagonal",
+        "leaf_degree": 32,
+        "name": "p-diagonal-64-leaf32",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.00796564400002353,
+          "entropy_bytes": 4465,
+          "entropy_read_calls": 992,
+          "index": 0,
+          "output_dimension": 64,
+          "output_norm_squared": 589,
+          "output_sha256": "c4644d50b331831fec03098371bcbd96dd48e05a4f0e19ab9717184dcc615ca5",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.005517356999973799,
+          "entropy_bytes": 4208,
+          "entropy_read_calls": 938,
+          "index": 1,
+          "output_dimension": 64,
+          "output_norm_squared": 845,
+          "output_sha256": "f92c47eac78cf8b771e6a3ba30f784a8cf462e11c98fde64bb9eeb34692a0714",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 0.00019232199997532007,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.12353478,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.084650063999959,
+      "process_wall_seconds": 1.6430833009999901,
+      "public_certificate": {
+        "algorithm": "last-polynomial-block-first Schur with SampleF leaves",
+        "backend_admitted": false,
+        "block_size": 32,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 64,
+        "dimension": 64,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 392704,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211392,
+        "ru_maxrss_raw": 211392,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 222500,
+        "ru_maxrss_raw": 222500,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 222500,
+        "ru_maxrss_raw": 222500,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a702d646961676f6e616c2d36342d6c6561663332"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.2221734009999636
+    },
+    {
+      "case": {
+        "algorithm": "p",
+        "dimension": 128,
+        "fixture": "diagonal",
+        "leaf_degree": 64,
+        "name": "p-diagonal-128-leaf64",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [],
+      "fixture_construction_seconds": 0.0018214080000120703,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.142169268000032,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.2015619700000002,
+      "process_wall_seconds": 1.787183361000018,
+      "public_certificate": null,
+      "rejection_reason": "numerical factors exceed the rational resource reserve",
+      "rejection_type": "ValueError",
+      "rss_after_import": {
+        "ru_maxrss_kib": 211348,
+        "ru_maxrss_raw": 211348,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 222500,
+        "ru_maxrss_raw": 222500,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 222500,
+        "ru_maxrss_raw": 222500,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "preflight_rejected",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a702d646961676f6e616c2d3132382d6c6561663634"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.3457651970000484
+    },
+    {
+      "case": {
+        "algorithm": "p",
+        "dimension": 128,
+        "fixture": "diagonal",
+        "leaf_degree": 128,
+        "name": "p-diagonal-128-leaf128",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [],
+      "fixture_construction_seconds": 0.0006832369999756338,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.028044221000016,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.4221317870000121,
+      "process_wall_seconds": 1.8750857189999692,
+      "public_certificate": null,
+      "rejection_reason": "numerical factors exceed the rational resource reserve",
+      "rejection_type": "ValueError",
+      "rss_after_import": {
+        "ru_maxrss_kib": 211668,
+        "ru_maxrss_raw": 211668,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 226316,
+        "ru_maxrss_raw": 226316,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 226316,
+        "ru_maxrss_raw": 226316,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "preflight_rejected",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a702d646961676f6e616c2d3132382d6c656166313238"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.451004237999996
+    },
+    {
+      "case": {
+        "algorithm": "p",
+        "dimension": 8,
+        "fixture": "rank-one",
+        "leaf_degree": 2,
+        "name": "p-rank-one-8-leaf2",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.001937741000006099,
+          "entropy_bytes": 458,
+          "entropy_read_calls": 100,
+          "index": 0,
+          "output_dimension": 8,
+          "output_norm_squared": 99,
+          "output_sha256": "2fbbe7b0e8d366e5bb7db786d968b624974c5221c90a088970961664807ab52e",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.0028960029999893777,
+          "entropy_bytes": 568,
+          "entropy_read_calls": 126,
+          "index": 1,
+          "output_dimension": 8,
+          "output_norm_squared": 87,
+          "output_sha256": "be1acad69b4831f8b3e0d535e193f344aa4380ad9f77c4fd6527571374c8da5a",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 2.517699999771139e-05,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.0218198899999607,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.06747957800001814,
+      "process_wall_seconds": 1.4809633040000563,
+      "public_certificate": {
+        "algorithm": "last-polynomial-block-first Schur with SampleF leaves",
+        "backend_admitted": false,
+        "block_size": 2,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 8,
+        "dimension": 8,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 49088,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211432,
+        "ru_maxrss_raw": 211432,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 221416,
+        "ru_maxrss_raw": 221416,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 221416,
+        "ru_maxrss_raw": 221416,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a702d72616e6b2d6f6e652d382d6c65616632"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.0943974919999846
+    },
+    {
+      "case": {
+        "algorithm": "p",
+        "dimension": 32,
+        "fixture": "rank-one",
+        "leaf_degree": 8,
+        "name": "p-rank-one-32-leaf8",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.005809209999995346,
+          "entropy_bytes": 2194,
+          "entropy_read_calls": 475,
+          "index": 0,
+          "output_dimension": 32,
+          "output_norm_squared": 301,
+          "output_sha256": "5a404d8b86cdd41c07a0c122200e11dd4cc4cca3ae3dc3723334aedfec4eaee2",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.0035851780000371036,
+          "entropy_bytes": 1957,
+          "entropy_read_calls": 420,
+          "index": 1,
+          "output_dimension": 32,
+          "output_norm_squared": 228,
+          "output_sha256": "2a1e508b96f58c967eb05264360dbfd581bae5dae5207663e6cbf128d4daa344",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 0.00015533700002379192,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 0.9666481560000193,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.061206432999995286,
+      "process_wall_seconds": 1.4139573909999967,
+      "public_certificate": {
+        "algorithm": "last-polynomial-block-first Schur with SampleF leaves",
+        "backend_admitted": false,
+        "block_size": 8,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 32,
+        "dimension": 32,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 196352,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211524,
+        "ru_maxrss_raw": 211524,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 222004,
+        "ru_maxrss_raw": 222004,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 222004,
+        "ru_maxrss_raw": 222004,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a702d72616e6b2d6f6e652d33322d6c65616638"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.0376494410000419
+    },
+    {
+      "case": {
+        "algorithm": "p",
+        "dimension": 64,
+        "fixture": "rank-one",
+        "leaf_degree": 16,
+        "name": "p-rank-one-64-leaf16",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.005925424999986717,
+          "entropy_bytes": 3888,
+          "entropy_read_calls": 842,
+          "index": 0,
+          "output_dimension": 64,
+          "output_norm_squared": 631,
+          "output_sha256": "25d778b0121cada44fb6d839e25b558293cbf6e9c825ed0d9ecf15c155c3613c",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.00729511999998067,
+          "entropy_bytes": 4091,
+          "entropy_read_calls": 877,
+          "index": 1,
+          "output_dimension": 64,
+          "output_norm_squared": 662,
+          "output_sha256": "151225a20f690f73c0f5631e9e762d67d3336327c6a0ec86866e43e80cc57676",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 0.0002612939999835362,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.0560746440000344,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.07236128300002065,
+      "process_wall_seconds": 1.593522873999973,
+      "public_certificate": {
+        "algorithm": "last-polynomial-block-first Schur with SampleF leaves",
+        "backend_admitted": false,
+        "block_size": 16,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 64,
+        "dimension": 64,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 392704,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211556,
+        "ru_maxrss_raw": 211556,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 223288,
+        "ru_maxrss_raw": 223288,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 223288,
+        "ru_maxrss_raw": 223288,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a702d72616e6b2d6f6e652d36342d6c6561663136"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.1421606549999979
+    },
+    {
+      "case": {
+        "algorithm": "p",
+        "dimension": 128,
+        "fixture": "rank-one",
+        "leaf_degree": 32,
+        "name": "p-rank-one-128-leaf32",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [
+        {
+          "elapsed_seconds": 0.029289251000022887,
+          "entropy_bytes": 8935,
+          "entropy_read_calls": 1996,
+          "index": 0,
+          "output_dimension": 128,
+          "output_norm_squared": 1386,
+          "output_sha256": "85be5bafdc2cb7141633b9ed8ffaf6c861d33932acc72784a5aefc2c24e3925e",
+          "status": "success"
+        },
+        {
+          "elapsed_seconds": 0.019666723000000275,
+          "entropy_bytes": 7544,
+          "entropy_read_calls": 1655,
+          "index": 1,
+          "output_dimension": 128,
+          "output_norm_squared": 1231,
+          "output_sha256": "2cc0839950fb00a23132b9dbe0b7628634085bb2b787e8b6f90bb43748e8c75c",
+          "status": "success"
+        }
+      ],
+      "fixture_construction_seconds": 0.0011592329999530193,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.2267237689999888,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.24579766400000835,
+      "process_wall_seconds": 1.990123744000016,
+      "public_certificate": {
+        "algorithm": "last-polynomial-block-first Schur with SampleF leaves",
+        "backend_admitted": false,
+        "block_size": 32,
+        "constant_time": false,
+        "continuous_stage_tv_certified": false,
+        "continuous_ticket_count": 128,
+        "dimension": 128,
+        "finite_uniform_grid": true,
+        "full_target_tv_upper_including_abort": null,
+        "independent_uniform_bytes_assumed": true,
+        "precision_bits": 192,
+        "public_entropy_upper_bytes": 785408,
+        "real_precision_error_certified": false,
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_width_squared": "4",
+        "security_claim": "none",
+        "ticket_bits": 128
+      },
+      "rss_after_import": {
+        "ru_maxrss_kib": 211688,
+        "ru_maxrss_raw": 211688,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 226104,
+        "ru_maxrss_raw": 226104,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 226104,
+        "ru_maxrss_raw": 226104,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "success",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a702d72616e6b2d6f6e652d3132382d6c6561663332"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.5229084579999608
+    },
+    {
+      "case": {
+        "algorithm": "p",
+        "dimension": 128,
+        "fixture": "rank-one",
+        "leaf_degree": 64,
+        "name": "p-rank-one-128-leaf64",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [],
+      "fixture_construction_seconds": 0.0010021549999805757,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.218818844999987,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.1869375520000176,
+      "process_wall_seconds": 1.8796547839999675,
+      "public_certificate": null,
+      "rejection_reason": "numerical factors exceed the rational resource reserve",
+      "rejection_type": "ValueError",
+      "rss_after_import": {
+        "ru_maxrss_kib": 211520,
+        "ru_maxrss_raw": 211520,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 222560,
+        "ru_maxrss_raw": 222560,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 222560,
+        "ru_maxrss_raw": 222560,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "preflight_rejected",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a702d72616e6b2d6f6e652d3132382d6c6561663634"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.406992171000013
+    },
+    {
+      "case": {
+        "algorithm": "p",
+        "dimension": 128,
+        "fixture": "rank-one",
+        "leaf_degree": 128,
+        "name": "p-rank-one-128-leaf128",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [],
+      "fixture_construction_seconds": 0.0009906230000069627,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.1437907100000189,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.5128696759999798,
+      "process_wall_seconds": 2.198112108000032,
+      "public_certificate": null,
+      "rejection_reason": "numerical factors exceed the rational resource reserve",
+      "rejection_type": "ValueError",
+      "rss_after_import": {
+        "ru_maxrss_kib": 211684,
+        "ru_maxrss_raw": 211684,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 226560,
+        "ru_maxrss_raw": 226560,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 226560,
+        "ru_maxrss_raw": 226560,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "preflight_rejected",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a702d72616e6b2d6f6e652d3132382d6c656166313238"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.6578470320000065
+    },
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 129,
+        "fixture": "diagonal",
+        "leaf_degree": 129,
+        "name": "f-dimension129-rejection",
+        "rational_bits": 8192,
+        "width_squared": 4
+      },
+      "draws": [],
+      "fixture_construction_seconds": 0.0007798659999593838,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.1769060459999992,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 7.0469999968736374e-06,
+      "process_wall_seconds": 1.6692931030000295,
+      "public_certificate": null,
+      "rejection_reason": "private shape exceeds public dimension limit",
+      "rejection_type": "ValueError",
+      "rss_after_import": {
+        "ru_maxrss_kib": 211584,
+        "ru_maxrss_raw": 211584,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 211584,
+        "ru_maxrss_raw": 211584,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 211584,
+        "ru_maxrss_raw": 211584,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "preflight_rejected",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d64696d656e73696f6e3132392d72656a656374696f6e"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.1778154670000163
+    },
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 2,
+        "fixture": "diagonal",
+        "leaf_degree": 2,
+        "name": "f-width-over-profile",
+        "rational_bits": 8192,
+        "width_squared": 1000000000001
+      },
+      "draws": [],
+      "fixture_construction_seconds": 2.276099996834091e-05,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.334614332000001,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 8192,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.002668508999988717,
+      "process_wall_seconds": 1.8613356139999837,
+      "public_certificate": null,
+      "rejection_reason": "fixed integer-Gaussian width outside public online profile",
+      "rejection_type": "ValueError",
+      "rss_after_import": {
+        "ru_maxrss_kib": 211612,
+        "ru_maxrss_raw": 211612,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 211988,
+        "ru_maxrss_raw": 211988,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 211988,
+        "ru_maxrss_raw": 211988,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "preflight_rejected",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d77696474682d6f7665722d70726f66696c65"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.3374442459999614
+    },
+    {
+      "case": {
+        "algorithm": "f",
+        "dimension": 8,
+        "fixture": "rank-one",
+        "leaf_degree": 8,
+        "name": "f-low-rational-reserve",
+        "rational_bits": 2048,
+        "width_squared": 4
+      },
+      "draws": [],
+      "fixture_construction_seconds": 2.386999994996586e-05,
+      "fixture_spd_argument": "(rounding_width_squared+60) I plus optional vv^T; residual at least 60 I",
+      "import_seconds": 1.1929986160000112,
+      "injected_entropy_bytes_before_draw": 0,
+      "options": {
+        "gaussian_abort_bits": 24,
+        "mass_bits": 64,
+        "max_coefficient_bits": 1024,
+        "max_dimension": 128,
+        "max_entropy_bytes": 268435456,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "max_uniform_trials": 64,
+        "precision_bits": 192,
+        "rational_bits": 2048,
+        "tail_bits": 24,
+        "ticket_bits": 128
+      },
+      "prepare_seconds": 0.0049017450000405915,
+      "process_wall_seconds": 1.7177258679999454,
+      "public_certificate": null,
+      "rejection_reason": "numerical factors exceed the rational resource reserve",
+      "rejection_type": "ValueError",
+      "rss_after_import": {
+        "ru_maxrss_kib": 211652,
+        "ru_maxrss_raw": 211652,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_after_prepare": {
+        "ru_maxrss_kib": 212752,
+        "ru_maxrss_raw": 212752,
+        "ru_maxrss_units": "KiB"
+      },
+      "rss_final": {
+        "ru_maxrss_kib": 212752,
+        "ru_maxrss_raw": 212752,
+        "ru_maxrss_units": "KiB"
+      },
+      "sage_version": "10.9",
+      "status": "preflight_rejected",
+      "test_randomness": {
+        "deterministic_test_only": true,
+        "seed_hex": "535247472d5055424c49432d5245534f555243452d50524f42452d544553542d4f4e4c592d76313a662d6c6f772d726174696f6e616c2d72657365727665"
+      },
+      "timeout_seconds": 20,
+      "timing_is_censored": false,
+      "worker_elapsed_seconds": 1.198039141000038
+    }
+  ],
+  "created_utc": "2026-10-16T05:07:23.928991+00:00",
+  "environment": {
+    "executable": "~/miniconda3/envs/sage/bin/python",
+    "logical_cpu_count": 20,
+    "measurement_clock": "time.perf_counter",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "processor": "Intel(R) Core(TM) Ultra 7 255HX",
+    "python": "3.13.15 | packaged by conda-forge | (main, Sep  2 2026, 22:01:58) [GCC 15.3.0]",
+    "rss_method": "fresh worker resource.getrusage(RUSAGE_SELF).ru_maxrss; Linux KiB",
+    "source_sha256": {
+      "experiments/research/candidates/srgg/full_sampling.py": "a639481162e40caa209af1f0e6f0a97a2699f599fb0ed7cdda595ab13f56ab6f",
+      "experiments/research/candidates/srgg/resource_probe.py": "0f9b95882d9afa9f17512628a1a25f79c3646806ffcfe25aafdc26624c56103f",
+      "experiments/research/online_gaussian_reference.py": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa"
+    }
+  },
+  "limitations": [
+    "Timing and RSS are single-run fixture observations, not a representative IBS benchmark.",
+    "ru_maxrss includes interpreter/Sage import and is a high-water mark, not a matrix-only allocation.",
+    "The deterministic seed is test-only and no production cryptographic material is generated.",
+    "Existing scalar width, rational reserve and dense admission gates are unchanged.",
+    "No full-TV, sampler-distribution, hardness or formal-security certificate follows."
+  ],
+  "parameters_are_formal": false,
+  "repetitions_per_prepared_case": 2,
+  "schema": "IBME/SRGG-SAMPLER-RESOURCE-PROBE/1",
+  "scope": "public SPD fixture sampler engineering measurements; no IBS/HIBE key or signature execution",
+  "security_claim": "none",
+  "status_counts": {
+    "preflight_rejected": 11,
+    "success": 17
+  },
+  "timeout_seconds_per_case_including_import": 20
+}
