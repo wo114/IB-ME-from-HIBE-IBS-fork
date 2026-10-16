@@ -1,0 +1,125 @@
+{
+  "schema": "IBME/SRGG-SEEDED-XOF-EMBEDDING/1",
+  "input_path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge.json",
+  "input_sha256": "23534aec4f2a5d208d083e5830001318c072c6c4af157d6d3c27cc73b934033e",
+  "source_sha256": {
+    "experiments/research/candidates/srgg/seeded_xof.py": "37b1f68ccd36d1c6c908e4d4e0e9348b3f78fa8e8fb54c82bad5523e5a4102d3",
+    "experiments/research/candidates/srgg/structured_execution.py": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67",
+    "experiments/research/candidates/wang_pw/hashing.py": "17ac4878d5b9541c21a1f5a4bac948248557e4a089b1f61a436df16970fa41a0",
+    "src/ibme/core/encoding.py": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+  },
+  "parameters": {
+    "degree": 512,
+    "rank": 2,
+    "p": 16383,
+    "base": 31,
+    "digits": 8,
+    "r_squared": 64,
+    "master_squared": 1031865954433,
+    "signature_squared": 22159188660729268928705,
+    "raw_norm_cap": 169060917974302720,
+    "user_norm_cap": 338122385570209792,
+    "signature_norm_cap": 238255596480161099521436160,
+    "sign_max_attempts": 16
+  },
+  "environment": {
+    "python": "3.14.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel"
+  },
+  "matrix_expansion": {
+    "q": 13972913866395903,
+    "word_bits": 56,
+    "word_range_size": 72057594037927936,
+    "accepted_lifts_per_residue": 5,
+    "limit": 69864569331979515,
+    "rejected_words": 2193024705948421,
+    "rho": "2193024705948421/72057594037927936",
+    "coefficient_count": 2048,
+    "word_bytes": 7,
+    "max_trials_per_coefficient": 256,
+    "raw_read_budget_bytes": 8388608,
+    "maximum_consumed_bytes_before_success_or_abort": 3670016,
+    "generated_prefix_cache_bytes_upper": 4194304,
+    "byte_budget_always_sufficient_under_trial_cap": true,
+    "extra_read_budget_failure_probability": "0",
+    "exact_trial_failure_probability_expression": "1-(1-rho^max_trials)^coefficient_count",
+    "exact_union_bound_factored": {
+      "factor": 2048,
+      "base": "2193024705948421/72057594037927936",
+      "exponent": 256
+    },
+    "trial_failure_upper_dyadic_exact": "1/5203966097332199540962620163682042769307631123633352402659556175201804029836680149006119720866162092421210806977140503895691783124161732454069953302838660381462064754694610172886591674830791775236479710273844905605846838573774239433481250692219130145866174442655580414269208292514127802333112415945459400923534111101570260513349217744366479014439025434868093450357360355277851584364544",
+    "trial_failure_upper_dyadic_exponent": -1278,
+    "failure_retained_as_abort": true,
+    "Public_recomputation_is_same_oracle_point_not_another_failure_trial": true,
+    "XOFStream_buffer_is_a_prefix_cache_not_an_extra_independent_stream": true
+  },
+  "identity_expansion": {
+    "q": 13972913866395903,
+    "word_bits": 56,
+    "word_range_size": 72057594037927936,
+    "accepted_lifts_per_residue": 5,
+    "limit": 69864569331979515,
+    "rejected_words": 2193024705948421,
+    "rho": "2193024705948421/72057594037927936",
+    "coefficient_count": 1024,
+    "word_bytes": 7,
+    "max_trials_per_coefficient": 256,
+    "raw_read_budget_bytes": 4194304,
+    "maximum_consumed_bytes_before_success_or_abort": 1835008,
+    "generated_prefix_cache_bytes_upper": 2097152,
+    "byte_budget_always_sufficient_under_trial_cap": true,
+    "extra_read_budget_failure_probability": "0",
+    "exact_trial_failure_probability_expression": "1-(1-rho^max_trials)^coefficient_count",
+    "exact_union_bound_factored": {
+      "factor": 1024,
+      "base": "2193024705948421/72057594037927936",
+      "exponent": 256
+    },
+    "trial_failure_upper_dyadic_exact": "1/10407932194664399081925240327364085538615262247266704805319112350403608059673360298012239441732324184842421613954281007791383566248323464908139906605677320762924129509389220345773183349661583550472959420547689811211693677147548478866962501384438260291732348885311160828538416585028255604666224831890918801847068222203140521026698435488732958028878050869736186900714720710555703168729088",
+    "trial_failure_upper_dyadic_exponent": -1279,
+    "failure_retained_as_abort": true,
+    "Public_recomputation_is_same_oracle_point_not_another_failure_trial": true,
+    "XOFStream_buffer_is_a_prefix_cache_not_an_extra_independent_stream": true
+  },
+  "classical_prequery_rows": [
+    {
+      "queries": 0,
+      "seed_hit_upper_exact": "0"
+    },
+    {
+      "queries": 1048576,
+      "seed_hit_upper_exact": "1/110427941548649020598956093796432407239217743554726184882600387580788736"
+    },
+    {
+      "queries": 1099511627776,
+      "seed_hit_upper_exact": "1/105312291668557186697918027683670432318895095400549111254310977536"
+    }
+  ],
+  "finite_model": {
+    "q": 3,
+    "word_bits": 2,
+    "count": 2,
+    "max_trials": 2,
+    "raw_trajectory_count": 43,
+    "uniform_target_mixture_count": 43,
+    "whole_trajectory_TV_exact": "0",
+    "observed_prefix_words": 5,
+    "prefix_to_iid_TV_exact": "0",
+    "raw_abort_mass_exact": "31/256",
+    "scope": "exhaustive finite law including abort and fresh continuation; no secret material"
+  },
+  "actual_entropy_bytes": 0,
+  "experiment_kind": "deterministic exhaustive finite model and exact arithmetic; no random repetitions",
+  "classical_ideal_XOF_initialization_lemma": "conditional proof in seeded-xof.md; retained failure",
+  "QROM_initial_joint_law_scope": "only explicitly coherent ideal-byte oracle initialized before all queries",
+  "quantum_prequery_bound_established": false,
+  "QROM_IBS_security_proved": false,
+  "production_SHAKE_or_QRO_programmed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}

@@ -1,0 +1,107 @@
+{
+  "schema": "IBME/SRGG-CLASSICAL-ROM-VALIDATION/1",
+  "base_commit": "63ea9fc22911ccc6a745ab3291bb491458b05eb1",
+  "test_suites": {
+    "sage-final": {
+      "receipt": "sage-final.junit.xml",
+      "tests": 799,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "windows-components": {
+      "receipt": "windows-components.junit.xml",
+      "tests": 42,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "seeded-xof-independent": {
+      "receipt": "seeded-xof-independent.junit.xml",
+      "tests": 21,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "public-pairs-independent": {
+      "receipt": "public-pairs-independent.junit.xml",
+      "tests": 21,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "reduction-samplers-independent": {
+      "receipt": "reduction-samplers-independent.junit.xml",
+      "tests": 53,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "seeded-xof-metadata-final": {
+      "receipt": "seeded-xof-metadata-final.junit.xml",
+      "tests": 21,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "commands": {
+    "sage-final": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_*.py tests/test_primitive_spec_audit.py --junitxml=build/outputs/srgg-classical-rom-2026-10-16/sage-final.junit.xml",
+    "windows-components": "python -m pytest -q tests/test_srgg_seeded_xof.py tests/test_srgg_public_pairs.py --junitxml=build/outputs/srgg-classical-rom-2026-10-16/windows-components.junit.xml",
+    "seeded-xof-independent": "python -m pytest -q tests/test_srgg_seeded_xof.py --junitxml=build/outputs/srgg-classical-rom-2026-10-16/seeded-xof-independent.junit.xml",
+    "public-pairs-independent": "python -m pytest -q tests/test_srgg_public_pairs.py --junitxml=build/outputs/srgg-classical-rom-2026-10-16/public-pairs-independent.junit.xml",
+    "reduction-samplers-independent": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_reduction_samplers.py --junitxml=build/outputs/srgg-classical-rom-2026-10-16/reduction-samplers-independent.junit.xml",
+    "seeded-xof-metadata-final": "python -m pytest -q tests/test_srgg_seeded_xof.py --junitxml=build/outputs/srgg-classical-rom-2026-10-16/seeded-xof-metadata-final.junit.xml"
+  },
+  "environment": {
+    "Sage": "10.9",
+    "Sage Python": "3.13.15",
+    "Windows Python": "3.14.7",
+    "hardware": "Intel Core Ultra 7 255HX; WSL2 visible 20 logical CPUs; affinity/frequency not fixed"
+  },
+  "public_json_byte_copies": [
+    "seeded-xof.json",
+    "public-pairs.json",
+    "reduction-samplers.json"
+  ],
+  "evidence_transformations": [
+    {
+      "path": "sage-final.junit.xml",
+      "operation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "path": "windows-components.junit.xml",
+      "operation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "path": "seeded-xof-independent.junit.xml",
+      "operation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "path": "public-pairs-independent.junit.xml",
+      "operation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "path": "reduction-samplers-independent.junit.xml",
+      "operation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "path": "seeded-xof-metadata-final.junit.xml",
+      "operation": "remove JUnit hostname; XML serialization and LF"
+    }
+  ],
+  "raw_receipts_preserved_under": "build/outputs/srgg-classical-rom-2026-10-16",
+  "overlapping_suites_are_not_independent_trials": true,
+  "experiments": {
+    "new_n512_crypto_lifecycles": 0,
+    "public_n512_sampler_certificates": "zero entropy; no secret samples",
+    "small_sampler_tests": "actual finite scalar/aggregate sampling; deterministic test RNG",
+    "law_probes": "exact finite enumeration; no real identities/messages; not cryptographic attack trials"
+  },
+  "security_model": "conditional classical ideal-XOF; actual adaptive IBS and QROM reductions open",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null,
+  "post_regression_change": "Added explicit nist_security_category=null report metadata only; regenerated report and reran all 21 seeded tests. The 799-case Sage receipt predates this metadata-only change."
+}
