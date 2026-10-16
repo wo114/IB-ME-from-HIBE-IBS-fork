@@ -278,5 +278,13 @@
     "native_strong_ROM_QROM": "conditional local kernels/prototype; full Run/E and quantum route open",
     "formal_parameters_hardness": "old point below target; new candidate structure/conditions/execution open",
     "independent_interfaces_persistent_service": "engineering delivered separately; shared HIBE/CLI integration excluded"
+  },
+  "git_byte_preservation": {
+    "attributes_file": ".gitattributes",
+    "quotient-challenge.json": "-text -eol; original CRLF bytes preserved; whitespace treats CR as line ending and retains the default blank/space checks",
+    "runner-development-failure.junit.xml": "-whitespace; original pytest traceback spaces preserved",
+    "sage-full-final.stdout.txt": "-whitespace; original final blank line preserved",
+    "implementation_whitespace_checks_unchanged": true,
+    "initial_publication_commit_note": "9f0b9df staged JSON with Git LF normalization; this local fix restores original bytes and a manifest that also matches Git blobs. No remote push."
   }
 }

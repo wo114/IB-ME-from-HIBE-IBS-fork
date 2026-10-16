@@ -33,7 +33,7 @@
 
 lossy 原文末尾所说“ignored 原始材料不默认随 Git 传输”描述原来目录；**本 followup 现在包含脚本/JSON 的公开副本**，复现不再依赖原机器的 ignored 文件。
 
-所有 JSON 按原始字节复制；原路径和 SHA-256 记在 validation。公开 JUnit 只移除 `hostname` 属性，再以 UTF-8/LF 序列化；测试名、结果、计数和耗时不改。原始收据仍保留在 ignored build，未覆盖它们。目录和公开命令使用仓库相对路径，无私人机器名或用户目录。
+所有 JSON 按原始字节复制；原路径和 SHA-256 记在 validation。目录内窄范围 `.gitattributes` 保留 quotient JSON 的原 CRLF 字节；历史失败 XML 的行尾间隔和原始 stdout 末尾空行也保持，仅这两份归档证据不作 whitespace 诊断。实现源码仍按仓库正常规则检查。公开 JUnit 只移除 `hostname` 属性，再以 UTF-8/LF 序列化；测试名、结果、计数和耗时不改。原始收据仍保留在 ignored build，未覆盖它们。目录和公开命令使用仓库相对路径，无私人机器名或用户目录。
 
 ## 3. 已运行的验证
 

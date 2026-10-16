@@ -1,0 +1,7 @@
+# Preserve the original Windows JSON receipt, including its CRLF bytes.
+quotient-challenge.json -text -eol whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Raw evidence retains pytest's traceback spacing and final stdout blank line.
+# These exceptions apply only to archived evidence, never implementation code.
+runner-development-failure.junit.xml -whitespace
+sage-full-final.stdout.txt -whitespace
