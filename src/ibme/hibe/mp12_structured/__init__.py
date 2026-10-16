@@ -9,10 +9,12 @@ BACKEND_VERSION = "mp12-structured-hg-finite-v1"
 
 _EXPORTS = {
     "StructuredHIBEParams": "params",
+    "StructuredHIBEParams192": "params",
     "StructuredMP12HIBE": "backend",
     "StructuredPublicKey": "objects", "StructuredMasterSecret": "objects",
     "StructuredLevel1Key": "objects", "StructuredLevel2Key": "objects",
     "StructuredCiphertext": "objects", "backend_spec": "registration",
+    "finite192_backend_spec": "registration",
 }
 __all__ = ["BACKEND_ID", "BACKEND_VERSION", *_EXPORTS]
 

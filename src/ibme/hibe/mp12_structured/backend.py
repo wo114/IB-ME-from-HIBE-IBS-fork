@@ -26,8 +26,7 @@ def _source(rng):
 def _noise(p):
     from ibme.lattice.chkp.noise_budget import RoundedNoiseParams
     from ibme.lattice.chkp.rounded_noise import build_rounded_noise
-    return build_rounded_noise(RoundedNoiseParams(p.q, p.alpha,
-        tail_bits=128, mass_bits=256, precision_bits=320, max_radius=8192))
+    return build_rounded_noise(RoundedNoiseParams(p.q, p.alpha, **p.noise_options()))
 
 
 class StructuredMP12HIBE:
@@ -46,7 +45,8 @@ class StructuredMP12HIBE:
         from ibme.lattice.matrix_sampling.mp12_structured import generate_structured_root
         from ibme.lattice.chkp.identity import ROHIBEContext
         _noise(params)  # complete actual noise construction, before private RNG
-        t = generate_structured_root(params.n, params.q, params.root_r_squared, rng=_source(rng))
+        t = generate_structured_root(params.n, params.q, params.root_r_squared,
+                                     rng=_source(rng), options=params.sampling_options())
         oracle = ROHIBEContext(params.n, params.m, params.q, t.public.rows,
             params.to_bytes(), identity_bytes=params.identity_bytes)
         public = StructuredPublicKey(params, oracle)
@@ -58,7 +58,9 @@ class StructuredMP12HIBE:
         def generate():
             from ibme.lattice.matrix_sampling.mp12_extension import delegate_extension
             if self._persist_pending is not None: self._persist_pending(master)
-            t = delegate_extension(master.trapdoor, master.public_key.oracle.h((receiver,)), rng=_source(rng))
+            t = delegate_extension(master.trapdoor, master.public_key.oracle.h((receiver,)),
+                rng=_source(rng), epsilon_bits=master.params.sampler_epsilon_bits,
+                options=master.params.sampling_options())
             return StructuredLevel1Key(master.public_key, receiver, t)
         return master.issue(receiver, generate)
 
@@ -70,7 +72,9 @@ class StructuredMP12HIBE:
             from ibme.lattice.chkp.entropy import CheckedEntropy
             if self._persist_pending is not None: self._persist_pending(parent)
             sampler = StructuredLeftSampler(parent.trapdoor,
-                parent.public_key.oracle.h((parent.identity, sender)))
+                parent.public_key.oracle.h((parent.identity, sender)),
+                epsilon_bits=parent.params.sampler_epsilon_bits,
+                options=parent.params.sampling_options())
             if (sampler.public_rows != plan.public_rows
                     or sampler.output_squared != parent.params.leaf_width_squared):
                 raise InvalidParameterError("structured H/G complete leaf sampler mismatch")

@@ -14,6 +14,18 @@
 
 真实采样/方程/规范解析/绑定、固定状态与完整组合的功能分别验收；raw CPA 容错和 Hybrid/BYTEAUTH 拒绝分层处理。正式参数、两角色 LWE 估计、变体模型和分布对应仍待核验，保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。本轮独立复核和版本边界见[PR 合入记录](../deliveries/2026-10-12-pr-review/README.md)；历史探针计数不与本轮测试相加。
 
+## 完整 H/G 结构化变体的有限配方版本
+
+`src/ibme/hibe/mp12_structured/` 是结构化 MP12 GenTrap/Algorithm3/4 + 完整 CHKP H/G 的单一实现，不是原 CHKP RandBasis。`mp12-structured-hg` 的默认 descriptor/version 保持 `mp12-structured-hg-finite-v1`，其参数、默认 q549755813911、全部对象与 suite 的旧字节不迁移。公共 binary gadget 支持高位 q 并不改变此 HIBE 的61位模数和资源门。
+
+显式研究版本 `mp12-structured-hg-finite192-v2` 使用 `StructuredHIBEParams192` 和 `finite192_backend_spec()`。它仍是同一算法，仅改变有限配方及同组选参，不增加原语算法或困难假设计数。调用方建立只含该版本的 `BackendRegistry`；默认 registry/CLI 不静默替换 v1，旧 registry 必须拒绝 v2 suite。七个 dataclass 参数字段保持相同，版本在 descriptor、参数 magic `IBME:MP12-STRUCTURED-HG:PARAMS:v2\0`、完整参数记录和公钥 oracle context 中绑定。单版本参数读取器拒绝跨版本；对象容器按参数版本分派，仍由所选 descriptor 检查完整参数及类型。外层对象/seed wire 的分帧结构不变，不能据分帧版本相同接受另一配方的钥。
+
+v2 根/父/叶统一使用 tail192、Gaussian-abort192、mass320、precision384、均匀拒绝帽256和 smoothing epsilon192；扰动帽仍512。父/叶宽度由该 epsilon 与同一公开 R 范数界推导，实际生成、恢复及后续采样不得退回 v1。实际 rounded-continuous 噪声使用 tail192/mass320/precision384，单 bit 条件解码 error160。RO 和 ciphertext-secret 的既有拒绝帽仍128，不改共享 oracle/KEM。默认 n2/q1099511627689（2^40−87）、根平方宽16、qα4、身份86 B/层、32 B seed、2接收者×2子地址；q 接近位区间上端使上述实际128次拒绝项足够小，不能套用另一 q 的概率。原有维度、精确算术、对象、全调用及全树资源门均保留。
+
+全树/服务账本必须使用实际参数、所有原像/噪声次数及实际拒绝率，明确查询和封装预算。v2 对最终概率项按384位分母向外取整（正数不舍为0），v1保留旧精确分数字符串。默认2^20次封装、各2^20个H地址/G路径预算下，条件模型的上界可达到2^-131；这是有限分布/正确性概率，不是LWE安全位数或机器/整个协议失败证书。未知私有精确路径/工作区、SHAKE与ROM的对应、计算根与完整归约仍分别记录，不能填0。
+
+研究验收须覆盖实际根→父委派→固定256原像、真实噪声、版本化五类对象、跨版本拒绝、失败地址保留和零熵恢复，再经现有 Hybrid/BYTEAUTH 与实际 IBS 做共同组合验收。私有测试状态仅保存到显式 ignored 目录，不随公开证据提交。n2依然是不安全研究参数；两个版本保持none/false/false，测试不替代安全证明。
+
 ## 按既有交付版本保留的专属契约
 
 2026-10-11 首套独立DelTrap契约：`first_suite/compact_delegation.py`以FirstFiniteGPV、最后nk列和真实目标G−A1实现MP12 Algorithm4；额外扩展列进入采样前缀，按公共整次预算先准入，单列坏范数/采样异常中止整次，不重试、不返回旧trapdoor。矩形私有JSON wire绑定外部真实公开矩阵/精确宽度，严格格式/方程/范数；加载不证明生成分布。独立private_basis_bridge可作确定性qFALL完整基转换，旧GenTrap/采样/ToBasis guard保持，非Algorithm3或原CHKP/RandBasis的直接替换。MSK显式研究出口只给持有私钥者已验证的不可变根基，不发钥或变更旧地址。完整范围/变体模型缺口、实际有限链和估算见[本轮记录](../research/2026-10-11-first-suite-compact/README.md)，未注册HIBE后端/安全preset。下一项仍需实际困难参数、模型对应和七入口/全系统验收。

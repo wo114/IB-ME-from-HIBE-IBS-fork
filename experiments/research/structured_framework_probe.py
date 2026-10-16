@@ -43,7 +43,7 @@ class NoEntropy:
         raise AssertionError("restored structured tree attempted new entropy")
 
 
-def generate(directory, commit):
+def generate(directory, commit, *, registry=None):
     directory.mkdir(parents=True, exist_ok=False)
     save(directory/"started", b"one system-random structured framework tree; no retry\n")
     start, events = time.perf_counter(), []
@@ -53,8 +53,8 @@ def generate(directory, commit):
         print(name, "passed", flush=True)
     try:
         config = make_suite(hibe="mp12-structured-hg", ibs="luo-module", ibs_params=c64b_params(),
-            transport="hybrid", protocol="byteauth-v1", signature_format="compact")
-        runtime = build_runtime(config)
+            transport="hybrid", protocol="byteauth-v1", signature_format="compact", registry=registry)
+        runtime = build_runtime(config, registry=registry)
         p = runtime.proto
         public, master = p.setup(runtime.hibe_params, ibs_params=runtime.ibs_params)
         event("real-setup")
@@ -82,7 +82,7 @@ def generate(directory, commit):
                     if (r, s) != (i, j): assert p.decrypt(public, receiver, sender, wire, rng=guard) is BOTTOM
         assert guard.calls == 0
         event("twelve-wrong-identity-paths")
-        restored = restore(directory)
+        restored = restore(directory, registry=registry)
         report = dict(schema="A-STRUCTURED-DEFAULT-FRAMEWORK/1", status="passed", source_commit=commit,
             suite=config.to_dict(), events=events, receivers=2, fixed_leaves=4, matching_paths=4,
             wrong_identity_paths=12, message_bytes=32, raw_identity_bytes=[5,3,5,7], inner_identity_bytes=86,
@@ -99,10 +99,10 @@ def generate(directory, commit):
         raise
 
 
-def restore(directory):
+def restore(directory, *, registry=None):
     from ibme.assembly import SuiteConfig
     config = SuiteConfig.from_json((directory/"suite.json").read_bytes())
-    runtime = build_runtime(config); p = runtime.proto; d = runtime.decoders
+    runtime = build_runtime(config, registry=registry); p = runtime.proto; d = runtime.decoders
     guard = NoEntropy()
     with patch.object(SecureRandom, "read", lambda *a, **k: guard.read(0)):
         public = PublicKey.from_bytes((directory/"public.bin").read_bytes(), d["hpk"], d["ipk"])
@@ -170,10 +170,10 @@ def finish_saved_tree(directory, commit):
     return report
 
 
-def matrix(directory, output, commit):
+def matrix(directory, output, commit, *, registry=None, cases=None):
     if not (directory/"completed").is_file(): raise ValueError("completed original framework tree required")
     raw_public = (directory/"hibe-public.bin").read_bytes(); raw_master = (directory/"hibe-master.bin").read_bytes()
-    cases = [
+    cases = cases if cases is not None else [
         ("luo-module-c64b-compact", "luo-module", asdict(c64b_params()), "compact"),
         ("luo-matrix", "luo-matrix", "research", "reference"),
         ("wang-pw", "wang-pw", "research", "reference"),
@@ -203,7 +203,7 @@ def matrix(directory, output, commit):
         for label, route, params, fmt in cases:
             result = run_case("structured-saved-"+label, dict(hibe="mp12-structured-hg", ibs=route,
                 ibs_params=params, transport="hybrid", protocol="byteauth-v1", signature_format=fmt),
-                setup_callback=setup, identities=(b"Alice", b"Bob", b"Carol", b"Charlie"))
+                setup_callback=setup, identities=(b"Alice", b"Bob", b"Carol", b"Charlie"), registry=registry)
             results.append(result)
             report = summarize(results)
             report.update(source_commit=commit, new_hibe_roots=0, new_hibe_keys=0,

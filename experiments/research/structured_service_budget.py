@@ -38,19 +38,20 @@ def dyadic_exponent(bound):
 
 def public_profile(params, dimension, bound):
     """Distribution/tape projection, without claiming secret-path admission."""
-    opts = MatrixFiniteOptions()
-    r_squared = 4*smoothing_factor(params.w, 128)
-    squared = output_width(params.w, bound)
+    opts = params.sampling_options() if isinstance(params, StructuredHIBEParams) else MatrixFiniteOptions()
+    epsilon = getattr(params, "sampler_epsilon_bits", 128)
+    r_squared = 4*smoothing_factor(params.w, epsilon)
+    squared = output_width(params.w, bound, epsilon_bits=epsilon)
     scalar = MatrixFiniteGaussian(squared, squared, options=opts)
     gadget = MatrixFiniteGPV(gadget_block(params.q), 5*r_squared,
-                           epsilon_bits=128, options=opts)
+                           epsilon_bits=epsilon, options=opts)
     if dimension*scalar.theta > QQ(1)/2:
         raise ValueError("spherical normalizer premise unverified")
     tape = 512*(dimension*scalar.random_tape_bytes+(opts.mass_bits+7)//8)+params.n*gadget.random_tape_bytes
     if tape > opts.max_tape_bytes:
         raise ValueError("public single-SampleD tape limit")
-    smoothing = squared >= 10*(bound+1)*smoothing_factor(dimension, 128)
-    budget = sample_distribution_budget(dimension=dimension, epsilon_bits=128,
+    smoothing = squared >= 10*(bound+1)*smoothing_factor(dimension, epsilon)
+    budget = sample_distribution_budget(dimension=dimension, epsilon_bits=epsilon,
         max_trials=512, proposal_scalar_tv=str(scalar.tv_upper),
         bernoulli_weight_error=str(scalar.weight_width+QQ(1)/2**opts.mass_bits),
         gadget_tv_total=str(min(1, params.n*gadget.tv_upper)),
@@ -61,6 +62,20 @@ def public_profile(params, dimension, bound):
         distribution=budget, worst_request_tape_bytes=tape,
         actual_trapdoor_precision_gate_checked=False,
         no_trapdoor_or_samples_constructed=True)
+
+
+def _reported_probability(value, params):
+    """v2 rounds OUTWARD to a bounded dyadic denominator, never to zero.
+
+    This also prevents exact tiny residue-rejection fractions from producing
+    unbounded JSON integer text. V1 receipts retain their original fractions.
+    """
+    value = min(Fraction(1), Fraction(value))
+    bits = params.probability_reporting_bits
+    if bits is None or value == 0:
+        return value
+    units = (value.numerator*2**bits+value.denominator-1)//value.denominator
+    return Fraction(units, 2**bits)
 
 
 def service_budget(params, *, encapsulations=2**20, h_queries=2**20,
@@ -80,7 +95,7 @@ def service_budget(params, *, encapsulations=2**20, h_queries=2**20,
     if (params.w*parent["worst_request_tape_bytes"] > 2**44
             or 256*leaf["worst_request_tape_bytes"] > 2**48):
         raise ValueError("whole parent/leaf random-request budget")
-    opts = MatrixFiniteOptions()
+    opts = params.sampling_options()
     root = MatrixFiniteGaussian(params.root_r_squared, params.root_r_squared, options=opts)
     root_entries = 2*params.n*params.w
     parent_calls = params.max_receivers*params.w
@@ -99,18 +114,19 @@ def service_budget(params, *, encapsulations=2**20, h_queries=2**20,
             leaf["distribution"]["modeled_sample_TV_including_abort_upper"])),
         ideal_leaf_norm_abort=min(Fraction(1), leaf_calls*Fraction(
             leaf["distribution"]["ideal_coset_norm_abort_upper"])))
+    terms = {key:_reported_probability(value, params) for key,value in terms.items()}
     tree = min(Fraction(1), sum(terms.values(), Fraction(0)))
-    noise = build_rounded_noise(RoundedNoiseParams(params.q, params.alpha,
-        tail_bits=128, mass_bits=256, precision_bits=320, max_radius=8192))
+    noise = build_rounded_noise(RoundedNoiseParams(params.q, params.alpha, **params.noise_options()))
     ideal = evaluate_noise(q=params.q, dimension=params.leaf_dimension,
         width_squared=params.leaf_width_squared, alpha=params.alpha,
-        error_bits=128, seed_bits=256, encapsulations=enc)
+        error_bits=params.decode_error_bits, seed_bits=256, encapsulations=enc)
     finite_noise = attach_finite_noise_budget(ideal, noise.certificate())
     terms["ciphertext_secret_uniform_abort"] = min(Fraction(1), enc*params.n*rejection**128)
     terms["finite_ciphertext_noise_coupling"] = Fraction(finite_noise["joint_noise_coupling_upper"])
     terms["ideal_honest_decode_failure_if_norm_good"] = Fraction(ideal["conditional_lifetime_failure_upper"])
+    terms = {key:_reported_probability(value, params) for key,value in terms.items()}
     oracle_residues = params.n*(params.m*hq+256*gp)
-    ro_abort = min(Fraction(1), oracle_residues*rejection**128)
+    ro_abort = _reported_probability(oracle_residues*rejection**128, params)
     honest = min(Fraction(1), sum(terms.values(), Fraction(0)))
     ro_model = min(Fraction(1), honest+ro_abort)
     return dict(schema="STRUCTURED-HG-SERVICE-STATISTICAL-BUDGET/1",
@@ -158,8 +174,9 @@ def main():
     args = parser.parse_args()
     if args.output.exists():
         raise ValueError("use a new public budget receipt")
+    from ibme.hibe.mp12_structured.params import load_structured_parameters
     params = (StructuredHIBEParams() if args.params_file is None else
-              StructuredHIBEParams.from_bytes(args.params_file.read_bytes()))
+              load_structured_parameters(args.params_file.read_bytes()))
     report = service_budget(params, encapsulations=args.encapsulations,
         h_queries=args.h_queries, g_paths=args.g_paths, target_bits=args.target_bits)
     with args.output.open("x", encoding="utf-8", newline="\n") as stream:
