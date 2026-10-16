@@ -1,0 +1,675 @@
+{
+  "schema": "IBME/SRGG-PROOF-FOLLOWUP-DELIVERY/1",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null,
+  "trust_anchor": "Git-reviewed file list; not a digital signature or independent provenance attestation",
+  "files": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/classical-runner.md",
+      "bytes": 9296,
+      "sha256": "7d399dfb541290aa14b18d31cde7c7184854a9d0dc671fdc8dbd206f4c0c5a84"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/conditional-xof.md",
+      "bytes": 10630,
+      "sha256": "6a11d3696d2c018f5ecbe6b5bd390c731c60f182619af804fbcf27d3dcc554ba"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/lossy-route.md",
+      "bytes": 12934,
+      "sha256": "5d97c74cf04359514d45c3b23ee6f052dcb534fb544d5276a25d3cbd72d5bf27"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/quantum-oracle-obligations.md",
+      "bytes": 11209,
+      "sha256": "1e9ec6bcf06a3f8539fdc93cc3b51c55ba64171ae22edea5296482821dced0d0"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/quotient-challenge.md",
+      "bytes": 12079,
+      "sha256": "bd95f5e9926acc3f7835820e052db6c581c89bd91599466b9fa98ea794d53a47"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/README.md",
+      "bytes": 10972,
+      "sha256": "ce61ba4059e50dfc94b7974676241ee631bf1ba20daf8a190c0c63004d3bbc3b"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/budget-sage.junit.xml",
+      "bytes": 6864,
+      "sha256": "6d071c42f89e2b654ca8685f77fc8cb0435359f3ac91bd9b44ce925190a17444"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/budget-windows.junit.xml",
+      "bytes": 6864,
+      "sha256": "3b34f6ce61c729cea2a873c3d5a584d0af02fc7da34c57a128d6d6bfb670e4ed"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/checker-windows.junit.xml",
+      "bytes": 6290,
+      "sha256": "e1eb7ff59152d145562e9ea7785f5c48ec7422578e2ac349363f0f08c3c9da37"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/classical-runner.json",
+      "bytes": 46600,
+      "sha256": "4136180da9d3d22767a98979de973f8d72579afb36ca69750e2826fe54c24a0e"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/classical-runner.md",
+      "bytes": 9296,
+      "sha256": "7d399dfb541290aa14b18d31cde7c7184854a9d0dc671fdc8dbd206f4c0c5a84"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/conditional-sage.junit.xml",
+      "bytes": 9175,
+      "sha256": "8de26e860404ba89cd1d66edb9df5d2e379f547f01489bfe86a4e6b398f2d1a0"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/conditional-xof.json",
+      "bytes": 4660,
+      "sha256": "56932c948feeb1a773c21a107934e861e986c92d6b5eb09195a0d36efb703ff9"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/conditional-xof.md",
+      "bytes": 10630,
+      "sha256": "6a11d3696d2c018f5ecbe6b5bd390c731c60f182619af804fbcf27d3dcc554ba"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/lossy-arithmetic-original.py",
+      "bytes": 4410,
+      "sha256": "3801adff7b7a37e0a63d920b15dfdf46323e2cdb93c77e4dddd9fbc4cd48b944"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/lossy-checks.json",
+      "bytes": 5447,
+      "sha256": "06fb82ef0781cbfc6eeafed325a13d35b18cbe0f43ce35803f1929b7632191f8"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/lossy-route.md",
+      "bytes": 12934,
+      "sha256": "5d97c74cf04359514d45c3b23ee6f052dcb534fb544d5276a25d3cbd72d5bf27"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/quantum-oracle-obligations.md",
+      "bytes": 11209,
+      "sha256": "1e9ec6bcf06a3f8539fdc93cc3b51c55ba64171ae22edea5296482821dced0d0"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/quotient-challenge.json",
+      "bytes": 5186,
+      "sha256": "7eb8982fc6e7224a4d09dde00c360d1a3e4ff35e5c04e82a9bf58641f59117d7"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/quotient-challenge.md",
+      "bytes": 12079,
+      "sha256": "bd95f5e9926acc3f7835820e052db6c581c89bd91599466b9fa98ea794d53a47"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/quotient-sage.junit.xml",
+      "bytes": 5279,
+      "sha256": "bfd86cae5e73895824669818e1d8517ca23fcf6163548ed0ca431736796a82eb"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/runner-development-failure.junit.xml",
+      "bytes": 7667,
+      "sha256": "64d369c846fc915ed4d8cd0a5633338cac11a07c11a0a5f3596161d48fed5fb9"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/runner-development-second.junit.xml",
+      "bytes": 5936,
+      "sha256": "8f8d97e4197e33029f2ba3ada36fe343c35332d0f4bb344273a362009e3993c5"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/runner-sage.junit.xml",
+      "bytes": 5936,
+      "sha256": "79b13362fccb18a6bd39ed02b9256903796a1c0f090de569b90d2e11281bb075"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/sage-components.junit.xml",
+      "bytes": 24132,
+      "sha256": "15cafd904f6cb4e760ad3def97c441acf773789793484fea30c4804b6ae2edc2"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/sage-full-final.junit.xml",
+      "bytes": 228435,
+      "sha256": "a8ab1f83d8cafc312388ffd9afdb1ef474fe74f5b1fe745340b2c68ffb2d7a02"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/sage-full-final.stdout.txt",
+      "bytes": 1314,
+      "sha256": "d82a7edff8866d4282ca5032f9a9b1b87cd209c533df03e1cfb0d3e3f067fa6a"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/service-budget.json",
+      "bytes": 331370,
+      "sha256": "0a3a10857cb4bd894f45f66301c2ff9b1e86c26c91ccfb381aacf8b07e37c585"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/service-budget.md",
+      "bytes": 14338,
+      "sha256": "13f554e7407af122639ea952ab191d8e511544462af592dbe5fac7267a4c4076"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/validation.json",
+      "bytes": 12663,
+      "sha256": "45c58f0067281eb4a972dc474c53abcb3c7c0f57379e1bf1310139988eafbf49"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/service-budget.md",
+      "bytes": 14338,
+      "sha256": "13f554e7407af122639ea952ab191d8e511544462af592dbe5fac7267a4c4076"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/classical_runner.py",
+      "bytes": 28371,
+      "sha256": "04c068b44204a362d7855aa214b1a10ed2b24c1144a4eaa3f8a54560914f77e1"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/conditional_xof.py",
+      "bytes": 11200,
+      "sha256": "d36885d537ae4830d6a436df0d8cb497802a9e6873a96275f39243a05d2e9acb"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/quotient_challenge.py",
+      "bytes": 13448,
+      "sha256": "9a4c19bc245a18e353ba5ceab1c4dc85c42f51701b6d8df9a5a230ab9eaf3cc1"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/service_budget.py",
+      "bytes": 25410,
+      "sha256": "64a07b2e94da287e13832921f74cf152ed970018ad3261d88c2033d9677a598b"
+    },
+    {
+      "path": "experiments/research/srgg_proof_followup_delivery_check.py",
+      "bytes": 9837,
+      "sha256": "2b47fc5c2d5fb5fce7497e2517612048a1ff03c95f6a269b60cb3b47c0a0ed7c"
+    },
+    {
+      "path": "tests/test_srgg_classical_runner.py",
+      "bytes": 25055,
+      "sha256": "75549411da959c3bbaccb4137ecd2bdba167fb037f7f18f301cd75b808ea3bba"
+    },
+    {
+      "path": "tests/test_srgg_conditional_xof.py",
+      "bytes": 12400,
+      "sha256": "d5c02c8587bb9954847c80700126faaf1966ae239516383a5af92e9f5d477d35"
+    },
+    {
+      "path": "tests/test_srgg_proof_followup_delivery_check.py",
+      "bytes": 8020,
+      "sha256": "4fa77a93b715269d2d2705294c8e5cf48e55065ff43e137f1f0d2433eb8243a3"
+    },
+    {
+      "path": "tests/test_srgg_quotient_challenge.py",
+      "bytes": 10791,
+      "sha256": "e003ba1ca5415f79ad42c450442f8dce1c7bfe089a9eb05a0d906b9e9abc998d"
+    },
+    {
+      "path": "tests/test_srgg_service_budget.py",
+      "bytes": 12426,
+      "sha256": "cb4673a976006878d20960af8341ea389f4b4eff4fc7da6e239e649e4357de76"
+    }
+  ],
+  "unchanged_dependencies": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/MANIFEST.json",
+      "bytes": 19579,
+      "sha256": "c5d97cbeb6acfdd9628254c4de75852681d777e48e6f2f1fffbcbdfea47fb21e"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge.json",
+      "bytes": 79078,
+      "sha256": "23534aec4f2a5d208d083e5830001318c072c6c4af157d6d3c27cc73b934033e"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-n512-d2w8.json",
+      "bytes": 24709,
+      "sha256": "ee8fde8955113bc06aea842ecc9128e1d0f3d793a0c3ce7a082d0cb550d06e09"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/MANIFEST.json",
+      "bytes": 6667,
+      "sha256": "5d455b60dde6784998897a44f7984a410ee090775a093c4adea0362ea0e4e646"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/direct-ibs.md",
+      "bytes": 29841,
+      "sha256": "6f0e04e3afe468d340ad8da7d7c513791706b1df0372513ed5d85fa0007f3760"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/reduction-samplers.json",
+      "bytes": 22168,
+      "sha256": "245a103cee3e9d75398db90df3868e2a23d2d07af3693124907471efa4e98b35"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/seeded-xof.json",
+      "bytes": 5800,
+      "sha256": "a3e9eb7e14f53b89b6e96acaf1227c0f127b346f21e4bf5f4d53987ac511ef3c"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-hardness/finite-search.json",
+      "bytes": 638565,
+      "sha256": "2eaa9969e75513d0be2f6d3f29bd9c2b07845fa7e0a5412e3b646cadeb581799"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/MANIFEST.json",
+      "bytes": 6001,
+      "sha256": "42429bfd961a8583d93fffb212da87e8b4dbc939a2b7e9d764de681297a106db"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/native-sig.json",
+      "bytes": 21277,
+      "sha256": "16a7f755ef7c747507751496614f3f513eacb6b1c3ea5e707485548a5dfa79e5"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/aggregate_budget.py",
+      "bytes": 13974,
+      "sha256": "ade4d313fefe5973030ac6ae29b4eb40bce83b440b7b8dee342ec789466b9a20"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/fiber_normalizers.py",
+      "bytes": 9750,
+      "sha256": "21a9072cd0243db7fd75d3af035dff23366652aba0bb59cfc8e7247acfae4461"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/formal_candidates.py",
+      "bytes": 19263,
+      "sha256": "8c5e9c7e841c192b48668866392750ff9a463039d4947ee15c2be65d9921c045"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/integrated_bridge.py",
+      "bytes": 12468,
+      "sha256": "239359f7fff774d8cd3511841c03baec74a72b81d6ea8bca603eae66e52c31f5"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/native_sig.py",
+      "bytes": 15706,
+      "sha256": "a0791f0a3c483902f38baf0897e6a77620ea22429ca15e708807edb3f97d55ae"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/oracle_ledger.py",
+      "bytes": 12766,
+      "sha256": "6ef6cf7feaf6558577750182259f7a9a3078f839670e43f259d44b8b8de45187"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/psf_bridge.py",
+      "bytes": 17041,
+      "sha256": "98422dfcd35a167843972e90a2a92b31dc317cee85e81291b3aabb2889f704aa"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/reduction_samplers.py",
+      "bytes": 10204,
+      "sha256": "ef0c2059689367d5d267c4acd84167617c97a8b0504dd1c9d4c9124e53e69717"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/seeded_xof.py",
+      "bytes": 11922,
+      "sha256": "37b1f68ccd36d1c6c908e4d4e0e9348b3f78fa8e8fb54c82bad5523e5a4102d3"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/spectral_bounds.py",
+      "bytes": 11479,
+      "sha256": "069d79c12f495b7e664ff0b0194188022088a21fb70eb4083800c93e1524a3d5"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_backend.py",
+      "bytes": 15785,
+      "sha256": "748fbec0a18635f569962b1899fa277afa4b65333526e615d01458720ba5e6e8"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_execution.py",
+      "bytes": 38862,
+      "sha256": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_geometry.py",
+      "bytes": 16626,
+      "sha256": "08d70876337afae3a7e8722a939c9996363af8eb5f8039d6437b6906814f1120"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_samplef.py",
+      "bytes": 18596,
+      "sha256": "8a4a82baea93b62a13f215d53d866eff5f6d083563a81dc9b21b51999931c10a"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/wide_scalar.py",
+      "bytes": 18555,
+      "sha256": "2f404dd95ec1c909c3c40dcc8b6e4b070d25864c2e2aaa0a80e8b291df5689ca"
+    },
+    {
+      "path": "experiments/research/candidates/wang_pw/hashing.py",
+      "bytes": 2416,
+      "sha256": "17ac4878d5b9541c21a1f5a4bac948248557e4a089b1f61a436df16970fa41a0"
+    },
+    {
+      "path": "experiments/research/gaussian_reference.py",
+      "bytes": 185,
+      "sha256": "0e003b3a813b9fbdf7919e98dcbf7906cf2676e54ac14d28ac6e826b28436f13"
+    },
+    {
+      "path": "experiments/research/srgg_structured_service_audit.py",
+      "bytes": 10852,
+      "sha256": "3fdbe3c1538fdc9c535f0e595a6eb54b2ce42f50d931c5f00ca6f6e5ec9f5bfc"
+    },
+    {
+      "path": "src/ibme/core/encoding.py",
+      "bytes": 8373,
+      "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+    },
+    {
+      "path": "src/ibme/ibs/srgg/structured.py",
+      "bytes": 1025,
+      "sha256": "e2af1b01d4dacb5d3afb0a1a852300efda50d1087dcf705554bb16f1cb5ffc9e"
+    },
+    {
+      "path": "src/ibme/ibs/srgg/structured_registration.py",
+      "bytes": 3569,
+      "sha256": "f6a688197fb3e498a373de74031cbdfe6cfd9ae1c6b2af136467bc20cd692a96"
+    },
+    {
+      "path": "src/ibme/ibs/srgg_service.py",
+      "bytes": 19932,
+      "sha256": "6aa174727fa21c4172e59dd7886525aa8539fc11aa792c2b6f3a6314db970437"
+    },
+    {
+      "path": "src/ibme/ibs/srgg_structured_service.py",
+      "bytes": 9421,
+      "sha256": "6bbdfb361e7fd118e63d2575d66eebf8585081790e611a3953a82cee22c8e6ab"
+    },
+    {
+      "path": "src/ibme/lattice/chkp/gaussian.py",
+      "bytes": 14680,
+      "sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c"
+    }
+  ],
+  "frozen_manifests": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/MANIFEST.json",
+      "sha256": "5d455b60dde6784998897a44f7984a410ee090775a093c4adea0362ea0e4e646"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/MANIFEST.json",
+      "sha256": "42429bfd961a8583d93fffb212da87e8b4dbc939a2b7e9d764de681297a106db"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/MANIFEST.json",
+      "sha256": "c5d97cbeb6acfdd9628254c4de75852681d777e48e6f2f1fffbcbdfea47fb21e"
+    }
+  ],
+  "reports": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/conditional-xof.json",
+      "schema": "IBME/SRGG-CONDITIONAL-RAW-XOF/1",
+      "hash_references": [
+        {
+          "field": [
+            "source_sha256"
+          ],
+          "paths": [
+            "experiments/research/candidates/srgg/conditional_xof.py",
+            "experiments/research/candidates/srgg/seeded_xof.py",
+            "experiments/research/candidates/srgg/structured_execution.py",
+            "experiments/research/candidates/wang_pw/hashing.py"
+          ]
+        },
+        {
+          "field": [
+            "input_sha256"
+          ],
+          "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge.json"
+        }
+      ],
+      "required_values": [
+        {
+          "field": [
+            "actual_entropy_bytes"
+          ],
+          "value": 0
+        },
+        {
+          "field": [
+            "draw_performed"
+          ],
+          "value": false
+        }
+      ]
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/quotient-challenge.json",
+      "schema": "IBME/SRGG-QUOTIENT-CHALLENGE/1",
+      "hash_references": [
+        {
+          "field": [
+            "source_sha256"
+          ],
+          "path": "experiments/research/candidates/srgg/quotient_challenge.py"
+        },
+        {
+          "field": [
+            "finite_u_cost",
+            "input_sha256"
+          ],
+          "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-n512-d2w8.json"
+        }
+      ],
+      "required_values": [
+        {
+          "field": [
+            "actual_entropy_bytes"
+          ],
+          "value": 0
+        },
+        {
+          "field": [
+            "new_cryptographic_lifecycle"
+          ],
+          "value": false
+        },
+        {
+          "field": [
+            "production_algorithm_or_hash_changed"
+          ],
+          "value": false
+        }
+      ]
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/lossy-checks.json",
+      "schema": "IBME/SRGG-LOSSY-ROUTE-CHECK/1",
+      "hash_references": [
+        {
+          "field": [
+            "checker_sha256"
+          ],
+          "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/lossy-arithmetic-original.py"
+        },
+        {
+          "field": [
+            "source_receipt_sha256"
+          ],
+          "path": "docs/research/team-b-delivery/2026-10-16-srgg-hardness/finite-search.json"
+        }
+      ],
+      "required_values": [
+        {
+          "field": [
+            "actual_entropy_bytes"
+          ],
+          "value": 0
+        },
+        {
+          "field": [
+            "cryptographic_lifecycle_executed"
+          ],
+          "value": false
+        }
+      ]
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/service-budget.json",
+      "schema": "IBME/SRGG-STRUCTURED-SERVICE-BUDGET/1",
+      "hash_references": [
+        {
+          "field": [
+            "input_sha256"
+          ],
+          "paths": [
+            "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge.json",
+            "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-n512-d2w8.json",
+            "docs/research/team-b-delivery/2026-10-16-srgg-reduction/native-sig.json",
+            "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/reduction-samplers.json",
+            "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/seeded-xof.json"
+          ]
+        },
+        {
+          "field": [
+            "frozen_declared_source_sha256_verified"
+          ],
+          "paths": [
+            "experiments/research/candidates/srgg/structured_execution.py",
+            "experiments/research/candidates/srgg/structured_samplef.py",
+            "experiments/research/candidates/srgg/wide_scalar.py",
+            "experiments/research/candidates/srgg/structured_geometry.py",
+            "experiments/research/candidates/srgg/aggregate_budget.py",
+            "experiments/research/candidates/srgg/fiber_normalizers.py",
+            "experiments/research/candidates/srgg/spectral_bounds.py",
+            "experiments/research/candidates/srgg/formal_candidates.py",
+            "experiments/research/candidates/srgg/native_sig.py",
+            "experiments/research/candidates/srgg/psf_bridge.py",
+            "experiments/research/candidates/srgg/reduction_samplers.py",
+            "experiments/research/gaussian_reference.py",
+            "src/ibme/lattice/chkp/gaussian.py",
+            "experiments/research/candidates/srgg/seeded_xof.py",
+            "experiments/research/candidates/wang_pw/hashing.py",
+            "src/ibme/core/encoding.py"
+          ]
+        },
+        {
+          "field": [
+            "selected_current_source_sha256"
+          ],
+          "paths": [
+            "experiments/research/candidates/srgg/service_budget.py",
+            "experiments/research/candidates/srgg/structured_backend.py",
+            "experiments/research/candidates/srgg/structured_execution.py",
+            "experiments/research/candidates/srgg/integrated_bridge.py",
+            "experiments/research/candidates/srgg/native_sig.py",
+            "experiments/research/candidates/srgg/oracle_ledger.py",
+            "src/ibme/ibs/srgg/structured.py",
+            "src/ibme/ibs/srgg/structured_registration.py",
+            "src/ibme/ibs/srgg_structured_service.py",
+            "src/ibme/ibs/srgg_service.py",
+            "experiments/research/srgg_structured_service_audit.py",
+            "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/direct-ibs.md"
+          ]
+        }
+      ],
+      "required_values": [
+        {
+          "field": [
+            "actual_entropy_bytes"
+          ],
+          "value": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/classical-runner.json",
+      "schema": "IBME/SRGG-CLASSICAL-RUNNER/1",
+      "hash_references": [
+        {
+          "field": [
+            "source_sha256"
+          ],
+          "paths": [
+            "experiments/research/candidates/srgg/classical_runner.py",
+            "experiments/research/candidates/srgg/conditional_xof.py",
+            "experiments/research/candidates/srgg/reduction_samplers.py",
+            "experiments/research/candidates/srgg/structured_execution.py",
+            "experiments/research/candidates/srgg/structured_samplef.py",
+            "experiments/research/candidates/srgg/structured_geometry.py",
+            "experiments/research/candidates/srgg/aggregate_budget.py",
+            "experiments/research/candidates/srgg/wide_scalar.py"
+          ]
+        },
+        {
+          "field": [
+            "input_sha256"
+          ],
+          "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge.json"
+        }
+      ],
+      "required_values": [
+        {
+          "field": [
+            "actual_entropy_bytes"
+          ],
+          "value": 0
+        },
+        {
+          "field": [
+            "draw_performed"
+          ],
+          "value": false
+        },
+        {
+          "field": [
+            "proof_public_has_production_seed_embedding"
+          ],
+          "value": false
+        },
+        {
+          "field": [
+            "whole_adaptive_security_reduction_proved"
+          ],
+          "value": false
+        },
+        {
+          "field": [
+            "global_entropy_cap_abort_upper"
+          ],
+          "value": null
+        },
+        {
+          "field": [
+            "actual_adversary_executed_by_report"
+          ],
+          "value": false
+        },
+        {
+          "field": [
+            "production_backend_modified"
+          ],
+          "value": false
+        },
+        {
+          "field": [
+            "production_hash_or_QRO_programmed"
+          ],
+          "value": false
+        }
+      ]
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/validation.json",
+      "schema": "IBME/SRGG-PROOF-FOLLOWUP-VALIDATION/1",
+      "hash_references": [],
+      "required_values": [
+        {
+          "field": [
+            "overall_hibe_independent_goal_complete"
+          ],
+          "value": false
+        },
+        {
+          "field": [
+            "push_performed"
+          ],
+          "value": false
+        }
+      ]
+    }
+  ]
+}

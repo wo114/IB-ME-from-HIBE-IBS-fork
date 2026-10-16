@@ -1,0 +1,207 @@
+{
+  "schema": "IBME/SRGG-LOSSY-ROUTE-CHECK/1",
+  "source_receipt_sha256": "2eaa9969e75513d0be2f6d3f29bd9c2b07845fa7e0a5412e3b646cadeb581799",
+  "checker_sha256": "3801adff7b7a37e0a63d920b15dfdf46323e2cdb93c77e4dddd9fbc4cd48b944",
+  "environment": {
+    "python": "3.13.15",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "actual_entropy_bytes": 0,
+  "cryptographic_lifecycle_executed": false,
+  "rows": [
+    {
+      "w": 22,
+      "p": 53615,
+      "Q": 1682495510936535,
+      "Q_bits": 51,
+      "B": 707692227841418072592395159552,
+      "G": 1682488903786789,
+      "J": 145409,
+      "T": 641575620354117759,
+      "qfactor": 31381059609,
+      "qfactor_bits": 35,
+      "G_bits": 51,
+      "T_bits": 60,
+      "ratio_numerator_bits": 225,
+      "qfactor_gt_G": false,
+      "bound_below_2_minus_211": false,
+      "bound_below_2_minus_212": false,
+      "signature_dimension": 149504,
+      "beyond_frozen_digits_resource_guard": false
+    },
+    {
+      "w": 32,
+      "p": 53615,
+      "Q": 99349677425291455215,
+      "Q_bits": 67,
+      "B": 2057561802390250115022150121472,
+      "G": 2868840743150619,
+      "J": 206849,
+      "T": 1304767567442754680,
+      "qfactor": 1853020188851841,
+      "qfactor_bits": 51,
+      "G_bits": 52,
+      "T_bits": 61,
+      "ratio_numerator_bits": 229,
+      "qfactor_gt_G": false,
+      "bound_below_2_minus_211": false,
+      "bound_below_2_minus_212": false,
+      "signature_dimension": 210944,
+      "beyond_frozen_digits_resource_guard": false
+    },
+    {
+      "w": 64,
+      "p": 53615,
+      "Q": 184096958024983056864930578921800815,
+      "Q_bits": 118,
+      "B": 15433454377637263185056013891584,
+      "G": 7857087088135720,
+      "J": 403457,
+      "T": 4990685404967296590,
+      "qfactor": 3433683820292512484657849089281,
+      "qfactor_bits": 102,
+      "G_bits": 53,
+      "T_bits": 63,
+      "ratio_numerator_bits": 236,
+      "qfactor_gt_G": true,
+      "bound_below_2_minus_211": false,
+      "bound_below_2_minus_212": false,
+      "signature_dimension": 407552,
+      "beyond_frozen_digits_resource_guard": true
+    },
+    {
+      "w": 96,
+      "p": 53615,
+      "Q": 341135379926503549549627944103503512789178948050415,
+      "Q_bits": 168,
+      "B": 50957177454895608084102289111040,
+      "G": 14276859242129636,
+      "J": 600065,
+      "T": 11059406618706436379,
+      "qfactor": 6362685441135942358474828762538534230890216321,
+      "qfactor_bits": 153,
+      "G_bits": 54,
+      "T_bits": 64,
+      "ratio_numerator_bits": 240,
+      "qfactor_gt_G": true,
+      "bound_below_2_minus_211": false,
+      "bound_below_2_minus_212": false,
+      "signature_dimension": 604160,
+      "beyond_frozen_digits_resource_guard": true
+    },
+    {
+      "w": 128,
+      "p": 53615,
+      "Q": 632130746135454136741091598464632188260337314519869221064233564015,
+      "Q_bits": 219,
+      "B": 119458230497833791456978514491392,
+      "G": 21859389790004092,
+      "J": 796673,
+      "T": 19510935073993838713,
+      "qfactor": 11790184577738583171520872861412518665678211592275841109096961,
+      "qfactor_bits": 203,
+      "G_bits": 55,
+      "T_bits": 65,
+      "ratio_numerator_bits": 242,
+      "qfactor_gt_G": true,
+      "bound_below_2_minus_211": false,
+      "bound_below_2_minus_212": false,
+      "signature_dimension": 800768,
+      "beyond_frozen_digits_resource_guard": true
+    },
+    {
+      "w": 160,
+      "p": 53615,
+      "Q": 1171351034582974384848126648407821457168732391374897192089779556007563118224101615,
+      "Q_bits": 270,
+      "B": 231766112970120319948502228744192,
+      "G": 30447733115627529,
+      "J": 993281,
+      "T": 30345271556344595119,
+      "qfactor": 21847450052839212624230656502990235142567050104912751880812823948662932355201,
+      "qfactor_bits": 254,
+      "G_bits": 55,
+      "T_bits": 65,
+      "ratio_numerator_bits": 245,
+      "qfactor_gt_G": true,
+      "bound_below_2_minus_211": true,
+      "bound_below_2_minus_212": true,
+      "signature_dimension": 997376,
+      "beyond_frozen_digits_resource_guard": true
+    }
+  ],
+  "rank_checks": [
+    {
+      "n": 4,
+      "factor_degrees": [
+        2,
+        2
+      ],
+      "multiplication_matrices": 80,
+      "minimum_rank": 2
+    },
+    {
+      "n": 8,
+      "factor_degrees": [
+        4,
+        4
+      ],
+      "multiplication_matrices": 7,
+      "minimum_rank": 4
+    },
+    {
+      "n": 16,
+      "factor_degrees": [
+        8,
+        8
+      ],
+      "multiplication_matrices": 7,
+      "minimum_rank": 8
+    },
+    {
+      "n": 32,
+      "factor_degrees": [
+        16,
+        16
+      ],
+      "multiplication_matrices": 7,
+      "minimum_rank": 16
+    },
+    {
+      "n": 64,
+      "factor_degrees": [
+        32,
+        32
+      ],
+      "multiplication_matrices": 7,
+      "minimum_rank": 32
+    }
+  ],
+  "degree2048_order_check": {
+    "modulus": 4096,
+    "base": 3,
+    "order": 1024,
+    "half_power_not_one": true
+  },
+  "unit_inference_counterexample": {
+    "degree": 4,
+    "Q": 45,
+    "modulus_factor": 9,
+    "first_challenge": [
+      0,
+      0
+    ],
+    "second_challenge": [
+      1,
+      0
+    ],
+    "both_recover_zero": true,
+    "second_squared_response_norm": 486,
+    "response_last_difference_mod9": 0,
+    "fixture_only_not_current_crypto_attack": true
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}
