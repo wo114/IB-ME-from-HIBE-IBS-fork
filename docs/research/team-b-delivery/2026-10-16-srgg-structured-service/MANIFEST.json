@@ -1,0 +1,174 @@
+{
+  "schema": "IBME/SRGG-STRUCTURED-SERVICE-DELIVERY/1",
+  "base_commit": "857d317",
+  "frozen_base_manifest": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/MANIFEST.json",
+  "frozen_base_manifest_sha256": "5d455b60dde6784998897a44f7984a410ee090775a093c4adea0362ea0e4e646",
+  "files": [
+    {
+      "path": "experiments/research/candidates/srgg/structured_backend.py",
+      "bytes": 15785,
+      "sha256": "748fbec0a18635f569962b1899fa277afa4b65333526e615d01458720ba5e6e8"
+    },
+    {
+      "path": "src/ibme/ibs/srgg/structured.py",
+      "bytes": 1025,
+      "sha256": "e2af1b01d4dacb5d3afb0a1a852300efda50d1087dcf705554bb16f1cb5ffc9e"
+    },
+    {
+      "path": "src/ibme/ibs/srgg/structured_registration.py",
+      "bytes": 3569,
+      "sha256": "f6a688197fb3e498a373de74031cbdfe6cfd9ae1c6b2af136467bc20cd692a96"
+    },
+    {
+      "path": "src/ibme/ibs/srgg_structured_service.py",
+      "bytes": 9421,
+      "sha256": "6bbdfb361e7fd118e63d2575d66eebf8585081790e611a3953a82cee22c8e6ab"
+    },
+    {
+      "path": "experiments/research/srgg_structured_service_audit.py",
+      "bytes": 9431,
+      "sha256": "91e836d93df54191a69d8f756df59151a81a04fa731de6ef3ced93ee739080a1"
+    },
+    {
+      "path": "experiments/research/srgg_structured_service_delivery_check.py",
+      "bytes": 3322,
+      "sha256": "ef41a9e8b79bc4fe07183dbc3f9ff0a25763f80041c87900b4fbea1ddbcecb36"
+    },
+    {
+      "path": "tests/test_srgg_structured_backend.py",
+      "bytes": 13137,
+      "sha256": "63bb96b5a56bf1e19602141f6336470fa7246f692c3dcb2d7fb43af58e4f589f"
+    },
+    {
+      "path": "tests/test_srgg_structured_service.py",
+      "bytes": 18114,
+      "sha256": "310965f17671ea2dd73bf6c09433db729b2eabafef7a78f67296dd00a72f35d7"
+    },
+    {
+      "path": "tests/test_srgg_structured_registration.py",
+      "bytes": 3266,
+      "sha256": "fcd2e1186dca5e4f7921c4203f2bb065bab474ef4e3fda6ac8a4170e820c71a7"
+    },
+    {
+      "path": "docs/specs/srgg-structured-issuer.md",
+      "bytes": 6039,
+      "sha256": "1e7cea03544d41b2a92f4ee538fb4d2cdb1b63af4009be5c52201fb70adfd284"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/README.md",
+      "bytes": 5904,
+      "sha256": "9770b53afff84e03e7b240c5f235c3c95c8f41dd7009d29793dcf2f6209eeade"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/validation.json",
+      "bytes": 2597,
+      "sha256": "1a7b3084c5a8178e78c4fb20d22bebd50cb8778ef7b256528329077bf52bc968"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/small.json",
+      "bytes": 4275,
+      "sha256": "4d9b78b9e4ceb2ae574bbc99751e90e17e8d60a36422724bfcdb4adaeb8b3750"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/n512.json",
+      "bytes": 4333,
+      "sha256": "60a1f88d3e50cf1ab7b5c223645284b40b2ba92e08e27b3c0b4e35b153955be1"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/service-final.junit.xml",
+      "bytes": 81318,
+      "sha256": "b948b69c6ab6639b8c284350b4a29c5525b67956df35ee48709bde5159d3dcc2"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/registration-independent.junit.xml",
+      "bytes": 1261,
+      "sha256": "d239f8e9ac6d4b3008daa3f29b64f73ed26dc2fd78bdc327139ef3a6387c5fb3"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/registration-first-development.junit.xml",
+      "bytes": 2144,
+      "sha256": "7ad6f3f2f85f0558f9dee06264c352507f398f431cbc800b144171f7b5b98040"
+    }
+  ],
+  "unchanged_dependencies": [
+    {
+      "path": "experiments/research/candidates/srgg/aggregate_budget.py",
+      "bytes": 13974,
+      "sha256": "ade4d313fefe5973030ac6ae29b4eb40bce83b440b7b8dee342ec789466b9a20"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/formal_candidates.py",
+      "bytes": 19263,
+      "sha256": "8c5e9c7e841c192b48668866392750ff9a463039d4947ee15c2be65d9921c045"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_execution.py",
+      "bytes": 38862,
+      "sha256": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_samplef.py",
+      "bytes": 18596,
+      "sha256": "8a4a82baea93b62a13f215d53d866eff5f6d083563a81dc9b21b51999931c10a"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/wide_scalar.py",
+      "bytes": 18555,
+      "sha256": "2f404dd95ec1c909c3c40dcc8b6e4b070d25864c2e2aaa0a80e8b291df5689ca"
+    },
+    {
+      "path": "experiments/research/candidates/wang_pw/hashing.py",
+      "bytes": 2416,
+      "sha256": "17ac4878d5b9541c21a1f5a4bac948248557e4a089b1f61a436df16970fa41a0"
+    },
+    {
+      "path": "src/ibme/assembly/registry.py",
+      "bytes": 23356,
+      "sha256": "a829240841f21b4b6531b7d020bf5019b438f2d0b7af0f23b9d16165a8373860"
+    },
+    {
+      "path": "src/ibme/cli_state.py",
+      "bytes": 6883,
+      "sha256": "531aa3d7f4c9d6e1929847b3ed603b2427911e9fa4c1f98db440d8ae70d35567"
+    },
+    {
+      "path": "src/ibme/core/encoding.py",
+      "bytes": 8373,
+      "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+    },
+    {
+      "path": "src/ibme/core/errors.py",
+      "bytes": 984,
+      "sha256": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e"
+    },
+    {
+      "path": "src/ibme/core/hashing.py",
+      "bytes": 6420,
+      "sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4"
+    },
+    {
+      "path": "src/ibme/core/randomness.py",
+      "bytes": 4204,
+      "sha256": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202"
+    },
+    {
+      "path": "src/ibme/core/types.py",
+      "bytes": 4683,
+      "sha256": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56"
+    },
+    {
+      "path": "src/ibme/ibs/api.py",
+      "bytes": 12116,
+      "sha256": "e08bfaf4c73c0471966103156f3b88debda5f37b06b493c63dde7b4372da661c"
+    },
+    {
+      "path": "src/ibme/ibs/srgg_service.py",
+      "bytes": 19932,
+      "sha256": "6aa174727fa21c4172e59dd7886525aa8539fc11aa792c2b6f3a6314db970437"
+    }
+  ],
+  "lifecycle_reports": [
+    "small.json",
+    "n512.json"
+  ]
+}
