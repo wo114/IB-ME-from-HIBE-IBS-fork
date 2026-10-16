@@ -1,0 +1,136 @@
+{
+  "schema": "PR34-LOCAL-SAMPLER-REVIEW/1",
+  "reviewed_head": "20d75e9b9dcf2ceb8509cedd867a5c479e03af62",
+  "reviewed_source_sha256": {
+    "algebra.py": "824f37d89c884f8b39b78e4f05866aa6f8ae164616bc2bf942ff2bcf3e98b5fa",
+    "backend.py": "603dad1a3ece155212d6a26856122f09dec06a343a0989ea4bde475649d5a2f0",
+    "hashing.py": "bbe555ea0e071b0cfc70e177c16ab8c3fea925dce914299e897025391796c276",
+    "config.py": "0c05489392f68dcbba968c8042410196139a6da521b68bd20eb3764fa818782b",
+    "objects.py": "16bbc907bf47d4208540056e2ba55b00174b7ad2c7b7045b32f2d3b9576fe256"
+  },
+  "checks": [
+    {
+      "route": "sis",
+      "repetition": 0,
+      "dimensions": [
+        2,
+        4,
+        16
+      ],
+      "q": 81,
+      "identity_bytes": 9,
+      "issued_key_roundtrip": true,
+      "bottom_rows": 8,
+      "bottom_rank": 8,
+      "exact_root_times_bottom_equals_top": true,
+      "root_uniquely_determined_by_one_issued_test_key": true
+    },
+    {
+      "route": "sis",
+      "repetition": 1,
+      "dimensions": [
+        2,
+        4,
+        16
+      ],
+      "q": 81,
+      "identity_bytes": 9,
+      "issued_key_roundtrip": true,
+      "bottom_rows": 8,
+      "bottom_rank": 8,
+      "exact_root_times_bottom_equals_top": true,
+      "root_uniquely_determined_by_one_issued_test_key": true
+    },
+    {
+      "route": "sis",
+      "repetition": 2,
+      "dimensions": [
+        2,
+        4,
+        16
+      ],
+      "q": 81,
+      "identity_bytes": 9,
+      "issued_key_roundtrip": true,
+      "bottom_rows": 8,
+      "bottom_rank": 8,
+      "exact_root_times_bottom_equals_top": true,
+      "root_uniquely_determined_by_one_issued_test_key": true
+    },
+    {
+      "route": "rsis",
+      "repetition": 0,
+      "dimensions": [
+        4,
+        9,
+        22
+      ],
+      "q": 19683,
+      "identity_bytes": 9,
+      "issued_key_roundtrip": true,
+      "bottom_rows": 36,
+      "bottom_rank": 36,
+      "exact_root_times_bottom_equals_top": true,
+      "root_uniquely_determined_by_one_issued_test_key": true
+    },
+    {
+      "route": "rsis",
+      "repetition": 1,
+      "dimensions": [
+        4,
+        9,
+        22
+      ],
+      "q": 19683,
+      "identity_bytes": 9,
+      "issued_key_roundtrip": true,
+      "bottom_rows": 36,
+      "bottom_rank": 36,
+      "exact_root_times_bottom_equals_top": true,
+      "root_uniquely_determined_by_one_issued_test_key": true
+    },
+    {
+      "route": "rsis",
+      "repetition": 2,
+      "dimensions": [
+        4,
+        9,
+        22
+      ],
+      "q": 19683,
+      "identity_bytes": 9,
+      "issued_key_roundtrip": true,
+      "bottom_rows": 36,
+      "bottom_rank": 36,
+      "exact_root_times_bottom_equals_top": true,
+      "root_uniquely_determined_by_one_issued_test_key": true
+    }
+  ],
+  "modulo_bias": [
+    {
+      "modulus": 81,
+      "input_bytes": 1,
+      "heavy_residues": 13,
+      "scalar_TV_from_uniform": "221/5184"
+    },
+    {
+      "modulus": 19683,
+      "input_bytes": 2,
+      "heavy_residues": 6487,
+      "scalar_TV_from_uniform": "21400613/322486272"
+    }
+  ],
+  "test_randomness": "DeterministicRandom, disposable local teaching keys only",
+  "network_operations": 0,
+  "recovered_keys": 0,
+  "forged_signatures": 0,
+  "private_values_exported": false,
+  "environment": {
+    "python": "3.13.14",
+    "sage": "10.9",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
