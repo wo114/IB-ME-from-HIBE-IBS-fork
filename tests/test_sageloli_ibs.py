@@ -15,6 +15,8 @@ import tempfile
 
 import pytest
 
+pytest.importorskip("sage.all")
+
 from ibme.core.errors import EncodingError, SerializationError
 from ibme.core.randomness import DeterministicRandom
 from experiments.research.candidates.sageloli import (
@@ -26,7 +28,7 @@ from experiments.research.candidates.sageloli import (
     SISParams,
     SISBackend,
 )
-from experiments.research.candidates.sageloli import hashing
+from experiments.research.candidates.sageloli import hashing, algebra
 from experiments.research.candidates.sageloli import backend as backend_module
 from experiments.research.candidates.sageloli import codec
 from experiments.research.candidates.sageloli import objects as objects_module
@@ -293,9 +295,9 @@ def test_input_limits_are_checked_before_sampling():
     assert backend.verify(public, b"a", b"toolong", backend.sign(key, b"ok")) is False
 
 
-def test_matrix_route_supports_n_one_and_profile_sigmas():
-    params = SISParams(n=1, k=2, m=4, q=9, trapdoor_sigma=1.25,
-                       signing_sigma=1.5)
+def test_matrix_route_supports_n_one_and_density_widths():
+    params = SISParams(n=1, k=2, m=4, q=9,
+                       identity_width_squared=2**28, signature_width_squared=2**56)
     backend = SISBackend(rng=DeterministicRandom(b"sageloli-n-one"))
     public, master = backend.setup(params)
     key = backend.key_extract(master, b"n-one")
@@ -303,8 +305,8 @@ def test_matrix_route_supports_n_one_and_profile_sigmas():
     assert backend.verify(public, b"n-one", b"message", signature) is True
 
 
-def test_matrix_route_accepts_zero_delegated_trapdoor(monkeypatch):
-    """A zero H1-G target has a valid zero identity trapdoor."""
+def test_zero_target_still_receives_full_gaussian_perturbation(monkeypatch):
+    """Zero syndrome is sampled, never replaced by the zero private key."""
     params = SISParams(n=1, k=1, m=2, q=3)
     zero_target_h1 = lambda *args: ((1,),)
     monkeypatch.setattr(backend_module, "sis_h1", zero_target_h1)
@@ -312,7 +314,8 @@ def test_matrix_route_accepts_zero_delegated_trapdoor(monkeypatch):
     backend = SISBackend(rng=DeterministicRandom(b"sageloli-zero-trapdoor"))
     public, master = backend.setup(params)
     key = backend.key_extract(master, b"zero-target")
-    assert key.trapdoor == ((0,), (0,))
+    assert any(x for row in key.trapdoor for x in row)
+    assert all(x % params.q == 0 for x in algebra.matmul(public.a, key.trapdoor, params.q)[0])
     signature = backend.sign(key, b"message")
     assert backend.verify(public, b"zero-target", b"message", signature) is True
 

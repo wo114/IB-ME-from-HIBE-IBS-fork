@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from ibme.core.errors import SerializationError
 
-MAGIC = b"IBME:SAGELOLI-IBS:v1"
+MAGIC = b"IBME:SAGELOLI-IBS:v2"
 MAX_WIRE_BYTES = 16 * 2**20
 MAX_FIELDS = 32
 MAX_FIELD_BYTES = MAX_WIRE_BYTES

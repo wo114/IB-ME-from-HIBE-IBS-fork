@@ -21,16 +21,17 @@ import os
 from pathlib import Path
 import stat
 import tempfile
+import time
 from typing import Any
 
-from ibme.cli_state import LOCK_FILE, key_issuance_lock
+from ibme.cli_state import LOCK_FILE, StateBusyError, key_issuance_lock
 from ibme.core.errors import IBMEError
 from ibme.core.types import validate_identity
 
 
 STATE_FILE = "master.bin"
 PENDING_FILE = "master.bin.pending"
-_PENDING_CONTENT = b"IBME:Sageloli:ISSUER-PENDING:v1\n"
+_PENDING_CONTENT = b"IBME:Sageloli:ISSUER-PENDING:v2\n"
 _DEFAULT_MAX_STATE_BYTES = 32 * 1024 * 1024
 try:
     from .codec import MAX_WIRE_BYTES as MAX_STATE_BYTES
@@ -265,7 +266,8 @@ class FixedIssuer:
     backend_admitted = False
     parameters_are_formal = False
 
-    def __init__(self, path, backend=None):
+    def __init__(self, path, backend=None, *, expected_public=None,
+                 expected_params=None, lock_wait_seconds=300):
         raw = os.fspath(path)
         if type(raw) is not str or not raw.strip():
             raise ValueError("issuer path must be a nonempty directory path")
@@ -280,6 +282,26 @@ class FixedIssuer:
                    ("setup", "key_extract", "sign", "verify", "load_signature")):
             raise TypeError("Sageloli backend must implement the five methods")
         self.backend = backend
+        if type(lock_wait_seconds) is not int or not 0 <= lock_wait_seconds <= 3600:
+            raise ValueError("lock wait budget must be an integer from 0 to 3600 seconds")
+        self.lock_wait_seconds = lock_wait_seconds
+        if expected_public is not None and not isinstance(expected_public, _object_classes()[1]):
+            raise TypeError("expected_public must be a Sageloli public key")
+        from .config import SISParams, RSISParams
+        if expected_params is not None and not isinstance(expected_params, (SISParams, RSISParams)):
+            raise TypeError("expected_params must be Sageloli parameters")
+        self._expected_public = (None if expected_public is None
+                                 else _raw_bytes(expected_public))
+        self._expected_params = (None if expected_params is None
+                                 else expected_params.record())
+
+    def _check_binding(self, public):
+        if (self._expected_public is not None
+                and _raw_bytes(public) != self._expected_public):
+            raise IssuerStateError("issuer public key does not match expected public key")
+        if (self._expected_params is not None
+                and public.params.record() != self._expected_params):
+            raise IssuerStateError("issuer parameters do not match expected parameters")
 
     def _directory(self, *, create=False) -> None:
         if create:
@@ -310,8 +332,25 @@ class FixedIssuer:
         lock = self.path / LOCK_FILE
         if os.path.lexists(lock):
             _plain_file(lock)
-        with key_issuance_lock(self.path):
+        # Retry only lock acquisition, never the transaction body.
+        deadline = time.monotonic() + self.lock_wait_seconds
+        while True:
+            manager = key_issuance_lock(self.path,
+                timeout=min(30, max(0, deadline-time.monotonic())))
+            try:
+                manager.__enter__()
+            except StateBusyError as exc:
+                if exc.__cause__ is None or time.monotonic() >= deadline:
+                    raise
+                continue
+            break
+        try:
             yield
+        except BaseException as exc:
+            if not manager.__exit__(type(exc), exc, exc.__traceback__):
+                raise
+        else:
+            manager.__exit__(None, None, None)
 
     def _begin(self) -> None:
         self._check_pending()
@@ -376,6 +415,7 @@ class FixedIssuer:
         if len(raw) != info.st_size:
             raise IssuerStateError("issuer snapshot size changed during the bounded read")
         master = _decode_master(raw)
+        self._check_binding(_public_of(master))
         backend_route = getattr(self.backend, "route", None)
         master_route = getattr(_public_of(master), "route", None)
         if backend_route in ("sis", "rsis") and master_route in ("sis", "rsis"):
@@ -397,6 +437,9 @@ class FixedIssuer:
         return saved
 
     def initialize(self, params):
+        if (self._expected_params is not None
+                and getattr(params, "record", lambda: None)() != self._expected_params):
+            raise IssuerStateError("requested parameters do not match expected parameters")
         if params is None or not (
                 callable(getattr(params, "record", None))
                 or callable(getattr(params, "to_bytes", None))):
@@ -436,6 +479,7 @@ class FixedIssuer:
             self._begin()
             try:
                 public, master = self.backend.setup(params)
+                self._check_binding(public)
                 master_public = _public_of(master)
                 if master_public is not public and not _public_equal(master_public, public):
                     raise IssuerStateError("setup returned inconsistent public keys")

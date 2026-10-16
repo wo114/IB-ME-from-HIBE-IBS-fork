@@ -11,15 +11,14 @@ admission claim.
 from __future__ import annotations
 
 from hashlib import sha256
-from math import sqrt
-from threading import RLock
 
 from ibme.core.errors import EncodingError, SerializationError
 from ibme.core.randomness import SecureRandom
 from ibme.core.types import validate_bytes, validate_identity
 from ibme.ibs.api import IBSError
 
-from . import algebra
+from . import algebra, sampling
+from .uniform import uniform_mod_q, UniformSamplingAbort
 from .hashing import sis_h1, sis_h2, rsis_h1, rsis_h2
 from .objects import (
     SisParams, RsisParams, SisPublicKey, RsisPublicKey,
@@ -45,9 +44,15 @@ def _read(rng, size):
         raw = rng.read(size)
     except Exception as exc:
         raise SamplingAbort("randomness source failed") from exc
-    if not isinstance(raw, (bytes, bytearray, memoryview)) or len(raw) != size:
+    if not isinstance(raw, (bytes, bytearray, memoryview)):
         raise SamplingAbort("randomness source returned an invalid length")
-    return bytes(raw)
+    try:
+        raw = bytes(raw)
+    except (TypeError, ValueError) as exc:
+        raise SamplingAbort("randomness source returned invalid bytes") from exc
+    if len(raw) != size:
+        raise SamplingAbort("randomness source returned an invalid byte length")
+    return raw
 
 
 def _identity(params, value):
@@ -78,8 +83,10 @@ def _cbd(rng):
 
 
 def _uniform(rng, q):
-    width = max(1, (q.bit_length() + 7) // 8)
-    return int.from_bytes(_read(rng, width), "big") % q
+    try:
+        return uniform_mod_q(rng, q, 1)[0]
+    except UniformSamplingAbort as exc:
+        raise SamplingAbort("uniform sampling aborted; no redraw") from exc
 
 
 def _matrix_norm(values, q):
@@ -136,7 +143,7 @@ def _flat(values):
 
 def _split_ok(z, first, second, bound, q, *, canonical=True):
     z = _flat(z)
-    if not z or not any(int(v) for v in z):
+    if not z or any(type(v) is not int for v in z) or not any(z):
         return False
     if canonical and any(int(v) != algebra.centered(v, q) for v in z):
         return False
@@ -153,6 +160,12 @@ def _split_norm_ok(z, first, second, bound, q):
     return a <= 2 * first * bound and b <= 2 * second * bound
 
 
+def _raw_split_ok(values, first, second, bound):
+    return (len(values) == first + second
+            and sum(int(v)**2 for v in values[:first]) <= 2*first*bound
+            and sum(int(v)**2 for v in values[first:]) <= 2*second*bound)
+
+
 def _matrix_trapdoor_ok(trapdoor, first, second, bound, q):
     """Check the delegated matrix in its two sampler blocks."""
     if len(trapdoor) != first + second or not trapdoor:
@@ -161,7 +174,7 @@ def _matrix_trapdoor_ok(trapdoor, first, second, bound, q):
     if columns < 1 or any(len(row) != columns for row in trapdoor):
         return False
     values = tuple(value for row in trapdoor for value in row)
-    return _split_norm_ok(values, first * columns, second * columns, bound, q)
+    return _raw_split_ok(values, first * columns, second * columns, bound)
 
 
 def _ring_trapdoor_ok(trapdoor, d, first, second, bound, q):
@@ -172,7 +185,7 @@ def _ring_trapdoor_ok(trapdoor, d, first, second, bound, q):
     if columns < 1 or any(len(row) != columns for row in trapdoor):
         return False
     values = tuple(value for row in trapdoor for poly in row for value in poly)
-    return _split_norm_ok(values, d * first * columns, d * second * columns, bound, q)
+    return _raw_split_ok(values, d * first * columns, d * second * columns, bound)
 
 
 class SISBackend:
@@ -216,28 +229,27 @@ class SISBackend:
                 raise SamplingAbort("identity issuance capacity exhausted")
             msk.states[identity] = ("pending", None)
             try:
+                plan = sampling.cached_plan(msk, "_root_sampling_plan",
+                    (pk.context, msk.trapdoor),
+                    lambda: sampling.root_plan(pk.a, msk.trapdoor, params))
                 r = _salt(self.rng, params)
                 h = sis_h1(pk.context, r, identity, params.n, params.k, params.q)
                 g = algebra.gadget_matrix(params.n, params.k)
                 target = tuple(tuple((h[i][j] - g[i][j]) % params.q for j in range(params.nk)) for i in range(params.n))
-                abar = tuple(tuple(pk.a[i][j] for j in range(params.m - params.nk)) for i in range(params.n))
-                trap = None
-                for _ in range(params.max_extract_attempts):
-                    candidate = algebra.matrix_delegate(
-                        abar, msk.trapdoor, target, params.n, params.k,
-                        params.m, params.q, params.trapdoor_sigma, self.rng)
-                    if algebra.matmul(pk.a, candidate, params.q) != target:
-                        raise IBSError("SIS delegated trapdoor equation failed")
-                    if _matrix_trapdoor_ok(
-                            candidate, params.m - params.nk, params.nk,
-                            params.s_id_squared, params.q):
-                        trap = candidate
-                        break
-                if trap is None:
-                    raise SamplingAbort("SIS identity trapdoor norm rejection budget exhausted")
+                trap = sampling.delegate_matrix(pk.a, plan, target, params, self.rng)
+                if algebra.matmul(pk.a, trap, params.q) != target:
+                    raise IBSError("SIS delegated trapdoor equation failed")
+                if not _matrix_trapdoor_ok(trap, params.m - params.nk, params.nk,
+                                           params.s_id_squared, params.q):
+                    raise SamplingAbort("SIS raw identity trapdoor tail gate failed; no redraw")
                 key = SisSigningKey(pk, identity, r, trap)
                 msk.states[identity] = ("issued", key)
                 return key
+            except Exception as exc:
+                msk.states[identity] = ("failed", None)
+                if isinstance(exc, (SamplingAbort, IBSError)):
+                    raise
+                raise SamplingAbort("SIS extraction sampler aborted; no redraw") from exc
             except BaseException:
                 msk.states[identity] = ("failed", None)
                 raise
@@ -247,12 +259,20 @@ class SISBackend:
             raise TypeError("Sageloli SIS signing key required")
         params, pk = sk.public_key.params, sk.public_key
         message = _message(params, message)
+        h = sis_h1(pk.context, sk.identity_salt, sk.identity, params.n, params.k, params.q)
+        try:
+            plan = sampling.cached_plan(sk, "_signing_sampling_plan",
+                (pk.context, sk.trapdoor, h),
+                lambda: sampling.signing_plan(pk.a, h, sk.trapdoor, params))
+        except Exception as exc:
+            raise SamplingAbort("SIS signing sampler admission failed; no redraw") from exc
         for _ in range(params.max_sign_attempts):
             s = _salt(self.rng, params)
-            h = sis_h1(pk.context, sk.identity_salt, sk.identity, params.n, params.k, params.q)
             u = sis_h2(pk.context, sk.identity_salt, s, sk.identity, message, params.n, params.q)
-            z = algebra.matrix_sign(pk.a, h, sk.trapdoor, u, params.n, params.k, params.m,
-                                    params.q, params.signing_sigma, self.rng)
+            try:
+                z = sampling.draw(algebra.hstack(pk.a, h), plan, u, params.k, self.rng)
+            except Exception as exc:
+                raise SamplingAbort("SIS signature sampler aborted; no redraw") from exc
             z = tuple(algebra.centered(value, params.q) for value in z)
             if not _split_ok(z, params.m, params.nk, params.s_sign_squared, params.q):
                 continue
@@ -278,7 +298,7 @@ class SISBackend:
             if tuple(x % params.q for x in algebra.matvec(f, signature.z, params.q)) != tuple(u):
                 return False
             return _split_ok(signature.z, params.m, params.nk, params.s_sign_squared, params.q)
-        except (EncodingError, SerializationError, TypeError, ValueError, AttributeError, OverflowError):
+        except (EncodingError, SerializationError, TypeError, ValueError, AttributeError, OverflowError, UniformSamplingAbort):
             return False
 
     def load_signature(self, pk, data):
@@ -307,7 +327,9 @@ class RSISBackend:
             raise TypeError("Sageloli RsisParams required")
         p = params
         abar = (tuple(tuple(_uniform(self.rng, p.q) for _ in range(p.d)) for _ in range(p.l - p.k)),)
-        root = tuple(tuple(tuple(_cbd(self.rng) for _ in range(p.d)) for _ in range(p.k)) for _ in range(p.l - p.k))
+        root = tuple(tuple(tuple(
+            (4 if h < p.d//4 or h >= 3*p.d//4 else 1)*_cbd(self.rng)
+            for h in range(p.d)) for _ in range(p.k)) for _ in range(p.l - p.k))
         _, ring_a = algebra.ring_public(abar, root, p.d, p.k, p.l, p.q)
         pk = RsisPublicKey(p, _expand_ring_matrix((ring_a,), p.d, p.q))
         msk = RsisMasterSecret(pk, _expand_ring_matrix(root, p.d), {})
@@ -334,30 +356,28 @@ class RSISBackend:
                 raise SamplingAbort("identity issuance capacity exhausted")
             msk.states[identity] = ("pending", None)
             try:
+                plan = sampling.cached_plan(msk, "_root_sampling_plan",
+                    (pk.context, msk.trapdoor),
+                    lambda: sampling.root_plan(pk.a, msk.trapdoor, p))
                 r = _salt(self.rng, p)
                 h = rsis_h1(pk.context, r, identity, p.k, p.d, p.q)
                 target = _ring_target(h, p.k, p.d, p.q)
-                abar = (_ring_from_public(pk)[0][:p.l - p.k],)
-                root = _collapse_ring_matrix(msk.trapdoor, p.d, p.l - p.k, p.k)
-                trap_ring = None
-                for _ in range(p.max_extract_attempts):
-                    candidate = algebra.ring_delegate(
-                        abar, root, target, p.d, p.k, p.l, p.q,
-                        p.trapdoor_sigma, self.rng)
-                    if algebra.ring_matmul(_ring_from_public(pk), candidate,
-                                           p.d, p.q) != (tuple(target),):
-                        raise IBSError("RSIS delegated trapdoor equation failed")
-                    if _ring_trapdoor_ok(
-                            candidate, p.d, p.l - p.k, p.k,
-                            p.s_id_squared, p.q):
-                        trap_ring = candidate
-                        break
-                if trap_ring is None:
-                    raise SamplingAbort("RSIS identity trapdoor norm rejection budget exhausted")
+                trap_ring = sampling.delegate_ring(pk.a, plan, target, p, self.rng)
+                if algebra.ring_matmul(_ring_from_public(pk), trap_ring,
+                                       p.d, p.q) != (tuple(target),):
+                    raise IBSError("RSIS delegated trapdoor equation failed")
+                if not _ring_trapdoor_ok(trap_ring, p.d, p.l - p.k, p.k,
+                                         p.s_id_squared, p.q):
+                    raise SamplingAbort("RSIS raw identity trapdoor tail gate failed; no redraw")
                 trap = _expand_ring_matrix(trap_ring, p.d)
                 key = RsisSigningKey(pk, identity, r, trap)
                 msk.states[identity] = ("issued", key)
                 return key
+            except Exception as exc:
+                msk.states[identity] = ("failed", None)
+                if isinstance(exc, (SamplingAbort, IBSError)):
+                    raise
+                raise SamplingAbort("RSIS extraction sampler aborted; no redraw") from exc
             except BaseException:
                 msk.states[identity] = ("failed", None)
                 raise
@@ -367,17 +387,22 @@ class RSISBackend:
             raise TypeError("Sageloli RSIS signing key required")
         p, pk = sk.public_key.params, sk.public_key
         message = _message(p, message)
+        h = rsis_h1(pk.context, sk.identity_salt, sk.identity, p.k, p.d, p.q)
+        expanded_h = _expand_ring_matrix((h,), p.d, p.q)
+        try:
+            plan = sampling.cached_plan(sk, "_signing_sampling_plan",
+                (pk.context, sk.trapdoor, h),
+                lambda: sampling.signing_plan(pk.a, expanded_h, sk.trapdoor, p))
+        except Exception as exc:
+            raise SamplingAbort("RSIS signing sampler admission failed; no redraw") from exc
         for _ in range(p.max_sign_attempts):
             s = _salt(self.rng, p)
-            h = rsis_h1(pk.context, sk.identity_salt, sk.identity, p.k, p.d, p.q)
             u = rsis_h2(pk.context, sk.identity_salt, s, sk.identity, message, p.d, p.q)
-            a = _ring_from_public(pk)
-            ring_h = h
-            trap_ring = _collapse_ring_matrix(sk.trapdoor, p.d, p.l, p.k)
-            z_polys = algebra.ring_sign(
-                a, ring_h, trap_ring, u, p.d, p.k, p.l, p.q,
-                p.signing_sigma, self.rng)
-            z = tuple(algebra.centered(value, p.q) for poly in z_polys for value in poly)
+            try:
+                raw_z = sampling.draw(algebra.hstack(pk.a, expanded_h), plan, u, p.k, self.rng)
+            except Exception as exc:
+                raise SamplingAbort("RSIS signature sampler aborted; no redraw") from exc
+            z = tuple(algebra.centered(value, p.q) for value in raw_z)
             if not _split_ok(z, p.first_dimension, p.second_dimension, p.s_sign_squared, p.q):
                 continue
             sig = RsisSignature(pk.context, sk.identity_salt, s, z)
@@ -403,7 +428,7 @@ class RSISBackend:
             if algebra.ring_matvec((f,), z_polys, p.d, p.q) != (tuple(u),):
                 return False
             return _split_ok(signature.z, p.first_dimension, p.second_dimension, p.s_sign_squared, p.q)
-        except (EncodingError, SerializationError, TypeError, ValueError, AttributeError, OverflowError):
+        except (EncodingError, SerializationError, TypeError, ValueError, AttributeError, OverflowError, UniformSamplingAbort):
             return False
 
     def load_signature(self, pk, data):

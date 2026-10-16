@@ -10,7 +10,6 @@ interface.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
-import math
 from typing import ClassVar
 
 
@@ -28,15 +27,13 @@ class SISParams:
     k: int = 4
     m: int = 16
     q: int = 81
-    trapdoor_sigma: float = 2.0
-    signing_sigma: float = 2.0
-    identity_bound_squared: int = 2**28
-    signature_bound_squared: int = 2**56
+    identity_width_squared: int = 2**28
+    signature_width_squared: int = 2**56
+    r_squared: int = 16
     identity_max_bytes: int = 256
     message_max_bytes: int = 4096
     max_users: int = 32
     salt_bytes: int = 32
-    max_extract_attempts: int = 64
     max_sign_attempts: int = 64
     security_claim: ClassVar[str] = "none"
     backend_admitted: ClassVar[bool] = False
@@ -51,18 +48,14 @@ class SISParams:
         _integer(self.q, 3**self.k, 3**self.k, "q")
         if self.q != 3**self.k:
             raise ValueError("Sageloli uses q=3^k, a composite modulus")
-        for name in ("trapdoor_sigma", "signing_sigma"):
-            value = getattr(self, name)
-            if (isinstance(value, bool) or not isinstance(value, (int, float))
-                    or not math.isfinite(float(value)) or value <= 0):
-                raise ValueError(f"invalid {name}")
-        _integer(self.identity_bound_squared, 1, 2**70, "identity_bound_squared")
-        _integer(self.signature_bound_squared, 1, 2**70, "signature_bound_squared")
+        _integer(self.m + self.nk, 1, 128, "coefficient dimension")
+        _integer(self.identity_width_squared, 1, 2**70, "identity_width_squared")
+        _integer(self.signature_width_squared, 1, 2**70, "signature_width_squared")
+        _integer(self.r_squared, 16, 16, "r_squared")
         _integer(self.identity_max_bytes, 1, 4096, "identity_max_bytes")
         _integer(self.message_max_bytes, 0, 2**20, "message_max_bytes")
         _integer(self.max_users, 1, 4096, "max_users")
         _integer(self.salt_bytes, 1, 64, "salt_bytes")
-        _integer(self.max_extract_attempts, 1, 256, "max_extract_attempts")
         _integer(self.max_sign_attempts, 1, 256, "max_sign_attempts")
 
     @property
@@ -75,11 +68,11 @@ class SISParams:
 
     @property
     def s_id_squared(self) -> int:
-        return self.identity_bound_squared
+        return self.identity_width_squared
 
     @property
     def s_sign_squared(self) -> int:
-        return self.signature_bound_squared
+        return self.signature_width_squared
 
     @property
     def gadget(self) -> tuple[tuple[int, ...], ...]:
@@ -106,39 +99,35 @@ class RSISParams:
     k: int = 9
     l: int = 22
     q: int = 19683
-    trapdoor_sigma: float = 2.0
-    signing_sigma: float = 2.0
-    identity_bound_squared: int = 2**36
-    signature_bound_squared: int = 2**66
+    identity_width_squared: int = 2**36
+    signature_width_squared: int = 2**66
+    r_squared: int = 16
     identity_max_bytes: int = 256
     message_max_bytes: int = 4096
     max_users: int = 32
     salt_bytes: int = 32
-    max_extract_attempts: int = 64
     max_sign_attempts: int = 64
     security_claim: ClassVar[str] = "none"
     backend_admitted: ClassVar[bool] = False
     parameters_are_formal: ClassVar[bool] = False
 
     def __post_init__(self):
-        _integer(self.d, 2, 16, "d")
+        _integer(self.d, 4, 16, "d")
+        if self.d & (self.d - 1):
+            raise ValueError("d must be a power of two with four-quarter root noise")
         _integer(self.k, 1, 16, "k")
         _integer(self.l, self.k + 1, 128, "l")
         _integer(self.q, 3**self.k, 3**self.k, "q")
         if self.q != 3**self.k:
             raise ValueError("Sageloli uses q=3^k, a composite modulus")
-        for name in ("trapdoor_sigma", "signing_sigma"):
-            value = getattr(self, name)
-            if (isinstance(value, bool) or not isinstance(value, (int, float))
-                    or not math.isfinite(float(value)) or value <= 0):
-                raise ValueError(f"invalid {name}")
-        _integer(self.identity_bound_squared, 1, 2**70, "identity_bound_squared")
-        _integer(self.signature_bound_squared, 1, 2**70, "signature_bound_squared")
+        _integer(self.d * (self.l + self.k), 1, 128, "coefficient dimension")
+        _integer(self.identity_width_squared, 1, 2**70, "identity_width_squared")
+        _integer(self.signature_width_squared, 1, 2**70, "signature_width_squared")
+        _integer(self.r_squared, 16, 16, "r_squared")
         _integer(self.identity_max_bytes, 1, 4096, "identity_max_bytes")
         _integer(self.message_max_bytes, 0, 2**20, "message_max_bytes")
         _integer(self.max_users, 1, 4096, "max_users")
         _integer(self.salt_bytes, 1, 64, "salt_bytes")
-        _integer(self.max_extract_attempts, 1, 256, "max_extract_attempts")
         _integer(self.max_sign_attempts, 1, 256, "max_sign_attempts")
 
     @property
@@ -163,16 +152,16 @@ class RSISParams:
 
     @property
     def s_id_squared(self) -> int:
-        return self.identity_bound_squared
+        return self.identity_width_squared
 
     @property
     def s_sign_squared(self) -> int:
-        return self.signature_bound_squared
+        return self.signature_width_squared
 
     @property
     def gadget(self) -> tuple[tuple[int, ...], ...]:
         # A one-row ring gadget: (1, 3, ..., 3^(k-1)).
-        return tuple((3**j,) + (0,) * (self.k - 1) for j in range(self.k))
+        return tuple((3**j,) + (0,) * (self.d - 1) for j in range(self.k))
 
     def record(self) -> dict:
         return asdict(self)

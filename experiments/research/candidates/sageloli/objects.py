@@ -154,6 +154,26 @@ def _signing_key_equation(key, public_key):
         raise SerializationError("signing-key trapdoor equation mismatch")
 
 
+def _master_key_equation(public, trapdoor):
+    p = public.params
+    rows = p.n if _is_sis(p) else p.d
+    width = rows * p.k
+    if _is_sis(p):
+        if any(x not in (-1, 0, 1) for row in trapdoor for x in row):
+            raise SerializationError("root outside CBD1 support")
+    else:
+        ring = _collapse_ring_matrix(trapdoor, p.d, p.l-p.k, p.k)
+        for row in ring:
+            for poly in row:
+                for h, x in enumerate(poly):
+                    scale = 4 if h < p.d//4 or h >= 3*p.d//4 else 1
+                    if x not in (-scale, 0, scale):
+                        raise SerializationError("ring root outside quarter-noise support")
+    j = algebra.vstack(trapdoor, algebra.identity(width))
+    if algebra.matmul(public.a, j, p.q) != algebra.gadget_matrix(rows, p.k):
+        raise SerializationError("master/public trapdoor equation mismatch")
+
+
 def _shape(params, kind):
     if _is_sis(params):
         return {"public": (params.n, params.m), "root": (params.m - params.nk, params.nk),
@@ -278,6 +298,7 @@ class MasterSecret(IBSMasterSecret):
         p = self.public_key.params
         object.__setattr__(self, "trapdoor", _flatten(self.trapdoor, _shape(p, "root")))
         _check_ring_expansion(self.trapdoor, p, _shape(p, "root"))
+        _master_key_equation(self.public_key, self.trapdoor)
         if not isinstance(self.states, dict) or len(self.states) > p.max_users: raise SerializationError("invalid issuance ledger")
         for identity, entry in self.states.items():
             identity = validate_identity(identity, max_bytes=p.identity_max_bytes)
@@ -313,6 +334,7 @@ class MasterSecret(IBSMasterSecret):
 
     def to_bytes(self):
         kind = b"SIS-MSK" if _is_sis(self.public_key.params) else b"RSIS-MSK"
+        _master_key_equation(self.public_key, self.trapdoor)
         return codec.encode(kind, self.public_key.to_bytes(), _tensor_bytes(self.trapdoor, _shape(self.public_key.params, "root")), self._state_bytes())
 
     @classmethod
@@ -402,6 +424,9 @@ class Signature(IBSSignature):
         if type(self.identity_salt) is not bytes or not 1 <= len(self.identity_salt) <= 64: raise SerializationError("invalid identity salt")
         if type(self.message_salt) is not bytes or not 1 <= len(self.message_salt) <= 64: raise SerializationError("invalid message salt")
         if not isinstance(self.z, (tuple, list)) or not self.z: raise SerializationError("empty signature response")
+        if len(self.z) > 128 or any(type(x) is not int or not codec._I64_MIN <= x <= codec._I64_MAX for x in self.z):
+            raise SerializationError("invalid signature integer response")
+        object.__setattr__(self, "z", tuple(self.z))
 
     def to_bytes(self):
         if not isinstance(self.z[0], (tuple, list)):

@@ -1,13 +1,12 @@
-"""Exact composite-modulus algebra and finite Gaussian gadget fibers.
+"""Exact composite-modulus algebra for the two Sageloli routes.
 
 This module contains the protocol's private matrix/ring arithmetic.  It keeps
-the two routes separate while sharing only the scalar ternary gadget sampler.
+the two routes separate while delegating Gaussian operations to the full-dimensional sampling module.
 No field inversion is used: the public modulus is the composite ``3^k``.
 """
 
 from __future__ import annotations
 
-from ibme.lattice.gaussian import sample_integer_gaussian
 from ibme.ibs.luo_module_math import negacyclic_schoolbook
 
 
@@ -83,73 +82,12 @@ def centered_poly(poly, q):
     return tuple(centered(v, q) for v in poly)
 
 
-def sample_coset_scalar(target, k, q, sigma, rng):
-    """Sample a finite discrete Gaussian in a ``3^k`` gadget fiber.
-
-    At each recurrence step ``x = residue + 3w`` uses the exact integer
-    Gaussian primitive conditioned on that residue class.  The final carry is
-    retained, so the returned digits satisfy the modular gadget equation even
-    for the composite modulus.
-    """
-    state = int(target) % q
-    result = []
-    for _ in range(k - 1):
-        residue = state % 3
-        w = sample_integer_gaussian(float(sigma) / 3.0, center=-residue / 3.0, rng=rng)
-        digit = residue + 3 * int(w)
-        result.append(digit)
-        state = (state - digit) // 3
-    result.append(state)
-    if (sum((3**i) * value for i, value in enumerate(result)) - int(target)) % q:
-        raise RuntimeError("gadget coset equation failed")
-    return tuple(result)
-
-
-def sample_gadget_vector(target, k, q, sigma, rng):
-    return sample_coset_scalar(target, k, q, sigma, rng)
-
-
 def matrix_public(abar, root, n, k, m, q):
     width = n * k
     abar = matrix(n, m - width, abar, q)
     root = matrix(m - width, width, root)
     g = gadget_matrix(n, k)
     return abar, hstack(abar, sub_mod(g, matmul(abar, root, q), q))
-
-
-def matrix_delegate(abar, root, target, n, k, m, q, sigma, rng):
-    """Return T with A*T=target (columns are independently sampled fibers)."""
-    abar, a = matrix_public(abar, root, n, k, m, q)
-    root = matrix(m - n * k, n * k, root)
-    target = matrix(n, n * k, target, q)
-    columns = []
-    for j in range(n * k):
-        y = _sample_matrix_syndrome([target[i][j] for i in range(n)], n, k, q, sigma, rng)
-        top = matvec(root, y, None)
-        columns.append(tuple(top) + tuple(y))
-    t = tuple(tuple(columns[j][i] for j in range(n * k)) for i in range(m))
-    if matmul(a, t, q) != target:
-        raise RuntimeError("matrix delegation equation failed")
-    return t
-
-
-def matrix_sign(a, h, trapdoor, target, n, k, m, q, sigma, rng):
-    x = tuple(sample_integer_gaussian(float(sigma), rng=rng) for _ in range(m))
-    residual = tuple((int(target[i]) - matvec(a, x, q)[i]) % q for i in range(n))
-    y = sample_gadget_vector(residual[0], k, q, sigma, rng) if n == 1 else _sample_matrix_syndrome(
-        residual, n, k, q, sigma, rng)
-    top = tuple(x[i] - matvec(trapdoor, y, None)[i] for i in range(m))
-    z = top + tuple(y)
-    f = hstack(a, h)
-    if any((value - target[i]) % q for i, value in enumerate(matvec(f, z, q))):
-        raise RuntimeError("matrix signing equation failed")
-    return z
-
-
-def _sample_matrix_syndrome(target, n, k, q, sigma, rng):
-    rows = [sample_gadget_vector(value, k, q, sigma, rng) for value in target]
-    # G is digit-major: [I, 3I, ..., 3^(k-1)I].
-    return tuple(rows[row][digit] for digit in range(k) for row in range(n))
 
 
 def poly_add(a, b, q=None):
@@ -208,45 +146,12 @@ def ring_public(abar, root, d, k, l, q):
     return abar, tuple(abar[0]) + tuple(right[0])
 
 
-def sample_ring_gadget(target, k, d, q, sigma, rng):
-    columns = [sample_coset_scalar(target[h], k, q, sigma, rng) for h in range(d)]
-    return tuple(tuple(columns[h][j] for h in range(d)) for j in range(k))
-
-
-def ring_delegate(abar, root, target, d, k, l, q, sigma, rng):
-    abar, a = ring_public(abar, root, d, k, l, q)
-    root_cols = l - k
-    target = tuple(tuple(int(x) % q for x in poly) for poly in target)
-    y_columns = [sample_ring_gadget(target[j], k, d, q, sigma, rng) for j in range(k)]
-    y = tuple(tuple(y_columns[j][i] for j in range(k)) for i in range(k))
-    top = ring_matmul(root, y, d, None)
-    t = tuple(tuple(top[i][j] for j in range(k)) for i in range(root_cols)) + y
-    if ring_matmul((a,), t, d, q) != (tuple(target),):
-        raise RuntimeError("ring delegation equation failed")
-    return t
-
-
-def ring_sign(a, h, trapdoor, target, d, k, l, q, sigma, rng):
-    x = tuple(tuple(sample_integer_gaussian(float(sigma), rng=rng) for _ in range(d)) for _ in range(l))
-    product = ring_matvec(a, x, d, q)
-    residual = tuple((int(target[h]) - product[0][h]) % q for h in range(d))
-    y = sample_ring_gadget(residual, k, d, q, sigma, rng)
-    correction = ring_matvec(trapdoor, y, d, None)
-    top = tuple(poly_sub(x[i], correction[i]) for i in range(l))
-    z = top + y
-    f = (tuple(a[0]) + tuple(h),)
-    if ring_matvec(f, z, d, q) != (tuple(target),):
-        raise RuntimeError("ring signing equation failed")
-    return z
-
-
 def ring_norm_squared(values, q=None):
     return sum(int(x) ** 2 for poly in values for x in (centered_poly(poly, q) if q else poly))
 
 
 __all__ = [
     "matrix", "matmul", "matvec", "hstack", "vstack", "gadget_matrix",
-    "matrix_public", "matrix_delegate", "matrix_sign", "sample_coset_scalar",
-    "poly_add", "poly_sub", "poly_mul", "poly_scale", "ring_matmul", "ring_matvec",
-    "ring_public", "ring_delegate", "ring_sign", "ring_norm_squared", "centered",
+    "matrix_public", "poly_add", "poly_sub", "poly_mul", "poly_scale",
+    "ring_matmul", "ring_matvec", "ring_public", "ring_norm_squared", "centered",
 ]
