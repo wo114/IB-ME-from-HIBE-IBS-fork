@@ -27,7 +27,7 @@ from .objects import MAX_WIRE, PREFIX
 from ..wang_pw.codec import canonical
 
 
-SCHEMA = "IBME/SRGG-PARAMETER-SCREEN/1"
+SCHEMA = "IBME/SRGG-PARAMETER-SCREEN/2"
 
 # NIST's ML-KEM standard is a useful external lattice reference, but it is a
 # KEM and therefore cannot be treated as an IBS security proof or as a direct
@@ -56,9 +56,9 @@ KYBER_NIST_REFERENCE = {
 }
 
 
-def _positive_int(value: Any, name: str, *, maximum: int) -> int:
-    if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= maximum:
-        raise ValueError(f"{name} must be a positive integer in [1,{maximum}]")
+def _bounded_int(value: Any, name: str, *, maximum: int, minimum: int = 1) -> int:
+    if isinstance(value, bool) or not isinstance(value, int) or not minimum <= value <= maximum:
+        raise ValueError(f"{name} must be an integer in [{minimum},{maximum}]")
     return value
 
 
@@ -86,6 +86,7 @@ def _coefficient_layout(config: Config) -> dict[str, int]:
         "public_b_coefficient_count": p.rank * p.rank * p.digits * p.degree,
         "master_r_coefficient_count": 2 * p.rank * p.rank * p.digits * p.degree,
         "user_vector_coefficient_count": p.columns * p.degree,
+        "stored_signing_tail_coefficient_count": (p.columns - p.rank) * p.degree,
         "response_coefficient_count": (p.columns + 1) * p.degree,
         "challenge_bits": p.degree,
         "challenge_bytes": (p.degree + 7) // 8,
@@ -132,31 +133,54 @@ def _wire_layout(config: Config) -> dict[str, Any]:
         "signature_reference_bytes": size("SIG", records["signature"]),
     }
     layout = _coefficient_layout(config)
-    packed_lower_bounds = {
-        "public_key": 32 + layout["public_b_coefficient_count"] * layout["coefficient_bytes"],
-        "signing_key": sizes["public_key_reference_bytes"] + config.identity_max_bytes
-        + layout["user_vector_coefficient_count"] * layout["coefficient_bytes"],
-        "master_secret_empty": sizes["public_key_reference_bytes"]
-        + layout["master_r_coefficient_count"] * layout["coefficient_bytes"],
-        "signature": 32 + layout["response_coefficient_count"] * layout["coefficient_bytes"]
-        + layout["challenge_bytes"],
+    coefficient_inventory = {
+        "public_key": {
+            "b_coefficients": layout["public_b_coefficient_count"],
+            "coefficient_domain": "canonical integers in [0,Q)",
+            "seed_bytes": 32,
+            "includes_config_snapshot": True,
+        },
+        "signing_key": {
+            "stored_tail_coefficients": layout["stored_signing_tail_coefficient_count"],
+            "reconstructed_vector_coefficients": layout["user_vector_coefficient_count"],
+            "coefficient_domain": "signed integers; full reconstructed vector passes user norm bound",
+            "full_vector_norm_squared_max": config.user_norm_squared,
+            "identity_max_bytes": config.identity_max_bytes,
+            "public_key_embedding": "hexadecimal canonical public-key wire",
+        },
+        "master_secret_empty": {
+            "r_coefficients": layout["master_r_coefficient_count"],
+            "coefficient_support": [-1, 0, 1],
+            "public_key_embedding": "hexadecimal canonical public-key wire",
+            "cached_identities": 0,
+        },
+        "signature": {
+            "response_coefficients": layout["response_coefficient_count"],
+            "coefficient_domain": "signed integers; verifier enforces response norm bound",
+            "response_norm_squared_max": config.signature_bound_squared,
+            "binary_challenge_coefficients": config.degree,
+            "context_bytes": 32,
+        },
     }
     return {
         **sizes,
-        "packed_lower_bounds_bytes": packed_lower_bounds,
+        "coefficient_inventory": coefficient_inventory,
+        "packed_encoding_bytes": None,
+        "packed_encoding_status": "no packed encoding or encoding lower bound derived",
         "object_wire_limit_bytes": MAX_WIRE,
         "reference_values": "canonical JSON shape fixture with zero coefficients; not a key or signature",
         "all_reference_objects_within_wire_limit": all(value <= MAX_WIRE for value in sizes.values()),
+        "all_admitted_objects_within_wire_limit": None,
     }
 
 
 def _capacity(config: Config, *, identity_bytes: int | None, message_bytes: int | None,
               issuer_users: int | None) -> dict[str, Any]:
-    identity = config.identity_max_bytes if identity_bytes is None else _positive_int(
+    identity = config.identity_max_bytes if identity_bytes is None else _bounded_int(
         identity_bytes, "identity_bytes", maximum=config.identity_max_bytes)
-    message = config.message_max_bytes if message_bytes is None else _positive_int(
-        message_bytes, "message_bytes", maximum=config.message_max_bytes)
-    users = config.max_users if issuer_users is None else _positive_int(
+    message = config.message_max_bytes if message_bytes is None else _bounded_int(
+        message_bytes, "message_bytes", minimum=0, maximum=config.message_max_bytes)
+    users = config.max_users if issuer_users is None else _bounded_int(
         issuer_users, "issuer_users", maximum=config.max_users)
     p = config.algebra
     framing = {"identity_length_prefix_bytes": 4, "message_length_prefix_bytes": 4,
@@ -190,7 +214,7 @@ def _correctness(config: Config) -> dict[str, Any]:
         "signature_width_covers_user_norm_class": min(config.signature_first_squared,
                                                         config.signature_second_squared) >
         2 * config.r_squared * user_bound + config.r_squared,
-        "exact_Q_gt_2_gamma_bound": p.modulus > 2 * gamma_bound,
+        "exact_Q_gt_2_gamma_bound": p.modulus**2 > 4 * config.signature_bound_squared,
         "zeta_noise_factor_is_two": config.signature_noise_factor == 2,
         "identity_capacity_positive": config.identity_max_bytes >= 1,
         "message_capacity_positive": config.message_max_bytes >= 1,
@@ -213,45 +237,75 @@ def _correctness(config: Config) -> dict[str, Any]:
 
 def _sampling(config: Config) -> dict[str, Any]:
     p = config.algebra
-    # These counts follow the current runtime call graph.  They are upper
-    # resource counts, not a claim that every finite sampler has this exact TV.
+    # Logical scalar draws in the runtime call graph, not counts of the
+    # rejection sampler's internal trials or claims about Gaussian TV.
     extraction_geometry_scalars = p.columns * p.degree
     extraction_gadget_scalars = p.rank * p.degree * p.digits
     signing_geometry_scalars = (p.columns + 1) * p.degree
-    signing_uniform_scalars = p.degree
+    signing_u_gaussian_scalars = p.degree
+    extraction_tickets = 2 * p.rank * (2 * ((p.degree + 1) // 2))
+    signing_tickets = p.columns * (2 * ((p.degree + 1) // 2))
     scalar_term = {
-        "tail_upper_model": f"1/2^{config.scalar_tail_bits}",
-        "mass_quantization_upper_model": f"1/2^{config.scalar_mass_bits}",
-        "precision_error_upper_model": f"1/2^{max(0, config.precision_bits - max(config.ticket_bits, config.scalar_mass_bits))}",
+        "tail_target_bits": config.scalar_tail_bits,
+        "mass_bits": config.scalar_mass_bits,
+        "precision_bits": config.precision_bits,
+        "continuous_ticket_bits": config.ticket_bits,
+        "tail_upper": None,
+        "mass_quantization_tv_upper": None,
+        "continuous_stage_tv_upper": None,
+        "real_precision_error_upper": None,
         "certified": False,
+        "open_obligations": [
+            "instantiate OnlineScalarGaussian certificates for rounding, lower-block and u widths",
+            "include support-count and interval-width terms in integer-weight quantization error",
+            "bound the full SampleF output law after finite tickets, real operations and rounding",
+        ],
     }
     gadget_term = {
-        "tail_upper_model": f"1/2^{config.gadget_tail_bits}",
-        "mass_quantization_upper_model": f"1/2^{config.scalar_mass_bits}",
-        "precision_error_upper_model": f"1/2^{max(0, config.precision_bits - config.scalar_mass_bits)}",
+        "tail_target_bits": config.gadget_tail_bits,
+        "mass_bits": config.scalar_mass_bits,
+        "precision_bits": config.precision_bits,
+        "tail_upper": None,
+        "mass_quantization_tv_upper": None,
+        "partition_bias_tv_upper": None,
+        "fiber_tv_upper_including_abort": None,
         "certified": False,
+        "open_obligations": [
+            "instantiate GadgetSampler certificates over every target residue",
+            "include interval quantization, bounded rejection and recurrence partition bias",
+            "map the gadget fiber law through perturbation convolution and HNF reconstruction",
+        ],
     }
     return {
         "scalar_sampler": scalar_term,
         "gadget_sampler": gadget_term,
         "draw_counts": {
+            "scope": "complete extraction or one complete signing attempt; abort can stop earlier",
+            "unit": "logical Gaussian draws; excludes each draw's internal rejection trials",
             "key_extraction_geometry_scalar_draws": extraction_geometry_scalars,
             "key_extraction_gadget_scalar_draws": extraction_gadget_scalars,
+            "key_extraction_continuous_normal_tickets": extraction_tickets,
             "sign_geometry_scalar_draws": signing_geometry_scalars,
-            "sign_uniform_scalar_draws": signing_uniform_scalars,
-            "sign_total_scalar_draws": signing_geometry_scalars + signing_uniform_scalars,
+            "sign_u_gaussian_scalar_draws": signing_u_gaussian_scalars,
+            "sign_total_scalar_draws": signing_geometry_scalars + signing_u_gaussian_scalars,
+            "sign_continuous_normal_tickets": signing_tickets,
+            "sign_max_total_scalar_draws": config.sign_max_attempts * (
+                signing_geometry_scalars + signing_u_gaussian_scalars),
+            "sign_max_continuous_normal_tickets": config.sign_max_attempts * signing_tickets,
         },
         "operation_budgets": {
             "setup_max_attempts": config.setup_max_attempts,
+            "setup_norm_rejection_implemented": False,
+            "setup_actual_root_draw_attempts_max": 1,
             "sign_max_attempts": config.sign_max_attempts,
             "identity_issuance_retry_policy": "none after pending/failed; fixed service blocks reselection",
         },
         "abort_terms": {
-            "setup_norm_rejection_upper": None,
+            "setup_norm_rejection_upper": 0,
             "key_extraction_entropy_abort_upper": None,
             "sign_entropy_abort_upper": None,
             "sign_norm_rejection_abort_upper": None,
-            "reason": "acceptance probabilities and finite continuous-stage TV are not certified",
+            "reason": "acceptance probabilities and final discretized output-law error are not certified",
         },
         "modeled_total_tv_upper": None,
         "modeled_total_tv_certified": False,

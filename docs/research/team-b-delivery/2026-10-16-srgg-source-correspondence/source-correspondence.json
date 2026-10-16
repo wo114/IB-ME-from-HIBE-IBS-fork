@@ -1,0 +1,222 @@
+{
+  "backend_admitted": false,
+  "full_tv_certificate": false,
+  "hnf": {
+    "no_wrap_fixture": {
+      "centered_reduction_changed_coefficients": 0,
+      "distribution_certified": false,
+      "exact_relation": true,
+      "general_coarse_norm_bound_holds": true,
+      "general_coarse_norm_bound_squared": 68,
+      "integer_head_correction_equals_error": true,
+      "raw_norm_squared": 2,
+      "restored_norm_squared": 4,
+      "tail_preserved": true
+    },
+    "wrap_fixture": {
+      "centered_reduction_changed_coefficients": 2,
+      "distribution_certified": false,
+      "exact_relation": true,
+      "general_coarse_norm_bound_holds": true,
+      "general_coarse_norm_bound_squared": 260,
+      "integer_head_correction_equals_error": false,
+      "raw_norm_squared": 98,
+      "restored_norm_squared": 32,
+      "tail_preserved": true
+    }
+  },
+  "paper": {
+    "doi": "10.1049/ise2/6684889",
+    "matches_reviewed_version": true,
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "parameters_are_formal": false,
+  "schema": "IBME/SRGG-SOURCE-CORRESPONDENCE/1",
+  "scope": "exact synthetic-fixture checks plus manually reviewed source ledger",
+  "security_claim": "none",
+  "source_ledger": [
+    {
+      "finding": "Table 3 factor1 versus induced density-shape factor2; Config uses factor2",
+      "item": "zeta perturbation",
+      "pages": [
+        6,
+        8
+      ],
+      "status": "source-conflict"
+    },
+    {
+      "finding": "conditional q=Q fails q>2gamma in all Table4 rows; 2Q is even",
+      "item": "odd q and norm cutoff",
+      "pages": [
+        4,
+        9
+      ],
+      "status": "mapping-incomplete"
+    },
+    {
+      "finding": "exact relation and general norm bound do not identify the repaired-key law",
+      "item": "HNF",
+      "pages": [
+        5,
+        7,
+        8
+      ],
+      "status": "algebra-verified-distribution-open"
+    },
+    {
+      "finding": "Theorem1 EUF; Theorem2 assumes sEUF; displayed games use fresh messages",
+      "item": "strong unforgeability",
+      "pages": [
+        4,
+        8
+      ],
+      "status": "premise-unverified"
+    },
+    {
+      "finding": "literal r=1.16 fails shape-width smoothing; physical stddev explanation unconfirmed",
+      "item": "Gaussian normalization",
+      "pages": [
+        3,
+        6,
+        9
+      ],
+      "status": "source-normalization-open"
+    }
+  ],
+  "source_parameter_rows": [
+    {
+      "Q_is_odd": true,
+      "backend_admitted": false,
+      "gadget_base": 31,
+      "gadget_dimension": 2,
+      "gadget_modulus": 961,
+      "literal_2Q_gt_2gamma": false,
+      "literal_Q_gt_2gamma": false,
+      "modulus_Q": 15744063,
+      "p": 16383,
+      "polynomial_degree": 512,
+      "public_coefficient_count": 4096,
+      "public_fixed_bit_packing_plus_seed_bytes": 12320,
+      "security_claim": "none",
+      "source": {
+        "gamma": "42086491.7",
+        "name": "PARAM-I",
+        "rank": 2,
+        "table1_mpk": 3104,
+        "table1_signature": 12088,
+        "table4_mpk": 12320,
+        "table4_signature": 12148
+      },
+      "table1_table4_public_sizes_equal": false,
+      "table1_table4_signature_sizes_equal": false,
+      "table4_matches_this_public_matrix_layout": true,
+      "theorem1_interpretation": "Not a proved mapping: requires clarification of Section 3 q versus IBS Q",
+      "twice_Q_is_odd": false,
+      "twice_gamma": "84172983.4",
+      "underlying_strong_signature_condition_verified": false
+    },
+    {
+      "Q_is_odd": true,
+      "backend_admitted": false,
+      "gadget_base": 31,
+      "gadget_dimension": 2,
+      "gadget_modulus": 961,
+      "literal_2Q_gt_2gamma": false,
+      "literal_Q_gt_2gamma": false,
+      "modulus_Q": 15744063,
+      "p": 16383,
+      "polynomial_degree": 512,
+      "public_coefficient_count": 9216,
+      "public_fixed_bit_packing_plus_seed_bytes": 27680,
+      "security_claim": "none",
+      "source": {
+        "gamma": "63653172.0",
+        "name": "PARAM-II",
+        "rank": 3,
+        "table1_mpk": 4640,
+        "table1_signature": 17736,
+        "table4_mpk": 27680,
+        "table4_signature": 17786
+      },
+      "table1_table4_public_sizes_equal": false,
+      "table1_table4_signature_sizes_equal": false,
+      "table4_matches_this_public_matrix_layout": true,
+      "theorem1_interpretation": "Not a proved mapping: requires clarification of Section 3 q versus IBS Q",
+      "twice_Q_is_odd": false,
+      "twice_gamma": "127306344.0",
+      "underlying_strong_signature_condition_verified": false
+    },
+    {
+      "Q_is_odd": true,
+      "backend_admitted": false,
+      "gadget_base": 31,
+      "gadget_dimension": 2,
+      "gadget_modulus": 961,
+      "literal_2Q_gt_2gamma": false,
+      "literal_Q_gt_2gamma": false,
+      "modulus_Q": 15744063,
+      "p": 16383,
+      "polynomial_degree": 512,
+      "public_coefficient_count": 16384,
+      "public_fixed_bit_packing_plus_seed_bytes": 49184,
+      "security_claim": "none",
+      "source": {
+        "gamma": "86573930.5",
+        "name": "PARAM-III",
+        "rank": 4,
+        "table1_mpk": 6176,
+        "table1_signature": 23480,
+        "table4_mpk": 49184,
+        "table4_signature": 23516
+      },
+      "table1_table4_public_sizes_equal": false,
+      "table1_table4_signature_sizes_equal": false,
+      "table4_matches_this_public_matrix_layout": true,
+      "theorem1_interpretation": "Not a proved mapping: requires clarification of Section 3 q versus IBS Q",
+      "twice_Q_is_odd": false,
+      "twice_gamma": "173147861.0",
+      "underlying_strong_signature_condition_verified": false
+    }
+  ],
+  "source_smoothing": {
+    "dimension": 10240,
+    "epsilon": "1/16777216",
+    "extraction_queries": 1099511627776,
+    "literal_quoted_r": "29/25",
+    "necessary_smoothing_condition_fails_for_literal_r": true,
+    "physical_stddev_interpretation": "plausible normalization explanation; unconfirmed",
+    "pi_r_squared_less_than_five": true,
+    "pi_r_squared_rational_upper": "18502/4375",
+    "shortest_dual_vectors_mass_strict_lower": "20480/243",
+    "source_pages": [
+      3,
+      6,
+      9
+    ],
+    "sufficient_smoothing_certificate": false
+  },
+  "strong_security_proof_verified": false,
+  "zeta": [
+    {
+      "degree": 2,
+      "discrete_covariance_claimed": false,
+      "induced_density_shape_factor": 2,
+      "operator_times_transpose_is_two_identity": true,
+      "zeta_times_star_is_two": true
+    },
+    {
+      "degree": 4,
+      "discrete_covariance_claimed": false,
+      "induced_density_shape_factor": 2,
+      "operator_times_transpose_is_two_identity": true,
+      "zeta_times_star_is_two": true
+    },
+    {
+      "degree": 8,
+      "discrete_covariance_claimed": false,
+      "induced_density_shape_factor": 2,
+      "operator_times_transpose_is_two_identity": true,
+      "zeta_times_star_is_two": true
+    }
+  ]
+}

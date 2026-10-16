@@ -1,0 +1,71 @@
+{
+  "schema": "IBME/SRGG-SOURCE-VALIDATION/1",
+  "verified_at": "2026-10-16T12:45:40+08:00",
+  "baseline_commit": "ca211fcc6bd93e07f797e3be1476d205fad0b463",
+  "source_checks": "source-correspondence.json",
+  "environment": {
+    "host_os": "Windows 11",
+    "host_python": "3.14.7",
+    "cpu": "Intel Core Ultra 7 255HX",
+    "sage_python": "3.13.15",
+    "sage": "10.9",
+    "sage_os": "WSL2 Linux 6.18.33.2, x86_64, glibc 2.39"
+  },
+  "tests": [
+    {
+      "command": "python -m pytest -q tests/test_srgg_source_correspondence.py tests/test_srgg_parameter_screen.py tests/test_srgg_algebra.py tests/test_srgg_geometry.py tests/test_primitive_spec_audit.py",
+      "environment": "Windows",
+      "passed": 97,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_*.py tests/test_primitive_spec_audit.py --junitxml=build/outputs/srgg-source-correspondence-2026-10-16/sage-regression.junit.xml",
+      "environment": "WSL Sage",
+      "passed": 228,
+      "failed": 0,
+      "skipped": 0,
+      "junit_seconds": "28.921"
+    }
+  ],
+  "parameters": {
+    "degree": 8,
+    "rank": 1,
+    "p": 257,
+    "base": 31,
+    "digits": 3,
+    "r_squared": 4,
+    "master_first_squared": 8388608,
+    "master_second_squared": 8388608,
+    "signature_first_squared": 137438953472,
+    "signature_second_squared": 137438953472,
+    "user_norm_squared": 536870912,
+    "signature_noise_factor": 2,
+    "identity_max_bytes": 256,
+    "message_max_bytes": 4096,
+    "max_users": 16,
+    "setup_max_attempts": 32,
+    "sign_max_attempts": 16,
+    "precision_bits": 192,
+    "ticket_bits": 128,
+    "scalar_tail_bits": 24,
+    "scalar_mass_bits": 64,
+    "gadget_tail_bits": 16
+  },
+  "source_parameter_execution": "n512 source rows checked by arithmetic only; not sampled",
+  "test_entropy": "deterministic test streams in real sampler/lifecycle tests; no production keys exported",
+  "repetitions": "one pytest run per listed environment; per-test loops remain in pinned source; no performance benchmark",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "rom_qrom": "source theorem models only; tests do not establish a reduction",
+  "remote_ci": "not asserted by this local receipt",
+  "open_items": [
+    "factor2/source normalization interpretation",
+    "HNF repaired-key and norm-admission distribution",
+    "final discretized finite-sampler total TV and abort",
+    "strong-unforgeability premise and exact theorem mapping",
+    "hardness estimates and formal large parameters",
+    "HIBE combination admission"
+  ]
+}

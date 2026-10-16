@@ -1,0 +1,336 @@
+{
+  "algorithm": "SRGG IBS component",
+  "backend_admitted": false,
+  "capacity": {
+    "capacity_is_component_local": true,
+    "challenge_bits": 8,
+    "framing": {
+      "hash_domain_separation": "SRGG-ID-v1/SRGG-MESSAGE-v1",
+      "identity_length_prefix_bytes": 4,
+      "message_length_prefix_bytes": 4
+    },
+    "hibe_capacity_unselected": true,
+    "identity_max_bytes": 256,
+    "issuer_identity_slots": 16,
+    "message_max_bytes": 4096,
+    "response_coefficients": 48,
+    "response_polynomials": 6
+  },
+  "correctness": {
+    "all_component_gates_pass": true,
+    "derived": {
+      "Q": 7656287,
+      "Q_squared": 58618730626369,
+      "gamma_bound_ceiling": 2568477,
+      "master_root_class_bound": 408,
+      "signature_bound_squared": 6597069766656,
+      "user_norm_class_bound": 4294967304
+    },
+    "gates": {
+      "bounded_coefficient_dimension": true,
+      "config_constructor": true,
+      "exact_Q_gt_2_gamma_bound": true,
+      "gadget_modulus_coprime_p": true,
+      "identity_capacity_positive": true,
+      "issuer_capacity_positive": true,
+      "master_width_covers_cbd1_root_class": true,
+      "message_capacity_positive": true,
+      "odd_p_and_base": true,
+      "signature_width_covers_user_norm_class": true,
+      "zeta_noise_factor_is_two": true
+    },
+    "interpretation": "algebraic/resource preconditions only; not a correctness proof for every sampler path"
+  },
+  "derived_layout": {
+    "Q": 7656287,
+    "challenge_bits": 8,
+    "challenge_bytes": 1,
+    "coefficient_bits": 23,
+    "coefficient_bytes": 3,
+    "degree": 8,
+    "gadget_base": 31,
+    "gadget_digits": 3,
+    "gadget_modulus": 29791,
+    "master_r_coefficient_count": 48,
+    "p": 257,
+    "public_b_coefficient_count": 24,
+    "rank": 1,
+    "response_coefficient_count": 48,
+    "stored_signing_tail_coefficient_count": 32,
+    "user_vector_coefficient_count": 40
+  },
+  "hardness": {
+    "attack_cost_bits": null,
+    "classical_core_svp_bits": null,
+    "dimension": 40,
+    "hardness_estimate_ready": false,
+    "model": "uninstantiated module/SIS estimate placeholder",
+    "modulus_Q": 7656287,
+    "open_obligations": [
+      "map SRGG q/p/Q symbols and exact theorem conditions",
+      "choose and validate a module/SIS estimator and reduction loss",
+      "account for challenge entropy and fixed-service/query loss",
+      "reconcile source Table 1/Table 4 wire dimensions with this Config"
+    ],
+    "paper_parameter_rows": [
+      {
+        "backend_admitted": false,
+        "gadget_base": 31,
+        "gadget_dimension": 2,
+        "gadget_modulus": 961,
+        "literal_2Q_gt_2gamma": false,
+        "literal_Q_gt_2gamma": false,
+        "modulus_Q": 15744063,
+        "p": 16383,
+        "polynomial_degree": 512,
+        "public_coefficient_count": 4096,
+        "public_fixed_bit_packing_plus_seed_bytes": 12320,
+        "security_claim": "none",
+        "source": {
+          "gamma": "42086491.7",
+          "name": "PARAM-I",
+          "rank": 2,
+          "table1_mpk": 3104,
+          "table1_signature": 12088,
+          "table4_mpk": 12320,
+          "table4_signature": 12148
+        },
+        "table1_table4_public_sizes_equal": false,
+        "table1_table4_signature_sizes_equal": false,
+        "table4_matches_this_public_matrix_layout": true,
+        "theorem1_interpretation": "Not a proved mapping: requires clarification of Section 3 q versus IBS Q",
+        "twice_gamma": "84172983.4",
+        "underlying_strong_signature_condition_verified": false
+      },
+      {
+        "backend_admitted": false,
+        "gadget_base": 31,
+        "gadget_dimension": 2,
+        "gadget_modulus": 961,
+        "literal_2Q_gt_2gamma": false,
+        "literal_Q_gt_2gamma": false,
+        "modulus_Q": 15744063,
+        "p": 16383,
+        "polynomial_degree": 512,
+        "public_coefficient_count": 9216,
+        "public_fixed_bit_packing_plus_seed_bytes": 27680,
+        "security_claim": "none",
+        "source": {
+          "gamma": "63653172.0",
+          "name": "PARAM-II",
+          "rank": 3,
+          "table1_mpk": 4640,
+          "table1_signature": 17736,
+          "table4_mpk": 27680,
+          "table4_signature": 17786
+        },
+        "table1_table4_public_sizes_equal": false,
+        "table1_table4_signature_sizes_equal": false,
+        "table4_matches_this_public_matrix_layout": true,
+        "theorem1_interpretation": "Not a proved mapping: requires clarification of Section 3 q versus IBS Q",
+        "twice_gamma": "127306344.0",
+        "underlying_strong_signature_condition_verified": false
+      },
+      {
+        "backend_admitted": false,
+        "gadget_base": 31,
+        "gadget_dimension": 2,
+        "gadget_modulus": 961,
+        "literal_2Q_gt_2gamma": false,
+        "literal_Q_gt_2gamma": false,
+        "modulus_Q": 15744063,
+        "p": 16383,
+        "polynomial_degree": 512,
+        "public_coefficient_count": 16384,
+        "public_fixed_bit_packing_plus_seed_bytes": 49184,
+        "security_claim": "none",
+        "source": {
+          "gamma": "86573930.5",
+          "name": "PARAM-III",
+          "rank": 4,
+          "table1_mpk": 6176,
+          "table1_signature": 23480,
+          "table4_mpk": 49184,
+          "table4_signature": 23516
+        },
+        "table1_table4_public_sizes_equal": false,
+        "table1_table4_signature_sizes_equal": false,
+        "table4_matches_this_public_matrix_layout": true,
+        "theorem1_interpretation": "Not a proved mapping: requires clarification of Section 3 q versus IBS Q",
+        "twice_gamma": "173147861.0",
+        "underlying_strong_signature_condition_verified": false
+      }
+    ],
+    "quantum_core_svp_bits": null,
+    "reduction_loss_accounted": false,
+    "source_mapping": "primitive_spec_audit.srgg_row; conditional source-table arithmetic only"
+  },
+  "hibe_independent": true,
+  "kyber_nist_reference": {
+    "algorithm_family": "ML-KEM (CRYSTALS-Kyber lineage)",
+    "axes": [
+      "module/ring dimensions and modulus",
+      "public-key and wire-object byte sizes",
+      "independently estimated classical and quantum attack costs",
+      "correctness/decapsulation-failure versus signature sampler abort",
+      "fixed implementation, hardware, repetitions and failure budgets"
+    ],
+    "comparison_status": "reference-only",
+    "non_equivalence": [
+      "ML-KEM is a KEM; SRGG is an identity-based signature component",
+      "a Kyber category is not an SRGG security level",
+      "wire-size or runtime ratios do not establish a reduction"
+    ],
+    "primitive_type": "KEM",
+    "security_categories": [
+      1,
+      3,
+      5
+    ],
+    "source": "https://doi.org/10.6028/NIST.FIPS.203",
+    "standard": "NIST FIPS 203"
+  },
+  "limitations": [
+    "Config is a bounded research profile, not a standard security parameter set.",
+    "Wire sizes are canonical JSON shape references and are not compressed production encodings.",
+    "Sampling terms are resource/model placeholders; no total-TV or abort certificate is asserted.",
+    "Hardness estimates, reduction losses, strong unforgeability and HIBE composition remain open.",
+    "Kyber/NIST labels are not inferred from this SRGG component screen."
+  ],
+  "parameters": {
+    "base": 31,
+    "degree": 8,
+    "digits": 3,
+    "gadget_tail_bits": 16,
+    "identity_max_bytes": 256,
+    "master_first_squared": 8388608,
+    "master_second_squared": 8388608,
+    "max_users": 16,
+    "message_max_bytes": 4096,
+    "p": 257,
+    "precision_bits": 192,
+    "r_squared": 4,
+    "rank": 1,
+    "scalar_mass_bits": 64,
+    "scalar_tail_bits": 24,
+    "setup_max_attempts": 32,
+    "sign_max_attempts": 16,
+    "signature_first_squared": 137438953472,
+    "signature_noise_factor": 2,
+    "signature_second_squared": 137438953472,
+    "ticket_bits": 128,
+    "user_norm_squared": 536870912
+  },
+  "parameters_are_formal": false,
+  "sampling": {
+    "abort_terms": {
+      "key_extraction_entropy_abort_upper": null,
+      "reason": "acceptance probabilities and final discretized output-law error are not certified",
+      "setup_norm_rejection_upper": 0,
+      "sign_entropy_abort_upper": null,
+      "sign_norm_rejection_abort_upper": null
+    },
+    "constant_time": false,
+    "draw_counts": {
+      "key_extraction_continuous_normal_tickets": 16,
+      "key_extraction_gadget_scalar_draws": 24,
+      "key_extraction_geometry_scalar_draws": 40,
+      "scope": "complete extraction or one complete signing attempt; abort can stop earlier",
+      "sign_continuous_normal_tickets": 40,
+      "sign_geometry_scalar_draws": 48,
+      "sign_max_continuous_normal_tickets": 640,
+      "sign_max_total_scalar_draws": 896,
+      "sign_total_scalar_draws": 56,
+      "sign_u_gaussian_scalar_draws": 8,
+      "unit": "logical Gaussian draws; excludes each draw's internal rejection trials"
+    },
+    "gadget_sampler": {
+      "certified": false,
+      "fiber_tv_upper_including_abort": null,
+      "mass_bits": 64,
+      "mass_quantization_tv_upper": null,
+      "open_obligations": [
+        "instantiate GadgetSampler certificates over every target residue",
+        "include interval quantization, bounded rejection and recurrence partition bias",
+        "map the gadget fiber law through perturbation convolution and HNF reconstruction"
+      ],
+      "partition_bias_tv_upper": null,
+      "precision_bits": 192,
+      "tail_target_bits": 16,
+      "tail_upper": null
+    },
+    "independent_uniform_bytes_assumed": true,
+    "modeled_total_tv_certified": false,
+    "modeled_total_tv_upper": null,
+    "operation_budgets": {
+      "identity_issuance_retry_policy": "none after pending/failed; fixed service blocks reselection",
+      "setup_actual_root_draw_attempts_max": 1,
+      "setup_max_attempts": 32,
+      "setup_norm_rejection_implemented": false,
+      "sign_max_attempts": 16
+    },
+    "scalar_sampler": {
+      "certified": false,
+      "continuous_stage_tv_upper": null,
+      "continuous_ticket_bits": 128,
+      "mass_bits": 64,
+      "mass_quantization_tv_upper": null,
+      "open_obligations": [
+        "instantiate OnlineScalarGaussian certificates for rounding, lower-block and u widths",
+        "include support-count and interval-width terms in integer-weight quantization error",
+        "bound the full SampleF output law after finite tickets, real operations and rounding"
+      ],
+      "precision_bits": 192,
+      "real_precision_error_upper": null,
+      "tail_target_bits": 24,
+      "tail_upper": null
+    }
+  },
+  "schema": "IBME/SRGG-PARAMETER-SCREEN/2",
+  "security_claim": "none",
+  "wire": {
+    "all_admitted_objects_within_wire_limit": null,
+    "all_reference_objects_within_wire_limit": true,
+    "coefficient_inventory": {
+      "master_secret_empty": {
+        "cached_identities": 0,
+        "coefficient_support": [
+          -1,
+          0,
+          1
+        ],
+        "public_key_embedding": "hexadecimal canonical public-key wire",
+        "r_coefficients": 48
+      },
+      "public_key": {
+        "b_coefficients": 24,
+        "coefficient_domain": "canonical integers in [0,Q)",
+        "includes_config_snapshot": true,
+        "seed_bytes": 32
+      },
+      "signature": {
+        "binary_challenge_coefficients": 8,
+        "coefficient_domain": "signed integers; verifier enforces response norm bound",
+        "context_bytes": 32,
+        "response_coefficients": 48,
+        "response_norm_squared_max": 6597069766656
+      },
+      "signing_key": {
+        "coefficient_domain": "signed integers; full reconstructed vector passes user norm bound",
+        "full_vector_norm_squared_max": 536870912,
+        "identity_max_bytes": 256,
+        "public_key_embedding": "hexadecimal canonical public-key wire",
+        "reconstructed_vector_coefficients": 40,
+        "stored_tail_coefficients": 32
+      }
+    },
+    "master_secret_empty_cache_reference_bytes": 1454,
+    "object_wire_limit_bytes": 2097152,
+    "packed_encoding_bytes": null,
+    "packed_encoding_status": "no packed encoding or encoding lower bound derived",
+    "public_key_reference_bytes": 647,
+    "reference_values": "canonical JSON shape fixture with zero coefficients; not a key or signature",
+    "signature_reference_bytes": 243,
+    "signing_key_reference_bytes": 1930
+  }
+}
