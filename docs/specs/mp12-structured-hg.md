@@ -40,6 +40,8 @@
 
 prefix≤512、总列≤8192、R项≤2²²等原工具门未放宽；另预检全部固定树的最坏快照。对当前全部 n=2…128、模数位数2…61，以每区间最大q、最小合法根宽和噪声作15240个双口径乐观区间检查，完整H/G的必要条件仅容许 `n≤5`。通过区间还须核素性、随机带、快照、真实路径和困难性；该结果没有准入任何参数。n128/q65537 的旧2432维根仍只算根/原像诊断。进入正式困难维度须改变实际实现域与资源算法，单纯增加参数n不能越过本版本限制。
 
+[完整同组目标筛查](../research/team-a-delivery/2026-10-16-target-parameters/README.md)另给出n128/512/2048/4096、q59/67/74/77位的公开数值投影及两个LWE角色。192位有限预算配方仅用于分析，未登记或实现为本后端profile，当前参数/wire/采样帽均保持v1。n4096的现有父R JSON最低209,278,992,384 B且q超uint64头；四组都被当前门拒绝。成本估算为Gaussian比较模型，不授安全等级。
+
 ## 对象、状态与错误
 
 六方法为 `setup/extract/derive/encrypt/decrypt/load_ciphertext`，另有 Hybrid 所需 `validate_key_binding`。五对象为 `StructuredPublicKey/StructuredMasterSecret/StructuredLevel1Key/StructuredLevel2Key/StructuredCiphertext`，均有独立 framing，严格长度、版本、维度、规范整数和参数快照。密文不携带身份；完整参数与根矩阵绑定 H/G context。私钥恢复检查结构化陷门方程、声明界、父逐列范数和全部256个叶方程；不能据此证明采样来源或保密性。

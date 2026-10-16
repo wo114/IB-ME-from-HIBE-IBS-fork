@@ -1,6 +1,6 @@
 {
   "schema": "IBME_TEAM_PLAN/1",
-  "date": "2026-10-15",
+  "date": "2026-10-16",
   "planning_only": false,
   "baseline": {
     "main": "bc22c9cb834dee51e9c8b7a37040fa0c5349fcdb",
@@ -8,7 +8,7 @@
     "pr10_included": "2868cf54411188562440820eba266ca3dd278fd9",
     "pr9_not_merged": "e5e0b97752f9291ce7621dd830d665baff86aef8"
   },
-  "human_priority": "当前用户要求继续A的剩余任务；优先完整参数域、有限累计误差和模型/可比评测缺口。GKR、ABB标准模型、CHKP标准模型暂缓，不占当前实现。B/C各自已交证据保留。",
+  "human_priority": "继续A；已完成完整同组目标与双LWE角色/资源筛查，按现行门拒绝大型投影。实际累计误差配方的版本化、构造条件和可比评测继续待办。GKR、ABB标准模型、CHKP标准模型暂缓。B/C证据保留。",
   "deadline_assumed": null,
   "scope": "固定 Wang 两层匿名 HIBE+IBS；不做 Boyen–Li 增强隐私。",
   "composition_policy": {
@@ -65,13 +65,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "full_HG_current_domain_exhaustively_limited_to_n_le5_formal_parameters_unavailable",
+      "execution_state": "complete_target_groups_two_LWE_roles_and_resource_lower_bounds_screened_no_executable_formal_parameters",
       "deliverables": [
         "研究配置/目标配置全参数与原文条件表",
         "根父叶尺寸/资源和第一阻塞",
         "下一真实路径输入选择"
       ],
-      "evidence": "../../research/team-a-delivery/2026-10-15-finite-budget/README.md"
+      "evidence": "../../research/team-a-delivery/2026-10-16-target-parameters/README.md"
     },
     {
       "id": "A3",
@@ -81,13 +81,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "structured_convolution_and_service_model_bounded_128bit_lifetime_target_not_met",
+      "execution_state": "current_lifetime128_target_failed_192bit_reallocation_only_projected_not_a_backend_profile",
       "deliverables": [
         "现有有限工具接收与公开接口",
         "真实分布/委派、异常/资源测试",
         "消费者和误差口径"
       ],
-      "evidence": "../../research/team-a-delivery/2026-10-15-finite-budget/README.md"
+      "evidence": "../../research/team-a-delivery/2026-10-16-target-parameters/README.md"
     },
     {
       "id": "A1",

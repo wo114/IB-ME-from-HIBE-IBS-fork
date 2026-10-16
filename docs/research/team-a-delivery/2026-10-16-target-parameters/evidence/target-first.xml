@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="6" time="3.396" timestamp="2026-10-16T01:28:44.642070+08:00" hostname="DESKTOP-U5VPLDO"><testcase classname="tests.test_mp12_target_screen" name="test_projected_decoder_is_the_current_exact_decoder_inequality" time="0.000" /><testcase classname="tests.test_mp12_target_screen" name="test_selected_prime_is_minimal_for_the_declared_complete_recipe" time="0.312"><failure message="TypeError: previous_prime() got an unexpected keyword argument 'proof'">row = {'family': 'mp12-structured-hg-target-projection', 'n': 128, 'q_bits': 59, 'complete_group': {'n': 128, 'q_bits': 59, 'w': 7552, 'm': 7808, ...}, ...}
+
+    def test_selected_prime_is_minimal_for_the_declared_complete_recipe(row):
+        g = row["complete_group"]
+        assert ZZ(g["q"]).is_prime(proof=True) and g["noise"]["conditional_noise_sufficient"]
+&gt;       previous = int(previous_prime(g["q"], proof=True))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: previous_prime() got an unexpected keyword argument 'proof'
+
+tests/test_mp12_target_screen.py:36: TypeError</failure></testcase><testcase classname="tests.test_mp12_target_screen" name="test_projection_does_not_admit_or_build_a_high_dimensional_key" time="0.000" /><testcase classname="tests.test_mp12_target_screen" name="test_ciphertext_comparator_uses_both_H_blocks_with_the_correct_small_secret" time="0.000" /><testcase classname="tests.test_mp12_target_screen" name="test_actual_public_gadget_above_the_runtime_modulus_cap_is_not_a_backend" time="0.272" /><testcase classname="tests.test_mp12_target_screen" name="test_projector_reads_no_entropy_and_constructs_no_structured_private_key" time="0.167" /></testsuite></testsuites>

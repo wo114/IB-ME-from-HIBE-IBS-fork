@@ -298,6 +298,9 @@
       "layer": "primitive",
       "allow_skips": false,
       "tests": [
+        "tests/test_prime_gadget.py",
+        "tests/test_structured_identity_view.py",
+        "tests/test_mp12_target_screen.py",
         "tests/test_mp12_distribution_budget.py",
         "tests/test_mp12_public_service_budget.py",
         "tests/test_mp12_structured_sampling.py",
@@ -306,7 +309,7 @@
         "tests/test_mp12_structured_hibe.py",
         "tests/test_mp12_structured_assembly.py"
       ],
-      "scope": "Real structured MP12 Algorithm3/4 and full CHKP H/G, 256-target noisy seed lifecycle, strict codec/fixed failure, concrete conditional sampler/service budgets and exhaustive optimistic domain exclusion; current lifetime target fails, no security admission."
+      "scope": "Real structured MP12 Algorithm3/4 and full CHKP H/G, 256-target noisy seed lifecycle, strict codec/fixed failure, concrete conditional sampler/service budgets, optimistic domain exclusion and independent 256-bit public gadget support; current HIBE lifetime target fails, no security admission."
     },
     {
       "id": "luo-composition-regression",

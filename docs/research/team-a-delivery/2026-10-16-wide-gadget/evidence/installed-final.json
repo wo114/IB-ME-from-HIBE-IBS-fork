@@ -1,0 +1,220 @@
+{
+  "schema": "A-WIDE-PRIME-GADGET-INSTALLED/1",
+  "status": "passed",
+  "isolated_python": true,
+  "cwd_outside_checkout": true,
+  "sole_project_provider_root": true,
+  "providers": {
+    "experiments.research.chkp_basis": {
+      "path": "ibme/lattice/chkp/basis.py",
+      "sha256": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d"
+    },
+    "experiments.research.first_suite": {
+      "path": "experiments/research/first_suite/__init__.py",
+      "sha256": "98a3203836217e8d437e31a13137e43f5d3759be61d7b2e901ff700e676ba931"
+    },
+    "experiments.research.first_suite.entropy": {
+      "path": "ibme/lattice/chkp/entropy.py",
+      "sha256": "fe449ebd5ccadfb8a8b73652b874fcd69e0683292368d9c03ef8c6d215fcc8d6"
+    },
+    "experiments.research.gaussian_reference": {
+      "path": "ibme/lattice/chkp/gaussian.py",
+      "sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c"
+    },
+    "experiments.research.general_gadget_reference": {
+      "path": "experiments/research/general_gadget_reference.py",
+      "sha256": "69e68a33baab3c85fe84525ce92a45e81723c667c64b526fa2dc321b2b098ab0"
+    },
+    "experiments.research.mp12_sampled_reference": {
+      "path": "experiments/research/mp12_sampled_reference.py",
+      "sha256": "a01b198a7bbcefbb54b387f6ab0b24961b5e74c3689ea4e2f30c74c35ba1061b"
+    },
+    "experiments.research.structured_target_screen": {
+      "path": "experiments/research/structured_target_screen.py",
+      "sha256": "9f1bcc5ce9673eb20c6e95558e6265b736f39053a856cc2233bdb506832c8f94"
+    },
+    "ibme": {
+      "path": "ibme/__init__.py",
+      "sha256": "f0e3dd70a3752229d5209b58ef760914242569406374c427a463a45823090bb8"
+    },
+    "ibme.core": {
+      "path": "ibme/core/__init__.py",
+      "sha256": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac"
+    },
+    "ibme.core.encoding": {
+      "path": "ibme/core/encoding.py",
+      "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+    },
+    "ibme.core.errors": {
+      "path": "ibme/core/errors.py",
+      "sha256": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e"
+    },
+    "ibme.core.hashing": {
+      "path": "ibme/core/hashing.py",
+      "sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4"
+    },
+    "ibme.core.randomness": {
+      "path": "ibme/core/randomness.py",
+      "sha256": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202"
+    },
+    "ibme.core.types": {
+      "path": "ibme/core/types.py",
+      "sha256": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56"
+    },
+    "ibme.lattice": {
+      "path": "ibme/lattice/__init__.py",
+      "sha256": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f"
+    },
+    "ibme.lattice.chkp": {
+      "path": "ibme/lattice/chkp/__init__.py",
+      "sha256": "820d7a2834b36d5cea29d0c165fa01c425af1739c103ea6323da8bacfd62c921"
+    },
+    "ibme.lattice.chkp.basis": {
+      "path": "ibme/lattice/chkp/basis.py",
+      "sha256": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d"
+    },
+    "ibme.lattice.chkp.entropy": {
+      "path": "ibme/lattice/chkp/entropy.py",
+      "sha256": "fe449ebd5ccadfb8a8b73652b874fcd69e0683292368d9c03ef8c6d215fcc8d6"
+    },
+    "ibme.lattice.chkp.gaussian": {
+      "path": "ibme/lattice/chkp/gaussian.py",
+      "sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c"
+    },
+    "ibme.lattice.chkp.joint_parameters": {
+      "path": "ibme/lattice/chkp/joint_parameters.py",
+      "sha256": "887fb6c938d25ef2466ec7af1ca5311f3e55269c6aa72ee57a51db74e8763c92"
+    },
+    "ibme.lattice.chkp.noise_budget": {
+      "path": "ibme/lattice/chkp/noise_budget.py",
+      "sha256": "4d493f2c305fd614705ab28f6fc3920b0ae06b195b0b0960719ff51314508790"
+    },
+    "ibme.lattice.chkp.rounded_noise": {
+      "path": "ibme/lattice/chkp/rounded_noise.py",
+      "sha256": "f093b75e82116f39b5817a01ee89ead1bcbaec8df6d231380354b4e992638411"
+    },
+    "ibme.lattice.gadget": {
+      "path": "ibme/lattice/gadget.py",
+      "sha256": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d"
+    },
+    "ibme.lattice.gaussian": {
+      "path": "ibme/lattice/gaussian.py",
+      "sha256": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c"
+    },
+    "ibme.lattice.matrix_sampling": {
+      "path": "ibme/lattice/matrix_sampling/__init__.py",
+      "sha256": "db15615ccef53acf421db6f65f45e2fb865445f66309f3c44bb133694de3f71b"
+    },
+    "ibme.lattice.matrix_sampling.gpv": {
+      "path": "ibme/lattice/matrix_sampling/gpv.py",
+      "sha256": "9b699e1fc2f0b2a2e84c0b9b37bcd290f1af9427d11c39a420ff9b0b91e220c0"
+    },
+    "ibme.lattice.matrix_sampling.mp12_bounds": {
+      "path": "ibme/lattice/matrix_sampling/mp12_bounds.py",
+      "sha256": "43c09691ff43355261b7f2a52148c8e9f0b0a7be0e28fd56e4b040791e57e28b"
+    },
+    "ibme.lattice.matrix_sampling.prime_gadget": {
+      "path": "ibme/lattice/matrix_sampling/prime_gadget.py",
+      "sha256": "f936c51e407c11f7d0f13c102f03a77fdebab900b449496c806f9cb156b90311"
+    },
+    "ibme.lattice.matrix_sampling.scalar": {
+      "path": "ibme/lattice/matrix_sampling/scalar.py",
+      "sha256": "6365371e7fdbdc86b022d5a55e53d59a0f58564ca715efac873f9fdde66c9b68"
+    },
+    "ibme.lattice.modmat": {
+      "path": "ibme/lattice/modmat.py",
+      "sha256": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94"
+    },
+    "ibme.lattice.params": {
+      "path": "ibme/lattice/params.py",
+      "sha256": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be"
+    },
+    "ibme.lattice.research": {
+      "path": "ibme/lattice/research/__init__.py",
+      "sha256": "89e656c9c2e8a5fedab17c1f160316a3b248f3ae62727275bc4306e1e0b3fb53"
+    },
+    "ibme.lattice.trapdoor": {
+      "path": "ibme/lattice/trapdoor.py",
+      "sha256": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8"
+    }
+  },
+  "provider_count": 33,
+  "sage": "10.9",
+  "python": "3.13.14",
+  "finite_options": {
+    "tail_bits": 192,
+    "mass_bits": 320,
+    "precision_bits": 384,
+    "gaussian_abort_bits": 192,
+    "max_uniform_trials": 256,
+    "max_gaussian_trials": 100000,
+    "max_radius": 5192296858534827628530496329220096,
+    "rational_bits": 65536,
+    "max_tape_bytes": 17592186044416
+  },
+  "public_sample_cases": [
+    {
+      "q": "149785881362170169333047",
+      "modulus_bits": 77,
+      "rows": 3,
+      "width_squared": "4000",
+      "epsilon_bits": 192,
+      "canonical_syndromes": [
+        "0",
+        "1",
+        "149785881362170169333046"
+      ],
+      "randomness": "fixed-test",
+      "complete_coset_equations": true,
+      "expanded_product_basis_entries": 0,
+      "certificate_sha256": "140509b1a05bb9a658d29449f5831ec9e044ef49f0a83d53a24aef93fe561b27",
+      "tv_upper_including_abort": "42328340593292268328904997745783763575820605550966713381768732017442645194110622070052837772904426533073876010631794704385623659929137615666402387306081992863440953250011175587/443576597800202552899708425275000730073396004890484746028775950227919928544856855877952312678057462525657113002986085574792145757886392851441498603013859761661947401425242373700229630089729144937226670043692293635376799191647911936",
+      "random_tape_bytes": 222382584
+    },
+    {
+      "q": "149785881362170169333047",
+      "modulus_bits": 77,
+      "rows": 3,
+      "width_squared": "4000",
+      "epsilon_bits": 192,
+      "canonical_syndromes": [
+        "0",
+        "1",
+        "149785881362170169333046"
+      ],
+      "randomness": "system-public-sample",
+      "complete_coset_equations": true,
+      "expanded_product_basis_entries": 0,
+      "certificate_sha256": "140509b1a05bb9a658d29449f5831ec9e044ef49f0a83d53a24aef93fe561b27",
+      "tv_upper_including_abort": "42328340593292268328904997745783763575820605550966713381768732017442645194110622070052837772904426533073876010631794704385623659929137615666402387306081992863440953250011175587/443576597800202552899708425275000730073396004890484746028775950227919928544856855877952312678057462525657113002986085574792145757886392851441498603013859761661947401425242373700229630089729144937226670043692293635376799191647911936",
+      "random_tape_bytes": 222382584
+    },
+    {
+      "q": "115792089237316195423570985008687907853269984665640564039457584007913129639747",
+      "modulus_bits": 256,
+      "rows": 1,
+      "width_squared": "4040",
+      "epsilon_bits": 192,
+      "canonical_syndromes": [
+        "0"
+      ],
+      "randomness": "fixed-test",
+      "complete_coset_equations": true,
+      "expanded_product_basis_entries": 0,
+      "certificate_sha256": "9119a1ab831c5dce5aef2b23390b9749e1d323e46d7f54476b7a761df11e93fb",
+      "tv_upper_including_abort": "331913915393627061683324583865352418193291747605243904689241368243580004782423137772864723124017678533389052159017248967122606869201191645467523324453573496570310589792862735431/3105036184601417870297958976925005110513772034233393222024343084140696653426678186095598800681248191723132113642433450861030607128927933066143947061246998119081699068949140848926030046064470148223823643252890547219347145483066802176",
+      "random_tape_bytes": 246448128
+    }
+  ],
+  "target_rows_recomputed": 4,
+  "source_projection_sha256": "b2918b14a34cc5cb550473a608da8a02b527e29bf82b8621b5e532762ddbc1b2",
+  "installed_projection_sha256": "b2918b14a34cc5cb550473a608da8a02b527e29bf82b8621b5e532762ddbc1b2",
+  "estimator_calls_reexecuted": 0,
+  "HIBE_root_or_key_generations": 0,
+  "private_inputs_read": 0,
+  "private_values_exported": false,
+  "current_HIBE_or_wire_domain_extended": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
