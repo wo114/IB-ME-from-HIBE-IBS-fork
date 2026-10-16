@@ -1,0 +1,36 @@
+{
+  "kind": "exact signature-domain modulus-ratio brackets; not collapsing admission",
+  "profiles": [
+    {
+      "profile": "executed-n512-d2",
+      "Q": 13972913866395903,
+      "Bsig": 238255596480161099521436160,
+      "floor_sqrt_Bsig": 15435530327143,
+      "Q_over_sqrt_Bsig_lower_strict": "13972913866395903/15435530327144",
+      "Q_over_sqrt_Bsig_upper": "13972913866395903/15435530327143",
+      "Q_squared_greater_than_4_Bsig": true,
+      "Q_over_sqrt_Bsig_is_less_than_3": false,
+      "Q_over_sqrt_Bsig_is_less_than_906": true
+    },
+    {
+      "profile": "unexecuted-n2048-d3",
+      "Q": 1682495510936535,
+      "Bsig": 707692227841418072592395159552,
+      "floor_sqrt_Bsig": 841244451893394,
+      "Q_over_sqrt_Bsig_lower_strict": "336499102187307/168248890378679",
+      "Q_over_sqrt_Bsig_upper": "560831836978845/280414817297798",
+      "Q_squared_greater_than_4_Bsig": true,
+      "Q_over_sqrt_Bsig_is_less_than_3": true,
+      "Q_over_sqrt_Bsig_is_less_than_906": true
+    }
+  ],
+  "actual_entropy_bytes": 0,
+  "draw_performed": false,
+  "proof_route": "LMS22/23 Th5 needs separately matched scalar or module distribution and asymptotic Q/(sqrt(Bsig)*Sigma) condition",
+  "condition_instantiated": false,
+  "Sigma_noise_distribution_fixed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}
