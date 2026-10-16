@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests">
+  <testsuite name="pytest" errors="0" failures="0" skipped="0" tests="24" time="1.136" timestamp="2026-10-16T16:07:17.345748+08:00">
+    <testcase classname="tests.test_srgg_hardness_search" name="test_current_research_point_preserves_every_existing_arithmetic_input" time="0.001" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_minimum_p_matches_independent_finite_enumeration[2-1-3-2-1]" time="0.001" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_minimum_p_matches_independent_finite_enumeration[2-1-3-4-1]" time="0.001" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_minimum_p_matches_independent_finite_enumeration[4-1-7-3-2]" time="0.002" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_minimum_p_matches_independent_finite_enumeration[4-2-15-4-2]" time="0.001" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_minimum_p_matches_independent_finite_enumeration[8-1-31-3-4]" time="0.001" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_minimum_p_matches_independent_finite_enumeration[8-2-3-10-4]" time="0.001" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_minimum_p_matches_independent_finite_enumeration[512-2-31-8-64]" time="0.001" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_minimum_p_matches_independent_finite_enumeration[512-2-3-20-64]" time="0.001" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_selected_shapes_all_pass_existing_geometric_and_smoothing_predicates" time="0.023" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_geometry_only_minimum_q_can_fail_the_independent_full_kernel_gate" time="0.000" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_fork_requirement_uses_exact_advantage_and_detects_vacuous_entropy" time="0.001" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_large_degree_exact_fractions_do_not_require_unbounded_decimal_conversion" time="0.001" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_invalid_candidate_inputs_reject_before_any_estimator_import[kwargs0]" time="0.001" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_invalid_candidate_inputs_reject_before_any_estimator_import[kwargs1]" time="0.001" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_invalid_candidate_inputs_reject_before_any_estimator_import[kwargs2]" time="0.000" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_invalid_candidate_inputs_reject_before_any_estimator_import[kwargs3]" time="0.000" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_invalid_candidate_inputs_reject_before_any_estimator_import[kwargs4]" time="0.000" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_invalid_candidate_inputs_reject_before_any_estimator_import[kwargs5]" time="0.000" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_invalid_candidate_inputs_reject_before_any_estimator_import[kwargs6]" time="0.000" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_invalid_minimum_p_inputs_cannot_enter_coprime_search[0]" time="0.000" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_invalid_minimum_p_inputs_cannot_enter_coprime_search[True]" time="0.000" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_invalid_minimum_p_inputs_cannot_enter_coprime_search[2]" time="0.000" />
+    <testcase classname="tests.test_srgg_hardness_search" name="test_invalid_minimum_p_inputs_cannot_enter_coprime_search[65536]" time="0.000" />
+  </testsuite>
+</testsuites>
