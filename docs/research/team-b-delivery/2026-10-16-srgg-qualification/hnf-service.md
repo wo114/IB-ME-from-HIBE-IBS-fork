@@ -23,6 +23,60 @@ P_issue(⊥) = P_raw(⊥) + sum_{t:not E_B(t)} sum_{u:π(u)=t} P_raw(u).
 
 `issuance_analysis.finite_raw_extraction_law` 和 `issuance_law` 对明确给出的有限有理 law 精确执行以上求和，验证陷门关系和每个 gadget 条件支持，保留中止质量。它们不是生产采样器；未声称能枚举真实后端全部票据路径。
 
+## 实际理想卷积还缺哪些条件
+
+以下在系数空间中书写，避免把环矩阵转置误作普通块转置。设
+`N=(2+w)dn`、`m=wdn`、`T=[R;I]`、`AT=F mod Q`，
+`σ²=b²r²`，主密钥目标形状为 `Σ`，扰动形状为
+`Σp=Σ−σ²TTᵀ≻0`，并记 `ρ_M(z)=exp(−πzᵀM⁻¹z)`。
+先单独考虑无中止的理想条件采样：
+
+```text
+P ~ D_{Z^N,Σp},
+v = canonical_Q(h−AP), e = v mod p,
+X | P ~ D_{ {x∈Z^m: Fx=v−e mod Q}, σ²I },
+U = P+TX.
+```
+
+这不是已证明与 PSF 等价的采样算法。对可达 `s` 定义
+`Z_F(s)=sum_{x:Fx=s mod Q} ρ_{σ²I}(x)`。
+当 `u` 满足 `Au=h−e mod Q`、`e∈{0,…,p−1}^{dn}` 时，代入
+`P=u−Tx`，得到精确边缘表达：
+
+```text
+Pr[U=u] = (1/Z_P) * sum_{x∈Z^m}
+          ρ_Σp(u−Tx) ρ_{σ²I}(x) / Z_F(Fx mod Q),
+Z_P = sum_{a∈Z^N} ρ_Σp(a).
+```
+
+其它 u 的概率为零；`Q=p b^w` 和 F 的系数都是 p 的倍数保证该支持条件。
+要消去分母，须给出所有可达 fiber 的 `Z_F(s)` 相对同一常数的统一上下界。
+现有 gadget 证书只比较递推输出与各自已正规化的 spherical fiber law，
+不自动证明不同 fiber 的正规化量一致。
+
+再令
+
+```text
+C = (σ^(-2) I + TᵀΣp^(-1)T)^(-1),
+μ(u) = C TᵀΣp^(-1)u.
+```
+
+配平方恒等式给出
+`ρ_Σp(u−Tx)ρ_{σ²I}(x)=ρ_Σ(u)ρ_C(x−μ(u))`。
+因此即使 fiber 分母已足够均匀，还须控制
+`sum_x ρ_C(x−μ(u))` 对所有相关中心的变化，例如为 `C` 给出足够的
+`Z^m` smoothing 条件。仅有 `Σp≻r²I` 不构成该条件的核验。
+也不能把秩仅为 m<N 的 `σ²TTᵀ` 直接当作冻结 Peikert Theorem 3.1
+所要求的第二个正定形状；上面的辅助变量配平方或适用的陷门采样定理必须另行核对。
+
+即使这两项都闭合，自然得到的参考仍是并集
+`S_h={u:Au=h−e mod Q, e∈{0,…,p−1}^{dn}}` 上的 Gaussian，
+尚不是单个 exact fiber。令 `J=[I_{dn};0]`，平移 `y=u+Je` 可修复等式，
+但各误差分量的密度成为中心为 `Je` 的 Gaussian 密度；分量权重也须核对。
+HNF 不会使这些平移密度自动等于某个指定的 exact-fiber 条件 Gaussian。
+其尾部误差、压缩后的 head-wrap 和范数门仍是独立义务。
+这给出了具体补桥条件，不是实际 SRGG 分布的反例或已建立的误差数值。
+
 ## 与 PSF 条件 law 的精确缺口
 
 若拟用的数学 PSF forward map 是 `f_A(y)=Ay mod Q`，必须先指定一个与 h 无关的完整 witness 域 law `Q_dom`，再定义
