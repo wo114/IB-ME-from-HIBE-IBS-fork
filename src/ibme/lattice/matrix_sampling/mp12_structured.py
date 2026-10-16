@@ -19,11 +19,12 @@ from ibme.core.encoding import encode_bytes
 from ibme.core.randomness import SecureRandom
 from ibme.core.types import validate_identity
 from ibme.lattice.chkp.joint_parameters import smoothing_factor
-from experiments.research.chkp_basis import KernelBasis, ModMatrixReference
+from experiments.research.chkp_basis import ModMatrixReference
 from experiments.research.first_suite.entropy import CheckedEntropy
 from experiments.research.gaussian_reference import SamplingAbort, draw_uniform_integer, interval_bounds
 from .scalar import MatrixFiniteOptions, MatrixFiniteGaussian, exact_integer, capped_exp_minus_pi
 from .gpv import MatrixFiniteGPV
+from .prime_gadget import prime_gadget_kernel
 
 VERSION = "IBME/MP12-STRUCTURED/1"
 MAX_PREFIX, MAX_COLUMNS, MAX_R_ENTRIES, MAX_BYTES = 512, 8192, 2**22, 32*2**20
@@ -187,15 +188,7 @@ def generate_structured_root(n, q, r_squared, *, rng=None, options=None):
 def gadget_block(q):
     """Complete prime-q binary gadget kernel, k-by-k only, shared by n blocks."""
     q = exact_integer(q, "gadget q", minimum=3, maximum=2**61-1)
-    if q % 2 == 0 or not ZZ(q).is_prime(proof=True):
-        raise ValueError("gadget block requires an odd prime")
-    k = (q-1).bit_length()
-    basis = matrix(ZZ, k, k)
-    for j in range(k-1):
-        basis[j, j], basis[j+1, j] = 2, -1
-    for i in range(k):
-        basis[i, k-1] = (q >> i) & 1
-    return KernelBasis(ModMatrixReference((tuple(2**i for i in range(k)),), q), basis)
+    return prime_gadget_kernel(q)
 
 
 def _output_width(trapdoor, r_squared):

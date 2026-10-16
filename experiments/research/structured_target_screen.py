@@ -130,16 +130,8 @@ def resource_projection(group):
 
 def analysis_gadget(q):
     """Only a public k-dimensional kernel; does not extend the runtime q cap."""
-    from sage.all import ZZ, matrix
-    from ibme.lattice.chkp.basis import KernelBasis, ModMatrixReference
-    _integer(q, "analysis gadget q", 3, 2**256-1)
-    if q % 2 == 0 or not ZZ(q).is_prime(proof=True):
-        raise ValueError("proven odd prime required")
-    k = (q-1).bit_length()
-    b = matrix(ZZ, k, k)
-    for j in range(k-1): b[j, j], b[j+1, j] = 2, -1
-    for i in range(k): b[i, k-1] = (q >> i) & 1
-    return KernelBasis(ModMatrixReference((tuple(2**i for i in range(k)),), q), b)
+    from ibme.lattice.matrix_sampling.prime_gadget import prime_gadget_kernel
+    return prime_gadget_kernel(q)
 
 
 def projected_distribution_budget(group):
