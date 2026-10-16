@@ -1,0 +1,510 @@
+{
+  "schema": "IBME/SRGG-BRIDGE-MANIFEST/1",
+  "base_commit": "93984d554f0d06a6cd3c5995624a84aa3c8671ad",
+  "self_excluded": true,
+  "files": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/aggregate-budget.json",
+      "bytes": 86645,
+      "sha256": "41be8b8d5453613453a6fdaa0e177d260fe973245f87d77e948c8bc6fbee8981"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/aggregate-budget.md",
+      "bytes": 10301,
+      "sha256": "1af67638d7ada5ed4064d0cc125a18cddb721b3695dfa0b5b64f9f4ad15febe6"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/convolution.json",
+      "bytes": 21865,
+      "sha256": "e95086f0d8ae21f95f8c43af3bfeb7cbf6262811bc6c17ab0b42e78a5f7d6c75"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/convolution.md",
+      "bytes": 9475,
+      "sha256": "c6a389305e026ea081f2ceec6fa3beb679d8d1081e447094023808c793873a92"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/execution-independent-review.md",
+      "bytes": 11226,
+      "sha256": "a3b1269e34b6cf72d653d7ef8a2c411ce58cf7174c1c0dcf321a7eb8df4e20e3"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/fiber-normalizers.json",
+      "bytes": 25416,
+      "sha256": "84abdd293f697b3c5321f1acefa637949b3a4691017fc7f9f108ac6620cbf48d"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/fiber-normalizers.md",
+      "bytes": 9916,
+      "sha256": "f06868a80244c996a9f1b42825e0ad7f64b30b0c4f2c9fe06795fd175789f0db"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge-independent-tests.junit.xml",
+      "bytes": 1725,
+      "sha256": "f823f00b0817c2fa77f8d90426ea88e7ea522420acb71661b58784e4430b7045"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge.json",
+      "bytes": 79078,
+      "sha256": "23534aec4f2a5d208d083e5830001318c072c6c4af157d6d3c27cc73b934033e"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge.md",
+      "bytes": 6186,
+      "sha256": "3b535a9ada726f715b531340e3f39a207c9943951f091cc346ca8bfd232474c5"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/mixed-domain.json",
+      "bytes": 2982,
+      "sha256": "148542ea5c4642cc5269dccf1afaba268aa2d66574d2774731bf81c8d183a51e"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/mixed-domain.md",
+      "bytes": 10305,
+      "sha256": "943f2f8c7dad223782c8cd2ff431214ff07ed1febfcff3c285353500e80ed443"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/new-samplers.junit.xml",
+      "bytes": 16508,
+      "sha256": "273172d725b1676f1f30b21d9d1c3d4ad621912c286f5f506daef20334374db7"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/oracle-ledger.json",
+      "bytes": 34215,
+      "sha256": "241c39d07eedceba1a37ad0af264921596c8d15c126b2729e78f7a5ac40d04ac"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/oracle-ledger.md",
+      "bytes": 5053,
+      "sha256": "e36f239a43993e2d2c122c6eb50e4c8e665afc089991e4fc3e949c843fd28eaa"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/psf-reference.json",
+      "bytes": 10562,
+      "sha256": "c06abd60711a55c209cf1ef9cdb071e80e212db18102fc06f436bbc33d9f50c1"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/psf-review.md",
+      "bytes": 13770,
+      "sha256": "55ec67eab9bbc88cb59b77ae09e1fb5802f0173625e42ae6e4adffa11a9fe06e"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/README.md",
+      "bytes": 8784,
+      "sha256": "878235dbe1831af99de3c4fcf10d159fc7199e4bd7efe5372822d15b61daf6db"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/route-comparison.md",
+      "bytes": 25906,
+      "sha256": "df5a3c87bb94087e62e419fbd85e9c555af9022ba861ca82a690e5fc82dbd417"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/sage-regression.junit.xml",
+      "bytes": 93123,
+      "sha256": "df028d35eaceaa61e41312e3d157ff474fc48bb438b64bf2d7a87ede5296f1ab"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/spectral-bounds.json",
+      "bytes": 30254,
+      "sha256": "6cb556e8c403d8132892ee0187f6610d1fc7adaf3b0a32514957572e77a163d3"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/spectral-bounds.md",
+      "bytes": 8390,
+      "sha256": "c79c7282c23f0323b0ca8b23455d84b0ab97db1a843338aabb32bc0b1cf06335"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-entropy-envelope.json",
+      "bytes": 3654,
+      "sha256": "5b2dffbaebee3ea371983e2e99f9f2a24fb11de811a00864253e20acbb80a821"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-n512-d2w8.json",
+      "bytes": 24709,
+      "sha256": "ee8fde8955113bc06aea842ecc9128e1d0f3d793a0c3ce7a082d0cb550d06e09"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-n512-d2w8.stderr.txt",
+      "bytes": 994,
+      "sha256": "26c21eb6b21fc3bc93be8b8501d1335b4899e1af19a0ff83267477a2a64b798c"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-profiles.json",
+      "bytes": 65641,
+      "sha256": "9c719aeea6c0fe4d1727f0f346da8f0bdb52cad0428a8e6038e33fe618a9c6b0"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-tests.junit.xml",
+      "bytes": 4999,
+      "sha256": "fbe5c646a5597506137ab3b0f761c359720f347194e0ccea6ba2dc08863136fe"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution.md",
+      "bytes": 11089,
+      "sha256": "6d56e8491ac1382763d2e076a68b5f353b96a260ac1a1bba3873423944fa691b"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-acceptance.md",
+      "bytes": 7647,
+      "sha256": "8555d0501f8c72594c67cdae7d2eaff954c1d628f73b9203bc25bd7670187d91"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-n16-current.json",
+      "bytes": 11247,
+      "sha256": "c16593e31a662f90b9243d9f6817556ea216e92a1f907dbb356ab7ac99c37e6e"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-n32-current.json",
+      "bytes": 11254,
+      "sha256": "e0d53eb56edf905f4133e3ab2eb0b1bf51625f0045535c1dad113cff08007f99"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-n512.json",
+      "bytes": 5911,
+      "sha256": "6d9e996c1874227df673e430ac705091c493623175054b90dd85038cd673d0f0"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-n512.time.txt",
+      "bytes": 971,
+      "sha256": "5f2cc1ba499581f34463c09981cfc3e06eaa919f70ccfbb5beef51ab977feb46"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-n8.json",
+      "bytes": 6104,
+      "sha256": "14371b742b19d5810c2692ac057f9818753626d212ca4fab9a3161daf1a4f69b"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-review.md",
+      "bytes": 8611,
+      "sha256": "5996664be89905324e58a207fd4e467ccde562aa4fc8128b3eb4b537ad420500"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-signature-n512.json",
+      "bytes": 11370,
+      "sha256": "eef8617cc3f70d9c799b06a7a093fc59486a965479f3c98700a9fb3f70e47384"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-signature-n512.time.txt",
+      "bytes": 991,
+      "sha256": "30cb36fc90df00e172cdbf4e712abdfa4e4be86d8976846e0a3c999d5d0bd04b"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/theorem-obligations.md",
+      "bytes": 5805,
+      "sha256": "dac0d9b85f6169163046212e45773e4a9f46a12bc7b9af93b9781e2f5829734e"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/validation.json",
+      "bytes": 2962,
+      "sha256": "9b115409f7b256f02399f9e02a149193dc796826dfb419a0ee358355957d52ac"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/wide-scalar.json",
+      "bytes": 44145,
+      "sha256": "38088068076426a4c003ac465d3e9e5d06f96bc121a6eb57cab32a0c550fe866"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/wide-scalar.md",
+      "bytes": 8704,
+      "sha256": "d5233a876584c7a7eebd0c72e0b66acaeeb15d28dcfae9caeb87714769705df2"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/windows-final.junit.xml",
+      "bytes": 17631,
+      "sha256": "445368a5cae295cd8cfc72f21ad2efbed493f94a42c2d28fd05fa5516f33b084"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/aggregate_budget.py",
+      "bytes": 13974,
+      "sha256": "ade4d313fefe5973030ac6ae29b4eb40bce83b440b7b8dee342ec789466b9a20"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/convolution_bridge.py",
+      "bytes": 12462,
+      "sha256": "2588c06e96adddf2c7cd6b53bd22542541bd5b3f6ad422288122abeb5dffc5fb"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/fiber_normalizers.py",
+      "bytes": 9750,
+      "sha256": "21a9072cd0243db7fd75d3af035dff23366652aba0bb59cfc8e7247acfae4461"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/integrated_bridge.py",
+      "bytes": 12468,
+      "sha256": "239359f7fff774d8cd3511841c03baec74a72b81d6ea8bca603eae66e52c31f5"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/mixed_domain.py",
+      "bytes": 10910,
+      "sha256": "0248648d964a20d0ea4f6b3fc2cc3ae2a022c5f3fb38846171c86ee6dd4e8c76"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/oracle_ledger.py",
+      "bytes": 12766,
+      "sha256": "6ef6cf7feaf6558577750182259f7a9a3078f839670e43f259d44b8b8de45187"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/psf_bridge.py",
+      "bytes": 17041,
+      "sha256": "98422dfcd35a167843972e90a2a92b31dc317cee85e81291b3aabb2889f704aa"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/spectral_bounds.py",
+      "bytes": 11479,
+      "sha256": "069d79c12f495b7e664ff0b0194188022088a21fb70eb4083800c93e1524a3d5"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_execution.py",
+      "bytes": 38862,
+      "sha256": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_samplef.py",
+      "bytes": 18596,
+      "sha256": "8a4a82baea93b62a13f215d53d866eff5f6d083563a81dc9b21b51999931c10a"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/wide_scalar.py",
+      "bytes": 18555,
+      "sha256": "2f404dd95ec1c909c3c40dcc8b6e4b070d25864c2e2aaa0a80e8b291df5689ca"
+    },
+    {
+      "path": "experiments/research/srgg_bridge_delivery_check.py",
+      "bytes": 3635,
+      "sha256": "20887f2b575a7e4c6c7436053a09dc05073e428f11fd56278fd087308f798f44"
+    },
+    {
+      "path": "experiments/research/srgg_structured_samplef_execution.py",
+      "bytes": 5671,
+      "sha256": "9a0669ae3ad2919aea4ee14e9f90daf8b0b3ec032d84ecaa5d4fc50aa5d69d1a"
+    },
+    {
+      "path": "tests/test_srgg_aggregate_budget.py",
+      "bytes": 7915,
+      "sha256": "c459712048707efa639db050b47d1b0a38dc3a2115cc39018add00ee62f465d6"
+    },
+    {
+      "path": "tests/test_srgg_convolution_bridge.py",
+      "bytes": 8748,
+      "sha256": "3155b7a498cad90d37da5b36fa5478264830fb892b13d12d8bb70f9c1d7b952c"
+    },
+    {
+      "path": "tests/test_srgg_fiber_normalizers.py",
+      "bytes": 5547,
+      "sha256": "e53eb994dadccd1d969429a75ca5a511d39403efe40935299fcb0b326d3dc4e5"
+    },
+    {
+      "path": "tests/test_srgg_integrated_bridge.py",
+      "bytes": 3802,
+      "sha256": "eaab0937492a5016b54e81d49a8eb214b6b79a0dd9449fdbdff66624d992a6fe"
+    },
+    {
+      "path": "tests/test_srgg_mixed_domain.py",
+      "bytes": 8116,
+      "sha256": "ac7ec3f5c1cbd930f2bc6e003b3d2f3b17a7df76a2b517c91d4f77f68427b7ba"
+    },
+    {
+      "path": "tests/test_srgg_oracle_ledger.py",
+      "bytes": 4076,
+      "sha256": "a7e3c036d49370ea73c1e5d50bccfd2e605017ff95e2cb94c1607abc7249a5d1"
+    },
+    {
+      "path": "tests/test_srgg_psf_bridge.py",
+      "bytes": 8615,
+      "sha256": "6300b93096e49992b2a7cb699eab2a0d592323366b7700ff2935274097a3c406"
+    },
+    {
+      "path": "tests/test_srgg_spectral_bounds.py",
+      "bytes": 4600,
+      "sha256": "cb5a516c1de68e6b465c350dec8290596cd179d1e9de476f413b428c4cc34cf6"
+    },
+    {
+      "path": "tests/test_srgg_structured_execution.py",
+      "bytes": 13376,
+      "sha256": "259b268e3cf3689faee221cfdc524fa44589dbaa441f75ed513822f5cc296173"
+    },
+    {
+      "path": "tests/test_srgg_structured_samplef.py",
+      "bytes": 8508,
+      "sha256": "35a0f76db9f287e9daa3a222d456b27e6b3a2be751e095a98cbd11d44bbde0a6"
+    },
+    {
+      "path": "tests/test_srgg_wide_scalar.py",
+      "bytes": 11495,
+      "sha256": "e5a0c9f418a231165b3a5f485e871549b5f183be604c6df0e32ea8927c716daa"
+    }
+  ],
+  "unchanged_runtime_dependencies": [
+    {
+      "path": "experiments/research/candidates/srgg/algebra.py",
+      "bytes": 10574,
+      "sha256": "da04d7b4198a7442dd35889edc73b4f8fa29aec93bb04418ab2dfde9c590c68b"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/formal_candidates.py",
+      "bytes": 19263,
+      "sha256": "8c5e9c7e841c192b48668866392750ff9a463039d4947ee15c2be65d9921c045"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/geometry.py",
+      "bytes": 7934,
+      "sha256": "6166de10c02678449973bbda10442463e027db5696dbd037fe1bb573f1b3c297"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/sampling.py",
+      "bytes": 8412,
+      "sha256": "b9fa8e13a4467ecf00edea7a57fbd5284569f934bb654bf024ef20c2853c9628"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_geometry.py",
+      "bytes": 16626,
+      "sha256": "08d70876337afae3a7e8722a939c9996363af8eb5f8039d6437b6906814f1120"
+    },
+    {
+      "path": "experiments/research/general_gadget_reference.py",
+      "bytes": 12401,
+      "sha256": "69e68a33baab3c85fe84525ce92a45e81723c667c64b526fa2dc321b2b098ab0"
+    },
+    {
+      "path": "experiments/research/mp12_sampled_reference.py",
+      "bytes": 22616,
+      "sha256": "a01b198a7bbcefbb54b387f6ab0b24961b5e74c3689ea4e2f30c74c35ba1061b"
+    },
+    {
+      "path": "experiments/research/online_gaussian_reference.py",
+      "bytes": 11995,
+      "sha256": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa"
+    },
+    {
+      "path": "experiments/research/primitive_spec_audit.py",
+      "bytes": 9219,
+      "sha256": "93b8a3b763e5018a3d58abdf56562bbca5dbe7a3f7d341533eea612b518cd7ad"
+    },
+    {
+      "path": "src/ibme/core/__init__.py",
+      "bytes": 2499,
+      "sha256": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac"
+    },
+    {
+      "path": "src/ibme/core/encoding.py",
+      "bytes": 8373,
+      "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+    },
+    {
+      "path": "src/ibme/core/errors.py",
+      "bytes": 984,
+      "sha256": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e"
+    },
+    {
+      "path": "src/ibme/core/hashing.py",
+      "bytes": 6420,
+      "sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4"
+    },
+    {
+      "path": "src/ibme/core/randomness.py",
+      "bytes": 4204,
+      "sha256": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202"
+    },
+    {
+      "path": "src/ibme/core/types.py",
+      "bytes": 4683,
+      "sha256": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56"
+    },
+    {
+      "path": "src/ibme/ibs/__init__.py",
+      "bytes": 2781,
+      "sha256": "09f78edc872e40b5c0644b187db5e8f6aa2fb9a74455eb41571b9e71a63920c4"
+    },
+    {
+      "path": "src/ibme/ibs/api.py",
+      "bytes": 12116,
+      "sha256": "e08bfaf4c73c0471966103156f3b88debda5f37b06b493c63dde7b4372da661c"
+    },
+    {
+      "path": "src/ibme/ibs/luo.py",
+      "bytes": 10945,
+      "sha256": "728319d4ca14c004b258717b3ffecf083760920f15fa79bfe0af761de81a67bf"
+    },
+    {
+      "path": "src/ibme/ibs/luo_module.py",
+      "bytes": 24597,
+      "sha256": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275"
+    },
+    {
+      "path": "src/ibme/ibs/luo_module_codec.py",
+      "bytes": 8776,
+      "sha256": "bb99eb6a18a06be204ab0274de8e295522589d8100cc2c9f944c7cf4980b06df"
+    },
+    {
+      "path": "src/ibme/ibs/luo_module_math.py",
+      "bytes": 7100,
+      "sha256": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f"
+    },
+    {
+      "path": "src/ibme/ibs/luo_reference.py",
+      "bytes": 20932,
+      "sha256": "993a9da05f302c73464860028e54a3dad95557a23ca334df4dbb5f4090c236b0"
+    },
+    {
+      "path": "src/ibme/ibs/mock.py",
+      "bytes": 11832,
+      "sha256": "c91902e02252a07dba1a777f1fa444de05058ca2f2c228356c82f3ca951b51a8"
+    },
+    {
+      "path": "src/ibme/ibs/sis_ibs.py",
+      "bytes": 38708,
+      "sha256": "a66f160d1c0ceb35080db2fa039dbe7f41bb7a71ebf223a6e35965d70486ed61"
+    },
+    {
+      "path": "src/ibme/lattice/__init__.py",
+      "bytes": 1159,
+      "sha256": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f"
+    },
+    {
+      "path": "src/ibme/lattice/chkp/__init__.py",
+      "bytes": 80,
+      "sha256": "820d7a2834b36d5cea29d0c165fa01c425af1739c103ea6323da8bacfd62c921"
+    },
+    {
+      "path": "src/ibme/lattice/chkp/gaussian.py",
+      "bytes": 14680,
+      "sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c"
+    },
+    {
+      "path": "src/ibme/lattice/gadget.py",
+      "bytes": 2661,
+      "sha256": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d"
+    },
+    {
+      "path": "src/ibme/lattice/gaussian.py",
+      "bytes": 7905,
+      "sha256": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c"
+    },
+    {
+      "path": "src/ibme/lattice/modmat.py",
+      "bytes": 19017,
+      "sha256": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94"
+    },
+    {
+      "path": "src/ibme/lattice/params.py",
+      "bytes": 4048,
+      "sha256": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be"
+    },
+    {
+      "path": "src/ibme/lattice/trapdoor.py",
+      "bytes": 8685,
+      "sha256": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8"
+    }
+  ],
+  "basename_source_aliases": {
+    "aggregate_budget.py": "experiments/research/candidates/srgg/aggregate_budget.py",
+    "wide_scalar.py": "experiments/research/candidates/srgg/wide_scalar.py",
+    "formal_candidates.py": "experiments/research/candidates/srgg/formal_candidates.py",
+    "online_gaussian_reference.py": "experiments/research/online_gaussian_reference.py",
+    "mp12_sampled_reference.py": "experiments/research/mp12_sampled_reference.py",
+    "gaussian.py": "src/ibme/lattice/chkp/gaussian.py",
+    "randomness.py": "src/ibme/core/randomness.py"
+  },
+  "all_json_source_references_verified": 145,
+  "scope": "independent structured execution and distribution/oracle bridge; security qualification WIP"
+}

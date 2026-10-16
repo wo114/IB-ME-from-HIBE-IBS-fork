@@ -1,0 +1,88 @@
+{
+  "schema": "IBME/SRGG-MIXED-DOMAIN/1",
+  "finite_public_example": [
+    {
+      "target": [
+        0
+      ],
+      "image_probability_exact": "1/15",
+      "union_probability_exact": "1/5",
+      "conditional_laws_identical": true,
+      "identical_after_common_norm_gate_including_abort": true
+    },
+    {
+      "target": [
+        1
+      ],
+      "image_probability_exact": "2/15",
+      "union_probability_exact": "2/5",
+      "conditional_laws_identical": true,
+      "identical_after_common_norm_gate_including_abort": true
+    },
+    {
+      "target": [
+        2
+      ],
+      "image_probability_exact": "1/5",
+      "union_probability_exact": "3/5",
+      "conditional_laws_identical": true,
+      "identical_after_common_norm_gate_including_abort": true
+    },
+    {
+      "target": [
+        3
+      ],
+      "image_probability_exact": "4/15",
+      "union_probability_exact": "4/5",
+      "conditional_laws_identical": true,
+      "identical_after_common_norm_gate_including_abort": true
+    },
+    {
+      "target": [
+        4
+      ],
+      "image_probability_exact": "1/5",
+      "union_probability_exact": "3/5",
+      "conditional_laws_identical": true,
+      "identical_after_common_norm_gate_including_abort": true
+    },
+    {
+      "target": [
+        5
+      ],
+      "image_probability_exact": "1/9",
+      "union_probability_exact": "1/3",
+      "conditional_laws_identical": true,
+      "identical_after_common_norm_gate_including_abort": true
+    },
+    {
+      "target": [
+        14
+      ],
+      "image_probability_exact": "1/45",
+      "union_probability_exact": "1/15",
+      "conditional_laws_identical": true,
+      "identical_after_common_norm_gate_including_abort": true
+    }
+  ],
+  "unfiltered_image_bound_example": {
+    "unfiltered_image_to_uniform_tv_upper_exact": "1/340282366920938463463374607431768211455",
+    "unfiltered_point_probability_lower_multiplier_of_uniform_exact": "340282366920938463463374607431768211455/340282366920938463463374607431768211457",
+    "unfiltered_point_probability_upper_multiplier_of_uniform_exact": "340282366920938463463374607431768211457/340282366920938463463374607431768211455",
+    "globally_success_conditioned_image_to_uniform_tv_upper_exact": "1/340282366920938463463374607431768211455",
+    "per_target_norm_reject_certified": false,
+    "hash_may_be_treated_as_exactly_uniform_image": false
+  },
+  "conditional_entropy_supplied_assumptions_example": {
+    "conditional_max_atom_upper_exact": "1/13479973333575319897333507543509815336818572211270286240551805124608",
+    "conditional_min_entropy_bits_lower": 223,
+    "supplied_assumptions_verified_here": false,
+    "oneway_or_signature_security_certified": false
+  },
+  "global_domain_depends_on_target_or_trapdoor": false,
+  "finite_example_is_actual_srgg_sampler_law": false,
+  "gaussian_secret_SIG_or_oneway_correspondence_established": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

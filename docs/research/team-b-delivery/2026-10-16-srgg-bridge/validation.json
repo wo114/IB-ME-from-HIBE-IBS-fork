@@ -1,0 +1,80 @@
+{
+  "schema": "IBME/SRGG-BRIDGE-VALIDATION/1",
+  "base_commit": "93984d554f0d06a6cd3c5995624a84aa3c8671ad",
+  "test_suites": {
+    "sage-regression": {
+      "tests": 642,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "windows-portable": {
+      "tests": 125,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "commands": {
+    "sage-regression": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_*.py tests/test_primitive_spec_audit.py --junitxml=build/outputs/srgg-bridge-2026-10-16/sage-regression.junit.xml",
+    "windows-portable": "python -m pytest -q tests/test_srgg_fiber_normalizers.py tests/test_srgg_convolution_bridge.py tests/test_srgg_psf_bridge.py tests/test_srgg_spectral_bounds.py tests/test_srgg_oracle_ledger.py tests/test_srgg_mixed_domain.py --junitxml=build/outputs/srgg-bridge-2026-10-16/windows-final.junit.xml"
+  },
+  "environment": {
+    "Sage": "10.9",
+    "Sage Python": "3.13.15",
+    "portable Python": "3.14.7",
+    "hardware": "Intel Core Ultra 7 255HX; WSL2 visible 20 logical CPUs; affinity/frequency not fixed"
+  },
+  "evidence_transformations": [
+    {
+      "path": "integrated-bridge-independent-tests.junit.xml",
+      "operation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "path": "new-samplers.junit.xml",
+      "operation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "path": "sage-regression.junit.xml",
+      "operation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "path": "structured-execution-n512-d2w8.stderr.txt",
+      "operation": "replace host-specific Sage/workspace paths; LF; timing values unchanged"
+    },
+    {
+      "path": "structured-execution-tests.junit.xml",
+      "operation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "path": "structured-samplef-n512.time.txt",
+      "operation": "replace host-specific Sage/workspace paths; LF; timing values unchanged"
+    },
+    {
+      "path": "structured-samplef-signature-n512.time.txt",
+      "operation": "replace host-specific Sage/workspace paths; LF; timing values unchanged"
+    },
+    {
+      "path": "windows-final.junit.xml",
+      "operation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "path": "fiber-normalizers.json",
+      "operation": "CRLF to LF only; raw JSON receipt preserved"
+    },
+    {
+      "path": "mixed-domain.json",
+      "operation": "CRLF to LF only; raw JSON receipt preserved"
+    },
+    {
+      "path": "spectral-bounds.json",
+      "operation": "CRLF to LF only; raw JSON receipt preserved"
+    }
+  ],
+  "raw_receipts_preserved_under": "build/outputs/srgg-bridge-2026-10-16",
+  "source_security_status": "WIP; functional tests and conditional probability bounds are not a security proof",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}
