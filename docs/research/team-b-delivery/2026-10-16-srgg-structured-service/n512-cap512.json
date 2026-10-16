@@ -1,0 +1,121 @@
+{
+  "schema": "IBME/SRGG-STRUCTURED-SERVICE-AUDIT/1",
+  "parameters": {
+    "degree": 512,
+    "rank": 2,
+    "p": 16383,
+    "base": 31,
+    "digits": 8,
+    "r_squared": 64,
+    "master_squared": 1031865954433,
+    "signature_squared": 22159188660729268928705,
+    "raw_norm_cap": 169060917974302720,
+    "user_norm_cap": 338122385570209792,
+    "signature_norm_cap": 238255596480161099521436160,
+    "sign_max_attempts": 16
+  },
+  "Q": 13972913866395903,
+  "environment": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15",
+    "sage": "10.9"
+  },
+  "roots_requested": 1,
+  "new_identities_requested": 2,
+  "identity_lengths": [
+    13,
+    11
+  ],
+  "message_lengths": [
+    32,
+    65536,
+    32
+  ],
+  "new_signatures_requested": 3,
+  "production_randomness": true,
+  "root_reselection": false,
+  "key_reselection": false,
+  "numerical_profile": "query-bounded-deep",
+  "oracle_model": "classical SHAKE research execution",
+  "temporary_trusted_plaintext_state": true,
+  "private_payloads_exported": false,
+  "snapshot_capacity_users": 2,
+  "snapshot_capacity_bytes": 2097152,
+  "parent_entropy_cap_bytes": 536870912,
+  "child_entropy_cap_bytes": 268435456,
+  "extra_audit_abort_probability_certified": false,
+  "extra_global_entropy_cap_abort_probability_certified": true,
+  "extra_global_entropy_cap_abort_upper": 0,
+  "global_cap_certificate_scope": "n512 lifecycle only; finite local sampler limits remain",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null,
+  "completed": true,
+  "checks": {
+    "public_roundtrip": true,
+    "key_roundtrip_0": true,
+    "honest_0": true,
+    "signature_roundtrip_0": true,
+    "wrong_identity_0": true,
+    "wrong_message_0": true,
+    "random_signature_0": true,
+    "key_roundtrip_1": true,
+    "honest_1": true,
+    "signature_roundtrip_1": true,
+    "wrong_identity_1": true,
+    "wrong_message_1": true,
+    "random_signature_1": true,
+    "reopen_public": true,
+    "reopen_cache": true,
+    "snapshot_within_envelope": true,
+    "fresh_process_exit": true,
+    "fresh_process_lifecycle": true
+  },
+  "timings_seconds": {
+    "setup-persist": 1.7865029029999846,
+    "extract-persist-0": 17.593724107000014,
+    "sign-0": 20.42443254700001,
+    "verify-negative-0": 0.1436825710000278,
+    "extract-persist-1": 21.062552173,
+    "sign-1": 18.656610281999974,
+    "verify-negative-1": 0.12820264700002326,
+    "reopen-cache": 0.9617561439999918,
+    "fresh-process-restore-sign": 19.95478110799999
+  },
+  "wire_bytes": {
+    "conservative_snapshot_envelope": 1817342,
+    "public": 282266,
+    "key-0": 631902,
+    "signature-0": 135100,
+    "key-1": 632140,
+    "signature-1": 135033,
+    "final_snapshot": 1546716
+  },
+  "source_sha256": {
+    "experiments/research/candidates/srgg/structured_backend.py": "748fbec0a18635f569962b1899fa277afa4b65333526e615d01458720ba5e6e8",
+    "experiments/research/candidates/srgg/structured_execution.py": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67",
+    "experiments/research/candidates/srgg/structured_samplef.py": "8a4a82baea93b62a13f215d53d866eff5f6d083563a81dc9b21b51999931c10a",
+    "experiments/research/candidates/srgg/wide_scalar.py": "2f404dd95ec1c909c3c40dcc8b6e4b070d25864c2e2aaa0a80e8b291df5689ca",
+    "experiments/research/candidates/srgg/aggregate_budget.py": "ade4d313fefe5973030ac6ae29b4eb40bce83b440b7b8dee342ec789466b9a20",
+    "experiments/research/candidates/srgg/formal_candidates.py": "8c5e9c7e841c192b48668866392750ff9a463039d4947ee15c2be65d9921c045",
+    "src/ibme/ibs/srgg_structured_service.py": "6bbdfb361e7fd118e63d2575d66eebf8585081790e611a3953a82cee22c8e6ab",
+    "src/ibme/ibs/srgg_service.py": "6aa174727fa21c4172e59dd7886525aa8539fc11aa792c2b6f3a6314db970437",
+    "src/ibme/ibs/srgg/structured.py": "e2af1b01d4dacb5d3afb0a1a852300efda50d1087dcf705554bb16f1cb5ffc9e",
+    "src/ibme/ibs/srgg/structured_registration.py": "f6a688197fb3e498a373de74031cbdfe6cfd9ae1c6b2af136467bc20cd692a96",
+    "experiments/research/srgg_structured_service_audit.py": "3fdbe3c1538fdc9c535f0e595a6eb54b2ce42f50d931c5f00ca6f6e5ec9f5bfc"
+  },
+  "fresh_process": {
+    "checks": {
+      "public_equal": true,
+      "key_equal": true,
+      "restored_sign_verify": true
+    },
+    "completed": true,
+    "entropy_bytes": 5938417
+  },
+  "total_seconds": 100.922567413,
+  "actual_main_entropy_bytes": 29999991,
+  "parent_peak_rss_KiB": 247084,
+  "child_peak_rss_KiB": 247084
+}

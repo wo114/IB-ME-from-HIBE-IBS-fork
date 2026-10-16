@@ -1,6 +1,6 @@
 {
   "schema": "IBME/SRGG-STRUCTURED-SERVICE-DELIVERY/1",
-  "base_commit": "857d317",
+  "base_commit": "3c27fc0",
   "frozen_base_manifest": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/MANIFEST.json",
   "frozen_base_manifest_sha256": "5d455b60dde6784998897a44f7984a410ee090775a093c4adea0362ea0e4e646",
   "files": [
@@ -26,13 +26,13 @@
     },
     {
       "path": "experiments/research/srgg_structured_service_audit.py",
-      "bytes": 9431,
-      "sha256": "91e836d93df54191a69d8f756df59151a81a04fa731de6ef3ced93ee739080a1"
+      "bytes": 10852,
+      "sha256": "3fdbe3c1538fdc9c535f0e595a6eb54b2ce42f50d931c5f00ca6f6e5ec9f5bfc"
     },
     {
       "path": "experiments/research/srgg_structured_service_delivery_check.py",
-      "bytes": 3322,
-      "sha256": "ef41a9e8b79bc4fe07183dbc3f9ff0a25763f80041c87900b4fbea1ddbcecb36"
+      "bytes": 4441,
+      "sha256": "442409143ed5d5d899b32c6df048a8b31bd79411eaa82c3e847252698f87bcc2"
     },
     {
       "path": "tests/test_srgg_structured_backend.py",
@@ -56,13 +56,13 @@
     },
     {
       "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/README.md",
-      "bytes": 5904,
-      "sha256": "9770b53afff84e03e7b240c5f235c3c95c8f41dd7009d29793dcf2f6209eeade"
+      "bytes": 7202,
+      "sha256": "6e9884c7e21be214a8518a667d029f015399b1301fd189c2ca3a8ab1b860708f"
     },
     {
       "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/validation.json",
-      "bytes": 2597,
-      "sha256": "1a7b3084c5a8178e78c4fb20d22bebd50cb8778ef7b256528329077bf52bc968"
+      "bytes": 3886,
+      "sha256": "0cbc0377957dea60669f0c43111bea608bd228d91e60e515328d66b44439ee89"
     },
     {
       "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/small.json",
@@ -88,6 +88,41 @@
       "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/registration-first-development.junit.xml",
       "bytes": 2144,
       "sha256": "7ad6f3f2f85f0558f9dee06264c352507f398f431cbc800b144171f7b5b98040"
+    },
+    {
+      "path": "tests/test_srgg_service_audit_entropy.py",
+      "bytes": 2368,
+      "sha256": "205db9aeb0f23ea70d9475533a09667030d6479d9ee5bf58739ada88f4e4ad0d"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/service_budget.py",
+      "bytes": 25410,
+      "sha256": "64a07b2e94da287e13832921f74cf152ed970018ad3261d88c2033d9677a598b"
+    },
+    {
+      "path": "tests/test_srgg_service_budget.py",
+      "bytes": 12426,
+      "sha256": "cb4673a976006878d20960af8341ea389f4b4eff4fc7da6e239e649e4357de76"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/n512-cap512.json",
+      "bytes": 4529,
+      "sha256": "398ef705fc91a03ee8fcfccf1aecbed097be8312744e27465971acf3604cced1"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/service-cap512-final.junit.xml",
+      "bytes": 83395,
+      "sha256": "e7340ee801d15bb1ea672bc37d9d79ef35fbbc9c53c93fc27b538ca175981e59"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/historical-audit-3c27fc0.py.txt",
+      "bytes": 9431,
+      "sha256": "91e836d93df54191a69d8f756df59151a81a04fa731de6ef3ced93ee739080a1"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/service-budget.md",
+      "bytes": 14338,
+      "sha256": "13f554e7407af122639ea952ab191d8e511544462af592dbe5fac7267a4c4076"
     }
   ],
   "unchanged_dependencies": [
@@ -168,7 +203,13 @@
     }
   ],
   "lifecycle_reports": [
+    "n512-cap512.json"
+  ],
+  "historical_lifecycle_reports": [
     "small.json",
     "n512.json"
-  ]
+  ],
+  "historical_source_snapshots": {
+    "experiments/research/srgg_structured_service_audit.py": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/historical-audit-3c27fc0.py.txt"
+  }
 }

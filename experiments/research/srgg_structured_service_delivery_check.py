@@ -36,6 +36,21 @@ def verify():
                            ("parameters_are_formal", False), ("nist_security_category", None)):
             if key not in report or type(report[key]) is not type(value) or report[key] != value:
                 raise ValueError("unexpected lifecycle security claim")
+        if report["parameters"]["degree"] == 512:
+            if (report.get("parent_entropy_cap_bytes") != 512*1024*1024
+                    or report.get("child_entropy_cap_bytes") != 256*1024*1024
+                    or report.get("extra_global_entropy_cap_abort_probability_certified") is not True
+                    or type(report.get("extra_global_entropy_cap_abort_upper")) is not int
+                    or report["extra_global_entropy_cap_abort_upper"] != 0
+                    or report.get("extra_audit_abort_probability_certified") is not False):
+                raise ValueError("global entropy cap scope or certification differs")
+    historical_references = 0
+    for filename in manifest.get("historical_lifecycle_reports", []):
+        report = json.loads((DELIVERY/filename).read_text(encoding="utf-8"))
+        for path, digest in report["source_sha256"].items():
+            snapshot = manifest["historical_source_snapshots"].get(path, path)
+            _hash(snapshot, digest)
+            historical_references += 1
     validation = json.loads((DELIVERY/"validation.json").read_text(encoding="utf-8"))
     for name, expected in validation["required_test_suites"].items():
         root = ET.parse(DELIVERY/expected["receipt"]).getroot()
@@ -50,6 +65,7 @@ def verify():
             raise ValueError("hostname remains in public receipt")
     return {"verified": True, "manifest_files_checked": checked,
         "lifecycle_source_references_checked": references,
+        "historical_lifecycle_source_references_checked": historical_references,
         "frozen_classical_delivery_verified": classical["verified"],
         "meaning": "artifact integrity and recorded consistency; no tests rerun",
         "security_claim": "none", "backend_admitted": False,

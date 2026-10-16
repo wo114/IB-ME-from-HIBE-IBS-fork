@@ -18,11 +18,37 @@ from ibme.core.randomness import SecureRandom
 from ibme.ibs.srgg.structured import Backend, FixedIssuer, Parameters, PublicKey, SigningKey, Signature
 from ibme.ibs.srgg_structured_service import _preflight
 from experiments.research.candidates.srgg.formal_candidates import conditional_candidate
-from experiments.research.candidates.srgg.structured_execution import CountingEntropy
+from experiments.research.gaussian_reference import SamplingAbort
 
 
 ROOT = Path(__file__).resolve().parents[2]
 SCHEMA = "IBME/SRGG-STRUCTURED-SERVICE-AUDIT/1"
+PARENT_ENTROPY_CAP = 512*1024*1024
+CHILD_ENTROPY_CAP = 256*1024*1024
+
+
+class AuditEntropy:
+    """Bound the whole lifecycle separately from each individual request.
+
+    The frozen execution counter caps a whole audit at 256 MiB. Two issuances
+    and two maximally retried signatures need a larger parent envelope; no
+    individual request or production sampler limit is enlarged here.
+    """
+    def __init__(self, source, maximum):
+        if type(maximum) is not int or not 1 <= maximum <= PARENT_ENTROPY_CAP:
+            raise ValueError("bounded audit entropy limit required")
+        self.source, self.maximum, self.used = source, maximum, 0
+
+    def read(self, size):
+        if type(size) is not int or not 0 <= size <= CHILD_ENTROPY_CAP:
+            raise ValueError("bounded individual entropy request required")
+        if self.used+size > self.maximum:
+            raise SamplingAbort("whole service audit entropy cap exhausted")
+        data = self.source.read(size)
+        if type(data) is not bytes or len(data) != size:
+            raise ValueError("invalid audit entropy response")
+        self.used += size
+        return data
 
 
 class NoEntropy:
@@ -43,7 +69,7 @@ def worker(path, identity, key_digest, public_digest):
     issuer = FixedIssuer(path, backend=NoIssueBackend(rng=NoEntropy()))
     public = issuer.public_key()
     key = issuer.key_extract(bytes.fromhex(identity))
-    source = CountingEntropy(SecureRandom())
+    source = AuditEntropy(SecureRandom(), CHILD_ENTROPY_CAP)
     message = b"SRGG restored in a fresh process"
     signature = Backend(rng=source).sign(key, message)
     checks = {
@@ -57,7 +83,7 @@ def worker(path, identity, key_digest, public_digest):
 def audit(degree=8):
     rank, digits = (2, 8) if degree == 512 else (1, 3)
     params = Parameters.from_candidate(conditional_candidate(degree=degree, rank=rank, digits=digits))
-    source = CountingEntropy(SecureRandom())
+    source = AuditEntropy(SecureRandom(), PARENT_ENTROPY_CAP)
     backend = Backend(rng=source)
     checks, times, sizes = {}, {}, {}
     result = {"schema": SCHEMA, "parameters": asdict(params), "Q": params.modulus,
@@ -68,8 +94,11 @@ def audit(degree=8):
         "numerical_profile": "query-bounded-deep", "oracle_model": "classical SHAKE research execution",
         "temporary_trusted_plaintext_state": True, "private_payloads_exported": False,
         "snapshot_capacity_users": 2, "snapshot_capacity_bytes": 2*1024*1024,
-        "parent_entropy_cap_bytes": source.maximum, "child_entropy_cap_bytes": source.maximum,
+        "parent_entropy_cap_bytes": source.maximum, "child_entropy_cap_bytes": CHILD_ENTROPY_CAP,
         "extra_audit_abort_probability_certified": False,
+        "extra_global_entropy_cap_abort_probability_certified": degree == 512,
+        "extra_global_entropy_cap_abort_upper": 0 if degree == 512 else None,
+        "global_cap_certificate_scope": "n512 lifecycle only; finite local sampler limits remain",
         "security_claim": "none", "backend_admitted": False, "parameters_are_formal": False,
         "nist_security_category": None, "completed": False,
         "checks": checks, "timings_seconds": times, "wire_bytes": sizes}

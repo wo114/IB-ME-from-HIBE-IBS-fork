@@ -15,6 +15,13 @@
       "failures": 0,
       "errors": 0,
       "skipped": 0
+    },
+    "service-cap512-final": {
+      "receipt": "service-cap512-final.junit.xml",
+      "tests": 96,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
     }
   },
   "development_failures": [
@@ -31,7 +38,9 @@
     "service-final": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_structured_backend.py tests/test_srgg_structured_service.py tests/test_srgg_structured_registration.py --junitxml=build/outputs/srgg-structured-service-2026-10-16/service-final.junit.xml",
     "registration-independent": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_structured_registration.py --junitxml=build/outputs/srgg-structured-service-2026-10-16/screen-registration-independent.junit.xml",
     "n512": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.srgg_structured_service_audit --degree 512 --output build/outputs/srgg-structured-service-2026-10-16/n512-first.json",
-    "small": "same audit command with --degree 8 and small-first.json"
+    "small": "same audit command with --degree 8 and small-first.json",
+    "service-cap512-final": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_structured_backend.py tests/test_srgg_structured_service.py tests/test_srgg_structured_registration.py tests/test_srgg_service_audit_entropy.py --junitxml=build/outputs/srgg-structured-service-cap512-2026-10-16/service-cap512-final.junit.xml",
+    "n512-cap512-final": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.srgg_structured_service_audit --degree 512 --output build/outputs/srgg-structured-service-cap512-2026-10-16/n512-final.json"
   },
   "overlapping_suites_are_not_independent_trials": true,
   "environment": {
@@ -49,5 +58,8 @@
   "security_claim": "none",
   "backend_admitted": false,
   "parameters_are_formal": false,
-  "nist_security_category": null
+  "nist_security_category": null,
+  "historical_source_commit": "3c27fc0",
+  "cap_fix_note": "Old lifecycle JSON bytes and receipts retained. Historical audit source snapshot validates original source references; current required lifecycle is n512-cap512.json. Initial cap run also succeeded (93.617s), but is retained in raw outputs with its matching pre-metadata source snapshot. Scope metadata was clarified before final run (100.923s); no root selection or key reselection.",
+  "raw_cap_receipts_preserved_under": "build/outputs/srgg-structured-service-cap512-2026-10-16"
 }
