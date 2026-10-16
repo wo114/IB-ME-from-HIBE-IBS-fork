@@ -97,3 +97,9 @@ export OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=1
 Estimator路径是显式工具输入；没有把本机WSL用户目录写进脚本。Sage使用 `~/miniconda3/envs/sage`。硬件/软件、公开证据摘要、安装复放和精确改动列表随本批audit记录；私有原始状态留在ignored目录。
 
 **A仍未全部完成：**正式困难参数与可运行完整域、安全定理/模型/固定服务对应、现有后端实际采用并验收新的累计误差配方、相同安全目标的完整IBME基线/消融仍待。保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。本批零项完整安全证明；数学方程、模型估算和测试不替代安全证明。
+
+## 6. 2026-10-16 接续时补齐的公开归档
+
+接续检查发现本目录原先只有说明，实际公开收据仍留在 ignored 的 `test-results` 中。本次补交[四组完整参数/32次原始估计](evidence/complete-targets.json)、[125项严格专项](evidence/strict-sage.xml)、[运行元数据](evidence/strict-sage.json)、[19项Windows结果](evidence/portable-final.xml)、[隔离安装复放](evidence/installed-final.json)、[原公开布局摘要](evidence/public-layout-summary.json)，以及[首次失败](evidence/target-first.xml)/[定向修复后结果](evidence/target-fixed.xml)。[归档索引](audit.json)记录内容散列与原始字节散列；文本只规范化为仓库要求的LF。
+
+这是已有实际执行的归档补全，没有重跑32次估计、重新生成钥或读取私有状态；原始版本与本轮新增工具的执行分开统计。独立高位模数 gadget 工具及其仍未解决的完整HIBE限制见[下一批](../2026-10-16-wide-gadget/README.md)。
