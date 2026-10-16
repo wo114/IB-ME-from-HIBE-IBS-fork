@@ -22,6 +22,12 @@ The report contains:
   terms; and
 - a source-table hardness placeholder with no estimated security bits.
 
+It also carries a reference-only comparison ledger for NIST FIPS 203
+(ML-KEM, the Kyber lineage). The ledger names dimensions, wire size, attack
+estimates, correctness/failure budgets, and measurement conditions as separate
+fields. ML-KEM is a KEM while SRGG is an identity-based signature component,
+so a FIPS 203 category is not copied into the SRGG report as a security level.
+
 The report is intentionally marked:
 
 ```text

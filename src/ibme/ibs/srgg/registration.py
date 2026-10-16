@@ -38,7 +38,7 @@ def check_object(value, params):
         raise SerializationError("SRGG object type is not registered")
     public = value if type(value) is PublicKey else value.public_key
     if public.config != params:
-        raise SerializationError("SRGG object differs from full parameter snapshot")
+        raise SerializationError("SRGG object differs from selected parameter snapshot")
 
 
 def signature_size(params, signature_format):

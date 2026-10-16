@@ -29,6 +29,32 @@ from ..wang_pw.codec import canonical
 
 SCHEMA = "IBME/SRGG-PARAMETER-SCREEN/1"
 
+# NIST's ML-KEM standard is a useful external lattice reference, but it is a
+# KEM and therefore cannot be treated as an IBS security proof or as a direct
+# security-level conversion for SRGG.  Keep the comparison axes explicit so a
+# later parameter study can fill them with independently measured/estimated
+# values without silently importing a category claim.
+KYBER_NIST_REFERENCE = {
+    "standard": "NIST FIPS 203",
+    "algorithm_family": "ML-KEM (CRYSTALS-Kyber lineage)",
+    "primitive_type": "KEM",
+    "comparison_status": "reference-only",
+    "security_categories": [1, 3, 5],
+    "source": "https://doi.org/10.6028/NIST.FIPS.203",
+    "axes": [
+        "module/ring dimensions and modulus",
+        "public-key and wire-object byte sizes",
+        "independently estimated classical and quantum attack costs",
+        "correctness/decapsulation-failure versus signature sampler abort",
+        "fixed implementation, hardware, repetitions and failure budgets",
+    ],
+    "non_equivalence": [
+        "ML-KEM is a KEM; SRGG is an identity-based signature component",
+        "a Kyber category is not an SRGG security level",
+        "wire-size or runtime ratios do not establish a reduction",
+    ],
+}
+
 
 def _positive_int(value: Any, name: str, *, maximum: int) -> int:
     if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= maximum:
@@ -275,6 +301,7 @@ def screen(config: Config | None = None, *, identity_bytes: int | None = None,
         "correctness": _correctness(config),
         "sampling": _sampling(config),
         "hardness": _hardness(config),
+        "kyber_nist_reference": KYBER_NIST_REFERENCE,
         "hibe_independent": True,
         "security_claim": "none",
         "backend_admitted": False,

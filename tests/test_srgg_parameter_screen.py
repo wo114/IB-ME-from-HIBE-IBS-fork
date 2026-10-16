@@ -5,7 +5,11 @@ import json
 import pytest
 
 from experiments.research.candidates.srgg.config import Config
-from experiments.research.candidates.srgg.parameter_screen import SCHEMA, screen
+from experiments.research.candidates.srgg.parameter_screen import (
+    KYBER_NIST_REFERENCE,
+    SCHEMA,
+    screen,
+)
 
 
 def test_screen_has_complete_snapshot_and_explicit_nonadmission_flags():
@@ -41,6 +45,16 @@ def test_sampling_budget_keeps_unknown_terms_unknown():
     assert sampling["draw_counts"]["sign_total_scalar_draws"] > 0
     assert sampling["operation_budgets"]["identity_issuance_retry_policy"] == (
         "none after pending/failed; fixed service blocks reselection")
+
+
+def test_kyber_nist_comparison_is_reference_only_and_type_safe():
+    reference = screen()["kyber_nist_reference"]
+    assert reference == KYBER_NIST_REFERENCE
+    assert reference["standard"] == "NIST FIPS 203"
+    assert reference["primitive_type"] == "KEM"
+    assert reference["comparison_status"] == "reference-only"
+    assert reference["security_categories"] == [1, 3, 5]
+    assert any("not an SRGG security level" in item for item in reference["non_equivalence"])
 
 
 @pytest.mark.parametrize("kwargs", [
