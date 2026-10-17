@@ -53,7 +53,7 @@ The service intentionally fixes one identity key and its salt. Figure 1's `OSign
 The final test and runtime receipt was verified in the repository's WSL Sage environment:
 
 ```text
-`PYTHONPATH=src:. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_sageloli_ibs.py tests/test_sageloli_sampling.py tests/test_sageloli_uniform.py tests/test_sageloli_service_recovery.py tests/test_sageloli_probe.py` → **145 passed, 0 failed, 0 skipped in 233.16 s** (WSL Ubuntu-24.04, Sage 10.9, Python 3.13.15). JUnit: `build/outputs/sageloli-complete-2026-10-16/sageloli-all.xml`.
+`PYTHONPATH=src:. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_sageloli_ibs.py tests/test_sageloli_sampling.py tests/test_sageloli_uniform.py tests/test_sageloli_service_recovery.py tests/test_sageloli_probe.py --junitxml=build/outputs/sageloli-complete-2026-10-16/sageloli-all.xml` → **145 passed, 0 failed, 0 skipped in 232.76 s** (WSL Ubuntu-24.04, Sage 10.9, Python 3.13.15).
 ```
 
 The command was run once in WSL Ubuntu-24.04 with Sage 10.9 and Python 3.13.15. Do not place seeds, private trapdoors, identity keys, signatures, or random tapes in this directory or in Git.

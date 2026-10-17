@@ -53,7 +53,7 @@ SIS 委派进行 `nk` 次全维调用。RSIS 进行 `k` 次系数级调用，再
 最终测试和运行收据已在仓库的 WSL Sage 环境中核验：
 
 ```text
-`PYTHONPATH=src:. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_sageloli_ibs.py tests/test_sageloli_sampling.py tests/test_sageloli_uniform.py tests/test_sageloli_service_recovery.py tests/test_sageloli_probe.py` → **145 passed, 0 failed, 0 skipped in 233.16 s** (WSL Ubuntu-24.04, Sage 10.9, Python 3.13.15). JUnit: `build/outputs/sageloli-complete-2026-10-16/sageloli-all.xml`。
+`PYTHONPATH=src:. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_sageloli_ibs.py tests/test_sageloli_sampling.py tests/test_sageloli_uniform.py tests/test_sageloli_service_recovery.py tests/test_sageloli_probe.py --junitxml=build/outputs/sageloli-complete-2026-10-16/sageloli-all.xml` → **145 passed, 0 failed, 0 skipped in 232.76 s** (WSL Ubuntu-24.04, Sage 10.9, Python 3.13.15)。
 ```
 
 该命令在 WSL Ubuntu-24.04、Sage 10.9、Python 3.13.15 中运行 1 次。不要把种子、主陷门、身份钥、签名或随机带写入本目录或 Git。

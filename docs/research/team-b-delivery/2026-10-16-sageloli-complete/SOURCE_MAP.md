@@ -47,5 +47,5 @@
 
 - 代码提交：本次交付的最终 Git 提交记录；未单独创建或修改其它分支。
 - 独立生命周期／攻击收据：`build/outputs/sageloli-complete-2026-10-16/sageloli-all.xml`（不含私钥、签名样本、随机带或私有采样计划）。
-- 测试命令、结果、实际环境、计时及重复次数：`PYTHONPATH=src:. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_sageloli_ibs.py tests/test_sageloli_sampling.py tests/test_sageloli_uniform.py tests/test_sageloli_service_recovery.py tests/test_sageloli_probe.py` → **145 passed, 0 failed, 0 skipped in 233.16 s**（WSL Ubuntu-24.04、Sage 10.9、Python 3.13.15）。JUnit：`build/outputs/sageloli-complete-2026-10-16/sageloli-all.xml`。
+- 测试命令、结果、实际环境、计时及重复次数：`PYTHONPATH=src:. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_sageloli_ibs.py tests/test_sageloli_sampling.py tests/test_sageloli_uniform.py tests/test_sageloli_service_recovery.py tests/test_sageloli_probe.py --junitxml=build/outputs/sageloli-complete-2026-10-16/sageloli-all.xml` → **145 passed, 0 failed, 0 skipped in 232.76 s**（WSL Ubuntu-24.04、Sage 10.9、Python 3.13.15）。
 - 未在本映射中印出主陷门、身份钥、签名样本、种子、随机带或私有采样计划。
