@@ -84,6 +84,18 @@
         "rank": 2,
         "theorem_1_literal_requirement": "odd q > max(2*gamma, s1*eta_epsilon(Z^m))"
       },
+      "physical_stddev_diagnostic": {
+        "certificate_status": "numerical diagnostic only; normalization and interval proof unresolved",
+        "dimension": 10240,
+        "epsilon": "1/16777216",
+        "epsilon_decimal": "5.960464477539062500000000000000E-8",
+        "first_dual_mass_decimal": "5.970349443219629374635543826233E-8",
+        "interpretation": "table r is physical stddev; density shape = 2*pi*r^2",
+        "literal_necessary_condition_passes": false,
+        "literal_r": "1.16",
+        "required_r_lower_diagnostic": "1.160036183509648067082707760100",
+        "required_r_minus_literal_diagnostic": "3.618350964806708270776009974044E-5"
+      },
       "smoothing": {
         "alternate_radical_over_Qs_times_256_outside": {
           "dimension": 10240,
@@ -159,6 +171,18 @@
         "rank": 3,
         "theorem_1_literal_requirement": "odd q > max(2*gamma, s1*eta_epsilon(Z^m))"
       },
+      "physical_stddev_diagnostic": {
+        "certificate_status": "numerical diagnostic only; normalization and interval proof unresolved",
+        "dimension": 10240,
+        "epsilon": "1/16777216",
+        "epsilon_decimal": "5.960464477539062500000000000000E-8",
+        "first_dual_mass_decimal": "5.970349443219629374635543826233E-8",
+        "interpretation": "table r is physical stddev; density shape = 2*pi*r^2",
+        "literal_necessary_condition_passes": false,
+        "literal_r": "1.16",
+        "required_r_lower_diagnostic": "1.160036183509648067082707760100",
+        "required_r_minus_literal_diagnostic": "3.618350964806708270776009974044E-5"
+      },
       "smoothing": {
         "alternate_radical_over_Qs_times_256_outside": {
           "dimension": 10240,
@@ -233,6 +257,18 @@
         "profile": "PARAM-III",
         "rank": 4,
         "theorem_1_literal_requirement": "odd q > max(2*gamma, s1*eta_epsilon(Z^m))"
+      },
+      "physical_stddev_diagnostic": {
+        "certificate_status": "numerical diagnostic only; normalization and interval proof unresolved",
+        "dimension": 10240,
+        "epsilon": "1/16777216",
+        "epsilon_decimal": "5.960464477539062500000000000000E-8",
+        "first_dual_mass_decimal": "5.970349443219629374635543826233E-8",
+        "interpretation": "table r is physical stddev; density shape = 2*pi*r^2",
+        "literal_necessary_condition_passes": false,
+        "literal_r": "1.16",
+        "required_r_lower_diagnostic": "1.160036183509648067082707760100",
+        "required_r_minus_literal_diagnostic": "3.618350964806708270776009974044E-5"
       },
       "smoothing": {
         "alternate_radical_over_Qs_times_256_outside": {

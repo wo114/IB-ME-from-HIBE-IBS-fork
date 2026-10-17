@@ -13,7 +13,7 @@
   },
   "generator": {
     "path": "experiments/research/candidates/srgg/closure_ledger.py",
-    "sha256": "b95a3e3b8392d003cb330f321fce5c75584fb1510f7ad337c9cd4a4640d68c3d"
+    "sha256": "c6830c1e9106747bc6d1a3ee5b00912d39518a4d61e7edcfbe3bf9ca82502a28"
   },
   "ibs_ledger": {
     "commitment_collision": {
@@ -250,7 +250,7 @@
       "theorem_modulus_mapping_closed": false
     },
     "receipt": "docs/research/team-b-delivery/2026-10-17-srgg-parameter-closure/parameter-closure.json",
-    "receipt_sha256": "7553e9948fd764615396d7ca812a3a6b43a4fa20b192b29df662839651f869f6",
+    "receipt_sha256": "e8dec4ca68a441a95a002760bebe340db81628fb579d4a053fc56b36714470af",
     "rows": [
       {
         "Q": 15744063,
@@ -277,6 +277,18 @@
             "odd": false,
             "theorem_odd_and_gt_2gamma": false
           }
+        },
+        "physical_stddev_diagnostic": {
+          "certificate_status": "numerical diagnostic only; normalization and interval proof unresolved",
+          "dimension": 10240,
+          "epsilon": "1/16777216",
+          "epsilon_decimal": "5.960464477539062500000000000000E-8",
+          "first_dual_mass_decimal": "5.970349443219629374635543826233E-8",
+          "interpretation": "table r is physical stddev; density shape = 2*pi*r^2",
+          "literal_necessary_condition_passes": false,
+          "literal_r": "1.16",
+          "required_r_lower_diagnostic": "1.160036183509648067082707760100",
+          "required_r_minus_literal_diagnostic": "3.618350964806708270776009974044E-5"
         },
         "profile": "PARAM-I",
         "smoothing": {
@@ -338,6 +350,18 @@
             "theorem_odd_and_gt_2gamma": false
           }
         },
+        "physical_stddev_diagnostic": {
+          "certificate_status": "numerical diagnostic only; normalization and interval proof unresolved",
+          "dimension": 10240,
+          "epsilon": "1/16777216",
+          "epsilon_decimal": "5.960464477539062500000000000000E-8",
+          "first_dual_mass_decimal": "5.970349443219629374635543826233E-8",
+          "interpretation": "table r is physical stddev; density shape = 2*pi*r^2",
+          "literal_necessary_condition_passes": false,
+          "literal_r": "1.16",
+          "required_r_lower_diagnostic": "1.160036183509648067082707760100",
+          "required_r_minus_literal_diagnostic": "3.618350964806708270776009974044E-5"
+        },
         "profile": "PARAM-II",
         "smoothing": {
           "alternate_radical_over_Qs_times_256_outside": {
@@ -397,6 +421,18 @@
             "odd": false,
             "theorem_odd_and_gt_2gamma": false
           }
+        },
+        "physical_stddev_diagnostic": {
+          "certificate_status": "numerical diagnostic only; normalization and interval proof unresolved",
+          "dimension": 10240,
+          "epsilon": "1/16777216",
+          "epsilon_decimal": "5.960464477539062500000000000000E-8",
+          "first_dual_mass_decimal": "5.970349443219629374635543826233E-8",
+          "interpretation": "table r is physical stddev; density shape = 2*pi*r^2",
+          "literal_necessary_condition_passes": false,
+          "literal_r": "1.16",
+          "required_r_lower_diagnostic": "1.160036183509648067082707760100",
+          "required_r_minus_literal_diagnostic": "3.618350964806708270776009974044E-5"
         },
         "profile": "PARAM-III",
         "smoothing": {
@@ -501,7 +537,7 @@
     "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sampling-error-default.json": "9695677f73525e6163448492a6db4f7f2acf295460327be500f734114a340ba4",
     "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sampling-error-width3.json": "7e7c58bbc5ac37d4ccd95da30ce9e74c1d0ba3959d99de9af7e32eb929adc9db",
     "docs/research/team-b-delivery/2026-10-16-srgg-source-correspondence/source-correspondence.json": "653fa3c0cf14fb86f3d68fd4a7bfcc2725cba7bdc53ec06e500db402130eef24",
-    "docs/research/team-b-delivery/2026-10-17-srgg-parameter-closure/parameter-closure.json": "7553e9948fd764615396d7ca812a3a6b43a4fa20b192b29df662839651f869f6"
+    "docs/research/team-b-delivery/2026-10-17-srgg-parameter-closure/parameter-closure.json": "e8dec4ca68a441a95a002760bebe340db81628fb579d4a053fc56b36714470af"
   },
   "sampling_receipts": [
     {

@@ -50,6 +50,10 @@ def test_epsilon_grouping_is_explicit_and_both_smoothing_checks_fail():
         for check in row["smoothing"].values():
             assert check["pi_r_squared_less_than_five"]
             assert check["necessary_condition_fails"]
+        diagnostic = row["physical_stddev_diagnostic"]
+        assert not diagnostic["literal_necessary_condition_passes"]
+        assert diagnostic["required_r_lower_diagnostic"].startswith("1.160036")
+        assert diagnostic["certificate_status"].startswith("numerical diagnostic")
 
 
 def test_w3_value_is_diagnostic_only():

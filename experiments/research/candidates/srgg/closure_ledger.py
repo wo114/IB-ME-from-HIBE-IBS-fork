@@ -229,6 +229,7 @@ def _parameter_source_audit(root: Path) -> tuple[dict[str, Any], str]:
             "mapping_status": modulus["mapping_status"],
             "modulus_candidates": modulus["modulus_candidates"],
             "smoothing": row["smoothing"],
+            "physical_stddev_diagnostic": row["physical_stddev_diagnostic"],
         })
     return {
         "receipt": relative,

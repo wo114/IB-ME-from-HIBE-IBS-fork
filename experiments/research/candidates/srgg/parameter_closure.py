@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 from decimal import Decimal
+from decimal import localcontext
 from fractions import Fraction
 import hashlib
 import json
@@ -32,6 +33,7 @@ _P = 2**14 - 1
 _BASE = 31
 _QUERY_BOUND = 2**40
 _R_DIMENSION = (_W + 2) * 5 * _N
+_PI_DECIMAL = Decimal("3.1415926535897932384626433832795028841971693993751")
 
 
 def _odd_strictly_above(value: Decimal) -> int:
@@ -99,6 +101,37 @@ def _literal_smoothing_countercheck(dimension: int, epsilon: Fraction) -> dict[s
     }
 
 
+def _physical_stddev_diagnostic(dimension: int, epsilon: Fraction) -> dict[str, Any]:
+    """Numerically inspect the alternative physical-stddev reading.
+
+    If the table's ``r`` is a physical standard deviation, the density shape
+    would be ``2*pi*r^2``.  This is deliberately a high-precision diagnostic,
+    not a transcendental interval certificate: the source does not specify
+    that normalization or the number of digits retained for ``r``.
+    """
+
+    with localcontext() as context:
+        context.prec = 80
+        r = Decimal("1.16")
+        eps = Decimal(epsilon.numerator) / Decimal(epsilon.denominator)
+        pi = _PI_DECIMAL
+        mass = Decimal(2 * dimension) * (-(pi * (2 * pi * r * r))).exp()
+        required = (-((eps / Decimal(2 * dimension)).ln()) /
+                    (2 * pi * pi)).sqrt()
+        return {
+            "interpretation": "table r is physical stddev; density shape = 2*pi*r^2",
+            "dimension": dimension,
+            "literal_r": "1.16",
+            "epsilon": str(epsilon),
+            "first_dual_mass_decimal": format(mass, ".30E"),
+            "epsilon_decimal": format(eps, ".30E"),
+            "literal_necessary_condition_passes": mass <= eps,
+            "required_r_lower_diagnostic": format(required, ".30f"),
+            "required_r_minus_literal_diagnostic": format(required - r, ".30E"),
+            "certificate_status": "numerical diagnostic only; normalization and interval proof unresolved",
+        }
+
+
 def _modulus_row(profile: Any) -> dict[str, Any]:
     gamma = profile.gamma
     q_gadget = profile.q
@@ -161,7 +194,12 @@ def build_report(paper: Path | None = None) -> dict[str, Any]:
             )
             for name, data in epsilon.items()
         }
+        source_epsilon = Fraction(1, epsilon[
+            "source_radical_over_Qs_times_256_inside"]["epsilon_denominator"])
         rows.append({"modulus_gates": _modulus_row(item), "smoothing": smoothing})
+        rows[-1]["physical_stddev_diagnostic"] = _physical_stddev_diagnostic(
+            dimension, source_epsilon
+        )
 
     return {
         "schema": SCHEMA,
