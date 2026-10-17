@@ -4,7 +4,7 @@ from ibme.core.errors import InvalidParameterError
 from ibme.lattice.research import sage_available
 from importlib.util import find_spec
 from . import BACKEND_ID, BACKEND_VERSION
-from .params import StructuredHIBEParams
+from .params import StructuredHIBEParams, StructuredHIBEParams192, FINITE192_VERSION
 from .objects import (StructuredPublicKey, StructuredMasterSecret,
     StructuredLevel1Key, StructuredLevel2Key, StructuredCiphertext, check_object,
     MAGIC)
@@ -55,3 +55,13 @@ def backend_spec():
         ciphertext_size=ciphertext_size, object_parameter_binding="full-parameter-snapshot",
         default_preset=lambda transport: "n2-full-hg-research",
         validate_configuration=configuration, validate_environment=environment)
+
+
+def finite192_backend_spec():
+    """Explicit caller-owned v2 registration; never changes the default v1 registry."""
+    from dataclasses import replace
+    return replace(backend_spec(), version=FINITE192_VERSION,
+        params_type=StructuredHIBEParams192,
+        presets={"n2-full-hg-finite192-research": StructuredHIBEParams192()},
+        default_preset=lambda transport: "n2-full-hg-finite192-research",
+        reason="same structured MP12/CHKP algorithm, explicitly versioned finite192 recipe; insecure n2, none/false/false")

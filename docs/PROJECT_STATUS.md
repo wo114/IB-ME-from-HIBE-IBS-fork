@@ -1,8 +1,10 @@
 # 当前进度与并行任务
 
-更新：2026-10-16（PR34要求修改；补A高位模数公共采样工具与目标参数证据归档，保留各原语已交版本）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
+更新：2026-10-16（PR35已合并；A的finite192配方完成实际接入与原状态恢复，正式参数仍WIP）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
 
-A3最新：[高位模数公共gadget与A任务复核](research/team-a-delivery/2026-10-16-wide-gadget/README.md)。新增独立公共binary gadget有限GPV采样，q支持到256位、仅展开k阶公共核格基，复用实际矩阵工具和目标筛查的同一构造；q77/q256实际采样、完整专项153 passed/0skip、CI目录25 passed/0skip及仓库外33 provider安装通过。本轮补齐前批4组/32次估计、125项专项和安装等公开收据，未重算估计或重发钥。高位q子工具不放宽当前HIBE的61位q、uint64头、矩形R/Schur及固定树资源门，不代表正式配置可运行；A0—A3的正式参数/完整域、192位配方实际接入和模型映射仍WIP。GKR、ABB标准模型、CHKP标准模型继续暂缓。
+A1/A3最新：[finite192配方实际完整运行](research/team-a-delivery/2026-10-16-finite192-runtime/README.md)，实现冻结`73fe7c4`。新增显式v2参数/descriptor，将epsilon192、tail/abort192、mass320、precision384接入真实根/父/叶和噪声，默认v1/CLI与原参数字节保持不变。n2/q1099511627689实际系统随机同根2×2、12错配、新进程恢复、同树Luo-C64B完整34项和仓库外134 provider安装恢复通过；固定源码专项186 passed/0skip，Windows相关70 passed/0skip。在2^20封装与声明RO查询预算、理想随机流和已准入精确算术条件下，新账本累计落在(2^-132,2^-131]，不是LWE安全位数。正式高维/大R/精确运算/大对象域、计算根及匿名固定服务安全映射与公平比较仍WIP；全部私有输入的算术/工作区失败仍未知。PR35远端46成功+2预期手动未执行项，已合入`91de078`。PR34仍要求修改；GKR、ABB标准模型、CHKP标准模型继续暂缓。
+
+A3前批：[高位模数公共gadget与A任务复核](research/team-a-delivery/2026-10-16-wide-gadget/README.md)。新增独立公共binary gadget有限GPV采样，q支持到256位、仅展开k阶公共核格基，复用实际矩阵工具和目标筛查的同一构造；q77/q256实际采样、完整专项153 passed/0skip、CI目录25 passed/0skip及仓库外33 provider安装通过。该批补齐前批4组/32次估计、125项专项和安装等公开收据，未重算估计或重发钥。高位q子工具不放宽当前HIBE的61位q、uint64头、矩形R/Schur及固定树资源门，不代表正式配置可运行；192位配方当时仅为分析，实际接入由上方新批补齐，正式参数/完整域和模型映射仍WIP。GKR、ABB标准模型、CHKP标准模型继续暂缓。
 
 PR34固定head `20d75e9`已完成[本地复核](research/team-a-delivery/2026-10-16-pr34-review/README.md)，远端已提交CHANGES_REQUESTED，保持未合并：既有测试34 passed/0skip，但SIS/RSIS各3次教学诊断确认委派缺失全维扰动所产生的精确根关系与底块满秩；Setup/H1/H2固定字节取模另有约4.263%/6.636%的单系数偏差。只用临时本地测试钥并输出秩/布尔值，没有远端安全测试或私值输出。B修复后再审新head，A不等待本PR。
 
@@ -56,7 +58,7 @@ C1/C3本批新增：[Lai精确资格反例](research/team-c-delivery/2026-10-15-
 | HIBE 公共接口 | 六个 HIBE 方法、规范对象；Hybrid 使用独立的公开密钥绑定验证能力 | 接口存在不等于每个候选已实现 |
 | LATTE-3研究HIBE | [独立C1](research/team-c-delivery/2026-10-14-latte-hibe/README.md)六方法/五对象、真实2×2与恢复；[本轮公共接入](research/team-c-delivery/2026-10-15-c-framework/README.md)默认registry、Hybrid/BYTEAUTH、CLI/安装与10个配置338检查通过 | 原作者ID-IND-CCA不自动提供匿名性；修订采样有限误差/中止和正式映射未准入，none/false/false |
 | ABB-ROM独立完整研究后端 | [A本轮交付](research/team-a-delivery/2026-10-14-abb-complete/README.md)：真实AP09、两次BasisDel/高斯RandBasis、同组86/86 B身份及32 Bseed、256新SamplePre；同公钥2×2多地址和Luo+C64B+Hybrid+BYTEAUTH完整攻击验收已通过 | q26/n1被公开输入恢复全部256比特，none/false/false；正式参数/规范化条件化/矩阵RO/工作区失败界未准入；本批已接入默认registry/CLI、六种IBS202检查及原状态安装复放；旧q104/q80中止仍单列 |
-| A3 结构化 MP12 工具 | [本批交付](research/team-a-delivery/2026-10-14-mp12-structured/README.md)：分块gadget、精确低秩扰动、Algorithm3/4、固定地址状态与安装；n2同根22→40→58两次真实委派及16次批次原像/零熵恢复；独立n128根/2432维4原像/恢复，无全维核格基 | 旧批为H=I/nk列扩展；本批新增完整m列H/G结构化后端、32 B实际噪声和六种IBS共同验收；n128/q65537旧根角色比较成本约21.608/19.610，参数未安全准入；具体卷积及全树/服务模型账本已补，当前累计128-bit目标未过、完整域必要n≤5且正式参数仍WIP；新profile不新增论文算法或困难假设计数 |
+| A3 结构化 MP12 工具 | [本批交付](research/team-a-delivery/2026-10-14-mp12-structured/README.md)：分块gadget、精确低秩扰动、Algorithm3/4、固定地址状态与安装；n2同根22→40→58两次真实委派及16次批次原像/零熵恢复；独立n128根/2432维4原像/恢复，无全维核格基 | 旧批为H=I/nk列扩展；后续新增完整m列H/G结构化后端、32 B实际噪声和六种IBS共同验收；n128/q65537旧根角色比较成本约21.608/19.610，参数未安全准入；默认v1累计128位概率目标未过，显式finite192版本在声明模型下通过，均不是安全位数；当前完整域必要n≤5且正式参数仍WIP；新profile不新增论文算法或困难假设计数 |
 | 教学 ABB10 + 教学 SIS | 实际代码、CLI、历史攻击与回归 | 教学参数及公开认证反例；不能计入已准入安全组合 |
 | Luo 矩阵 IBS | 本地真实研究算法、适配器与历史参数筛查 | 当前暂停继续扩网格，保留为比较实例 |
 | Luo 模格 IBS | 真实算法、NTT/Hint、固定状态及reference/compact；C64B完整17字段、正确性条件/中止界、原文安全引用映射和第二十四步终验收收尾；实际CHKP组合已核对compact16383 B | 默认参数不变、C64B仍显式选择；研究候选不是正式安全等级，不自动补写完整基础归约/QROM；版本变化定向复核 |

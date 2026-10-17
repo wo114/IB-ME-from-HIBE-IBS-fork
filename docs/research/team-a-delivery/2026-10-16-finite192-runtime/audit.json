@@ -1,0 +1,747 @@
+{
+  "schema": "A-FINITE192-RUNTIME-DELIVERY-AUDIT/1",
+  "date": "2026-10-16",
+  "status": "research-runtime-delivered; formal-A-admission-WIP",
+  "source_commit": "73fe7c47f5fd1afdc5927d5c313b14dc3a0f83fc",
+  "source_commit_message": "feat(hibe): execute a versioned finite192 structured recipe",
+  "base_merge_commit": "91de0787a0a6eaacfd5d8912c6923fd61a0aa698",
+  "source_changed_files": [
+    "ci/suites.json",
+    "docs/specs/first-suite-research.md",
+    "experiments/research/structured_finite192_probe.py",
+    "experiments/research/structured_framework_probe.py",
+    "experiments/research/structured_service_budget.py",
+    "src/ibme/hibe/mp12_structured/__init__.py",
+    "src/ibme/hibe/mp12_structured/backend.py",
+    "src/ibme/hibe/mp12_structured/objects.py",
+    "src/ibme/hibe/mp12_structured/params.py",
+    "src/ibme/hibe/mp12_structured/registration.py",
+    "src/ibme/lattice/matrix_sampling/mp12_extension.py",
+    "tests/install_probes/verify_finite192.py",
+    "tests/test_mp12_finite192.py",
+    "tests/test_mp12_finite192_params.py"
+  ],
+  "source_sha256": {
+    "ci/suites.json": {
+      "runtime_file_sha256": "2b407222f2a9a6c38cacbd992837b422038025d013deae69d044aa1abe54c8d5",
+      "git_blob_content_sha256": "2b407222f2a9a6c38cacbd992837b422038025d013deae69d044aa1abe54c8d5"
+    },
+    "docs/specs/first-suite-research.md": {
+      "runtime_file_sha256": "d0a8cefb82ed0ab17acd9fe3551ee826ef020bd8a57c1f827ca08e3193eba8ea",
+      "git_blob_content_sha256": "d0a8cefb82ed0ab17acd9fe3551ee826ef020bd8a57c1f827ca08e3193eba8ea"
+    },
+    "experiments/research/structured_finite192_probe.py": {
+      "runtime_file_sha256": "d8baf71fb8f872a8b349c1ece9b4daace39a512fc54baf87892acf8d5ede1480",
+      "git_blob_content_sha256": "d8baf71fb8f872a8b349c1ece9b4daace39a512fc54baf87892acf8d5ede1480"
+    },
+    "experiments/research/structured_framework_probe.py": {
+      "runtime_file_sha256": "6582901aaaa5ba9d694cf627303fc7e925f0b4ec5baace81e38c733986344ec5",
+      "git_blob_content_sha256": "6582901aaaa5ba9d694cf627303fc7e925f0b4ec5baace81e38c733986344ec5"
+    },
+    "experiments/research/structured_service_budget.py": {
+      "runtime_file_sha256": "382406c63650968fa455700cd573c34e9adf7e8887eceae14ed2bee76a5df500",
+      "git_blob_content_sha256": "382406c63650968fa455700cd573c34e9adf7e8887eceae14ed2bee76a5df500"
+    },
+    "src/ibme/hibe/mp12_structured/__init__.py": {
+      "runtime_file_sha256": "d9abce512645ab8a0125b66f5d9cbd05a7e631a86c9c12da8cdddfea4ace37b7",
+      "git_blob_content_sha256": "d9abce512645ab8a0125b66f5d9cbd05a7e631a86c9c12da8cdddfea4ace37b7"
+    },
+    "src/ibme/hibe/mp12_structured/backend.py": {
+      "runtime_file_sha256": "cdcda7111a7e6becf388148a02c6192117d93aaf01be5dd7f0cf473a0fb60b9f",
+      "git_blob_content_sha256": "cdcda7111a7e6becf388148a02c6192117d93aaf01be5dd7f0cf473a0fb60b9f"
+    },
+    "src/ibme/hibe/mp12_structured/objects.py": {
+      "runtime_file_sha256": "29a4006ccdef2e3bbc041b75dab4886bce221e5ca513a50871dfe6bc0d91f487",
+      "git_blob_content_sha256": "29a4006ccdef2e3bbc041b75dab4886bce221e5ca513a50871dfe6bc0d91f487"
+    },
+    "src/ibme/hibe/mp12_structured/params.py": {
+      "runtime_file_sha256": "c7d909eaabdb6fab8c86fb72a5b585eb66b0ddce7336ecfa0379887d3c87d6b9",
+      "git_blob_content_sha256": "c7d909eaabdb6fab8c86fb72a5b585eb66b0ddce7336ecfa0379887d3c87d6b9"
+    },
+    "src/ibme/hibe/mp12_structured/registration.py": {
+      "runtime_file_sha256": "5da02f1930a7d9847e3e3793d716cfbcd20ed6ad9da67f94c12c659aa3bf9826",
+      "git_blob_content_sha256": "5da02f1930a7d9847e3e3793d716cfbcd20ed6ad9da67f94c12c659aa3bf9826"
+    },
+    "src/ibme/lattice/matrix_sampling/mp12_extension.py": {
+      "runtime_file_sha256": "0bd6b2fc8e7c9cf46ee76530d302ab884658d0af39dedc97bbec55270f27d13f",
+      "git_blob_content_sha256": "0bd6b2fc8e7c9cf46ee76530d302ab884658d0af39dedc97bbec55270f27d13f"
+    },
+    "tests/install_probes/verify_finite192.py": {
+      "runtime_file_sha256": "b48fef70644e6864b298f1617abc6fa6ae81aad1347ee3116c6b090565583df0",
+      "git_blob_content_sha256": "b48fef70644e6864b298f1617abc6fa6ae81aad1347ee3116c6b090565583df0"
+    },
+    "tests/test_mp12_finite192.py": {
+      "runtime_file_sha256": "15d20d15014859376a5e9928661a3ed1d3d57055856b2c861d56b0b8097a53bc",
+      "git_blob_content_sha256": "15d20d15014859376a5e9928661a3ed1d3d57055856b2c861d56b0b8097a53bc"
+    },
+    "tests/test_mp12_finite192_params.py": {
+      "runtime_file_sha256": "2321f5f6c43caad701f79e659cacac7f24e52671aa059cc68d2863dd22cd3321",
+      "git_blob_content_sha256": "2321f5f6c43caad701f79e659cacac7f24e52671aa059cc68d2863dd22cd3321"
+    }
+  },
+  "files_changed": "files-changed.txt",
+  "scope": "A0/A1/A3 finite recipe actual integration, shared exact sampler propagation, fixed state and one true full combination; no new algorithm or assumption",
+  "selected_parameters": {
+    "version": "mp12-structured-hg-finite192-v2",
+    "parameters": {
+      "n": 2,
+      "q": 1099511627689,
+      "root_r_squared": 16,
+      "q_alpha": 4,
+      "identity_bytes": 86,
+      "max_receivers": 2,
+      "max_children": 2
+    },
+    "w": 80,
+    "m": 84,
+    "root_R_bound": "5120",
+    "parent_sample_dimension": 88,
+    "parent_width_squared": "41600000",
+    "parent_R_bound": "292864000000",
+    "leaf_dimension": 252,
+    "leaf_width_squared": "2342912000640000",
+    "finite_sampler": "IBME/MP12-STRUCTURED/1/finite192-options/epsilon192/trials512",
+    "noise": "rounded-continuous/qalpha/tail192/mass320/precision384/radius8192",
+    "leaf_entropy_budget": "281474976710656",
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "finite_recipe": {
+      "epsilon_bits": 192,
+      "scalar_tail_bits": 192,
+      "scalar_abort_bits": 192,
+      "scalar_mass_bits": 320,
+      "precision_bits": 384,
+      "scalar_uniform_trials": 256,
+      "root_uniform_trials": 256,
+      "perturbation_trials": 512,
+      "noise_tail_bits": 192,
+      "noise_mass_bits": 320,
+      "noise_precision_bits": 384,
+      "decode_error_bits": 160,
+      "ciphertext_uniform_trials": 128,
+      "oracle_uniform_trials": 128,
+      "probability_reporting_bits": 384
+    }
+  },
+  "actual_suite": {
+    "allow_mock": false,
+    "backend_admitted": false,
+    "hibe": "mp12-structured-hg",
+    "hibe_params": {
+      "identity_bytes": 86,
+      "max_children": 2,
+      "max_receivers": 2,
+      "n": 2,
+      "q": 1099511627689,
+      "q_alpha": 4,
+      "root_r_squared": 16
+    },
+    "hibe_version": "mp12-structured-hg-finite192-v2",
+    "hybrid_limits": {
+      "backend_id": "mp12-structured-hg-finite192-v2",
+      "identity_max_bytes": 64,
+      "max_capsule_bytes": 4194304,
+      "max_payload_bytes": 65536
+    },
+    "ibs": "luo-module",
+    "ibs_params": {
+      "degree": 256,
+      "dropped_bits": 28,
+      "eta": 1,
+      "gamma1": 190000,
+      "gamma2": 60000000000,
+      "gamma3": 27487784448,
+      "identity_max_bytes": 64,
+      "k": 11,
+      "kappa": 64,
+      "l": 10,
+      "max_cached_identities": 64,
+      "max_extract_attempts": 4096,
+      "max_sign_attempts": 4096,
+      "max_uniform_attempts": 128,
+      "message_max_bytes": 4096,
+      "q": 274877844481,
+      "root": 153250464611
+    },
+    "ibs_version": "luo-module-ref1",
+    "parameters_are_formal": false,
+    "protocol": "byteauth-v1",
+    "security_claim": "none",
+    "signature_format": "compact",
+    "state_policy": "single-writer-commit-before-publish-v1",
+    "transport": "hybrid",
+    "version": "IBME/SUITE/1"
+  },
+  "environment": {
+    "python": "3.13.14",
+    "sage": "10.9",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "OMP_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "1",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "portable_python": "3.14.6",
+    "sage_python": "~/miniconda3/envs/sage/bin/python",
+    "software_path_policy": "Sage path is relative to WSL user home; raw CI metadata retains observed interpreter path as evidence"
+  },
+  "parameter_source": "Explicit versioned research defaults, actual finite sampler contracts and conditional decode/service ledger; not formal security parameters",
+  "experiment_inputs": {
+    "system_message_bytes": 32,
+    "common_runner_message_bytes": [
+      10,
+      0
+    ],
+    "raw_identity_bytes": [
+      5,
+      3,
+      5,
+      7
+    ],
+    "inner_identity_bytes_per_layer": 86,
+    "seed_bits": 256,
+    "receivers": 2,
+    "children_each": 2,
+    "leaf_preimages_each": 256,
+    "new_system_tree_repetitions": 1,
+    "common_runner_repetitions": 1,
+    "restores_reuse_original_tree": true
+  },
+  "ideal_ROM": true,
+  "teaching_parameters": true,
+  "conditional_budget": {
+    "counts": {
+      "root_setups": 1,
+      "root_R_scalar_draws": 320,
+      "root_uniform_draws": 4,
+      "distinct_receivers": 2,
+      "distinct_leaf_keys": 4,
+      "parent_SampleD_calls": 160,
+      "leaf_SampleD_calls": 1024,
+      "fixed_key_reuse_additional_SampleD_calls": 0,
+      "encapsulations": 1048576,
+      "ciphertext_noise_draws": 532676608,
+      "ciphertext_secret_uniform_draws": 2097152,
+      "max_distinct_H_queries": 1048576,
+      "max_distinct_G_paths": 1048576,
+      "max_distinct_G_position_queries": 268435456,
+      "ideal_RO_residue_draws": 713031680
+    },
+    "probability_exponent": 131,
+    "target_exponent": 128,
+    "meets_target_in_stated_model": true,
+    "bound_interval": "(2^-132, 2^-131]",
+    "assumptions": [
+      "independent uniform source bytes",
+      "ideal perturbation acceptance >=1/4",
+      "both MP12 Theorem5.5 smoothing conditions",
+      "admitted exact arithmetic paths",
+      "the finite scalar/GPV directed-rounding contract"
+    ],
+    "oracle_model": "independent uniform random streams at distinct canonical H/G addresses; repeat queries fixed",
+    "actual_all_key_precision_or_workspace_verified": false,
+    "full_implementation_or_security_failure_upper": null,
+    "actual_SHAKE_indifferentiability_verified": false,
+    "v1_ledger_unchanged": true,
+    "v1_bound_interval": "(2^-98, 2^-97]"
+  },
+  "final_checks": {
+    "strict_sage": {
+      "tests": 186,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 135.396
+    },
+    "portable": {
+      "tests": 70,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 1.164
+    },
+    "combination_cases": 1,
+    "combination_checks": 34,
+    "system_matching_paths": 4,
+    "system_wrong_paths": 12,
+    "installed_provider_count": 134,
+    "installed_restore": {
+      "status": "passed",
+      "entropy_reads": 0,
+      "restored_matching_paths": 4,
+      "new_hibe_roots": 0,
+      "new_hibe_keys": 0,
+      "new_ibs_keys": 0,
+      "state_unchanged": true
+    }
+  },
+  "original_failures": {
+    "portable_missing_inherited_PYTHONPATH": {
+      "tests": 70,
+      "errors": 0,
+      "failures": 1,
+      "skipped": 0,
+      "seconds": 1.293
+    },
+    "cause": "fresh discovery child could not import ibme without explicit source path",
+    "fixed": "PYTHONPATH=src;. then same criteria 70 passed, no test change",
+    "development_sage_before_two_extra_tests": {
+      "passed": 184,
+      "overlaps_final": true
+    },
+    "system_tree_generation_first_attempt_passed": true,
+    "counts_not_added_across_overlapping_runs": true
+  },
+  "measured_system_run": {
+    "new_hibe_roots": 1,
+    "new_receivers": 2,
+    "new_leaf_keys": 4,
+    "seconds": 255.555632373,
+    "probe_seconds": 256.62114971399996,
+    "peak_rss_kib": 346136,
+    "entropy_counts_only": {
+      "reads": 13000483,
+      "bytes": 232921189
+    },
+    "no_random_tape_saved": true,
+    "concurrent_with_regression": true,
+    "performance_comparison": false
+  },
+  "restored_original_state": {
+    "fresh_process": {
+      "status": "passed",
+      "entropy_reads": 0,
+      "restored_matching_paths": 4,
+      "new_hibe_roots": 0,
+      "new_hibe_keys": 0,
+      "new_ibs_keys": 0,
+      "state_unchanged": true
+    },
+    "common_runner_new_hibe_roots": 0,
+    "common_runner_new_hibe_keys": 0,
+    "common_runner_issuance_entropy_reads": 0,
+    "common_runner_fresh_ibs_setup": true,
+    "common_runner_randomness": "fixed public test streams",
+    "installed_original_state_unchanged": true
+  },
+  "installed_source_verification": {
+    "providers": 134,
+    "all_installed_provider_hashes_match_checkout": true,
+    "provider_source_paths": {
+      "experiments.research.candidates.srgg.algebra": "experiments/research/candidates/srgg/algebra.py",
+      "experiments.research.candidates.srgg.backend": "experiments/research/candidates/srgg/backend.py",
+      "experiments.research.candidates.srgg.config": "experiments/research/candidates/srgg/config.py",
+      "experiments.research.candidates.srgg.hashing": "experiments/research/candidates/srgg/hashing.py",
+      "experiments.research.candidates.srgg.objects": "experiments/research/candidates/srgg/objects.py",
+      "experiments.research.candidates.wang_pw": "experiments/research/candidates/wang_pw/__init__.py",
+      "experiments.research.candidates.wang_pw.backend": "experiments/research/candidates/wang_pw/backend.py",
+      "experiments.research.candidates.wang_pw.codec": "experiments/research/candidates/wang_pw/codec.py",
+      "experiments.research.candidates.wang_pw.hashing": "experiments/research/candidates/wang_pw/hashing.py",
+      "experiments.research.candidates.wang_pw.objects": "experiments/research/candidates/wang_pw/objects.py",
+      "experiments.research.candidates.wang_pw.params": "experiments/research/candidates/wang_pw/params.py",
+      "experiments.research.chkp_basis": "src/ibme/lattice/chkp/basis.py",
+      "experiments.research.chkp_genbasis": "experiments/research/chkp_genbasis.py",
+      "experiments.research.chkp_gpv": "experiments/research/chkp_gpv.py",
+      "experiments.research.chkp_paper_preflight": "experiments/research/chkp_paper_preflight.py",
+      "experiments.research.chkp_tobasis": "experiments/research/chkp_tobasis.py",
+      "experiments.research.first_suite": "experiments/research/first_suite/__init__.py",
+      "experiments.research.first_suite.compact_delegation": "experiments/research/first_suite/compact_delegation.py",
+      "experiments.research.first_suite.computational_root": "experiments/research/first_suite/computational_root.py",
+      "experiments.research.first_suite.delegation_state": "src/ibme/lattice/chkp/delegation_state.py",
+      "experiments.research.first_suite.entropy": "src/ibme/lattice/chkp/entropy.py",
+      "experiments.research.first_suite.finite_gaussian": "experiments/research/first_suite/finite_gaussian.py",
+      "experiments.research.first_suite.finite_gpv": "experiments/research/first_suite/finite_gpv.py",
+      "experiments.research.first_suite.hibe_reference": "experiments/research/first_suite/hibe_reference.py",
+      "experiments.research.first_suite.hibe_registry": "experiments/research/first_suite/hibe_registry.py",
+      "experiments.research.first_suite.identity": "src/ibme/lattice/chkp/identity.py",
+      "experiments.research.first_suite.leaf_state": "src/ibme/lattice/chkp/leaf_state.py",
+      "experiments.research.first_suite.private_basis_bridge": "experiments/research/first_suite/private_basis_bridge.py",
+      "experiments.research.first_suite.root_generation": "src/ibme/lattice/chkp/root_generation.py",
+      "experiments.research.first_suite.seed_kem": "src/ibme/lattice/chkp/seed_kem.py",
+      "experiments.research.gaussian_reference": "src/ibme/lattice/chkp/gaussian.py",
+      "experiments.research.general_gadget_reference": "experiments/research/general_gadget_reference.py",
+      "experiments.research.ibme_handoff_screen": "experiments/research/ibme_handoff_screen.py",
+      "experiments.research.ibme_joint_parameters": "experiments/research/ibme_joint_parameters.py",
+      "experiments.research.ibme_noise_budget": "src/ibme/lattice/chkp/noise_budget.py",
+      "experiments.research.ibme_root_sampler_audit": "experiments/research/ibme_root_sampler_audit.py",
+      "experiments.research.ibme_rounded_noise": "src/ibme/lattice/chkp/rounded_noise.py",
+      "experiments.research.mp12_sampled_reference": "experiments/research/mp12_sampled_reference.py",
+      "experiments.research.online_gaussian_reference": "experiments/research/online_gaussian_reference.py",
+      "experiments.research.structured_finite192_probe": "experiments/research/structured_finite192_probe.py",
+      "experiments.research.structured_framework_probe": "experiments/research/structured_framework_probe.py",
+      "experiments.research.structured_hibe_probe": "experiments/research/structured_hibe_probe.py",
+      "experiments.research.structured_service_budget": "experiments/research/structured_service_budget.py",
+      "experiments.run_combination_matrix": "experiments/run_combination_matrix.py",
+      "ibme": "src/ibme/__init__.py",
+      "ibme.assembly": "src/ibme/assembly/__init__.py",
+      "ibme.assembly.registry": "src/ibme/assembly/registry.py",
+      "ibme.core": "src/ibme/core/__init__.py",
+      "ibme.core.encoding": "src/ibme/core/encoding.py",
+      "ibme.core.errors": "src/ibme/core/errors.py",
+      "ibme.core.hashing": "src/ibme/core/hashing.py",
+      "ibme.core.lamport_ots": "src/ibme/core/lamport_ots.py",
+      "ibme.core.randomness": "src/ibme/core/randomness.py",
+      "ibme.core.types": "src/ibme/core/types.py",
+      "ibme.hibe": "src/ibme/hibe/__init__.py",
+      "ibme.hibe.abb10": "src/ibme/hibe/abb10.py",
+      "ibme.hibe.abb_rom": "src/ibme/hibe/abb_rom/__init__.py",
+      "ibme.hibe.abb_rom.objects": "src/ibme/hibe/abb_rom/objects.py",
+      "ibme.hibe.abb_rom.params": "src/ibme/hibe/abb_rom/params.py",
+      "ibme.hibe.abb_rom.profiles": "src/ibme/hibe/abb_rom/profiles.py",
+      "ibme.hibe.abb_rom.registration": "src/ibme/hibe/abb_rom/registration.py",
+      "ibme.hibe.api": "src/ibme/hibe/api.py",
+      "ibme.hibe.chkp": "src/ibme/hibe/chkp/__init__.py",
+      "ibme.hibe.chkp.backend": "src/ibme/hibe/chkp/backend.py",
+      "ibme.hibe.chkp.objects": "src/ibme/hibe/chkp/objects.py",
+      "ibme.hibe.chkp.params": "src/ibme/hibe/chkp/params.py",
+      "ibme.hibe.latte": "src/ibme/hibe/latte/__init__.py",
+      "ibme.hibe.latte.codec": "src/ibme/hibe/latte/codec.py",
+      "ibme.hibe.latte.math": "src/ibme/hibe/latte/math.py",
+      "ibme.hibe.latte.objects": "src/ibme/hibe/latte/objects.py",
+      "ibme.hibe.latte.params": "src/ibme/hibe/latte/params.py",
+      "ibme.hibe.latte.registration": "src/ibme/hibe/latte/registration.py",
+      "ibme.hibe.mock": "src/ibme/hibe/mock.py",
+      "ibme.hibe.mp12_chkp": "src/ibme/hibe/mp12_chkp/__init__.py",
+      "ibme.hibe.mp12_structured": "src/ibme/hibe/mp12_structured/__init__.py",
+      "ibme.hibe.mp12_structured.backend": "src/ibme/hibe/mp12_structured/backend.py",
+      "ibme.hibe.mp12_structured.objects": "src/ibme/hibe/mp12_structured/objects.py",
+      "ibme.hibe.mp12_structured.params": "src/ibme/hibe/mp12_structured/params.py",
+      "ibme.hibe.mp12_structured.registration": "src/ibme/hibe/mp12_structured/registration.py",
+      "ibme.ibs": "src/ibme/ibs/__init__.py",
+      "ibme.ibs.api": "src/ibme/ibs/api.py",
+      "ibme.ibs.certified": "src/ibme/ibs/certified/__init__.py",
+      "ibme.ibs.certified.backend": "src/ibme/ibs/certified/backend.py",
+      "ibme.ibs.certified.codec": "src/ibme/ibs/certified/codec.py",
+      "ibme.ibs.certified.falcon": "src/ibme/ibs/certified/falcon.py",
+      "ibme.ibs.certified.falcon_native.build": "src/ibme/ibs/certified/falcon_native/build.py",
+      "ibme.ibs.certified.mldsa": "src/ibme/ibs/certified/mldsa.py",
+      "ibme.ibs.certified.native": "src/ibme/ibs/certified/native/__init__.py",
+      "ibme.ibs.certified.native.build": "src/ibme/ibs/certified/native/build.py",
+      "ibme.ibs.certified.objects": "src/ibme/ibs/certified/objects.py",
+      "ibme.ibs.certified.ordinary": "src/ibme/ibs/certified/ordinary.py",
+      "ibme.ibs.certified.params": "src/ibme/ibs/certified/params.py",
+      "ibme.ibs.certified.registration": "src/ibme/ibs/certified/registration.py",
+      "ibme.ibs.luo": "src/ibme/ibs/luo.py",
+      "ibme.ibs.luo_module": "src/ibme/ibs/luo_module.py",
+      "ibme.ibs.luo_module_codec": "src/ibme/ibs/luo_module_codec.py",
+      "ibme.ibs.luo_module_math": "src/ibme/ibs/luo_module_math.py",
+      "ibme.ibs.luo_module_profiles": "src/ibme/ibs/luo_module_profiles.py",
+      "ibme.ibs.luo_reference": "src/ibme/ibs/luo_reference.py",
+      "ibme.ibs.mock": "src/ibme/ibs/mock.py",
+      "ibme.ibs.sis_ibs": "src/ibme/ibs/sis_ibs.py",
+      "ibme.lattice": "src/ibme/lattice/__init__.py",
+      "ibme.lattice.chkp": "src/ibme/lattice/chkp/__init__.py",
+      "ibme.lattice.chkp.basis": "src/ibme/lattice/chkp/basis.py",
+      "ibme.lattice.chkp.delegation_state": "src/ibme/lattice/chkp/delegation_state.py",
+      "ibme.lattice.chkp.entropy": "src/ibme/lattice/chkp/entropy.py",
+      "ibme.lattice.chkp.finite_gaussian": "src/ibme/lattice/chkp/finite_gaussian.py",
+      "ibme.lattice.chkp.gaussian": "src/ibme/lattice/chkp/gaussian.py",
+      "ibme.lattice.chkp.identity": "src/ibme/lattice/chkp/identity.py",
+      "ibme.lattice.chkp.joint_parameters": "src/ibme/lattice/chkp/joint_parameters.py",
+      "ibme.lattice.chkp.leaf_state": "src/ibme/lattice/chkp/leaf_state.py",
+      "ibme.lattice.chkp.noise_budget": "src/ibme/lattice/chkp/noise_budget.py",
+      "ibme.lattice.chkp.root_generation": "src/ibme/lattice/chkp/root_generation.py",
+      "ibme.lattice.chkp.rounded_noise": "src/ibme/lattice/chkp/rounded_noise.py",
+      "ibme.lattice.chkp.seed_kem": "src/ibme/lattice/chkp/seed_kem.py",
+      "ibme.lattice.gadget": "src/ibme/lattice/gadget.py",
+      "ibme.lattice.gaussian": "src/ibme/lattice/gaussian.py",
+      "ibme.lattice.matrix_sampling": "src/ibme/lattice/matrix_sampling/__init__.py",
+      "ibme.lattice.matrix_sampling.basis": "src/ibme/lattice/matrix_sampling/basis.py",
+      "ibme.lattice.matrix_sampling.chkp_profiles": "src/ibme/lattice/matrix_sampling/chkp_profiles.py",
+      "ibme.lattice.matrix_sampling.gpv": "src/ibme/lattice/matrix_sampling/gpv.py",
+      "ibme.lattice.matrix_sampling.mp12_bounds": "src/ibme/lattice/matrix_sampling/mp12_bounds.py",
+      "ibme.lattice.matrix_sampling.mp12_structured": "src/ibme/lattice/matrix_sampling/mp12_structured.py",
+      "ibme.lattice.matrix_sampling.prime_gadget": "src/ibme/lattice/matrix_sampling/prime_gadget.py",
+      "ibme.lattice.matrix_sampling.randbasis": "src/ibme/lattice/matrix_sampling/randbasis.py",
+      "ibme.lattice.matrix_sampling.scalar": "src/ibme/lattice/matrix_sampling/scalar.py",
+      "ibme.lattice.modmat": "src/ibme/lattice/modmat.py",
+      "ibme.lattice.params": "src/ibme/lattice/params.py",
+      "ibme.lattice.research": "src/ibme/lattice/research/__init__.py",
+      "ibme.lattice.trapdoor": "src/ibme/lattice/trapdoor.py",
+      "ibme.protocol": "src/ibme/protocol/__init__.py",
+      "ibme.protocol.baseline": "src/ibme/protocol/baseline.py",
+      "ibme.protocol.byteauth": "src/ibme/protocol/byteauth.py",
+      "ibme.protocol.hybrid_hibe": "src/ibme/protocol/hybrid_hibe.py"
+    },
+    "sole_project_provider_root": true,
+    "isolated_python": true,
+    "outside_checkout": true,
+    "v1_default_registry_rejected_v2": true,
+    "v1_parameter_bytes_unchanged": true,
+    "v1_probability_ledger_unchanged": true
+  },
+  "wheel": {
+    "path": "<repo>/test-results/a-finite192-package/wheels/ibme-0.1.0-py3-none-any.whl",
+    "bytes": 1402614,
+    "sha256": "fded0ec9c63b7207a5cc25dec39a4bfeaea9a6f069f8ac110ab103de2830e378",
+    "contains_no_private_state_or_test_results": true
+  },
+  "pr35": {
+    "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/35",
+    "head": "584e436455204899545ec4c384b6367110b73874",
+    "state": "MERGED",
+    "merged_at_utc": "2026-10-16T01:36:13Z",
+    "merge_commit": "91de0787a0a6eaacfd5d8912c6923fd61a0aa698",
+    "successful_checks": 46,
+    "expected_manually_gated_skipped_checks": 2,
+    "failed_or_pending_checks": 0
+  },
+  "reproduction_commands": [
+    {
+      "cwd": "<repo>",
+      "environment": {
+        "PYTHONPATH": "src:.",
+        "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "argv": [
+        "~/miniconda3/envs/sage/bin/python",
+        "ci/run.py",
+        "run",
+        "a-structured-hg",
+        "--output",
+        "test-results/a-finite192-final-strict"
+      ],
+      "result": "186 passed / 0 skipped"
+    },
+    {
+      "cwd": "<repo>, Windows PowerShell",
+      "environment": {
+        "PYTHONPATH": "src;."
+      },
+      "argv": [
+        "python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_ci_catalog.py",
+        "tests/test_mp12_finite192_params.py",
+        "tests/test_mp12_structured_params.py",
+        "tests/test_mp12_structured_assembly.py",
+        "-q",
+        "--junitxml=test-results/a-finite192-portable-fixed.xml"
+      ],
+      "result": "70 passed / 0 skipped"
+    },
+    {
+      "cwd": "<repo>, Windows PowerShell",
+      "argv": [
+        "python",
+        "-m",
+        "pip",
+        "wheel",
+        "--no-index",
+        "--no-build-isolation",
+        "--no-deps",
+        "--wheel-dir",
+        "test-results/a-finite192-package/wheels",
+        "."
+      ],
+      "result": "offline pure Python wheel built"
+    },
+    {
+      "cwd": "<repo>",
+      "argv": [
+        "~/miniconda3/envs/sage/bin/python",
+        "-m",
+        "pip",
+        "install",
+        "--no-index",
+        "--no-deps",
+        "--target",
+        "test-results/a-finite192-package/site",
+        "test-results/a-finite192-package/wheels/ibme-0.1.0-py3-none-any.whl"
+      ],
+      "result": "installed to separate target"
+    },
+    {
+      "cwd": "<repo>",
+      "environment": {
+        "PYTHONPATH": "src:."
+      },
+      "argv": [
+        "~/miniconda3/envs/sage/bin/python",
+        "-m",
+        "experiments.research.structured_service_budget",
+        "--params-file",
+        "test-results/a-finite192-public/params192.bin",
+        "--output",
+        "test-results/a-finite192-public/budget.json"
+      ],
+      "result": "conditional exponent 131; no key/entropy generation"
+    },
+    {
+      "cwd": "<repo>",
+      "environment": {
+        "PYTHONPATH": "src:.",
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "argv": [
+        "~/miniconda3/envs/sage/bin/python",
+        "-m",
+        "experiments.research.structured_finite192_probe",
+        "--private-directory",
+        "test-results/a-finite192-system/private",
+        "--output",
+        "test-results/a-finite192-system/public-tree.json",
+        "--source-commit",
+        "73fe7c47f5fd1afdc5927d5c313b14dc3a0f83fc"
+      ],
+      "result": "one system-random root, 2 receivers, 4 leaves, 4 matching and 12 wrong paths passed"
+    },
+    {
+      "cwd": "<repo>",
+      "environment": {
+        "PYTHONPATH": "src:.",
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "argv": [
+        "~/miniconda3/envs/sage/bin/python",
+        "-m",
+        "experiments.research.structured_finite192_probe",
+        "--private-directory",
+        "test-results/a-finite192-system/private",
+        "--output",
+        "test-results/a-finite192-system/restore.json",
+        "--source-commit",
+        "73fe7c47f5fd1afdc5927d5c313b14dc3a0f83fc",
+        "--restore-only"
+      ],
+      "result": "original completed tree restored, zero entropy or new keys"
+    },
+    {
+      "cwd": "<repo>",
+      "environment": {
+        "PYTHONPATH": "src:.",
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "argv": [
+        "~/miniconda3/envs/sage/bin/python",
+        "-m",
+        "experiments.research.structured_finite192_probe",
+        "--private-directory",
+        "test-results/a-finite192-system/private",
+        "--output",
+        "test-results/a-finite192-system/combination.json",
+        "--source-commit",
+        "73fe7c47f5fd1afdc5927d5c313b14dc3a0f83fc",
+        "--matrix"
+      ],
+      "result": "original HIBE tree reused, one Luo-C64B compact case, 34 checks passed"
+    },
+    {
+      "cwd": "/tmp (outside checkout)",
+      "argv": [
+        "~/miniconda3/envs/sage/bin/python",
+        "-I",
+        "<repo>/tests/install_probes/verify_finite192.py",
+        "--site",
+        "<repo>/test-results/a-finite192-package/site",
+        "--private-directory",
+        "<repo>/test-results/a-finite192-system/private",
+        "--source-budget",
+        "<repo>/test-results/a-finite192-public/budget.json",
+        "--legacy-budget",
+        "<repo>/docs/research/team-a-delivery/2026-10-15-finite-budget/evidence/service-budget.json",
+        "--output",
+        "<repo>/test-results/a-finite192-package/installed.json"
+      ],
+      "result": "134 sole-root installed providers; four original matches, zero entropy/keys and unchanged original state"
+    }
+  ],
+  "public_evidence": {
+    "combination.json": {
+      "bytes": 70772,
+      "sha256": "5faefd7dee6c9a2bbbed8c3e468595e5901b2986df7879aad1cea9cd7989921c",
+      "original_receipt": "test-results/a-finite192-system/combination.json",
+      "original_receipt_sha256": "5faefd7dee6c9a2bbbed8c3e468595e5901b2986df7879aad1cea9cd7989921c",
+      "transform": "CRLF to LF and trailing spaces/tabs removed; test results and diagnostic text preserved"
+    },
+    "fresh-process-restore.json": {
+      "bytes": 29083,
+      "sha256": "c29398d3ae5d007638e61221b20607b7c778ac44ad495936ca2b436f35ae5220",
+      "original_receipt": "test-results/a-finite192-system/restore.json",
+      "original_receipt_sha256": "c29398d3ae5d007638e61221b20607b7c778ac44ad495936ca2b436f35ae5220",
+      "transform": "CRLF to LF and trailing spaces/tabs removed; test results and diagnostic text preserved"
+    },
+    "installed.json": {
+      "bytes": 25290,
+      "sha256": "bc5bd44c9cfa04a7701d9273f9304806ce09e1cd02cc13d9dd65735f56bb2fdc",
+      "original_receipt": "test-results/a-finite192-package/installed.json",
+      "original_receipt_sha256": "bc5bd44c9cfa04a7701d9273f9304806ce09e1cd02cc13d9dd65735f56bb2fdc",
+      "transform": "CRLF to LF and trailing spaces/tabs removed; test results and diagnostic text preserved"
+    },
+    "portable-environment-first.xml": {
+      "bytes": 12498,
+      "sha256": "20a4052112d9a45937f9b916e0ae4d5d2b6cad051ee360732da53c7e69f635eb",
+      "original_receipt": "test-results/a-finite192-portable.xml",
+      "original_receipt_sha256": "a2c0951c421622806c9da4e59e32ee663c138c0519b7cc3cc7f93bfeb8b19db8",
+      "transform": "CRLF to LF and trailing spaces/tabs removed; test results and diagnostic text preserved"
+    },
+    "portable.xml": {
+      "bytes": 10130,
+      "sha256": "d072f9957cfe9984abc2cdab1afb510c0b4bc0519b0735c887e790e87473bb16",
+      "original_receipt": "test-results/a-finite192-portable-fixed.xml",
+      "original_receipt_sha256": "d072f9957cfe9984abc2cdab1afb510c0b4bc0519b0735c887e790e87473bb16",
+      "transform": "CRLF to LF and trailing spaces/tabs removed; test results and diagnostic text preserved"
+    },
+    "public-budget.json": {
+      "bytes": 26155,
+      "sha256": "59894561b0245b2a5490c9bad0b7d700c5e250eb8f438c9acbf8c175ec88a8f6",
+      "original_receipt": "test-results/a-finite192-public/budget.json",
+      "original_receipt_sha256": "59894561b0245b2a5490c9bad0b7d700c5e250eb8f438c9acbf8c175ec88a8f6",
+      "transform": "CRLF to LF and trailing spaces/tabs removed; test results and diagnostic text preserved"
+    },
+    "strict-sage.json": {
+      "bytes": 3298,
+      "sha256": "2721733cfc46eb0f7b81d88b592679edc2bed9bea3d690df5617f64722eabb5e",
+      "original_receipt": "test-results/a-finite192-final-strict/a-structured-hg.json",
+      "original_receipt_sha256": "2721733cfc46eb0f7b81d88b592679edc2bed9bea3d690df5617f64722eabb5e",
+      "transform": "CRLF to LF and trailing spaces/tabs removed; test results and diagnostic text preserved"
+    },
+    "strict-sage.xml": {
+      "bytes": 26170,
+      "sha256": "cebeb4ecd43df667faff51b0819ffdf8d8f6f5b43495ed32b5bf115e149fcd53",
+      "original_receipt": "test-results/a-finite192-final-strict/a-structured-hg.xml",
+      "original_receipt_sha256": "cebeb4ecd43df667faff51b0819ffdf8d8f6f5b43495ed32b5bf115e149fcd53",
+      "transform": "CRLF to LF and trailing spaces/tabs removed; test results and diagnostic text preserved"
+    },
+    "system-tree.json": {
+      "bytes": 64472,
+      "sha256": "117d9f2e86d95ab0b7200263884f679b250c9f6f84412232f346d9a4713267d4",
+      "original_receipt": "test-results/a-finite192-system/public-tree.json",
+      "original_receipt_sha256": "117d9f2e86d95ab0b7200263884f679b250c9f6f84412232f346d9a4713267d4",
+      "transform": "CRLF to LF and trailing spaces/tabs removed; test results and diagnostic text preserved"
+    }
+  },
+  "secret_separation": {
+    "private_store": "<repo>/test-results/a-finite192-system/private (ignored, not in Git)",
+    "ignored_paths_verified": [
+      "test-results/a-finite192-system/private/master.bin",
+      "test-results/a-finite192-system/private/hibe-master.bin"
+    ],
+    "delivery_contents": "only explicit public receipts, source hashes, tests and documentation",
+    "private_values_exported": false,
+    "external_system_security_testing": false
+  },
+  "untouched_paused_routes": [
+    "GKR",
+    "ABB standard model",
+    "CHKP standard model"
+  ],
+  "remaining": [
+    "formal high-dimensional executable q / rectangular R / exact arithmetic / large-object encoding domain",
+    "arithmetic/workspace failure for all private inputs",
+    "computational root, anonymous HIBE and fixed service security mapping plus IBS/wrapper conditions",
+    "equal-security full IBME comparisons and ablations"
+  ],
+  "tests_are_not_security_proofs": true,
+  "security_proof_count": 0,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

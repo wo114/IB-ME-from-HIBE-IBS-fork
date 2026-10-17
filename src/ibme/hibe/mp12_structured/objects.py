@@ -14,7 +14,7 @@ from ibme.core.errors import InvalidParameterError, SerializationError, Encoding
 from ibme.core.types import validate_identity
 from ibme.lattice.chkp.identity import Reader, ROHIBEContext
 from ibme.lattice.chkp.leaf_state import SeedScope, FixedSeedState, FixedSeedKey
-from .params import StructuredHIBEParams
+from .params import StructuredHIBEParams, load_structured_parameters
 
 MAGIC = b"IBME:MP12-STRUCTURED-HG:OBJECT:v1"
 MAX_BYTES = 32*2**20
@@ -73,7 +73,7 @@ class StructuredPublicKey:
     def from_bytes(cls, raw):
         r = _reader(raw, b"PUBLIC")
         try:
-            p = StructuredHIBEParams.from_bytes(r.blob(4096))
+            p = load_structured_parameters(r.blob(4096))
             o = ROHIBEContext.from_bytes(r.blob(MAX_PUBLIC))
             r.finish()
             result = cls(p, o)

@@ -69,7 +69,7 @@ class StructuredLeftSampler:
             zero_padded_output_coordinates=False)
 
 
-def delegate_extension(trapdoor, extension, *, rng=None):
+def delegate_extension(trapdoor, extension, *, rng=None, epsilon_bits=128, options=None):
     """MP12 Algorithm 4 for an extension with at least w columns.
 
     A single attempt; any norm/entropy/precision failure aborts the operation.
@@ -88,7 +88,7 @@ def delegate_extension(trapdoor, extension, *, rng=None):
         raise ValueError("structured full-extension delegation resource limit")
     extension = _rows(extension, t.n, width, q=t.q)
     extras, tail = tuple(row[:-t.w] for row in extension), tuple(row[-t.w:] for row in extension)
-    sampler = StructuredLeftSampler(t, extras)
+    sampler = StructuredLeftSampler(t, extras, epsilon_bits=epsilon_bits, options=options)
     if t.w*sampler.random_tape_bytes > sampler.options.max_tape_bytes:
         raise ValueError("structured whole-extension delegation tape limit")
     source = CheckedEntropy(SecureRandom() if rng is None else rng, sampler.options.max_tape_bytes)
