@@ -1,0 +1,1478 @@
+{
+  "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+  "scalar_cases": [
+    {
+      "candidate": "conditional-n512-d2-w8",
+      "stage": "rounding_and_signing_u",
+      "certificate": {
+        "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+        "count": 12800,
+        "squared_width_class": [
+          "64",
+          "64"
+        ],
+        "gaussian_proposals": {
+          "successes": 12800,
+          "probability_lower": "157608024785577916849116160400574455220303494796488761788951449784568711602287311608823145588688304703436589020825795/1694286266444962606127998724306175393618428788630014206721776616382566036174380056290813448960051372554685003583193088",
+          "trials": 277953,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "uniform_candidates": {
+          "successes": 277953,
+          "probability_lower": "85/128",
+          "trials": 837515,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "candidate_bytes": 1,
+        "bernoulli_bytes": 24,
+        "naive_all_path_bytes": 2640384000,
+        "chernoff_cap_bytes": 7508387,
+        "selected_cap_bytes": 7508387,
+        "public_max_bytes": 268435456,
+        "admitted": true,
+        "uses_probabilistic_cap": true,
+        "aggregate_budget_abort_upper_exact": "1/340282366920938463463374607431768211456",
+        "existing_scalar_abort_union_upper_exact": "461168601842738814275/12259964326927110866866776217202473468949912977468817408",
+        "abort_upper_including_aggregate_exact": "461204630639757778243/12259964326927110866866776217202473468949912977468817408",
+        "scalar_kernel_tv_union_upper_exact": "1833958249792074588770635089141487558959853732017916817652696952393222807086325/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+        "scalar_kernel_tv_including_aggregate_exact": "1834071328004220405367728420181535105744866690987316857266016735190105534751989/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+        "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+        "full_continuous_or_IBS_tv_certified": false,
+        "all_original_gaussian_and_uniform_limits_retained": true,
+        "requires_independent_uniform_bytes": true,
+        "security_claim": "none",
+        "backend_admitted": false,
+        "parameters_are_formal": false
+      },
+      "draw_performed": true,
+      "draw_seconds": 2.062600768000003,
+      "actual_bytes": 3460886,
+      "unmodified_scalar_replay_matches": true,
+      "deterministic_seed_utf8": "IBME/SRGG-aggregate/n512/d2/rounding_and_signing_u",
+      "center_pattern": "((i%11)-5)/3",
+      "output_sha256": "12d2ff5e3e11ff6c66ac87bf39fc845cf681e0ebe650625c3eb8beefdbe4c9ec"
+    },
+    {
+      "candidate": "conditional-n512-d2-w8",
+      "stage": "master_lower",
+      "certificate": {
+        "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+        "count": 8192,
+        "squared_width_class": [
+          "1031865892929",
+          "1031865892929"
+        ],
+        "gaussian_proposals": {
+          "successes": 8192,
+          "probability_lower": "2106572269031985273185756048414911366621248653252913446299750662411401708905335137271083536809397333697730216121287207307/23732143548137965985389364084637299743709967600515502251678600703724432188746941928939703879447223769782958491585717731328",
+          "trials": 187463,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "uniform_candidates": {
+          "successes": 187463,
+          "probability_lower": "11443851/16777216",
+          "trials": 550035,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "candidate_bytes": 3,
+        "bernoulli_bytes": 24,
+        "naive_all_path_bytes": 4920115200,
+        "chernoff_cap_bytes": 6149217,
+        "selected_cap_bytes": 6149217,
+        "public_max_bytes": 268435456,
+        "admitted": true,
+        "uses_probabilistic_cap": true,
+        "aggregate_budget_abort_upper_exact": "1/340282366920938463463374607431768211456",
+        "existing_scalar_abort_union_upper_exact": "18446744073709552617/766247770432944429179173513575154591809369561091801088",
+        "abort_upper_including_aggregate_exact": "18448995873523237865/766247770432944429179173513575154591809369561091801088",
+        "scalar_kernel_tv_union_upper_exact": "231583961437079224239971647065114656918977278039092415724615057398531365677743/4809815209520810450717656262224562232065397860164239095208531909697964083434718092213655548692006303809402830848",
+        "scalar_kernel_tv_including_aggregate_exact": "231598096213597451314608313445120600267103897910267420676280030248141706635951/4809815209520810450717656262224562232065397860164239095208531909697964083434718092213655548692006303809402830848",
+        "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+        "full_continuous_or_IBS_tv_certified": false,
+        "all_original_gaussian_and_uniform_limits_retained": true,
+        "requires_independent_uniform_bytes": true,
+        "security_claim": "none",
+        "backend_admitted": false,
+        "parameters_are_formal": false
+      },
+      "draw_performed": true,
+      "draw_seconds": 1.4868572749999984,
+      "actual_bytes": 2611167,
+      "unmodified_scalar_replay_matches": true,
+      "deterministic_seed_utf8": "IBME/SRGG-aggregate/n512/d2/master_lower",
+      "center_pattern": "((i%11)-5)/3",
+      "output_sha256": "565f852a3f024f233320d0947266283781ba7905819f79f4cf816bf8c22475a8"
+    },
+    {
+      "candidate": "conditional-n512-d2-w8",
+      "stage": "signature_lower",
+      "certificate": {
+        "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+        "count": 512,
+        "squared_width_class": [
+          "22159188660729268928577",
+          "22159188660729268928577"
+        ],
+        "gaussian_proposals": {
+          "successes": 512,
+          "probability_lower": "2932683980012460614298862616528396550380677752869285717596178110516516669291908293379467823891820794466600567320138522091580977/34945882485276733840649107080812496691411492690592618573056226803775749457990844155076670128257142292844237326441557447942340608",
+          "trials": 15253,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "uniform_candidates": {
+          "successes": 15253,
+          "probability_lower": "1773812344025/2199023255552",
+          "trials": 38137,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "candidate_bytes": 6,
+        "bernoulli_bytes": 24,
+        "naive_all_path_bytes": 637636608,
+        "chernoff_cap_bytes": 594894,
+        "selected_cap_bytes": 594894,
+        "public_max_bytes": 268435456,
+        "admitted": true,
+        "uses_probabilistic_cap": true,
+        "aggregate_budget_abort_upper_exact": "1/340282366920938463463374607431768211456",
+        "existing_scalar_abort_union_upper_exact": "18446744073709552675/12259964326927110866866776217202473468949912977468817408",
+        "abort_upper_including_aggregate_exact": "18482772870728516643/12259964326927110866866776217202473468949912977468817408",
+        "scalar_kernel_tv_union_upper_exact": "115792094800200207000354995698714715841868464801508080242697129197437596209615/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+        "scalar_kernel_tv_including_aggregate_exact": "115905173012346023597448326738762262626881423770908119856016911994320323875279/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+        "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+        "full_continuous_or_IBS_tv_certified": false,
+        "all_original_gaussian_and_uniform_limits_retained": true,
+        "requires_independent_uniform_bytes": true,
+        "security_claim": "none",
+        "backend_admitted": false,
+        "parameters_are_formal": false
+      },
+      "draw_performed": true,
+      "draw_seconds": 0.11036212300000159,
+      "actual_bytes": 197358,
+      "unmodified_scalar_replay_matches": true,
+      "deterministic_seed_utf8": "IBME/SRGG-aggregate/n512/d2/signature_lower",
+      "center_pattern": "((i%11)-5)/3",
+      "output_sha256": "ce9463f01ac28336e9d50a2a5304f016b171f2f1392b56213e8e2e37a200be77"
+    },
+    {
+      "candidate": "conditional-n512-d3-w8",
+      "stage": "rounding_and_signing_u",
+      "certificate": {
+        "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+        "count": 18944,
+        "squared_width_class": [
+          "64",
+          "64"
+        ],
+        "gaussian_proposals": {
+          "successes": 18944,
+          "probability_lower": "157608024785577916849116160400574455220303494796488761788951449784568711602287311608823145588688304703436589020825795/1694286266444962606127998724306175393618428788630014206721776616382566036174380056290813448960051372554685003583193088",
+          "trials": 410049,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "uniform_candidates": {
+          "successes": 410049,
+          "probability_lower": "85/128",
+          "trials": 1235357,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "candidate_bytes": 1,
+        "bernoulli_bytes": 24,
+        "naive_all_path_bytes": 3907768320,
+        "chernoff_cap_bytes": 11076533,
+        "selected_cap_bytes": 11076533,
+        "public_max_bytes": 268435456,
+        "admitted": true,
+        "uses_probabilistic_cap": true,
+        "aggregate_budget_abort_upper_exact": "1/340282366920938463463374607431768211456",
+        "existing_scalar_abort_union_upper_exact": "682529530727253445127/12259964326927110866866776217202473468949912977468817408",
+        "abort_upper_including_aggregate_exact": "682565559524272409095/12259964326927110866866776217202473468949912977468817408",
+        "scalar_kernel_tv_union_upper_exact": "2714258209692270391380539931929401587260583523386516890125991489541969754487761/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+        "scalar_kernel_tv_including_aggregate_exact": "2714371287904416207977633262969449134045596482355916929739311272338852482153425/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+        "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+        "full_continuous_or_IBS_tv_certified": false,
+        "all_original_gaussian_and_uniform_limits_retained": true,
+        "requires_independent_uniform_bytes": true,
+        "security_claim": "none",
+        "backend_admitted": false,
+        "parameters_are_formal": false
+      },
+      "draw_performed": true,
+      "draw_seconds": 3.2366287230000097,
+      "actual_bytes": 5144194,
+      "unmodified_scalar_replay_matches": true,
+      "deterministic_seed_utf8": "IBME/SRGG-aggregate/n512/d3/rounding_and_signing_u",
+      "center_pattern": "((i%11)-5)/3",
+      "output_sha256": "1731a66cd04cc8caad3951d895ab42690d710a693addddbba721abb6a2c648e5"
+    },
+    {
+      "candidate": "conditional-n512-d3-w8",
+      "stage": "master_lower",
+      "certificate": {
+        "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+        "count": 12288,
+        "squared_width_class": [
+          "2321698259009",
+          "2321698259009"
+        ],
+        "gaussian_proposals": {
+          "successes": 12288,
+          "probability_lower": "30018654833180524705041276056776475485363623946867450068636921978963888145081641256220340788741022709914308019265422411019/338866749172485852295089904109899213334612781943167023517002298815223630453822942085920040630177701775606435113984281542656",
+          "trials": 280317,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "uniform_candidates": {
+          "successes": 280317,
+          "probability_lower": "17200481/33554432",
+          "trials": 1094176,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "candidate_bytes": 4,
+        "bernoulli_bytes": 24,
+        "naive_all_path_bytes": 9761292288,
+        "chernoff_cap_bytes": 11104312,
+        "selected_cap_bytes": 11104312,
+        "public_max_bytes": 268435456,
+        "admitted": true,
+        "uses_probabilistic_cap": true,
+        "aggregate_budget_abort_upper_exact": "1/340282366920938463463374607431768211456",
+        "existing_scalar_abort_union_upper_exact": "55340232221128657857/1532495540865888858358347027150309183618739122183602176",
+        "abort_upper_including_aggregate_exact": "55344735820756028353/1532495540865888858358347027150309183618739122183602176",
+        "scalar_kernel_tv_union_upper_exact": "347373153122337032289586407526457249706217703059766583511628236451690141167839/4809815209520810450717656262224562232065397860164239095208531909697964083434718092213655548692006303809402830848",
+        "scalar_kernel_tv_including_aggregate_exact": "347387287898855259364223073906463193054344322930941588463293209301300482126047/4809815209520810450717656262224562232065397860164239095208531909697964083434718092213655548692006303809402830848",
+        "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+        "full_continuous_or_IBS_tv_certified": false,
+        "all_original_gaussian_and_uniform_limits_retained": true,
+        "requires_independent_uniform_bytes": true,
+        "security_claim": "none",
+        "backend_admitted": false,
+        "parameters_are_formal": false
+      },
+      "draw_performed": true,
+      "draw_seconds": 2.257016967999988,
+      "actual_bytes": 4400040,
+      "unmodified_scalar_replay_matches": true,
+      "deterministic_seed_utf8": "IBME/SRGG-aggregate/n512/d3/master_lower",
+      "center_pattern": "((i%11)-5)/3",
+      "output_sha256": "40a84dc8d8e7abc3042c1fcda4c2c639e19fc0fb0c2722788d0f766f600d236b"
+    },
+    {
+      "candidate": "conditional-n512-d3-w8",
+      "stage": "signature_lower",
+      "certificate": {
+        "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+        "count": 512,
+        "squared_width_class": [
+          "74787191713363151290433",
+          "74787191713363151290433"
+        ],
+        "gaussian_proposals": {
+          "successes": 512,
+          "probability_lower": "897946995649265091345087521465981369314649274496571850927179668835288856266709286860354904582430206237104692533764564840492151/10728950634700228973612810164000409459405182710638789590238940419457392405161771162559310577162195066929109224295047012923998208",
+          "trials": 15294,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "uniform_candidates": {
+          "successes": 15294,
+          "probability_lower": "3267534322355/4398046511104",
+          "trials": 41516,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "candidate_bytes": 6,
+        "bernoulli_bytes": 24,
+        "naive_all_path_bytes": 639442944,
+        "chernoff_cap_bytes": 616152,
+        "selected_cap_bytes": 616152,
+        "public_max_bytes": 268435456,
+        "admitted": true,
+        "uses_probabilistic_cap": true,
+        "aggregate_budget_abort_upper_exact": "1/340282366920938463463374607431768211456",
+        "existing_scalar_abort_union_upper_exact": "9223372036854776339/6129982163463555433433388108601236734474956488734408704",
+        "abort_upper_including_aggregate_exact": "9241386435364258323/6129982163463555433433388108601236734474956488734408704",
+        "scalar_kernel_tv_union_upper_exact": "57896049743060251700131764313082713983954892796916308463097488957897787931291/19239260838083241802870625048898248928261591440656956380834127638791856333738872368854622194768025215237611323392",
+        "scalar_kernel_tv_including_aggregate_exact": "57952588849133159998678429833106487376461372281616328269757380356339151764123/19239260838083241802870625048898248928261591440656956380834127638791856333738872368854622194768025215237611323392",
+        "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+        "full_continuous_or_IBS_tv_certified": false,
+        "all_original_gaussian_and_uniform_limits_retained": true,
+        "requires_independent_uniform_bytes": true,
+        "security_claim": "none",
+        "backend_admitted": false,
+        "parameters_are_formal": false
+      },
+      "draw_performed": true,
+      "draw_seconds": 0.11693952400000285,
+      "actual_bytes": 191502,
+      "unmodified_scalar_replay_matches": true,
+      "deterministic_seed_utf8": "IBME/SRGG-aggregate/n512/d3/signature_lower",
+      "center_pattern": "((i%11)-5)/3",
+      "output_sha256": "49a4a66e627f094f3daf0c64768cd808fb565a35c91c3d417f45e65190f556a5"
+    },
+    {
+      "candidate": "conditional-n512-d4-w8",
+      "stage": "rounding_and_signing_u",
+      "certificate": {
+        "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+        "count": 25088,
+        "squared_width_class": [
+          "64",
+          "64"
+        ],
+        "gaussian_proposals": {
+          "successes": 25088,
+          "probability_lower": "157608024785577916849116160400574455220303494796488761788951449784568711602287311608823145588688304703436589020825795/1694286266444962606127998724306175393618428788630014206721776616382566036174380056290813448960051372554685003583193088",
+          "trials": 542145,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "uniform_candidates": {
+          "successes": 542145,
+          "probability_lower": "85/128",
+          "trials": 1633199,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "candidate_bytes": 1,
+        "bernoulli_bytes": 24,
+        "naive_all_path_bytes": 5175152640,
+        "chernoff_cap_bytes": 14644679,
+        "selected_cap_bytes": 14644679,
+        "public_max_bytes": 268435456,
+        "admitted": true,
+        "uses_probabilistic_cap": true,
+        "aggregate_budget_abort_upper_exact": "1/340282366920938463463374607431768211456",
+        "existing_scalar_abort_union_upper_exact": "903890459611768075979/12259964326927110866866776217202473468949912977468817408",
+        "abort_upper_including_aggregate_exact": "903926488408787039947/12259964326927110866866776217202473468949912977468817408",
+        "scalar_kernel_tv_union_upper_exact": "3594558169592466193990444774717315615561313314755116962599286026690716701889197/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+        "scalar_kernel_tv_including_aggregate_exact": "3594671247804612010587538105757363162346326273724517002212605809487599429554861/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+        "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+        "full_continuous_or_IBS_tv_certified": false,
+        "all_original_gaussian_and_uniform_limits_retained": true,
+        "requires_independent_uniform_bytes": true,
+        "security_claim": "none",
+        "backend_admitted": false,
+        "parameters_are_formal": false
+      },
+      "draw_performed": true,
+      "draw_seconds": 5.490383656000006,
+      "actual_bytes": 6910750,
+      "unmodified_scalar_replay_matches": true,
+      "deterministic_seed_utf8": "IBME/SRGG-aggregate/n512/d4/rounding_and_signing_u",
+      "center_pattern": "((i%11)-5)/3",
+      "output_sha256": "dba9234fa3b98bb6963d8188b7337bedf7baca0bf92ab5d9af67e1c148f4b5ce"
+    },
+    {
+      "candidate": "conditional-n512-d4-w8",
+      "stage": "master_lower",
+      "certificate": {
+        "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+        "count": 16384,
+        "squared_width_class": [
+          "4127463571521",
+          "4127463571521"
+        ],
+        "gaussian_proposals": {
+          "successes": 16384,
+          "probability_lower": "80049746221324484804772247981710964566979156522899908791458730023574573161602221373639117755794993087939259723057578959503/904935947007030512659651219661893142070587491730483756330208131645373622004090018815277376680845626523664341783123085754368",
+          "trials": 373326,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "uniform_candidates": {
+          "successes": 373326,
+          "probability_lower": "22966747/33554432",
+          "trials": 1091234,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "candidate_bytes": 4,
+        "bernoulli_bytes": 24,
+        "naive_all_path_bytes": 13028032512,
+        "chernoff_cap_bytes": 13324760,
+        "selected_cap_bytes": 13324760,
+        "public_max_bytes": 268435456,
+        "admitted": true,
+        "uses_probabilistic_cap": true,
+        "aggregate_budget_abort_upper_exact": "1/340282366920938463463374607431768211456",
+        "existing_scalar_abort_union_upper_exact": "4611686018427388155/95780971304118053647396689196894323976171195136475136",
+        "abort_upper_including_aggregate_exact": "4611967493404098811/95780971304118053647396689196894323976171195136475136",
+        "scalar_kernel_tv_union_upper_exact": "231583495516735496840128383209383369991601223557755021366714166284654133058929/2404907604760405225358828131112281116032698930082119547604265954848982041717359046106827774346003151904701415424",
+        "scalar_kernel_tv_including_aggregate_exact": "231590562904994610377446716399386341665664533493342523842546652709459303538033/2404907604760405225358828131112281116032698930082119547604265954848982041717359046106827774346003151904701415424",
+        "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+        "full_continuous_or_IBS_tv_certified": false,
+        "all_original_gaussian_and_uniform_limits_retained": true,
+        "requires_independent_uniform_bytes": true,
+        "security_claim": "none",
+        "backend_admitted": false,
+        "parameters_are_formal": false
+      },
+      "draw_performed": true,
+      "draw_seconds": 3.0893689669999986,
+      "actual_bytes": 5549316,
+      "unmodified_scalar_replay_matches": true,
+      "deterministic_seed_utf8": "IBME/SRGG-aggregate/n512/d4/master_lower",
+      "center_pattern": "((i%11)-5)/3",
+      "output_sha256": "60ac95a0c6dafabf64eb320bd0e688e685811e833d3ae58de251d7160baed60c"
+    },
+    {
+      "candidate": "conditional-n512-d4-w8",
+      "stage": "signature_lower",
+      "certificate": {
+        "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+        "count": 512,
+        "squared_width_class": [
+          "177273285232720131129409",
+          "177273285232720131129409"
+        ],
+        "gaussian_proposals": {
+          "successes": 512,
+          "probability_lower": "16589755350980378299633915496356544931141063623453650855360119999054095258086169396233336996185950313881826546004314228709648345/198598947794764768829311807744701828899961034841328356598833596184924304475711185346656191167438231229719003051364805406393106432",
+          "trials": 15324,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "uniform_candidates": {
+          "successes": 15324,
+          "probability_lower": "5040325784551/8796093022208",
+          "trials": 53932,
+          "dyadic_exponent": -129,
+          "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+        },
+        "candidate_bytes": 6,
+        "bernoulli_bytes": 24,
+        "naive_all_path_bytes": 640647168,
+        "chernoff_cap_bytes": 691368,
+        "selected_cap_bytes": 691368,
+        "public_max_bytes": 268435456,
+        "admitted": true,
+        "uses_probabilistic_cap": true,
+        "aggregate_budget_abort_upper_exact": "1/340282366920938463463374607431768211456",
+        "existing_scalar_abort_union_upper_exact": "2305843009213694085/1532495540865888858358347027150309183618739122183602176",
+        "abort_upper_including_aggregate_exact": "2310346608841064581/1532495540865888858358347027150309183618739122183602176",
+        "scalar_kernel_tv_union_upper_exact": "231584210104901809170747752082255907561913135268440790290604459198430285142055/76957043352332967211482500195592995713046365762627825523336510555167425334955489475418488779072100860950445293568",
+        "scalar_kernel_tv_including_aggregate_exact": "231810366529193442364934414162351001131939053207240869517244024792195740473383/76957043352332967211482500195592995713046365762627825523336510555167425334955489475418488779072100860950445293568",
+        "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+        "full_continuous_or_IBS_tv_certified": false,
+        "all_original_gaussian_and_uniform_limits_retained": true,
+        "requires_independent_uniform_bytes": true,
+        "security_claim": "none",
+        "backend_admitted": false,
+        "parameters_are_formal": false
+      },
+      "draw_performed": true,
+      "draw_seconds": 0.11340296799998839,
+      "actual_bytes": 215418,
+      "unmodified_scalar_replay_matches": true,
+      "deterministic_seed_utf8": "IBME/SRGG-aggregate/n512/d4/signature_lower",
+      "center_pattern": "((i%11)-5)/3",
+      "output_sha256": "9d59c0e7f280d0fcc67e5240a00ab676c892d352174bc435ba58871207030b94"
+    }
+  ],
+  "phase_cases": [
+    {
+      "candidate": "conditional-n512-d2-w8",
+      "phase": "master",
+      "sign_attempts": null,
+      "groups": {
+        "rounding_and_signing_u": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 2048,
+          "squared_width_class": [
+            "64",
+            "64"
+          ],
+          "gaussian_proposals": {
+            "successes": 2048,
+            "probability_lower": "157608024785577916849116160400574455220303494796488761788951449784568711602287311608823145588688304703436589020825795/1694286266444962606127998724306175393618428788630014206721776616382566036174380056290813448960051372554685003583193088",
+            "trials": 46828,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 46828,
+            "probability_lower": "85/128",
+            "trials": 141427,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 1,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 422461440,
+          "chernoff_cap_bytes": 1265299,
+          "selected_cap_bytes": 1265299,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "18446744073709552571/3064991081731777716716694054300618367237478244367204352",
+          "abort_upper_including_aggregate_exact": "18448995873523237819/3064991081731777716716694054300618367237478244367204352",
+          "scalar_kernel_tv_union_upper_exact": "73358329991682983550825403565659502358394149280716672706107878095728912283453/9619630419041620901435312524449124464130795720328478190417063819395928166869436184427311097384012607618805661696",
+          "scalar_kernel_tv_including_aggregate_exact": "73365397379942097088143736755662474032457459216304175181940364520534082762557/9619630419041620901435312524449124464130795720328478190417063819395928166869436184427311097384012607618805661696",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        },
+        "master_lower": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 8192,
+          "squared_width_class": [
+            "1031865892929",
+            "1031865892929"
+          ],
+          "gaussian_proposals": {
+            "successes": 8192,
+            "probability_lower": "2106572269031985273185756048414911366621248653252913446299750662411401708905335137271083536809397333697730216121287207307/23732143548137965985389364084637299743709967600515502251678600703724432188746941928939703879447223769782958491585717731328",
+            "trials": 187508,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 187508,
+            "probability_lower": "11443851/16777216",
+            "trials": 550173,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 3,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 4920115200,
+          "chernoff_cap_bytes": 6150711,
+          "selected_cap_bytes": 6150711,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "18446744073709552617/766247770432944429179173513575154591809369561091801088",
+          "abort_upper_including_aggregate_exact": "18447307023662973929/766247770432944429179173513575154591809369561091801088",
+          "scalar_kernel_tv_union_upper_exact": "231583961437079224239971647065114656918977278039092415724615057398531365677743/4809815209520810450717656262224562232065397860164239095208531909697964083434718092213655548692006303809402830848",
+          "scalar_kernel_tv_including_aggregate_exact": "231587495131208781008630813660116142756008933006886166962531300610933950917295/4809815209520810450717656262224562232065397860164239095208531909697964083434718092213655548692006303809402830848",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        },
+        "gadget_CDF": {
+          "count": 8192,
+          "original_table_options": {
+            "tail_bits": 80,
+            "mass_bits": 128,
+            "precision_bits": 192,
+            "max_trials": 128,
+            "max_radius": 128
+          },
+          "all_exact_CDF_laws_retained": true,
+          "uniform_candidates": {
+            "successes": 8192,
+            "probability_lower": "2722397990503725797614579879745366317065/5444517870735015415413993718908291383296",
+            "trials": 33287,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 17,
+          "naive_all_path_bytes": 17825792,
+          "selected_cap_bytes": 565879,
+          "aggregate_budget_abort_upper_exact": "1/2722258935367507707706996859454145691648",
+          "scalar_kernel_tv_including_aggregate_exact": "13527163579215304500815441717206552369214012015838299282422055179288099921071108317013069309910613721241323220857611018799591786130309212393/3514776401986872174070733002744941730579596301634275469063134383170270075500115148765802151952248797244480043558972071624545987136645988036602116906772863123456",
+          "abort_upper_including_aggregate_exact": "65537/2722258935367507707706996859454145691648",
+          "reference": "original adaptive gadget scalar coset kernels, before fiber-normalizer comparison"
+        }
+      },
+      "fixed_continuous_ticket_bytes": 32768,
+      "ticket_bits": 128,
+      "selected_cap_bytes": 8014657,
+      "naive_all_path_bytes": 5360435200,
+      "admitted_under_256MiB": true,
+      "aggregate_budget_abort_upper_exact": "5/2722258935367507707706996859454145691648",
+      "scalar_kernel_tv_including_aggregate_exact": "140474097914494756747702164857737784589238113450171008761924518178003913497190445834247068363080896053948886680796465210814380321499298339802350277538528226292738714874608245/36499524940977561749129370702380743561338781065935559801374309018873983201888225366636823744724377552895059695289596367329613851542866551790935751624931390182870516911820924577787923750088343552",
+      "abort_upper_including_aggregate_exact": "166026326162920182623/3064991081731777716716694054300618367237478244367204352",
+      "scope": "entropy cap and sequential scalar kernel TV only; continuous numerical/smoothing/fiber/HNF/IBS errors excluded",
+      "implemented_n512_phase": false
+    },
+    {
+      "candidate": "conditional-n512-d2-w8",
+      "phase": "signature",
+      "sign_attempts": 1,
+      "groups": {
+        "rounding_and_signing_u": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 10752,
+          "squared_width_class": [
+            "64",
+            "64"
+          ],
+          "gaussian_proposals": {
+            "successes": 10752,
+            "probability_lower": "157608024785577916849116160400574455220303494796488761788951449784568711602287311608823145588688304703436589020825795/1694286266444962606127998724306175393618428788630014206721776616382566036174380056290813448960051372554685003583193088",
+            "trials": 233964,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 233964,
+            "probability_lower": "85/128",
+            "trials": 705037,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 1,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 2217922560,
+          "chernoff_cap_bytes": 6320173,
+          "selected_cap_bytes": 6320173,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "387381625547900603991/12259964326927110866866776217202473468949912977468817408",
+          "abort_upper_including_aggregate_exact": "387390632747155344983/12259964326927110866866776217202473468949912977468817408",
+          "scalar_kernel_tv_union_upper_exact": "1540524929825342654567333474878849549526277134895050126828265440010307157952513/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+          "scalar_kernel_tv_including_aggregate_exact": "1540553199378379108716606807638861436222530374637400136731595385709527839868929/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        },
+        "signature_lower": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 512,
+          "squared_width_class": [
+            "22159188660729268928577",
+            "22159188660729268928577"
+          ],
+          "gaussian_proposals": {
+            "successes": 512,
+            "probability_lower": "2932683980012460614298862616528396550380677752869285717596178110516516669291908293379467823891820794466600567320138522091580977/34945882485276733840649107080812496691411492690592618573056226803775749457990844155076670128257142292844237326441557447942340608",
+            "trials": 15301,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 15301,
+            "probability_lower": "1773812344025/2199023255552",
+            "trials": 38261,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 6,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 637636608,
+          "chernoff_cap_bytes": 596790,
+          "selected_cap_bytes": 596790,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "18446744073709552675/12259964326927110866866776217202473468949912977468817408",
+          "abort_upper_including_aggregate_exact": "18455751272964293667/12259964326927110866866776217202473468949912977468817408",
+          "scalar_kernel_tv_union_upper_exact": "115792094800200207000354995698714715841868464801508080242697129197437596209615/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+          "scalar_kernel_tv_including_aggregate_exact": "115820364353236661149628328458726602538121704543858090146027074896658278126031/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        }
+      },
+      "fixed_continuous_ticket_bytes": 163840,
+      "ticket_bits": 128,
+      "selected_cap_bytes": 7080803,
+      "naive_all_path_bytes": 2855723008,
+      "admitted_under_256MiB": true,
+      "aggregate_budget_abort_upper_exact": "1/680564733841876926926749214863536422912",
+      "scalar_kernel_tv_including_aggregate_exact": "103523347733225985616639696006099252422540754948828639179851403787886632374685/2404907604760405225358828131112281116032698930082119547604265954848982041717359046106827774346003151904701415424",
+      "abort_upper_including_aggregate_exact": "202923192010059819325/6129982163463555433433388108601236734474956488734408704",
+      "scope": "entropy cap and sequential scalar kernel TV only; continuous numerical/smoothing/fiber/HNF/IBS errors excluded",
+      "implemented_n512_phase": false
+    },
+    {
+      "candidate": "conditional-n512-d2-w8",
+      "phase": "signature",
+      "sign_attempts": 16,
+      "groups": {
+        "rounding_and_signing_u": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 172032,
+          "squared_width_class": [
+            "64",
+            "64"
+          ],
+          "gaussian_proposals": {
+            "successes": 172032,
+            "probability_lower": "157608024785577916849116160400574455220303494796488761788951449784568711602287311608823145588688304703436589020825795/1694286266444962606127998724306175393618428788630014206721776616382566036174380056290813448960051372554685003583193088",
+            "trials": 3701484,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 3701484,
+            "probability_lower": "85/128",
+            "trials": 11148391,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 1,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 35486760960,
+          "chernoff_cap_bytes": 99984007,
+          "selected_cap_bytes": 99984007,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "387381625547900603991/766247770432944429179173513575154591809369561091801088",
+          "abort_upper_including_aggregate_exact": "387382188497854025303/766247770432944429179173513575154591809369561091801088",
+          "scalar_kernel_tv_union_upper_exact": "1540524929825342654567333474878849549526277134895050126828265440010307157952513/2404907604760405225358828131112281116032698930082119547604265954848982041717359046106827774346003151904701415424",
+          "scalar_kernel_tv_including_aggregate_exact": "1540526696672407432951663058176350292444792962378947002447223561616508450572289/2404907604760405225358828131112281116032698930082119547604265954848982041717359046106827774346003151904701415424",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        },
+        "signature_lower": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 8192,
+          "squared_width_class": [
+            "22159188660729268928577",
+            "22159188660729268928577"
+          ],
+          "gaussian_proposals": {
+            "successes": 8192,
+            "probability_lower": "2932683980012460614298862616528396550380677752869285717596178110516516669291908293379467823891820794466600567320138522091580977/34945882485276733840649107080812496691411492690592618573056226803775749457990844155076670128257142292844237326441557447942340608",
+            "trials": 198331,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 198331,
+            "probability_lower": "1773812344025/2199023255552",
+            "trials": 492071,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 6,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 10202185728,
+          "chernoff_cap_bytes": 7712370,
+          "selected_cap_bytes": 7712370,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "18446744073709552675/766247770432944429179173513575154591809369561091801088",
+          "abort_upper_including_aggregate_exact": "18447307023662973987/766247770432944429179173513575154591809369561091801088",
+          "scalar_kernel_tv_union_upper_exact": "115792094800200207000354995698714715841868464801508080242697129197437596209615/2404907604760405225358828131112281116032698930082119547604265954848982041717359046106827774346003151904701415424",
+          "scalar_kernel_tv_including_aggregate_exact": "115793861647264985384684578996215458760384292285404955861655250803638888829391/2404907604760405225358828131112281116032698930082119547604265954848982041717359046106827774346003151904701415424",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        }
+      },
+      "fixed_continuous_ticket_bytes": 2621440,
+      "ticket_bits": 128,
+      "selected_cap_bytes": 110317817,
+      "naive_all_path_bytes": 45691568128,
+      "admitted_under_256MiB": true,
+      "aggregate_budget_abort_upper_exact": "1/680564733841876926926749214863536422912",
+      "scalar_kernel_tv_including_aggregate_exact": "103520034894979526146021727323285359450323578416521997394304925776259208712605/150306725297525326584926758194517569752043683130132471725266622178061377607334940381676735896625196994043838464",
+      "abort_upper_including_aggregate_exact": "202914747760758499645/383123885216472214589586756787577295904684780545900544",
+      "scope": "entropy cap and sequential scalar kernel TV only; continuous numerical/smoothing/fiber/HNF/IBS errors excluded",
+      "implemented_n512_phase": false
+    },
+    {
+      "candidate": "conditional-n512-d3-w8",
+      "phase": "master",
+      "sign_attempts": null,
+      "groups": {
+        "rounding_and_signing_u": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 3072,
+          "squared_width_class": [
+            "64",
+            "64"
+          ],
+          "gaussian_proposals": {
+            "successes": 3072,
+            "probability_lower": "157608024785577916849116160400574455220303494796488761788951449784568711602287311608823145588688304703436589020825795/1694286266444962606127998724306175393618428788630014206721776616382566036174380056290813448960051372554685003583193088",
+            "trials": 68844,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 68844,
+            "probability_lower": "85/128",
+            "trials": 207734,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 1,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 633692160,
+          "chernoff_cap_bytes": 1859990,
+          "selected_cap_bytes": 1859990,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "55340232221128657713/6129982163463555433433388108601236734474956488734408704",
+          "abort_upper_including_aggregate_exact": "55344735820756028209/6129982163463555433433388108601236734474956488734408704",
+          "scalar_kernel_tv_union_upper_exact": "220074989975048950652476210696978507075182447842150018118323634287186736850359/19239260838083241802870625048898248928261591440656956380834127638791856333738872368854622194768025215237611323392",
+          "scalar_kernel_tv_including_aggregate_exact": "220089124751567177727112877076984450423309067713325023069988607136797077808567/19239260838083241802870625048898248928261591440656956380834127638791856333738872368854622194768025215237611323392",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        },
+        "master_lower": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 12288,
+          "squared_width_class": [
+            "2321698259009",
+            "2321698259009"
+          ],
+          "gaussian_proposals": {
+            "successes": 12288,
+            "probability_lower": "30018654833180524705041276056776475485363623946867450068636921978963888145081641256220340788741022709914308019265422411019/338866749172485852295089904109899213334612781943167023517002298815223630453822942085920040630177701775606435113984281542656",
+            "trials": 280363,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 280363,
+            "probability_lower": "17200481/33554432",
+            "trials": 1094363,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 4,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 9761292288,
+          "chernoff_cap_bytes": 11106164,
+          "selected_cap_bytes": 11106164,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "55340232221128657857/1532495540865888858358347027150309183618739122183602176",
+          "abort_upper_including_aggregate_exact": "55341358121035500481/1532495540865888858358347027150309183618739122183602176",
+          "scalar_kernel_tv_union_upper_exact": "347373153122337032289586407526457249706217703059766583511628236451690141167839/4809815209520810450717656262224562232065397860164239095208531909697964083434718092213655548692006303809402830848",
+          "scalar_kernel_tv_including_aggregate_exact": "347376686816466589058245574121458735543249358027560334749544479664092726407391/4809815209520810450717656262224562232065397860164239095208531909697964083434718092213655548692006303809402830848",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        },
+        "gadget_CDF": {
+          "count": 12288,
+          "original_table_options": {
+            "tail_bits": 80,
+            "mass_bits": 128,
+            "precision_bits": 192,
+            "max_trials": 128,
+            "max_radius": 128
+          },
+          "all_exact_CDF_laws_retained": true,
+          "uniform_candidates": {
+            "successes": 12288,
+            "probability_lower": "2722397990503725797614579879745366317065/5444517870735015415413993718908291383296",
+            "trials": 49670,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 17,
+          "naive_all_path_bytes": 26738688,
+          "selected_cap_bytes": 844390,
+          "aggregate_budget_abort_upper_exact": "1/2722258935367507707706996859454145691648",
+          "scalar_kernel_tv_including_aggregate_exact": "40581490737645913501155200212576202812814076537327168812554644917869898528666956907478018932072553164055419517977015085359121357123462904507/7029552803973744348141466005489883461159192603268550938126268766340540151000230297531604303904497594488960087117944143249091974273291976073204233813545726246912",
+          "abort_upper_including_aggregate_exact": "98305/2722258935367507707706996859454145691648",
+          "reference": "original adaptive gadget scalar coset kernels, before fiber-normalizer comparison"
+        }
+      },
+      "fixed_continuous_ticket_bytes": 49152,
+      "ticket_bits": 128,
+      "selected_cap_bytes": 13859696,
+      "naive_all_path_bytes": 10421772288,
+      "admitted_under_256MiB": true,
+      "aggregate_budget_abort_upper_exact": "5/2722258935367507707706996859454145691648",
+      "scalar_kernel_tv_including_aggregate_exact": "421422293743484270133738015892695657017436284239289953204103264073667141188552342039838113721132647434354507137352580618787925851999721913710342837906039763478720321468123741/72999049881955123498258741404761487122677562131871119602748618037747966403776450733273647489448755105790119390579192734659227703085733103581871503249862780365741033823641849155575847500176687104",
+      "abort_upper_including_aggregate_exact": "498073348989226334773/6129982163463555433433388108601236734474956488734408704",
+      "scope": "entropy cap and sequential scalar kernel TV only; continuous numerical/smoothing/fiber/HNF/IBS errors excluded",
+      "implemented_n512_phase": false
+    },
+    {
+      "candidate": "conditional-n512-d3-w8",
+      "phase": "signature",
+      "sign_attempts": 1,
+      "groups": {
+        "rounding_and_signing_u": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 15872,
+          "squared_width_class": [
+            "64",
+            "64"
+          ],
+          "gaussian_proposals": {
+            "successes": 15872,
+            "probability_lower": "157608024785577916849116160400574455220303494796488761788951449784568711602287311608823145588688304703436589020825795/1694286266444962606127998724306175393618428788630014206721776616382566036174380056290813448960051372554685003583193088",
+            "trials": 344044,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 344044,
+            "probability_lower": "85/128",
+            "trials": 1036572,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 1,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 3274076160,
+          "chernoff_cap_bytes": 9293628,
+          "selected_cap_bytes": 9293628,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "571849066284996129701/12259964326927110866866776217202473468949912977468817408",
+          "abort_upper_including_aggregate_exact": "571858073484250870693/12259964326927110866866776217202473468949912977468817408",
+          "scalar_kernel_tv_union_upper_exact": "2274108229742172490075587510535444573110218627702216853889344220967596280787043/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+          "scalar_kernel_tv_including_aggregate_exact": "2274136499295208944224860843295456459806471867444566863792674166666816962703459/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        },
+        "signature_lower": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 512,
+          "squared_width_class": [
+            "74787191713363151290433",
+            "74787191713363151290433"
+          ],
+          "gaussian_proposals": {
+            "successes": 512,
+            "probability_lower": "897946995649265091345087521465981369314649274496571850927179668835288856266709286860354904582430206237104692533764564840492151/10728950634700228973612810164000409459405182710638789590238940419457392405161771162559310577162195066929109224295047012923998208",
+            "trials": 15342,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 15342,
+            "probability_lower": "3267534322355/4398046511104",
+            "trials": 41651,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 6,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 639442944,
+          "chernoff_cap_bytes": 618114,
+          "selected_cap_bytes": 618114,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "9223372036854776339/6129982163463555433433388108601236734474956488734408704",
+          "abort_upper_including_aggregate_exact": "9227875636482146835/6129982163463555433433388108601236734474956488734408704",
+          "scalar_kernel_tv_union_upper_exact": "57896049743060251700131764313082713983954892796916308463097488957897787931291/19239260838083241802870625048898248928261591440656956380834127638791856333738872368854622194768025215237611323392",
+          "scalar_kernel_tv_including_aggregate_exact": "57910184519578478774768430693088657332081512668091313414762461807508128889499/19239260838083241802870625048898248928261591440656956380834127638791856333738872368854622194768025215237611323392",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        }
+      },
+      "fixed_continuous_ticket_bytes": 245760,
+      "ticket_bits": 128,
+      "selected_cap_bytes": 10157502,
+      "naive_all_path_bytes": 3913764864,
+      "admitted_under_256MiB": true,
+      "aggregate_budget_abort_upper_exact": "1/680564733841876926926749214863536422912",
+      "scalar_kernel_tv_including_aggregate_exact": "2389956868334365901774397704681633774470634892780749490622199090281833220482457/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+      "abort_upper_including_aggregate_exact": "590313824757215164363/12259964326927110866866776217202473468949912977468817408",
+      "scope": "entropy cap and sequential scalar kernel TV only; continuous numerical/smoothing/fiber/HNF/IBS errors excluded",
+      "implemented_n512_phase": false
+    },
+    {
+      "candidate": "conditional-n512-d3-w8",
+      "phase": "signature",
+      "sign_attempts": 16,
+      "groups": {
+        "rounding_and_signing_u": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 253952,
+          "squared_width_class": [
+            "64",
+            "64"
+          ],
+          "gaussian_proposals": {
+            "successes": 253952,
+            "probability_lower": "157608024785577916849116160400574455220303494796488761788951449784568711602287311608823145588688304703436589020825795/1694286266444962606127998724306175393618428788630014206721776616382566036174380056290813448960051372554685003583193088",
+            "trials": 5462764,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 5462764,
+            "probability_lower": "85/128",
+            "trials": 16452952,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 1,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 52385218560,
+          "chernoff_cap_bytes": 147559288,
+          "selected_cap_bytes": 147559288,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "571849066284996129701/766247770432944429179173513575154591809369561091801088",
+          "abort_upper_including_aggregate_exact": "571849629234949551013/766247770432944429179173513575154591809369561091801088",
+          "scalar_kernel_tv_union_upper_exact": "2274108229742172490075587510535444573110218627702216853889344220967596280787043/2404907604760405225358828131112281116032698930082119547604265954848982041717359046106827774346003151904701415424",
+          "scalar_kernel_tv_including_aggregate_exact": "2274109996589237268459917093832945316028734455186113729508302342573797573406819/2404907604760405225358828131112281116032698930082119547604265954848982041717359046106827774346003151904701415424",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        },
+        "signature_lower": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 8192,
+          "squared_width_class": [
+            "74787191713363151290433",
+            "74787191713363151290433"
+          ],
+          "gaussian_proposals": {
+            "successes": 8192,
+            "probability_lower": "897946995649265091345087521465981369314649274496571850927179668835288856266709286860354904582430206237104692533764564840492151/10728950634700228973612810164000409459405182710638789590238940419457392405161771162559310577162195066929109224295047012923998208",
+            "trials": 198868,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 198868,
+            "probability_lower": "3267534322355/4398046511104",
+            "trials": 535696,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 6,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 10231087104,
+          "chernoff_cap_bytes": 7987008,
+          "selected_cap_bytes": 7987008,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "9223372036854776339/383123885216472214589586756787577295904684780545900544",
+          "abort_upper_including_aggregate_exact": "9223653511831486995/383123885216472214589586756787577295904684780545900544",
+          "scalar_kernel_tv_union_upper_exact": "57896049743060251700131764313082713983954892796916308463097488957897787931291/1202453802380202612679414065556140558016349465041059773802132977424491020858679523053413887173001575952350707712",
+          "scalar_kernel_tv_including_aggregate_exact": "57896933166592640892296555961833085443212806538864746272576549760998434241179/1202453802380202612679414065556140558016349465041059773802132977424491020858679523053413887173001575952350707712",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        }
+      },
+      "fixed_continuous_ticket_bytes": 3932160,
+      "ticket_bits": 128,
+      "selected_cap_bytes": 159478456,
+      "naive_all_path_bytes": 62620237824,
+      "admitted_under_256MiB": true,
+      "aggregate_budget_abort_upper_exact": "1/680564733841876926926749214863536422912",
+      "scalar_kernel_tv_including_aggregate_exact": "2389903862922422550244510205756611486915160068263843222053455442095794441889177/2404907604760405225358828131112281116032698930082119547604265954848982041717359046106827774346003151904701415424",
+      "abort_upper_including_aggregate_exact": "590296936258612525003/766247770432944429179173513575154591809369561091801088",
+      "scope": "entropy cap and sequential scalar kernel TV only; continuous numerical/smoothing/fiber/HNF/IBS errors excluded",
+      "implemented_n512_phase": false
+    },
+    {
+      "candidate": "conditional-n512-d4-w8",
+      "phase": "master",
+      "sign_attempts": null,
+      "groups": {
+        "rounding_and_signing_u": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 4096,
+          "squared_width_class": [
+            "64",
+            "64"
+          ],
+          "gaussian_proposals": {
+            "successes": 4096,
+            "probability_lower": "157608024785577916849116160400574455220303494796488761788951449784568711602287311608823145588688304703436589020825795/1694286266444962606127998724306175393618428788630014206721776616382566036174380056290813448960051372554685003583193088",
+            "trials": 90860,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 90860,
+            "probability_lower": "85/128",
+            "trials": 274041,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 1,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 844922880,
+          "chernoff_cap_bytes": 2454681,
+          "selected_cap_bytes": 2454681,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "18446744073709552571/1532495540865888858358347027150309183618739122183602176",
+          "abort_upper_including_aggregate_exact": "18447869973616395195/1532495540865888858358347027150309183618739122183602176",
+          "scalar_kernel_tv_union_upper_exact": "73358329991682983550825403565659502358394149280716672706107878095728912283453/4809815209520810450717656262224562232065397860164239095208531909697964083434718092213655548692006303809402830848",
+          "scalar_kernel_tv_including_aggregate_exact": "73361863685812540319484570160660988195425804248510423944024121308131497523005/4809815209520810450717656262224562232065397860164239095208531909697964083434718092213655548692006303809402830848",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        },
+        "master_lower": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 16384,
+          "squared_width_class": [
+            "4127463571521",
+            "4127463571521"
+          ],
+          "gaussian_proposals": {
+            "successes": 16384,
+            "probability_lower": "80049746221324484804772247981710964566979156522899908791458730023574573161602221373639117755794993087939259723057578959503/904935947007030512659651219661893142070587491730483756330208131645373622004090018815277376680845626523664341783123085754368",
+            "trials": 373371,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 373371,
+            "probability_lower": "22966747/33554432",
+            "trials": 1091371,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 4,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 13028032512,
+          "chernoff_cap_bytes": 13326388,
+          "selected_cap_bytes": 13326388,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "4611686018427388155/95780971304118053647396689196894323976171195136475136",
+          "abort_upper_including_aggregate_exact": "4611756387171565819/95780971304118053647396689196894323976171195136475136",
+          "scalar_kernel_tv_union_upper_exact": "231583495516735496840128383209383369991601223557755021366714166284654133058929/2404907604760405225358828131112281116032698930082119547604265954848982041717359046106827774346003151904701415424",
+          "scalar_kernel_tv_including_aggregate_exact": "231585262363800275224457966506884112910117051041651896985672287890855425678705/2404907604760405225358828131112281116032698930082119547604265954848982041717359046106827774346003151904701415424",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        },
+        "gadget_CDF": {
+          "count": 16384,
+          "original_table_options": {
+            "tail_bits": 80,
+            "mass_bits": 128,
+            "precision_bits": 192,
+            "max_trials": 128,
+            "max_radius": 128
+          },
+          "all_exact_CDF_laws_retained": true,
+          "uniform_candidates": {
+            "successes": 16384,
+            "probability_lower": "2722397990503725797614579879745366317065/5444517870735015415413993718908291383296",
+            "trials": 66053,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 17,
+          "naive_all_path_bytes": 35651584,
+          "selected_cap_bytes": 1122901,
+          "aggregate_budget_abort_upper_exact": "1/2722258935367507707706996859454145691648",
+          "scalar_kernel_tv_including_aggregate_exact": "13527163579215304500169879247684825221800032260744434765066294869290899303797924295232474811080969721407048148559702033279764785496576846057/1757388200993436087035366501372470865289798150817137734531567191585135037750057574382901075976124398622240021779486035812272993568322994018301058453386431561728",
+          "abort_upper_including_aggregate_exact": "131073/2722258935367507707706996859454145691648",
+          "reference": "original adaptive gadget scalar coset kernels, before fiber-normalizer comparison"
+        }
+      },
+      "fixed_continuous_ticket_bytes": 65536,
+      "ticket_bits": 128,
+      "selected_cap_bytes": 16969506,
+      "naive_all_path_bytes": 13908672512,
+      "admitted_under_256MiB": true,
+      "aggregate_budget_abort_upper_exact": "5/2722258935367507707706996859454145691648",
+      "scalar_kernel_tv_including_aggregate_exact": "140474097914494756710646985040637781020512308658018908990028108557752517941332371040615008738583763145618974329500285668467739057890806977954497196119552291966949882063984049/18249762470488780874564685351190371780669390532967779900687154509436991600944112683318411872362188776447529847644798183664806925771433275895467875812465695091435258455910462288893961875044171776",
+      "abort_upper_including_aggregate_exact": "166023511413153076075/1532495540865888858358347027150309183618739122183602176",
+      "scope": "entropy cap and sequential scalar kernel TV only; continuous numerical/smoothing/fiber/HNF/IBS errors excluded",
+      "implemented_n512_phase": false
+    },
+    {
+      "candidate": "conditional-n512-d4-w8",
+      "phase": "signature",
+      "sign_attempts": 1,
+      "groups": {
+        "rounding_and_signing_u": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 20992,
+          "squared_width_class": [
+            "64",
+            "64"
+          ],
+          "gaussian_proposals": {
+            "successes": 20992,
+            "probability_lower": "157608024785577916849116160400574455220303494796488761788951449784568711602287311608823145588688304703436589020825795/1694286266444962606127998724306175393618428788630014206721776616382566036174380056290813448960051372554685003583193088",
+            "trials": 454124,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 454124,
+            "probability_lower": "85/128",
+            "trials": 1368107,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 1,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 4330229760,
+          "chernoff_cap_bytes": 12267083,
+          "selected_cap_bytes": 12267083,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "756316507022091655411/12259964326927110866866776217202473468949912977468817408",
+          "abort_upper_including_aggregate_exact": "756325514221346396403/12259964326927110866866776217202473468949912977468817408",
+          "scalar_kernel_tv_union_upper_exact": "3007691529659002325583841546192039596694160120509383580950423001924885403621573/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+          "scalar_kernel_tv_including_aggregate_exact": "3007719799212038779733114878952051483390413360251733590853752947624106085537989/38478521676166483605741250097796497856523182881313912761668255277583712667477744737709244389536050430475222646784",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        },
+        "signature_lower": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 512,
+          "squared_width_class": [
+            "177273285232720131129409",
+            "177273285232720131129409"
+          ],
+          "gaussian_proposals": {
+            "successes": 512,
+            "probability_lower": "16589755350980378299633915496356544931141063623453650855360119999054095258086169396233336996185950313881826546004314228709648345/198598947794764768829311807744701828899961034841328356598833596184924304475711185346656191167438231229719003051364805406393106432",
+            "trials": 15371,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 15371,
+            "probability_lower": "5040325784551/8796093022208",
+            "trials": 54103,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 6,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 640647168,
+          "chernoff_cap_bytes": 693522,
+          "selected_cap_bytes": 693522,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "2305843009213694085/1532495540865888858358347027150309183618739122183602176",
+          "abort_upper_including_aggregate_exact": "2306968909120536709/1532495540865888858358347027150309183618739122183602176",
+          "scalar_kernel_tv_union_upper_exact": "231584210104901809170747752082255907561913135268440790290604459198430285142055/76957043352332967211482500195592995713046365762627825523336510555167425334955489475418488779072100860950445293568",
+          "scalar_kernel_tv_including_aggregate_exact": "231640749210974717469294417602279680954419614753140810097264350596871648974887/76957043352332967211482500195592995713046365762627825523336510555167425334955489475418488779072100860950445293568",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        }
+      },
+      "fixed_continuous_ticket_bytes": 327680,
+      "ticket_bits": 128,
+      "selected_cap_bytes": 13288285,
+      "naive_all_path_bytes": 4971204608,
+      "admitted_under_256MiB": true,
+      "aggregate_budget_abort_upper_exact": "1/680564733841876926926749214863536422912",
+      "scalar_kernel_tv_including_aggregate_exact": "6247080347635052276935524175506382647735246335256607991804770245845083820050865/76957043352332967211482500195592995713046365762627825523336510555167425334955489475418488779072100860950445293568",
+      "abort_upper_including_aggregate_exact": "774781265494310690075/12259964326927110866866776217202473468949912977468817408",
+      "scope": "entropy cap and sequential scalar kernel TV only; continuous numerical/smoothing/fiber/HNF/IBS errors excluded",
+      "implemented_n512_phase": false
+    },
+    {
+      "candidate": "conditional-n512-d4-w8",
+      "phase": "signature",
+      "sign_attempts": 16,
+      "groups": {
+        "rounding_and_signing_u": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 335872,
+          "squared_width_class": [
+            "64",
+            "64"
+          ],
+          "gaussian_proposals": {
+            "successes": 335872,
+            "probability_lower": "157608024785577916849116160400574455220303494796488761788951449784568711602287311608823145588688304703436589020825795/1694286266444962606127998724306175393618428788630014206721776616382566036174380056290813448960051372554685003583193088",
+            "trials": 7224044,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 7224044,
+            "probability_lower": "85/128",
+            "trials": 21757513,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 1,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 69283676160,
+          "chernoff_cap_bytes": 195134569,
+          "selected_cap_bytes": 195134569,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "756316507022091655411/766247770432944429179173513575154591809369561091801088",
+          "abort_upper_including_aggregate_exact": "756317069972045076723/766247770432944429179173513575154591809369561091801088",
+          "scalar_kernel_tv_union_upper_exact": "3007691529659002325583841546192039596694160120509383580950423001924885403621573/2404907604760405225358828131112281116032698930082119547604265954848982041717359046106827774346003151904701415424",
+          "scalar_kernel_tv_including_aggregate_exact": "3007693296506067103968171129489540339612675947993280456569381123531086696241349/2404907604760405225358828131112281116032698930082119547604265954848982041717359046106827774346003151904701415424",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        },
+        "signature_lower": {
+          "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+          "count": 8192,
+          "squared_width_class": [
+            "177273285232720131129409",
+            "177273285232720131129409"
+          ],
+          "gaussian_proposals": {
+            "successes": 8192,
+            "probability_lower": "16589755350980378299633915496356544931141063623453650855360119999054095258086169396233336996185950313881826546004314228709648345/198598947794764768829311807744701828899961034841328356598833596184924304475711185346656191167438231229719003051364805406393106432",
+            "trials": 199249,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "uniform_candidates": {
+            "successes": 199249,
+            "probability_lower": "5040325784551/8796093022208",
+            "trials": 695891,
+            "dyadic_exponent": -131,
+            "overflow_upper_exact": "1/2722258935367507707706996859454145691648"
+          },
+          "candidate_bytes": 6,
+          "bernoulli_bytes": 24,
+          "naive_all_path_bytes": 10250354688,
+          "chernoff_cap_bytes": 8957322,
+          "selected_cap_bytes": 8957322,
+          "public_max_bytes": 268435456,
+          "admitted": true,
+          "uses_probabilistic_cap": true,
+          "aggregate_budget_abort_upper_exact": "1/1361129467683753853853498429727072845824",
+          "existing_scalar_abort_union_upper_exact": "2305843009213694085/95780971304118053647396689196894323976171195136475136",
+          "abort_upper_including_aggregate_exact": "2305913377957871749/95780971304118053647396689196894323976171195136475136",
+          "scalar_kernel_tv_union_upper_exact": "231584210104901809170747752082255907561913135268440790290604459198430285142055/4809815209520810450717656262224562232065397860164239095208531909697964083434718092213655548692006303809402830848",
+          "scalar_kernel_tv_including_aggregate_exact": "231587743799031365939406918677257393398944790236234541528520702410832870381607/4809815209520810450717656262224562232065397860164239095208531909697964083434718092213655548692006303809402830848",
+          "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+          "full_continuous_or_IBS_tv_certified": false,
+          "all_original_gaussian_and_uniform_limits_retained": true,
+          "requires_independent_uniform_bytes": true,
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false
+        }
+      },
+      "fixed_continuous_ticket_bytes": 5242880,
+      "ticket_bits": 128,
+      "selected_cap_bytes": 209334771,
+      "naive_all_path_bytes": 79539273728,
+      "admitted_under_256MiB": true,
+      "aggregate_budget_abort_upper_exact": "1/680564733841876926926749214863536422912",
+      "scalar_kernel_tv_including_aggregate_exact": "6246974336811165573875749177656338072624296686222795454667282949473006262864305/4809815209520810450717656262224562232065397860164239095208531909697964083434718092213655548692006303809402830848",
+      "abort_upper_including_aggregate_exact": "774764376995708050715/766247770432944429179173513575154591809369561091801088",
+      "scope": "entropy cap and sequential scalar kernel TV only; continuous numerical/smoothing/fiber/HNF/IBS errors excluded",
+      "implemented_n512_phase": false
+    }
+  ],
+  "source_sha256": {
+    "aggregate_budget.py": "ade4d313fefe5973030ac6ae29b4eb40bce83b440b7b8dee342ec789466b9a20",
+    "wide_scalar.py": "2f404dd95ec1c909c3c40dcc8b6e4b070d25864c2e2aaa0a80e8b291df5689ca",
+    "formal_candidates.py": "8c5e9c7e841c192b48668866392750ff9a463039d4947ee15c2be65d9921c045"
+  },
+  "production_configuration_modified": false,
+  "full_n512_sampler_implemented": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

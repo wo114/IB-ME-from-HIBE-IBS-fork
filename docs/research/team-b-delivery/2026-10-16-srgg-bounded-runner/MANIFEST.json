@@ -1,0 +1,236 @@
+{
+  "schema": "IBME/SRGG-PROOF-FOLLOWUP-DELIVERY/1",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null,
+  "trust_anchor": "Git-reviewed file list; not a digital signature or independent provenance attestation",
+  "files": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/README.md",
+      "bytes": 5871,
+      "sha256": "24b10d55827b309a87a259c7ddf4df5b2786dd460f32f868a52390b9888f1dbc"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/bounded-classical-runner.md",
+      "bytes": 8150,
+      "sha256": "7b9a262275d80c527c684b872e7afcaa3ece508cae18b3c93d719e5970089486"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/bounded-cost-sage-final.junit.xml",
+      "bytes": 35803,
+      "sha256": "948c4e125f46238985152bc168b45eabf82a6e1ec16902d0ba8bff610f753417"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/bounded-cost-windows-final.junit.xml",
+      "bytes": 35803,
+      "sha256": "49e872395e908de4b91a423f5f86c5bcef29f86508c19370e904ba927d763df1"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/bounded-runner-final.junit.xml",
+      "bytes": 4400,
+      "sha256": "16ad40a7abf0bd6ac24d13c076225ac0a655b3af299f4624758284ba1fd7aaf2"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/bounded-runner-n512.json",
+      "bytes": 35312,
+      "sha256": "c2311d64b4cb86098878bf980ed51165c64905c4a4814d183e6d27eeee775b17"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/probability-review.md",
+      "bytes": 15615,
+      "sha256": "19d4afcc220eb5fa68ec4583eb85754826d84ffe732aca69c891e77edc6c9d72"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/quantum-relation-review.md",
+      "bytes": 17178,
+      "sha256": "c49e776eba30f690d001bb67bdd409adb79953e559ba6ec199763ac132854b76"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/raw-h2-relabel.junit.xml",
+      "bytes": 2903,
+      "sha256": "aa8d2e46d8cb33df0af9c0a75da9f67d284446298b03100f66ebe2aa2119d199"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/raw-h2-relabel.md",
+      "bytes": 7574,
+      "sha256": "16f5d1deb1e7fcb86308c196e22b967d29d2b52527d7d13229a023562b08b848"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/service-law.md",
+      "bytes": 11627,
+      "sha256": "240ae420f34089ab9d2ea33143560b34ce72b9331afc260696627623066218d2"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/srgg-all-final.junit.xml",
+      "bytes": 270899,
+      "sha256": "a8b519aa95f046d6f3c1ffe3c62f44d06a0f799c5b8ca1e33e3ba98a441e3b40"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/validation.json",
+      "bytes": 5657,
+      "sha256": "5b43fc0f47fad07907d4a82bbe2479bf2265953ce22935a75deb279320ac109c"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/bounded_classical_cost.py",
+      "bytes": 9377,
+      "sha256": "82444fa081e07a51ebabae642e55341fc407b3479e7cca8414c768d439c9674a"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/bounded_classical_runner.py",
+      "bytes": 18965,
+      "sha256": "a96c5e67d43af1960c38172a3ed7824e7766f3bc51d9a5984b1cf402f9c7f9f8"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/raw_h2_relabel.py",
+      "bytes": 4284,
+      "sha256": "c705426e7b8cc6061a5096fd94009e3ba091051a9b08dba05f9f760c57ff7153"
+    },
+    {
+      "path": "tests/test_srgg_bounded_classical_cost.py",
+      "bytes": 10714,
+      "sha256": "bb1b24f6390cad7d4851549f9fe4599513e99abf5d6fa30059a60ad670e1ba5c"
+    },
+    {
+      "path": "tests/test_srgg_bounded_classical_runner.py",
+      "bytes": 17855,
+      "sha256": "4b5cc432905229216b690b83f0b1917ae6ea0c34deb0fd2a72d13eb0080701ec"
+    },
+    {
+      "path": "tests/test_srgg_raw_h2_relabel.py",
+      "bytes": 4641,
+      "sha256": "719d4bce4f84e913c28cf87684826dadd8b09f697ff2b24fa7652a858d701464"
+    }
+  ],
+  "unchanged_dependencies": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge.json",
+      "bytes": 79078,
+      "sha256": "23534aec4f2a5d208d083e5830001318c072c6c4af157d6d3c27cc73b934033e"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/MANIFEST.json",
+      "bytes": 24753,
+      "sha256": "cbf26ca474174047da4ba7a48bce1bafeb6a970532c233b883b2a9e0d9485dc6"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/aggregate_budget.py",
+      "bytes": 13974,
+      "sha256": "ade4d313fefe5973030ac6ae29b4eb40bce83b440b7b8dee342ec789466b9a20"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/classical_runner.py",
+      "bytes": 28371,
+      "sha256": "04c068b44204a362d7855aa214b1a10ed2b24c1144a4eaa3f8a54560914f77e1"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/conditional_xof.py",
+      "bytes": 11200,
+      "sha256": "d36885d537ae4830d6a436df0d8cb497802a9e6873a96275f39243a05d2e9acb"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/reduction_samplers.py",
+      "bytes": 10204,
+      "sha256": "ef0c2059689367d5d267c4acd84167617c97a8b0504dd1c9d4c9124e53e69717"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_execution.py",
+      "bytes": 38862,
+      "sha256": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_geometry.py",
+      "bytes": 16626,
+      "sha256": "08d70876337afae3a7e8722a939c9996363af8eb5f8039d6437b6906814f1120"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_samplef.py",
+      "bytes": 18596,
+      "sha256": "8a4a82baea93b62a13f215d53d866eff5f6d083563a81dc9b21b51999931c10a"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/wide_scalar.py",
+      "bytes": 18555,
+      "sha256": "2f404dd95ec1c909c3c40dcc8b6e4b070d25864c2e2aaa0a80e8b291df5689ca"
+    },
+    {
+      "path": "experiments/research/srgg_proof_followup_delivery_check.py",
+      "bytes": 9837,
+      "sha256": "2b47fc5c2d5fb5fce7497e2517612048a1ff03c95f6a269b60cb3b47c0a0ed7c"
+    }
+  ],
+  "frozen_manifests": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/MANIFEST.json",
+      "sha256": "cbf26ca474174047da4ba7a48bce1bafeb6a970532c233b883b2a9e0d9485dc6"
+    }
+  ],
+  "reports": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/bounded-runner-n512.json",
+      "schema": "IBME/SRGG-BOUNDED-CLASSICAL-RUNNER/1",
+      "hash_references": [
+        {
+          "field": [
+            "source_sha256"
+          ],
+          "paths": [
+            "experiments/research/candidates/srgg/bounded_classical_runner.py",
+            "experiments/research/candidates/srgg/classical_runner.py",
+            "experiments/research/candidates/srgg/conditional_xof.py",
+            "experiments/research/candidates/srgg/reduction_samplers.py",
+            "experiments/research/candidates/srgg/structured_execution.py",
+            "experiments/research/candidates/srgg/structured_samplef.py",
+            "experiments/research/candidates/srgg/structured_geometry.py",
+            "experiments/research/candidates/srgg/aggregate_budget.py",
+            "experiments/research/candidates/srgg/wide_scalar.py"
+          ]
+        },
+        {
+          "field": [
+            "input_sha256"
+          ],
+          "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge.json"
+        }
+      ],
+      "required_values": [
+        {
+          "field": [
+            "actual_entropy_bytes"
+          ],
+          "value": 0
+        },
+        {
+          "field": [
+            "draw_performed"
+          ],
+          "value": false
+        },
+        {
+          "field": [
+            "admitted"
+          ],
+          "value": true
+        },
+        {
+          "field": [
+            "global_entropy_cap_abort_upper_exact"
+          ],
+          "value": "0"
+        },
+        {
+          "field": [
+            "two_run_all_source_upper_bytes"
+          ],
+          "value": 3257864320
+        },
+        {
+          "field": [
+            "whole_adaptive_security_reduction_proved"
+          ],
+          "value": false
+        }
+      ]
+    }
+  ]
+}

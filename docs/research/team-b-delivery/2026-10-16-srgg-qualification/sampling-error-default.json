@@ -1,0 +1,250 @@
+{
+  "schema": "IBME/SRGG-FINAL-INTEGER-SAMPLING-ERROR/1",
+  "parameters": {
+    "degree": 8,
+    "rank": 1,
+    "p": 257,
+    "base": 31,
+    "digits": 3,
+    "r_squared": 4,
+    "master_first_squared": 8388608,
+    "master_second_squared": 8388608,
+    "signature_first_squared": 137438953472,
+    "signature_second_squared": 137438953472,
+    "user_norm_squared": 536870912,
+    "signature_noise_factor": 2,
+    "identity_max_bytes": 256,
+    "message_max_bytes": 4096,
+    "max_users": 16,
+    "setup_max_attempts": 32,
+    "sign_max_attempts": 16,
+    "precision_bits": 192,
+    "ticket_bits": 128,
+    "scalar_tail_bits": 24,
+    "scalar_mass_bits": 64,
+    "gadget_tail_bits": 16
+  },
+  "certificate_dyadic_bits": 384,
+  "master_perturbation": {
+    "upper": {
+      "dimension": 16,
+      "block_size": 8,
+      "blocks": 2,
+      "leaf_certificate": {
+        "numerical": {
+          "dimension": 8,
+          "public_residual_diagonal_upper": "8388608",
+          "bad_event_exponent": 27,
+          "bad_event_upper": "1/33554432",
+          "uniform_center_error_per_coordinate_upper": "246449504242489682164190586296229882606545/11972621413014756705924586149611790497021399392059392",
+          "center_kernel_tv_lipschitz_constant": 240,
+          "numerical_to_ideal_rounding_tv_upper": "6484335713453673125154823578524493427345727/93536104789177786765035829293842113257979682750464",
+          "reference": "exact continuous Gaussian followed by ideal D_Z,r integer rounding",
+          "continuous_intermediate_tv": "1 (finite support versus continuous density)",
+          "ticket_bits": 128,
+          "precision_bits": 192,
+          "scope_certified_under_assumptions": true,
+          "assumptions": [
+            "independent uniform bytes and round-to-nearest MPFR elementary operations",
+            "correctly rounded rational conversion, log, sqrt, pi, sin and cos",
+            "no MPFR exponent overflow or underflow; exact rational LDL, means and Schur updates",
+            "width r>=1; exact shape-r^2 I positive definite; public diagonal envelope valid",
+            "all-path rational/output/tape preflight in full_sampling succeeds"
+          ]
+        },
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_scalar_abort_upper": "1099511627861/18446744073709551616",
+        "finite_to_ideal_continuous_rounding_tv_upper_including_abort": "15901811391653482396324240005940871391277546580149253186927/26328072917139296674479506920917608079723773850137277813577744384",
+        "smoothing_epsilon_upper": "2198586232051467090644319979578083475896408505507563722537205626887742031273324222279885630194550645050974859785/39402006196394479212279040100143613805079739270465446667948293404245721771497210611414266254884915640806627990306816",
+        "peikert_theorem_3_1_continuous_part_applicable": true,
+        "ideal_rounding_to_target_discrete_gaussian_tv_upper": "2198586232051467090644319979578083475896408505507563722537205626887742031273324222279885630194550645050974859785/4925250774549309901534880012517951725634967408808180833493536675530715221437151326426783281860614455100828498788352",
+        "target_tv_upper_including_abort": "2201561019044801973006329745403934819256585106739814674970293943548591462233171540215030466640904731372750828041/4925250774549309901534880012517951725634967408808180833493536675530715221437151326426783281860614455100828498788352",
+        "target": "D_Z^dimension,sqrt(Sigma),center, uniformly in exact center"
+      },
+      "ideal_schur_chain_partition_bias_tv_upper": "2198831609710912435309639198682852970712839391684775104205334642256268170285463844450812015090413764812050614159/19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153408",
+      "target_tv_upper_including_abort": "19811319762069328219360277161914331524765520245603292503967686190644999868150836166171055748217651615794057238487/19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153408",
+      "target": "joint discrete Gaussian with exact input Schur shape and mean",
+      "requires_each_leaf_minus_rounding_width_identity_positive_definite": true
+    },
+    "lower_count": 24,
+    "lower_scalar_certificate": {
+      "algorithm": "finite uniform-box rejection Gaussian, project adaptation",
+      "squared_width_class": [
+        "8384764",
+        "8384764"
+      ],
+      "uniform_in_rational_center": true,
+      "rational_input_bit_budget": 8192,
+      "radius": 7745,
+      "max_support_count": 15492,
+      "support_or_centers_precomputed": 0,
+      "CDF_tables": 0,
+      "tail_upper": "6275327926501697980779001338601808103787905371387025828595/105312291668557186697918027683670432318895095400549111254310977536",
+      "relative_weight_interval_width_upper": "1/383123885216472214589586756787577295904684780545900544",
+      "integer_weight_quantization_tv_upper": "80439062932421549621194449132277731105/95780971304118053647396689196894323976171195136475136",
+      "Poisson_theta_upper": "3138550867693340381917894711603833208051177722232017256449/181709681073901722637330951972001133588410340171829515070372549795159822028349480831547762678440891390190630401566544483383650407153664",
+      "acceptance_mass_lower": "304947084158536584588668172418774429933790099218638932512272134296845/105312291668557186697918027683670432318895095400549111254310977536",
+      "acceptance_probability_lower": "101649028052845528196222724139591476644596699739546310837424044765615/543832674176429312108048694958474112494774272648435610517261887995904",
+      "max_gaussian_trials": 91,
+      "abort_upper": "1099511627867/18446744073709551616",
+      "tv_upper_including_abort": "12552429750851581926362682067934555567616195915268957285107/105312291668557186697918027683670432318895095400549111254310977536",
+      "public_tape_bytes": 12376,
+      "tape_exhaustion_at_public_length_upper": "0",
+      "finite_options": {
+        "tail_bits": 24,
+        "mass_bits": 64,
+        "precision_bits": 192,
+        "gaussian_abort_bits": 24,
+        "max_uniform_trials": 64,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "rational_bits": 8192,
+        "max_tape_bytes": 268435456
+      },
+      "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+      "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+      "constant_time": false,
+      "security_claim": "none"
+    },
+    "lower_marginal_partition_bias_tv_upper": "2198892969531376101599483226043123498278279037714897792994553481703967914483472006724367531344946534963722141887/19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153408",
+    "perturbation_target_tv_upper_including_abort": "11033284895029178873718186315137892648521971897986452910436052325122271262181620082458076992757240434322518641739/9850501549098619803069760025035903451269934817616361666987073351061430442874302652853566563721228910201656997576704",
+    "target": "D_Z^D,sqrt(Sigma_p),0 on the actual admitted perturbation shape"
+  },
+  "signing_perturbation": {
+    "upper": {
+      "dimension": 40,
+      "block_size": 8,
+      "blocks": 5,
+      "leaf_certificate": {
+        "numerical": {
+          "dimension": 8,
+          "public_residual_diagonal_upper": "137438953472",
+          "bad_event_exponent": 23,
+          "bad_event_upper": "1/2097152",
+          "uniform_center_error_per_coordinate_upper": "985564072842700583473226402203635635926917/1496577676626844588240573268701473812127674924007424",
+          "center_kernel_tv_lipschitz_constant": 240,
+          "numerical_to_ideal_rounding_tv_upper": "20358647392273164537482325601216624915398859/11692013098647223345629478661730264157247460343808",
+          "reference": "exact continuous Gaussian followed by ideal D_Z,r integer rounding",
+          "continuous_intermediate_tv": "1 (finite support versus continuous density)",
+          "ticket_bits": 128,
+          "precision_bits": 192,
+          "scope_certified_under_assumptions": true,
+          "assumptions": [
+            "independent uniform bytes and round-to-nearest MPFR elementary operations",
+            "correctly rounded rational conversion, log, sqrt, pi, sin and cos",
+            "no MPFR exponent overflow or underflow; exact rational LDL, means and Schur updates",
+            "width r>=1; exact shape-r^2 I positive definite; public diagonal envelope valid",
+            "all-path rational/output/tape preflight in full_sampling succeeds"
+          ]
+        },
+        "rounding_scalar_tv_upper_including_abort": "14076633147725034795529307514461429183383347928017896220015/210624583337114373395836055367340864637790190801098222508621955072",
+        "rounding_scalar_abort_upper": "1099511627861/18446744073709551616",
+        "finite_to_ideal_continuous_rounding_tv_upper_including_abort": "59920231552529406754210641247066826393952129234658500552047/26328072917139296674479506920917608079723773850137277813577744384",
+        "smoothing_epsilon_upper": "2198586232051467090644319979578083475896408505507563722537205626887742031273324222279885630194550645050974859785/39402006196394479212279040100143613805079739270465446667948293404245721771497210611414266254884915640806627990306816",
+        "peikert_theorem_3_1_continuous_part_applicable": true,
+        "ideal_rounding_to_target_discrete_gaussian_tv_upper": "2198586232051467090644319979578083475896408505507563722537205626887742031273324222279885630194550645050974859785/4925250774549309901534880012517951725634967408808180833493536675530715221437151326426783281860614455100828498788352",
+        "target_tv_upper_including_abort": "2209795642166445466188907525452167699126255664002285586883746940351969456840394415787243932235117977985665659401/4925250774549309901534880012517951725634967408808180833493536675530715221437151326426783281860614455100828498788352",
+        "target": "D_Z^dimension,sqrt(Sigma),center, uniformly in exact center"
+      },
+      "ideal_schur_chain_partition_bias_tv_upper": "1374499838277502496268137240104197490563108941691585150709051642552494294221382457621574004592320807678317742835/4925250774549309901534880012517951725634967408808180833493536675530715221437151326426783281860614455100828498788352",
+      "target_tv_upper_including_abort": "388233689034679057100396089605157374568574601928219158910243323259760674325729829267431052055247209300207688745/153914086704665934422965000391185991426092731525255651046673021110334850669910978950836977558144201721900890587136",
+      "target": "joint discrete Gaussian with exact input Schur shape and mean",
+      "requires_each_leaf_minus_rounding_width_identity_positive_definite": true
+    },
+    "lower_count": 8,
+    "lower_scalar_certificate": {
+      "algorithm": "finite uniform-box rejection Gaussian, project adaptation",
+      "squared_width_class": [
+        "137438953464",
+        "137438953464"
+      ],
+      "uniform_in_rational_center": true,
+      "rational_input_bit_budget": 8192,
+      "radius": 1091533,
+      "max_support_count": 2183068,
+      "support_or_centers_precomputed": 0,
+      "CDF_tables": 0,
+      "tail_upper": "3138492357620247892999068248936355809785952724116380994787/52656145834278593348959013841835216159447547700274555627155488768",
+      "relative_weight_interval_width_upper": "1/383123885216472214589586756787577295904684780545900544",
+      "integer_weight_quantization_tv_upper": "11335137118367909081360813560437857080295/95780971304118053647396689196894323976171195136475136",
+      "Poisson_theta_upper": "3138550867693340381917894711603833208051177722232017256449/181709681073901722637330951972001133588410340171829515070372549795159822028349480831547762678440891390190630401566544483383650407153664",
+      "acceptance_mass_lower": "19521086574809078851159502882060495912879809173458906473571520895890205/52656145834278593348959013841835216159447547700274555627155488768",
+      "acceptance_probability_lower": "19521086574809078851159502882060495912879809173458906473571520895890205/114951946974146900225125256429667521670772839062942973603863078553780224",
+      "max_gaussian_trials": 99,
+      "abort_upper": "1099511627875/18446744073709551616",
+      "tv_upper_including_abort": "6277049457153715358501594261290199148129327307553274219747/52656145834278593348959013841835216159447547700274555627155488768",
+      "public_tape_bytes": 19800,
+      "tape_exhaustion_at_public_length_upper": "0",
+      "finite_options": {
+        "tail_bits": 24,
+        "mass_bits": 64,
+        "precision_bits": 192,
+        "gaussian_abort_bits": 24,
+        "max_uniform_trials": 64,
+        "max_gaussian_trials": 100000,
+        "max_radius": 1073741824,
+        "rational_bits": 8192,
+        "max_tape_bytes": 268435456
+      },
+      "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+      "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+      "constant_time": false,
+      "security_claim": "none"
+    },
+    "lower_marginal_partition_bias_tv_upper": "10997226519145765233307955891902824269939296531403351628372282240834401705559308587381271885400639812612172520215/39402006196394479212279040100143613805079739270465446667948293404245721771497210611414266254884915640806627990306816",
+    "perturbation_target_tv_upper_including_abort": "110422627280394239464562663060599648592488419732837060818373233560973166620913280370354989030757735925593482445847/39402006196394479212279040100143613805079739270465446667948293404245721771497210611414266254884915640806627990306816",
+    "target": "D_Z^D,sqrt(Sigma_p),0 on the actual admitted perturbation shape"
+  },
+  "gadget": {
+    "ideal_recurrence_to_spherical_fiber_tv_upper": "3319370742084079238543806632141167136002836630450079914243552831561972364119136586814397095927834066303934463841/19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153408",
+    "finite_sampling_tv_upper_including_abort": "825152277057127988102914024301578396811155056162787570095207206294764543563925332251798328427755113863755425833/4925250774549309901534880012517951725634967408808180833493536675530715221437151326426783281860614455100828498788352",
+    "abort_upper": "3/42535295865117307932921825928971026432",
+    "total_fiber_tv_upper_including_abort": "13239959700625182381910925458694961446494913710202460389248763313482061076749675831643180819277709043517912334345/39402006196394479212279040100143613805079739270465446667948293404245721771497210611414266254884915640806627990306816",
+    "blocks": 8,
+    "scalar_draws": 24,
+    "scope": "gadget fiber law only; no perturbation, key or signature distribution claim",
+    "assumptions": "independent uniform bytes; correctly rounded MPFR/MPFI intervals"
+  },
+  "extraction_vs_sequential_ideal_sampler_tv_upper_including_abort": "57373099280741897876783670719246532040582801302148272030992972613971146125476156161475488790306670780807986901301/39402006196394479212279040100143613805079739270465446667948293404245721771497210611414266254884915640806627990306816",
+  "sign_attempt_vs_sequential_ideal_sampler_tv_upper_including_abort": "110443694055325190223133274751051879575480385709766422074655983703870032440577530453839516023850463832858879837207/39402006196394479212279040100143613805079739270465446667948293404245721771497210611414266254884915640806627990306816",
+  "max_sign_attempt_sequence_tv_upper_including_abort": "110443694055325190223133274751051879575480385709766422074655983703870032440577530453839516023850463832858879837207/2462625387274654950767440006258975862817483704404090416746768337765357610718575663213391640930307227550414249394176",
+  "issuance_internal_sampling_abort_upper": "101412048026430259744389587795971/42535295865117307932921825928971026432",
+  "sign_attempt_internal_sampling_abort_upper": "7696581395041/2305843009213693952",
+  "query_budgets": [
+    {
+      "new_identities": 16,
+      "signing_queries": 1,
+      "sampling_only_transcript_tv_upper_including_abort": "41954198334016772024979236367574602904015796752978673526412239079460294641513421653828751203539283653416716684627/615656346818663737691860001564743965704370926101022604186692084441339402679643915803347910232576806887603562348544",
+      "sampling_only_service_abort_union_upper": "243388915263226019852909463732227/2658455991569831745807614120560689152",
+      "norm_reject_and_infrastructure_abort_included": false
+    },
+    {
+      "new_identities": 16,
+      "signing_queries": 1048576,
+      "sampling_only_transcript_tv_upper_including_abort": "1",
+      "sampling_only_service_abort_union_upper": "1",
+      "norm_reject_and_infrastructure_abort_included": false
+    },
+    {
+      "new_identities": 16,
+      "signing_queries": 1099511627776,
+      "sampling_only_transcript_tv_upper_including_abort": "1",
+      "sampling_only_service_abort_union_upper": "1",
+      "norm_reject_and_infrastructure_abort_included": false
+    }
+  ],
+  "full_service_abort_upper": null,
+  "reference": "same sequential algorithm with ideal perturbation Gaussians, ideal gadget fiber and ideal u; same hashes, HNF and norm gates",
+  "raw_extraction_convolution_identified": false,
+  "hnf_exact_preimage_distribution_identified": false,
+  "signature_output_gaussian_identified": false,
+  "strong_unforgeability_established": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "limits": [
+    "roundoff assumptions are explicit mathematical hypotheses, not external MPFR verification",
+    "internal abort included; external entropy-provider failures have no probabilistic model",
+    "key/sign norm aborts and successful-output conditioning require separate analysis"
+  ]
+}

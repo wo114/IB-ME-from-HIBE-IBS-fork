@@ -269,25 +269,19 @@ def _wang_pw_spec():
 
 def _srgg_spec():
     try:
-        from experiments.research.candidates.srgg.backend import Backend
-        from experiments.research.candidates.srgg.config import Config
-        from experiments.research.candidates.srgg.objects import PublicKey, MasterSecret, SigningKey, Signature
+        # Keep the optional candidate boundary observable even when the
+        # adapter module was imported earlier in this process.  The registry
+        # contract deliberately reports a missing research package instead of
+        # silently treating a cached adapter as installed.
+        import experiments.research.candidates.srgg as _srgg_candidate  # noqa: F401
+        # Keep the shared registry as a thin coordinator.  The complete SRGG
+        # object contract, parameter snapshot binding, capacity calculation,
+        # and Sage dependency declaration live in the HIBE-independent adapter
+        # so direct users and assembly use the same descriptor.
+        from ibme.ibs.srgg.registration import backend_spec
     except ModuleNotFoundError as exc:
         return _missing_candidate("srgg2025", exc)
-
-    def signature_size(params, fmt):
-        bound = math.isqrt(params.signature_bound_squared)
-        return len(Signature(bytes(32), ((-bound,) * params.degree,) * (params.algebra.columns + 1),
-                             (1,) * params.degree).to_bytes())
-
-    return BackendSpec(
-        "srgg2025", "ibs", "SRGG-zeta2-research-v1", Config, {"research": Config()},
-        lambda rng, fmt: Backend(rng=rng), dict(ipk=PublicKey, imsk=MasterSecret, sk=SigningKey),
-        lambda obj, p: _research_object_check(obj, p, (PublicKey, MasterSecret, SigningKey), "config", "SRGG"),
-        signature_size, signature_formats=("reference", "canonical-json-v1"), persistent_identity_cache=True,
-        reason="degree8 zeta2 research profile; finite numeric error and formal parameters unadmitted",
-        object_parameter_binding="full-parameter-snapshot", master_public_key=lambda obj: obj.public_key,
-        default_preset=lambda transport: "research", validate_environment=lambda: _sage_environment("SRGG"))
+    return backend_spec()
 
 
 def _portable_specs():

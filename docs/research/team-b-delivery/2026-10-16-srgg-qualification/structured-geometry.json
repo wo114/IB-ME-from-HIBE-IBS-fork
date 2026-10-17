@@ -1,0 +1,202 @@
+{
+  "backend_admitted": false,
+  "candidate_name": "conditional-n512-d2-w8",
+  "environment": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "processor": "Intel(R) Core(TM) Ultra 7 255HX",
+    "python": "3.13.15 | packaged by conda-forge | (main, Sep  2 2026, 22:01:58) [GCC 15.3.0]",
+    "sage": "10.9",
+    "source_sha256": {
+      "formal_candidates.py": "8c5e9c7e841c192b48668866392750ff9a463039d4947ee15c2be65d9921c045",
+      "geometry.py": "6166de10c02678449973bbda10442463e027db5696dbd037fe1bb573f1b3c297",
+      "structured_geometry.py": "08d70876337afae3a7e8722a939c9996363af8eb5f8039d6437b6906814f1120"
+    }
+  },
+  "fixture": {
+    "degree": 512,
+    "digits": 8,
+    "identity_bytes": null,
+    "message_bytes": null,
+    "rank": 2,
+    "repetitions": 1,
+    "source": "public deterministic integer patterns; neither master trapdoor nor issued user key"
+  },
+  "full_ibs_execution": false,
+  "full_tv_certificate": false,
+  "operators": [
+    {
+      "metadata": {
+        "coefficient_dimension": 10240,
+        "coefficient_matrices_materialized": false,
+        "coefficient_slots_in_witness_and_adjoint": 65536,
+        "degree": 512,
+        "dense_shape_entries_if_expanded": 104857600,
+        "full_positive_definiteness_checked": false,
+        "lower_polynomials": 16,
+        "lower_scalar": "1031865892929",
+        "lower_squared": "1031865954433",
+        "noise_squared": "61504",
+        "rounding_squared": "64",
+        "sampler_implemented": false,
+        "stored_adjoint_polynomials": 64,
+        "stored_witness_polynomials": 64,
+        "top_squared": [
+          "1031865954433",
+          "1031865954433",
+          "1031865954433",
+          "1031865954433"
+        ],
+        "upper_polynomials": 4
+      },
+      "operations": {
+        "conditional_apply": {
+          "coefficient_sha256": "b0550992820fa33b9143439d5ea5432fcbcbe8d5ad1b60f8edbbc118ecfaa330",
+          "elapsed_seconds": 0.009951129999990371,
+          "ring_polynomials": 4
+        },
+        "conditioned_center": {
+          "coefficient_sha256": "f1dec09a432495bfe68f15cc4ecf5f75951c5b7f319a7b9bb958ab854d03fdf3",
+          "elapsed_seconds": 0.010730232000000228,
+          "ring_polynomials": 4
+        },
+        "factor_adjoint_apply": {
+          "coefficient_sha256": "5bb4eef6a2608c8d78c8f37215e5f3be612332c460a74a8952ff015a1979107f",
+          "elapsed_seconds": 0.014461795000002553,
+          "ring_polynomials": 16
+        },
+        "factor_apply": {
+          "coefficient_sha256": "2a0bad6d489767ca8025ab3e9a8754f042254f2449881ad6365201842bed0670",
+          "elapsed_seconds": 0.012839745000007952,
+          "ring_polynomials": 20
+        },
+        "perturbation_apply": {
+          "coefficient_sha256": "ffc2e4bf01fd272d666822088ae4ba83f4ca6fa88ab7d17912f6d369bb94098b",
+          "elapsed_seconds": 0.04548514699999373,
+          "ring_polynomials": 20
+        },
+        "shifted_schur_apply": {
+          "coefficient_sha256": "0879ee32f602119aaffe192b7f6cc4ae37985260d9669700f294f249e25e4e91",
+          "elapsed_seconds": 0.008377243999987627,
+          "ring_polynomials": 4
+        },
+        "v_adjoint_apply": {
+          "coefficient_sha256": "de8e951c10e130fff4f55c91a80d616d4bf3a51995759ed5292980960535e9c9",
+          "elapsed_seconds": 0.004820494999989933,
+          "ring_polynomials": 16
+        },
+        "v_apply": {
+          "coefficient_sha256": "abce8786147d7990658f7986d20cdc9a0b3596e24bbcbb4e93c04ab4c5e5a1ff",
+          "elapsed_seconds": 0.013472539999995092,
+          "ring_polynomials": 4
+        }
+      },
+      "operator": "master",
+      "polynomial_shallow_object_bytes": 13312,
+      "public_fixture_polynomial_pickle_bytes": 591989,
+      "ru_maxrss_kib": 230124,
+      "setup_seconds": 0.08987445200000366,
+      "storage_measurement_scope": "public fixture serialization and shallow objects; not a wire format or full heap accounting"
+    },
+    {
+      "metadata": {
+        "coefficient_dimension": 10752,
+        "coefficient_matrices_materialized": false,
+        "coefficient_slots_in_witness_and_adjoint": 20480,
+        "degree": 512,
+        "dense_shape_entries_if_expanded": 115605504,
+        "full_positive_definiteness_checked": false,
+        "lower_polynomials": 1,
+        "lower_scalar": "22159188660729268928577",
+        "lower_squared": "22159188660729268928705",
+        "noise_squared": "128",
+        "rounding_squared": "64",
+        "sampler_implemented": false,
+        "stored_adjoint_polynomials": 20,
+        "stored_witness_polynomials": 20,
+        "top_squared": [
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705",
+          "22159188660729268928705"
+        ],
+        "upper_polynomials": 20
+      },
+      "operations": {
+        "conditional_apply": {
+          "coefficient_sha256": "eba5b2d69a1754850c5a0b8685d66970dc45cc399d5ff547abb8cd688251615c",
+          "elapsed_seconds": 0.015334328999998093,
+          "ring_polynomials": 20
+        },
+        "conditioned_center": {
+          "coefficient_sha256": "0d4a3d5d84ace70fead6eaab97204c89d57d13938dbb907305d55bea428329d6",
+          "elapsed_seconds": 0.00381835599999647,
+          "ring_polynomials": 20
+        },
+        "factor_adjoint_apply": {
+          "coefficient_sha256": "4328fe3869b4cdf910bccc8f304acdebee6867421702ceb1239847b0278f1144",
+          "elapsed_seconds": 0.016072247000010975,
+          "ring_polynomials": 1
+        },
+        "factor_apply": {
+          "coefficient_sha256": "a9623daee19a976c00f8194a6188296418091e29dfc35f7704d73091eae7e3c2",
+          "elapsed_seconds": 0.002487172000002147,
+          "ring_polynomials": 21
+        },
+        "perturbation_apply": {
+          "coefficient_sha256": "df1213945a0da036d930d06de7b9cda9ca8dd13eb3938dfdb1692c74419fcedb",
+          "elapsed_seconds": 0.0380186550000019,
+          "ring_polynomials": 21
+        },
+        "shifted_schur_apply": {
+          "coefficient_sha256": "4ea1d9e1896d49a6ef68f02a028559b4af6dada1cb73eb96886901e78a6cbb01",
+          "elapsed_seconds": 0.012417724000002295,
+          "ring_polynomials": 20
+        },
+        "v_adjoint_apply": {
+          "coefficient_sha256": "cf1cbb66a638b4860a516671fb74850e6ccf787fe6c4c8d29e9c04efe880bd05",
+          "elapsed_seconds": 0.012465753000000745,
+          "ring_polynomials": 1
+        },
+        "v_apply": {
+          "coefficient_sha256": "b2ca5334091969abc64ef57faef0d659c8f6fb3959783b5c113d2636ba7ade0c",
+          "elapsed_seconds": 0.002512984000006213,
+          "ring_polynomials": 20
+        }
+      },
+      "operator": "signature",
+      "polynomial_shallow_object_bytes": 4160,
+      "public_fixture_polynomial_pickle_bytes": 185360,
+      "ru_maxrss_kib": 230124,
+      "setup_seconds": 0.021615783000001443,
+      "storage_measurement_scope": "public fixture serialization and shallow objects; not a wire format or full heap accounting"
+    }
+  ],
+  "parameters_are_formal": false,
+  "resource_limits": {
+    "degree_max": 4096,
+    "module_columns_max": 128,
+    "module_rows_max": 128,
+    "rational_bits_max": 4096,
+    "witness_coefficient_slots_max": 1048576
+  },
+  "rss_before_fixture_kib": 210736,
+  "schema": "IBME/SRGG-STRUCTURED-GEOMETRY/1",
+  "scope": "exact structured operator component only; no Gaussian output, signature or IBS lifecycle",
+  "security_claim": "none"
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "IBME/SRGG-ISSUANCE-ANALYSIS/1",
+  "scope": "general exact finite-law tools and synthetic counterexamples",
+  "finite_gaussian_hnf": {
+    "params": {
+      "degree": 2,
+      "p": 5,
+      "base": 3,
+      "digits": 1
+    },
+    "raw_support": "head coefficient -5..5; first tail coefficient in {0,1}; others zero; canonical approximate fibers",
+    "reference_support": "exact HNF witnesses with the same two tails",
+    "gaussian_density": "2^(-squared_norm), finite conditioning",
+    "raw_state_count": 10,
+    "repaired_state_count": 2,
+    "repaired_to_finite_exact_gaussian_tv": "29228028/619650565",
+    "is_actual_srgg_sampler_law": false
+  },
+  "rare_success": {
+    "before_filter_tv": "1/100",
+    "including_abort_after_filter_tv": "1/100",
+    "success_left": "1/100",
+    "success_right": "1/100",
+    "conditioned_on_success_tv": "1",
+    "conditional_tv_upper": "1",
+    "is_actual_srgg_sampler_law": false
+  },
+  "actual_raw_law_certified": false,
+  "psf_distribution_bridge_closed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

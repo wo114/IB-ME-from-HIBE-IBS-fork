@@ -1,0 +1,142 @@
+{
+  "backend_admitted": false,
+  "checks_per_lifecycle": 37,
+  "distinct_test_cases": 221,
+  "failures": 0,
+  "host_hardware": {
+    "cpu": "Intel Core Ultra 7 255HX",
+    "logical_processors": 20,
+    "physical_cores": 20,
+    "ram_bytes": 33676681216
+  },
+  "implementation_commit": "e9736f28ba907be28ca0bf13a27b9e67187b0bab",
+  "implementation_files": [
+    "experiments/research/candidates/srgg/paper_algebra.py",
+    "experiments/research/candidates/srgg/paper_audit.py",
+    "experiments/research/candidates/srgg/paper_backend.py",
+    "experiments/research/candidates/srgg/paper_objects.py",
+    "experiments/research/candidates/srgg/paper_parameters.py",
+    "experiments/research/candidates/srgg/paper_profiles.py",
+    "experiments/research/candidates/srgg/paper_samplef.py",
+    "experiments/research/candidates/srgg/paper_validation.py",
+    "src/ibme/ibs/srgg_paper_service.py",
+    "tests/test_srgg_paper_backend.py",
+    "tests/test_srgg_paper_profiles.py",
+    "tests/test_srgg_paper_samplef.py",
+    "tests/test_srgg_paper_service.py"
+  ],
+  "lifecycle_receipts": [
+    "PARAM-I.json",
+    "PARAM-II.json",
+    "PARAM-III.json",
+    "PARAM-I-density.json",
+    "PARAM-II-density.json",
+    "PARAM-III-density.json",
+    "PARAM-I-secure.json"
+  ],
+  "lifecycle_repetitions": "6 deterministic runs, 1 SecureRandom run; one issued key and two signatures each",
+  "limitations": [
+    "Gaussian normalization not author-confirmed; published r rounded",
+    "factor1 versus zeta*zeta*=2 correspondence unresolved",
+    "no ANS or author C benchmark reproduction",
+    "no complete QROM native-strong proof or formal parameter admission",
+    "WSL process/recovery tests only; no hard-power-loss or malicious rollback guarantee"
+  ],
+  "new_test_cases": 128,
+  "nist_security_category": null,
+  "paper_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+  "parameters_are_formal": false,
+  "parent_preserving_optimization_work": "be03cd7e798e9b11abc35c3809a49ec9c254f0f8",
+  "prior_failed_unsigned_remainder_runs_retained": true,
+  "publication": "local commits only; no push or PR update",
+  "related_regression_cases": 93,
+  "resource_receipt": "PARAM-I-secure.resources.txt",
+  "sampling_error_scope": "Each receipt reports either a certified common numerical TV <=2^-96 or the trivial bound 1. PARAM-III/std signature has bound 1. Total SampleF error also includes coarse theta bounds; final HNF/FS laws are not certified.",
+  "secure_peak_rss_kib": 230512,
+  "security_claim": "none",
+  "skips": 0,
+  "source_sha256": {
+    "experiments/research/candidates/srgg/paper_algebra.py": "5494acd7ab7cf42b2d9f33746b2535ffcbb58df0796c0b313dd56cc39547c81a",
+    "experiments/research/candidates/srgg/paper_audit.py": "e9a171e63a5fb56e7c99ab630644a35334a5081f168216742f78f7ebc6a0b698",
+    "experiments/research/candidates/srgg/paper_backend.py": "da08ef7c93e4b921ef8a73ae233501eee693a67efefb899208f4f0a7079b6451",
+    "experiments/research/candidates/srgg/paper_objects.py": "782bcc7baa30d02a9846809141e1e342841129075688e2bcb332744efa9a2b3f",
+    "experiments/research/candidates/srgg/paper_parameters.py": "a9621a084f96ab8bbd4540d766a7d36b75f3c90e38bd3b772a009258ccec43b4",
+    "experiments/research/candidates/srgg/paper_profiles.py": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f",
+    "experiments/research/candidates/srgg/paper_samplef.py": "7d84afa5d5a447c62ae906e35c45ee7f3db155ad20a253e35f4fd3a89ba66c15",
+    "experiments/research/candidates/srgg/paper_validation.py": "d112ef72403684d5bb2c7fed278c055ad0d78a1c3f2d304454b15a053a1c687a",
+    "src/ibme/ibs/srgg_paper_service.py": "9434699ff192a426f15ca92c1477d63302eada62dc92da0ff06090f32d86b7c1",
+    "tests/test_srgg_paper_backend.py": "b4031950bf566123ae9c8469c2c8c6bf75da5ffdd99fd41e6d1351fe72781fcc",
+    "tests/test_srgg_paper_profiles.py": "77195fc61a287a828b790331476db3e9b265b4e7d0735336a6189c5e469ee5bc",
+    "tests/test_srgg_paper_samplef.py": "1b98b677093b5146a00fb110f4235d4e49b7ebbb3cf2a636bc1f22f92d6bce93",
+    "tests/test_srgg_paper_service.py": "b9158120ef6594110ba426c28753cbc2939892135ea0b3bd098c7f3382f922a1"
+  },
+  "source_tree_change_kind": "13 additions; no preexisting tracked file modified or deleted",
+  "strong_replacement_observations": {
+    "PARAM-I-density.json": {
+      "accepted_replacements": 1,
+      "attack": "public Q shift in first identity block; same challenge/message",
+      "eligible_trials": 1,
+      "native_strong_counterexample_found": true,
+      "sample_or_forgery_exported": false,
+      "unsuccessful_probe_is_not_a_security_proof": true
+    },
+    "PARAM-I-secure.json": {
+      "accepted_replacements": 0,
+      "attack": "public Q shift in first identity block; same challenge/message",
+      "eligible_trials": 0,
+      "native_strong_counterexample_found": false,
+      "sample_or_forgery_exported": false,
+      "unsuccessful_probe_is_not_a_security_proof": true
+    },
+    "PARAM-I.json": {
+      "accepted_replacements": 0,
+      "attack": "public Q shift in first identity block; same challenge/message",
+      "eligible_trials": 0,
+      "native_strong_counterexample_found": false,
+      "sample_or_forgery_exported": false,
+      "unsuccessful_probe_is_not_a_security_proof": true
+    },
+    "PARAM-II-density.json": {
+      "accepted_replacements": 1,
+      "attack": "public Q shift in first identity block; same challenge/message",
+      "eligible_trials": 1,
+      "native_strong_counterexample_found": true,
+      "sample_or_forgery_exported": false,
+      "unsuccessful_probe_is_not_a_security_proof": true
+    },
+    "PARAM-II.json": {
+      "accepted_replacements": 1,
+      "attack": "public Q shift in first identity block; same challenge/message",
+      "eligible_trials": 1,
+      "native_strong_counterexample_found": true,
+      "sample_or_forgery_exported": false,
+      "unsuccessful_probe_is_not_a_security_proof": true
+    },
+    "PARAM-III-density.json": {
+      "accepted_replacements": 1,
+      "attack": "public Q shift in first identity block; same challenge/message",
+      "eligible_trials": 1,
+      "native_strong_counterexample_found": true,
+      "sample_or_forgery_exported": false,
+      "unsuccessful_probe_is_not_a_security_proof": true
+    },
+    "PARAM-III.json": {
+      "accepted_replacements": 1,
+      "attack": "public Q shift in first identity block; same challenge/message",
+      "eligible_trials": 1,
+      "native_strong_counterexample_found": true,
+      "sample_or_forgery_exported": false,
+      "unsuccessful_probe_is_not_a_security_proof": true
+    }
+  },
+  "test_environment": {
+    "machine": "x86_64",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15",
+    "sage": "10.9"
+  },
+  "test_receipts": {
+    "core-final.junit.xml": 195,
+    "service-final.junit.xml": 26
+  }
+}

@@ -64,7 +64,7 @@ C1/C3本批新增：[Lai精确资格反例](research/team-c-delivery/2026-10-15-
 | Luo 模格 IBS | 真实算法、NTT/Hint、固定状态及reference/compact；C64B完整17字段、正确性条件/中止界、原文安全引用映射和第二十四步终验收收尾；实际CHKP组合已核对compact16383 B | 默认参数不变、C64B仍显式选择；研究候选不是正式安全等级，不自动补写完整基础归约/QROM；版本变化定向复核 |
 | Wang+PW IBS | [完整研究五方法](../experiments/research/candidates/wang_pw/)、真实采样/恢复；默认已登记，本轮LATTE+Hybrid+BYTEAUTH公共组合32检查通过 | q17调试参数不安全；正式参数/根近均匀、固定服务安全映射及其它未测配对仍待，不计已准入安全组合 |
 | Foo–Li IBS | [PR27独立共同后端](research/team-b-delivery/2026-10-15-foo-li-backend/README.md)：完整五方法/四对象、固定发钥/pending/持久服务、可选descriptor；统筹294项Sage无skip并核对固定head后合入 | q3/n1公开伪造及错误上下文负控保留；默认registry/真实HIBE配对、模型和正式参数未准入 |
-| SRGG IBS | [完整研究后端](../experiments/research/candidates/srgg/backend.py)、真实SampleF/Schur/挑战、固定cache与恢复；默认已登记，本轮LATTE公共组合34检查通过 | ζ factor2、连续数值总TV、HNF/强前提未证；n8公开伪造负控保留；正式参数与其它未测组合不自动通过 |
+| SRGG IBS | [完整研究后端](../experiments/research/candidates/srgg/backend.py)、真实SampleF/Schur/挑战、固定cache与恢复；默认已登记，本轮LATTE公共组合34检查通过；[来源对应核验与筛选器修复](research/team-b-delivery/2026-10-16-srgg-source-correspondence/README.md)已交付 | ζ factor2与原文、r归一化及q/Q定理映射存在待澄清项；最终离散输出总TV、HNF后密钥分布与strong前提未闭合；n8公开伪造负控保留；正式参数与其它未测组合不自动通过 |
 | Sageloli SIS／RSIS | [已接收数学验证批次](research/team-b-delivery/2026-10-13-sageloli-probes/README.md)：复合模数三进制Gaussian、根／委派／签名原像、环结构、范数和宽度核验；外部PR34另提交五方法/对象/固定服务 | PR34尚未接收，[本轮审查](research/team-a-delivery/2026-10-16-pr34-review/README.md)要求修复委派全维扰动与无偏取模，不能以新增后端替代已有真实采样探针的条件；总TV、固定服务模型、正式参数及组合仍待 |
 | 既有内置完整研究接线 | **教学 ABB10 + Hybrid + Luo 模格 + BYTEAUTH** | 可以验证工程流程；HIBE 不是 CHKP，不能记为真实 CHKP 组合完成 |
 | CHKP 本仓库 | `src/ibme/hibe/chkp/`公开六方法、`src/ibme/lattice/chkp/`有限工具；原CHKP父RandBasis/ToBasis与同叶256目标真实运行、保存/恢复、Hybrid+C64B+BYTEAUTH及CLI完成 | MP12仅用于此后端根生成；n2/q1099511627791可公开攻击，G-formal未准入，状态无外部防回滚保证 |

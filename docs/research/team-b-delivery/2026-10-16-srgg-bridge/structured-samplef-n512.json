@@ -1,0 +1,103 @@
+{
+  "schema": "IBME/SRGG-STRUCTURED-SAMPLEF/1",
+  "fixture": "public deterministic CBD1; not a service secret",
+  "prepare_seconds": 0.2647619480000003,
+  "certificate": {
+    "algorithm": "isotropic joint SampleF; exact ring sqrt series and finite integer rounding",
+    "degree": 512,
+    "upper_polynomials": 4,
+    "lower_polynomials": 16,
+    "dimension": 10240,
+    "target_squared": "1031865954433",
+    "rounding_squared": "64",
+    "noise_squared": "61504",
+    "witness_class": "entire real CBD1 coefficient support; negacyclic support-function bound",
+    "verified_witness_spectral_squared_upper": "36152725138575386955601217372821701030928733/5316911983139663491615228241121378304",
+    "series": {
+      "dimension": 10240,
+      "rho_upper_exact": "1740690295/4294967296",
+      "terms": 197,
+      "sqrt_series_operator_error_upper": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+      "operator_vector_rounding_l2_error_upper": "5/11441856966110879895415672413281932851912333147723348814580777991484961020612479660529585132524396604269162135552",
+      "box_muller_bad_event_bits": 143,
+      "box_muller_bad_event_upper": "5/10889035741470030830827987437816582766592",
+      "final_center_coordinate_error_upper": "19596628155817170531937980215933/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+      "finite_center_to_ideal_continuous_rounding_tv_upper": "25332448296783228303860765647472524401/28948022309329048855892746252171976963317496166410141009864396001978282409984",
+      "scale_upper_exact": "42085539573686138577023650376907386164429914316091854169716167269813570957317835943367141345024004482423099226511353525/103851121771557285503338318980481229170062516005255114866918206251951766636105000618845992057709428910470526293047",
+      "scale_absolute_error_upper_exact": "2/11523138239029635664032256420105808792463504985506965342812265116930762989857834758756862202612122911970565366411632113342143299587277984869386239131747321582316605913930387626073659577612514885788053264473308954861211324626481",
+      "normal_input_further_quantized": true,
+      "assumptions": [
+        "independent uniform bytes",
+        "correct round-to-nearest MPFR rational conversion,pi,log,sqrt,sin,cos; no exponent failure",
+        "directed interval scale enclosure; exact ring products and exact nearest dyadic rounding",
+        "verified 0<=H<=rho I and r>=1; Peikert continuous branch applies"
+      ]
+    },
+    "scalar_batch": {
+      "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+      "count": 10240,
+      "squared_width_class": [
+        "64",
+        "64"
+      ],
+      "gaussian_proposals": {
+        "successes": 10240,
+        "probability_lower": "157608024785577916849116160400574455220303494796488761788951449784568711602287311608823145588688304703436589020825795/1694286266444962606127998724306175393618428788630014206721776616382566036174380056290813448960051372554685003583193088",
+        "trials": 222913,
+        "dyadic_exponent": -129,
+        "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+      },
+      "uniform_candidates": {
+        "successes": 222913,
+        "probability_lower": "85/128",
+        "trials": 671748,
+        "dyadic_exponent": -129,
+        "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+      },
+      "candidate_bytes": 1,
+      "bernoulli_bytes": 24,
+      "naive_all_path_bytes": 2112307200,
+      "chernoff_cap_bytes": 6021660,
+      "selected_cap_bytes": 6021660,
+      "public_max_bytes": 268435456,
+      "admitted": true,
+      "uses_probabilistic_cap": true,
+      "aggregate_budget_abort_upper_exact": "1/340282366920938463463374607431768211456",
+      "existing_scalar_abort_union_upper_exact": "92233720368547762855/3064991081731777716716694054300618367237478244367204352",
+      "abort_upper_including_aggregate_exact": "92242727567802503847/3064991081731777716716694054300618367237478244367204352",
+      "scalar_kernel_tv_union_upper_exact": "366791649958414917754127017828297511791970746403583363530539390478644561417265/9619630419041620901435312524449124464130795720328478190417063819395928166869436184427311097384012607618805661696",
+      "scalar_kernel_tv_including_aggregate_exact": "366819919511451371903400350588309398488223986145933373433869336177865243333681/9619630419041620901435312524449124464130795720328478190417063819395928166869436184427311097384012607618805661696",
+      "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+      "full_continuous_or_IBS_tv_certified": false,
+      "all_original_gaussian_and_uniform_limits_retained": true,
+      "requires_independent_uniform_bytes": true,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false
+    },
+    "peikert_ideal_rounding_to_discrete_target_tv_upper": "1/441711766194596082395824375185729628956870974218904739530401550323154944",
+    "full_target_integer_tv_upper_including_abort": "4415535499698311336029347007303691392760289/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+    "continuous_fixed_ticket_bytes": 655360,
+    "whole_entropy_cap_bytes": 6677020,
+    "dense_coefficient_matrix_materialized": false,
+    "reference": "D_Z^D,Sigma_p,center; Sigma_p=target I-noise T T*",
+    "legacy_schur_law_equal": false,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "draws": [
+    {
+      "index": 0,
+      "seconds": 9.039954056,
+      "coefficients": 10240,
+      "output_digest": "c5fef7536134ae9d38c020b64cbb21922f57d97fbb2fd524e77201773d4d833f",
+      "squared_norm": "1669994923373687"
+    }
+  ],
+  "production_randomness": false,
+  "full_ibs_executed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

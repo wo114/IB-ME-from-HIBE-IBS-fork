@@ -1,0 +1,74 @@
+{
+  "schema": "IBME/SRGG-SINGLE-AUDIT-ENTROPY-ENVELOPE/1",
+  "input_receipt": "structured-execution-n512-d2w8.json",
+  "input_receipt_sha256": "ee8fde8955113bc06aea842ecc9128e1d0f3d793a0c3ce7a082d0cb550d06e09",
+  "input_source_sha256": {
+    "experiments/research/candidates/srgg/structured_execution.py": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67",
+    "experiments/research/candidates/srgg/structured_samplef.py": "8a4a82baea93b62a13f215d53d866eff5f6d083563a81dc9b21b51999931c10a",
+    "experiments/research/candidates/srgg/wide_scalar.py": "2f404dd95ec1c909c3c40dcc8b6e4b070d25864c2e2aaa0a80e8b291df5689ca",
+    "experiments/research/candidates/srgg/structured_geometry.py": "08d70876337afae3a7e8722a939c9996363af8eb5f8039d6437b6906814f1120",
+    "experiments/research/candidates/srgg/aggregate_budget.py": "ade4d313fefe5973030ac6ae29b4eb40bce83b440b7b8dee342ec789466b9a20",
+    "experiments/research/candidates/srgg/fiber_normalizers.py": "21a9072cd0243db7fd75d3af035dff23366652aba0bb59cfc8e7247acfae4461",
+    "experiments/research/candidates/srgg/spectral_bounds.py": "069d79c12f495b7e664ff0b0194188022088a21fb70eb4083800c93e1524a3d5",
+    "experiments/research/candidates/srgg/formal_candidates.py": "8c5e9c7e841c192b48668866392750ff9a463039d4947ee15c2be65d9921c045"
+  },
+  "components": [
+    {
+      "stage": "setup public seed",
+      "maximum_calls": 1,
+      "bytes_per_call": 32,
+      "source": "structured_execution.py:503"
+    },
+    {
+      "stage": "setup CBD1 coefficients",
+      "maximum_calls": 1,
+      "bytes_per_call": 32768,
+      "source": "structured_execution.py:504"
+    },
+    {
+      "stage": "master joint SampleF including midpoint tickets",
+      "maximum_calls": 1,
+      "bytes_per_call": 10503886,
+      "source": "structured_samplef.py:195,267"
+    },
+    {
+      "stage": "gadget digit recurrence batch",
+      "maximum_calls": 1,
+      "bytes_per_call": 7651821,
+      "source": "structured_execution.py:437"
+    },
+    {
+      "stage": "signature joint SampleF including midpoint tickets",
+      "maximum_calls": 16,
+      "bytes_per_call": 11020294,
+      "source": "structured_execution.py:539,542"
+    },
+    {
+      "stage": "signature u scalar batch",
+      "maximum_calls": 16,
+      "bytes_per_call": 642980,
+      "source": "structured_execution.py:546"
+    },
+    {
+      "stage": "one random negative signature response plus challenge",
+      "maximum_calls": 1,
+      "bytes_per_call": 11264,
+      "source": "structured_execution.py:698"
+    }
+  ],
+  "all_path_byte_upper_including_local_abort_paths": 204812155,
+  "whole_audit_cap_bytes": 268435456,
+  "additional_global_cap_abort_upper_exact": "0",
+  "derivation": "Each AggregateByteSource checks its local bound before forwarding a read. Sum maximum calls times per-call caps, plus fixed raw reads. Any local abort ends audit immediately; root/issuance and numerical/entropy failures never retry. Only signature norm rejection may repeat, at most 16 attempts.",
+  "scope": "Only this single-root, single-identity research audit with at most 16 signature attempts and one random negative-control signature. Not an all-path bound for a 2^40-query service.",
+  "original_receipt_preserved": true,
+  "original_uncertified_cap_flag": "Conservative at measurement time; resolved for this fixed audit by this separate deterministic envelope.",
+  "does_not_remove": [
+    "local finite scalar/aggregate aborts already included in sampler certificates",
+    "infrastructure failures",
+    "formal security and persistent issuer gaps"
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

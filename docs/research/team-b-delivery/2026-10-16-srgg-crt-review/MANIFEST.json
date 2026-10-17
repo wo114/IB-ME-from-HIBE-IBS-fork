@@ -1,0 +1,169 @@
+{
+  "schema": "IBME/SRGG-PROOF-FOLLOWUP-DELIVERY/1",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null,
+  "trust_anchor": "Git-reviewed file list; not a signature or independent security attestation",
+  "files": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/classical-namespace-review.md",
+      "bytes": 17771,
+      "sha256": "70bf6544055f39877ac6ff472236936eebef1d0acca7de5f14ebf91c528f434b"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/collapsing-route.md",
+      "bytes": 16359,
+      "sha256": "84859d9f350a55422bfb65f861e632c138e3c3b3409eb72259ae231bdd4b3348"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/crt-projection.json",
+      "bytes": 150044,
+      "sha256": "1622ab94e27b7f6b481b35287d05f98eaa68cceadc08a6999b8a309d48368ec8"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/independent-mod3-enumeration.json",
+      "bytes": 606,
+      "sha256": "4a26e58477f1a8c549a95055ee26cc5746e6e7308a14c2e75227ffce7faf5666"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/parameter-collapse-gates.json",
+      "bytes": 1400,
+      "sha256": "ec4e0e0649d3bce7b825af56af9fa9a0e8fb7942dba3fe59c5337a1d5479356f"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/projection-law.md",
+      "bytes": 9220,
+      "sha256": "b6fd19c9387427ddca494a89696ed2a9e650c3d524b6defca51601d25c3b99db"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/README.md",
+      "bytes": 5926,
+      "sha256": "f67540eb05def3c3a623b7aca58ef0e41f52a20d458c8963f7eba3c6f23becd4"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/sage.junit.xml",
+      "bytes": 5331,
+      "sha256": "ad34d0878f37303894bedc6e1974a3049e0eece5bf869bb35d2c69f84ff2f5d4"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/validation.json",
+      "bytes": 4945,
+      "sha256": "d00cf24964d5b9b45469acc7f42375b5d2c5f181d1b6d2bc95a3b658b532e0d1"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/windows.junit.xml",
+      "bytes": 5851,
+      "sha256": "937f8eadd2d660d6fcc47c2b90692dea279e2fa654227c8393937773812bd959"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/crt_projection.py",
+      "bytes": 9338,
+      "sha256": "4fbaf3cd133e2d1309a460cf96fc6310a7fa07cf03624f33dd506f70c6e7a29c"
+    },
+    {
+      "path": "tests/test_srgg_crt_projection.py",
+      "bytes": 12208,
+      "sha256": "dce10044506c1818b7e79c573e45610325e41fc0b75bd64d739a8d601248e475"
+    }
+  ],
+  "unchanged_dependencies": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/MANIFEST.json",
+      "bytes": 8604,
+      "sha256": "59649c0ea119a6342e448ddaa13a894e6f472dcaabd89a8682b6a6818b0f54b1"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/service-law.md",
+      "bytes": 11627,
+      "sha256": "240ae420f34089ab9d2ea33143560b34ce72b9331afc260696627623066218d2"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/seeded-xof.md",
+      "bytes": 15536,
+      "sha256": "3f8748158e1b6b76294af9721b6f76ce1661d17fe77c87957e0068c31b0ace99"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-hardness/finite-search.json",
+      "bytes": 638565,
+      "sha256": "2eaa9969e75513d0be2f6d3f29bd9c2b07845fa7e0a5412e3b646cadeb581799"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-n512-d2w8.json",
+      "bytes": 24709,
+      "sha256": "ee8fde8955113bc06aea842ecc9128e1d0f3d793a0c3ce7a082d0cb550d06e09"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_execution.py",
+      "bytes": 38862,
+      "sha256": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_backend.py",
+      "bytes": 15785,
+      "sha256": "748fbec0a18635f569962b1899fa277afa4b65333526e615d01458720ba5e6e8"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/classical_runner.py",
+      "bytes": 28371,
+      "sha256": "04c068b44204a362d7855aa214b1a10ed2b24c1144a4eaa3f8a54560914f77e1"
+    },
+    {
+      "path": "experiments/research/candidates/wang_pw/hashing.py",
+      "bytes": 2416,
+      "sha256": "17ac4878d5b9541c21a1f5a4bac948248557e4a089b1f61a436df16970fa41a0"
+    },
+    {
+      "path": "src/ibme/core/encoding.py",
+      "bytes": 8373,
+      "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+    },
+    {
+      "path": "experiments/research/srgg_proof_followup_delivery_check.py",
+      "bytes": 9837,
+      "sha256": "2b47fc5c2d5fb5fce7497e2517612048a1ff03c95f6a269b60cb3b47c0a0ed7c"
+    }
+  ],
+  "frozen_manifests": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/MANIFEST.json",
+      "sha256": "59649c0ea119a6342e448ddaa13a894e6f472dcaabd89a8682b6a6818b0f54b1"
+    }
+  ],
+  "reports": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/crt-projection.json",
+      "schema": "IBME/SRGG-CBD1-MOD3-PROJECTION/1",
+      "hash_references": [
+        {
+          "field": [
+            "source_sha256"
+          ],
+          "paths": [
+            "experiments/research/candidates/srgg/crt_projection.py"
+          ]
+        }
+      ],
+      "required_values": [
+        {
+          "field": [
+            "actual_entropy_bytes"
+          ],
+          "value": 0
+        },
+        {
+          "field": [
+            "draw_performed"
+          ],
+          "value": false
+        },
+        {
+          "field": [
+            "scope"
+          ],
+          "value": "one factor and full mod3 CBD1 public noisy-column TV, including shared-Ahat columns only"
+        }
+      ]
+    }
+  ]
+}

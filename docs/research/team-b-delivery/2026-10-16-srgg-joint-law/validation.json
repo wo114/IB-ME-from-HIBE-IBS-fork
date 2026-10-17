@@ -1,0 +1,79 @@
+{
+  "schema": "IBME/SRGG-PROOF-FOLLOWUP-VALIDATION/1",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null,
+  "delivery_kind": "WIP honest-service joint-law, quantum independent-row comparison, conditional ring-HNF reduction and full-modulus review",
+  "base_local_commit": "f3831ac576d003fb07d28e2ac5782b79aafdf6db",
+  "required_test_suites": {
+    "sage-related-existing-tests": {
+      "receipt": "sage.junit.xml",
+      "tests": 111,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "copied_evidence": [
+    {
+      "receipt": "image-precision.json",
+      "original_sha256": "79973cf27c8f5978b7d31bc70bd597a889d438c71babfd1a9ce393f13d7e9faa",
+      "original_path": "build/outputs/srgg-joint-law-2026-10-16/image-precision-normal.json",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "sage.junit.xml",
+      "original_sha256": "b58adcc629f7957b711da413469d20c04ca3930ff3a142193392557637dc3e0d",
+      "original_path": "build/outputs/srgg-joint-law-2026-10-16/sage-joint-basis.junit.xml",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "honest-service-budget.json",
+      "original_sha256": "19f2416beb2b27b86241b64103dd51f24498d60d4f4586f9751ca314e4917513",
+      "original_path": "build/outputs/srgg-joint-law-2026-10-16/honest-budget-root.json",
+      "transformation": "byte-copy"
+    }
+  ],
+  "commands": [
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_psf_bridge.py tests/test_srgg_public_pairs.py tests/test_srgg_seeded_xof.py tests/test_srgg_service_budget.py --junitxml=build/outputs/srgg-joint-law-2026-10-16/sage-joint-basis.junit.xml",
+    "python docs/research/team-b-delivery/2026-10-16-srgg-joint-law/verify-image-precision.py --output build/outputs/srgg-joint-law-2026-10-16/image-precision-normal.json",
+    "python -O docs/research/team-b-delivery/2026-10-16-srgg-joint-law/verify-image-precision.py --output build/outputs/srgg-joint-law-2026-10-16/image-precision-optimized.json",
+    "full-modulus-review.md embedded Python exact Fraction and integer checks executed",
+    "python docs/research/team-b-delivery/2026-10-16-srgg-joint-law/verify-honest-budget.py --output build/outputs/srgg-joint-law-2026-10-16/honest-budget-root.json",
+    "python -O docs/research/team-b-delivery/2026-10-16-srgg-joint-law/verify-honest-budget.py --output build/outputs/srgg-joint-law-2026-10-16/honest-budget-root-optimized.json"
+  ],
+  "normal_optimized_report_byte_identical": true,
+  "normal_optimized_original_report_sha256": "79973cf27c8f5978b7d31bc70bd597a889d438c71babfd1a9ce393f13d7e9faa",
+  "environment": {
+    "windows_python": "3.14.7",
+    "sage_python": "3.13.15",
+    "sage": "10.9",
+    "execution": "Windows pure exact arithmetic; specified WSL Sage environment for 111 relevant existing tests",
+    "new_peak_RAM_measured": false
+  },
+  "new_experiments": {
+    "actual_entropy_bytes": 0,
+    "draw_performed": false,
+    "identity_length_bytes": null,
+    "message_length_bytes": null,
+    "random_repeats": null,
+    "new_keys_or_signatures_generated": false,
+    "quantum_device_or_simulator_run": false,
+    "large_candidate_executed": false,
+    "heavy_hardness_estimator_run": false
+  },
+  "review": "root and three AI agents independently checked stated mathematical subresults; no external human audit or machine formalization",
+  "full_srgg_regression_rerun": false,
+  "existing_test_counts_overlap_prior_receipts": true,
+  "production_security_reduction_complete": false,
+  "native_strong_goal_retained": true,
+  "remote_push_performed": false,
+  "remaining": [
+    "complete chosen-identity/target-signing QROM simulation with all permitted service auxiliary information",
+    "concrete CBD1 and Gaussian normal-form module hardness at reduction time and advantage budgets",
+    "formal candidate satisfying the full reduction and execution resource gates",
+    "new admitted candidate real lifecycle, attacks and measured resources"
+  ],
+  "honest_budget_normal_optimized_byte_identical": true
+}

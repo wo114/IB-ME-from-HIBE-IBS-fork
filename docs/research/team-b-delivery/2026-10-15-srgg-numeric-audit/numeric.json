@@ -1,0 +1,88 @@
+{
+  "backend_admitted": false,
+  "environment": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "python": "3.13.15 | packaged by conda-forge | (main, Sep  2 2026, 22:01:58) [GCC 15.3.0]",
+    "sage": "10.9"
+  },
+  "hnf_key_aggregate": {
+    "attempts": 32,
+    "equation_check": "reconstruct_vector and extract_with_perturbation completed without exception",
+    "first_block_changed": 31,
+    "observed_aborts": 0,
+    "parameters": {
+      "Q": 15,
+      "b": 3,
+      "degree": 2,
+      "digits": 1,
+      "p": 5,
+      "rank": 1
+    },
+    "reconstructed_key_norm_squared": {
+      "maximum": 615,
+      "mean": "2003/8",
+      "minimum": 45
+    },
+    "scope": "aggregate HNF diagnostic only; no key values, private shapes, or key-distribution claim",
+    "successful_reconstructions": 32
+  },
+  "limitations": [
+    "Coupled disagreement counts are empirical finite-sample diagnostics, not a total-variation bound.",
+    "The two precision runs share byte streams but may consume different finite-table budgets.",
+    "HNF norm aggregates do not establish the reconstructed-key distribution or a Gaussian claim.",
+    "The small HNF fixture is a research probe and is not a security parameter set.",
+    "No formal parameter estimate, strong-unforgeability reduction, or HIBE composition is established."
+  ],
+  "paper_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+  "paper_source": "papers/2025_efficient_ibs_jia.pdf",
+  "parameters_are_formal": false,
+  "precision_coupling": [
+    {
+      "coupled_disagreement_rate": "0",
+      "coupled_disagreements": 0,
+      "coupling": "same deterministic byte stream per pair; test-only reproducibility",
+      "fixture": "sample-f-2d",
+      "high_aborts": 0,
+      "high_precision_bits": 192,
+      "low_aborts": 0,
+      "low_precision_bits": 128,
+      "max_linf_difference": 0,
+      "mean_l1_difference": "0",
+      "one_sided_abort_pairs": 0,
+      "paired_successes": 64,
+      "samples": 64,
+      "scope": "empirical finite-precision diagnostic; not a TV certificate"
+    },
+    {
+      "coupled_disagreement_rate": "0",
+      "coupled_disagreements": 0,
+      "coupling": "same deterministic byte stream per pair; test-only reproducibility",
+      "fixture": "sample-p-4d-block2",
+      "high_aborts": 0,
+      "high_precision_bits": 192,
+      "low_aborts": 0,
+      "low_precision_bits": 128,
+      "max_linf_difference": 0,
+      "mean_l1_difference": "0",
+      "one_sided_abort_pairs": 0,
+      "paired_successes": 64,
+      "samples": 64,
+      "scope": "empirical finite-precision diagnostic; not a TV certificate"
+    }
+  ],
+  "sample_geometry_covariance": {
+    "dimension": 6,
+    "fixture": "master_geometry-nonzero-R-degree2",
+    "max_absolute_covariance_error": "1.5243172645568847656250000000000000000000000000",
+    "max_diagonal_relative_error": "0.014387941577145208952515785620160278062225828496",
+    "max_nonzero_cross_covariance_error": "0.69824940693761752169518451858948296675945275335",
+    "mean_linf": "0.16503906250000000000000000000000000000000000000",
+    "nonzero_cross_covariance_entries": 10,
+    "samples": 4096,
+    "scope": "empirical full-matrix moment diagnostic; not a TV or key-distribution proof",
+    "target_convention": "geometry.perturbation/(2*pi)"
+  },
+  "schema": "IBME/SRGG-NUMERIC-STABILITY-AUDIT/1",
+  "security_claim": "none"
+}

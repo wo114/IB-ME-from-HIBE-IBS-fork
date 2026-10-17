@@ -1,0 +1,788 @@
+{
+  "backend_admitted": false,
+  "conditional_candidates": [
+    {
+      "Q": 13972913866395903,
+      "backend_admitted": false,
+      "conditional_arithmetic_candidate": true,
+      "density_convention": "exp(-pi*x^T*Sigma^-1*x); continuous physical covariance Sigma/(2*pi)",
+      "generic_recovery_projection": {
+        "classical_attack_bits": null,
+        "equations_and_secret_dimension": 1024,
+        "estimator_validated": false,
+        "interpretation": "source Section 5.2 per-column generic LWE projection; shared matrix across columns",
+        "public_root_right_hand_sides": 16,
+        "quantum_attack_bits": null,
+        "secret_plus_error_lattice_dimension": 2049
+      },
+      "geometry": {
+        "all_arithmetic_gates_pass": true,
+        "assumed_raw_norm_cap_enforced_by_current_backend": false,
+        "density_shape_noise_factor": 2,
+        "full_source_theorem_conditions_checked": false,
+        "gates": {
+          "Q_odd": true,
+          "conditional_Q_gt_2_gamma_exact": true,
+          "coprime_p_and_gadget_base": true,
+          "hnf_user_cap_covers_assumed_raw_cap": true,
+          "master_residual_strictly_positive_sufficient": true,
+          "odd_p_and_base_at_least_three": true,
+          "signature_residual_strictly_positive_sufficient": true
+        },
+        "hnf_corrected_norm_squared_cap": 338122385570209792,
+        "hnf_key_distribution_certified": false,
+        "master_minimum_width_squared_exclusive": 1031865954432,
+        "master_stacked_operator_spectral_squared_upper": 16777217,
+        "norm_cap_satisfaction_probability": null,
+        "q_mapping_assumption": "Theorem 1 odd q is provisionally identified with Q, not even 2Q",
+        "q_mapping_verified": false,
+        "signature_target_trace": 238255596480161099521436160,
+        "signing_minimum_width_squared_exclusive": 22159188660729268928704,
+        "signing_stacked_operator_spectral_squared_upper": 173118661411947413505,
+        "theorem1_s1_eta_condition_verified": false
+      },
+      "name": "conditional-n512-d2-w8",
+      "nist_security_category": null,
+      "parameters": {
+        "base": 31,
+        "degree": 512,
+        "digits": 8,
+        "master_first_squared": 1031865954433,
+        "master_second_squared": 1031865954433,
+        "name": "conditional-n512-d2-w8",
+        "p": 16383,
+        "r_squared": 64,
+        "rank": 2,
+        "raw_norm_squared_cap": 169060917974302720,
+        "sign_max_attempts": 16,
+        "signature_first_squared": 22159188660729268928705,
+        "signature_norm_squared_cap": 238255596480161099521436160,
+        "signature_second_squared": 22159188660729268928705,
+        "smoothing_epsilon_bits": 80,
+        "user_norm_squared_cap": 338122385570209792
+      },
+      "parameters_are_formal": false,
+      "resources": {
+        "arithmetic_model_scope": "current dense Gram and exact LDL loops; excludes all other work",
+        "hypothetical_fixed_width_component_payload_bytes": {
+          "encoding_status": "counting model only; encoder, framing and snapshots not implemented here",
+          "public_b_plus_seed": 110624,
+          "public_coefficient_bits": 54,
+          "response_context_and_binary_challenge": 60576,
+          "response_signed_offset_bits": 45,
+          "root_r_cbd1_two_bits_per_coefficient": 8192,
+          "signing_tail_offset_encoding": 35712,
+          "tail_signed_offset_bits": 31
+        },
+        "master_geometry": {
+          "coefficient_dimension": 10240,
+          "dense_to_module_coefficient_ratio": 512,
+          "full_shape_ldl_rational_updates": 178956968960,
+          "initial_stacked_gram_scalar_multiplications": 858993459200,
+          "lower_scalar_block_dimension": 8192,
+          "module_square_coefficient_count": 204800,
+          "module_square_polynomial_count": 400,
+          "shifted_schur_ldl_rational_updates": 1431655424,
+          "single_dense_matrix_payload_scenarios_bytes": {
+            "16": 1677721600,
+            "2048": 214748364800,
+            "64": 6710886400
+          },
+          "single_dense_square_entries": 104857600,
+          "upper_shape_dimension": 2048
+        },
+        "materialization": {
+          "public_b_coefficients": 16384,
+          "response_coefficients": 10752,
+          "root_r_coefficients": 32768,
+          "signing_full_vector_coefficients": 10240,
+          "signing_tail_coefficients": 9216,
+          "structured_signature_witness_coefficients": 10240
+        },
+        "memory_model_scope": "single matrix payload scenarios; no object overhead or simultaneous workspaces",
+        "online_logical_draws": {
+          "extraction_continuous_tickets": 2048,
+          "extraction_gadget_digit_draws": 8192,
+          "extraction_gaussian_scalars": 10240,
+          "sign_attempt_continuous_tickets": 10240,
+          "sign_attempt_gaussian_scalars": 11264,
+          "sign_operation_max_gaussian_scalars": 180224
+        },
+        "peak_memory_measurement": null,
+        "rational_bit_growth_bound": null,
+        "runtime_observations": {
+          "current_backend_executable": false,
+          "current_scalar_squared_width_limit": 1000000000000,
+          "dense_geometry_dimension_limit": 128,
+          "reason": "candidate is not a Config; Params, objects, wire and dense sampler admission remain separate",
+          "within_current_scalar_width_limit": false,
+          "within_dense_geometry_dimension_limit": false
+        },
+        "schoolbook_ring_arithmetic": {
+          "coefficient_products_per_negacyclic_product": 262144,
+          "public_A_times_vector_coefficient_products": 10485760,
+          "public_A_times_vector_ring_products": 40,
+          "response_count_scope": "current response_from_values including signing_relation; excludes caller's other work",
+          "response_relation_check_ring_products": 42,
+          "response_total_coefficient_products": 16777216,
+          "response_total_ring_products": 64,
+          "response_update_ring_products": 22,
+          "signature_commitment_coefficient_products": 11010048,
+          "signature_commitment_ring_products": 42
+        },
+        "signature_geometry": {
+          "coefficient_dimension": 10752,
+          "dense_to_module_coefficient_ratio": 512,
+          "full_shape_ldl_rational_updates": 207165061376,
+          "initial_stacked_gram_scalar_multiplications": 59190018048,
+          "lower_scalar_block_dimension": 512,
+          "module_square_coefficient_count": 225792,
+          "module_square_polynomial_count": 441,
+          "shifted_schur_ldl_rational_updates": 178956968960,
+          "single_dense_matrix_payload_scenarios_bytes": {
+            "16": 1849688064,
+            "2048": 236760072192,
+            "64": 7398752256
+          },
+          "single_dense_square_entries": 115605504,
+          "upper_shape_dimension": 10240
+        },
+        "timing_measurement": null
+      },
+      "rounding_lattice_smoothing": {
+        "density_shape_r_squared": 64,
+        "dimension": 10752,
+        "dual_gaussian_mass_upper": "118571099379011784113736688648896417641748464297615937576404566024103044751294464/1876286009352118057727573338102076729289840586248475251403706275115283394989498112451408435732810911173461343482051",
+        "epsilon": "1/1208925819614629174706176",
+        "lattice": "Z^dimension with Euclidean norm",
+        "method": "exact rational geometric-series bound using pi>2*ln(2)",
+        "scope": "rounding lattice only; excludes convolution, finite arithmetic and composition errors",
+        "sufficient_smoothing_condition_passes": true
+      },
+      "security_claim": "none",
+      "unclosed_conditions": [
+        "source physical-standard-deviation versus density-shape normalization",
+        "source Table 3 versus zeta-induced factor2 and exact theorem q/Q correspondence",
+        "raw and reconstructed user-key law, Gaussian tail probability and fixed-service query losses",
+        "full finite SampleF, convolution and gadget-to-key total-TV and abort budget",
+        "underlying strong-unforgeability premise and required composition security model",
+        "validated generic and structure-specific attack estimates with reduction losses",
+        "structured implementation, wire lifecycle, measurements and HIBE composition"
+      ]
+    },
+    {
+      "Q": 13972913866395903,
+      "backend_admitted": false,
+      "conditional_arithmetic_candidate": true,
+      "density_convention": "exp(-pi*x^T*Sigma^-1*x); continuous physical covariance Sigma/(2*pi)",
+      "generic_recovery_projection": {
+        "classical_attack_bits": null,
+        "equations_and_secret_dimension": 1536,
+        "estimator_validated": false,
+        "interpretation": "source Section 5.2 per-column generic LWE projection; shared matrix across columns",
+        "public_root_right_hand_sides": 24,
+        "quantum_attack_bits": null,
+        "secret_plus_error_lattice_dimension": 3073
+      },
+      "geometry": {
+        "all_arithmetic_gates_pass": true,
+        "assumed_raw_norm_cap_enforced_by_current_backend": false,
+        "density_shape_noise_factor": 2,
+        "full_source_theorem_conditions_checked": false,
+        "gates": {
+          "Q_odd": true,
+          "conditional_Q_gt_2_gamma_exact": true,
+          "coprime_p_and_gadget_base": true,
+          "hnf_user_cap_covers_assumed_raw_cap": true,
+          "master_residual_strictly_positive_sufficient": true,
+          "odd_p_and_base_at_least_three": true,
+          "signature_residual_strictly_positive_sufficient": true
+        },
+        "hnf_corrected_norm_squared_cap": 1141161982930956288,
+        "hnf_key_distribution_certified": false,
+        "master_minimum_width_squared_exclusive": 2321698320512,
+        "master_stacked_operator_spectral_squared_upper": 37748737,
+        "norm_cap_satisfaction_probability": null,
+        "q_mapping_assumption": "Theorem 1 odd q is provisionally identified with Q, not even 2Q",
+        "q_mapping_verified": false,
+        "signature_target_trace": 1187022306874499937283784192,
+        "signing_minimum_width_squared_exclusive": 74787191713363151290560,
+        "signing_stacked_operator_spectral_squared_upper": 584274935260649619457,
+        "theorem1_s1_eta_condition_verified": false
+      },
+      "name": "conditional-n512-d3-w8",
+      "nist_security_category": null,
+      "parameters": {
+        "base": 31,
+        "degree": 512,
+        "digits": 8,
+        "master_first_squared": 2321698320513,
+        "master_second_squared": 2321698320513,
+        "name": "conditional-n512-d3-w8",
+        "p": 16383,
+        "r_squared": 64,
+        "rank": 3,
+        "raw_norm_squared_cap": 570580579249274880,
+        "sign_max_attempts": 16,
+        "signature_first_squared": 74787191713363151290561,
+        "signature_norm_squared_cap": 1187022306874499937283784192,
+        "signature_second_squared": 74787191713363151290561,
+        "smoothing_epsilon_bits": 80,
+        "user_norm_squared_cap": 1141161982930956288
+      },
+      "parameters_are_formal": false,
+      "resources": {
+        "arithmetic_model_scope": "current dense Gram and exact LDL loops; excludes all other work",
+        "hypothetical_fixed_width_component_payload_bytes": {
+          "encoding_status": "counting model only; encoder, framing and snapshots not implemented here",
+          "public_b_plus_seed": 248864,
+          "public_coefficient_bits": 54,
+          "response_context_and_binary_challenge": 91360,
+          "response_signed_offset_bits": 46,
+          "root_r_cbd1_two_bits_per_coefficient": 18432,
+          "signing_tail_offset_encoding": 53568,
+          "tail_signed_offset_bits": 31
+        },
+        "master_geometry": {
+          "coefficient_dimension": 15360,
+          "dense_to_module_coefficient_ratio": 512,
+          "full_shape_ldl_rational_updates": 603979773440,
+          "initial_stacked_gram_scalar_multiplications": 2899102924800,
+          "lower_scalar_block_dimension": 12288,
+          "module_square_coefficient_count": 460800,
+          "module_square_polynomial_count": 900,
+          "shifted_schur_ldl_rational_updates": 4831837696,
+          "single_dense_matrix_payload_scenarios_bytes": {
+            "16": 3774873600,
+            "2048": 483183820800,
+            "64": 15099494400
+          },
+          "single_dense_square_entries": 235929600,
+          "upper_shape_dimension": 3072
+        },
+        "materialization": {
+          "public_b_coefficients": 36864,
+          "response_coefficients": 15872,
+          "root_r_coefficients": 73728,
+          "signing_full_vector_coefficients": 15360,
+          "signing_tail_coefficients": 13824,
+          "structured_signature_witness_coefficients": 15360
+        },
+        "memory_model_scope": "single matrix payload scenarios; no object overhead or simultaneous workspaces",
+        "online_logical_draws": {
+          "extraction_continuous_tickets": 3072,
+          "extraction_gadget_digit_draws": 12288,
+          "extraction_gaussian_scalars": 15360,
+          "sign_attempt_continuous_tickets": 15360,
+          "sign_attempt_gaussian_scalars": 16384,
+          "sign_operation_max_gaussian_scalars": 262144
+        },
+        "peak_memory_measurement": null,
+        "rational_bit_growth_bound": null,
+        "runtime_observations": {
+          "current_backend_executable": false,
+          "current_scalar_squared_width_limit": 1000000000000,
+          "dense_geometry_dimension_limit": 128,
+          "reason": "candidate is not a Config; Params, objects, wire and dense sampler admission remain separate",
+          "within_current_scalar_width_limit": false,
+          "within_dense_geometry_dimension_limit": false
+        },
+        "schoolbook_ring_arithmetic": {
+          "coefficient_products_per_negacyclic_product": 262144,
+          "public_A_times_vector_coefficient_products": 23592960,
+          "public_A_times_vector_ring_products": 90,
+          "response_count_scope": "current response_from_values including signing_relation; excludes caller's other work",
+          "response_relation_check_ring_products": 93,
+          "response_total_coefficient_products": 32768000,
+          "response_total_ring_products": 125,
+          "response_update_ring_products": 32,
+          "signature_commitment_coefficient_products": 24379392,
+          "signature_commitment_ring_products": 93
+        },
+        "signature_geometry": {
+          "coefficient_dimension": 15872,
+          "dense_to_module_coefficient_ratio": 512,
+          "full_shape_ldl_rational_updates": 666413386496,
+          "initial_stacked_gram_scalar_multiplications": 128983236608,
+          "lower_scalar_block_dimension": 512,
+          "module_square_coefficient_count": 492032,
+          "module_square_polynomial_count": 961,
+          "shifted_schur_ldl_rational_updates": 603979773440,
+          "single_dense_matrix_payload_scenarios_bytes": {
+            "16": 4030726144,
+            "2048": 515932946432,
+            "64": 16122904576
+          },
+          "single_dense_square_entries": 251920384,
+          "upper_shape_dimension": 15360
+        },
+        "timing_measurement": null
+      },
+      "rounding_lattice_smoothing": {
+        "density_shape_r_squared": 64,
+        "dimension": 15872,
+        "dual_gaussian_mass_upper": "3675704080749365307525837348115788946894202393226094064868541546747194387290128384/39402006196394479212279040100143610129375658521100139142110945288456774877294817385320201386343368893612240700178431",
+        "epsilon": "1/1208925819614629174706176",
+        "lattice": "Z^dimension with Euclidean norm",
+        "method": "exact rational geometric-series bound using pi>2*ln(2)",
+        "scope": "rounding lattice only; excludes convolution, finite arithmetic and composition errors",
+        "sufficient_smoothing_condition_passes": true
+      },
+      "security_claim": "none",
+      "unclosed_conditions": [
+        "source physical-standard-deviation versus density-shape normalization",
+        "source Table 3 versus zeta-induced factor2 and exact theorem q/Q correspondence",
+        "raw and reconstructed user-key law, Gaussian tail probability and fixed-service query losses",
+        "full finite SampleF, convolution and gadget-to-key total-TV and abort budget",
+        "underlying strong-unforgeability premise and required composition security model",
+        "validated generic and structure-specific attack estimates with reduction losses",
+        "structured implementation, wire lifecycle, measurements and HIBE composition"
+      ]
+    },
+    {
+      "Q": 13972913866395903,
+      "backend_admitted": false,
+      "conditional_arithmetic_candidate": true,
+      "density_convention": "exp(-pi*x^T*Sigma^-1*x); continuous physical covariance Sigma/(2*pi)",
+      "generic_recovery_projection": {
+        "classical_attack_bits": null,
+        "equations_and_secret_dimension": 2048,
+        "estimator_validated": false,
+        "interpretation": "source Section 5.2 per-column generic LWE projection; shared matrix across columns",
+        "public_root_right_hand_sides": 32,
+        "quantum_attack_bits": null,
+        "secret_plus_error_lattice_dimension": 4097
+      },
+      "geometry": {
+        "all_arithmetic_gates_pass": true,
+        "assumed_raw_norm_cap_enforced_by_current_backend": false,
+        "density_shape_noise_factor": 2,
+        "full_source_theorem_conditions_checked": false,
+        "gates": {
+          "Q_odd": true,
+          "conditional_Q_gt_2_gamma_exact": true,
+          "coprime_p_and_gadget_base": true,
+          "hnf_user_cap_covers_assumed_raw_cap": true,
+          "master_residual_strictly_positive_sufficient": true,
+          "odd_p_and_base_at_least_three": true,
+          "signature_residual_strictly_positive_sufficient": true
+        },
+        "hnf_corrected_norm_squared_cap": 2704975665782472704,
+        "hnf_key_distribution_certified": false,
+        "master_minimum_width_squared_exclusive": 4127463633024,
+        "master_stacked_operator_spectral_squared_upper": 67108865,
+        "norm_cap_satisfaction_probability": null,
+        "q_mapping_assumption": "Theorem 1 odd q is provisionally identified with Q, not even 2Q",
+        "q_mapping_verified": false,
+        "signature_target_trace": 3721320803605260992671240704,
+        "signing_minimum_width_squared_exclusive": 177273285232720131129536,
+        "signing_stacked_operator_spectral_squared_upper": 1384947540880626024449,
+        "theorem1_s1_eta_condition_verified": false
+      },
+      "name": "conditional-n512-d4-w8",
+      "nist_security_category": null,
+      "parameters": {
+        "base": 31,
+        "degree": 512,
+        "digits": 8,
+        "master_first_squared": 4127463633025,
+        "master_second_squared": 4127463633025,
+        "name": "conditional-n512-d4-w8",
+        "p": 16383,
+        "r_squared": 64,
+        "rank": 4,
+        "raw_norm_squared_cap": 1352487283269632000,
+        "sign_max_attempts": 16,
+        "signature_first_squared": 177273285232720131129537,
+        "signature_norm_squared_cap": 3721320803605260992671240704,
+        "signature_second_squared": 177273285232720131129537,
+        "smoothing_epsilon_bits": 80,
+        "user_norm_squared_cap": 2704975665782472704
+      },
+      "parameters_are_formal": false,
+      "resources": {
+        "arithmetic_model_scope": "current dense Gram and exact LDL loops; excludes all other work",
+        "hypothetical_fixed_width_component_payload_bytes": {
+          "encoding_status": "counting model only; encoder, framing and snapshots not implemented here",
+          "public_b_plus_seed": 442400,
+          "public_coefficient_bits": 54,
+          "response_context_and_binary_challenge": 123424,
+          "response_signed_offset_bits": 47,
+          "root_r_cbd1_two_bits_per_coefficient": 32768,
+          "signing_tail_offset_encoding": 73728,
+          "tail_signed_offset_bits": 32
+        },
+        "master_geometry": {
+          "coefficient_dimension": 20480,
+          "dense_to_module_coefficient_ratio": 512,
+          "full_shape_ldl_rational_updates": 1431655761920,
+          "initial_stacked_gram_scalar_multiplications": 6871947673600,
+          "lower_scalar_block_dimension": 16384,
+          "module_square_coefficient_count": 819200,
+          "module_square_polynomial_count": 1600,
+          "shifted_schur_ldl_rational_updates": 11453245440,
+          "single_dense_matrix_payload_scenarios_bytes": {
+            "16": 6710886400,
+            "2048": 858993459200,
+            "64": 26843545600
+          },
+          "single_dense_square_entries": 419430400,
+          "upper_shape_dimension": 4096
+        },
+        "materialization": {
+          "public_b_coefficients": 65536,
+          "response_coefficients": 20992,
+          "root_r_coefficients": 131072,
+          "signing_full_vector_coefficients": 20480,
+          "signing_tail_coefficients": 18432,
+          "structured_signature_witness_coefficients": 20480
+        },
+        "memory_model_scope": "single matrix payload scenarios; no object overhead or simultaneous workspaces",
+        "online_logical_draws": {
+          "extraction_continuous_tickets": 4096,
+          "extraction_gadget_digit_draws": 16384,
+          "extraction_gaussian_scalars": 20480,
+          "sign_attempt_continuous_tickets": 20480,
+          "sign_attempt_gaussian_scalars": 21504,
+          "sign_operation_max_gaussian_scalars": 344064
+        },
+        "peak_memory_measurement": null,
+        "rational_bit_growth_bound": null,
+        "runtime_observations": {
+          "current_backend_executable": false,
+          "current_scalar_squared_width_limit": 1000000000000,
+          "dense_geometry_dimension_limit": 128,
+          "reason": "candidate is not a Config; Params, objects, wire and dense sampler admission remain separate",
+          "within_current_scalar_width_limit": false,
+          "within_dense_geometry_dimension_limit": false
+        },
+        "schoolbook_ring_arithmetic": {
+          "coefficient_products_per_negacyclic_product": 262144,
+          "public_A_times_vector_coefficient_products": 41943040,
+          "public_A_times_vector_ring_products": 160,
+          "response_count_scope": "current response_from_values including signing_relation; excludes caller's other work",
+          "response_relation_check_ring_products": 164,
+          "response_total_coefficient_products": 54001664,
+          "response_total_ring_products": 206,
+          "response_update_ring_products": 42,
+          "signature_commitment_coefficient_products": 42991616,
+          "signature_commitment_ring_products": 164
+        },
+        "signature_geometry": {
+          "coefficient_dimension": 20992,
+          "dense_to_module_coefficient_ratio": 512,
+          "full_shape_ldl_rational_updates": 1541736668416,
+          "initial_stacked_gram_scalar_multiplications": 225620000768,
+          "lower_scalar_block_dimension": 512,
+          "module_square_coefficient_count": 860672,
+          "module_square_polynomial_count": 1681,
+          "shifted_schur_ldl_rational_updates": 1431655761920,
+          "single_dense_matrix_payload_scenarios_bytes": {
+            "16": 7050625024,
+            "2048": 902480003072,
+            "64": 28202500096
+          },
+          "single_dense_square_entries": 440664064,
+          "upper_shape_dimension": 20480
+        },
+        "timing_measurement": null
+      },
+      "rounding_lattice_smoothing": {
+        "density_shape_r_squared": 64,
+        "dimension": 20992,
+        "dual_gaussian_mass_upper": "4861415074539483148663204234604753123311687036202253440632587206988224834803073024/39402006196394479212279040100143608943664664730982298004744058799492598459810174409160825622297708652581793187233791",
+        "epsilon": "1/1208925819614629174706176",
+        "lattice": "Z^dimension with Euclidean norm",
+        "method": "exact rational geometric-series bound using pi>2*ln(2)",
+        "scope": "rounding lattice only; excludes convolution, finite arithmetic and composition errors",
+        "sufficient_smoothing_condition_passes": true
+      },
+      "security_claim": "none",
+      "unclosed_conditions": [
+        "source physical-standard-deviation versus density-shape normalization",
+        "source Table 3 versus zeta-induced factor2 and exact theorem q/Q correspondence",
+        "raw and reconstructed user-key law, Gaussian tail probability and fixed-service query losses",
+        "full finite SampleF, convolution and gadget-to-key total-TV and abort budget",
+        "underlying strong-unforgeability premise and required composition security model",
+        "validated generic and structure-specific attack estimates with reduction losses",
+        "structured implementation, wire lifecycle, measurements and HIBE composition"
+      ]
+    }
+  ],
+  "gadget_digit_search": [
+    {
+      "degree": 512,
+      "first_passing_digits": 7,
+      "interpretation": "first arithmetic pass within this finite search; no security or performance optimum",
+      "rank": 2,
+      "trials": [
+        {
+          "Q": 15744063,
+          "arithmetic_passes": false,
+          "digits": 2,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 4608
+        },
+        {
+          "Q": 488065953,
+          "arithmetic_passes": false,
+          "digits": 3,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 5632
+        },
+        {
+          "Q": 15130044543,
+          "arithmetic_passes": false,
+          "digits": 4,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 6656
+        },
+        {
+          "Q": 469031380833,
+          "arithmetic_passes": false,
+          "digits": 5,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 7680
+        },
+        {
+          "Q": 14539972805823,
+          "arithmetic_passes": false,
+          "digits": 6,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 8704
+        },
+        {
+          "Q": 450739156980513,
+          "arithmetic_passes": true,
+          "digits": 7,
+          "failed_gates": [],
+          "signature_coefficient_dimension": 9728
+        },
+        {
+          "Q": 13972913866395903,
+          "arithmetic_passes": true,
+          "digits": 8,
+          "failed_gates": [],
+          "signature_coefficient_dimension": 10752
+        }
+      ]
+    },
+    {
+      "degree": 512,
+      "first_passing_digits": 7,
+      "interpretation": "first arithmetic pass within this finite search; no security or performance optimum",
+      "rank": 3,
+      "trials": [
+        {
+          "Q": 15744063,
+          "arithmetic_passes": false,
+          "digits": 2,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 6656
+        },
+        {
+          "Q": 488065953,
+          "arithmetic_passes": false,
+          "digits": 3,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 8192
+        },
+        {
+          "Q": 15130044543,
+          "arithmetic_passes": false,
+          "digits": 4,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 9728
+        },
+        {
+          "Q": 469031380833,
+          "arithmetic_passes": false,
+          "digits": 5,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 11264
+        },
+        {
+          "Q": 14539972805823,
+          "arithmetic_passes": false,
+          "digits": 6,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 12800
+        },
+        {
+          "Q": 450739156980513,
+          "arithmetic_passes": true,
+          "digits": 7,
+          "failed_gates": [],
+          "signature_coefficient_dimension": 14336
+        },
+        {
+          "Q": 13972913866395903,
+          "arithmetic_passes": true,
+          "digits": 8,
+          "failed_gates": [],
+          "signature_coefficient_dimension": 15872
+        }
+      ]
+    },
+    {
+      "degree": 512,
+      "first_passing_digits": 7,
+      "interpretation": "first arithmetic pass within this finite search; no security or performance optimum",
+      "rank": 4,
+      "trials": [
+        {
+          "Q": 15744063,
+          "arithmetic_passes": false,
+          "digits": 2,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 8704
+        },
+        {
+          "Q": 488065953,
+          "arithmetic_passes": false,
+          "digits": 3,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 10752
+        },
+        {
+          "Q": 15130044543,
+          "arithmetic_passes": false,
+          "digits": 4,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 12800
+        },
+        {
+          "Q": 469031380833,
+          "arithmetic_passes": false,
+          "digits": 5,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 14848
+        },
+        {
+          "Q": 14539972805823,
+          "arithmetic_passes": false,
+          "digits": 6,
+          "failed_gates": [
+            "conditional_Q_gt_2_gamma_exact"
+          ],
+          "signature_coefficient_dimension": 16896
+        },
+        {
+          "Q": 450739156980513,
+          "arithmetic_passes": true,
+          "digits": 7,
+          "failed_gates": [],
+          "signature_coefficient_dimension": 18944
+        },
+        {
+          "Q": 13972913866395903,
+          "arithmetic_passes": true,
+          "digits": 8,
+          "failed_gates": [],
+          "signature_coefficient_dimension": 20992
+        }
+      ]
+    }
+  ],
+  "kyber_nist_comparison": {
+    "nist_category_inferred": false,
+    "reason": "KEM and IBS are different primitives; candidate attack and reduction estimates are unvalidated",
+    "reference": "NIST FIPS 203 ML-KEM; resource and independently estimated security targets only",
+    "source": "https://doi.org/10.6028/NIST.FIPS.203"
+  },
+  "paper": {
+    "doi": "10.1049/ise2/6684889",
+    "reviewed_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "parameters_are_formal": false,
+  "schema": "IBME/SRGG-CONDITIONAL-CANDIDATES/1",
+  "scope": "HIBE-independent conditional arithmetic and resource counting; no cryptographic execution",
+  "security_claim": "none",
+  "source_rows": [
+    {
+      "Q": 15744063,
+      "degree": 512,
+      "digits": 2,
+      "gamma_squared_exact_decimal_reading": "177127278361416889/100",
+      "literal_Q_gt_2_gamma": false,
+      "literal_even_2Q_gt_2_gamma": false,
+      "name": "PARAM-I",
+      "normalization_verified": false,
+      "p": 16383,
+      "parameters_are_formal": false,
+      "rank": 2,
+      "source_pages": [
+        4,
+        9,
+        10
+      ],
+      "strong_signature_premise_verified": false
+    },
+    {
+      "Q": 15744063,
+      "degree": 512,
+      "digits": 2,
+      "gamma_squared_exact_decimal_reading": "4051726305661584",
+      "literal_Q_gt_2_gamma": false,
+      "literal_even_2Q_gt_2_gamma": false,
+      "name": "PARAM-II",
+      "normalization_verified": false,
+      "p": 16383,
+      "parameters_are_formal": false,
+      "rank": 3,
+      "source_pages": [
+        4,
+        9,
+        10
+      ],
+      "strong_signature_premise_verified": false
+    },
+    {
+      "Q": 15744063,
+      "degree": 512,
+      "digits": 2,
+      "gamma_squared_exact_decimal_reading": "29980181768875321/4",
+      "literal_Q_gt_2_gamma": false,
+      "literal_even_2Q_gt_2_gamma": false,
+      "name": "PARAM-III",
+      "normalization_verified": false,
+      "p": 16383,
+      "parameters_are_formal": false,
+      "rank": 4,
+      "source_pages": [
+        4,
+        9,
+        10
+      ],
+      "strong_signature_premise_verified": false
+    }
+  ]
+}

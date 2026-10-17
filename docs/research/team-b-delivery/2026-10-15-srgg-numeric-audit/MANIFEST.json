@@ -1,0 +1,31 @@
+{
+  "schema": "IBME/SRGG-NUMERIC-STABILITY-AUDIT/1",
+  "base_commit": "fa7bb952740a8826d26082b3b7a16152d4d4a54c",
+  "files": {
+    "experiments/research/candidates/srgg/numeric_audit.py": {
+      "sha256": "346fd3bbb30119f79a5ebe0dbd3490f92afc9ce8f895010f66a42bfc0e86ecaf",
+      "bytes": 11994
+    },
+    "tests/test_srgg_numeric_audit.py": {
+      "sha256": "bb55fa233c15b71128321e052ee025dbee188cdc6ccd684de1762a952b08d8b3",
+      "bytes": 988
+    },
+    "docs/research/team-b-delivery/2026-10-15-srgg-numeric-audit/README.md": {
+      "sha256": "070efb2ae430e68c880d9b02bd689d54ce116f7d3d54b1be0d81e97372cb3f7b",
+      "bytes": 2375
+    },
+    "docs/research/team-b-delivery/2026-10-15-srgg-numeric-audit/numeric.json": {
+      "sha256": "759ba8104c65e7d5862ddb17d7e5774276f3a825fecb38f987d3a1d5d1bd46bb",
+      "bytes": 3437
+    }
+  },
+  "verification": {
+    "precision_sample_f": "64 paired successes / 0 disagreements / 0 aborts",
+    "precision_sample_p": "64 paired successes / 0 disagreements / 0 aborts",
+    "sample_geometry_covariance": "4096 samples / 6 dimensions / max abs error about 1.525",
+    "hnf_aggregate": "32 successful reconstructions / 0 aborts",
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  }
+}

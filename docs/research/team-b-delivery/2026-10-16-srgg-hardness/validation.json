@@ -1,0 +1,55 @@
+{
+  "schema": "IBME/SRGG-HARDNESS-DELIVERY/1",
+  "date": "2026-10-16",
+  "source_sha256": {
+    "experiments/research/candidates/srgg/hardness_search.py": "1f69c43133868cf6b7fb8580f9a724ccc1ab194cf3271fc48219e097c59eb312",
+    "tests/test_srgg_hardness_search.py": "38dae88a49dd78a05e922729528df2a2d15e8eae9cbc6a7a1a7cebdfede245da"
+  },
+  "artifacts_sha256": {
+    "finite-search.json": "2eaa9969e75513d0be2f6d3f29bd9c2b07845fa7e0a5412e3b646cadeb581799",
+    "README.md": "b99293fc0782931af0ade6ab77cb8cac8bc656ebdf5000f9bebd9416bcaf8a96",
+    "sage.junit.xml": "3746a7713186c103c01298c330a74409b49019013f406a2143f849550bded49a",
+    "windows.junit.xml": "8793dd29e603ec83d889da70dd5325090675d512e5b37c9c2fbd7d47944517c2"
+  },
+  "tests": {
+    "windows": {
+      "counts": {
+        "tests": 24,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "raw_source": "build\\outputs\\srgg-hardness-2026-10-16\\windows-final.junit.xml",
+      "public_receipt": "windows.junit.xml",
+      "transformation": "remove hostname; normalize XML whitespace only"
+    },
+    "sage": {
+      "counts": {
+        "tests": 24,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "raw_source": "build\\outputs\\srgg-hardness-2026-10-16\\sage-final.junit.xml",
+      "public_receipt": "sage.junit.xml",
+      "transformation": "remove hostname; normalize XML whitespace only"
+    }
+  },
+  "estimate_status_counts": {
+    "finite_heuristic_comparator": 146,
+    "error_no_estimate": 20,
+    "no_finite_estimate": 20
+  },
+  "source_hashes_match_actual_estimator_run": true,
+  "geometry_shape_trials": 4650,
+  "selected_candidates": 30,
+  "total_estimated_points": 31,
+  "actual_entropy_bytes": 0,
+  "production_backend_modified": false,
+  "statistical_or_crypto_experiment_performed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null,
+  "checks_scope": "receipt/input/hash consistency; not a rerun or a security proof"
+}
