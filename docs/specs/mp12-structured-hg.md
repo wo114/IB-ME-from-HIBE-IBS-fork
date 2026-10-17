@@ -6,6 +6,8 @@
 
 固定 [MP12 作者稿](../../papers/2011_lattice_trapdoors_micciancio.pdf) §5.4 / Algorithm 3 / Theorem 5.5、§5.5 / Algorithm 4 / Lemma 5.7，以及 [CHKP 作者稿](../../papers/2010_bonsai_trees_cash.pdf) §5.1–5.3。MP12 的理想分布结论不直接证明本有限实现或修改后的 HIBE 安全。
 
+这里的 CHKP 作者稿与 EUROCRYPT 2010 出版版不是同一布局。出版版 §5.3 的深度 2 ROHIBE 只把 `A0 || H(rcv)` 的 `2m` 列送入 KEM，`G(rcv,phi)` 是终端 syndrome；Theorem 5.3 也固定 `dm`。当前版本下列 `3m` 全 LWE 叶来自作者稿的 `(t+1)m` 定义，而该稿自己的定理/模拟器仍按 `dm`，故不能直接继承其安全结论。出版版目标与强制不准入证书见[2026-10-17 交付](../research/team-a-delivery/2026-10-17-chkp-published-target/README.md)；现版本不静默改变对象或 wire。
+
 设 `w=n·ceil(log₂q)`，根前缀 `p=2n`，`m=p+w`。根为计算型 `[I|Â]` 及实际有限离散高斯 R，`A=[Ā|G−ĀR]`，标签 H 固定单位矩阵。公开矩阵遵循原有规范 H/G 和两层身份 `(rcv, phi)`：
 
 - 根 `A₀` 有 m 列；接收者矩阵 `[A₀|H(rcv)]` 有 2m 列。
@@ -52,6 +54,6 @@ prefix≤512、总列≤8192、R项≤2²²等原工具门未放宽；另预检�
 
 ## 安全与验收边界
 
-n=2 的公开有限误差枚举在真实实例中恢复了全部32 B；它是负控，不提供 LWE 保密性。保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。匿名 ROM、计算型根、固定发钥与具体有限采样的整体安全映射仍待；不直接继承原 CHKP 定理，不声称 QROM、NIST 等级、标准模型安全或端到端加速。
+n=2 的公开有限误差枚举在真实实例中恢复了全部32 B；它是负控，不提供 LWE 保密性。保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。除匿名 ROM、计算型根、固定发钥与具体有限采样的整体安全映射外，`3m` 实现与出版版 `2m` 定理的布局差异也尚未解决；不直接继承原 CHKP 定理，不声称 QROM、NIST 等级、标准模型安全或端到端加速。
 
 同根真实2×2、五类对象、新进程零熵恢复、公共六种 IBS 配对和安装 CLI 的准确版本、重复次数、环境及失败记录见[本轮交付](../research/team-a-delivery/2026-10-15-framework-and-structured/README.md)。功能/统计测试不能替代安全证明。
