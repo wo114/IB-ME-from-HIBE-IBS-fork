@@ -116,7 +116,7 @@ def smoothing_epsilon(dimension, width_squared):
     term = (-field.pi()*field(width)).exp()
     theta = 2*term/(1-term**3)
     epsilon = (1+theta)**dimension-1
-    return _upper(QQ(epsilon.upper()))
+    return _upper(epsilon.upper().exact_rational())
 
 
 def _scalar(width_squared, opts):

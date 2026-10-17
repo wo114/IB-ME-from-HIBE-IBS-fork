@@ -57,3 +57,11 @@ python -m pytest -q tests/test_srgg_parameter_closure.py \
 ```
 
 本批结果是参数来源和必要条件的审计证据，不能替代安全证明、完整采样分布、困难性估计或 HIBE 组合验收。
+
+## 2026-10-18 续审：数值修复与局部预算（WIP）
+
+[续审说明](completion.md)记录了 Sage 区间端点的严格转换修复、固定原 r 的全中心 theta 界、条件性签名范数/64次重试界，以及同一原 PARAM-III 根上的160/192位数值比较。旧参数、失败与优化尝试保留；旧有限数值收据涉及的端点保证须重新核验。
+
+机器材料为 [来源/资源汇总](completion.json)、[归一化预算](rounding-budget.json)、[条件范数预算](norm-budget.json)、[同根精度实测](precision.json)和[历史条件预算](historical-service-budget.json)。六个局部归一化维度通过 `ε=2^-24`，不替代论文 `m=10240` 的条件；后者对当前精确实现 shape 已有严格必要条件失败证书。正式参数、HNF/签名分布与完整安全归约仍未闭合。
+
+本批修改文件、完整测试命令与结果见 [validation.json](validation.json)，源码和公开产物哈希见 [MANIFEST.json](MANIFEST.json)。[旧失败回归](ci-initial-failed.json)保留源码 guard 的拒绝结果；[最终回归](ci-final.json)与 [JUnit](ci-final.xml)对应修复后的版本，两者不混作同一次验证。端点错误的[修复前诊断](interval-endpoint-probe.json)只保留为历史证据，当前包含关系由独立端点回归检查。
