@@ -1,0 +1,84 @@
+{
+  "schema": "A-TARGET-PARAMETERS-PUBLIC-ARCHIVE/1",
+  "archived_on": "2026-10-16",
+  "kind": "archive of earlier actual runs, not new estimates or private sampling",
+  "mathematical_source_commit": "9a9dedcea1b7506f43172424bc447869692f0472",
+  "installation_probe_commit": "0172694",
+  "artifacts": {
+    "complete-targets.json": {
+      "bytes": 119627,
+      "sha256": "7a0f644ffd40387e108661153c6941bd4b577f48bad5e8df8cc5f0f744d7434b",
+      "original_bytes_sha256": "7a0f644ffd40387e108661153c6941bd4b577f48bad5e8df8cc5f0f744d7434b"
+    },
+    "installed-final.json": {
+      "bytes": 9217,
+      "sha256": "d4133cb59267eaff5decd04b04cadb143fc954d14db40889c084b4408bcb6230",
+      "original_bytes_sha256": "d4133cb59267eaff5decd04b04cadb143fc954d14db40889c084b4408bcb6230"
+    },
+    "portable-final.xml": {
+      "bytes": 3067,
+      "sha256": "95d8807f115d04193f246cb4214693b47ac506ad860caf0daa9b9b8d96dcb465",
+      "original_bytes_sha256": "95d8807f115d04193f246cb4214693b47ac506ad860caf0daa9b9b8d96dcb465"
+    },
+    "public-layout-summary.json": {
+      "bytes": 1867,
+      "sha256": "9272d932f33ebdd7dce50db341d83bd40d82a76ce95a990fa1e5ff15eaf4206f",
+      "original_bytes_sha256": "9272d932f33ebdd7dce50db341d83bd40d82a76ce95a990fa1e5ff15eaf4206f"
+    },
+    "strict-sage.json": {
+      "bytes": 2761,
+      "sha256": "e13179152b65d4d6dab8879156f9321f91a53e87114ee5e11812234b476e1a0f",
+      "original_bytes_sha256": "e13179152b65d4d6dab8879156f9321f91a53e87114ee5e11812234b476e1a0f"
+    },
+    "strict-sage.xml": {
+      "bytes": 17629,
+      "sha256": "9869cca0bad60d9307d721808982381598312a99e3b065cefcf38f44cf8c3ba4",
+      "original_bytes_sha256": "9869cca0bad60d9307d721808982381598312a99e3b065cefcf38f44cf8c3ba4"
+    },
+    "target-first.xml": {
+      "bytes": 1826,
+      "sha256": "88abfc20a26f7b15d70b805c72014f2ddac88f8bbdc7846a3c05e265005bd0da",
+      "original_bytes_sha256": "88abfc20a26f7b15d70b805c72014f2ddac88f8bbdc7846a3c05e265005bd0da"
+    },
+    "target-fixed.xml": {
+      "bytes": 2208,
+      "sha256": "5263cf023d74f596305d36d96764c4400ead66b96b77346af7cf7424ac470eeb",
+      "original_bytes_sha256": "5263cf023d74f596305d36d96764c4400ead66b96b77346af7cf7424ac470eeb"
+    }
+  },
+  "target_rows": 4,
+  "estimator_calls": 32,
+  "finite_estimates": 32,
+  "test_counts": {
+    "strict-sage.xml": {
+      "tests": 125,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "portable-final.xml": {
+      "tests": 19,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "target-first.xml": {
+      "tests": 6,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "target-fixed.xml": {
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "copied_artifacts_contain_no_private_key_or_random_tape": true,
+  "archive_key_generations": 0,
+  "archive_estimator_calls": 0,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

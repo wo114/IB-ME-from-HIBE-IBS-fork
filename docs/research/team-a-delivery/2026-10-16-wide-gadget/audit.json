@@ -1,0 +1,102 @@
+{
+  "schema": "A-WIDE-PRIME-GADGET-DELIVERY/1",
+  "date": "2026-10-16",
+  "source_commit": "f8ecb9382c37d706e76cf0be6ef2c055288fa112",
+  "source_sha256": {
+    "ci/suites.json": "a494aa2ef60fa9dd4238ad14eda24b4ce7d61e10ec09f1d840c816ee67b81587",
+    "experiments/research/structured_target_screen.py": "9f1bcc5ce9673eb20c6e95558e6265b736f39053a856cc2233bdb506832c8f94",
+    "src/ibme/lattice/matrix_sampling/mp12_structured.py": "06a9aea5226ef74e2ab235b1645bc4810c96e1b2059cd4dee1b57caeaac1874c",
+    "src/ibme/lattice/matrix_sampling/prime_gadget.py": "f936c51e407c11f7d0f13c102f03a77fdebab900b449496c806f9cb156b90311",
+    "tests/install_probes/verify_prime_gadget.py": "ce5001272e0753272763b36535adbf844d56202a3aa2cc88c1b389ba01d3fc77",
+    "tests/test_prime_gadget.py": "7534d2783e0ea3ac1b18b4eff4b3916ca0aed72f2f68d52c931209601a51a2c2"
+  },
+  "changed_implementation_files": [
+    "ci/suites.json",
+    "experiments/research/structured_target_screen.py",
+    "src/ibme/lattice/matrix_sampling/mp12_structured.py",
+    "src/ibme/lattice/matrix_sampling/prime_gadget.py",
+    "tests/install_probes/verify_prime_gadget.py",
+    "tests/test_prime_gadget.py"
+  ],
+  "artifacts": {
+    "ci-catalog.xml": {
+      "bytes": 3354,
+      "sha256": "7e283e263fe3df13e5f168efa950ef9252fc492a70d69e96052e124a0d1c278c"
+    },
+    "installed-final.json": {
+      "bytes": 9731,
+      "sha256": "f325189c0b892f283376a1201d9fb6de460bc93e60fb4e9db0a083febca27793"
+    },
+    "regression.xml": {
+      "bytes": 21424,
+      "sha256": "b5b8a99ce3f132a58e1e07ab87962fb27eccfa6d3307d8f98969f762afce124c"
+    },
+    "targeted.xml": {
+      "bytes": 8740,
+      "sha256": "31154f457d89dbc924b15f787a7485c1deb84174730232b03bcf6b8b16e6abde"
+    }
+  },
+  "wheel": {
+    "name": "ibme-0.1.0-py3-none-any.whl",
+    "bytes": 1399011,
+    "sha256": "1a319e1ac0e0f4eaa92aef6a486b2a4a3baec6a9b269bf2d3054c9759671624b"
+  },
+  "hardware": "Intel Core Ultra 9 275HX",
+  "software": {
+    "host": "Windows",
+    "sage": "10.9",
+    "python": "3.13.14",
+    "kernel": "WSL Linux 6.18.33.2",
+    "sage_environment": "~/miniconda3/envs/sage"
+  },
+  "verification": {
+    "targeted_passed": 62,
+    "full_specialty_passed": 153,
+    "full_specialty_skipped": 0,
+    "new_tool_tests": 28,
+    "ci_catalog_passed": 25,
+    "ci_catalog_skipped": 0,
+    "counts_overlap": true,
+    "installed_provider_count": 33,
+    "installed_public_sample_cases": 3,
+    "complete_public_target_definitions_replayed": 4,
+    "estimator_calls_reexecuted": 0
+  },
+  "commands": [
+    "PYTHONPATH=src:. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 ~/miniconda3/envs/sage/bin/python -m pytest -p no:cacheprovider tests/test_prime_gadget.py tests/test_mp12_distribution_budget.py tests/test_mp12_full_extension.py tests/test_mp12_public_service_budget.py tests/test_mp12_structured_assembly.py tests/test_mp12_structured_hibe.py tests/test_mp12_structured_params.py tests/test_mp12_structured_sampling.py tests/test_mp12_target_screen.py tests/test_structured_identity_view.py -q --junitxml=test-results/a-wide-gadget-regression.xml",
+    "python -m pytest -p no:cacheprovider tests/test_ci_catalog.py -q --junitxml=test-results/a-wide-gadget-ci-catalog.xml",
+    "python -m pip wheel --no-index --no-build-isolation --no-deps --wheel-dir test-results/a-wide-gadget/wheels .",
+    "~/miniconda3/envs/sage/bin/python -m pip install --no-index --no-deps --target test-results/a-wide-gadget/site test-results/a-wide-gadget/wheels/ibme-0.1.0-py3-none-any.whl",
+    "outside cwd: ~/miniconda3/envs/sage/bin/python -I <checkout>/tests/install_probes/verify_prime_gadget.py --site <checkout>/test-results/a-wide-gadget/site --source-targets <checkout>/docs/research/team-a-delivery/2026-10-16-target-parameters/evidence/complete-targets.json --output <checkout>/docs/research/team-a-delivery/2026-10-16-wide-gadget/evidence/installed-final.json"
+  ],
+  "failed_initial_packaging_attempt": {
+    "environment": "Sage",
+    "reason": "setuptools.build_meta unavailable; metadata/build environment failure",
+    "cryptographic_tests_failed": false
+  },
+  "scope": {
+    "public_prime_modulus_bits": 256,
+    "expanded_product_basis_entries": 0,
+    "private_inputs_read": 0,
+    "private_values_exported": false,
+    "current_HIBE_domain_extended": false,
+    "current_wire_changed": false,
+    "lifetime192_recipe_integrated": false,
+    "full_formal_parameter_admission": false,
+    "paused_routes_started": [],
+    "new_wide_tool_HIBE_keys_generated": 0,
+    "existing_regression_generates_disposable_teaching_keys": true,
+    "original_service_keys_reissued": false,
+    "regression_HG_main_fixture": {
+      "n": 2,
+      "q": "549755813911",
+      "parent_identity_bytes": 86,
+      "child_identity_bytes": 86,
+      "seed_bytes": 32,
+      "test_only": true
+    }
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
