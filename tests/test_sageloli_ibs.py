@@ -37,6 +37,8 @@ from experiments.research.candidates.sageloli.objects import (
     RsisMasterSecret,
     RsisPublicKey,
     RsisSigningKey,
+    RsisSignature,
+    SisSignature,
     SisMasterSecret,
     SisPublicKey,
     SisSigningKey,
@@ -183,6 +185,16 @@ def test_concrete_route_parsers_reject_cross_route_public_keys():
         RsisSigningKey.from_bytes(sis_key.to_bytes())
     with pytest.raises(SerializationError):
         SisSigningKey.from_bytes(rsis_key.to_bytes())
+
+
+def test_signature_objects_are_concrete_per_route():
+    context = b"c" * 32
+    salt = b"s" * 32
+    sis = SisSignature(context, salt, salt, (0,))
+    rsis = RsisSignature(context, salt, salt, (0,))
+    assert type(sis) is SisSignature
+    assert type(rsis) is RsisSignature
+    assert type(sis) is not type(rsis)
 
 
 @pytest.mark.parametrize("route,params_type,backend_type", ROUTES)

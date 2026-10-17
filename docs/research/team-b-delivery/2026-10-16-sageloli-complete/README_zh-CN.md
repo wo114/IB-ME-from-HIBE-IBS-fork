@@ -32,6 +32,8 @@
 
 宽度采用论文的密度约定 `exp(-π||x||²/s²)`，固定舍入宽度为 `r²=16`。这些点刻意很小：公开范数检查是空泛的，公开线性求解可以生成被接受的签名；相关证据必须保留，因此不宣称任何安全类别。论文的两组大 RSIS 点 `(k,d,l)=(65,2048,132)` 和 `(153,2048,308)` 只作记录，未在本实现运行。论文没有给出具体发表的 SIS 点，因此不虚构。
 
+只有默认 RSIS 点按论文 Table 4 的形状不等式核验。参数类仍允许研究探索用的其它尺寸；构造其它实例不代表其满足论文条件或获得安全准入。
+
 ## 论文对应与工程选择
 
 根公钥构造为 `[Abar | G-Abar R]`。矩阵路线使用 CBD1，环路线使用论文的四分块 `4P_(1/2) × P_(1/2) × 4P_(1/2)` 根分布。由于论文同时打印负号构造和 `A[-T;I]=G`，v2 存储 `R`，向根采样器传 `T=-R`；委派身份钥满足 `A*T_id=H1-G`，签名时把正的 `T_id` 传给同一采样器接口。
@@ -48,13 +50,13 @@ SIS 委派进行 `nk` 次全维调用。RSIS 进行 `k` 次系数级调用，再
 
 ## 重放命令
 
-最终测试和运行收据由集成代理回填：
+最终测试和运行收据已在仓库的 WSL Sage 环境中核验：
 
 ```text
-`PYTHONPATH=src:. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_sageloli_ibs.py tests/test_sageloli_sampling.py tests/test_sageloli_uniform.py tests/test_sageloli_service_recovery.py tests/test_sageloli_probe.py` → **144 passed, 0 failed, 0 skipped in 222.80 s** (WSL Ubuntu-24.04, Sage 10.9, Python 3.13.15). JUnit: `build/outputs/sageloli-complete-2026-10-16/sageloli-all.xml`; service recovery subset: 36 passed in 79.06 s; uniform subset: 53 passed in 0.53 s.
+`PYTHONPATH=src:. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_sageloli_ibs.py tests/test_sageloli_sampling.py tests/test_sageloli_uniform.py tests/test_sageloli_service_recovery.py tests/test_sageloli_probe.py` → **145 passed, 0 failed, 0 skipped in 233.16 s** (WSL Ubuntu-24.04, Sage 10.9, Python 3.13.15). JUnit: `build/outputs/sageloli-complete-2026-10-16/sageloli-all.xml`。
 ```
 
-集成后应在 Sage 环境运行并记录精确命令、版本、平台、重复次数和结果。不要把种子、主陷门、身份钥、签名或随机带写入本目录或 Git。
+该命令在 WSL Ubuntu-24.04、Sage 10.9、Python 3.13.15 中运行 1 次。不要把种子、主陷门、身份钥、签名或随机带写入本目录或 Git。
 
 ## 范围与剩余缺口
 

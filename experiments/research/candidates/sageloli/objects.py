@@ -473,14 +473,29 @@ class RsisSigningKey(SigningKey):
     pass
 
 
+class SisSignature(Signature):
+    """Concrete matrix-SIS signature object.
+
+    Keeping a route-specific class prevents a structurally valid Ring-SIS
+    signature from being treated as a matrix-SIS object by callers that use
+    the public object types directly.  The wire envelope remains shared
+    because the bound public-key context and parameter shape identify the
+    route during decoding.
+    """
+
+
+class RsisSignature(Signature):
+    """Concrete Ring-SIS signature object."""
+
+
 SISPublicKey = SisPublicKey
 RSISPublicKey = RsisPublicKey
 SISMasterSecret = SisMasterSecret
 RSISMasterSecret = RsisMasterSecret
 SISSigningKey = SisSigningKey
 RSISSigningKey = RsisSigningKey
-SISSignature = RSISSignature = Signature
-SisSignature = RsisSignature = Signature
+SISSignature = SisSignature
+RSISSignature = RsisSignature
 SisParams = SISParams
 RsisParams = RSISParams
 

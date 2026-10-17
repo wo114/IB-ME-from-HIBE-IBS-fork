@@ -23,7 +23,7 @@ from .hashing import sis_h1, sis_h2, rsis_h1, rsis_h2
 from .objects import (
     SisParams, RsisParams, SisPublicKey, RsisPublicKey,
     SisMasterSecret, RsisMasterSecret, SisSigningKey, RsisSigningKey,
-    SisSignature, RsisSignature, Signature,
+    SisSignature, RsisSignature,
 )
 
 
@@ -284,7 +284,7 @@ class SISBackend:
 
     def verify(self, pk, identity, message, signature):
         try:
-            if not isinstance(pk, SisPublicKey) or not isinstance(signature, Signature):
+            if not isinstance(pk, SisPublicKey) or not isinstance(signature, SisSignature):
                 return False
             params = pk.params
             identity = _identity(params, identity); message = _message(params, message)
@@ -304,7 +304,7 @@ class SISBackend:
     def load_signature(self, pk, data):
         if not isinstance(pk, SisPublicKey):
             raise TypeError("Sageloli SIS public key required")
-        result = Signature.from_bytes(data, pk)
+        result = SisSignature.from_bytes(data, pk)
         if len(result.z) != pk.params.signature_dimension:
             raise SerializationError("SIS signature dimension mismatch")
         if not _split_ok(result.z, pk.params.m, pk.params.nk,
@@ -413,7 +413,7 @@ class RSISBackend:
 
     def verify(self, pk, identity, message, signature):
         try:
-            if not isinstance(pk, RsisPublicKey) or not isinstance(signature, Signature):
+            if not isinstance(pk, RsisPublicKey) or not isinstance(signature, RsisSignature):
                 return False
             p = pk.params; identity = _identity(p, identity); message = _message(p, message)
             if signature.context != pk.context or len(signature.identity_salt) != p.salt_bytes or len(signature.message_salt) != p.salt_bytes:
@@ -434,7 +434,7 @@ class RSISBackend:
     def load_signature(self, pk, data):
         if not isinstance(pk, RsisPublicKey):
             raise TypeError("Sageloli RSIS public key required")
-        result = Signature.from_bytes(data, pk)
+        result = RsisSignature.from_bytes(data, pk)
         if len(result.z) != pk.params.signature_dimension:
             raise SerializationError("RSIS signature dimension mismatch")
         if not _split_ok(result.z, pk.params.first_dimension, pk.params.second_dimension,

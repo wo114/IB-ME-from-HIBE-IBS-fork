@@ -32,6 +32,8 @@ The default executable teaching points are:
 
 Widths use the paper density convention `exp(-π||x||²/s²)`. The fixed rounding width is `r²=16`. These points are intentionally small. Their public norms are vacuous and public linear solving can produce accepted signatures; this evidence is retained and is why no security category is claimed. The paper's two large RSIS points, `(k,d,l)=(65,2048,132)` and `(153,2048,308)`, are documented but have not been run here. The paper gives no concrete published SIS point, so none is invented.
 
+Only the default RSIS point is checked against the paper's Table 4 shape inequalities. The parameter class remains open to exploratory dimensions; constructing another point does not imply that the paper conditions or a security admission hold.
+
 ## Paper correspondence and engineering choices
 
 The root is built as `[Abar | G-Abar R]`, with CBD1 in the matrix route and the paper's four-block `4P_(1/2) × P_(1/2) × 4P_(1/2)` root distribution in the ring route. Because the paper prints both the negative public construction and `A[-T;I]=G`, v2 stores `R` and passes `T=-R` to the root sampler. A delegated identity key satisfies `A*T_id=H1-G`; signing passes that positive `T_id` to the same sampler interface.
@@ -48,13 +50,13 @@ The service intentionally fixes one identity key and its salt. Figure 1's `OSign
 
 ## Reproduction commands
 
-The final test and runtime receipt is intentionally left for the integrating agent:
+The final test and runtime receipt was verified in the repository's WSL Sage environment:
 
 ```text
-`PYTHONPATH=src:. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_sageloli_ibs.py tests/test_sageloli_sampling.py tests/test_sageloli_uniform.py tests/test_sageloli_service_recovery.py tests/test_sageloli_probe.py` → **144 passed, 0 failed, 0 skipped in 222.80 s** (WSL Ubuntu-24.04, Sage 10.9, Python 3.13.15). JUnit: `build/outputs/sageloli-complete-2026-10-16/sageloli-all.xml`; service recovery subset: 36 passed in 79.06 s; uniform subset: 53 passed in 0.53 s.
+`PYTHONPATH=src:. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_sageloli_ibs.py tests/test_sageloli_sampling.py tests/test_sageloli_uniform.py tests/test_sageloli_service_recovery.py tests/test_sageloli_probe.py` → **145 passed, 0 failed, 0 skipped in 233.16 s** (WSL Ubuntu-24.04, Sage 10.9, Python 3.13.15). JUnit: `build/outputs/sageloli-complete-2026-10-16/sageloli-all.xml`.
 ```
 
-Run the repository's Sage environment and record the exact command, version, platform, repetition count, and result here after integration. Do not place seeds, private trapdoors, identity keys, signatures, or random tapes in this directory or in Git.
+The command was run once in WSL Ubuntu-24.04 with Sage 10.9 and Python 3.13.15. Do not place seeds, private trapdoors, identity keys, signatures, or random tapes in this directory or in Git.
 
 ## Scope and remaining gaps
 
