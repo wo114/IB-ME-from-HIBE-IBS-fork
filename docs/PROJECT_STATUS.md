@@ -1,12 +1,26 @@
 # 当前进度与并行任务
 
-更新：2026-10-16（PR35已合并；A的finite192配方完成实际接入与原状态恢复，正式参数仍WIP）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
+更新：2026-10-17（PR34／36／37均已复核合并；A正式尺寸与安全映射、全队新配对及作品交付仍WIP）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
 
-A1/A3最新：[finite192配方实际完整运行](research/team-a-delivery/2026-10-16-finite192-runtime/README.md)，实现冻结`73fe7c4`。新增显式v2参数/descriptor，将epsilon192、tail/abort192、mass320、precision384接入真实根/父/叶和噪声，默认v1/CLI与原参数字节保持不变。n2/q1099511627689实际系统随机同根2×2、12错配、新进程恢复、同树Luo-C64B完整34项和仓库外134 provider安装恢复通过；固定源码专项186 passed/0skip，Windows相关70 passed/0skip。在2^20封装与声明RO查询预算、理想随机流和已准入精确算术条件下，新账本累计落在(2^-132,2^-131]，不是LWE安全位数。正式高维/大R/精确运算/大对象域、计算根及匿名固定服务安全映射与公平比较仍WIP；全部私有输入的算术/工作区失败仍未知。PR35远端46成功+2预期手动未执行项，已合入`91de078`。PR34仍要求修改；GKR、ABB标准模型、CHKP标准模型继续暂缓。
+本轮接收：[PR34／36／37审查与合入记录](deliveries/2026-10-17-pr-review/README.md)。A的PR36固定`bf3bc1c`合入`1976c0b`；Sageloli修订PR34固定`a817735`合入`ca6d64f`，此前两项P1已解决，本地145 passed/0skip；SRGG累计PR37固定`7353770`合入`cf6bd94`，本地完整专项1431 passed/0skip、13份清单287项指纹一致。三者合并后装配/参数/CLI定向142 passed/0skip。PR36远端46成功+2预期手动未执行，PR34/37分别23成功+1预期手动未执行。检查时无未合并PR，研究功能接收不改变none/false/false。
+
+### 当前未完成项（按依赖推进）
+
+| 范围 / owner | 尚须交付的实物 |
+|---|---|
+| A0/A3：正式尺寸的完整运行域 | 使同组高维n、所需大q、矩形R、精确矩阵运算与大对象编码共同可执行，再完成根→父→256目标叶和恢复；公共q77/q256 gadget及n2有限配方已交，不代表完整高维HIBE已能运行。n4096目标投影的单父R现有JSON最低约209 GB，是已知具体阻塞之一。 |
+| A1/A2：参数与安全条件对应 | 为CHKP/MP12和ABB-ROM核定可运行完整参数、根与密文两角色困难性、计算根/匿名性/固定服务/ROM条件及Wang包装前提；全部私有输入的精确算术/工作区失败仍未知，条件概率指数不能作安全位数。按引用定理和实现/参数对应推进，不默认重做基础形式化证明。 |
+| B/C与统筹：新后端和全组合 | Sageloli已接收独立五方法/服务，公开登记、CLI、真实HIBE配对仍待；SRGG原默认研究路线继续可用，新增structured/paper两路线不能从默认路线继承配对结果。Foo–Li、Yu等按已交能力和容量决定接入；对就绪且适配的组合逐项运行状态/完整性验收，不强接未准入输入。 |
+| 统筹T5/T7：比较与优化 | 同安全目标、输入、机器及计时边界的完整IBME冷/热/恢复、尺寸/内存/中止比较；据数据选择三个场景代表，再做联合优化基线与消融。现有单体数据和一次运行诊断不替代该比较。 |
+| 统筹T6/T8/T9/T10：作品交付 | 完成可独立选择算法/参数并展示真实结果与阻塞的界面；将旧教学作品报告改写为当前多算法框架，补三代表、来源/许可和证据索引；统一PPT、演示/录像/问答、干净环境复现和同版本发布包。现有CLI、旧报告和分批材料继续复用。 |
+
+GKR、ABB标准模型、CHKP标准模型三条储备按用户决定继续暂缓；Ext/ReExt与Boyen–Li增强隐私仍不在范围内。
+
+A1/A3最新：[finite192配方实际完整运行](research/team-a-delivery/2026-10-16-finite192-runtime/README.md)，实现冻结`73fe7c4`。新增显式v2参数/descriptor，将epsilon192、tail/abort192、mass320、precision384接入真实根/父/叶和噪声，默认v1/CLI与原参数字节保持不变。n2/q1099511627689实际系统随机同根2×2、12错配、新进程恢复、同树Luo-C64B完整34项和仓库外134 provider安装恢复通过；固定源码专项186 passed/0skip，Windows相关70 passed/0skip。在2^20封装与声明RO查询预算、理想随机流和已准入精确算术条件下，新账本累计落在(2^-132,2^-131]，不是LWE安全位数。正式高维/大R/精确运算/大对象域、计算根及匿名固定服务安全映射与公平比较仍WIP；全部私有输入的算术/工作区失败仍未知。PR35远端46成功+2预期手动未执行项，已合入`91de078`；本批PR36现已合入`1976c0b`。GKR、ABB标准模型、CHKP标准模型继续暂缓。
 
 A3前批：[高位模数公共gadget与A任务复核](research/team-a-delivery/2026-10-16-wide-gadget/README.md)。新增独立公共binary gadget有限GPV采样，q支持到256位、仅展开k阶公共核格基，复用实际矩阵工具和目标筛查的同一构造；q77/q256实际采样、完整专项153 passed/0skip、CI目录25 passed/0skip及仓库外33 provider安装通过。该批补齐前批4组/32次估计、125项专项和安装等公开收据，未重算估计或重发钥。高位q子工具不放宽当前HIBE的61位q、uint64头、矩形R/Schur及固定树资源门，不代表正式配置可运行；192位配方当时仅为分析，实际接入由上方新批补齐，正式参数/完整域和模型映射仍WIP。GKR、ABB标准模型、CHKP标准模型继续暂缓。
 
-PR34固定head `20d75e9`已完成[本地复核](research/team-a-delivery/2026-10-16-pr34-review/README.md)，远端已提交CHANGES_REQUESTED，保持未合并：既有测试34 passed/0skip，但SIS/RSIS各3次教学诊断确认委派缺失全维扰动所产生的精确根关系与底块满秩；Setup/H1/H2固定字节取模另有约4.263%/6.636%的单系数偏差。只用临时本地测试钥并输出秩/布尔值，没有远端安全测试或私值输出。B修复后再审新head，A不等待本PR。
+PR34旧head `20d75e9`的[首次复核](research/team-a-delivery/2026-10-16-pr34-review/README.md)曾要求修改委派缺失全维扰动和固定字节取模偏差。新head `a817735`已补实际全维SampleD/SampleDR、原始整数PSD准入、无偏拒绝取模、v2对象/域分隔、具体路线与持久服务，复审后合入`ca6d64f`；[独立交付与原文映射](research/team-b-delivery/2026-10-16-sageloli-complete/README_zh-CN.md)单列研究参数及采样/固定服务/正式安全缺口。旧审查保留为原版本证据，不再表示当前PR未合并。
 
 A0最新：[同组目标与资源筛查](research/team-a-delivery/2026-10-16-target-parameters/README.md)。4组n128/512/2048/4096分别选择q59/67/74/77位，完整根父叶/噪声/分析用192位有限配方同组核算，32次根与密文Gaussian比较模型估算全部有限返回。n4096最小已测量子指数根171.190/密文170.130，但当前单父R JSON最低209,278,992,384 B且q超uint64头，四组都被现行运行门拒绝；192位配方只做分析、当前v1未改变。原n2密文仅公钥/H块的8649枚举恢复成功，125项Sage/19项Windows无skip、安装复放4组/48 provider通过。PR33已复核46成功+2手动未执行项，合入c82eba7；A仍无正式安全参数。
 
@@ -64,8 +78,8 @@ C1/C3本批新增：[Lai精确资格反例](research/team-c-delivery/2026-10-15-
 | Luo 模格 IBS | 真实算法、NTT/Hint、固定状态及reference/compact；C64B完整17字段、正确性条件/中止界、原文安全引用映射和第二十四步终验收收尾；实际CHKP组合已核对compact16383 B | 默认参数不变、C64B仍显式选择；研究候选不是正式安全等级，不自动补写完整基础归约/QROM；版本变化定向复核 |
 | Wang+PW IBS | [完整研究五方法](../experiments/research/candidates/wang_pw/)、真实采样/恢复；默认已登记，本轮LATTE+Hybrid+BYTEAUTH公共组合32检查通过 | q17调试参数不安全；正式参数/根近均匀、固定服务安全映射及其它未测配对仍待，不计已准入安全组合 |
 | Foo–Li IBS | [PR27独立共同后端](research/team-b-delivery/2026-10-15-foo-li-backend/README.md)：完整五方法/四对象、固定发钥/pending/持久服务、可选descriptor；统筹294项Sage无skip并核对固定head后合入 | q3/n1公开伪造及错误上下文负控保留；默认registry/真实HIBE配对、模型和正式参数未准入 |
-| SRGG IBS | [完整研究后端](../experiments/research/candidates/srgg/backend.py)、真实SampleF/Schur/挑战、固定cache与恢复；默认已登记，本轮LATTE公共组合34检查通过；[来源对应核验与筛选器修复](research/team-b-delivery/2026-10-16-srgg-source-correspondence/README.md)已交付 | ζ factor2与原文、r归一化及q/Q定理映射存在待澄清项；最终离散输出总TV、HNF后密钥分布与strong前提未闭合；n8公开伪造负控保留；正式参数与其它未测组合不自动通过 |
-| Sageloli SIS／RSIS | [已接收数学验证批次](research/team-b-delivery/2026-10-13-sageloli-probes/README.md)：复合模数三进制Gaussian、根／委派／签名原像、环结构、范数和宽度核验；外部PR34另提交五方法/对象/固定服务 | PR34尚未接收，[本轮审查](research/team-a-delivery/2026-10-16-pr34-review/README.md)要求修复委派全维扰动与无偏取模，不能以新增后端替代已有真实采样探针的条件；总TV、固定服务模型、正式参数及组合仍待 |
+| SRGG IBS | [完整研究后端](../experiments/research/candidates/srgg/backend.py)及默认登记/既有LATTE34项保留；PR37已接收持久issuer、公开适配、显式structured后端/服务、条件数值/模型材料及独立[published profiles研究链](research/team-b-delivery/2026-10-16-srgg-paper-baseline/README_zh-CN.md)，本轮完整1431项无skip | ζ factor2/factor-one、r归一化、q/Q、HNF与固定服务、ROM/QROM仍有条件缺口；paper原生strong有同消息替换反例，某些有限界为1；正式安全及新structured/paper的真实HIBE组合未准入 |
+| Sageloli SIS／RSIS | [真实探针](research/team-b-delivery/2026-10-13-sageloli-probes/README.md)继续保留；PR34修订已接收[两条独立五方法/对象/固定服务](research/team-b-delivery/2026-10-16-sageloli-complete/README_zh-CN.md)，全维扰动与无偏取模经145项无skip复核 | 总TV、固定服务安全映射、正式参数、公共registry/CLI及真实HIBE配对仍待；小参数公开伪造保留，接收完整研究后端不等于安全准入 |
 | 既有内置完整研究接线 | **教学 ABB10 + Hybrid + Luo 模格 + BYTEAUTH** | 可以验证工程流程；HIBE 不是 CHKP，不能记为真实 CHKP 组合完成 |
 | CHKP 本仓库 | `src/ibme/hibe/chkp/`公开六方法、`src/ibme/lattice/chkp/`有限工具；原CHKP父RandBasis/ToBasis与同叶256目标真实运行、保存/恢复、Hybrid+C64B+BYTEAUTH及CLI完成 | MP12仅用于此后端根生成；n2/q1099511627791可公开攻击，G-formal未准入，状态无外部防回滚保证 |
 | CHKP 历史第七步外部包 | 原输入、返工和清单保留供追溯；现行功能收尾由[完整交付](research/2026-10-12-chkp-closure/README.md)替代 | 不因旧第八步目录名未出现否定新的固定提交；历史未执行/失败/恢复不能改写为同一次全新成功 |
