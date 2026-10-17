@@ -13,7 +13,7 @@
   },
   "generator": {
     "path": "experiments/research/candidates/srgg/closure_ledger.py",
-    "sha256": "2cc51ec04e281fc35ea445d2aa8a131567a859248fe512f0e86d6fd617d9b8d4"
+    "sha256": "b95a3e3b8392d003cb330f321fce5c75584fb1510f7ad337c9cd4a4640d68c3d"
   },
   "ibs_ledger": {
     "commitment_collision": {
@@ -217,6 +217,240 @@
       }
     }
   ],
+  "parameter_source_audit": {
+    "epsilon_parses": {
+      "alternate_radical_over_Qs_times_256_outside": {
+        "epsilon": "1/268435456",
+        "epsilon_bits": 28,
+        "epsilon_denominator": 268435456,
+        "source_status": "alternate transcription; not the reviewed source equation"
+      },
+      "alternate_radical_over_Qs_times_2pow56_inside": {
+        "epsilon": "1/281474976710656",
+        "epsilon_bits": 48,
+        "epsilon_denominator": 281474976710656,
+        "source_status": "alternate transcription; not the reviewed source equation"
+      },
+      "source_radical_over_Qs_times_256_inside": {
+        "epsilon": "1/16777216",
+        "epsilon_bits": 24,
+        "epsilon_denominator": 16777216,
+        "source_status": "confirmed by page-9 equation: radical contains Q_s*256"
+      }
+    },
+    "global_status": {
+      "backend_admitted": false,
+      "finite_sampler_to_final_signature_law_closed": false,
+      "gaussian_normalization_closed": false,
+      "hardness_estimate_formally_validated": false,
+      "nist_security_category": null,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "source_rows_reproduced": true,
+      "theorem_modulus_mapping_closed": false
+    },
+    "receipt": "docs/research/team-b-delivery/2026-10-17-srgg-parameter-closure/parameter-closure.json",
+    "receipt_sha256": "7553e9948fd764615396d7ca812a3a6b43a4fa20b192b29df662839651f869f6",
+    "rows": [
+      {
+        "Q": 15744063,
+        "mapping_status": "unresolved: paper theorem q is not identified with gadget q, Q, or 2Q",
+        "modulus_candidates": {
+          "gadget_q": {
+            "gt_2gamma": false,
+            "modulus": 961,
+            "modulus_minus_2gamma": "-84172022.4",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "ibs_Q": {
+            "gt_2gamma": false,
+            "modulus": 15744063,
+            "modulus_minus_2gamma": "-68428920.4",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "verification_2Q": {
+            "gt_2gamma": false,
+            "modulus": 31488126,
+            "modulus_minus_2gamma": "-52684857.4",
+            "odd": false,
+            "theorem_odd_and_gt_2gamma": false
+          }
+        },
+        "profile": "PARAM-I",
+        "smoothing": {
+          "alternate_radical_over_Qs_times_256_outside": {
+            "dimension": 10240,
+            "epsilon": "1/268435456",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          },
+          "alternate_radical_over_Qs_times_2pow56_inside": {
+            "dimension": 10240,
+            "epsilon": "1/281474976710656",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          },
+          "source_radical_over_Qs_times_256_inside": {
+            "dimension": 10240,
+            "epsilon": "1/16777216",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          }
+        }
+      },
+      {
+        "Q": 15744063,
+        "mapping_status": "unresolved: paper theorem q is not identified with gadget q, Q, or 2Q",
+        "modulus_candidates": {
+          "gadget_q": {
+            "gt_2gamma": false,
+            "modulus": 961,
+            "modulus_minus_2gamma": "-127305383.0",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "ibs_Q": {
+            "gt_2gamma": false,
+            "modulus": 15744063,
+            "modulus_minus_2gamma": "-111562281.0",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "verification_2Q": {
+            "gt_2gamma": false,
+            "modulus": 31488126,
+            "modulus_minus_2gamma": "-95818218.0",
+            "odd": false,
+            "theorem_odd_and_gt_2gamma": false
+          }
+        },
+        "profile": "PARAM-II",
+        "smoothing": {
+          "alternate_radical_over_Qs_times_256_outside": {
+            "dimension": 10240,
+            "epsilon": "1/268435456",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          },
+          "alternate_radical_over_Qs_times_2pow56_inside": {
+            "dimension": 10240,
+            "epsilon": "1/281474976710656",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          },
+          "source_radical_over_Qs_times_256_inside": {
+            "dimension": 10240,
+            "epsilon": "1/16777216",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          }
+        }
+      },
+      {
+        "Q": 15744063,
+        "mapping_status": "unresolved: paper theorem q is not identified with gadget q, Q, or 2Q",
+        "modulus_candidates": {
+          "gadget_q": {
+            "gt_2gamma": false,
+            "modulus": 961,
+            "modulus_minus_2gamma": "-173146900.0",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "ibs_Q": {
+            "gt_2gamma": false,
+            "modulus": 15744063,
+            "modulus_minus_2gamma": "-157403798.0",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "verification_2Q": {
+            "gt_2gamma": false,
+            "modulus": 31488126,
+            "modulus_minus_2gamma": "-141659735.0",
+            "odd": false,
+            "theorem_odd_and_gt_2gamma": false
+          }
+        },
+        "profile": "PARAM-III",
+        "smoothing": {
+          "alternate_radical_over_Qs_times_256_outside": {
+            "dimension": 10240,
+            "epsilon": "1/268435456",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          },
+          "alternate_radical_over_Qs_times_2pow56_inside": {
+            "dimension": 10240,
+            "epsilon": "1/281474976710656",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          },
+          "source_radical_over_Qs_times_256_inside": {
+            "dimension": 10240,
+            "epsilon": "1/16777216",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          }
+        }
+      }
+    ],
+    "scope": "HIBE-independent SRGG source-symbol and parameter-gate audit",
+    "source_constants": {
+      "Q_s": 1099511627776,
+      "algorithm_displayed_perturbation_factor": 1,
+      "author_interpretation_confirmed": false,
+      "base": 31,
+      "epsilon_grouping_confirmed_from_pdf": true,
+      "factor_mapping_status": "unresolved",
+      "n": 512,
+      "p": 16383,
+      "published_r": "29/25",
+      "published_w": 2,
+      "r_dimension": 10240,
+      "r_dimension_expression": "(2+w)*5*512",
+      "visual_formula_reading": "epsilon = 1/sqrt(Q_s*256); alternate grouping parses retained for sensitivity",
+      "zeta_shape_factor_from_exact_operator": 2
+    }
+  },
   "premises": {
     "canonical_native_strong_log": {
       "reason": "The strong target is retained, but native strong has observed same-message replacements.",
@@ -266,7 +500,8 @@
   "receipt_sha256": {
     "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sampling-error-default.json": "9695677f73525e6163448492a6db4f7f2acf295460327be500f734114a340ba4",
     "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sampling-error-width3.json": "7e7c58bbc5ac37d4ccd95da30ce9e74c1d0ba3959d99de9af7e32eb929adc9db",
-    "docs/research/team-b-delivery/2026-10-16-srgg-source-correspondence/source-correspondence.json": "653fa3c0cf14fb86f3d68fd4a7bfcc2725cba7bdc53ec06e500db402130eef24"
+    "docs/research/team-b-delivery/2026-10-16-srgg-source-correspondence/source-correspondence.json": "653fa3c0cf14fb86f3d68fd4a7bfcc2725cba7bdc53ec06e500db402130eef24",
+    "docs/research/team-b-delivery/2026-10-17-srgg-parameter-closure/parameter-closure.json": "7553e9948fd764615396d7ca812a3a6b43a4fa20b192b29df662839651f869f6"
   },
   "sampling_receipts": [
     {

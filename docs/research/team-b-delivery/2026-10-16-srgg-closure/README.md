@@ -12,6 +12,10 @@
 它只汇总已有证据并保留未闭合项，不修改 SRGG 算法、参数、公共 registry、CLI 或 HIBE。
 收据同时记录冻结论文、输入票据和生成器自身的 SHA-256，便于复核时发现版本漂移。
 
+参数来源与 Theorem 1 模数门的最新精确审计见
+[`2026-10-17-srgg-parameter-closure/README.md`](../2026-10-17-srgg-parameter-closure/README.md)。
+本总账本只嵌入该收据的摘要和哈希，不把其诊断性 `w=3` 点或任何替代 ε 分组升级为正式参数。
+
 ## 已核对的内容
 
 论文 PDF 固定为 `papers/2025_efficient_ibs_jia.pdf`，SHA-256 为

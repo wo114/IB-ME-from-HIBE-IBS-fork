@@ -13,6 +13,9 @@ def test_closure_ledger_keeps_scope_and_unresolved_terms():
     assert len(report["source_code_rows"]) == 6
     assert len(report["sampling_receipts"]) == 2
     assert len(report["parameter_gates"]) == 3
+    assert report["parameter_source_audit"]["receipt"].endswith("parameter-closure.json")
+    assert report["parameter_source_audit"]["global_status"]["security_claim"] == "none"
+    assert len(report["parameter_source_audit"]["rows"]) == 3
     assert len(report["ibs_ledger"]) == 12
     assert report["unresolved_ledger_terms"]
     assert report["closure"]["complete_classical_production_reduction"] is False

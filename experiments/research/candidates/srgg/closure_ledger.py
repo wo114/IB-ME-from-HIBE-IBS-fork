@@ -210,6 +210,37 @@ def _parameter_gates(root: Path) -> tuple[list[dict[str, Any]], str]:
             for row, smooth in zip(rows, smoothing)], digest
 
 
+def _parameter_source_audit(root: Path) -> tuple[dict[str, Any], str]:
+    """Load the exact source-symbol audit without promoting its gates."""
+
+    relative = "docs/research/team-b-delivery/2026-10-17-srgg-parameter-closure/parameter-closure.json"
+    data, digest = _load(root, relative)
+    if data.get("schema") != "IBME/SRGG-PARAMETER-CLOSURE/1":
+        raise ValueError("unexpected SRGG parameter closure schema")
+    status = data.get("global_status")
+    if not isinstance(status, dict) or status.get("security_claim") != "none":
+        raise ValueError("parameter closure must remain a non-admission receipt")
+    rows = []
+    for row in data.get("rows", []):
+        modulus = row["modulus_gates"]
+        rows.append({
+            "profile": modulus["profile"],
+            "Q": modulus["Q"],
+            "mapping_status": modulus["mapping_status"],
+            "modulus_candidates": modulus["modulus_candidates"],
+            "smoothing": row["smoothing"],
+        })
+    return {
+        "receipt": relative,
+        "receipt_sha256": digest,
+        "source_constants": data.get("source_constants"),
+        "epsilon_parses": data.get("epsilon_parses"),
+        "rows": rows,
+        "global_status": status,
+        "scope": data.get("scope"),
+    }, digest
+
+
 def _ledger() -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]]:
     evidence = {
         "conditional": [
@@ -264,6 +295,8 @@ def build_report(root: Path | None = None) -> dict[str, Any]:
     sampling, receipt_hashes = _sampling_rows(root)
     parameter_gates, source_receipt_hash = _parameter_gates(root)
     receipt_hashes["docs/research/team-b-delivery/2026-10-16-srgg-source-correspondence/source-correspondence.json"] = source_receipt_hash
+    parameter_source_audit, parameter_source_hash = _parameter_source_audit(root)
+    receipt_hashes["docs/research/team-b-delivery/2026-10-17-srgg-parameter-closure/parameter-closure.json"] = parameter_source_hash
     ledger, premises = _ledger()
     unresolved = [name for name, value in ledger.items() if value["status"] == "unresolved"]
     return {
@@ -277,6 +310,7 @@ def build_report(root: Path | None = None) -> dict[str, Any]:
         "source_code_rows": _source_rows(),
         "sampling_receipts": sampling,
         "parameter_gates": parameter_gates,
+        "parameter_source_audit": parameter_source_audit,
         "ibs_ledger": ledger,
         "premises": premises,
         "unresolved_ledger_terms": unresolved,
