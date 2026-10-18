@@ -17,6 +17,7 @@ from ibme.core.errors import (
     SerializationError,
 )
 from ibme.core.randomness import DeterministicRandom
+from ibme.hibe.lai import codec
 from ibme.hibe.lai.registration import ciphertext_size
 from ibme.hibe.lai import (
     LaiCiphertext,
@@ -55,6 +56,14 @@ def ciphertext(env):
     backend, params, pk, msk, sk1, sk2 = env
     ct = backend.encrypt(pk, RCV, PHI, PAYLOAD, rng=rng(b"enc"))
     return ct
+
+
+def test_five_byte_coefficient_codec():
+    params = LaiParams(q=549755829761, n=256, k=40, l=2, sigma=2.0)
+    values = tuple((i * 1234567) % params.q for i in range(params.n))
+    raw = codec.ring_bytes(values, params)
+    assert len(raw) == 5 * params.n
+    assert codec.read_ring(raw, 0, params) == (values, len(raw))
 
 
 def test_roundtrip_matching(env, ciphertext):

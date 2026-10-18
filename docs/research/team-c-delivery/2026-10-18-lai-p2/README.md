@@ -131,7 +131,7 @@ PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.cli setup \
 
 | 命令 | 结果 |
 |---|---|
-| `pytest tests/test_lai_hibe.py -q` | **12 passed in 93.81s** |
+| `pytest tests/test_lai_hibe.py -q` | **13 passed in 85.05s** |
 | `pytest tests/test_lai_p1.py tests/test_lai_qualification.py -q` | **37 passed in 29.29s** |
 | Windows：`pytest tests/test_assembly.py tests/test_c_registration.py tests/test_cli_selection.py -q` | **84 passed in 15.02s** |
 
@@ -141,7 +141,7 @@ PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.cli setup \
 
 `ci/suites.json` 的 `lai-ideal-hibe` 已从 `qualification_only` 更新为 `research_backend`：
 
-- tests：`tests/test_lai*.py`（自动包含 `test_lai_hibe.py`、`test_lai_p1.py`、`test_lai_qualification.py`）
+- tests：`tests/test_lai*.py`（自动包含 `test_lai_hibe.py`、`test_lai_p1.py`、`test_lai_qualification.py`、`test_lai_target_parameters.py`）
 - source markers：`src/ibme/hibe/lai/__init__.py`、`src/ibme/hibe/lai/registration.py`、`experiments/research/candidates/lai/qualification.py`
 - `allow_skips=false`、`environment=sage`、`layer=primitive`
 - scope 更新为“A 点研究后端 + 历史资格测试；无安全准入、无组合验收”
@@ -152,12 +152,12 @@ PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.cli setup \
 PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python ci/run.py run lai-ideal-hibe --output /tmp/lai-ci-run
 ```
 
-结果：**49 passed in 116.58s**，`status=passed`、`exit_code=0`、`skipped=0`；JUnit/JSON 在 `/tmp/lai-ci-run`（不入 Git）。CI 的 `sage / lai-ideal-hibe` job 会由现有矩阵自动调度，不需要改 workflow。
+结果：**54 passed in 94.80s**，`status=passed`、`exit_code=0`、`skipped=0`；JUnit/JSON 在 `/tmp/lai-ci-run2`（不入 Git）。CI 的 `sage / lai-ideal-hibe` job 会由现有矩阵自动调度，不需要改 workflow。
 
 ## 7. 下一步
 
 1. **P3**：把 Lai 与一个就绪 IBS 接入 Wang 组合，跑四种匹配/错配、状态恢复、篡改/截断/重放；这是“组合层”的验收。
-2. **P5**：目标参数（n=1024 等）缩放、宽度/分布复验、estimator；当前 A 点只是研究参数。
+2. **P5**：目标参数缩放、宽度/分布复验、estimator；[首轮目标候选筛选](../2026-10-18-lai-target-parameters/README.md) 已选 `c2-2048-2p38`，但尚未提升为 registry preset。
 3. **文档/状态**：`ALGORITHM_CATALOG.md` 和 `PROJECT_STATUS.md` 的 Lai 行仍写“资格核验/未实现”，需要在统筹确认后同步；本批不改共享状态入口。
 4. **性能/尺寸**：当前 key/CT 以 MB 计；P5 前需要评估是否可接受，或改 C/优化实现。
 
