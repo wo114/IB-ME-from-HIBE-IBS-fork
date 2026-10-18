@@ -118,7 +118,16 @@ PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.cli setup \
 
 预检的内层 HIBE 密文上限为 101,416 B；完整协议密文 229,620 B。状态目录在 `/tmp/lai-cli-state`，不入 Git。
 
-### 6.3 测试
+### 6.3 提交
+
+| 提交 | 内容 |
+|---|---|
+| `34662d8` | A 点 n=256 参数与 4 字节 codec |
+| `a13a97b` | `src/ibme/hibe/lai/`、registry/CLI 接入 |
+| `ef1bb04` | Hybrid suite preflight 测试 |
+| `7a25c24` | `docs/specs/lai-hibe.md` 契约 |
+
+### 6.4 测试
 
 | 命令 | 结果 |
 |---|---|
