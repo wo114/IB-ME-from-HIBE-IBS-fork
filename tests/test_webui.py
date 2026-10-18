@@ -5,8 +5,11 @@ input/route policy and the no-session state; the real protocol lifecycle is
 exercised in the WSL Sage environment by the demo itself.
 """
 import pytest
+import json
+from types import SimpleNamespace
 
 from ibme.webui import server
+from ibme.core.errors import InvalidParameterError
 
 
 def test_selection_defaults_and_demo_scope():
@@ -56,3 +59,62 @@ def test_no_session_state_is_inactive_and_keeps_security_flags():
     assert state["security"]["claim"] == "none"
     assert state["security"]["backend_admitted"] is False
     assert state["security"]["parameters_are_formal"] is False
+
+
+@pytest.fixture
+def session(monkeypatch):
+    # An API fault-injection fixture, not a cryptographic backend or run receipt.
+    values = dict(hibe="latte", hibe_version="test", ibs="cert-ml-dsa",
+                  ibs_version="test", transport="hybrid", protocol="byteauth-v1",
+                  signature_format="reference", security_claim="none",
+                  backend_admitted=False, parameters_are_formal=False, allow_mock=False)
+    config = SimpleNamespace(to_dict=lambda: dict(values), digest="a" * 64,
+                             protocol="byteauth-v1")
+    opaque_secret = object()
+    result = server.Session(
+        config=config, runtime=SimpleNamespace(capacity={}, proto=None),
+        public=object(), master=opaque_secret, sender_key=opaque_secret,
+        receiver_key=SimpleNamespace(identity=b"Bob"),
+        wrong_receiver_key=SimpleNamespace(identity=b"Carol"),
+        sender_id=b"Alice", receiver_id=b"Bob", wrong_id=b"Carol",
+        wire=b"public ciphertext", message=b"PRIVATE MESSAGE MUST NOT BE EXPORTED",
+    )
+    monkeypatch.setattr(server, "_SESSION", result)
+    return result
+
+
+@pytest.mark.parametrize("mode", ["normal", "tamper", "truncate"])
+def test_backend_error_is_never_counted_as_rejection(session, mode):
+    def failed(*args):
+        raise InvalidParameterError("injected backend failure")
+    session.runtime.proto = SimpleNamespace(decrypt=failed)
+    with pytest.raises(server.DemoError, match="解密未完成"):
+        server.api_decrypt({"mode": mode})
+    assert session.observations == []
+
+
+def test_unexpected_plaintext_in_wrong_identity_case_is_marked_failed(session):
+    session.runtime.proto = SimpleNamespace(decrypt=lambda *args: b"unexpected plaintext")
+    result = server.api_decrypt({"mode": "wrong_sender"})
+    assert result["bottom"] is False
+    assert result["expectation_met"] is False
+    assert session.observations[-1]["expectation_met"] is False
+
+
+def test_export_contains_measurements_but_no_private_objects_or_plaintext(session):
+    session.observations.append(dict(operation="decrypt", mode="normal",
+                                     bottom=False, expectation_met=True, seconds=0.1))
+    receipt = server.api_export()
+    encoded = json.dumps(receipt)
+    assert receipt["suite_digest"] == session.config.digest
+    assert receipt["observations"][0]["expectation_met"] is True
+    assert receipt["identity_bytes"] == dict(sender=5, receiver=3, wrong_receiver=5)
+    assert "PRIVATE MESSAGE" not in encoded
+    assert "Alice" not in encoded and "Bob" not in encoded and "Carol" not in encoded
+    assert not ({"master", "sender_key", "receiver_key", "wire", "last_message"} & receipt.keys())
+
+
+def test_export_without_session_is_rejected(monkeypatch):
+    monkeypatch.setattr(server, "_SESSION", None)
+    with pytest.raises(server.DemoError):
+        server.api_export()

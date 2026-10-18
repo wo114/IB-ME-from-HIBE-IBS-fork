@@ -41,7 +41,7 @@ SECURITY = {
     "claim": "none",
     "backend_admitted": False,
     "parameters_are_formal": False,
-    "note": "研究/函数性参数；功能与性能演示不构成安全证明或 NIST 等级声明。",
+    "note": "研究/功能性参数；功能与性能演示不构成安全证明或 NIST 等级声明。",
 }
 
 RECOMMENDED_HIBE = {"latte"}
@@ -113,6 +113,7 @@ class Session:
     wire: bytes | None = None
     message: bytes | None = None
     ciphertext_sha256: str = ""
+    observations: list[dict[str, Any]] = field(default_factory=list)
     created_at: float = field(default_factory=time.time)
 
 
@@ -211,6 +212,7 @@ def _state_summary(session: Session) -> dict[str, Any]:
     return {
         "active": True,
         "suite": _suite_summary(session.config),
+        "parameters": session.config.to_dict(),
         "capacity": dict(session.runtime.capacity),
         "identities": {
             "sender": _display(session.sender_id),
@@ -277,6 +279,33 @@ def api_state() -> dict[str, Any]:
         if _SESSION is None:
             return {"ok": True, "active": False, "state": None, "security": SECURITY}
         return {"ok": True, "active": True, "state": _state_summary(_SESSION), "security": SECURITY}
+
+
+def api_export() -> dict[str, Any]:
+    """Export public measurements only, never serialized keys or message text."""
+    with _LOCK:
+        if _SESSION is None:
+            raise DemoError("请先初始化演示会话")
+        session = _SESSION
+        return {
+            "ok": True,
+            "schema": "IBME-DEMO-MEASUREMENTS/1",
+            "suite": session.config.to_dict(),
+            "suite_digest": session.config.digest,
+            "capacity": dict(session.runtime.capacity),
+            "sizes": dict(session.sizes),
+            "timings": dict(session.timings),
+            "identity_bytes": {
+                "sender": len(session.sender_id),
+                "receiver": len(session.receiver_id),
+                "wrong_receiver": len(session.wrong_id),
+            },
+            "ciphertext_sha256": session.ciphertext_sha256,
+            "observations": list(session.observations),
+            "scope": "one in-memory demo session; not the archived repeated benchmark",
+            "restart_recovery": "CLI state recovery is separate; this web session is ephemeral",
+            "security": SECURITY,
+        }
 
 
 def api_check(payload: dict[str, Any]) -> dict[str, Any]:
@@ -395,6 +424,11 @@ def api_encrypt(payload: dict[str, Any]) -> dict[str, Any]:
         session.timings["encrypt"] = seconds
         session.sizes["ciphertext"] = len(wire)
         session.sizes["message"] = len(message)
+        session.observations.append({
+            "operation": "encrypt", "seconds": seconds,
+            "message_bytes": len(message), "ciphertext_bytes": len(wire),
+            "ciphertext_sha256": session.ciphertext_sha256,
+        })
         return {
             "ok": True,
             "ciphertext": {
@@ -415,15 +449,17 @@ def _decrypt_detail(mode: str, session: Session) -> str:
     if mode == "normal":
         return f"接收者 {receiver} 与声称发送者 {sender} 同时匹配密文身份 ({receiver}, {sender})。"
     if mode == "wrong_sender":
-        return f"{receiver} 的密钥只能派生 ({receiver}, {sender})；声称发送者为 {wrong} 时无法恢复。"
+        return f"{receiver} 按声称发送者 {wrong} 派生 ({receiver}, {wrong}) 子密钥，与密文身份 ({receiver}, {sender}) 不匹配。"
     if mode == "wrong_receiver":
         return f"{wrong} 的密钥对应 ({wrong}, {sender})，与密文身份 ({receiver}, {sender}) 不匹配。"
     if mode == "both_wrong":
         return f"{wrong} 的密钥与声称发送者 {wrong} 都不匹配密文身份 ({receiver}, {sender})。"
     if mode == "tamper":
-        return "完整外层字节被翻转 1 bit；BYTEAUTH 的字节认证拒绝该密文。"
+        if session.config.protocol == "byteauth-v1":
+            return "完整外层字节被翻转 1 bit；当前配置由 BYTEAUTH 检查完整字节认证。"
+        return "密文字节被翻转 1 bit；当前未启用 BYTEAUTH，本次结果来自内层解析与验证。"
     if mode == "truncate":
-        return "密文末尾被截断；严格解析与字节认证拒绝该密文。"
+        return "密文末尾被截断 1 字节；下方显示当前配置实际返回的解析与验证结果。"
     return "未知解密模式"
 
 
@@ -461,18 +497,24 @@ def api_decrypt(payload: dict[str, Any]) -> dict[str, Any]:
                 session.public, receiver_key, claimed_sender, wire
             )
         except IBMEError as exc:
-            if mode in {"tamper", "truncate"}:
-                result = None
-            else:
-                raise DemoError(f"解密失败：{exc}") from exc
+            # Backend/resource errors must not become a successful rejection
+            # demonstration. The public protocol returns BOTTOM for bad data.
+            raise DemoError(f"解密未完成：{exc}") from exc
         seconds = time.perf_counter() - start
         bottom = result is None or is_bottom(result)
         text = None if bottom else _display(result)
         session.timings[f"decrypt_{mode}"] = seconds
+        expectation_met = bottom == (mode != "normal")
+        session.observations.append({
+            "operation": "decrypt", "mode": mode, "bottom": bottom,
+            "expectation_met": expectation_met, "seconds": seconds,
+            "input_ciphertext_sha256": hashlib.sha256(wire).hexdigest(),
+        })
         return {
             "ok": True,
             "mode": mode,
             "bottom": bottom,
+            "expectation_met": expectation_met,
             "message": text,
             "seconds": seconds,
             "detail": _decrypt_detail(mode, session),
@@ -517,6 +559,8 @@ class Handler(BaseHTTPRequestHandler):
                 self._send(200, api_backends())
             elif path == "/api/state":
                 self._send(200, api_state())
+            elif path == "/api/export":
+                self._send(200, api_export())
             elif path == "/favicon.ico":
                 self._send(HTTPStatus.NO_CONTENT, b"", "image/x-icon")
             else:
@@ -565,7 +609,7 @@ class Handler(BaseHTTPRequestHandler):
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="IB-ME interactive demo UI (research parameters only)")
-    parser.add_argument("--host", default="0.0.0.0", help="bind address (default: 0.0.0.0 for WSL2 localhost forwarding)")
+    parser.add_argument("--host", default="127.0.0.1", help="bind address (default: 127.0.0.1)")
     parser.add_argument("--port", type=int, default=8765, help="TCP port (default: 8765)")
     args = parser.parse_args(argv)
     # Sage's cysignals initialisation installs signal handlers and therefore

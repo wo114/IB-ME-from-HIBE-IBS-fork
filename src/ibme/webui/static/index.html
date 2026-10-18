@@ -353,9 +353,13 @@
           <div class="metric accent"><div class="k">加密 / 解密</div><div class="v" id="mCrypto">—</div></div>
         </div>
         <details class="details">
-          <summary>技术细节（套件摘要、容量、计时原始值）</summary>
+          <summary>技术细节（实际参数、容量、计时原始值）</summary>
           <pre id="details">尚无会话。</pre>
         </details>
+        <div class="btn-row" style="margin-top:10px">
+          <button class="btn ghost" id="exportBtn" type="button" disabled>导出本次实测 JSON</button>
+          <span class="muted" style="font-size:11.5px">仅导出参数、尺寸、计时和结果；不含密钥与消息正文。</span>
+        </div>
       </section>
     </main>
   </div>
@@ -366,7 +370,7 @@
   </section>
 
   <footer>
-    本地演示 · 私钥仅保存在服务进程内存中 · 参数为研究/函数性配置<br>
+    本地演示 · 刷新页面可重连当前会话；服务重启后会话丢失，持久恢复使用 CLI · 参数为研究/功能性配置<br>
     功能与性能结果不替代 LWE / SIS / HIBE / IBS / IB-ME 安全证明
   </footer>
 </div>
@@ -449,6 +453,7 @@
     $("#bootstrapBtn").disabled = b || !state.checkOk || hasSession;
     $("#encryptBtn").disabled = b || !hasSession;
     $("#resetBtn").disabled = b || !hasSession;
+    $("#exportBtn").disabled = b || !hasSession;
     $$("[data-mode]").forEach((el) => { el.disabled = b || !hasCipher; });
     $$("#presets .preset").forEach((el) => { el.disabled = b || hasSession; });
     ["#hibe", "#ibs", "#transport", "#protocol", "#signature_format", "#senderName", "#receiverName", "#wrongName"].forEach((sel) => {
@@ -624,6 +629,12 @@
       normal: "正确双方", wrong_sender: "错误发送者", wrong_receiver: "错误接收者",
       both_wrong: "双方都错", tamper: "篡改 1 bit", truncate: "截断 1 字节",
     }[mode] || mode;
+    if (data.expectation_met === false) {
+      box.className = "result bad";
+      box.innerHTML = `<div class="r-head"><span class="icon">!</span><span>结果不符合该场景预期</span><span class="r-time">${fmtTime(data.seconds)}</span></div>
+        <div class="r-body">${escapeHtml(modeLabel)}：实际${isBottom ? "返回 BOTTOM" : "恢复了消息"}，请检查当前配置与运行记录。</div>`;
+      return;
+    }
     if (isBottom) {
       const hard = mode === "tamper" || mode === "truncate";
       box.className = `result ${hard ? "bad" : "bottom"}`;
@@ -655,6 +666,7 @@
     $("#mCrypto").textContent = `${fmtTime(enc)} / ${fmtTime(dec)}`;
     $("#details").textContent = s ? JSON.stringify({
       suite: s.suite, capacity: s.capacity, sizes: s.sizes, timings: s.timings,
+      parameters: s.parameters,
       ciphertext_sha256: s.ciphertext_sha256, security: s.security,
     }, null, 2) : "尚无会话。";
   }
@@ -762,7 +774,7 @@
         normal: "正确双方", wrong_sender: "错误发送者", wrong_receiver: "错误接收者",
         both_wrong: "双方都错", tamper: "篡改 1 bit", truncate: "截断 1 字节",
       }[mode] || mode;
-      log(`${label}：${data.bottom ? "BOTTOM（拒绝）" : "恢复成功"}，${fmtTime(data.seconds)}`, data.bottom ? "warn" : "ok");
+      log(`${label}：${data.bottom ? "BOTTOM（拒绝）" : "恢复成功"}，${fmtTime(data.seconds)}`, data.expectation_met === false ? "err" : (data.bottom ? "warn" : "ok"));
     } catch (err) {
       log(`解密失败：${err.message}`, "err");
       toast(err.message, "err");
@@ -800,11 +812,31 @@
     }
   }
 
+  async function exportMeasurements() {
+    if (state.busy || !state.session) return;
+    try {
+      const data = await api("/api/export");
+      const blob = new Blob([JSON.stringify(data, null, 2) + "\n"], {type:"application/json"});
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "ibme-demo-measurements.json";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      log("已导出本次会话的公开实测数据", "ok");
+    } catch (err) {
+      toast(err.message, "err");
+    }
+  }
+
   function bind() {
     $("#checkBtn").addEventListener("click", check);
     $("#bootstrapBtn").addEventListener("click", bootstrap);
     $("#encryptBtn").addEventListener("click", encrypt);
     $("#resetBtn").addEventListener("click", reset);
+    $("#exportBtn").addEventListener("click", exportMeasurements);
     $$("[data-mode]").forEach((btn) => btn.addEventListener("click", () => decrypt(btn.dataset.mode)));
     ["#hibe", "#ibs", "#transport", "#protocol", "#signature_format"].forEach((sel) => {
       const el = $(sel);
