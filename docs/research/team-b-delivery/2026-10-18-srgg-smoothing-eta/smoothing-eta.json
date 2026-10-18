@@ -1,0 +1,107 @@
+{
+  "backend_admitted": false,
+  "formal_source_eta": {
+    "exact_rounded_value_satisfies_smoothing": false,
+    "lower_endpoint": {
+      "convention": "literal-density-width",
+      "dimension": 10240,
+      "first_tail_index": 4,
+      "lower_exceeds_source_epsilon": true,
+      "precision_bits": 512,
+      "theta_minus_one_lower_decimal_floor": "0.00000005960475060328",
+      "theta_minus_one_upper_decimal_ceiling": "0.00000005960475415601",
+      "upper_available": true,
+      "upper_below_source_epsilon": false,
+      "width_exact": "14538897/5000000"
+    },
+    "printed_1_16_matches_formal_eta_definition": false,
+    "rounded_width": {
+      "convention": "literal-density-width",
+      "dimension": 10240,
+      "first_tail_index": 4,
+      "lower_exceeds_source_epsilon": true,
+      "precision_bits": 512,
+      "theta_minus_one_lower_decimal_floor": "298.83157222479407154312",
+      "theta_minus_one_upper_decimal_ceiling": null,
+      "upper_available": false,
+      "upper_below_source_epsilon": false,
+      "width_exact": "29/25"
+    },
+    "upper_endpoint": {
+      "convention": "literal-density-width",
+      "dimension": 10240,
+      "first_tail_index": 4,
+      "lower_exceeds_source_epsilon": false,
+      "precision_bits": 512,
+      "theta_minus_one_lower_decimal_floor": "0.00000005960453280652",
+      "theta_minus_one_upper_decimal_ceiling": "0.00000005960453635923",
+      "upper_available": true,
+      "upper_below_source_epsilon": true,
+      "width_exact": "7269449/2500000"
+    },
+    "width_open_bracket": [
+      "14538897/5000000",
+      "7269449/2500000"
+    ]
+  },
+  "hypothetical_physical_stddev_conversion": {
+    "exact_rounded_value_satisfies_smoothing": false,
+    "implicit_unit_conversion_explains_printed_two_decimals": true,
+    "lower_endpoint": {
+      "convention": "physical-standard-deviation",
+      "dimension": 10240,
+      "first_tail_index": 4,
+      "lower_exceeds_source_epsilon": true,
+      "precision_bits": 512,
+      "theta_minus_one_lower_decimal_floor": "0.00000005960487273024",
+      "theta_minus_one_upper_decimal_ceiling": "0.00000005960487628299",
+      "upper_available": true,
+      "upper_below_source_epsilon": false,
+      "width_exact": "11600361/10000000"
+    },
+    "relation_to_formal_eta": "eta_formal/sqrt(2*pi)",
+    "rounded_width": {
+      "convention": "physical-standard-deviation",
+      "dimension": 10240,
+      "first_tail_index": 4,
+      "lower_exceeds_source_epsilon": true,
+      "precision_bits": 512,
+      "theta_minus_one_lower_decimal_floor": "0.00000005970349443219",
+      "theta_minus_one_upper_decimal_ceiling": "0.00000005970349799671",
+      "upper_available": true,
+      "upper_below_source_epsilon": false,
+      "width_exact": "29/25"
+    },
+    "this_is_the_source_formal_eta_definition": false,
+    "upper_endpoint": {
+      "convention": "physical-standard-deviation",
+      "dimension": 10240,
+      "first_tail_index": 4,
+      "lower_exceeds_source_epsilon": false,
+      "precision_bits": 512,
+      "theta_minus_one_lower_decimal_floor": "0.00000005960432679510",
+      "theta_minus_one_upper_decimal_ceiling": "0.00000005960433034778",
+      "upper_available": true,
+      "upper_below_source_epsilon": true,
+      "width_exact": "11600363/10000000"
+    },
+    "width_open_bracket": [
+      "11600361/10000000",
+      "11600363/10000000"
+    ]
+  },
+  "nist_security_category": null,
+  "paper": {
+    "locations": "Gaussian convention p.3; Table 3 p.6; Section 5.1 p.9",
+    "path": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "parameters_are_formal": false,
+  "proof_scope": "Exact Z^10240 theta bounds expose a discrepancy between the paper's formal eta definition and printed r≈1.16; an implicit unit conversion is a hypothesis, not a source fact. No width changes.",
+  "schema": "IBME/SRGG-PAPER-SMOOTHING-ETA/1",
+  "security_claim": "none",
+  "source_dimension": 10240,
+  "source_epsilon": "1/16777216",
+  "source_formal_eta_definition": "eta_epsilon(Z^m)=min{s>0:rho(s Z^m\\{0})<=epsilon}, rho(x)=exp(-pi||x||^2)",
+  "source_rounded_r": "29/25"
+}
