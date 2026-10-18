@@ -4,7 +4,7 @@
 
 | 新增审计 | 已得到的限定结论 | 仍缺什么 |
 |---|---|---|
-| [H1/H2 地址与经典有限拒绝耦合](../2026-10-18-srgg-hash-address-mapping/proof.md) | 固定单公钥、经典理想独立地址模型下，至多 `N` 个互异 H1 地址的完整自适应 transcript `TV≤N*d*n*((2^24−Q)/2^24)^256`；H2 直接取 512 位。代码地址包含完整公钥和规范长度前缀。 | 真实 SHAKE 到 RO、QROM 编程及跨公钥全局 `H(id)` 联合游戏。不能用“全程无失败条件同分布”替代耦合。 |
+| [H1/H2 地址与经典有限拒绝耦合](../2026-10-18-srgg-hash-address-mapping/proof.md) | 同一经典理想 XOF 下，至多 `M` 个 matrix、`N` 个 H1 有效地址的自适应 transcript `TV≤(Md²n+Ndn)*((2^24−Q)/2^24)^256`；原始 XOF 预查询计入地址预算，H2 直接取 512 位。诚实 Setup 先确定公钥；若先看候选 H2 再选公钥，固定公钥重命名会失效。 | 真实 SHAKE 到 RO、QROM 编程及跨公钥全局 `H(id)` 联合游戏。此界不证明接受根分布或整个服务 law。 |
 | [Algorithm 1 每列密钥恢复格](../2026-10-18-srgg-key-recovery-mapping/proof.md) | `Âs_j+e_j=F_j−B_j mod Q`；三档 `D=2049/3073/4097`、`det=Q^m`。作者 p.9 印出 `I_n`，本批明示维数一致的 `I_m` 修正。CBD1 支持范数与作者 β 判据的输入敏感性已复算。 | 接受根的条件范数及联合分布、实际 primal/BKZ 和 Ring-HNF/CRT/子域成本；Table 5 安全位数仅为作者自报。 |
 | [Theorem 2 抽象 SIG 接口](../2026-10-18-srgg-theorem-interface-mapping/proof.md) | 固定单公钥下，实际 Sign/Verify 可计算上因子化为候选 `(P,H1_P(id))` SIG 调用；`H̄_P` 在经典理想模型可作地址重命名，`(z,c)` 到规范签名字节为单射。p.8–9 的概括性验签调用及 G2 `H(x)=pk` 与 Table 3 值域有字面类型缺口。 | 抽样与公钥联合分布、真实 SHAKE/共享 oracle、原生 strong 前提及 QROM 归约；候选解释不能冒充原文证明。 |
 | [§5.2.3 伪造仿射格输入](../2026-10-18-srgg-forgery-input-mapping/proof.md) | 固定承诺 `w`、挑战 `c` 的目标为 `M_hz=w+Qjc mod 2Q`，整数核格行列式为 `Q^(dn)·2^256`。受限 `w=0,z=(x,c)` 子问题精确等价于 `Ax=hc mod Q`，其核格行列式为 `Q^(dn)`、范数预算为 `floor(γ²)−wt(c)`；定向测试含正反两侧。 | 短向量的存在／求解成本、作者通用公式究竟对应哪种子问题，以及 Table 5 伪造位数复现。 |
