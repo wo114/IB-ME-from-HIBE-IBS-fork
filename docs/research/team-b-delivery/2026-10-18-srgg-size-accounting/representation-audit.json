@@ -1,0 +1,400 @@
+{
+  "backend_admitted": false,
+  "base_commit": "fa912804749d64977078579e1691a2ed083171c2",
+  "historical_w8_scenarios": [
+    {
+      "digits": 8,
+      "master": {
+        "actual_peak_rss_bytes": null,
+        "assumed_bytes_per_slot": 64,
+        "coefficient_dimension": 10240,
+        "degree": 512,
+        "dense_payload_bytes": 6710886400,
+        "dense_payload_units": {
+          "GB": "6.7108864",
+          "GiB": "6.25",
+          "MB": "6710.8864",
+          "MiB": "6400"
+        },
+        "dense_slots": 104857600,
+        "module_rows": 20,
+        "ring_coefficient_slots": 204800,
+        "ring_payload_bytes": 13107200,
+        "ring_payload_units": {
+          "GB": "0.0131072",
+          "GiB": "0.01220703125",
+          "MB": "13.1072",
+          "MiB": "12.5"
+        },
+        "slot_ratio": 512
+      },
+      "rank": 2,
+      "signature": {
+        "actual_peak_rss_bytes": null,
+        "assumed_bytes_per_slot": 64,
+        "coefficient_dimension": 10752,
+        "degree": 512,
+        "dense_payload_bytes": 7398752256,
+        "dense_payload_units": {
+          "GB": "7.398752256",
+          "GiB": "6.890625",
+          "MB": "7398.752256",
+          "MiB": "7056"
+        },
+        "dense_slots": 115605504,
+        "module_rows": 21,
+        "ring_coefficient_slots": 225792,
+        "ring_payload_bytes": 14450688,
+        "ring_payload_units": {
+          "GB": "0.014450688",
+          "GiB": "0.013458251953125",
+          "MB": "14.450688",
+          "MiB": "13.78125"
+        },
+        "slot_ratio": 512
+      }
+    },
+    {
+      "digits": 8,
+      "master": {
+        "actual_peak_rss_bytes": null,
+        "assumed_bytes_per_slot": 64,
+        "coefficient_dimension": 15360,
+        "degree": 512,
+        "dense_payload_bytes": 15099494400,
+        "dense_payload_units": {
+          "GB": "15.0994944",
+          "GiB": "14.0625",
+          "MB": "15099.4944",
+          "MiB": "14400"
+        },
+        "dense_slots": 235929600,
+        "module_rows": 30,
+        "ring_coefficient_slots": 460800,
+        "ring_payload_bytes": 29491200,
+        "ring_payload_units": {
+          "GB": "0.0294912",
+          "GiB": "0.0274658203125",
+          "MB": "29.4912",
+          "MiB": "28.125"
+        },
+        "slot_ratio": 512
+      },
+      "rank": 3,
+      "signature": {
+        "actual_peak_rss_bytes": null,
+        "assumed_bytes_per_slot": 64,
+        "coefficient_dimension": 15872,
+        "degree": 512,
+        "dense_payload_bytes": 16122904576,
+        "dense_payload_units": {
+          "GB": "16.122904576",
+          "GiB": "15.015625",
+          "MB": "16122.904576",
+          "MiB": "15376"
+        },
+        "dense_slots": 251920384,
+        "module_rows": 31,
+        "ring_coefficient_slots": 492032,
+        "ring_payload_bytes": 31490048,
+        "ring_payload_units": {
+          "GB": "0.031490048",
+          "GiB": "0.029327392578125",
+          "MB": "31.490048",
+          "MiB": "30.03125"
+        },
+        "slot_ratio": 512
+      }
+    },
+    {
+      "digits": 8,
+      "master": {
+        "actual_peak_rss_bytes": null,
+        "assumed_bytes_per_slot": 64,
+        "coefficient_dimension": 20480,
+        "degree": 512,
+        "dense_payload_bytes": 26843545600,
+        "dense_payload_units": {
+          "GB": "26.8435456",
+          "GiB": "25",
+          "MB": "26843.5456",
+          "MiB": "25600"
+        },
+        "dense_slots": 419430400,
+        "module_rows": 40,
+        "ring_coefficient_slots": 819200,
+        "ring_payload_bytes": 52428800,
+        "ring_payload_units": {
+          "GB": "0.0524288",
+          "GiB": "0.048828125",
+          "MB": "52.4288",
+          "MiB": "50"
+        },
+        "slot_ratio": 512
+      },
+      "rank": 4,
+      "signature": {
+        "actual_peak_rss_bytes": null,
+        "assumed_bytes_per_slot": 64,
+        "coefficient_dimension": 20992,
+        "degree": 512,
+        "dense_payload_bytes": 28202500096,
+        "dense_payload_units": {
+          "GB": "28.202500096",
+          "GiB": "26.265625",
+          "MB": "28202.500096",
+          "MiB": "26896"
+        },
+        "dense_slots": 440664064,
+        "module_rows": 41,
+        "ring_coefficient_slots": 860672,
+        "ring_payload_bytes": 55083008,
+        "ring_payload_units": {
+          "GB": "0.055083008",
+          "GiB": "0.051300048828125",
+          "MB": "55.083008",
+          "MiB": "52.53125"
+        },
+        "slot_ratio": 512
+      }
+    }
+  ],
+  "input_sha256": {
+    "docs/research/team-b-delivery/2026-10-16-srgg-qualification/formal-candidates.json": "9d1e2e0844331529b7b8f4805a3aaaa89c0a3315b4fa7e69ae9ae7a6008483d9",
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-schur/param-i-bounded-final-lifecycle.json": "7818c7caa4fbe9624ae68ad4cbe32d4610a930d1b44cef80b30c027c54efb278",
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-schur/param-ii-bounded-final-lifecycle.json": "e3c5e526bbdd19e54b01e282d5ff8713475ab92bacfe61d1e8c423ba9946e4fe",
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-schur/param-iii-bounded-final-lifecycle.json": "4f4b8ce291269a0b9c52d06262df9e9d93e8db5839ac6f9746a965c602704794"
+  },
+  "interpretation": {
+    "512_slot_ratio_is_not_a_time_or_RSS_speedup": true,
+    "64_bytes_is_assumed_not_measured_or_bounded": true,
+    "current_backends_already_use_ring_structure": true,
+    "frozen_receipts_and_sampler_sources_modified": false,
+    "full_ring_square_is_not_required_by_low_rank_backend": true,
+    "object_wire_is_distinct_from_sampler_workspace": true
+  },
+  "nist_security_category": null,
+  "parameters_are_formal": false,
+  "published_w2_measured_json_objects": [
+    {
+      "dense_coefficient_matrix_materialized": false,
+      "historical_single_lifecycle_only": true,
+      "identity_bytes": 5,
+      "message_bytes": 32,
+      "object_sizes_bytes": {
+        "key": 84190,
+        "master": 102682,
+        "public": 34522,
+        "signature": 35334
+      },
+      "peak_rss_bytes": null,
+      "profile": "PARAM-I",
+      "randomness": "DeterministicRandom TEST ONLY",
+      "receipt": "docs/research/team-b-delivery/2026-10-18-srgg-source-schur/param-i-bounded-final-lifecycle.json"
+    },
+    {
+      "dense_coefficient_matrix_materialized": false,
+      "historical_single_lifecycle_only": true,
+      "identity_bytes": 5,
+      "message_bytes": 32,
+      "object_sizes_bytes": {
+        "key": 176721,
+        "master": 218451,
+        "public": 76935,
+        "signature": 51126
+      },
+      "peak_rss_bytes": null,
+      "profile": "PARAM-II",
+      "randomness": "DeterministicRandom TEST ONLY",
+      "receipt": "docs/research/team-b-delivery/2026-10-18-srgg-source-schur/param-ii-bounded-final-lifecycle.json"
+    },
+    {
+      "dense_coefficient_matrix_materialized": false,
+      "historical_single_lifecycle_only": true,
+      "identity_bytes": 5,
+      "message_bytes": 32,
+      "object_sizes_bytes": {
+        "key": 303760,
+        "master": 377733,
+        "public": 136604,
+        "signature": 67112
+      },
+      "peak_rss_bytes": null,
+      "profile": "PARAM-III",
+      "randomness": "DeterministicRandom TEST ONLY",
+      "receipt": "docs/research/team-b-delivery/2026-10-18-srgg-source-schur/param-iii-bounded-final-lifecycle.json"
+    }
+  ],
+  "published_w2_scenarios": [
+    {
+      "digits": 2,
+      "master": {
+        "actual_peak_rss_bytes": null,
+        "assumed_bytes_per_slot": 64,
+        "coefficient_dimension": 4096,
+        "degree": 512,
+        "dense_payload_bytes": 1073741824,
+        "dense_payload_units": {
+          "GB": "1.073741824",
+          "GiB": "1",
+          "MB": "1073.741824",
+          "MiB": "1024"
+        },
+        "dense_slots": 16777216,
+        "module_rows": 8,
+        "ring_coefficient_slots": 32768,
+        "ring_payload_bytes": 2097152,
+        "ring_payload_units": {
+          "GB": "0.002097152",
+          "GiB": "0.001953125",
+          "MB": "2.097152",
+          "MiB": "2"
+        },
+        "slot_ratio": 512
+      },
+      "rank": 2,
+      "signature": {
+        "actual_peak_rss_bytes": null,
+        "assumed_bytes_per_slot": 64,
+        "coefficient_dimension": 4608,
+        "degree": 512,
+        "dense_payload_bytes": 1358954496,
+        "dense_payload_units": {
+          "GB": "1.358954496",
+          "GiB": "1.265625",
+          "MB": "1358.954496",
+          "MiB": "1296"
+        },
+        "dense_slots": 21233664,
+        "module_rows": 9,
+        "ring_coefficient_slots": 41472,
+        "ring_payload_bytes": 2654208,
+        "ring_payload_units": {
+          "GB": "0.002654208",
+          "GiB": "0.002471923828125",
+          "MB": "2.654208",
+          "MiB": "2.53125"
+        },
+        "slot_ratio": 512
+      }
+    },
+    {
+      "digits": 2,
+      "master": {
+        "actual_peak_rss_bytes": null,
+        "assumed_bytes_per_slot": 64,
+        "coefficient_dimension": 6144,
+        "degree": 512,
+        "dense_payload_bytes": 2415919104,
+        "dense_payload_units": {
+          "GB": "2.415919104",
+          "GiB": "2.25",
+          "MB": "2415.919104",
+          "MiB": "2304"
+        },
+        "dense_slots": 37748736,
+        "module_rows": 12,
+        "ring_coefficient_slots": 73728,
+        "ring_payload_bytes": 4718592,
+        "ring_payload_units": {
+          "GB": "0.004718592",
+          "GiB": "0.00439453125",
+          "MB": "4.718592",
+          "MiB": "4.5"
+        },
+        "slot_ratio": 512
+      },
+      "rank": 3,
+      "signature": {
+        "actual_peak_rss_bytes": null,
+        "assumed_bytes_per_slot": 64,
+        "coefficient_dimension": 6656,
+        "degree": 512,
+        "dense_payload_bytes": 2835349504,
+        "dense_payload_units": {
+          "GB": "2.835349504",
+          "GiB": "2.640625",
+          "MB": "2835.349504",
+          "MiB": "2704"
+        },
+        "dense_slots": 44302336,
+        "module_rows": 13,
+        "ring_coefficient_slots": 86528,
+        "ring_payload_bytes": 5537792,
+        "ring_payload_units": {
+          "GB": "0.005537792",
+          "GiB": "0.005157470703125",
+          "MB": "5.537792",
+          "MiB": "5.28125"
+        },
+        "slot_ratio": 512
+      }
+    },
+    {
+      "digits": 2,
+      "master": {
+        "actual_peak_rss_bytes": null,
+        "assumed_bytes_per_slot": 64,
+        "coefficient_dimension": 8192,
+        "degree": 512,
+        "dense_payload_bytes": 4294967296,
+        "dense_payload_units": {
+          "GB": "4.294967296",
+          "GiB": "4",
+          "MB": "4294.967296",
+          "MiB": "4096"
+        },
+        "dense_slots": 67108864,
+        "module_rows": 16,
+        "ring_coefficient_slots": 131072,
+        "ring_payload_bytes": 8388608,
+        "ring_payload_units": {
+          "GB": "0.008388608",
+          "GiB": "0.0078125",
+          "MB": "8.388608",
+          "MiB": "8"
+        },
+        "slot_ratio": 512
+      },
+      "rank": 4,
+      "signature": {
+        "actual_peak_rss_bytes": null,
+        "assumed_bytes_per_slot": 64,
+        "coefficient_dimension": 8704,
+        "degree": 512,
+        "dense_payload_bytes": 4848615424,
+        "dense_payload_units": {
+          "GB": "4.848615424",
+          "GiB": "4.515625",
+          "MB": "4848.615424",
+          "MiB": "4624"
+        },
+        "dense_slots": 75759616,
+        "module_rows": 17,
+        "ring_coefficient_slots": 147968,
+        "ring_payload_bytes": 9469952,
+        "ring_payload_units": {
+          "GB": "0.009469952",
+          "GiB": "0.008819580078125",
+          "MB": "9.469952",
+          "MiB": "9.03125"
+        },
+        "slot_ratio": 512
+      }
+    }
+  ],
+  "schema": "IBME/SRGG-REPRESENTATION-ACCOUNTING/1",
+  "scope": "counts and existing public receipts; no entropy or new cryptographic execution",
+  "security_claim": "none",
+  "source_sha256": {
+    "experiments/research/candidates/srgg/formal_candidates.py": "8c5e9c7e841c192b48668866392750ff9a463039d4947ee15c2be65d9921c045",
+    "experiments/research/candidates/srgg/paper_backend.py": "da08ef7c93e4b921ef8a73ae233501eee693a67efefb899208f4f0a7079b6451",
+    "experiments/research/candidates/srgg/paper_objects.py": "782bcc7baa30d02a9846809141e1e342841129075688e2bcb332744efa9a2b3f",
+    "experiments/research/candidates/srgg/paper_samplef.py": "233f2124064d1128560d1d9435691f762771c62f0ee99f94cc88c5e6671699c7",
+    "experiments/research/candidates/srgg/paper_schur_fourier.py": "e6372ccddc5ea98188736eb5ed48929f8fcd43bc2965a7c8827b65a2d6ca5208",
+    "experiments/research/candidates/srgg/paper_schur_samplef.py": "5ddce65eb19272d1e2f2965421a065e6d55227661b0627ab640bd5026b3082fb",
+    "experiments/research/candidates/srgg/representation_audit.py": "f8fbbf9b6ecd092ce5b0e81721110596e5fa6875c5037f825578d72b1d30f66e",
+    "experiments/research/candidates/srgg/structured_geometry.py": "08d70876337afae3a7e8722a939c9996363af8eb5f8039d6437b6906814f1120",
+    "experiments/research/candidates/srgg/structured_samplef.py": "9d8fcebf8b86b7c380e6ef81f3bd275710d6dfd2d3d8a66ff1ecb2a684e5bec5"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "scope": "representation accounting and existing exact-geometry/source-Schur regression only",
+  "new_cryptographic_runs": 0,
+  "parameters_changed": false,
+  "sampler_sources_changed": false,
+  "relative_links_valid": 10,
+  "baseline_inputs_and_sources_unchanged": 12,
+  "report_check_normal_python": "passed",
+  "report_check_optimized_python": "passed",
+  "optimized_python_tampered_report_rejected": true,
+  "tests": [
+    {
+      "command": "python -m pytest -q tests/test_srgg_representation_audit.py",
+      "environment": "Windows Python",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.27
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_structured_geometry.py tests/test_srgg_paper_schur_samplef.py",
+      "environment": "WSL Sage",
+      "passed": 24,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 8.10
+    }
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}
