@@ -28,4 +28,4 @@ export PYTHONPATH="$PWD/src:$PWD:<estimator-dir>"
   tests/test_abb_noise_tradeoff.py tests/test_matrix_hibe_scaled_screen.py
 ```
 
-以上命令分别运行 AP09 根侧 Euclidean SIS 条件比较和密文侧 LWE 比较，不生成密钥，不读取生产随机数，也不运行高维 BasisDel。根侧没有有限返回时，JSON保留 `no_finite_estimate` 和原始字段，不换算成安全成本。若要重复运行，使用新的输出目录；不要删除或覆盖已有结果来隐藏失败。
+以上命令分别运行 AP09 根侧 Euclidean SIS 条件比较和密文侧 LWE 比较，不生成密钥，不读取生产随机数，也不运行高维 BasisDel。根侧两个调用都明确没有有限返回时，JSON保留 `no_finite_estimate` 和原始字段，不换算成安全成本；若密文侧达到128，只可进入不授予安全或运行准入的实现研究层。若要重复运行，使用新的输出目录；不要删除或覆盖已有结果来隐藏失败。

@@ -1,5 +1,5 @@
 {
-  "schema": "A/ABB-NOISE-TRADEOFF/2",
+  "schema": "A/ABB-NOISE-TRADEOFF/3",
   "fixed_inputs": {
     "q": "411376139330301510538742295639337626245683966408394965837151957",
     "q_bits": 208,
@@ -13,7 +13,7 @@
   },
   "finite_noise": {
     "built": true,
-    "build_seconds": 0.8501052770006936,
+    "build_seconds": 0.8700952699873596,
     "anchor_modulus": 65537,
     "anchor_modulus_used_for_ciphertext": false,
     "scaled_width": 721,
@@ -185,6 +185,8 @@
       "ciphertext_comparison_minimum_log2_rop": 125.875,
       "comparison_model_gate": false,
       "comparison_minimum_log2_rop": null,
+      "root_trapdoor_comparison_status": "explicitly_unresolved",
+      "implementation_research_gate": false,
       "estimator_results": {
         "root_trapdoor_recovery": {
           "sis_lattice-classical": {
@@ -200,7 +202,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.043801551015349105
+            "elapsed_seconds": 0.04602842399617657
           },
           "sis_lattice-quantum": {
             "status": "no_finite_estimate",
@@ -215,7 +217,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.010803515004226938
+            "elapsed_seconds": 0.011918114993022755
           }
         },
         "ciphertext_lwe": {
@@ -231,7 +233,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 4.666628135018982
+            "elapsed_seconds": 4.944911700004013
           },
           "dual-classical": {
             "status": "finite_estimate",
@@ -246,7 +248,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.07989369999268092
+            "elapsed_seconds": 0.0768480850092601
           },
           "primal_usvp-quantum": {
             "status": "finite_estimate",
@@ -260,7 +262,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 4.602964805002557
+            "elapsed_seconds": 4.796160157973645
           },
           "dual-quantum": {
             "status": "finite_estimate",
@@ -275,7 +277,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.05911031900905073
+            "elapsed_seconds": 0.05829125799937174
           }
         }
       },
@@ -433,6 +435,8 @@
       "ciphertext_comparison_minimum_log2_rop": 128.26000000000002,
       "comparison_model_gate": false,
       "comparison_minimum_log2_rop": null,
+      "root_trapdoor_comparison_status": "explicitly_unresolved",
+      "implementation_research_gate": true,
       "estimator_results": {
         "root_trapdoor_recovery": {
           "sis_lattice-classical": {
@@ -448,7 +452,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.01230534099158831
+            "elapsed_seconds": 0.013818061008350924
           },
           "sis_lattice-quantum": {
             "status": "no_finite_estimate",
@@ -463,7 +467,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.01137138798367232
+            "elapsed_seconds": 0.012585154006956145
           }
         },
         "ciphertext_lwe": {
@@ -479,7 +483,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 4.632600495009683
+            "elapsed_seconds": 4.861140905006323
           },
           "dual-classical": {
             "status": "finite_estimate",
@@ -494,7 +498,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.07251469499897212
+            "elapsed_seconds": 0.07492611699854024
           },
           "primal_usvp-quantum": {
             "status": "finite_estimate",
@@ -508,7 +512,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 4.576637524005491
+            "elapsed_seconds": 4.697262111993041
           },
           "dual-quantum": {
             "status": "finite_estimate",
@@ -523,7 +527,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.05420245401910506
+            "elapsed_seconds": 0.056558438984211534
           }
         }
       },
@@ -681,6 +685,8 @@
       "ciphertext_comparison_minimum_log2_rop": 130.645,
       "comparison_model_gate": false,
       "comparison_minimum_log2_rop": null,
+      "root_trapdoor_comparison_status": "explicitly_unresolved",
+      "implementation_research_gate": true,
       "estimator_results": {
         "root_trapdoor_recovery": {
           "sis_lattice-classical": {
@@ -696,7 +702,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.011971730011282489
+            "elapsed_seconds": 0.012088321993360296
           },
           "sis_lattice-quantum": {
             "status": "no_finite_estimate",
@@ -711,7 +717,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.010990426992066205
+            "elapsed_seconds": 0.01177691700286232
           }
         },
         "ciphertext_lwe": {
@@ -727,7 +733,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 4.903122154006269
+            "elapsed_seconds": 4.990856403019279
           },
           "dual-classical": {
             "status": "finite_estimate",
@@ -742,7 +748,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.071770699985791
+            "elapsed_seconds": 0.0730561229865998
           },
           "primal_usvp-quantum": {
             "status": "finite_estimate",
@@ -756,7 +762,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 4.90096891799476
+            "elapsed_seconds": 4.9559774750086945
           },
           "dual-quantum": {
             "status": "finite_estimate",
@@ -771,7 +777,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.05614724400220439
+            "elapsed_seconds": 0.05654513300396502
           }
         }
       },
@@ -929,6 +935,8 @@
       "ciphertext_comparison_minimum_log2_rop": 140.45000000000002,
       "comparison_model_gate": false,
       "comparison_minimum_log2_rop": null,
+      "root_trapdoor_comparison_status": "explicitly_unresolved",
+      "implementation_research_gate": true,
       "estimator_results": {
         "root_trapdoor_recovery": {
           "sis_lattice-classical": {
@@ -944,7 +952,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.011951380001846701
+            "elapsed_seconds": 0.012628330005099997
           },
           "sis_lattice-quantum": {
             "status": "no_finite_estimate",
@@ -959,7 +967,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.010867554985452443
+            "elapsed_seconds": 0.011422109004342929
           }
         },
         "ciphertext_lwe": {
@@ -975,7 +983,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 5.056856388022425
+            "elapsed_seconds": 5.168856609001523
           },
           "dual-classical": {
             "status": "finite_estimate",
@@ -990,7 +998,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.06423674698453397
+            "elapsed_seconds": 0.07895245001418516
           },
           "primal_usvp-quantum": {
             "status": "finite_estimate",
@@ -1004,7 +1012,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 5.08269366301829
+            "elapsed_seconds": 6.527149995992659
           },
           "dual-quantum": {
             "status": "finite_estimate",
@@ -1019,7 +1027,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.05165915400721133
+            "elapsed_seconds": 0.06119908401160501
           }
         }
       },
@@ -1082,11 +1090,24 @@
     "abb-rom-n10240-q208-chi721"
   ],
   "comparison_model_candidates": [],
+  "implementation_research_candidates": [
+    "abb-rom-n9600-q208-chi721",
+    "abb-rom-n9728-q208-chi721",
+    "abb-rom-n10240-q208-chi721"
+  ],
   "smallest_tested_ciphertext_comparison_candidate": "abb-rom-n9600-q208-chi721",
   "smallest_tested_comparison_candidate": null,
+  "smallest_tested_implementation_research_candidate": "abb-rom-n9600-q208-chi721",
   "largest_tested_comparison_margin_candidate": null,
   "complete_runtime_candidates": [],
   "secure_candidate_selected": false,
+  "research_tier_policy": {
+    "name": "ciphertext-128-with-explicit-root-unknown",
+    "formal_comparison_gate_changed": false,
+    "allows_explicit_root_no_finite_estimate": true,
+    "rejects_finite_root_cost_below_target": true,
+    "grants_security_or_runtime_admission": false
+  },
   "root_or_key_generations": 0,
   "ciphertext_generations": 0,
   "private_entropy_bytes": 0,
@@ -1097,15 +1118,15 @@
     "logical_cpus": 12
   },
   "source_sha256": {
-    "experiments/research/abb_rom/noise_tradeoff_probe.py": "ff507f395153b1c5939f99046c6b9535e5b989959e70f8da52a1affd00d4d08a",
+    "experiments/research/abb_rom/noise_tradeoff_probe.py": "74daa24e660b291f5550375585b3173b84f4766ed691a2a16c117e4820aa0cf2",
     "experiments/research/abb_rom/scaled_parameter_screen.py": "73deae56df5eee38f5efcbdbe7eac05a5d9101d4661bd3b34a82d4c338ef3d75",
     "src/ibme/lattice/chkp/noise_budget.py": "4d493f2c305fd614705ab28f6fc3920b0ae06b195b0b0960719ff51314508790",
     "src/ibme/lattice/chkp/rounded_noise.py": "f093b75e82116f39b5817a01ee89ead1bcbaec8df6d231380354b4e992638411"
   },
   "measurements": {
-    "finite_cdf_build_seconds": 0.8501052770006936,
-    "total_seconds": 41.03246072199545,
-    "process_max_rss_kib": 305304
+    "finite_cdf_build_seconds": 0.8700952699873596,
+    "total_seconds": 48.32665048900526,
+    "process_max_rss_kib": 304880
   },
   "unresolved": [
     "complete-basis representation is petabyte-scale for every tested row",
