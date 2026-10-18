@@ -24,6 +24,7 @@
       "id": "chkp-rom",
       "tests": [
         "tests/test_chkp_*.py",
+        "tests/test_radix_kem.py",
         "tests/test_first_suite_*.py"
       ],
       "source_markers": [

@@ -1,0 +1,83 @@
+{
+  "schema": "IBME-PR43-48-REVIEW/1",
+  "date": "2026-10-18",
+  "baseline": "8cc69c72a26bd91c0defc2052f92bd0780f0bb21",
+  "ci_before_merge": [
+    {
+      "pr": 48,
+      "head": "9da2c1689b0263b265c2e81a2785ad0cd35cafb3",
+      "check_counts": {
+        "SUCCESS": 46,
+        "SKIPPED": 2
+      },
+      "merge_state_before_resolution": "CLEAN"
+    },
+    {
+      "pr": 47,
+      "head": "8fdac5c91e2739ef93a03cb81242bc19670b13ae",
+      "check_counts": {
+        "SUCCESS": 46,
+        "SKIPPED": 2
+      },
+      "merge_state_before_resolution": "CLEAN"
+    },
+    {
+      "pr": 46,
+      "head": "0c68a27c03d5092b369a95d636bc34091f6fbf33",
+      "check_counts": {
+        "SUCCESS": 46,
+        "SKIPPED": 2
+      },
+      "merge_state_before_resolution": "DIRTY"
+    },
+    {
+      "pr": 43,
+      "head": "fa912804749d64977078579e1691a2ed083171c2",
+      "check_counts": {
+        "SUCCESS": 23,
+        "SKIPPED": 1
+      },
+      "merge_state_before_resolution": "CLEAN"
+    }
+  ],
+  "sage_regression": {
+    "command": "PYTHONPATH=.pytest-tmp-sage-deps:src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest tests/test_srgg*.py tests/test_radix_kem.py tests/test_mp12_radix_runtime.py tests/test_blocked_3m_objects.py tests/test_ci_catalog.py tests/test_sageloli_probe.py --basetemp=.pytest-tmp-pr-review-oct18-sage --junitxml=.pytest-tmp-pr-review-2026-10-18/sage-pr43-pr48.junit.xml -q",
+    "cases": 2026,
+    "passed": 2024,
+    "failed": 2,
+    "skipped": 0,
+    "seconds": 554.03,
+    "failed_cases": [
+      "tests/test_srgg_service.py::test_new_issuer_directory_is_private_on_posix",
+      "tests/test_srgg_structured_service.py::test_new_issuer_directory_is_private_on_posix"
+    ],
+    "failure_reason": "Linux chmod assertions run on /mnt/d DrvFS Windows mount returned 0777",
+    "posix_native_tmp_rerun": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 4.55,
+      "basetemp": "/tmp/ibme-pr-review-2026-10-18-permissions"
+    }
+  },
+  "materials_original_snapshots": {
+    "card_checks": 392,
+    "material_checks": 164,
+    "provider_occurrences_verified": 2340,
+    "display_medians_recomputed": 27,
+    "private_keys_or_entropy_used": false
+  },
+  "publication_review_pending": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "publication_review": {
+    "sha256": "2d208410f46da62cd999b606a186fdcdbc26a886bda5906559b8ff6a6f07e8de",
+    "original_verifiers": 38,
+    "original_passes": 36,
+    "environment_metadata_failures": 2,
+    "independent_mathematical_replay_passes": 2,
+    "original_driver_38_of_38_passed": false,
+    "frozen_source_receipts_changed": false
+  }
+}

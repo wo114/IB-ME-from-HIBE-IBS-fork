@@ -1,0 +1,284 @@
+{
+  "CRT_subfield_attack_cost": null,
+  "HIBE_involved": false,
+  "accepted_setup_root_structural_attack_cost": null,
+  "backend_admitted": false,
+  "environment": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15",
+    "sage": "10.9"
+  },
+  "full_ring_HNF_MSIS_attack_cost": null,
+  "nist_security_category": null,
+  "one_actual_signature_probe": {
+    "interpretation": "table-standard-deviation",
+    "probe": {
+      "all_rows_kernel_checked": true,
+      "best_direction": 1,
+      "best_pair_index": 96,
+      "best_replacement_accepted": false,
+      "best_shift_norm_squared": 2164434734665119,
+      "canonical_alternative_object": true,
+      "distinct_canonical_signature": true,
+      "eligible_pair_positions": 0,
+      "fresh_under_exact_signature_strong_game": false,
+      "fresh_under_paper_new_message_G0": false,
+      "original_norm_squared": 1709290184184387,
+      "private_material_exported": false,
+      "published_last_column_checked": true,
+      "recovered_commitment_equal": true,
+      "same_message_identity_challenge": true,
+      "signature_norm_squared_cap": 1771272783614168,
+      "success_probability": null,
+      "tested_pair_positions": 256,
+      "valid_original_required_and_checked": true
+    },
+    "profile": "PARAM-I",
+    "public_key_sha256": "0d8ec302ae6b3f0f4780fb7c4da8b89fe77cd7d4f4b269b1ea28a4d79983e510",
+    "randomness": "DeterministicRandom TEST ONLY",
+    "signature_queries": 1
+  },
+  "paper": {
+    "locations": "Table 4; Algorithms 7-8; Section 5.2 and Table 5",
+    "path": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "parameters_are_formal": false,
+  "private_material_exported": false,
+  "published_Table5_costs_reproduced": false,
+  "routes": [
+    {
+      "actual_attack_cost": null,
+      "result": "unclosed: actual accepted seeded public-root law, local short-solution law, and global norm lift are absent",
+      "route": "direct ring-HNF/CRT/subfield attack-cost transfer"
+    },
+    {
+      "actual_attack_cost": null,
+      "result": "exact necessary magnitude Q/m; does not determine polynomial-factor lifting or attack success",
+      "route": "coefficient CRT-only lift floor"
+    },
+    {
+      "actual_attack_cost": null,
+      "result": "exact zero-BKZ public restricted-kernel witness; not a fresh-message forgery or complete structural estimate",
+      "route": "universal final-column verification kernel"
+    }
+  ],
+  "rows": [
+    {
+      "CRT_component_lift_floors": [
+        {
+          "global_short_solution_or_attack_cost_inferred": false,
+          "nonzero_centered_coefficient_abs_lower": 5248021,
+          "other_components_product": 5248021,
+          "prime": 3,
+          "prime_power": 3,
+          "single_polynomial_factor_floor_is_sharp": null,
+          "whole_prime_power_component_floor_is_sharp": true
+        },
+        {
+          "global_short_solution_or_attack_cost_inferred": false,
+          "nonzero_centered_coefficient_abs_lower": 16383,
+          "other_components_product": 16383,
+          "prime": 31,
+          "prime_power": 961,
+          "single_polynomial_factor_floor_is_sharp": null,
+          "whole_prime_power_component_floor_is_sharp": true
+        },
+        {
+          "global_short_solution_or_attack_cost_inferred": false,
+          "nonzero_centered_coefficient_abs_lower": 366141,
+          "other_components_product": 366141,
+          "prime": 43,
+          "prime_power": 43,
+          "single_polynomial_factor_floor_is_sharp": null,
+          "whole_prime_power_component_floor_is_sharp": true
+        },
+        {
+          "global_short_solution_or_attack_cost_inferred": false,
+          "nonzero_centered_coefficient_abs_lower": 123969,
+          "other_components_product": 123969,
+          "prime": 127,
+          "prime_power": 127,
+          "single_polynomial_factor_floor_is_sharp": null,
+          "whole_prime_power_component_floor_is_sharp": true
+        }
+      ],
+      "CRT_subfield_attack_cost": null,
+      "Q": 15744063,
+      "backend_admitted": false,
+      "d": 2,
+      "explicit_construction_BKZ_calls": 0,
+      "explicit_construction_nonzero_coefficients": 2,
+      "fresh_message_forgery_from_kernel_alone": false,
+      "full_ring_HNF_MSIS_attack_cost": null,
+      "identity": "(1-X^(n/2))^2=-2*X^(n/2) in Z[X]/(X^n+1)",
+      "n": 512,
+      "nist_security_category": null,
+      "parameters_are_formal": false,
+      "profile": "PARAM-I",
+      "public_last_column_algebra_only": true,
+      "published_gamma": "420864917/10",
+      "published_norm_squared_cap": 1771272783614168,
+      "restricted_family": "nonzero Q*t in final column only, with integer t and zero 2Q commitment",
+      "restricted_minimum_argument": "mod2 t has equal halves; nonzero odd parity has >=2 unit coefficients, all-even nonzero t has one coefficient magnitude >=2",
+      "restricted_minimum_attained": true,
+      "restricted_minimum_norm_squared": 495751039495938,
+      "security_claim": "none",
+      "successful_replacement_probability": null,
+      "universal_for_every_public_A_and_identity_h": true,
+      "verification_modulus": 31488126,
+      "w": 2,
+      "witness": "Q*(1-X^(n/2)) in the final response column",
+      "witness_inside_single_signature_radius": true,
+      "zeta_star": "1-X^(n/2)"
+    },
+    {
+      "CRT_component_lift_floors": [
+        {
+          "global_short_solution_or_attack_cost_inferred": false,
+          "nonzero_centered_coefficient_abs_lower": 5248021,
+          "other_components_product": 5248021,
+          "prime": 3,
+          "prime_power": 3,
+          "single_polynomial_factor_floor_is_sharp": null,
+          "whole_prime_power_component_floor_is_sharp": true
+        },
+        {
+          "global_short_solution_or_attack_cost_inferred": false,
+          "nonzero_centered_coefficient_abs_lower": 16383,
+          "other_components_product": 16383,
+          "prime": 31,
+          "prime_power": 961,
+          "single_polynomial_factor_floor_is_sharp": null,
+          "whole_prime_power_component_floor_is_sharp": true
+        },
+        {
+          "global_short_solution_or_attack_cost_inferred": false,
+          "nonzero_centered_coefficient_abs_lower": 366141,
+          "other_components_product": 366141,
+          "prime": 43,
+          "prime_power": 43,
+          "single_polynomial_factor_floor_is_sharp": null,
+          "whole_prime_power_component_floor_is_sharp": true
+        },
+        {
+          "global_short_solution_or_attack_cost_inferred": false,
+          "nonzero_centered_coefficient_abs_lower": 123969,
+          "other_components_product": 123969,
+          "prime": 127,
+          "prime_power": 127,
+          "single_polynomial_factor_floor_is_sharp": null,
+          "whole_prime_power_component_floor_is_sharp": true
+        }
+      ],
+      "CRT_subfield_attack_cost": null,
+      "Q": 15744063,
+      "backend_admitted": false,
+      "d": 3,
+      "explicit_construction_BKZ_calls": 0,
+      "explicit_construction_nonzero_coefficients": 2,
+      "fresh_message_forgery_from_kernel_alone": false,
+      "full_ring_HNF_MSIS_attack_cost": null,
+      "identity": "(1-X^(n/2))^2=-2*X^(n/2) in Z[X]/(X^n+1)",
+      "n": 512,
+      "nist_security_category": null,
+      "parameters_are_formal": false,
+      "profile": "PARAM-II",
+      "public_last_column_algebra_only": true,
+      "published_gamma": "63653172",
+      "published_norm_squared_cap": 4051726305661584,
+      "restricted_family": "nonzero Q*t in final column only, with integer t and zero 2Q commitment",
+      "restricted_minimum_argument": "mod2 t has equal halves; nonzero odd parity has >=2 unit coefficients, all-even nonzero t has one coefficient magnitude >=2",
+      "restricted_minimum_attained": true,
+      "restricted_minimum_norm_squared": 495751039495938,
+      "security_claim": "none",
+      "successful_replacement_probability": null,
+      "universal_for_every_public_A_and_identity_h": true,
+      "verification_modulus": 31488126,
+      "w": 2,
+      "witness": "Q*(1-X^(n/2)) in the final response column",
+      "witness_inside_single_signature_radius": true,
+      "zeta_star": "1-X^(n/2)"
+    },
+    {
+      "CRT_component_lift_floors": [
+        {
+          "global_short_solution_or_attack_cost_inferred": false,
+          "nonzero_centered_coefficient_abs_lower": 5248021,
+          "other_components_product": 5248021,
+          "prime": 3,
+          "prime_power": 3,
+          "single_polynomial_factor_floor_is_sharp": null,
+          "whole_prime_power_component_floor_is_sharp": true
+        },
+        {
+          "global_short_solution_or_attack_cost_inferred": false,
+          "nonzero_centered_coefficient_abs_lower": 16383,
+          "other_components_product": 16383,
+          "prime": 31,
+          "prime_power": 961,
+          "single_polynomial_factor_floor_is_sharp": null,
+          "whole_prime_power_component_floor_is_sharp": true
+        },
+        {
+          "global_short_solution_or_attack_cost_inferred": false,
+          "nonzero_centered_coefficient_abs_lower": 366141,
+          "other_components_product": 366141,
+          "prime": 43,
+          "prime_power": 43,
+          "single_polynomial_factor_floor_is_sharp": null,
+          "whole_prime_power_component_floor_is_sharp": true
+        },
+        {
+          "global_short_solution_or_attack_cost_inferred": false,
+          "nonzero_centered_coefficient_abs_lower": 123969,
+          "other_components_product": 123969,
+          "prime": 127,
+          "prime_power": 127,
+          "single_polynomial_factor_floor_is_sharp": null,
+          "whole_prime_power_component_floor_is_sharp": true
+        }
+      ],
+      "CRT_subfield_attack_cost": null,
+      "Q": 15744063,
+      "backend_admitted": false,
+      "d": 4,
+      "explicit_construction_BKZ_calls": 0,
+      "explicit_construction_nonzero_coefficients": 2,
+      "fresh_message_forgery_from_kernel_alone": false,
+      "full_ring_HNF_MSIS_attack_cost": null,
+      "identity": "(1-X^(n/2))^2=-2*X^(n/2) in Z[X]/(X^n+1)",
+      "n": 512,
+      "nist_security_category": null,
+      "parameters_are_formal": false,
+      "profile": "PARAM-III",
+      "public_last_column_algebra_only": true,
+      "published_gamma": "173147861/2",
+      "published_norm_squared_cap": 7495045442218830,
+      "restricted_family": "nonzero Q*t in final column only, with integer t and zero 2Q commitment",
+      "restricted_minimum_argument": "mod2 t has equal halves; nonzero odd parity has >=2 unit coefficients, all-even nonzero t has one coefficient magnitude >=2",
+      "restricted_minimum_attained": true,
+      "restricted_minimum_norm_squared": 495751039495938,
+      "security_claim": "none",
+      "successful_replacement_probability": null,
+      "universal_for_every_public_A_and_identity_h": true,
+      "verification_modulus": 31488126,
+      "w": 2,
+      "witness": "Q*(1-X^(n/2)) in the final response column",
+      "witness_inside_single_signature_radius": true,
+      "zeta_star": "1-X^(n/2)"
+    }
+  ],
+  "schema": "IBME/SRGG-PAPER-STRUCTURAL-ATTACK-FOLLOWUP/1",
+  "security_claim": "none",
+  "source_sha256": {
+    "experiments/research/candidates/srgg/paper_algebra.py": "5494acd7ab7cf42b2d9f33746b2535ffcbb58df0796c0b313dd56cc39547c81a",
+    "experiments/research/candidates/srgg/paper_backend.py": "da08ef7c93e4b921ef8a73ae233501eee693a67efefb899208f4f0a7079b6451",
+    "experiments/research/candidates/srgg/paper_objects.py": "782bcc7baa30d02a9846809141e1e342841129075688e2bcb332744efa9a2b3f",
+    "experiments/research/candidates/srgg/paper_parameters.py": "3dc03c082d5595fb2f6d85ea2fdd284beb37b20c432854a38ff434f8aef201a4",
+    "experiments/research/candidates/srgg/paper_profiles.py": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f",
+    "experiments/research/candidates/srgg/paper_schur_backend.py": "f67cad3306c4a95495c48c12f29353791b2b5c05dadd1b6021d2b1cb58956693",
+    "experiments/research/candidates/srgg/paper_structural_attack_followup.py": "6520df059bf2ebc2325f5218c1b44430886f8e49c3ace102c8507296a69c54ff",
+    "experiments/research/candidates/srgg/structured_execution.py": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+  }
+}

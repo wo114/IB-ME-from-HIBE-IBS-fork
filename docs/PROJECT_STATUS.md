@@ -1,12 +1,12 @@
 # 当前进度与并行任务
 
-更新：2026-10-18（ABB10／CHKP接手标准已推main；IBS 10个完整研究后端中6个默认接入、4个待接，补LATTE＋C64B完整实测。PR43／45／46／47待审，在途交付不因出现PR就计作已接收）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
+更新：2026-10-18（ABB10／CHKP接手标准已推main；IBS 10个完整研究后端中6个默认接入、4个待接，补LATTE＋C64B完整实测。PR45已关闭且未合并，PR43／46／47／48待审，在途交付不因出现PR就计作已接收）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
 
 **最新分工（2026-10-18 用户明确）**：ABB10与CHKP交由队长安排的其它AI，按[执行标准与接手任务](workplans/2026-10-18-ABB10与CHKP执行标准.md)分别认领。保留原128比较模型目标，参数、真实完整运行、部署与安全声明分开；理论继续引用，不新增基础证明。各自首批时间盒及共享文件边界见标准，本线程停止A扩维不自动暂停已明确承接者的工作。统筹同步核对IBS是否真正登记/CLI/配对及默认参数问题，不因登记存在就判定安全可用。三条暂缓路线继续暂缓。
 
-**新交付待审**：[PR45](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/45)本次同步快照`9577c768a42d676b3b9a4341ae715e8742141beb`提供CHKP作者稿3m完整研究服务及独立高基数KEM/AP09组件，作者报告完整实跑使用明确不安全的n1；尚未独立复核或合入，不更新已完成目标参数数量。[PR43](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/43)固定`fa912804749d64977078579e1691a2ed083171c2`的SRGG独立研究后续亦待审，未继承到当前默认路线的运行/参数结论。
+**CHKP PR45审查结论**：[PR45](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/45)已关闭且未合并，原分支和提交保留。其二层公共路径主要委托既有CHKP，一级KEM不在当前Wang组合调用路径内，AP09根与已有实现重叠且未接入该服务；这些内容不计新算法或新代表。非重复的高基数3m种子KEM已单独拆为[PR48](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/48)待审，使用n2/q93/b1024真实根→父→256叶功能实例，但仍不是公共HIBEBackend、Hybrid/CLI或完整IB-ME，不更新目标参数完成数。[PR43](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/43)固定`fa912804749d64977078579e1691a2ed083171c2`的SRGG独立研究后续亦待审，未继承到当前默认路线的运行/参数结论。
 
-**材料在途**：新增[PR46展示卡](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/46)（`0c68a27c03d5092b369a95d636bc34091f6fbf33`）及[PR47报告／演示材料](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/47)（`8fdac5c91e2739ef93a03cb81242bc19670b13ae`）；本批只同步元数据，未完成独立审查或合并。与PR43／45一并保留审查队列，不将材料分支计作主分支已有最终报告或界面。
+**材料在途**：新增[PR46展示卡](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/46)（`0c68a27c03d5092b369a95d636bc34091f6fbf33`）及[PR47报告／演示材料](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/47)（`8fdac5c91e2739ef93a03cb81242bc19670b13ae`）；本批只同步元数据，未完成独立审查或合并。与PR43／48一并保留审查队列，不将材料分支计作主分支已有最终报告、界面或高基数完整系统。
 
 **当前时间与投入约束（2026-10-18 用户明确）**：只剩4天，不在A大参数研究上持续消耗。执行[四天交付安排](workplans/2026-10-18-four-day-delivery.md)：本轮约1小时工程/实测投入、单次采样300秒上限，预定小规模组已经完成。下一批将参数依据核对集中到准备展示的完整组合，并推进T5/T6/T8/T10；不要求13个后端全部完成目标参数才交付作品。不启动n4096长采样、新参数扫描、mmap/外存完整开发或A的新算法；既有候选和研究材料保留。队友已在推进的两种HIBE继续作为在途交付纳入选择，不能被“A停止本轮扩维”一并暂停。最后一天不继续扩功能。该排序覆盖旧任务书“时间充分”的排期假设，不改变论文算法、接口或安全口径。
 
@@ -24,7 +24,7 @@
 
 **IBS接入／参数最新盘点**：[逐项清单与改善顺序](deliveries/2026-10-18-ibs-inventory/README.md)固定`fc1f342`核对10个完整研究IBS，默认接入6个；Foo–Li、Yu、Sageloli SIS／RSIS四个仍未接入。至少六条路线的现有小参数已有公开伪造，不能作为安全代表；本批只引用既有记录，未新增攻击。Foo–Li临时registry容量预检通过，Yu因1—4 B容量正确拒绝。SRGG除默认degree8外，主分支已有structured及论文n512三组独立实跑，不能称只有小参数；其参数解释、实际采样和新组合仍须分别处理，不新开基础证明任务。
 
-**A0/A3当前工程交付**：已有[3m大q分块原型](research/team-a-delivery/2026-10-18-3m-feasibility/README.md)，PR40合入`4c6955f`；[288组高基数筛选](research/team-a-delivery/2026-10-18-radix-screen/README.md)随PR41合入`d861fe9`，保留66组候选，目标n4096/b4096/q93父R约9 GiB、当前探针payload约19.197 GiB；b1024/q89模型余量候选同样保留。新增[有界高基数实跑](research/team-a-delivery/2026-10-18-bounded-radix/README.md)，代码`7032c3b`/CLI修正`949bf91`：显式版本化的任意基数公开kernel/真实GPV、完整扰动、独立父R、256叶及codec接通；系统随机n2/b1024和n2/n4/n8/b4096均用q93成功，四组新进程恢复0熵，原二进制n2/q40状态亦恢复。n8父约4.15秒、256叶约44.78秒、RSS观察约225 MiB；参数不同于旧q80二进制，不报系统加速倍数。最终A专项261 pass/0skip、目录25 pass；初次CLI参数转接失败发生于私有工作前，已修并留证。**本轮到此停止扩维**，无高基数完整HIBEBackend/KEM、n4096私钥或目标时间/RSS；不据硬件或运行门否定算法。
+**A0/A3当前工程交付**：已有[3m大q分块原型](research/team-a-delivery/2026-10-18-3m-feasibility/README.md)，PR40合入`4c6955f`；[288组高基数筛选](research/team-a-delivery/2026-10-18-radix-screen/README.md)随PR41合入`d861fe9`，保留66组候选，目标n4096/b4096/q93父R约9 GiB、当前探针payload约19.197 GiB；b1024/q89模型余量候选同样保留。新增[有界高基数实跑](research/team-a-delivery/2026-10-18-bounded-radix/README.md)，代码`7032c3b`/CLI修正`949bf91`：显式版本化的任意基数公开kernel/真实GPV、完整扰动、独立父R、256叶及codec接通；系统随机n2/b1024和n2/n4/n8/b4096均用q93成功，四组新进程恢复0熵，原二进制n2/q40状态亦恢复。n8父约4.15秒、256叶约44.78秒、RSS观察约225 MiB；参数不同于旧q80二进制，不报系统加速倍数。最终A专项261 pass/0skip、目录25 pass；初次CLI参数转接失败发生于私有工作前，已修并留证。PR48另提供待审的独立高基数种子KEM和n2真实功能测试；仍无高基数完整HIBEBackend、Hybrid/CLI组合、n4096私钥或目标时间/RSS，不据硬件或运行门否定算法。
 
 **统筹T5当前实测**：[ML-DSA基线](research/2026-10-18-full-system-baseline/README.md)、[Falcon基线](research/2026-10-18-full-system-falcon/README.md)及新增[Luo模格compact基线](research/2026-10-18-full-system-luo/README.md)。三组均为LATTE/Hybrid/BYTEAUTH、相同runner与64 B身份/32 B消息，各3套独立系统随机状态、每套3轮warm和新进程3次零熵恢复，全部成功。Luo组warm完整加/解密中位数0.364461/0.229220秒、完整wire151876—151955 B。统一[comparison.json](research/2026-10-18-full-system-luo/evidence/comparison.json)含可供展示/报告读取的原始统计和配置；2340个provider与各自Git源码一致。三组不是三个独立HIBE，也未自动选定报告代表；不同安全目标分组，不做跨组排名或声称联合优化收益。
 
