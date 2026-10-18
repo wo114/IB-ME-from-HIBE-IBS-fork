@@ -35,3 +35,15 @@ def test_ntt_refuses_ambiguous_crt_range(library):
     handle=SmallMatrix(library,a)
     with pytest.raises(ValueError,match="range"):
         handle.apply(np.full((1,4),2**40,dtype=np.int64))
+
+
+def test_degree_2048_signed_product_crosses_single_prime_range(library):
+    from sage.all import PolynomialRing,ZZ
+    d=2048;rng=np.random.default_rng(2048)
+    a=rng.integers(-2**20,2**20,(1,2,d),dtype=np.int64)
+    x=rng.integers(-2**18,2**18,(2,d),dtype=np.int64)
+    ring=PolynomialRing(ZZ,"X");X=ring.gen()
+    expected=sum(ring(a[0,j].tolist())*ring(x[j].tolist()) for j in range(2))%(X**d+1)
+    answer=SmallMatrix(library,a).apply(x)[0]
+    assert max(abs(int(v)) for v in answer)>2013265921
+    assert answer.tolist()==[int(expected[i]) for i in range(d)]

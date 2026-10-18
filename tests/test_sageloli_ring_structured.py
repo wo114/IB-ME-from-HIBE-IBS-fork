@@ -15,9 +15,8 @@ def test_wide_modulus_coefficients_roundtrip_and_spare_bits_rejected(k):
     wire=codec.tensor(a,a.shape,bits)
     assert np.array_equal(codec.tensor_from(wire,a.shape,bits,modulus=q),a)
     with pytest.raises(ValueError):codec.tensor_from(wire+b"x",a.shape,bits,modulus=q)
-    bad=bytearray(wire);bad[-1]=255
-    if int.from_bytes(bad[-((bits+7)//8):],"big")>=q:
-        with pytest.raises(ValueError):codec.tensor_from(bytes(bad),a.shape,bits,modulus=q)
+    bad=bytearray(wire);bad[4+4*a.ndim]=255
+    with pytest.raises(ValueError):codec.tensor_from(bytes(bad),a.shape,bits,modulus=q)
 
 
 @pytest.mark.parametrize("bits",[8,16,32,64])
