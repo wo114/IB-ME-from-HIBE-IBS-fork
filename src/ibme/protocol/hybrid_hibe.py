@@ -28,8 +28,10 @@ DOMAIN_ID_PAD = b"IBME:HYBRID-ID:v1"
 SEED_BYTES, NONCE_BYTES, TAG_BYTES, CONTEXT_BYTES = 32, 12, 16, 64
 HARD_CAPSULE_BYTES = 4 * 2**20
 HARD_PAYLOAD_BYTES = 16 * 2**20
-HARD_COMPONENT_BYTES = 16 * 2**20
-HARD_WIRE_BYTES = 32 * 2**20 + 1024
+# Target-scale lattice HIBE keys (e.g. Lai n=2048) exceed the old
+# 16 MiB component / 32 MiB wire caps.  Capsules remain 4 MiB.
+HARD_COMPONENT_BYTES = 64 * 2**20
+HARD_WIRE_BYTES = 64 * 2**20 + 1024
 
 
 def _frame(kind, fields):
