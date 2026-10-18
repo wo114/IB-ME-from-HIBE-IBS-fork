@@ -4,7 +4,7 @@
 
 ## 1. 结论
 
-**选定 `c2-2048-2p38`：`n=2048, q=274877976577, k=39, l=2, p=2, σ=2, σ_r=1`。**
+**2026-10-18 用户确认选 `c2-2048-2p38`：`n=2048, q=274877976577, k=39, l=2, p=2, σ=2, σ_r=1`。C3 不选，仅保留备选记录。**
 
 - PLWE 系数实例估计：**169.9 bit 经典 / 154.2 bit 量子**（固定 estimator、标准攻击；混合攻击未计入，见 §4）。
 - 两级生命周期在 Sage 里真实跑通一次（86 B 身份、32 B 消息）：setup 2.79 s、extract 42.21 s、derive 645.0 s、encrypt 121.04 s、decrypt 21.79 s；解密一致。
@@ -18,7 +18,7 @@
 | A 点 | 256 | 2,147,484,161（32） | 32 | 11.7 / 10.6 | 1.67 | 研究基线，淘汰 |
 | C1 | 1024 | 34,359,754,753（36） | 36 | 74.2 / 67.3 | 1.51 | <128，淘汰 |
 | **C2** | **2048** | **274,877,976,577（39）** | **39** | **169.9 / 154.2** | **2.76** | **选定** |
-| C3 | 2048 | 549,755,904,001（40） | 40 | 164.1 / 148.9 | 5.25 | 备选，未跑生命周期 |
+| C3 | 2048 | 549,755,904,001（40） | 40 | 164.1 / 148.9 | 5.25 | 未选；仅备选，未跑生命周期 |
 
 所有 q 均为素数且 `q≡1 mod 2n`；C2/C3 的 q 在 5 字节系数范围内（`q<2^40`）。
 
@@ -59,7 +59,19 @@ C2 的实际单次运行（86 B 身份）：PK 1,617,969 B、MSK 2,416,693 B、S
 5. 尺寸/时间：SK2 约 35 MB、CT 约 1.23 MB、完整生命周期约 13 分钟（Sage）；目标演示需评估是否可接受或改 C/优化实现。
 6. 本文不声称 NIST category、QROM 安全或完整 HIBE 安全；`security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。
 
-## 7. 复现
+## 7. 目标 preset 预检（2026-10-18）
+
+用 CLI 的静态 preflight 检查 `target-research` 是否可选（不生成密钥、不执行算法）：
+
+```sh
+PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.cli check \
+  --hibe lai-ideal-hibe --ibs luo-module \
+  --hibe-params target-research --transport hybrid --json
+```
+
+结果：`compatibility.ok=true`、`errors=[]`；`inner_hibe_ciphertext_max_bytes=1,228,844`、`inner_hibe_payload_bytes=32`、`max_application_bytes=3,924`；suite digest `eda3502de91eff42f10969dac9c3e92fd31468b5e1bc8b5fc17c498468b81c28`。`execution=not_executed`，不生成密钥。
+
+## 8. 复现
 
 候选表与尺寸计算：
 

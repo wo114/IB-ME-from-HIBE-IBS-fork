@@ -40,7 +40,7 @@ CANDIDATES = (
     Candidate("c2-2048-2p38", 2048, 274877976577, 39,
               note="selected: first validated >=128-bit candidate"),
     Candidate("c3-2048-2p39", 2048, 549755904001, 40,
-              note="fallback: larger correctness margin, not lifecycle-tested"),
+              note="not selected; fallback only, not lifecycle-tested"),
 )
 SELECTED = "c2-2048-2p38"
 
