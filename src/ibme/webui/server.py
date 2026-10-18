@@ -54,6 +54,11 @@ DEMO_HIBE = {"latte"}
 # Only IBS routes that have a short, runnable demonstration path here. The
 # remaining research IBS backends stay reachable through the CLI and tests.
 DEMO_IBS = {"cert-ml-dsa", "cert-falcon", "luo-module"}
+DEMO_IBS_PRESETS = {
+    "cert-ml-dsa": "ml-dsa-44",
+    "cert-falcon": "falcon-padded-512",
+    "luo-module": "research",
+}
 
 PRESETS = [
     {
@@ -168,6 +173,8 @@ def _make_config(payload: dict[str, Any]):
         return make_suite(
             hibe=hibe,
             ibs=ibs,
+            hibe_params="seed32",
+            ibs_params=DEMO_IBS_PRESETS[ibs],
             transport=transport,
             protocol=protocol,
             signature_format=signature_format,

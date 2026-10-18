@@ -7,6 +7,7 @@ exercised in the WSL Sage environment by the demo itself.
 import pytest
 import json
 from types import SimpleNamespace
+from pathlib import Path
 
 from ibme.webui import server
 from ibme.core.errors import InvalidParameterError
@@ -27,6 +28,17 @@ def test_selection_defaults_and_demo_scope():
         server._selection({"hibe": "latte", "ibs": "srgg2025"})
     with pytest.raises(server.DemoError):
         server._selection({"transport": "unknown"})
+
+
+@pytest.mark.parametrize("preset_id", ["primary", "compact", "native"])
+def test_demo_presets_match_published_showcase_suites(preset_id):
+    preset = next(p for p in server.PRESETS if p["id"] == preset_id)
+    cards_path = Path(__file__).resolve().parents[1] / "docs/deliveries/2026-10-18-main-showcase-cards/evidence/cards.json"
+    cards = json.loads(cards_path.read_text(encoding="utf-8"))["cards"]
+    expected = next(c["suite"] for c in cards if c["suite"]["ibs"] == preset["ibs"])
+    # A displayed preset must select the published configuration even if the
+    # registry's general default later changes (Falcon defaults to 1024).
+    assert server._make_config(preset).to_dict() == expected
 
 
 def test_identity_validation_uses_utf8_length_and_rejects_controls():

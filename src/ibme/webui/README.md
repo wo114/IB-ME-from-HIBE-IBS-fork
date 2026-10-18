@@ -27,6 +27,7 @@ curl -s http://127.0.0.1:8765/api/backends | head
 - 可导出当前会话的实际参数、尺寸、计时与每次操作结果，JSON 不含密钥、身份文本或消息正文；它不是归档的多次基准实验。
 - 不提供 mock 回退；依赖缺失时由预检明确报错。
 - 交互界面只开放 LATTE-3 HIBE 与 ML-DSA / Falcon / Luo 三种 IBS。ABB-ROM、CHKP、MP12 等研究 HIBE 及其它研究 IBS 仍通过 CLI 和报告矩阵提供；其中部分 Setup 为分钟级或依赖可选运行时，放进单线程演示服务会阻塞页面。
+- 展示预设显式固定为 LATTE `seed32`，以及 `ml-dsa-44`、`falcon-padded-512`、Luo `research`；不继承 registry 的其它默认档。三份完整配置与已交付展示卡逐项比较。
 - 所有组合保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。
 - 这是功能与交互演示，不是安全证明、生产服务或 NIST 等级声明。
 - 后端异常显示“解密未完成”，不计为篡改拒绝；与预期不符的解密结果会明确提示。
