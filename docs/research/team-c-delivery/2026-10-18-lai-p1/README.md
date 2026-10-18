@@ -7,7 +7,7 @@
 | 文件 | 内容 |
 |---|---|
 | [`experiments/research/candidates/lai/backend.py`](../../../../experiments/research/candidates/lai/backend.py) | 参数、环运算、Klein/GPV 采样、`ringDelTrap`、Babai 反演、单层 IBE、两级 HIBE、消息编码、密文规范序列化 |
-| [`tests/test_lai_p1.py`](../../../../tests/test_lai_p1.py) | 20 项正负测试；Windows 无 Sage 时整模块 skip |
+| [`tests/test_lai_p1.py`](../../../../tests/test_lai_p1.py) | 22 项正负测试（含 A 点 n=256 的 2 项）；Windows 无 Sage 时整模块 skip |
 | 本文件 | 参数、命令、结果、限制和下一步 |
 
 P1 只回答“这条路的工程生命周期能不能闭合”，不回答安全/匿名性/正式参数。按项目 2026-10-18 工作前提，安全与匿名性引用原文/工作假设，不在本批补证明。
@@ -42,7 +42,7 @@ P1 只回答“这条路的工程生命周期能不能闭合”，不回答安�
 
 ### 3.3 序列化
 
-密文使用 `LAI1` magic + 4 字节 body 长度 + level + `h'` + `u` + `v`；每个环元素固定 `3n` 字节（`q<2^24`），解码检查 magic、长度、维度、系数范围和尾随字节。密钥/公钥尚未序列化。
+密文使用 `LAI1` magic + 4 字节 body 长度 + level + `h'` + `u` + `v`；每个环元素为 `3n` 字节（`q<2^24`）或 `4n` 字节（`q<2^32`），解码检查 magic、长度、维度、系数范围和尾随字节。A 点（n=256、q=2^31+513）使用 4 字节系数，见 [P2 记录](../2026-10-18-lai-p2/README.md)。密钥/公钥尚未序列化。
 
 ## 4. 运行与结果
 
@@ -53,7 +53,7 @@ cd '/mnt/c/Users/A/OneDrive/文档/IB-ME-from-HIBE-IBS'
 PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest tests/test_lai_p1.py -q
 ```
 
-结果：**20 passed in 6.39s**。与资格测试合并运行：**35 passed in 8.51s**。另跑 10 个随机种子、各含 level 1 + level 2 生命周期：**10/10**。
+结果：**22 passed（约 23–28 s）**。与资格测试合并运行：**37 passed in 24.87s**。另跑 10 个随机种子、各含 level 1 + level 2 生命周期：**10/10**。
 
 覆盖：
 

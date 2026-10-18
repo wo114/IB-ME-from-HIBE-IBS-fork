@@ -24,6 +24,7 @@ from experiments.research.candidates.lai.backend import (
     Params,
     SerializationError,
     TEACHING_PARAMS,
+    A_POINT_PARAMS,
 )
 
 
@@ -212,3 +213,32 @@ def test_coefficient_out_of_range_rejected(scheme, material):
     blob[9:12] = q.to_bytes(3, "big")
     with pytest.raises(SerializationError):
         scheme.decode_ciphertext(bytes(blob))
+
+
+def test_a_point_capacity_and_identity():
+    params = A_POINT_PARAMS
+    assert params.n == 256 and params.k == 32
+    scheme = LaiScheme(params)
+    # 32 B seed fits: k*n = 8192 bit, message encoding needs 8 + 256 bit.
+    encoded = scheme.encode_message(bytes(range(32)))
+    assert scheme.decode_message(encoded) == bytes(range(32))
+    left = scheme._identity(1, b"alice")
+    right = scheme._identity(1, b"bob")
+    assert left != right
+    assert all(c in (0, 1) for c in scheme.ring.coeffs(left))
+    assert len(set(scheme.ring.coeffs(left))) <= 2
+
+
+def test_a_point_two_level_lifecycle_and_serialization():
+    scheme = LaiScheme(A_POINT_PARAMS)
+    message = bytes(range(32))
+    pp, mk = scheme.setup(rng(b"a-point-setup"))
+    sk1 = scheme.extract(pp, mk, b"alice", rng(b"a-point-extract"))
+    sk2 = scheme.derive(pp, sk1, b"bob", rng(b"a-point-derive"))
+    ct1 = scheme.encrypt(pp, [b"alice"], message, rng(b"a-point-enc1"))
+    assert scheme.decrypt(pp, sk1, ct1) == message
+    ct2 = scheme.encrypt(pp, [b"alice", b"bob"], message, rng(b"a-point-enc2"))
+    assert scheme.decrypt(pp, sk2, ct2) == message
+    blob = scheme.encode_ciphertext(ct2)
+    assert scheme.decrypt(pp, sk2, scheme.decode_ciphertext(blob)) == message
+    assert len(blob) > 4 * scheme.params.n
