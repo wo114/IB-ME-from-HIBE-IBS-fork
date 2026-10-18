@@ -38,6 +38,18 @@ Table 3 定义身份哈希 `H` 与签名挑战哈希 `H̄`。Theorem 2 的 G0 �
 
 **Jia 的三变量界是待证扩展。** Jia p.8 写 `ℓ(q_H,q_S,q_E)`，p.9 改为 `ℓ(q_H,4q_S,q_E)`；[33] 上述 IBE Claim 1 只有 `q_H,q_E`，没有 Sign oracle 或 `4q_S` 的直接结论。Jia p.8 的 Game G1 文字同样排除所有已 Extract 身份，却在概率式写 `δ(1−δq_S)`；与 [33] 对应的 `λ(1−λq_E)` 也不一致。这里仅标出**原文字面缺口**，不擅自替作者换下标或填写新常数。要把 Claim 1 用于 SRGG，须计入 Extract、Sign、内部验证以及最终验签的 `H1` 查询，说明重复查询与量子查询如何计数，证明联合 Sign/Extract 回答及依赖 `X` 的成功谓词仍可由同一 oracle 实验模拟；还须说明 `H2` 与底层 SIG 实验如何接线。`4q_S` 的来由不能仅由 [33] 推定。
 
+**实现 H1 调用账本。** 以下只数现有成功代码路径上的 `identity_target` 方法调用，不把调用数直接当作 [33] 模拟器的量子 oracle 查询数；固定同一 `P,id` 时重复调用落在同一地址。
+
+| 路径 | paper 后端 | structured 后端 | 代码定位与边界 |
+|---|---:|---:|---|
+| 首次成功 Extract | 2 | 3 | `paper_backend.py:158,163`：显式求目标一次，`paper_objects.SigningKey.__post_init__` 行 110–111 重算一次；`structured_execution.py:519` 与 `Key.__post_init__` 行 330 各一次，`structured_backend.SigningKey.__post_init__` 行 138–141 再构造一个 `raw.Key`，故多一次。两种封装的 issued 缓存命中为 0；早期拒绝也可能为 0。 |
+| 成功 Sign | 2 | 2 | `paper_backend.py:178,191,208`、`structured_execution.py:536,552,567`：循环前求目标一次，首次范数通过后的内部 Verify 自检再查一次；范数重试不再查 H1，耗尽或早期中止可少于 2。 |
+| 有效形状的 Verify 正常路径 | 1 | 1 | `paper_backend.py:208`、`structured_backend.py:350`：前置校验后各查一次；校验早退为 0。最终伪造验签若执行此路径，也须入账。 |
+
+两个后端的 `DOMAIN` 不同，上表是**并列候选实现**，不能把调用数跨后端相加成同一安全游戏。失败路径也不同：paper Extract 在采样后才到 `paper_backend.py:158` 的 H1；structured Extract 在 `structured_execution.py:519` 先查 H1、后采样和检查，故后续采样失败已有一次调用。issued 缓存命中两者都不重查。
+
+这份账本还不能推出 `4q_S` 或 [33] 的 `ℓ` 可直接使用：经典确定性 SHAKE 会对同一地址重新计算，理想 oracle 模拟器可缓存经典回答，但 QROM 的相干查询、Sign/Extract 联合回答与隐藏 `X` 的条件成功事件需在**同一**实验中证明。H2 挑战在每次签名范数尝试中另有查询，不能从 H1 的上述计数中消去。
+
 **联合回答边界的独立反例。** [33] Corollary 4.3 比较的是一张 `H` 表的查询输出，不能自动覆盖一个额外泄露隐藏植入值的相关回答通道。取 `|Y|≥2`，两个实验都先取 `y←Y` 并经同一假想侧通道泄露；均匀实验的 `H` 独立于 `y`，半常数实验以 `y` 为植入值。对手一次查询固定 `x` 并测试 `H(x)=y`。均匀实验命中概率 `1/|Y|`，半常数实验为 `λ+(1−λ)/|Y|`，差 `λ(1−1/|Y|)`，是一阶而非上述 oracle-only 二阶 `λ` 界。这是**适用范围反例**，不是声称 SRGG Sign 实际泄露 `y`，也不是对 [33] Claim 1 的反例。
 
 因此若修复 p.9 目标身份 Sign 中止而向底层 `SIG.Sign` 转发，须显式证明 Extract/Sign 回答在两实验中可由同一 `H` oracle、独立随机性及计入预算的内部查询模拟，或另给联合 hybrid。代码 `paper_backend.py:178–210` 的 Sign 与末次自检/Verify 会重复取 H1，重试及验证也重取 H2；固定公钥的经典理想表可一致回放这些值，但 [经典地址耦合](../2026-10-18-srgg-hash-address-mapping/proof.md)没有量子查询账本或上述联合回答结论。实际底层 SIG 实验仍须单独核对。
