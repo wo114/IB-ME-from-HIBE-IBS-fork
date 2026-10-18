@@ -1,0 +1,52 @@
+{
+  "code_commits": [
+    {
+      "hash": "7032c3b3aaec107170d49d583f052c866db01450",
+      "message": "feat(research): add opt-in high-radix full 3m sampling profile"
+    },
+    {
+      "hash": "949bf91562489ca43e82626405a6f6c67c07a6f4",
+      "message": "fix(research): bind radix probe parameters explicitly at the CLI"
+    }
+  ],
+  "files": [
+    "ci/suites.json",
+    "docs/PROJECT_STATUS.md",
+    "docs/research/2026-10-18-full-system-luo/README.md",
+    "docs/research/2026-10-18-full-system-luo/evidence/compare.py",
+    "docs/research/2026-10-18-full-system-luo/evidence/comparison.json",
+    "docs/research/2026-10-18-full-system-luo/evidence/latte-luo-compact.json",
+    "docs/research/2026-10-18-full-system-luo/evidence/native-provenance.json",
+    "docs/research/2026-10-18-full-system-luo/evidence/native-provenance.py",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/README.md",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/catalog.xml",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/changed-files.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/development-260-a.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/environment-reference.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/initial-cli-failure.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/legacy-n2-q40-restored.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/n2-b1024-q93-restored.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/n2-b1024-q93.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/n2-b4096-q93-restored.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/n2-b4096-q93.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/n4-b4096-q93-restored.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/n4-b4096-q93.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/n8-b4096-q93-restored.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/n8-b4096-q93.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/strict-a.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/strict-a.xml",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/summarize.py",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/summary.json",
+    "docs/research/team-a-delivery/2026-10-18-bounded-radix/evidence/tests.json",
+    "docs/specs/mp12-blocked-3m-prototype.md",
+    "docs/workplans/2026-10-18-four-day-delivery.md",
+    "docs/workplans/三人方案分工与统一框架交付.md",
+    "experiments/research/blocked_3m_probe.py",
+    "src/ibme/hibe/mp12_structured/blocked_prototype.py",
+    "src/ibme/lattice/matrix_sampling/mp12_blocked.py",
+    "src/ibme/lattice/matrix_sampling/prime_gadget.py",
+    "tests/test_mp12_radix_runtime.py"
+  ],
+  "private_state_included": false,
+  "scope": "A high-radix sampling/codec, CI tests, public bounded runtime evidence, existing-runner full-system baseline and four-day delivery coordination"
+}

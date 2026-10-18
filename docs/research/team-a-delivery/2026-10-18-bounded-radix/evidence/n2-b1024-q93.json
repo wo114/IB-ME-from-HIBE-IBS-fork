@@ -1,0 +1,399 @@
+{
+  "backend_admitted": false,
+  "entropy_bytes": 16508515,
+  "entropy_reads": 792853,
+  "environment": {
+    "OMP_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "1",
+    "cold_definition": "fresh Python process; OS page cache and previously built native engines retained",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.14",
+    "rss_method": "10ms /proc process-tree samples (lower bound); Linux kernel lifetime ru_maxrss per interpreter/completed child"
+  },
+  "fixed_preimages": 256,
+  "identities_bytes": 86,
+  "limits": {
+    "constant_time": false,
+    "entropy_cap_exhaustion_probability_certified": false,
+    "high_dimension_target_executed": false,
+    "max_matrix_entries": 16777216,
+    "operation_entropy_cap_bytes": 1099511627776,
+    "packed_backing_resident": true
+  },
+  "noise_condition": {
+    "actual_encryption_executed": false,
+    "assumes_leaf_norm_bound": true,
+    "conditional_noise_sufficient": true,
+    "decode_error_bits": 160,
+    "dimension": 72,
+    "q": "5998976077229064136548861031",
+    "q_alpha": 4
+  },
+  "packing": {
+    "block_columns": 32,
+    "cache_bytes": 16777216
+  },
+  "parameters": {
+    "backend_admitted": false,
+    "finite_options": {
+      "gaussian_abort_bits": 192,
+      "mass_bits": 320,
+      "max_gaussian_trials": 100000,
+      "max_radius": 5192296858534827628530496329220096,
+      "max_tape_bytes": 17592186044416,
+      "max_uniform_trials": 256,
+      "precision_bits": 384,
+      "rational_bits": 65536,
+      "tail_bits": 192
+    },
+    "full_H_columns": 24,
+    "leaf_dimension": 72,
+    "leaf_width_squared": "1143222481170278609664960",
+    "m": 24,
+    "oracle_max_residue_trials": 128,
+    "parameters": {
+      "entropy_cap_bytes": 1099511627776,
+      "epsilon_bits": 192,
+      "identity_bytes": 86,
+      "n": 2,
+      "q": 5998976077229064136548861031,
+      "radix_bits": 10,
+      "root_r_squared": 9
+    },
+    "parameters_are_formal": false,
+    "parent_R_rows": 28,
+    "parent_bound": "688296009139200",
+    "parent_width_squared": "1229100016320",
+    "q_alpha": 4,
+    "root_bound": "720",
+    "security_claim": "none",
+    "version": "IBME/MP12-RADIX-BLOCKED-3M/1",
+    "w": 20
+  },
+  "parameters_are_formal": false,
+  "parent_R_json_decimal_bytes": 4155,
+  "parent_R_json_to_packed_ratio": 2.379725085910653,
+  "parent_R_packed_bytes": 1746,
+  "payload_seed_bytes": 32,
+  "phases": [
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175091712,
+      "entropy_bytes": 52314,
+      "name": "root-generation",
+      "sampled_process_tree_peak_rss_bytes": 226865152,
+      "sampled_self_peak_rss_bytes": 226865152,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 0.05124416099999962,
+      "self_kernel_lifetime_peak_rss_bytes": 229453824,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175091712,
+      "name": "root-persistence",
+      "sampled_process_tree_peak_rss_bytes": 229818368,
+      "sampled_self_peak_rss_bytes": 229818368,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 0.01990682600001037,
+      "self_kernel_lifetime_peak_rss_bytes": 229453824,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175091712,
+      "entropy_bytes": 554945,
+      "name": "parent-delegation",
+      "sampled_process_tree_peak_rss_bytes": 232755200,
+      "sampled_self_peak_rss_bytes": 232755200,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 0.36038361999999324,
+      "self_kernel_lifetime_peak_rss_bytes": 232308736,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175091712,
+      "name": "parent-persistence",
+      "sampled_process_tree_peak_rss_bytes": 232865792,
+      "sampled_self_peak_rss_bytes": 232865792,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 0.01228083399996649,
+      "self_kernel_lifetime_peak_rss_bytes": 232308736,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175091712,
+      "name": "leaf-sampler-preparation",
+      "sampled_process_tree_peak_rss_bytes": 232882176,
+      "sampled_self_peak_rss_bytes": 232882176,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 0.017240145000016582,
+      "self_kernel_lifetime_peak_rss_bytes": 232308736,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175091712,
+      "entropy_bytes": 15901256,
+      "name": "leaf-256-sampling",
+      "sampled_process_tree_peak_rss_bytes": 233451520,
+      "sampled_self_peak_rss_bytes": 233451520,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 9.14866879699997,
+      "self_kernel_lifetime_peak_rss_bytes": 232898560,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175091712,
+      "name": "leaf-persistence",
+      "sampled_process_tree_peak_rss_bytes": 233648128,
+      "sampled_self_peak_rss_bytes": 233648128,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 0.013100069000017811,
+      "self_kernel_lifetime_peak_rss_bytes": 233095168,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175091712,
+      "name": "strict-object-restore",
+      "sampled_process_tree_peak_rss_bytes": 233828352,
+      "sampled_self_peak_rss_bytes": 233828352,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 0.06160431399996469,
+      "self_kernel_lifetime_peak_rss_bytes": 233291776,
+      "status": "passed"
+    }
+  ],
+  "repetitions": 1,
+  "restore": {
+    "entropy_reads": 0,
+    "fixed_preimages_checked": 256,
+    "new_parents": 0,
+    "new_preimages": 0,
+    "new_roots": 0,
+    "state_unchanged": true,
+    "status": "passed"
+  },
+  "sampler": {
+    "arithmetic_resource_abort_probability_certified": false,
+    "backend_admitted": false,
+    "base": 1024,
+    "constant_time": false,
+    "dense_Schur_entries": 0,
+    "dimension": 72,
+    "distribution_budget": {
+      "assumptions": [
+        "independent uniform source bytes",
+        "ideal perturbation acceptance >=1/4",
+        "both MP12 Theorem5.5 smoothing conditions",
+        "admitted exact arithmetic paths",
+        "the finite scalar/GPV directed-rounding contract"
+      ],
+      "backend_admitted": false,
+      "comparison": "uncut ideal spherical discrete Gaussian on the requested coset",
+      "convolution_tv_upper": "12554203470773361527671578846415332832204710888928069025792/39402006196394479212279040100143613805079739270465446667935739200774948409969539032567850922052710929917699921281025",
+      "excluded": [
+        "OS/allocation failures",
+        "faulty entropy providers",
+        "side channels",
+        "SHAKE versus a random oracle",
+        "root pseudorandomness",
+        "LWE hardness"
+      ],
+      "finite_perturbation_coupling_upper": "709236111524570220427219174121906624603865385725868824413319566878262322334726495768765206832269125749293746145585771/60383398797144661635864873295812302254670739526663046854019300803929986598274381633378027602842540280663494000492221518396329354078796682120982948022923136698390325231616",
+      "gadget_coupling_upper": "692054296492795112297495748795424094590161586025649893966069741011595619419744879251100055557740647073231549135755986281508710955742272589268121732961158015387713841576889061/77625904615035446757448974423125127762844300855834830556692904979755787873555316669473290891895435980968114102946787451411036915843882259043382142637753859721145193803725548971194330995557833470797226496828835611232205231934668800",
+      "ideal_coset_norm_abort_upper": "1/42535295865117307932921825928971026432",
+      "ideal_perturbation_exhaustion_upper": "19323349832288915105454068722019581055401465761603328550184537628902466746415537000017939429786029354390082329294586119505153509101332940884098040478728639542560550133727399482778062322407372338121043399668242276591791504658985882995272436541441/179769313486231590772930519078902473361797697894230657273430081157732675805500963132708477322407536021120113879871393357658789768814416622492847430639474124377767893424865485276302219601246094119453082952085005768838150682342462881473913110540827237163350510684586298239947245938479716304835356329624224137216",
+      "modeled_sample_TV_including_abort_upper": "836233614212948848511914547656601682088090061515368207733245034419110671846591516399668902202875243101830942846883979193983214928200111196220165194325963345686403679905134263195733999058857527642371695145564846941194112582336113956340695296380321926219600561068373138085122903548161462592640173478128829713920719320373988179630004458773590974720289198918547725746196989288545893716970718558889969560049334090991670235933840923/71139866363350471392026902504827782905310775219420542910808492554982149213354572293421541213468027919700251148996512632716228275310120425577033351999154576310625527358341710182119994993326488299248323117311902133077375752704138755938794118166775078936886656869819063002657849689006785108591811143320102846051895022428595018387565512047669699787354600982603993448352722753389659816396622997380832521210036680648934806310929096488355732259686689345724254131332404355953491538083840",
+      "parameters_are_formal": false,
+      "schema": "MP12-STRUCTURED-DISTRIBUTION-BUDGET/1",
+      "security_claim": "none",
+      "target_smoothing_verified": true
+    },
+    "finite_scalar_tv_upper": "78804012391618913380802130457989624955983434634968239976227509519173428745728807012316399466704800216577112838343635/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+    "full_kernel_bases": 0,
+    "gadget_digits": 10,
+    "gadget_tv_upper": "692054296492795112297495748795424094590161586025649893966069741011595619419744879251100055557740647073231549135755986281508710955742272589268121732961158015387713841576889061/77625904615035446757448974423125127762844300855834830556692904979755787873555316669473290891895435980968114102946787451411036915843882259043382142637753859721145193803725548971194330995557833470797226496828835611232205231934668800",
+    "max_perturbation_trials": 512,
+    "max_solve_steps": 640,
+    "n": 2,
+    "output_squared": "1143222481170278609664960",
+    "parameters_are_formal": false,
+    "precision_method": "fixed-point candidate; exact integer residual; declared SPD bound; directed MPFI weight",
+    "precision_weight_error_upper": "1/300613450595050653169853516389035139504087366260264943450533244356122755214669880763353471793250393988087676928",
+    "profile": "IBME/MP12-RADIX-BLOCKED-3M/1",
+    "q": "5998976077229064136548861031",
+    "radix_bits": 10,
+    "random_tape_bytes": 109650481280,
+    "security_claim": "none",
+    "stored_R_entries": 560
+  },
+  "schema": "MP12-BLOCKED-3M-FEASIBILITY/1",
+  "scope": "real independent root, full-H parent, full 3m 256-target leaf and private-object restore; no big-q KEM/IBME execution",
+  "security_claim": "none",
+  "sizes": {
+    "context.bin": 1482,
+    "leaf.bin": 111270,
+    "parent.bin": 3410,
+    "root.bin": 1060
+  },
+  "source_commit": "949bf91562489ca43e82626405a6f6c67c07a6f4",
+  "source_providers": {
+    "experiments.research.chkp_basis": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/basis.py",
+      "sha256": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d"
+    },
+    "experiments.research.first_suite": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/first_suite/__init__.py",
+      "sha256": "98a3203836217e8d437e31a13137e43f5d3759be61d7b2e901ff700e676ba931"
+    },
+    "experiments.research.first_suite.entropy": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/entropy.py",
+      "sha256": "fe449ebd5ccadfb8a8b73652b874fcd69e0683292368d9c03ef8c6d215fcc8d6"
+    },
+    "experiments.research.gaussian_reference": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/gaussian.py",
+      "sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c"
+    },
+    "experiments.research.general_gadget_reference": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/general_gadget_reference.py",
+      "sha256": "69e68a33baab3c85fe84525ce92a45e81723c667c64b526fa2dc321b2b098ab0"
+    },
+    "experiments.research.mp12_sampled_reference": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/mp12_sampled_reference.py",
+      "sha256": "a01b198a7bbcefbb54b387f6ab0b24961b5e74c3689ea4e2f30c74c35ba1061b"
+    },
+    "experiments.research.runtime_metrics": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/runtime_metrics.py",
+      "sha256": "a96c1f30e898d5061d5a5b13bd63a368d6d9ef46b76883a02a0498aff3df9d72"
+    },
+    "ibme.core": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/__init__.py",
+      "sha256": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac"
+    },
+    "ibme.core.encoding": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/encoding.py",
+      "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+    },
+    "ibme.core.errors": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/errors.py",
+      "sha256": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e"
+    },
+    "ibme.core.hashing": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/hashing.py",
+      "sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4"
+    },
+    "ibme.core.randomness": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/randomness.py",
+      "sha256": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202"
+    },
+    "ibme.core.types": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/types.py",
+      "sha256": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56"
+    },
+    "ibme.hibe": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/__init__.py",
+      "sha256": "8b471e5f2ca4a5b22cb2a695d6f75d1891962ff135ff0662e64f47abbde4cd1e"
+    },
+    "ibme.hibe.abb10": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/abb10.py",
+      "sha256": "a7121a89e3645e87fa059564b745ed1487dfb7f9510a10973c42d0b5e94a9d32"
+    },
+    "ibme.hibe.api": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/api.py",
+      "sha256": "b81ec0a7ec48c8b5f2fbbed7182b0c22952167d355f92943918a419ab8a5ac4a"
+    },
+    "ibme.hibe.mock": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/mock.py",
+      "sha256": "48f53e2fdd383cd361ea304056f289f6f4dfee23558b3825038d4b363113002a"
+    },
+    "ibme.hibe.mp12_structured": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/mp12_structured/__init__.py",
+      "sha256": "d9abce512645ab8a0125b66f5d9cbd05a7e631a86c9c12da8cdddfea4ace37b7"
+    },
+    "ibme.hibe.mp12_structured.blocked_prototype": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/mp12_structured/blocked_prototype.py",
+      "sha256": "cd0e04ecc8c56def01c3c98976d79fe17bc16f1ea8c5f852c6e3116dddaf3ea5"
+    },
+    "ibme.lattice": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/__init__.py",
+      "sha256": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f"
+    },
+    "ibme.lattice.chkp": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/__init__.py",
+      "sha256": "820d7a2834b36d5cea29d0c165fa01c425af1739c103ea6323da8bacfd62c921"
+    },
+    "ibme.lattice.chkp.basis": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/basis.py",
+      "sha256": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d"
+    },
+    "ibme.lattice.chkp.entropy": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/entropy.py",
+      "sha256": "fe449ebd5ccadfb8a8b73652b874fcd69e0683292368d9c03ef8c6d215fcc8d6"
+    },
+    "ibme.lattice.chkp.gaussian": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/gaussian.py",
+      "sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c"
+    },
+    "ibme.lattice.chkp.identity": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/identity.py",
+      "sha256": "1921bcebea84321e14508b251906795f235ee60c46843c8f66a2a8f367d99718"
+    },
+    "ibme.lattice.chkp.joint_parameters": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/chkp/joint_parameters.py",
+      "sha256": "887fb6c938d25ef2466ec7af1ca5311f3e55269c6aa72ee57a51db74e8763c92"
+    },
+    "ibme.lattice.gadget": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/gadget.py",
+      "sha256": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d"
+    },
+    "ibme.lattice.gaussian": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/gaussian.py",
+      "sha256": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c"
+    },
+    "ibme.lattice.matrix_sampling": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/matrix_sampling/__init__.py",
+      "sha256": "db15615ccef53acf421db6f65f45e2fb865445f66309f3c44bb133694de3f71b"
+    },
+    "ibme.lattice.matrix_sampling.gpv": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/matrix_sampling/gpv.py",
+      "sha256": "9b699e1fc2f0b2a2e84c0b9b37bcd290f1af9427d11c39a420ff9b0b91e220c0"
+    },
+    "ibme.lattice.matrix_sampling.mp12_blocked": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/matrix_sampling/mp12_blocked.py",
+      "sha256": "40b408ef3e5e00bf925efcbef2568ad3ad017ba388cbc44689534a0ae77ef0c4"
+    },
+    "ibme.lattice.matrix_sampling.mp12_bounds": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/matrix_sampling/mp12_bounds.py",
+      "sha256": "43c09691ff43355261b7f2a52148c8e9f0b0a7be0e28fd56e4b040791e57e28b"
+    },
+    "ibme.lattice.matrix_sampling.packed": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/matrix_sampling/packed.py",
+      "sha256": "7e715add92b5216887c3fa92b1d59f7d17e7ea7fb9d72cde132868e231b4132d"
+    },
+    "ibme.lattice.matrix_sampling.prime_gadget": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/matrix_sampling/prime_gadget.py",
+      "sha256": "c98d894655f69b7713bb0b8f576a9a5431277e152c799aa1ac5b799c7d7bbabf"
+    },
+    "ibme.lattice.matrix_sampling.scalar": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/matrix_sampling/scalar.py",
+      "sha256": "6365371e7fdbdc86b022d5a55e53d59a0f58564ca715efac873f9fdde66c9b68"
+    },
+    "ibme.lattice.modmat": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/modmat.py",
+      "sha256": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94"
+    },
+    "ibme.lattice.params": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/params.py",
+      "sha256": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be"
+    },
+    "ibme.lattice.research": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/research/__init__.py",
+      "sha256": "89e656c9c2e8a5fedab17c1f160316a3b248f3ae62727275bc4306e1e0b3fb53"
+    },
+    "ibme.lattice.trapdoor": {
+      "path": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/lattice/trapdoor.py",
+      "sha256": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8"
+    }
+  },
+  "status": "passed",
+  "system_randomness": true,
+  "uses_ROM": true
+}

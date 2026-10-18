@@ -1,0 +1,158 @@
+{
+  "actual_high_dimension_runtime_seconds": null,
+  "backend_admitted": false,
+  "code_source_commit": "949bf91562489ca43e82626405a6f6c67c07a6f4",
+  "outer_retries": 0,
+  "parameters_are_formal": false,
+  "private_state_files_opened": 0,
+  "provider_occurrences": 156,
+  "records": [
+    {
+      "entropy_bytes": 16508515,
+      "file": "n2-b1024-q93.json",
+      "fresh_process_restore_zero_entropy": true,
+      "full_IBME_execution": false,
+      "m": 24,
+      "measured_seconds": {
+        "leaf-256-sampling": 9.14866879699997,
+        "parent-delegation": 0.36038361999999324,
+        "root-generation": 0.05124416099999962,
+        "strict-object-restore": 0.06160431399996469
+      },
+      "n": 2,
+      "parent_R_packed_bytes": 1746,
+      "persistent_object_bytes": {
+        "context.bin": 1482,
+        "leaf.bin": 111270,
+        "parent.bin": 3410,
+        "root.bin": 1060
+      },
+      "q": "5998976077229064136548861031",
+      "radix_bits": 10,
+      "root_parent_leaf_generations": [
+        1,
+        1,
+        256
+      ],
+      "root_r_squared": 9,
+      "sampled_process_tree_peak_rss_bytes": 233828352,
+      "sha256": "56a55768f009097023dfae2353256da8849326699b1fd73f37f9ef1add4343e1",
+      "source_commit": "949bf91562489ca43e82626405a6f6c67c07a6f4",
+      "w": 20
+    },
+    {
+      "entropy_bytes": 14146434,
+      "file": "n2-b4096-q93.json",
+      "fresh_process_restore_zero_entropy": true,
+      "full_IBME_execution": false,
+      "m": 20,
+      "measured_seconds": {
+        "leaf-256-sampling": 7.609107513000026,
+        "parent-delegation": 0.3163348819999783,
+        "root-generation": 0.0494291680000174,
+        "strict-object-restore": 0.04551922100000638
+      },
+      "n": 2,
+      "parent_R_packed_bytes": 1602,
+      "persistent_object_bytes": {
+        "context.bin": 1390,
+        "leaf.bin": 92838,
+        "parent.bin": 3074,
+        "root.bin": 948
+      },
+      "q": "5998976077229064136548861031",
+      "radix_bits": 12,
+      "root_parent_leaf_generations": [
+        1,
+        1,
+        256
+      ],
+      "root_r_squared": 9,
+      "sampled_process_tree_peak_rss_bytes": 233349120,
+      "sha256": "3da43cbd3fc639aa40588216f7c9a9dfcdbf5400fe34b6c35ec3fccb33ec0a7c",
+      "source_commit": "949bf91562489ca43e82626405a6f6c67c07a6f4",
+      "w": 16
+    },
+    {
+      "entropy_bytes": 28511146,
+      "file": "n4-b4096-q93.json",
+      "fresh_process_restore_zero_entropy": true,
+      "full_IBME_execution": false,
+      "m": 40,
+      "measured_seconds": {
+        "leaf-256-sampling": 16.923437459000013,
+        "parent-delegation": 0.9379190139999878,
+        "root-generation": 0.08325029500002756,
+        "strict-object-restore": 0.0880623449999689
+      },
+      "n": 4,
+      "parent_R_packed_bytes": 6210,
+      "persistent_object_bytes": {
+        "context.bin": 2837,
+        "leaf.bin": 215718,
+        "parent.bin": 10562,
+        "root.bin": 2580
+      },
+      "q": "5998976077229064136548861031",
+      "radix_bits": 12,
+      "root_parent_leaf_generations": [
+        1,
+        1,
+        256
+      ],
+      "root_r_squared": 17,
+      "sampled_process_tree_peak_rss_bytes": 234737664,
+      "sha256": "23cf507769829ad9882bde51df4a8c8355b58fa0ef0d34a27149e6230f7b82ec",
+      "source_commit": "949bf91562489ca43e82626405a6f6c67c07a6f4",
+      "w": 32
+    },
+    {
+      "entropy_bytes": 63937174,
+      "file": "n8-b4096-q93.json",
+      "fresh_process_restore_zero_entropy": true,
+      "full_IBME_execution": false,
+      "m": 80,
+      "measured_seconds": {
+        "leaf-256-sampling": 44.775095077,
+        "parent-delegation": 4.147297078000008,
+        "root-generation": 0.2179268990000196,
+        "strict-object-restore": 0.21193120399999543
+      },
+      "n": 8,
+      "parent_R_packed_bytes": 24642,
+      "persistent_object_bytes": {
+        "context.bin": 8601,
+        "leaf.bin": 430758,
+        "parent.bin": 40514,
+        "root.bin": 9108
+      },
+      "q": "5998976077229064136548861031",
+      "radix_bits": 12,
+      "root_parent_leaf_generations": [
+        1,
+        1,
+        256
+      ],
+      "root_r_squared": 33,
+      "sampled_process_tree_peak_rss_bytes": 236130304,
+      "sha256": "958767efdfe393c53c8b567296f905c18de5fdfc38b103545b3cfcf53e0ce7a5",
+      "source_commit": "949bf91562489ca43e82626405a6f6c67c07a6f4",
+      "w": 64
+    }
+  ],
+  "runtime_limit_per_run_seconds": 300,
+  "schema": "BOUNDED-HIGH-RADIX-SMALL-RUNTIME/1",
+  "security_claim": "none",
+  "small_n_costs_are_not_target_runtime_extrapolations": true,
+  "status": "passed",
+  "strict_A_counts": {
+    "errors": 0,
+    "failed": 0,
+    "passed": 261,
+    "skipped": 0,
+    "tests": 261,
+    "xfailed": 0
+  },
+  "strict_CI_source_files_checked": 19,
+  "target_n4096_executed": false
+}
