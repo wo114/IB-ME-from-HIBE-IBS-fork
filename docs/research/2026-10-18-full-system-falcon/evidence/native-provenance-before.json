@@ -1,0 +1,31 @@
+{
+  "falcon": {
+    "binary_sha256": "8cb117604117cfc15661051838f0a24edb41ffe648292ef691e3a37ab46fd7eb",
+    "metadata": {
+      "abi": 1,
+      "fpemu": true,
+      "logn": 9,
+      "pk": 897,
+      "refill_limit": 65536,
+      "sig": 666,
+      "sk": 1281,
+      "source_id": "dd9bb426aa30a33d7c503799d9134edbaf0b4f0b7ce2edf618981958a87f7e5b",
+      "vector_driver": false,
+      "xof_limit": 16777216
+    }
+  },
+  "key_generations": 0,
+  "latte": {
+    "binary_sha256": "d5d965ab4fcc06ccd179f35e8e718bf6faae8b77d8e438567522f5f0b86e6e93",
+    "metadata": {
+      "abi": "IBME-LATTE3-COEFF-1",
+      "n": 1024,
+      "q": 68718428161,
+      "source_id": "4a17a037c266ba982a027ff7fedffe0d391c9fe7fb2c5f8a0326b4ab67393414"
+    }
+  },
+  "project_entropy_reads": 0,
+  "query": "independent read-only query",
+  "schema": "FULL-SYSTEM-NATIVE-PROVENANCE/1",
+  "signatures": 0
+}

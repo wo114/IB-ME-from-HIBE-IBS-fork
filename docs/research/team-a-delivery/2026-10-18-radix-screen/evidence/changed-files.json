@@ -1,0 +1,40 @@
+{
+  "code_commits": [
+    {
+      "hash": "93b8d5fecb175dcdffda3e7e8c8b32378a2bbe4e",
+      "message": "feat(research): screen full 3m radix parameters and resource costs jointly"
+    },
+    {
+      "hash": "a709e82c01bd30db590452cef6f0401d8e8c3635",
+      "message": "fix(research): separate parameter candidates from hardware budgets"
+    }
+  ],
+  "files": [
+    "ci/suites.json",
+    "docs/PROJECT_STATUS.md",
+    "docs/research/2026-10-18-full-system-falcon/README.md",
+    "docs/research/2026-10-18-full-system-falcon/evidence/latte-falcon512.json",
+    "docs/research/2026-10-18-full-system-falcon/evidence/native-provenance-after.json",
+    "docs/research/2026-10-18-full-system-falcon/evidence/native-provenance-before.json",
+    "docs/research/2026-10-18-full-system-falcon/evidence/native-provenance.py",
+    "docs/research/team-a-delivery/2026-10-18-radix-screen/README.md",
+    "docs/research/team-a-delivery/2026-10-18-radix-screen/evidence/analyze.py",
+    "docs/research/team-a-delivery/2026-10-18-radix-screen/evidence/catalog-final.xml",
+    "docs/research/team-a-delivery/2026-10-18-radix-screen/evidence/changed-files.json",
+    "docs/research/team-a-delivery/2026-10-18-radix-screen/evidence/environment.json",
+    "docs/research/team-a-delivery/2026-10-18-radix-screen/evidence/math-policy-final.xml",
+    "docs/research/team-a-delivery/2026-10-18-radix-screen/evidence/original-screen.json.gz",
+    "docs/research/team-a-delivery/2026-10-18-radix-screen/evidence/resource-cost.png",
+    "docs/research/team-a-delivery/2026-10-18-radix-screen/evidence/resource-cost.svg",
+    "docs/research/team-a-delivery/2026-10-18-radix-screen/evidence/screen.json.gz",
+    "docs/research/team-a-delivery/2026-10-18-radix-screen/evidence/summary.json",
+    "docs/research/team-a-delivery/2026-10-18-radix-screen/evidence/tests.json",
+    "docs/research/team-a-delivery/2026-10-18-radix-screen/evidence/verification.json",
+    "docs/research/team-a-delivery/2026-10-18-radix-screen/evidence/verify.py",
+    "docs/specs/mp12-radix-screen.md",
+    "experiments/research/structured_radix_screen.py",
+    "tests/test_mp12_radix_screen.py"
+  ],
+  "scope": "A public parameter screen, advisory hardware policy, CI registration and public T5/coordination evidence",
+  "protocol_or_private_sampler_changes": false
+}
