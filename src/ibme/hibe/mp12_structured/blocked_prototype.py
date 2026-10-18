@@ -7,7 +7,7 @@ This first consumer ends at the real fixed leaf; wide-q KEM/CLI integration
 is intentionally a subsequent engineering step after resource measurements.
 """
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from fractions import Fraction
 from math import isqrt
 import json
@@ -128,7 +128,7 @@ class RadixPrototypeParams(PrototypeParams):
     """Separate opt-in wire/profile; binary parameters retain their old bytes."""
 
     version: ClassVar[str] = RADIX_VERSION
-    radix_bits: int = 12
+    radix_bits: int = field(default=12, kw_only=True)
 
     def __post_init__(self):
         if type(self.radix_bits) is not int or not 2 <= self.radix_bits <= 32:

@@ -191,7 +191,7 @@ def main():
         if args.radix_bits == 1:
             params = PrototypeParams(args.n, args.q, args.root_r_squared or 8*args.n)
         else:
-            params = RadixPrototypeParams(args.n, args.q, args.root_r_squared or 8*args.n,
+            params = RadixPrototypeParams(n=args.n, q=args.q, root_r_squared=args.root_r_squared or 8*args.n,
                                           radix_bits=args.radix_bits)
         run(args.private_directory, params, source_commit=args.source_commit,
             block_columns=args.block_columns, cache_bytes=args.cache_bytes)

@@ -154,3 +154,18 @@ def test_same_shape_different_radix_does_not_share_key_context(chain):
 def test_target_hardware_candidates_are_retained_but_not_silently_admitted_to_this_probe():
     with pytest.raises(ValueError,match="entry budget"):
         RadixPrototypeParams(n=4096,q=Q,root_r_squared=4*4096+1,radix_bits=12)
+
+
+def test_radix_cli_transfers_the_complete_parameter_tuple_before_generation(monkeypatch,tmp_path):
+    from experiments.research import blocked_3m_probe as probe
+    import sys
+    seen = []
+    def capture(directory,params,**options):
+        seen.append((directory,params.n,params.q,params.root_r_squared,params.radix_bits))
+    monkeypatch.setattr(probe,"run",capture)
+    monkeypatch.setattr(sys,"argv",["blocked_3m_probe","--private-directory",str(tmp_path/"new-state"),
+        "--n","2","--q",str(Q),"--root-r-squared","9","--radix-bits","12"])
+    probe.main()
+    assert seen == [(tmp_path/"new-state",2,Q,9,12)]
+    assert RadixPrototypeParams(2,Q,9,radix_bits=12).n == 2
+    assert not (tmp_path/"new-state").exists()
