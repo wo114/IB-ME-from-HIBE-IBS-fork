@@ -1,0 +1,30 @@
+{
+  "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg*.py --junitxml=build/outputs/srgg-source-schur-2026-10-18/release-regression.raw.junit.xml",
+  "final": {
+    "public_file": "regression.xml",
+    "public_sha256": "4ddaee35a6aa717dc66b687d3071505dcfdacb5cedebb5bfca70ef160b08ad9d",
+    "raw_private_sha256": "4ebe9539ad1289e8c5362ea00ab04db3deeab653436b407e470a05db1adc71f6",
+    "redaction": "exactly one testsuite hostname attribute removed; tests and timings unchanged"
+  },
+  "final_raw_is_kept_in_ignored_outputs": true,
+  "initial_pre_budget_counts": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "tests": 1644
+  },
+  "intermediate_counts": {
+    "errors": 0,
+    "failures": 10,
+    "skipped": 0,
+    "tests": 1674
+  },
+  "intermediate_failure": {
+    "public_file": "intermediate-source-guard-failure.xml",
+    "public_sha256": "80013a60636e3ded7b5dc5b5d16d26f0f5c33a3a6da6b5adee3f6df88b2fb540",
+    "raw_private_sha256": "b705623615f210350aadc90d2570d53f6637b1825aa0aa430b314ce25cc399c4",
+    "redaction": "exactly one testsuite hostname attribute removed; tests and timings unchanged"
+  },
+  "intermediate_failure_explanation": "10 fixed-source guards rejected a temporary edit to paper_backend.py; the original backend bytes were restored and source-only sign budgeting moved to SourceSchurBackend.sign. No pinned hash or test guard was relaxed.",
+  "tests_after_final_source_freeze": true
+}

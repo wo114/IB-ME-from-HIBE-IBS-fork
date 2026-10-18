@@ -1,0 +1,217 @@
+{
+  "all_standalone_security_obligations_closed": false,
+  "earlier_success_receipts_preserved": 14,
+  "final_runs": [
+    {
+      "attempts": {
+        "extraction_calls": 1,
+        "setup": 1,
+        "sign": 4
+      },
+      "checks": 37,
+      "file": "param-i-bounded-final-lifecycle.json",
+      "native_strong_probe": {
+        "accepted_replacements": 0,
+        "attack": "public Q shift in first identity block; same challenge/message",
+        "eligible_trials": 0,
+        "native_strong_counterexample_found": false,
+        "sample_or_forgery_exported": false,
+        "unsuccessful_probe_is_not_a_security_proof": true
+      },
+      "profile": {
+        "gadget_remainder_representative": "centered-mod-p",
+        "hnf_representative": "centered-mod-Q",
+        "interpretation": "table-standard-deviation",
+        "perturbation_noise_factor": 1,
+        "pi_precision_bits": 512,
+        "profile_name": "PARAM-I",
+        "r_published_approximation": "1.16",
+        "source_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+      },
+      "randomness": "DeterministicRandom TEST ONLY",
+      "signature_attempt_cap_bytes": 5683191,
+      "signature_call_hard_cap_bytes": 363724224
+    },
+    {
+      "attempts": {
+        "extraction_calls": 1,
+        "setup": 1,
+        "sign": 2
+      },
+      "checks": 37,
+      "file": "param-i-literal-bounded-final-lifecycle.json",
+      "native_strong_probe": {
+        "accepted_replacements": 1,
+        "attack": "public Q shift in first identity block; same challenge/message",
+        "eligible_trials": 1,
+        "native_strong_counterexample_found": true,
+        "sample_or_forgery_exported": false,
+        "unsuccessful_probe_is_not_a_security_proof": true
+      },
+      "profile": {
+        "gadget_remainder_representative": "centered-mod-p",
+        "hnf_representative": "centered-mod-Q",
+        "interpretation": "literal-density-width",
+        "perturbation_noise_factor": 1,
+        "pi_precision_bits": 512,
+        "profile_name": "PARAM-I",
+        "r_published_approximation": "1.16",
+        "source_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+      },
+      "randomness": "DeterministicRandom TEST ONLY",
+      "signature_attempt_cap_bytes": 5827238,
+      "signature_call_hard_cap_bytes": 372943232
+    },
+    {
+      "attempts": {
+        "extraction_calls": 1,
+        "setup": 1,
+        "sign": 3
+      },
+      "checks": 37,
+      "file": "param-i-secure-bounded-final-lifecycle.json",
+      "native_strong_probe": {
+        "accepted_replacements": 0,
+        "attack": "public Q shift in first identity block; same challenge/message",
+        "eligible_trials": 0,
+        "native_strong_counterexample_found": false,
+        "sample_or_forgery_exported": false,
+        "unsuccessful_probe_is_not_a_security_proof": true
+      },
+      "profile": {
+        "gadget_remainder_representative": "centered-mod-p",
+        "hnf_representative": "centered-mod-Q",
+        "interpretation": "table-standard-deviation",
+        "perturbation_noise_factor": 1,
+        "pi_precision_bits": 512,
+        "profile_name": "PARAM-I",
+        "r_published_approximation": "1.16",
+        "source_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+      },
+      "randomness": "SecureRandom",
+      "signature_attempt_cap_bytes": 5683191,
+      "signature_call_hard_cap_bytes": 363724224
+    },
+    {
+      "attempts": {
+        "extraction_calls": 1,
+        "setup": 1,
+        "sign": 2
+      },
+      "checks": 37,
+      "file": "param-ii-bounded-final-lifecycle.json",
+      "native_strong_probe": {
+        "accepted_replacements": 1,
+        "attack": "public Q shift in first identity block; same challenge/message",
+        "eligible_trials": 1,
+        "native_strong_counterexample_found": true,
+        "sample_or_forgery_exported": false,
+        "unsuccessful_probe_is_not_a_security_proof": true
+      },
+      "profile": {
+        "gadget_remainder_representative": "centered-mod-p",
+        "hnf_representative": "centered-mod-Q",
+        "interpretation": "table-standard-deviation",
+        "perturbation_noise_factor": 1,
+        "pi_precision_bits": 512,
+        "profile_name": "PARAM-II",
+        "r_published_approximation": "1.16",
+        "source_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+      },
+      "randomness": "DeterministicRandom TEST ONLY",
+      "signature_attempt_cap_bytes": 7677604,
+      "signature_call_hard_cap_bytes": 491366656
+    },
+    {
+      "attempts": {
+        "extraction_calls": 1,
+        "setup": 1,
+        "sign": 2
+      },
+      "checks": 37,
+      "file": "param-ii-literal-bounded-final-lifecycle.json",
+      "native_strong_probe": {
+        "accepted_replacements": 1,
+        "attack": "public Q shift in first identity block; same challenge/message",
+        "eligible_trials": 1,
+        "native_strong_counterexample_found": true,
+        "sample_or_forgery_exported": false,
+        "unsuccessful_probe_is_not_a_security_proof": true
+      },
+      "profile": {
+        "gadget_remainder_representative": "centered-mod-p",
+        "hnf_representative": "centered-mod-Q",
+        "interpretation": "literal-density-width",
+        "perturbation_noise_factor": 1,
+        "pi_precision_bits": 512,
+        "profile_name": "PARAM-II",
+        "r_published_approximation": "1.16",
+        "source_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+      },
+      "randomness": "DeterministicRandom TEST ONLY",
+      "signature_attempt_cap_bytes": 8016140,
+      "signature_call_hard_cap_bytes": 513032960
+    },
+    {
+      "attempts": {
+        "extraction_calls": 1,
+        "setup": 1,
+        "sign": 2
+      },
+      "checks": 37,
+      "file": "param-iii-bounded-final-lifecycle.json",
+      "native_strong_probe": {
+        "accepted_replacements": 1,
+        "attack": "public Q shift in first identity block; same challenge/message",
+        "eligible_trials": 1,
+        "native_strong_counterexample_found": true,
+        "sample_or_forgery_exported": false,
+        "unsuccessful_probe_is_not_a_security_proof": true
+      },
+      "profile": {
+        "gadget_remainder_representative": "centered-mod-p",
+        "hnf_representative": "centered-mod-Q",
+        "interpretation": "table-standard-deviation",
+        "perturbation_noise_factor": 1,
+        "pi_precision_bits": 512,
+        "profile_name": "PARAM-III",
+        "r_published_approximation": "1.16",
+        "source_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+      },
+      "randomness": "DeterministicRandom TEST ONLY",
+      "signature_attempt_cap_bytes": 9685883,
+      "signature_call_hard_cap_bytes": 619896512
+    },
+    {
+      "attempts": {
+        "extraction_calls": 1,
+        "setup": 1,
+        "sign": 2
+      },
+      "checks": 37,
+      "file": "param-iii-literal-bounded-final-lifecycle.json",
+      "native_strong_probe": {
+        "accepted_replacements": 1,
+        "attack": "public Q shift in first identity block; same challenge/message",
+        "eligible_trials": 1,
+        "native_strong_counterexample_found": true,
+        "sample_or_forgery_exported": false,
+        "unsuccessful_probe_is_not_a_security_proof": true
+      },
+      "profile": {
+        "gadget_remainder_representative": "centered-mod-p",
+        "hnf_representative": "centered-mod-Q",
+        "interpretation": "literal-density-width",
+        "perturbation_noise_factor": 1,
+        "pi_precision_bits": 512,
+        "profile_name": "PARAM-III",
+        "r_published_approximation": "1.16",
+        "source_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+      },
+      "randomness": "DeterministicRandom TEST ONLY",
+      "signature_attempt_cap_bytes": 10107278,
+      "signature_call_hard_cap_bytes": 646865792
+    }
+  ],
+  "security_claim": "none"
+}

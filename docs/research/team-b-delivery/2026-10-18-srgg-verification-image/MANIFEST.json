@@ -1,0 +1,51 @@
+{
+  "entries": {
+    "docs/research/team-b-delivery/2026-10-18-srgg-verification-image/README.md": {
+      "bytes": 3198,
+      "sha256": "baf2f9cf992d60ede5bccb105c2297248e113e04e626e51f4da3601dd9e9888d"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-verification-image/README_zh-CN.md": {
+      "bytes": 3245,
+      "sha256": "33db8a8e82c47c487f316490a7f2971297c750dc556045c03b54c96bdb589171"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-verification-image/validation.json": {
+      "bytes": 2812,
+      "sha256": "853f6690e6eb2d1eff9a0ad7562cc6462d6d8247bea8c6d475cdbc597f5c04b8"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-verification-image/verification-image.json": {
+      "bytes": 8174,
+      "sha256": "be582a4920c703b3569f3e42349cd62f9e868acf80b244a80ef8fff9b5e3b17c"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-verification-image/verify_delivery.py": {
+      "bytes": 9814,
+      "sha256": "87c2e5ed849585871b81d6931e9dfb0f4d59b3462789983bb5ad14126ef4bc70"
+    },
+    "experiments/research/candidates/srgg/paper_algebra.py": {
+      "bytes": 2006,
+      "sha256": "5494acd7ab7cf42b2d9f33746b2535ffcbb58df0796c0b313dd56cc39547c81a"
+    },
+    "experiments/research/candidates/srgg/paper_profiles.py": {
+      "bytes": 6580,
+      "sha256": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f"
+    },
+    "experiments/research/candidates/srgg/paper_verification_image.py": {
+      "bytes": 6333,
+      "sha256": "44d2e2ee47d1cfe0e6d71818390e334e11d2e1588753111e5f45875f4777f751"
+    },
+    "experiments/research/candidates/srgg/structured_execution.py": {
+      "bytes": 38862,
+      "sha256": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+    },
+    "papers/2025_efficient_ibs_jia.pdf": {
+      "bytes": 512758,
+      "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+    },
+    "tests/test_srgg_paper_verification_image.py": {
+      "bytes": 5571,
+      "sha256": "8f35c67eb2533b106b3c9e3d30de79f1ed4a47c7ae246e1f2810b3962141121c"
+    }
+  },
+  "schema": "IBME/SRGG-VERIFICATION-IMAGE-MANIFEST/1",
+  "security_claim": "none",
+  "self_hash_excluded": true
+}

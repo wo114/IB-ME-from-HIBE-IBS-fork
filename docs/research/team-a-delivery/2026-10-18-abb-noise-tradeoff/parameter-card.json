@@ -13,7 +13,7 @@
   },
   "finite_noise": {
     "built": true,
-    "build_seconds": 0.8467205970082432,
+    "build_seconds": 0.8501052770006936,
     "anchor_modulus": 65537,
     "anchor_modulus_used_for_ciphertext": false,
     "scaled_width": 721,
@@ -200,7 +200,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.043677049019606784
+            "elapsed_seconds": 0.043801551015349105
           },
           "sis_lattice-quantum": {
             "status": "no_finite_estimate",
@@ -215,7 +215,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.010945109010208398
+            "elapsed_seconds": 0.010803515004226938
           }
         },
         "ciphertext_lwe": {
@@ -231,7 +231,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 4.691565057990374
+            "elapsed_seconds": 4.666628135018982
           },
           "dual-classical": {
             "status": "finite_estimate",
@@ -246,7 +246,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.07487311199656688
+            "elapsed_seconds": 0.07989369999268092
           },
           "primal_usvp-quantum": {
             "status": "finite_estimate",
@@ -260,7 +260,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 4.580487883999012
+            "elapsed_seconds": 4.602964805002557
           },
           "dual-quantum": {
             "status": "finite_estimate",
@@ -275,7 +275,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.056094617000781
+            "elapsed_seconds": 0.05911031900905073
           }
         }
       },
@@ -448,7 +448,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.01218950399197638
+            "elapsed_seconds": 0.01230534099158831
           },
           "sis_lattice-quantum": {
             "status": "no_finite_estimate",
@@ -463,7 +463,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.010702728002797812
+            "elapsed_seconds": 0.01137138798367232
           }
         },
         "ciphertext_lwe": {
@@ -479,7 +479,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 4.548571850988083
+            "elapsed_seconds": 4.632600495009683
           },
           "dual-classical": {
             "status": "finite_estimate",
@@ -494,7 +494,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.06997487400076352
+            "elapsed_seconds": 0.07251469499897212
           },
           "primal_usvp-quantum": {
             "status": "finite_estimate",
@@ -508,7 +508,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 4.5644261839916
+            "elapsed_seconds": 4.576637524005491
           },
           "dual-quantum": {
             "status": "finite_estimate",
@@ -523,7 +523,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.05427587701706216
+            "elapsed_seconds": 0.05420245401910506
           }
         }
       },
@@ -696,7 +696,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.012307169992709532
+            "elapsed_seconds": 0.011971730011282489
           },
           "sis_lattice-quantum": {
             "status": "no_finite_estimate",
@@ -711,7 +711,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.011303431005217135
+            "elapsed_seconds": 0.010990426992066205
           }
         },
         "ciphertext_lwe": {
@@ -727,7 +727,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 4.913381993974326
+            "elapsed_seconds": 4.903122154006269
           },
           "dual-classical": {
             "status": "finite_estimate",
@@ -742,7 +742,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.07151568899280392
+            "elapsed_seconds": 0.071770699985791
           },
           "primal_usvp-quantum": {
             "status": "finite_estimate",
@@ -756,7 +756,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 4.884744904004037
+            "elapsed_seconds": 4.90096891799476
           },
           "dual-quantum": {
             "status": "finite_estimate",
@@ -771,7 +771,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.054363280010875314
+            "elapsed_seconds": 0.05614724400220439
           }
         }
       },
@@ -944,7 +944,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.011711961007677019
+            "elapsed_seconds": 0.011951380001846701
           },
           "sis_lattice-quantum": {
             "status": "no_finite_estimate",
@@ -959,7 +959,7 @@
             },
             "goal": "conditional one-column alternative-preimage SIS subproblem",
             "full_trapdoor_recovery_cost_estimated": false,
-            "elapsed_seconds": 0.010777488991152495
+            "elapsed_seconds": 0.010867554985452443
           }
         },
         "ciphertext_lwe": {
@@ -975,7 +975,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 5.0845750360167585
+            "elapsed_seconds": 5.056856388022425
           },
           "dual-classical": {
             "status": "finite_estimate",
@@ -990,7 +990,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.0649891660141293
+            "elapsed_seconds": 0.06423674698453397
           },
           "primal_usvp-quantum": {
             "status": "finite_estimate",
@@ -1004,7 +1004,7 @@
               "tag": "usvp"
             },
             "goal": "heuristic_secret_search",
-            "elapsed_seconds": 5.073465386987664
+            "elapsed_seconds": 5.08269366301829
           },
           "dual-quantum": {
             "status": "finite_estimate",
@@ -1019,7 +1019,7 @@
               "tag": "dual"
             },
             "goal": "decisional_distinguisher",
-            "elapsed_seconds": 0.050612132996320724
+            "elapsed_seconds": 0.05165915400721133
           }
         }
       },
@@ -1097,15 +1097,15 @@
     "logical_cpus": 12
   },
   "source_sha256": {
-    "experiments/research/abb_rom/noise_tradeoff_probe.py": "3be595911a575b9402d7fc8f1e6d8c42f2d79c2a35c345d060bd4e11b2650181",
+    "experiments/research/abb_rom/noise_tradeoff_probe.py": "ff507f395153b1c5939f99046c6b9535e5b989959e70f8da52a1affd00d4d08a",
     "experiments/research/abb_rom/scaled_parameter_screen.py": "73deae56df5eee38f5efcbdbe7eac05a5d9101d4661bd3b34a82d4c338ef3d75",
     "src/ibme/lattice/chkp/noise_budget.py": "4d493f2c305fd614705ab28f6fc3920b0ae06b195b0b0960719ff51314508790",
     "src/ibme/lattice/chkp/rounded_noise.py": "f093b75e82116f39b5817a01ee89ead1bcbaec8df6d231380354b4e992638411"
   },
   "measurements": {
-    "finite_cdf_build_seconds": 0.8467205970082432,
-    "total_seconds": 41.14178731999709,
-    "process_max_rss_kib": 305160
+    "finite_cdf_build_seconds": 0.8501052770006936,
+    "total_seconds": 41.03246072199545,
+    "process_max_rss_kib": 305304
   },
   "unresolved": [
     "complete-basis representation is petabyte-scale for every tested row",

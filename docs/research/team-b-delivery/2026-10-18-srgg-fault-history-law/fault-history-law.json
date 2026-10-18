@@ -1,0 +1,260 @@
+{
+  "arbitrary_fault_counterexample": {
+    "complete_history_tv_exact": "1",
+    "fault_free_issue_and_sign_tv_exact": "0",
+    "fault_label_retained": true,
+    "fault_probability_exact": "1",
+    "is_srgg_attack": false
+  },
+  "backend_admitted": false,
+  "conditional_hybrid": {
+    "all_conditional_premises_verified_here": false,
+    "bad_signing_key_history_mass": null,
+    "conditional_complete_history_tv_upper": null,
+    "initial_complete_state_tv": null,
+    "microsteps": [
+      {
+        "count": 3,
+        "kind": "first-issue including interleaved fault decisions",
+        "uniform_complete_kernel_tv": null
+      },
+      {
+        "count": 2,
+        "kind": "sign including retries and interleaved fault decisions",
+        "uniform_complete_kernel_tv": null
+      },
+      {
+        "count": 1,
+        "kind": "external storage/lock/crash microtransition",
+        "uniform_complete_kernel_tv": null
+      }
+    ]
+  },
+  "fixture_key_counterexample": {
+    "can_approach_one_as_support_grows": true,
+    "complete_issue_then_sign_tv_exact": "7/8",
+    "fixture_key_0_signing_tv_exact": "0",
+    "is_srgg_attack": false,
+    "issuance_tv_exact": "0",
+    "support_size": 8
+  },
+  "full_history_bound": null,
+  "nist_security_category": null,
+  "parameters_are_formal": false,
+  "predecessor": {
+    "path": "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/history-law.json",
+    "sha256": "357cef782a60a9b16439e813f74dda2c1b5ead23c82cec76c9695deb5929da92"
+  },
+  "route_a": "pathwise deterministic replay when complete state, fresh entropy tape, OS/fault tape, schedule and observation map match; cannot compare unlike laws",
+  "route_b": "adaptive complete-microstep TV hybrid; input conditional bounds for random keys and interleaved faults are missing",
+  "route_c": "exact finite counterexamples and a wire-valid negative-Schur object reject shortcut composition; no further route attempted",
+  "schema": "IBME/SRGG-PAPER-FAULT-HISTORY-LAW/1",
+  "scope": "original Table 4 independent IBS; complete persistent issuer, backend sign and external fault transcript obligations",
+  "security_claim": "none",
+  "six_rows": [
+    {
+      "all_accepted_roots_initial_law_tv": null,
+      "faulty_storage_conditional_kernel_tv": null,
+      "fixed_root_issuance_only_tv_upper": "2^-24",
+      "full_issuance_signature_fault_history_tv": null,
+      "interpretation": "table-standard-deviation",
+      "profile": "PARAM-I",
+      "random_issued_key_bad_sign_plan_mass": null,
+      "same_fixture_key_two_sign_calls_tv_upper": "2^-18"
+    },
+    {
+      "all_accepted_roots_initial_law_tv": null,
+      "faulty_storage_conditional_kernel_tv": null,
+      "fixed_root_issuance_only_tv_upper": null,
+      "full_issuance_signature_fault_history_tv": null,
+      "interpretation": "literal-density-width",
+      "profile": "PARAM-I",
+      "random_issued_key_bad_sign_plan_mass": null,
+      "same_fixture_key_two_sign_calls_tv_upper": "1"
+    },
+    {
+      "all_accepted_roots_initial_law_tv": null,
+      "faulty_storage_conditional_kernel_tv": null,
+      "fixed_root_issuance_only_tv_upper": "2^-24",
+      "full_issuance_signature_fault_history_tv": null,
+      "interpretation": "table-standard-deviation",
+      "profile": "PARAM-II",
+      "random_issued_key_bad_sign_plan_mass": null,
+      "same_fixture_key_two_sign_calls_tv_upper": "2^-17"
+    },
+    {
+      "all_accepted_roots_initial_law_tv": null,
+      "faulty_storage_conditional_kernel_tv": null,
+      "fixed_root_issuance_only_tv_upper": null,
+      "full_issuance_signature_fault_history_tv": null,
+      "interpretation": "literal-density-width",
+      "profile": "PARAM-II",
+      "random_issued_key_bad_sign_plan_mass": null,
+      "same_fixture_key_two_sign_calls_tv_upper": "1"
+    },
+    {
+      "all_accepted_roots_initial_law_tv": null,
+      "faulty_storage_conditional_kernel_tv": null,
+      "fixed_root_issuance_only_tv_upper": "2^-24",
+      "full_issuance_signature_fault_history_tv": null,
+      "interpretation": "table-standard-deviation",
+      "profile": "PARAM-III",
+      "random_issued_key_bad_sign_plan_mass": null,
+      "same_fixture_key_two_sign_calls_tv_upper": "2^-17"
+    },
+    {
+      "all_accepted_roots_initial_law_tv": null,
+      "faulty_storage_conditional_kernel_tv": null,
+      "fixed_root_issuance_only_tv_upper": null,
+      "full_issuance_signature_fault_history_tv": null,
+      "interpretation": "literal-density-width",
+      "profile": "PARAM-III",
+      "random_issued_key_bad_sign_plan_mass": null,
+      "same_fixture_key_two_sign_calls_tv_upper": "1"
+    }
+  ],
+  "source_map": {
+    "experiments/research/candidates/srgg/paper_algebra.py": {
+      "anchors": {
+        "class PaperRing(ExactRing):": [
+          13
+        ],
+        "def public_matrix(params, seed):": [
+          24
+        ]
+      },
+      "sha256": "5494acd7ab7cf42b2d9f33746b2535ffcbb58df0796c0b313dd56cc39547c81a"
+    },
+    "experiments/research/candidates/srgg/paper_objects.py": {
+      "anchors": {
+        "# PaperRing checks exact 256-bit coordinates, not a sampling norm class.": [
+          112
+        ],
+        "class SigningKey(IBSSigningKey):": [
+          98
+        ]
+      },
+      "sha256": "782bcc7baa30d02a9846809141e1e342841129075688e2bcb332744efa9a2b3f"
+    },
+    "experiments/research/candidates/srgg/paper_parameters.py": {
+      "anchors": {
+        "class PaperParams:": [
+          21
+        ],
+        "def signature_first_squared(self):": [
+          62
+        ],
+        "def signature_second_squared(self):": [
+          64
+        ]
+      },
+      "sha256": "3dc03c082d5595fb2f6d85ea2fdd284beb37b20c432854a38ff434f8aef201a4"
+    },
+    "experiments/research/candidates/srgg/paper_schur_backend.py": {
+      "anchors": {
+        "def _sign_attempt_source(self, params, plan, scalar):": [
+          15
+        ],
+        "def sign(self, key, message):": [
+          26
+        ],
+        "for _ in range(self.sign_max_attempts):": [
+          37
+        ]
+      },
+      "sha256": "f67cad3306c4a95495c48c12f29353791b2b5c05dadd1b6021d2b1cb58956693"
+    },
+    "experiments/research/candidates/srgg/paper_schur_fourier.py": {
+      "anchors": {
+        "# Check the ORIGINAL full residual Sigma_p-r^2 I.": [
+          103
+        ],
+        "raise WitnessGeometryError(\"source-Schur certified negative full residual direction\")": [
+          118
+        ]
+      },
+      "sha256": "e6372ccddc5ea98188736eb5ed48929f8fcd43bc2965a7c8827b65a2d6ca5208"
+    },
+    "experiments/research/candidates/srgg/structured_execution.py": {
+      "anchors": {
+        "def reconstruct(self,public,target,tail):": [
+          232
+        ]
+      },
+      "sha256": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+    },
+    "experiments/research/candidates/srgg/structured_geometry.py": {
+      "anchors": {
+        "def shifted_schur_apply(self, upper):": [
+          173
+        ],
+        "def signature_operator(*, degree, rank, digits, user_vector,": [
+          215
+        ],
+        "noise_factor*_rational(r_squared)": [
+          228
+        ]
+      },
+      "sha256": "08d70876337afae3a7e8722a939c9996363af8eb5f8039d6437b6906814f1120"
+    },
+    "src/ibme/ibs/srgg_paper_service.py": {
+      "anchors": {
+        "def _load(self):": [
+          148
+        ],
+        "def initialize(self, params, *, max_users=1):": [
+          167
+        ],
+        "def key_extract(self, identity):": [
+          192
+        ],
+        "snapshot.master.states[identity] = (\"failed\", None)": [
+          223
+        ],
+        "snapshot.master.states[identity] = (\"issued\", key)": [
+          218
+        ],
+        "snapshot.master.states[identity] = (\"pending\", None)": [
+          207
+        ]
+      },
+      "sha256": "9434699ff192a426f15ca92c1477d63302eada62dc92da0ff06090f32d86b7c1"
+    },
+    "src/ibme/ibs/srgg_service.py": {
+      "anchors": {
+        "def _atomic_write(self, raw: bytes):": [
+          344
+        ],
+        "def _begin(self):": [
+          310
+        ],
+        "def _block(self, snapshot=None):": [
+          331
+        ],
+        "def _check_pending(self):": [
+          293
+        ],
+        "def _finish(self):": [
+          319
+        ],
+        "os.replace(temporary, target)": [
+          357
+        ]
+      },
+      "sha256": "6aa174727fa21c4172e59dd7886525aa8539fc11aa792c2b6f3a6314db970437"
+    }
+  },
+  "source_pdf": "papers/2025_efficient_ibs_jia.pdf",
+  "source_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+  "wire_valid_bad_sign_plan_witness": {
+    "identity_length_bytes": 5,
+    "interpretation": "table-standard-deviation",
+    "key_output_by_random_extract_claimed": false,
+    "key_wire_round_trip": true,
+    "negative_shifted_schur_rayleigh_exact": "-397560044221621997587450733658482216966615166847651140980138029278841768311132913675135004555436744293387220214789491157252754038652976210923147347838044843401137354552797753468875451/4702511054319661931321450214860261354587373928671895935586797980664645262870783726664165436349421521548524427083833866132950331951000991157316050514268331662376960000",
+    "profile": "PARAM-I",
+    "public_zero_witness_relation": true,
+    "shows_all_wire_valid_keys_have_signing_certificate": false,
+    "tail_coefficient": 100000000
+  }
+}

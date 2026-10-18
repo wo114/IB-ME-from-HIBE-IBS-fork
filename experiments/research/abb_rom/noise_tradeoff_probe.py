@@ -236,9 +236,15 @@ def _finite_minimum(results, required):
         result = results.get(name)
         value = result.get("rop_log2") if isinstance(result, dict) else None
         if (not isinstance(result, dict) or result.get("status") != "finite_estimate" or
-                type(value) not in (int, float) or not isfinite(value) or value < 0):
+                type(value) not in (int, float)):
             return False, None
-        values.append(float(value))
+        try:
+            value = float(value)
+        except OverflowError:
+            return False, None
+        if not isfinite(value) or value < 0:
+            return False, None
+        values.append(value)
     return True, min(values)
 
 

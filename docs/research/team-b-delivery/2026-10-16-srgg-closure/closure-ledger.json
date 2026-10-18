@@ -1,0 +1,672 @@
+{
+  "closure": {
+    "backend_admitted": false,
+    "complete_classical_production_reduction": false,
+    "finite_sampler_reference": "conditional",
+    "hardness_and_formal_parameters": false,
+    "native_strong_security": false,
+    "nist_security_category": null,
+    "parameters_are_formal": false,
+    "qrom_reduction": false,
+    "security_claim": "none",
+    "source_code_correspondence": "partial"
+  },
+  "generator": {
+    "path": "experiments/research/candidates/srgg/closure_ledger.py",
+    "sha256": "c6830c1e9106747bc6d1a3ee5b00912d39518a4d61e7edcfbe3bf9ca82502a28"
+  },
+  "ibs_ledger": {
+    "commitment_collision": {
+      "evidence": [
+        "experiments/research/candidates/srgg/bounded_classical_cost.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/strong-games.md"
+      ],
+      "reason": "The collision calculator uses only 512 bits and an illustrative free-entry count; it is not an actual IBS query bound.",
+      "scope": "conditional component only; not a production IBS game bound",
+      "status": "conditional",
+      "value": "full-cap ideal entropy alpha=36351 bits"
+    },
+    "delta0": {
+      "evidence": [
+        "experiments/research/candidates/srgg/integrated_bridge.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/honest-service-law.md"
+      ],
+      "reason": "Genesis, prior history, OS/SHAKE behavior, source caps and service faults are not jointly coupled to one production game.",
+      "scope": "conditional component only; not a production IBS game bound",
+      "status": "unresolved",
+      "value": null
+    },
+    "delta_alias": {
+      "evidence": [
+        "experiments/research/candidates/srgg/bounded_classical_cost.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/strong-games.md"
+      ],
+      "reason": "Uniform-H1 alias formula is conditional; actual Hbar identity/image law and cross-identity state are not closed.",
+      "scope": "conditional component only; not a production IBS game bound",
+      "status": "unresolved",
+      "value": null
+    },
+    "delta_bad": {
+      "evidence": [
+        "experiments/research/candidates/srgg/integrated_bridge.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/honest-service-law.md"
+      ],
+      "reason": "GoodKey tail under mixed ideal key law only; actual seeded/HNF key law remains open.",
+      "scope": "conditional component only; not a production IBS game bound",
+      "status": "conditional",
+      "value": "<=2^-256"
+    },
+    "delta_issue": {
+      "evidence": [
+        "experiments/research/candidates/srgg/integrated_bridge.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/honest-service-law.md"
+      ],
+      "reason": "Deep structured namespace issuance-to-reference bridge under its explicit model; public FixedIssuer and full production law are not identified.",
+      "scope": "conditional component only; not a production IBS game bound",
+      "status": "conditional",
+      "value": "<=2^-177"
+    },
+    "delta_known": {
+      "evidence": [
+        "experiments/research/candidates/srgg/bounded_classical_cost.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/strong-games.md"
+      ],
+      "reason": "Non-target known-key signatures and their complete H2/internal retry transcript are not certified against the same production game.",
+      "scope": "conditional component only; not a production IBS game bound",
+      "status": "unresolved",
+      "value": null
+    },
+    "delta_overlay": {
+      "evidence": [
+        "experiments/research/candidates/srgg/integrated_bridge.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/honest-service-law.md"
+      ],
+      "reason": "Seed prehistory, public matrix overlay, adaptive H1/QROM programming and infrastructure failures are not jointly bounded.",
+      "scope": "conditional component only; not a production IBS game bound",
+      "status": "unresolved",
+      "value": null
+    },
+    "delta_pub": {
+      "evidence": [
+        "experiments/research/candidates/srgg/sampling_error.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sampling-error-review.md"
+      ],
+      "reason": "Finite sampler receipts cover the declared sequential reference; they do not identify the final HNF or signature law.",
+      "scope": "conditional component only; not a production IBS game bound",
+      "status": "conditional",
+      "value": "<=2^-177 (issue), <=2^-178 (sign attempt)"
+    },
+    "delta_sim": {
+      "evidence": [
+        "experiments/research/candidates/srgg/sampling_error.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sampling-error-review.md"
+      ],
+      "reason": "Structured sign sampler comparison under the deep research profile only.",
+      "scope": "conditional component only; not a production IBS game bound",
+      "status": "conditional",
+      "value": "<=2^-178 per sign attempt"
+    },
+    "delta_zk": {
+      "evidence": [
+        "experiments/research/candidates/srgg/bounded_classical_cost.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/strong-games.md"
+      ],
+      "reason": "GoodKey zero-knowledge tail under the declared ideal reference.",
+      "scope": "conditional component only; not a production IBS game bound",
+      "status": "conditional",
+      "value": "4667/2^256"
+    },
+    "epsilon_image": {
+      "evidence": [
+        "experiments/research/candidates/srgg/integrated_bridge.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/honest-service-law.md"
+      ],
+      "reason": "The bound applies to the mixed-domain explicit-Ahat reference and norm gate, not the seeded production IBS.",
+      "scope": "conditional component only; not a production IBS game bound",
+      "status": "conditional",
+      "value": "exact conditional bound in integrated_bridge receipt"
+    },
+    "eta_sign": {
+      "evidence": [
+        "experiments/research/candidates/srgg/bounded_classical_cost.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/strong-games.md"
+      ],
+      "reason": "Ideal signing norm/rejection term under the declared ideal reference; actual service retries and failure interface remain separate.",
+      "scope": "conditional component only; not a production IBS game bound",
+      "status": "conditional",
+      "value": "<=2/2^256"
+    }
+  },
+  "limits": [
+    "A conditional TV bound is not a measured TV distance and is not an IBS security advantage.",
+    "The native-strong same-message Q-shift observation is retained; it is not relabeled as a fresh-message forgery.",
+    "The QROM row, H1/H2 programming, ring-HNF collapsing, hardness estimates and HIBE composition remain open."
+  ],
+  "paper": {
+    "path": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "parameter_gates": [
+    {
+      "literal_smoothing_check": {
+        "dimension": 6144,
+        "dual_mass_lower_bound": "12288/243",
+        "epsilon": "2^-24",
+        "literal_r": "1.16",
+        "necessary_condition_fails": true,
+        "profile": "PARAM-I",
+        "scope": "necessary-condition check for the literal width; author normalization remains unresolved"
+      },
+      "parameter_gate": {
+        "2Q_gt_2gamma": false,
+        "2Q_is_odd": false,
+        "Q": 15744063,
+        "Q_gt_2gamma": false,
+        "Q_is_odd": true,
+        "Q_minus_2gamma_exact_decimal": "-68428920.4",
+        "gamma": "42086491.7",
+        "profile": "PARAM-I",
+        "rank": 2,
+        "theorem_mapping": "Not a proved mapping: requires clarification of Section 3 q versus IBS Q"
+      }
+    },
+    {
+      "literal_smoothing_check": {
+        "dimension": 8192,
+        "dual_mass_lower_bound": "16384/243",
+        "epsilon": "2^-24",
+        "literal_r": "1.16",
+        "necessary_condition_fails": true,
+        "profile": "PARAM-II",
+        "scope": "necessary-condition check for the literal width; author normalization remains unresolved"
+      },
+      "parameter_gate": {
+        "2Q_gt_2gamma": false,
+        "2Q_is_odd": false,
+        "Q": 15744063,
+        "Q_gt_2gamma": false,
+        "Q_is_odd": true,
+        "Q_minus_2gamma_exact_decimal": "-111562281.0",
+        "gamma": "63653172.0",
+        "profile": "PARAM-II",
+        "rank": 3,
+        "theorem_mapping": "Not a proved mapping: requires clarification of Section 3 q versus IBS Q"
+      }
+    },
+    {
+      "literal_smoothing_check": {
+        "dimension": 10240,
+        "dual_mass_lower_bound": "20480/243",
+        "epsilon": "2^-24",
+        "literal_r": "1.16",
+        "necessary_condition_fails": true,
+        "profile": "PARAM-III",
+        "scope": "necessary-condition check for the literal width; author normalization remains unresolved"
+      },
+      "parameter_gate": {
+        "2Q_gt_2gamma": false,
+        "2Q_is_odd": false,
+        "Q": 15744063,
+        "Q_gt_2gamma": false,
+        "Q_is_odd": true,
+        "Q_minus_2gamma_exact_decimal": "-157403798.0",
+        "gamma": "86573930.5",
+        "profile": "PARAM-III",
+        "rank": 4,
+        "theorem_mapping": "Not a proved mapping: requires clarification of Section 3 q versus IBS Q"
+      }
+    }
+  ],
+  "parameter_source_audit": {
+    "epsilon_parses": {
+      "alternate_radical_over_Qs_times_256_outside": {
+        "epsilon": "1/268435456",
+        "epsilon_bits": 28,
+        "epsilon_denominator": 268435456,
+        "source_status": "alternate transcription; not the reviewed source equation"
+      },
+      "alternate_radical_over_Qs_times_2pow56_inside": {
+        "epsilon": "1/281474976710656",
+        "epsilon_bits": 48,
+        "epsilon_denominator": 281474976710656,
+        "source_status": "alternate transcription; not the reviewed source equation"
+      },
+      "source_radical_over_Qs_times_256_inside": {
+        "epsilon": "1/16777216",
+        "epsilon_bits": 24,
+        "epsilon_denominator": 16777216,
+        "source_status": "confirmed by page-9 equation: radical contains Q_s*256"
+      }
+    },
+    "global_status": {
+      "backend_admitted": false,
+      "finite_sampler_to_final_signature_law_closed": false,
+      "gaussian_normalization_closed": false,
+      "hardness_estimate_formally_validated": false,
+      "nist_security_category": null,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "source_rows_reproduced": true,
+      "theorem_modulus_mapping_closed": false
+    },
+    "receipt": "docs/research/team-b-delivery/2026-10-17-srgg-parameter-closure/parameter-closure.json",
+    "receipt_sha256": "e8dec4ca68a441a95a002760bebe340db81628fb579d4a053fc56b36714470af",
+    "rows": [
+      {
+        "Q": 15744063,
+        "mapping_status": "unresolved: paper theorem q is not identified with gadget q, Q, or 2Q",
+        "modulus_candidates": {
+          "gadget_q": {
+            "gt_2gamma": false,
+            "modulus": 961,
+            "modulus_minus_2gamma": "-84172022.4",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "ibs_Q": {
+            "gt_2gamma": false,
+            "modulus": 15744063,
+            "modulus_minus_2gamma": "-68428920.4",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "verification_2Q": {
+            "gt_2gamma": false,
+            "modulus": 31488126,
+            "modulus_minus_2gamma": "-52684857.4",
+            "odd": false,
+            "theorem_odd_and_gt_2gamma": false
+          }
+        },
+        "physical_stddev_diagnostic": {
+          "certificate_status": "numerical diagnostic only; normalization and interval proof unresolved",
+          "dimension": 10240,
+          "epsilon": "1/16777216",
+          "epsilon_decimal": "5.960464477539062500000000000000E-8",
+          "first_dual_mass_decimal": "5.970349443219629374635543826233E-8",
+          "interpretation": "table r is physical stddev; density shape = 2*pi*r^2",
+          "literal_necessary_condition_passes": false,
+          "literal_r": "1.16",
+          "required_r_lower_diagnostic": "1.160036183509648067082707760100",
+          "required_r_minus_literal_diagnostic": "3.618350964806708270776009974044E-5"
+        },
+        "profile": "PARAM-I",
+        "smoothing": {
+          "alternate_radical_over_Qs_times_256_outside": {
+            "dimension": 10240,
+            "epsilon": "1/268435456",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          },
+          "alternate_radical_over_Qs_times_2pow56_inside": {
+            "dimension": 10240,
+            "epsilon": "1/281474976710656",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          },
+          "source_radical_over_Qs_times_256_inside": {
+            "dimension": 10240,
+            "epsilon": "1/16777216",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          }
+        }
+      },
+      {
+        "Q": 15744063,
+        "mapping_status": "unresolved: paper theorem q is not identified with gadget q, Q, or 2Q",
+        "modulus_candidates": {
+          "gadget_q": {
+            "gt_2gamma": false,
+            "modulus": 961,
+            "modulus_minus_2gamma": "-127305383.0",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "ibs_Q": {
+            "gt_2gamma": false,
+            "modulus": 15744063,
+            "modulus_minus_2gamma": "-111562281.0",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "verification_2Q": {
+            "gt_2gamma": false,
+            "modulus": 31488126,
+            "modulus_minus_2gamma": "-95818218.0",
+            "odd": false,
+            "theorem_odd_and_gt_2gamma": false
+          }
+        },
+        "physical_stddev_diagnostic": {
+          "certificate_status": "numerical diagnostic only; normalization and interval proof unresolved",
+          "dimension": 10240,
+          "epsilon": "1/16777216",
+          "epsilon_decimal": "5.960464477539062500000000000000E-8",
+          "first_dual_mass_decimal": "5.970349443219629374635543826233E-8",
+          "interpretation": "table r is physical stddev; density shape = 2*pi*r^2",
+          "literal_necessary_condition_passes": false,
+          "literal_r": "1.16",
+          "required_r_lower_diagnostic": "1.160036183509648067082707760100",
+          "required_r_minus_literal_diagnostic": "3.618350964806708270776009974044E-5"
+        },
+        "profile": "PARAM-II",
+        "smoothing": {
+          "alternate_radical_over_Qs_times_256_outside": {
+            "dimension": 10240,
+            "epsilon": "1/268435456",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          },
+          "alternate_radical_over_Qs_times_2pow56_inside": {
+            "dimension": 10240,
+            "epsilon": "1/281474976710656",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          },
+          "source_radical_over_Qs_times_256_inside": {
+            "dimension": 10240,
+            "epsilon": "1/16777216",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          }
+        }
+      },
+      {
+        "Q": 15744063,
+        "mapping_status": "unresolved: paper theorem q is not identified with gadget q, Q, or 2Q",
+        "modulus_candidates": {
+          "gadget_q": {
+            "gt_2gamma": false,
+            "modulus": 961,
+            "modulus_minus_2gamma": "-173146900.0",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "ibs_Q": {
+            "gt_2gamma": false,
+            "modulus": 15744063,
+            "modulus_minus_2gamma": "-157403798.0",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "verification_2Q": {
+            "gt_2gamma": false,
+            "modulus": 31488126,
+            "modulus_minus_2gamma": "-141659735.0",
+            "odd": false,
+            "theorem_odd_and_gt_2gamma": false
+          }
+        },
+        "physical_stddev_diagnostic": {
+          "certificate_status": "numerical diagnostic only; normalization and interval proof unresolved",
+          "dimension": 10240,
+          "epsilon": "1/16777216",
+          "epsilon_decimal": "5.960464477539062500000000000000E-8",
+          "first_dual_mass_decimal": "5.970349443219629374635543826233E-8",
+          "interpretation": "table r is physical stddev; density shape = 2*pi*r^2",
+          "literal_necessary_condition_passes": false,
+          "literal_r": "1.16",
+          "required_r_lower_diagnostic": "1.160036183509648067082707760100",
+          "required_r_minus_literal_diagnostic": "3.618350964806708270776009974044E-5"
+        },
+        "profile": "PARAM-III",
+        "smoothing": {
+          "alternate_radical_over_Qs_times_256_outside": {
+            "dimension": 10240,
+            "epsilon": "1/268435456",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          },
+          "alternate_radical_over_Qs_times_2pow56_inside": {
+            "dimension": 10240,
+            "epsilon": "1/281474976710656",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          },
+          "source_radical_over_Qs_times_256_inside": {
+            "dimension": 10240,
+            "epsilon": "1/16777216",
+            "literal_r": "29/25",
+            "necessary_condition_fails": true,
+            "pi_r_squared_less_than_five": true,
+            "pi_r_squared_upper": "18502/4375",
+            "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+            "shortest_dual_mass_strict_lower": "20480/243"
+          }
+        }
+      }
+    ],
+    "scope": "HIBE-independent SRGG source-symbol and parameter-gate audit",
+    "source_constants": {
+      "Q_s": 1099511627776,
+      "algorithm_displayed_perturbation_factor": 1,
+      "author_interpretation_confirmed": false,
+      "base": 31,
+      "epsilon_grouping_confirmed_from_pdf": true,
+      "factor_mapping_status": "unresolved",
+      "n": 512,
+      "p": 16383,
+      "published_r": "29/25",
+      "published_w": 2,
+      "r_dimension": 10240,
+      "r_dimension_expression": "(2+w)*5*512",
+      "visual_formula_reading": "epsilon = 1/sqrt(Q_s*256); alternate grouping parses retained for sensitivity",
+      "zeta_shape_factor_from_exact_operator": 2
+    }
+  },
+  "premises": {
+    "canonical_native_strong_log": {
+      "reason": "The strong target is retained, but native strong has observed same-message replacements.",
+      "satisfied": false
+    },
+    "complete_honest_reference": {
+      "reason": "Only component references exist; the complete production transcript is not coupled.",
+      "satisfied": false
+    },
+    "hidden_index_independent_common_space": {
+      "reason": "Target-index and full service coupling remain conditional.",
+      "satisfied": false
+    },
+    "ideal_classical_free_h2": {
+      "reason": "The owner/fork arithmetic assumes it; the complete production router is not implemented.",
+      "satisfied": false
+    },
+    "independent_uniform_target": {
+      "reason": "Actual identity/image distribution is not uniform by a closed production proof.",
+      "satisfied": false
+    },
+    "raw_first_touch_consistent": {
+      "reason": "The classical conditional-XOF component fixes first-touch prefixes and suffixes under its stated model.",
+      "satisfied": true
+    },
+    "replayable_nonfree_and_callback": {
+      "reason": "Target-sign callback and all failure paths are not certified as replayable in the real game.",
+      "satisfied": false
+    },
+    "same_bounded_game_and_failure_interfaces": {
+      "reason": "Service, OS, SHAKE and simulator failure interfaces are not unified.",
+      "satisfied": false
+    },
+    "specified_source_and_arithmetic_model": {
+      "reason": "The receipts declare the byte-XOF, Sage arithmetic and finite-resource model used by each component.",
+      "satisfied": true
+    },
+    "two_run_source_byte_envelope": {
+      "reason": "The bounded runner has a finite input/source certificate, but not a complete production-service envelope.",
+      "satisfied": false
+    },
+    "uniform_reachable_history_bounds": {
+      "reason": "Uniform bounds for all adaptive histories are not certified.",
+      "satisfied": false
+    }
+  },
+  "receipt_sha256": {
+    "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sampling-error-default.json": "9695677f73525e6163448492a6db4f7f2acf295460327be500f734114a340ba4",
+    "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sampling-error-width3.json": "7e7c58bbc5ac37d4ccd95da30ce9e74c1d0ba3959d99de9af7e32eb929adc9db",
+    "docs/research/team-b-delivery/2026-10-16-srgg-source-correspondence/source-correspondence.json": "653fa3c0cf14fb86f3d68fd4a7bfcc2725cba7bdc53ec06e500db402130eef24",
+    "docs/research/team-b-delivery/2026-10-17-srgg-parameter-closure/parameter-closure.json": "e8dec4ca68a441a95a002760bebe340db81628fb579d4a053fc56b36714470af"
+  },
+  "sampling_receipts": [
+    {
+      "extraction_tv_upper": "57373099280741897876783670719246532040582801302148272030992972613971146125476156161475488790306670780807986901301/39402006196394479212279040100143613805079739270465446667948293404245721771497210611414266254884915640806627990306816",
+      "interpretation": "legacy research profile",
+      "master_abort_upper": "101412048026430259744389587795971/42535295865117307932921825928971026432",
+      "max_sign_sequence_tv_upper": "110443694055325190223133274751051879575480385709766422074655983703870032440577530453839516023850463832858879837207/2462625387274654950767440006258975862817483704404090416746768337765357610718575663213391640930307227550414249394176",
+      "peikert_or_center_degenerates": {
+        "extraction_output_law": true,
+        "full_service_abort": true,
+        "signature_output_law": true
+      },
+      "profile": "sampling-error-default.json",
+      "receipt": "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sampling-error-default.json",
+      "receipt_sha256": "9695677f73525e6163448492a6db4f7f2acf295460327be500f734114a340ba4",
+      "scope": "finite sampler versus declared sequential reference, including internal sampler abort; not HNF/key/signature law or security advantage",
+      "sign_abort_upper": "7696581395041/2305843009213693952",
+      "sign_attempt_tv_upper": "110443694055325190223133274751051879575480385709766422074655983703870032440577530453839516023850463832858879837207/39402006196394479212279040100143613805079739270465446667948293404245721771497210611414266254884915640806627990306816"
+    },
+    {
+      "extraction_tv_upper": "28184498594000716019286055315156665376067536957970888362490562151993846800348976117365545687656997100775173649/9850501549098619803069760025035903451269934817616361666987073351061430442874302652853566563721228910201656997576704",
+      "interpretation": "legacy research profile",
+      "master_abort_upper": "30423614409194524566773351579649/10633823966279326983230456482242756608",
+      "max_sign_sequence_tv_upper": "150326812971671063129468983903593088652800684274051229307040110952211209426917315607110706820790339239464512323/2462625387274654950767440006258975862817483704404090416746768337765357610718575663213391640930307227550414249394176",
+      "peikert_or_center_degenerates": {
+        "extraction_output_law": true,
+        "full_service_abort": true,
+        "signature_output_law": true
+      },
+      "profile": "sampling-error-width3.json",
+      "receipt": "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sampling-error-width3.json",
+      "receipt_sha256": "7e7c58bbc5ac37d4ccd95da30ce9e74c1d0ba3959d99de9af7e32eb929adc9db",
+      "scope": "finite sampler versus declared sequential reference, including internal sampler abort; not HNF/key/signature law or security advantage",
+      "sign_abort_upper": "4398046511647/1152921504606846976",
+      "sign_attempt_tv_upper": "150326812971671063129468983903593088652800684274051229307040110952211209426917315607110706820790339239464512323/39402006196394479212279040100143613805079739270465446667948293404245721771497210611414266254884915640806627990306816"
+    }
+  ],
+  "schema": "IBME/SRGG-CLOSURE-LEDGER/1",
+  "scope": "SRGG items 2-4: source/code correspondence, finite sampler error, and remaining classical/QROM/parameter conditions",
+  "source_code_rows": [
+    {
+      "evidence": [
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/SOURCE_MAP.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/validation.json"
+      ],
+      "finding": "The public relation, 2Q recovery and centered HNF representative are checked by exact tests; this does not identify the output distribution.",
+      "implementation": [
+        "experiments/research/candidates/srgg/paper_algebra.py",
+        "experiments/research/candidates/srgg/paper_backend.py"
+      ],
+      "item": "zeta_and_hnf_algebra",
+      "paper_location": "pp.6-8, Algorithms 7-8",
+      "status": "closed"
+    },
+    {
+      "evidence": [
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/SOURCE_MAP.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/validation.json"
+      ],
+      "finding": "The three literal Table 4 parameter rows are executable inputs; the two Gaussian interpretations remain explicit alternatives.",
+      "implementation": [
+        "experiments/research/candidates/srgg/paper_profiles.py",
+        "experiments/research/candidates/srgg/paper_parameters.py"
+      ],
+      "item": "published_parameters",
+      "paper_location": "p.9 Section 5.1, p.10 Tables 4-7",
+      "status": "closed"
+    },
+    {
+      "evidence": [
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/README_zh-CN.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/source-eligibility.md"
+      ],
+      "finding": "The paper reports r approximately 1.16 without fixing the covariance convention. The implementation preserves both interpretations and does not silently choose one as author intent.",
+      "implementation": [
+        "experiments/research/candidates/srgg/paper_parameters.py",
+        "experiments/research/candidates/srgg/source_correspondence.py"
+      ],
+      "item": "gaussian_normalization_and_r",
+      "paper_location": "pp.3,6,9",
+      "status": "unresolved"
+    },
+    {
+      "evidence": [
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/SOURCE_MAP.md"
+      ],
+      "finding": "The algebra gives zeta*zeta*=2, while the displayed perturbation factor is retained literally as factor1; distributional equivalence is not established.",
+      "implementation": [
+        "experiments/research/candidates/srgg/paper_algebra.py",
+        "experiments/research/candidates/srgg/paper_samplef.py"
+      ],
+      "item": "factor1_vs_zeta_shape",
+      "paper_location": "p.6 Table 3 and p.8 Algorithm 7",
+      "status": "unresolved"
+    },
+    {
+      "evidence": [
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/PARAM-II.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/PARAM-III.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/target-signing.md"
+      ],
+      "finding": "PARAM-II and PARAM-III accepted same-message plus/minus-Q response replacements. This is a native-strong counterexample for those runs, not a fresh-message EUF forgery.",
+      "implementation": [
+        "experiments/research/candidates/srgg/paper_backend.py",
+        "experiments/research/candidates/srgg/paper_validation.py"
+      ],
+      "item": "native_strong",
+      "paper_location": "p.4 Definition 3 and pp.8-9 Theorem 2",
+      "status": "unresolved"
+    },
+    {
+      "evidence": [
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/source-eligibility.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/theorem-obligations.md"
+      ],
+      "finding": "The literal Q rows do not satisfy the displayed odd-q and q>2gamma condition, while verification is modulo 2Q. The paper-to-theorem modulus mapping is still open.",
+      "implementation": [
+        "experiments/research/candidates/srgg/paper_profiles.py",
+        "experiments/research/candidates/srgg/source_correspondence.py"
+      ],
+      "item": "theorem_modulus_mapping",
+      "paper_location": "p.4 Theorem 1 and p.9 Section 5.1",
+      "status": "unresolved"
+    }
+  ],
+  "unresolved_ledger_terms": [
+    "delta0",
+    "delta_alias",
+    "delta_known",
+    "delta_overlay"
+  ]
+}
