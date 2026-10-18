@@ -1,6 +1,8 @@
-"""Public full-3m radix geometry, coupled q and fail-closed feasibility gates."""
+"""Public full-3m parameter screen and separate advisory deployment budgets."""
 
 from fractions import Fraction
+from hashlib import sha256
+import json
 import pytest
 
 pytest.importorskip("sage.all", reason="use prescribed WSL ~/miniconda3/envs/sage")
@@ -86,7 +88,7 @@ def decision_fixture():
         finite_projection=dict(status="computed_resource_conditional", target_lifetime_met=True))
 
 
-@pytest.mark.parametrize("failure", ("root-low", "ciphertext-low", "error", "missing", "nan", "infinity", "payload", "scalar", "probability"))
+@pytest.mark.parametrize("failure", ("root-low", "ciphertext-low", "error", "missing", "nan", "infinity", "scalar", "probability"))
 def test_one_failing_or_unknown_gate_cannot_select_an_implementation_candidate(failure):
     r = decision_fixture()
     estimate = r["estimator_results"]["root_lwe"]["dual-quantum"]
@@ -96,7 +98,6 @@ def test_one_failing_or_unknown_gate_cannot_select_an_implementation_candidate(f
     if failure == "missing": del r["estimator_results"]["ciphertext_lwe"]
     if failure == "nan": estimate["rop_log2"] = float("nan")
     if failure == "infinity": estimate["rop_log2"] = float("inf")
-    if failure == "payload": r["resources"]["necessary_payload_fits_research_budget"] = False
     if failure == "scalar": r["resources"]["current_scalar_width_domain"] = False
     if failure == "probability": r["finite_projection"]["target_lifetime_met"] = False
     assert radix.decision(r)["implementation_candidate"] is False
@@ -104,6 +105,57 @@ def test_one_failing_or_unknown_gate_cannot_select_an_implementation_candidate(f
         assert radix.decision(r)["status"] == "unresolved_missing_or_failed_model"
     assert radix.decision(decision_fixture())["implementation_candidate"] is True
     assert radix.decision(decision_fixture())["HIBE_backend_admitted"] is False
+
+
+def test_hardware_budget_cannot_eliminate_a_parameter_candidate():
+    row = decision_fixture()
+    within = radix.decision(row)
+    row["resources"]["necessary_payload_fits_research_budget"] = False
+    exceeds = radix.decision(row)
+    for key in ("parameter_screen_candidate", "implementation_candidate", "model_cost_floor_met",
+                "conditional_probability_target_met", "scalar_profile_met", "status"):
+        assert within[key] == exceeds[key]
+    assert exceeds["parameter_screen_candidate"] and exceeds["hardware_budget_is_advisory"]
+    assert exceeds["deployment_status"] == "current_probe_payload_exceeds_advisory_budget"
+    assert not exceeds["HIBE_backend_admitted"]
+
+
+def test_scalar_cap_is_an_implementation_study_gap_rather_than_algorithm_rejection():
+    row = decision_fixture()
+    row["resources"]["current_scalar_width_domain"] = False
+    row["finite_projection"] = dict(status="outside_current_scalar_width_domain", target_lifetime_met=False)
+    result = radix.decision(row)
+    assert result["status"] == "needs_scalar_profile_study" and result["model_cost_floor_met"]
+    assert not result["parameter_screen_candidate"]
+
+
+def test_reclassification_preserves_mathematical_and_model_evidence_and_its_commit():
+    row = decision_fixture()
+    row["resources"].update(current_probe_live_matrix_payload_floor_bytes=19*2**30,
+                            resident_research_budget_bytes=8*2**30)
+    row["decision"] = dict(status="rejected_resident_payload", implementation_candidate=False)
+    original = dict(schema=radix.SCHEMA, status="completed_public_screen", source_commit="original-math",
+        estimator=dict(completed=True, commit="pinned-estimator"), source_providers={"provider":"unchanged"},
+        cost_floor=128, resident_budget_bytes=8*2**30, implementation_candidates=0, rows=[row],
+        key_generations=0, sampler_calls=0, entropy_reads=0, full_matrices_allocated=0)
+    raw = json.dumps(original).encode()
+    small = radix.reclassify(raw, source_commit="new-policy", ram_budget=8*2**30)
+    large = radix.reclassify(raw, source_commit="new-policy", ram_budget=64*2**30)
+    assert json.loads(raw) == original
+    for report in (small, large):
+        assert report["source_commit"] == "original-math" and report["source_providers"] == original["source_providers"]
+        assert report["estimator"] == original["estimator"]
+        for field in ("estimator_results", "finite_projection"):
+            assert report["rows"][0][field] == row[field]
+        assert report["parameter_screen_candidates"] == 1
+        assert report["reclassification"]["source_commit"] == "new-policy"
+        assert report["reclassification"]["input_sha256"] == sha256(raw).hexdigest()
+        assert report["reclassification"]["original_implementation_candidates"] == 0
+    assert not small["rows"][0]["decision"]["necessary_resident_payload_budget_met"]
+    assert large["rows"][0]["decision"]["necessary_resident_payload_budget_met"]
+    original["estimator"]["completed"] = False
+    with pytest.raises(ValueError, match="original completed"):
+        radix.reclassify(json.dumps(original).encode(), source_commit="new-policy")
 
 
 @pytest.mark.parametrize("args", ((True, 77, 1), (4096, True, 1), (4096, 77, True),

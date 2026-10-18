@@ -254,7 +254,7 @@ def target_row(n, radix_bits, *, ram_budget=DEFAULT_RAM_BUDGET, with_finite=True
 
 
 def decision(row, *, cost_floor=128):
-    """A pass only selects further engineering investigation, never security."""
+    """Select parameter studies independently of the advisory hardware budget."""
     cost_floor = integer(cost_floor, "comparison-model cost floor", 1, 512)
     keys = {attack+"-"+mode for attack in ("primal_usvp", "dual") for mode in ("classical", "quantum")}
     results, costs = row["estimator_results"], []
@@ -273,21 +273,58 @@ def decision(row, *, cost_floor=128):
     finite_ok = row["finite_projection"].get("target_lifetime_met") is True
     resources_ok = row["resources"]["necessary_payload_fits_research_budget"]
     profile_ok = row["resources"]["current_scalar_width_domain"]
-    passed = cost_ok and finite_ok and resources_ok and profile_ok
-    if not resources_ok: status = "rejected_resident_payload"
-    elif not profile_ok: status = "rejected_scalar_width_domain"
-    elif complete and not cost_ok: status = "rejected_comparison_model_cost"
+    passed = cost_ok and finite_ok and profile_ok
+    if not complete: status = "unresolved_missing_or_failed_model"
+    elif not cost_ok: status = "comparison_model_cost_below_threshold"
+    elif not profile_ok: status = "needs_scalar_profile_study"
     elif row["finite_projection"].get("status") == "computed_resource_conditional" and not finite_ok:
-        status = "rejected_conditional_probability_budget"
+        status = "conditional_probability_target_not_met"
     elif passed: status = "candidate_for_implementation_study"
-    else: status = "unresolved_missing_or_failed_model"
+    else: status = "unresolved_conditional_probability_profile"
     return dict(status=status,
         comparison_model_floor_log2_rop=cost_floor, all_eight_estimates_finite=complete,
         role_minimum_log2_rop=minima, model_cost_floor_met=cost_ok,
         conditional_probability_target_met=finite_ok, scalar_profile_met=profile_ok,
         necessary_resident_payload_budget_met=resources_ok,
-        implementation_candidate=passed, HIBE_backend_admitted=False,
+        hardware_budget_is_advisory=True,
+        deployment_status=("necessary_payload_within_budget_overhead_unmeasured" if resources_ok
+                           else "current_probe_payload_exceeds_advisory_budget"),
+        parameter_screen_candidate=passed, implementation_candidate=passed, HIBE_backend_admitted=False,
         runtime_and_peak_RSS_still_unmeasured=True)
+
+
+def reclassify(raw, *, source_commit, cost_floor=128, ram_budget=DEFAULT_RAM_BUDGET):
+    """Replay only decisions on an immutable completed PUBLIC input receipt.
+
+    Mathematical/model provenance stays attached to its original commit. The
+    new decision policy has separate provenance; no estimates are recomputed.
+    """
+    integer(cost_floor, "comparison-model cost floor", 1, 512)
+    integer(ram_budget, "advisory resident budget", 2**20, 2**40)
+    report = json.loads(raw)
+    if (report.get("schema") != SCHEMA or report.get("status") != "completed_public_screen"
+            or report.get("estimator", {}).get("completed") is not True
+            or "reclassification" in report):
+        raise ValueError("an original completed public model screen is required")
+    for field in ("key_generations", "sampler_calls", "entropy_reads", "full_matrices_allocated"):
+        if report.get(field) != 0:
+            raise ValueError("reclassification accepts only public, nonsampling receipts")
+    report["reclassification"] = dict(policy="hardware-budget-advisory/1",
+        source_commit=source_commit, source_module_sha256=sha256(Path(__file__).read_bytes()).hexdigest(),
+        input_sha256=sha256(raw).hexdigest(), input_source_commit=report["source_commit"],
+        original_cost_floor=report["cost_floor"], original_resident_budget_bytes=report["resident_budget_bytes"],
+        original_implementation_candidates=report["implementation_candidates"],
+        estimates_reused_without_recomputation=True, geometry_and_finite_certificates_reused=True)
+    report.update(cost_floor=cost_floor, resident_budget_bytes=ram_budget,
+                  hardware_budget_is_advisory=True)
+    for row in report["rows"]:
+        resources = row["resources"]
+        resources.update(resident_research_budget_bytes=ram_budget,
+            necessary_payload_fits_research_budget=resources["current_probe_live_matrix_payload_floor_bytes"] <= ram_budget)
+        row["decision"] = decision(row, cost_floor=cost_floor)
+    report["implementation_candidates"] = sum(row["decision"]["implementation_candidate"] for row in report["rows"])
+    report["parameter_screen_candidates"] = report["implementation_candidates"]
+    return report
 
 
 @contextmanager
@@ -310,9 +347,22 @@ def main():
     p.add_argument("--cost-floor", type=int, default=128)
     p.add_argument("--estimator-path", type=Path)
     p.add_argument("--geometry-only", action="store_true")
+    p.add_argument("--reclassify-from", type=Path,
+                   help="reuse a completed public receipt; change only screening/deployment decisions")
     p.add_argument("--source-commit", required=True)
     p.add_argument("--output", type=Path, required=True)
     a = p.parse_args()
+    if a.reclassify_from:
+        if a.geometry_only or a.estimator_path:
+            p.error("reclassification cannot request geometry or new estimator execution")
+        report = reclassify(a.reclassify_from.read_bytes(), source_commit=a.source_commit,
+                           cost_floor=a.cost_floor, ram_budget=a.resident_budget_bytes)
+        a.output.parent.mkdir(parents=True, exist_ok=True)
+        with a.output.open("x", encoding="utf-8") as stream:
+            stream.write(json.dumps(report, indent=2, sort_keys=True)+"\n")
+        print(json.dumps(dict(status="completed_decision_reclassification", groups=len(report["rows"]),
+            parameter_screen_candidates=report["parameter_screen_candidates"])), flush=True)
+        return
     if (len(set(a.dimensions)) != len(a.dimensions) or len(set(a.radix_bits)) != len(a.radix_bits)
             or len(a.dimensions)*len(a.radix_bits) > 512):
         p.error("distinct dimensions/radices and at most 512 public groups required")
@@ -324,7 +374,7 @@ def main():
     with a.output.open("x", encoding="utf-8") as stream: stream.write('{"status":"started"}\n')
     report = dict(schema=SCHEMA, status="started", source_commit=a.source_commit,
         dimensions=a.dimensions, radix_bits=a.radix_bits, cost_floor=a.cost_floor,
-        resident_budget_bytes=a.resident_budget_bytes, rows=[], uses_ROM=True,
+        resident_budget_bytes=a.resident_budget_bytes, hardware_budget_is_advisory=True, rows=[], uses_ROM=True,
         interpretation="finite declared family with Frobenius recipe; not an impossibility result for CHKP/MP12",
         fixed=dict(leaf_blocks=3, full_H_blocks=True, root_prefix_rows="2n", leaf_targets=256,
             identity_bytes=86, seed_bytes=32, root_width_recipe="4n+1", security_proofs_added=0),
@@ -351,6 +401,7 @@ def main():
             report["source_providers"][name] = dict(path=str(file), sha256=sha256(file.read_bytes()).hexdigest())
     report.update(status="completed_public_geometry" if a.geometry_only else "completed_public_screen",
         implementation_candidates=sum(row["decision"]["implementation_candidate"] for row in report["rows"]),
+        parameter_screen_candidates=sum(row["decision"]["parameter_screen_candidate"] for row in report["rows"]),
         entropy_reads=0, sampler_calls=0, key_generations=0, full_matrices_allocated=0)
     save()
     print(json.dumps(dict(status=report["status"], groups=len(report["rows"]),
