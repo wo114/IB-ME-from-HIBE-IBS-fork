@@ -42,7 +42,8 @@ def strict_noise_width(n):
     return isqrt(4 * _integer(n, "n", 1, 16384)) + 1
 
 
-def conditional_noise(q, dimension, squared_width, chi, *, abb=False):
+def conditional_noise(q, dimension, squared_width, chi, *, abb=False,
+                      error_bits=ERROR_BITS):
     """Conditional rounded-continuous-noise bound, without runtime caps.
 
     CHKP uses the exact conservative integer radius from joint_parameters.
@@ -53,25 +54,47 @@ def conditional_noise(q, dimension, squared_width, chi, *, abb=False):
     _integer(dimension, "dimension", 1, 2**26)
     _integer(squared_width, "squared_width", 1, 2**1024)
     _integer(chi, "chi", 1, q - 1)
+    _integer(error_bits, "error_bits", 8, 4096)
     norm = dimension * squared_width
     rounding = Fraction(1 + _ceil_sqrt(dimension * norm), 2)
     if abb:
-        continuous = chi * _ceil_sqrt(1 + norm) * _ceil_sqrt(ERROR_BITS + 1)
+        continuous = chi * _ceil_sqrt(1 + norm) * _ceil_sqrt(error_bits + 1)
         radius = Fraction(q, 5)
         sufficient = rounding + continuous < radius
         continuous_squared = continuous**2
     else:
         radius = Fraction((q // 2 - 1) // 2)
-        continuous_squared = chi**2 * (norm + 1) * (ERROR_BITS + 1)
+        continuous_squared = chi**2 * (norm + 1) * (error_bits + 1)
         sufficient = radius > rounding and continuous_squared <= (radius - rounding)**2
     return dict(conditional_noise_sufficient=sufficient,
         assumed_preimage_norm_squared=str(norm), rounding_error_upper=str(rounding),
         continuous_squared_upper=str(continuous_squared), phase_radius=str(radius),
         scaled_continuous_width=chi, alpha=str(Fraction(chi, q)),
-        error_bits=ERROR_BITS, bits_per_seed=SEED_BITS, encapsulations=CALLS,
-        conditional_ideal_noise_lifetime_upper=(str(Fraction(SEED_BITS * CALLS, 2**ERROR_BITS))
+        error_bits=error_bits, bits_per_seed=SEED_BITS, encapsulations=CALLS,
+        conditional_ideal_noise_lifetime_upper=(str(Fraction(SEED_BITS * CALLS, 2**error_bits))
                                                if sufficient else None),
         preimage_norm_event_proved=False, total_sampler_TV_or_failure_upper=None)
+
+
+def maximum_abb_scaled_width(q, dimension, squared_width, *, error_bits=ERROR_BITS):
+    """Largest integer q*alpha satisfying the public conditional q/5 bound.
+
+    This is only the honest-decryption inequality. It neither supplies the
+    strict Regev lower bound nor certifies a finite sampler or LWE hardness.
+    """
+    _integer(q, "q", 23, 2**256 - 1)
+    _integer(dimension, "dimension", 1, 2**26)
+    _integer(squared_width, "squared_width", 1, 2**1024)
+    _integer(error_bits, "error_bits", 8, 4096)
+    norm = dimension * squared_width
+    rounding = Fraction(1 + _ceil_sqrt(dimension * norm), 2)
+    coefficient = _ceil_sqrt(1 + norm) * _ceil_sqrt(error_bits + 1)
+    available = Fraction(q, 5) - rounding
+    if available <= 0:
+        return 0
+    # width*coefficient < available; subtract one numerator unit for the
+    # strict inequality instead of relying on floating-point nextafter.
+    return max(0, (available.numerator - 1) // (available.denominator * coefficient))
 
 
 def _wire_and_gates(family, n, q, root, parent, leaf, *, prefix=None):
@@ -204,12 +227,13 @@ def chkp_projection(n, q=Q61):
         noise=noise, minimum_wire_bytes=lower, current_execution_gates=gates)
 
 
-def abb_projection(n, q):
+def abb_projection(n, q, *, noise_width=None):
     """AP09 conservative 8*n*ceil(log2 q) family, with no quality conditioning."""
     from ibme.lattice.matrix_sampling import MatrixFiniteGaussian
     _integer(n, "n", 1, 16384)
     _integer(q, "q", 23, 2**256-1)
-    k, chi = (q-1).bit_length(), strict_noise_width(n)
+    k, minimum_chi = (q-1).bit_length(), strict_noise_width(n)
+    chi = minimum_chi if noise_width is None else _integer(noise_width, "noise_width", 1, q - 1)
     d = max(2*n*k, n*k+2*(BITS+2)+32)
     while True:
         m2 = 2*n*k+2*d
@@ -238,6 +262,9 @@ def abb_projection(n, q):
     gates["byte_backend_current_noise_recipe"] = chi == 4
     noise = conditional_noise(q, m, tau, chi, abb=True)
     noise["strict_Regev_noise_prerequisite"] = chi**2 > 4*n
+    noise["minimum_strict_Regev_scaled_width"] = minimum_chi
+    noise["maximum_conditional_correctness_scaled_width"] = maximum_abb_scaled_width(q, m, tau)
+    noise["scaled_width_selection"] = "strict-minimum" if noise_width is None else "explicit"
     return dict(family="abb-rom", root_algorithm="AP09 Algorithm1/section3.3",
         parent_algorithm="ABB SampleR/BasisDel/RandBasis", leaf_algorithm="ABB BasisDel/fresh SamplePre per bit",
         n=n, q=q, q_bits=k, random_rows=d, m1=d, m2=m2, hadamard_scale=scale,
