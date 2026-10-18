@@ -1,6 +1,6 @@
 {
   "schema": "IBME_TEAM_PLAN/1",
-  "date": "2026-10-16",
+  "date": "2026-10-18",
   "planning_only": false,
   "baseline": {
     "main": "bc22c9cb834dee51e9c8b7a37040fa0c5349fcdb",
@@ -8,7 +8,7 @@
     "pr10_included": "2868cf54411188562440820eba266ca3dd278fd9",
     "pr9_not_merged": "e5e0b97752f9291ce7621dd830d665baff86aef8"
   },
-  "human_priority": "继续A；已完成完整同组目标与双LWE角色/资源筛查，按现行门拒绝大型投影。实际累计误差配方的版本化、构造条件和可比评测继续待办。GKR、ABB标准模型、CHKP标准模型暂缓。B/C证据保留。",
+  "human_priority": "继续作者稿CHKP 3m的工程可行性；先真实父委派/大q/紧凑R/分块根父256叶与恢复，再按实际资源结论推进大q完整后端。既有目标按新编码父R仍超本机内存。统筹已建LATTE+BNN-ML-DSA三套冷热恢复基线，下一步同目标全系统比较后选代表与优化。不新增安全/匿名证明任务。GKR、ABB标准模型、CHKP标准模型暂缓。唯一排序入口为docs/PROJECT_STATUS.md。",
   "deadline_assumed": null,
   "scope": "固定 Wang 两层匿名 HIBE+IBS；不做 Boyen–Li 增强隐私。",
   "composition_policy": {
@@ -65,13 +65,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "complete_target_groups_two_LWE_roles_and_resource_lower_bounds_screened_no_executable_formal_parameters",
+      "execution_state": "existing_3m_target_packed_byte_counts_still_exceed_RAM_no_executable_formal_parameters",
       "deliverables": [
         "研究配置/目标配置全参数与原文条件表",
         "根父叶尺寸/资源和第一阻塞",
         "下一真实路径输入选择"
       ],
-      "evidence": "../../research/team-a-delivery/2026-10-16-target-parameters/README.md"
+      "evidence": "../../research/team-a-delivery/2026-10-18-3m-feasibility/README.md"
     },
     {
       "id": "A3",
@@ -81,13 +81,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "current_lifetime128_target_failed_192bit_reallocation_only_projected_not_a_backend_profile",
+      "execution_state": "finite192_backend_retained_and_real_wide_q_3m_root_parent_256_leaf_packed_blocked_prototype_measured",
       "deliverables": [
         "现有有限工具接收与公开接口",
         "真实分布/委派、异常/资源测试",
         "消费者和误差口径"
       ],
-      "evidence": "../../research/team-a-delivery/2026-10-16-target-parameters/README.md"
+      "evidence": "../../research/team-a-delivery/2026-10-18-3m-feasibility/README.md"
     },
     {
       "id": "A1",
@@ -380,12 +380,13 @@
       "depends_on": [
         "T4"
       ],
-      "execution_state": "planned",
+      "execution_state": "common_full_system_runner_and_LATTE_BNN_MLDSA44_three_cold_states_warm_and_zero_entropy_restore_measured_other_groups_pending",
       "deliverables": [
         "相同输入/目标/包装/环境",
         "原语与端到端冷热/尺寸/资源",
         "原始数据/统计/失败和消融基线"
-      ]
+      ],
+      "evidence": "../../research/2026-10-18-full-system-baseline/README.md"
     },
     {
       "id": "T6",

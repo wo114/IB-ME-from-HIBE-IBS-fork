@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "receipts": [
+    {
+      "file": "docs\\research\\team-a-delivery\\2026-10-18-3m-feasibility\\evidence\\n2-q40.json",
+      "provider_occurrences": 39
+    },
+    {
+      "file": "docs\\research\\team-a-delivery\\2026-10-18-3m-feasibility\\evidence\\n2-q80.json",
+      "provider_occurrences": 39
+    },
+    {
+      "file": "docs\\research\\team-a-delivery\\2026-10-18-3m-feasibility\\evidence\\n4-q80.json",
+      "provider_occurrences": 39
+    },
+    {
+      "file": "docs\\research\\team-a-delivery\\2026-10-18-3m-feasibility\\evidence\\n8-q80.json",
+      "provider_occurrences": 39
+    },
+    {
+      "file": "docs\\research\\team-a-delivery\\2026-10-18-3m-feasibility\\evidence\\reference-restored.json",
+      "provider_occurrences": 42
+    },
+    {
+      "file": "docs\\research\\2026-10-18-full-system-baseline\\evidence\\latte-mldsa44.json",
+      "provider_occurrences": 780
+    }
+  ],
+  "provider_occurrences": 978,
+  "distinct_commit_file_pairs": 160,
+  "strict_CI_source_files": 17,
+  "strict_CI_fixed_source": "11483c2",
+  "private_state_files_opened": 0,
+  "reference_original_failure_has_no_provider_capture": true
+}

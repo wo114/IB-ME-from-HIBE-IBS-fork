@@ -8,7 +8,7 @@
 
 每套生成/热运行之后再启动新 Python 进程，恢复公钥与已有接收状态，至少3次解密既有密文。该进程禁止公共 `SecureRandom.read`、IBS Setup/KeyExtract/Sign；LATTE native Setup/Delegate/Extract 及普通签名 native Keypair/Sign 也明确禁止，防止确定性生成误算零熵恢复。现有确定性解密重加密检查、metadata、格式检查和验签允许执行。恢复前后接收状态和原文件必须逐字节不变。
 
-每阶段记录秒数与10 ms `/proc` 自进程/后代进程树 RSS 采样，覆盖实际 native 子进程；采样峰值是下界，可能漏掉短脉冲。另附 Linux 内核 self/completed-children **累计** RSS 高水位，不能把该累计计数说成各阶段独立峰值。生成和恢复整进程 wall time 包含启动及未分阶段的开销；生成整进程还包含其 warm 操作，不把整进程 wall time误称纯 cold Encrypt 时间。
+每阶段记录秒数与10 ms `/proc` 自进程/后代进程树 RSS 采样，覆盖实际 native 子进程；采样峰值是下界，可能漏掉短脉冲。进程树RSS求和会重复计入共享/COW页，不等于独占物理内存，本版未测PSS。另附 Linux 内核 self/completed-children **累计** RSS 高水位，不能把该累计计数说成各阶段独立峰值。生成和恢复整进程 wall time 包含启动及未分阶段的开销；生成整进程还包含其 warm 操作，不把整进程 wall time误称纯 cold Encrypt 时间。
 
 “冷”指新 Python/runtime/新密钥状态；不清空操作系统页缓存，不重编已核ABI的 native 引擎。进程启动、native 调用、Python/Sage 验证、wire、单独持久化阶段和恢复阶段均有明示口径，不能将子步骤速度写成整个方案加速。
 

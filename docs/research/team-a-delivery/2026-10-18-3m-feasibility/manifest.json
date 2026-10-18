@@ -1,0 +1,266 @@
+{
+  "all_PR_changed_files": 51,
+  "backend_admitted": false,
+  "comparison_base": "2b9741b548dd63075b61807a55f5f963e5c3bc19",
+  "date": "2026-10-18",
+  "excludes_self": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/manifest.json",
+  "files": [
+    {
+      "git_blob_bytes": 8812,
+      "path": "AGENTS.md",
+      "sha256": "5887108f06d9ebc5d84ef20a9dbf3831dd29d6596673b681c4bb3a362e7cd929"
+    },
+    {
+      "git_blob_bytes": 7863,
+      "path": "AI_WORKFLOW.md",
+      "sha256": "9b15d11938b00f4847a99c88568d95d4d3e0057493449cc10700ccc011781cab"
+    },
+    {
+      "git_blob_bytes": 16355,
+      "path": "IMPLEMENTATION_SPEC.md",
+      "sha256": "427181c6f35a782a4c76bed349920f787806c387a23ff3d92b92a70f5c080644"
+    },
+    {
+      "git_blob_bytes": 12264,
+      "path": "ci/suites.json",
+      "sha256": "5962ed49c018b8205fec28349bedbf5e5440a3fd620d3d3a74f320c6ade3e86a"
+    },
+    {
+      "git_blob_bytes": 24029,
+      "path": "docs/ALGORITHM_CATALOG.md",
+      "sha256": "cfdab78442ac96e8f59242980644761ee033715f01615bae455d0396923ba2c0"
+    },
+    {
+      "git_blob_bytes": 43144,
+      "path": "docs/PROJECT_STATUS.md",
+      "sha256": "35e04df880841745c73d29a83a3c324b9ba8b49b14aff630b29786471fd00548"
+    },
+    {
+      "git_blob_bytes": 3276,
+      "path": "docs/deliveries/2026-10-18-pr39-review/README.md",
+      "sha256": "4e2886fca224dee94bc5bc10fe190bf84feb4fc8989b177d3b99313aae27cbf2"
+    },
+    {
+      "git_blob_bytes": 5137,
+      "path": "docs/research/2026-10-18-full-system-baseline/README.md",
+      "sha256": "8d4ddd19e0f31162108a2416f7e5ae87310b955b1b24b43f9a71530737c81c4c"
+    },
+    {
+      "git_blob_bytes": 266660,
+      "path": "docs/research/2026-10-18-full-system-baseline/evidence/latte-mldsa44.json",
+      "sha256": "dc8e5cef04534df6cd643a6c4aa908cb7b74e5e27c27e6730becadbe038ef8ab"
+    },
+    {
+      "git_blob_bytes": 1213,
+      "path": "docs/research/2026-10-18-full-system-baseline/evidence/native-provenance.json",
+      "sha256": "2895bcff45fb1048ea2a2680fec57a0e1658da1a1e38e7592c82a7a927c0512e"
+    },
+    {
+      "git_blob_bytes": 1158,
+      "path": "docs/research/2026-10-18-full-system-baseline/evidence/native-provenance.py",
+      "sha256": "c70c8b4f62f57ea0d7aa851ee4b1b77341fd4499c2eef0dcf79ae73d9fed98e5"
+    },
+    {
+      "git_blob_bytes": 11704,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/README.md",
+      "sha256": "ad68332c57fefb9df6121849366f9df2e1c255fe1a6d1e748e6f2dd069bd40d1"
+    },
+    {
+      "git_blob_bytes": 5567,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/audit.json",
+      "sha256": "90a074ea740b2b07ab4856316940ebf0cba41c8e52c88c14c8a3c995375c1c24"
+    },
+    {
+      "git_blob_bytes": 3741,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/check-sources.py",
+      "sha256": "c97b8e2c1dd5678856987d2bc2ba70f166f04791ba96d824f0346dc07bffa491"
+    },
+    {
+      "git_blob_bytes": 392,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/failure-slot.xml",
+      "sha256": "e36fdaf8254b8a0d28eccafd7d8223ddcd01b12deaca0125f3369b12866a77b7"
+    },
+    {
+      "git_blob_bytes": 2310,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/final-boundaries.xml",
+      "sha256": "7ddbf956748b0bf8e93192eef1541bfdd0367dc77fe77419635d8e5f8b811b56"
+    },
+    {
+      "git_blob_bytes": 152,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/fresh-restore-n2-q40.json",
+      "sha256": "a968415b4c2d5eb468eadad853f17442bf4d148eb9d0ca8e5a146f92a94e1dbd"
+    },
+    {
+      "git_blob_bytes": 152,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/fresh-restore-n2-q80.json",
+      "sha256": "a968415b4c2d5eb468eadad853f17442bf4d148eb9d0ca8e5a146f92a94e1dbd"
+    },
+    {
+      "git_blob_bytes": 152,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/fresh-restore-n4-q80.json",
+      "sha256": "a968415b4c2d5eb468eadad853f17442bf4d148eb9d0ca8e5a146f92a94e1dbd"
+    },
+    {
+      "git_blob_bytes": 152,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/fresh-restore-n8-q80.json",
+      "sha256": "a968415b4c2d5eb468eadad853f17442bf4d148eb9d0ca8e5a146f92a94e1dbd"
+    },
+    {
+      "git_blob_bytes": 20691,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/n2-q40.json",
+      "sha256": "390db98a96dbe1bb63f097c3487e5176235bd2e33a3879900ac2b403d7d598be"
+    },
+    {
+      "git_blob_bytes": 20861,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/n2-q80.json",
+      "sha256": "7f102ab5f3483290d3914825b1652d0c51024d765466c4c3a1d31bcfd5ce1b14"
+    },
+    {
+      "git_blob_bytes": 21128,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/n4-q80.json",
+      "sha256": "b78d19aa02ae5b0a85684c892d1a81a4313b56640b9aeaccac3e39be605c013f"
+    },
+    {
+      "git_blob_bytes": 21651,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/n8-q80.json",
+      "sha256": "0ce224ca1b77f82d4efeb326815048b2df4a7c08c7c62605bed56686e33e1247"
+    },
+    {
+      "git_blob_bytes": 152,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/post-guard-restore-n8.json",
+      "sha256": "a968415b4c2d5eb468eadad853f17442bf4d148eb9d0ca8e5a146f92a94e1dbd"
+    },
+    {
+      "git_blob_bytes": 5135,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/reference-original-failure.json",
+      "sha256": "939d447bde197f1c6298ecb34ee8a18ed9d96d5fb15bd41f0c2cdadb89396649"
+    },
+    {
+      "git_blob_bytes": 10853,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/reference-restored.json",
+      "sha256": "9ee9a42ada1ac9dbe0ff790fa56b277d75be68055a33372f942e690b0d2eac68"
+    },
+    {
+      "git_blob_bytes": 14656,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/reference-summary.json",
+      "sha256": "0423aadd99d42efcd2f4b73ffb96e7c8f0c127c79b99a071280e2680484706df"
+    },
+    {
+      "git_blob_bytes": 394,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/remote-a9-A-summary.json",
+      "sha256": "2ca449bd21732d23b78b6521e6da59062b4b59374d52eaeb842ed244e7a36ff6"
+    },
+    {
+      "git_blob_bytes": 14632,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/remote-a9fd70a.json",
+      "sha256": "a3faf2993c5bd4e990a4a15208d6f1a61c791437805945d00a580398fb0275c5"
+    },
+    {
+      "git_blob_bytes": 1160,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/source-check.json",
+      "sha256": "84fa1a4e81777029f11727bf61b15f799925f2abe1df5d230d7f64b883631492"
+    },
+    {
+      "git_blob_bytes": 3659,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/strict-sage.json",
+      "sha256": "c01ecc06f0b8aa4edf9e4314decc904dd9ec787c6e4a8667a401cd7c73116d61"
+    },
+    {
+      "git_blob_bytes": 28861,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/strict-sage.xml",
+      "sha256": "07826bc0208a2f8c0925d862175194b4e88507e8da71e1c893b273d239f5fc5c"
+    },
+    {
+      "git_blob_bytes": 4641,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/evidence/target-byte-projections.json",
+      "sha256": "b2dcc51c40e12942ea3c57c73f9456711f3efd9c4ff6ba054be3a20b10f3142b"
+    },
+    {
+      "git_blob_bytes": 3385,
+      "path": "docs/research/team-a-delivery/2026-10-18-3m-feasibility/files-changed.txt",
+      "sha256": "d25bf9b00f1eb2800b04542ab6adbbb3223fdebfc9cef0f18d5e4c0a96c99c1b"
+    },
+    {
+      "git_blob_bytes": 8420,
+      "path": "docs/specs/chkp-hibe.md",
+      "sha256": "c1811240264ca70c620453785aca8991b05b54b3532d172e073ed058e1922663"
+    },
+    {
+      "git_blob_bytes": 4263,
+      "path": "docs/specs/full-system-benchmark.md",
+      "sha256": "e56e7afa2b138b4d87719d02421088a03ea38e86f92d727f360108b485b4de63"
+    },
+    {
+      "git_blob_bytes": 4352,
+      "path": "docs/specs/mp12-blocked-3m-prototype.md",
+      "sha256": "0dd4dd3f95595ea37f70c8a27f870bc95776689821fd8e459cd21a7dee9f38cc"
+    },
+    {
+      "git_blob_bytes": 8868,
+      "path": "docs/specs/mp12-structured-hg.md",
+      "sha256": "95f986db2507b5065c9eec2cf9103b5f82fd91170757642489d69e75d770cbcf"
+    },
+    {
+      "git_blob_bytes": 24984,
+      "path": "docs/workplans/2026-10-12/tasks.json",
+      "sha256": "904696b14fdbf8d97c9b6de2cfa80a058505ad62af4c056b7a2ca6f56b5d59d5"
+    },
+    {
+      "git_blob_bytes": 9951,
+      "path": "experiments/research/blocked_3m_probe.py",
+      "sha256": "ed5b79a378ed1cb6c222c6fa76f451db51915b55a60fd602a03b027633eab0b7"
+    },
+    {
+      "git_blob_bytes": 3366,
+      "path": "experiments/research/blocked_3m_projection.py",
+      "sha256": "37d78f007ca692e3c56cf62b41610af3f9c1c94c3fcbb025a2848c0ef0ae65e5"
+    },
+    {
+      "git_blob_bytes": 7134,
+      "path": "experiments/research/blocked_3m_reference.py",
+      "sha256": "335cdcc5ef1243e9e262cb07fa7d428ad7432b4ffe0fa4e9fba6932df788ea22"
+    },
+    {
+      "git_blob_bytes": 16797,
+      "path": "experiments/research/full_system_benchmark.py",
+      "sha256": "ad477b02bf55d97467ec98cb06dc9ce5d610e3d34562331f6d56612848f3b49c"
+    },
+    {
+      "git_blob_bytes": 2833,
+      "path": "experiments/research/runtime_metrics.py",
+      "sha256": "a96c1f30e898d5061d5a5b13bd63a368d6d9ef46b76883a02a0498aff3df9d72"
+    },
+    {
+      "git_blob_bytes": 11312,
+      "path": "src/ibme/hibe/mp12_structured/blocked_prototype.py",
+      "sha256": "22555fd7c187cb18b03dfaa11cc52a97274e098c079bb91670d0688aca25fb77"
+    },
+    {
+      "git_blob_bytes": 14721,
+      "path": "src/ibme/lattice/matrix_sampling/mp12_blocked.py",
+      "sha256": "fdbbb38eeb6e2a1f380ccab7858d8589ee9bdb6db9e5b72b9c591e14a9997e74"
+    },
+    {
+      "git_blob_bytes": 7734,
+      "path": "src/ibme/lattice/matrix_sampling/packed.py",
+      "sha256": "7e715add92b5216887c3fa92b1d59f7d17e7ea7fb9d72cde132868e231b4132d"
+    },
+    {
+      "git_blob_bytes": 4821,
+      "path": "tests/test_blocked_3m_objects.py",
+      "sha256": "48a27dc2772bd1684f5f4dff4f5f5b429b7c60ae16a0637371a72cc1e3edbd4f"
+    },
+    {
+      "git_blob_bytes": 6409,
+      "path": "tests/test_mp12_blocked.py",
+      "sha256": "3c019b36aafbc5640fc2c49e3e45a4087446d93427d35c530dc10be527efc2e6"
+    }
+  ],
+  "hash_scope": "raw Git index blob bytes, identical to committed blobs; not Windows checkout line endings",
+  "hashed_files": 50,
+  "parameters_are_formal": false,
+  "private_state_files_included": 0,
+  "pull_request": 40,
+  "schema": "IBME-PUBLIC-DELIVERY-MANIFEST/1",
+  "security_claim": "none"
+}

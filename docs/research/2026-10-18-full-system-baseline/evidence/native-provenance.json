@@ -1,0 +1,39 @@
+{
+  "schema": "FULL-IBME-NATIVE-POST-RUN-QUERY/1",
+  "status": "passed",
+  "timing": "post-run query, not in-worker binary-hash capture",
+  "newly_built_engines": 0,
+  "new_roots": 0,
+  "new_keys": 0,
+  "new_signatures": 0,
+  "engines": [
+    {
+      "name": "latte3",
+      "path": "/home/youzi/.cache/ibme-native-tools/latte3-bridge-v1/bin/ibme-latte3",
+      "sha256": "d5d965ab4fcc06ccd179f35e8e718bf6faae8b77d8e438567522f5f0b86e6e93",
+      "metadata": {
+        "abi": "IBME-LATTE3-COEFF-1",
+        "source_id": "4a17a037c266ba982a027ff7fedffe0d391c9fe7fb2c5f8a0326b4ab67393414",
+        "n": 1024,
+        "q": 68718428161
+      }
+    },
+    {
+      "name": "ml-dsa-44",
+      "path": "/home/youzi/.cache/ibme-native-tools/certified-signatures-v1/bin/ibme-mldsa44",
+      "sha256": "bb222a5f6252dc85a20b517b878c03ddb7d00db70483c99d73a91e9ee2c488a8",
+      "metadata": {
+        "abi": 1,
+        "source_id": "ae5dc5f80d49157633cf8aeb5895e1dc91a298311adc5181d99a17e8cfb14337",
+        "mode": 2,
+        "pk": 1312,
+        "sk": 2560,
+        "sig": 2420,
+        "nonce_attempt_limit": 16384
+      }
+    }
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
