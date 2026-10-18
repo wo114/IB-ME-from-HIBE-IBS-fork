@@ -1,7 +1,11 @@
 """Portable checks for the Lai PLWE parameter candidates."""
 from __future__ import annotations
 
+import pytest
+
 from ibme.assembly.registry import default_registry
+from ibme.core.errors import SerializationError
+from ibme.hibe.lai import codec
 from ibme.hibe.lai.params import TARGET_CANDIDATE_PARAMS
 from experiments.research.candidates.lai.target_parameters import (
     CANDIDATES,
@@ -53,6 +57,13 @@ def test_target_preset_is_explicit_and_matches_c2():
     assert TARGET_CANDIDATE_PARAMS.q == 274877976577
     assert TARGET_CANDIDATE_PARAMS.n == 2048
     assert TARGET_CANDIDATE_PARAMS.k == 39
+
+
+def test_invalid_parameter_snapshot_is_serialization_error():
+    raw = bytearray(codec.params_bytes(TARGET_CANDIDATE_PARAMS))
+    raw[:8] = b"\x00" * 8
+    with pytest.raises(SerializationError):
+        codec.read_params(bytes(raw))
 
 
 def test_audit_keeps_security_flags_false():

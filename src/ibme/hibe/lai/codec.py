@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import struct
 
-from ibme.core.errors import SerializationError
+from ibme.core.errors import InvalidParameterError, SerializationError
 from .params import LaiParams
 
 MAGIC_PK = b"LAI1PK"
@@ -76,12 +76,15 @@ def read_params(data: bytes, offset: int = 0) -> tuple[LaiParams, int]:
     offset += 1
     if mode not in (0, 1):
         raise SerializationError("invalid Lai message mode")
-    params = LaiParams(q=q, n=n, k=k, l=l, p=p,
-                       sigma=sigma / 1_000_000,
-                       sigma_r=sigma_r / 1_000_000,
-                       identity_bytes=identity_bytes,
-                       max_message_bytes=max_message,
-                       message_mode="seed32" if mode == 0 else "framed32")
+    try:
+        params = LaiParams(q=q, n=n, k=k, l=l, p=p,
+                           sigma=sigma / 1_000_000,
+                           sigma_r=sigma_r / 1_000_000,
+                           identity_bytes=identity_bytes,
+                           max_message_bytes=max_message,
+                           message_mode="seed32" if mode == 0 else "framed32")
+    except InvalidParameterError as exc:
+        raise SerializationError(f"invalid Lai parameter snapshot: {exc}") from exc
     return params, offset
 
 
