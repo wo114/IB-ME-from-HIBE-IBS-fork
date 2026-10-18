@@ -34,4 +34,8 @@
 
 Table 3 定义身份哈希 `H` 与签名挑战哈希 `H̄`。Theorem 2 的 G0 文字明示量子查询身份随机 oracle `H`，而 p.9 模拟器列出 `O1/O2` 以构造半常数 `H`；这几段没有逐项规定 `H̄` 的查询能力、它与底层 SIG 安全实验共享的 oracle 状态，以及目标身份签名转发时怎样保持同一 `H̄` 回答。底层 SIG 定理也许承担部分挑战 oracle 工作，但要套用到**这份实现**，仍须给出同一公钥下 `H̄_P(w,μ)` 与底层实验 oracle 的明确接口和查询预算；在 QROM 下还须相干模拟。H2 本身直接取 512 位，不存在模 `Q` 拒绝中止；若把有限服务中止纳入同一实验，应另列服务失败耦合。这是缺少可核映射的义务，**不等于宣称不存在可修复证明**。
 
-本次仅作原文 pp.6、8–9 与现有代码只读核对；没有新根、身份、消息或签名样本，重复试验 0。参数沿用 Table 4 的 `n=512,w=2,Q=15744063,d=2/3/4`；不声称 ROM/QROM 归约、正式强度或 HIBE 组合。`security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`、`nist_security_category=null`。
+**半常数界的联合回答条件。** 原文引用的 [33] 是 Zhandry 2012 年的 IBE 论文；其完整版在本批未取得，故不借另一版本替它填写常数或完整前提。作者的相关一手材料 [博士论文 §4.2、Definition 4.6 与 Corollary 4.8](https://mzhandry.github.io/files/Thesis.pdf#page=50) 所比较的随机对象是一张 `H` oracle 表；该结论未附带泄露隐藏植入值的相关侧通道。若在这之外还给对手一个与植入值相关、不能由该 oracle 加独立随机性及已计数查询模拟的回答通道，该条边缘界不能直接移植：取 `|Y|≥2`，在两个实验中都先取 `y←Y`，并经同一假想侧通道泄露；均匀实验的 `H` 独立于 `y`，半常数实验以 `y` 为植入值。对手一次查询固定 `x` 并测试 `H(x)=y`。均匀实验命中概率 `1/|Y|`，半常数实验为 `λ+(1−λ)/|Y|`，差 `λ(1−1/|Y|)`，是一阶而非文献所给 oracle-only 二阶 `λ` 界。这是**适用范围反例**，不是声称 SRGG Sign 实际泄露 `y`。
+
+因此若修复 p.9 目标身份 Sign 中止而向底层 `SIG.Sign` 转发，须显式证明 Extract/Sign 回答在两实验中可由同一 `H` oracle、独立随机性及计入预算的内部查询模拟，或另给联合 hybrid。代码 `paper_backend.py:178–210` 的 Sign 与末次自检/Verify 会重复取 H1，重试及验证也重取 H2；固定公钥的经典理想表可一致回放这些值，但 [经典地址耦合](../2026-10-18-srgg-hash-address-mapping/proof.md)没有量子查询账本或上述联合回答结论。论文 [33] 的原始全文条件和实际底层 SIG 实验仍须单独核对。
+
+本次仅作原文 pp.6、8–9、Zhandry 博士论文 §4.2 与现有代码只读核对；没有新根、身份、消息或签名样本，重复试验 0。参数沿用 Table 4 的 `n=512,w=2,Q=15744063,d=2/3/4`；不声称 ROM/QROM 归约、正式强度或 HIBE 组合。`security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`、`nist_security_category=null`。
