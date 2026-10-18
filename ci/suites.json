@@ -313,7 +313,7 @@
         "tests/test_mp12_structured_hibe.py",
         "tests/test_mp12_structured_assembly.py"
       ],
-      "scope": "Real structured MP12 Algorithm3/4 and full CHKP H/G, 256-target noisy seed lifecycle, strict codec/fixed failure, concrete conditional sampler/service budgets, optimistic domain exclusion and independent 256-bit public gadget support; current HIBE lifetime target fails, no security admission."
+      "scope": "Real structured MP12 Algorithm3/4 and full CHKP H/G, versioned finite192 noisy seed lifecycle, strict codec/fixed failure and domain rejection; packed big-q full-3m root/parent/256-leaf feasibility prototype, conditional sampler/service budgets and public gadget support; no formal-parameter or security admission."
     },
     {
       "id": "luo-composition-regression",

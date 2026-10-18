@@ -116,3 +116,26 @@ def test_declared_norm_and_public_relation_cannot_be_forged(root):
     cols[-1] = tuple((x+1) % root.q for x in cols[-1])
     public = PackedMatrix.from_columns(root.n, root.dimension, root.q-1, False, cols)
     with pytest.raises(ValueError): PackedTrapdoor(root.n, root.q, public, root.r, root.bound)
+
+
+def test_delegation_rejects_cross_domain_extension_before_any_private_entropy(root):
+    class NoEntropy:
+        calls = 0
+        def read(self, count):
+            self.calls += 1
+            pytest.fail("invalid delegation extension consumed private entropy")
+    source = NoEntropy()
+    for height, bound, signed in ((root.n+1, root.q-1, False),
+                                  (root.n, root.q, False),
+                                  (root.n, root.q-1, True)):
+        bad = PackedMatrix.from_columns(height, root.w, bound, signed,
+            ((0,)*height for _ in range(root.w)))
+        with pytest.raises(ValueError): delegate(root, bad, rng=source)
+    assert source.calls == 0
+
+
+def test_public_equation_product_cannot_ignore_extra_coordinates(root):
+    for extension in (None, PackedMatrix.from_rows(((1, 2), (3, 4)), root.q-1, False)):
+        sampler = BlockedPreimageSampler(root, extension)
+        for length in (sampler.dimension-1, sampler.dimension+1):
+            with pytest.raises(ValueError): sampler.public_product((0,)*length)

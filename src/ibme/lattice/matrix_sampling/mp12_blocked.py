@@ -181,6 +181,8 @@ class BlockedPreimageSampler:
         raise SamplingAbort("blocked perturbation trials exhausted; no fallback")
 
     def public_product(self, values):
+        if len(values) != self.dimension:
+            raise ValueError("blocked public product dimension")
         t = self.trapdoor
         out = t.public.multiply(values[:t.dimension])
         if self.extension is not None:
@@ -229,8 +231,11 @@ def delegate(trapdoor, extension, *, epsilon_bits=192, options=None, rng=None,
              entropy_budget=2**40, **packing):
     """Algorithm 4: one full sampled column at a time, no output coordinates omitted."""
     t = trapdoor
-    if not isinstance(extension, PackedMatrix) or extension.ncols < t.w:
-        raise ValueError("complete H extension required")
+    if not isinstance(t, PackedTrapdoor):
+        raise ValueError("validated packed trapdoor required")
+    if (not isinstance(extension, PackedMatrix) or extension.ncols < t.w
+            or extension.nrows != t.n or extension.signed or extension.bound != t.q-1):
+        raise ValueError("complete H extension in the trapdoor residue domain required")
     extras_count = extension.ncols-t.w
     extras = None if extras_count == 0 else PackedMatrix.from_columns(t.n, extras_count,
         t.q-1, False, (extension.column(j) for j in range(extras_count)), **packing)
