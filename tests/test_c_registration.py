@@ -19,7 +19,9 @@ def test_c_routes_are_registered_separately_from_runtime_and_admission():
     assert registry.get("hibe","latte").two_level
     assert set(registry.get("ibs","cert-ml-dsa").presets)=={"ml-dsa-44","ml-dsa-65","ml-dsa-87"}
     assert set(registry.get("ibs","cert-falcon").presets)=={"falcon-padded-512","falcon-padded-1024"}
-    assert not registry.get("hibe","lai-ideal-hibe").available
+    assert registry.get("hibe","lai-ideal-hibe").available
+    assert registry.get("hibe","lai-ideal-hibe").two_level
+    assert not registry.get("hibe","zhang2020").available
     assert not registry.get("ibs","xie-ntru-ibs").available
     from ibme.protocol.hybrid_hibe import HybridLimits
     assert HybridLimits(backend_id=backend_spec().version.encode("ascii"))
