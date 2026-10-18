@@ -21,7 +21,7 @@ from .backend import CHKPHIBE, _noise, _options, _source
 from .objects import (CHKPPublicKey, CHKPMasterSecret, CHKPLevel1SecretKey,
                       CHKPLevel2SecretKey, CHKPCiphertext,
                       MAX_OBJECT_BYTES as BASE_MAX_OBJECT_BYTES)
-from .params import research_params
+from .params import CHKPParams, research_params
 
 
 VERSION = "chkp-author2011-3m-v1"
@@ -143,8 +143,11 @@ class Author2011Level1Key:
         base = CHKPLevel1SecretKey.from_bytes(reader.blob(MAX_OBJECT_BYTES))
         vectors = _load_preimages(reader.blob(MAX_OBJECT_BYTES), 2*public.params.m)
         reader.finish()
-        key = validate_level1_preimages(public.oracle, base.identity, vectors,
-                                        public.params.parent_width_squared)
+        try:
+            key = validate_level1_preimages(public.oracle, base.identity, vectors,
+                                            public.params.parent_width_squared)
+        except InvalidParameterError as exc:
+            raise SerializationError("invalid author2011 first-level preimages") from exc
         result = cls(public, base, key)
         if result.to_bytes() != bytes(raw):
             raise SerializationError("noncanonical author2011 first-level key")
@@ -253,8 +256,11 @@ class Author2011MasterSecret:
                     raise SerializationError(
                         "author2011 ready address lacks a ready parent basis") from exc
                 vectors = _load_preimages(entries.blob(MAX_OBJECT_BYTES), 2*public.params.m)
-                key = validate_level1_preimages(public.oracle, identity, vectors,
-                                                public.params.parent_width_squared)
+                try:
+                    key = validate_level1_preimages(public.oracle, identity, vectors,
+                                                    public.params.parent_width_squared)
+                except InvalidParameterError as exc:
+                    raise SerializationError("invalid author2011 master preimages") from exc
             result._entries[identity], previous = key, identity
         entries.finish()
         if result.to_bytes() != bytes(raw):
@@ -326,6 +332,8 @@ class Author2011HIBE:
     parameters_are_formal = False
 
     def setup(self, params, *, rng=None):
+        if isinstance(params, CHKPParams) and params.message_mode != "seed32":
+            raise InvalidParameterError("author2011 two-depth service requires seed32")
         base_public, base_master = CHKPHIBE().setup(params, rng=rng)
         public = Author2011PublicKey(base_public)
         return public, Author2011MasterSecret(public, base_master)

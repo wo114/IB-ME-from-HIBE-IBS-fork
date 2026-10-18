@@ -15,7 +15,7 @@ from ibme.core.errors import InvalidParameterError, SerializationError
 from ibme.hibe.chkp.author2011 import (
     Author2011HIBE, Author2011PublicKey, Author2011MasterSecret,
     Author2011Level1Key, Author2011Level2Key, Author2011Ciphertext,
-    ciphertext_size, check_object)
+    _dump_preimages, ciphertext_size, check_object)
 from ibme.hibe.chkp.objects import (
     CHKPPublicKey, CHKPMasterSecret, CHKPLevel1SecretKey,
     CHKPLevel2SecretKey, _scope)
@@ -88,6 +88,28 @@ def test_new_private_wire_roundtrip_and_zero_entropy_reuse():
         Author2011Level1Key.from_bytes(parent.to_bytes() + b"!")
     with pytest.raises(SerializationError):
         Author2011MasterSecret.from_bytes(master.to_bytes()[:-1])
+
+
+def test_corrupted_preimage_is_a_wire_error_in_both_private_objects():
+    _, master, parent = _fixture()
+    vectors = list(parent.preimages.preimages)
+    first = list(vectors[0])
+    first[0] += 1
+    vectors[0] = tuple(first)
+    original = _dump_preimages(parent.preimages.preimages, 2*parent.params.m)
+    damaged = _dump_preimages(tuple(vectors), 2*parent.params.m)
+    assert len(original) == len(damaged) and original != damaged
+    for encoded, decode in ((parent.to_bytes(), Author2011Level1Key.from_bytes),
+                            (master.to_bytes(), Author2011MasterSecret.from_bytes)):
+        assert encoded.count(original) == 1
+        with pytest.raises(SerializationError, match="invalid author2011 .* preimages"):
+            decode(encoded.replace(original, damaged, 1))
+
+
+def test_two_depth_service_rejects_unavailable_message_mode_before_setup():
+    public, _, _ = _fixture()
+    with pytest.raises(InvalidParameterError, match="requires seed32"):
+        Author2011HIBE().setup(replace(public.params, message_mode="framed32"), rng=object())
 
 
 def test_new_master_keeps_failed_address_occupied():
