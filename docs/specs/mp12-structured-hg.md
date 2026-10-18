@@ -2,6 +2,8 @@
 
 此实现是 CHKP ROM 身份矩阵上的 **MP12 陷门/采样实现变体**，不是原 CHKP RandBasis，也不新增论文算法或困难假设类别。公开入口为 `ibme.hibe.mp12_structured`，默认选择 ID `mp12-structured-hg`，版本 `mp12-structured-hg-finite-v1`。原 `chkp`、完整基 `mp12-chkp-reference`、教学 `abb10` 和真实 `abb-rom` 分别保留。
 
+2026-10-18 用户确认本路线继续使用作者稿的完整 `3m` H/G 叶，全部列参与LWE加密，不切换到 `2m` 后端。理论工作采用项目既定的安全性/匿名性工作前提及原文引用，实际同组参数、父陷门表示、采样/算术/对象资源与整链评测继续推进；`2m`材料保留为比较，不自动派生改造或补证明任务。
+
 ## 算法、维度与引用
 
 固定 [MP12 作者稿](../../papers/2011_lattice_trapdoors_micciancio.pdf) §5.4 / Algorithm 3 / Theorem 5.5、§5.5 / Algorithm 4 / Lemma 5.7，以及 [CHKP 作者稿](../../papers/2010_bonsai_trees_cash.pdf) §5.1–5.3。MP12 的理想分布结论不直接证明本有限实现或修改后的 HIBE 安全。
