@@ -27,16 +27,16 @@
       "sha256": "28dbeda70aa5606a8da82efceae9770178035e773fce9ddb9f947fbc41f9c6f1"
     },
     "docs/research/team-b-delivery/2026-10-18-srgg-gate-uniform-v2/README_zh-CN.md": {
-      "bytes": 3405,
-      "sha256": "801e79a78c139886b82d871a54ec1e3409260158c2da23069d8f0d36f214d3c4"
+      "bytes": 4280,
+      "sha256": "0f3e654c6796e9a6bbb61069c07db2af7dda187f9be3aab0f1a6760edb441762"
     },
     "docs/research/team-b-delivery/2026-10-18-srgg-gate-uniform-v2/proof.md": {
-      "bytes": 5969,
-      "sha256": "ab152a1f3f4a6aae9625c30100ddba14ae104dc355de56a2b8c0b5975de5dd63"
+      "bytes": 6831,
+      "sha256": "2ed8099c5d03052f8d8e82eaefaeca3639ec31ef2745d3925d285506859f3bd2"
     },
     "docs/research/team-b-delivery/2026-10-18-srgg-gate-uniform-v2/scope-correction.json": {
-      "bytes": 6834,
-      "sha256": "5dff8912ed4bee803012b7794fcf2957d33d256129a8a14c73ad1bc5526de919"
+      "bytes": 7175,
+      "sha256": "6fde34bee024b1e8c27375342b69cf83842596d50da2983335951a78508442e0"
     },
     "docs/research/team-b-delivery/2026-10-18-srgg-gate-uniform-v2/v1-verification.json": {
       "bytes": 2202,
@@ -74,9 +74,17 @@
       "bytes": 28536,
       "sha256": "5d6aa3b9a9373843469b0b180ef4182cc5b39bdfa384f72e2632d9fa36d3cb2f"
     },
+    "src/ibme/ibs/srgg_paper_service_guarded.py": {
+      "bytes": 1405,
+      "sha256": "4bdf5162a6b0db39fb0753639a8e6c2f863ee0df912bbe6523766021b9a89866"
+    },
     "tests/test_srgg_paper_distribution_guard.py": {
       "bytes": 4767,
       "sha256": "4334666654e441938c0d772630d9c4a284351056319b30a4ba38ad94d024af6b"
+    },
+    "tests/test_srgg_paper_service_guarded.py": {
+      "bytes": 1666,
+      "sha256": "6f71cd0ea8f4145a3332393d1e531524aec12b4e357ca421da3d49f4fe5a9d75"
     }
   },
   "nist_security_category": null,

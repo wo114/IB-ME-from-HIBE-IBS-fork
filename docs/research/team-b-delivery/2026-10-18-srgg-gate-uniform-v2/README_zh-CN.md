@@ -31,6 +31,18 @@ guard（`GuardedSourceSchurBackend`）必须检查全部下列项，缺一不可
 guard 的语义：Setup 门失败 → 根拒绝并重试；签名门失败 → 固定密钥中止。
 这证明的是**修改后的受保护接受集**，不能直接声称原论文未加门的算法也满足。
 
+## 代码实现路径
+
+- **live guarded 路径**：[`src/ibme/ibs/srgg_paper_service_guarded.py`](../../../../src/ibme/ibs/srgg_paper_service_guarded.py)
+  的 `GuardedSourceSchurIssuer`，默认后端为 `GuardedSourceSchurBackend`；
+  `tests/test_srgg_paper_service_guarded.py` 验证 initialize、首钥、重开与门记录。
+- **v1 冻结证据**：`srgg_paper_service.py:FixedIssuer` 与 `SourceSchurBackend`
+  保持原字节，不被静默改写；它们只作为“当时执行了什么”的证据。
+- **默认 `srgg2025` registry 不变**：它走 `src/ibme/ibs/srgg/` 的独立路线，
+  不是 paper source-Schur 链；本次修正不影响该默认路径。
+- 若要让旧 `FixedIssuer` 符号本身改用 guard，需要修改 v1 源码并重冻结代码
+  manifest（v1 字节证据将失效）；本包选择新增 guarded 服务，而不是改写 v1。
+
 ## 数值不变
 
 条件界的数值与 v1 完全一致（标准差异解释行）：

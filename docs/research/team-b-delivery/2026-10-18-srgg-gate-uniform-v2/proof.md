@@ -78,6 +78,22 @@ protected accept set:
 > hold. The original unguarded backend has not been shown to pass the same gate
 > set, so this does not directly certify the original unmodified algorithm.
 
+### Live guarded service vs v1 / default route
+
+- The corrected live path is
+  `src/ibme/ibs/srgg_paper_service_guarded.py:GuardedSourceSchurIssuer`; its
+  default backend is `GuardedSourceSchurBackend`. It is exercised by
+  `tests/test_srgg_paper_service_guarded.py` (initialize, first key, reopen,
+  gate record).
+- The v1 `srgg_paper_service.py:FixedIssuer` and `SourceSchurBackend` remain
+  byte-for-byte evidence and are not silently rewritten. Changing the old
+  `FixedIssuer` symbol itself would require modifying v1-hashed source and
+  re-freezing the code manifests, which would invalidate the v1 byte evidence.
+- The default `srgg2025` registry route (`src/ibme/ibs/srgg/`) is a different
+  backend route; it is not the paper source-Schur chain and is unchanged by
+  this correction. So v2 does not silently alter the project-wide default
+  registry.
+
 The gate-set masses remain explicit nulls:
 
 - `P(A \ B)`: mathematical positivity vs finite backend acceptance;

@@ -83,6 +83,10 @@
   "guard": {
     "module": "experiments/research/candidates/srgg/paper_distribution_guard.py",
     "class": "GuardedSourceSchurBackend",
+    "issuer_service": "src/ibme/ibs/srgg_paper_service_guarded.py:GuardedSourceSchurIssuer",
+    "legacy_v1_issuer_unchanged": "src/ibme/ibs/srgg_paper_service.py:FixedIssuer",
+    "default_srgg2025_registry_unchanged": true,
+    "default_srgg2025_route_scope": "separate SRGG route in src/ibme/ibs/srgg/; not the paper source-Schur chain",
     "setup_failure": "RootGateRejection (subclass of WitnessGeometryError) -> root rejection/retry",
     "signing_failure": "SigningKeyGateRejection -> fixed-key abort, no redraw",
     "original_backend_executes_gates": false,

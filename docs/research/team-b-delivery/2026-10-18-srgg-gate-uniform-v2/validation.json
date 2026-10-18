@@ -22,6 +22,11 @@
       "scope": "complete gate set including issuance C gate and finite-key object/service envelope; tampered stored factor rejected; second accepted root identical master bound"
     },
     {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_service_guarded.py",
+      "result": "2 passed in 16.09s",
+      "scope": "guarded live issuer: initialize, first key, reopen, complete-gate record; v1 issuer/backend unmodified"
+    },
+    {
       "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.srgg.paper_distribution_guard --output build/deepseek-distribution-guard-v2.json",
       "result": "rows=6, closed_master=6, closed_issuance=3, closed_sign_call=3, full_gate_set=10, full_history_tv=null"
     },
@@ -31,12 +36,14 @@
     }
   ],
   "digests": {
-    "docs/research/team-b-delivery/2026-10-18-srgg-gate-uniform-v2/README_zh-CN.md": "801e79a78c139886b82d871a54ec1e3409260158c2da23069d8f0d36f214d3c4",
-    "docs/research/team-b-delivery/2026-10-18-srgg-gate-uniform-v2/proof.md": "ab152a1f3f4a6aae9625c30100ddba14ae104dc355de56a2b8c0b5975de5dd63",
-    "docs/research/team-b-delivery/2026-10-18-srgg-gate-uniform-v2/scope-correction.json": "5dff8912ed4bee803012b7794fcf2957d33d256129a8a14c73ad1bc5526de919",
+    "docs/research/team-b-delivery/2026-10-18-srgg-gate-uniform-v2/README_zh-CN.md": "0f3e654c6796e9a6bbb61069c07db2af7dda187f9be3aab0f1a6760edb441762",
+    "docs/research/team-b-delivery/2026-10-18-srgg-gate-uniform-v2/proof.md": "2ed8099c5d03052f8d8e82eaefaeca3639ec31ef2745d3925d285506859f3bd2",
+    "docs/research/team-b-delivery/2026-10-18-srgg-gate-uniform-v2/scope-correction.json": "6fde34bee024b1e8c27375342b69cf83842596d50da2983335951a78508442e0",
     "docs/research/team-b-delivery/2026-10-18-srgg-gate-uniform-v2/verify_delivery.py": "14264cd2fbe7a6ccc6d8c0bc0378cac9436818e5e79a35f78d43303e2ee6fb74",
     "docs/research/team-b-delivery/2026-10-18-srgg-gate-uniform-v2/v1-verification.json": "0345a2c608574facf4d2935b662c86ac770a6fc8312e68999db80fd386b10825",
-    "docs/research/team-b-delivery/2026-10-18-srgg-gate-uniform-v2/MANIFEST.json": "3dbe56c6b5b7eb40167789c44adc2bf646097f4b1ca52bad51ca8649178da8fe",
+    "docs/research/team-b-delivery/2026-10-18-srgg-gate-uniform-v2/MANIFEST.json": "898777cb25ff979b8597650b4425af6f1ec8dc8bf10a0fe87c00e9d361dc36a9",
+    "src/ibme/ibs/srgg_paper_service_guarded.py": "4bdf5162a6b0db39fb0753639a8e6c2f863ee0df912bbe6523766021b9a89866",
+    "tests/test_srgg_paper_service_guarded.py": "6f71cd0ea8f4145a3332393d1e531524aec12b4e357ca421da3d49f4fe5a9d75",
     "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/distribution-guard.json": "f1313e598b212ba8a59635d9cdd7d5391acc9f939b925d0024e4aa2c7e3d6e00"
   },
   "v1_manifest_sha256": {
