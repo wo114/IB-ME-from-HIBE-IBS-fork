@@ -1,0 +1,73 @@
+{
+  "artifact_sha256": {
+    "c64b-candidate.json": "f3a010361cc0a742d9a97fbafaafbd51dca3db3275519ebe733eb295262cc128",
+    "c64b-functional.json": "31b0b9e3247c61e3c16e603cab171541220c91e11c535414677bf80b88481e9e",
+    "c64b-suite.json": "acfba33fba0ed151f1df801b3cd6296810c91114a762758756f700cab359f4bf",
+    "inventory-current.json": "0d34689c721acfabd9e9d6f9416697c1aa6d062acf97b2779ceaf2a55bd16503",
+    "latte-c64b.json": "3b0bbb750787e16fd31f41f2f9daff3015203c7eff44bce4e46b8b388da5f528",
+    "native-provenance.json": "1cd72c44463812b635e105b9344d6049af8b0edb5fd31ee234b8ef83a7e5aa2a"
+  },
+  "backend_admitted": false,
+  "benchmark_independent_states": 3,
+  "benchmark_provider_occurrences": 780,
+  "distinct_benchmark_commit_file_pairs": 120,
+  "full_ciphertext_bytes": {
+    "count": 12,
+    "maximum": 152269,
+    "minimum": 152225
+  },
+  "functional_cases": 1,
+  "functional_checks": 34,
+  "functional_receipt_has_no_runtime_provider_capture": true,
+  "functional_runner_independent_source_sha256": "08a969035dc3ee4c0da0a19d47aae1bd66b63b7b62cf8990b4680822e43a6b0f",
+  "inventory_source_files": 173,
+  "metadata_collection_private_random_reads": 0,
+  "parameters_are_formal": false,
+  "persisted_object_bytes": {
+    "ciphertext.bin": {
+      "maximum": 152267,
+      "minimum": 152225
+    },
+    "master.bin": {
+      "maximum": 522399,
+      "minimum": 522226
+    },
+    "public.bin": {
+      "maximum": 260829,
+      "minimum": 260827
+    },
+    "receiver.bin": {
+      "maximum": 128245,
+      "minimum": 128172
+    },
+    "sender.bin": {
+      "maximum": 313813,
+      "minimum": 313813
+    }
+  },
+  "restored_decryptions": 9,
+  "restores_zero_entropy_and_unchanged": true,
+  "sampled_process_tree_peak_rss_bytes": 494772224,
+  "schema": "PUBLIC-IBS-VERIFICATION/1",
+  "security_claim": "none",
+  "source_commit": "fc1f342faecd16bc80b63dbc851e7f67601e36a0",
+  "source_normalization": "LF/CRLF only; actual capture hashes retained",
+  "status": "passed",
+  "tampered_inventory_provider_digest_rejected": true,
+  "timing_medians_seconds": {
+    "cold-encrypt": 0.3627298589999981,
+    "first-decrypt-with-leaf-generation": 0.38137853100000285,
+    "import-and-build-runtime": 1.3793146405000023,
+    "persist-state": 0.05989228500000365,
+    "receiver-key": 0.4249219960000019,
+    "restore-objects": 0.7623324539999956,
+    "restored-decrypt": 0.21879121699999615,
+    "sender-key": 0.1733007050000026,
+    "setup": 0.8873211149999989,
+    "warm-decrypt": 0.22704747400000258,
+    "warm-encrypt": 0.5488119720000029
+  },
+  "verification_private_state_files_opened": 0,
+  "warm_decryptions": 9,
+  "warm_encryptions": 9
+}
