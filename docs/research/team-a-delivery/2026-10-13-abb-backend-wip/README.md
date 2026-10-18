@@ -54,7 +54,7 @@ q160真实Setup一次：30.964 s，PK26686 B、MSK9858221 B，峰值RSS613232 Ki
 
 证据：[审计与准确测试命令](audit.json)、[Sage结果](sage.junit.xml)、[Windows结果](windows.junit.xml)、[实际Setup](positive-setup.json)、[父中断](interrupted-parent.json)、[公共算术观察](public-modular-observation.json)、[完整公开选择表](compatible-profile-screen.json)、[新实例完整参数](selected-q104-params.json)。历史未提交WIP源码可由本提交源码加[重建差分](execution-source-reconstruction.patch)恢复（`git apply --unidiff-zero`，仅在独立复制目录使用）；已逐文件核到执行收据的原SHA。实际私钥、矩阵、运行状态、原始native栈均在ignored目录，不提交。
 
-`backend_spec()`给独立 `abb-rom-finite / abb-rom-ap09-matrix-finite-v1`，factory、完整参数读取、四私钥/公钥decoders加CT加载、实际尺寸函数和绑定/固定状态能力。`ABBROMParams.identity_bytes/max_message_bytes`只提供公共容量别名，不转换旧参数。缺Sage显式unavailable，没有mock回退；available仅表示可调用研究代码。没有默认注册。新profile的容量预检不证明私有状态总wire/RSS必然可行，需实际测量，尤其Hybrid单个component仍有16MiB限制。
+`backend_spec()`给独立 `abb-rom-finite / abb-rom-ap09-matrix-finite-v1`，factory、完整参数读取、四私钥/公钥decoders加CT加载、实际尺寸函数和绑定/固定状态能力。`ABBROMParams.identity_bytes/max_message_bytes`只提供公共容量别名，不转换旧参数。缺Sage显式unavailable，没有mock回退；available仅表示可调用研究代码。没有默认注册。新profile的容量预检不证明私有状态总wire/RSS必然可行，需实际测量，尤其Hybrid单个component上限在2026-10-18为支持Lai目标参数已提升到64MiB（capsule仍4MiB，见[docs/research/team-c-delivery/2026-10-18-lai-target-parameters/README.md](../../team-c-delivery/2026-10-18-lai-target-parameters/README.md)）；该profile的实际wire/RSS仍需测量。
 
 队友CHKP由PR #14固定head `87deec24f52c1c776a489566cf76f11d0d4a5aff`交付，其n2研究配置公开攻击成功；本批没有重复编写或改其文件，统一合入与复核归统筹。A1 MP12变体与原CHKP继续分别命名。
 

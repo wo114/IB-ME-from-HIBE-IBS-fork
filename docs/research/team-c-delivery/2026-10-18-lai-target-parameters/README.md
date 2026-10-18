@@ -109,7 +109,46 @@ python -m ibme.cli decrypt --receiver alice --sender bob \
 
 实测：setup 5 s、issue receiver 60 s、issue sender 11 s、encrypt 118 s、decrypt 572 s；14 B → **1,357,049 B** CT，解密一致；receiver key 20,439,553 B、sender key 313,778 B（sender 主要承载 IBS 签名密钥，目标 HIBE 子密钥在解密路径派生）；state 约 26 MB。suite digest `eda3502de91eff42f10969dac9c3e92fd31468b5e1bc8b5fc17c498468b81c28`。
 
-## 9. 复现
+## 9. 64 MiB 资源上限审查与默认决策（2026-10-18）
+
+### 9.1 变更范围
+
+提交 `c484eb5` 只改 `src/ibme/protocol/hybrid_hibe.py` 的两个硬上限：
+
+| 常量 | 旧 | 新 |
+|---|---|---|
+| `HARD_COMPONENT_BYTES` | 16 MiB | **64 MiB** |
+| `HARD_WIRE_BYTES` | 32 MiB + 1024 | **64 MiB + 1024** |
+| `HARD_CAPSULE_BYTES` | 4 MiB | **4 MiB（不变）** |
+| `HARD_PAYLOAD_BYTES` | 16 MiB | **16 MiB（不变）** |
+
+没有改公共 API、字段编码、KDF/AEAD 或组合语义。
+
+### 9.2 审查结论
+
+- **容量足够**：C2 的 receiver 文件 20,439,553 B（含 IBS 密钥），HIBE SK1=18.82 MB；解密路径派生的 SK2=34.80 MB；C3 的 SK2 约 36.51 MB。64 MiB 对 C2/C3 都有余量；C4（约 67 MB）仍不支持。
+- **网络/DoS 风险**：`HARD_CAPSULE_BYTES` 仍为 4 MiB，`HybridCiphertext` 总字段上限约 4 MiB capsule + 16 MiB body；但 `_unframe` 在字段检查前允许最多 64 MiB 的 wire，因此恶意的超长 hybrid 输入可先触发约 64 MiB 分配（旧上限 32 MiB）。这是有界但约 2× 的资源回归；建议后续加 **按对象类型的 wire 上限**（ciphertext 约 20 MiB，keys 仍 64 MiB）或把全局 wire 收紧到 40–48 MiB。
+- **内存峰值**：64 MiB component 的 frame/unframe/规范化可能同时持有 2–3 份，峰值约 128–192 MB；C2 目标 CLI 在本地 state 路径实际成功，但不应把该上限解释为可安全接收 64 MiB 远程密钥。
+- **测试**：`tests/test_hybrid_hibe.py tests/test_assembly.py` **64 passed**；Lai CI 套件 **56 passed**；C2 目标 CLI 生命周期成功。没有刚好 64 MiB 边界的单元测试，64 MiB 仍是硬上限而非性能目标。
+- **其他后端**：只是放宽上限，不改变小参数后端的行为；A 点/默认 CLI 不受影响。
+
+### 9.3 默认配置决策
+
+**不把 C2 提升为默认 preset。** 维护现状：
+
+- 默认仍是 A 点 `hybrid-research`/`direct-research`；
+- C2 继续作为显式 `target-research` preset，供目标实验选择。
+
+理由：
+
+1. C2 目标 CLI 生命周期约 13 分钟（decrypt 572 s），state 约 26 MB，SK2 约 35 MB；作为日常默认会显著拖慢 setup/发钥/解密。
+2. 目标级负测试只有 1 个随机种子；外层 BYTEAUTH 的目标级篡改/重放/截断矩阵尚未跑。
+3. hybrid 攻击未估计；169.9/154.2 bit 是标准攻击结果，不是完整安全结论。
+4. Klein 无 perturbation，仍是功能级采样。
+
+重新评估默认化的最低条件：≥3 个目标随机种子、外层 BYTEAUTH 目标级负测试、hybrid/混合攻击估计、资源政策确认（含上述按类型 wire 上限）。在此之前，C2 是“可选目标配置”，不是默认。
+
+## 10. 复现
 
 候选表与尺寸计算：
 
