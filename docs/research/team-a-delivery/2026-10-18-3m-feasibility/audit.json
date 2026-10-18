@@ -1,0 +1,173 @@
+{
+  "additional_reference_actual_preimages": 256,
+  "baseline": {
+    "cross_target_ranking": false,
+    "fresh_process_restore_decryptions": 9,
+    "independent_states": 3,
+    "receipt": "../../2026-10-18-full-system-baseline/evidence/latte-mldsa44.json",
+    "warm_pairs": 9
+  },
+  "big_q_full_HIBE_backend_completed": false,
+  "date": "2026-10-18",
+  "default_HIBE_and_wire_unchanged": true,
+  "formal_target_executed": false,
+  "hardware": {
+    "windows_physical_memory_bytes": 33778278400,
+    "wsl_MemTotal_KiB": 16092848
+  },
+  "implementation_commits": [
+    "c9bbb7f fix(hibe): reject mismatched delegation domains before sampling",
+    "a9fd70a fix(bench): restore reference states with an explicit fixed scope",
+    "6b5305a feat(bench): record complete suite cold cached and restored measurements",
+    "11483c2 feat(hibe): prototype compact 3m delegation with bounded matrix blocks"
+  ],
+  "largest_existing_3m_target": {
+    "n": 4096,
+    "packed_parent_R_bytes": 523197481026,
+    "packed_parent_public_matrix_bytes": 26508001346,
+    "q_bits": 77,
+    "sizes_are_projections_not_measurements": true
+  },
+  "measurements": [
+    {
+      "actual_preimages": 256,
+      "case": "n2-q40",
+      "fresh_process_restore": {
+        "entropy_reads": 0,
+        "fixed_preimages_checked": 256,
+        "new_parents": 0,
+        "new_preimages": 0,
+        "new_roots": 0,
+        "state_unchanged": true,
+        "status": "passed"
+      },
+      "parameters_are_formal": false,
+      "repetitions": 1,
+      "root_to_parent_to_fixed_leaf": true,
+      "security_claim": "none",
+      "source_commit": "a9fd70a",
+      "status": "passed",
+      "uses_ROM": true
+    },
+    {
+      "actual_preimages": 256,
+      "case": "n2-q80",
+      "fresh_process_restore": {
+        "entropy_reads": 0,
+        "fixed_preimages_checked": 256,
+        "new_parents": 0,
+        "new_preimages": 0,
+        "new_roots": 0,
+        "state_unchanged": true,
+        "status": "passed"
+      },
+      "parameters_are_formal": false,
+      "repetitions": 1,
+      "root_to_parent_to_fixed_leaf": true,
+      "security_claim": "none",
+      "source_commit": "a9fd70a",
+      "status": "passed",
+      "uses_ROM": true
+    },
+    {
+      "actual_preimages": 256,
+      "case": "n4-q80",
+      "fresh_process_restore": {
+        "entropy_reads": 0,
+        "fixed_preimages_checked": 256,
+        "new_parents": 0,
+        "new_preimages": 0,
+        "new_roots": 0,
+        "state_unchanged": true,
+        "status": "passed"
+      },
+      "parameters_are_formal": false,
+      "repetitions": 1,
+      "root_to_parent_to_fixed_leaf": true,
+      "security_claim": "none",
+      "source_commit": "a9fd70a",
+      "status": "passed",
+      "uses_ROM": true
+    },
+    {
+      "actual_preimages": 256,
+      "case": "n8-q80",
+      "fresh_process_restore": {
+        "entropy_reads": 0,
+        "fixed_preimages_checked": 256,
+        "new_parents": 0,
+        "new_preimages": 0,
+        "new_roots": 0,
+        "state_unchanged": true,
+        "status": "passed"
+      },
+      "parameters_are_formal": false,
+      "repetitions": 1,
+      "root_to_parent_to_fixed_leaf": true,
+      "security_claim": "none",
+      "source_commit": "a9fd70a",
+      "status": "passed",
+      "uses_ROM": true
+    }
+  ],
+  "new_paper_algorithms": 0,
+  "paused_routes": [
+    "GKR",
+    "ABB standard model",
+    "CHKP standard model"
+  ],
+  "reference_probe_error": "missing expected_scope, repaired by read-only continuation",
+  "remaining": [
+    "Formal-size 3m parent-trapdoor representation/resources",
+    "Big-q complete KEM/objects/assembly/CLI after feasibility",
+    "Equal-target full-system comparisons and scenario representatives",
+    "Joint optimization/ablations and contest artifacts"
+  ],
+  "remote_base": "2b9741b548dd63075b61807a55f5f963e5c3bc19",
+  "safety_metadata": {
+    "algorithm_security_and_HIBE_anonymity_are_user_working_premises": true,
+    "backend_admitted": false,
+    "new_security_proofs": 0,
+    "parameters_are_formal": false,
+    "private_state_files_exported": 0,
+    "security_claim": "none"
+  },
+  "schema": "A-3M-FEASIBILITY-DELIVERY/1",
+  "source_check": {
+    "distinct_commit_file_pairs": 160,
+    "private_state_files_opened": 0,
+    "provider_occurrences": 978,
+    "receipts": [
+      {
+        "file": "docs\\research\\team-a-delivery\\2026-10-18-3m-feasibility\\evidence\\n2-q40.json",
+        "provider_occurrences": 39
+      },
+      {
+        "file": "docs\\research\\team-a-delivery\\2026-10-18-3m-feasibility\\evidence\\n2-q80.json",
+        "provider_occurrences": 39
+      },
+      {
+        "file": "docs\\research\\team-a-delivery\\2026-10-18-3m-feasibility\\evidence\\n4-q80.json",
+        "provider_occurrences": 39
+      },
+      {
+        "file": "docs\\research\\team-a-delivery\\2026-10-18-3m-feasibility\\evidence\\n8-q80.json",
+        "provider_occurrences": 39
+      },
+      {
+        "file": "docs\\research\\team-a-delivery\\2026-10-18-3m-feasibility\\evidence\\reference-restored.json",
+        "provider_occurrences": 42
+      },
+      {
+        "file": "docs\\research\\2026-10-18-full-system-baseline\\evidence\\latte-mldsa44.json",
+        "provider_occurrences": 780
+      }
+    ],
+    "reference_original_failure_has_no_provider_capture": true,
+    "status": "passed",
+    "strict_CI_fixed_source": "11483c2",
+    "strict_CI_source_files": 17
+  },
+  "status": "research_batch_completed_formal_A_still_WIP",
+  "target_projection_input_sha256": "7a0f644ffd40387e108661153c6941bd4b577f48bad5e8df8cc5f0f744d7434b"
+}

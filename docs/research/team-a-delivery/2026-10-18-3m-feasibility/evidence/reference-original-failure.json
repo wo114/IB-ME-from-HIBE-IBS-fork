@@ -1,0 +1,147 @@
+{
+  "backend_admitted": false,
+  "environment": {
+    "OMP_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "1",
+    "cold_definition": "fresh Python process; OS page cache and previously built native engines retained",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.14",
+    "rss_method": "10ms /proc process-tree samples (lower bound); Linux kernel lifetime ru_maxrss per interpreter/completed child"
+  },
+  "exception_type": "TypeError",
+  "failure_stage": "leaf",
+  "identity_bytes": 86,
+  "parameters": {
+    "backend_admitted": false,
+    "finite_options": {
+      "gaussian_abort_bits": 192,
+      "mass_bits": 320,
+      "max_gaussian_trials": 100000,
+      "max_radius": 5192296858534827628530496329220096,
+      "max_tape_bytes": 17592186044416,
+      "max_uniform_trials": 256,
+      "precision_bits": 384,
+      "rational_bits": 65536,
+      "tail_bits": 192
+    },
+    "full_H_columns": 84,
+    "leaf_dimension": 252,
+    "leaf_width_squared": "2342912000640000",
+    "m": 84,
+    "oracle_max_residue_trials": 128,
+    "parameters": {
+      "entropy_cap_bytes": 1099511627776,
+      "epsilon_bits": 192,
+      "identity_bytes": 86,
+      "n": 2,
+      "q": 1099511627689,
+      "root_r_squared": 16
+    },
+    "parameters_are_formal": false,
+    "parent_R_rows": 88,
+    "parent_bound": "292864000000",
+    "parent_width_squared": "41600000",
+    "q_alpha": 4,
+    "root_bound": "5120",
+    "security_claim": "none",
+    "version": "IBME/MP12-BLOCKED-3M/1",
+    "w": 80
+  },
+  "parameters_are_formal": false,
+  "payload_seed_bytes": 32,
+  "pending_preserved": true,
+  "phases": [
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175136768,
+      "entropy_bytes": 171498,
+      "name": "root-generation",
+      "sampled_process_tree_peak_rss_bytes": 218230784,
+      "sampled_self_peak_rss_bytes": 218230784,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 0.05563304400004654,
+      "self_kernel_lifetime_peak_rss_bytes": 218619904,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175136768,
+      "name": "root-persistence",
+      "sampled_process_tree_peak_rss_bytes": 218955776,
+      "sampled_self_peak_rss_bytes": 218955776,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 0.024930603000029805,
+      "self_kernel_lifetime_peak_rss_bytes": 218619904,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175136768,
+      "entropy_bytes": 7879307,
+      "name": "parent-delegation",
+      "sampled_process_tree_peak_rss_bytes": 232140800,
+      "sampled_self_peak_rss_bytes": 232140800,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 2.907243059999985,
+      "self_kernel_lifetime_peak_rss_bytes": 231849984,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175136768,
+      "name": "parent-persistence",
+      "sampled_process_tree_peak_rss_bytes": 232255488,
+      "sampled_self_peak_rss_bytes": 232255488,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 0.015697639000052277,
+      "self_kernel_lifetime_peak_rss_bytes": 231849984,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175136768,
+      "name": "leaf-sampler-preparation",
+      "sampled_process_tree_peak_rss_bytes": 296030208,
+      "sampled_self_peak_rss_bytes": 296030208,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 1.4580836300000328,
+      "self_kernel_lifetime_peak_rss_bytes": 295776256,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175136768,
+      "entropy_bytes": 54726006,
+      "name": "leaf-256-sampling",
+      "sampled_process_tree_peak_rss_bytes": 296042496,
+      "sampled_self_peak_rss_bytes": 296042496,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 62.040779955000005,
+      "self_kernel_lifetime_peak_rss_bytes": 295776256,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175136768,
+      "name": "leaf-persistence",
+      "sampled_process_tree_peak_rss_bytes": 298749952,
+      "sampled_self_peak_rss_bytes": 298749952,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 0.041960649000031935,
+      "self_kernel_lifetime_peak_rss_bytes": 298721280,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 175136768,
+      "name": "strict-object-restore",
+      "sampled_process_tree_peak_rss_bytes": 296951808,
+      "sampled_self_peak_rss_bytes": 296951808,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 0.0026310690000173054,
+      "self_kernel_lifetime_peak_rss_bytes": 298721280,
+      "status": "failed"
+    }
+  ],
+  "repetitions": 1,
+  "schema": "MP12-3M-EXACT-SCHUR-REFERENCE/1",
+  "scope": "unchanged exact Schur/JSON root-parent-leaf tool path, not full KEM or IBME",
+  "security_claim": "none",
+  "source_commit": "6b5305a",
+  "status": "failed",
+  "system_randomness": true,
+  "uses_ROM": true
+}

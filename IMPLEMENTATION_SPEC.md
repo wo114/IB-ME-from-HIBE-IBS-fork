@@ -4,7 +4,7 @@
 
 框架沿用 Wang 的两层匿名 HIBE + IBS 通用构造；HIBE 与 IBS 独立实现、独立选参，再装配为兼容组合。不实施 Boyen–Li 的 Ext/ReExt 增强隐私。共同目标包括普通隐私、加强认证、自我伪造防护和完整密文字节篡改拒绝，安全结论须逐项说明前提。
 
-**实现边界：**`BaselineIBME`、`ByteAuthenticatedIBME` 接受两个后端对象；Hybrid 通过显式解码器连接底层 HIBE。[assembly](src/ibme/assembly/__init__.py) 已实现统一注册/配置/预检/装配，CLI 支持独立选择。原 CHKP 完整基委派的 `chkp` 研究后端已登记，范围见 [CHKP契约](docs/specs/chkp-hibe.md)；独立 MP12 紧凑委派变体 `mp12-chkp-reference` 的[可安装公共入口](src/ibme/hibe/mp12_chkp/__init__.py)与登记同时保留，范围见[first_suite 契约](docs/specs/first-suite-research.md)。两者都需要 Sage；MP12变体新根/新接收者还须显式本机 native engine。无依赖时明确拒绝，不回退。LATTE-3已交付[独立研究后端](src/ibme/hibe/latte/__init__.py)及[专属契约](docs/specs/latte-hibe.md)，默认registry的`latte`占位尚未替换；其它未交付后端仍不可用，研究接口不代表继承定理或正式安全准入。使用方式见 [FRAMEWORK_USAGE](docs/FRAMEWORK_USAGE.md)，实际执行证据见当前状态。
+**实现边界：**`BaselineIBME`、`ByteAuthenticatedIBME` 接受两个后端对象；Hybrid 通过显式解码器连接底层 HIBE。[assembly](src/ibme/assembly/__init__.py) 已实现统一注册/配置/预检/装配，CLI 支持独立选择。原 CHKP 完整基委派的 `chkp` 研究后端已登记，范围见 [CHKP契约](docs/specs/chkp-hibe.md)；独立 MP12 紧凑委派变体 `mp12-chkp-reference` 的[可安装公共入口](src/ibme/hibe/mp12_chkp/__init__.py)与登记同时保留，范围见[first_suite 契约](docs/specs/first-suite-research.md)。两者都需要 Sage；MP12变体新根/新接收者还须显式本机 native engine。无依赖时明确拒绝，不回退。LATTE-3的[研究后端](src/ibme/hibe/latte/__init__.py)已在默认registry以`latte`登记，具体条件见[专属契约](docs/specs/latte-hibe.md)；其它后端的当前登记、依赖和执行状态分别查注册表与当前进度。研究接口不代表继承定理或正式安全准入。使用方式见 [FRAMEWORK_USAGE](docs/FRAMEWORK_USAGE.md)，实际执行证据见当前状态。
 
 ## 1. 身份与编码
 
@@ -124,7 +124,9 @@ Decrypt:
 
 功能接入与安全准入分别验收。满足可执行参数与资源条件的真实研究后端可以接入共同 smoke/攻击测试，声明仍可保持 none/false。安全完整组合还须满足 Wang 所用自适应匿名 HIBE、自适应不可伪造 IBS 等确切前提、合法参数和包装论证。mock、教学实现、选择身份基本形式不能冒充这些前提已满足。
 
-已发表算法以原定理引用和算法/定理/参数/实现对应组织安全依据，不默认重做基础定理或 Lean 项目；引用不能覆盖未解释的算法更改、反例或失效条件。ROM、QROM、标准模型、正确性概率、攻击估计和实际测试分别记录，不相互替代；BYTEAUTH/Hybrid 不自动给出 CCA 或 QROM 结论。
+2026-10-18 用户确认当前研发默认所选论文算法具备所需安全性，HIBE 具备身份匿名性；理论材料以引用原文为主。安全性、匿名性的补充证明、逐个 hybrid 和完整归约闭合不列为实现、组合或评测的前置任务。原文明确声明的性质注明出处，原文未明确声明但项目采用的性质注明工作假设，不将其记录为新完成的证明。
+
+上述工作前提不改变安全元数据字段的既有含义；实际算法版本、参数、实现改动、已知问题和失败结果继续单列。ROM、QROM、标准模型、正确性概率、攻击估计和实际测试分别记录，不相互替代；BYTEAUTH/Hybrid 不自动给出 CCA 或 QROM 结论。
 
 ## 6. 分层验收
 

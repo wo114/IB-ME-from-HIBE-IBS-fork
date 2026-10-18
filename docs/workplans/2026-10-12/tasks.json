@@ -1,7 +1,7 @@
 {
   "schema": "IBME_TEAM_PLAN/1",
   "date": "2026-10-18",
-  "revision": "2026-10-18 状态刷新：PR #27—#38 已合入主线（current_main=4472775）；研究后端多批已收，正式安全参数与全就绪池真实配对仍缺，全部路线保持 none/false/false。",
+  "revision": "本地旧任务表已记录 PR #27—#38 合入时的 4472775 快照；上游后续 3m 工程与全系统基线见下方状态。当前排序以 docs/PROJECT_STATUS.md 为准；正式安全参数与全就绪池真实配对仍缺，全部路线保持 none/false/false。",
   "planning_only": false,
   "baseline": {
     "main": "bc22c9cb834dee51e9c8b7a37040fa0c5349fcdb",
@@ -10,7 +10,7 @@
     "pr10_included": "2868cf54411188562440820eba266ca3dd278fd9",
     "pr9_not_merged": "e5e0b97752f9291ce7621dd830d665baff86aef8"
   },
-  "human_priority": "PR #27—#38 已审查合入；A 正式尺寸投影（n4096≈209 GB、n6144≈507 GB）不可执行，先决定版本/参数域；B/C 新后端待公共登记、CLI 与真实 HIBE 配对；统筹转入 T5/T7 同口径比较与 T6/T8—T10 作品交付。GKR、ABB 标准模型、CHKP 标准模型暂缓。所有路线仍 none/false/false。",
+  "human_priority": "作者稿 CHKP 3m 已完成大 q 父委派、紧凑 R、分块根父 256 叶与恢复的有界实测，并保留 66 组高维筛选候选；最小 payload 候选的当前探针存活矩阵约 19.197 GiB，超过本机 WSL 总量，尚无高维完整 HIBE/KEM。出版版 2m 与现 3m 的版本差仅保留为比较材料。本轮按四天交付安排停止扩维，统筹复用 LATTE+BNN-ML-DSA、Falcon、Luo 三组冷热恢复基线推进 T5 比较、代表选择及 T6/T8—T10 作品交付；B/C 新后端按适配情况继续登记、CLI 与真实配对。不新增安全/匿名证明任务。GKR、ABB 标准模型、CHKP 标准模型暂缓。唯一排序入口为 docs/PROJECT_STATUS.md；全部路线仍 none/false/false。",
   "deadline_assumed": null,
   "scope": "固定 Wang 两层匿名 HIBE+IBS；不做 Boyen–Li 增强隐私。",
   "composition_policy": {
@@ -69,13 +69,15 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "published_target_2m_3m_version_gap_all_formal_dimensions_unexecutable",
+      "execution_state": "existing_3m_target_packed_byte_counts_still_exceed_RAM_no_executable_formal_parameters",
+      "version_note": "出版版 2m 与现作者稿 3m 的算法/参数对应未闭合；2m 投影只作比较，不计现后端正式尺寸实跑。",
       "deliverables": [
         "研究配置/目标配置全参数与原文条件表",
         "根父叶尺寸/资源和第一阻塞",
         "下一真实路径输入选择"
       ],
-      "evidence": "../../research/team-a-delivery/2026-10-17-chkp-published-target/README.md"
+      "evidence": "../../research/team-a-delivery/2026-10-18-3m-feasibility/README.md",
+      "version_comparison_evidence": "../../research/team-a-delivery/2026-10-17-chkp-published-target/README.md"
     },
     {
       "id": "A3",
@@ -85,13 +87,15 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "wide_gadget_q256_mp12_structured_finite192_v2_executed_high_dim_exact_arithmetic_pending",
+      "execution_state": "finite192_backend_retained_and_real_wide_q_3m_root_parent_256_leaf_packed_blocked_prototype_measured",
+      "prior_tool_status": "q256 wide-gadget 与 finite192 v2 已实跑；高维精确算术、正式参数和完整高基数 HIBEBackend/KEM 仍待。",
       "deliverables": [
         "现有有限工具接收与公开接口",
         "真实分布/委派、异常/资源测试",
         "消费者和误差口径"
       ],
-      "evidence": "../../research/team-a-delivery/2026-10-16-wide-gadget/README.md"
+      "evidence": "../../research/team-a-delivery/2026-10-18-3m-feasibility/README.md",
+      "prior_wide_gadget_evidence": "../../research/team-a-delivery/2026-10-16-wide-gadget/README.md"
     },
     {
       "id": "A1",
@@ -386,12 +390,13 @@
       "depends_on": [
         "T4"
       ],
-      "execution_state": "planned",
+      "execution_state": "common_full_system_runner_and_LATTE_BNN_MLDSA44_three_cold_states_warm_and_zero_entropy_restore_measured_other_groups_pending",
       "deliverables": [
         "相同输入/目标/包装/环境",
         "原语与端到端冷热/尺寸/资源",
         "原始数据/统计/失败和消融基线"
-      ]
+      ],
+      "evidence": "../../research/2026-10-18-full-system-baseline/README.md"
     },
     {
       "id": "T6",

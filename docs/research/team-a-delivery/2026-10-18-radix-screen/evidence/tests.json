@@ -1,0 +1,29 @@
+{
+  "runs": [
+    {
+      "file": "math-policy-final.xml",
+      "source_commit": "a709e82c01bd30db590452cef6f0401d8e8c3635",
+      "command": "PYTHONPATH=src:. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=1 ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_mp12_radix_screen.py tests/test_mp12_target_screen.py tests/test_prime_gadget.py --junitxml=test-results/a-radix-screen/math-policy-final.xml",
+      "counts": {
+        "tests": 65,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "sha256": "fed086a8b8dca9ea5cd25d8a345bf0f360ce94c32c1e37279aba180156eba220"
+    },
+    {
+      "file": "catalog-final.xml",
+      "source_commit": "93b8d5fecb175dcdffda3e7e8c8b32378a2bbe4e",
+      "command": "Windows PYTHONPATH=src;. python -m pytest -q tests/test_ci_catalog.py --junitxml=test-results/a-radix-screen/catalog-final.xml",
+      "counts": {
+        "tests": 25,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "sha256": "8a26d7164ac532fdc880b2a5a47f5b1c91bf64c967a8ea526d6a92cf6465c331"
+    }
+  ],
+  "full_A_private_backend_regression_rerun": false
+}

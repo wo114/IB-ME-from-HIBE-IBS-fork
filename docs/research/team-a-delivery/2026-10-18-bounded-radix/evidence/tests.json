@@ -1,0 +1,30 @@
+{
+  "code_source_commit": "949bf91562489ca43e82626405a6f6c67c07a6f4",
+  "runs": [
+    {
+      "file": "strict-a.xml",
+      "source_commit": "949bf91562489ca43e82626405a6f6c67c07a6f4",
+      "sha256": "512e5305e4386f6cbc763bd38859a7cf6b63b244d392999b80fc4ccc67974741",
+      "command": "PYTHONPATH=src:. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=1 ~/miniconda3/envs/sage/bin/python ci/run.py run a-structured-hg --output test-results/a-bounded-radix/strict-sage-final",
+      "counts": {
+        "tests": 261,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "file": "catalog.xml",
+      "source_commit": "7032c3b3aaec107170d49d583f052c866db01450",
+      "sha256": "dfc2f5b087a5f3dcf8291a138d9364093c16bb12f5a17ce1b7387d8321967cd7",
+      "command": "Windows PYTHONPATH=src;. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q tests/test_ci_catalog.py --junitxml=test-results/a-bounded-radix/catalog.xml",
+      "counts": {
+        "tests": 25,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  ],
+  "source_verification": "WSL git metadata unavailable for Windows-managed checkout; public provider and test/catalog hashes independently checked against explicit Windows Git commits"
+}
