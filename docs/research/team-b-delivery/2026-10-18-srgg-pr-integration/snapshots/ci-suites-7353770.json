@@ -1,0 +1,376 @@
+{
+  "schema": 1,
+  "algorithms": [
+    {
+      "id": "abb-rom",
+      "tests": [
+        "tests/test_abb*.py",
+        "tests/test_hibe_contract.py"
+      ],
+      "source_markers": [
+        "src/ibme/hibe/abb_rom/backend.py",
+        "src/ibme/hibe/abb10.py"
+      ],
+      "source_stage": "research_backend",
+      "allow_skips": true,
+      "environment": "sage",
+      "layer": "primitive",
+      "scope": "Delivered ABB-ROM AP09/BasisDel research backend and separate legacy teaching contracts. Native/Flatter and saved-real-state requirements remain explicit skips; actual CLI/composition receipts are separate. Any skip makes this job partial.",
+      "exclude": [
+        "tests/test_abb_standard*.py"
+      ]
+    },
+    {
+      "id": "chkp-rom",
+      "tests": [
+        "tests/test_chkp_*.py",
+        "tests/test_first_suite_*.py"
+      ],
+      "source_markers": [
+        "src/ibme/hibe/chkp/__init__.py"
+      ],
+      "source_stage": "research_backend",
+      "allow_skips": true,
+      "environment": "sage",
+      "layer": "primitive",
+      "exclude": [
+        "tests/test_chkp_assembly.py",
+        "tests/test_chkp_standard*.py"
+      ]
+    },
+    {
+      "id": "latte",
+      "tests": [
+        "tests/test_latte_metadata.py",
+        "tests/test_latte_reuse_probe.py"
+      ],
+      "source_markers": [
+        "src/ibme/hibe/latte/__init__.py"
+      ],
+      "source_stage": "standalone_source",
+      "allow_skips": true,
+      "environment": "sage",
+      "layer": "primitive",
+      "scope": "Public LATTE codec/configuration and earlier reuse diagnostics. The standalone LATTE-3 implementation is delivered, but tests/test_latte_hibe.py needs the prescribed WSL native build and is not scheduled by this container job. Its real lifecycle evidence is separate; no full native rerun or default registry admission follows."
+    },
+    {
+      "id": "gkr2025",
+      "tests": [
+        "tests/test_gkr*.py"
+      ],
+      "source_markers": [],
+      "source_stage": "candidate",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive"
+    },
+    {
+      "id": "zhang2020",
+      "tests": [
+        "tests/test_zhang*.py"
+      ],
+      "source_markers": [],
+      "source_stage": "candidate",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive"
+    },
+    {
+      "id": "abb-standard-selective",
+      "tests": [
+        "tests/test_abb_standard*.py"
+      ],
+      "source_markers": [],
+      "source_stage": "model_only",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive"
+    },
+    {
+      "id": "chkp-standard",
+      "tests": [
+        "tests/test_chkp_standard*.py"
+      ],
+      "source_markers": [],
+      "source_stage": "model_only",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive"
+    },
+    {
+      "id": "lai-ideal-hibe",
+      "tests": [
+        "tests/test_lai*.py"
+      ],
+      "source_markers": [
+        "experiments/research/candidates/lai/qualification.py"
+      ],
+      "source_stage": "qualification_only",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive",
+      "scope": "Exact tag nonunit and delegation type qualification only. No Lai HIBE, sampling, encryption or anonymous backend is implemented."
+    },
+    {
+      "id": "luo-matrix",
+      "tests": [
+        "tests/test_luo_matrix_reference.py",
+        "tests/test_luo_ibs_contract.py",
+        "tests/test_luo_parameter_screen.py",
+        "tests/test_luo_joint_parameters.py"
+      ],
+      "source_markers": [
+        "src/ibme/ibs/luo.py"
+      ],
+      "source_stage": "research_backend",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive"
+    },
+    {
+      "id": "luo-module",
+      "tests": [
+        "tests/test_luo_module_*.py",
+        "tests/test_luo_c64b_profile.py",
+        "tests/test_luo_robust_abort_certificate.py"
+      ],
+      "source_markers": [
+        "src/ibme/ibs/luo_module.py"
+      ],
+      "source_stage": "research_backend",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive"
+    },
+    {
+      "id": "srgg2025",
+      "tests": [
+        "tests/test_srgg_*.py"
+      ],
+      "source_markers": [
+        "experiments/research/candidates/srgg/backend.py"
+      ],
+      "source_stage": "standalone_source",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive"
+    },
+    {
+      "id": "yu2026",
+      "tests": [
+        "tests/test_yu_*.py"
+      ],
+      "source_markers": [
+        "experiments/research/candidates/yu/standalone.py"
+      ],
+      "source_stage": "standalone_source",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive"
+    },
+    {
+      "id": "sageloli-sis",
+      "tests": [
+        "tests/test_sageloli_*.py"
+      ],
+      "source_markers": [
+        "experiments/research/candidates/sageloli/probe.py"
+      ],
+      "source_stage": "component",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive"
+    },
+    {
+      "id": "sageloli-rsis",
+      "tests": [
+        "tests/test_sageloli_*.py"
+      ],
+      "source_markers": [
+        "experiments/research/candidates/sageloli/probe.py"
+      ],
+      "source_stage": "component",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive"
+    },
+    {
+      "id": "foo-li",
+      "tests": [
+        "tests/test_foo_li_*.py"
+      ],
+      "source_markers": [
+        "experiments/research/foo_li_runtime_reference.py"
+      ],
+      "source_stage": "standalone_source",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive"
+    },
+    {
+      "id": "wang-pw",
+      "tests": [
+        "tests/test_wang_pw_*.py"
+      ],
+      "source_markers": [
+        "experiments/research/candidates/wang_pw/backend.py",
+        "src/ibme/ibs/wang_pw.py"
+      ],
+      "source_stage": "standalone_source",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive"
+    },
+    {
+      "id": "cert-ml-dsa",
+      "tests": [
+        "tests/test_cert_ml_dsa*.py"
+      ],
+      "source_markers": [
+        "src/ibme/ibs/certified/backend.py"
+      ],
+      "source_stage": "standalone_primitive",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive",
+      "scope": "BNN certification IBS + pure external ML-DSA-44/65/87; official vectors and fixed identity lifecycle, not a complete HIBE pairing or security admission."
+    },
+    {
+      "id": "cert-falcon",
+      "tests": [
+        "tests/test_cert_falcon*.py"
+      ],
+      "source_markers": [
+        "src/ibme/ibs/certified/falcon.py",
+        "src/ibme/ibs/certified/falcon_native/bridge.c"
+      ],
+      "source_stage": "standalone_primitive",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive",
+      "scope": "BNN certification IBS + Falcon v1.2 padded 512/1024; all official KATs, Gaussian author selftest and fixed-state contracts. Not FN-DSA/FIPS 206, HIBE composition or security admission."
+    },
+    {
+      "id": "xie-ntru-ibs",
+      "tests": [
+        "tests/test_xie*.py"
+      ],
+      "source_markers": [
+        "experiments/research/candidates/xie/runtime.py"
+      ],
+      "source_stage": "corrected_equation_study",
+      "allow_skips": false,
+      "environment": "sage",
+      "layer": "primitive",
+      "scope": "Literal-source conflict witnesses plus an explicitly corrected small NTRU/GPV/rejection equation study. Public verification, snapshots and insecure-parameter attacks are tested; no faithful Xie reproduction, common IBSBackend, HIBE composition or security admission. Fresh Sage work requires the main thread."
+    }
+  ],
+  "groups": [
+    {
+      "id": "framework",
+      "environment": "portable",
+      "layer": "framework",
+      "allow_skips": true,
+      "tests": [
+        "tests/test_encoding.py",
+        "tests/test_lattice_core.py",
+        "tests/test_prepared_hashing.py",
+        "tests/test_prepared_context_stream.py",
+        "tests/test_assembly.py",
+        "tests/test_c_registration.py",
+        "tests/test_cli_selection.py",
+        "tests/test_cli_master_state.py",
+        "tests/test_cli_state_lock.py",
+        "tests/test_byteauth.py",
+        "tests/test_candidate_foundations.py",
+        "tests/test_public_research_api.py",
+        "tests/test_ci_catalog.py",
+        "tests/test_registry_extension_contract.py",
+        "tests/test_combination_extension_contract.py",
+        "tests/test_abb_assembly.py",
+        "tests/test_mp12_structured_params.py",
+        "tests/test_mp12_structured_assembly.py"
+      ]
+    },
+    {
+      "id": "a-structured-hg",
+      "environment": "sage",
+      "layer": "primitive",
+      "allow_skips": false,
+      "tests": [
+        "tests/test_prime_gadget.py",
+        "tests/test_structured_identity_view.py",
+        "tests/test_mp12_target_screen.py",
+        "tests/test_mp12_distribution_budget.py",
+        "tests/test_mp12_public_service_budget.py",
+        "tests/test_mp12_structured_sampling.py",
+        "tests/test_mp12_full_extension.py",
+        "tests/test_mp12_structured_params.py",
+        "tests/test_mp12_structured_hibe.py",
+        "tests/test_mp12_structured_assembly.py"
+      ],
+      "scope": "Real structured MP12 Algorithm3/4 and full CHKP H/G, 256-target noisy seed lifecycle, strict codec/fixed failure, concrete conditional sampler/service budgets, optimistic domain exclusion and independent 256-bit public gadget support; current HIBE lifetime target fails, no security admission."
+    },
+    {
+      "id": "luo-composition-regression",
+      "environment": "portable",
+      "layer": "combination",
+      "allow_skips": true,
+      "tests": [
+        "tests/test_hybrid_hibe.py",
+        "tests/test_luo_hybrid_ibme.py",
+        "tests/test_luo_compact_ibme.py",
+        "tests/test_research_state_integrity.py",
+        "tests/test_hybrid_key_binding.py",
+        "tests/test_cli_receiver_state.py"
+      ],
+      "scope": "Existing teaching ABB10 + Luo regression; not acceptance of every HIBE/IBS pair."
+    },
+    {
+      "id": "shared-math",
+      "environment": "sage",
+      "layer": "support",
+      "allow_skips": true,
+      "tests": [
+        "tests/test_ci_catalog.py",
+        "tests/test_known_security_gaps.py",
+        "tests/test_ibme_handoff_screen.py",
+        "tests/test_ibme_joint_parameters.py",
+        "tests/test_ibme_root_sampler_audit.py",
+        "tests/test_ibme_noise_budget.py",
+        "tests/test_ibme_rounded_noise.py",
+        "tests/test_ibme_chain_audit.py",
+        "tests/test_public_reuse_gpv.py",
+        "tests/test_gaussian_reference.py",
+        "tests/test_general_gadget_reference.py",
+        "tests/test_mp12_sampled_reference.py",
+        "tests/test_mp12_trapdoor_chain.py",
+        "tests/test_online_sampling_reference.py"
+      ],
+      "scope": "Shared mathematical support, cold Sage discovery boundaries and explicit insecure-profile negative controls. Native-only skips remain incomplete evidence."
+    },
+    {
+      "id": "chkp-composition-regression",
+      "environment": "sage",
+      "layer": "combination",
+      "allow_skips": true,
+      "tests": [
+        "tests/test_chkp_assembly.py",
+        "tests/test_cli_receiver_state.py"
+      ],
+      "scope": "CHKP adapter and shared receiver-state regression. Historical full-chain receipts are not rerun automatically; no new pair acceptance follows."
+    },
+    {
+      "id": "registered-compositions",
+      "layer": "combination",
+      "environment": "sage",
+      "allow_skips": false,
+      "tests": [
+        "tests/test_registered_compositions.py",
+        "tests/test_registry_extension_contract.py",
+        "tests/test_combination_extension_contract.py"
+      ],
+      "scope": "Selected teaching ABB10 + research Wang-PW / SRGG actual pairs, plus TEST-ONLY extension wiring. Data-only selection in ci/combinations.json; other pairs are not automatically accepted."
+    }
+  ]
+}

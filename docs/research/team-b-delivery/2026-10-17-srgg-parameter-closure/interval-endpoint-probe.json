@@ -1,0 +1,125 @@
+{
+  "schema": "IBME/SRGG-INTERVAL-ENDPOINT-PROBE/1",
+  "pi512": {
+    "lower_QQ_equals_exact_binary": false,
+    "upper_QQ_equals_exact_binary": false,
+    "lower_QQ_goes_inward": true,
+    "upper_QQ_goes_inward": true,
+    "QQ_width_positive": false,
+    "exact_binary_width_positive": true,
+    "lower_error_sign": 1,
+    "upper_error_sign": -1,
+    "lower_exact_numerator_bits": 512,
+    "upper_exact_numerator_bits": 511
+  },
+  "pi768": {
+    "lower_QQ_equals_exact_binary": false,
+    "upper_QQ_equals_exact_binary": false,
+    "lower_QQ_goes_inward": true,
+    "upper_QQ_goes_inward": true,
+    "QQ_width_positive": false,
+    "exact_binary_width_positive": true,
+    "lower_error_sign": 1,
+    "upper_error_sign": -1,
+    "lower_exact_numerator_bits": 768,
+    "upper_exact_numerator_bits": 767
+  },
+  "profiles": [
+    {
+      "name": "PARAM-I",
+      "rounding_shape_fraction_bits": 267,
+      "master_first_sqrt": {
+        "lower_QQ_equals_exact_binary": false,
+        "upper_QQ_equals_exact_binary": false,
+        "lower_QQ_goes_inward": true,
+        "upper_QQ_goes_inward": true,
+        "QQ_width_positive": false,
+        "exact_binary_width_positive": true,
+        "lower_error_sign": 1,
+        "upper_error_sign": -1,
+        "lower_exact_numerator_bits": 768,
+        "upper_exact_numerator_bits": 767
+      },
+      "signature_first_sqrt": {
+        "lower_QQ_equals_exact_binary": false,
+        "upper_QQ_equals_exact_binary": false,
+        "lower_QQ_goes_inward": true,
+        "upper_QQ_goes_inward": true,
+        "QQ_width_positive": true,
+        "exact_binary_width_positive": true,
+        "lower_error_sign": 1,
+        "upper_error_sign": -1,
+        "lower_exact_numerator_bits": 768,
+        "upper_exact_numerator_bits": 768
+      }
+    },
+    {
+      "name": "PARAM-II",
+      "rounding_shape_fraction_bits": 267,
+      "master_first_sqrt": {
+        "lower_QQ_equals_exact_binary": false,
+        "upper_QQ_equals_exact_binary": false,
+        "lower_QQ_goes_inward": true,
+        "upper_QQ_goes_inward": true,
+        "QQ_width_positive": false,
+        "exact_binary_width_positive": true,
+        "lower_error_sign": 1,
+        "upper_error_sign": -1,
+        "lower_exact_numerator_bits": 768,
+        "upper_exact_numerator_bits": 767
+      },
+      "signature_first_sqrt": {
+        "lower_QQ_equals_exact_binary": false,
+        "upper_QQ_equals_exact_binary": false,
+        "lower_QQ_goes_inward": true,
+        "upper_QQ_goes_inward": true,
+        "QQ_width_positive": true,
+        "exact_binary_width_positive": true,
+        "lower_error_sign": 1,
+        "upper_error_sign": -1,
+        "lower_exact_numerator_bits": 766,
+        "upper_exact_numerator_bits": 767
+      }
+    },
+    {
+      "name": "PARAM-III",
+      "rounding_shape_fraction_bits": 267,
+      "master_first_sqrt": {
+        "lower_QQ_equals_exact_binary": false,
+        "upper_QQ_equals_exact_binary": false,
+        "lower_QQ_goes_inward": true,
+        "upper_QQ_goes_inward": true,
+        "QQ_width_positive": false,
+        "exact_binary_width_positive": true,
+        "lower_error_sign": 1,
+        "upper_error_sign": -1,
+        "lower_exact_numerator_bits": 768,
+        "upper_exact_numerator_bits": 766
+      },
+      "signature_first_sqrt": {
+        "lower_QQ_equals_exact_binary": false,
+        "upper_QQ_equals_exact_binary": false,
+        "lower_QQ_goes_inward": true,
+        "upper_QQ_goes_inward": true,
+        "QQ_width_positive": false,
+        "exact_binary_width_positive": true,
+        "lower_error_sign": 1,
+        "upper_error_sign": -1,
+        "lower_exact_numerator_bits": 768,
+        "upper_exact_numerator_bits": 766
+      }
+    }
+  ],
+  "scale_inverse_sqrt_2pi": {
+    "lower_QQ_equals_exact_binary": false,
+    "upper_QQ_equals_exact_binary": false,
+    "lower_QQ_goes_inward": true,
+    "upper_QQ_goes_inward": true,
+    "QQ_width_positive": true,
+    "exact_binary_width_positive": true,
+    "lower_error_sign": 1,
+    "upper_error_sign": -1,
+    "lower_exact_numerator_bits": 768,
+    "upper_exact_numerator_bits": 766
+  }
+}

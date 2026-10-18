@@ -1,0 +1,182 @@
+{
+  "schema": "IBME/SRGG-PAPER-SETUP-CONDITIONING-PREFLIGHT/1",
+  "source_pdf": "papers/2025_efficient_ibs_jia.pdf",
+  "source_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+  "paper_locations": "Table 3 p.6; Algorithm 1 p.7; Section 5.1 and Table 4 pp.9-10",
+  "scope": "original mathematical Setup positivity and independent raw CBD1 retry envelope only",
+  "rows": [
+    {
+      "profile": "PARAM-I",
+      "rank": 2,
+      "interpretations": [
+        "table-standard-deviation",
+        "literal-density-width"
+      ],
+      "threshold_squared_exact": "13208769022924878363/2114511742034336",
+      "root_polynomial_shape": [
+        4,
+        4
+      ],
+      "degree": 512,
+      "CBD1_coefficient_law": {
+        "-1": "1/4",
+        "0": "1/2",
+        "1": "1/4"
+      },
+      "mathematical_gate": "||M(R)||_2^2 < L^2, strict",
+      "matrix_bernstein": {
+        "dilation_dimension": 4096,
+        "variance_exact": "1024",
+        "one_summand_norm_upper": 1,
+        "tail_formula": "min(1,D*exp(-L^2/(2*v+2*L/3)))",
+        "exponent_strict_upper_exact": "13208769022924878363/4330520047686320128",
+        "raw_tail_lower_using_e_less_than_4_exact": "16",
+        "failure_upper": "1",
+        "success_lower": "0",
+        "informative_at_this_row": false
+      },
+      "sparse_l1_alternative": {
+        "polynomial_nonzero_cap": 19,
+        "polynomial_count": 16,
+        "one_polynomial_binomial_numerator": "18247503287858268185458677639823521",
+        "one_polynomial_denominator_power_of_two": 512,
+        "one_attempt_success_lower_formula": "(18247503287858268185458677639823521/2^512)^16",
+        "one_attempt_success_lower_dyadic": "2^-6371",
+        "dyadic_bits": 6371,
+        "independent_attempts": 64,
+        "retry_exhaustion_upper_formula": "(1-(18247503287858268185458677639823521/2^512)^16)^64",
+        "retry_exhaustion_upper_dyadic_formula": "(1-2^-6371)^64",
+        "retry_exhaustion_target_2_minus_128_certified": false,
+        "conditioned_accepted_root_law_distance": null,
+        "actual_numerical_sampler_success_lower": null,
+        "useful_for_original_table4_acceptance_budget": false
+      },
+      "CBD1_source_requested_bytes_per_attempt": 8192,
+      "seed_requested_bytes": 32,
+      "maximum_setup_requested_bytes": 524320,
+      "retry_limit": 64,
+      "assumes_fresh_independent_uniform_source_bytes": true,
+      "runtime_success_probability_or_abort_budget": null,
+      "accepted_setup_root_distribution_bound": null,
+      "setup_numerical_preparation_covered": false,
+      "reason": "positive residual is necessary for both current SampleF paths, but finite Fourier/series preparation and resource failures are separate events"
+    },
+    {
+      "profile": "PARAM-II",
+      "rank": 3,
+      "interpretations": [
+        "table-standard-deviation",
+        "literal-density-width"
+      ],
+      "threshold_squared_exact": "20467873059782430888/2292993012217061",
+      "root_polynomial_shape": [
+        6,
+        6
+      ],
+      "degree": 512,
+      "CBD1_coefficient_law": {
+        "-1": "1/4",
+        "0": "1/2",
+        "1": "1/4"
+      },
+      "mathematical_gate": "||M(R)||_2^2 < L^2, strict",
+      "matrix_bernstein": {
+        "dilation_dimension": 6144,
+        "variance_exact": "1536",
+        "one_summand_norm_upper": 1,
+        "tail_formula": "min(1,D*exp(-L^2/(2*v+2*L/3)))",
+        "exponent_strict_upper_exact": "852828044157601287/293503105563783808",
+        "raw_tail_lower_using_e_less_than_4_exact": "96",
+        "failure_upper": "1",
+        "success_lower": "0",
+        "informative_at_this_row": false
+      },
+      "sparse_l1_alternative": {
+        "polynomial_nonzero_cap": 15,
+        "polynomial_count": 36,
+        "one_polynomial_binomial_numerator": "27918126189003793758001641921",
+        "one_polynomial_denominator_power_of_two": 512,
+        "one_attempt_success_lower_formula": "(27918126189003793758001641921/2^512)^36",
+        "one_attempt_success_lower_dyadic": "2^-15031",
+        "dyadic_bits": 15031,
+        "independent_attempts": 64,
+        "retry_exhaustion_upper_formula": "(1-(27918126189003793758001641921/2^512)^36)^64",
+        "retry_exhaustion_upper_dyadic_formula": "(1-2^-15031)^64",
+        "retry_exhaustion_target_2_minus_128_certified": false,
+        "conditioned_accepted_root_law_distance": null,
+        "actual_numerical_sampler_success_lower": null,
+        "useful_for_original_table4_acceptance_budget": false
+      },
+      "CBD1_source_requested_bytes_per_attempt": 18432,
+      "seed_requested_bytes": 32,
+      "maximum_setup_requested_bytes": 1179680,
+      "retry_limit": 64,
+      "assumes_fresh_independent_uniform_source_bytes": true,
+      "runtime_success_probability_or_abort_budget": null,
+      "accepted_setup_root_distribution_bound": null,
+      "setup_numerical_preparation_covered": false,
+      "reason": "positive residual is necessary for both current SampleF paths, but finite Fourier/series preparation and resource failures are separate events"
+    },
+    {
+      "profile": "PARAM-III",
+      "rank": 4,
+      "interpretations": [
+        "table-standard-deviation",
+        "literal-density-width"
+      ],
+      "threshold_squared_exact": "6525839712757462581/564733141675732",
+      "root_polynomial_shape": [
+        8,
+        8
+      ],
+      "degree": 512,
+      "CBD1_coefficient_law": {
+        "-1": "1/4",
+        "0": "1/2",
+        "1": "1/4"
+      },
+      "mathematical_gate": "||M(R)||_2^2 < L^2, strict",
+      "matrix_bernstein": {
+        "dilation_dimension": 8192,
+        "variance_exact": "2048",
+        "one_summand_norm_upper": 1,
+        "tail_formula": "min(1,D*exp(-L^2/(2*v+2*L/3)))",
+        "exponent_strict_upper_exact": "6525839712757462581/2313146948303798272",
+        "raw_tail_lower_using_e_less_than_4_exact": "128",
+        "failure_upper": "1",
+        "success_lower": "0",
+        "informative_at_this_row": false
+      },
+      "sparse_l1_alternative": {
+        "polynomial_nonzero_cap": 13,
+        "polynomial_count": 64,
+        "one_polynomial_binomial_numerator": "23493018138984850034774721",
+        "one_polynomial_denominator_power_of_two": 512,
+        "one_attempt_success_lower_formula": "(23493018138984850034774721/2^512)^64",
+        "one_attempt_success_lower_dyadic": "2^-27375",
+        "dyadic_bits": 27375,
+        "independent_attempts": 64,
+        "retry_exhaustion_upper_formula": "(1-(23493018138984850034774721/2^512)^64)^64",
+        "retry_exhaustion_upper_dyadic_formula": "(1-2^-27375)^64",
+        "retry_exhaustion_target_2_minus_128_certified": false,
+        "conditioned_accepted_root_law_distance": null,
+        "actual_numerical_sampler_success_lower": null,
+        "useful_for_original_table4_acceptance_budget": false
+      },
+      "CBD1_source_requested_bytes_per_attempt": 32768,
+      "seed_requested_bytes": 32,
+      "maximum_setup_requested_bytes": 2097184,
+      "retry_limit": 64,
+      "assumes_fresh_independent_uniform_source_bytes": true,
+      "runtime_success_probability_or_abort_budget": null,
+      "accepted_setup_root_distribution_bound": null,
+      "setup_numerical_preparation_covered": false,
+      "reason": "positive residual is necessary for both current SampleF paths, but finite Fourier/series preparation and resource failures are separate events"
+    }
+  ],
+  "source_parameters_unchanged": true,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}

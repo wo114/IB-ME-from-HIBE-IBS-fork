@@ -1,0 +1,99 @@
+{
+  "backend_admitted": false,
+  "nist_security_category": null,
+  "paper": {
+    "locations": "Algorithms 7-8 p.8; Section 5.2.3 pp.9-10; Tables 4-5 p.10",
+    "path": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "parameters_are_formal": false,
+  "premises": [
+    "M=[2A|Q*j-2h] mod 2Q with A=[I_d|Ahat|B] and j=zeta_star*e1",
+    "verify recovers w=M*z-Q*j*c and checks c=Hbar_P(w,message)",
+    "fixed (w,c) solutions form a coset of the integer kernel of M modulo 2Q",
+    "M*(h*c,0,...,0,c)=Q*j*c; therefore Q*j*c lies in im(M)",
+    "the norm gate is ||z||^2 <= floor(gamma^2)"
+  ],
+  "rows": [
+    {
+      "Q": 15744063,
+      "actual_short_solution_or_attack_cost": null,
+      "affine_membership": "w mod 2 lies in (zeta_star*R_2)*e1",
+      "affine_target": "w + Q*j*c mod 2Q",
+      "author_reported_forgery_bkz": 352,
+      "author_table5_forgery_bits_reproduced": false,
+      "degree": 512,
+      "gamma": "42086491.7",
+      "image_index_in_full_target": {
+        "base": 2,
+        "exponent": 768
+      },
+      "integer_kernel_determinant": {
+        "Q_power": 1024,
+        "two_power": 256
+      },
+      "integer_response_dimension": 4608,
+      "integer_target_dimension": 1024,
+      "module_rank": 2,
+      "profile": "PARAM-I",
+      "squared_norm_cap": 1771272783614168,
+      "verification_columns_over_ring": 9,
+      "verification_modulus": 31488126,
+      "zero_commitment_is_reachable_for_every_binary_challenge": true
+    },
+    {
+      "Q": 15744063,
+      "actual_short_solution_or_attack_cost": null,
+      "affine_membership": "w mod 2 lies in (zeta_star*R_2)*e1",
+      "affine_target": "w + Q*j*c mod 2Q",
+      "author_reported_forgery_bkz": 586,
+      "author_table5_forgery_bits_reproduced": false,
+      "degree": 512,
+      "gamma": "63653172.0",
+      "image_index_in_full_target": {
+        "base": 2,
+        "exponent": 1280
+      },
+      "integer_kernel_determinant": {
+        "Q_power": 1536,
+        "two_power": 256
+      },
+      "integer_response_dimension": 6656,
+      "integer_target_dimension": 1536,
+      "module_rank": 3,
+      "profile": "PARAM-II",
+      "squared_norm_cap": 4051726305661584,
+      "verification_columns_over_ring": 13,
+      "verification_modulus": 31488126,
+      "zero_commitment_is_reachable_for_every_binary_challenge": true
+    },
+    {
+      "Q": 15744063,
+      "actual_short_solution_or_attack_cost": null,
+      "affine_membership": "w mod 2 lies in (zeta_star*R_2)*e1",
+      "affine_target": "w + Q*j*c mod 2Q",
+      "author_reported_forgery_bkz": 828,
+      "author_table5_forgery_bits_reproduced": false,
+      "degree": 512,
+      "gamma": "86573930.5",
+      "image_index_in_full_target": {
+        "base": 2,
+        "exponent": 1792
+      },
+      "integer_kernel_determinant": {
+        "Q_power": 2048,
+        "two_power": 256
+      },
+      "integer_response_dimension": 8704,
+      "integer_target_dimension": 2048,
+      "module_rank": 4,
+      "profile": "PARAM-III",
+      "squared_norm_cap": 7495045442218830,
+      "verification_columns_over_ring": 17,
+      "verification_modulus": 31488126,
+      "zero_commitment_is_reachable_for_every_binary_challenge": true
+    }
+  ],
+  "schema": "IBME/SRGG-PAPER-FORGERY-INPUT-MAPPING/1",
+  "security_claim": "none"
+}

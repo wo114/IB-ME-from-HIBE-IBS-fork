@@ -125,7 +125,7 @@ def _fourier_weighted_bound(geometry, diagonal, residual, precision):
                 gram[i][j] = g.noise_squared*value
                 gram[j][i] = gram[i][j].conjugate()
         high = max(QQ((gram[i][i].real()+sum(
-            (abs(gram[i][j]) for j in range(columns) if i != j), real(0))).upper())
+            (abs(gram[i][j]) for j in range(columns) if i != j), real(0))).upper().exact_rational())
                    for i in range(columns))
         # The Gershgorin bound is often sufficient. Tighten difficult fixed
         # witnesses with verified small-module LDL, not an unchecked eigensolver.
@@ -176,7 +176,7 @@ class PaperSampleF:
         # Outward dyadic L is computational whitening, not a replacement shape.
         intervals = RealIntervalField(opt.precision_bits)
         grid = 2**opt.vector_dyadic_bits
-        self.diagonal = tuple(QQ((QQ(intervals(value).sqrt().upper())*grid).ceil())/grid
+        self.diagonal = tuple(QQ((intervals(value).sqrt().upper().exact_rational()*grid).ceil())/grid
                               for value in residual)
         self.diagonal_error = tuple(1-value/scale**2 for value, scale in zip(residual, self.diagonal))
         weighted = _fourier_weighted_bound(g, self.diagonal, residual, opt.precision_bits)
@@ -190,13 +190,13 @@ class PaperSampleF:
         # This halves the slow binomial tail near rho=1; no eigensolver or
         # additional cryptographic assumption is involved.
         if rho > Fraction(1, 2):
-            q = QQ((QQ(intervals(1-QQ(rho.numerator)/rho.denominator/2).sqrt().upper())*grid).ceil())/grid
+            q = QQ((intervals(1-QQ(rho.numerator)/rho.denominator/2).sqrt().upper().exact_rational()*grid).ceil())/grid
             q_squared = _fraction(q*q)
             rho = max(abs(1-1/q_squared), abs(1-(1-rho)/q_squared))
             self.diagonal = tuple(q*value for value in self.diagonal)
             self.diagonal_error = tuple(1-value/scale**2 for value, scale in zip(residual, self.diagonal))
         scale_interval = 1/(2*intervals.pi()).sqrt()
-        lo, hi = (QQ(endpoint) for endpoint in scale_interval.endpoints())
+        lo, hi = (endpoint.exact_rational() for endpoint in scale_interval.endpoints())
         self.scale = (lo+hi)/2
         self.series = series_certificate(dimension=dimension, rho=rho,
             # sqrt(I-H) can now have norm sqrt(1+rho)<2. Doubling all
@@ -254,6 +254,7 @@ class PaperSampleF:
             "finite_center_numerical_tv_upper": str(public_numerical),
             "finite_arithmetic_assumptions": deepcopy(self.series["assumptions"]),
             "spectral_method": "directed-interval negacyclic FFT; small Hermitian Gram Gershgorin/LDL",
+            "interval_endpoint_conversion": "exact binary endpoint rational",
             "scalar_batch": batch, "rounding_normalizer": smooth,
             "peikert_ideal_rounding_to_discrete_target_tv_upper": str(rounding_tv),
             "full_target_integer_tv_upper_including_abort": str(total),

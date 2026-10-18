@@ -1,0 +1,37 @@
+[
+  {
+    "name": "latte3-hybrid-luo-module-c64b-compact-byteauth-v1",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "allow_mock": false,
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "luo-module",
+      "ibs_params": {
+        "degree": 256,
+        "dropped_bits": 28,
+        "eta": 1,
+        "gamma1": 190000,
+        "gamma2": 60000000000,
+        "gamma3": 27487784448,
+        "identity_max_bytes": 64,
+        "k": 11,
+        "kappa": 64,
+        "l": 10,
+        "max_cached_identities": 64,
+        "max_extract_attempts": 4096,
+        "max_sign_attempts": 4096,
+        "max_uniform_attempts": 128,
+        "message_max_bytes": 4096,
+        "q": 274877844481,
+        "root": 153250464611
+      },
+      "protocol": "byteauth-v1",
+      "signature_format": "compact",
+      "transport": "hybrid"
+    }
+  }
+]
