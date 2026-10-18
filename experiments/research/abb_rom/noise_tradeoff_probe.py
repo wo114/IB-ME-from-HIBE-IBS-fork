@@ -2,10 +2,11 @@
 
 This public probe joins four facts for the *same* projected configuration:
 the ABB q/5 correctness inequality, the current finite rounded-continuous
-Gaussian support, fixed lattice-estimator comparison models, and complete-
-basis/wire lower bounds.  It never constructs a root, basis, key, identity
-oracle matrix, ciphertext, or private random tape.  Passing the comparison
-model is not a security admission and does not make a configuration runnable.
+Gaussian support, separate root-trapdoor and ciphertext lattice-estimator
+comparison models, and complete-basis/wire lower bounds.  It never constructs
+a root, basis, key, identity oracle matrix, ciphertext, or private random tape.
+Passing the comparison model is not a security admission and does not make a
+configuration runnable.
 """
 
 import argparse
@@ -18,7 +19,7 @@ import resource
 import sys
 import time
 from fractions import Fraction
-from math import isqrt
+from math import isfinite, isqrt
 
 from ibme.lattice.chkp.noise_budget import RoundedNoiseParams
 from ibme.lattice.chkp.rounded_noise import build_rounded_noise
@@ -34,7 +35,11 @@ MAX_RADIUS = 8192
 ANCHOR_Q = 65537
 COMPARISON_BITS = 128
 DEFAULT_DIMENSIONS = (9472, 9600, 9728, 10240)
-REQUIRED_ESTIMATES = (
+ROOT_REQUIRED_ESTIMATES = (
+    "sis_lattice-classical",
+    "sis_lattice-quantum",
+)
+CIPHERTEXT_REQUIRED_ESTIMATES = (
     "primal_usvp-classical",
     "dual-classical",
     "primal_usvp-quantum",
@@ -141,6 +146,10 @@ def build_tradeoff_report(dimensions=DEFAULT_DIMENSIONS, *, build_cdf=True):
             finite_noise_table_built=finite_noise["built"],
             phase_accounting=_phase_accounting(row),
             comparison_threshold_bits=COMPARISON_BITS,
+            root_trapdoor_comparison_gate=False,
+            root_trapdoor_comparison_minimum_log2_rop=None,
+            ciphertext_comparison_gate=False,
+            ciphertext_comparison_minimum_log2_rop=None,
             comparison_model_gate=False,
             comparison_minimum_log2_rop=None,
             estimator_results={},
@@ -166,7 +175,7 @@ def build_tradeoff_report(dimensions=DEFAULT_DIMENSIONS, *, build_cdf=True):
         "src/ibme/lattice/chkp/rounded_noise.py",
     )
     return {
-        "schema": "A/ABB-NOISE-TRADEOFF/1",
+        "schema": "A/ABB-NOISE-TRADEOFF/2",
         "fixed_inputs": {
             "q": str(Q208),
             "q_bits": 208,
@@ -181,7 +190,10 @@ def build_tradeoff_report(dimensions=DEFAULT_DIMENSIONS, *, build_cdf=True):
         "finite_noise": finite_noise,
         "rows": rows,
         "estimator": None,
+        "root_trapdoor_comparison_candidates": [],
+        "ciphertext_comparison_candidates": [],
         "comparison_model_candidates": [],
+        "smallest_tested_ciphertext_comparison_candidate": None,
         "smallest_tested_comparison_candidate": None,
         "largest_tested_comparison_margin_candidate": None,
         "complete_runtime_candidates": [],
@@ -207,7 +219,8 @@ def build_tradeoff_report(dimensions=DEFAULT_DIMENSIONS, *, build_cdf=True):
         "unresolved": [
             "complete-basis representation is petabyte-scale for every tested row",
             "no AP09 root, BasisDel key, ciphertext, Hybrid, or IB-ME runtime was attempted",
-            "BDD/hybrid, BKW, algebraic, multi-target, query, and reduction losses are not estimated",
+            "root comparison is a conditional one-column SIS reduction, not exact planted-R or complete-basis recovery",
+            "root shared-matrix multi-target amortization and ciphertext BDD/hybrid, BKW, algebraic, multi-target, query, and reduction losses are not estimated",
             "finite SampleR/BasisDel/SamplePre total TV, abort, and workspace remain unclosed",
             "ROM instantiation and formal HIBE/Wang mappings remain unclosed",
         ],
@@ -217,21 +230,38 @@ def build_tradeoff_report(dimensions=DEFAULT_DIMENSIONS, *, build_cdf=True):
     }
 
 
+def _finite_minimum(results, required):
+    values = []
+    for name in required:
+        result = results.get(name)
+        value = result.get("rop_log2") if isinstance(result, dict) else None
+        if (not isinstance(result, dict) or result.get("status") != "finite_estimate" or
+                type(value) not in (int, float) or not isfinite(value) or value < 0):
+            return False, None
+        values.append(float(value))
+    return True, min(values)
+
+
 def finalize_comparison(report):
-    """Fail closed: missing, errored, or infinite estimates never pass."""
-    candidates = []
+    """Fail closed unless both root and ciphertext models have finite costs."""
+    root_candidates = []
+    ciphertext_candidates = []
+    joint_candidates = []
+    report["smallest_tested_ciphertext_comparison_candidate"] = None
+    report["smallest_tested_comparison_candidate"] = None
+    report["largest_tested_comparison_margin_candidate"] = None
     for row in report["rows"]:
-        results = row.get("estimator_results", {}).get("ciphertext_lwe", {})
-        values = []
-        complete = True
-        for name in REQUIRED_ESTIMATES:
-            result = results.get(name)
-            if (not isinstance(result, dict) or result.get("status") != "finite_estimate" or
-                    not isinstance(result.get("rop_log2"), (int, float))):
-                complete = False
-                break
-            values.append(float(result["rop_log2"]))
-        minimum = min(values) if complete else None
+        all_results = row.get("estimator_results", {})
+        root_complete, root_minimum = _finite_minimum(
+            all_results.get("root_trapdoor_recovery", {}), ROOT_REQUIRED_ESTIMATES
+        )
+        ciphertext_complete, ciphertext_minimum = _finite_minimum(
+            all_results.get("ciphertext_lwe", {}), CIPHERTEXT_REQUIRED_ESTIMATES
+        )
+        root_gate = bool(root_complete and root_minimum >= COMPARISON_BITS)
+        ciphertext_gate = bool(ciphertext_complete and ciphertext_minimum >= COMPARISON_BITS)
+        complete = root_complete and ciphertext_complete
+        minimum = min(root_minimum, ciphertext_minimum) if complete else None
         gate = bool(
             complete
             and minimum >= COMPARISON_BITS
@@ -239,20 +269,38 @@ def finalize_comparison(report):
             and row["noise"]["strict_Regev_noise_prerequisite"]
             and row["finite_noise_table_built"]
         )
+        row["root_trapdoor_comparison_estimates_complete"] = root_complete
+        row["root_trapdoor_comparison_minimum_log2_rop"] = root_minimum
+        row["root_trapdoor_comparison_gate"] = root_gate
+        row["ciphertext_comparison_estimates_complete"] = ciphertext_complete
+        row["ciphertext_comparison_minimum_log2_rop"] = ciphertext_minimum
+        row["ciphertext_comparison_gate"] = ciphertext_gate
         row["comparison_estimates_complete"] = complete
         row["comparison_minimum_log2_rop"] = minimum
         row["comparison_model_gate"] = gate
         row["runtime_admitted"] = gate and not row["runtime_blockers"]
+        if root_gate:
+            root_candidates.append(row)
+        if ciphertext_gate:
+            ciphertext_candidates.append(row)
         if gate:
-            candidates.append(row)
-    report["comparison_model_candidates"] = [row["candidate_id"] for row in candidates]
-    if candidates:
-        report["smallest_tested_comparison_candidate"] = min(candidates, key=lambda row: row["n"])["candidate_id"]
+            joint_candidates.append(row)
+    report["root_trapdoor_comparison_candidates"] = [row["candidate_id"] for row in root_candidates]
+    report["ciphertext_comparison_candidates"] = [row["candidate_id"] for row in ciphertext_candidates]
+    report["comparison_model_candidates"] = [row["candidate_id"] for row in joint_candidates]
+    if ciphertext_candidates:
+        report["smallest_tested_ciphertext_comparison_candidate"] = min(
+            ciphertext_candidates, key=lambda row: row["n"]
+        )["candidate_id"]
+    if joint_candidates:
+        report["smallest_tested_comparison_candidate"] = min(
+            joint_candidates, key=lambda row: row["n"]
+        )["candidate_id"]
         report["largest_tested_comparison_margin_candidate"] = max(
-            candidates, key=lambda row: row["comparison_minimum_log2_rop"]
+            joint_candidates, key=lambda row: row["comparison_minimum_log2_rop"]
         )["candidate_id"]
     report["complete_runtime_candidates"] = [
-        row["candidate_id"] for row in candidates if row["runtime_admitted"]
+        row["candidate_id"] for row in joint_candidates if row["runtime_admitted"]
     ]
     # Comparison estimates and a CDF are not a complete security admission.
     report["secure_candidate_selected"] = False
@@ -261,7 +309,7 @@ def finalize_comparison(report):
 
 def runtime_summary(report):
     return {
-        "schema": "A/ABB-NOISE-TRADEOFF-RUNTIME/1",
+        "schema": "A/ABB-NOISE-TRADEOFF-RUNTIME/2",
         "source_schema": report["schema"],
         "measurements": report["measurements"],
         "environment": report["environment"],
@@ -273,6 +321,8 @@ def runtime_summary(report):
         "root_or_key_generations": 0,
         "ciphertext_generations": 0,
         "private_entropy_bytes": 0,
+        "root_trapdoor_comparison_candidates": report["root_trapdoor_comparison_candidates"],
+        "ciphertext_comparison_candidates": report["ciphertext_comparison_candidates"],
         "comparison_model_candidates": report["comparison_model_candidates"],
         "complete_runtime_candidates": report["complete_runtime_candidates"],
         "security_claim": "none",
@@ -308,7 +358,8 @@ def main(argv=None):
     args.runtime_output.write_text(json.dumps(runtime_summary(report), indent=2) + "\n", encoding="utf-8")
     print(
         f"{len(report['rows'])} public rows; "
-        f"{len(report['comparison_model_candidates'])} comparison candidates; "
+        f"{len(report['ciphertext_comparison_candidates'])} ciphertext candidates; "
+        f"{len(report['comparison_model_candidates'])} joint candidates; "
         "zero keys; zero runtime admissions"
     )
     return 0

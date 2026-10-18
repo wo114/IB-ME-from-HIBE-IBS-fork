@@ -87,6 +87,13 @@ def test_comparison_gate_fails_closed_on_unknown_and_never_grants_security():
     for row in report["rows"]:
         row["finite_noise_table_built"] = True
         row["estimator_results"] = {
+            "root_trapdoor_recovery": {
+                name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS + 1}
+                for name in (
+                    "sis_lattice-classical",
+                    "sis_lattice-quantum",
+                )
+            },
             "ciphertext_lwe": {
                 name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS + 1}
                 for name in (
@@ -97,13 +104,45 @@ def test_comparison_gate_fails_closed_on_unknown_and_never_grants_security():
                 )
             }
         }
-    report["rows"][0]["estimator_results"]["ciphertext_lwe"]["dual-quantum"] = {
+    report["rows"][0]["estimator_results"]["root_trapdoor_recovery"]["sis_lattice-quantum"] = {
         "status": "no_finite_estimate",
         "rop_log2": None,
     }
     finalize_comparison(report)
     assert not report["rows"][0]["comparison_model_gate"]
+    assert report["rows"][0]["ciphertext_comparison_gate"]
+    assert not report["rows"][0]["root_trapdoor_comparison_gate"]
     assert report["rows"][1]["comparison_model_gate"]
+    assert report["root_trapdoor_comparison_candidates"] == [report["rows"][1]["candidate_id"]]
+    assert report["ciphertext_comparison_candidates"] == [
+        report["rows"][0]["candidate_id"], report["rows"][1]["candidate_id"]
+    ]
     assert report["comparison_model_candidates"] == [report["rows"][1]["candidate_id"]]
     assert report["complete_runtime_candidates"] == []
     assert report["secure_candidate_selected"] is False
+
+
+@pytest.mark.parametrize("value", [float("inf"), float("nan"), -1.0, True])
+def test_comparison_gate_rejects_nonfinite_negative_and_boolean_costs(value):
+    report = build_tradeoff_report((9600,), build_cdf=False)
+    row = report["rows"][0]
+    row["finite_noise_table_built"] = True
+    row["estimator_results"] = {
+        "root_trapdoor_recovery": {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS + 1}
+            for name in ("sis_lattice-classical", "sis_lattice-quantum")
+        },
+        "ciphertext_lwe": {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS + 1}
+            for name in (
+                "primal_usvp-classical", "dual-classical",
+                "primal_usvp-quantum", "dual-quantum",
+            )
+        },
+    }
+    row["estimator_results"]["root_trapdoor_recovery"]["sis_lattice-quantum"][
+        "rop_log2"
+    ] = value
+    finalize_comparison(report)
+    assert not row["root_trapdoor_comparison_estimates_complete"]
+    assert not row["comparison_model_gate"]

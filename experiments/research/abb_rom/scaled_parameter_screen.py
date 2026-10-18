@@ -145,6 +145,42 @@ def _ciphertext_role(n, q, dimension, chi, *, abb):
         literal_noise_distribution_estimate=False, multi_target_or_reduction_loss_applied=False)
 
 
+def _abb_root_trapdoor_role(n, q, random_rows, target_columns):
+    """Conditional SIS comparator for recovering AP09's hidden ``R``.
+
+    A bounded alternative preimage for one public column, distinct from the
+    planted ternary column, gives a nonzero kernel vector of Euclidean norm at
+    most ``2*sqrt(random_rows)``.  This is a deliberately fail-closed
+    *subproblem*: it does not turn a one-vector SIS estimate into the cost of
+    recovering every column of a complete AP09 trapdoor.
+    """
+    difference_bound = _ceil_sqrt(4 * random_rows)
+    return dict(
+        model="conditional AP09 alternative-preimage reduction to homogeneous Euclidean SIS",
+        n=n,
+        q=q,
+        m=random_rows,
+        norm="euclidean",
+        length_bound=difference_bound,
+        length_bound_squared_upper=4 * random_rows,
+        estimator_matrix_distribution="uniform q-ary SIS comparator",
+        actual_matrix_distribution="uniform A1 conditioned on full row rank",
+        public_equation="A1 * R = -A_right - A1 * G (mod q)",
+        public_G_reconstruction="canonical AP09 G is determined by public A1",
+        planted_preimage_distribution="independent two-bit differences: P(-1)=1/4, P(0)=1/2, P(1)=1/4",
+        public_target_columns=target_columns,
+        attack_goal="recover enough bounded alternative R columns to reconstruct an AP09 root trapdoor",
+        estimated_subgoal="one distinct bounded preimage column induces one nonzero SIS vector",
+        exact_planted_preimage_recovery_estimated=False,
+        full_trapdoor_recovery_cost_estimated=False,
+        shared_matrix_multitarget_or_amortization_applied=False,
+        reduction_conditions=[
+            "the recovered bounded preimage differs from the planted column",
+            "both planted and recovered columns have Euclidean norm at most sqrt(random_rows)",
+        ],
+    )
+
+
 def mp12_projection(n, q=Q61):
     """Computational [I|Ahat] root, DelTrap parent, fixed256 CHKP leaf."""
     _integer(n, "n", 2, 16384)
@@ -278,6 +314,7 @@ def abb_projection(n, q, *, noise_width=None):
         root_LHL_dyadic_upper=f"2^{lhl_exponent}", root_regularity_target_bits=BITS,
         root_uniformity_scope="LHL term only; rank/uniform-byte abort separate",
         root_lwe=None, root_lwe_absence_reason="AP09 statistical root; no computational MP12 root LWE role",
+        root_trapdoor_recovery=_abb_root_trapdoor_role(n, q, d, m2),
         ciphertext_lwe=_ciphertext_role(n, q, m, chi, abb=True),
         noise=noise, minimum_wire_bytes=lower, current_execution_gates=gates)
 
@@ -307,7 +344,7 @@ def build_report(dimensions=(128, 512, 2048, 8192, 16384)):
         "src/ibme/lattice/matrix_sampling/chkp_profiles.py",
         "experiments/research/first_suite/hibe_reference.py",
         "experiments/research/first_suite/computational_root.py"]
-    return dict(schema="A/MATRIX-HIBE-SCALED-SCREEN/1", rows=rows,
+    return dict(schema="A/MATRIX-HIBE-SCALED-SCREEN/2", rows=rows,
         common_inputs=dict(identity_bytes_per_level=86, seed_bytes=32,
             epsilon_bits=BITS, noise_error_bits=ERROR_BITS, encapsulations=CALLS,
             noise_width_rule="smallest integer chi > 2*sqrt(n)",
@@ -335,10 +372,45 @@ def run_estimators(report, estimator_path, *, checkpoint=None):
     if not Path(estimator.__file__).resolve().is_relative_to(root):
         raise ValueError("foreign estimator import")
     report["estimator"] = dict(repository="https://github.com/malb/lattice-estimator", commit=revision,
-        models="ADPS16 classical/quantum Core-SVP; primal-uSVP LGSA and plain dual",
-        attack_families=["primal_usvp", "dual"], excluded_attacks=["BDD/hybrid", "BKW", "algebraic"],
-        scope="Gaussian comparators; estimated costs are not proven security bits", completed=False)
+        models=("ADPS16 classical/quantum Core-SVP; Euclidean SIS lattice, "
+                "LWE primal-uSVP LGSA, and plain LWE dual"),
+        attack_families={"root_trapdoor_recovery": ["sis_lattice"],
+            "ciphertext_lwe": ["primal_usvp", "dual"]},
+        excluded_attacks={"root_trapdoor_recovery": [
+                "exact planted-preimage recovery", "complete-basis recovery", "multi-target amortization"],
+            "ciphertext_lwe": ["BDD/hybrid", "BKW", "algebraic", "multi-target"]},
+        scope="separate root SIS and ciphertext Gaussian comparators; costs are not proven security bits",
+        completed=False)
     for row in report["rows"]:
+        root_spec = row.get("root_trapdoor_recovery")
+        if root_spec is not None:
+            SIS = estimator.SIS
+            problem = SIS.Parameters(n=root_spec["n"], q=root_spec["q"], m=root_spec["m"],
+                length_bound=root_spec["length_bound"], norm=2,
+                tag=f"{row['family']}-root-trapdoor-n{row['n']}-q{row['q_bits']}")
+            result = row["estimator_results"].setdefault("root_trapdoor_recovery", {})
+            for mode in ("classical", "quantum"):
+                start = time.monotonic()
+                key = f"sis_lattice-{mode}"
+                try:
+                    cost = SIS.lattice(problem, red_cost_model=ADPS16(mode=mode))
+                    finite = cost["rop"] != oo
+                    result[key] = dict(status="finite_estimate" if finite else "no_finite_estimate",
+                        rop_log2=float(log(cost["rop"], 2)) if finite else None,
+                        cost_fields={k: str(v) for k, v in cost.items() if k != "problem"},
+                        goal="conditional one-column alternative-preimage SIS subproblem",
+                        full_trapdoor_recovery_cost_estimated=False)
+                except Exception as exc:
+                    result[key] = dict(status="error", rop_log2=None,
+                        exception_type=type(exc).__name__, error=str(exc),
+                        goal="conditional one-column alternative-preimage SIS subproblem",
+                        full_trapdoor_recovery_cost_estimated=False)
+                result[key]["elapsed_seconds"] = time.monotonic()-start
+                if checkpoint is not None:
+                    checkpoint()
+            print(json.dumps(dict(family=row["family"], n=row["n"], q_bits=row["q_bits"],
+                role="root_trapdoor_recovery",
+                costs={key: value["rop_log2"] for key, value in result.items()})), flush=True)
         for role in ("root_lwe", "ciphertext_lwe"):
             spec = row[role]
             if spec is None:
