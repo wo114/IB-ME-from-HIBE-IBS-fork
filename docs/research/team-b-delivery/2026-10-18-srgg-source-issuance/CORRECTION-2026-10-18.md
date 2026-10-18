@@ -24,3 +24,8 @@ six-row report reproduces all table-standard-deviation rows.
 
 中文：首次发钥界对每个通过审计门控的根都成立；`all_accepted_setup_roots_tv=null`
 说的是门控集质量，不是这个数值界只对六条根有效。
+
+v2 re-freeze: [`../2026-10-18-srgg-gate-uniform-v2/`](../2026-10-18-srgg-gate-uniform-v2/README_zh-CN.md).
+The complete gate set includes the issuance `C > 64 I` gate and the finite-key
+object/service envelope; the guard proves the protected accept set, not the
+original unguarded algorithm.

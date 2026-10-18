@@ -32,3 +32,8 @@ and its `GuardedSourceSchurBackend` (signing aborts on `G_sign^c`).
 
 中文：全参考密钥一致证书仍不可能（大尾反例有效）；被修正的是"好密钥的签名界只
 对单条固定密钥有效"这一范围标签。`beta_bad` 仍为 null，只证明了严格为正。
+
+v2 re-freeze: [`../2026-10-18-srgg-gate-uniform-v2/`](../2026-10-18-srgg-gate-uniform-v2/README_zh-CN.md).
+The complete gate set includes the issuance `C > 64 I` gate and the finite-key
+object/service envelope; the guard proves the protected accept set, not the
+original unguarded algorithm.

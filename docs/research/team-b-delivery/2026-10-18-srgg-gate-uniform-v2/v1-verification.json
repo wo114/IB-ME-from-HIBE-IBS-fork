@@ -1,0 +1,101 @@
+{
+  "all_passed": true,
+  "backend_admitted": false,
+  "checks": [
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-finite-chain",
+      "optimized": false
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-finite-chain",
+      "optimized": true
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-setup-acceptance",
+      "optimized": false
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-setup-acceptance",
+      "optimized": true
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-verification-image",
+      "optimized": false
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-verification-image",
+      "optimized": true
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-smoothing-eta",
+      "optimized": false
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-smoothing-eta",
+      "optimized": true
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-source-issuance",
+      "optimized": false
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-source-issuance",
+      "optimized": true
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-setup-backend-gap",
+      "optimized": false
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-setup-backend-gap",
+      "optimized": true
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-structural-cost",
+      "optimized": false
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-structural-cost",
+      "optimized": true
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-history-law-followup",
+      "optimized": false
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-history-law-followup",
+      "optimized": true
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-strong-game",
+      "optimized": false
+    },
+    {
+      "exit_code": 0,
+      "name": "2026-10-18-srgg-strong-game",
+      "optimized": true
+    }
+  ],
+  "nist_security_category": null,
+  "package_count": 9,
+  "parameters_are_formal": false,
+  "schema": "srgg-independent-followup-verify-all-v1",
+  "security_claim": "none"
+}

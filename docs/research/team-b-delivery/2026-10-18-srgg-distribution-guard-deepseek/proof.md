@@ -151,8 +151,13 @@ class GuardedSourceSchurBackend(SourceSchurBackend):
     _sign_plan:   construct the unchanged signature plan, then require_gates(plan)
 ```
 
-- `require_gates` runs `SchurNumericalAudit` and `_source_gates`; a failure raises
-  `GateFailure`.
+- `require_gates` runs the complete gate set: `SchurNumericalAudit` (pivot floor
+  64, gain and stored-factor covariance errors `2^-128`, adaptive-center
+  recurrence `2^-96`), `_source_gates` (factor range `(2,2^32)`, center
+  envelope `<2^240`, scalar/entropy caps, finite leaf/output 256-bit object
+  guard), the issuance centered-gadget C gate `C > 64 I`, and the successful
+  finite-key object/service byte envelope (`raw` and HNF key within 256 bits).
+  A signing plan runs the Schur/audit layer only.
 - In Setup, `GateFailure` is wrapped as `RootGateRejection`, a subclass of the
   original `WitnessGeometryError`; the unchanged Setup loop retries it. The
   accepted-root law becomes `mu(· | B ∩ G)`.
@@ -160,13 +165,14 @@ class GuardedSourceSchurBackend(SourceSchurBackend):
   service aborts for that fixed key. No retry is attempted.
 - The original `SourceSchurBackend` is untouched and remains the frozen
   reference; the guard is an explicitly labelled service variant, not a claim
-  about the paper's own algorithm.
+  about the paper's own algorithm. It proves the modified protected accept set,
+  not the original unguarded algorithm.
 
 What this closes: every accepted root/key now satisfies the premises of the
 finite/convolution/normalizer/issuance/sign formulas, so the bounds of section 3
 apply uniformly. What it does not close: the probability of the guard rejection
-(equivalently `mu(B \ G)`) and the mathematical `A \ B` mass. Those are the
-remaining Setup gaps.
+(equivalently `mu(B \ G)`), the mathematical `A \ B` mass, and the object/service
+envelope's probability under the original setup law.
 
 ## 5. Random-issued key to signing law
 

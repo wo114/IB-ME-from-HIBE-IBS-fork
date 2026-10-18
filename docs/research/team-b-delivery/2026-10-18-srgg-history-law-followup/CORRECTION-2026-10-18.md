@@ -29,3 +29,8 @@ See [`../2026-10-18-srgg-distribution-guard-deepseek/`](../2026-10-18-srgg-distr
 
 中文：同根历史界本身对每个通过门控的根都成立；"不能跨根平均"说的是门控集质量，
 不是数值不等式只对六条根有效。`beta_bad`、`P(A\B)`、故障历史仍为 null。
+
+v2 re-freeze: [`../2026-10-18-srgg-gate-uniform-v2/`](../2026-10-18-srgg-gate-uniform-v2/README_zh-CN.md).
+The complete gate set includes the issuance `C > 64 I` gate and the finite-key
+object/service envelope; the guard proves the protected accept set, not the
+original unguarded algorithm.

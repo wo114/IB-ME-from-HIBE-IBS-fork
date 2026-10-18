@@ -31,3 +31,8 @@ rows; a second accepted root gives an identical master joint bound.
 
 中文：`fixed_root_only` 是回执范围标签，不是定理范围；界对每个通过同一审计门控
 的根/密钥都成立。剩余缺口是后端没有执行门控以及门控事件质量，不是采样器分布。
+
+v2 re-freeze: [`../2026-10-18-srgg-gate-uniform-v2/`](../2026-10-18-srgg-gate-uniform-v2/README_zh-CN.md).
+The complete gate set includes the issuance `C > 64 I` gate and the finite-key
+object/service envelope; the guard proves the protected accept set, not the
+original unguarded algorithm.

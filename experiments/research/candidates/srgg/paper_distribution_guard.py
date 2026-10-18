@@ -31,7 +31,7 @@ from sage.version import version as sage_version
 
 from ibme.core.randomness import DeterministicRandom
 
-from .paper_issuance_bridge import combine_issuance_tv
+from .paper_issuance_bridge import combine_issuance_tv, fixed_root_c_gate
 from .paper_parameters import PaperParams
 from .paper_rounding_budget import theta_certificate
 from .paper_samplef import WitnessGeometryError
@@ -43,6 +43,7 @@ from .paper_schur_finite_chain import (
 from .paper_schur_literal_moment import moment_chain_certificate
 from .paper_schur_normalizer import fixed_root_normalizer_certificate
 from .paper_schur_numerical import SchurNumericalAudit
+from .paper_source_issuance_bridge import _source_key_guard_envelope
 
 
 SCHEMA = "IBME/SRGG-PAPER-DISTRIBUTION-GUARD/1"
@@ -99,12 +100,19 @@ def _dyadic_upper(value):
     return ("2^-" + str(bits)) if bits else "1"
 
 
-def require_gates(plan):
-    """Run the independent audit and the finite-chain source gates.
+def require_gates(plan, *, params=None, gadget=None, root_phase=False):
+    """Run the complete gate set for a prepared plan.
 
-    Returns ``(audit, n, leaves)``.  Raises ``GateFailure`` for any audit or
-    gate mismatch; the caller decides whether that is a root rejection or a
-    signing-key abort.
+    The Schur/audit layer checks the pivot floor 64, gain and stored-factor
+    covariance errors, the adaptive-center recurrence, the factor and center
+    envelopes, the scalar/entropy batches and the finite output/object bit
+    guards.  A Setup/root plan additionally checks the issuance ``C`` gate
+    (centered gadget completion ``C > 64 I``) and the successful finite-key
+    object/service byte envelope.
+
+    Returns ``(audit, n, leaves, extras)``.  Raises ``GateFailure`` for any
+    audit, gate or envelope mismatch; the caller decides whether that is a root
+    rejection or a signing-key abort.
     """
     try:
         audit = SchurNumericalAudit(plan)
@@ -113,35 +121,53 @@ def require_gates(plan):
         raise GateFailure(str(error)) from error
     if sampler is not plan:
         raise GateFailure("audit sampler is not the prepared plan")
-    return audit, n, leaves
+    extras = {}
+    if root_phase:
+        if params is None or gadget is None:
+            raise GateFailure("root gate requires the prepared parameters and gadget")
+        c_gate = fixed_root_c_gate(plan.geometry, lower_bound=64, precision_bits=192)
+        if not c_gate.get("certified"):
+            raise GateFailure("issuance C gate is not certified")
+        try:
+            object_guard = _source_key_guard_envelope(params, plan, gadget)
+        except (ValueError, ArithmeticError, TypeError) as error:
+            raise GateFailure("finite-key object/service envelope failed: " + str(error)) from error
+        extras = {"c_gate": c_gate, "object_guard": object_guard}
+    return audit, n, leaves, extras
 
 
 class GuardedSourceSchurBackend(SourceSchurBackend):
-    """The unchanged paper backend plus an explicit audit-gate accept set."""
+    """The unchanged paper backend plus an explicit full-gate accept set."""
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.gate_rejections = 0
         self.last_master_gate_audit = None
         self.last_sign_gate_audit = None
+        self.last_master_gate_extras = None
+        self.last_sign_gate_extras = None
 
     def _master_plan(self, params, witness):
         plan = super()._master_plan(params, witness)
         try:
-            audit, _degree, _leaves = require_gates(plan)
+            gadget, _scalar = self._components(params)
+            audit, _degree, _leaves, extras = require_gates(
+                plan, params=params, gadget=gadget, root_phase=True)
         except GateFailure as error:
             self.gate_rejections += 1
             raise RootGateRejection("Setup audit gate rejected root: " + str(error)) from error
         self.last_master_gate_audit = audit
+        self.last_master_gate_extras = extras
         return plan
 
     def _sign_plan(self, key):
         plan = super()._sign_plan(key)
         try:
-            audit, _degree, _leaves = require_gates(plan)
+            audit, _degree, _leaves, extras = require_gates(plan)
         except GateFailure as error:
             raise SigningKeyGateRejection("signing-key audit gate failed: " + str(error)) from error
         self.last_sign_gate_audit = audit
+        self.last_sign_gate_extras = extras
         return plan
 
 
@@ -215,12 +241,32 @@ def uniform_phase_bound(plan, interpretation):
     }
 
 
-def uniform_issuance_bound(params, backend, master_plan, interpretation):
-    """Uniform first-issuance TV for every root passing the audit gates."""
+def uniform_issuance_bound(params, backend, master_plan, interpretation, *, extras=None):
+    """Uniform first-issuance TV for every root passing the complete gate set.
+
+    ``extras`` is the root-phase gate record (issuance C gate and finite-key
+    object/service envelope) produced by ``require_gates``.  If omitted it is
+    recomputed.  A non-certified C gate or object envelope keeps the bound null.
+    """
     phase = uniform_phase_bound(master_plan, interpretation)
     if not phase["closed"]:
         return {"closed": False, "blocker": phase["blocker"],
                 "master_perturbation": None, "complete_law_tv_upper_including_abort": None}
+    if extras is None:
+        gadget, _scalar = backend._components(params)
+        _audit, _n, _l, extras = require_gates(
+            master_plan, params=params, gadget=gadget, root_phase=True)
+    if not extras.get("c_gate", {}).get("certified"):
+        return {"closed": False,
+                "blocker": "issuance centered-gadget C gate is not certified",
+                "master_perturbation": phase["joint_tv_dyadic_upper"],
+                "complete_law_tv_upper_including_abort": None}
+    object_guard = extras.get("object_guard", {})
+    if not object_guard.get("raw_and_key_within_256bit_object_guard"):
+        return {"closed": False,
+                "blocker": "finite-key object/service envelope is not certified",
+                "master_perturbation": phase["joint_tv_dyadic_upper"],
+                "complete_law_tv_upper_including_abort": None}
     gadget, _scalar = backend._components(params)
     draws = params.rank * params.digits * params.degree
     digit = theta_certificate(dimension=draws, density_shape=Fraction(params.r_squared),
@@ -249,6 +295,9 @@ def uniform_issuance_bound(params, backend, master_plan, interpretation):
         "closed": 0 <= total < 1,
         "blocker": None if total < 1 else "issuance bound is trivial",
         "master_perturbation": phase["joint_tv_dyadic_upper"],
+        "c_gate_certified": True,
+        "finite_key_object_guard": True,
+        "key_coordinate_abs_upper": object_guard.get("centered_hnf_full_key_coordinate_abs_upper"),
         "gadget_scalar_tv": _dyadic_upper(
             Fraction(gadget.batch["scalar_kernel_tv_including_aggregate_exact"])),
         "gadget_digit_relative_sum": str(Fraction(digit_sum)),
@@ -299,7 +348,8 @@ def build_row(profile, interpretation, *, seed=None, check_uniformity=True):
     public, master = backend.setup(params)
     master_plan = backend._master_plan(params, master.witness)
     master_phase = uniform_phase_bound(master_plan, interpretation)
-    issuance = uniform_issuance_bound(params, backend, master_plan, interpretation)
+    issuance = uniform_issuance_bound(
+        params, backend, master_plan, interpretation, extras=backend.last_master_gate_extras)
     key = backend.key_extract(master, b"Alice")
     sign_phase = uniform_phase_bound(backend._sign_plan(key), interpretation)
     sign_call = uniform_sign_call_bound(params, backend, key, interpretation)
@@ -350,6 +400,10 @@ def build_row(profile, interpretation, *, seed=None, check_uniformity=True):
         "guarded_backend_ran_audit_at_setup_and_sign": True,
         "original_backend_runs_audit": False,
         "gate_floor": "64",
+        "issuance_c_gate": None if backend.last_master_gate_extras is None else
+            backend.last_master_gate_extras.get("c_gate"),
+        "finite_key_object_guard": None if backend.last_master_gate_extras is None else
+            backend.last_master_gate_extras.get("object_guard"),
         "master_phase": master_phase,
         "issuance": issuance,
         "signature_phase": sign_phase,
@@ -398,7 +452,9 @@ def probe_unguarded_gate_gap(profile, interpretation, count=6):
         except Exception as error:  # noqa: BLE001 - fixture search records every failure
             continue
         try:
-            require_gates(backend._master_plan(params, master.witness))
+            gadget, _scalar = backend._components(params)
+            require_gates(backend._master_plan(params, master.witness),
+                          params=params, gadget=gadget, root_phase=True)
         except GateFailure as error:
             return {
                 "witness_found": True,
@@ -406,7 +462,7 @@ def probe_unguarded_gate_gap(profile, interpretation, count=6):
                 "seed_sha256": sha256(seed).hexdigest(),
                 "public_context_sha256": public.context.hex(),
                 "gate_failure": str(error),
-                "scope": "one unguarded Setup root accepted by the original backend and rejected by the audit",
+                "scope": "one unguarded Setup root accepted by the original backend and rejected by the complete gate set",
             }
     return {
         "witness_found": False,
@@ -455,27 +511,44 @@ def build_report():
             "sage": sage_version,
             "platform": platform.platform(),
         },
-        "scope": "six original Table 4 roots; guarded accept set; uniform conditional bounds; gate-set masses remain null",
+        "scope": "six original Table 4 roots; complete guarded accept set; uniform conditional bounds; gate-set masses remain null",
         "core_correction":
             "The fixed-root finite/convolution/normalizer chain is already uniform over every root that "
-            "passes the SchurNumericalAudit gates: its numerical inputs are the gate floor 64 and "
-            "root-independent constants, not the actual pivots. The six receipts are witnesses of a "
-            "nonempty gate set, not the domain of the theorem.",
+            "passes the complete gate set: its numerical inputs are the gate floor 64 and root-independent "
+            "constants, not the actual pivots. The six receipts are witnesses of a nonempty gate set, not "
+            "the domain of the theorem.",
+        "complete_gate_set": [
+            "all ideal Schur pivots at least 64",
+            "gain coefficient error at most 2^-128",
+            "stored-factor ideal-covariance error at most 2^-128",
+            "adaptive-center recurrence error at most 2^-96 on the same successful history",
+            "stored factors in (2, 2^32)",
+            "adaptive centers below 2^240",
+            "scalar/entropy aggregate caps and whole-attempt entropy budgets",
+            "finite leaf/output 256-bit object guard",
+            "issuance centered-gadget C gate (C > 64 I)",
+            "successful finite-key object/service byte envelope (raw and HNF key within 256 bits)",
+        ],
         "guard_construction":
-            "GuardedSourceSchurBackend runs SchurNumericalAudit and the finite-chain source gates at "
-            "Setup and before signing. Setup treats a gate failure as a root rejection/retry; signing "
-            "treats it as a fixed-key abort. The original backend does not run these gates.",
+            "GuardedSourceSchurBackend runs SchurNumericalAudit, the finite-chain source gates, the "
+            "issuance C gate and the finite-key object/service envelope at Setup, and the Schur/audit "
+            "gates before signing. Setup treats a gate failure as a root rejection/retry; signing treats "
+            "it as a fixed-key abort. The original backend runs none of these execute-time gates.",
+        "scope_warning":
+            "This is a statement about the modified protected accept set. The original unguarded paper "
+            "backend has not been shown to satisfy the same gate set, so this does not directly certify "
+            "the original unmodified algorithm.",
         "closed": [
-            "uniform finite-vs-mathematical Algorithm 3-4 bound on every gate-passing plan",
+            "uniform finite-vs-mathematical Algorithm 3-4 bound on every plan passing the complete gate set",
             "uniform mathematical Algorithm 3-4 vs ideal sequential bound using pivot floor 64",
             "uniform ideal sequential vs joint discrete Gaussian normalizer bound",
-            "uniform first-issuance TV on every gate-passing root (table-standard-deviation rows)",
-            "uniform one-sign-call TV on every gate-passing signing key (table-standard-deviation rows)",
+            "uniform first-issuance TV on every root passing the C gate and object envelope (table-standard-deviation rows)",
+            "uniform one-sign-call TV on every signing key passing the Schur/audit gates (table-standard-deviation rows)",
         ],
         "still_null": [
             "P(A minus B): mathematical positivity vs finite backend acceptance",
-            "P(B minus G): backend accepts but audit gates fail",
-            "actual accepted-root distribution relative to mu_A",
+            "P(B minus G): backend accepts but complete gates fail",
+            "mass of roots/keys rejected by the guard, and the accepted-root distribution relative to mu_A",
             "beta_bad: key gate failure mass under the ideal issuance reference",
             "full random-issuance/signature/fault history TV",
             "norm-exhaustion probability, native strong security, structural hardness, NIST category",

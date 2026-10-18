@@ -11,13 +11,13 @@
   "commands": [
     {
       "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_distribution_guard.py",
-      "result": "6 passed in 42.88s",
-      "scope": "six tests; positive control tampered stored factor rejected; PARAM-I frozen-receipt equality; second accepted root has identical master joint bound; literal issuance remains null"
+      "result": "6 passed in 40.05s",
+      "scope": "six tests; positive control tampered stored factor rejected; PARAM-I frozen-receipt equality; second accepted root has identical master joint bound; literal issuance remains null; complete gate set includes issuance C gate and finite-key object/service envelope"
     },
     {
       "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.srgg.paper_distribution_guard --output build/deepseek-distribution-guard.json",
-      "result": "rows=6, closed_master=6, closed_issuance=3, closed_sign_call=3, full_history_tv=null",
-      "scope": "six original Table 4 rows; guarded accept set; deterministic fixture probes"
+      "result": "rows=6, closed_master=6, closed_issuance=3, closed_sign_call=3, full_gate_set=10, full_history_tv=null",
+      "scope": "six original Table 4 rows; complete guarded accept set; deterministic fixture probes"
     },
     {
       "command": "python docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/verify_delivery.py",
@@ -26,11 +26,11 @@
     }
   ],
   "digests": {
-    "experiments/research/candidates/srgg/paper_distribution_guard.py": "5415a1d54a22f29b1d80b090214608a69f68892a9f98c47da22422d5e484a423",
-    "tests/test_srgg_paper_distribution_guard.py": "cb0d56cc513c4174e22ab4996daef8bd82613f1c17e675554a1cf40aa93b4932",
-    "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/proof.md": "49d84ccba944e00324673be04d3e32d132be34b4312e416531a4491e8fe2fed8",
-    "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/README_zh-CN.md": "ada2c8be6e7a053a0c17139c050ae7d771bcfda995e6084046a905cb0e503748",
-    "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/distribution-guard.json": "84ef920be086acc9aa4ea803d23395803b540ab4ebfbf12b0003016a1b8fb35e",
+    "experiments/research/candidates/srgg/paper_distribution_guard.py": "5d6aa3b9a9373843469b0b180ef4182cc5b39bdfa384f72e2632d9fa36d3cb2f",
+    "tests/test_srgg_paper_distribution_guard.py": "4334666654e441938c0d772630d9c4a284351056319b30a4ba38ad94d024af6b",
+    "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/proof.md": "7ca6227ef4741864bdaa7188c2d652156df162e7341774764e4aae5bb2b92c27",
+    "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/README_zh-CN.md": "275e0356fb6a63a39d4ab5ce1d49ebd9cd638a00e44ccd33ac938b92dc78e936",
+    "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/distribution-guard.json": "f1313e598b212ba8a59635d9cdd7d5391acc9f939b925d0024e4aa2c7e3d6e00",
     "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/verify_delivery.py": "89167d5085b9e207eb2ed6427c26dd4f5c8152cb61a26a8a963c7356f4e6bdf7"
   },
   "frozen_receipts": {
@@ -123,6 +123,17 @@
       "note": "empirical fixture count only; it does not bound beta_bad"
     }
   },
+  "v1_verification": {
+    "nine_package_driver": {
+      "packages": 9,
+      "checks": 18,
+      "normal_and_optimized": true,
+      "all_passed": true
+    },
+    "random_key_sign_law_verifier": "verified (6 rows, 8 entries)",
+    "manifest_entries_checked": 61,
+    "manifest_mismatches": 0
+  },
   "security": {
     "security_claim": "none",
     "backend_admitted": false,
@@ -133,8 +144,10 @@
   },
   "notes": [
     "The fixed-root finite/convolution/normalizer chain is gate-uniform: its numerical inputs are the gate floor 64 and root-independent constants, not the actual pivots.",
+    "The guard runs the complete gate set, including the issuance C gate and the finite-key object/service envelope; it proves the protected accept set, not the original unguarded algorithm.",
     "The guard makes the conditional theorem an accept-set theorem; it does not bound the gate-set masses.",
     "beta_bad is strictly positive by the canonical tail obstruction but remains unquantified.",
+    "The v2 re-freeze package 2026-10-18-srgg-gate-uniform-v2 records the corrected scope labels; v1 numeric receipts are byte-unchanged.",
     "No push and no PR were performed; this is a local WIP delivery."
   ]
 }

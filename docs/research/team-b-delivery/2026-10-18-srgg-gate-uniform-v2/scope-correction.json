@@ -1,0 +1,166 @@
+{
+  "schema": "IBME/SRGG-GATE-UNIFORM-SCOPE/1",
+  "date": "2026-10-18",
+  "supersedes_scope_labels_only": true,
+  "v1_numeric_receipts_unchanged": true,
+  "v1_packages": [
+    {
+      "package": "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain",
+      "manifest_sha256": "28dbeda70aa5606a8da82efceae9770178035e773fce9ddb9f947fbc41f9c6f1",
+      "v1_frozen_bytes_preserved": true,
+      "v1_label": "fixed_root_only=true; all_accepted_setup_roots_covered=false",
+      "corrected_scope": {
+        "receipt_generated_on_fixed_roots": true,
+        "fixed_roots_are_witnesses_not_domain": true,
+        "bound_scope": "every prepared plan that passes the complete gate set",
+        "all_gate_passing_roots_covered": true,
+        "original_backend_accept_set_covered": false,
+        "guard_required": true
+      },
+      "numeric_values_changed": false
+    },
+    {
+      "package": "docs/research/team-b-delivery/2026-10-18-srgg-source-issuance",
+      "manifest_sha256": "0d087123aa9ec62a5d4b81f34dd4d15ecc8cb96b6f97d79b0a3efadd6b8598d1",
+      "v1_frozen_bytes_preserved": true,
+      "v1_label": "all_accepted_setup_roots_tv=null",
+      "corrected_scope": {
+        "per_root_first_issuance_tv_gate_uniform": true,
+        "complete_law_tv_upper_including_abort_gate_uniform": true,
+        "all_gate_passing_roots_covered": true,
+        "global_all_accepted_roots_tv_remains_null": true,
+        "guard_required_for_original_accept_set": true
+      },
+      "numeric_values_changed": false
+    },
+    {
+      "package": "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup",
+      "manifest_sha256": "39463dcc121a329f8cea3becd7c49cde67559412a9fb7cb80ffaa3ab12b20970",
+      "v1_frozen_bytes_preserved": true,
+      "v1_label": "same-root result; cannot be averaged over all accepted roots",
+      "corrected_scope": {
+        "per_root_adaptive_history_bound_gate_uniform": true,
+        "same_root_statement_is_about_gate_mass_not_inequality_domain": true,
+        "cross_root_average_requires_gate_mass": true,
+        "complete_history_tv_remains_null": true
+      },
+      "numeric_values_changed": false
+    },
+    {
+      "package": "docs/research/team-b-delivery/2026-10-18-srgg-random-key-sign-law",
+      "manifest_sha256": "ff494d88c8c583a8ee296bda00cee47335479896e75391098a412ebe2092a657",
+      "v1_frozen_bytes_preserved": true,
+      "v1_label": "all-reference-key uniform certificate impossible; beta_bad=null",
+      "corrected_scope": {
+        "all_reference_key_uniform_certificate_possible": false,
+        "canonical_tail_obstruction_unchanged": true,
+        "good_key_signing_bound_gate_uniform": true,
+        "beta_bad_strictly_positive": true,
+        "beta_bad_numeric_bound": null
+      },
+      "numeric_values_changed": false
+    }
+  ],
+  "corrected_statement": {
+    "receipt_scope": "the v1 receipts were produced by replaying six deterministic accepted roots",
+    "bound_scope": "for any Setup root or signing key whose prepared plan passes the complete gate set, apply the corresponding conditional bound",
+    "fixed_roots_are": "witnesses that the gate set is nonempty",
+    "modified_protected_accept_set": true,
+    "original_unguarded_algorithm_certified": false
+  },
+  "complete_gate_set": [
+    "all ideal Schur pivots at least 64",
+    "gain coefficient error at most 2^-128",
+    "stored-factor ideal-covariance error at most 2^-128",
+    "adaptive-center recurrence error at most 2^-96 on the same successful history",
+    "stored factors in (2, 2^32)",
+    "adaptive centers below 2^240",
+    "scalar/entropy aggregate caps and whole-attempt entropy budgets",
+    "finite leaf/output 256-bit object guard",
+    "issuance centered-gadget C gate (C > 64 I)",
+    "successful finite-key object/service byte envelope (raw and HNF key within 256 bits)"
+  ],
+  "guard": {
+    "module": "experiments/research/candidates/srgg/paper_distribution_guard.py",
+    "class": "GuardedSourceSchurBackend",
+    "setup_failure": "RootGateRejection (subclass of WitnessGeometryError) -> root rejection/retry",
+    "signing_failure": "SigningKeyGateRejection -> fixed-key abort, no redraw",
+    "original_backend_executes_gates": false,
+    "proves": "conditional bounds on the modified protected accept set",
+    "does_not_prove": "the original unguarded paper backend satisfies the gate set"
+  },
+  "numeric_values": {
+    "table_standard_deviation": {
+      "PARAM-I": {
+        "master_joint": "2^-26",
+        "signature_joint": "2^-25",
+        "first_issuance": "2^-25",
+        "capacity_history": "2^-24",
+        "capacity_users": 3,
+        "one_sign_call": "2^-19"
+      },
+      "PARAM-II": {
+        "master_joint": "2^-25",
+        "signature_joint": "2^-24",
+        "first_issuance": "2^-25",
+        "capacity_history": "2^-24",
+        "capacity_users": 2,
+        "one_sign_call": "2^-18"
+      },
+      "PARAM-III": {
+        "master_joint": "2^-25",
+        "signature_joint": "2^-24",
+        "first_issuance": "2^-24",
+        "capacity_history": "2^-24",
+        "capacity_users": 1,
+        "one_sign_call": "2^-18"
+      }
+    },
+    "literal_density_width": {
+      "PARAM-I": {
+        "master_joint_exact_approx": "0.678080744390816",
+        "signature_joint_exact_approx": "0.8963679928680288",
+        "first_issuance": null,
+        "one_sign_call": "1"
+      },
+      "PARAM-II": {
+        "master_joint_exact_approx": "0.8173496821978954",
+        "signature_joint_exact_approx": "0.9666388614067902",
+        "first_issuance": null,
+        "one_sign_call": "1"
+      },
+      "PARAM-III": {
+        "master_joint_exact_approx": "0.8963679928680288",
+        "signature_joint_exact_approx": "0.989260407097799",
+        "first_issuance": null,
+        "one_sign_call": "1"
+      }
+    }
+  },
+  "remaining_nulls": [
+    "P(A minus B): mathematical positivity vs finite backend acceptance",
+    "P(B minus G): backend acceptance vs complete-gate failure",
+    "mass of roots/keys rejected by the guard and the accepted-root distribution relative to mu_A",
+    "beta_bad: issuing-key signing-gate failure mass under the ideal centered-HNF reference",
+    "full random-issuance/signature history TV (fault-free and faulty)",
+    "norm-exhaustion probability, native strong security, structural hardness, NIST category"
+  ],
+  "v1_verification": {
+    "nine_package_driver": {
+      "packages": 9,
+      "checks": 18,
+      "normal_and_optimized": true,
+      "all_passed": true
+    },
+    "random_key_sign_law_verifier": "verified (6 rows, 8 entries)",
+    "manifest_entries_checked": 61,
+    "manifest_mismatches": 0
+  },
+  "security": {
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "nist_security_category": null,
+    "functional_or_finite_tests_are_not_a_security_proof": true
+  }
+}

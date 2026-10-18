@@ -68,6 +68,9 @@ def test_guarded_setup_and_sign_bound_is_uniform_on_gated_key():
     assert call["one_sign_call_tv_dyadic_upper"] == "2^-19"
     assert backend.last_master_gate_audit is not None
     assert backend.last_sign_gate_audit is not None
+    assert backend.last_master_gate_extras["c_gate"]["certified"] is True
+    assert backend.last_master_gate_extras["object_guard"][
+        "raw_and_key_within_256bit_object_guard"] is True
 
 
 def test_uniform_issuance_bound_matches_frozen_source_receipt():
@@ -76,6 +79,8 @@ def test_uniform_issuance_bound_matches_frozen_source_receipt():
     bound = uniform_issuance_bound(params, backend, plan, INTERPRETATION)
     assert bound["closed"] is True
     assert bound["complete_law_tv_dyadic_upper"] == "2^-25"
+    assert bound["c_gate_certified"] is True
+    assert bound["finite_key_object_guard"] is True
 
 
 def test_literal_density_issuance_stays_null():
