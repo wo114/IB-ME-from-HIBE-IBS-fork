@@ -158,6 +158,20 @@ def _chkp_configuration(params, config):
             'this is an engineering budget, not a necessary condition or security admission')
 
 
+def _chkp_author2011_configuration(params, config):
+    _chkp_configuration(params, config)
+    # This version also exposes depth-one decryption, whose 2m preimages use
+    # the parent width rather than the leaf width. Check its own noise budget.
+    from ibme.lattice.chkp.joint_parameters import evaluate_noise
+
+    parent = evaluate_noise(q=params.q, dimension=2*params.m,
+                            width_squared=params.parent_width_squared, alpha=params.alpha,
+                            error_bits=64, seed_bits=256, encapsulations=2**20)
+    if parent['conditional_noise_sufficient'] is not True:
+        raise InvalidParameterError(
+            'CHKP author2011 depth-one conditional decoding sufficient gate failed')
+
+
 def _equal(actual, expected, label):
     if actual != expected:
         raise SerializationError(f"{label}: object differs from selected parameter snapshot")
@@ -290,6 +304,11 @@ def _portable_specs():
     from ibme.hibe.chkp import (CHKPHIBE, CHKPParams, CHKPPublicKey, CHKPMasterSecret,
         CHKPLevel1SecretKey, CHKPLevel2SecretKey, research_params,
         check_object as chkp_check, ciphertext_size as chkp_ciphertext_size)
+    from ibme.hibe.chkp.author2011 import (
+        Author2011HIBE, Author2011PublicKey, Author2011MasterSecret,
+        Author2011Level1Key, Author2011Level2Key, VERSION as author2011_version,
+        author2011_research_params, check_object as author2011_check,
+        ciphertext_size as author2011_ciphertext_size)
     from ibme.ibs.sis_ibs import SisIBSBackend, SisPublicKey, SisMasterSecret, SisSigningKey, IBS_EDUCATION_PARAMS
     from ibme.ibs.mock import MockIBSBackend, MockPublicKey, MockMasterSecret, MockSigningKey
     from ibme.ibs.luo import LuoIBSBackend, LuoMatrixParams, LuoPublicKey, LuoMasterSecret, LuoSigningKey
@@ -334,6 +353,19 @@ def _portable_specs():
                     ciphertext_size=chkp_ciphertext_size, object_parameter_binding="full-parameter-snapshot",
                     default_preset=lambda transport: "hybrid-research" if transport == "hybrid" else "direct-research",
                     validate_configuration=_chkp_configuration, validate_environment=_chkp_environment),
+        BackendSpec("chkp-author2011", "hibe", author2011_version, CHKPParams,
+                    {"hybrid-research": author2011_research_params()},
+                    lambda rng, fmt: Author2011HIBE(),
+                    hs(Author2011PublicKey, Author2011MasterSecret,
+                       Author2011Level1Key, Author2011Level2Key),
+                    author2011_check, two_level=True, key_binding=True,
+                    persistent_identity_cache=True,
+                    reason="2011 CHKP author-manuscript 3m; MP12 GenBasis option; n=2 research only; none/false/false",
+                    ciphertext_size=author2011_ciphertext_size,
+                    object_parameter_binding="full-parameter-snapshot",
+                    default_preset=lambda transport: "hybrid-research",
+                    validate_configuration=_chkp_author2011_configuration,
+                    validate_environment=_chkp_environment),
         BackendSpec("sis", "ibs", "sis-teaching-v1", Params, {"education": sis},
                     lambda rng, fmt: SisIBSBackend(rng=rng), ins(SisPublicKey,SisMasterSecret,SisSigningKey),
                     _sis_check,_sis_size,reason="teaching SIS; known forgery control retained",

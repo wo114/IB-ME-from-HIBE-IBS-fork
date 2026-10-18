@@ -30,20 +30,35 @@ HARD_CAPSULE_BYTES = 4 * 2**20
 HARD_PAYLOAD_BYTES = 16 * 2**20
 HARD_COMPONENT_BYTES = 16 * 2**20
 HARD_WIRE_BYTES = 32 * 2**20 + 1024
+HARD_EXTENDED_COMPONENT_BYTES = 64 * 2**20
+HARD_EXTENDED_WIRE_BYTES = 80 * 2**20 + 1024
 
 
-def _frame(kind, fields):
+def _component_limit(value_or_decoder):
+    """Only an explicitly declared backend object gets the larger private cap."""
+    limit = getattr(value_or_decoder, "hybrid_component_max_bytes", HARD_COMPONENT_BYTES)
+    if type(limit) is not int or limit not in (HARD_COMPONENT_BYTES, HARD_EXTENDED_COMPONENT_BYTES):
+        raise SerializationError("unsupported hybrid component budget")
+    return limit
+
+
+def _wire_limit(value_or_decoder):
+    return (HARD_EXTENDED_WIRE_BYTES if _component_limit(value_or_decoder)
+            == HARD_EXTENDED_COMPONENT_BYTES else HARD_WIRE_BYTES)
+
+
+def _frame(kind, fields, *, maximum=HARD_WIRE_BYTES):
     raw = MAGIC + encode_bytes(SUITE) + encode_bytes(kind) + b"".join(encode_bytes(x) for x in fields)
-    if len(raw) > HARD_WIRE_BYTES:
+    if len(raw) > maximum:
         raise SerializationError("hybrid object exceeds wire budget")
     return raw
 
 
-def _unframe(data, kind, count):
+def _unframe(data, kind, count, *, maximum=HARD_WIRE_BYTES):
     if not isinstance(data, (bytes, bytearray, memoryview)):
         raise SerializationError("hybrid object must be bytes")
     size = data.nbytes if isinstance(data, memoryview) else len(data)
-    if size > HARD_WIRE_BYTES:
+    if size > maximum:
         raise SerializationError("hybrid object exceeds wire budget")
     raw = bytes(data)
     if not raw.startswith(MAGIC):
@@ -68,13 +83,13 @@ def _component_bytes(value):
     if not callable(getattr(value, "to_bytes", None)):
         raise TypeError("expected a serializable HIBE component")
     raw = value.to_bytes()
-    if not isinstance(raw, bytes) or not 1 <= len(raw) <= HARD_COMPONENT_BYTES:
+    if not isinstance(raw, bytes) or not 1 <= len(raw) <= _component_limit(value):
         raise SerializationError("invalid hybrid component type/size")
     return raw
 
 
 def _canonical_load(decoder, raw):
-    if not 1 <= len(raw) <= HARD_COMPONENT_BYTES:
+    if not 1 <= len(raw) <= _component_limit(decoder):
         raise SerializationError("hybrid component exceeds budget")
     value = decoder.from_bytes(raw)
     if _component_bytes(value) != raw:
@@ -184,11 +199,14 @@ class _HybridSecret:
         object.__setattr__(self, "identities", tuple(validate_identity(value,
                             max_bytes=self.public_key.limits.identity_max_bytes) for value in self.identities))
 
-    def to_bytes(self): return _frame(self.KIND, (self.public_key.to_bytes(), _component_bytes(self.inner), *self.identities))
+    def to_bytes(self):
+        return _frame(self.KIND, (self.public_key.to_bytes(), _component_bytes(self.inner),
+                                  *self.identities), maximum=_wire_limit(self.inner))
 
     @classmethod
     def from_bytes(cls, data, public_type, inner_type):
-        public, inner, *identities = _unframe(data, cls.KIND, 2 + cls.IDENTITY_FIELDS)
+        public, inner, *identities = _unframe(data, cls.KIND, 2 + cls.IDENTITY_FIELDS,
+                                             maximum=_wire_limit(inner_type))
         try:
             return cls(HybridPublicKey.from_bytes(public, public_type), _canonical_load(inner_type, inner), tuple(identities))
         except IBMEError as exc:
