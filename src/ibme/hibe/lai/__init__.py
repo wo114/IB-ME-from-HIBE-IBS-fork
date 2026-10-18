@@ -3,7 +3,7 @@
 The package import is Sage-free; ``LaiHIBE`` (and therefore the arithmetic
 engine) is loaded lazily so registry/catalog discovery works on non-Sage hosts.
 """
-from .params import LaiParams, VERSION
+from .params import LaiParams, TARGET_CANDIDATE_PARAMS, VERSION
 from .objects import (
     LaiCiphertext,
     LaiLevel1SecretKey,
@@ -14,6 +14,7 @@ from .objects import (
 
 __all__ = [
     "LaiParams",
+    "TARGET_CANDIDATE_PARAMS",
     "VERSION",
     "LaiHIBE",
     "LaiPublicKey",

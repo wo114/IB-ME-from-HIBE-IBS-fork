@@ -1,6 +1,8 @@
 """Portable checks for the Lai PLWE parameter candidates."""
 from __future__ import annotations
 
+from ibme.assembly.registry import default_registry
+from ibme.hibe.lai.params import TARGET_CANDIDATE_PARAMS
 from experiments.research.candidates.lai.target_parameters import (
     CANDIDATES,
     SELECTED,
@@ -42,6 +44,15 @@ def test_margins_and_sizes_are_ordered():
     assert margin_proxy(c3) > margin_proxy(c2)
     assert sizes(c2)["level2_secret"] > sizes(c2)["level1_secret"]
     assert sizes(c2)["ciphertext"] > 0
+
+
+def test_target_preset_is_explicit_and_matches_c2():
+    spec = default_registry().get("hibe", "lai-ideal-hibe")
+    assert "target-research" in spec.presets
+    assert spec.presets["target-research"] == TARGET_CANDIDATE_PARAMS
+    assert TARGET_CANDIDATE_PARAMS.q == 274877976577
+    assert TARGET_CANDIDATE_PARAMS.n == 2048
+    assert TARGET_CANDIDATE_PARAMS.k == 39
 
 
 def test_audit_keeps_security_flags_false():

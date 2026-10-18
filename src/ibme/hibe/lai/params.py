@@ -98,3 +98,11 @@ class LaiParams:
     @property
     def version(self) -> str:
         return VERSION
+
+
+# Selected from the PLWE candidate screen: 128-bit-level heuristic estimate
+# (169.9 classical / 154.2 quantum under the pinned standard-attack model).
+# It is an explicit research preset, not the default and not a formal level.
+TARGET_CANDIDATE_PARAMS = LaiParams(
+    q=274877976577, n=2048, k=39, l=2, p=2, sigma=2.0,
+    sigma_r=1.0, identity_bytes=86, max_message_bytes=32)

@@ -55,7 +55,7 @@ C2 的实际单次运行（86 B 身份）：PK 1,617,969 B、MSK 2,416,693 B、S
 1. 混合攻击未估计；若后续 estimator 修复/补充，C2/C3 的 128-bit 结论可能改变。
 2. C2 只跑了 **1 个随机种子**、1 条诚实路径；没有目标参数的错配/篡改/截断/重放矩阵。
 3. 没有 perturbation；Klein 采样仍是功能级，不是证明级 `ringSampleD`。
-4. C2 未加入 registry 的默认 preset；`lai-ideal-hibe` 仍是 A 点研究后端。要提升为目标配置，需要参数审查、负测试、CLI/状态容量检查和性能评估。
+4. C2 已作为 `target-research` 显式 preset 登记，但不是默认 preset；`lai-ideal-hibe` 的默认/CLI 起点仍是 A 点。要把它提升为默认目标配置，需要参数审查、负测试、CLI/状态容量检查和性能评估。
 5. 尺寸/时间：SK2 约 35 MB、CT 约 1.23 MB、完整生命周期约 13 分钟（Sage）；目标演示需评估是否可接受或改 C/优化实现。
 6. 本文不声称 NIST category、QROM 安全或完整 HIBE 安全；`security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。
 
