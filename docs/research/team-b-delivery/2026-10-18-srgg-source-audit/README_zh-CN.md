@@ -9,6 +9,7 @@
 | [Theorem 2 抽象 SIG 接口](../2026-10-18-srgg-theorem-interface-mapping/proof.md) | 固定单公钥下，实际 Sign/Verify 可计算上因子化为候选 `(P,H1_P(id))` SIG 调用；`H̄_P` 在经典理想模型可作地址重命名，`(z,c)` 到规范签名字节为单射。p.8–9 的概括性验签调用及 G2 `H(x)=pk` 与 Table 3 值域有字面类型缺口。 | 抽样与公钥联合分布、真实 SHAKE/共享 oracle、原生 strong 前提及 QROM 归约；候选解释不能冒充原文证明。 |
 | [§5.2.3 伪造仿射格输入](../2026-10-18-srgg-forgery-input-mapping/proof.md) | 固定承诺 `w`、挑战 `c` 的目标为 `M_hz=w+Qjc mod 2Q`，整数核格行列式为 `Q^(dn)·2^256`。受限 `w=0,z=(x,c)` 子问题精确等价于 `Ax=hc mod Q`，其核格行列式为 `Q^(dn)`、范数预算为 `floor(γ²)−wt(c)`；定向测试含正反两侧。 | 短向量的存在／求解成本、作者通用公式究竟对应哪种子问题，以及 Table 5 伪造位数复现。 |
 | [Table 4 裸对象尺寸](../2026-10-18-srgg-table4-storage-mapping/proof.md) | `mpk=(32B seed_A,B)` 用每模 `Q` 系数 3 字节，`msk=R` 用每 CBD1 系数 2 位，三档均精确得到作者表中 `mpk/msk` 字节数。 | 这只是与表格一致的编码假设；用户密钥／签名 ANS、作者 C wire 与本实现 JSON 长度仍未对应。 |
+| [Table 5 β 到位数换算](../2026-10-18-srgg-table5-bit-conversion/proof.md) | 作者六个 β 代入 §5.2.1 的 `0.292β`、`0.265β` 并按最近整数取整，精确得到十二个表内经典／量子位数。 | β 的实际格输入、攻击模型、成功率与成本未复现；此算术不赋予当前实现安全等级。 |
 
 数值复算入口是 `python -m experiments.research.candidates.srgg.paper_key_recovery_mapping` 与 `python -m experiments.research.candidates.srgg.paper_forgery_input_mapping`；均先校验冻结 PDF 哈希。前者的 `author_table5_security_bits_reproduced`、`actual_primal_attack_cost_bits`、`complete_ring_hnf_crt_subfield_attack_cost` 保持 `null`；后者的 `actual_short_solution_or_attack_cost` 保持 `null`。密钥恢复测试用非零 CBD1 **支持** fixture 检查三档所有 `B` 列及每个系数，不把 fixture 说成通过 Setup 的随机根。哈希测试复用已有拒绝预算及来源符号测试；伪造输入测试只查格像与恢复等式，不求短解。
 
@@ -21,6 +22,7 @@
 | `PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_forgery_input_mapping.py tests/test_srgg_paper_verification_image.py` | 20 passed，0 failed |
 | `python -m experiments.research.candidates.srgg.paper_key_recovery_mapping` | 三行 JSON 正常生成，冻结 PDF 哈希匹配 |
 | `python -m experiments.research.candidates.srgg.paper_forgery_input_mapping` | 三行格输入 JSON 正常生成，冻结 PDF 哈希匹配；未复现作者伪造位数 |
+| 标准库 `fractions.Fraction` 逐个计算六个 β 的 `292β/1000`、`265β/1000` | Table 5 十二个位数全部匹配；β 来源未核 |
 | `git diff --check`、提交前 `git diff --cached --check` | 通过 |
 
 WSL 启动时报告过 Windows `E:\Service\DBus\bin` 路径翻译警告，但上述测试进程退出码均为 0。此批没有新的随机密码学实验，随机重复次数 0；新增伪造输入测试只用固定 14 字节身份和 13 字节消息。审计对象的代码入口分别限制身份 1–4096 字节、消息 0–65536 字节。经典理想 oracle 是显式条件模型，不是实际 SHAKE 或 QROM 的运行声明。既有 Table 4 参数保持 `n=512,p=16383,b=31,w=2,Q=15744063,d=2/3/4`，两种 Gaussian 解释未改，作者 C/ANS/1000 次基准未复现。代码功能测试不能替代正确性、困难性或安全归约证明。
