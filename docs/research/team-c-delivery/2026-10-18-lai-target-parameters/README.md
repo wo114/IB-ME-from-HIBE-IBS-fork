@@ -35,11 +35,13 @@ C2 的实际单次运行（86 B 身份）：PK 1,617,969 B、MSK 2,416,693 B、S
 
 ## 4. 估计模型与限制
 
-固定 [lattice-estimator](https://github.com/malb/lattice-estimator) `53da5982597709ba0fdf94ea37a84d822310fd84`，ADPS16 Core-SVP 经典 0.292 / 量子 0.265，LGSA。输入按 PLWE 的系数 LWE 处理：
+固定 [lattice-estimator](https://github.com/malb/lattice-estimator) `53da5982597709ba0fdf94ea37a84d822310fd84`，ADPS16 Core-SVP 经典 0.292 / 量子 0.265，**GSA** shape model。输入按 PLWE 的系数 LWE 处理：
 
 - 秘密维度 `n`，样本数 `m=(l+k)·n`（公开 `a` 的 l+k 个环样本）；
 - `Xs=D(σ)`，`Xe=D(p·σ)`（p=2）；
-- 标准攻击 `usvp`、`bdd`、`dual`；`bdd_hybrid`/`bdd_mitm_hybrid`/`dual_hybrid` 在 `n=2048, q≈2^38–2^39` 触发 estimator 的 `math domain error`，未计入，因此这些数字是**不完整攻击集**的启发式结果，不是安全证明。
+- 攻击集：`usvp`、`bdd`、`bdd_hybrid`、`bdd_mitm_hybrid`、`dual`、`dual_hybrid`；C2 的 **LGSA** hybrid 路径触发 estimator `math domain error`，因此完整集用 GSA 跑，C3 的 LGSA 可复现同值。
+- C2 完整集最小值：**169.94 bit 经典 / 154.23 bit 量子**（仍是 `usvp`）；C3：164.10 / 148.93。hybrid 项没有把最小值拉低。
+- 结果 JSON：[security-estimate.json](security-estimate.json)。这是启发式筛查，不是 NIST 等级或 HIBE 安全证明。
 
 正确性余量代理：以 n=256 的 q=2^30 失败（残差/容差=1.126）和 q=2^31 通过为基线，按 `n^1.9`、`k^2`、`σ^3` 缩放；C2 代理余量 2.76，实测单次通过。它不是完整误差界证明。
 
@@ -52,8 +54,8 @@ C2 的实际单次运行（86 B 身份）：PK 1,617,969 B、MSK 2,416,693 B、S
 
 ## 6. 未做与风险
 
-1. 混合攻击未估计；若后续 estimator 修复/补充，C2/C3 的 128-bit 结论可能改变。
-2. C2 只跑了 **1 个随机种子**；目标级负测试已覆盖 wrong-child/wrong-parent、h/u/v 篡改、非单位标签和截断/追加，但不是多轮攻击矩阵。v 篡改返回**不同明文**，说明原始 HIBE 无 CCA/完整性，必须依赖外层 BYTEAUTH。
+1. hybrid 攻击已用 GSA 完整集评估；但 LGSA 在 C2 上不可用，模型差异仍是风险，不能写成 NIST 等级或完整形式化结论。
+2. C2 已跑 **4 个独立种子**，全部诚实路径成功；但没有逐种子的残差/容差统计。目标级负测试覆盖 wrong-child/wrong-parent、h/u/v 篡改、非单位标签和截断/追加；v 篡改返回**不同明文**，说明原始 HIBE 无 CCA/完整性，必须依赖外层 BYTEAUTH。
 3. 没有 perturbation；Klein 采样仍是功能级，不是证明级 `ringSampleD`。
 4. C2 已作为 `target-research` 显式 preset 登记，且目标 CLI 生命周期已跑通；但它仍不是默认 preset，`lai-ideal-hibe` 的默认/CLI 起点仍是 A 点。要提升为默认，还需性能/资源政策审查。
 5. 尺寸/时间：SK2 约 35 MB、内层 CT 1.23 MB、完整协议 CT 约 1.36 MB、state 约 26 MB；CLI 生命周期约 13 分钟（Sage），目标演示需评估是否可接受或改 C/优化实现。
@@ -91,7 +93,7 @@ PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.cli check \
 
 ### 8.2 CLI 完整生命周期
 
-首次 CLI 失败于 `invalid hybrid component type/size`：C2 的 SK1=18.82 MB 超过 hybrid 的 16 MiB component 上限。将 [hybrid_hibe.py](../../../../src/ibme/protocol/hybrid_hibe.py) 的 `HARD_COMPONENT_BYTES`/`HARD_WIRE_BYTES` 提升到 **64 MiB**，capsule 仍为 4 MiB；`tests/test_hybrid_hibe.py tests/test_assembly.py` 64 passed。这是共享协议资源预算变更，需在合并时复核。
+首次 CLI 失败于 `invalid hybrid component type/size`：C2 的 SK1=18.82 MB 超过 hybrid 的 16 MiB component 上限。将 [hybrid_hibe.py](../../../../src/ibme/protocol/hybrid_hibe.py) 的 `HARD_COMPONENT_BYTES`/`HARD_WIRE_BYTES` 提升到 **64 MiB**，capsule 仍为 4 MiB；另加 `HARD_CIPHERTEXT_WIRE_BYTES=20 MiB`。`tests/test_hybrid_hibe.py tests/test_assembly.py` **65 passed**。这是共享协议资源预算变更，需在合并时复核。
 
 重跑命令（`setup` 使用 target preset，state 在 /tmp）：
 
@@ -109,6 +111,33 @@ python -m ibme.cli decrypt --receiver alice --sender bob \
 
 实测：setup 5 s、issue receiver 60 s、issue sender 11 s、encrypt 118 s、decrypt 572 s；14 B → **1,357,049 B** CT，解密一致；receiver key 20,439,553 B、sender key 313,778 B（sender 主要承载 IBS 签名密钥，目标 HIBE 子密钥在解密路径派生）；state 约 26 MB。suite digest `eda3502de91eff42f10969dac9c3e92fd31468b5e1bc8b5fc17c498468b81c28`。
 
+### 8.3 多随机种子
+
+`target_probe.py --seed N` 的 4 个独立种子（0 为早前单次，1–3 为 2026-10-19）：
+
+| seed | setup | extract | derive | encrypt | decrypt | 结果 |
+|---|---|---|---|---|---|---|
+| 0 | 2.79 | 42.21 | 645.0 | 121.04 | 21.79 | ok |
+| 1 | 3.03 | 39.09 | 624.84 | 126.73 | 21.83 | ok |
+| 2 | 3.13 | 39.13 | 624.06 | 124.18 | 21.33 | ok |
+| 3 | 3.05 | 39.56 | 622.38 | 125.27 | 21.14 | ok |
+
+4/4 成功；对象尺寸固定（PK 1,617,969；SK1 18,821,265；SK2 34,795,753；CT 1,228,844）。这只是生命周期成功率和耗时，不是残差分布/宽度统计。
+
+### 8.4 外层 BYTEAUTH 目标级负测试
+
+用 C2 的 CLI state/CT（1,357,049 B）在 `proto.decrypt` 外层做 tamper：
+
+| 用例 | 结果 | 耗时 |
+|---|---|---|
+| context tamper | 拒绝（BOTTOM） | 9.85 s |
+| signature tamper | 拒绝 | 9.82 s |
+| inner bytes tamper | 拒绝 | 10.53 s |
+| truncated CT | 拒绝 | 9.84 s |
+| appended CT | 拒绝 | 9.71 s |
+
+脚本：`experiments/research/candidates/lai/target_byteauth_negative.py`；JSON 在 `/tmp/lai-target-byteauth-negative.json`。**未单独测试**外层 wrong receiver/sender 和 replay；wrong-child/wrong-parent 已在原始 HIBE 层覆盖，replay 没有协议级状态。
+
 ## 9. 64 MiB 资源上限审查与默认决策（2026-10-18）
 
 ### 9.1 变更范围
@@ -121,15 +150,16 @@ python -m ibme.cli decrypt --receiver alice --sender bob \
 | `HARD_WIRE_BYTES` | 32 MiB + 1024 | **64 MiB + 1024** |
 | `HARD_CAPSULE_BYTES` | 4 MiB | **4 MiB（不变）** |
 | `HARD_PAYLOAD_BYTES` | 16 MiB | **16 MiB（不变）** |
+| `HARD_CIPHERTEXT_WIRE_BYTES` | 无（ciphertext 也走 32 MiB） | **20 MiB（新增，capsule+payload+4 KiB）** |
 
 没有改公共 API、字段编码、KDF/AEAD 或组合语义。
 
 ### 9.2 审查结论
 
 - **容量足够**：C2 的 receiver 文件 20,439,553 B（含 IBS 密钥），HIBE SK1=18.82 MB；解密路径派生的 SK2=34.80 MB；C3 的 SK2 约 36.51 MB。64 MiB 对 C2/C3 都有余量；C4（约 67 MB）仍不支持。
-- **网络/DoS 风险**：`HARD_CAPSULE_BYTES` 仍为 4 MiB，`HybridCiphertext` 总字段上限约 4 MiB capsule + 16 MiB body；但 `_unframe` 在字段检查前允许最多 64 MiB 的 wire，因此恶意的超长 hybrid 输入可先触发约 64 MiB 分配（旧上限 32 MiB）。这是有界但约 2× 的资源回归；建议后续加 **按对象类型的 wire 上限**（ciphertext 约 20 MiB，keys 仍 64 MiB）或把全局 wire 收紧到 40–48 MiB。
+- **网络/DoS 风险已收口**：`HARD_CAPSULE_BYTES` 仍为 4 MiB，`HybridCiphertext` 总字段上限约 4 MiB capsule + 16 MiB body；2026-10-19 增加 `HARD_CIPHERTEXT_WIRE_BYTES=20 MiB`，`HybridCiphertext.from_bytes` 在解析前就按 20 MiB 拒绝超长输入，不再先接受 64 MiB。keys 仍用 64 MiB component/wire。
 - **内存峰值**：64 MiB component 的 frame/unframe/规范化可能同时持有 2–3 份，峰值约 128–192 MB；C2 目标 CLI 在本地 state 路径实际成功，但不应把该上限解释为可安全接收 64 MiB 远程密钥。
-- **测试**：`tests/test_hybrid_hibe.py tests/test_assembly.py` **64 passed**；Lai CI 套件 **56 passed**；C2 目标 CLI 生命周期成功。没有刚好 64 MiB 边界的单元测试，64 MiB 仍是硬上限而非性能目标。
+- **测试**：`tests/test_hybrid_hibe.py tests/test_assembly.py` **65 passed**（含 ciphertext wire cap）；Lai CI 套件 **56 passed**；C2 目标 CLI 生命周期成功。没有刚好 64 MiB 边界的单元测试，64 MiB 仍是硬上限而非性能目标。
 - **其他后端**：只是放宽上限，不改变小参数后端的行为；A 点/默认 CLI 不受影响。
 
 ### 9.3 默认配置决策
@@ -142,11 +172,11 @@ python -m ibme.cli decrypt --receiver alice --sender bob \
 理由：
 
 1. C2 目标 CLI 生命周期约 13 分钟（decrypt 572 s），state 约 26 MB，SK2 约 35 MB；作为日常默认会显著拖慢 setup/发钥/解密。
-2. 目标级负测试只有 1 个随机种子；外层 BYTEAUTH 的目标级篡改/重放/截断矩阵尚未跑。
-3. hybrid 攻击未估计；169.9/154.2 bit 是标准攻击结果，不是完整安全结论。
-4. Klein 无 perturbation，仍是功能级采样。
+2. C2 已有 4 个种子，但没有逐种子残差/容差统计；外层 BYTEAUTH 的 wrong receiver/sender 和 replay 仍未单独测。
+3. hybrid 攻击已用 GSA 完整集估计；LGSA 在 C2 不可用，模型差异仍是风险。
+4. Klein 无 perturbation，仍是功能级采样；目标 CLI 仍约 13 分钟、state 26 MB。
 
-重新评估默认化的最低条件：≥3 个目标随机种子、外层 BYTEAUTH 目标级负测试、hybrid/混合攻击估计、资源政策确认（含上述按类型 wire 上限）。在此之前，C2 是“可选目标配置”，不是默认。
+重新评估默认化的最低条件：4 个种子已过（但没有残差统计）、外层 BYTEAUTH tamper/truncate 已过、hybrid GSA 已过、资源政策已补；仍差 wrong-identity/replay 外层测试、残差统计和目标性能可接受性。在此之前，C2 是“可选目标配置”，不是默认。
 
 ## 10. 复现
 

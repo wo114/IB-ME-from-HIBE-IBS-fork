@@ -71,4 +71,4 @@ def test_audit_keeps_security_flags_false():
     assert result["security_claim"] == "none"
     assert result["backend_admitted"] is False
     assert result["parameters_are_formal"] is False
-    assert result["security_model"]["excluded"].startswith("bdd_hybrid")
+    assert result["security_model"]["excluded"].startswith("LGSA")
