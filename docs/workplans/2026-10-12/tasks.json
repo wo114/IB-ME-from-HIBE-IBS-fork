@@ -1,14 +1,16 @@
 {
   "schema": "IBME_TEAM_PLAN/1",
-  "date": "2026-10-13",
+  "date": "2026-10-18",
+  "revision": "2026-10-18 状态刷新：PR #27—#38 已合入主线（current_main=4472775）；研究后端多批已收，正式安全参数与全就绪池真实配对仍缺，全部路线保持 none/false/false。",
   "planning_only": false,
   "baseline": {
     "main": "bc22c9cb834dee51e9c8b7a37040fa0c5349fcdb",
+    "current_main": "44727751b647c98b4c76961c575c667c2ab35d12",
     "pr11": "f98de52f25e117fa7e365c686c23e0c142d004b1",
     "pr10_included": "2868cf54411188562440820eba266ca3dd278fd9",
     "pr9_not_merged": "e5e0b97752f9291ce7621dd830d665baff86aef8"
   },
-  "human_priority": "当前按用户授权在已审PR14上实施B的尚缺IBS算法，核对全部截图路线；历史A目标保留在原收据。",
+  "human_priority": "PR #27—#38 已审查合入；A 正式尺寸投影（n4096≈209 GB、n6144≈507 GB）不可执行，先决定版本/参数域；B/C 新后端待公共登记、CLI 与真实 HIBE 配对；统筹转入 T5/T7 同口径比较与 T6/T8—T10 作品交付。GKR、ABB 标准模型、CHKP 标准模型暂缓。所有路线仍 none/false/false。",
   "deadline_assumed": null,
   "scope": "固定 Wang 两层匿名 HIBE+IBS；不做 Boyen–Li 增强隐私。",
   "composition_policy": {
@@ -18,7 +20,9 @@
     "initial_matrix_target": {
       "hibe": 2,
       "ibs": 3,
-      "already_completed": false
+      "already_completed": false,
+      "research_backends_ready": true,
+      "formal_pairs_ready": 0
     },
     "all_ready_compatible_pairs_must_be_tested": true,
     "report_representatives": 3,
@@ -33,7 +37,7 @@
   ],
   "roles": {
     "A": "矩阵HIBE与陷门工具",
-    "B": "原生格基IBS；当前用户授权工作范围",
+    "B": "原生格基IBS；多批研究后端已交，待登记/配对/正式参数",
     "C": "结构 HIBE、认证转换工程对照和 NTRU 工具",
     "coordinator": "主集成 Codex 执行；队长协调；三人交算法数据/章节"
   },
@@ -65,13 +69,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "research_profile_and_projection_done_formal_roles_pending",
+      "execution_state": "published_target_2m_3m_version_gap_all_formal_dimensions_unexecutable",
       "deliverables": [
         "研究配置/目标配置全参数与原文条件表",
         "根父叶尺寸/资源和第一阻塞",
         "下一真实路径输入选择"
       ],
-      "evidence": "../../research/team-a-delivery/2026-10-12-hibe-reference/README.md"
+      "evidence": "../../research/team-a-delivery/2026-10-17-chkp-published-target/README.md"
     },
     {
       "id": "A3",
@@ -81,13 +85,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "single_matrix_tools_real_248_and_chkp_shared_profile_proposal_verified_coordinator_merge_high_n_pending",
+      "execution_state": "wide_gadget_q256_mp12_structured_finite192_v2_executed_high_dim_exact_arithmetic_pending",
       "deliverables": [
         "现有有限工具接收与公开接口",
         "真实分布/委派、异常/资源测试",
         "消费者和误差口径"
       ],
-      "evidence": "../../research/team-a-delivery/2026-10-12-matrix-tools/README.md"
+      "evidence": "../../research/team-a-delivery/2026-10-16-wide-gadget/README.md"
     },
     {
       "id": "A1",
@@ -98,13 +102,13 @@
         "A0",
         "A3"
       ],
-      "execution_state": "mp12_variant_and_chkp_mp12_root_research_apis_merged_shared_matrix_profiles_formal_pending",
+      "execution_state": "structured_HG_default_registry_finite192_v2_six_IBS_CLI_install_restore_research_passed",
       "deliverables": [
         "六方法及真实 Extract→Derive",
         "对象/绑定/固定状态与严格 codec",
         "BackendSpec 提案与算法章节"
       ],
-      "evidence": "../../deliveries/2026-10-12-chkp-luo/README.md"
+      "evidence": "../../research/team-a-delivery/2026-10-16-finite192-runtime/README.md"
     },
     {
       "id": "A2",
@@ -114,13 +118,13 @@
       "depends_on": [
         "A3"
       ],
-      "execution_state": "real_ap09_two_level_seed32_2x2_luo_combination_and_attack_contracts_passed_n1_negative_control_formal_pending",
+      "execution_state": "real_ABB_default_registry_CLI_six_IBS202_and_installed_replay_passed_formal_pending",
       "deliverables": [
         "BasisDel/SampleR 两层算法与条件",
         "完整后端/codec/单体测试",
         "与 A1 可比数据"
       ],
-      "evidence": "../../research/team-a-delivery/2026-10-14-abb-complete/README.md"
+      "evidence": "../../research/team-a-delivery/2026-10-15-framework-and-structured/README.md"
     },
     {
       "id": "AR",
@@ -130,7 +134,7 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "reserve_models_missing_modules_finite_counts_reactivation_delivered_not_backends",
+      "execution_state": "deferred_by_user_2026_10_15_no_new_implementation",
       "deliverables": [
         "模型/对象/成本差异卡",
         "缺失模块和重启条件"
@@ -161,7 +165,7 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "planned",
+      "execution_state": "reference_retained_negative_controls_no_new_grid",
       "deliverables": [
         "现有参考/后端维护与必要接入",
         "筛查失败负控",
@@ -193,14 +197,14 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "research_five_methods_done_formal_and_default_registration_pending",
+      "execution_state": "pr31_fixed_issuer_service_merged_default_registered_formal_and_pairing_pending",
       "deliverables": [
         "自适应转换和固定服务规格",
         "真实原像/参数/状态/后端",
         "SIS 比较收据"
       ],
-      "completed_scope": "真实MP12/PW转换、完整五方法、规范对象、固定已发key多消息与跨进程恢复；q17 debug公开伪造负控",
-      "evidence": "../../research/team-b-delivery/2026-10-13-wang-pw/README.md"
+      "completed_scope": "真实MP12/PW转换、完整五方法、规范对象、固定已发key多消息与跨进程恢复；PR31固定发钥/pending/崩溃恢复已合入并默认登记；q17 debug公开伪造负控",
+      "evidence": "../../research/team-b-delivery/2026-10-15-wang-pw-service/README.md"
     },
     {
       "id": "B5",
@@ -210,14 +214,15 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "srgg_full_research_IBS_done_formal_and_sageloli_pending",
+      "execution_state": "srgg_pr37_default_structured_paper_services_merged_sageloli_pr34_complete_merged_registration_pairing_formal_pending",
       "deliverables": [
         "各原文固定服务/有限成本/采样门槛",
         "按通过次序交独立后端",
         "RSIS 容量和复合模数工具"
       ],
-      "completed_scope": "完整SRGG四算法/五方法、数值连续SampleF/Schur/真实gadget、签验、固定身份cache和恢复；ζ一致factor2解释，none/false",
-      "evidence": "../../research/team-b-delivery/2026-10-13-srgg-full/README.md"
+      "completed_scope": "完整SRGG四算法/五方法、数值连续SampleF/Schur/真实gadget、签验、固定身份cache和恢复；PR37默认/structured/paper三档与持久服务（专项1431项）已合入；Sageloli PR34两条独立五方法/对象/固定服务（145项）已合入；ζ/factor-one、总TV、HNF与正式参数待",
+      "evidence": "../../research/team-b-delivery/2026-10-16-srgg-paper-baseline/README_zh-CN.md",
+      "evidence_sageloli": "../../research/team-b-delivery/2026-10-16-sageloli-complete/README_zh-CN.md"
     },
     {
       "id": "BR",
@@ -242,12 +247,13 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "latte_default_registry_cli_10_combinations_and_install_passed_lai_qualification_blocked_anonymity_formal_pending",
+      "execution_state": "latte_default_registry_cli_10_combinations_install_passed_lai_counterexamples_zhang_qualification_done_anonymity_formal_pending",
       "deliverables": [
         "匿名/委派/采样/代码选择表",
         "LATTE 缓冲问题复验与差分",
         "先合格者完整六方法，后补另一条"
       ],
+      "completed_scope": "LATTE六方法/五对象、默认registry/CLI、10配置338检查、545项Sage、五档安装与原状态恢复；Lai 15项资格反例未实现HIBE；Zhang类型/模数资格已核，未补造Derive",
       "evidence": "../../research/team-c-delivery/2026-10-15-c-framework/README.md"
     },
     {
@@ -303,13 +309,13 @@
       "priority": "P0",
       "title": "PR 审查与版本接收",
       "depends_on": [],
-      "execution_state": "reviewed_merged_current_pr_batch",
+      "execution_state": "reviewed_merged_through_pr38_current_main_4472775",
       "deliverables": [
         "本轮分工/路线修订",
         "PR9/10/11 独立代码与证据接收",
         "固定基线/owner/差分/合并结论"
       ],
-      "completed_scope": "#9—#13固定版本均已审查合入；未来交付继续逐批接收，不代表全部候选完成。"
+      "completed_scope": "#9—#38固定版本均已审查合入（最新主线4472775）；未来交付继续逐批接收，不代表全部候选完成。"
     },
     {
       "id": "T1",
@@ -319,7 +325,7 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "planned",
+      "execution_state": "partial_registry_latte_abb_wang_srgg_cert_ibs_sageloli_fooli_pending",
       "deliverables": [
         "共享接口/登记示例",
         "独立严格参数/格式/容量/能力",
@@ -334,7 +340,7 @@
       "depends_on": [
         "T0"
       ],
-      "execution_state": "planned",
+      "execution_state": "partial_v2_state_binding_fixed_issuer_install_restore_no_rollback_claim",
       "deliverables": [
         "固定发钥/恢复/pending/中止",
         "跨公钥/profile/版本拒绝",
@@ -350,7 +356,7 @@
         "T1",
         "T2"
       ],
-      "execution_state": "planned",
+      "execution_state": "partial_real_combinations_404_338_34_34_full_pool_pending",
       "deliverables": [
         "预检状态/独立配置与 runner",
         "每个就绪配对真实生命周期/恢复",
@@ -365,7 +371,7 @@
       "depends_on": [
         "T3"
       ],
-      "execution_state": "planned",
+      "execution_state": "partial_attack_contracts_and_install_replay_negative_controls",
       "deliverables": [
         "四种匹配/伪造/接收者重签",
         "wire/参数/恢复/并发/中止负控",
@@ -395,7 +401,7 @@
       "depends_on": [
         "T1"
       ],
-      "execution_state": "planned",
+      "execution_state": "partial_catalog_ci_19_routes_no_ui",
       "deliverables": [
         "假设→算法→运行配置模型",
         "全配对状态/限制/已有测量",
@@ -473,7 +479,7 @@
       "priority": "P0",
       "task_id": "A1",
       "availability_inferred_from_plan": false,
-      "next_step": "正式困难参数、资源和组合条件；已有PR14六方法/整链/CLI不重写"
+      "next_step": "PR38出版版2m/3m版本差已核；正式困难参数、资源和出版版路线未实现，已有PR14六方法/整链/CLI不重写"
     },
     {
       "id": "abb-rom",
@@ -482,7 +488,7 @@
       "priority": "P1",
       "task_id": "A2",
       "availability_inferred_from_plan": false,
-      "next_step": "q26真实两层/32B/2×2与Luo组合已通过并保留公开n1攻击；统筹接入登记提案，正式参数/模型和可比安全配置继续核验"
+      "next_step": "q26真实两层/32B/2×2与Luo组合已通过并保留公开n1攻击；默认registry/CLI已接入，正式参数/模型/两角色困难性和公平比较继续核验"
     },
     {
       "id": "latte",
@@ -572,7 +578,7 @@
       "priority": "P2",
       "task_id": "B4",
       "availability_inferred_from_plan": false,
-      "next_step": "已有本批研究五方法；后继正式参数/固定服务映射/默认登记/真实HIBE配对"
+      "next_step": "PR31固定发钥服务已合入且默认已登记；正式参数、固定服务映射与其它真实HIBE配对"
     },
     {
       "id": "sageloli-sis",
@@ -581,7 +587,7 @@
       "priority": "P2",
       "task_id": "B5",
       "availability_inferred_from_plan": false,
-      "next_step": "固定服务游戏、q=3^k复合模数陷门/SampleD，再独立四算法"
+      "next_step": "PR34完整五方法/对象/固定服务已合入；公共登记/CLI/真实HIBE配对/正式参数待"
     },
     {
       "id": "sageloli-rsis",
@@ -590,7 +596,7 @@
       "priority": "P2",
       "task_id": "B5",
       "availability_inferred_from_plan": false,
-      "next_step": "复合模数环采样、固定服务与真实wire/MB容量，不能套素数NTT"
+      "next_step": "PR34完整五方法/固定服务已合入；环采样/容量/公共登记/真实配对/正式参数待，不能套素数NTT"
     },
     {
       "id": "srgg2025",
@@ -599,7 +605,7 @@
       "priority": "P2",
       "task_id": "B5",
       "availability_inferred_from_plan": false,
-      "next_step": "完整研究IBS已交；核连续数值总误差、ζ/原文强前提/HNF分布与正式参数，之后默认登记/真实HIBE配对"
+      "next_step": "PR37默认/structured/paper三档与持久服务已合入；paper原生strong/结构成本/历史律、连续总误差/ζ/HNF与正式参数、真实HIBE配对待"
     },
     {
       "id": "yu2026",
@@ -653,14 +659,15 @@
     "parameters_are_formal": false
   },
   "known_pending": [
-    "新的提交/PR和未来算法仍须逐版本审查；2026-10-15固定head的PR27—29已合入，其它批次按各自记录。",
-    "C64B 明确 opt-in，默认参数未改；条件界/模型和正式安全准入仍待核。",
-    "MP12 n2研究后端、公共工具、wheel/默认可选CLI已实跑；Sage/native仍为运行依赖，正式大尺寸/两角色攻击估计/变体模型待完成。",
-    "扩展 2×3 及全就绪池的真实组合仍未齐备。",
-    "LATTE/认证IBS已接公共框架；匿名/有限采样/转换模型和正式参数待核。Lai/Zhang类型条件与Xie原稿冲突尚未澄清。",
-    "完整展示/报告/支撑/答辩产物仍待实施，当前提供任务和模板。"
+    "新的提交/PR和未来算法仍须逐版本审查；2026-10-17/18 的 PR34/36/37/38 已合入，其它批次按各自记录。",
+    "全部路线保持 none/false/false；研究后端可运行不等于正式安全参数或完整配对。",
+    "A：正式尺寸（n4096≈209 GB、n6144≈507 GB 的 R 下界）不可执行；出版版 2m 与现 3m 的版本/秘密分布对应未闭合；完整 H/G 必要条件目前只到 n≤5。",
+    "B/C：Sageloli、SRGG structured/paper 新路线的公共登记、CLI 与真实 HIBE 配对未完成；Foo–Li/Yu 默认登记按容量与适配范围处理。",
+    "SRGG paper 路线的结构成本/历史律/Setup 后端差距/strong-game 审计仍在 WIP 工作树，未合入；作者论文 q/Q/2Q 映射与原生 strong 游戏对应未解。",
+    "GKR、ABB 标准模型、CHKP 标准模型按用户决定暂缓；Boyen–Li 增强隐私、Ext/ReExt 不在范围。",
+    "T5/T7 同口径比较与 T6/T8—T10 的界面/报告/PPT/演示/发布仍未实施。"
   ],
-  "last_a_evidence_date": "2026-10-12",
+  "last_a_evidence_date": "2026-10-18",
   "baseline_describes_original_plan_only": true,
   "latest_pr_acceptance": {
     "date": "2026-10-12",
@@ -689,6 +696,29 @@
   },
   "new_parameter_status": "研究debug档；没有新增正式安全参数或安全等级",
   "current_remote_pr_review": {
+    "date": "2026-10-18",
+    "prs": [
+      34,
+      36,
+      37,
+      38
+    ],
+    "states": "MERGED",
+    "remote_merge_performed": true,
+    "reports": [
+      "../../deliveries/2026-10-17-pr-review/README.md",
+      "../../deliveries/2026-10-18-pr38-review/README.md"
+    ],
+    "merged_heads": {
+      "34": "ca6d64ff45a8a5be57b06fa27b438d2afda09736",
+      "36": "1976c0b23bbdcb959c338738f437ddc313b17fbe",
+      "37": "cf6bd943a3aa8e27d7d4a0cb642725fa1d83a211",
+      "38": "cdf2797fe27c8bac9ce003ba753e7efff2bd9ef2"
+    },
+    "current_main": "44727751b647c98b4c76961c575c667c2ab35d12",
+    "scope": "Fixed heads only; no independent cryptographic security certification"
+  },
+  "previous_remote_pr_review_2026_10_15": {
     "date": "2026-10-15",
     "prs": [
       27,
@@ -697,9 +727,59 @@
     ],
     "states": "MERGED",
     "remote_merge_performed": true,
-    "report": "../../deliveries/2026-10-15-pr-review/README.md",
-    "scope": "Fixed heads only; no independent cryptographic security certification"
+    "report": "../../deliveries/2026-10-15-pr-review/README.md"
   },
+  "latest_a_published_target": {
+    "date": "2026-10-17",
+    "commit": "2e10392",
+    "path": "../../research/team-a-delivery/2026-10-17-chkp-published-target/README.md",
+    "finding": "出版版深度2使用 A0||H(rcv) 的 2m 前导和终端 G(rcv,phi)；现 mp12-structured-hg 按后期作者稿使用 3m 全 LWE 叶，作者稿定义与其 dm 定理/模拟器也不一致，禁止直接继承定理",
+    "candidate": "n6144, q=667066744249733736124919 (约80 bit), 身份86 B/层, 32 B seed, 2^20 H/G 与封装预算",
+    "single_parent_R_lower_bound_bytes": 507343011840,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "latest_b_sageloli": {
+    "date": "2026-10-16",
+    "commit": "a817735",
+    "path": "../../research/team-b-delivery/2026-10-16-sageloli-complete/README_zh-CN.md",
+    "five_method_backends": 2,
+    "sage_passed": 145,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "latest_b_srgg_routes": {
+    "date": "2026-10-16",
+    "commit": "7353770",
+    "path": "../../research/team-b-delivery/2026-10-16-srgg-paper-baseline/README_zh-CN.md",
+    "profiles": [
+      "research_default",
+      "structured",
+      "paper"
+    ],
+    "suite_passed": 1431,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "latest_framework_refresh": {
+    "date": "2026-10-18",
+    "branch": "codex/framework-reuse-refresh-2026-10-18",
+    "commit": "18a493c",
+    "path": "../../FRAMEWORK_REUSE_GUIDE.md",
+    "state": "unmerged, 1 commit ahead of upstream/main"
+  },
+  "wip_branches": [
+    {
+      "branch": "codex/srgg-fixed-service-2026-10-16",
+      "head": "3650eb4",
+      "observed_at": "2026-10-18T14:42+08:00",
+      "state": "WIP: 13 commits ahead / 18 behind upstream/main; structural-cost, history-law-followup and strong-game audits were still untracked at 2026-10-18 14:51",
+      "security_claim": "none"
+    }
+  ],
   "latest_b_full_srgg": {
     "date": "2026-10-13",
     "base": "3b50a40",

@@ -4,6 +4,21 @@
 
 2026-10-13 更新：[本批交付](../../research/team-b-delivery/2026-10-13-wang-pw/README.md)以已审 PR14 `87deec2` 为本地基础，接收已有 Luo 收尾，复验 Foo–Li/真实采样，新增 Wang+PW 完整研究签名链。原分工制定时的“尚未合并”状态不再作为当前代码判断。
 
+## 0. 2026-10-18 状态
+
+| ID | 当前状态 | 关键证据 / 未闭合项 |
+|---|---|---|
+| B1 | Luo PR14 终验接收；C64B 显式 opt-in，默认参数不变 | [Luo 终验](../../research/2026-10-12-luo-final-acceptance/README.md)；条件界/模型与正式准入待 |
+| B2 | Luo 矩阵真实四算法对照与失败参数负控保留 | 不重新实现；[算法总表](../../ALGORITHM_CATALOG.md) |
+| B3 | Foo–Li PR27 共同五方法/四对象/固定服务已合入，294 项 Sage 无 skip | [Foo–Li 后端](../../research/team-b-delivery/2026-10-15-foo-li-backend/README.md)；q3/n1 负控保留，默认登记/真实配对/正式参数待 |
+| B4 | Wang+PW 研究五方法已交；PR31 固定发钥/pending/崩溃恢复已合入，默认已登记 | [Wang–PW 服务](../../research/team-b-delivery/2026-10-15-wang-pw-service/README.md)；q17 调试档不安全，正式参数/固定服务映射/其它配对待 |
+| B5 | SRGG PR37 默认/structured/paper 三档与持久服务已合入（专项 1431 项）；Sageloli PR34 两条独立五方法/对象/固定服务已合入（145 项） | [SRGG paper 基线](../../research/team-b-delivery/2026-10-16-srgg-paper-baseline/README_zh-CN.md)、[Sageloli 完整交付](../../research/team-b-delivery/2026-10-16-sageloli-complete/README_zh-CN.md)；ζ/factor-one、总 TV、HNF、固定服务映射与正式参数待，新路线不能从默认路线自动继承配对结果 |
+| BR | Yu PR28 共同五方法/固定 issuer 已合入，550 项 Sage 无 skip | [Yu 后端](../../research/team-b-delivery/2026-10-15-yu-backend/README.md)；1—4 B 容量不足以供 Wang 帧，descriptor 明确阻止组合 |
+
+**未合入的活跃批次**：SRGG paper 路线的结构成本、历史律、Setup 后端差距和 strong-game 审计正在 WIP 工作树（`codex/srgg-fixed-service-2026-10-16`，13 个 WIP 提交，落后主线 18 个提交），合入前须先整合主线并保留各自 `none/false/false` 边界。
+
+**下一批（按 PROJECT_STATUS）**：① 新后端（Sageloli、SRGG structured/paper）的公共登记、CLI 与真实 HIBE 配对；② 各路线正式参数、总 TV/固定服务映射与模型对应；③ paper 路线 WIP 审计的整合与复核。
+
 ## 1. 顺序与明确取舍
 
 | ID | 必须交付 | 不能当作完成 |
@@ -32,7 +47,7 @@ Luo `src/ibme/ibs/luo*.py`、对应 tests、experiments 先与正在写的 owner
 
 模块环/NTT/拒绝工具由 B 认领具体文件；Sageloli 的复合模数工具不得套现有素数 NTT。矩阵 Gaussian/陷门接口复用 A；NTRU/外部 C 工具可请求 C。公共 registry、API、协议、CLI、共同 runner 由统筹写；交登记提案。材料放 `docs/research/team-b-delivery/<批次>/`。
 
-## 4. 第一批收尾内容
+## 4. 第一批收尾内容（2026-10-12；2026-10-18 已完成）
 
 1. 固定 PR #9 提交及文件清单，核 C64B 17 字段、默认/reference/compact 是否保持语义、恢复是否绑定全参数；核本地代码与外部测试版本。
 2. 实际执行 Luo 相关原语/codec/恢复回归，记录真实范围与失败；与 PR #11 最终装配接口复跑受影响组合，不拿 `0bf0855` 的旧 API 收据替代。
@@ -40,6 +55,8 @@ Luo `src/ibme/ibs/luo*.py`、对应 tests、experiments 先与正在写的 owner
 4. Foo–Li/Wang+PW 小决策表：现有代码、固定服务/经典 ROM 前提、Gaussian/范数条件、非平凡 SIS 参数与成本、需要改的最小对象。选择下一主编码批次并说明原因。
 
 每批用已有实际测试，不为文档重新跑无关昂贵采样。参数/模型尚未正式准入不妨碍满足研究执行条件的真实接入，但不能削检查或用教学伪造签名冒充目标算法。
+
+**完成情况（2026-10-18）**：四项均已完成；Luo 已收尾，Foo–Li/Wang+PW/SRGG/Sageloli/Yu 均已有合入的研究后端。下一批转入第 0 节的登记、真实配对与正式参数。
 
 ## 5. 每个新 IBS 的完整判据
 

@@ -1,6 +1,17 @@
 # C：结构 HIBE 与工程 IBS 对照任务书
 
-日期：2026-10-12。责任以[总计划](../三人方案分工与统一框架交付.md)为准，任务 ID 见[tasks.json](tasks.json)。C 先做来源可靠、可复用且适配的路线；不是提前指定 LATTE 或 Falcon 为最终三代表。
+日期：2026-10-12；状态刷新：2026-10-18。责任以[总计划](../三人方案分工与统一框架交付.md)为准，任务 ID 见[tasks.json](tasks.json)。C 先做来源可靠、可复用且适配的路线；不是提前指定 LATTE 或 Falcon 为最终三代表。★ 2026-10-18：C1/C2/C3/CR 均已交研究批次，当前状态见第 0 节，原“第一批/第二批”是 10-12 计划。
+
+## 0. 2026-10-18 状态
+
+| ID | 当前状态 | 关键证据 / 未闭合项 |
+|---|---|---|
+| C1 | LATTE 已接入默认 registry/CLI：10 配置 338 检查、545 项 Sage、437 项 Windows、五档安装与原状态恢复通过；Lai 交 15 项资格反例，未实现 HIBE；Zhang 类型/模数资格已交 | [C 框架](../../research/team-c-delivery/2026-10-15-c-framework/README.md)、[Lai 资格](../../research/team-c-delivery/2026-10-15-lai-qualification/README.md)、[Zhang 资格](../../research/team-c-delivery/2026-10-15-zhang-qualification/README.md)；LATTE 匿名/修订采样/正式参数未准入 |
+| C2 | 共享认证转换核心的 ML-DSA 三档与 Falcon 两档均已接入默认 registry：真实 LATTE 组合、CLI、零熵恢复与仓库外安装通过 | [C 框架](../../research/team-c-delivery/2026-10-15-c-framework/README.md)；强 UF/量子模型映射/固定服务/正式参数待，参数档不多计算法 |
+| C3 | Xie 修订方程研究核（53 项无 skip）已交；公开零挑战伪造与模 q 平移反例保留 | [Xie 研究](../../research/team-c-delivery/2026-10-15-xie-study/README.md)；不是 IBSBackend，原稿/正式参数/整体误差和模型 WIP |
+| CR | Zhang 理想格 HIBE 类型/模数资格已核，未补造 Derive | [Zhang 资格](../../research/team-c-delivery/2026-10-15-zhang-qualification/README.md)；无 HIBE 后端 |
+
+**下一批（按 PROJECT_STATUS）**：① LATTE 匿名性、修订采样有限误差与正式参数映射；② 认证转换的强 UF、量子模型、固定服务条件与正式参数；③ 由统筹接入新组合（C 不另写 IBME），Xie/Zhang 保留研究材料不冒充原稿复现。
 
 ## 1. 三条主工作与储备
 
@@ -33,7 +44,7 @@ LATTE 若匿名性尚无依据，可以交工程 HIBE 对照和真实运行材�
 
 尺寸和时间统计完整 IBS：证书、用户公钥、消息签名、编码、验证链及固定状态开销。底层 KAT 通过、裸 Falcon 很小都不能替代完整比较。转换的经典/量子模型和查询损失单列，不自动继承底层 QROM/NIST 等级到完整 IBS 或 IBME。
 
-## 4. 文件与第一批
+## 4. 文件与第一批（2026-10-12；2026-10-18 已完成）
 
 拟新增 `src/ibme/hibe/latte/`、`lai/`，认证转换核心/ML-DSA/Falcon 适配独立目录，Xie 独立研究/后端；具体路径先认领。NTRU/FFT/外部 C 依赖封装、专属测试/参数及许可证材料归 C；共同导出、registry、协议和 CLI 归统筹。材料放 `docs/research/team-c-delivery/<批次>/`。
 
@@ -42,3 +53,5 @@ LATTE 若匿名性尚无依据，可以交工程 HIBE 对照和真实运行材�
 第二批交选定结构 HIBE 或完整转换 IBS 的共同契约、严格对象/参数/绑定/恢复、真实生命周期，以及登记/容量提案。由统筹逐个与已就绪伙伴组装，C 不另写 IBME。若 C1 适配不明，继续 C2 独立工作并记录匿名缺口；如果 Xie 原文冲突仍未解决，保留 C3 核验材料，不改造后冒充原稿复现。
 
 代码/参数/测试/算法章节同批提交，含来源许可、环境、结果指纹和限制。当前配置未正式准入继续 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。Sage 使用 WSL `~/miniconda3/envs/sage`。
+
+**完成情况（2026-10-18）**：两批均已交；LATTE、ML-DSA、Falcon 已进入默认框架并完成真实组合/安装恢复，Lai/Xie/Zhang 保留研究核验材料。下一批转入第 0 节列的匿名/模型/正式参数与统筹配对。

@@ -4,6 +4,8 @@
 
 当前任务和外部包进度以 [PROJECT_STATUS.md](PROJECT_STATUS.md) 为准；本文用于选模块、找原文与代码、识别接入缺口。**最终三组完整组合尚未锁定，第三套 HIBE 不再强制属于 Module-LWE。** 普通签名转换成 IBS 的两个条目保留原 ID，BNN-Falcon / BNN-ML-DSA 不再重复计数。
 
+> 2026-10-18 状态：路线、来源与接口信息继续有效；10-15 之后的完成状态（Sageloli 完整后端 PR34、SRGG 默认/structured/paper 三档与持久服务 PR37、CHKP 出版版目标 PR38 等）以 [PROJECT_STATUS](PROJECT_STATUS.md) 的模块表和实现证据为准。本表的逐条状态标记未全部重刷，读到“已有组件/仅候选”时先核对该模块的最新交付。
+
 ## 1. 如何读这张表
 
 | 状态 | 本文含义 |
