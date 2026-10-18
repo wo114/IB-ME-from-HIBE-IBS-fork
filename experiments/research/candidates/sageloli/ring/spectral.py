@@ -32,7 +32,7 @@ def enclosed_transform(values,twist):
     No error bound for an opaque FFT library is assumed for PSD admission.
     """
     a=np.asarray(values)
-    if a.dtype.kind not in "iu" or a.ndim!=3 or np.any(np.abs(a)>=2**53):
+    if a.dtype.kind not in "iu" or a.ndim!=3 or np.any(a>=2**53) or np.any(a<=-2**53):
         raise ValueError("exact integer spectral input required")
     d=a.shape[-1]
     if d<4 or d&(d-1) or len(twist)!=d: raise ValueError("power-of-two transform")

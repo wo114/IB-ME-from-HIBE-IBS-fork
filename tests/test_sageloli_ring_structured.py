@@ -95,6 +95,8 @@ def test_low_rank_factor_matches_full_dense_covariance_and_uses_bound():
         assert np.max(np.abs(factor@factor.conj().T-target))<1e-7
     assert plan.certificate()["dense_covariance_allocated"] is False
     with pytest.raises(ValueError):FourierPlan(t,100,16)
+    with pytest.raises(ValueError):
+        FourierPlan(np.array([[[-2**63,0,0,0]]],dtype=np.int64),2**60,16)
 
 
 def test_spectral_draw_matches_small_dense_gaussian_moments():

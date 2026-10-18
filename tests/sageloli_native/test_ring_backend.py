@@ -82,3 +82,17 @@ def test_first_issuance_durably_publishes_and_recovers(backend,tmp_path):
     assert not (tmp_path/"master.bin.pending").exists()
     assert issuer.key_extract(b"first").to_bytes()==key.to_bytes()
     assert pk.to_bytes()==issuer.public_key().to_bytes()
+
+
+def test_hash_resource_failure_rejects_and_corrupt_cache_never_reissues(backend,issued,monkeypatch):
+    from experiments.research.candidates.sageloli.uniform import UniformSamplingAbort
+    from experiments.research.candidates.sageloli.ring import backend as module
+    pk,msk,key=issued;sig=backend.sign(key,b"message")
+    def failure(*args):raise UniformSamplingAbort("test budget exhausted")
+    monkeypatch.setattr(module,"h2",failure)
+    assert not backend.verify(pk,b"Alice",b"message",sig)
+    restored=MasterSecret.from_bytes(msk.to_bytes())
+    restored.states[b"Alice"]=("issued",SigningKey(pk,b"Bob",key.identity_salt,key.trapdoor))
+    before=backend.source.used
+    with pytest.raises(RuntimeError):backend.key_extract(restored,b"Alice")
+    assert restored.states[b"Alice"]==("failed",None) and backend.source.used==before

@@ -2,7 +2,7 @@
 import numpy as np
 from ibme.core.randomness import SecureRandom
 from ibme.core.encoding import encode_bytes
-from ..uniform import uniform_mod_q,shake_uniform_mod_q
+from ..uniform import uniform_mod_q,shake_uniform_mod_q,UniformSamplingAbort
 from .params import RingParams
 from .objects import PublicKey,MasterSecret,SigningKey,Signature,_identity
 from .native import Library,SmallMatrix,WideRow
@@ -97,7 +97,10 @@ class RingBackend:
         with master._lock:
             entry=master.states.get(identity)
             if entry:
-                if entry[0]=="issued":return entry[1]
+                if (entry[0]=="issued" and isinstance(entry[1],SigningKey)
+                        and entry[1].identity==identity and entry[1].public_key.context==pk.context):
+                    return entry[1]
+                if entry[0]=="issued":master.states[identity]=("failed",None)
                 raise SamplingAbort("identity pending/failed; no automatic reissue")
             if len(master.states)>=p.max_users:raise SamplingAbort("identity capacity")
             master.states[identity]=("pending",None)
@@ -144,7 +147,7 @@ class RingBackend:
             row=WideRow(self.library,np.concatenate((pk.a,h),axis=0),p.q)
             try:return np.array_equal(row.apply(signature.z),h2(pk,signature.identity_salt,signature.message_salt,identity,message))
             finally:row.close()
-        except (ValueError,TypeError,OverflowError,SamplingAbort):return False
+        except (ValueError,TypeError,OverflowError,SamplingAbort,UniformSamplingAbort):return False
 
     def load_signature(self,pk,raw):
         sig=Signature.from_bytes(raw,pk)
