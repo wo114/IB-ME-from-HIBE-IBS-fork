@@ -1,9 +1,9 @@
 {
-  "schema": "A/ABB-BASIS-REPRESENTATION-RUNTIME/2",
-  "source_schema": "A/ABB-BASIS-REPRESENTATION/2",
+  "schema": "A/ABB-BASIS-REPRESENTATION-RUNTIME/3",
+  "source_schema": "A/ABB-BASIS-REPRESENTATION/3",
   "measurements": {
-    "total_seconds": 0.010636677005095407,
-    "process_max_rss_kib": 23960
+    "total_seconds": 0.010790068976348266,
+    "process_max_rss_kib": 23956
   },
   "environment": {
     "python": "3.14.7",
@@ -20,7 +20,9 @@
   "source_root_trapdoor_comparison_candidate_count": 0,
   "source_ciphertext_comparison_candidate_count": 3,
   "source_joint_comparison_candidate_count": 0,
-  "decision": "do not implement external backing alone: it cannot make any tested ABB row runnable under the current complete-basis consumers; the source also has no joint comparison candidate",
+  "source_implementation_research_candidate_count": 3,
+  "blocked_implementation_research_candidate_count": 3,
+  "decision": "do not implement external backing alone: every source implementation research candidate remains blocked under the current complete-basis consumers",
   "security_claim": "none",
   "backend_admitted": false,
   "parameters_are_formal": false

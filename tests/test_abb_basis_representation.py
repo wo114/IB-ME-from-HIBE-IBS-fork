@@ -35,6 +35,7 @@ def test_target_rows_reject_external_storage_only_and_retain_public_size_blocker
     monkeypatch.setattr(DeterministicRandom, "read", forbidden)
     report = build_representation_report(SOURCE)
     assert report["complete_runtime_candidates"] == []
+    assert len(report["blocked_implementation_research_candidates"]) == 3
     assert report["root_or_key_generations"] == report["ciphertext_generations"] == 0
     assert report["private_entropy_bytes"] == 0
     assert report["not_an_impossibility_theorem"] is True
@@ -107,6 +108,21 @@ def test_changed_candidate_summary_fails_closed(tmp_path):
     with pytest.raises(ValueError, match="joint candidate summary"):
         build_representation_report(changed)
 
+    card = json.loads(SOURCE.read_text(encoding="utf-8"))
+    card["implementation_research_candidates"] = [card["rows"][0]["candidate_id"]]
+    changed.write_text(json.dumps(card), encoding="utf-8")
+    with pytest.raises(ValueError, match="research candidate summary"):
+        build_representation_report(changed)
+
+
+def test_changed_research_tier_policy_fails_closed(tmp_path):
+    card = json.loads(SOURCE.read_text(encoding="utf-8"))
+    card["research_tier_policy"]["grants_security_or_runtime_admission"] = True
+    changed = tmp_path / "changed-policy.json"
+    changed.write_text(json.dumps(card), encoding="utf-8")
+    with pytest.raises(ValueError, match="research tier policy"):
+        build_representation_report(changed)
+
 
 def test_runtime_summary_keeps_public_execution_and_security_separate():
     report = build_representation_report(SOURCE)
@@ -118,6 +134,8 @@ def test_runtime_summary_keeps_public_execution_and_security_separate():
     assert summary["source_root_trapdoor_comparison_candidate_count"] == 0
     assert summary["source_ciphertext_comparison_candidate_count"] == 3
     assert summary["source_joint_comparison_candidate_count"] == 0
+    assert summary["source_implementation_research_candidate_count"] == 3
+    assert summary["blocked_implementation_research_candidate_count"] == 3
     assert summary["security_claim"] == "none"
     assert summary["backend_admitted"] is summary["parameters_are_formal"] is False
 
@@ -126,6 +144,9 @@ def test_report_fingerprints_bind_the_source_card_code_and_fixed_paper():
     report = build_representation_report(SOURCE)
     assert report["source"]["sha256"] == hashlib.sha256(SOURCE.read_bytes()).hexdigest()
     assert report["source"]["candidate_classification"]["comparison_model_candidates"] == []
+    assert len(
+        report["source"]["candidate_classification"]["implementation_research_candidates"]
+    ) == 3
     for name, digest in report["source_sha256"].items():
         assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == digest
 

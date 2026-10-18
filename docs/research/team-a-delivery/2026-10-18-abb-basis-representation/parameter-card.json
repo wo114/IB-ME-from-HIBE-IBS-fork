@@ -1,9 +1,9 @@
 {
-  "schema": "A/ABB-BASIS-REPRESENTATION/2",
+  "schema": "A/ABB-BASIS-REPRESENTATION/3",
   "source": {
     "path": "docs/research/team-a-delivery/2026-10-18-abb-noise-tradeoff/parameter-card.json",
-    "schema": "A/ABB-NOISE-TRADEOFF/2",
-    "sha256": "051d7d86df6a4205021910c79736560060ee05b713620f3fabe326413fd9aa3a",
+    "schema": "A/ABB-NOISE-TRADEOFF/3",
+    "sha256": "2c9010d79f0749018d2b559060b7be231d9df68bdb96ae2b5682c40a2f4acea2",
     "fixed_inputs": {
       "q": "411376139330301510538742295639337626245683966408394965837151957",
       "q_bits": 208,
@@ -23,7 +23,19 @@
         "abb-rom-n10240-q208-chi721"
       ],
       "comparison_model_candidates": [],
+      "implementation_research_candidates": [
+        "abb-rom-n9600-q208-chi721",
+        "abb-rom-n9728-q208-chi721",
+        "abb-rom-n10240-q208-chi721"
+      ],
       "complete_runtime_candidates": []
+    },
+    "research_tier_policy": {
+      "name": "ciphertext-128-with-explicit-root-unknown",
+      "formal_comparison_gate_changed": false,
+      "allows_explicit_root_no_finite_estimate": true,
+      "rejects_finite_root_cost_below_target": true,
+      "grants_security_or_runtime_admission": false
     }
   },
   "paper_contract": {
@@ -65,6 +77,7 @@
       "n": 9472,
       "q": 411376139330301510538742295639337626245683966408394965837151957,
       "q_bits": 208,
+      "source_implementation_research_candidate": false,
       "basis_dimension": 15761408,
       "complete_basis_entries": 248421982142464,
       "current_private_codec_minimum_bytes": 1490531892854784,
@@ -108,6 +121,7 @@
       "n": 9600,
       "q": 411376139330301510538742295639337626245683966408394965837151957,
       "q_bits": 208,
+      "source_implementation_research_candidate": true,
       "basis_dimension": 15974400,
       "complete_basis_entries": 255181455360000,
       "current_private_codec_minimum_bytes": 1531088732160000,
@@ -151,6 +165,7 @@
       "n": 9728,
       "q": 411376139330301510538742295639337626245683966408394965837151957,
       "q_bits": 208,
+      "source_implementation_research_candidate": true,
       "basis_dimension": 16187392,
       "complete_basis_entries": 262031659761664,
       "current_private_codec_minimum_bytes": 1572189958569984,
@@ -194,6 +209,7 @@
       "n": 10240,
       "q": 411376139330301510538742295639337626245683966408394965837151957,
       "q_bits": 208,
+      "source_implementation_research_candidate": true,
       "basis_dimension": 17039360,
       "complete_basis_entries": 290339789209600,
       "current_private_codec_minimum_bytes": 1742038735257600,
@@ -290,8 +306,13 @@
       "runtime_candidate": false
     }
   ],
+  "blocked_implementation_research_candidates": [
+    "abb-rom-n9600-q208-chi721",
+    "abb-rom-n9728-q208-chi721",
+    "abb-rom-n10240-q208-chi721"
+  ],
   "complete_runtime_candidates": [],
-  "decision": "do not implement external backing alone: it cannot make any tested ABB row runnable under the current complete-basis consumers; the source also has no joint comparison candidate",
+  "decision": "do not implement external backing alone: every source implementation research candidate remains blocked under the current complete-basis consumers",
   "next_required_breakthrough": "a cited ABB-compatible algorithm that avoids expanding the randomized full basis in BasisDel and SamplePre, with a new distribution/security mapping; none exists in this repository",
   "not_an_impossibility_theorem": true,
   "root_or_key_generations": 0,
@@ -303,7 +324,7 @@
     "logical_cpus": 12
   },
   "source_sha256": {
-    "experiments/research/abb_rom/basis_representation_probe.py": "332e7b7240cfa40d91ce1ca4e66bce287ce830521065b52e2f1abef212da628b",
+    "experiments/research/abb_rom/basis_representation_probe.py": "93fa275973b0c0ccc1ab0f96f04f2002b7f406e4a188eb0f02bf459e0b6509cb",
     "src/ibme/hibe/abb_rom/objects.py": "6ba821f920cf610d73639c771dce79da8928663b45918da99991b7feacee6bb2",
     "src/ibme/hibe/abb_rom/primitives.py": "51b1fe5e251f353344b6f1642a9176dcbc48a40ebda13029b1c069faa9d5231b",
     "src/ibme/lattice/chkp/basis.py": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d",
@@ -314,8 +335,8 @@
     "papers/2010_lattice_basis_delegation_agrawal.pdf": "f12232770a19c612e5f430f94a556d74232ac08d9882e34367b60b3bbf205d11"
   },
   "measurements": {
-    "total_seconds": 0.010636677005095407,
-    "process_max_rss_kib": 23960
+    "total_seconds": 0.010790068976348266,
+    "process_max_rss_kib": 23956
   },
   "security_claim": "none",
   "backend_admitted": false,
