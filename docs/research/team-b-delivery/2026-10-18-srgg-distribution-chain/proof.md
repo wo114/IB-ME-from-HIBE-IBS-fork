@@ -484,6 +484,15 @@ number inferred from the fault-free bound.
 7. **No fault model.**  Disk, process, lock, rollback and power faults are
    outside the model.
 
+### Failed alternative route
+
+An exact `RingSchurPlan` acceptance certifier was attempted on a Table 4
+root.  It raised `ValueError: ring Schur rational resource limit exceeded`
+at the 16384-bit cap before completing.  The route is recorded as failed; no
+exact-A certificate from it is used.  The trace-moment/good-root route is the
+second alternative.  It closes the root-law bound, but not an average
+finite-chain error over the whole `B` population.
+
 ## 8. Source and code correspondence
 
 | paper object | code |

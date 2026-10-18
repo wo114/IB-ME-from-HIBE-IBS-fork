@@ -115,6 +115,10 @@ TV(guarded issue + s signs) ≤ min(1, δ_issue + s·ε_good).
   与单次签名（平凡 `1`）。
 - 作者省略的 `SampleZ`/C 程序逐位实现、原文 `r/σ`、Algorithm 4 `d/f`、
   `ζ` 因子、`q>2γ` 等来源歧义。
+- 精确 `RingSchurPlan` 接受证书路线：在一条 Table 4 根上于 16384-bit
+  有理数上限处失败（`ring Schur rational resource limit exceeded`），
+  未使用；本轮改用 trace-moment + 好根蕴含。该路线只闭合根律界，不闭合
+  全部 `B` 上的平均有限链误差。
 - native strong、结构困难性、正式参数准入、NIST 等级。
 - 故障概率与有故障完整历史。
 - norm-exhaustion 的单独概率（只包含在一次签名核距离里）。

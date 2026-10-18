@@ -661,6 +661,8 @@ def build_report(*, lifecycle=False):
             "literal-density one sign call: trivial 1",
             "original backend 64-attempt abort: null (non-retryable failures)",
             "exact author sampler / C program correspondence: null",
+            "exact ring Schur acceptance certifier: failed at the 16384-bit "
+            "rational cap on a Table 4 root; not used",
             "native strong, structural hardness, NIST category: null",
             "fault history: null (no fault probability model)",
         ],
