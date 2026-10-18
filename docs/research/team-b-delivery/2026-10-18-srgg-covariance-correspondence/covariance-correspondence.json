@@ -1,0 +1,96 @@
+{
+  "author_intended_resolution": null,
+  "backend_admitted": false,
+  "continuous_shape_accounting": {
+    "density_to_physical_covariance_scale_cancels_in_relative_factor": true,
+    "hypothetical_factor2_is_not_paper_algorithm": true,
+    "hypothetical_factor2_would_cancel_continuous_shape": true,
+    "paper_output_excess_over_Sigma_bar_in_units_of_r_squared_LLstar": 1,
+    "paper_perturbation_factor": 1
+  },
+  "finite_exact_checks": [
+    {
+      "all_binary_challenges": true,
+      "all_u_in": "{-1,0,1}^n",
+      "checked_pairs": 36,
+      "degree": 2
+    },
+    {
+      "all_binary_challenges": true,
+      "all_u_in": "{-1,0,1}^n",
+      "checked_pairs": 1296,
+      "degree": 4
+    },
+    {
+      "checked_sparse_pairs": 4,
+      "degree": 512
+    }
+  ],
+  "finite_ring": {
+    "normalizer_depends_on_challenge_coset": true,
+    "pushforward_density_shape_factor": 2,
+    "pushforward_support": "c+zeta*R",
+    "zeta": "1+X^(n/2)",
+    "zeta_lattice_index": {
+      "base": 2,
+      "exponent": 256
+    },
+    "zeta_star": "1-X^(n/2)",
+    "zeta_star_times_zeta": 2
+  },
+  "full_signature_law_bound": null,
+  "nist_security_category": null,
+  "original_rows": [
+    {
+      "d": 2,
+      "factor1_excess_over_target_in_units_of_r_squared": 1,
+      "factor2_hypothesis_excess_over_target_in_units_of_r_squared": 0,
+      "literal_density_shape_if_exact_1_16": "841/625",
+      "n": 512,
+      "name": "PARAM-I",
+      "r_published_approximation": "1.16"
+    },
+    {
+      "d": 3,
+      "factor1_excess_over_target_in_units_of_r_squared": 1,
+      "factor2_hypothesis_excess_over_target_in_units_of_r_squared": 0,
+      "literal_density_shape_if_exact_1_16": "841/625",
+      "n": 512,
+      "name": "PARAM-II",
+      "r_published_approximation": "1.16"
+    },
+    {
+      "d": 4,
+      "factor1_excess_over_target_in_units_of_r_squared": 1,
+      "factor2_hypothesis_excess_over_target_in_units_of_r_squared": 0,
+      "literal_density_shape_if_exact_1_16": "841/625",
+      "n": 512,
+      "name": "PARAM-III",
+      "r_published_approximation": "1.16"
+    }
+  ],
+  "paper": {
+    "locations": "Section 2.2 PDF p.3; Table 3 PDF p.6; Algorithm 7 PDF p.8",
+    "path": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "parameters_are_formal": false,
+  "routes": [
+    "source literal continuous-convolution shape: factor-one mismatch",
+    "alternative 1 physical-SD/density conversion: relative factor two persists",
+    "alternative 2 exact discrete coset: challenge-dependent normalizer and shape two"
+  ],
+  "schema": "IBME/SRGG-PAPER-COVARIANCE-CORRESPONDENCE/1",
+  "security_claim": "none",
+  "source_sha256": {
+    "experiments/research/candidates/srgg/paper_algebra.py": "5494acd7ab7cf42b2d9f33746b2535ffcbb58df0796c0b313dd56cc39547c81a",
+    "experiments/research/candidates/srgg/paper_backend.py": "da08ef7c93e4b921ef8a73ae233501eee693a67efefb899208f4f0a7079b6451",
+    "experiments/research/candidates/srgg/paper_covariance_correspondence.py": "560cbd7208d1e5654ad7e8c3259fd38d21650ffd5277fef22e65b78ef44c6aa4",
+    "experiments/research/candidates/srgg/paper_parameters.py": "3dc03c082d5595fb2f6d85ea2fdd284beb37b20c432854a38ff434f8aef201a4",
+    "experiments/research/candidates/srgg/paper_profiles.py": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f",
+    "experiments/research/candidates/srgg/paper_schur_backend.py": "f67cad3306c4a95495c48c12f29353791b2b5c05dadd1b6021d2b1cb58956693",
+    "experiments/research/candidates/srgg/structured_execution.py": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67",
+    "experiments/research/candidates/srgg/structured_geometry.py": "08d70876337afae3a7e8722a939c9996363af8eb5f8039d6437b6906814f1120",
+    "experiments/research/candidates/srgg/wide_scalar.py": "2f404dd95ec1c909c3c40dcc8b6e4b070d25864c2e2aaa0a80e8b291df5689ca"
+  }
+}
