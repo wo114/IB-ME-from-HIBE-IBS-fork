@@ -31,7 +31,7 @@ PYTHONPATH=.:src:.pytest-tmp-sage-deps PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -
 
 材料在精确 PR47 独立快照中用 Windows Python 3.14 实际运行两个原校验器：展示卡 **392 checks**、报告材料 **164 checks**，退出码均 0。另从原始 phases 重算全部 27 项显示计时中位数及次数，核对三个原收据对应提交的 2340 个源码 provider。主 Suite digest 为 `10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346`。没有为此重新生成密码密钥或重跑历史性能实验。
 
-合并前远端检查：PR43 为 23 success／1 预期手动 skipped；PR46、47、48 各 46 success／2 预期手动 skipped。`main` 分支规则查询返回空数组，账号有 push 权限；接收仍依赖上述实际审查和验证，没有使用管理员绕过或强制推送。
+固定上述原始 head 时的远端检查：PR43 为 23 success／1 预期手动 skipped；PR46、47、48 各 46 success／2 预期手动 skipped。这不是冲突解决后新 head 的全绿声明。`main` 分支规则查询返回空数组，账号有 push 权限；接收仍依赖上述实际审查和验证，没有使用管理员绕过或强制推送。
 
 ## SRGG 历史证据的版本集成
 
@@ -45,8 +45,8 @@ PYTHONPATH=.:src:.pytest-tmp-sage-deps PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -
 
 ## 材料冲突与文案
 
-PR46 的进度文档与主线冲突，需保留主线 IBS 接入盘点、C64B 实测及 ABB10／CHKP 接手安排，再加入展示卡。PR47 继续按依赖顺序接收，进度文档不得以旧头覆盖这些更新。
+PR43／48 已共同合入 `e102f5f4be5ade9aa6937b8f095edb888910e4c5`。PR46 的进度文档冲突已解决，保留主线 IBS 接入盘点、C64B 实测及 ABB10／CHKP 接手安排，再加入展示卡，合入 `05eec499e87b44aea8b27c6e05782193779d8a22`。PR47 改以最新 main 为基线，解决同处冲突并保留这些更新，随本批接收。
 
-报告及同批 README 将包含 `compare.py` 的命令组称为“只读”不准确：该比较脚本会写回 `comparison.json`。材料合入时须明确先生成／核验比较数据，再执行两个只读校验器，并同步报告在 materials.json 的 SHA-256；其余原收据、cards、Suite 与计时保持不变。
+报告及同批 README 将包含 `compare.py` 的命令组称为“只读”不准确：该比较脚本会写回 `comparison.json`。本轮已明确先生成／核验比较数据，再执行两个只读校验器，并同步报告在 materials.json 的 SHA-256；其余原收据、cards、Suite 与计时保持不变。冲突解决和文案修正后的实际合并树再以 Windows Python 3.14 运行原展示卡与材料校验器，分别 **392 checks passed**、**164 checks passed**，退出码均 0；没有重新执行比较生成或密码学性能实验。
 
 PR43 仍为独立研究 WIP；PR48 仍为组件，不宣称公共 HIBEBackend、Hybrid、CLI 或完整 IB-ME。三张展示卡共用一个 LATTE HIBE；不计三种 HIBE，不作跨安全目标速度排名。安全字段保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`，未新增安全等级或基础安全证明。

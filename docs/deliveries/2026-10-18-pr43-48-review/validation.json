@@ -79,5 +79,22 @@
     "independent_mathematical_replay_passes": 2,
     "original_driver_38_of_38_passed": false,
     "frozen_source_receipts_changed": false
+  },
+  "ci_snapshot_scope": "original reviewed PR heads; not a claim that conflict-resolution heads have completed CI",
+  "source_pair_merge_commit": "e102f5f4be5ade9aa6937b8f095edb888910e4c5",
+  "showcase_merge_commit": "05eec499e87b44aea8b27c6e05782193779d8a22",
+  "materials_resolved_tree": {
+    "card_checks": 392,
+    "material_checks": 164,
+    "exit_codes": [
+      0,
+      0
+    ],
+    "interpreter": "Windows Python 3.14",
+    "report_sha256": "d3ae98a1cd4699b2be3cd8474f8607ae5415f0bfb60d83530b3f8f8679040957",
+    "comparison_generator_rerun": false,
+    "cryptographic_benchmarks_rerun": false,
+    "fix": "Document compare.py output write and keep the following two validators read-only; update report SHA-256 only in materials facts",
+    "pr47_merge": "included with this review update; final commit recorded by PR and Git history"
   }
 }
