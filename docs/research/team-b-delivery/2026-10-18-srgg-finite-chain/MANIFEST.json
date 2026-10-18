@@ -1,0 +1,133 @@
+{
+  "entries": {
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/README.md": {
+      "bytes": 4523,
+      "sha256": "579659b1c1cdcafacdee55a3f86a8c5bc83341b63681942a06a1ffc142adaec5"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/README_zh-CN.md": {
+      "bytes": 6339,
+      "sha256": "7fe655d087f0527155cf1772f86759e30f69698ead8fb288f0493ee063ecae86"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/finite-fixed-root.json": {
+      "bytes": 67338,
+      "sha256": "d1b4334c933248c2f4a26a004c20f6dbd05171cde021396fbb8188dc6a015e59"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/joint-fixed-root.json": {
+      "bytes": 137574,
+      "sha256": "c36bac08885e29595bbf34026def2f14cdc8942053f5a799cb964df1a23ed143"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/literal-product-fallback.json": {
+      "bytes": 49454,
+      "sha256": "bf2c3e166ae75cc302c9e848e18a1731f7763920f032b12b7a266858564ff5fc"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/proof.md": {
+      "bytes": 8122,
+      "sha256": "9566fdfc36a2fe3ecdc04138c2cfa2f3e2870f85ff0327d2dc23d2f796e87da7"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/validation.json": {
+      "bytes": 3836,
+      "sha256": "7369b48563df949e06ed3c83d2adce0dfbe9e92ec03f9160a276b35bca9c90c5"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/verify_delivery.py": {
+      "bytes": 9008,
+      "sha256": "236470c9f64920143ae23310e7a230a56ea3948c339f1cdb48258b5ee5746aed"
+    },
+    "experiments/research/candidates/srgg/aggregate_budget.py": {
+      "bytes": 13974,
+      "sha256": "ade4d313fefe5973030ac6ae29b4eb40bce83b440b7b8dee342ec789466b9a20"
+    },
+    "experiments/research/candidates/srgg/paper_parameters.py": {
+      "bytes": 4003,
+      "sha256": "3dc03c082d5595fb2f6d85ea2fdd284beb37b20c432854a38ff434f8aef201a4"
+    },
+    "experiments/research/candidates/srgg/paper_profiles.py": {
+      "bytes": 6580,
+      "sha256": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f"
+    },
+    "experiments/research/candidates/srgg/paper_rounding_budget.py": {
+      "bytes": 17799,
+      "sha256": "76aefbae24c11706715d22f6ca59a5cb9a5433c5edfd44fe291e47c53de7e9c3"
+    },
+    "experiments/research/candidates/srgg/paper_schur_backend.py": {
+      "bytes": 3968,
+      "sha256": "f67cad3306c4a95495c48c12f29353791b2b5c05dadd1b6021d2b1cb58956693"
+    },
+    "experiments/research/candidates/srgg/paper_schur_convolution.py": {
+      "bytes": 5849,
+      "sha256": "bd3726771509bfc23b83d6e096ac62c9244d5f3921cfda7e2574608dd7a9a5e1"
+    },
+    "experiments/research/candidates/srgg/paper_schur_finite_chain.py": {
+      "bytes": 17328,
+      "sha256": "1ea3666027c3793b99a4d6107084885ae68937915f560c502c4aaa62ce4c9a77"
+    },
+    "experiments/research/candidates/srgg/paper_schur_finite_chain_audit.py": {
+      "bytes": 5571,
+      "sha256": "da8b2da6b61799cecb82cb22ac7ad6595cc1bb02fa550cbe6f815880b600ea3c"
+    },
+    "experiments/research/candidates/srgg/paper_schur_fourier.py": {
+      "bytes": 9173,
+      "sha256": "e6372ccddc5ea98188736eb5ed48929f8fcd43bc2965a7c8827b65a2d6ca5208"
+    },
+    "experiments/research/candidates/srgg/paper_schur_joint_bound_audit.py": {
+      "bytes": 10526,
+      "sha256": "df32df61cd27db8c1d42899a3ae5cd8593c7322d67b63f4a48e191ea16a4a2d7"
+    },
+    "experiments/research/candidates/srgg/paper_schur_literal_fallback.py": {
+      "bytes": 5638,
+      "sha256": "cb0f1907277139402f3fd72b2d503a64a87c37e62f511438c460b541d4a184b3"
+    },
+    "experiments/research/candidates/srgg/paper_schur_literal_fallback_audit.py": {
+      "bytes": 3410,
+      "sha256": "30669cea34e9701fece5bfb2604f9b03a865e2d06d42eae4dd0f61e9a199e893"
+    },
+    "experiments/research/candidates/srgg/paper_schur_literal_moment.py": {
+      "bytes": 7111,
+      "sha256": "1c51ceb330fd250b3cfc89d55b1a989f932b03432b306ff1fb2cbcbe91b0918d"
+    },
+    "experiments/research/candidates/srgg/paper_schur_normalizer.py": {
+      "bytes": 4070,
+      "sha256": "17d673e5e793385a3cc83e0c91f5f92f9cb523553981c96139afab8a94f72ef6"
+    },
+    "experiments/research/candidates/srgg/paper_schur_numerical.py": {
+      "bytes": 12113,
+      "sha256": "0d2005bc6cd9b430c06e5c36f7c02e20fe5073463b1d504eb8dd064461c0cfb8"
+    },
+    "experiments/research/candidates/srgg/paper_schur_samplef.py": {
+      "bytes": 9165,
+      "sha256": "5ddce65eb19272d1e2f2965421a065e6d55227661b0627ab640bd5026b3082fb"
+    },
+    "experiments/research/candidates/srgg/wide_scalar.py": {
+      "bytes": 18555,
+      "sha256": "2f404dd95ec1c909c3c40dcc8b6e4b070d25864c2e2aaa0a80e8b291df5689ca"
+    },
+    "papers/2025_efficient_ibs_jia.pdf": {
+      "bytes": 512758,
+      "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+    },
+    "tests/test_srgg_paper_schur_convolution.py": {
+      "bytes": 5342,
+      "sha256": "272dfc2dc4da67b473ef2a61fd03fcf33a61f22959b832b6fb676629d1ef73c3"
+    },
+    "tests/test_srgg_paper_schur_finite_chain.py": {
+      "bytes": 7673,
+      "sha256": "f5832ed8e8745abe132706038e20ece8fc2c08714c097d62939dc909024a76af"
+    },
+    "tests/test_srgg_paper_schur_joint_bound_audit.py": {
+      "bytes": 2483,
+      "sha256": "0bbbb4e6ae359b317bf2519c77c7abfcabc00e9eff8d7cf021a28ff62796f835"
+    },
+    "tests/test_srgg_paper_schur_literal_fallback.py": {
+      "bytes": 4146,
+      "sha256": "979a81a896a2efbd41e241f0ced793c49e31fc376b15761bb0948c50dce75b9d"
+    },
+    "tests/test_srgg_paper_schur_literal_fallback_audit.py": {
+      "bytes": 1062,
+      "sha256": "e325f3d25baeb476e15266a8d64673c0c6c26649ed37a0419941eeec264eff31"
+    },
+    "tests/test_srgg_paper_schur_literal_moment.py": {
+      "bytes": 4251,
+      "sha256": "7bba360437fd196236521183592ff200553e528468ada61b97cfa35b57b0282f"
+    }
+  },
+  "schema": "IBME/SRGG-FINITE-CHAIN-DELIVERY-MANIFEST/1"
+}
