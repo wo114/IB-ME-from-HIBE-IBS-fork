@@ -1,0 +1,53 @@
+{
+  "schema": "IBME/SRGG-SETUP-ACCEPTANCE-VALIDATION/1",
+  "source_paper_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+  "report_sha256": "ab36bae76b13e5a9bb58a596353a988f2d17d2ff7491072af65151a71c7a2cea",
+  "environment": {
+    "os": "Windows 11 host with WSL2",
+    "sage": "10.9",
+    "python": "3.13.15",
+    "hardware": "Intel Core Ultra 7 255HX; approximately 31.4 GiB RAM"
+  },
+  "paper_inputs": {
+    "degree": 512,
+    "CBD1_coefficient_probabilities": {"-1": "1/4", "0": "1/2", "1": "1/4"},
+    "base": 31,
+    "w": 2,
+    "rank_d": [2, 3, 4],
+    "gaussian_interpretations_checked": ["table-standard-deviation", "literal-density-width"],
+    "rounded_author_widths_exact_internal_values_unknown": true
+  },
+  "mathematical_results": {
+    "one_attempt_rejection_upper_approx": [0.205518504, 0.095132911, 0.046673365],
+    "independent_64_retry_exhaustion_strict_upper": ["2^-146", "2^-217", "2^-282"],
+    "exact_rational_source": "setup-acceptance.json",
+    "actual_backend_root_law_certified": false,
+    "actual_backend_abort_certified": false
+  },
+  "tests": {
+    "focused_command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_setup_acceptance.py",
+    "focused_passed": 9,
+    "focused_failed": 0,
+    "full_srgg_suite": {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg*.py",
+      "passed": 1767,
+      "failed": 0,
+      "elapsed_seconds": 365.56,
+      "collection_scope": "through fixed-root finite chain and mathematical Setup acceptance; later independent diagnostic tests are validated separately"
+    },
+    "independent_mathematical_review": "Fourier normalization, CBD1 moments, hook identity and exact dyadic constants checked separately"
+  },
+  "limitations": {
+    "finite_interval_inconclusive_mass": null,
+    "actual_backend_success_root_distribution_tv": null,
+    "actual_backend_setup_fault_or_abort": null,
+    "all_accepted_roots_finite_source_schur_tv": null,
+    "full_IBS_history_tv": null,
+    "native_strong_security": null,
+    "formal_parameter_admission": null
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}

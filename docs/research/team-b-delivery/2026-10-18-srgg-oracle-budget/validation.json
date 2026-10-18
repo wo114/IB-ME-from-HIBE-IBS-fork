@@ -1,0 +1,22 @@
+{
+  "schema": "IBME/SRGG-PAPER-ORACLE-BUDGET-VALIDATION/1",
+  "paper_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+  "parameters": "original Table 4: n=512, Q=15744063, d=2/3/4",
+  "test_command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_oracle_budget.py",
+  "test_passed": 10,
+  "test_failed": 0,
+  "test_skipped": 0,
+  "sage": "10.9",
+  "python": "3.13.15",
+  "environment": "WSL2 Sage on Windows host",
+  "identity_bytes": null,
+  "message_bytes": null,
+  "setup_runs": 0,
+  "signature_runs": 0,
+  "rom_model_is_a_premise": true,
+  "concrete_SHAKE_to_ROM_bound": null,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}
