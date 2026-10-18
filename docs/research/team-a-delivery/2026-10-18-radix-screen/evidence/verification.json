@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "provider_occurrences": {
+    "original_screen": 46,
+    "reclassified_screen": 46,
+    "falcon_benchmark": 780
+  },
+  "distinct_commit_provider_pairs": 166,
+  "unchanged_mathematical_rows": 288,
+  "input_sha256": "24469e55a0a04a859a868ffcbb4f8d7ba9f74fae5221b81c9f47dc46e4e36726",
+  "policy_source_commit": "a709e82c01bd30db590452cef6f0401d8e8c3635",
+  "original_math_model_source_commit": "93b8d5fecb175dcdffda3e7e8c8b32378a2bbe4e",
+  "full_benchmark_runner_matches_prior_MLDSA_baseline": true,
+  "private_state_files_opened": 0
+}
