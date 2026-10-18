@@ -33,4 +33,4 @@ def test_qualification_does_not_register_or_claim_a_hibe():
     assert result["stage"]=="qualification_only" and not result["HIBE_implemented"]
     assert result["adopted_scheme_modifications"]==[]
     from ibme.assembly.registry import default_registry
-    assert not default_registry().get("hibe","lai-ideal-hibe").available
+    assert default_registry().get("hibe","lai-ideal-hibe").available

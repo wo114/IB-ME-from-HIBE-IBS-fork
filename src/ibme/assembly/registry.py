@@ -358,7 +358,7 @@ def _portable_specs():
                     object_parameter_binding="full-parameter-snapshot",master_public_key=lambda obj:obj.public_key,
                     default_preset=lambda transport: "research"),
     ]
-    for identifier in ("lai-ideal-hibe", "gkr2025", "zhang2020", "abb-standard-selective", "chkp-standard"):
+    for identifier in ("gkr2025", "zhang2020", "abb-standard-selective", "chkp-standard"):
         specs.append(BackendSpec(identifier,"hibe","unavailable-v1",available=False,reason="public backend not delivered; no mock fallback"))
     for identifier in ("yu2026","sageloli-sis","sageloli-rsis","foo-li","xie-ntru-ibs"):
         specs.append(BackendSpec(identifier,"ibs","unavailable-v1",available=False,reason="public backend not delivered; no mock fallback"))
@@ -367,6 +367,8 @@ def _portable_specs():
     # "reference" is the existing suite spelling for their canonical-json-v1
     # encoding, not a second algorithm or a different signature representation.
     specs.extend((_wang_pw_spec(), _srgg_spec()))
+    from ibme.hibe.lai.registration import backend_spec as lai_spec
+    specs.append(lai_spec())
     from ibme.hibe.latte.registration import backend_spec as latte_spec
     from ibme.ibs.certified.registration import backend_spec as certified_spec, falcon_backend_spec
     # The existing route selector 'latte' names the delivered LATTE-3 engine;
