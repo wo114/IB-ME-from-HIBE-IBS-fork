@@ -1,0 +1,26 @@
+{
+  "profile": "PARAM-III",
+  "interpretation": "literal-density-width",
+  "threshold_C_squared_exact": "3408757216381485383484509/310364516660488498404",
+  "witness_lambda_max": 10980.728366291009,
+  "witness_gap_to_C": 2.348091867273979,
+  "witness_sha256": "656f19fb2d963bc058a2e9c09eb8d60b2cd91daf0cc7bb321ad775f2e8056423",
+  "samples_examined": 20000,
+  "search_seed": 20261018,
+  "setup_attempts": 1,
+  "extract_calls": 1,
+  "sign_attempts": 1,
+  "all_gates": {
+    "setup_returned": true,
+    "c_gate": true,
+    "master_audit": true,
+    "object_envelope": true,
+    "verify": true
+  },
+  "functional_pass": true,
+  "scope": "one deterministic worst-case witness; not a probability or security proof",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}

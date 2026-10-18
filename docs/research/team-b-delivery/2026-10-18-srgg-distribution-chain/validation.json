@@ -1,0 +1,97 @@
+{
+  "schema": "IBME/SRGG-PAPER-DISTRIBUTION-CHAIN-VALIDATION/1",
+  "baseline_commit": "cd31389f91e5",
+  "branch": "codex/srgg-dist-chain-deepseek-2026-10-18",
+  "worktree": "C:/Users/A/.codex/worktrees/srgg-dist-chain-2026-10-18/IB-ME-from-HIBE-IBS",
+  "environment": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15",
+    "sage": "10.9",
+    "wsl_sage": "~/miniconda3/envs/sage"
+  },
+  "commands": [
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_distribution_chain.py",
+      "result": "7 passed in 27.48s"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_distribution_chain.py tests/test_srgg_paper_setup_acceptance.py tests/test_srgg_paper_source_issuance_bridge.py tests/test_srgg_paper_schur_finite_chain.py tests/test_srgg_paper_schur_numerical.py",
+      "result": "39 passed in 97.87s"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.srgg.paper_distribution_chain --lifecycle --output build/distribution-chain.json",
+      "result": "6 rows; lifecycle true; all six functional probes verified; security_claim=none"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python docs/research/team-b-delivery/2026-10-18-srgg-distribution-chain/boundary_probe.py --profile PARAM-I --interpretation literal-density-width --samples 20000 --seed 20261018 --output .../boundary-PARAM-I.json",
+      "result": "functional_pass=true; witness_lambda_max=5936.887604935773; gap_to_C=0.2870510557104353"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python docs/research/team-b-delivery/2026-10-18-srgg-distribution-chain/boundary_probe.py --profile PARAM-II --interpretation literal-density-width --samples 20000 --seed 20261018 --output .../boundary-PARAM-II.json",
+      "result": "functional_pass=true; witness_lambda_max=8483.712856702552; gap_to_C=0.26882711761572864"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python docs/research/team-b-delivery/2026-10-18-srgg-distribution-chain/boundary_probe.py --profile PARAM-III --interpretation literal-density-width --samples 20000 --seed 20261018 --output .../boundary-PARAM-III.json",
+      "result": "functional_pass=true; witness_lambda_max=10980.728366291009; gap_to_C=2.348091867273979"
+    },
+    {
+      "command": "/usr/bin/python3 docs/research/team-b-delivery/2026-10-18-srgg-distribution-chain/verify_delivery.py",
+      "result": "passed; 6 rows; 3 boundary receipts; security_claim=none"
+    }
+  ],
+  "test_summary": {
+    "distribution_chain_tests": "7 passed",
+    "related_sage_subset": "39 passed"
+  },
+  "boundary_probes": [
+    {
+      "profile": "PARAM-I",
+      "interpretation": "literal-density-width",
+      "witness_lambda_max": 5936.887604935773,
+      "witness_gap_to_C": 0.2870510557104353,
+      "witness_sha256": "0509407af8861f90a3c2df332600c221a5d168cc1e097d85f6f5dfee51b3039a",
+      "functional_pass": true
+    },
+    {
+      "profile": "PARAM-II",
+      "interpretation": "literal-density-width",
+      "witness_lambda_max": 8483.712856702552,
+      "witness_gap_to_C": 0.26882711761572864,
+      "witness_sha256": "fda46b11af23597f82e935725f175cdf3e6e84a0860f2a5bf8f4327cdb2bea22",
+      "functional_pass": true
+    },
+    {
+      "profile": "PARAM-III",
+      "interpretation": "literal-density-width",
+      "witness_lambda_max": 10980.728366291009,
+      "witness_gap_to_C": 2.348091867273979,
+      "witness_sha256": "656f19fb2d963bc058a2e9c09eb8d60b2cd91daf0cc7bb321ad775f2e8056423",
+      "functional_pass": true
+    }
+  ],
+  "report_sha256": "7c888b93caab3c891c35b387e4c2464195dedb9939c5245c2e6b7157d0967879",
+  "delivery_file_sha256": {
+    "README_zh-CN.md": "c545afaed146228b9159ae28c2f1c1e486683e913002daed2403b8017eb270e5",
+    "boundary-PARAM-I.json": "cb0936bb6dce3660e19945590127db29afd108e33e1dbf8c2f2d05ee2c75f3ca",
+    "boundary-PARAM-II.json": "9c7c53d61695c8ed0737c8abe2975d56e6aeceec4f6292ec844b64674505d867",
+    "boundary-PARAM-III.json": "f7e8723d7efcbe33a282a7c019c8f4ac441f1559f439cb20ef190551510de63d",
+    "boundary_probe.py": "f746d0cd9d17e1e106dca2ac051ff75787d08d46adb4601d6003bf68b4a97423",
+    "distribution-chain.json": "7c888b93caab3c891c35b387e4c2464195dedb9939c5245c2e6b7157d0967879",
+    "proof.md": "b886a444c1a832217c9d118f8d9086913052923925a8a6a642d067ba93f9f642",
+    "verify_delivery.py": "a107ea5b1bb64e31aadfa55e32bfa6e3c231de8353dde78a3e3e202299efcda4"
+  },
+  "scope": "functional tests, exact finite TV bounds and deterministic boundary probes; not a security proof",
+  "nulls": [
+    "unguarded beta_bad mass",
+    "original backend non-retryable 64-attempt abort",
+    "literal-density first issuance delta_issue",
+    "exact author sampler / C implementation",
+    "native strong, structural hardness, formal parameters, NIST category",
+    "fault probabilities and faulty complete histories"
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null,
+  "hash_normalization": "SHA-256 values are over Git-normalized LF blobs (git cat-file blob :path), not CRLF working copies."
+}
