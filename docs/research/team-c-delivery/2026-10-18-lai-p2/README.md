@@ -152,7 +152,7 @@ PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.cli setup \
 PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python ci/run.py run lai-ideal-hibe --output /tmp/lai-ci-run
 ```
 
-结果：**55 passed in 124.94s**，`status=passed`、`exit_code=0`、`skipped=0`；JUnit/JSON 在 `/tmp/lai-ci-run3`（不入 Git）。CI 的 `sage / lai-ideal-hibe` job 会由现有矩阵自动调度，不需要改 workflow。
+结果：**56 passed in 122.12s**，`status=passed`、`exit_code=0`、`skipped=0`；JUnit/JSON 在 `/tmp/lai-ci-run4`（不入 Git）。CI 的 `sage / lai-ideal-hibe` job 会由现有矩阵自动调度，不需要改 workflow。
 
 ## 7. 下一步
 

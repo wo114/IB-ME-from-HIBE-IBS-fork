@@ -53,10 +53,10 @@ C2 的实际单次运行（86 B 身份）：PK 1,617,969 B、MSK 2,416,693 B、S
 ## 6. 未做与风险
 
 1. 混合攻击未估计；若后续 estimator 修复/补充，C2/C3 的 128-bit 结论可能改变。
-2. C2 只跑了 **1 个随机种子**、1 条诚实路径；没有目标参数的错配/篡改/截断/重放矩阵。
+2. C2 只跑了 **1 个随机种子**；目标级负测试已覆盖 wrong-child/wrong-parent、h/u/v 篡改、非单位标签和截断/追加，但不是多轮攻击矩阵。v 篡改返回**不同明文**，说明原始 HIBE 无 CCA/完整性，必须依赖外层 BYTEAUTH。
 3. 没有 perturbation；Klein 采样仍是功能级，不是证明级 `ringSampleD`。
-4. C2 已作为 `target-research` 显式 preset 登记，但不是默认 preset；`lai-ideal-hibe` 的默认/CLI 起点仍是 A 点。要把它提升为默认目标配置，需要参数审查、负测试、CLI/状态容量检查和性能评估。
-5. 尺寸/时间：SK2 约 35 MB、CT 约 1.23 MB、完整生命周期约 13 分钟（Sage）；目标演示需评估是否可接受或改 C/优化实现。
+4. C2 已作为 `target-research` 显式 preset 登记，且目标 CLI 生命周期已跑通；但它仍不是默认 preset，`lai-ideal-hibe` 的默认/CLI 起点仍是 A 点。要提升为默认，还需性能/资源政策审查。
+5. 尺寸/时间：SK2 约 35 MB、内层 CT 1.23 MB、完整协议 CT 约 1.36 MB、state 约 26 MB；CLI 生命周期约 13 分钟（Sage），目标演示需评估是否可接受或改 C/优化实现。
 6. 本文不声称 NIST category、QROM 安全或完整 HIBE 安全；`security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。
 
 ## 7. 目标 preset 预检（2026-10-18）
@@ -71,7 +71,45 @@ PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.cli check \
 
 结果：`compatibility.ok=true`、`errors=[]`；`inner_hibe_ciphertext_max_bytes=1,228,844`、`inner_hibe_payload_bytes=32`、`max_application_bytes=3,924`；suite digest `eda3502de91eff42f10969dac9c3e92fd31468b5e1bc8b5fc17c498468b81c28`。`execution=not_executed`，不生成密钥。
 
-## 8. 复现
+## 8. 目标级负测试与 CLI 生命周期（2026-10-18）
+
+### 8.1 负测试
+
+脚本：`experiments/research/candidates/lai/target_negative.py`。使用 C2、86 B 内层身份、32 B 消息、固定种子；结果 JSON 在 `/tmp/lai-target-negative.json`（不入 Git）。
+
+| 检查 | 结果 | 耗时 |
+|---|---|---|
+| wrong-child key | 拒绝（None） | 778.14 s |
+| wrong-parent ciphertext | 拒绝（None） | 180.07 s |
+| tampered h' | 拒绝（None） | 25.44 s |
+| tampered u0 | 拒绝（None） | 28.53 s |
+| tampered v0 | **返回不同明文**（非 None） | 30.27 s |
+| non-unit tag | 拒绝（None） | 0.06 s |
+| truncated/appended CT | `SerializationError` | 0.03 s |
+
+基础诚实路径：setup 2.88 s、extract 39.98 s、derive 552.95 s、encrypt 94.77 s、decrypt 20.11 s，`ct_bytes=1,228,844`，`honest_ok=true`，`all_ok=true`。`tampered_v0_result=different` 是原始 HIBE 可延展性的负结果，不是“拒绝”成功；组合层必须由 BYTEAUTH 承担完整性。
+
+### 8.2 CLI 完整生命周期
+
+首次 CLI 失败于 `invalid hybrid component type/size`：C2 的 SK1=18.82 MB 超过 hybrid 的 16 MiB component 上限。将 [hybrid_hibe.py](../../../../src/ibme/protocol/hybrid_hibe.py) 的 `HARD_COMPONENT_BYTES`/`HARD_WIRE_BYTES` 提升到 **64 MiB**，capsule 仍为 4 MiB；`tests/test_hybrid_hibe.py tests/test_assembly.py` 64 passed。这是共享协议资源预算变更，需在合并时复核。
+
+重跑命令（`setup` 使用 target preset，state 在 /tmp）：
+
+```sh
+python -m ibme.cli setup --hibe lai-ideal-hibe --ibs luo-module \
+  --hibe-params target-research --ibs-params research --transport hybrid \
+  --state /tmp/lai-target-cli
+python -m ibme.cli issue-receiver-key alice --state /tmp/lai-target-cli
+python -m ibme.cli issue-sender-key bob --state /tmp/lai-target-cli
+python -m ibme.cli encrypt --sender bob --receiver alice \
+  --in msg.bin --out ct.bin --state /tmp/lai-target-cli
+python -m ibme.cli decrypt --receiver alice --sender bob \
+  --in ct.bin --out out.bin --state /tmp/lai-target-cli
+```
+
+实测：setup 5 s、issue receiver 60 s、issue sender 11 s、encrypt 118 s、decrypt 572 s；14 B → **1,357,049 B** CT，解密一致；receiver key 20,439,553 B、sender key 313,778 B（sender 主要承载 IBS 签名密钥，目标 HIBE 子密钥在解密路径派生）；state 约 26 MB。suite digest `eda3502de91eff42f10969dac9c3e92fd31468b5e1bc8b5fc17c498468b81c28`。
+
+## 9. 复现
 
 候选表与尺寸计算：
 
