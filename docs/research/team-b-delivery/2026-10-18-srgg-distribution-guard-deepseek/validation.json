@@ -1,13 +1,6 @@
 {
-  "schema": "IBME/SRGG-DISTRIBUTION-GUARD-VALIDATION/1",
-  "date": "2026-10-18",
   "baseline_commit": "cd31389f91e5",
   "branch": "codex/srgg-distribution-deepseek-2026-10-18",
-  "environment": {
-    "python": "3.13.15",
-    "sage": "10.9",
-    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
-  },
   "commands": [
     {
       "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_distribution_guard.py",
@@ -25,129 +18,136 @@
       "scope": "pure-Python cross-check against frozen joint/source/history receipts and pinned security fields"
     }
   ],
+  "date": "2026-10-18",
   "digests": {
-    "experiments/research/candidates/srgg/paper_distribution_guard.py": "5d6aa3b9a9373843469b0b180ef4182cc5b39bdfa384f72e2632d9fa36d3cb2f",
-    "tests/test_srgg_paper_distribution_guard.py": "4334666654e441938c0d772630d9c4a284351056319b30a4ba38ad94d024af6b",
-    "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/proof.md": "7ca6227ef4741864bdaa7188c2d652156df162e7341774764e4aae5bb2b92c27",
     "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/README_zh-CN.md": "275e0356fb6a63a39d4ab5ce1d49ebd9cd638a00e44ccd33ac938b92dc78e936",
     "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/distribution-guard.json": "f1313e598b212ba8a59635d9cdd7d5391acc9f939b925d0024e4aa2c7e3d6e00",
-    "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/verify_delivery.py": "89167d5085b9e207eb2ed6427c26dd4f5c8152cb61a26a8a963c7356f4e6bdf7"
+    "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/proof.md": "7ca6227ef4741864bdaa7188c2d652156df162e7341774764e4aae5bb2b92c27",
+    "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/verify_delivery.py": "89167d5085b9e207eb2ed6427c26dd4f5c8152cb61a26a8a963c7356f4e6bdf7",
+    "experiments/research/candidates/srgg/paper_distribution_guard.py": "5d6aa3b9a9373843469b0b180ef4182cc5b39bdfa384f72e2632d9fa36d3cb2f",
+    "tests/test_srgg_paper_distribution_guard.py": "4334666654e441938c0d772630d9c4a284351056319b30a4ba38ad94d024af6b"
+  },
+  "environment": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15",
+    "sage": "10.9"
   },
   "frozen_receipts": {
-    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/joint-fixed-root.json": "c36bac08885e29595bbf34026def2f14cdc8942053f5a799cb964df1a23ed143",
     "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/finite-fixed-root.json": "d1b4334c933248c2f4a26a004c20f6dbd05171cde021396fbb8188dc6a015e59",
-    "docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/source-issuance.json": "cfcc9e45c6b4d126187115f990672a2fa8aa8f92d76b2d2b0f8b6773bbc92477",
-    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/history-law.json": "357cef782a60a9b16439e813f74dda2c1b5ead23c82cec76c9695deb5929da92"
-  },
-  "rows": [
-    {
-      "profile": "PARAM-I",
-      "interpretation": "table-standard-deviation",
-      "master_joint_dyadic_upper": "2^-26",
-      "signature_joint_dyadic_upper": "2^-25",
-      "first_issuance_dyadic_upper": "2^-25",
-      "capacity_history_dyadic_upper": "2^-24",
-      "one_sign_call_dyadic_upper": "2^-19",
-      "setup_attempts": 1,
-      "setup_gate_rejections": 0,
-      "second_accepted_root_identical_master": true
-    },
-    {
-      "profile": "PARAM-I",
-      "interpretation": "literal-density-width",
-      "master_joint_exact_approx": "0.678080744390816",
-      "signature_joint_exact_approx": "0.8963679928680288",
-      "first_issuance_dyadic_upper": null,
-      "one_sign_call_dyadic_upper": "1",
-      "setup_attempts": 1,
-      "setup_gate_rejections": 0,
-      "second_accepted_root_identical_master": true
-    },
-    {
-      "profile": "PARAM-II",
-      "interpretation": "table-standard-deviation",
-      "master_joint_dyadic_upper": "2^-25",
-      "signature_joint_dyadic_upper": "2^-24",
-      "first_issuance_dyadic_upper": "2^-25",
-      "capacity_history_dyadic_upper": "2^-24",
-      "one_sign_call_dyadic_upper": "2^-18",
-      "setup_attempts": 1,
-      "setup_gate_rejections": 0,
-      "second_accepted_root_identical_master": true
-    },
-    {
-      "profile": "PARAM-II",
-      "interpretation": "literal-density-width",
-      "master_joint_exact_approx": "0.8173496821978954",
-      "signature_joint_exact_approx": "0.9666388614067902",
-      "first_issuance_dyadic_upper": null,
-      "one_sign_call_dyadic_upper": "1",
-      "setup_attempts": 1,
-      "setup_gate_rejections": 0,
-      "second_accepted_root_identical_master": true
-    },
-    {
-      "profile": "PARAM-III",
-      "interpretation": "table-standard-deviation",
-      "master_joint_dyadic_upper": "2^-25",
-      "signature_joint_dyadic_upper": "2^-24",
-      "first_issuance_dyadic_upper": "2^-24",
-      "capacity_history_dyadic_upper": "2^-24",
-      "one_sign_call_dyadic_upper": "2^-18",
-      "setup_attempts": 1,
-      "setup_gate_rejections": 0,
-      "second_accepted_root_identical_master": true
-    },
-    {
-      "profile": "PARAM-III",
-      "interpretation": "literal-density-width",
-      "master_joint_exact_approx": "0.8963679928680288",
-      "signature_joint_exact_approx": "0.989260407097799",
-      "first_issuance_dyadic_upper": null,
-      "one_sign_call_dyadic_upper": "1",
-      "setup_attempts": 1,
-      "setup_gate_rejections": 0,
-      "second_accepted_root_identical_master": true
-    }
-  ],
-  "probes": {
-    "unguarded_gate_gap": {
-      "seeds_tried": 6,
-      "witness_found": false,
-      "note": "deterministic fixture search only; a miss does not prove B is contained in G"
-    },
-    "sign_gate_mass": {
-      "roots_attempted": 3,
-      "sign_gate_accepts": 3,
-      "sign_gate_rejections": 0,
-      "note": "empirical fixture count only; it does not bound beta_bad"
-    }
-  },
-  "v1_verification": {
-    "nine_package_driver": {
-      "packages": 9,
-      "checks": 18,
-      "normal_and_optimized": true,
-      "all_passed": true
-    },
-    "random_key_sign_law_verifier": "verified (6 rows, 8 entries)",
-    "manifest_entries_checked": 61,
-    "manifest_mismatches": 0
-  },
-  "security": {
-    "security_claim": "none",
-    "backend_admitted": false,
-    "parameters_are_formal": false,
-    "nist_security_category": null,
-    "private_material_exported": false,
-    "functional_or_finite_tests_are_not_a_security_proof": true
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/joint-fixed-root.json": "c36bac08885e29595bbf34026def2f14cdc8942053f5a799cb964df1a23ed143",
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/history-law.json": "357cef782a60a9b16439e813f74dda2c1b5ead23c82cec76c9695deb5929da92",
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/source-issuance.json": "cfcc9e45c6b4d126187115f990672a2fa8aa8f92d76b2d2b0f8b6773bbc92477"
   },
   "notes": [
     "The fixed-root finite/convolution/normalizer chain is gate-uniform: its numerical inputs are the gate floor 64 and root-independent constants, not the actual pivots.",
     "The guard runs the complete gate set, including the issuance C gate and the finite-key object/service envelope; it proves the protected accept set, not the original unguarded algorithm.",
     "The guard makes the conditional theorem an accept-set theorem; it does not bound the gate-set masses.",
     "beta_bad is strictly positive by the canonical tail obstruction but remains unquantified.",
-    "The v2 re-freeze package 2026-10-18-srgg-gate-uniform-v2 records the corrected scope labels; v1 numeric receipts are byte-unchanged.",
+    "The v1 delivery packages are rewritten in place to the guarded scope; the six roots are witnesses and v1 numeric receipts are byte-unchanged.",
     "No push and no PR were performed; this is a local WIP delivery."
-  ]
+  ],
+  "probes": {
+    "sign_gate_mass": {
+      "note": "empirical fixture count only; it does not bound beta_bad",
+      "roots_attempted": 3,
+      "sign_gate_accepts": 3,
+      "sign_gate_rejections": 0
+    },
+    "unguarded_gate_gap": {
+      "note": "deterministic fixture search only; a miss does not prove B is contained in G",
+      "seeds_tried": 6,
+      "witness_found": false
+    }
+  },
+  "rows": [
+    {
+      "capacity_history_dyadic_upper": "2^-24",
+      "first_issuance_dyadic_upper": "2^-25",
+      "interpretation": "table-standard-deviation",
+      "master_joint_dyadic_upper": "2^-26",
+      "one_sign_call_dyadic_upper": "2^-19",
+      "profile": "PARAM-I",
+      "second_accepted_root_identical_master": true,
+      "setup_attempts": 1,
+      "setup_gate_rejections": 0,
+      "signature_joint_dyadic_upper": "2^-25"
+    },
+    {
+      "first_issuance_dyadic_upper": null,
+      "interpretation": "literal-density-width",
+      "master_joint_exact_approx": "0.678080744390816",
+      "one_sign_call_dyadic_upper": "1",
+      "profile": "PARAM-I",
+      "second_accepted_root_identical_master": true,
+      "setup_attempts": 1,
+      "setup_gate_rejections": 0,
+      "signature_joint_exact_approx": "0.8963679928680288"
+    },
+    {
+      "capacity_history_dyadic_upper": "2^-24",
+      "first_issuance_dyadic_upper": "2^-25",
+      "interpretation": "table-standard-deviation",
+      "master_joint_dyadic_upper": "2^-25",
+      "one_sign_call_dyadic_upper": "2^-18",
+      "profile": "PARAM-II",
+      "second_accepted_root_identical_master": true,
+      "setup_attempts": 1,
+      "setup_gate_rejections": 0,
+      "signature_joint_dyadic_upper": "2^-24"
+    },
+    {
+      "first_issuance_dyadic_upper": null,
+      "interpretation": "literal-density-width",
+      "master_joint_exact_approx": "0.8173496821978954",
+      "one_sign_call_dyadic_upper": "1",
+      "profile": "PARAM-II",
+      "second_accepted_root_identical_master": true,
+      "setup_attempts": 1,
+      "setup_gate_rejections": 0,
+      "signature_joint_exact_approx": "0.9666388614067902"
+    },
+    {
+      "capacity_history_dyadic_upper": "2^-24",
+      "first_issuance_dyadic_upper": "2^-24",
+      "interpretation": "table-standard-deviation",
+      "master_joint_dyadic_upper": "2^-25",
+      "one_sign_call_dyadic_upper": "2^-18",
+      "profile": "PARAM-III",
+      "second_accepted_root_identical_master": true,
+      "setup_attempts": 1,
+      "setup_gate_rejections": 0,
+      "signature_joint_dyadic_upper": "2^-24"
+    },
+    {
+      "first_issuance_dyadic_upper": null,
+      "interpretation": "literal-density-width",
+      "master_joint_exact_approx": "0.8963679928680288",
+      "one_sign_call_dyadic_upper": "1",
+      "profile": "PARAM-III",
+      "second_accepted_root_identical_master": true,
+      "setup_attempts": 1,
+      "setup_gate_rejections": 0,
+      "signature_joint_exact_approx": "0.989260407097799"
+    }
+  ],
+  "schema": "IBME/SRGG-DISTRIBUTION-GUARD-VALIDATION/1",
+  "security": {
+    "backend_admitted": false,
+    "functional_or_finite_tests_are_not_a_security_proof": true,
+    "nist_security_category": null,
+    "parameters_are_formal": false,
+    "private_material_exported": false,
+    "security_claim": "none"
+  },
+  "v1_verification": {
+    "manifest_entries_checked": 61,
+    "manifest_mismatches": 0,
+    "nine_package_driver": {
+      "all_passed": true,
+      "checks": 18,
+      "normal_and_optimized": true,
+      "packages": 9
+    },
+    "random_key_sign_law_verifier": "verified (6 rows, 8 entries)"
+  }
 }

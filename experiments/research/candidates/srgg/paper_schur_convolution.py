@@ -21,6 +21,16 @@ HNF law, norm acceptance, signature law, or security reduction is certified.
 """
 from __future__ import annotations
 
+_GATE_SCOPE = {
+    "receipt_generated_on_fixed_roots": True,
+    "fixed_roots_are_witnesses": True,
+    "bound_scope": "every_plan_passing_complete_gate_set",
+    "guard_built_into_backend": True,
+    "all_gate_passing_setup_roots_covered": True,
+}
+_GATE_MASS_REASON = (r"the gate-set mass P(A\B), P(B\G) and the accepted-root "
+                     r"distribution relative to mu_A remain unbounded; beta_bad remains null")
+
 from fractions import Fraction
 
 from .paper_rounding_budget import theta_certificate
@@ -79,7 +89,9 @@ def chain_convolution_certificate(*, degree: int, upper_polynomials: int,
         "comparison": "exact continuous-plus-discrete Algorithm 4 Schur leaves vs ideal sequential discrete Schur leaves",
         "finite_to_mathematical_algorithm34_tv_upper": None,
         "ideal_sequential_vs_joint_integer_tv_upper": None,
-        "all_accepted_setup_roots_covered": False,
+        **_GATE_SCOPE,
+        "accepted_setup_root_distribution_bound": None,
+        "accepted_setup_root_distribution_reason": _GATE_MASS_REASON,
         "full_ibs_tv_upper": None,
         "security_claim": "none", "backend_admitted": False,
         "parameters_are_formal": False, "nist_security_category": None,

@@ -26,7 +26,7 @@
     "sage": "10.9"
   },
   "gate_mass_note": "The guard converts distributional uniformity into an accept-set/gate-mass question. It does not bound the gate-mass probabilities; those are operational abort masses, not cryptographic bounds.",
-  "guard_construction": "GuardedSourceSchurBackend runs SchurNumericalAudit, the finite-chain source gates, the issuance C gate and the finite-key object/service envelope at Setup, and the Schur/audit gates before signing. Setup treats a gate failure as a root rejection/retry; signing treats it as a fixed-key abort. The original backend runs none of these execute-time gates.",
+  "guard_construction": "SourceSchurBackend runs SchurNumericalAudit, the finite-chain source gates, the issuance C gate and the finite-key object/service envelope at Setup, and the Schur/audit gates before signing. Setup treats a gate failure as a root rejection/retry; signing treats it as a fixed-key abort. The original backend runs none of these execute-time gates.",
   "nist_security_category": null,
   "paper": {
     "path": "papers/2025_efficient_ibs_jia.pdf",

@@ -1,3 +1,5 @@
+> **v3 current (2026-10-18)**: the separate unguarded path has been removed. SourceSchurBackend now enforces the complete gate set (Setup root rejection/retry; signing-key abort), and srgg_paper_service.FixedIssuer defaults to it. The six roots below are deterministic witnesses; every bound in this package is for every plan that passes the complete gate set. Remaining nulls: P(A\\B), P(B\\G), accepted-root distribution, beta_bad, faulty histories. Security claim: none.
+
 # SRGG source-Schur finite-chain audit (WIP)
 
 This package uses the original paper's Table 4 inputs (`n=512`, `p=16383`, `b=31`, `w=2`, `q=961`, `Q=15744063`, `d=2/3/4`) and preserves both explicit interpretations of its rounded Gaussian widths. The frozen Jia–Liu–Tang–Wang PDF is [`papers/2025_efficient_ibs_jia.pdf`](../../../../papers/2025_efficient_ibs_jia.pdf), SHA-256 `258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152`. This is standalone IBS work; no HIBE is selected or integrated.

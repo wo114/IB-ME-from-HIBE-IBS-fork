@@ -1,3 +1,5 @@
+> **v3 current (2026-10-18)**: the separate unguarded path has been removed. SourceSchurBackend now enforces the complete gate set (Setup root rejection/retry; signing-key abort), and srgg_paper_service.FixedIssuer defaults to it. The six roots below are deterministic witnesses; every bound in this package is for every plan that passes the complete gate set. Remaining nulls: P(A\\B), P(B\\G), accepted-root distribution, beta_bad, faulty histories. Security claim: none.
+
 # SRGG 原表有限逐环采样：固定根分布证书（整体 WIP）
 
 本批沿用 Jia、Liu、Tang、Wang，*Constructing Efficient Identity-Based Signatures on Lattices*（DOI `10.1049/ise2/6684889`）的 Table 4 三组输入：`n=512, p=16383, b=31, w=2, q=961, Q=15744063, d=2/3/4`。原 PDF 固定在 [`papers/2025_efficient_ibs_jia.pdf`](../../../../papers/2025_efficient_ibs_jia.pdf)，SHA-256 `258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152`。只处理独立 SRGG IBS；没有选定或接入 HIBE。原论文的 `r≈1.16` 和 Gaussian 记号仍保留“表中物理标准差”和“字面密度宽度”两种显式解释，不替作者补定唯一版本。

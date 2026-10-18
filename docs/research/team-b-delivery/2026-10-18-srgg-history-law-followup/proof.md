@@ -1,3 +1,5 @@
+> **v3 current (2026-10-18)**: the separate unguarded path has been removed. SourceSchurBackend now enforces the complete gate set (Setup root rejection/retry; signing-key abort), and srgg_paper_service.FixedIssuer defaults to it. The six roots below are deterministic witnesses; every bound in this package is for every plan that passes the complete gate set. Remaining nulls: P(A\\B), P(B\\G), accepted-root distribution, beta_bad, faulty histories. Security claim: none.
+
 # SRGG fixed-root adaptive history law: proof and boundaries
 
 Paper source: Jia–Liu–Tang–Wang, *Constructing Efficient Identity-Based Signatures on Lattices*, local frozen PDF papers/2025_efficient_ibs_jia.pdf, SHA-256 258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152. The scheme and original Table 4 inputs are unchanged. These are derived implementation-law statements, **not** claims made by the paper and not a security reduction.

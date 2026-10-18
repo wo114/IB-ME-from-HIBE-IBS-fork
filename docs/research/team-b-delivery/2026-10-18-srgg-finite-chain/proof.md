@@ -1,3 +1,5 @@
+> **v3 current (2026-10-18)**: the separate unguarded path has been removed. SourceSchurBackend now enforces the complete gate set (Setup root rejection/retry; signing-key abort), and srgg_paper_service.FixedIssuer defaults to it. The six roots below are deterministic witnesses; every bound in this package is for every plan that passes the complete gate set. Remaining nulls: P(A\\B), P(B\\G), accepted-root distribution, beta_bad, faulty histories. Security claim: none.
+
 # Fixed-root finite source-Schur comparison
 
 This note describes the scope of `paper_schur_finite_chain.py`. The comparator is the mathematical control flow of the paper's Algorithms 3–4: an exact lower-block discrete Gaussian, descending exact ring-Schur stages, an exact continuous Gaussian at each stage, and an exact coefficientwise (D_{\mathbb Z,r^2,c}) rounding kernel. Abort is an extra output symbol. The parameters are the two **explicit rational interpretations in this repository** of the paper's rounded Table 4 numbers; this is not a claim that the authors used either interpretation internally.

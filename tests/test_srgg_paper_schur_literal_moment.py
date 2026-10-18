@@ -31,7 +31,8 @@ def test_original_literal_table4_fixed_root_premise_gives_rational_nontrivial_ch
     assert row["whole_chain_bound_nontrivial"]
     assert row["positive_continuous_covariance"]
     assert row["fixed_root_pivot_floor_authenticated_here"] is False
-    assert not row["all_accepted_setup_roots_covered"]
+    assert row["bound_scope"] == "every_plan_passing_complete_gate_set"
+    assert row["guard_built_into_backend"] is True
     assert row["finite_to_mathematical_algorithm34_tv_upper"] is None
     assert row["full_ibs_tv_upper"] is None
     assert row["security_claim"] == "none"

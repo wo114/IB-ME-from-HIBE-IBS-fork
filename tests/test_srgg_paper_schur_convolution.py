@@ -61,7 +61,8 @@ def test_original_table4_standard_deviation_interpretation_closes_local_bridge(n
         assert 0 < Fraction(result["mathematical_algorithm34_to_ideal_sequential_discrete_tv_upper_exact"]) < Fraction(1, 2**16)
         assert result["finite_to_mathematical_algorithm34_tv_upper"] is None
         assert result["ideal_sequential_vs_joint_integer_tv_upper"] is None
-        assert not result["all_accepted_setup_roots_covered"]
+        assert result["bound_scope"] == "every_plan_passing_complete_gate_set"
+        assert result["guard_built_into_backend"] is True
         assert result["security_claim"] == "none" and not result["parameters_are_formal"]
     assert (params.record(), params.r_squared) == before
 

@@ -1,3 +1,5 @@
+> **v3 current (2026-10-18)**: the separate unguarded path has been removed. SourceSchurBackend now enforces the complete gate set (Setup root rejection/retry; signing-key abort), and srgg_paper_service.FixedIssuer defaults to it. The six roots below are deterministic witnesses; every bound in this package is for every plan that passes the complete gate set. Remaining nulls: P(A\\B), P(B\\G), accepted-root distribution, beta_bad, faulty histories. Security claim: none.
+
 # SRGG source-Schur: fixed-root first-issuance bridge
 
 This HIBE-independent research batch keeps the paper's three Table 4 rows (`n=512`, `p=16383`, `b=31`, `w=2`, `Q=15744063`, `d=2/3/4`) and both explicit Gaussian-notation interpretations. It replays one accepted Setup root and one first issuance for the five-byte identity `Alice` per row. No message is signed. Deterministic seeds identify fixtures; the distribution bound separately assumes fresh independent uniform bytes, the stated MPFR/exact-arithmetic model, and no external faults.

@@ -1,3 +1,5 @@
+> **v3 current (2026-10-18)**: the separate unguarded path has been removed. SourceSchurBackend now enforces the complete gate set (Setup root rejection/retry; signing-key abort), and srgg_paper_service.FixedIssuer defaults to it. The six roots below are deterministic witnesses; every bound in this package is for every plan that passes the complete gate set. Remaining nulls: P(A\\B), P(B\\G), accepted-root distribution, beta_bad, faulty histories. Security claim: none.
+
 # Random issued key to signing law: exact obstruction and conditional bridge
 
 Primary source: Huiwen Jia, Ying Liu, Chunming Tang and Lin Wang, *Constructing Efficient Identity-Based Signatures on Lattices*, DOI 10.1049/ise2/6684889, frozen `papers/2025_efficient_ibs_jia.pdf`, SHA-256 `258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152`. Source anchors are Algorithms 2 and 7, Table 3 and Table 4. The ring/Fourier and HNF statements below are derived from the frozen implementation and [earlier issuance proof](../2026-10-18-srgg-paper-law/issuance-law.md); they are **not new claims by the paper**. No algorithm or original parameter was changed.

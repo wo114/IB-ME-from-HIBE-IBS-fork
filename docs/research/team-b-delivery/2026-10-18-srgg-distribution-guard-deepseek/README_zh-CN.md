@@ -1,3 +1,5 @@
+> **v3 current (2026-10-18)**: the separate unguarded path has been removed. SourceSchurBackend now enforces the complete gate set (Setup root rejection/retry; signing-key abort), and srgg_paper_service.FixedIssuer defaults to it. The six roots below are deterministic witnesses; every bound in this package is for every plan that passes the complete gate set. Remaining nulls: P(A\\B), P(B\\G), accepted-root distribution, beta_bad, faulty histories. Security claim: none.
+
 # SRGG 分布链：门控集上的统一界、显式保护与仍为 null 的量（独立审计）
 
 本包只处理 Jia–Liu–Tang–Wang 独立 IBS 的分布链，不涉及 HIBE、公共组合或正式安全准入。
@@ -23,7 +25,7 @@
 ## 真正新颖的两件事
 
 1. **门控一致性证明与复核**：把 joint/issuance/sign 回执按门限 64 重算，逐项与冻结 JSON 完全一致（`joint-fixed-root.json`、`source-issuance.json`、`history-law.json`）；另一条不同的接受根得到完全相同的 master 界。因此 `fixed_root_only` 是回执范围标签，不是不等式范围。
-2. **显式 guard（完整门控集）**：`GuardedSourceSchurBackend` 在 Setup 与签名前执行完整门控：`SchurNumericalAudit`（pivot≥64、gain/factor 协方差 ≤2^-128、center 递推 ≤2^-96）、`_source_gates`（因子范围、center 包络、熵帽、256-bit 输出/对象）、发钥 `C>64I` 门和 finite-key 对象/服务字节包络。Setup 把门失败当作根拒绝并重试；签名把门失败当作固定密钥中止。原始后端不执行这些门；guard 是**修改后的受保护接受集**，不能直接声称原论文未加门的算法也满足。
+2. **显式 guard（完整门控集）**：`SourceSchurBackend` 在 Setup 与签名前执行完整门控：`SchurNumericalAudit`（pivot≥64、gain/factor 协方差 ≤2^-128、center 递推 ≤2^-96）、`_source_gates`（因子范围、center 包络、熵帽、256-bit 输出/对象）、发钥 `C>64I` 门和 finite-key 对象/服务字节包络。Setup 把门失败当作根拒绝并重试；签名把门失败当作固定密钥中止。原始后端不执行这些门；guard 是**修改后的受保护接受集**，不能直接声称原论文未加门的算法也满足。
 
 ## 仍为 null 的量（原因见 proof.md）
 

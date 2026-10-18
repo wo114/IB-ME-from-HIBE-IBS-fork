@@ -35,7 +35,8 @@ def test_small_exact_geometry_certifies_only_ideal_fixed_root_scope():
     assert report["ideal_pivot_density_shape_lower"] == 64
     assert report["ideal_sequential_vs_joint_integer_tv_dyadic_bits"] > 100
     assert report["source_schur_finite_output_tv_upper"] is None
-    assert report["all_setup_roots_covered"] is False
+    assert report["bound_scope"] == "every_plan_passing_complete_gate_set"
+    assert report["guard_built_into_backend"] is True
     assert report["HNF_key_or_signature_law_certified"] is False
 
 

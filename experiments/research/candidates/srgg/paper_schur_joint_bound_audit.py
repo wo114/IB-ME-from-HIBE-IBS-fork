@@ -23,7 +23,18 @@ from .paper_rounding_budget import theta_certificate
 
 SCHEMA = "IBME/SRGG-SCHUR-FIXED-ROOT-JOINT-BOUND/1"
 ROOT = Path(__file__).resolve().parents[4]
-FINITE_REPORT_SHA256 = "5c20c3dc7abaf32ec6b06cd39d2370d956a204400ef541956e1db9e6c0d2f274"
+GUARD_SOURCE = "experiments/research/candidates/srgg/paper_distribution_guard.py"
+BACKEND_SOURCE = "experiments/research/candidates/srgg/paper_schur_backend.py"
+_GATE_SCOPE = {
+    "receipt_generated_on_fixed_roots": True,
+    "fixed_roots_are_witnesses": True,
+    "bound_scope": "every_plan_passing_complete_gate_set",
+    "guard_built_into_backend": True,
+    "all_gate_passing_setup_roots_covered": True,
+}
+_GATE_MASS_REASON = (r"the gate-set mass P(A\B), P(B\G) and the accepted-root "
+                     r"distribution relative to mu_A remain unbounded; beta_bad remains null")
+FINITE_REPORT_SHA256 = "ac706a605412e8620030a5fa531d14a25ced3d7d974b6831981f47dcd5649620"
 SOURCE_FILES = (
     "experiments/research/candidates/srgg/paper_schur_convolution.py",
     "experiments/research/candidates/srgg/paper_schur_joint_bound_audit.py",
@@ -95,10 +106,12 @@ def build_report(finite_report):
                     type(leaves) is not int or not 1 <= leaves <= 16 or
                     numerical.get("all_ideal_schur_pivot_eigenvalues_at_least_64") is not True or
                     finite.get("degree") != degree or finite.get("upper_leaf_count") != leaves or
-                    finite.get("fixed_root_only") is not True or
+                    finite.get("bound_scope") != "every_plan_passing_complete_gate_set" or
+                    finite.get("guard_built_into_backend") is not True or
                     finite.get("finite_vs_joint_integer_gaussian_tv_upper") is not None or
                     normalizer.get("schema") != NORMALIZER_SCHEMA or
-                    normalizer.get("fixed_root_only") is not True or
+                    normalizer.get("bound_scope") != "every_plan_passing_complete_gate_set" or
+                    normalizer.get("guard_built_into_backend") is not True or
                     normalizer.get("ideal_pivot_density_shape_lower") != 64):
                 raise ValueError("fixed-root phase certificate mismatch")
             finite_upper = _dyadic_probability(finite.get("finite_vs_exact_algorithm34_tv_dyadic_upper"))
@@ -134,6 +147,9 @@ def build_report(finite_report):
             if bits == 0:
                 bits = None
             phases[phase] = {
+                **_GATE_SCOPE,
+                "accepted_setup_root_distribution_bound": None,
+                "accepted_setup_root_distribution_reason": _GATE_MASS_REASON,
                 "finite_vs_mathematical_algorithm34_dyadic_upper": str(finite["finite_vs_exact_algorithm34_tv_dyadic_upper"]),
                 "mathematical_algorithm34_vs_ideal_sequential": convolution,
                 "ideal_sequential_vs_joint_dyadic_upper": str(normalizer["ideal_sequential_vs_joint_integer_tv_dyadic_upper"]),
@@ -152,9 +168,12 @@ def build_report(finite_report):
             "paper": {"path": SOURCE_PDF, "sha256": SOURCE_SHA256},
             "finite_report_sha256": sha256(raw).hexdigest(),
             "source_sha256": {name: sha256((ROOT/name).read_bytes()).hexdigest()
-                              for name in SOURCE_FILES},
+                              for name in (*SOURCE_FILES, GUARD_SOURCE, BACKEND_SOURCE)},
             "rows": rows,
-            "scope": "six fixed accepted roots only; literal-density Fourier-moment bound is nontrivial but too weak for security",
+            "scope": ("six deterministic accepted roots as witnesses; guarded backend; joint finite/convolution/"
+                      "normalizer bounds apply to every complete-gate plan"),
+            "bound_scope": "every_plan_passing_complete_gate_set",
+            "guard_built_into_backend": True,
             "accepted_setup_root_distribution_bound": None,
             "full_issuance_signature_history_tv": None,
             "native_strong_security_proven": False,

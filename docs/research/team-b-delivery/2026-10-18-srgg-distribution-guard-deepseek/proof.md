@@ -1,3 +1,5 @@
+> **v3 current (2026-10-18)**: the separate unguarded path has been removed. SourceSchurBackend now enforces the complete gate set (Setup root rejection/retry; signing-key abort), and srgg_paper_service.FixedIssuer defaults to it. The six roots below are deterministic witnesses; every bound in this package is for every plan that passes the complete gate set. Remaining nulls: P(A\\B), P(B\\G), accepted-root distribution, beta_bad, faulty histories. Security claim: none.
+
 # SRGG distribution chain: gate-uniform bounds, an explicit accept-set guard, and the remaining nulls
 
 Primary source: Huiwen Jia, Ying Liu, Chunming Tang and Lin Wang,
@@ -146,7 +148,7 @@ Precision / rounding / randomness / abort premises:
 New code: `experiments/research/candidates/srgg/paper_distribution_guard.py`.
 
 ```
-class GuardedSourceSchurBackend(SourceSchurBackend):
+class SourceSchurBackend(SourceSchurBackend):
     _master_plan: construct the unchanged master plan, then require_gates(plan)
     _sign_plan:   construct the unchanged signature plan, then require_gates(plan)
 ```

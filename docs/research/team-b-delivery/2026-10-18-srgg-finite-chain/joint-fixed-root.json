@@ -2,7 +2,7 @@
   "accepted_setup_root_distribution_bound": null,
   "backend_admitted": false,
   "bound_scope": "every_plan_passing_complete_gate_set",
-  "finite_report_sha256": "5c20c3dc7abaf32ec6b06cd39d2370d956a204400ef541956e1db9e6c0d2f274",
+  "finite_report_sha256": "ac706a605412e8620030a5fa531d14a25ced3d7d974b6831981f47dcd5649620",
   "full_issuance_signature_history_tv": null,
   "guard_built_into_backend": true,
   "native_strong_security_proven": false,
@@ -765,12 +765,9 @@
     "experiments/research/candidates/srgg/paper_distribution_guard.py": "5f14c361987cfdfe96f0e4fd51bb9435ec8bde2ed93976979d97f8277724cf19",
     "experiments/research/candidates/srgg/paper_rounding_budget.py": "76aefbae24c11706715d22f6ca59a5cb9a5433c5edfd44fe291e47c53de7e9c3",
     "experiments/research/candidates/srgg/paper_schur_backend.py": "41113635b940dfedc964efb29b5b6cd4c1db59d4b72ad54fcabe543ec08054ba",
-    "experiments/research/candidates/srgg/paper_schur_convolution.py": "bd3726771509bfc23b83d6e096ac62c9244d5f3921cfda7e2574608dd7a9a5e1",
-    "experiments/research/candidates/srgg/paper_schur_joint_bound_audit.py": "76ef7d2417718dd67870663a78a2d51daf2b2ee0ab4dd13cbafb1579680e945f",
-    "experiments/research/candidates/srgg/paper_schur_literal_moment.py": "1c51ceb330fd250b3cfc89d55b1a989f932b03432b306ff1fb2cbcbe91b0918d",
-    "experiments/research/candidates/srgg/paper_schur_normalizer.py": "d4c7389acd6e5e45b2ff87e615c7d745756496a6704f31bd8cec74f42969db06",
-    "src/ibme/ibs/srgg_paper_service.py": "67fbb5e9a9c2bf773973edae0c9befb764cd7fff1f8d55b02ba0acb2320ed670",
-    "tests/test_srgg_paper_distribution_guard.py": "640d83fb4b973f20d4e02101e7c0f7793cd27529238e9741ccad99710f0a03fa",
-    "tests/test_srgg_paper_service_default.py": "43d23646e1e13c791935e716479d9ea7a553c867bb20f4e1c395fb46bde5adb0"
+    "experiments/research/candidates/srgg/paper_schur_convolution.py": "5d007cb634f6704117f83cd2196bafea505cf08322c12204c4708780a8a047bc",
+    "experiments/research/candidates/srgg/paper_schur_joint_bound_audit.py": "9fe3588028924f654d3e959c2a5cd3b046ddcb11ef46de80378c66bdad812019",
+    "experiments/research/candidates/srgg/paper_schur_literal_moment.py": "0894b587369dd17a9a42c4bf1b36ed9f0ed988a9672b938e3f291a2cda74c89c",
+    "experiments/research/candidates/srgg/paper_schur_normalizer.py": "d4c7389acd6e5e45b2ff87e615c7d745756496a6704f31bd8cec74f42969db06"
   }
 }

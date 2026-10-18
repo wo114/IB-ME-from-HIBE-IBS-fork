@@ -1,3 +1,5 @@
+> **v3 current (2026-10-18)**: the separate unguarded path has been removed. SourceSchurBackend now enforces the complete gate set (Setup root rejection/retry; signing-key abort), and srgg_paper_service.FixedIssuer defaults to it. The six roots below are deterministic witnesses; every bound in this package is for every plan that passes the complete gate set. Remaining nulls: P(A\\B), P(B\\G), accepted-root distribution, beta_bad, faulty histories. Security claim: none.
+
 # SRGG 原文逐环采样：固定根首发钥分布桥
 
 本批只处理独立 IBS。沿用仓库冻结论文的 Table 4 三行：`n=512`、`p=16383`、`b=31`、`w=2`、`Q=15744063`、`d=2/3/4`，保留表格“标准差”和字面 density-width 两种解释。每行以可重放的测试种子生成一个成功 Setup 根，给 5 字节身份 `Alice` 首次发钥一次；本批没有签名消息。固定种子的诚实执行只核验代码路径，分布界另以新鲜独立均匀字节、证书列明的 MPFR/精确算术语义和无外部故障为前提。原参数尚未正式安全准入。

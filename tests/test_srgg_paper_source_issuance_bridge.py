@@ -49,7 +49,7 @@ def test_original_table4_source_master_to_fixed_root_hnf_reference(standard):
     binding = result["finite_chain_manifest_binding"]
     assert binding["normalized_lf_sha256"] == bridge.FINITE_MANIFEST_LF_SHA256
     assert binding["all_manifest_entries_sha256_verified"]
-    assert binding["entry_count"] == 32
+    assert binding["entry_count"] == 36
     assert set(bridge.FINITE_DEPENDENCIES) == set(binding["dependent_file_sha256"])
     assert binding["dependent_file_sha256"][bridge.FINITE_PREFIX + "finite-fixed-root.json"] == (
         result["finite_report_sha256"])

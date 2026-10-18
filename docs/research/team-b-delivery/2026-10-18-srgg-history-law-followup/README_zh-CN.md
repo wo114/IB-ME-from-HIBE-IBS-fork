@@ -1,3 +1,5 @@
+> **v3 current (2026-10-18)**: the separate unguarded path has been removed. SourceSchurBackend now enforces the complete gate set (Setup root rejection/retry; signing-key abort), and srgg_paper_service.FixedIssuer defaults to it. The six roots below are deterministic witnesses; every bound in this package is for every plan that passes the complete gate set. Remaining nulls: P(A\\B), P(B\\G), accepted-root distribution, beta_bad, faulty histories. Security claim: none.
+
 # SRGG 原表固定根：自适应历史概率界续审（WIP）
 
 本批只处理 SRGG 独立 IBS，不改 HIBE、原论文算法、Table 4 参数或已有后端。新增 [证明与界限](proof.md)、[计算回执](history-law.json) 和 [证书程序](../../../../experiments/research/candidates/srgg/paper_history_law_followup.py)。原论文 PDF 的 SHA-256 为 258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152。使用 n=512、p=16383、b=31、w=2、Q=15744063、d=2/3/4，并保留表标准差与字面密度宽度两种解释。测试身份 Alice 为 5 B；本回执不实际签消息，证明中允许任意合规消息；签名历史示例计两次调用。

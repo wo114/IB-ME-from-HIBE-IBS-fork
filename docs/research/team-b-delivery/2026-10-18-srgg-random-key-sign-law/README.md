@@ -1,3 +1,5 @@
+> **v3 current (2026-10-18)**: the separate unguarded path has been removed. SourceSchurBackend now enforces the complete gate set (Setup root rejection/retry; signing-key abort), and srgg_paper_service.FixedIssuer defaults to it. The six roots below are deterministic witnesses; every bound in this package is for every plan that passes the complete gate set. Remaining nulls: P(A\\B), P(B\\G), accepted-root distribution, beta_bad, faulty histories. Security claim: none.
+
 # SRGG original-parameter random-key signing-law audit (WIP)
 
 **Paper:** Huiwen Jia, Ying Liu, Chunming Tang and Lin Wang, *Constructing Efficient Identity-Based Signatures on Lattices*, DOI 10.1049/ise2/6684889. Frozen local PDF SHA-256: `258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152`.
