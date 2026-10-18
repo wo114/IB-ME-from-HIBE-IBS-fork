@@ -1,9 +1,10 @@
-"""Bounded binary prime-q gadget sampling with a single public k-square basis.
+"""Bounded prime-q gadget sampling with a single public k-square basis.
 
 This A3 tool admits q up to 256 bits independently of HIBE wire/trapdoor
 limits. It samples the complete product coset using the existing finite GPV
 engine; no root, delegation or secret basis is constructed. Coordinates are
-row-major blocks (the MP12 binary convention, not Sageloli's ternary order).
+row-major blocks. The default binary convention is preserved; an explicit
+power-of-two radix uses MP12 Theorem 4.1 with a different public certificate.
 """
 
 from itertools import islice
@@ -18,6 +19,7 @@ from .scalar import MatrixFiniteOptions, exact_integer
 
 
 VERSION = "IBME/PRIME-BINARY-GADGET/1"
+RADIX_VERSION = "IBME/PRIME-RADIX-GADGET/1"
 MAX_MODULUS_BITS = 256
 MAX_ROWS = 16384
 MAX_OUTPUT_COORDINATES = 2**20
@@ -31,21 +33,27 @@ def _modulus(q):
     return q
 
 
-def prime_gadget_kernel(q):
-    """Certify the COMPLETE kernel of (1,2,...,2^(k-1)) modulo q.
+def radix_geometry(q, radix_bits=1):
+    """Exact bounded radix geometry; no matrix, sample or private state."""
+    q = _modulus(q)
+    bits = exact_integer(radix_bits, "power-of-two radix bits", minimum=1, maximum=32)
+    return q, bits, 1 << bits, ((q-1).bit_length()+bits-1)//bits
 
-    Consecutive columns are 2e_i-e_(i+1); the last is q's binary digits.
+
+def prime_gadget_kernel(q, *, radix_bits=1):
+    """Certify the COMPLETE kernel of (1,b,...,b^(k-1)) modulo q.
+
+    Consecutive columns are b e_i-e_(i+1); the last is q's base-b digits.
     Containment and determinant q are checked by KernelBasis. Neither the
     modulus nor entries pass through a machine-word integer conversion.
     """
-    q = _modulus(q)
-    k = (q-1).bit_length()
+    q, bits, base, k = radix_geometry(q, radix_bits)
     basis = matrix(ZZ, k, k)
     for j in range(k-1):
-        basis[j, j], basis[j+1, j] = 2, -1
+        basis[j, j], basis[j+1, j] = base, -1
     for i in range(k):
-        basis[i, k-1] = (q >> i) & 1
-    public = ModMatrixReference((tuple(2**i for i in range(k)),), q)
+        basis[i, k-1] = (q >> (bits*i)) & (base-1)
+    public = ModMatrixReference((tuple(base**i for i in range(k)),), q)
     return KernelBasis(public, basis)
 
 
@@ -63,17 +71,16 @@ class PrimeGadgetSampler:
     backend_admitted = False
     parameters_are_formal = False
 
-    def __init__(self, rows, q, width_squared, *, epsilon_bits=128, options=None):
+    def __init__(self, rows, q, width_squared, *, epsilon_bits=128, options=None, radix_bits=1):
         self.rows = exact_integer(rows, "gadget rows", minimum=1, maximum=MAX_ROWS)
-        self.q = _modulus(q)
-        self.k = (self.q-1).bit_length()
+        self.q, self.radix_bits, self.base, self.k = radix_geometry(q, radix_bits)
         self.dimension = self.rows*self.k
         if self.dimension > MAX_OUTPUT_COORDINATES:
             raise ValueError("public gadget output coordinate resource limit")
         self.options = MatrixFiniteOptions() if options is None else options
         if type(self.options) is not MatrixFiniteOptions:
             raise ValueError("explicit matrix finite options required")
-        self.block = MatrixFiniteGPV(prime_gadget_kernel(self.q), width_squared,
+        self.block = MatrixFiniteGPV(prime_gadget_kernel(self.q, radix_bits=self.radix_bits), width_squared,
             epsilon_bits=epsilon_bits, options=self.options,
             max_dimension=MAX_MODULUS_BITS, max_arithmetic_content_bytes=32*2**20)
         self.random_tape_bytes = self.rows*self.block.random_tape_bytes
@@ -99,21 +106,24 @@ class PrimeGadgetSampler:
                                 self.random_tape_bytes)
         result = tuple(x for target in targets
                        for x in self.block.sample((target,), rng=source))
-        if any(sum((2**j)*result[i*self.k+j] for j in range(self.k)) % self.q != target
+        if any(sum((self.base**j)*result[i*self.k+j] for j in range(self.k)) % self.q != target
                for i, target in enumerate(targets)):
-            raise ArithmeticError("public binary gadget product-coset equation failed")
+            raise ArithmeticError("public gadget product-coset equation failed")
         return result
 
     def public_certificate(self):
         """Only public gadget geometry; no secret trapdoor diagnostics."""
-        return dict(profile=VERSION, rows=self.rows, q=str(self.q),
+        result = dict(profile=VERSION if self.radix_bits == 1 else RADIX_VERSION, rows=self.rows, q=str(self.q),
             modulus_bits=self.q.bit_length(), gadget_block_dimension=self.k,
             output_coordinates=self.dimension, expanded_product_basis_entries=0,
             public_kernel_entries=self.k*self.k,
-            coordinate_order="row-major binary gadget blocks",
+            coordinate_order=("row-major binary gadget blocks" if self.radix_bits == 1 else "row-major power-of-two radix gadget blocks"),
             complete_kernel_basis_verified=True, block=self.block.certificate(),
             tv_upper_including_abort=str(self.tv_upper),
             random_tape_bytes=self.random_tape_bytes,
             bound_model="independent uniform bytes; per-block TV union bound",
             complete_HIBE_domain_admitted=False, constant_time=False,
             security_claim="none", backend_admitted=False, parameters_are_formal=False)
+        if self.radix_bits != 1:
+            result.update(radix_bits=self.radix_bits, base=self.base, gadget_GS_squared_upper=self.base**2+1)
+        return result

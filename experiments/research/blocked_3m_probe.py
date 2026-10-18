@@ -22,6 +22,7 @@ from ibme.lattice.matrix_sampling.packed import PackedMatrix
 from ibme.lattice.matrix_sampling.mp12_blocked import generate_root, delegate, BlockedPreimageSampler
 from ibme.hibe.mp12_structured.blocked_prototype import (
     PrototypeParams, PrototypeContext, dump_trapdoor, load_trapdoor, dump_leaf, load_leaf,
+    RadixPrototypeParams, RadixPrototypeContext, RADIX_CONTEXT_MAGIC,
 )
 from .runtime_metrics import measured_phase, environment
 
@@ -58,7 +59,9 @@ def restore(directory, *, packing=None):
         calls += 1
         raise AssertionError("blocked restore attempted generation or entropy")
     with patch.object(SecureRandom, "read", forbidden), patch.object(BlockedPreimageSampler, "sample", forbidden):
-        context = PrototypeContext.from_bytes(paths[0].read_bytes())
+        raw = paths[0].read_bytes()
+        context_type = RadixPrototypeContext if raw.startswith(RADIX_CONTEXT_MAGIC) else PrototypeContext
+        context = context_type.from_bytes(raw)
         root = load_trapdoor(paths[1].read_bytes(), context, **packing)
         parent = load_trapdoor(paths[2].read_bytes(), context, RECEIVER, **packing)
         leaf = load_leaf(paths[3].read_bytes(), context, RECEIVER, SENDER, **packing)
@@ -103,9 +106,10 @@ def run(directory, params, *, source_commit="development", block_columns=32, cac
         before = source.bytes
         with measured_phase("root-generation", phases) as row:
             root = generate_root(params.n, params.q, params.root_r_squared,
-                options=params.options(), rng=source, **packing)
+                options=params.options(), rng=source, radix_bits=params.radix_bits, **packing)
             row["entropy_bytes"] = source.bytes-before
-        context = PrototypeContext.create(params, root.public)
+        context_type = RadixPrototypeContext if type(params) is RadixPrototypeParams else PrototypeContext
+        context = context_type.create(params, root.public)
         with measured_phase("root-persistence", phases):
             save(directory/"context.bin", context.to_bytes())
             save(directory/"root.bin", dump_trapdoor(context, root))
@@ -174,6 +178,7 @@ def main():
     parser.add_argument("--n", type=int, default=2)
     parser.add_argument("--q", type=int, default=PrototypeParams.q)
     parser.add_argument("--root-r-squared", type=int)
+    parser.add_argument("--radix-bits", type=int, default=1)
     parser.add_argument("--block-columns", type=int, default=32)
     parser.add_argument("--cache-bytes", type=int, default=16*2**20)
     parser.add_argument("--restore-only", action="store_true")
@@ -183,7 +188,11 @@ def main():
         if not (args.private_directory/"completed").is_file(): raise ValueError("completed original state required")
         print(json.dumps(restore(args.private_directory)), flush=True)
     else:
-        params = PrototypeParams(args.n, args.q, args.root_r_squared or 8*args.n)
+        if args.radix_bits == 1:
+            params = PrototypeParams(args.n, args.q, args.root_r_squared or 8*args.n)
+        else:
+            params = RadixPrototypeParams(args.n, args.q, args.root_r_squared or 8*args.n,
+                                          radix_bits=args.radix_bits)
         run(args.private_directory, params, source_commit=args.source_commit,
             block_columns=args.block_columns, cache_bytes=args.cache_bytes)
 
