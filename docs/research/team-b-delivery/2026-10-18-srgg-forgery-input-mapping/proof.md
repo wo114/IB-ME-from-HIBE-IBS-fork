@@ -30,10 +30,28 @@
 | PARAM-II | 3 | 6656 | 1536 | `Q^1536·2^256` | `2^1280` | 586 |
 | PARAM-III | 4 | 8704 | 2048 | `Q^2048·2^256` | `2^1792` | 828 |
 
+## 零承诺、固定末环的精确 `Q`-ary 子问题
+
+取合法 `id,μ`，先固定 `w=0` 并计算 `c=H̄_P(0,μ)`。在上面的完整模 `2Q` 陪集中，**只考虑**末环响应恰为该挑战的向量 `z=(x,c)`，其中 `x∈Z^(4dn)` 可取任意整数代表。由代码实际矩阵逐系数得
+
+`recover_P(h,(x,c),c)=2Ax+(Qj−2h)c−Qjc=2(Ax−hc) (mod 2Q)`。
+
+整数 `v` 满足 `2v=0 (mod 2Q)` 当且仅当 `v=0 (mod Q)`，故恢复零承诺的**充要条件**是 `Ax=hc (mod Q)`。这里的乘法在 `R_Q=Z_Q[X]/(X^512+1)` 中计算；等价关系对负系数和非规范整数 lift 同样成立。一旦此式成立，代码会重查同一个 `H̄_P(0,μ)`，得到原挑战 `c`。成为可接受、针对新 `(id,μ)` 的签名还要有公钥 context、规范对象及 wire、合法输入长度，以及精确范数门 `||x||²+wt(c)≤floor(γ²)`。二元挑战的平方范数就是 Hamming 重量。原表 `γ<2^27`，所以满足范数门的固定形状响应会自动满足代码的 256 位单坐标与 2 MiB wire 容量限制；非规范 wire 仍会被拒。这不表示短解已找到。
+
+令 `K_A={x∈Z^(4dn):Ax=0 (mod Q)}`。因为公开 `A=[I_d|Â|B]` 含单位块，系数展开后的模 `Q` 映射满射，故 `det K_A=Q^(dn)`。固定 `c` 的目标是 `u=hc mod Q`，剩余半径平方为 `floor(γ²)−wt(c)`。这给出与前节**不同**的受限 `Q`-ary 近似原像输入：
+
+| 原表 | `4dn` 个 `x` 系数 | `dn` 个目标系数 | `det K_A` | 范数平方预算 |
+|---|---:|---:|---|---|
+| PARAM-I | 4096 | 1024 | `Q^1024` | `floor(γ_I²)−wt(c)` |
+| PARAM-II | 6144 | 1536 | `Q^1536` | `floor(γ_II²)−wt(c)` |
+| PARAM-III | 8192 | 2048 | `Q^2048` | `floor(γ_III²)−wt(c)` |
+
+单位块保证 `x=(hc,0,…,0)` 是**无限制**公开原像，但它可能超过范数门限；这里未证明存在满足门限的原像。`A` 含公开生成的 `B`，而目标 `hc` 由同一 `P`、身份哈希和挑战导出，不能擅自视为独立均匀的通用 CVP 输入。固定末环 `t=c`、零承诺只是全部 `2Q` 伪造陪集的一个子集；不能从它推断最佳攻击、成功率或原文 Table 5 的 β。
+
 ## 作者成本公式还缺的对应
 
-原文 §5.2.3 写出通用 `Q`-ary approximate-CVP 和 nearest-colattice 的 β 判据，却没有在该处逐项代入 Algorithm 8 的 `M_h`、二元挑战、承诺选择、`2Q` 模数、`γ` 门及实际格维数。该泛式在 PDF p.9 **印作** `A∈Z_Q^{m×d}`、`u∈Z_Q^n`、`x∈Z^n×Z^{d−n}`；按字面 `Ax=u` 的左侧有 `m` 个坐标，右侧有 `n` 个，除非另补 `m=n` 或重命名，维数未对齐。本页不把可能的排版／记号笔误私自修成作者攻击输入，也不据此否定其估计。需要给出从实际 `2Q` 陪集与奇偶像到该通用 `Q`-ary 模型的明确变换，并说明选用的格维数、目标距离、优化参数 `k`、BKZ 代价与失败概率，才可核 Table 5 的 `352/586/828` 和 `103/171/242` 经典位数。作者量子位数 `93/155/219` 同样仅为 reported。
+原文 §5.2.3 写出通用 `Q`-ary approximate-CVP 和 nearest-colattice 的 β 判据，却没有在该处逐项代入 Algorithm 8 的 `M_h`、二元挑战、承诺选择、`2Q` 模数、`γ` 门及实际格维数。上一节只为一个受限子问题给出确切变换，并非作者所用攻击模型的证明。该泛式在 PDF p.9 **印作** `A∈Z_Q^{m×d}`、`u∈Z_Q^n`、`x∈Z^n×Z^{d−n}`；按字面 `Ax=u` 的左侧有 `m` 个坐标，右侧有 `n` 个，除非另补 `m=n` 或重命名，维数未对齐。本页不把可能的排版／记号笔误私自修成作者攻击输入，也不据此否定其估计。要核 Table 5 的 `352/586/828` 和 `103/171/242` 经典位数，仍须确定作者实际使用完整 `2Q` 陪集还是上述受限 `Q`-ary 子问题，再逐项说明格维数、目标距离、优化参数 `k`、BKZ 代价与失败概率。作者量子位数 `93/155/219` 也仍为 reported。
 
-工具 `experiments/research/candidates/srgg/paper_forgery_input_mapping.py` 逐行核冻结论文 SHA、三档维数、格行列式指数与 `floor(γ²)`，输出[收据](forgery-input.json)；`actual_short_solution_or_attack_cost=null`、`author_table5_forgery_bits_reproduced=false`。测试以独立 `n=4,Q=15` 的整数矩阵和 Smith 不变量穷举 16 个承诺奇偶型，验证仿射目标可达性；另用原 PARAM-I 公共代数对象检验 `w=0` 的可能**长**代表使代码 `recover` 回到零承诺。该对象未运行 Setup 接受检查，也不是实际 Setup 抽样根，不计入随机根或真实伪造实验。两项测试均不求短解，随机试验次数 0，身份／消息只是固定代码 fixture，未评测性能。既有源码验签像测试与本测试共 20 passed。
+工具 `experiments/research/candidates/srgg/paper_forgery_input_mapping.py` 逐行核冻结论文 SHA、三档维数、格行列式指数与 `floor(γ²)`，输出[收据](forgery-input.json)；`actual_short_solution_or_attack_cost=null`、`author_table5_forgery_bits_reproduced=false`。测试以独立 `n=4,Q=15` 的整数矩阵和 Smith 不变量穷举 16 个承诺奇偶型，验证仿射目标可达性；另用原 PARAM-I 公共代数对象检查 `w=0,t=c` 的 `Q`-ary 条件与实际 `recover` 的双向一致，包括正负模 `Q` lift、非零尾坐标及一个不满足条件的输入。该对象未运行 Setup 接受检查，也不是实际 Setup 抽样根，不计入随机根或真实伪造实验。测试不求短解，随机试验次数 0，身份／消息只是固定代码 fixture，未评测性能。
 
 原表三档和两种 Gaussian 解释未改变；本页没有使用 ROM 归约，`H̄_P` 在实际代码是带公钥域分隔的 SHAKE 地址。把它理想化为随机 oracle、扩展到 QROM、随机接受 Setup 公钥及全部发钥/故障历史，均另需核验。原 Theorem 1 `Q>2γ` 门和 Theorem 2 原生 strong 问题沿用[已封存审计](../2026-10-18-srgg-source-symbol-mapping/proof.md)，不重证。当前继续 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`、`nist_security_category=null`；功能等式和小环检验不构成安全证明。

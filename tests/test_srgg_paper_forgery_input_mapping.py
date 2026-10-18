@@ -62,10 +62,23 @@ def test_original_param_i_zero_commitment_has_a_public_representative():
     h = identity_target(public, b"fixed-identity")
     c = message_challenge(public, commitment, b"fresh-message")
     head = tuple(ring.multiply(hi, c, params.modulus) for hi in h)
-    z = head + (zero,) * (params.columns - params.rank) + (c,)
-    assert len(z) == params.columns + 1
-    assert ring.recover(public, h, z, c) == commitment
-    # No norm assertion: nonempty affine fiber is not a short forgery.
+    tail = (zero,) * (params.columns - params.rank)
+    shifted = ((head[0][0] + params.modulus,) + head[0][1:],) + head[1:]
+    negative_lift = ((head[0][0] - params.modulus,) + head[0][1:],) + head[1:]
+    compensated_head = tuple(tuple(a-b for a, b in zip(hi, public.a_hat[i][0]))
+                             for i, hi in enumerate(head))
+    compensated_tail = (ring.constant(1),) + tail[1:]
+    broken = ((head[0][0] + 1,) + head[0][1:],) + head[1:]
+    for x, expected in ((head + tail, True), (shifted + tail, True),
+                        (negative_lift + tail, True),
+                        (compensated_head + compensated_tail, True),
+                        (broken + tail, False)):
+        z = x + (c,)
+        assert len(z) == params.columns + 1
+        qary_holds = ring.matvec(ring.public_a(public), x, params.modulus) == head
+        assert qary_holds is expected
+        assert (ring.recover(public, h, z, c) == commitment) is qary_holds
+    # No norm assertion: an unrestricted preimage is not a short forgery.
 
 
 def test_three_original_rows_and_security_scope():
