@@ -1,7 +1,9 @@
 """Independent accounting checks against frozen public receipts, with no draws."""
 from copy import deepcopy
 from fractions import Fraction
+import hashlib
 import json
+import shutil
 import subprocess
 import sys
 
@@ -12,12 +14,43 @@ from experiments.research.candidates.srgg import service_budget as sb
 
 @pytest.fixture(scope="module")
 def inputs():
-    return sb.load_inputs()[0]
+    return sb.load_inputs(historical_only=True)[0]
 
 
 @pytest.fixture(scope="module")
 def report():
-    return sb.build_report()
+    return sb.build_report(historical_only=True)
+
+
+def test_default_current_source_guard_still_rejects_old_sampler_evidence():
+    _, _, declared = sb.load_inputs(historical_only=True)
+    changed = [name for name, digest in declared.items()
+               if hashlib.sha256((sb.ROOT / name).read_bytes()).hexdigest() != digest]
+    assert any(name.endswith("/structured_samplef.py") for name in changed)
+    with pytest.raises(ValueError, match="frozen source differs"):
+        sb.load_inputs()
+    with pytest.raises(ValueError, match="frozen source differs"):
+        sb.build_report()
+
+
+@pytest.mark.parametrize("value", [None, 0, 1, "true"])
+def test_historical_mode_requires_explicit_boolean(value):
+    with pytest.raises(ValueError, match="explicit boolean"):
+        sb.load_inputs(historical_only=value)
+
+
+def test_historical_public_receipt_changes_rejected_by_original_manifest(tmp_path):
+    name = sb.INPUTS["integrated"]
+    destination = tmp_path / name
+    destination.parent.mkdir(parents=True)
+    shutil.copyfile(sb.ROOT / name, destination)
+    manifest = destination.parent / "MANIFEST.json"
+    shutil.copyfile((sb.ROOT / name).parent / "MANIFEST.json", manifest)
+    # Same JSON object and schema, different frozen bytes: no digest rewriting.
+    with destination.open("ab") as handle:
+        handle.write(b"\n")
+    with pytest.raises(ValueError, match="historical public receipt differs"):
+        sb.load_inputs(tmp_path, historical_only=True)
 
 
 def test_finite_only_two_pow40_matches_preexisting_frozen_certificate(inputs, report):
@@ -122,6 +155,15 @@ def test_arithmetic_query_budget_does_not_claim_executable_identity_capacity(rep
 
 
 def test_security_and_uninstantiated_terms_stay_explicit(report):
+    assert report["evidence_mode"] == "historical_conditional_arithmetic_only"
+    assert report["historical_only"]
+    assert report["historical_receipt_bytes_match_delivery_manifests"]
+    assert not report["current_source_guard_verified"]
+    assert not report["current_implementation_validated"]
+    assert not report["historical_bounds_revalidated"]
+    assert "QQ(real)" in report["historical_interval_endpoint_status"]
+    assert report["frozen_declared_source_sha256_verified"] is None
+    assert report["historical_declared_source_sha256_unverified"]
     assert report["actual_entropy_bytes"] == 0
     assert not report["draw_performed"] and not report["private_payloads_read"]
     assert not report["new_lifecycle_run"] and not report["production_algorithm_modified"]
@@ -219,8 +261,9 @@ def test_no_sage_randomness_or_sample_import_is_needed_in_fresh_python():
         "def forbidden(*args,**kwargs): raise AssertionError('budget requested entropy')",
         "os.urandom=forbidden",
         "from experiments.research.candidates.srgg.service_budget import build_report",
-        "r=build_report()",
+        "r=build_report(historical_only=True)",
         "assert r['actual_entropy_bytes']==0 and not r['draw_performed']",
+        "assert r['historical_only'] and not r['current_implementation_validated']",
         "print('zero-entropy-budget-ok')",
     ])
     child = subprocess.run([sys.executable, "-c", code], cwd=sb.ROOT,

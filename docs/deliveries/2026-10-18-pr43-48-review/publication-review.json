@@ -1,0 +1,750 @@
+{
+  "backend_admitted": false,
+  "completed_utc": "2026-10-18T13:57:59.447241+00:00",
+  "environment": {
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.13",
+    "sage": "10.7"
+  },
+  "frozen_source_manifest_sha256": "cb763a00b8f3c71dd27767ac05721abf61138e4fc9bc302471330e38d95cb081",
+  "frozen_source_validation_sha256": "4757218ca76254b97a17c685e8c8714c1e52675fec2c7963d4c56e62e3533e6f",
+  "independent_mathematical_replay_passes": 2,
+  "independent_replays": [
+    {
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/.pytest-tmp-pr-review-2026-10-18/publication-review-runner.py",
+        "--replay-only"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "result": {
+        "actual_differences": [
+          {
+            "current": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+            "frozen": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+            "path": "$.environment.platform"
+          },
+          {
+            "current": "3.12.13",
+            "frozen": "3.13.15",
+            "path": "$.environment.python"
+          },
+          {
+            "current": "10.7",
+            "frozen": "10.9",
+            "path": "$.environment.sage"
+          }
+        ],
+        "all_other_fields_canonical_sha256": "31444a9cb1b70341d8bb751ecc82b6d440d984348fcd51aa4e660748776fcb23",
+        "allowed_difference_paths": [
+          "$.environment.platform",
+          "$.environment.python",
+          "$.environment.sage"
+        ],
+        "backend_admitted": false,
+        "current_report_canonical_sha256": "3926ef94dc89ad63f8b2ef56c10e69686eb60a6efc14b5686224185b3f570a56",
+        "environment": {
+          "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+          "python": "3.12.13",
+          "sage": "10.7"
+        },
+        "frozen_report_sha256": "c0f3e95075048fe8b395328074a9c56c9cbb1ac499f1397ccb820a1f9076d4d1",
+        "nist_security_category": null,
+        "non_environment_difference_count": 0,
+        "optimized": false,
+        "original_verifier_result_overridden": false,
+        "parameters_are_formal": false,
+        "row_canonical_sha256": [
+          "5688881118ea50bce2f918b6e25cd06c30ebdbbd538fab36834224016b9add53",
+          "5e75694978b62a3b005cdf005b79023776db4168bf41b87cb225ee7cac9791e1",
+          "e79fc6a90b66a7a75cf7ac3eecc55e91f211b6ae5eba9e35cec76a07a3a931c4",
+          "d6ae79e05cdfc354dfec01c07bbddf8b000c30d2a5acfc9b986575c25eac5af2",
+          "899b1cbf4c244bde9667603d8727f25cba7cc8d3db7bc76518788d370b4d9a78",
+          "7bb03cadc1e7abad70ca4291c3f63c4b425e69642d7ad2087a7c2762e20e7866"
+        ],
+        "security_claim": "none",
+        "six_rows_exactly_equal": true,
+        "status": "mathematical_replay_matches_with_environment_metadata_differences"
+      },
+      "stderr": "",
+      "stdout": "{\"actual_differences\": [{\"current\": \"Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39\", \"frozen\": \"Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39\", \"path\": \"$.environment.platform\"}, {\"current\": \"3.12.13\", \"frozen\": \"3.13.15\", \"path\": \"$.environment.python\"}, {\"current\": \"10.7\", \"frozen\": \"10.9\", \"path\": \"$.environment.sage\"}], \"all_other_fields_canonical_sha256\": \"31444a9cb1b70341d8bb751ecc82b6d440d984348fcd51aa4e660748776fcb23\", \"allowed_difference_paths\": [\"$.environment.platform\", \"$.environment.python\", \"$.environment.sage\"], \"backend_admitted\": false, \"current_report_canonical_sha256\": \"3926ef94dc89ad63f8b2ef56c10e69686eb60a6efc14b5686224185b3f570a56\", \"environment\": {\"platform\": \"Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39\", \"python\": \"3.12.13\", \"sage\": \"10.7\"}, \"frozen_report_sha256\": \"c0f3e95075048fe8b395328074a9c56c9cbb1ac499f1397ccb820a1f9076d4d1\", \"nist_security_category\": null, \"non_environment_difference_count\": 0, \"optimized\": false, \"original_verifier_result_overridden\": false, \"parameters_are_formal\": false, \"row_canonical_sha256\": [\"5688881118ea50bce2f918b6e25cd06c30ebdbbd538fab36834224016b9add53\", \"5e75694978b62a3b005cdf005b79023776db4168bf41b87cb225ee7cac9791e1\", \"e79fc6a90b66a7a75cf7ac3eecc55e91f211b6ae5eba9e35cec76a07a3a931c4\", \"d6ae79e05cdfc354dfec01c07bbddf8b000c30d2a5acfc9b986575c25eac5af2\", \"899b1cbf4c244bde9667603d8727f25cba7cc8d3db7bc76518788d370b4d9a78\", \"7bb03cadc1e7abad70ca4291c3f63c4b425e69642d7ad2087a7c2762e20e7866\"], \"security_claim\": \"none\", \"six_rows_exactly_equal\": true, \"status\": \"mathematical_replay_matches_with_environment_metadata_differences\"}\n",
+      "wall_seconds": 16.609208748000015
+    },
+    {
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/.pytest-tmp-pr-review-2026-10-18/publication-review-runner.py",
+        "--replay-only"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "result": {
+        "actual_differences": [
+          {
+            "current": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+            "frozen": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+            "path": "$.environment.platform"
+          },
+          {
+            "current": "3.12.13",
+            "frozen": "3.13.15",
+            "path": "$.environment.python"
+          },
+          {
+            "current": "10.7",
+            "frozen": "10.9",
+            "path": "$.environment.sage"
+          }
+        ],
+        "all_other_fields_canonical_sha256": "31444a9cb1b70341d8bb751ecc82b6d440d984348fcd51aa4e660748776fcb23",
+        "allowed_difference_paths": [
+          "$.environment.platform",
+          "$.environment.python",
+          "$.environment.sage"
+        ],
+        "backend_admitted": false,
+        "current_report_canonical_sha256": "3926ef94dc89ad63f8b2ef56c10e69686eb60a6efc14b5686224185b3f570a56",
+        "environment": {
+          "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+          "python": "3.12.13",
+          "sage": "10.7"
+        },
+        "frozen_report_sha256": "c0f3e95075048fe8b395328074a9c56c9cbb1ac499f1397ccb820a1f9076d4d1",
+        "nist_security_category": null,
+        "non_environment_difference_count": 0,
+        "optimized": true,
+        "original_verifier_result_overridden": false,
+        "parameters_are_formal": false,
+        "row_canonical_sha256": [
+          "5688881118ea50bce2f918b6e25cd06c30ebdbbd538fab36834224016b9add53",
+          "5e75694978b62a3b005cdf005b79023776db4168bf41b87cb225ee7cac9791e1",
+          "e79fc6a90b66a7a75cf7ac3eecc55e91f211b6ae5eba9e35cec76a07a3a931c4",
+          "d6ae79e05cdfc354dfec01c07bbddf8b000c30d2a5acfc9b986575c25eac5af2",
+          "899b1cbf4c244bde9667603d8727f25cba7cc8d3db7bc76518788d370b4d9a78",
+          "7bb03cadc1e7abad70ca4291c3f63c4b425e69642d7ad2087a7c2762e20e7866"
+        ],
+        "security_claim": "none",
+        "six_rows_exactly_equal": true,
+        "status": "mathematical_replay_matches_with_environment_metadata_differences"
+      },
+      "stderr": "",
+      "stdout": "{\"actual_differences\": [{\"current\": \"Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39\", \"frozen\": \"Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39\", \"path\": \"$.environment.platform\"}, {\"current\": \"3.12.13\", \"frozen\": \"3.13.15\", \"path\": \"$.environment.python\"}, {\"current\": \"10.7\", \"frozen\": \"10.9\", \"path\": \"$.environment.sage\"}], \"all_other_fields_canonical_sha256\": \"31444a9cb1b70341d8bb751ecc82b6d440d984348fcd51aa4e660748776fcb23\", \"allowed_difference_paths\": [\"$.environment.platform\", \"$.environment.python\", \"$.environment.sage\"], \"backend_admitted\": false, \"current_report_canonical_sha256\": \"3926ef94dc89ad63f8b2ef56c10e69686eb60a6efc14b5686224185b3f570a56\", \"environment\": {\"platform\": \"Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39\", \"python\": \"3.12.13\", \"sage\": \"10.7\"}, \"frozen_report_sha256\": \"c0f3e95075048fe8b395328074a9c56c9cbb1ac499f1397ccb820a1f9076d4d1\", \"nist_security_category\": null, \"non_environment_difference_count\": 0, \"optimized\": true, \"original_verifier_result_overridden\": false, \"parameters_are_formal\": false, \"row_canonical_sha256\": [\"5688881118ea50bce2f918b6e25cd06c30ebdbbd538fab36834224016b9add53\", \"5e75694978b62a3b005cdf005b79023776db4168bf41b87cb225ee7cac9791e1\", \"e79fc6a90b66a7a75cf7ac3eecc55e91f211b6ae5eba9e35cec76a07a3a931c4\", \"d6ae79e05cdfc354dfec01c07bbddf8b000c30d2a5acfc9b986575c25eac5af2\", \"899b1cbf4c244bde9667603d8727f25cba7cc8d3db7bc76518788d370b4d9a78\", \"7bb03cadc1e7abad70ca4291c3f63c4b425e69642d7ad2087a7c2762e20e7866\"], \"security_claim\": \"none\", \"six_rows_exactly_equal\": true, \"status\": \"mathematical_replay_matches_with_environment_metadata_differences\"}\n",
+      "wall_seconds": 16.398944588000006
+    }
+  ],
+  "nist_security_category": null,
+  "original_checks": [
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-covariance-correspondence/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-covariance-correspondence",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"focused_tests_reported\": 18, \"manifest_entries\": 17, \"paper_rows\": 3, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 0.8141633320000006
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-covariance-correspondence/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-covariance-correspondence",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"focused_tests_reported\": 18, \"manifest_entries\": 17, \"paper_rows\": 3, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 1.4668510000000001
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-fault-history-law/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-fault-history-law",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"full_history_bound\": null, \"manifest_entries\": 19, \"rows\": 6, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 3.465705239
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-fault-history-law/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-fault-history-law",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"full_history_bound\": null, \"manifest_entries\": 19, \"rows\": 6, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 3.1134705260000004
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-finite-chain",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"exact_joint_phase_bounds\": 12, \"fixed_root_rows\": 6, \"manifest_entries\": 32, \"security_claim\": \"none\", \"status\": \"verified\", \"strong_dyadic_joint_phase_bounds\": 6}\n",
+      "wall_seconds": 0.6598690170000001
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-finite-chain",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"exact_joint_phase_bounds\": 12, \"fixed_root_rows\": 6, \"manifest_entries\": 32, \"security_claim\": \"none\", \"status\": \"verified\", \"strong_dyadic_joint_phase_bounds\": 6}\n",
+      "wall_seconds": 0.7380477900000013
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-history-law-followup",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"entries\": 8, \"full_history\": null, \"rows\": 6, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 7.858471281
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-history-law-followup",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"entries\": 8, \"full_history\": null, \"rows\": 6, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 7.764456441
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-oracle-budget/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-oracle-budget",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"entries\": 14, \"premise\": \"ideal uniform XOF bytes\", \"rows\": 3, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 0.6306821240000033
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-oracle-budget/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-oracle-budget",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"entries\": 14, \"premise\": \"ideal uniform XOF bytes\", \"rows\": 3, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 0.4364370039999983
+    },
+    {
+      "classification": "original_verifier_failed_environment_metadata_equality",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-random-key-sign-law/verify_delivery.py"
+      ],
+      "exit_code": 1,
+      "independent_non_environment_replay_consistent": true,
+      "optimized": false,
+      "package": "2026-10-18-srgg-random-key-sign-law",
+      "source_schur_overlay_used": false,
+      "stderr": "Traceback (most recent call last):\n  File \"/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-random-key-sign-law/verify_delivery.py\", line 108, in <module>\n    main()\n  File \"/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-random-key-sign-law/verify_delivery.py\", line 101, in main\n    require(build_report() == report, \"live original-row replay differs from frozen receipt\")\n  File \"/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-random-key-sign-law/verify_delivery.py\", line 27, in require\n    raise ValueError(message)\nValueError: live original-row replay differs from frozen receipt\n",
+      "stdout": "",
+      "wall_seconds": 16.922024219999997
+    },
+    {
+      "classification": "original_verifier_failed_environment_metadata_equality",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-random-key-sign-law/verify_delivery.py"
+      ],
+      "exit_code": 1,
+      "independent_non_environment_replay_consistent": true,
+      "optimized": true,
+      "package": "2026-10-18-srgg-random-key-sign-law",
+      "source_schur_overlay_used": false,
+      "stderr": "Traceback (most recent call last):\n  File \"/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-random-key-sign-law/verify_delivery.py\", line 108, in <module>\n    main()\n  File \"/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-random-key-sign-law/verify_delivery.py\", line 101, in main\n    require(build_report() == report, \"live original-row replay differs from frozen receipt\")\n  File \"/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-random-key-sign-law/verify_delivery.py\", line 27, in require\n    raise ValueError(message)\nValueError: live original-row replay differs from frozen receipt\n",
+      "stdout": "",
+      "wall_seconds": 16.976840771999996
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-serial-runtime/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-serial-runtime",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"bound_files\": 10, \"rows\": [\"PARAM-I\", \"PARAM-II\", \"PARAM-III\"], \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 0.47103074300000003
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-serial-runtime/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-serial-runtime",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"bound_files\": 10, \"rows\": [\"PARAM-I\", \"PARAM-II\", \"PARAM-III\"], \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 0.3189348230000064
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-service-resource-envelope/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-service-resource-envelope",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"entries\": 6, \"global_lifetime_entropy_cap\": null, \"rows\": 6, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 2.3359203419999943
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-service-resource-envelope/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-service-resource-envelope",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"entries\": 6, \"global_lifetime_entropy_cap\": null, \"rows\": 6, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 2.8439749059999997
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-setup-acceptance/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-setup-acceptance",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"actual_backend_bound\": null, \"manifest_entries\": 12, \"mathematical_rows\": 3, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 0.8954561850000005
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-setup-acceptance/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-setup-acceptance",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"actual_backend_bound\": null, \"manifest_entries\": 12, \"mathematical_rows\": 3, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 0.2726056169999964
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-setup-backend-gap/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-setup-backend-gap",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"manifest_entries\": 37, \"security_claim\": \"none\", \"status\": \"verified\", \"useful_actual_backend_gap_bound\": null, \"zero_atom_rows\": 6}\n",
+      "wall_seconds": 8.674282285999993
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-setup-backend-gap/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-setup-backend-gap",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"manifest_entries\": 37, \"security_claim\": \"none\", \"status\": \"verified\", \"useful_actual_backend_gap_bound\": null, \"zero_atom_rows\": 6}\n",
+      "wall_seconds": 8.599988803000002
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-smoothing-eta/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-smoothing-eta",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"manifest_entries\": 10, \"security_claim\": \"none\", \"source_dimension\": 10240, \"source_exact_width_resolved\": false, \"status\": \"verified\"}\n",
+      "wall_seconds": 1.971282475999999
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-smoothing-eta/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-smoothing-eta",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"manifest_entries\": 10, \"security_claim\": \"none\", \"source_dimension\": 10240, \"source_exact_width_resolved\": false, \"status\": \"verified\"}\n",
+      "wall_seconds": 1.9781927300000035
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-source-issuance",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"finite_manifest_entries\": 32, \"literal_issuance_bounds\": null, \"package_entries\": 13, \"rows\": 6, \"security_claim\": \"none\", \"standard_fixed_root_bounds\": 3, \"status\": \"verified\"}\n",
+      "wall_seconds": 0.5648586390000077
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-source-issuance",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"finite_manifest_entries\": 32, \"literal_issuance_bounds\": null, \"package_entries\": 13, \"rows\": 6, \"security_claim\": \"none\", \"standard_fixed_root_bounds\": 3, \"status\": \"verified\"}\n",
+      "wall_seconds": 0.4825407410000082
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-pr-integration/verify_publication.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-source-schur",
+      "source_schur_overlay_used": true,
+      "stderr": "",
+      "stdout": "{\"backend_admitted\": false, \"frozen_manifest_entries\": 246, \"historical_verifier\": \"verified with three pinned original-source snapshots\", \"nist_security_category\": null, \"parameters_are_formal\": false, \"schema\": \"IBME/SRGG-PR-INTEGRATION-VERIFY/1\", \"security_claim\": \"none\", \"selected_source_entries\": 204, \"status\": \"verified\", \"unchanged_current_entries\": 243, \"upstream_changed_entries\": 3}\n",
+      "wall_seconds": 6.978968549000001
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-pr-integration/verify_publication.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-source-schur",
+      "source_schur_overlay_used": true,
+      "stderr": "",
+      "stdout": "{\"backend_admitted\": false, \"frozen_manifest_entries\": 246, \"historical_verifier\": \"verified with three pinned original-source snapshots\", \"nist_security_category\": null, \"parameters_are_formal\": false, \"schema\": \"IBME/SRGG-PR-INTEGRATION-VERIFY/1\", \"security_claim\": \"none\", \"selected_source_entries\": 204, \"status\": \"verified\", \"unchanged_current_entries\": 243, \"upstream_changed_entries\": 3}\n",
+      "wall_seconds": 5.2009712990000025
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-source-symbol-mapping/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-source-symbol-mapping",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"focused_tests_reported\": 15, \"manifest_entries\": 15, \"original_rows\": 3, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 2.5934736840000028
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-source-symbol-mapping/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-source-symbol-mapping",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"focused_tests_reported\": 15, \"manifest_entries\": 15, \"original_rows\": 3, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 2.157604097999993
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-strong-game/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-strong-game",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"accepted_same_message_replacements\": 5, \"manifest_entries\": 15, \"security_claim\": \"none\", \"status\": \"verified\", \"table4_interpretation_runs\": 6}\n",
+      "wall_seconds": 0.4966287419999986
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-strong-game/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-strong-game",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"accepted_same_message_replacements\": 5, \"manifest_entries\": 15, \"security_claim\": \"none\", \"status\": \"verified\", \"table4_interpretation_runs\": 6}\n",
+      "wall_seconds": 0.39720769800000255
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-structural-attack-followup/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-structural-attack-followup",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"profiles_verified\": [\"PARAM-I\", \"PARAM-II\", \"PARAM-III\"], \"security_claim\": \"none\", \"selected_files_verified\": 16}\n",
+      "wall_seconds": 0.25431005999999456
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-structural-attack-followup/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-structural-attack-followup",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"profiles_verified\": [\"PARAM-I\", \"PARAM-II\", \"PARAM-III\"], \"security_claim\": \"none\", \"selected_files_verified\": 16}\n",
+      "wall_seconds": 0.46121268699999973
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-structural-cost/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-structural-cost",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"profiles_verified\": [\"PARAM-I\", \"PARAM-II\", \"PARAM-III\"], \"security_claim\": \"none\", \"selected_files_verified\": 14}\n",
+      "wall_seconds": 0.39732706299999165
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-structural-cost/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-structural-cost",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"profiles_verified\": [\"PARAM-I\", \"PARAM-II\", \"PARAM-III\"], \"security_claim\": \"none\", \"selected_files_verified\": 14}\n",
+      "wall_seconds": 0.19316068700000244
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-verification-image/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-verification-image",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"focused_tests_reported\": 17, \"manifest_entries\": 11, \"paper_rows\": 3, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 0.31236907500000655
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-verification-image/verify_delivery.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-verification-image",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"focused_tests_reported\": 17, \"manifest_entries\": 11, \"paper_rows\": 3, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 0.2877607100000006
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-closure-followup/verify_followup.py"
+      ],
+      "exit_code": 0,
+      "optimized": false,
+      "package": "2026-10-18-srgg-closure-followup",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"fixed_roots\": 6, \"manifest_entries\": 20, \"ring_factors\": 16, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 0.439623085000008
+    },
+    {
+      "classification": "original_verifier_passed",
+      "command": [
+        "/home/pi/miniconda3/envs/sage/bin/python",
+        "-B",
+        "-O",
+        "/mnt/d/ibme/IB-ME-from-HIBE-IBS/docs/research/team-b-delivery/2026-10-18-srgg-closure-followup/verify_followup.py"
+      ],
+      "exit_code": 0,
+      "optimized": true,
+      "package": "2026-10-18-srgg-closure-followup",
+      "source_schur_overlay_used": false,
+      "stderr": "",
+      "stdout": "{\"fixed_roots\": 6, \"manifest_entries\": 20, \"ring_factors\": 16, \"security_claim\": \"none\", \"status\": \"verified\"}\n",
+      "wall_seconds": 0.3352944339999908
+    }
+  ],
+  "original_driver_38_of_38_passed": false,
+  "original_environment_metadata_failures": 2,
+  "original_verifier_passes": 36,
+  "original_verifiers_or_frozen_receipts_modified": false,
+  "overlay_manifest_sha256": "054b584c39b343828653509012c9ea6a267632a4eb0c1ef8832572c0201e1550",
+  "overlay_verifier_sha256": "b00b7675eea716b83e2fa654c8c5d5bf051a1191011478a4f41e8c27ed09a75f",
+  "packages": 19,
+  "parameters_are_formal": false,
+  "runner_sha256": "57ec6f4b2cf5c1e5f63b5a527c4eebb4bfb552d802e11ec4c79c45d7564e8d4d",
+  "schema": "IBME/PR43-48-INDEPENDENT-PUBLICATION-REVIEW/1",
+  "security_claim": "none",
+  "source_manifest_current_inventory_sha256": "1f99305b5fdeccd9167872cd3ef77bb0fd1b28d283dce8662d20722610d90274",
+  "source_manifest_entries": 246,
+  "source_package_bytes_unchanged_during_review": true,
+  "started_utc": "2026-10-18T13:55:34.054100+00:00",
+  "status": "review_complete_with_two_environment_metadata_failures",
+  "unexpected_findings": []
+}

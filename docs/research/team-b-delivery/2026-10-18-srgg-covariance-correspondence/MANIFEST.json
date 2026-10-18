@@ -1,0 +1,78 @@
+{
+  "backend_admitted": false,
+  "entries": {
+    "docs/research/team-b-delivery/2026-10-18-srgg-covariance-correspondence/README.md": {
+      "bytes": 2729,
+      "sha256": "e11f35c575ee93bd66fe9ffae24f4ad3cbe9e2a99a4756e6770862ab44d4d7d9"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-covariance-correspondence/README_zh-CN.md": {
+      "bytes": 2360,
+      "sha256": "0e04b1ad577b269a5453b416937b6a40f1c948da2b3a8d3d9846a0ac80438352"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-covariance-correspondence/covariance-correspondence.json": {
+      "bytes": 3913,
+      "sha256": "74b87bc9ab8db1a5ffe59cc6cbfcc47745ff1ff3c8ade48f98e247175c340cee"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-covariance-correspondence/proof.md": {
+      "bytes": 6156,
+      "sha256": "efd5ad953898abeff9dc0b73c1a453e4b699576d7d86f6dac28953f316b8a807"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-covariance-correspondence/validation.json": {
+      "bytes": 2284,
+      "sha256": "69960a225cb43d89628dcb4d5a65f94bea6d1d3fc9dd55448dee364e1aa76c07"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-covariance-correspondence/verify_delivery.py": {
+      "bytes": 6506,
+      "sha256": "27b245deb84ca811a90aae61d03bd6bde21eb94e8b3628333103cb4bd8f5e13f"
+    },
+    "experiments/research/candidates/srgg/paper_algebra.py": {
+      "bytes": 2006,
+      "sha256": "5494acd7ab7cf42b2d9f33746b2535ffcbb58df0796c0b313dd56cc39547c81a"
+    },
+    "experiments/research/candidates/srgg/paper_backend.py": {
+      "bytes": 11897,
+      "sha256": "da08ef7c93e4b921ef8a73ae233501eee693a67efefb899208f4f0a7079b6451"
+    },
+    "experiments/research/candidates/srgg/paper_covariance_correspondence.py": {
+      "bytes": 7386,
+      "sha256": "560cbd7208d1e5654ad7e8c3259fd38d21650ffd5277fef22e65b78ef44c6aa4"
+    },
+    "experiments/research/candidates/srgg/paper_parameters.py": {
+      "bytes": 4003,
+      "sha256": "3dc03c082d5595fb2f6d85ea2fdd284beb37b20c432854a38ff434f8aef201a4"
+    },
+    "experiments/research/candidates/srgg/paper_profiles.py": {
+      "bytes": 6580,
+      "sha256": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f"
+    },
+    "experiments/research/candidates/srgg/paper_schur_backend.py": {
+      "bytes": 3968,
+      "sha256": "f67cad3306c4a95495c48c12f29353791b2b5c05dadd1b6021d2b1cb58956693"
+    },
+    "experiments/research/candidates/srgg/structured_execution.py": {
+      "bytes": 38862,
+      "sha256": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+    },
+    "experiments/research/candidates/srgg/structured_geometry.py": {
+      "bytes": 16626,
+      "sha256": "08d70876337afae3a7e8722a939c9996363af8eb5f8039d6437b6906814f1120"
+    },
+    "experiments/research/candidates/srgg/wide_scalar.py": {
+      "bytes": 18555,
+      "sha256": "2f404dd95ec1c909c3c40dcc8b6e4b070d25864c2e2aaa0a80e8b291df5689ca"
+    },
+    "papers/2025_efficient_ibs_jia.pdf": {
+      "bytes": 512758,
+      "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+    },
+    "tests/test_srgg_paper_covariance_correspondence.py": {
+      "bytes": 6919,
+      "sha256": "6558eeea238acff03f78f9f5e109f33be7b3a1b0b212ac3499daeb0353c8b3ae"
+    }
+  },
+  "nist_security_category": null,
+  "parameters_are_formal": false,
+  "schema": "IBME/SRGG-COVARIANCE-CORRESPONDENCE-MANIFEST/1",
+  "security_claim": "none",
+  "self_hash_excluded": true
+}

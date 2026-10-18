@@ -1,0 +1,140 @@
+{
+  "CBD1_projection_law": null,
+  "actual_attack_cost": null,
+  "actual_entropy_bytes": 0,
+  "all_lifted_factors_product_equals_Xn_plus_1": true,
+  "backend_admitted": false,
+  "centered_idempotent_norms_are_not_attack_costs": true,
+  "degree": 512,
+  "exponent": 2,
+  "factor_count": 16,
+  "factors": [
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "c6f925c7ed3110dc6b8b73947ddc0a4c88c3ccf17d21133a8869db1f660ede65",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "349abdc88f0d2c798f794b842c4eb15f8d8e66e3c54076bc4eaadee3fa957a21"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "8291f725e09a973a90365eee66fb223d5c2218d09ec1559e5fb00c138e8e95ea",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "f6e69c50f9d1df9e84fccc5424d888685d255fada5b94a311cdc660cbc09ebfc"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "d280cc36e6ae9871ed3637ddd75b8707836ff7ae9cd0809bd2cca98314889866",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "3e0ce98a5d660e90ec604f1e1e1c8df6aa036b3be042fb03574d353aeed115b8"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "c7ff067bfa213753a80912b4daf5decc45e8dcf98462bfb8a8fa4752a70d1971",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "3b63e10bc5b2e7bc1b86a61aac32462127e0bc6f64d3d296641f59895d6afcfc"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "c297e79da1e5eeaf71a29dc5de5fb1d49569100a30e94a62c0e2a9cdc388e4a2",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "50cd0c5e51792588c0416f5bc8e8a152a9a1aef11f707dd27f5d8a128057e5b7"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "3a4baf178af65192147fb434b460a3a8d5bcb4e4083633f52682d84e894a89ac",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "762b402698639502540882e86e55df0cf7f37d5c238e755396c5ee66bc06896a"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "6a516fbe4fc9ca219bdc1c3933e80ab82c9a785dbb0cb834c6276ec17c09782f",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "beeac9ba85fde467d8c42aa4ed9ee33e79363899716b715138e2437f1fe206cf"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "20885a571a7d7d2f9330ebfa313166cf943769ca0803c3ac8790f80f395acec0",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "d05ffdda2d1b6b278c89b0b0729a16c450bd1315e91ddafc01ef592c7e8d27b5"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "38271db0fa9faf4c15d0bfaf7ab97dcb5c5cea5d48dcff528d0a8f0f5621546a",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "15f8c4c88eb15b7bbde85da55fd3416f8a8ddb72763d3f75f426f03ed38fea80"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "fe37ba862c15836f8f590fa596aa6cc3ae8bc10c6fe736f82aa9cc9b58af857e",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "c32b2caaff62176aeae710848745085b355e54be7979ed985f53467a0aec1a91"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "51e212af2bfc632e07062b58a5b84b8eb9b172043fa1627cb56046e4642a8eed",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "d198c967f9aa7d90f76f08857e80b0820297f89d1db621bafee899efaf587393"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "14b8e59ca58fdc8de854b29745f7fe8021025b4d99e0191c32ca0ce07434693d",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "9af21635a771035cc085de595dd321a873c073cf11d71f43b2058afaf8ef7d2a"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "4dfc75a1a5b6f6a47fa15c95b137a33a2da7361e4829266a7aacc8a8661d1efa",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "42a74eeec5ef81442b73dfd50c5e2fced6fa2c891d54bfd45784abc316120630"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "b0984cd8362aa684042d3207458b93dd2f8a6f9400405399dbcceaaba57469a4",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "09a3e8c42f08b3fec879f2702fbaf7f888f057652ba9fae9bf03c72ac57a4ec7"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "f63a5bbce05fcca59726a11e8184c4f638ba2e0cc40825d817d3da27260f2049",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "5e108b08e6ab9a91aa4bd8a085b33d244ceb02a1a98e9c406d74d619d552db46"
+    },
+    {
+      "centered_idempotent_l1": 7466,
+      "centered_idempotent_norm_squared": 2346762,
+      "factor_coefficients_sha256": "43dae2ddc590a393eb0834befe8e64a847088a1585ffddea2e02bd57da1b19cb",
+      "factor_degree": 32,
+      "idempotent_coefficients_sha256": "8ece84335ca629488dbe0f4d9731b73f9680857f34c154ab0b18d237dc94bb91"
+    }
+  ],
+  "idempotents_pairwise_project_and_sum_to_one": true,
+  "modulus": 961,
+  "nist_security_category": null,
+  "paper": {
+    "path": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "parameters_are_formal": false,
+  "prime": 31,
+  "public_polynomial_crt_reconstruction": true,
+  "quotient_representative_norm_or_attack_cost_inferred": false,
+  "sampler_draws": 0,
+  "schema": "IBME/SRGG-PAPER-RING-CRT-LIFT/1",
+  "security_claim": "none",
+  "unreduced_lift_l2_multiplier_upper": "centered idempotent l1 by signed-shift triangle inequality"
+}

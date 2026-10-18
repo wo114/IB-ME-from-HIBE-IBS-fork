@@ -1,0 +1,60 @@
+{
+  "schema": "IBME/SRGG-COVARIANCE-CORRESPONDENCE-VALIDATION/1",
+  "paper": {
+    "path": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+    "locations": "Section 2.2 PDF p.3; Table 3 PDF p.6; Algorithm 7 PDF p.8",
+    "rendered_pages_visually_checked": [6, 8]
+  },
+  "receipt": {
+    "path": "docs/research/team-b-delivery/2026-10-18-srgg-covariance-correspondence/covariance-correspondence.json",
+    "sha256": "74b87bc9ab8db1a5ffe59cc6cbfcc47745ff1ff3c8ade48f98e247175c340cee",
+    "deterministic_replay_required_by_verifier": true
+  },
+  "parameters": {
+    "source": "original Table 3 and Table 4, rounded r=1.16 retained",
+    "degree": 512,
+    "r_published_approximation": "1.16",
+    "r_if_literal_density_exact_fraction": "29/25",
+    "gadget_q": 961,
+    "Q": 15744063,
+    "d": [2, 3, 4],
+    "two_explicit_code_interpretations": ["literal-density-width", "table-standard-deviation"],
+    "paper_formula_changed": false
+  },
+  "execution": {
+    "test_command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_covariance_correspondence.py",
+    "test_passed": 18,
+    "test_failed": 0,
+    "test_skipped": 0,
+    "test_elapsed_seconds": 4.04,
+    "sage": "10.9",
+    "python": "3.13.15",
+    "environment": "WSL2 Sage, Windows host; no performance experiment",
+    "message_bytes": 0,
+    "identity_bytes": 0,
+    "signature_runs": 0,
+    "setup_runs": 0,
+    "sampling_repetitions": 0,
+    "random_bytes_consumed": 0,
+    "algebra_used_random_oracle": false,
+    "paper_IBS_uses_hash_oracles": true
+  },
+  "proved_scope": {
+    "exact_negacyclic_adjoint_and_norm_factor": true,
+    "exact_discrete_pushforward_coset_and_shape": true,
+    "original_degree_coset_index": "2^256",
+    "strict_challenge_coset_normalizer_dependence": true,
+    "conditional_continuous_shape_mismatch": true,
+    "actual_discrete_signature_covariance_established": false,
+    "full_signature_law_bound": null,
+    "author_intended_resolution": null,
+    "proof_of_insecurity": false
+  },
+  "route_switches_after_original": 2,
+  "performance_claim": null,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}

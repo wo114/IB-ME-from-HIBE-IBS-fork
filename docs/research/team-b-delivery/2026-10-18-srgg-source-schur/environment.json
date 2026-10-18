@@ -1,0 +1,21 @@
+{
+  "cpu": "Intel(R) Core(TM) Ultra 7 255HX",
+  "execution": "prescribed WSL conda Sage; paths use ~/miniconda3/envs/sage",
+  "experimental_parallelism": "Several independent lifecycle processes overlapped, with regression running concurrently; timings are execution evidence only, not fair performance comparison.",
+  "formal_parameters": false,
+  "hardware_source": "Get-CimInstance Win32_Processor; checked 2026-10-18",
+  "identity_bytes": 5,
+  "logical_processors": 20,
+  "message_bytes": 32,
+  "physical_cores": 20,
+  "repetitions_per_final_lifecycle": 1,
+  "rom_used": true,
+  "security_claim": "none",
+  "software": {
+    "machine": "x86_64",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15",
+    "sage": "10.9"
+  },
+  "teaching_parameters": false
+}

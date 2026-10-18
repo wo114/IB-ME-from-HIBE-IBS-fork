@@ -1,0 +1,72 @@
+{
+  "schema": "IBME-PR49-50-REVIEW/1",
+  "date": "2026-10-18",
+  "pr49": {
+    "original_head": "fcc79e4de670102c6ac39df01c7f231ff8d0468b",
+    "integration_baseline": "c7ecccca8e4a0570f581b101786bda53593edd89",
+    "finding": "P2: nonfinite or invalid numeric estimate could pass the comparison gate; repeated finalization retained stale candidate summaries",
+    "status": "fixed_and_locally_verified",
+    "tests": {
+      "red": {
+        "tests": 20,
+        "failures": 20,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 11.427,
+        "receipt": "evidence/pr49-red.junit.xml"
+      },
+      "targeted": {
+        "tests": 47,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 11.315,
+        "receipt": "evidence/pr49-green.junit.xml"
+      },
+      "initial_collection": {
+        "tests": 3,
+        "failures": 0,
+        "errors": 3,
+        "skipped": 0,
+        "seconds": 20.271,
+        "receipt": "evidence/pr49-regression.junit.xml"
+      },
+      "regression": {
+        "tests": 227,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 29,
+        "seconds": 62.682,
+        "receipt": "evidence/pr49-regression-ready.junit.xml"
+      }
+    },
+    "initial_collection_reason": "cryptography missing; installed project-compatible cryptography 50.0.2 in ignored temporary dependency directory, then reran successfully",
+    "skips": "29 existing cases require explicit native/Flatter builds or completed private witnesses; no skipped test counted as passed",
+    "noise_replay": {
+      "path": "evidence/noise-reviewed.json",
+      "sha256": "7df14530ab5334ff685ebb8bb8b270fa4556e34fc60e30ad8d26f40fc3bc820a",
+      "geometry_and_cdf_recomputed": true,
+      "estimator_rerun": false,
+      "original_estimates_reused": true,
+      "mathematical_payload_matches_original": true
+    },
+    "original_card_sha256": "a605b03942f611c149467960be440d424e25424f6559909bda68f8ba7558f6cb",
+    "original_runtime_sha256": "9756e02d3a18913f859963716c41f870069a3d1abf55b673b0c44e229d0c21a3",
+    "original_evidence_bytes_preserved": true,
+    "comparison_candidates": 3,
+    "complete_runtime_candidates": 0,
+    "original_head_remote_checks": {
+      "SUCCESS": 46,
+      "SKIPPED": 2,
+      "scope": "original fcc79e4 head; not conflict-resolution head"
+    }
+  },
+  "pr50": {
+    "original_head": "69d370062f4d5b09ff5a42d0168e9290a5606e43",
+    "status": "review_in_progress",
+    "finding": "P2: per-row modulus and modulus bit width not bound to fixed inputs; repair and regression pending"
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

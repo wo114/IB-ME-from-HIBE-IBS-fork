@@ -1,0 +1,188 @@
+"""Exact ring-block Schur algebra for paper Algorithm 3, without sampling.
+
+The paper's descending polynomial order is kept.  Ring adjoints are the
+negacyclic involution, not an ordinary matrix transpose.  A common positive
+shape scale is removed during elimination and restored in the exposed pivots;
+it cancels exactly from the conditional-center gains.  No dense n-by-n
+coefficient matrix is formed here.
+
+Preparation consumes no entropy and never changes the supplied witness.
+Dimension and rational-bit gates are operational limits.  Passing them does
+not prove positivity, a finite sampler law, or any security theorem.  Exact
+polynomial inversion itself uses Sage/FLINT: the bit gate is checked on its
+result, so this is not a general peak-memory or wall-time bound.
+"""
+
+from dataclasses import dataclass, field
+from fractions import Fraction
+
+from sage.all import QQ, ZZ
+
+from .structured_geometry import StructuredGeometry
+
+
+MAX_DEGREE = 512
+MAX_UPPER_POLYNOMIALS = 16
+MAX_RATIONAL_BITS = 16384
+
+
+@dataclass(frozen=True, repr=False)
+class RingSchurStage:
+    index: int
+    pivot: object = field(repr=False)
+    gains: tuple = field(repr=False)
+
+    def __repr__(self):
+        return "RingSchurStage(private_pivot_and_gains=<redacted>)"
+
+
+class RingSchurPlan:
+    """Prepare exact Algorithm 3 conditional shapes before entropy is read."""
+
+    def __init__(self, geometry, *, max_rational_bits=MAX_RATIONAL_BITS,
+                 max_degree=MAX_DEGREE):
+        if type(geometry) is not StructuredGeometry:
+            raise TypeError("explicit StructuredGeometry required")
+        if type(max_rational_bits) is not int or not 32 <= max_rational_bits <= MAX_RATIONAL_BITS:
+            raise ValueError("bounded exact rational-bit limit required")
+        if (type(max_degree) is not int or not 2 <= max_degree <= MAX_DEGREE
+                or max_degree & (max_degree-1)):
+            raise ValueError("bounded power-of-two degree limit required")
+        if geometry.degree > max_degree or geometry.upper_polynomials > MAX_UPPER_POLYNOMIALS:
+            raise ValueError("ring Schur public dimension limit exceeded")
+        self.geometry, self.degree = geometry, geometry.degree
+        self.max_rational_bits, self.max_degree = max_rational_bits, max_degree
+        self._ring, self._modulus = geometry._ring, geometry._modulus
+        self._max_bits_seen = 0
+        self._shape_scale = self._rational(geometry.top_squared[0])
+        # The common scale cancellation is essential for binary pi-enclosure
+        # widths: it avoids replicating a 512-bit factor in every inverse.
+        top = tuple(self._rational(x/self._shape_scale) for x in geometry.top_squared)
+        factor = self._rational((geometry.noise_squared/geometry.lower_scalar)
+                                *(geometry.lower_squared/self._shape_scale))
+        rows = geometry.upper_polynomials
+        shape = []
+        for i in range(rows):
+            row = []
+            for j in range(rows):
+                gram = self._ring.zero()
+                for k in range(geometry.lower_polynomials):
+                    term = self._multiply(geometry.witness[i][k], geometry._adjoint[k][j])
+                    gram = self._check(gram+term)
+                value = self._check(-factor*gram)
+                if i == j:
+                    value = self._check(value+top[i])
+                row.append(value)
+            shape.append(row)
+        stages = []
+        for index in range(rows-1, -1, -1):
+            pivot = self._check(shape[index][index])
+            if pivot != geometry._conjugate(pivot):
+                raise ValueError("self-adjoint ring Schur pivot required")
+            actual_pivot = self._check(self._shape_scale*pivot)
+            if not pivot:
+                raise ValueError("noninvertible ring Schur pivot")
+            if index:
+                try:
+                    inverse = self._check(pivot.inverse_mod(self._modulus))
+                except (ZeroDivisionError, ArithmeticError) as exc:
+                    raise ValueError("noninvertible ring Schur pivot") from exc
+                gains = tuple(self._multiply(shape[i][index], inverse) for i in range(index))
+            else:
+                # Still reject a nonunit final pivot; no entropy may precede
+                # discovery of an algebraically undefined leaf.
+                try:
+                    self._check(pivot.inverse_mod(self._modulus))
+                except (ZeroDivisionError, ArithmeticError) as exc:
+                    raise ValueError("noninvertible ring Schur pivot") from exc
+                gains = ()
+            stages.append(RingSchurStage(index, actual_pivot, gains))
+            following = []
+            for i in range(index):
+                following.append([self._check(shape[i][j]-self._multiply(gains[i], shape[index][j]))
+                                  for j in range(index)])
+            shape = following
+        self.stages = tuple(stages)
+        self.output_order = tuple(stage.index for stage in self.stages)
+
+    def __repr__(self):
+        return "RingSchurPlan(private_geometry_and_stages=<redacted>, sampler_implemented=False)"
+
+    def _rational(self, value):
+        # Sage QQ and Python Fraction need explicit common-domain conversion
+        # under the designated Sage/Python 3.13 runtime.
+        if isinstance(value, bool) or not isinstance(value, (int, Fraction, type(ZZ(0)), type(QQ(0)))):
+            raise ValueError("exact rational ring coefficient required")
+        if isinstance(value, Fraction):
+            value = QQ(value.numerator)/value.denominator
+        else:
+            value = QQ(value)
+        bits = max(abs(int(value.numerator())).bit_length(), int(value.denominator()).bit_length())
+        if bits > self.max_rational_bits:
+            raise ValueError("ring Schur rational resource limit exceeded")
+        self._max_bits_seen = max(self._max_bits_seen, bits)
+        return value
+
+    def _check(self, polynomial):
+        if polynomial.degree() >= self.degree:
+            raise ValueError("canonical ring polynomial degree less than n required")
+        for value in polynomial.list():
+            self._rational(value)
+        return polynomial
+
+    def _multiply(self, left, right):
+        self._check(left)
+        self._check(right)
+        # Check the unreduced product too: reduction can otherwise hide an
+        # oversized intermediate that cancels modulo X^n+1.
+        product = left*right
+        for value in product.list():
+            self._rational(value)
+        return self._check(product % self._modulus)
+
+    def _poly(self, value):
+        if callable(getattr(value, "parent", None)) and value.parent() is self._ring:
+            return self._check(value)
+        if not isinstance(value, (tuple, list)) or len(value) != self.degree:
+            raise ValueError("fixed-degree exact ring polynomial required")
+        return self._check(self._ring([self._rational(x) for x in value]))
+
+    def initial_center(self, lower):
+        if not isinstance(lower, (tuple, list)) or len(lower) != self.geometry.lower_polynomials:
+            raise ValueError("lower ring-center dimension mismatch")
+        lower = tuple(self._poly(x) for x in lower)
+        scale = self._rational(-self.geometry.noise_squared/self.geometry.lower_scalar)
+        result = []
+        for row in self.geometry.witness:
+            total = self._ring.zero()
+            for poly, value in zip(row, lower):
+                total = self._check(total+self._multiply(poly, value))
+            result.append(self._check(scale*total))
+        return tuple(result)
+
+    def update_center(self, stage, current_center, sampled_polynomial):
+        if not any(stage is entry for entry in self.stages):
+            raise ValueError("stage must belong to this prepared private plan")
+        if not isinstance(current_center, (tuple, list)) or len(current_center) != stage.index+1:
+            raise ValueError("current ring-center dimension mismatch")
+        current_center = tuple(self._poly(x) for x in current_center)
+        residual = self._check(self._poly(sampled_polynomial)-current_center[-1])
+        return tuple(self._check(center+self._multiply(gain, residual))
+                     for center, gain in zip(current_center[:-1], stage.gains))
+
+    def public_metadata(self):
+        return {
+            "algorithm": "paper Algorithm 3 exact descending ring-block Schur algebra",
+            "degree": self.degree,
+            "upper_polynomials": self.geometry.upper_polynomials,
+            "lower_polynomials": self.geometry.lower_polynomials,
+            "output_order": list(self.output_order),
+            "max_rational_bits": self.max_rational_bits,
+            "max_degree": self.max_degree,
+            "common_positive_shape_scale_removed_exactly": True,
+            "coefficient_matrices_materialized": False,
+            "shape_positive_definiteness_checked": False,
+            "entropy_bytes_consumed": 0,
+            "sampler_implemented": False,
+            "security_claim": "none",
+        }
