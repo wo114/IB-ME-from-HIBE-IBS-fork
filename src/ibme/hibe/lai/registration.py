@@ -12,7 +12,7 @@ from .objects import (
     LaiMasterSecret,
     LaiPublicKey,
 )
-from .params import LaiParams, VERSION
+from .params import LaiParams, TARGET_CANDIDATE_PARAMS, VERSION
 
 ASSEMBLY_VERSION = VERSION
 
@@ -64,7 +64,8 @@ def backend_spec():
     return BackendSpec(
         "lai-ideal-hibe", "hibe", ASSEMBLY_VERSION, LaiParams,
         {"hybrid-research": LaiParams(),
-         "direct-research": LaiParams(message_mode="framed32")},
+         "direct-research": LaiParams(message_mode="framed32"),
+         "target-research": TARGET_CANDIDATE_PARAMS},
         factory,
         {"hpk": LaiPublicKey, "hmsk": LaiMasterSecret,
          "sk1": LaiLevel1SecretKey, "sk2": LaiLevel2SecretKey},

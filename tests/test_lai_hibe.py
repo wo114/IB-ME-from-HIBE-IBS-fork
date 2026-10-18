@@ -147,7 +147,7 @@ def test_registry_and_catalog():
     spec = default_registry().get("hibe", "lai-ideal-hibe")
     assert spec.available is True
     assert spec.two_level is True and spec.key_binding is True
-    assert set(spec.presets) == {"hybrid-research", "direct-research"}
+    assert set(spec.presets) == {"hybrid-research", "direct-research", "target-research"}
     row = next(item for item in algorithm_catalog()["routes"]
                if item["id"] == "lai-ideal-hibe")
     assert row["adapter_available"] is True

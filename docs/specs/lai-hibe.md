@@ -9,7 +9,7 @@
 - 消息容量 `k·n=8192 bit`，当前 `max_message_bytes=32`（Hybrid 的 32 B seed）；`seed32` 与 `framed32` 两种 preset 只影响 transport 配置，不改变环编码。
 - 需要 WSL 的 `~/miniconda3/envs/sage`；无 Sage 时 registry 仍可发现，但 `validate_environment` 报告 runtime 不可用，不退回 mock 或其它算法。
 - **研究参数**：没有安全等级，不是 NIST category；P5 目标参数需重新筛 `n/q/σ` 并做宽度/估计核验。
-- **目标候选（未默认登记）**：`c2-2048-2p38` = `n=2048, q=274877976577, k=39, σ=2`，PLWE 系数实例在固定 estimator 的标准攻击下约 169.9/154.2 bit；真实两级生命周期跑通一次。详见[目标参数筛选](../research/team-c-delivery/2026-10-18-lai-target-parameters/README.md)。它不是 registry preset，也不改变 `none/false/false`。
+- **目标候选（未默认登记）**：`c2-2048-2p38` = `n=2048, q=274877976577, k=39, σ=2`，PLWE 系数实例在固定 estimator 的标准攻击下约 169.9/154.2 bit；真实两级生命周期跑通一次。详见[目标参数筛选](../research/team-c-delivery/2026-10-18-lai-target-parameters/README.md)。它作为显式 `target-research` preset 登记，不是默认 preset，也不改变 `none/false/false`。
 
 ## 五方法与算法对应
 
