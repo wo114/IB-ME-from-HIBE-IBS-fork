@@ -32,6 +32,9 @@ HARD_PAYLOAD_BYTES = 16 * 2**20
 # 16 MiB component / 32 MiB wire caps.  Capsules remain 4 MiB.
 HARD_COMPONENT_BYTES = 64 * 2**20
 HARD_WIRE_BYTES = 64 * 2**20 + 1024
+# Ciphertexts are the network-facing path; keep their pre-parse budget
+# near the capsule+payload field maxima instead of the key wire budget.
+HARD_CIPHERTEXT_WIRE_BYTES = HARD_CAPSULE_BYTES + HARD_PAYLOAD_BYTES + 4096
 
 
 def _frame(kind, fields):
@@ -41,11 +44,11 @@ def _frame(kind, fields):
     return raw
 
 
-def _unframe(data, kind, count):
+def _unframe(data, kind, count, *, max_wire=HARD_WIRE_BYTES):
     if not isinstance(data, (bytes, bytearray, memoryview)):
         raise SerializationError("hybrid object must be bytes")
     size = data.nbytes if isinstance(data, memoryview) else len(data)
-    if size > HARD_WIRE_BYTES:
+    if size > max_wire:
         raise SerializationError("hybrid object exceeds wire budget")
     raw = bytes(data)
     if not raw.startswith(MAGIC):
@@ -290,7 +293,8 @@ class HybridCiphertext:
 
     @classmethod
     def from_bytes(cls, data):
-        fields = _unframe(data, b"CIPHERTEXT", 4)
+        fields = _unframe(data, b"CIPHERTEXT", 4,
+                          max_wire=HARD_CIPHERTEXT_WIRE_BYTES)
         try:
             return cls(*fields)
         except IBMEError as exc:
