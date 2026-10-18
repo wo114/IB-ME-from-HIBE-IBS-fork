@@ -1,0 +1,44 @@
+{
+  "scope": "Research functionality only; sanitized from private ignored receipts. No key, seed, ciphertext or private state is included.",
+  "paper_sha256": "b1d8a2ae0e9d4e5c9145bbc6dc864090605c12a5b76149aa0684d62a8815d2ce",
+  "implementation_commit": "5a5006fed0856fae0b59a0f8d22e48fd76ea9edc",
+  "runner_commit": "5086cbfca6df0ee3a5386c7bb7a44bd7ae3f862d",
+  "runner_sha256": "7e86d55ea84afaa5372b0a20741b37931fccd2b753a8e452b6f431855bf76fbf",
+  "author2011_sha256": "45ef1ff2006ff96c9f6da8db7f057bafc4ec86a23a8442b19395c367488fb9f7",
+  "suite_digest": "237e1baa03cf3a0d5cdefc2c8f81ebce472924883de0c2fe68c63cc448ad4964",
+  "parameters": {
+    "n": 1,
+    "q": 17179869209,
+    "m": 51,
+    "parent_columns": 102,
+    "leaf_columns": 153,
+    "lll_policy": "checked",
+    "epsilon_bits": 16,
+    "regularity_bits": 8,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "fresh_lifecycle": {
+    "runs": 1,
+    "system_csprng": true,
+    "real_root": true,
+    "real_parent_and_leaf": true,
+    "level1_seed_match": true,
+    "level2_seed_match": true,
+    "selected_combo_roundtrip": true,
+    "application_message_bytes": 19,
+    "fresh_process_restore_checks_passed": 15,
+    "negative_checks_passed": 11,
+    "total_seconds": 118.148505
+  },
+  "selected_cli": {
+    "runs": 1,
+    "implementation_commit": "f80ef65ed688d36666584c499a5371c1ba196d30",
+    "separate_process_setup_issue_encrypt_decrypt": true,
+    "application_message_bytes": 28,
+    "honest_bytes_equal": true,
+    "tampered_decrypt_stdout": "BOTTOM",
+    "tampered_plaintext_file_exists": false
+  }
+}

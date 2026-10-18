@@ -8,6 +8,7 @@
 |---|---|
 | 当前进度、负责人、外部交付与下一步 | [PROJECT_STATUS](docs/PROJECT_STATUS.md) |
 | CHKP与Luo本轮完成内容、尺寸与证据 | [2026-10-12统一交付README](docs/deliveries/2026-10-12-chkp-luo/README.md) |
+| CHKP 2011作者稿 `3m` 新版本的论文对应与运行证据 | [作者稿两层服务](docs/research/team-a-delivery/2026-10-18-chkp-author2011/README.md) |
 | 模块结构与组合方式 | [ARCHITECTURE](ARCHITECTURE.md) |
 | 公共接口、兼容预检与验收 | [IMPLEMENTATION_SPEC](IMPLEMENTATION_SPEC.md) |
 | 分工、交接与提交 | [三人方案分工](docs/workplans/三人方案分工与统一框架交付.md)、[AGENTS](AGENTS.md)、[AI_WORKFLOW](AI_WORKFLOW.md) |
