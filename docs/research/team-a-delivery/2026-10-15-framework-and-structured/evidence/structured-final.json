@@ -1,0 +1,52 @@
+{
+  "id": "a-structured-hg",
+  "layer": "primitive",
+  "environment": "sage",
+  "files": [
+    "tests/test_mp12_full_extension.py",
+    "tests/test_mp12_structured_assembly.py",
+    "tests/test_mp12_structured_hibe.py",
+    "tests/test_mp12_structured_params.py",
+    "tests/test_mp12_structured_sampling.py"
+  ],
+  "status": "passed",
+  "security_claim": "none",
+  "combination_accepted": false,
+  "command": [
+    "/home/youzi/miniconda3/envs/sage/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "tests/test_mp12_full_extension.py",
+    "tests/test_mp12_structured_assembly.py",
+    "tests/test_mp12_structured_hibe.py",
+    "tests/test_mp12_structured_params.py",
+    "tests/test_mp12_structured_sampling.py",
+    "--junitxml=<repo>/test-results/a-2026-10-15/a-structured-hg-final-v2/a-structured-hg.xml"
+  ],
+  "exit_code": 0,
+  "counts": {
+    "tests": 93,
+    "passed": 93,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xfailed": 0
+  },
+  "skip_reasons": [],
+  "source_sha256": {
+    "tests/test_mp12_full_extension.py": "87bddd6ccace1865f92c682780d243143b095933cf70fc6ae976248956ee4716",
+    "tests/test_mp12_structured_assembly.py": "e4ae96de0dfe6cb24ffd53b9644086675c4a0f8fc4f8057c79acb95ce642d5c2",
+    "tests/test_mp12_structured_hibe.py": "1f17372ce9e833ce2d2ac00f42eb7687db2c051fe30f0fcef715dd1ce0a43b50",
+    "tests/test_mp12_structured_params.py": "e4e89ff1ebf2b20d1d0fdccbbcbd5244682a7bccefea3e30d2dc23d410cfc356",
+    "tests/test_mp12_structured_sampling.py": "e662b5db43a57b5ee1c177d583ac7583921e0d88a823899e97ff0ac6f2dc1c45",
+    "ci/run.py": "942c38b3c973aadad93332818a347705f3c36cd4e972230e13427d9ca54fc839",
+    "ci/suites.json": "dd85b4c1e1d37295187c19a0c690d07995f55a10b9b8622f237378cb04dce52a",
+    "src/ibme/assembly/catalog.py": "1a1d186d32e8d604522b764d5477b1569a2e75f1e58ee8985f34d28f013196fa"
+  },
+  "revision": "unavailable",
+  "working_tree_dirty": null
+}

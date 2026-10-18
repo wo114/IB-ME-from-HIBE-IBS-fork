@@ -1,4 +1,4 @@
-"""A-owned registration proposal; does not change the shared default registry."""
+"""Portable descriptor for the delivered finite ABB-ROM research backend."""
 
 from ibme.core.errors import SerializationError,InvalidParameterError
 from ibme.lattice.research import sage_available
@@ -32,6 +32,7 @@ def factory(rng,signature_format):
 def validate_configuration(params,config):
     if config['transport']!='hybrid':
         raise InvalidParameterError('ABB seed32 research profile requires hybrid transport')
+    environment()
     from .backend import check_setup_profile
     try:
         check_setup_profile(params)  # public conditions/dependencies, no entropy
@@ -39,11 +40,15 @@ def validate_configuration(params,config):
         raise InvalidParameterError('ABB public profile or local runtime dependency failed') from exc
 
 
+def environment():
+    # Discovery exposes the implemented adapter without importing Sage arithmetic.
+    # Exact native/profile checks belong to the selected configuration gate.
+    if not sage_available():
+        raise InvalidParameterError("ABB finite research requires WSL ~/miniconda3/envs/sage; no fallback")
+
+
 def backend_spec():
     from ibme.assembly.registry import BackendSpec
-    if not sage_available():
-        return BackendSpec(BACKEND_ID,"hibe",VERSION,available=False,
-            reason="ABB finite research requires WSL ~/miniconda3/envs/sage; no fallback")
     return BackendSpec(BACKEND_ID,"hibe",VERSION,ABBROMParams,
         {"n1-q160-research":ABBROMParams(),"n1-q104-single-address-research":q104_research_params(),
          "n1-q26-level-quality-research":q26_level_quality_research_params()},factory,
@@ -52,4 +57,4 @@ def backend_spec():
         reason="q26 real full lifecycle and Luo combination passed; n1 research negative control, none/false; other profiles WIP",
         ciphertext_size=ciphertext_size,object_parameter_binding="full-parameter-snapshot",
         default_preset=lambda transport:'n1-q26-level-quality-research',
-        validate_configuration=validate_configuration)
+        validate_configuration=validate_configuration,validate_environment=environment)

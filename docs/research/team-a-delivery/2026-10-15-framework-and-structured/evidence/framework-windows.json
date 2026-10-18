@@ -1,0 +1,117 @@
+{
+  "id": "framework",
+  "layer": "framework",
+  "environment": "portable",
+  "files": [
+    "tests/test_abb_assembly.py",
+    "tests/test_assembly.py",
+    "tests/test_byteauth.py",
+    "tests/test_c_registration.py",
+    "tests/test_candidate_foundations.py",
+    "tests/test_ci_catalog.py",
+    "tests/test_cli_master_state.py",
+    "tests/test_cli_selection.py",
+    "tests/test_cli_state_lock.py",
+    "tests/test_combination_extension_contract.py",
+    "tests/test_encoding.py",
+    "tests/test_lattice_core.py",
+    "tests/test_mp12_structured_assembly.py",
+    "tests/test_mp12_structured_params.py",
+    "tests/test_prepared_context_stream.py",
+    "tests/test_prepared_hashing.py",
+    "tests/test_public_research_api.py",
+    "tests/test_registry_extension_contract.py"
+  ],
+  "status": "partial",
+  "security_claim": "none",
+  "combination_accepted": false,
+  "command": [
+    "C:\\Users\\youzi\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "tests/test_abb_assembly.py",
+    "tests/test_assembly.py",
+    "tests/test_byteauth.py",
+    "tests/test_c_registration.py",
+    "tests/test_candidate_foundations.py",
+    "tests/test_ci_catalog.py",
+    "tests/test_cli_master_state.py",
+    "tests/test_cli_selection.py",
+    "tests/test_cli_state_lock.py",
+    "tests/test_combination_extension_contract.py",
+    "tests/test_encoding.py",
+    "tests/test_lattice_core.py",
+    "tests/test_mp12_structured_assembly.py",
+    "tests/test_mp12_structured_params.py",
+    "tests/test_prepared_context_stream.py",
+    "tests/test_prepared_hashing.py",
+    "tests/test_public_research_api.py",
+    "tests/test_registry_extension_contract.py",
+    "--junitxml=<repo>\\test-results\\a-2026-10-15\\framework-windows-final-v2\\framework.xml"
+  ],
+  "exit_code": 0,
+  "counts": {
+    "tests": 472,
+    "passed": 467,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 5,
+    "xfailed": 0
+  },
+  "skip_reasons": [
+    {
+      "test": ".tests.test_prepared_context_stream",
+      "reason": "collection skipped",
+      "type": ""
+    },
+    {
+      "test": "tests.test_public_research_api.test_missing_engine_still_constructs_a_restore_capable_real_backend",
+      "reason": "prescribed Sage needed for actual backend construction",
+      "type": "pytest.skip"
+    },
+    {
+      "test": "tests.test_public_research_api.test_public_tools_are_same_provider_objects_not_forked_implementations",
+      "reason": "prescribed Sage needed for actual provider identity",
+      "type": "pytest.skip"
+    },
+    {
+      "test": "tests.test_registry_extension_contract.test_real_ibs_recovery_and_protocol_bridge_with_test_only_hibe[wang-pw-2026-10-13-wang-pw-374-False]",
+      "reason": "real candidate sampling requires prescribed WSL Sage",
+      "type": "pytest.skip"
+    },
+    {
+      "test": "tests.test_registry_extension_contract.test_real_ibs_recovery_and_protocol_bridge_with_test_only_hibe[srgg2025-2026-10-13-srgg-full-579-True]",
+      "reason": "real candidate sampling requires prescribed WSL Sage",
+      "type": "pytest.skip"
+    }
+  ],
+  "source_sha256": {
+    "tests/test_abb_assembly.py": "d7506c2506df4bd05925c21e2607ba46e8a90b1a7ad09d08c584ce4020a18fb6",
+    "tests/test_assembly.py": "9609683d8b5d7b0ff1c2840e640bb02a5e29c24cc07d5b44bb93620dc7d4bda9",
+    "tests/test_byteauth.py": "b9470d89a62cc29f0e533ce34ffb59bf8ad87805bb67f7e6483d7114806260e9",
+    "tests/test_c_registration.py": "cb36f604f9bf5404f6049d7fd1fee4d5ae87a87f784e3c566d301a4a0367f1ff",
+    "tests/test_candidate_foundations.py": "e8af716ba80799c183c20b1c54d64ad7ff458e87cd99d2076b7b0775b703fbeb",
+    "tests/test_ci_catalog.py": "613b87410562c97b6cc59d6878dde9cfe5f3640817c4f05c4d368e7df843f581",
+    "tests/test_cli_master_state.py": "03920268ffafb089fab3b634a4038077aa3da37f9cad8cd4becb3375005277b3",
+    "tests/test_cli_selection.py": "0b10ce47ee289211d1a0efdb9647c1eebe09aea4e1b147175701a1d66666126b",
+    "tests/test_cli_state_lock.py": "adfcda0ccb92e4cf52faebfa1d3ce34ffb4d2a2790c52b5c7eb78e1901a2f2b6",
+    "tests/test_combination_extension_contract.py": "f36d8a8b39af5e7530dcdc7882f194d98a9559c46254835cc5419b009895d13d",
+    "tests/test_encoding.py": "3e725da253e956de1f550ca4e2d9f31964a09f8716657ac987f00bdbdea42555",
+    "tests/test_lattice_core.py": "0b8957c8f9ceeec3558af0cccfeb9a140610bbe7a2efd9cbff3e5e2a2082835f",
+    "tests/test_mp12_structured_assembly.py": "e4ae96de0dfe6cb24ffd53b9644086675c4a0f8fc4f8057c79acb95ce642d5c2",
+    "tests/test_mp12_structured_params.py": "e4e89ff1ebf2b20d1d0fdccbbcbd5244682a7bccefea3e30d2dc23d410cfc356",
+    "tests/test_prepared_context_stream.py": "d4b6800c760c20e881134091569839daf0dc1583d7abcaf07b5bca8c87b43242",
+    "tests/test_prepared_hashing.py": "17846d8b2e88c5019ef44c13aa2af8264f09f9e0a19ed519a311a23026fe8360",
+    "tests/test_public_research_api.py": "baec6c6b734e629cc97262014124bbdf57cadff65a1888875c421fc035618903",
+    "tests/test_registry_extension_contract.py": "e1793a3a6947f8e90dfc0938ffb0c23bf3259d3a56832d6679dc2fb7796769bb",
+    "ci/run.py": "942c38b3c973aadad93332818a347705f3c36cd4e972230e13427d9ca54fc839",
+    "ci/suites.json": "dd85b4c1e1d37295187c19a0c690d07995f55a10b9b8622f237378cb04dce52a",
+    "src/ibme/assembly/catalog.py": "1a1d186d32e8d604522b764d5477b1569a2e75f1e58ee8985f34d28f013196fa"
+  },
+  "revision": "3a5e830966d1dabea743db0f22164beccafb9266",
+  "working_tree_dirty": false
+}

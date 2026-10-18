@@ -1,0 +1,1171 @@
+{
+  "schema": "IBME/PR34-36-37-REVIEW/1",
+  "date": "2026-10-17",
+  "source_commit": "cf6bd943a3aa8e27d7d4a0cb642725fa1d83a211",
+  "pull_requests": {
+    "34": {
+      "headRefOid": "a81773564253660d4ef16ebebee350d2d057f394",
+      "mergeCommit": {
+        "oid": "ca6d64ff45a8a5be57b06fa27b438d2afda09736"
+      },
+      "mergedAt": "2026-10-17T15:37:59Z",
+      "state": "MERGED",
+      "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/34",
+      "successful_checks": 23,
+      "expected_manual_skips": 1,
+      "checks": [
+        {
+          "name": "plan",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428932330"
+        },
+        {
+          "name": "strict-security",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428932971"
+        },
+        {
+          "name": "portable / framework",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428964945"
+        },
+        {
+          "name": "portable / luo-composition-regression",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965002"
+        },
+        {
+          "name": "sage / abb-rom",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965280"
+        },
+        {
+          "name": "sage / chkp-rom",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965179"
+        },
+        {
+          "name": "sage / latte",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965248"
+        },
+        {
+          "name": "sage / lai-ideal-hibe",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965206"
+        },
+        {
+          "name": "sage / luo-matrix",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965201"
+        },
+        {
+          "name": "sage / luo-module",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965197"
+        },
+        {
+          "name": "sage / srgg2025",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965377"
+        },
+        {
+          "name": "sage / yu2026",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965160"
+        },
+        {
+          "name": "sage / sageloli-sis",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965480"
+        },
+        {
+          "name": "sage / sageloli-rsis",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965406"
+        },
+        {
+          "name": "sage / foo-li",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965437"
+        },
+        {
+          "name": "sage / wang-pw",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965544"
+        },
+        {
+          "name": "sage / cert-ml-dsa",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965506"
+        },
+        {
+          "name": "sage / cert-falcon",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428965391"
+        },
+        {
+          "name": "sage / xie-ntru-ibs",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428966249"
+        },
+        {
+          "name": "sage / a-structured-hg",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428966315"
+        },
+        {
+          "name": "sage / shared-math",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428966294"
+        },
+        {
+          "name": "sage / chkp-composition-regression",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428966392"
+        },
+        {
+          "name": "sage / registered-compositions",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117428966323"
+        },
+        {
+          "name": "coverage",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39043960926/job/117432048691"
+        }
+      ],
+      "changed_files": [
+        "docs/research/team-b-delivery/2026-10-16-sageloli-complete/README.md",
+        "docs/research/team-b-delivery/2026-10-16-sageloli-complete/README_zh-CN.md",
+        "docs/research/team-b-delivery/2026-10-16-sageloli-complete/SOURCE_MAP.md",
+        "docs/specs/sageloli-ibs.md",
+        "experiments/research/candidates/sageloli/__init__.py",
+        "experiments/research/candidates/sageloli/algebra.py",
+        "experiments/research/candidates/sageloli/backend.py",
+        "experiments/research/candidates/sageloli/codec.py",
+        "experiments/research/candidates/sageloli/config.py",
+        "experiments/research/candidates/sageloli/hashing.py",
+        "experiments/research/candidates/sageloli/objects.py",
+        "experiments/research/candidates/sageloli/rsis.py",
+        "experiments/research/candidates/sageloli/sampling.py",
+        "experiments/research/candidates/sageloli/service.py",
+        "experiments/research/candidates/sageloli/sis.py",
+        "experiments/research/candidates/sageloli/uniform.py",
+        "tests/test_sageloli_ibs.py",
+        "tests/test_sageloli_sampling.py",
+        "tests/test_sageloli_service_recovery.py",
+        "tests/test_sageloli_uniform.py"
+      ],
+      "private_state_files_in_diff": false
+    },
+    "36": {
+      "headRefOid": "bf3bc1c67d0a7025378abe90c118493c3b4e28eb",
+      "mergeCommit": {
+        "oid": "1976c0b23bbdcb959c338738f437ddc313b17fbe"
+      },
+      "mergedAt": "2026-10-17T15:25:10Z",
+      "state": "MERGED",
+      "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/36",
+      "successful_checks": 46,
+      "expected_manual_skips": 2,
+      "checks": [
+        {
+          "name": "plan",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773083261"
+        },
+        {
+          "name": "plan",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773041161"
+        },
+        {
+          "name": "strict-security",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773084357"
+        },
+        {
+          "name": "strict-security",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773042655"
+        },
+        {
+          "name": "portable / framework",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773146770"
+        },
+        {
+          "name": "portable / framework",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102024"
+        },
+        {
+          "name": "portable / luo-composition-regression",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773147029"
+        },
+        {
+          "name": "portable / luo-composition-regression",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773101977"
+        },
+        {
+          "name": "sage / abb-rom",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773146880"
+        },
+        {
+          "name": "sage / abb-rom",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102409"
+        },
+        {
+          "name": "sage / chkp-rom",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773146872"
+        },
+        {
+          "name": "sage / chkp-rom",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102369"
+        },
+        {
+          "name": "sage / latte",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773146855"
+        },
+        {
+          "name": "sage / latte",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102390"
+        },
+        {
+          "name": "sage / lai-ideal-hibe",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773147004"
+        },
+        {
+          "name": "sage / lai-ideal-hibe",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102370"
+        },
+        {
+          "name": "sage / luo-matrix",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773146908"
+        },
+        {
+          "name": "sage / luo-matrix",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102421"
+        },
+        {
+          "name": "sage / luo-module",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773146980"
+        },
+        {
+          "name": "sage / luo-module",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102376"
+        },
+        {
+          "name": "sage / srgg2025",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773146940"
+        },
+        {
+          "name": "sage / srgg2025",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102399"
+        },
+        {
+          "name": "sage / yu2026",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773147035"
+        },
+        {
+          "name": "sage / yu2026",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102405"
+        },
+        {
+          "name": "sage / sageloli-sis",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773146999"
+        },
+        {
+          "name": "sage / sageloli-sis",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102429"
+        },
+        {
+          "name": "sage / sageloli-rsis",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773146984"
+        },
+        {
+          "name": "sage / sageloli-rsis",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102569"
+        },
+        {
+          "name": "sage / foo-li",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773147060"
+        },
+        {
+          "name": "sage / foo-li",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102355"
+        },
+        {
+          "name": "sage / wang-pw",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773146863"
+        },
+        {
+          "name": "sage / wang-pw",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102490"
+        },
+        {
+          "name": "sage / cert-ml-dsa",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773146890"
+        },
+        {
+          "name": "sage / cert-ml-dsa",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102465"
+        },
+        {
+          "name": "sage / cert-falcon",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773146876"
+        },
+        {
+          "name": "sage / cert-falcon",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773102464"
+        },
+        {
+          "name": "sage / xie-ntru-ibs",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773148133"
+        },
+        {
+          "name": "sage / xie-ntru-ibs",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773103806"
+        },
+        {
+          "name": "sage / a-structured-hg",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773148179"
+        },
+        {
+          "name": "sage / a-structured-hg",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773103682"
+        },
+        {
+          "name": "sage / shared-math",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773148397"
+        },
+        {
+          "name": "sage / shared-math",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773103705"
+        },
+        {
+          "name": "sage / chkp-composition-regression",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773148416"
+        },
+        {
+          "name": "sage / chkp-composition-regression",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773103858"
+        },
+        {
+          "name": "sage / registered-compositions",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116773148373"
+        },
+        {
+          "name": "sage / registered-compositions",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116773103953"
+        },
+        {
+          "name": "coverage",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838558634/job/116777375336"
+        },
+        {
+          "name": "coverage",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38838545373/job/116777341279"
+        }
+      ],
+      "changed_files": [
+        "ci/suites.json",
+        "docs/PROJECT_STATUS.md",
+        "docs/research/team-a-delivery/2026-10-16-finite192-runtime/README.md",
+        "docs/research/team-a-delivery/2026-10-16-finite192-runtime/audit.json",
+        "docs/research/team-a-delivery/2026-10-16-finite192-runtime/evidence/combination.json",
+        "docs/research/team-a-delivery/2026-10-16-finite192-runtime/evidence/fresh-process-restore.json",
+        "docs/research/team-a-delivery/2026-10-16-finite192-runtime/evidence/installed.json",
+        "docs/research/team-a-delivery/2026-10-16-finite192-runtime/evidence/portable-environment-first.xml",
+        "docs/research/team-a-delivery/2026-10-16-finite192-runtime/evidence/portable.xml",
+        "docs/research/team-a-delivery/2026-10-16-finite192-runtime/evidence/public-budget.json",
+        "docs/research/team-a-delivery/2026-10-16-finite192-runtime/evidence/strict-sage.json",
+        "docs/research/team-a-delivery/2026-10-16-finite192-runtime/evidence/strict-sage.xml",
+        "docs/research/team-a-delivery/2026-10-16-finite192-runtime/evidence/system-tree.json",
+        "docs/research/team-a-delivery/2026-10-16-finite192-runtime/files-changed.txt",
+        "docs/specs/first-suite-research.md",
+        "experiments/research/structured_finite192_probe.py",
+        "experiments/research/structured_framework_probe.py",
+        "experiments/research/structured_service_budget.py",
+        "src/ibme/hibe/mp12_structured/__init__.py",
+        "src/ibme/hibe/mp12_structured/backend.py",
+        "src/ibme/hibe/mp12_structured/objects.py",
+        "src/ibme/hibe/mp12_structured/params.py",
+        "src/ibme/hibe/mp12_structured/registration.py",
+        "src/ibme/lattice/matrix_sampling/mp12_extension.py",
+        "tests/install_probes/verify_finite192.py",
+        "tests/test_mp12_finite192.py",
+        "tests/test_mp12_finite192_params.py"
+      ],
+      "private_state_files_in_diff": false
+    },
+    "37": {
+      "headRefOid": "7353770c9563eb20abb15e27abde32f0e3e1eca3",
+      "mergeCommit": {
+        "oid": "cf6bd943a3aa8e27d7d4a0cb642725fa1d83a211"
+      },
+      "mergedAt": "2026-10-17T15:46:55Z",
+      "state": "MERGED",
+      "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/37",
+      "successful_checks": 23,
+      "expected_manual_skips": 1,
+      "checks": [
+        {
+          "name": "plan",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965672781"
+        },
+        {
+          "name": "strict-security",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965674443"
+        },
+        {
+          "name": "portable / framework",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750522"
+        },
+        {
+          "name": "portable / luo-composition-regression",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750722"
+        },
+        {
+          "name": "sage / abb-rom",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750914"
+        },
+        {
+          "name": "sage / chkp-rom",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965751071"
+        },
+        {
+          "name": "sage / latte",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750937"
+        },
+        {
+          "name": "sage / lai-ideal-hibe",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750910"
+        },
+        {
+          "name": "sage / luo-matrix",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750988"
+        },
+        {
+          "name": "sage / luo-module",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750781"
+        },
+        {
+          "name": "sage / srgg2025",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750958"
+        },
+        {
+          "name": "sage / yu2026",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750822"
+        },
+        {
+          "name": "sage / sageloli-sis",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750821"
+        },
+        {
+          "name": "sage / sageloli-rsis",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750791"
+        },
+        {
+          "name": "sage / foo-li",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750991"
+        },
+        {
+          "name": "sage / wang-pw",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750925"
+        },
+        {
+          "name": "sage / cert-ml-dsa",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750863"
+        },
+        {
+          "name": "sage / cert-falcon",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965750896"
+        },
+        {
+          "name": "sage / xie-ntru-ibs",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965752562"
+        },
+        {
+          "name": "sage / a-structured-hg",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965752652"
+        },
+        {
+          "name": "sage / shared-math",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965752745"
+        },
+        {
+          "name": "sage / chkp-composition-regression",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965752924"
+        },
+        {
+          "name": "sage / registered-compositions",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116965752911"
+        },
+        {
+          "name": "coverage",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/38898801425/job/116971082369"
+        }
+      ],
+      "changed_files": [
+        "docs/PROJECT_STATUS.md",
+        "docs/research/team-b-delivery/2026-10-15-srgg-numeric-audit/MANIFEST.json",
+        "docs/research/team-b-delivery/2026-10-15-srgg-numeric-audit/README.md",
+        "docs/research/team-b-delivery/2026-10-15-srgg-numeric-audit/numeric.json",
+        "docs/research/team-b-delivery/2026-10-15-srgg-service/MANIFEST.json",
+        "docs/research/team-b-delivery/2026-10-15-srgg-service/README.md",
+        "docs/research/team-b-delivery/2026-10-15-srgg-service/service.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/MANIFEST.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/README.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/bounded-classical-runner.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/bounded-cost-sage-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/bounded-cost-windows-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/bounded-runner-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/bounded-runner-n512.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/probability-review.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/quantum-relation-review.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/raw-h2-relabel.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/raw-h2-relabel.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/service-law.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/srgg-all-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bounded-runner/validation.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/MANIFEST.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/README.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/aggregate-budget.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/aggregate-budget.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/convolution.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/convolution.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/execution-independent-review.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/fiber-normalizers.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/fiber-normalizers.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge-independent-tests.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/mixed-domain.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/mixed-domain.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/new-samplers.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/oracle-ledger.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/oracle-ledger.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/psf-reference.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/psf-review.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/route-comparison.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/sage-regression.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/spectral-bounds.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/spectral-bounds.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-entropy-envelope.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-n512-d2w8.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-n512-d2w8.stderr.txt",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-profiles.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-tests.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-acceptance.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-n16-current.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-n32-current.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-n512.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-n512.time.txt",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-n8.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-review.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-signature-n512.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-samplef-signature-n512.time.txt",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/theorem-obligations.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/validation.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/wide-scalar.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/wide-scalar.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-bridge/windows-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/MANIFEST.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/README.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/classical-runner.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/conditional-xof.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/direct-ibs.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/effective-samplers.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/lossy-route.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/public-pairs-independent.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/public-pairs.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/public-pairs.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/quantum-oracle-obligations.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/quotient-challenge.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/reduction-samplers-independent.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/reduction-samplers.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/sage-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/seeded-xof-independent.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/seeded-xof-metadata-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/seeded-xof.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/seeded-xof.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/validation.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/windows-components.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/MANIFEST.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/README.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/classical-namespace-review.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/collapsing-route.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/crt-projection.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/independent-mod3-enumeration.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/parameter-collapse-gates.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/projection-law.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/sage.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/validation.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-crt-review/windows.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-hardness/README.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-hardness/finite-search.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-hardness/sage.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-hardness/validation.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-hardness/windows.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/MANIFEST.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/README.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/full-modulus-review.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/honest-service-budget.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/honest-service-law.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/image-precision.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/quantum-row-switch.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/ring-hnf-review.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/sage.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/seed-prehistory.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/validation.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/verify-honest-budget.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-joint-law/verify-image-precision.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/MANIFEST.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/PARAM-I-density.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/PARAM-I-secure.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/PARAM-I-secure.resources.txt",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/PARAM-I.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/PARAM-II-density.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/PARAM-II.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/PARAM-III-density.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/PARAM-III.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/README.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/README_zh-CN.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/SOURCE_MAP.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/core-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/implementation-archive-check.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/preliminary-unsigned-remainder-PARAM-I.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/preliminary-unsigned-remainder-PARAM-II.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/service-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-paper-baseline/validation.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/.gitattributes",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/MANIFEST.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/README.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/budget-sage.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/budget-windows.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/checker-windows.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/classical-runner.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/classical-runner.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/conditional-sage.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/conditional-xof.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/conditional-xof.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/lossy-arithmetic-original.py",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/lossy-checks.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/lossy-route.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/quantum-oracle-obligations.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/quotient-challenge.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/quotient-challenge.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/quotient-sage.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/runner-development-failure.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/runner-development-second.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/runner-sage.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/sage-components.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/sage-full-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/sage-full-final.stdout.txt",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/service-budget.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/service-budget.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-proof-followup/validation.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/MANIFEST.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/README.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/cur-obstruction.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/formal-candidates.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/hnf-service.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/issuance-analysis.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/lifecycle.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/parameter-feasibility.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/resource-probe.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/resource-probe.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sage-regression.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sage-regression.log",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sampling-error-default.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sampling-error-review.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/sampling-error-width3.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/source-eligibility.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/structured-geometry.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/structured-geometry.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/validation.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-qualification/windows-regression.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/MANIFEST.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/README.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/classical-cost-independent-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/classical-cost.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/classical-fs.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/native-sig-independent-tests.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/native-sig.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/native-sig.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/sage-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/strong-games.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/strong-structure-independent-tests.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/strong-structure.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/target-signing.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/validation.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-reduction/windows-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-source-correspondence/MANIFEST.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-source-correspondence/README.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-source-correspondence/parameter-screen.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-source-correspondence/source-correspondence.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-source-correspondence/validation.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/MANIFEST.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/README.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/historical-audit-3c27fc0.py.txt",
+        "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/n512-cap512.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/n512.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/registration-first-development.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/registration-independent.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/service-budget.md",
+        "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/service-cap512-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/service-final.junit.xml",
+        "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/small.json",
+        "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/validation.json",
+        "docs/specs/srgg-issuer.md",
+        "docs/specs/srgg-structured-issuer.md",
+        "experiments/research/candidates/srgg/PARAMETER_SCREEN.md",
+        "experiments/research/candidates/srgg/aggregate_budget.py",
+        "experiments/research/candidates/srgg/bounded_classical_cost.py",
+        "experiments/research/candidates/srgg/bounded_classical_runner.py",
+        "experiments/research/candidates/srgg/classical_cost.py",
+        "experiments/research/candidates/srgg/classical_runner.py",
+        "experiments/research/candidates/srgg/conditional_xof.py",
+        "experiments/research/candidates/srgg/convolution_bridge.py",
+        "experiments/research/candidates/srgg/crt_projection.py",
+        "experiments/research/candidates/srgg/cur_obstruction.py",
+        "experiments/research/candidates/srgg/fiber_normalizers.py",
+        "experiments/research/candidates/srgg/formal_candidates.py",
+        "experiments/research/candidates/srgg/hardness_search.py",
+        "experiments/research/candidates/srgg/integrated_bridge.py",
+        "experiments/research/candidates/srgg/issuance_analysis.py",
+        "experiments/research/candidates/srgg/mixed_domain.py",
+        "experiments/research/candidates/srgg/native_sig.py",
+        "experiments/research/candidates/srgg/numeric_audit.py",
+        "experiments/research/candidates/srgg/oracle_ledger.py",
+        "experiments/research/candidates/srgg/paper_algebra.py",
+        "experiments/research/candidates/srgg/paper_audit.py",
+        "experiments/research/candidates/srgg/paper_backend.py",
+        "experiments/research/candidates/srgg/paper_objects.py",
+        "experiments/research/candidates/srgg/paper_parameters.py",
+        "experiments/research/candidates/srgg/paper_profiles.py",
+        "experiments/research/candidates/srgg/paper_samplef.py",
+        "experiments/research/candidates/srgg/paper_validation.py",
+        "experiments/research/candidates/srgg/parameter_screen.py",
+        "experiments/research/candidates/srgg/psf_bridge.py",
+        "experiments/research/candidates/srgg/public_pairs.py",
+        "experiments/research/candidates/srgg/qualification_audit.py",
+        "experiments/research/candidates/srgg/quotient_challenge.py",
+        "experiments/research/candidates/srgg/raw_h2_relabel.py",
+        "experiments/research/candidates/srgg/reduction_samplers.py",
+        "experiments/research/candidates/srgg/resource_probe.py",
+        "experiments/research/candidates/srgg/sampling_error.py",
+        "experiments/research/candidates/srgg/seeded_xof.py",
+        "experiments/research/candidates/srgg/service_audit.py",
+        "experiments/research/candidates/srgg/service_budget.py",
+        "experiments/research/candidates/srgg/source_correspondence.py",
+        "experiments/research/candidates/srgg/spectral_bounds.py",
+        "experiments/research/candidates/srgg/strong_structure.py",
+        "experiments/research/candidates/srgg/structured_backend.py",
+        "experiments/research/candidates/srgg/structured_execution.py",
+        "experiments/research/candidates/srgg/structured_geometry.py",
+        "experiments/research/candidates/srgg/structured_samplef.py",
+        "experiments/research/candidates/srgg/wide_scalar.py",
+        "experiments/research/srgg_bridge_delivery_check.py",
+        "experiments/research/srgg_classical_rom_delivery_check.py",
+        "experiments/research/srgg_proof_followup_delivery_check.py",
+        "experiments/research/srgg_reduction_delivery_check.py",
+        "experiments/research/srgg_structured_samplef_execution.py",
+        "experiments/research/srgg_structured_service_audit.py",
+        "experiments/research/srgg_structured_service_delivery_check.py",
+        "src/ibme/assembly/registry.py",
+        "src/ibme/ibs/srgg/__init__.py",
+        "src/ibme/ibs/srgg/registration.py",
+        "src/ibme/ibs/srgg/structured.py",
+        "src/ibme/ibs/srgg/structured_registration.py",
+        "src/ibme/ibs/srgg_paper_service.py",
+        "src/ibme/ibs/srgg_service.py",
+        "src/ibme/ibs/srgg_structured_service.py",
+        "tests/test_srgg_aggregate_budget.py",
+        "tests/test_srgg_bounded_classical_cost.py",
+        "tests/test_srgg_bounded_classical_runner.py",
+        "tests/test_srgg_classical_cost.py",
+        "tests/test_srgg_classical_runner.py",
+        "tests/test_srgg_conditional_xof.py",
+        "tests/test_srgg_convolution_bridge.py",
+        "tests/test_srgg_crt_projection.py",
+        "tests/test_srgg_cur_obstruction.py",
+        "tests/test_srgg_fiber_normalizers.py",
+        "tests/test_srgg_formal_candidates.py",
+        "tests/test_srgg_hardness_search.py",
+        "tests/test_srgg_integrated_bridge.py",
+        "tests/test_srgg_issuance_analysis.py",
+        "tests/test_srgg_mixed_domain.py",
+        "tests/test_srgg_native_sig.py",
+        "tests/test_srgg_numeric_audit.py",
+        "tests/test_srgg_oracle_ledger.py",
+        "tests/test_srgg_paper_backend.py",
+        "tests/test_srgg_paper_profiles.py",
+        "tests/test_srgg_paper_samplef.py",
+        "tests/test_srgg_paper_service.py",
+        "tests/test_srgg_parameter_screen.py",
+        "tests/test_srgg_proof_followup_delivery_check.py",
+        "tests/test_srgg_psf_bridge.py",
+        "tests/test_srgg_public_contract.py",
+        "tests/test_srgg_public_pairs.py",
+        "tests/test_srgg_qualification_audit.py",
+        "tests/test_srgg_quotient_challenge.py",
+        "tests/test_srgg_raw_h2_relabel.py",
+        "tests/test_srgg_reduction_samplers.py",
+        "tests/test_srgg_registration.py",
+        "tests/test_srgg_resource_probe.py",
+        "tests/test_srgg_sampling_error.py",
+        "tests/test_srgg_seeded_xof.py",
+        "tests/test_srgg_service.py",
+        "tests/test_srgg_service_audit_entropy.py",
+        "tests/test_srgg_service_budget.py",
+        "tests/test_srgg_source_correspondence.py",
+        "tests/test_srgg_spectral_bounds.py",
+        "tests/test_srgg_strong_structure.py",
+        "tests/test_srgg_structured_backend.py",
+        "tests/test_srgg_structured_execution.py",
+        "tests/test_srgg_structured_geometry.py",
+        "tests/test_srgg_structured_registration.py",
+        "tests/test_srgg_structured_samplef.py",
+        "tests/test_srgg_structured_service.py",
+        "tests/test_srgg_wide_scalar.py"
+      ],
+      "private_state_files_in_diff": false
+    }
+  },
+  "new_local_runs": {
+    "pr34": {
+      "tests": 145,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 174.859
+    },
+    "pr37": {
+      "tests": 1431,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 238.845
+    },
+    "merged_framework": {
+      "tests": 142,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 17.549
+    }
+  },
+  "commands": [
+    {
+      "phase": "pr34 fixed head",
+      "source_commit": "a81773564253660d4ef16ebebee350d2d057f394",
+      "environment": {
+        "PYTHONPATH": "src:.",
+        "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "command": "~/miniconda3/envs/sage/bin/python -m pytest -q -p no:cacheprovider tests/test_sageloli_ibs.py tests/test_sageloli_sampling.py tests/test_sageloli_uniform.py tests/test_sageloli_service_recovery.py tests/test_sageloli_probe.py --junitxml=test-results/pr-review-2026-10-17/pr34.xml"
+    },
+    {
+      "phase": "pr37 fixed head",
+      "source_commit": "7353770c9563eb20abb15e27abde32f0e3e1eca3",
+      "environment": {
+        "PYTHONPATH": "src:.",
+        "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "command": "~/miniconda3/envs/sage/bin/python ci/run.py run srgg2025 --output test-results/pr-review-2026-10-17/pr37-srgg"
+    },
+    {
+      "phase": "three-PR merged tree",
+      "source_commit": "cf6bd943a3aa8e27d7d4a0cb642725fa1d83a211",
+      "environment": {
+        "PYTHONPATH": "src:.",
+        "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "command": "~/miniconda3/envs/sage/bin/python -m pytest -q -p no:cacheprovider tests/test_assembly.py tests/test_registry_extension_contract.py tests/test_mp12_finite192_params.py tests/test_mp12_structured_assembly.py tests/test_cli_selection.py --junitxml=test-results/pr-review-2026-10-17/merged-framework.xml"
+    }
+  ],
+  "working_directory": "<repo>",
+  "environment": {
+    "sage_python": "~/miniconda3/envs/sage/bin/python",
+    "python": "3.13.14",
+    "sage": "10.9",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "cpu": "Intel Core Ultra 9 275HX"
+  },
+  "historical_pr36_receipts_revalidated_before_subsequent_merges": {
+    "implementation_files": 14,
+    "strict_test_fingerprints": 15,
+    "installed_providers": 134,
+    "public_receipts": 9,
+    "new_keys_or_root": 0,
+    "new_installed_final_collection_run": false,
+    "existing_sage_passed": 186,
+    "existing_portable_passed": 70,
+    "common_case_checks": 34
+  },
+  "pr37_integrity_at_fixed_7353770": {
+    "manifests": 13,
+    "file_entries_matched": 287,
+    "paper_source_test_fingerprints_matched": 13,
+    "manifest_match_not_reclaimed_after_main_status_edits": true
+  },
+  "nonblocking_range_whitespace": [
+    "src/ibme/ibs/srgg/registration.py: extra blank line at EOF",
+    "tests/test_srgg_registration.py: extra blank line at EOF"
+  ],
+  "public_evidence": {
+    "pr34.xml": {
+      "sha256": "559cd8e11823fd7bb934ab8cd21efc2f1eafc2514744ffbe74215282e1e73fbd",
+      "bytes": 20842,
+      "original_path": "test-results/pr-review-2026-10-17/pr34.xml",
+      "original_sha256": "559cd8e11823fd7bb934ab8cd21efc2f1eafc2514744ffbe74215282e1e73fbd",
+      "normalization": "LF and remove trailing spaces/tabs only"
+    },
+    "pr37-srgg.json": {
+      "sha256": "adfa8df522303e546ca0e34d1f3483a62527e2ff4aaec160002d33951ffd25bd",
+      "bytes": 11443,
+      "original_path": "test-results/pr-review-2026-10-17/pr37-srgg/srgg2025.json",
+      "original_sha256": "adfa8df522303e546ca0e34d1f3483a62527e2ff4aaec160002d33951ffd25bd",
+      "normalization": "LF and remove trailing spaces/tabs only"
+    },
+    "pr37-srgg.xml": {
+      "sha256": "c1464416e74f0d7d0adf67c4d9a9db98496ba8589004a42b952e0da6dcb82450",
+      "bytes": 294742,
+      "original_path": "test-results/pr-review-2026-10-17/pr37-srgg/srgg2025.xml",
+      "original_sha256": "c1464416e74f0d7d0adf67c4d9a9db98496ba8589004a42b952e0da6dcb82450",
+      "normalization": "LF and remove trailing spaces/tabs only"
+    },
+    "merged-framework.xml": {
+      "sha256": "1e4cfa42a58967841e4d95c529c6a3db5693ab03ecb6e888f113b3db7f9e7b76",
+      "bytes": 20530,
+      "original_path": "test-results/pr-review-2026-10-17/merged-framework.xml",
+      "original_sha256": "1e4cfa42a58967841e4d95c529c6a3db5693ab03ecb6e888f113b3db7f9e7b76",
+      "normalization": "LF and remove trailing spaces/tabs only"
+    },
+    "pr36-review.md": {
+      "sha256": "417c1de25909e610ca014c6bbe30fa88724a1c2c191417f9455f13016438c4da",
+      "bytes": 2044,
+      "original_path": "test-results/pr36-review-2026-10-17.md",
+      "original_sha256": "417c1de25909e610ca014c6bbe30fa88724a1c2c191417f9455f13016438c4da",
+      "normalization": "LF and remove trailing spaces/tabs only"
+    },
+    "pr34-review.md": {
+      "sha256": "f2f78b640cfbc9f3718b3bb1b9fc4f038dc7a5b258521a97e70d0917294e51c4",
+      "bytes": 1924,
+      "original_path": "test-results/pr-review-2026-10-17/pr34-review.md",
+      "original_sha256": "f2f78b640cfbc9f3718b3bb1b9fc4f038dc7a5b258521a97e70d0917294e51c4",
+      "normalization": "LF and remove trailing spaces/tabs only"
+    },
+    "pr37-review.md": {
+      "sha256": "efcc0eb7f4645f3f8a8e0eefd76ad55b0a5936cd98a446413fd5ae8bde33437b",
+      "bytes": 2034,
+      "original_path": "test-results/pr-review-2026-10-17/pr37-review.md",
+      "original_sha256": "efcc0eb7f4645f3f8a8e0eefd76ad55b0a5936cd98a446413fd5ae8bde33437b",
+      "normalization": "LF and remove trailing spaces/tabs only"
+    }
+  },
+  "own_documentation_files": [
+    "docs/PROJECT_STATUS.md",
+    "docs/deliveries/2026-10-17-pr-review/README.md",
+    "docs/deliveries/2026-10-17-pr-review/audit.json",
+    "docs/deliveries/2026-10-17-pr-review/evidence/merged-framework.xml",
+    "docs/deliveries/2026-10-17-pr-review/evidence/pr34-review.md",
+    "docs/deliveries/2026-10-17-pr-review/evidence/pr34.xml",
+    "docs/deliveries/2026-10-17-pr-review/evidence/pr36-review.md",
+    "docs/deliveries/2026-10-17-pr-review/evidence/pr37-review.md",
+    "docs/deliveries/2026-10-17-pr-review/evidence/pr37-srgg.json",
+    "docs/deliveries/2026-10-17-pr-review/evidence/pr37-srgg.xml"
+  ],
+  "open_pull_requests_at_final_check": [],
+  "parameters": {
+    "a": "n2 q1099511627689; identity86 B/layer; seed32 B",
+    "sageloli_sis": "n2 k4 m16 q81",
+    "sageloli_rsis": "d4 k9 l22 q19683",
+    "srgg": "legacy n8; explicit structured n8/n512; separate published n512 p16383 b31 w2 Q15744063 ranks2/3/4 and both Gaussian interpretations"
+  },
+  "remaining_current_entry": "docs/PROJECT_STATUS.md#当前未完成项按依赖推进",
+  "tests_not_added_across_overlapping_scopes": true,
+  "research_tests_are_not_security_proofs": true,
+  "paused_routes": [
+    "GKR",
+    "ABB standard model",
+    "CHKP standard model"
+  ],
+  "private_state_or_random_tape_exported": false,
+  "external_system_security_testing": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

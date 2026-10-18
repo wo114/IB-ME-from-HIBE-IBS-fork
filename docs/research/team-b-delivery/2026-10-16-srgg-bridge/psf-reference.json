@@ -1,0 +1,159 @@
+{
+  "schema": "IBME/SRGG-PSF-REFERENCE-BRIDGE/1",
+  "existing_candidates": [
+    {
+      "name": "conditional-n512-d2-w8",
+      "worst_case_basis_gso_squared_upper": "16139682754",
+      "reference": {
+        "dimension": 10240,
+        "head_dimension": 1024,
+        "declared_basis_gso_squared_upper": "16139682754",
+        "normalized_kernel_width_squared_lower": "1031865954433/16139682754",
+        "conservative_integer_smoothing_shape": 63,
+        "reference": "D_Z^N,Sigma conditioned on Ay=h mod Q; Sigma=diag(first I_2dn,second I_wdn)",
+        "smoothing_scope": "full coefficient kernel ker(A mod Q), not gadget kernel alone",
+        "basis_bound_must_be_verified_separately": true,
+        "reference_certificate_available": true,
+        "source_psf_theorem_correspondence_established": false,
+        "security_claim": "none",
+        "backend_admitted": false,
+        "parameters_are_formal": false,
+        "smoothing": {
+          "lattice": "Z^dimension with Euclidean norm",
+          "dimension": 10240,
+          "density_shape_r_squared": 63,
+          "epsilon": "1/1208925819614629174706176",
+          "dual_gaussian_mass_upper": "148213874223764730142170860811120522052185580372019921970505707530128805939118080/615656346818663737691860001564743817490496702336292462015831273320817350494063543783425939726869276758797623230463",
+          "sufficient_smoothing_condition_passes": true,
+          "method": "exact rational geometric-series bound using pi>2*ln(2)",
+          "scope": "rounding lattice only; excludes convolution, finite arithmetic and composition errors"
+        },
+        "uniform_coset_relative_error_upper": "27875931498163278926919647840810458593361921/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "image_to_uniform_tv_upper": "27875931498163278926919647840810465304248321/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "max_error_displacement_squared_in_inverse_shape": "274810802176/1031865954433",
+        "repaired_approximate_fiber_to_decoded_reference_tv_upper": "84508257309647654796021549095982666211268801693945602729096217118317654818317/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "reference_head_wrap_probability_upper": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "repaired_approximate_fiber_to_full_reference_tv_upper": "42254128654823827398010774547991333105634400846972801364548108559158827409159/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+        "uniform_in_identity_target": true,
+        "trapdoor_independent_reference_for_fixed_public_A": true,
+        "norm_cap": "338122385570209792",
+        "reference_norm_reject": {
+          "probability_upper": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "markov_t": "1/16",
+          "scope": "normalized Gaussian on exact fiber or finite union of fibers; not the actual sampler"
+        },
+        "raw_cap_sufficient_for_hnf_norm": "169060917974302720",
+        "approximate_fiber_hnf_norm_reject": {
+          "probability_upper": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "markov_t": "1/16",
+          "scope": "normalized Gaussian on exact fiber or finite union of fibers; not the actual sampler"
+        }
+      },
+      "actual_n512_implementation_tv": null
+    },
+    {
+      "name": "conditional-n512-d3-w8",
+      "worst_case_basis_gso_squared_upper": "36314284994",
+      "reference": {
+        "dimension": 15360,
+        "head_dimension": 1536,
+        "declared_basis_gso_squared_upper": "36314284994",
+        "normalized_kernel_width_squared_lower": "178592178501/2793406538",
+        "conservative_integer_smoothing_shape": 63,
+        "reference": "D_Z^N,Sigma conditioned on Ay=h mod Q; Sigma=diag(first I_2dn,second I_wdn)",
+        "smoothing_scope": "full coefficient kernel ker(A mod Q), not gadget kernel alone",
+        "basis_bound_must_be_verified_separately": true,
+        "reference_certificate_available": true,
+        "source_psf_theorem_correspondence_established": false,
+        "security_claim": "none",
+        "backend_admitted": false,
+        "parameters_are_formal": false,
+        "smoothing": {
+          "lattice": "Z^dimension with Euclidean norm",
+          "dimension": 15360,
+          "density_shape_r_squared": 63,
+          "epsilon": "1/1208925819614629174706176",
+          "dual_gaussian_mass_upper": "74106937111882365071085430405560261026092790186009960985252853765064402969559040/205218782272887912563953333854914581127853196817975796976800289253518774800424452591154984824671837231464884557141",
+          "sufficient_smoothing_condition_passes": true,
+          "method": "exact rational geometric-series bound using pi>2*ln(2)",
+          "scope": "rounding lattice only; excludes convolution, finite arithmetic and composition errors"
+        },
+        "uniform_coset_relative_error_upper": "41813897247244918390379471761215692923207681/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "image_to_uniform_tv_upper": "41813897247244918390379471761215708022702081/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "max_error_displacement_squared_in_inverse_shape": "137405401088/773899440171",
+        "repaired_approximate_fiber_to_decoded_reference_tv_upper": "34500352148564576933577241241023409430431013457636688939969880930163900746741/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+        "reference_head_wrap_probability_upper": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "repaired_approximate_fiber_to_full_reference_tv_upper": "69000704297129153867154482482046818860862026915273377879939761860327801493483/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "uniform_in_identity_target": true,
+        "trapdoor_independent_reference_for_fixed_public_A": true,
+        "norm_cap": "1141161982930956288",
+        "reference_norm_reject": {
+          "probability_upper": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "markov_t": "1/16",
+          "scope": "normalized Gaussian on exact fiber or finite union of fibers; not the actual sampler"
+        },
+        "raw_cap_sufficient_for_hnf_norm": "570580579249274880",
+        "approximate_fiber_hnf_norm_reject": {
+          "probability_upper": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "markov_t": "1/16",
+          "scope": "normalized Gaussian on exact fiber or finite union of fibers; not the actual sampler"
+        }
+      },
+      "actual_n512_implementation_tv": null
+    },
+    {
+      "name": "conditional-n512-d4-w8",
+      "worst_case_basis_gso_squared_upper": "64558728130",
+      "reference": {
+        "dimension": 20480,
+        "head_dimension": 2048,
+        "declared_basis_gso_squared_upper": "64558728130",
+        "normalized_kernel_width_squared_lower": "825492726605/12911745626",
+        "conservative_integer_smoothing_shape": 63,
+        "reference": "D_Z^N,Sigma conditioned on Ay=h mod Q; Sigma=diag(first I_2dn,second I_wdn)",
+        "smoothing_scope": "full coefficient kernel ker(A mod Q), not gadget kernel alone",
+        "basis_bound_must_be_verified_separately": true,
+        "reference_certificate_available": true,
+        "source_psf_theorem_correspondence_established": false,
+        "security_claim": "none",
+        "backend_admitted": false,
+        "parameters_are_formal": false,
+        "smoothing": {
+          "lattice": "Z^dimension with Euclidean norm",
+          "dimension": 20480,
+          "density_shape_r_squared": 63,
+          "epsilon": "1/1208925819614629174706176",
+          "dual_gaussian_mass_upper": "296427748447529460284341721622241044104371160744039843941011415060257611878236160/615656346818663737691860001564743669276622478571562319844970462200295298308483171763503969221161746629991684112383",
+          "sufficient_smoothing_condition_passes": true,
+          "method": "exact rational geometric-series bound using pi>2*ln(2)",
+          "scope": "rounding lattice only; excludes convolution, finite arithmetic and composition errors"
+        },
+        "uniform_coset_relative_error_upper": "55751862996326557853839295681620930608496641/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "image_to_uniform_tv_upper": "55751862996326557853839295681620957452042241/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "max_error_displacement_squared_in_inverse_shape": "549621604352/4127463633025",
+        "repaired_approximate_fiber_to_decoded_reference_tv_upper": "7469545393372474288381244378926221051872590989726308956547434004789841084085/14474011154664524427946373126085988481658748083205070504932198000989141204992",
+        "reference_head_wrap_probability_upper": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "repaired_approximate_fiber_to_full_reference_tv_upper": "59756363146979794307049955031409768414980727917810471652379472038318728672681/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "uniform_in_identity_target": true,
+        "trapdoor_independent_reference_for_fixed_public_A": true,
+        "norm_cap": "2704975665782472704",
+        "reference_norm_reject": {
+          "probability_upper": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "markov_t": "1/16",
+          "scope": "normalized Gaussian on exact fiber or finite union of fibers; not the actual sampler"
+        },
+        "raw_cap_sufficient_for_hnf_norm": "1352487283269632000",
+        "approximate_fiber_hnf_norm_reject": {
+          "probability_upper": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "markov_t": "1/16",
+          "scope": "normalized Gaussian on exact fiber or finite union of fibers; not the actual sampler"
+        }
+      },
+      "actual_n512_implementation_tv": null
+    }
+  ],
+  "scope": "conditional declared reference, not source theorem or formal backend admission",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

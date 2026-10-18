@@ -1,0 +1,198 @@
+{
+  "schema": "A-PUBLIC-BUDGET-INSTALLED-REPLAY/1",
+  "status": "passed",
+  "isolated_python": true,
+  "cwd_outside_checkout": true,
+  "sole_project_provider_root": true,
+  "providers": {
+    "experiments.research.chkp_basis": {
+      "path": "ibme/lattice/chkp/basis.py",
+      "sha256": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d"
+    },
+    "experiments.research.first_suite": {
+      "path": "experiments/research/first_suite/__init__.py",
+      "sha256": "98a3203836217e8d437e31a13137e43f5d3759be61d7b2e901ff700e676ba931"
+    },
+    "experiments.research.first_suite.entropy": {
+      "path": "ibme/lattice/chkp/entropy.py",
+      "sha256": "fe449ebd5ccadfb8a8b73652b874fcd69e0683292368d9c03ef8c6d215fcc8d6"
+    },
+    "experiments.research.gaussian_reference": {
+      "path": "ibme/lattice/chkp/gaussian.py",
+      "sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c"
+    },
+    "experiments.research.general_gadget_reference": {
+      "path": "experiments/research/general_gadget_reference.py",
+      "sha256": "69e68a33baab3c85fe84525ce92a45e81723c667c64b526fa2dc321b2b098ab0"
+    },
+    "experiments.research.mp12_sampled_reference": {
+      "path": "experiments/research/mp12_sampled_reference.py",
+      "sha256": "a01b198a7bbcefbb54b387f6ab0b24961b5e74c3689ea4e2f30c74c35ba1061b"
+    },
+    "experiments.research.structured_feasibility": {
+      "path": "experiments/research/structured_feasibility.py",
+      "sha256": "d5bc00fdc67e884698b8e2f023ccef8332e408831b8b1fae0786b88b9fff395c"
+    },
+    "experiments.research.structured_service_budget": {
+      "path": "experiments/research/structured_service_budget.py",
+      "sha256": "1b6a83a6675ffac569b2709cd8f645b7b6cb451ad9fcc8d8adb491108c187daf"
+    },
+    "ibme": {
+      "path": "ibme/__init__.py",
+      "sha256": "f0e3dd70a3752229d5209b58ef760914242569406374c427a463a45823090bb8"
+    },
+    "ibme.core": {
+      "path": "ibme/core/__init__.py",
+      "sha256": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac"
+    },
+    "ibme.core.encoding": {
+      "path": "ibme/core/encoding.py",
+      "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+    },
+    "ibme.core.errors": {
+      "path": "ibme/core/errors.py",
+      "sha256": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e"
+    },
+    "ibme.core.hashing": {
+      "path": "ibme/core/hashing.py",
+      "sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4"
+    },
+    "ibme.core.randomness": {
+      "path": "ibme/core/randomness.py",
+      "sha256": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202"
+    },
+    "ibme.core.types": {
+      "path": "ibme/core/types.py",
+      "sha256": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56"
+    },
+    "ibme.hibe": {
+      "path": "ibme/hibe/__init__.py",
+      "sha256": "8b471e5f2ca4a5b22cb2a695d6f75d1891962ff135ff0662e64f47abbde4cd1e"
+    },
+    "ibme.hibe.abb10": {
+      "path": "ibme/hibe/abb10.py",
+      "sha256": "a7121a89e3645e87fa059564b745ed1487dfb7f9510a10973c42d0b5e94a9d32"
+    },
+    "ibme.hibe.api": {
+      "path": "ibme/hibe/api.py",
+      "sha256": "b81ec0a7ec48c8b5f2fbbed7182b0c22952167d355f92943918a419ab8a5ac4a"
+    },
+    "ibme.hibe.chkp": {
+      "path": "ibme/hibe/chkp/__init__.py",
+      "sha256": "d241115e0b4cd894352d3e0693275a5fc9a35430f402c537c141481cba05ae4c"
+    },
+    "ibme.hibe.chkp.backend": {
+      "path": "ibme/hibe/chkp/backend.py",
+      "sha256": "8889baefe5241d2daef46db6c96c6c9f54106904126d50ebbba79df3ed9fda67"
+    },
+    "ibme.hibe.chkp.objects": {
+      "path": "ibme/hibe/chkp/objects.py",
+      "sha256": "2943f8085f431e4feaeb1c865e055fbda5af165e8d121dc71d40acd223e24a89"
+    },
+    "ibme.hibe.chkp.params": {
+      "path": "ibme/hibe/chkp/params.py",
+      "sha256": "fbbb52373c55ab1848f884c16cf3fd1315e5570a3c283ed5c88c8f44db64e87d"
+    },
+    "ibme.hibe.mock": {
+      "path": "ibme/hibe/mock.py",
+      "sha256": "48f53e2fdd383cd361ea304056f289f6f4dfee23558b3825038d4b363113002a"
+    },
+    "ibme.hibe.mp12_structured": {
+      "path": "ibme/hibe/mp12_structured/__init__.py",
+      "sha256": "f4dadff91890ecc854ab9daea99e32aba66ad842174224057320c21c7c6e065a"
+    },
+    "ibme.hibe.mp12_structured.params": {
+      "path": "ibme/hibe/mp12_structured/params.py",
+      "sha256": "4a81ff486947870d43acf780443aea6898eeb0389ece58ed214f625abd700085"
+    },
+    "ibme.lattice": {
+      "path": "ibme/lattice/__init__.py",
+      "sha256": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f"
+    },
+    "ibme.lattice.chkp": {
+      "path": "ibme/lattice/chkp/__init__.py",
+      "sha256": "820d7a2834b36d5cea29d0c165fa01c425af1739c103ea6323da8bacfd62c921"
+    },
+    "ibme.lattice.chkp.basis": {
+      "path": "ibme/lattice/chkp/basis.py",
+      "sha256": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d"
+    },
+    "ibme.lattice.chkp.entropy": {
+      "path": "ibme/lattice/chkp/entropy.py",
+      "sha256": "fe449ebd5ccadfb8a8b73652b874fcd69e0683292368d9c03ef8c6d215fcc8d6"
+    },
+    "ibme.lattice.chkp.gaussian": {
+      "path": "ibme/lattice/chkp/gaussian.py",
+      "sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c"
+    },
+    "ibme.lattice.chkp.joint_parameters": {
+      "path": "ibme/lattice/chkp/joint_parameters.py",
+      "sha256": "887fb6c938d25ef2466ec7af1ca5311f3e55269c6aa72ee57a51db74e8763c92"
+    },
+    "ibme.lattice.chkp.noise_budget": {
+      "path": "ibme/lattice/chkp/noise_budget.py",
+      "sha256": "4d493f2c305fd614705ab28f6fc3920b0ae06b195b0b0960719ff51314508790"
+    },
+    "ibme.lattice.chkp.rounded_noise": {
+      "path": "ibme/lattice/chkp/rounded_noise.py",
+      "sha256": "f093b75e82116f39b5817a01ee89ead1bcbaec8df6d231380354b4e992638411"
+    },
+    "ibme.lattice.gadget": {
+      "path": "ibme/lattice/gadget.py",
+      "sha256": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d"
+    },
+    "ibme.lattice.gaussian": {
+      "path": "ibme/lattice/gaussian.py",
+      "sha256": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c"
+    },
+    "ibme.lattice.matrix_sampling": {
+      "path": "ibme/lattice/matrix_sampling/__init__.py",
+      "sha256": "db15615ccef53acf421db6f65f45e2fb865445f66309f3c44bb133694de3f71b"
+    },
+    "ibme.lattice.matrix_sampling.gpv": {
+      "path": "ibme/lattice/matrix_sampling/gpv.py",
+      "sha256": "9b699e1fc2f0b2a2e84c0b9b37bcd290f1af9427d11c39a420ff9b0b91e220c0"
+    },
+    "ibme.lattice.matrix_sampling.mp12_bounds": {
+      "path": "ibme/lattice/matrix_sampling/mp12_bounds.py",
+      "sha256": "43c09691ff43355261b7f2a52148c8e9f0b0a7be0e28fd56e4b040791e57e28b"
+    },
+    "ibme.lattice.matrix_sampling.mp12_structured": {
+      "path": "ibme/lattice/matrix_sampling/mp12_structured.py",
+      "sha256": "fe4bfcd86006c118da0b1f159adcaca622f926d70fd4e19841d4f08262ac3cd3"
+    },
+    "ibme.lattice.matrix_sampling.scalar": {
+      "path": "ibme/lattice/matrix_sampling/scalar.py",
+      "sha256": "6365371e7fdbdc86b022d5a55e53d59a0f58564ca715efac873f9fdde66c9b68"
+    },
+    "ibme.lattice.modmat": {
+      "path": "ibme/lattice/modmat.py",
+      "sha256": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94"
+    },
+    "ibme.lattice.params": {
+      "path": "ibme/lattice/params.py",
+      "sha256": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be"
+    },
+    "ibme.lattice.research": {
+      "path": "ibme/lattice/research/__init__.py",
+      "sha256": "89e656c9c2e8a5fedab17c1f160316a3b248f3ae62727275bc4306e1e0b3fb53"
+    },
+    "ibme.lattice.trapdoor": {
+      "path": "ibme/lattice/trapdoor.py",
+      "sha256": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8"
+    }
+  },
+  "provider_count": 44,
+  "source_budget_sha256": "04867ff600797e6484fc25b34cc56b656367510cbe9d17997b9112d9372ab6f0",
+  "installed_budget_sha256": "04867ff600797e6484fc25b34cc56b656367510cbe9d17997b9112d9372ab6f0",
+  "source_domain_sha256": "222ffbb3544f09718165a31ca4ff96cc4fa804048fd05aaebf6dff19bde6eeaa",
+  "installed_domain_sha256": "222ffbb3544f09718165a31ca4ff96cc4fa804048fd05aaebf6dff19bde6eeaa",
+  "entropy_reads": 0,
+  "sampler_calls": 0,
+  "root_or_key_generations": 0,
+  "probability_exponent": 97,
+  "complete_HG_necessary_n_upper": 5,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

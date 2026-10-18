@@ -1,0 +1,50 @@
+{
+  "schema": "IBME/SRGG-FIXED-ISSUER-AUDIT/1",
+  "parameters": {
+    "degree": 8,
+    "rank": 1,
+    "p": 257,
+    "base": 31,
+    "digits": 3,
+    "r_squared": 4,
+    "master_first_squared": 8388608,
+    "master_second_squared": 8388608,
+    "signature_first_squared": 137438953472,
+    "signature_second_squared": 137438953472,
+    "user_norm_squared": 536870912,
+    "signature_noise_factor": 2,
+    "identity_max_bytes": 256,
+    "message_max_bytes": 4096,
+    "max_users": 16,
+    "setup_max_attempts": 32,
+    "sign_max_attempts": 16,
+    "precision_bits": 192,
+    "ticket_bits": 128,
+    "scalar_tail_bits": 24,
+    "scalar_mass_bits": 64,
+    "gadget_tail_bits": 16
+  },
+  "public": {
+    "public_key_bytes": 788,
+    "state_bytes_one_issued_identity": 14608,
+    "setup_seconds": 3.1508103060000003
+  },
+  "checks": {
+    "public_key_restored": true,
+    "cached_identity_same_key": true,
+    "post_restore_signature_verified": true
+  },
+  "test_coverage": [
+    "tests/test_srgg_service.py covers pending/failed blocking, atomic-save faults and hard-exit recovery.",
+    "tests/test_srgg_service.py covers two-process same-identity serialization under the local lock."
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "limitations": [
+    "The snapshot is trusted local plaintext and has no malicious rollback or administrator-integrity protection.",
+    "The lock and fsync behavior cover cooperating same-OS processes; NFS, mixed Windows/WSL writers and hard-power-loss guarantees are out of scope.",
+    "The raw Backend remains available with its in-memory cache semantics; this service is an explicit wrapper and does not change the registry or CLI.",
+    "The SRGG research profile has an 8-bit challenge and is publicly forgeable; functional service evidence is not a security proof."
+  ]
+}

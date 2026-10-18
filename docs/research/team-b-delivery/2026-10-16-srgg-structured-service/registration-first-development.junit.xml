@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="7" time="13.427" timestamp="2026-10-16T16:06:39.380292+08:00"><testcase classname="tests.test_srgg_structured_registration" name="test_complete_independent_descriptor_and_exact_parameter_record" time="0.004" /><testcase classname="tests.test_srgg_structured_registration" name="test_descriptor_objects_bind_the_entire_snapshot" time="1.744" /><testcase classname="tests.test_srgg_structured_registration" name="test_descriptor_rejects_unknown_format_and_parameter_classes[None]" time="0.001" /><testcase classname="tests.test_srgg_structured_registration" name="test_descriptor_rejects_unknown_format_and_parameter_classes[bad1]" time="0.000" /><testcase classname="tests.test_srgg_structured_registration" name="test_descriptor_rejects_unknown_format_and_parameter_classes[compressed]" time="0.000" /><testcase classname="tests.test_srgg_structured_registration" name="test_descriptor_rejects_unknown_format_and_parameter_classes[1]" time="0.000" /><testcase classname="tests.test_srgg_structured_registration" name="test_service_audit_worker_never_reissues_an_existing_identity" time="6.917"><failure message="AssertionError: {'failed_stage': None, 'failure_type': None, 'checks': {'public_roundtrip': True, 'key_roundtrip_0': True, 'honest_0': True, 'signature_roundtrip_0': True, ...}}&#10;assert False">tmp_path = PosixPath('/tmp/pytest-of-zhang/pytest-0/test_service_audit_worker_neve0')
+
+    def test_service_audit_worker_never_reissues_an_existing_identity(tmp_path):
+        from experiments.research.srgg_structured_service_audit import audit
+        report = audit(8)
+&gt;       assert report["completed"], {k: report.get(k) for k in ("failed_stage", "failure_type", "checks")}
+E       AssertionError: {'failed_stage': None, 'failure_type': None, 'checks': {'public_roundtrip': True, 'key_roundtrip_0': True, 'honest_0': True, 'signature_roundtrip_0': True, ...}}
+E       assert False
+
+tests/test_srgg_structured_registration.py:58: AssertionError</failure></testcase></testsuite></testsuites>

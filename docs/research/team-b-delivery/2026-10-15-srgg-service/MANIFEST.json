@@ -1,0 +1,42 @@
+{
+  "schema": "IBME/SRGG-FIXED-ISSUER-DELIVERY/1",
+  "base_commit": "fa7bb952740a8826d26082b3b7a16152d4d4a54c",
+  "files": {
+    "src/ibme/ibs/srgg_service.py": {
+      "sha256": "6aa174727fa21c4172e59dd7886525aa8539fc11aa792c2b6f3a6314db970437",
+      "bytes": 19932
+    },
+    "tests/test_srgg_service.py": {
+      "sha256": "e62b0f38443e721390b82b94058da1bfe078ce7ebdd0b78f5cea6da21c17c246",
+      "bytes": 8126
+    },
+    "experiments/research/candidates/srgg/service_audit.py": {
+      "sha256": "e308fda3ef68b56c314f7fa37d470e1835f35e0f2e2f37ed19af967fa073efae",
+      "bytes": 3686
+    },
+    "docs/specs/srgg-issuer.md": {
+      "sha256": "c19b5caa72dd787eceee75ef178f6476b372315aedf3cb386bd30325e98e8981",
+      "bytes": 1739
+    },
+    "docs/research/team-b-delivery/2026-10-15-srgg-service/README.md": {
+      "sha256": "7b414172b53609d56040b88a5396bdb6bf0d276a8499e8cde9e98a6bf72f262f",
+      "bytes": 4016
+    },
+    "docs/research/team-b-delivery/2026-10-15-srgg-service/service.json": {
+      "sha256": "dd68af7eff205bca27f5df097427ba5e49af6b740c6bf276076011ab511e9341",
+      "bytes": 1859
+    }
+  },
+  "verification": {
+    "service_sage": "12 passed / 0 failed / 0 skipped",
+    "srgg_sage": "143 passed / 0 failed / 0 skipped",
+    "service_windows": "4 passed / 8 skipped (Sage unavailable)",
+    "algebra_geometry": "36 binary challenges / 9 covariance checks",
+    "sampling": "36864 scalar samples / 27 finite joint laws",
+    "perturbation": "64 approximate and 64 HNF equations passed",
+    "lifecycle_receipt": "3 public checks true; temporary plaintext directory removed",
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  }
+}

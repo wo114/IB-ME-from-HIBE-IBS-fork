@@ -1,0 +1,80 @@
+{
+  "schema": "CHKP-PUBLISHED-PARAMETER-TARGET-AUDIT/1",
+  "created_utc": "2026-10-17T16:04:55Z",
+  "baseline_commit": "58a50bddce4a80d68e0cc2d6992c3245adf0fbee",
+  "branch": "codex/formal-parameter-admission",
+  "status": "completed_numeric_target_non_admission",
+  "sources": {
+    "CHKP_EUROCRYPT_2010_proceedings": {
+      "url": "https://people.cs.rutgers.edu/~dc789/bonsai.pdf",
+      "sha256": "87b5bff448f4e653bb7959a62c2b56c03ca495076678014b5dc8b7c90a90442f",
+      "committed_to_repository": false
+    },
+    "papers/2010_bonsai_trees_cash.pdf": {
+      "sha256": "b1d8a2ae0e9d4e5c9145bbc6dc864090605c12a5b76149aa0684d62a8815d2ce"
+    },
+    "papers/2011_lattice_trapdoors_micciancio.pdf": {
+      "sha256": "bf1160f088825ed28c343b299f5bc2acdca41cc50293310a03a4506d2fdbdb84"
+    },
+    "lattice_estimator": {
+      "url": "https://github.com/malb/lattice-estimator",
+      "commit": "53da5982597709ba0fdf94ea37a84d822310fd84",
+      "checkout_clean": true
+    }
+  },
+  "evidence": {
+    "evidence/formal-target.json": {
+      "bytes": 44714,
+      "sha256": "105ca14b6cffef733d8cacd900c8b56d4145ebd7422841d8363cce282ced90bb",
+      "contains_private_material": false,
+      "root_or_key_generations": 0,
+      "sampler_calls": 0,
+      "entropy_reads": 0,
+      "estimator_calls": 16
+    },
+    "evidence/target-tests.xml": {
+      "bytes": 1723,
+      "sha256": "ee511d102027052b7850ec88122bf345aaaa73f9b8508f3b4708205a8978c4df",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "evidence/a-structured-hg.json": {
+      "bytes": 3350,
+      "sha256": "4f9b82c7c550facfe12a9420c801fd139bd3f85174d886c8a50201ffdcb91306",
+      "tests": 186,
+      "passed": 186,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "evidence/a-structured-hg.xml": {
+      "bytes": 26173,
+      "sha256": "b87adb03d7061dd01ad45bc4d65236d0145c7d941fd88c54e6e618d7e19dacfc"
+    }
+  },
+  "source_sha256": {
+    "experiments/research/chkp_published_formal_screen.py": "ead481f259b2c757ca62a5d5936d5c38e13327dda3f6a32ff9e991509f1d2909",
+    "tests/test_chkp_published_formal_screen.py": "af1125cef6578ba97289013dfff0375e0835506b7df8577c05fed07f23f6a0ab",
+    "README.md": "8b3bb8f908c746126379fa3f854ebdba15b545d4f6486342cff5cbe22ea3d173"
+  },
+  "environment": {
+    "cpu": "Intel Xeon Silver 4216, 12 cores / 12 threads allocated",
+    "kernel": "Linux 6.18.56 x86_64",
+    "sage": "10.9",
+    "python": "3.14.7",
+    "nix": "2.34.9",
+    "prescribed_WSL_conda_sage_present": false,
+    "rerun_in_prescribed_environment_required_before_merge": true
+  },
+  "claims": {
+    "paper_numeric_target_complete": true,
+    "paper_parameter_set_formal": false,
+    "parameters_are_formal": false,
+    "backend_admitted": false,
+    "security_claim": "none",
+    "NIST_level_claimed": null,
+    "concrete_security_bits_claimed": null
+  }
+}

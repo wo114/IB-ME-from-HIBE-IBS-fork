@@ -1,0 +1,1787 @@
+{
+  "schema": "STRUCTURED-HG-TARGET-GROUP-SCREEN/1",
+  "rows": [
+    {
+      "family": "mp12-structured-hg-target-projection",
+      "n": 128,
+      "q_bits": 59,
+      "complete_group": {
+        "n": 128,
+        "q_bits": 59,
+        "w": 7552,
+        "m": 7808,
+        "root_r_squared": 513,
+        "root_R_bound": 991789056,
+        "r_squared": 824,
+        "parent_sample_dimension": 8064,
+        "parent_width_squared": 8172404049920,
+        "parent_R_bound": 497693914784606453760,
+        "leaf_dimension": 23424,
+        "leaf_width_squared": 4100997857825157241210880,
+        "q_alpha": 23,
+        "q": 456677764136985449,
+        "q_prime_proved": true,
+        "noise": {
+          "conditional_noise_sufficient": true,
+          "assumed_preimage_norm_squared_upper": "96061773821696483218123653120",
+          "rounding_error_upper": "23717878225082754",
+          "continuous_squared_upper": "8181485214620067779204373412662449",
+          "integer_phase_radius": 114169441034246361,
+          "continuous_margin": "90451562809163607",
+          "error_bits": 160
+        }
+      },
+      "allocation_proposal": {
+        "epsilon_bits": 192,
+        "scalar_tail_bits": 192,
+        "scalar_abort_bits": 192,
+        "scalar_mass_bits": 320,
+        "precision_bits": 384,
+        "scalar_uniform_trials": 256,
+        "perturbation_trials": 512,
+        "noise_tail_bits": 192,
+        "decode_error_bits": 160,
+        "root_uniform_trials": 256,
+        "ciphertext_uniform_trials": 192,
+        "oracle_uniform_trials": 192,
+        "target_lifetime_bits": 128,
+        "encapsulations": 1048576,
+        "H_queries": 1048576,
+        "G_paths": 1048576,
+        "receivers": 2,
+        "children_each": 2,
+        "identity_bytes": 86,
+        "seed_bytes": 32
+      },
+      "root_lwe": {
+        "n": 128,
+        "q": 456677764136985449,
+        "secret": "small-Gaussian",
+        "multi_target_or_reduction_loss_applied": false,
+        "m": 128,
+        "squared_width": 513,
+        "independent_columns": 7552,
+        "attack_goal": "one root-column search or decision, not full trapdoor recovery",
+        "distribution": "ideal discrete Gaussian root secret and error; finite root coupling separate"
+      },
+      "ciphertext_lwe": {
+        "n": 128,
+        "q": 456677764136985449,
+        "secret": "small-Gaussian",
+        "multi_target_or_reduction_loss_applied": false,
+        "m": 15616,
+        "squared_width": 529,
+        "attack_goal": "recover minus leading rounded errors using the two public H blocks; then recover encryption secret",
+        "distribution": "finite rounded-continuous secret/error; discrete Gaussian comparator ONLY",
+        "estimator_distribution_is_literal": false,
+        "equation": "b_H = c_H - H^T*c_I = H^T*(-e_I) + e_H mod q",
+        "available_H_samples": 15616,
+        "all_available_H_samples_supplied": true,
+        "root_other_columns_and_256_terminals_used": false
+      },
+      "resources": {
+        "counts": {
+          "root_R_entries": 1933312,
+          "parent_R_entries": 60899328,
+          "parent_sampler_Schur_entries": 262144,
+          "leaf_sampler_Schur_entries": 251920384,
+          "fixed_leaf_integers": 5996544,
+          "complete_root_columns": 7808,
+          "parent_sample_columns": 8064,
+          "complete_parent_columns": 15616,
+          "complete_leaf_columns": 23424,
+          "complete_leaf_prefix": 15872
+        },
+        "codec_minimum_bytes": {
+          "root_R_JSON_bytes": 3866624,
+          "parent_R_JSON_bytes": 121798656,
+          "public_root_residue_bytes": 7995392,
+          "single_fixed_leaf_wire_bytes": 35979264,
+          "capsule_residue_bytes": 189440
+        },
+        "current_gates": {
+          "n_within_128": true,
+          "modulus_within_61_bits": true,
+          "q_fits_existing_uint64_headers": true,
+          "complete_HG_prefix_within_512": false,
+          "complete_columns_within_8192": false,
+          "parent_R_entries_within_2pow22": false,
+          "root_JSON_not_excluded_by_32MiB": true,
+          "parent_JSON_not_excluded_by_32MiB": false,
+          "public_oracle_not_excluded_by_2MiB": false,
+          "fixed_leaf_not_excluded_by_16MiB": false,
+          "raw_capsule_not_excluded_by_2MiB": true,
+          "Hybrid_capsule_not_excluded_by_4MiB": true,
+          "squared_width_within_2pow192": true
+        },
+        "first_geometry_or_wire_obstruction": "complete_HG_prefix_within_512",
+        "minimum_bytes_do_not_prove_passing_inputs_fit": true,
+        "process_peak_RSS": null,
+        "stage_seconds": null,
+        "full_kernel_basis_entries_allocated": 0
+      },
+      "finite_projection": {
+        "phases": {
+          "parent": {
+            "dimension": 8064,
+            "scalar": {
+              "profile": "MATRIX-FINITE-DGS/1",
+              "algorithm": "finite uniform-box rejection Gaussian, independent wide profile",
+              "squared_width_class": [
+                "8172404049920",
+                "8172404049920"
+              ],
+              "uniform_in_rational_center": true,
+              "rational_input_bit_budget": 65536,
+              "radius": 19414172,
+              "max_support_count": 38828346,
+              "support_or_centers_precomputed": 0,
+              "CDF_tables": 0,
+              "tail_upper": "9850500041440178788118079588403949359101133606141638549482173053269485651065116321731910824411363319822657776195239/61832600368276133515125630254911797508782837275302959978515764023224306276632966792579100265310761247399417856504034834837841258576687802491886538775473291979151693037174784",
+              "relative_weight_interval_width_upper": "1/300613450595050653169853516389035139504087366260264943450533244356122755214669880763353471793250393988087676928",
+              "integer_weight_quantization_tv_upper": "2732301946515842677917/150306725297525326584926758194517569752043683130132471725266622178061377607334940381676735896625196994043838464",
+              "Poisson_theta_upper": "19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153409/7159725979618740301104695983418709622680434793042663132360362425577766001338226039836321066456157093857339877304749930018599215189268344175111256510391144905128218576994803025566700315369744694061260002057936311868982638401684395903839696776618573824",
+              "acceptance_mass_lower": "176763432471477247275717004533152552003842847158954138108012455280378009055711261004969799633111487579442921235484612506921153884286107815314175069807179202189596062394554275653977/61832600368276133515125630254911797508782837275302959978515764023224306276632966792579100265310761247399417856504034834837841258576687802491886538775473291979151693037174784",
+              "acceptance_probability_lower": "58921144157159082425239001511050850667947615719651379369337485093459336351903753668323266544370495859814307078494870835640384628095369271771391689935726400729865354131518091884659/800285867059717711889164735001927824384319348195720194956654217316035133239692183209590512490059345079138732243639004987712184760363700509711544240105497764908508907911071125209088",
+              "max_gaussian_trials": 1809,
+              "abort_upper": "18446744073709553425/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+              "tv_upper_including_abort": "19701001590538799557187976608672561577345877394261299090263313844660633153497235440060437203787095326434382888769191/61832600368276133515125630254911797508782837275302959978515764023224306276632966792579100265310761247399417856504034834837841258576687802491886538775473291979151693037174784",
+              "public_tape_bytes": 1924776,
+              "tape_exhaustion_at_public_length_upper": "0",
+              "finite_options": {
+                "tail_bits": 192,
+                "mass_bits": 320,
+                "precision_bits": 384,
+                "gaussian_abort_bits": 192,
+                "max_uniform_trials": 256,
+                "max_gaussian_trials": 100000,
+                "max_radius": 5192296858534827628530496329220096,
+                "rational_bits": 65536,
+                "max_tape_bytes": 17592186044416
+              },
+              "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+              "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+              "production_random_api": true,
+              "native_Sage_rng_used": false,
+              "constant_time": false,
+              "security_claim": "none"
+            },
+            "modeled_sample_TV_including_abort_upper": "58632546368241601706618202606629315949985555624694974445161328717876942665344569395724077465907417188219994915658025901898607469630968198530862020869488002816006371210495222992538952932447966061917557089531053578469960903038429363291495314986585131742671364035909178731724192747332052930014425526301290785288549971089218747968216354831729569663804441347794846192819179056142925723586790822575348439306074147685988298709988887308169/44462416477094044620016814065517364315819234512137839318561147229681047540111417837804146165368287326682958611784293913071458694543324516364123218643504812982376903479154260005842691890436351074294776293025195716395203448798621405486511073816243565116466426895436122723246185447145753308849386844503560550745035678225448695543419674182228770621532362943493817683328619098701164655413887742788568604148242281411872436874836044222091337531891402719153998141455693655076665297784012800",
+            "ideal_norm_abort_upper": "6277101735386680763835789423207666416102355444464034512897/726838724295606890549323807888004534353641360687318060281374407091401971917974352341182362805910295576096881042226720349526688498974720",
+            "worst_request_tape_bytes": 7954220263424
+          },
+          "leaf": {
+            "dimension": 23424,
+            "scalar": {
+              "profile": "MATRIX-FINITE-DGS/1",
+              "algorithm": "finite uniform-box rejection Gaussian, independent wide profile",
+              "squared_width_class": [
+                "4100997857825157241210880",
+                "4100997857825157241210880"
+              ],
+              "uniform_in_rational_center": true,
+              "rational_input_bit_budget": 65536,
+              "radius": 14375817750067,
+              "max_support_count": 28751635500136,
+              "support_or_centers_precomputed": 0,
+              "CDF_tables": 0,
+              "tail_upper": "39402006196067282893046908702036731546776238162196272476908951746055845318911472419279792635365492942456180413105849/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+              "relative_weight_interval_width_upper": "1/300613450595050653169853516389035139504087366260264943450533244356122755214669880763353471793250393988087676928",
+              "integer_weight_quantization_tv_upper": "505804120799631773624478093/37576681324381331646231689548629392438010920782533117931316655544515344401833735095419183974156299248510959616",
+              "Poisson_theta_upper": "19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153409/7159725979618740301104695983418709622680434793042663132360362425577766001338226039836321066456157093857339877304749930018599215189268344175111256510391144905128218576994803025566700315369744694061260002057936311868982638401684395903839696776618573824",
+              "acceptance_mass_lower": "500866832607575248022046548263112712964716473443020478005117599279245669044024305136553488697973762920237433501771583049636533741966410242668976389389361376794702472202289945731645765959/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+              "acceptance_probability_lower": "500866832607575248022046548263112712964716473443020478005117599279245669044024305136553488697973762920237433501771583049636533741966410242668976389389361376794702472202289945731645765959/7111153551257001551305245647820212689348000761826073292971257123027347730853086936629841916919836236995342594608166538716179448843984491622836572045471684000972429780487607878449151082496",
+              "max_gaussian_trials": 1891,
+              "abort_upper": "18446744073709553507/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+              "tv_upper_including_abort": "78804012392461766144477437057833254711401652474463795762518327238955770213082868791465825815389771764922152840922809/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+              "public_tape_bytes": 2980216,
+              "tape_exhaustion_at_public_length_upper": "0",
+              "finite_options": {
+                "tail_bits": 192,
+                "mass_bits": 320,
+                "precision_bits": 384,
+                "gaussian_abort_bits": 192,
+                "max_uniform_trials": 256,
+                "max_gaussian_trials": 100000,
+                "max_radius": 5192296858534827628530496329220096,
+                "rational_bits": 65536,
+                "max_tape_bytes": 17592186044416
+              },
+              "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+              "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+              "production_random_api": true,
+              "native_Sage_rng_used": false,
+              "constant_time": false,
+              "security_claim": "none"
+            },
+            "modeled_sample_TV_including_abort_upper": "170042779923689385525988145929737450783492816953938200621531078224962146774366717591618339328370214275291919267997764336558429632618862336302378855842283768517685343977595789152754745142116852067614045057756644050808567309367509537453919260790661463016469080361409816316936080650059419669312956443016149952230625912857629245769558162993016508686880741800339928217333407790608812077894760690738986483901899568186212454778690161420169/44462416477094044620016814065517364315819234512137839318561147229681047540111417837804146165368287326682958611784293913071458694543324516364123218643504812982376903479154260005842691890436351074294776293025195716395203448798621405486511073816243565116466426895436122723246185447145753308849386844503560550745035678225448695543419674182228770621532362943493817683328619098701164655413887742788568604148242281411872436874836044222091337531891402719153998141455693655076665297784012800",
+            "ideal_norm_abort_upper": "6277101735386680763835789423207666416102355444464034512897/726838724295606890549323807888004534353641360687318060281374407091401971917974352341182362805910295576096881042226720349526688498974720",
+            "worst_request_tape_bytes": 35749259454464
+          }
+        },
+        "finite_options": {
+          "tail_bits": 192,
+          "mass_bits": 320,
+          "precision_bits": 384,
+          "gaussian_abort_bits": 192,
+          "max_uniform_trials": 256,
+          "max_gaussian_trials": 100000,
+          "max_radius": 5192296858534827628530496329220096,
+          "rational_bits": 65536,
+          "max_tape_bytes": 17592186044416
+        },
+        "root_scalar": {
+          "profile": "MATRIX-FINITE-DGS/1",
+          "algorithm": "finite uniform-box rejection Gaussian, independent wide profile",
+          "squared_width_class": [
+            "513",
+            "513"
+          ],
+          "uniform_in_rational_center": true,
+          "rational_input_bit_budget": 65536,
+          "radius": 147,
+          "max_support_count": 296,
+          "support_or_centers_precomputed": 0,
+          "CDF_tables": 0,
+          "tail_upper": "32801704117872862252008530653468473976042624311845935017488816915871165339556132081228547909303819128070002386580615/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+          "relative_weight_interval_width_upper": "1/300613450595050653169853516389035139504087366260264943450533244356122755214669880763353471793250393988087676928",
+          "integer_weight_quantization_tv_upper": "5207287069147173/37576681324381331646231689548629392438010920782533117931316655544515344401833735095419183974156299248510959616",
+          "Poisson_theta_upper": "19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153409/7159725979618740301104695983418709622680434793042663132360362425577766001338226039836321066456157093857339877304749930018599215189268344175111256510391144905128218576994803025566700315369744694061260002057936311868982638401684395903839696776618573824",
+          "acceptance_mass_lower": "5601910745792951906762649183507654830473522775348330171010708443641764935961305418374850661862747340070909053903332439799863936869413267704164472903211943750818627539759614841/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+          "acceptance_probability_lower": "5601910745792951906762649183507654830473522775348330171010708443641764935961305418374850661862747340070909053903332439799863936869413267704164472903211943750818627539759614841/73209798836038942081908746221815568250398879333958704614562664603497578631533432682413654714127941316920910742100777244448004050154798358150393661910160377703315604556014944256",
+          "max_gaussian_trials": 1741,
+          "abort_upper": "18446744073709553357/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "tv_upper_including_abort": "72203710314267345183041000291916541265129612437747450588797178844115219248859715860031701148871490995015685701022855/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+          "public_tape_bytes": 961032,
+          "tape_exhaustion_at_public_length_upper": "0",
+          "finite_options": {
+            "tail_bits": 192,
+            "mass_bits": 320,
+            "precision_bits": 384,
+            "gaussian_abort_bits": 192,
+            "max_uniform_trials": 256,
+            "max_gaussian_trials": 100000,
+            "max_radius": 5192296858534827628530496329220096,
+            "rational_bits": 65536,
+            "max_tape_bytes": 17592186044416
+          },
+          "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+          "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+          "production_random_api": true,
+          "native_Sage_rng_used": false,
+          "constant_time": false,
+          "security_claim": "none"
+        },
+        "gadget_geometry_tv": "59/6277101735386680763835789423207666416102355444464034512777",
+        "gadget_scalar_tv": "7707233742459408535805742554690981869399968022554450293459388267329246840569542255404848743474683358218115364204607433/494660802946209068121005042039294380070262698202423679828126112185794450213063734340632802122486089979195342852032278678702730068613502419935092310203786335833213544297398272",
+        "noise": {
+          "scaled_width": 23,
+          "radius": 320,
+          "tail_bits": 192,
+          "mass_bits": 320,
+          "precision_bits": 384,
+          "cdf_interval_error_units": 640,
+          "cdf_sha256": "867ac95341d8e5314e6a1ea84f419f22ef4cfeeb761f679d760f97f984f29676",
+          "scalar_TV_upper": "2658455991569831745807614120560689157/16687398718132110018711107079449625895333629080911349765211262561111091607661254297054391304192",
+          "modulus_independent_integer_CDF": true
+        },
+        "terms": {
+          "root_uniform_abort": "1/7067388259113537318333190002971674063309935587502475832486424805170479104",
+          "root_scalar_coupling": "4260018908541773365799419017223075934642647133827099584739033551802797935682723235741870367783417968705925456360348445/7547924849643082704483109161976537781833842440832880856752412600491248324784297704172253450355317535082936750061527689799541169259849585265122868502865392087298790653952",
+          "ideal_root_norm_abort": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "parent_sample_coupling": "3459320235726254500690473953791129641049147781857003492264518394354739617255329594347720570488537614104979700023823528212017840708227123713320859231299792166144375901419218156559798223014429997653135868282332161129727693279267332434198223584208522772817610478118641545171727372092591122870851106051776156332024448294263906130124764935072044610164462039519895925376331564312432617691620658531945557919058374713473309623889344351181971/173681314363648611796940679943427204358668884813038434838129481365941591953560225928922445958469872369855307077282398097935385525559861392047356322826190675712409779215446328147823015197016996383963969894629670767168763471869614865181683882094701426236196980060297354387680411902913098862692917361342033401347795618068158966966483102274331135240360792748022725325502418354301424435210498995267846109954071411765126706542328297742544287233950791871695305240061303340143223819468800",
+          "ideal_parent_norm_abort": "370349002387814165066311575969252318550038971223378036260923/2839213766779714416208296124562517712318911565184836172974118777700788952804587313832743604710587092094128441571198126365338626949120",
+          "leaf_sample_coupling": "170042779923689385525988145929737450783492816953938200621531078224962146774366717591618339328370214275291919267997764336558429632618862336302378855842283768517685343977595789152754745142116852067614045057756644050808567309367509537453919260790661463016469080361409816316936080650059419669312956443016149952230625912857629245769558162993016508686880741800339928217333407790608812077894760690738986483901899568186212454778690161420169/43420328590912152949235169985856801089667221203259608709532370341485397988390056482230611489617468092463826769320599524483846381389965348011839080706547668928102444803861582036955753799254249095990992473657417691792190867967403716295420970523675356559049245015074338596920102975728274715673229340335508350336948904517039741741620775568582783810090198187005681331375604588575356108802624748816961527488517852941281676635582074435636071808487697967923826310015325835035805954867200",
+          "ideal_leaf_norm_abort": "6277101735386680763835789423207666416102355444464034512897/709803441694928604052074031140629428079727891296209043243529694425197238201146828458185901177646773023532110392799531591334656737280",
+          "finite_noise_coupling": "491814358440418872974408612303727494045/124330809102446660538845562036705210025114037699336929360115994223289874253133343883264",
+          "ciphertext_uniform_abort": "1/46768052394588893382517914646921056628989841375232",
+          "ideal_decode_failure_if_norm_good": "1/5444517870735015415413993718908291383296",
+          "ideal_RO_uniform_abort": "63/365375409332725729550921208179070754913983135744"
+        },
+        "modeled_lifetime_upper": "506353240211393798661948170937973827780861955481607848559532696665241650552827399389019671363016915768178073087749837032376592226850563551075922087530192063039922281211761778894840439600537717274110812370327215568518522823200892831434929445963128392846661183729863821260137185223400227260764898671512979209826410004767120401945936111462218606823177298523893171672585970437736789329081917572022140163437206558502364626789158238526857095049/2756846259740454155506994919736939751724902933540292616478245735967326856405717871887657872356664640791354080591784096792625167072378752254719941632161756757339837765324544891235285955508206291808951903089359853447123229712216108971137839398328594067241221905719005625201276379411319029566554243830825927005520565366161253443912430194830652940323187186476551195642895529433355943416039666591553112856413831932779788992735369805437210908475409394788814368889861957780051171737600",
+        "probability_dyadic_exponent": 131,
+        "target_128_met_in_resource_conditional_projection": true,
+        "whole_parent_worst_request_bytes": 60070271429378048,
+        "whole_leaf_worst_request_bytes": 9151810420342784,
+        "actual_private_precision_or_whole_call_resource_admitted": false,
+        "noise_CDF_constructed_without_mod_q_or_any_entropy": true,
+        "norm_exponents_conservatively_capped_at_256": true,
+        "current_HIBE_recipe_implemented": false,
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "estimator_results": {
+        "root_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "147",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.06994371899999408
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.680439620583575,
+            "cost_fields": {
+              "rop": "3282.18221860709",
+              "mem": "41",
+              "m": "128",
+              "beta": "40",
+              "d": "256",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.008979236999998363
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "147",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.056343126000001575
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.600929216079646,
+            "cost_fields": {
+              "rop": "1553.09376410665",
+              "mem": "41",
+              "m": "128",
+              "beta": "40",
+              "d": "256",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.0059200540000006185
+          }
+        },
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "147",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.07955509800000016
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.680439620583575,
+            "cost_fields": {
+              "rop": "3282.18221860709",
+              "mem": "41",
+              "m": "509",
+              "beta": "40",
+              "d": "637",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.010257007999996404
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "147",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.0767782249999982
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.600929216079646,
+            "cost_fields": {
+              "rop": "1553.09376410665",
+              "mem": "41",
+              "m": "509",
+              "beta": "40",
+              "d": "637",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.009244815000002404
+          }
+        }
+      },
+      "actual_full_HIBE_execution": false,
+      "root_or_key_generations": 0,
+      "entropy_reads": 0,
+      "sampler_calls": 0,
+      "secure_candidate_selected": false,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false
+    },
+    {
+      "family": "mp12-structured-hg-target-projection",
+      "n": 512,
+      "q_bits": 67,
+      "complete_group": {
+        "n": 512,
+        "q_bits": 67,
+        "w": 34304,
+        "m": 35328,
+        "root_r_squared": 2049,
+        "root_R_bound": 71975829504,
+        "r_squared": 836,
+        "parent_sample_dimension": 36352,
+        "parent_width_squared": 601718221434880,
+        "parent_R_bound": 750354059589248394199040,
+        "leaf_dimension": 105984,
+        "leaf_width_squared": 6272959938166116575790755840,
+        "q_alpha": 46,
+        "q": 76987001840825076527,
+        "q_prime_proved": true,
+        "noise": {
+          "conditional_noise_sufficient": true,
+          "assumed_preimage_norm_squared_upper": "664833386086597699168607466946560",
+          "rounding_error_upper": "8394146864988839983/2",
+          "continuous_squared_upper": "226492778638437757761964517409486615236",
+          "integer_phase_radius": 19246750460206269131,
+          "continuous_margin": "30099354055423698279/2",
+          "error_bits": 160
+        }
+      },
+      "allocation_proposal": {
+        "epsilon_bits": 192,
+        "scalar_tail_bits": 192,
+        "scalar_abort_bits": 192,
+        "scalar_mass_bits": 320,
+        "precision_bits": 384,
+        "scalar_uniform_trials": 256,
+        "perturbation_trials": 512,
+        "noise_tail_bits": 192,
+        "decode_error_bits": 160,
+        "root_uniform_trials": 256,
+        "ciphertext_uniform_trials": 192,
+        "oracle_uniform_trials": 192,
+        "target_lifetime_bits": 128,
+        "encapsulations": 1048576,
+        "H_queries": 1048576,
+        "G_paths": 1048576,
+        "receivers": 2,
+        "children_each": 2,
+        "identity_bytes": 86,
+        "seed_bytes": 32
+      },
+      "root_lwe": {
+        "n": 512,
+        "q": 76987001840825076527,
+        "secret": "small-Gaussian",
+        "multi_target_or_reduction_loss_applied": false,
+        "m": 512,
+        "squared_width": 2049,
+        "independent_columns": 34304,
+        "attack_goal": "one root-column search or decision, not full trapdoor recovery",
+        "distribution": "ideal discrete Gaussian root secret and error; finite root coupling separate"
+      },
+      "ciphertext_lwe": {
+        "n": 512,
+        "q": 76987001840825076527,
+        "secret": "small-Gaussian",
+        "multi_target_or_reduction_loss_applied": false,
+        "m": 70656,
+        "squared_width": 2116,
+        "attack_goal": "recover minus leading rounded errors using the two public H blocks; then recover encryption secret",
+        "distribution": "finite rounded-continuous secret/error; discrete Gaussian comparator ONLY",
+        "estimator_distribution_is_literal": false,
+        "equation": "b_H = c_H - H^T*c_I = H^T*(-e_I) + e_H mod q",
+        "available_H_samples": 70656,
+        "all_available_H_samples_supplied": true,
+        "root_other_columns_and_256_terminals_used": false
+      },
+      "resources": {
+        "counts": {
+          "root_R_entries": 35127296,
+          "parent_R_entries": 1247019008,
+          "parent_sampler_Schur_entries": 4194304,
+          "leaf_sampler_Schur_entries": 5138022400,
+          "fixed_leaf_integers": 27131904,
+          "complete_root_columns": 35328,
+          "parent_sample_columns": 36352,
+          "complete_parent_columns": 70656,
+          "complete_leaf_columns": 105984,
+          "complete_leaf_prefix": 71680
+        },
+        "codec_minimum_bytes": {
+          "root_R_JSON_bytes": 70254592,
+          "parent_R_JSON_bytes": 2494038016,
+          "public_root_residue_bytes": 162791424,
+          "single_fixed_leaf_wire_bytes": 162791424,
+          "capsule_residue_bytes": 956160
+        },
+        "current_gates": {
+          "n_within_128": false,
+          "modulus_within_61_bits": false,
+          "q_fits_existing_uint64_headers": false,
+          "complete_HG_prefix_within_512": false,
+          "complete_columns_within_8192": false,
+          "parent_R_entries_within_2pow22": false,
+          "root_JSON_not_excluded_by_32MiB": false,
+          "parent_JSON_not_excluded_by_32MiB": false,
+          "public_oracle_not_excluded_by_2MiB": false,
+          "fixed_leaf_not_excluded_by_16MiB": false,
+          "raw_capsule_not_excluded_by_2MiB": true,
+          "Hybrid_capsule_not_excluded_by_4MiB": true,
+          "squared_width_within_2pow192": true
+        },
+        "first_geometry_or_wire_obstruction": "n_within_128",
+        "minimum_bytes_do_not_prove_passing_inputs_fit": true,
+        "process_peak_RSS": null,
+        "stage_seconds": null,
+        "full_kernel_basis_entries_allocated": 0
+      },
+      "finite_projection": {
+        "phases": {
+          "parent": {
+            "dimension": 36352,
+            "scalar": {
+              "profile": "MATRIX-FINITE-DGS/1",
+              "algorithm": "finite uniform-box rejection Gaussian, independent wide profile",
+              "squared_width_class": [
+                "601718221434880",
+                "601718221434880"
+              ],
+              "uniform_in_rational_center": true,
+              "rational_input_bit_budget": 65536,
+              "radius": 167813749,
+              "max_support_count": 335627500,
+              "support_or_centers_precomputed": 0,
+              "CDF_tables": 0,
+              "tail_upper": "39401951955766467621954924214937315725964640005979954617880189545137135502509033097550450701261059569691918176835225/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+              "relative_weight_interval_width_upper": "1/300613450595050653169853516389035139504087366260264943450533244356122755214669880763353471793250393988087676928",
+              "integer_weight_quantization_tv_upper": "11808842843244545986875/75153362648762663292463379097258784876021841565066235862633311089030688803667470190838367948312598497021919232",
+              "Poisson_theta_upper": "19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153409/7159725979618740301104695983418709622680434793042663132360362425577766001338226039836321066456157093857339877304749930018599215189268344175111256510391144905128218576994803025566700315369744694061260002057936311868982638401684395903839696776618573824",
+              "acceptance_mass_lower": "6067001244439294710623525210233802623562633018360730277345699567277475326475439923362282362213336016379880040266370587624332288947310091235480459999693100761275229860571726204414311/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+              "acceptance_probability_lower": "6067001244439294710623525210233802623562633018360730277345699567277475326475439923362282362213336016379880040266370587624332288947310091235480459999693100761275229860571726204414311/83010884320414392005391309873521637273516046870466976800757198358818863419442524248705367897182350082246192466535231806118150268051789141723382597171460649214930939419337519267840000",
+              "max_gaussian_trials": 1822,
+              "abort_upper": "9223372036854776719/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+              "tv_upper_including_abort": "78803958152160950726002343763017962664204425534887169068888666540680687148677998745002801250216836009271333786703513/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+              "public_tape_bytes": 1938608,
+              "tape_exhaustion_at_public_length_upper": "0",
+              "finite_options": {
+                "tail_bits": 192,
+                "mass_bits": 320,
+                "precision_bits": 384,
+                "gaussian_abort_bits": 192,
+                "max_uniform_trials": 256,
+                "max_gaussian_trials": 100000,
+                "max_radius": 5192296858534827628530496329220096,
+                "rational_bits": 65536,
+                "max_tape_bytes": 17592186044416
+              },
+              "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+              "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+              "production_random_api": true,
+              "native_Sage_rng_used": false,
+              "constant_time": false,
+              "security_claim": "none"
+            },
+            "modeled_sample_TV_including_abort_upper": "264251617958171808371610637426016348039102302391399174881102529035980136839184445274549905853241508274357654028290610165059157867878752671137498236452752499249219978386483778461823158496622121852651278608301989281599912751935468663232924179923869934757143667773161343228181454035836794741200757700131896247838975766821625029979823373709843406277740091948830751416554927175509163459397598665429670770585362039478868175314475591575417/44462416477094044620016814065517364315819234512137839318447814884018550279991386842606706639972494653518926227075963058805959269641201944997344014340489825682497058398369066722906805363025297341603278226854625411615096282000014823123207359524326690141921490789607422045137618817189265572682775396328621166575664460136889807225246813635687580132460646589104645728734034180796287475032826252082535670008155645657797038169612429351376073020803602209452175987883928909379642128229990400",
+            "ideal_norm_abort_upper": "6277101735386680763835789423207666416102355444464034512897/726838724295606890549323807888004534353641360687318060281374407091401971917974352341182362805910295576096881042226720349526688498974720",
+            "worst_request_tape_bytes": 36114882416640
+          },
+          "leaf": {
+            "dimension": 105984,
+            "scalar": {
+              "profile": "MATRIX-FINITE-DGS/1",
+              "algorithm": "finite uniform-box rejection Gaussian, independent wide profile",
+              "squared_width_class": [
+                "6272959938166116575790755840",
+                "6272959938166116575790755840"
+              ],
+              "uniform_in_rational_center": true,
+              "rational_input_bit_budget": 65536,
+              "radius": 568696074341529,
+              "max_support_count": 1137392148683060,
+              "support_or_centers_precomputed": 0,
+              "CDF_tables": 0,
+              "tail_upper": "39402006196388137671447344857326131228939307076042084252408558672531800110717296241233175153129593360705895048506441/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+              "relative_weight_interval_width_upper": "1/300613450595050653169853516389035139504087366260264943450533244356122755214669880763353471793250393988087676928",
+              "integer_weight_quantization_tv_upper": "40018428570181196838170756685/75153362648762663292463379097258784876021841565066235862633311089030688803667470190838367948312598497021919232",
+              "Poisson_theta_upper": "19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153409/7159725979618740301104695983418709622680434793042663132360362425577766001338226039836321066456157093857339877304749930018599215189268344175111256510391144905128218576994803025566700315369744694061260002057936311868982638401684395903839696776618573824",
+              "acceptance_mass_lower": "19589067351127449373789440326244133370345216762421460683924894932006591293066753049287533783687373651255724136098057485100467904320713733847223388820051401932105707960891401849028933751735/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+              "acceptance_probability_lower": "3917813470225489874757888065248826674069043352484292136784978986401318258613350609857506756737474730251144827219611497020093580864142746769444677764010280386421141592178280369805786750347/56262331353227646850766581475463703936780490048352404663992414829728954700394437562512902086406605479934361493925861050021346828047918569988031162624183101165418641744534581496934911967232",
+              "max_gaussian_trials": 1913,
+              "abort_upper": "18446744073709553529/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+              "tv_upper_including_abort": "78804012392782620969869716375183910788325104675293308691646319209521832962428168341747241440082379185894171947134025/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+              "public_tape_bytes": 3504616,
+              "tape_exhaustion_at_public_length_upper": "0",
+              "finite_options": {
+                "tail_bits": 192,
+                "mass_bits": 320,
+                "precision_bits": 384,
+                "gaussian_abort_bits": 192,
+                "max_uniform_trials": 256,
+                "max_gaussian_trials": 100000,
+                "max_radius": 5192296858534827628530496329220096,
+                "rational_bits": 65536,
+                "max_tape_bytes": 17592186044416
+              },
+              "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+              "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+              "production_random_api": true,
+              "native_Sage_rng_used": false,
+              "constant_time": false,
+              "security_claim": "none"
+            },
+            "modeled_sample_TV_including_abort_upper": "769311504605136917509776364330476590753602132283308121991957862629669144008079461102839370015323143359175958747607013619614388617786777819494939429698573439543965402435783139579302275454503968619059226683470868030655141936183312690192143516495325655142390126101978013424399458005918990740857665083316937662013343279679715195610279871618047327455863583279459620737955080079014978510845327376008518352087845121931446576702191295178617/44462416477094044620016814065517364315819234512137839318447814884018550279991386842606706639972494653518926227075963058805959269641201944997344014340489825682497058398369066722906805363025297341603278226854625411615096282000014823123207359524326690141921490789607422045137618817189265572682775396328621166575664460136889807225246813635687580132460646589104645728734034180796287475032826252082535670008155645657797038169612429351376073020803602209452175987883928909379642128229990400",
+            "ideal_norm_abort_upper": "6277101735386680763835789423207666416102355444464034512897/726838724295606890549323807888004534353641360687318060281374407091401971917974352341182362805910295576096881042226720349526688498974720",
+            "worst_request_tape_bytes": 190206885810176
+          }
+        },
+        "finite_options": {
+          "tail_bits": 192,
+          "mass_bits": 320,
+          "precision_bits": 384,
+          "gaussian_abort_bits": 192,
+          "max_uniform_trials": 256,
+          "max_gaussian_trials": 100000,
+          "max_radius": 5192296858534827628530496329220096,
+          "rational_bits": 65536,
+          "max_tape_bytes": 17592186044416
+        },
+        "root_scalar": {
+          "profile": "MATRIX-FINITE-DGS/1",
+          "algorithm": "finite uniform-box rejection Gaussian, independent wide profile",
+          "squared_width_class": [
+            "2049",
+            "2049"
+          ],
+          "uniform_in_rational_center": true,
+          "rational_input_bit_budget": 65536,
+          "radius": 295,
+          "max_support_count": 592,
+          "support_or_centers_precomputed": 0,
+          "CDF_tables": 0,
+          "tail_upper": "18885000055998188913417883464215544869784269683817728430519870053332993103713645706213340047781825820214435310851005/123665200736552267030251260509823595017565674550605919957031528046448612553265933585158200530621522494798835713008069669675682517153375604983773077550946583958303386074349568",
+          "relative_weight_interval_width_upper": "1/300613450595050653169853516389035139504087366260264943450533244356122755214669880763353471793250393988087676928",
+          "integer_weight_quantization_tv_upper": "5207287069147173/18788340662190665823115844774314696219005460391266558965658327772257672200916867547709591987078149624255479808",
+          "Poisson_theta_upper": "19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153409/7159725979618740301104695983418709622680434793042663132360362425577766001338226039836321066456157093857339877304749930018599215189268344175111256510391144905128218576994803025566700315369744694061260002057936311868982638401684395903839696776618573824",
+          "acceptance_mass_lower": "5597814284005044708361440187569884872357590256145203077053263276156732160869741502789421507790549529967879566531370760052253261163899466314641596748252694864136235248991218755/123665200736552267030251260509823595017565674550605919957031528046448612553265933585158200530621522494798835713008069669675682517153375604983773077550946583958303386074349568",
+          "acceptance_probability_lower": "5597814284005044708361440187569884872357590256145203077053263276156732160869741502789421507790549529967879566531370760052253261163899466314641596748252694864136235248991218755/73209798836038942081908746221815568250398879333958704614562664603497578631533432682413654714127941316920910742100777244448004050154798358150393661910160377703315604556014944256",
+          "max_gaussian_trials": 1742,
+          "abort_upper": "9223372036854776679/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+          "tv_upper_including_abort": "38586003154195430380002111801400033572662503806976180963501150829166276273342425373978198730749761346779788995318717/123665200736552267030251260509823595017565674550605919957031528046448612553265933585158200530621522494798835713008069669675682517153375604983773077550946583958303386074349568",
+          "public_tape_bytes": 961584,
+          "tape_exhaustion_at_public_length_upper": "0",
+          "finite_options": {
+            "tail_bits": 192,
+            "mass_bits": 320,
+            "precision_bits": 384,
+            "gaussian_abort_bits": 192,
+            "max_uniform_trials": 256,
+            "max_gaussian_trials": 100000,
+            "max_radius": 5192296858534827628530496329220096,
+            "rational_bits": 65536,
+            "max_tape_bytes": 17592186044416
+          },
+          "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+          "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+          "production_random_api": true,
+          "native_Sage_rng_used": false,
+          "constant_time": false,
+          "security_claim": "none"
+        },
+        "gadget_geometry_tv": "67/6277101735386680763835789423207666416102355444464034512761",
+        "gadget_scalar_tv": "7342857531854463050779306973330017840893337454132072641023350770653842613083907502658706870465125444102184346671669477/494660802946209068121005042039294380070262698202423679828126112185794450213063734340632802122486089979195342852032278678702730068613502419935092310203786335833213544297398272",
+        "noise": {
+          "scaled_width": 46,
+          "radius": 640,
+          "tail_bits": 192,
+          "mass_bits": 320,
+          "precision_bits": 384,
+          "cdf_interval_error_units": 1280,
+          "cdf_sha256": "50ddadc63562ab835f7f2d03835037936fa154265924c5a21b3b42f3a8ec81c4",
+          "scalar_TV_upper": "1329227995784915872903807060280344581/8343699359066055009355553539724812947666814540455674882605631280555545803830627148527195652096",
+          "modulus_independent_integer_CDF": true
+        },
+        "terms": {
+          "root_uniform_abort": "1/441711766194596082395824375185729628956870974218904739530401550323154944",
+          "root_scalar_coupling": "2585262211331093835460141490693802249368387755067404124554577105554140510313942500056539314960234010234245862686354039/235872651551346334515097161311766805682307576276027526773512893765351510149509303255382920323603672971341773439422740306235661539370299539535089640714543502728087207936",
+          "ideal_root_norm_abort": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "parent_sample_coupling": "17704858403197511160897912707543095318619854260223744717033869445410669168225357833394843692167181054381962819895470881058963577147876428966212381842334417449697738551894413156942151619273682164127635666756233281867194154379676400436605920054899285628728625740801809996288157420401065247660450765908837048605211376377048877008648166038559508220608586160571660344909180120759113951779639110583787941629219256645084167746069864635552939/43420328590912152949235169985856801089667221203259608709421694222674365507804088713483111953098139310077076393628870174615194599258986274411468764004384595393063533592157291721588677112329391935159451393412720128530367462890639475706257187035475283341720205849225998090954705876161392160823022847977169107984047324352431452368405091441101152473106100184672505594466830254683874487336744386799351240242339497712692420087512138038453196309378517782668140613167899325566056765849600",
+          "ideal_parent_norm_abort": "420565816270907611176997891354913649878857814779090312364099/709803441694928604052074031140629428079727891296209043243529694425197238201146828458185901177646773023532110392799531591334656737280",
+          "leaf_sample_coupling": "769311504605136917509776364330476590753602132283308121991957862629669144008079461102839370015323143359175958747607013619614388617786777819494939429698573439543965402435783139579302275454503968619059226683470868030655141936183312690192143516495325655142390126101978013424399458005918990740857665083316937662013343279679715195610279871618047327455863583279459620737955080079014978510845327376008518352087845121931446576702191295178617/43420328590912152949235169985856801089667221203259608709421694222674365507804088713483111953098139310077076393628870174615194599258986274411468764004384595393063533592157291721588677112329391935159451393412720128530367462890639475706257187035475283341720205849225998090954705876161392160823022847977169107984047324352431452368405091441101152473106100184672505594466830254683874487336744386799351240242339497712692420087512138038453196309378517782668140613167899325566056765849600",
+          "ideal_leaf_norm_abort": "6277101735386680763835789423207666416102355444464034512897/709803441694928604052074031140629428079727891296209043243529694425197238201146828458185901177646773023532110392799531591334656737280",
+          "finite_noise_coupling": "551629618250740087255079930016343001115/31082702275611665134711390509176302506278509424834232340028998555822468563283335970816",
+          "ciphertext_uniform_abort": "1/11692013098647223345629478661730264157247460343808",
+          "ideal_decode_failure_if_norm_good": "1/5444517870735015415413993718908291383296",
+          "ideal_RO_uniform_abort": "139/45671926166590716193865151022383844364247891968"
+        },
+        "modeled_lifetime_upper": "117282444636943365628694037122994895636294934322294448244446469052283227036896697333437558243762826565564772355489966244717164091656790038076567290867119739445329253059303768660921259082922643363461153996628252001917778990002129804183595453290959361112989136413383944517880185701041502650799958273036047194757644212471001377571648730832520619417061037835888893719704491680787252928370432969995416054702717551867559510699610917581337044857/638534243984002249253458382144952957200988547106758951609142562098152433938295422257104587545560872207015829318071620214929332342043915800168658294182126402839169611649371937082186428122491057869991932256069413654858345042509404054503782162286401225613532438959205854278745674649432237659162100705546604529177166534594580181888310168251487536369207355656948611683335739039468742460834476276461047650622639672245476765992825559389017592784978202686296185487763225375971423027200",
+        "probability_dyadic_exponent": 131,
+        "target_128_met_in_resource_conditional_projection": true,
+        "whole_parent_worst_request_bytes": 1238884926420418560,
+        "whole_leaf_worst_request_bytes": 48692962767405056,
+        "actual_private_precision_or_whole_call_resource_admitted": false,
+        "noise_CDF_constructed_without_mod_q_or_any_entropy": true,
+        "norm_exponents_conservatively_capped_at_256": true,
+        "current_HIBE_recipe_implemented": false,
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "estimator_results": {
+        "root_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "706",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.10442061700000238
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.680439620583575,
+            "cost_fields": {
+              "rop": "3282.18221860709",
+              "mem": "41",
+              "m": "512",
+              "beta": "40",
+              "d": "1024",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006799966000002655
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "706",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.08454949200000073
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.600929216079646,
+            "cost_fields": {
+              "rop": "1553.09376410665",
+              "mem": "41",
+              "m": "512",
+              "beta": "40",
+              "d": "1024",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006386200000001452
+          }
+        },
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.972,
+            "cost_fields": {
+              "rop": "4017.27080033710",
+              "red": "4017.27080033710",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "706",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.12438946900000047
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 11.680439620583575,
+            "cost_fields": {
+              "rop": "3282.18221860709",
+              "mem": "41",
+              "m": "838",
+              "beta": "40",
+              "d": "1350",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.008742697000002408
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.865,
+            "cost_fields": {
+              "rop": "1865.05181919637",
+              "red": "1865.05181919637",
+              "delta": "1.01250491785081",
+              "beta": "41",
+              "d": "706",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.10398290799999899
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 10.600929216079646,
+            "cost_fields": {
+              "rop": "1553.09376410665",
+              "mem": "41",
+              "m": "838",
+              "beta": "40",
+              "d": "1350",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.006137491000004047
+          }
+        }
+      },
+      "actual_full_HIBE_execution": false,
+      "root_or_key_generations": 0,
+      "entropy_reads": 0,
+      "sampler_calls": 0,
+      "secure_candidate_selected": false,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false
+    },
+    {
+      "family": "mp12-structured-hg-target-projection",
+      "n": 2048,
+      "q_bits": 74,
+      "complete_group": {
+        "n": 2048,
+        "q_bits": 74,
+        "w": 151552,
+        "m": 155648,
+        "root_r_squared": 8193,
+        "root_R_bound": 5085862035456,
+        "r_squared": 844,
+        "parent_sample_dimension": 159744,
+        "parent_width_squared": 42924676858347520,
+        "parent_R_bound": 1039185938277232847628533760,
+        "leaf_dimension": 466944,
+        "leaf_width_squared": 8770729319059845233986104033280,
+        "q_alpha": 91,
+        "q": 12112583250611073325871,
+        "q_prime_proved": true,
+        "noise": {
+          "conditional_noise_sufficient": true,
+          "assumed_preimage_norm_squared_upper": "4095439431159080372938407361715896320",
+          "rounding_error_upper": "1382874133731318884295/2",
+          "continuous_squared_upper": "5460207762637963475496775169341463326906361",
+          "integer_phase_radius": 3028145812652768331467,
+          "continuous_margin": "4673417491574217778639/2",
+          "error_bits": 160
+        }
+      },
+      "allocation_proposal": {
+        "epsilon_bits": 192,
+        "scalar_tail_bits": 192,
+        "scalar_abort_bits": 192,
+        "scalar_mass_bits": 320,
+        "precision_bits": 384,
+        "scalar_uniform_trials": 256,
+        "perturbation_trials": 512,
+        "noise_tail_bits": 192,
+        "decode_error_bits": 160,
+        "root_uniform_trials": 256,
+        "ciphertext_uniform_trials": 192,
+        "oracle_uniform_trials": 192,
+        "target_lifetime_bits": 128,
+        "encapsulations": 1048576,
+        "H_queries": 1048576,
+        "G_paths": 1048576,
+        "receivers": 2,
+        "children_each": 2,
+        "identity_bytes": 86,
+        "seed_bytes": 32
+      },
+      "root_lwe": {
+        "n": 2048,
+        "q": 12112583250611073325871,
+        "secret": "small-Gaussian",
+        "multi_target_or_reduction_loss_applied": false,
+        "m": 2048,
+        "squared_width": 8193,
+        "independent_columns": 151552,
+        "attack_goal": "one root-column search or decision, not full trapdoor recovery",
+        "distribution": "ideal discrete Gaussian root secret and error; finite root coupling separate"
+      },
+      "ciphertext_lwe": {
+        "n": 2048,
+        "q": 12112583250611073325871,
+        "secret": "small-Gaussian",
+        "multi_target_or_reduction_loss_applied": false,
+        "m": 311296,
+        "squared_width": 8281,
+        "attack_goal": "recover minus leading rounded errors using the two public H blocks; then recover encryption secret",
+        "distribution": "finite rounded-continuous secret/error; discrete Gaussian comparator ONLY",
+        "estimator_distribution_is_literal": false,
+        "equation": "b_H = c_H - H^T*c_I = H^T*(-e_I) + e_H mod q",
+        "available_H_samples": 311296,
+        "all_available_H_samples_supplied": true,
+        "root_other_columns_and_256_terminals_used": false
+      },
+      "resources": {
+        "counts": {
+          "root_R_entries": 620756992,
+          "parent_R_entries": 24209522688,
+          "parent_sampler_Schur_entries": 67108864,
+          "leaf_sampler_Schur_entries": 99472113664,
+          "fixed_leaf_integers": 119537664,
+          "complete_root_columns": 155648,
+          "parent_sample_columns": 159744,
+          "complete_parent_columns": 311296,
+          "complete_leaf_columns": 466944,
+          "complete_leaf_prefix": 315392
+        },
+        "codec_minimum_bytes": {
+          "root_R_JSON_bytes": 1241513984,
+          "parent_R_JSON_bytes": 48419045376,
+          "public_root_residue_bytes": 3187671040,
+          "single_fixed_leaf_wire_bytes": 717225984,
+          "capsule_residue_bytes": 4672000
+        },
+        "current_gates": {
+          "n_within_128": false,
+          "modulus_within_61_bits": false,
+          "q_fits_existing_uint64_headers": false,
+          "complete_HG_prefix_within_512": false,
+          "complete_columns_within_8192": false,
+          "parent_R_entries_within_2pow22": false,
+          "root_JSON_not_excluded_by_32MiB": false,
+          "parent_JSON_not_excluded_by_32MiB": false,
+          "public_oracle_not_excluded_by_2MiB": false,
+          "fixed_leaf_not_excluded_by_16MiB": false,
+          "raw_capsule_not_excluded_by_2MiB": false,
+          "Hybrid_capsule_not_excluded_by_4MiB": false,
+          "squared_width_within_2pow192": true
+        },
+        "first_geometry_or_wire_obstruction": "n_within_128",
+        "minimum_bytes_do_not_prove_passing_inputs_fit": true,
+        "process_peak_RSS": null,
+        "stage_seconds": null,
+        "full_kernel_basis_entries_allocated": 0
+      },
+      "finite_projection": {
+        "phases": {
+          "parent": {
+            "dimension": 159744,
+            "scalar": {
+              "profile": "MATRIX-FINITE-DGS/1",
+              "algorithm": "finite uniform-box rejection Gaussian, independent wide profile",
+              "squared_width_class": [
+                "42924676858347520",
+                "42924676858347520"
+              ],
+              "uniform_in_rational_center": true,
+              "rational_input_bit_budget": 65536,
+              "radius": 1427587003,
+              "max_support_count": 2855174008,
+              "support_or_centers_precomputed": 0,
+              "CDF_tables": 0,
+              "tail_upper": "19701000728251699758681781094145572311499862201761594190491379116435880046979880833256500156574684132419742065676569/123665200736552267030251260509823595017565674550605919957031528046448612553265933585158200530621522494798835713008069669675682517153375604983773077550946583958303386074349568",
+              "relative_weight_interval_width_upper": "1/300613450595050653169853516389035139504087366260264943450533244356122755214669880763353471793250393988087676928",
+              "integer_weight_quantization_tv_upper": "50228752337917253636079/37576681324381331646231689548629392438010920782533117931316655544515344401833735095419183974156299248510959616",
+              "Poisson_theta_upper": "19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153409/7159725979618740301104695983418709622680434793042663132360362425577766001338226039836321066456157093857339877304749930018599215189268344175111256510391144905128218576994803025566700315369744694061260002057936311868982638401684395903839696776618573824",
+              "acceptance_mass_lower": "25621291879526041820479247224946707120870637012616911769487950180726081666280320001140784992555877167090498790141346154529964719322429658693266054716661175546426712703651876572049127/123665200736552267030251260509823595017565674550605919957031528046448612553265933585158200530621522494798835713008069669675682517153375604983773077550946583958303386074349568",
+              "acceptance_probability_lower": "25621291879526041820479247224946707120870637012616911769487950180726081666280320001140784992555877167090498790141346154529964719322429658693266054716661175546426712703651876572049127/353085666837106488358248748716885157159271817409877103312244895714743095269747409084197948723082379112536950916442788015111154512636332176810944152793630982314137583697872042059628544",
+              "max_gaussian_trials": 1836,
+              "abort_upper": "4611686018427388363/28948022309329048855892746252171976963317496166410141009864396001978282409984",
+              "tv_upper_including_abort": "39402003826448941325657400119778138134430860147619033470481558719664341032813162667414784012378521347222273771360537/123665200736552267030251260509823595017565674550605919957031528046448612553265933585158200530621522494798835713008069669675682517153375604983773077550946583958303386074349568",
+              "public_tape_bytes": 1953504,
+              "tape_exhaustion_at_public_length_upper": "0",
+              "finite_options": {
+                "tail_bits": 192,
+                "mass_bits": 320,
+                "precision_bits": 384,
+                "gaussian_abort_bits": 192,
+                "max_uniform_trials": 256,
+                "max_gaussian_trials": 100000,
+                "max_radius": 5192296858534827628530496329220096,
+                "rational_bits": 65536,
+                "max_tape_bytes": 17592186044416
+              },
+              "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+              "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+              "production_random_api": true,
+              "native_Sage_rng_used": false,
+              "constant_time": false,
+              "security_claim": "none"
+            },
+            "modeled_sample_TV_including_abort_upper": "1161236398244914297045139721444879189139944431070520838544610882112448900495351172759209689180606930458534855520217123766702648934850990980291939976927261250252773297632353202116008964431364416227194531958268739321129479564555562113840774464046576476656051984256553418114816673276802205192154926783471045713477071208635065851449055734991367548971147086588326535037327873607510065096289275655469687822371792134618548518510082483550059/44462416477094044620016814065517364315819234512137839318348649081563865177386359721808947055251176064500397890456173561323647272851844695051412210575351711795102193952682022600337904651540625325498217418955376394932502511051234063555316609518899424539194671697007308951792623015977338803536990379175549205427464644309400779946845560657464038454522894779014120268463772377629519942199397447714756852635579839372981064302541766339500216573601776763463081603508634756894746854870220800",
+            "ideal_norm_abort_upper": "6277101735386680763835789423207666416102355444464034512897/726838724295606890549323807888004534353641360687318060281374407091401971917974352341182362805910295576096881042226720349526688498974720",
+            "worst_request_tape_bytes": 159921125937152
+          },
+          "leaf": {
+            "dimension": 466944,
+            "scalar": {
+              "profile": "MATRIX-FINITE-DGS/1",
+              "algorithm": "finite uniform-box rejection Gaussian, independent wide profile",
+              "squared_width_class": [
+                "8770729319059845233986104033280",
+                "8770729319059845233986104033280"
+              ],
+              "uniform_in_rational_center": true,
+              "rational_input_bit_budget": 65536,
+              "radius": 21500522686336934,
+              "max_support_count": 43001045372673870,
+              "support_or_centers_precomputed": 0,
+              "CDF_tables": 0,
+              "tail_upper": "9850501549098541762784689473736554253807594905460000748986007708743619594600345103908568885736626869373133347810377/61832600368276133515125630254911797508782837275302959978515764023224306276632966792579100265310761247399417856504034834837841258576687802491886538775473291979151693037174784",
+              "relative_weight_interval_width_upper": "1/300613450595050653169853516389035139504087366260264943450533244356122755214669880763353471793250393988087676928",
+              "integer_weight_quantization_tv_upper": "3025929561201831379132696776615/150306725297525326584926758194517569752043683130132471725266622178061377607334940381676735896625196994043838464",
+              "Poisson_theta_upper": "19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153409/7159725979618740301104695983418709622680434793042663132360362425577766001338226039836321066456157093857339877304749930018599215189268344175111256510391144905128218576994803025566700315369744694061260002057936311868982638401684395903839696776618573824",
+              "acceptance_mass_lower": "183119825226653918143474567459774920805079457377465296156905963463981942743680617097147716447989423581507946927451498477457026575173026781817524880450273724252422067966473898084809148797879/61832600368276133515125630254911797508782837275302959978515764023224306276632966792579100265310761247399417856504034834837841258576687802491886538775473291979151693037174784",
+              "acceptance_probability_lower": "61039941742217972714491522486591640268359819125821765385635321154660647581226872365715905482663141193835982309150499492485675525057675593939174960150091241417474022655491299361603049599293/886288817982217687039605770987798612997708255719146309212254973206878691279016250569765953580026853458355548978567344314964304058913970808449886775075123977018111272542720106955086873231360",
+              "max_gaussian_trials": 1934,
+              "abort_upper": "9223372036854776775/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+              "tv_upper_including_abort": "19701003098197162598605426161753255185767850108580969171024133073563742458656290246848391056293465539850341554515017/61832600368276133515125630254911797508782837275302959978515764023224306276632966792579100265310761247399417856504034834837841258576687802491886538775473291979151693037174784",
+              "public_tape_bytes": 3543088,
+              "tape_exhaustion_at_public_length_upper": "0",
+              "finite_options": {
+                "tail_bits": 192,
+                "mass_bits": 320,
+                "precision_bits": 384,
+                "gaussian_abort_bits": 192,
+                "max_uniform_trials": 256,
+                "max_gaussian_trials": 100000,
+                "max_radius": 5192296858534827628530496329220096,
+                "rational_bits": 65536,
+                "max_tape_bytes": 17592186044416
+              },
+              "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+              "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+              "production_random_api": true,
+              "native_Sage_rng_used": false,
+              "constant_time": false,
+              "security_claim": "none"
+            },
+            "modeled_sample_TV_including_abort_upper": "3389441049537406595041255700778461774419449564477871288171622534109997347893997686239745620628037318726700280374895234681808828894721828346948395618706859404526230665747849614551861569954623894326612483016287327740068056550998116964958691909855923630876836549407247402373275143800041731093818922984636856190842717463555197049677663044242317372842001179269009541611811143620805413771743902968834452583127761329948652025085670129399659/44462416477094044620016814065517364315819234512137839318348649081563865177386359721808947055251176064500397890456173561323647272851844695051412210575351711795102193952682022600337904651540625325498217418955376394932502511051234063555316609518899424539194671697007308951792623015977338803536990379175549205427464644309400779946845560657464038454522894779014120268463772377629519942199397447714756852635579839372981064302541766339500216573601776763463081603508634756894746854870220800",
+            "ideal_norm_abort_upper": "6277101735386680763835789423207666416102355444464034512897/726838724295606890549323807888004534353641360687318060281374407091401971917974352341182362805910295576096881042226720349526688498974720",
+            "worst_request_tape_bytes": 847211053666304
+          }
+        },
+        "finite_options": {
+          "tail_bits": 192,
+          "mass_bits": 320,
+          "precision_bits": 384,
+          "gaussian_abort_bits": 192,
+          "max_uniform_trials": 256,
+          "max_gaussian_trials": 100000,
+          "max_radius": 5192296858534827628530496329220096,
+          "rational_bits": 65536,
+          "max_tape_bytes": 17592186044416
+        },
+        "root_scalar": {
+          "profile": "MATRIX-FINITE-DGS/1",
+          "algorithm": "finite uniform-box rejection Gaussian, independent wide profile",
+          "squared_width_class": [
+            "8193",
+            "8193"
+          ],
+          "uniform_in_rational_center": true,
+          "rational_input_bit_budget": 65536,
+          "radius": 592,
+          "max_support_count": 1186,
+          "support_or_centers_precomputed": 0,
+          "CDF_tables": 0,
+          "tail_upper": "37268800962856686648121891086795237338482385230242188767327102835181929714901569671395659110178551231917618534224533/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+          "relative_weight_interval_width_upper": "1/300613450595050653169853516389035139504087366260264943450533244356122755214669880763353471793250393988087676928",
+          "integer_weight_quantization_tv_upper": "83457330594710097/150306725297525326584926758194517569752043683130132471725266622178061377607334940381676735896625196994043838464",
+          "Poisson_theta_upper": "19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153409/7159725979618740301104695983418709622680434793042663132360362425577766001338226039836321066456157093857339877304749930018599215189268344175111256510391144905128218576994803025566700315369744694061260002057936311868982638401684395903839696776618573824",
+          "acceptance_mass_lower": "22387158800278699952409408202303445342747587825011996949784998203884854398514965567432113301158265327724488208948810038029225550811473609697650813576204031941225585901222030699/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+          "acceptance_probability_lower": "22387158800278699952409408202303445342747587825011996949784998203884854398514965567432113301158265327724488208948810038029225550811473609697650813576204031941225585901222030699/293333856147101977395755989929301567381665780034037242138078784526176108976346794463995251658634251357662838311255141256470718930687806935021509739950845297149095631768357175296",
+          "max_gaussian_trials": 1745,
+          "abort_upper": "18446744073709553361/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "tv_upper_including_abort": "76670807159251169587698308868926945060204419602034058973552467447273591654689844254882510565446242009037025706971797/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+          "public_tape_bytes": 963240,
+          "tape_exhaustion_at_public_length_upper": "0",
+          "finite_options": {
+            "tail_bits": 192,
+            "mass_bits": 320,
+            "precision_bits": 384,
+            "gaussian_abort_bits": 192,
+            "max_uniform_trials": 256,
+            "max_gaussian_trials": 100000,
+            "max_radius": 5192296858534827628530496329220096,
+            "rational_bits": 65536,
+            "max_tape_bytes": 17592186044416
+          },
+          "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+          "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+          "production_random_api": true,
+          "native_Sage_rng_used": false,
+          "constant_time": false,
+          "security_claim": "none"
+        },
+        "gadget_geometry_tv": "74/6277101735386680763835789423207666416102355444464034512747",
+        "gadget_scalar_tv": "127030083055307126326577151746997623217707976215650521917602706709171571873275967665163266790910982499140489469181703/7729075046034516689390703781863974688597854659412869997314470502903038284579120849072387533163845155924927232063004354354730157322085975311485817346934161497393961629646848",
+        "noise": {
+          "scaled_width": 91,
+          "radius": 1265,
+          "tail_bits": 192,
+          "mass_bits": 320,
+          "precision_bits": 384,
+          "cdf_interval_error_units": 2530,
+          "cdf_sha256": "b592b8ddbf567826b30afc2d759d828101b3e26125548875933b201d5f9ab842",
+          "scalar_TV_upper": "170141183460469231731687303715884106993/1067993517960455041197510853084776057301352261178326384973520803911109862890320275011481043468288",
+          "modulus_independent_integer_CDF": true
+        },
+        "terms": {
+          "root_uniform_abort": "1/27606985387162255149739023449108101809804435888681546220650096895197184",
+          "root_scalar_coupling": "2836819864892293274744837428150296967227563525275260182021441295549122891223524237430652890921510954334369951157956489/14742040721959145907193572581985425355144223517251720423344555860334469384344331453461432520225229560708860839963921269139728846210643721220943102544658968920505450496",
+          "ideal_root_norm_abort": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "parent_sample_coupling": "42965746735061828990670169693460529998177943949609271026150602638160609318327993392090758499682456426965789654248033579367998010589486666270801779146308666259352612012397068478292331683960483400406197682455943354881790743888555798212108655169723329636273923417492476470248216911241681592109732290988428691398651634719497436503615062194680599311932442203768081796381131323477872408562703199252378449427756308980886295184873051891352183/5427541073864019118654396248232100136208402650407451088665606577339339010911420864478631232330465828186083726862325874185015536236797448126393092111248988256238060785239504711955310626408767739928981618524826220084533997931058845648842359560412527409569662072388587518529372926755046240666136520895452783865657305213549899895855170978694340631655626804078872103083956589066103508569262383754242779862741679610959602575993867961364772530957248140071176953553300141222503278182400",
+          "ideal_parent_norm_abort": "232252764209307188261924208658683657395787151445169276977189/88725430211866075506509253892578678509965986412026130405441211803149654775143353557273237647205846627941513799099941448916832092160",
+          "leaf_sample_coupling": "3389441049537406595041255700778461774419449564477871288171622534109997347893997686239745620628037318726700280374895234681808828894721828346948395618706859404526230665747849614551861569954623894326612483016287327740068056550998116964958691909855923630876836549407247402373275143800041731093818922984636856190842717463555197049677663044242317372842001179269009541611811143620805413771743902968834452583127761329948652025085670129399659/43420328590912152949235169985856801089667221203259608709324852618714712087291366915829049858643726625488669814898606993480124289894379585011144736889991906049904486281916037695642485011270141919431852948198609760676271983448470765190738876483300219276557296579108700148234983414040369925329092167163622270925258441708399199166841367829554725053245014432630976824671652712528828068554099070033942238901933436887676820607950943690918180247657985120569415628426401129780026225459200",
+          "ideal_leaf_norm_abort": "6277101735386680763835789423207666416102355444464034512897/709803441694928604052074031140629428079727891296209043243529694425197238201146828458185901177646773023532110392799531591334656737280",
+          "finite_noise_coupling": "310507659815356347910329329281488495262225/3978585891278293137243057985174566720803649206378781739523711815145275976100267004264448",
+          "ciphertext_uniform_abort": "1/2923003274661805836407369665432566039311865085952",
+          "ideal_decode_failure_if_norm_good": "1/5444517870735015415413993718908291383296",
+          "ideal_RO_uniform_abort": "609/11417981541647679048466287755595961091061972992"
+        },
+        "modeled_lifetime_upper": "295471158260948877147814358782101799917916365222362979527885725908507546753267563733954207829031029610592832368937838139116892830244517511804612605904351661878841555208693441234409092811253408999134178719467714738486472193336939416746325356277902426829952379058325504578291777249925009502416028071947530648893771864944798734310781879237047515902221043610281437831993499880483357769017228145179926070565447513802924572158800469863578706329/1608160318181931590712413703179881521839526711231837359604624171063507855084865441327001846616434319462543326477726184943708307033125169815227582847777478001848314306737631025764536481898894145164142701785133694839861925312906324636694032462344452565798418391818840746230925311631124812049225635820874898923157720063274044413586717327020545372342407941949295437950801952315882521057559224816071934774145682847691734096590775692256228898061406856317385764015792634436297267609600",
+        "probability_dyadic_exponent": 131,
+        "target_128_met_in_resource_conditional_projection": true,
+        "whole_parent_worst_request_bytes": 24236366478027259904,
+        "whole_leaf_worst_request_bytes": 216886029738573824,
+        "actual_private_precision_or_whole_call_resource_admitted": false,
+        "noise_CDF_constructed_without_mod_q_or_any_entropy": true,
+        "norm_exponents_conservatively_capped_at_256": true,
+        "current_HIBE_recipe_implemented": false,
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "estimator_results": {
+        "root_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 75.628,
+            "cost_fields": {
+              "rop": "5.83843584098790e22",
+              "red": "5.83843584098790e22",
+              "delta": "1.00533360300811",
+              "beta": "259",
+              "d": "4076",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.3274768160000008
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 76.50400010542761,
+            "cost_fields": {
+              "rop": "1.07151639390436e23",
+              "mem": "6086338486241891039",
+              "m": "2048",
+              "beta": "262",
+              "d": "4096",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.024764986000000988
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 68.635,
+            "cost_fields": {
+              "rop": "4.58346323787053e20",
+              "red": "4.58346323787053e20",
+              "delta": "1.00533360300811",
+              "beta": "259",
+              "d": "4076",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.2806411319999995
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 69.43001420490909,
+            "cost_fields": {
+              "rop": "7.95274166302994e20",
+              "mem": "6086338486241891039",
+              "m": "2048",
+              "beta": "262",
+              "d": "4096",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.016010106999999607
+          }
+        },
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 75.044,
+            "cost_fields": {
+              "rop": "3.89488818686157e22",
+              "red": "3.89488818686157e22",
+              "delta": "1.00536049788472",
+              "beta": "257",
+              "d": "4255",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.42297255700000136
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 75.92000001823492,
+            "cost_fields": {
+              "rop": "7.14820956516485e22",
+              "mem": "4525101607334518664",
+              "m": "2383",
+              "beta": "260",
+              "d": "4431",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.022047683000003815
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 68.105,
+            "cost_fields": {
+              "rop": "3.17429916375641e20",
+              "red": "3.17429916375641e20",
+              "delta": "1.00536049788472",
+              "beta": "257",
+              "d": "4255",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.3690033979999967
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 68.90000236665006,
+            "cost_fields": {
+              "rop": "5.50766369327314e20",
+              "mem": "4525101607334518664",
+              "m": "2383",
+              "beta": "260",
+              "d": "4431",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.01771397799999619
+          }
+        }
+      },
+      "actual_full_HIBE_execution": false,
+      "root_or_key_generations": 0,
+      "entropy_reads": 0,
+      "sampler_calls": 0,
+      "secure_candidate_selected": false,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false
+    },
+    {
+      "family": "mp12-structured-hg-target-projection",
+      "n": 4096,
+      "q_bits": 77,
+      "complete_group": {
+        "n": 4096,
+        "q_bits": 77,
+        "w": 315392,
+        "m": 323584,
+        "root_r_squared": 16385,
+        "root_R_bound": 42333781360640,
+        "r_squared": 848,
+        "parent_sample_dimension": 331776,
+        "parent_width_squared": 358990468612751360,
+        "parent_R_bound": 37564581773368291457362821120,
+        "leaf_dimension": 970752,
+        "leaf_width_squared": 318547653438163111558439397621760,
+        "q_alpha": 129,
+        "q": 149785881362170169333047,
+        "q_prime_proved": true,
+        "noise": {
+          "conditional_noise_sufficient": true,
+          "assumed_preimage_norm_squared_upper": "309230771670403716871578162120118763520",
+          "rounding_error_upper": "17325887857786329010549/2",
+          "continuous_squared_upper": "828491392690117308646049083530384311344226721",
+          "integer_phase_radius": 37446470340542542333261,
+          "continuous_margin": "57567052823298755655973/2",
+          "error_bits": 160
+        }
+      },
+      "allocation_proposal": {
+        "epsilon_bits": 192,
+        "scalar_tail_bits": 192,
+        "scalar_abort_bits": 192,
+        "scalar_mass_bits": 320,
+        "precision_bits": 384,
+        "scalar_uniform_trials": 256,
+        "perturbation_trials": 512,
+        "noise_tail_bits": 192,
+        "decode_error_bits": 160,
+        "root_uniform_trials": 256,
+        "ciphertext_uniform_trials": 192,
+        "oracle_uniform_trials": 192,
+        "target_lifetime_bits": 128,
+        "encapsulations": 1048576,
+        "H_queries": 1048576,
+        "G_paths": 1048576,
+        "receivers": 2,
+        "children_each": 2,
+        "identity_bytes": 86,
+        "seed_bytes": 32
+      },
+      "root_lwe": {
+        "n": 4096,
+        "q": 149785881362170169333047,
+        "secret": "small-Gaussian",
+        "multi_target_or_reduction_loss_applied": false,
+        "m": 4096,
+        "squared_width": 16385,
+        "independent_columns": 315392,
+        "attack_goal": "one root-column search or decision, not full trapdoor recovery",
+        "distribution": "ideal discrete Gaussian root secret and error; finite root coupling separate"
+      },
+      "ciphertext_lwe": {
+        "n": 4096,
+        "q": 149785881362170169333047,
+        "secret": "small-Gaussian",
+        "multi_target_or_reduction_loss_applied": false,
+        "m": 647168,
+        "squared_width": 16641,
+        "attack_goal": "recover minus leading rounded errors using the two public H blocks; then recover encryption secret",
+        "distribution": "finite rounded-continuous secret/error; discrete Gaussian comparator ONLY",
+        "estimator_distribution_is_literal": false,
+        "equation": "b_H = c_H - H^T*c_I = H^T*(-e_I) + e_H mod q",
+        "available_H_samples": 647168,
+        "all_available_H_samples_supplied": true,
+        "root_other_columns_and_256_terminals_used": false
+      },
+      "resources": {
+        "counts": {
+          "root_R_entries": 2583691264,
+          "parent_R_entries": 104639496192,
+          "parent_sampler_Schur_entries": 268435456,
+          "leaf_sampler_Schur_entries": 429496729600,
+          "fixed_leaf_integers": 248512512,
+          "complete_root_columns": 323584,
+          "parent_sample_columns": 331776,
+          "complete_parent_columns": 647168,
+          "complete_leaf_columns": 970752,
+          "complete_leaf_prefix": 655360
+        },
+        "codec_minimum_bytes": {
+          "root_R_JSON_bytes": 5167382528,
+          "parent_R_JSON_bytes": 209278992384,
+          "public_root_residue_bytes": 13254000640,
+          "single_fixed_leaf_wire_bytes": 1491075072,
+          "capsule_residue_bytes": 9710080
+        },
+        "current_gates": {
+          "n_within_128": false,
+          "modulus_within_61_bits": false,
+          "q_fits_existing_uint64_headers": false,
+          "complete_HG_prefix_within_512": false,
+          "complete_columns_within_8192": false,
+          "parent_R_entries_within_2pow22": false,
+          "root_JSON_not_excluded_by_32MiB": false,
+          "parent_JSON_not_excluded_by_32MiB": false,
+          "public_oracle_not_excluded_by_2MiB": false,
+          "fixed_leaf_not_excluded_by_16MiB": false,
+          "raw_capsule_not_excluded_by_2MiB": false,
+          "Hybrid_capsule_not_excluded_by_4MiB": false,
+          "squared_width_within_2pow192": true
+        },
+        "first_geometry_or_wire_obstruction": "n_within_128",
+        "minimum_bytes_do_not_prove_passing_inputs_fit": true,
+        "process_peak_RSS": null,
+        "stage_seconds": null,
+        "full_kernel_basis_entries_allocated": 0
+      },
+      "finite_projection": {
+        "phases": {
+          "parent": {
+            "dimension": 331776,
+            "scalar": {
+              "profile": "MATRIX-FINITE-DGS/1",
+              "algorithm": "finite uniform-box rejection Gaussian, independent wide profile",
+              "squared_width_class": [
+                "358990468612751360",
+                "358990468612751360"
+              ],
+              "uniform_in_rational_center": true,
+              "rational_input_bit_budget": 65536,
+              "radius": 4143104672,
+              "max_support_count": 8286209346,
+              "support_or_centers_precomputed": 0,
+              "CDF_tables": 0,
+              "tail_upper": "39402003402371570336373557551209822491517792540834790983368652304404363525918662237575188188796005804192465056644277/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+              "relative_weight_interval_width_upper": "1/300613450595050653169853516389035139504087366260264943450533244356122755214669880763353471793250393988087676928",
+              "integer_weight_quantization_tv_upper": "583090145671246664352417/150306725297525326584926758194517569752043683130132471725266622178061377607334940381676735896625196994043838464",
+              "Poisson_theta_upper": "19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153409/7159725979618740301104695983418709622680434793042663132360362425577766001338226039836321066456157093857339877304749930018599215189268344175111256510391144905128218576994803025566700315369744694061260002057936311868982638401684395903839696776618573824",
+              "acceptance_mass_lower": "148190021637051740420382064898898974030769818852072072146594851351948608872478924840950231676953360756431059673227506174392962494863834238584919347712301979427126362238044600703697739/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+              "acceptance_probability_lower": "49396673879017246806794021632966324676923272950690690715531617117316202957492974946983410558984453585477019891075835391464320831621278079528306449237433993142375454079348200234565913/683143828078790319255703773043187331897247817753350082607255044076762410298403401131168778750252145923434232583364027113523848841710070835643296435697224250094711461328481094155108352",
+              "max_gaussian_trials": 1842,
+              "abort_upper": "9223372036854776729/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+              "tv_upper_including_abort": "78804009598766053483140717818629285560258636863588809954457206770943250507813189677221403508182602058397279866535093/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+              "public_tape_bytes": 2431440,
+              "tape_exhaustion_at_public_length_upper": "0",
+              "finite_options": {
+                "tail_bits": 192,
+                "mass_bits": 320,
+                "precision_bits": 384,
+                "gaussian_abort_bits": 192,
+                "max_uniform_trials": 256,
+                "max_gaussian_trials": 100000,
+                "max_radius": 5192296858534827628530496329220096,
+                "rational_bits": 65536,
+                "max_tape_bytes": 17592186044416
+              },
+              "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+              "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+              "production_random_api": true,
+              "native_Sage_rng_used": false,
+              "constant_time": false,
+              "security_claim": "none"
+            },
+            "modeled_sample_TV_including_abort_upper": "49234156031665274800886664733363373703637397191336518518400572499812672882126143687163965744609806766294901147539235334768716726909849225878088037561424247824562967037727316636413021044881871909012471286905187797207979152776545978051456512021356151300805411175274817236303205221513557912540575590677459255923458030778547250713712212182232860195713977749631908821727173721853996121813324882063428508671517973027383631630929294541173/907396254634572339184016613581987026853453765553833455475635703100825075609007104053263412923015383919671137677358152877022142622725484301813673652280022276686678613211991328964019330689009799504875625390641072053876782112280746840185259523661848906606945319537174412193916541423339916377030838492039733395182661990330432588316953835765532490226959207063636342561036796600310020399112232422448867394551986754391893669144549199244530456774364317802548944814678019944048227883417600",
+            "ideal_norm_abort_upper": "6277101735386680763835789423207666416102355444464034512897/726838724295606890549323807888004534353641360687318060281374407091401971917974352341182362805910295576096881042226720349526688498974720",
+            "worst_request_tape_bytes": 413330508075008
+          },
+          "leaf": {
+            "dimension": 970752,
+            "scalar": {
+              "profile": "MATRIX-FINITE-DGS/1",
+              "algorithm": "finite uniform-box rejection Gaussian, independent wide profile",
+              "squared_width_class": [
+                "318547653438163111558439397621760",
+                "318547653438163111558439397621760"
+              ],
+              "uniform_in_rational_center": true,
+              "rational_input_bit_budget": 65536,
+              "radius": 130272950517613708,
+              "max_support_count": 260545901035227418,
+              "support_or_centers_precomputed": 0,
+              "CDF_tables": 0,
+              "tail_upper": "19701003098197230205670476489276648952978997746362510745465535884603544066849127857300649626463812869276172145525837/123665200736552267030251260509823595017565674550605919957031528046448612553265933585158200530621522494798835713008069669675682517153375604983773077550946583958303386074349568",
+              "relative_weight_interval_width_upper": "1/300613450595050653169853516389035139504087366260264943450533244356122755214669880763353471793250393988087676928",
+              "integer_weight_quantization_tv_upper": "18334287856487010393496153605261/150306725297525326584926758194517569752043683130132471725266622178061377607334940381676735896625196994043838464",
+              "Poisson_theta_upper": "19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153409/7159725979618740301104695983418709622680434793042663132360362425577766001338226039836321066456157093857339877304749930018599215189268344175111256510391144905128218576994803025566700315369744694061260002057936311868982638401684395903839696776618573824",
+              "acceptance_mass_lower": "2207164548589279150925849345175710950803480937624312152597822581678258422793243242886063529577428815274410283291835122372966616854832015051811138544745278295252476710366116619589898473438131/123665200736552267030251260509823595017565674550605919957031528046448612553265933585158200530621522494798835713008069669675682517153375604983773077550946583958303386074349568",
+              "acceptance_probability_lower": "2207164548589279150925849345175710950803480937624312152597822581678258422793243242886063529577428815274410283291835122372966616854832015051811138544745278295252476710366116619589898473438131/32220461152607279765389843515439987713917208390406892870984817655869615285561551848485149892354069194619156637317346343931886386848461394658971379417820508540321913764863509135577259310055424",
+              "max_gaussian_trials": 1944,
+              "abort_upper": "2305843009213694195/14474011154664524427946373126085988481658748083205070504932198000989141204992",
+              "tv_upper_including_abort": "39402006196394471888004480031584600054305923973477003306621360512588399321729915551300735660308869197256298202268749/123665200736552267030251260509823595017565674550605919957031528046448612553265933585158200530621522494798835713008069669675682517153375604983773077550946583958303386074349568",
+              "public_tape_bytes": 4059072,
+              "tape_exhaustion_at_public_length_upper": "0",
+              "finite_options": {
+                "tail_bits": 192,
+                "mass_bits": 320,
+                "precision_bits": 384,
+                "gaussian_abort_bits": 192,
+                "max_uniform_trials": 256,
+                "max_gaussian_trials": 100000,
+                "max_radius": 5192296858534827628530496329220096,
+                "rational_bits": 65536,
+                "max_tape_bytes": 17592186044416
+              },
+              "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+              "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+              "production_random_api": true,
+              "native_Sage_rng_used": false,
+              "constant_time": false,
+              "security_claim": "none"
+            },
+            "modeled_sample_TV_including_abort_upper": "143819168583755798151682598748378100142188702794684061361003783001406636440635961528265171927747389234848108950820507291819500226332127802356074410918558130029008507041270237338160187543514793801126254411461804146491805606878650371272325699654390162584947994799185524914558537207363491276226253438952164237242321920424848884019847854831886281932288387456825446475062969353669879733658568365730140216097526757814500864551576833638773/907396254634572339184016613581987026853453765553833455475635703100825075609007104053263412923015383919671137677358152877022142622725484301813673652280022276686678613211991328964019330689009799504875625390641072053876782112280746840185259523661848906606945319537174412193916541423339916377030838492039733395182661990330432588316953835765532490226959207063636342561036796600310020399112232422448867394551986754391893669144549199244530456774364317802548944814678019944048227883417600",
+            "ideal_norm_abort_upper": "6277101735386680763835789423207666416102355444464034512897/726838724295606890549323807888004534353641360687318060281374407091401971917974352341182362805910295576096881042226720349526688498974720",
+            "worst_request_tape_bytes": 2017763826323456
+          }
+        },
+        "finite_options": {
+          "tail_bits": 192,
+          "mass_bits": 320,
+          "precision_bits": 384,
+          "gaussian_abort_bits": 192,
+          "max_uniform_trials": 256,
+          "max_gaussian_trials": 100000,
+          "max_radius": 5192296858534827628530496329220096,
+          "rational_bits": 65536,
+          "max_tape_bytes": 17592186044416
+        },
+        "root_scalar": {
+          "profile": "MATRIX-FINITE-DGS/1",
+          "algorithm": "finite uniform-box rejection Gaussian, independent wide profile",
+          "squared_width_class": [
+            "16385",
+            "16385"
+          ],
+          "uniform_in_rational_center": true,
+          "rational_input_bit_budget": 65536,
+          "radius": 839,
+          "max_support_count": 1680,
+          "support_or_centers_precomputed": 0,
+          "CDF_tables": 0,
+          "tail_upper": "31547655230735617891432408932778602234155577311097483321659321581220476914005660818882358943626963536312115131125819/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+          "relative_weight_interval_width_upper": "1/300613450595050653169853516389035139504087366260264943450533244356122755214669880763353471793250393988087676928",
+          "integer_weight_quantization_tv_upper": "14777436277309545/18788340662190665823115844774314696219005460391266558965658327772257672200916867547709591987078149624255479808",
+          "Poisson_theta_upper": "19701003098197239606139520050071806902539869635232723333974146702122860885748605305707133127442457820403313995153409/7159725979618740301104695983418709622680434793042663132360362425577766001338226039836321066456157093857339877304749930018599215189268344175111256510391144905128218576994803025566700315369744694061260002057936311868982638401684395903839696776618573824",
+          "acceptance_mass_lower": "31659257508196543826589543996538495400300793636317800152381909256119236984861401950729119925663938958150458857138482266494627771700576238278898849893408266918871633132524859333/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+          "acceptance_probability_lower": "4522751072599506260941363428076927914328684805188257164625987036588462426408771707247017132237705565450065551019783180927803967385796605468414121413344038131267376161789265619/59359296353545088174520605044715325608431523784290841579375133462295334025567648120875936254698330797503441142243873441444327608233620290392211077224454360299985625315687792640",
+          "max_gaussian_trials": 1748,
+          "abort_upper": "4611686018427388341/28948022309329048855892746252171976963317496166410141009864396001978282409984",
+          "tv_upper_including_abort": "70949661427130100837416787822673040260263968884632616850562524692566335920538524316237038947487433957635741713240123/247330401473104534060502521019647190035131349101211839914063056092897225106531867170316401061243044989597671426016139339351365034306751209967546155101893167916606772148699136",
+          "public_tape_bytes": 964896,
+          "tape_exhaustion_at_public_length_upper": "0",
+          "finite_options": {
+            "tail_bits": 192,
+            "mass_bits": 320,
+            "precision_bits": 384,
+            "gaussian_abort_bits": 192,
+            "max_uniform_trials": 256,
+            "max_gaussian_trials": 100000,
+            "max_radius": 5192296858534827628530496329220096,
+            "rational_bits": 65536,
+            "max_tape_bytes": 17592186044416
+          },
+          "rounding_assumption": "correctly-rounded directed rational conversion, pi, arithmetic and exp in MPFR/MPFI; exponents explicitly clipped before underflow",
+          "randomness": "independent uniform bytes; fixed test seeds are not security evidence",
+          "production_random_api": true,
+          "native_Sage_rng_used": false,
+          "constant_time": false,
+          "security_claim": "none"
+        },
+        "gadget_geometry_tv": "11/896728819340954394833684203315380916586050777780576358963",
+        "gadget_scalar_tv": "10263700151345938507104488213976120470239793118962775237710204553643162972455393865410405863415247521611437719185010715/494660802946209068121005042039294380070262698202423679828126112185794450213063734340632802122486089979195342852032278678702730068613502419935092310203786335833213544297398272",
+        "noise": {
+          "scaled_width": 129,
+          "radius": 1793,
+          "tail_bits": 192,
+          "mass_bits": 320,
+          "precision_bits": 384,
+          "cdf_interval_error_units": 3586,
+          "cdf_sha256": "a08965978cf8f45152ae212dbafcbe15e6daecd1665424aab64ed0893339b924",
+          "scalar_TV_upper": "170141183460469231731687303715884107521/1067993517960455041197510853084776057301352261178326384973520803911109862890320275011481043468288",
+          "modulus_independent_integer_CDF": true
+        },
+        "terms": {
+          "root_uniform_abort": "1/6901746346790563787434755862277025452451108972170386555162524223799296",
+          "root_scalar_coupling": "5463123929889017764481092662345824100040325604116711497493314401327607865881466372350251998956532414737952111919489471/7371020360979572953596786290992712677572111758625860211672277930167234692172165726730716260112614780354430419981960634569864423105321860610471551272329484460252725248",
+          "ideal_root_norm_abort": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "parent_sample_coupling": "541575716348318022809753312066997110740011369104701703702406297497939401703387580558803623190707874429243912622931588682455883996008341484658968413175666726070192637415000483000543231493700590999137184155957065769287770680542005758566021632234917664308859522928022989599335257436649137037946331497452051815158038338564019757850834334004561462152853755245950997038998910940393957339946573702697713595386697703301219947940222239952903/15823734909224545535435557575020700105563856123636883640409383773382133712489660715214554494332718051054532953357947699445838145625095638633748494215262665260300617557407772896275448707606895220160358980724070034421679375562931550644971741135286148622470447118045033694787886115780899769409717468122902716852376220534501126330862057682853175401558300904430042246111830297856968826714429276340137894017717402943497029665606675489057799539173484894715208998581857211635885670400",
+          "ideal_parent_norm_abort": "69048119089253488402193683655284330577125909889104379641867/12675061458838010786644179127511239787137998058860875772205887400449950682163336222467605378172263803991644828442848778416690298880",
+          "leaf_sample_coupling": "143819168583755798151682598748378100142188702794684061361003783001406636440635961528265171927747389234848108950820507291819500226332127802356074410918558130029008507041270237338160187543514793801126254411461804146491805606878650371272325699654390162584947994799185524914558537207363491276226253438952164237242321920424848884019847854831886281932288387456825446475062969353669879733658568365730140216097526757814500864551576833638773/886129154916574549984391224201159205911575942923665483862925491309399487899421000052015051682632210859053845388045071168966936155005355763489915676054709254576834583214835282191425127625986132328980102920547921927614045031524166836118417503576024322858345038610521886908121622483730387086944178214882552143733068349932063074528275230239777822487264850648082365782262496679990254296008039475047722064992174564835833661273973827387236774193715154104051703920584003851609597542400",
+          "ideal_leaf_norm_abort": "6277101735386680763835789423207666416102355444464034512897/709803441694928604052074031140629428079727891296209043243529694425197238201146828458185901177646773023532110392799531591334656737280",
+          "finite_noise_coupling": "645345508865559795958289942994348419827153/3978585891278293137243057985174566720803649206378781739523711815145275976100267004264448",
+          "ciphertext_uniform_abort": "1/1461501637330902918203684832716283019655932542976",
+          "ideal_decode_failure_if_norm_good": "1/5444517870735015415413993718908291383296",
+          "ideal_RO_uniform_abort": "1265/5708990770823839524233143877797980545530986496"
+        },
+        "modeled_lifetime_upper": "162983187041784025576446644897307210899968891334211297607803304083015635990765139606876170826685873265291661704999810489623181461942483581765175875344421597892579134888745200806711254889200224110614035962492481050180743027584268318777116096548897040245168892977950322332872806567610343747666762522260224133911403886537574297170877567154109988455166631446548567380128329747724176060816614835982901317538234089225295008904746550941655352061/886129154916574549984391224201159205911575942923665483862925491309399487899421000052015051682632210859053845388045071168966936155005355763489915676054709254576834583214835282191425127625986132328980102920547921927614045031524166836118417503576024322858345038610521886908121622483730387086944178214882552143733068349932063074528275230239777822487264850648082365782262496679990254296008039475047722064992174564835833661273973827387236774193715154104051703920584003851609597542400",
+        "probability_dyadic_exponent": 131,
+        "target_128_met_in_resource_conditional_projection": true,
+        "whole_parent_worst_request_bytes": 130361135602792923136,
+        "whole_leaf_worst_request_bytes": 516547539538804736,
+        "actual_private_precision_or_whole_call_resource_admitted": false,
+        "noise_CDF_constructed_without_mod_q_or_any_entropy": true,
+        "norm_exponents_conservatively_capped_at_256": true,
+        "current_HIBE_recipe_implemented": false,
+        "security_claim": "none",
+        "backend_admitted": false
+      },
+      "estimator_results": {
+        "root_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 188.63199999999998,
+            "cost_fields": {
+              "rop": "6.07981188612300e56",
+              "red": "6.07981188612300e56",
+              "delta": "1.00282935259000",
+              "beta": "646",
+              "d": "8160",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.617996386999998
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 190.09199999999998,
+            "cost_fields": {
+              "rop": "1.67260709915706e57",
+              "mem": "30034430143448164736362642943817692096419008",
+              "m": "4096",
+              "beta": "651",
+              "d": "8192",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.02406825199999929
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 171.19,
+            "cost_fields": {
+              "rop": "3.41448302294914e51",
+              "red": "3.41448302294914e51",
+              "delta": "1.00282935259000",
+              "beta": "646",
+              "d": "8160",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.6277697999999958
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 172.5150000000018,
+            "cost_fields": {
+              "rop": "8.55440291827914e51",
+              "mem": "30034430143448164736362642943817692096419008",
+              "m": "4096",
+              "beta": "651",
+              "d": "8192",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.016414193999999327
+          }
+        },
+        "ciphertext_lwe": {
+          "primal_usvp-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 187.464,
+            "cost_fields": {
+              "rop": "2.70574651128913e56",
+              "red": "2.70574651128913e56",
+              "delta": "1.00284222474246",
+              "beta": "642",
+              "d": "8551",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.7036058359999942
+          },
+          "dual-classical": {
+            "status": "finite_estimate",
+            "rop_log2": 188.92399999999998,
+            "cost_fields": {
+              "rop": "7.44373495112772e56",
+              "mem": "16785813131981045259566231225148812164683420",
+              "m": "4705",
+              "beta": "647",
+              "d": "8801",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.02656686299999933
+          },
+          "primal_usvp-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 170.13,
+            "cost_fields": {
+              "rop": "1.63769552498018e51",
+              "red": "1.63769552498018e51",
+              "delta": "1.00284222474246",
+              "beta": "642",
+              "d": "8551",
+              "tag": "usvp"
+            },
+            "goal": "heuristic_secret_search",
+            "elapsed_seconds": 0.7747698379999974
+          },
+          "dual-quantum": {
+            "status": "finite_estimate",
+            "rop_log2": 171.45500000000013,
+            "cost_fields": {
+              "rop": "4.10296589087348e51",
+              "mem": "16785813131981045259566231225148812164683420",
+              "m": "4705",
+              "beta": "647",
+              "d": "8801",
+              "repetitions": "1",
+              "tag": "dual"
+            },
+            "goal": "decisional_distinguisher",
+            "elapsed_seconds": 0.016852618000001485
+          }
+        }
+      },
+      "actual_full_HIBE_execution": false,
+      "root_or_key_generations": 0,
+      "entropy_reads": 0,
+      "sampler_calls": 0,
+      "secure_candidate_selected": false,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false
+    }
+  ],
+  "allocation_is_analysis_only_and_unregistered": true,
+  "current_backend_and_wire_limits_unchanged": true,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "estimator": {
+    "repository": "https://github.com/malb/lattice-estimator",
+    "commit": "53da5982597709ba0fdf94ea37a84d822310fd84",
+    "models": "ADPS16 classical/quantum Core-SVP; primal-uSVP LGSA and plain dual",
+    "attack_families": [
+      "primal_usvp",
+      "dual"
+    ],
+    "excluded_attacks": [
+      "BDD/hybrid",
+      "BKW",
+      "algebraic"
+    ],
+    "scope": "Gaussian comparators; estimated costs are not proven security bits",
+    "completed": true
+  },
+  "status": "completed_public_projection"
+}

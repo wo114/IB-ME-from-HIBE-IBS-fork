@@ -1,0 +1,124 @@
+{
+  "schema": "IBME/SRGG-PROOF-FOLLOWUP-VALIDATION/1",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null,
+  "delivery_kind": "bounded classical runner and conditional proof supplements",
+  "base_local_commit": "a68e5a7",
+  "required_test_suites": {
+    "full-srgg": {
+      "receipt": "srgg-all-final.junit.xml",
+      "tests": 1266,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "bounded-runner-sage": {
+      "receipt": "bounded-runner-final.junit.xml",
+      "tests": 28,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "bounded-cost-sage": {
+      "receipt": "bounded-cost-sage-final.junit.xml",
+      "tests": 121,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "bounded-cost-windows": {
+      "receipt": "bounded-cost-windows-final.junit.xml",
+      "tests": 121,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "raw-h2-sage": {
+      "receipt": "raw-h2-relabel.junit.xml",
+      "tests": 21,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "copied_evidence": [
+    {
+      "receipt": "bounded-runner-n512.json",
+      "original_sha256": "c2311d64b4cb86098878bf980ed51165c64905c4a4814d183e6d27eeee775b17",
+      "original_path": "build/outputs/srgg-bounded-classical-runner-2026-10-16/bounded-runner-n512.json",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "srgg-all-final.junit.xml",
+      "original_sha256": "0d34e73f9def45e2948a3f46c161af5cbf4728f763ef3697506aff1111d83521",
+      "original_path": "build/outputs/srgg-bounded-runner-2026-10-16/srgg-all-final.junit.xml",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "bounded-runner-final.junit.xml",
+      "original_sha256": "8237f14ec62c21e4bd0207a776d2a8ba64e75d9f55ef7208d62599ac18cf48fc",
+      "original_path": "build/outputs/srgg-bounded-classical-runner-2026-10-16/bounded-runner-final.junit.xml",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "bounded-cost-sage-final.junit.xml",
+      "original_sha256": "c19d7f967664293dfbcf6bc7e0c92546b26ebc6766caac01ce7c8972135aa4db",
+      "original_path": "build/outputs/srgg-bounded-runner-2026-10-16/bounded-cost-sage-final.junit.xml",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "bounded-cost-windows-final.junit.xml",
+      "original_sha256": "fdd0ef88f9b07c017e76652a7f9b7851634671706d3e8966616ca8bb97aa5ec7",
+      "original_path": "build/outputs/srgg-bounded-runner-2026-10-16/bounded-cost-windows-final.junit.xml",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "raw-h2-relabel.junit.xml",
+      "original_sha256": "974ddd55f1ada51aa141983d6bb2c22315d784beec40cf572c84e57b1e6356e0",
+      "original_path": "build/outputs/srgg-bounded-classical-runner-2026-10-16/raw-h2-relabel-initial.junit.xml",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    }
+  ],
+  "commands": [
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg*.py --junitxml=build/outputs/srgg-bounded-runner-2026-10-16/srgg-all-final.junit.xml",
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_bounded_classical_runner.py --junitxml=build/outputs/srgg-bounded-classical-runner-2026-10-16/bounded-runner-final.junit.xml",
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_bounded_classical_cost.py --junitxml=build/outputs/srgg-bounded-runner-2026-10-16/bounded-cost-sage-final.junit.xml",
+    "python -m pytest -q tests/test_srgg_bounded_classical_cost.py --junitxml=build/outputs/srgg-bounded-runner-2026-10-16/bounded-cost-windows-final.junit.xml",
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_raw_h2_relabel.py --junitxml=build/outputs/srgg-bounded-classical-runner-2026-10-16/raw-h2-relabel-initial.junit.xml",
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.srgg.bounded_classical_runner --output build/outputs/srgg-bounded-classical-runner-2026-10-16/bounded-runner-n512.json"
+  ],
+  "full_regression": {
+    "tests": 1266,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "pytest_wall_seconds": 117.33,
+    "junit_suite_seconds": "117.290"
+  },
+  "overlap_notice": "All targeted receipts overlap the full regression; do not sum them as unique coverage.",
+  "environment": {
+    "host_cpu": "Intel(R) Core(TM) Ultra 7 255HX",
+    "host_physical_cores": 20,
+    "host_logical_processors": 20,
+    "host_physical_memory_bytes": 33676681216,
+    "sage": "10.9",
+    "sage_python": "3.13.15",
+    "windows_python": "3.14.7",
+    "execution": "WSL2 Ubuntu 24.04 x86_64; Windows zero-entropy arithmetic checks",
+    "peak_RAM_measured": false,
+    "performance_comparison": false
+  },
+  "implementation_entropy": "real finite n8 draws only in specified tests; n512 certificate and arithmetic are zero-entropy",
+  "production_security_reduction_complete": false,
+  "native_strong_goal_retained": true,
+  "remote_push_performed": false,
+  "source_after_full_regression_changed": false,
+  "remaining": [
+    "production seeded/raw-frame/multi-public-key full law and complete Delta0",
+    "H1 QROM embedding and actual QCUR/collapsing or alternative extraction",
+    "ring/composite-modulus/CBD1 hardness and formal parameter admission",
+    "large candidate real execution and all-path computation bounds"
+  ]
+}

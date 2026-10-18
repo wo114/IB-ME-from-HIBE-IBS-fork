@@ -1,0 +1,61 @@
+{
+  "schema": "IBME/SRGG-SOURCE-MANIFEST/1",
+  "baseline_commit": "ca211fcc6bd93e07f797e3be1476d205fad0b463",
+  "hash_rule": "sha256 is raw working bytes; sha256_lf normalizes CRLF to LF for text checkout portability",
+  "files": [
+    {
+      "path": "docs/PROJECT_STATUS.md",
+      "bytes": 33757,
+      "sha256": "44c0d52631838cd99a9c60a75320e502bb0534312d4abb770c2ed6e07f921ca1",
+      "sha256_lf": "44c0d52631838cd99a9c60a75320e502bb0534312d4abb770c2ed6e07f921ca1"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/parameter_screen.py",
+      "bytes": 18163,
+      "sha256": "3cebaa982342d6f16e16933074cdebdd52c2a3115ef7230ee28221a65d80ac1c",
+      "sha256_lf": "3cebaa982342d6f16e16933074cdebdd52c2a3115ef7230ee28221a65d80ac1c"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/source_correspondence.py",
+      "bytes": 7273,
+      "sha256": "9a910fedcc625b239f6707dde4066d34ced1ffe96321034fdd25d7347da1656d",
+      "sha256_lf": "9a910fedcc625b239f6707dde4066d34ced1ffe96321034fdd25d7347da1656d"
+    },
+    {
+      "path": "tests/test_srgg_parameter_screen.py",
+      "bytes": 7475,
+      "sha256": "46156b46c6175678e6cfa9bf0f28b6ca07430c81f5d27abb06d20a3689045cc7",
+      "sha256_lf": "46156b46c6175678e6cfa9bf0f28b6ca07430c81f5d27abb06d20a3689045cc7"
+    },
+    {
+      "path": "tests/test_srgg_source_correspondence.py",
+      "bytes": 2685,
+      "sha256": "acdc90b23184d54e11c95bc95c0f3091d95300877f8a3dca2e308462ce51e83e",
+      "sha256_lf": "acdc90b23184d54e11c95bc95c0f3091d95300877f8a3dca2e308462ce51e83e"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-source-correspondence/parameter-screen.json",
+      "bytes": 12258,
+      "sha256": "b78885fca0df1705ccd0f71fc53a8048b591f739e631d575a70a65af8b6d89fd",
+      "sha256_lf": "b78885fca0df1705ccd0f71fc53a8048b591f739e631d575a70a65af8b6d89fd"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-source-correspondence/README.md",
+      "bytes": 9666,
+      "sha256": "e52e958cea0d7884d17800c04b97f3d813aab313854325f47a1abfdf51b68db4",
+      "sha256_lf": "e52e958cea0d7884d17800c04b97f3d813aab313854325f47a1abfdf51b68db4"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-source-correspondence/source-correspondence.json",
+      "bytes": 6882,
+      "sha256": "653fa3c0cf14fb86f3d68fd4a7bfcc2725cba7bdc53ec06e500db402130eef24",
+      "sha256_lf": "653fa3c0cf14fb86f3d68fd4a7bfcc2725cba7bdc53ec06e500db402130eef24"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-source-correspondence/validation.json",
+      "bytes": 2652,
+      "sha256": "90949329fa6a890d5f3a07475d4d351b44112b0a1ba2f30006dad016cf2c662b",
+      "sha256_lf": "90949329fa6a890d5f3a07475d4d351b44112b0a1ba2f30006dad016cf2c662b"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/structured_framework_probe.py", line 174, in <module>
+    if __name__ == "__main__": main()
+                               ~~~~^^
+  File "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/structured_framework_probe.py", line 170, in main
+    else: result = generate(args.private_directory, args.source_commit)
+                   ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/structured_framework_probe.py", line 44, in generate
+    runtime = build_runtime(config)
+  File "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/assembly/__init__.py", line 382, in build_runtime
+    if not report.ok: raise InvalidParameterError("; ".join(report.errors))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ibme.core.errors.InvalidParameterError: 'StructuredHIBEParams' object has no attribute 'max_message_bytes'

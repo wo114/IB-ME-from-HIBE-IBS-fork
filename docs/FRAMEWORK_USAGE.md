@@ -15,6 +15,8 @@ python -m ibme.cli matrix
 | 选择 | 当前实现 | 说明 |
 |---|---|---|
 | HIBE `abb10` | 教学 ABB10 | 可以 direct，也可由 Hybrid 包装；不具正式安全参数 |
+| HIBE `abb-rom` | 真实 ABB-ROM/AP09 研究后端 | `--transport hybrid`；默认 `n1-q26-level-quality-research`，需 Sage/Flatter/精确 Gram 引擎；六种 IBS 共同验收通过，n1可公开攻击；[A本轮交付](research/team-a-delivery/2026-10-15-framework-and-structured/README.md) |
+| HIBE `mp12-structured-hg` | 结构化 MP12 / 完整 CHKP H/G 变体 | `--hibe-params n2-full-hg-research --transport hybrid`；无需完整核基或本地转换引擎；n2仍可公开攻击，实际依赖 Sage 及打包的研究工具；[契约](specs/mp12-structured-hg.md) |
 | HIBE `mp12-chkp-reference` | 可选 Sage 研究变体 | 显式 `--hibe-params n2-reference`；新根/接收者需配置 native engine，旧状态恢复不需；n2已有公开攻击，见[A安装交付](research/team-a-delivery/2026-10-12-installed-api/README.md) |
 | HIBE `chkp` | CHKP RandBasis 研究后端 | Sage运行；`hybrid-research`用于32 B种子；当前n=2可公开攻击，见[统一交付](deliveries/2026-10-12-chkp-luo/README.md) |
 | HIBE `latte` | LATTE-3/COSAC-FIX研究后端 | `--hibe-params seed32 --transport hybrid`；需Sage及LATTE引擎，匿名/正式条件未准入；[真实组合/CLI](research/team-c-delivery/2026-10-15-c-framework/README.md) |
@@ -26,6 +28,16 @@ python -m ibme.cli matrix
 | HIBE/IBS `mock` | 仅测试 | 必须显式 `--allow-mock`，结果标记 TEST-ONLY |
 
 这里的“兼容”表示该配置能按当前接口、容量和资源规则装配，不能据此宣称密码学安全。全部当前研究组合保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。
+
+结构化 H/G 可在指定 WSL Sage 环境中按下例建立新的研究状态。源码运行同时暴露 `src` 和仓库根，或安装完整 wheel；只暴露 `src` 时，缺失的可选研究 provider 会明确不可用，不能影响其它后端的选择。
+
+```sh
+export PYTHONPATH="$PWD/src:$PWD"
+~/miniconda3/envs/sage/bin/python -m ibme.cli check --hibe mp12-structured-hg --ibs luo-module --transport hybrid --signature-format compact
+~/miniconda3/envs/sage/bin/python -m ibme.cli setup --state structured-research-state --hibe mp12-structured-hg --ibs luo-module --transport hybrid --signature-format compact
+```
+
+后续 `issue-sender-key`、`issue-receiver-key`、`encrypt`、`decrypt` 与下面的统一示例相同。结构化 H/G 的固定叶恢复和解密耗熵为0；ABB-ROM 每次真实解密仍运行256次新 SamplePre，不能用“恢复不重新发钥”代替这个采样成本。两者都不是正式安全预设。
 
 ## 2. 一套完整调用
 

@@ -1,0 +1,59 @@
+{
+  "schema": "STRUCTURED-IDENTITY-NORMAL-FORM-NEGATIVE-CONTROL/1",
+  "status": "passed",
+  "parameters": {
+    "version": "mp12-structured-hg-finite-v1",
+    "parameters": {
+      "n": 2,
+      "q": 549755813911,
+      "root_r_squared": 16,
+      "q_alpha": 4,
+      "identity_bytes": 86,
+      "max_receivers": 2,
+      "max_children": 2
+    },
+    "w": 80,
+    "m": 84,
+    "root_R_bound": "5120",
+    "parent_sample_dimension": 88,
+    "parent_width_squared": "28288000",
+    "parent_R_bound": "199147520000",
+    "leaf_dimension": 252,
+    "leaf_width_squared": "1083362509235200",
+    "finite_sampler": "IBME/MP12-STRUCTURED/1/default-options/epsilon128/trials512",
+    "noise": "rounded-continuous/qalpha/tail128/mass256/precision320/radius8192",
+    "leaf_entropy_budget": "281474976710656",
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "matching_identity_bytes": 86,
+  "message_bytes": 32,
+  "public_key_sha256": "5c3d0b7e7967f9e79f133d3dac9e088a226e5a0e0b6783277307f055912dd1d1",
+  "ciphertext_sha256": "dd7ca6a8a1f9cfc42e3c4cb602377c161bd76c49bcc8c14eb1e9d261f52e88e1",
+  "input_roles_read": [
+    "public_key",
+    "ciphertext"
+  ],
+  "private_inputs_read": 0,
+  "new_roots": 0,
+  "new_keys": 0,
+  "sampler_calls": 0,
+  "entropy_reads": 0,
+  "candidate_tuples": 8649,
+  "H_samples_used": 168,
+  "root_other_columns_used_for_candidate_filter": false,
+  "surviving_H_secret_candidates": 1,
+  "recovered_seed_sha256": [
+    "630dcd2966c4336691125448bbb25b4ff412a49c732db2c8abc1b8581bd710dd"
+  ],
+  "original_seed_recovered": true,
+  "finite_noise_radius": 46,
+  "minus_leading_error_and_encryption_secret_not_published": true,
+  "repetitions": 1,
+  "uses_ROM": true,
+  "new_attack_principle_claimed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

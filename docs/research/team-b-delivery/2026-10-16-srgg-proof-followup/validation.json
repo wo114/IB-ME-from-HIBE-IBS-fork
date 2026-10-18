@@ -1,0 +1,290 @@
+{
+  "schema": "IBME/SRGG-PROOF-FOLLOWUP-VALIDATION/1",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null,
+  "overall_hibe_independent_goal_complete": false,
+  "push_performed": false,
+  "pending_package_components": [],
+  "required_test_suites": {
+    "conditional-sage": {
+      "receipt": "conditional-sage.junit.xml",
+      "tests": 61,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "quotient-sage": {
+      "receipt": "quotient-sage.junit.xml",
+      "tests": 34,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "budget-windows": {
+      "receipt": "budget-windows.junit.xml",
+      "tests": 45,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "budget-sage": {
+      "receipt": "budget-sage.junit.xml",
+      "tests": 45,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "checker-windows": {
+      "receipt": "checker-windows.junit.xml",
+      "tests": 40,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "sage-components": {
+      "receipt": "sage-components.junit.xml",
+      "tests": 159,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "runner-sage": {
+      "receipt": "runner-sage.junit.xml",
+      "tests": 42,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "sage-full-final": {
+      "receipt": "sage-full-final.junit.xml",
+      "tests": 1096,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    }
+  },
+  "copied_evidence": [
+    {
+      "receipt": "conditional-xof.md",
+      "original_path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/conditional-xof.md",
+      "original_sha256": "6a11d3696d2c018f5ecbe6b5bd390c731c60f182619af804fbcf27d3dcc554ba",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "quotient-challenge.md",
+      "original_path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/quotient-challenge.md",
+      "original_sha256": "bd95f5e9926acc3f7835820e052db6c581c89bd91599466b9fa98ea794d53a47",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "quantum-oracle-obligations.md",
+      "original_path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/quantum-oracle-obligations.md",
+      "original_sha256": "1e9ec6bcf06a3f8539fdc93cc3b51c55ba64171ae22edea5296482821dced0d0",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "lossy-route.md",
+      "original_path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/lossy-route.md",
+      "original_sha256": "5d97c74cf04359514d45c3b23ee6f052dcb534fb544d5276a25d3cbd72d5bf27",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "service-budget.md",
+      "original_path": "docs/research/team-b-delivery/2026-10-16-srgg-structured-service/service-budget.md",
+      "original_sha256": "13f554e7407af122639ea952ab191d8e511544462af592dbe5fac7267a4c4076",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "conditional-xof.json",
+      "original_path": "build/outputs/srgg-conditional-xof-2026-10-16/conditional-xof-final.json",
+      "original_sha256": "56932c948feeb1a773c21a107934e861e986c92d6b5eb09195a0d36efb703ff9",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "quotient-challenge.json",
+      "original_path": "build/outputs/srgg-qrom-quotient-2026-10-16/quotient-challenge.json",
+      "original_sha256": "7eb8982fc6e7224a4d09dde00c360d1a3e4ff35e5c04e82a9bf58641f59117d7",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "lossy-checks.json",
+      "original_path": "build/outputs/srgg-lossy-route-2026-10-16/checks.json",
+      "original_sha256": "06fb82ef0781cbfc6eeafed325a13d35b18cbe0f43ce35803f1929b7632191f8",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "lossy-arithmetic-original.py",
+      "original_path": "build/outputs/srgg-lossy-route-2026-10-16/check-lossy-arithmetic.py",
+      "original_sha256": "3801adff7b7a37e0a63d920b15dfdf46323e2cdb93c77e4dddd9fbc4cd48b944",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "service-budget.json",
+      "original_path": "build/outputs/srgg-structured-service-2026-10-16/service-budget-final.json",
+      "original_sha256": "0a3a10857cb4bd894f45f66301c2ff9b1e86c26c91ccfb381aacf8b07e37c585",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "conditional-sage.junit.xml",
+      "original_path": "build/outputs/srgg-conditional-xof-2026-10-16/conditional-final-pytest.xml",
+      "original_sha256": "7d69ac8e7d53fdce9abeb405a492546e6985b0a7b938f48ebd69184334939d3f",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "quotient-sage.junit.xml",
+      "original_path": "build/outputs/srgg-qrom-quotient-2026-10-16/quotient-challenge-sage.junit.xml",
+      "original_sha256": "d50480b147e7dc902447349114a9b098b712579847c1a4e44e75f334f1d3daff",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "budget-windows.junit.xml",
+      "original_path": "build/outputs/srgg-structured-service-2026-10-16/service-budget-windows-final.junit.xml",
+      "original_sha256": "b4876e735193277d89cd2ca0bb68b03b8145e6392ec8e99bfd9e6011d23b47f9",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "budget-sage.junit.xml",
+      "original_path": "build/outputs/srgg-structured-service-2026-10-16/service-budget-sage-final.junit.xml",
+      "original_sha256": "4569a8e0e572984fc018e2969552d8556f1d2776eee5685de82003f03b1afa69",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "checker-windows.junit.xml",
+      "original_path": "build/outputs/srgg-proof-followup-2026-10-16/checker-windows.junit.xml",
+      "original_sha256": "a9d2e362d8c23b82352e01b9c0def4823972bd77f8355941f71e1ae78f519b16",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "sage-components.junit.xml",
+      "original_path": "build/outputs/srgg-proof-followup-2026-10-16/sage-components.junit.xml",
+      "original_sha256": "63de9748fb961d25574c88bd3f41d2848568bc6371af1dd827f23dc303159dfc",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "classical-runner.md",
+      "original_path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/classical-runner.md",
+      "original_sha256": "7d399dfb541290aa14b18d31cde7c7184854a9d0dc671fdc8dbd206f4c0c5a84",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "classical-runner.json",
+      "original_path": "build/outputs/srgg-classical-runner-2026-10-16/runner-n512-certificate.json",
+      "original_sha256": "4136180da9d3d22767a98979de973f8d72579afb36ca69750e2826fe54c24a0e",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "runner-development-failure.junit.xml",
+      "original_path": "build/outputs/srgg-classical-runner-2026-10-16/runner-initial-pytest.xml",
+      "original_sha256": "06325a9e763673e076b9f12fef74e08313d98eca5862b3d8635583a9e07fe873",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "runner-development-second.junit.xml",
+      "original_path": "build/outputs/srgg-classical-runner-2026-10-16/runner-second-pytest.xml",
+      "original_sha256": "4430e0a9a23bb935666d0712cf90284bc132e71c7b83776c2d04ce74e8bec16a",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "runner-sage.junit.xml",
+      "original_path": "build/outputs/srgg-classical-runner-2026-10-16/runner-final-pytest.xml",
+      "original_sha256": "6556a600ffbe748263832844fd8755652cb894830d74e492112d7fbf83fd28b8",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "sage-full-final.junit.xml",
+      "original_path": "build/outputs/srgg-proof-followup-2026-10-16/srgg-full-final.junit.xml",
+      "original_sha256": "422ca799df962becdd57a6c07c9c3dcb40bda0878993d190982ac7c6c89a1c46",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "sage-full-final.stdout.txt",
+      "original_path": "build/outputs/srgg-proof-followup-2026-10-16/srgg-full-final.stdout.txt",
+      "original_sha256": "d82a7edff8866d4282ca5032f9a9b1b87cd209c533df03e1cfb0d3e3f067fa6a",
+      "transformation": "byte-copy"
+    }
+  ],
+  "development_test_history": {
+    "runner-initial": {
+      "receipt": "runner-development-failure.junit.xml",
+      "tests": 40,
+      "passed": 39,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "role": "known development failure; not a required-pass acceptance suite",
+      "observed_message": "ValueError: uniform rejection exact-certificate bit budget exceeded",
+      "fix": "External uniform target helper uses explicit 128 trials: 54*128<=8192 existing exact-certificate bit guard; original abort retained",
+      "failure_source_snapshot_available": false,
+      "source_correspondence": "Predates final source; failure receipt is preserved, not claimed reproducible from corrected final code",
+      "packaging_check": "Explicitly parsed XML totals/testcase failure message; delivery checker seals SHA only for this known failure"
+    },
+    "runner-second": {
+      "receipt": "runner-development-second.junit.xml",
+      "tests": 42,
+      "passed": 42,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "role": "intermediate development pass; same-name final suite supersedes it for acceptance",
+      "later_change": "Lifecycle test uses actual 32-byte messages in final 42-case receipt"
+    }
+  },
+  "overlapping_suites_are_not_independent_trials": true,
+  "commands": {
+    "sage-components": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_conditional_xof.py tests/test_srgg_quotient_challenge.py tests/test_srgg_service_budget.py tests/test_srgg_proof_followup_delivery_check.py --junitxml=build/outputs/srgg-proof-followup-2026-10-16/sage-components.junit.xml",
+    "checker-normal": "python experiments/research/srgg_proof_followup_delivery_check.py",
+    "checker-optimized": "python -O experiments/research/srgg_proof_followup_delivery_check.py",
+    "sage-full-final": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg*.py --junitxml=build/outputs/srgg-proof-followup-2026-10-16/srgg-full-final.junit.xml",
+    "lossy-arithmetic": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python build/outputs/srgg-lossy-route-2026-10-16/check-lossy-arithmetic.py"
+  },
+  "environment": {
+    "Sage": "10.9",
+    "Sage Python": "3.13.15",
+    "Windows Python": "3.14.7",
+    "hardware": "Intel Core Ultra 7 255HX; WSL2; affinity and frequency not fixed"
+  },
+  "proof_scope": {
+    "local_conditional_lemmas": true,
+    "complete_native_strong_classical_ROM": false,
+    "complete_QROM": false,
+    "formal_structured_parameters": false,
+    "new_n512_crypto_lifecycles_in_this_package": 0,
+    "all_service_to_ideal_game_terms_certified": false
+  },
+  "final_regression": {
+    "source_code_frozen_before_and_after": true,
+    "required_suite": "sage-full-final",
+    "tests": 1096,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "stdout_seconds": "102.17",
+    "junit_suite_seconds": "102.126",
+    "source_snapshot": "Declared source/test hashes are sealed below; not an exhaustive machine/environment snapshot; no post-regression source changes",
+    "meaning": "Regression evidence only; not a security proof"
+  },
+  "published_lossy_reproduction": {
+    "original_script_public_byte_copy": true,
+    "reproduction_output_byte_identical": true,
+    "production_entropy_bytes": 0,
+    "evidence": "Local copied public script rerun in designated Sage; checks.json matched published lossy-checks.json byte-for-byte"
+  },
+  "six_goal_states": {
+    "finite_SampleF": "conditional local numerical certificates; complete game open",
+    "HNF_raw_final_key_law": "conditional latent/common gate law; persistent-service Delta0 open",
+    "zeta_quotient": "exact local algebra and finite-u bridge; complete quantum game open",
+    "native_strong_ROM_QROM": "conditional local kernels/prototype; full Run/E and quantum route open",
+    "formal_parameters_hardness": "old point below target; new candidate structure/conditions/execution open",
+    "independent_interfaces_persistent_service": "engineering delivered separately; shared HIBE/CLI integration excluded"
+  },
+  "git_byte_preservation": {
+    "attributes_file": ".gitattributes",
+    "quotient-challenge.json": "-text -eol; original CRLF bytes preserved; whitespace treats CR as line ending and retains the default blank/space checks",
+    "runner-development-failure.junit.xml": "-whitespace; original pytest traceback spaces preserved",
+    "sage-full-final.stdout.txt": "-whitespace; original final blank line preserved",
+    "implementation_whitespace_checks_unchanged": true,
+    "initial_publication_commit_note": "9f0b9df staged JSON with Git LF normalization; this local fix restores original bytes and a manifest that also matches Git blobs. No remote push."
+  }
+}

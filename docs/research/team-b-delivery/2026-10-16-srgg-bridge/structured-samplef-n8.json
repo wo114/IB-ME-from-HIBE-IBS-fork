@@ -1,0 +1,110 @@
+{
+  "schema": "IBME/SRGG-STRUCTURED-SAMPLEF/1",
+  "fixture": "public deterministic CBD1; not a service secret",
+  "prepare_seconds": 0.09296740799999981,
+  "certificate": {
+    "algorithm": "isotropic joint SampleF; exact ring sqrt series and finite integer rounding",
+    "degree": 8,
+    "upper_polynomials": 2,
+    "lower_polynomials": 3,
+    "dimension": 40,
+    "target_squared": "23679105",
+    "rounding_squared": "64",
+    "noise_squared": "61504",
+    "witness_class": "entire real CBD1 coefficient support; negacyclic support-function bound",
+    "verified_witness_spectral_squared_upper": "26992691376345047317712648160779689322321/170141183460469231731687303715884105728",
+    "series": {
+      "dimension": 40,
+      "rho_upper_exact": "1769847527/4294967296",
+      "terms": 200,
+      "sqrt_series_operator_error_upper": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+      "operator_vector_rounding_l2_error_upper": "5/2895679347705334540846098438522789480581069430721048766649660373364842397244685191056887292327577402596889280380928",
+      "box_muller_bad_event_bits": 155,
+      "box_muller_bad_event_upper": "5/11417981541647679048466287755595961091061972992",
+      "final_center_coordinate_error_upper": "23468848080944607406531243693/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+      "finite_center_to_ideal_continuous_rounding_tv_upper": "138003482793098703581284033830051/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+      "scale_upper_exact": "688944304524514612125291219278198397532731184805320141066107700878916646009264135339179216364228511434185928136592850/354888554880707407353351513153920833858809457761718255785852833806879966946412805680526091753690234140733201199669",
+      "scale_absolute_error_upper_exact": "1/929206842263799758811413269821896614771451379696380472036382256061583817440526149156429513099877563344975593688002077412515884761987808999846222818003329776247632037154767872182636917041336241076037402385456835431532156977869204",
+      "normal_input_further_quantized": true,
+      "assumptions": [
+        "independent uniform bytes",
+        "correct round-to-nearest MPFR rational conversion,pi,log,sqrt,sin,cos; no exponent failure",
+        "directed interval scale enclosure; exact ring products and exact nearest dyadic rounding",
+        "verified 0<=H<=rho I and r>=1; Peikert continuous branch applies"
+      ]
+    },
+    "scalar_batch": {
+      "schema": "IBME/SRGG-AGGREGATE-BUDGET/1",
+      "count": 40,
+      "squared_width_class": [
+        "64",
+        "64"
+      ],
+      "gaussian_proposals": {
+        "successes": 40,
+        "probability_lower": "157608024785577916849116160400574455220303494796488761788951449784568711602287311608823145588688304703436589020825795/1694286266444962606127998724306175393618428788630014206721776616382566036174380056290813448960051372554685003583193088",
+        "trials": 3613,
+        "dyadic_exponent": -129,
+        "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+      },
+      "uniform_candidates": {
+        "successes": 3613,
+        "probability_lower": "85/128",
+        "trials": 11268,
+        "dyadic_exponent": -129,
+        "overflow_upper_exact": "1/680564733841876926926749214863536422912"
+      },
+      "candidate_bytes": 1,
+      "bernoulli_bytes": 24,
+      "naive_all_path_bytes": 8251200,
+      "chernoff_cap_bytes": 97980,
+      "selected_cap_bytes": 97980,
+      "public_max_bytes": 268435456,
+      "admitted": true,
+      "uses_probabilistic_cap": true,
+      "aggregate_budget_abort_upper_exact": "1/340282366920938463463374607431768211456",
+      "existing_scalar_abort_union_upper_exact": "92233720368547762855/784637716923335095479473677900958302012794430558004314112",
+      "abort_upper_including_aggregate_exact": "94539563377761456807/784637716923335095479473677900958302012794430558004314112",
+      "scalar_kernel_tv_union_upper_exact": "366791649958414917754127017828297511791970746403583363530539390478644561417265/2462625387274654950767440006258975862817483704404090416746768337765357610718575663213391640930307227550414249394176",
+      "scalar_kernel_tv_including_aggregate_exact": "374028655535747179968100204391340506032800120445185898783005489479139132019761/2462625387274654950767440006258975862817483704404090416746768337765357610718575663213391640930307227550414249394176",
+      "reference": "sequential ideal D_Z scalar kernels at the same admitted exact adaptive centers",
+      "full_continuous_or_IBS_tv_certified": false,
+      "all_original_gaussian_and_uniform_limits_retained": true,
+      "requires_independent_uniform_bytes": true,
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false
+    },
+    "peikert_ideal_rounding_to_discrete_target_tv_upper": "1/113078212145816597093331040047546785012958969400039613319782796882727665664",
+    "full_target_integer_tv_upper_including_abort": "17586743141124010552210266885756358271759/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+    "continuous_fixed_ticket_bytes": 2560,
+    "whole_entropy_cap_bytes": 100540,
+    "dense_coefficient_matrix_materialized": false,
+    "reference": "D_Z^D,Sigma_p,center; Sigma_p=target I-noise T T*",
+    "legacy_schur_law_equal": false,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "draws": [
+    {
+      "index": 0,
+      "seconds": 0.04235796600000086,
+      "coefficients": 40,
+      "output_digest": "1f49cbf18c0740dc75edf17f7513dde1364b636836740d7ac92c85da60c26d9f",
+      "squared_norm": "194798291"
+    },
+    {
+      "index": 1,
+      "seconds": 0.04220307699999992,
+      "coefficients": 40,
+      "output_digest": "78c478492b95726956a2897079097367b825288029b3b496d30a42e509623c02",
+      "squared_norm": "199506533"
+    }
+  ],
+  "production_randomness": false,
+  "full_ibs_executed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

@@ -19,11 +19,12 @@ from ibme.core.encoding import encode_bytes
 from ibme.core.randomness import SecureRandom
 from ibme.core.types import validate_identity
 from ibme.lattice.chkp.joint_parameters import smoothing_factor
-from experiments.research.chkp_basis import KernelBasis, ModMatrixReference
+from experiments.research.chkp_basis import ModMatrixReference
 from experiments.research.first_suite.entropy import CheckedEntropy
 from experiments.research.gaussian_reference import SamplingAbort, draw_uniform_integer, interval_bounds
 from .scalar import MatrixFiniteOptions, MatrixFiniteGaussian, exact_integer, capped_exp_minus_pi
 from .gpv import MatrixFiniteGPV
+from .prime_gadget import prime_gadget_kernel
 
 VERSION = "IBME/MP12-STRUCTURED/1"
 MAX_PREFIX, MAX_COLUMNS, MAX_R_ENTRIES, MAX_BYTES = 512, 8192, 2**22, 32*2**20
@@ -187,15 +188,7 @@ def generate_structured_root(n, q, r_squared, *, rng=None, options=None):
 def gadget_block(q):
     """Complete prime-q binary gadget kernel, k-by-k only, shared by n blocks."""
     q = exact_integer(q, "gadget q", minimum=3, maximum=2**61-1)
-    if q % 2 == 0 or not ZZ(q).is_prime(proof=True):
-        raise ValueError("gadget block requires an odd prime")
-    k = (q-1).bit_length()
-    basis = matrix(ZZ, k, k)
-    for j in range(k-1):
-        basis[j, j], basis[j+1, j] = 2, -1
-    for i in range(k):
-        basis[i, k-1] = (q >> i) & 1
-    return KernelBasis(ModMatrixReference((tuple(2**i for i in range(k)),), q), basis)
+    return prime_gadget_kernel(q)
 
 
 def _output_width(trapdoor, r_squared):
@@ -213,7 +206,8 @@ class StructuredPreimageSampler:
     Perturbation covariance C=s^2 I-g^2 T T^t, T=[R;I]. Rejection proposes
     independent D_Z,s and weights by exp(-pi*x^t(C^-1-s^-2 I)*x).
     The precision correction uses only R and an mbar-square Schur inverse.
-    The paper's O(epsilon) convolution term is NOT a concrete total-TV bound.
+    Theorem5.5's two normalizer factors are expanded in mp12_bounds; the
+    resulting stochastic budget still excludes hardware and security claims.
     """
 
     def __init__(self, trapdoor, *, r_squared=None, output_squared=None,
@@ -325,9 +319,20 @@ class StructuredPreimageSampler:
                 self.last_trace["status"] = "aborted"
 
     def public_certificate(self):
+        from .mp12_bounds import sample_distribution_budget
         t = self.trapdoor
         proposal_tv = t.dimension*self.scalar.tv_upper
         weight_tv = self.scalar.weight_width+QQ(2)**(-self.options.mass_bits)
+        # Lemma5.3: GS^2 <= 5*(sqrt(B)+1)^2 <= 10*(B+1).
+        # Lemma2.3: smoothing_factor(D,b) exceeds ln(2D(1+2^b))/pi.
+        # This theoretical basis is not constructed or used for sampling.
+        target_smoothing = self.output_squared >= (
+            10*(t.frobenius_squared_bound+1)*smoothing_factor(t.dimension, self.epsilon_bits))
+        budget = sample_distribution_budget(dimension=t.dimension,
+            epsilon_bits=self.epsilon_bits, max_trials=self.max_trials,
+            proposal_scalar_tv=str(self.scalar.tv_upper), bernoulli_weight_error=str(weight_tv),
+            gadget_tv_total=str(min(QQ(1), t.n*self.gadget.tv_upper)),
+            target_smoothing_verified=bool(target_smoothing))
         return dict(profile=VERSION+"/SAMPLED", paper="MP12 section5.4, Algorithm3, Theorem5.5; H=I; Sigma_G=5I",
             n=t.n, q=t.q, prefix_dimension=t.prefix, gadget_columns=t.w, total_dimension=t.dimension,
             r_squared=str(self.r_squared), gadget_squared=str(self.gadget_squared), output_squared=str(self.output_squared),
@@ -337,7 +342,10 @@ class StructuredPreimageSampler:
             ideal_perturbation_abort_upper=str((QQ(3)/4)**self.max_trials),
             finite_perturbation_coupling_upper=str(min(QQ(1), self.max_trials*(proposal_tv+weight_tv))),
             gadget_finite_coupling_upper=str(min(QQ(1), t.n*self.gadget.tv_upper)),
-            concrete_convolution_theorem_term=None, full_sample_TV_or_failure_upper=None,
+            concrete_convolution_theorem_term=budget["convolution_tv_upper"],
+            distribution_budget=budget,
+            modeled_sample_TV_including_abort_upper=budget["modeled_sample_TV_including_abort_upper"],
+            full_sample_TV_or_failure_upper=None,
             arithmetic_resource_abort_upper=None,
             all_proposal_precision_rational_paths_admitted=True,
             finite_terms_assume_directed_MPFR_MPFI_weight_bound=True,

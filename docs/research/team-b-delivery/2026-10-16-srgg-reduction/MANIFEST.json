@@ -1,0 +1,153 @@
+{
+  "schema": "IBME/SRGG-REDUCTION-DELIVERY-MANIFEST/1",
+  "base_commit": "12b80d5a0d9a91a346ea26727076dfd15d0aa0d4",
+  "frozen_base_manifest": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/MANIFEST.json",
+  "files": [
+    {
+      "path": "experiments/research/candidates/srgg/native_sig.py",
+      "bytes": 15706,
+      "sha256": "a0791f0a3c483902f38baf0897e6a77620ea22429ca15e708807edb3f97d55ae"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/strong_structure.py",
+      "bytes": 4002,
+      "sha256": "62ec3be1e55239aa7ff659be96815722c4e54b18e0efe3e02f8dac2c152cdba1"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/classical_cost.py",
+      "bytes": 7403,
+      "sha256": "18f8a673156fddffbce6ca21179b19d7410b0b3c7f48a482d66a5e5ab5081268"
+    },
+    {
+      "path": "tests/test_srgg_native_sig.py",
+      "bytes": 9566,
+      "sha256": "bbf0541e4529bfd1f9b4695417874fa80f60df2c6f778940dd2be267ece20987"
+    },
+    {
+      "path": "tests/test_srgg_strong_structure.py",
+      "bytes": 2740,
+      "sha256": "cfbc40ab5a0d7fd1a4cf7c44bc5165f07815ed5642fdfec7fef1a5185357a3d0"
+    },
+    {
+      "path": "tests/test_srgg_classical_cost.py",
+      "bytes": 7846,
+      "sha256": "a67724b2138dd5465f4d832e2126cf41be2ceb2f2c6e6c3bfcd5c944d8a47f66"
+    },
+    {
+      "path": "experiments/research/srgg_reduction_delivery_check.py",
+      "bytes": 4383,
+      "sha256": "e42326d07c997e7cfd3788e98e9c4849ce4a7b5c70eaa28df2945089d83e1a6b"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/classical-cost-independent-final.junit.xml",
+      "bytes": 3103,
+      "sha256": "ea9ad6db43ac1dcd3d61c59b4b0ee14cf4a2bb9826653c75b1883fd481a338fe"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/classical-cost.json",
+      "bytes": 55851,
+      "sha256": "95e7dbbaa722f48b2cde159a5ffb958b78e7ab79517314aec59fb2d646e5ca72"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/classical-fs.md",
+      "bytes": 15597,
+      "sha256": "f4e58beec1b83371fef7069188c95e3c3161e0fde2514d2348952e4d8ea62bb6"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/native-sig-independent-tests.junit.xml",
+      "bytes": 4043,
+      "sha256": "3c4e0b0993565f6052415e6e57af3a06c9d972888ce75d4fa2920d021ee506b7"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/native-sig.json",
+      "bytes": 21277,
+      "sha256": "16a7f755ef7c747507751496614f3f513eacb6b1c3ea5e707485548a5dfa79e5"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/native-sig.md",
+      "bytes": 20177,
+      "sha256": "be78757a6d29ebc36553fbe34066e3c82ce0c8e05949e7e065c51898e39f20d2"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/README.md",
+      "bytes": 9872,
+      "sha256": "d196d634cefa6cf453364d7c0837cf4efb99afa9fd0f1a1d55afbee5f85f2390"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/sage-final.junit.xml",
+      "bytes": 101639,
+      "sha256": "0dedbe01de74c3cbb54e4a1e061b6b767f25460289d57a34f02e4f881fbe7adb"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/strong-games.md",
+      "bytes": 28975,
+      "sha256": "7139327e73da04ecab06b1f91b8264d6911a8015e59638546999ee61a9ca7fc4"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/strong-structure-independent-tests.junit.xml",
+      "bytes": 2051,
+      "sha256": "669c0f91e262c653af5b5e0239dac758397a62cd51fc177baab72c76c4b70b30"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/strong-structure.json",
+      "bytes": 8859,
+      "sha256": "e4b3ba5a933be575626f3b60f200aaeac3fe6ae079c49252fe22350d77d47a8d"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/target-signing.md",
+      "bytes": 14946,
+      "sha256": "7fada9299dd18385833979816315d8a3fc5977a82fbfdbab57dca4ac7d077fee"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/validation.json",
+      "bytes": 3820,
+      "sha256": "330af0f2937053b7fb0d61ced041871bdf32bae155388b1d264bfc19d6ed6b9f"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/windows-final.junit.xml",
+      "bytes": 8743,
+      "sha256": "38cc8dcafbcbcb7585462232c31edee220d93c91aa827454f6c9799334ed777e"
+    }
+  ],
+  "unchanged_dependencies": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/MANIFEST.json",
+      "bytes": 19579,
+      "sha256": "c5d97cbeb6acfdd9628254c4de75852681d777e48e6f2f1fffbcbdfea47fb21e"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge.json",
+      "bytes": 79078,
+      "sha256": "23534aec4f2a5d208d083e5830001318c072c6c4af157d6d3c27cc73b934033e"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/fiber_normalizers.py",
+      "bytes": 9750,
+      "sha256": "21a9072cd0243db7fd75d3af035dff23366652aba0bb59cfc8e7247acfae4461"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/psf_bridge.py",
+      "bytes": 17041,
+      "sha256": "98422dfcd35a167843972e90a2a92b31dc317cee85e81291b3aabb2889f704aa"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_execution.py",
+      "bytes": 38862,
+      "sha256": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_samplef.py",
+      "bytes": 18596,
+      "sha256": "8a4a82baea93b62a13f215d53d866eff5f6d083563a81dc9b21b51999931c10a"
+    },
+    {
+      "path": "experiments/research/candidates/wang_pw/hashing.py",
+      "bytes": 2416,
+      "sha256": "17ac4878d5b9541c21a1f5a4bac948248557e4a089b1f61a436df16970fa41a0"
+    }
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}

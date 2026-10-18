@@ -1,0 +1,170 @@
+{
+  "schema": "IBME/SRGG-CLASSICAL-ROM-DELIVERY-MANIFEST/1",
+  "base_commit": "63ea9fc22911ccc6a745ab3291bb491458b05eb1",
+  "frozen_base_manifest": "docs/research/team-b-delivery/2026-10-16-srgg-reduction/MANIFEST.json",
+  "frozen_base_manifest_sha256": "42429bfd961a8583d93fffb212da87e8b4dbc939a2b7e9d764de681297a106db",
+  "files": [
+    {
+      "path": "experiments/research/candidates/srgg/seeded_xof.py",
+      "bytes": 11922,
+      "sha256": "37b1f68ccd36d1c6c908e4d4e0e9348b3f78fa8e8fb54c82bad5523e5a4102d3"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/public_pairs.py",
+      "bytes": 8599,
+      "sha256": "524c49ac6855801eca696a9f8cb46cf2c1c2ad847d4f2ead8966ac507bb4ec9e"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/reduction_samplers.py",
+      "bytes": 10204,
+      "sha256": "ef0c2059689367d5d267c4acd84167617c97a8b0504dd1c9d4c9124e53e69717"
+    },
+    {
+      "path": "tests/test_srgg_seeded_xof.py",
+      "bytes": 8066,
+      "sha256": "d98471ef2134f7bdb3e224cd73e78bf48bbed994788cd2b8d26186083bcf1b1d"
+    },
+    {
+      "path": "tests/test_srgg_public_pairs.py",
+      "bytes": 6594,
+      "sha256": "aaa1a8fa5703668b251476267e1e741a34ed0498b948eea5bc12ae93b6020821"
+    },
+    {
+      "path": "tests/test_srgg_reduction_samplers.py",
+      "bytes": 8990,
+      "sha256": "bda54479db4b696832e23eaf697acd4c5e1d8510ec209c65b3d6a42d2c143f42"
+    },
+    {
+      "path": "experiments/research/srgg_classical_rom_delivery_check.py",
+      "bytes": 3208,
+      "sha256": "a36c0740c5a71ad6653566df2c2031b44a4186240968fc477ef2ba7d3c477c34"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/README.md",
+      "bytes": 6125,
+      "sha256": "0241430a8d008208539f10f026a934515a3f3a32a58ec3655cc9e0fede667e5b"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/seeded-xof.md",
+      "bytes": 15536,
+      "sha256": "3f8748158e1b6b76294af9721b6f76ce1661d17fe77c87957e0068c31b0ace99"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/public-pairs.md",
+      "bytes": 7116,
+      "sha256": "f61a99f53b871082b1913c8f35e0d93b8ffeda2ca4ee6fb47d51be39eaf36f79"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/direct-ibs.md",
+      "bytes": 29841,
+      "sha256": "6f0e04e3afe468d340ad8da7d7c513791706b1df0372513ed5d85fa0007f3760"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/effective-samplers.md",
+      "bytes": 7135,
+      "sha256": "12b7f6c5959351e9efb84c0c4f85d017fec48e7384f186d0ca1bdc8544508114"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/validation.json",
+      "bytes": 4407,
+      "sha256": "913603bca7ff2190228fddccb0875fa4db095b17c447543412202b24ff527592"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/seeded-xof.json",
+      "bytes": 5800,
+      "sha256": "a3e9eb7e14f53b89b6e96acaf1227c0f127b346f21e4bf5f4d53987ac511ef3c"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/public-pairs.json",
+      "bytes": 4659,
+      "sha256": "7396db04ad7dfeb2107b23a1a0eea7aef4b62e7c6256da87d5514cb290dd8a40"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/reduction-samplers.json",
+      "bytes": 22168,
+      "sha256": "245a103cee3e9d75398db90df3868e2a23d2d07af3693124907471efa4e98b35"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/sage-final.junit.xml",
+      "bytes": 115246,
+      "sha256": "77cb50cfd76469dfb11d51dfd24fc879c16b1673b9936a5b962f47a303a646bf"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/windows-components.junit.xml",
+      "bytes": 6000,
+      "sha256": "ea7e15fb185d64a2a5832e9b30f6bfb796f1962eea9ad7ae89a4718025157ff3"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/seeded-xof-independent.junit.xml",
+      "bytes": 3140,
+      "sha256": "b2bc0197670b0f079ffcfb9bdcd380143c73227d266bb9e27b4ff3797c17c66f"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/public-pairs-independent.junit.xml",
+      "bytes": 3087,
+      "sha256": "cc2de736b9ffd0480a1f654356c7b71069e6e896a412d1287cafc2a0e6cdc0fa"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/reduction-samplers-independent.junit.xml",
+      "bytes": 8061,
+      "sha256": "83bff23a04bf0996bbc68d392f942690f53b1d03150ef5ff9883d63b26538e30"
+    },
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-classical-rom/seeded-xof-metadata-final.junit.xml",
+      "bytes": 3140,
+      "sha256": "99e81f44ba0da9be8f391d4a89864818b6a930585c53e6141d8b979c42f2b082"
+    }
+  ],
+  "unchanged_dependencies": [
+    {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/integrated-bridge.json",
+      "bytes": 79078,
+      "sha256": "23534aec4f2a5d208d083e5830001318c072c6c4af157d6d3c27cc73b934033e"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/aggregate_budget.py",
+      "bytes": 13974,
+      "sha256": "ade4d313fefe5973030ac6ae29b4eb40bce83b440b7b8dee342ec789466b9a20"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/mixed_domain.py",
+      "bytes": 10910,
+      "sha256": "0248648d964a20d0ea4f6b3fc2cc3ae2a022c5f3fb38846171c86ee6dd4e8c76"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/structured_execution.py",
+      "bytes": 38862,
+      "sha256": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+    },
+    {
+      "path": "experiments/research/candidates/srgg/wide_scalar.py",
+      "bytes": 18555,
+      "sha256": "2f404dd95ec1c909c3c40dcc8b6e4b070d25864c2e2aaa0a80e8b291df5689ca"
+    },
+    {
+      "path": "experiments/research/candidates/wang_pw/hashing.py",
+      "bytes": 2416,
+      "sha256": "17ac4878d5b9541c21a1f5a4bac948248557e4a089b1f61a436df16970fa41a0"
+    },
+    {
+      "path": "experiments/research/gaussian_reference.py",
+      "bytes": 185,
+      "sha256": "0e003b3a813b9fbdf7919e98dcbf7906cf2676e54ac14d28ac6e826b28436f13"
+    },
+    {
+      "path": "src/ibme/core/encoding.py",
+      "bytes": 8373,
+      "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+    },
+    {
+      "path": "src/ibme/lattice/chkp/gaussian.py",
+      "bytes": 14680,
+      "sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c"
+    }
+  ],
+  "generated_reports": [
+    "seeded-xof.json",
+    "public-pairs.json",
+    "reduction-samplers.json"
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "schema": "IBME/SRGG-PROOF-FOLLOWUP-VALIDATION/1",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null,
+  "delivery_kind": "mod3 exact public-key projection and conditional reduction review",
+  "base_local_commit": "515ca5a554d8b4ed16bd0229d58f522246542ed5",
+  "required_test_suites": {
+    "new-crt-sage": {
+      "receipt": "sage.junit.xml",
+      "tests": 37,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "informational_test_suites": {
+    "windows": {
+      "receipt": "windows.junit.xml",
+      "tests": 37,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2,
+      "suite_seconds": "0.547",
+      "passed": 35,
+      "skipped_meaning": "two actual Sage quotient-ring checks require the specified WSL Sage environment"
+    }
+  },
+  "copied_evidence": [
+    {
+      "receipt": "crt-projection.json",
+      "original_sha256": "1622ab94e27b7f6b481b35287d05f98eaa68cceadc08a6999b8a309d48368ec8",
+      "original_path": "build/outputs/srgg-crt-review-2026-10-16/crt-projection-final.json",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "independent-mod3-enumeration.json",
+      "original_sha256": "4a26e58477f1a8c549a95055ee26cc5746e6e7308a14c2e75227ffce7faf5666",
+      "original_path": "build/outputs/srgg-crt-review-2026-10-16/independent-mod3-enumeration.json",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "parameter-collapse-gates.json",
+      "original_sha256": "ec4e0e0649d3bce7b825af56af9fa9a0e8fb7942dba3fe59c5337a1d5479356f",
+      "original_path": "build/outputs/srgg-crt-review-2026-10-16/parameter-collapse-gates.json",
+      "transformation": "byte-copy"
+    },
+    {
+      "receipt": "sage.junit.xml",
+      "original_sha256": "b0267641b911ae56be7f4e8c19e5f770eb58fda2d6b4a06d4274615091c98373",
+      "original_path": "build/outputs/srgg-crt-review-2026-10-16/projection-sage-final.junit.xml",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    },
+    {
+      "receipt": "windows.junit.xml",
+      "original_sha256": "226fec2c4697546126f136a8a3b308e3e9f304b47f7c2c05b9c25146deb7235b",
+      "original_path": "build/outputs/srgg-crt-review-2026-10-16/projection-windows-final.junit.xml",
+      "transformation": "remove JUnit hostname; XML serialization and LF"
+    }
+  ],
+  "commands": [
+    "python -m pytest -q tests/test_srgg_crt_projection.py --junitxml=build/outputs/srgg-crt-review-2026-10-16/projection-windows-final.junit.xml",
+    "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_crt_projection.py --junitxml=build/outputs/srgg-crt-review-2026-10-16/projection-sage-final.junit.xml",
+    "python -m experiments.research.candidates.srgg.crt_projection --output build/outputs/srgg-crt-review-2026-10-16/crt-projection-final.json",
+    "python -O -m experiments.research.candidates.srgg.crt_projection --output build/outputs/srgg-crt-review-2026-10-16/crt-projection-final-optimized.json"
+  ],
+  "normal_optimized_report_byte_identical": true,
+  "normal_optimized_original_report_sha256": "1622ab94e27b7f6b481b35287d05f98eaa68cceadc08a6999b8a309d48368ec8",
+  "prior_frozen_full_regression": {
+    "commit": "515ca5a",
+    "tests": 1266,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "rerun_this_crt_batch": false,
+    "meaning": "prior full regression remains evidence for its frozen source set; targeted 37 is a separate new suite, not a newly claimed full count"
+  },
+  "environment": {
+    "windows_python": "3.14.7",
+    "sage": "10.9",
+    "sage_python": "3.13.15",
+    "execution": "Windows zero-entropy checks and WSL2 Ubuntu24.04 specified Sage",
+    "host_cpu": "Intel Core Ultra 7 255HX",
+    "host_physical_cores": 20,
+    "host_logical_processors": 20,
+    "host_physical_memory_bytes": 33676681216,
+    "new_peak_RAM_measured": false
+  },
+  "new_experiments": {
+    "actual_entropy_bytes": 0,
+    "draw_performed": false,
+    "identity_length_bytes": null,
+    "message_length_bytes": null,
+    "random_repeats": null,
+    "new_keys_or_signatures_generated": false,
+    "quantum_device_or_simulator_run": false,
+    "large_candidate_executed": false
+  },
+  "proof_models": "classic namespace result in one declared ideal byte-XOF model; keyed quantum collapsing transformations require explicit additional conditions",
+  "review": "three AI agents and root mathematical/source cross review; no external human security audit",
+  "production_security_reduction_complete": false,
+  "native_strong_goal_retained": true,
+  "remote_push_performed": false,
+  "remaining": [
+    "complete conditional service-to-reference Delta0 and actual query/resource scope",
+    "H1 QROM and target signing game; actual ring-HNF collapsing or a proved alternative",
+    "complete ring/composite-Q/CBD1 hardness and formal parameters",
+    "new large candidate real lifecycle and resource acceptance"
+  ]
+}
