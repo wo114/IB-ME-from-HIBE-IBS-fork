@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="20" skipped="0" tests="20" time="11.427" timestamp="2026-10-18T22:11:46.094025+08:00" hostname="nomo"><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[positive-infinity-primal_usvp-classical]" time="0.413"><failure message="assert True is False">model = 'primal_usvp-classical', invalid = inf
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[positive-infinity-dual-classical]" time="0.298"><failure message="assert True is False">model = 'dual-classical', invalid = inf
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[positive-infinity-primal_usvp-quantum]" time="0.280"><failure message="assert True is False">model = 'primal_usvp-quantum', invalid = inf
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[positive-infinity-dual-quantum]" time="0.295"><failure message="assert True is False">model = 'dual-quantum', invalid = inf
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[negative-infinity-primal_usvp-classical]" time="0.322"><failure message="assert True is False">model = 'primal_usvp-classical', invalid = -inf
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[negative-infinity-dual-classical]" time="0.298"><failure message="assert True is False">model = 'dual-classical', invalid = -inf
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[negative-infinity-primal_usvp-quantum]" time="0.280"><failure message="assert True is False">model = 'primal_usvp-quantum', invalid = -inf
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[negative-infinity-dual-quantum]" time="0.279"><failure message="assert True is False">model = 'dual-quantum', invalid = -inf
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[nan-primal_usvp-classical]" time="0.313"><failure message="assert True is False">model = 'primal_usvp-classical', invalid = nan
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[nan-dual-classical]" time="0.288"><failure message="assert True is False">model = 'dual-classical', invalid = nan
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[nan-primal_usvp-quantum]" time="0.271"><failure message="assert True is False">model = 'primal_usvp-quantum', invalid = nan
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[nan-dual-quantum]" time="0.266"><failure message="assert True is False">model = 'dual-quantum', invalid = nan
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[bool-primal_usvp-classical]" time="0.263"><failure message="assert True is False">model = 'primal_usvp-classical', invalid = True
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[bool-dual-classical]" time="0.263"><failure message="assert True is False">model = 'dual-classical', invalid = True
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[bool-primal_usvp-quantum]" time="0.262"><failure message="assert True is False">model = 'primal_usvp-quantum', invalid = True
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[bool-dual-quantum]" time="0.279"><failure message="assert True is False">model = 'dual-quantum', invalid = True
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+        finalize_comparison(report)
+&gt;       assert row["comparison_estimates_complete"] is False
+E       assert True is False
+
+tests/test_abb_noise_tradeoff.py:130: AssertionError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[float-overflow-primal_usvp-classical]" time="0.312"><failure message="OverflowError: int too large to convert to float">model = 'primal_usvp-classical'
+invalid = 100000000000000000...0000000000000000000
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+&gt;       finalize_comparison(report)
+
+tests/test_abb_noise_tradeoff.py:129: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+report = {'schema': 'A/ABB-NOISE-TRADEOFF/1', 'fixed_inputs': {'q': '4113761393303015105387422956393376262456839664083949658371...ent_algorithm': 'ABB SampleR/BasisDel/RandBasis', 'leaf_algorithm': 'ABB BasisDel/fresh SamplePre per bit', ...}], ...}
+
+    def finalize_comparison(report):
+        """Fail closed: missing, errored, or infinite estimates never pass."""
+        candidates = []
+        for row in report["rows"]:
+            results = row.get("estimator_results", {}).get("ciphertext_lwe", {})
+            values = []
+            complete = True
+            for name in REQUIRED_ESTIMATES:
+                result = results.get(name)
+                if (not isinstance(result, dict) or result.get("status") != "finite_estimate" or
+                        not isinstance(result.get("rop_log2"), (int, float))):
+                    complete = False
+                    break
+&gt;               values.append(float(result["rop_log2"]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+E               OverflowError: int too large to convert to float
+
+experiments/research/abb_rom/noise_tradeoff_probe.py:233: OverflowError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[float-overflow-dual-classical]" time="0.430"><failure message="OverflowError: int too large to convert to float">model = 'dual-classical', invalid = 100000000000000000...0000000000000000000
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+&gt;       finalize_comparison(report)
+
+tests/test_abb_noise_tradeoff.py:129: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+report = {'schema': 'A/ABB-NOISE-TRADEOFF/1', 'fixed_inputs': {'q': '4113761393303015105387422956393376262456839664083949658371...ent_algorithm': 'ABB SampleR/BasisDel/RandBasis', 'leaf_algorithm': 'ABB BasisDel/fresh SamplePre per bit', ...}], ...}
+
+    def finalize_comparison(report):
+        """Fail closed: missing, errored, or infinite estimates never pass."""
+        candidates = []
+        for row in report["rows"]:
+            results = row.get("estimator_results", {}).get("ciphertext_lwe", {})
+            values = []
+            complete = True
+            for name in REQUIRED_ESTIMATES:
+                result = results.get(name)
+                if (not isinstance(result, dict) or result.get("status") != "finite_estimate" or
+                        not isinstance(result.get("rop_log2"), (int, float))):
+                    complete = False
+                    break
+&gt;               values.append(float(result["rop_log2"]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+E               OverflowError: int too large to convert to float
+
+experiments/research/abb_rom/noise_tradeoff_probe.py:233: OverflowError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[float-overflow-primal_usvp-quantum]" time="0.269"><failure message="OverflowError: int too large to convert to float">model = 'primal_usvp-quantum'
+invalid = 100000000000000000...0000000000000000000
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+&gt;       finalize_comparison(report)
+
+tests/test_abb_noise_tradeoff.py:129: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+report = {'schema': 'A/ABB-NOISE-TRADEOFF/1', 'fixed_inputs': {'q': '4113761393303015105387422956393376262456839664083949658371...ent_algorithm': 'ABB SampleR/BasisDel/RandBasis', 'leaf_algorithm': 'ABB BasisDel/fresh SamplePre per bit', ...}], ...}
+
+    def finalize_comparison(report):
+        """Fail closed: missing, errored, or infinite estimates never pass."""
+        candidates = []
+        for row in report["rows"]:
+            results = row.get("estimator_results", {}).get("ciphertext_lwe", {})
+            values = []
+            complete = True
+            for name in REQUIRED_ESTIMATES:
+                result = results.get(name)
+                if (not isinstance(result, dict) or result.get("status") != "finite_estimate" or
+                        not isinstance(result.get("rop_log2"), (int, float))):
+                    complete = False
+                    break
+&gt;               values.append(float(result["rop_log2"]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+E               OverflowError: int too large to convert to float
+
+experiments/research/abb_rom/noise_tradeoff_probe.py:233: OverflowError</failure></testcase><testcase classname="tests.test_abb_noise_tradeoff" name="test_comparison_rejects_invalid_numeric_estimates_in_every_model[float-overflow-dual-quantum]" time="0.267"><failure message="OverflowError: int too large to convert to float">model = 'dual-quantum', invalid = 100000000000000000...0000000000000000000
+
+    @pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+    @pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                             ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+    def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+        report = build_tradeoff_report((9600,), build_cdf=False)
+        row = report["rows"][0]
+        row["finite_noise_table_built"] = True
+        estimates = {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in REQUIRED_ESTIMATES
+        }
+        row["estimator_results"] = {"ciphertext_lwe": estimates}
+        finalize_comparison(report)
+        assert row["comparison_model_gate"] is True
+    
+        estimates[model]["rop_log2"] = invalid
+&gt;       finalize_comparison(report)
+
+tests/test_abb_noise_tradeoff.py:129: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+report = {'schema': 'A/ABB-NOISE-TRADEOFF/1', 'fixed_inputs': {'q': '4113761393303015105387422956393376262456839664083949658371...ent_algorithm': 'ABB SampleR/BasisDel/RandBasis', 'leaf_algorithm': 'ABB BasisDel/fresh SamplePre per bit', ...}], ...}
+
+    def finalize_comparison(report):
+        """Fail closed: missing, errored, or infinite estimates never pass."""
+        candidates = []
+        for row in report["rows"]:
+            results = row.get("estimator_results", {}).get("ciphertext_lwe", {})
+            values = []
+            complete = True
+            for name in REQUIRED_ESTIMATES:
+                result = results.get(name)
+                if (not isinstance(result, dict) or result.get("status") != "finite_estimate" or
+                        not isinstance(result.get("rop_log2"), (int, float))):
+                    complete = False
+                    break
+&gt;               values.append(float(result["rop_log2"]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+E               OverflowError: int too large to convert to float
+
+experiments/research/abb_rom/noise_tradeoff_probe.py:233: OverflowError</failure></testcase></testsuite></testsuites>

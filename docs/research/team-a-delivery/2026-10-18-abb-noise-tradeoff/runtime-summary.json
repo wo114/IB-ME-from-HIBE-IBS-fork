@@ -1,0 +1,49 @@
+{
+  "schema": "A/ABB-NOISE-TRADEOFF-RUNTIME/1",
+  "source_schema": "A/ABB-NOISE-TRADEOFF/1",
+  "measurements": {
+    "finite_cdf_build_seconds": 0.8550153090036474,
+    "total_seconds": 41.15126755498932,
+    "process_max_rss_kib": 304632
+  },
+  "environment": {
+    "python": "3.14.7",
+    "sage": "10.9",
+    "platform": "Linux-6.18.56-x86_64-with-glibc2.44",
+    "logical_cpus": 12
+  },
+  "parameters": {
+    "q": "411376139330301510538742295639337626245683966408394965837151957",
+    "q_bits": 208,
+    "scaled_noise_width": 721,
+    "identity_bytes_per_level": 86,
+    "seed_bytes": 32,
+    "independently_encrypted_bits": 256,
+    "encapsulations": 1048576,
+    "correctness_error_bits": 128,
+    "comparison_threshold_bits": 128
+  },
+  "row_count": 4,
+  "repetitions": 1,
+  "rng": "none; public arithmetic/CDF/estimator run",
+  "actual_finite_cdf_built": true,
+  "root_or_key_generations": 0,
+  "ciphertext_generations": 0,
+  "private_entropy_bytes": 0,
+  "comparison_model_candidates": [
+    "abb-rom-n9600-q208-chi721",
+    "abb-rom-n9728-q208-chi721",
+    "abb-rom-n10240-q208-chi721"
+  ],
+  "complete_runtime_candidates": [],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "limitations": [
+    "complete-basis representation is petabyte-scale for every tested row",
+    "no AP09 root, BasisDel key, ciphertext, Hybrid, or IB-ME runtime was attempted",
+    "BDD/hybrid, BKW, algebraic, multi-target, query, and reduction losses are not estimated",
+    "finite SampleR/BasisDel/SamplePre total TV, abort, and workspace remain unclosed",
+    "ROM instantiation and formal HIBE/Wang mappings remain unclosed"
+  ]
+}
