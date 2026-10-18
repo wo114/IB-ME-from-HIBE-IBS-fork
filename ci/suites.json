@@ -303,7 +303,8 @@
         "tests/test_prime_gadget.py",
         "tests/test_structured_identity_view.py",
         "tests/test_mp12_target_screen.py",
-          "tests/test_mp12_radix_screen.py",
+        "tests/test_mp12_radix_screen.py",
+        "tests/test_mp12_radix_runtime.py",
         "tests/test_mp12_distribution_budget.py",
         "tests/test_mp12_public_service_budget.py",
         "tests/test_mp12_blocked.py",
@@ -314,7 +315,7 @@
         "tests/test_mp12_structured_hibe.py",
         "tests/test_mp12_structured_assembly.py"
       ],
-      "scope": "Real structured MP12 Algorithm3/4 and full CHKP H/G, versioned finite192 noisy seed lifecycle, strict codec/fixed failure and domain rejection; packed big-q full-3m root/parent/256-leaf prototype, public coupled-radix feasibility screen, conditional sampler/service budgets and public gadget support; no formal-parameter or security admission."
+      "scope": "Real structured MP12 Algorithm3/4 and full CHKP H/G, versioned finite192 noisy seed lifecycle, strict codec/fixed failure and domain rejection; packed big-q full-3m root/parent/256-leaf prototype with separate opt-in high-radix profile, public coupled-radix screen and advisory hardware budgets, conditional sampler/service budgets and public gadget support; no formal-parameter or security admission."
     },
     {
       "id": "luo-composition-regression",

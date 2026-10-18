@@ -1,0 +1,12 @@
+{
+  "status": "resolved_before_private_work",
+  "code_source_commit": "7032c3b3aaec107170d49d583f052c866db01450",
+  "fixed_source_commit": "949bf91562489ca43e82626405a6f6c67c07a6f4",
+  "stage": "CLI parameter construction before run()",
+  "exception_type": "TypeError",
+  "reason": "inherited dataclass ClassVar override moved radix_bits before positional fields",
+  "private_directory_created": false,
+  "private_entropy_consumed": false,
+  "algorithm_attempts": 0,
+  "regression_test": "test_radix_cli_transfers_the_complete_parameter_tuple_before_generation"
+}

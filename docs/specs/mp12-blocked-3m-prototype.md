@@ -1,5 +1,7 @@
 # CHKP 3m 紧凑委派运行原型 v1
 
+2026-10-18增量：另有显式`RadixPrototypeParams`/`RadixPrototypeContext`，profile `IBME/MP12-RADIX-BLOCKED-3M/1`，radix_bits为2..32。它只扩展该根/父/256叶原型，不登记完整HIBE；本轮按剩余4天交付约束进行有界实测。以下二进制v1仍保留默认与原参数字节。
+
 该原型消费作者稿两层 CHKP 的完整 H/G：`w=n ceil(log2 q)`、`m=2n+w`，根 `n×m`、父 `n×2m`、叶 `n×3m`，固定叶实际采样 256 个位置。继续使用 MP12 Algorithm 3/4；没有切换 published 2m，也没有新增论文算法计数。代码入口为 `src/ibme/hibe/mp12_structured/blocked_prototype.py`，运行入口为 `experiments.research.blocked_3m_probe`。
 
 这是**根、父、固定叶及对象恢复的工程原型**，尚未登记共同 HIBEBackend，没有大模数 KEM、Hybrid/CLI 或完整 IB-ME 成功声明。现有 structured HIBE v1/v2、注册和 wire 保持原样。下一步完整加解密接入以本批实际资源结论为依据。
@@ -32,3 +34,11 @@
 按用户当前工作前提，所选论文算法安全、HIBE 身份匿名；本版继续完成参数、实现和资源核验，不新增安全/匿名证明任务。所有结果保留 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`；教学 n 不代表目标安全参数，功能测试不替代论文结论。
 
 实测使用指定 WSL `~/miniconda3/envs/sage/bin/python`，默认系统 CSPRNG；固定 TEST 熵只出现在测试。每阶段报告耗时、10 ms `/proc` 进程树 RSS 采样、内核累计 RSS 高水位、持久对象字节数和中止。采样 RSS 可能漏掉短峰值；累计高水位不冒称阶段独立峰值。完整评测数据与结论由 A 交付目录记录，`blocked_3m_projection` 只重算既有目标参数的编码字节数，不生成目标私钥、不补做安全估算。
+
+## 显式高基数增量
+
+`prime_gadget_kernel`、`PrimeGadgetSampler`、`generate_root`、`PackedTrapdoor`新增keyword `radix_bits=1`；默认保持二进制。令b=2^a，k=ceil(log_b q)，w=nk，t=b²+1。公开核格基使用b e_i−e_(i+1)和q的base-b digits，完整行列式q与GPV条件仍实际核验；g=t r²，输出平方宽为`max((t+2)r²(1+B),2t r²(w+B))`。根方程、逐列父委派和最终Rz全按同一b，父继承该基数。现有完整扰动、精确残差/权重区间、范数与资源中止保持；不补零、不省略H列。
+
+高基数原型的context/object magic与版本均独立，参数快照包含radix_bits，H/G上下文绑定该完整快照；相同矩阵形状也不能混读不同基数。父只保存自己的R；恢复按声明基数验证`A[R;I]=G_b`以及256叶全部方程。原二进制参数dataclass不增加序列化字段，旧收据参数快照仍逐字节对应。未改structured HIBE v1/v2、registry、默认CLI或协议。
+
+命令为既有`experiments.research.blocked_3m_probe --radix-bits 12`，默认1仍为原路径。每次指定新私有目录，失败/pending不重发。本轮每个实测调用外部GNU `timeout --signal=TERM --kill-after=10s 300s`，结束后只读恢复；超时保留原pending，单列为本次预算未完成，不据此否定算法。n4096/b4096/q93候选仍保留，但未放宽原型2^24项/8192维的运行门槛或启动高维钥生成。实际n属于研究小参数，同q或同基数不能继承目标困难性。后续是否继续实现完整KEM/后端，按当前四天交付安排和实测收益决定。
