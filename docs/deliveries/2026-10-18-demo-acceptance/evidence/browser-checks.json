@@ -1,0 +1,95 @@
+{
+  "schema": "IBME-DEMO-BROWSER-CHECKS/1",
+  "source_commit": "f2f232d61cc2fe8aed96396856c19e3101e04b4a",
+  "profiles": [
+    {
+      "profile": "cert-falcon",
+      "checks": [
+        {
+          "name": "正确双方",
+          "result": "✓\n恢复成功\n412 ms\n正确双方：接收者 Bob 与声称发送者 Alice 同时匹配密文身份 (Bob, Alice)。\n比赛演示验收：Alice → Bob ✅"
+        },
+        {
+          "name": "错误发送者",
+          "result": "×\nBOTTOM · 拒绝解密\n288 ms\n错误发送者：Bob 按声称发送者 Carol 派生 (Bob, Carol) 子密钥，与密文身份 (Bob, Alice) 不匹配。"
+        },
+        {
+          "name": "错误接收者",
+          "result": "×\nBOTTOM · 拒绝解密\n280 ms\n错误接收者：Carol 的密钥对应 (Carol, Alice)，与密文身份 (Bob, Alice) 不匹配。"
+        },
+        {
+          "name": "双方都错",
+          "result": "×\nBOTTOM · 拒绝解密\n281 ms\n双方都错：Carol 的密钥与声称发送者 Carol 都不匹配密文身份 (Bob, Alice)。"
+        },
+        {
+          "name": "篡改 1 bit",
+          "result": "×\nBOTTOM · 拒绝解密\n41 ms\n篡改 1 bit：完整外层字节被翻转 1 bit；当前配置由 BYTEAUTH 检查完整字节认证。"
+        },
+        {
+          "name": "截断 1 字节",
+          "result": "×\nBOTTOM · 拒绝解密\n35 ms\n截断 1 字节：密文末尾被截断 1 字节；下方显示当前配置实际返回的解析与验证结果。"
+        }
+      ]
+    },
+    {
+      "profile": "luo-module",
+      "checks": [
+        {
+          "name": "正确双方",
+          "result": "✓\n恢复成功\n427 ms\n正确双方：接收者 Bob 与声称发送者 Alice 同时匹配密文身份 (Bob, Alice)。\n比赛演示验收：Alice → Bob ✅"
+        },
+        {
+          "name": "错误发送者",
+          "result": "×\nBOTTOM · 拒绝解密\n331 ms\n错误发送者：Bob 按声称发送者 Carol 派生 (Bob, Carol) 子密钥，与密文身份 (Bob, Alice) 不匹配。"
+        },
+        {
+          "name": "错误接收者",
+          "result": "×\nBOTTOM · 拒绝解密\n326 ms\n错误接收者：Carol 的密钥对应 (Carol, Alice)，与密文身份 (Bob, Alice) 不匹配。"
+        },
+        {
+          "name": "双方都错",
+          "result": "×\nBOTTOM · 拒绝解密\n331 ms\n双方都错：Carol 的密钥与声称发送者 Carol 都不匹配密文身份 (Bob, Alice)。"
+        },
+        {
+          "name": "篡改 1 bit",
+          "result": "×\nBOTTOM · 拒绝解密\n77 ms\n篡改 1 bit：完整外层字节被翻转 1 bit；当前配置由 BYTEAUTH 检查完整字节认证。"
+        },
+        {
+          "name": "截断 1 字节",
+          "result": "×\nBOTTOM · 拒绝解密\n82 ms\n截断 1 字节：密文末尾被截断 1 字节；下方显示当前配置实际返回的解析与验证结果。"
+        }
+      ]
+    },
+    {
+      "profile": "cert-ml-dsa",
+      "checks": [
+        {
+          "name": "正确双方",
+          "result": "✓\n恢复成功\n427 ms\n正确双方：接收者 Bob 与声称发送者 Alice 同时匹配密文身份 (Bob, Alice)。\n比赛演示验收：Alice → Bob ✅"
+        },
+        {
+          "name": "错误发送者",
+          "result": "×\nBOTTOM · 拒绝解密\n280 ms\n错误发送者：Bob 按声称发送者 Carol 派生 (Bob, Carol) 子密钥，与密文身份 (Bob, Alice) 不匹配。"
+        },
+        {
+          "name": "错误接收者",
+          "result": "×\nBOTTOM · 拒绝解密\n287 ms\n错误接收者：Carol 的密钥对应 (Carol, Alice)，与密文身份 (Bob, Alice) 不匹配。"
+        },
+        {
+          "name": "双方都错",
+          "result": "×\nBOTTOM · 拒绝解密\n290 ms\n双方都错：Carol 的密钥与声称发送者 Carol 都不匹配密文身份 (Bob, Alice)。"
+        },
+        {
+          "name": "篡改 1 bit",
+          "result": "×\nBOTTOM · 拒绝解密\n36 ms\n篡改 1 bit：完整外层字节被翻转 1 bit；当前配置由 BYTEAUTH 检查完整字节认证。"
+        },
+        {
+          "name": "截断 1 字节",
+          "result": "×\nBOTTOM · 拒绝解密\n42 ms\n截断 1 字节：密文末尾被截断 1 字节；下方显示当前配置实际返回的解析与验证结果。"
+        }
+      ]
+    }
+  ],
+  "initial_primary_page_refresh_reconnect": true,
+  "service_restart_drops_ephemeral_session": true
+}
