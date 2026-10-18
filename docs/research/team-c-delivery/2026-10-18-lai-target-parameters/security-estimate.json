@@ -1,0 +1,116 @@
+{
+  "schema": "IBME/LAI/PLWE-ATTACKS/1",
+  "estimator_commit": "53da5982597709ba0fdf94ea37a84d822310fd84",
+  "model": "PLWE coefficient LWE, m=(l+k)n, Xs=D(2), Xe=D(4)",
+  "target_bits": 128,
+  "candidates": {
+    "c2-2048-2p38": {
+      "n": 2048,
+      "q": "274877976577",
+      "q_bits": 39,
+      "k": 39,
+      "m": 83968,
+      "shapes": {
+        "gsa": {
+          "classical": {
+            "attacks": {
+              "usvp": 169.94,
+              "bdd": 170.61,
+              "bdd_hybrid": 170.61,
+              "bdd_mitm_hybrid": 401.77,
+              "dual": 172.57,
+              "dual_hybrid": 171.42
+            },
+            "best": 169.94,
+            "seconds": 62.07
+          },
+          "quantum": {
+            "attacks": {
+              "usvp": 154.23,
+              "bdd": 154.91,
+              "bdd_hybrid": 154.91,
+              "bdd_mitm_hybrid": 386.03,
+              "dual": 156.62,
+              "dual_hybrid": 156.09
+            },
+            "best": 154.23,
+            "seconds": 65.16
+          }
+        },
+        "lgsa": {
+          "classical": {
+            "error": "ValueError: math domain error",
+            "seconds": 46.63
+          },
+          "quantum": {
+            "error": "ValueError: math domain error",
+            "seconds": 46.08
+          }
+        }
+      }
+    },
+    "c3-2048-2p39": {
+      "n": 2048,
+      "q": "549755904001",
+      "q_bits": 40,
+      "k": 40,
+      "m": 86016,
+      "shapes": {
+        "gsa": {
+          "classical": {
+            "attacks": {
+              "usvp": 164.1,
+              "bdd": 164.58,
+              "bdd_hybrid": 164.58,
+              "bdd_mitm_hybrid": 381.77,
+              "dual": 166.15,
+              "dual_hybrid": 165.35
+            },
+            "best": 164.1,
+            "seconds": 71.03
+          },
+          "quantum": {
+            "attacks": {
+              "usvp": 148.93,
+              "bdd": 149.41,
+              "bdd_hybrid": 149.41,
+              "bdd_mitm_hybrid": 366.57,
+              "dual": 150.79,
+              "dual_hybrid": 150.52
+            },
+            "best": 148.93,
+            "seconds": 64.41
+          }
+        },
+        "lgsa": {
+          "classical": {
+            "attacks": {
+              "usvp": 164.1,
+              "bdd": 164.58,
+              "bdd_hybrid": 164.58,
+              "bdd_mitm_hybrid": 381.77,
+              "dual": 166.15,
+              "dual_hybrid": 165.35
+            },
+            "best": 164.1,
+            "seconds": 70.47
+          },
+          "quantum": {
+            "attacks": {
+              "usvp": 148.93,
+              "bdd": 149.41,
+              "bdd_hybrid": 149.41,
+              "bdd_mitm_hybrid": 366.57,
+              "dual": 150.79,
+              "dual_hybrid": 150.52
+            },
+            "best": 148.93,
+            "seconds": 66.35
+          }
+        }
+      }
+    }
+  },
+  "security_claim": "none",
+  "backend_admitted": false
+}

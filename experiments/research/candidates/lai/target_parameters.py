@@ -45,10 +45,9 @@ CANDIDATES = (
 SELECTED = "c2-2048-2p38"
 
 # Pinned lattice-estimator 53da598, ADPS16 classical 0.292 / quantum 0.265,
-# LGSA, PLWE coefficient instance: n secret dimension, m=(l+k)n samples,
-# Xs=D(sigma), Xe=D(p*sigma).  Standard usvp/bdd/dual attacks only; the
-# heuristic hybrid variants hit an estimator domain error at these q and are
-# not claimed.
+# GSA shape model, PLWE coefficient instance: n secret dimension,
+# m=(l+k)n samples, Xs=D(sigma), Xe=D(p*sigma).  Complete GSA attack set;
+# the C2 LGSA hybrid path hits an estimator domain error and is not used.
 SECURITY_BITS = {
     "a-point-256-2p31": {"classical": 11.7, "quantum": 10.6},
     "c1-1024-2p35": {"classical": 74.2, "quantum": 67.3},
@@ -62,9 +61,10 @@ SECURITY_MODEL = dict(
     secret="discrete Gaussian sigma",
     error="discrete Gaussian p*sigma",
     cost_model="ADPS16 Core-SVP classical 0.292 / quantum 0.265, LGSA",
-    attacks="usvp, bdd, dual",
-    excluded="bdd_hybrid/bdd_mitm_hybrid/dual_hybrid (estimator math-domain error at these q)",
-    scope="heuristic screening; not a NIST level or HIBE security proof",
+    attacks="usvp, bdd, bdd_hybrid, bdd_mitm_hybrid, dual, dual_hybrid (GSA)",
+    excluded=("LGSA shape at C2: estimator math-domain error; GSA used for the complete "
+              "set. arora-gb/bkw denied as in the pinned screens."),
+    scope="heuristic screening with the complete GSA attack set; not a NIST level or HIBE security proof",
 )
 
 BASELINE_Q_MIN = 2 ** 30 * (279958552 / 248524837)  # q=2^30 probe failed by 13%
