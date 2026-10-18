@@ -441,6 +441,10 @@ number inferred from the fault-free bound.
 **Not closed.**
 
 * The unguarded `beta_bad` mass.
+* A uniform or averaged finite-chain/issuance TV over the whole `B`
+  population.  The `q_C` bound is a root-law distance; a `B \ G` root has no
+  per-root finite-chain certificate.  The guarded service avoids this by
+  accepting only `G`, where `delta_issue` applies.
 * The unchanged backend's non-retryable 64-attempt abort (only the one-attempt
   `q_C` bound is available).
 * Literal-density first issuance (`delta_issue=null`) and literal one-sign

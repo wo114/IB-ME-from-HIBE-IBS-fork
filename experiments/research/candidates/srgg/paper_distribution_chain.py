@@ -653,6 +653,10 @@ def build_report(*, lifecycle=False):
                  for p in PROFILES for i in INTERPRETATIONS],
         "null_ledger": [
             "unguarded beta_bad mass: null (guarded data-processing theorem does not need it)",
+            "uniform or average finite-chain/issuance TV over all B accepted roots: "
+            "null (B\\G per-root error is not bounded; only the root-law distance "
+            "to mu(.|A) is bounded by q_C/(1-q_A), and the guarded service "
+            "accepts only G)",
             "literal-density first issuance: null (gadget digit-normalizer gate fails)",
             "literal-density one sign call: trivial 1",
             "original backend 64-attempt abort: null (non-retryable failures)",

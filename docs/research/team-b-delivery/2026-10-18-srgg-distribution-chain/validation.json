@@ -69,15 +69,15 @@
       "functional_pass": true
     }
   ],
-  "report_sha256": "7c888b93caab3c891c35b387e4c2464195dedb9939c5245c2e6b7157d0967879",
+  "report_sha256": "531b67963978c05b33d27314ae700afa744a305a06228dfa9b8297090af2b5f1",
   "delivery_file_sha256": {
-    "README_zh-CN.md": "c545afaed146228b9159ae28c2f1c1e486683e913002daed2403b8017eb270e5",
+    "README_zh-CN.md": "3385f2e8e1b07bbabb916285e27144ddb902a3073b6eae99f9b214a5c4d3d8ef",
     "boundary-PARAM-I.json": "cb0936bb6dce3660e19945590127db29afd108e33e1dbf8c2f2d05ee2c75f3ca",
     "boundary-PARAM-II.json": "9c7c53d61695c8ed0737c8abe2975d56e6aeceec4f6292ec844b64674505d867",
     "boundary-PARAM-III.json": "f7e8723d7efcbe33a282a7c019c8f4ac441f1559f439cb20ef190551510de63d",
     "boundary_probe.py": "f746d0cd9d17e1e106dca2ac051ff75787d08d46adb4601d6003bf68b4a97423",
-    "distribution-chain.json": "7c888b93caab3c891c35b387e4c2464195dedb9939c5245c2e6b7157d0967879",
-    "proof.md": "b886a444c1a832217c9d118f8d9086913052923925a8a6a642d067ba93f9f642",
+    "distribution-chain.json": "531b67963978c05b33d27314ae700afa744a305a06228dfa9b8297090af2b5f1",
+    "proof.md": "4a4e4ed557d017fd27f03c8890dbffc770122ee4fd927fa98c6e869c4c7216fb",
     "verify_delivery.py": "a107ea5b1bb64e31aadfa55e32bfa6e3c231de8353dde78a3e3e202299efcda4"
   },
   "scope": "functional tests, exact finite TV bounds and deterministic boundary probes; not a security proof",

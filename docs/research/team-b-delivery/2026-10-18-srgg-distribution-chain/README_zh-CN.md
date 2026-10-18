@@ -108,6 +108,8 @@ TV(guarded issue + s signs) ≤ min(1, δ_issue + s·ε_good).
 ## 仍为 null（不静默置零）
 
 - 无 guard 的 `beta_bad` 质量；只有严格正性，没有数值上界。
+- 全部 `B` 接受根上的有限链/发钥统一或平均界：`q_C` 只是根律距离；
+  `B\G` 的每根误差仍未界定，guarded 服务只接受 `G`。
 - 原后端非重试 64 次中止；只有单次 `q_C`。
 - 字面 density 解释的首发钥 `δ_issue`（gadget digit-normalizer 充分门失败）
   与单次签名（平凡 `1`）。
