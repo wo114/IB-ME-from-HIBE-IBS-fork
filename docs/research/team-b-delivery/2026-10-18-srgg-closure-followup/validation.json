@@ -1,0 +1,30 @@
+{
+  "schema": "IBME/SRGG-CLOSURE-FOLLOWUP-VALIDATION/1",
+  "baseline_commit": "e38b2ea90ba7457ef496822d68db062beee92fff",
+  "date": "2026-10-18",
+  "full_regression": {
+    "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg*.py",
+    "working_directory": "repository root in WSL",
+    "passed": 1714,
+    "failed": 0,
+    "exit_code": 0,
+    "duration_seconds": 375.37,
+    "stdout_saved_in_this_package": false
+  },
+  "new_receipts": {
+    "schur_fixed_root_numerical_and_ideal_normalizer_rows": 6,
+    "setup_original_profiles": 3,
+    "prime_square_hensel_factors": 16
+  },
+  "parameter_scope": "original SRGG Table 4, both explicit Gaussian interpretations; no HIBE",
+  "source_schur_finite_full_tv_upper": null,
+  "accepted_setup_root_distribution_bound": null,
+  "actual_structural_attack_cost": null,
+  "full_history_law_bound": null,
+  "author_C_ANS_1000_run_reproduced": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null,
+  "pushed": false
+}
