@@ -15,7 +15,8 @@ Table 4 values in ``PaperParams`` are not changed by this package.
 from __future__ import annotations
 
 __all__ = [
-    "Backend", "SourceSchurBackend", "SourceSchurFixedIssuer", "FixedIssuer",
+    "Backend", "SourceSchurBackend", "GuardedSourceSchurBackend",
+    "SourceSchurFixedIssuer", "GuardedSourceSchurFixedIssuer", "FixedIssuer",
     "PublicKey", "MasterSecret", "SigningKey", "Signature", "backend_spec",
 ]
 
@@ -27,11 +28,20 @@ def __getattr__(name):
     if name in {"Backend", "SourceSchurBackend"}:
         from experiments.research.candidates.srgg import paper_schur_backend
         return getattr(paper_schur_backend, name)
+    if name == "GuardedSourceSchurBackend":
+        from .guarded import GuardedSourceSchurBackend
+        return GuardedSourceSchurBackend
     if name in {"PublicKey", "MasterSecret", "SigningKey", "Signature"}:
         from experiments.research.candidates.srgg import paper_objects
         return getattr(paper_objects, name)
-    if name in {"SourceSchurFixedIssuer", "FixedIssuer"}:
-        from .service import FixedIssuer, SourceSchurFixedIssuer
-        return {"SourceSchurFixedIssuer": SourceSchurFixedIssuer,
-                "FixedIssuer": FixedIssuer}[name]
+    if name in {"SourceSchurFixedIssuer", "GuardedSourceSchurFixedIssuer",
+                "FixedIssuer"}:
+        from .service import (
+            FixedIssuer, GuardedSourceSchurFixedIssuer, SourceSchurFixedIssuer,
+        )
+        return {
+            "SourceSchurFixedIssuer": SourceSchurFixedIssuer,
+            "GuardedSourceSchurFixedIssuer": GuardedSourceSchurFixedIssuer,
+            "FixedIssuer": FixedIssuer,
+        }[name]
     raise AttributeError(name)

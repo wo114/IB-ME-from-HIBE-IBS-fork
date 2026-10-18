@@ -13,12 +13,20 @@ pytest.importorskip("sage.all", reason="specified WSL Sage required")
 from ibme.core.errors import InvalidParameterError, SerializationError
 from ibme.core.randomness import DeterministicRandom
 from ibme.assembly.registry import BackendRegistry
+from ibme.ibs.srgg_paper import guarded as guarded_module
+from ibme.ibs.srgg_paper.guarded import GuardedSourceSchurBackend
 from ibme.ibs.srgg_paper.registration import (
     BACKEND_ID, backend_spec, check_object, signature_size,
 )
-from ibme.ibs.srgg_paper.service import SourceSchurFixedIssuer
+from ibme.ibs.srgg_paper.service import (
+    GuardedSourceSchurFixedIssuer, SourceSchurFixedIssuer,
+)
+from experiments.research.candidates.srgg.paper_distribution_chain import (
+    ChainCertificateError,
+)
 from experiments.research.candidates.srgg.paper_parameters import PaperParams
 from experiments.research.candidates.srgg.paper_schur_backend import SourceSchurBackend
+from experiments.research.gaussian_reference import SamplingAbort
 
 
 class NoRead:
@@ -117,3 +125,32 @@ def test_source_schur_fixed_issuer_persists_and_reopens_without_entropy(tmp_path
         issuer.path, SourceSchurBackend(rng=NoRead()),
         expected_public=public, expected_params=params)
     assert reopened.key_extract(b"Alice").to_bytes() == key.to_bytes()
+
+def test_guarded_backend_runs_a_real_table4_lifecycle():
+    params = PaperParams("PARAM-I", "literal-density-width")
+    backend = GuardedSourceSchurBackend(
+        rng=DeterministicRandom(b"paper-baseline-PARAM-I-literal-density-width"))
+    public, master = backend.setup(params)
+    key = backend.key_extract(master, b"Alice")
+    message = b"guarded paper source-Schur lifecycle"
+    signature = backend.sign(key, message)
+    assert backend.verify(public, b"Alice", message, signature) is True
+    assert backend.verify(public, b"Bob", message, signature) is False
+
+
+def test_guarded_root_gate_failure_is_retryable(monkeypatch):
+    def fail(*_args, **_kwargs):
+        raise ChainCertificateError("injected root gate failure")
+    monkeypatch.setattr(guarded_module, "require_gates", fail)
+    backend = GuardedSourceSchurBackend(
+        rng=DeterministicRandom(b"paper-source-schur-guarded-retry"),
+        setup_max_attempts=1)
+    with pytest.raises(SamplingAbort):
+        backend.setup(PaperParams("PARAM-I", "literal-density-width"))
+    assert backend.setup_attempts == 1
+
+
+def test_guarded_service_defaults_to_guarded_backend(tmp_path):
+    issuer = GuardedSourceSchurFixedIssuer(tmp_path / "guarded")
+    assert type(issuer.backend) is GuardedSourceSchurBackend
+    assert not issuer.path.exists()

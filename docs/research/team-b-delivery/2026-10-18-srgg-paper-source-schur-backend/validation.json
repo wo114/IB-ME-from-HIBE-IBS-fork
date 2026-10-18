@@ -1,0 +1,85 @@
+{
+  "schema": "IBME/SRGG-PAPER-SOURCE-SCHUR-BACKEND/1",
+  "baseline_commit": "cd31389f91e5",
+  "branch": "codex/srgg-dist-chain-deepseek-2026-10-18",
+  "worktree": "C:/Users/A/.codex/worktrees/srgg-dist-chain-2026-10-18/IB-ME-from-HIBE-IBS",
+  "scope": "paper source-Schur SRGG IBS caller-owned backend, service wrapper and optional distribution-chain guard",
+  "table4_unchanged": {
+    "degree": 512,
+    "p": 16383,
+    "base": 31,
+    "digits_w": 2,
+    "q": 961,
+    "Q": 15744063,
+    "ranks": {"PARAM-I": 2, "PARAM-II": 3, "PARAM-III": 4},
+    "gaussian_readings": ["table-standard-deviation", "literal-density-width"],
+    "factor": 1,
+    "note": "PaperParams values, widths and algorithms are imported unchanged; only adapters and tests were added."
+  },
+  "added_files": [
+    "src/ibme/ibs/srgg_paper/__init__.py",
+    "src/ibme/ibs/srgg_paper/registration.py",
+    "src/ibme/ibs/srgg_paper/service.py",
+    "src/ibme/ibs/srgg_paper/guarded.py",
+    "tests/test_srgg_paper_source_schur_registration.py",
+    "docs/research/team-b-delivery/2026-10-18-srgg-paper-source-schur-backend/README_zh-CN.md"
+  ],
+  "default_routes_unchanged": {
+    "global_default_ibs": "srgg2025 (Config degree-8 research profile, zeta2/factor2)",
+    "old_paper_service_default": "srgg_paper_service.FixedIssuer remains joint unless a backend is supplied",
+    "new_source_schur_access": "caller-owned BackendSpec srgg2025-source-schur and SourceSchurFixedIssuer/GuardedSourceSchurFixedIssuer",
+    "reason": "Avoid silent changes to frozen evidence and to the global catalog; the new backend is selectable via an explicit registry."
+  },
+  "registration": {
+    "backend_id": "srgg2025-source-schur",
+    "version": "SRGG-paper-source-schur-v1",
+    "factory": "experiments.research.candidates.srgg.paper_schur_backend.SourceSchurBackend",
+    "presets": [
+      "PARAM-I-table-standard-deviation",
+      "PARAM-I-literal-density-width",
+      "PARAM-II-table-standard-deviation",
+      "PARAM-II-literal-density-width",
+      "PARAM-III-table-standard-deviation",
+      "PARAM-III-literal-density-width"
+    ],
+    "signature_formats": ["reference", "canonical-json-v1"],
+    "object_parameter_binding": "full-parameter-snapshot",
+    "key_binding": true,
+    "persistent_identity_cache": true
+  },
+  "guarded_variant": {
+    "backend": "GuardedSourceSchurBackend",
+    "service": "GuardedSourceSchurFixedIssuer",
+    "setup_gate_failure": "RootGateRejection subclass of WitnessGeometryError; retried by the unchanged Setup loop",
+    "signing_gate_failure": "SigningKeyGateRejection; fixed key aborts, no redraw",
+    "scope": "service/accept-set policy; does not modify Table 4, paper algorithms or object formats"
+  },
+  "commands": [
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_source_schur_registration.py",
+      "result": "8 passed in 19.32s"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_source_schur_registration.py tests/test_srgg_paper_backend.py tests/test_srgg_paper_service.py",
+      "result": "86 passed in 166.44s"
+    }
+  ],
+  "environment": {
+    "platform": "WSL2",
+    "python": "3.13.15",
+    "sage": "10.9",
+    "wsl_sage": "~/miniconda3/envs/sage"
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null,
+  "known_nulls": [
+    "uniform/average finite-chain or issuance TV over all B accepted roots",
+    "literal-density first issuance delta_issue",
+    "unguarded beta_bad mass",
+    "fault-probability model and faulty complete histories",
+    "exact author SampleZ/C implementation correspondence",
+    "native strong security, structural hardness, formal parameter admission, NIST category"
+  ]
+}

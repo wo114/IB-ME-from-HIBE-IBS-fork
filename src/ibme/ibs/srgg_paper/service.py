@@ -16,8 +16,9 @@ from ibme.ibs.srgg_paper_service import (
 )
 
 __all__ = [
-    "FixedIssuer", "SourceSchurFixedIssuer", "IssuerStateError",
-    "IssuerPendingError", "IssuerCapacityError", "StateBusyError",
+    "FixedIssuer", "SourceSchurFixedIssuer", "GuardedSourceSchurFixedIssuer",
+    "IssuerStateError", "IssuerPendingError", "IssuerCapacityError",
+    "StateBusyError",
 ]
 
 
@@ -30,4 +31,18 @@ class SourceSchurFixedIssuer(FixedIssuer):
                 SourceSchurBackend,
             )
             backend = SourceSchurBackend()
+        super().__init__(path, backend, **kwargs)
+
+
+class GuardedSourceSchurFixedIssuer(FixedIssuer):
+    """Fixed issuer defaulting to the guarded paper source-Schur backend.
+
+    Setup gate failures are ``RootGateRejection`` (retryable by the unchanged
+    Setup loop).  Signing-plan gate failures abort the fixed key.
+    """
+
+    def __init__(self, path, backend=None, **kwargs):
+        if backend is None:
+            from .guarded import GuardedSourceSchurBackend
+            backend = GuardedSourceSchurBackend()
         super().__init__(path, backend, **kwargs)
