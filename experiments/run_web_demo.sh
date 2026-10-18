@@ -21,4 +21,14 @@ fi
 export IBME_LATTE3_EXECUTABLE="${IBME_LATTE3_EXECUTABLE:-$native_root/latte/bin/ibme-latte3}"
 export IBME_CERTIFIED_SIGNATURE_BIN_DIR="${IBME_CERTIFIED_SIGNATURE_BIN_DIR:-$native_root/mldsa/bin}"
 export IBME_CERTIFIED_FALCON_BIN_DIR="${IBME_CERTIFIED_FALCON_BIN_DIR:-$native_root/falcon/bin}"
+if [[ "${1:-}" == '--wheel' ]]; then
+  shift
+  if [[ $# -eq 0 ]]; then
+    echo '--wheel 需要本地 IB-ME wheel 文件路径。' >&2
+    exit 2
+  fi
+  runtime_wheel="$1"
+  shift
+  exec "$sage_python" "$project_root/experiments/research/wsl_wheel_runtime.py" --wheel "$runtime_wheel" -- "$@"
+fi
 exec "$sage_python" -m ibme.webui "$@"
