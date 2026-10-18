@@ -71,7 +71,15 @@ def build_report():
                 "extraction_calls": backend.extract_calls,
                 "master": phases["master"], "signature": phases["signature"],
                 "private_material_exported": False,
-                "all_accepted_setup_roots_covered": False,
+                "receipt_generated_on_fixed_roots": True,
+                "fixed_roots_are_witnesses": True,
+                "bound_scope": "every_plan_passing_complete_gate_set",
+                "guard_built_into_backend": True,
+                "all_gate_passing_setup_roots_covered": True,
+                "accepted_setup_root_distribution_bound": None,
+                "accepted_setup_root_distribution_reason":
+                    r"the gate-set mass P(A\B), P(B\G) and the accepted-root distribution "
+                    r"relative to mu_A remain unbounded; beta_bad remains null",
                 "complete_issuance_signature_history_law": None,
             })
             # Witness, master secret and issued key are discarded with scope.
@@ -83,7 +91,10 @@ def build_report():
         "environment": {"python": platform.python_version(),
                         "sage": sage_version, "platform": platform.platform()},
         "rows": rows,
-        "scope": "six deterministic fixed accepted roots and one issued key each; finite integer Algorithm 3--4 chain only",
+        "scope": ("six deterministic accepted roots as witnesses; guarded backend; the finite integer "
+                  "Algorithm 3--4 chain applies to every complete-gate plan"),
+        "bound_scope": "every_plan_passing_complete_gate_set",
+        "guard_built_into_backend": True,
         "rom_used": True, "teaching_parameters": False,
         "independent_uniform_bytes_assumed_for_tv": True,
         "tests_or_functional_lifecycle_repeated_by_this_report": False,

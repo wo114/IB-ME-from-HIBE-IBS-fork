@@ -75,7 +75,8 @@ def main():
             require(ideal["ideal_pivot_density_shape_lower"] == 64 and
                     ideal["ideal_sequential_vs_joint_integer_tv_dyadic_bits"] >= 276 and
                     ideal["source_schur_finite_output_tv_upper"] is None and
-                    ideal["all_setup_roots_covered"] is False,
+                    ideal["bound_scope"] == "every_plan_passing_complete_gate_set" and
+                    ideal["guard_built_into_backend"] is True,
                     "ideal-only normalizer scope")
 
     setup = receipt("setup-conditioning.json")

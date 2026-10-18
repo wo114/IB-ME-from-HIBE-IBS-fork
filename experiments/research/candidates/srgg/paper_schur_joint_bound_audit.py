@@ -34,7 +34,7 @@ _GATE_SCOPE = {
 }
 _GATE_MASS_REASON = (r"the gate-set mass P(A\B), P(B\G) and the accepted-root "
                      r"distribution relative to mu_A remain unbounded; beta_bad remains null")
-FINITE_REPORT_SHA256 = "ac706a605412e8620030a5fa531d14a25ced3d7d974b6831981f47dcd5649620"
+FINITE_REPORT_SHA256 = "a3a904c1b683f6c8abb62eece28548a5f1cee3a15a111ce9e1734f54d179d07b"
 SOURCE_FILES = (
     "experiments/research/candidates/srgg/paper_schur_convolution.py",
     "experiments/research/candidates/srgg/paper_schur_joint_bound_audit.py",

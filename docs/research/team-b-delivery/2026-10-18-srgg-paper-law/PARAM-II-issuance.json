@@ -43,7 +43,7 @@
       "private_spectra_and_witness_exported": false,
       "root_redraws": 0,
       "sampler_draws": 0,
-      "scope": "this fixed root only; no setup-output-distribution guarantee",
+      "scope": "guarded gate-set scope; this fixture root is a witness and no gate-mass distribution bound is claimed",
       "status": "certified"
     },
     "center_formula": "mu(u)=nu*T*Sigma^-1*u; generally nonzero",

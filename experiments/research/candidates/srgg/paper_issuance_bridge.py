@@ -63,7 +63,8 @@ def fixed_root_c_gate(geometry, *, lower_bound=64, precision_bits=192):
         "method": "directed interval FFT and Hermitian LDL of (1-lambda/nu)I-nu*T*Sigma^-1*T",
         "private_spectra_and_witness_exported": False,
         "sampler_draws": 0, "root_redraws": 0,
-        "scope": "this fixed root only; no setup-output-distribution guarantee",
+        "scope": ("guarded gate-set scope; this fixture root is a witness and no "
+                  "gate-mass distribution bound is claimed"),
     }
     if threshold <= 0:
         result["status"] = "coarse-bound-not-certified"

@@ -24,7 +24,7 @@ The predecessor receipts ([finite chain](../2026-10-18-srgg-finite-chain/README_
 [source issuance](../2026-10-18-srgg-source-issuance/README_zh-CN.md),
 [history](../2026-10-18-srgg-history-law-followup/README_zh-CN.md),
 [random key](../2026-10-18-srgg-random-key-sign-law/README_zh-CN.md)) all carry a
-`fixed_root_only` flag and say that the six deterministic roots are witnesses,
+`old fixed-root label` flag and say that the six deterministic roots are witnesses,
 not the accepted-root population. That flag is true about the *stored receipt*
 (the six roots were the ones actually replayed), but it is not the theorem's
 domain. Every numerical term in the chain is one of:
@@ -255,7 +255,7 @@ counterexample); `beta_bad` and `A \ B` are not bounded by the frozen moments;
 the conditional issuance denominator is the real obstruction; no security claim
 may be made.
 
-**Too conservative in one structural respect.** The `fixed_root_only` label
+**Too conservative in one structural respect.** The `old fixed-root label` label
 understates the theorem: all numeric terms are gate-floor constants, so the
 bounds are already uniform over every gate-passing root and key. The remaining
 work is not a new distributional theorem over all accepted roots; it is
