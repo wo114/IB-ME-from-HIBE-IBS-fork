@@ -8,7 +8,7 @@ the six-root receipts are witnesses, not the theorem's domain.  The theorem is
 uniform over every root and key that passes the same audit gates.
 
 The original backend does not run ``SchurNumericalAudit`` during Setup or before
-signing.  ``GuardedSourceSchurBackend`` adds that audit as an explicit accept
+signing.  ``SourceSchurBackend`` adds that audit as an explicit accept
 condition: Setup retries a gate failure (as a root rejection), while signing
 aborts for a key that fails the signing gate.  The probabilities of those
 rejections are *not* bounded here; they remain explicit null fields.  The
@@ -57,7 +57,7 @@ class GateFailure(ValueError):
 
 
 class RootGateRejection(WitnessGeometryError):
-    """A Setup attempt passes the backend but fails the audit gates.
+    """A Setup attempt fails the complete gate set.
 
     It subclasses the original geometry rejection so the unchanged Setup retry
     loop treats it as another rejected root.  It is *not* a claim about the
@@ -134,41 +134,6 @@ def require_gates(plan, *, params=None, gadget=None, root_phase=False):
             raise GateFailure("finite-key object/service envelope failed: " + str(error)) from error
         extras = {"c_gate": c_gate, "object_guard": object_guard}
     return audit, n, leaves, extras
-
-
-class GuardedSourceSchurBackend(SourceSchurBackend):
-    """The unchanged paper backend plus an explicit full-gate accept set."""
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.gate_rejections = 0
-        self.last_master_gate_audit = None
-        self.last_sign_gate_audit = None
-        self.last_master_gate_extras = None
-        self.last_sign_gate_extras = None
-
-    def _master_plan(self, params, witness):
-        plan = super()._master_plan(params, witness)
-        try:
-            gadget, _scalar = self._components(params)
-            audit, _degree, _leaves, extras = require_gates(
-                plan, params=params, gadget=gadget, root_phase=True)
-        except GateFailure as error:
-            self.gate_rejections += 1
-            raise RootGateRejection("Setup audit gate rejected root: " + str(error)) from error
-        self.last_master_gate_audit = audit
-        self.last_master_gate_extras = extras
-        return plan
-
-    def _sign_plan(self, key):
-        plan = super()._sign_plan(key)
-        try:
-            audit, _degree, _leaves, extras = require_gates(plan)
-        except GateFailure as error:
-            raise SigningKeyGateRejection("signing-key audit gate failed: " + str(error)) from error
-        self.last_sign_gate_audit = audit
-        self.last_sign_gate_extras = extras
-        return plan
 
 
 def uniform_phase_bound(plan, interpretation):
@@ -344,7 +309,7 @@ def _root_seed(profile, interpretation):
 def build_row(profile, interpretation, *, seed=None, check_uniformity=True):
     params = PaperParams(profile, interpretation)
     seed = _root_seed(profile, interpretation) if seed is None else seed
-    backend = GuardedSourceSchurBackend(rng=DeterministicRandom(seed))
+    backend = SourceSchurBackend(rng=DeterministicRandom(seed))
     public, master = backend.setup(params)
     master_plan = backend._master_plan(params, master.witness)
     master_phase = uniform_phase_bound(master_plan, interpretation)
@@ -357,7 +322,7 @@ def build_row(profile, interpretation, *, seed=None, check_uniformity=True):
     uniformity = None
     if check_uniformity:
         other_seed = ("uniformity-" + profile + "-" + interpretation).encode("ascii")
-        other = GuardedSourceSchurBackend(rng=DeterministicRandom(other_seed))
+        other = SourceSchurBackend(rng=DeterministicRandom(other_seed))
         other_public, other_master = other.setup(params)
         other_phase = uniform_phase_bound(other._master_plan(params, other_master.witness),
                                           interpretation)
@@ -478,7 +443,7 @@ def probe_sign_gate_mass(profile, interpretation, count=3):
     accepted = rejected = 0
     for index in range(count):
         seed = ("sign-gate-mass-" + profile + "-" + interpretation + "-" + str(index)).encode("ascii")
-        backend = GuardedSourceSchurBackend(rng=DeterministicRandom(seed))
+        backend = SourceSchurBackend(rng=DeterministicRandom(seed))
         try:
             _public, master = backend.setup(params)
             key = backend.key_extract(master, b"Alice")
@@ -530,7 +495,7 @@ def build_report():
             "successful finite-key object/service byte envelope (raw and HNF key within 256 bits)",
         ],
         "guard_construction":
-            "GuardedSourceSchurBackend runs SchurNumericalAudit, the finite-chain source gates, the "
+            "SourceSchurBackend runs SchurNumericalAudit, the finite-chain source gates, the "
             "issuance C gate and the finite-key object/service envelope at Setup, and the Schur/audit "
             "gates before signing. Setup treats a gate failure as a root rejection/retry; signing treats "
             "it as a fixed-key abort. The original backend runs none of these execute-time gates.",

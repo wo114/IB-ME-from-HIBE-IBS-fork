@@ -1,20 +1,21 @@
-"""Guarded source-Schur issuer path: initialize, first key, reopen.
+"""Default paper issuer: guarded source-Schur backend, initialize/reopen.
 
-The original v1 issuer/backend files are frozen evidence and are not modified.
-This test exercises the corrected live path and its complete-gate record.
-Run in the designated WSL Sage environment.
+The separate guarded-service module was removed; `FixedIssuer` now defaults to
+the guarded `SourceSchurBackend`.  Run in the designated WSL Sage environment.
 """
 from __future__ import annotations
 
 import pytest
 
 from experiments.research.candidates.srgg.paper_parameters import PaperParams
-from ibme.ibs.srgg_paper_service_guarded import GuardedSourceSchurIssuer
+from experiments.research.candidates.srgg.paper_schur_backend import SourceSchurBackend
+from ibme.ibs.srgg_paper_service import FixedIssuer
 
 
-def test_guarded_issuer_initializes_and_issues_under_complete_gates(tmp_path):
+def test_default_issuer_is_guarded_source_schur(tmp_path):
     params = PaperParams("PARAM-I", "table-standard-deviation")
-    issuer = GuardedSourceSchurIssuer(tmp_path / "issuer")
+    issuer = FixedIssuer(tmp_path / "issuer")
+    assert isinstance(issuer.backend, SourceSchurBackend)
     public = issuer.initialize(params, max_users=1)
     key = issuer.key_extract(b"Alice")
     assert key.identity == b"Alice"
@@ -26,15 +27,14 @@ def test_guarded_issuer_initializes_and_issues_under_complete_gates(tmp_path):
     assert issuer.backend.gate_rejections == 0
 
 
-def test_guarded_issuer_reopens_the_same_state(tmp_path):
+def test_default_issuer_reopens_the_same_state(tmp_path):
     params = PaperParams("PARAM-I", "table-standard-deviation")
     path = tmp_path / "issuer"
-    first = GuardedSourceSchurIssuer(path)
+    first = FixedIssuer(path)
     public = first.initialize(params, max_users=1)
     key = first.key_extract(b"Alice")
 
-    reopened = GuardedSourceSchurIssuer(path, expected_public=public,
-                                        expected_params=params)
+    reopened = FixedIssuer(path, expected_public=public, expected_params=params)
     assert reopened.key_extract(b"Alice").to_bytes() == key.to_bytes()
     with pytest.raises(Exception):
         reopened.key_extract(b"Bob")

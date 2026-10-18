@@ -19,7 +19,7 @@ import pytest
 from ibme.core.randomness import DeterministicRandom
 from experiments.research.candidates.srgg.paper_distribution_guard import (
     GateFailure,
-    GuardedSourceSchurBackend,
+    SourceSchurBackend,
     require_gates,
     uniform_issuance_bound,
     uniform_phase_bound,
@@ -36,7 +36,7 @@ SEED = b"paper-baseline-PARAM-I-table-standard-deviation"
 
 def _root(seed=SEED, interpretation=INTERPRETATION):
     params = PaperParams(PROFILE, interpretation)
-    backend = GuardedSourceSchurBackend(rng=DeterministicRandom(seed))
+    backend = SourceSchurBackend(rng=DeterministicRandom(seed))
     public, master = backend.setup(params)
     return params, backend, public, master
 

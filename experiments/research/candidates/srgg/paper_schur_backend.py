@@ -12,6 +12,23 @@ from .structured_geometry import master_operator, signature_operator
 
 
 class SourceSchurBackend(Backend):
+    """Paper-order source-Schur backend with the complete gate set built in.
+
+    Setup runs SchurNumericalAudit, the finite-chain source gates, the issuance
+    C gate and the finite-key object/service envelope; a gate failure is a root
+    rejection (retry).  Signing runs the Schur/audit layer; a fixed-key gate
+    failure aborts.  The complete gate set is the protected accept set; the
+    original unguarded algorithm is not claimed to pass it.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.gate_rejections = 0
+        self.last_master_gate_audit = None
+        self.last_sign_gate_audit = None
+        self.last_master_gate_extras = None
+        self.last_sign_gate_extras = None
+
     def _sign_attempt_source(self, params, plan, scalar):
         from .paper_sign_budget import signature_attempt_certificate, signature_call_envelope
         self.last_sign_attempt_certificate = signature_attempt_certificate(
@@ -53,14 +70,37 @@ class SourceSchurBackend(Backend):
         raise SamplingAbort("paper Algorithm 7 exhausted the operational sign limit")
 
     def _master_plan(self, params, witness):
-        return PaperSchurSampleF(master_operator(degree=params.degree, rank=params.rank,
+        plan = PaperSchurSampleF(master_operator(degree=params.degree, rank=params.rank,
             digits=params.digits, base=params.base, witness=witness,
             first_squared=params.master_first_squared, second_squared=params.master_second_squared,
             r_squared=params.r_squared), options=self.series_options, scalar_options=self.scalar_options)
+        from .paper_distribution_guard import (
+            GateFailure, RootGateRejection, require_gates,
+        )
+        try:
+            gadget, _scalar = self._components(params)
+            audit, _degree, _leaves, extras = require_gates(
+                plan, params=params, gadget=gadget, root_phase=True)
+        except GateFailure as error:
+            self.gate_rejections += 1
+            raise RootGateRejection("Setup audit gate rejected root: " + str(error)) from error
+        self.last_master_gate_audit = audit
+        self.last_master_gate_extras = extras
+        return plan
 
     def _sign_plan(self, key):
         p = key.public_key.params
-        return PaperSchurSampleF(signature_operator(degree=p.degree, rank=p.rank, digits=p.digits,
+        plan = PaperSchurSampleF(signature_operator(degree=p.degree, rank=p.rank, digits=p.digits,
             user_vector=key.full, first_squared=p.signature_first_squared,
             second_squared=p.signature_second_squared, r_squared=p.r_squared,
             noise_factor=1), options=self.series_options, scalar_options=self.scalar_options)
+        from .paper_distribution_guard import (
+            GateFailure, SigningKeyGateRejection, require_gates,
+        )
+        try:
+            audit, _degree, _leaves, extras = require_gates(plan)
+        except GateFailure as error:
+            raise SigningKeyGateRejection("signing-key audit gate failed: " + str(error)) from error
+        self.last_sign_gate_audit = audit
+        self.last_sign_gate_extras = extras
+        return plan

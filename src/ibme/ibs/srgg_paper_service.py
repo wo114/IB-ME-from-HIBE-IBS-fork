@@ -110,8 +110,8 @@ class FixedIssuer(storage.FixedIssuer):
                 or not 0 <= lock_timeout <= 3600):
             raise ValueError("paper lock timeout must be finite and in 0..3600 seconds")
         if backend is None:
-            from experiments.research.candidates.srgg.paper_backend import Backend
-            backend = Backend()
+            from experiments.research.candidates.srgg.paper_schur_backend import SourceSchurBackend
+            backend = SourceSchurBackend()
         super().__init__(path, backend=backend)
         self.expected_public, self.expected_params = expected_public, expected_params
         self.lock_timeout = lock_timeout
