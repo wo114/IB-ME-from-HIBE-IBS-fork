@@ -75,3 +75,25 @@ def test_resource_and_noise_conditions_precede_large_allocation():
         p = PrototypeParams(n=n, root_r_squared=8*n)
         assert p.q_alpha*p.q_alpha > 4*n
         assert p.noise_budget()["conditional_noise_sufficient"]
+
+
+def test_failed_parent_slot_stays_occupied_on_disk_and_is_not_reissued(chain, tmp_path, monkeypatch):
+    import json
+    from experiments.research import blocked_3m_probe as probe
+    from experiments.research.gaussian_reference import SamplingAbort
+    p, _, root, _, _ = chain
+    calls = []
+    monkeypatch.setattr(probe, "generate_root", lambda *args, **kwargs: root)
+    def fail(*args, **kwargs):
+        calls.append("single-attempt")
+        raise SamplingAbort("TEST-ONLY deliberate parent abort")
+    monkeypatch.setattr(probe, "delegate", fail)
+    directory = tmp_path/"occupied"
+    with pytest.raises(SamplingAbort): probe.run(directory, p)
+    assert (directory/"parent.pending").is_file()
+    assert (directory/"root.done").is_file() and (directory/"root.bin").is_file()
+    assert not (directory/"parent.bin").exists()
+    failure = json.loads((directory/"failure.json").read_bytes())
+    assert failure["failure_stage"] == "parent" and failure["no_outer_retry"]
+    with pytest.raises(FileExistsError): probe.run(directory, p)
+    assert calls == ["single-attempt"]
