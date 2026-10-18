@@ -8,6 +8,7 @@ import pytest
 
 pytest.importorskip("sage.all")
 
+from ibme.assembly import make_suite, validate_suite
 from ibme.assembly.catalog import algorithm_catalog
 from ibme.assembly.registry import default_registry
 from ibme.core.errors import (
@@ -153,6 +154,15 @@ def test_max_identity_binding(env):
     assert sk2_long.parent_identity == long_id
     assert backend.decrypt(sk2_long, ct) == PAYLOAD
     assert len(ct.to_bytes()) == ciphertext_size(params, 32, 86)
+
+
+def test_hybrid_suite_preflight():
+    suite = make_suite(hibe="lai-ideal-hibe", ibs="luo-module",
+                       transport="hybrid")
+    result = validate_suite(suite)
+    assert result.ok, result.errors
+    assert result.metadata["security_claim"] == "none"
+    assert result.metadata["backend_admitted"] is False
 
 
 def test_fixed_rng_reproducible(env):

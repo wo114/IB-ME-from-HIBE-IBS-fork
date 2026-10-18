@@ -122,7 +122,7 @@ PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.cli setup \
 
 | 命令 | 结果 |
 |---|---|
-| `pytest tests/test_lai_hibe.py -q` | **11 passed in 105.29s** |
+| `pytest tests/test_lai_hibe.py -q` | **12 passed in 93.81s** |
 | `pytest tests/test_lai_p1.py tests/test_lai_qualification.py -q` | **37 passed in 29.29s** |
 | Windows：`pytest tests/test_assembly.py tests/test_c_registration.py tests/test_cli_selection.py -q` | **84 passed in 15.02s** |
 
