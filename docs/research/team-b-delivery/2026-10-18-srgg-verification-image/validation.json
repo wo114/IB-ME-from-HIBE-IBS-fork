@@ -1,0 +1,76 @@
+{
+  "schema": "IBME/SRGG-VERIFICATION-IMAGE-VALIDATION/1",
+  "paper": {
+    "path": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+    "locations": "Algorithms 7-8, PDF pp. 7-8; Section 5.1/Table 4, PDF pp. 9-10"
+  },
+  "receipt": {
+    "path": "docs/research/team-b-delivery/2026-10-18-srgg-verification-image/verification-image.json",
+    "sha256": "be582a4920c703b3569f3e42349cd62f9e868acf80b244a80ef8fff9b5e3b17c",
+    "fresh_cli_output_byte_identical": true,
+    "source_sha256_match": true,
+    "paper_sha256_match": true
+  },
+  "parameters": {
+    "source": "original paper, not a formal security parameter set",
+    "n": 512,
+    "p": 16383,
+    "b": 31,
+    "w": 2,
+    "q": 961,
+    "Q": 15744063,
+    "verification_modulus": 31488126,
+    "d": [
+      2,
+      3,
+      4
+    ]
+  },
+  "environment": {
+    "os": "Windows 11 host with WSL2",
+    "sage": "10.9",
+    "python": "3.13.15",
+    "hardware": "Intel Core Ultra 7 255HX; approximately 31.4 GiB RAM",
+    "performance_claim": null
+  },
+  "execution": {
+    "receipt_command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.srgg.paper_verification_image",
+    "test_command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_verification_image.py",
+    "test_passed": 17,
+    "test_failed": 0,
+    "test_skipped": 0,
+    "test_elapsed_seconds": 4.13,
+    "test_cases": "Independent small-ring direct matrix ranks, Smith invariants, and ideal/annihilator enumeration at n=4/8, d=1/2, odd composite Q=15; original row binding and invalid-input checks",
+    "setup_runs": 0,
+    "extractions": 0,
+    "signatures": 0,
+    "messages": 0,
+    "identities": 0,
+    "sampling_repetitions": 0,
+    "random_bytes_consumed": 0,
+    "rom_used_in_this_algebra_audit": false,
+    "source_ibs_uses_hash_oracles": true
+  },
+  "interpretation": {
+    "mod_Q_coefficient_image_dimension": "coefficient count or free-module rank over composite Q, not vector-space dimension",
+    "algorithm_8_b": "Algorithm 8 line 2 reuses b; Algorithm 7 line 5 defines b=Q*j-2*H(id)",
+    "image_index_is_attack_cost": false,
+    "result_for_unrestricted_mod_2Q_responses_only": true
+  },
+  "open": {
+    "paper_theorem_q_Q_2Q_mapping": null,
+    "accepted_setup_root_distribution": null,
+    "seeded_planted_public_matrix_law": null,
+    "short_kernel_cost": null,
+    "forgery_cost": null,
+    "full_issuance_signature_fault_history_bound": null,
+    "native_strong_same_message_replacements_resolved": false,
+    "ring_HNF_MSIS_CRT_subfield_attack_cost": null,
+    "formal_hardness_bits": null
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}
