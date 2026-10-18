@@ -1,10 +1,10 @@
 {
-  "schema": "A/ABB-NOISE-TRADEOFF-RUNTIME/2",
-  "source_schema": "A/ABB-NOISE-TRADEOFF/2",
+  "schema": "A/ABB-NOISE-TRADEOFF-RUNTIME/3",
+  "source_schema": "A/ABB-NOISE-TRADEOFF/3",
   "measurements": {
-    "finite_cdf_build_seconds": 0.8501052770006936,
-    "total_seconds": 41.03246072199545,
-    "process_max_rss_kib": 305304
+    "finite_cdf_build_seconds": 0.8700952699873596,
+    "total_seconds": 48.32665048900526,
+    "process_max_rss_kib": 304880
   },
   "environment": {
     "python": "3.14.7",
@@ -37,6 +37,11 @@
     "abb-rom-n10240-q208-chi721"
   ],
   "comparison_model_candidates": [],
+  "implementation_research_candidates": [
+    "abb-rom-n9600-q208-chi721",
+    "abb-rom-n9728-q208-chi721",
+    "abb-rom-n10240-q208-chi721"
+  ],
   "complete_runtime_candidates": [],
   "security_claim": "none",
   "backend_admitted": false,
