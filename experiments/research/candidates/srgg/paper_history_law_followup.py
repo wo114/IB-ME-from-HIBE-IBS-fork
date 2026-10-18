@@ -224,6 +224,11 @@ def certificate(profile, interpretation):
         "uniform_all_reachable_signing_keys_schur_bound": None,
         "bad_issued_key_sign_plan_probability": None,
         "all_accepted_setup_roots_tv": None,
+        "all_accepted_setup_roots_tv_reason":
+            r"the gate-set mass P(A\B), P(B\G) and the accepted-root distribution "
+            r"relative to mu_A remain unbounded; beta_bad remains null",
+        "bound_scope": "every_plan_passing_complete_gate_set",
+        "guard_built_into_backend": True,
         "faulty_storage_history_tv": None,
         "native_strong_security_proven": False,
         "rom_used": True, "teaching_parameters": False,

@@ -1,11 +1,13 @@
 {
   "backend_admitted": false,
+  "bound_scope": "every_plan_passing_complete_gate_set",
   "environment": {
     "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
     "python": "3.13.15",
     "sage": "10.9"
   },
   "full_random_issuance_signature_fault_history_tv": null,
+  "guard_built_into_backend": true,
   "nist_security_category": null,
   "paper": {
     "path": "papers/2025_efficient_ibs_jia.pdf",
@@ -15,17 +17,20 @@
   "rows": [
     {
       "all_accepted_setup_roots_tv": null,
+      "all_accepted_setup_roots_tv_reason": "the gate-set mass P(A\\B), P(B\\G) and the accepted-root distribution relative to mu_A remain unbounded; beta_bad remains null",
       "authenticated_predecessors": {
-        "finite_sha256": "d1b4334c933248c2f4a26a004c20f6dbd05171cde021396fbb8188dc6a015e59",
-        "joint_sha256": "c36bac08885e29595bbf34026def2f14cdc8942053f5a799cb964df1a23ed143",
-        "source_issuance_sha256": "cfcc9e45c6b4d126187115f990672a2fa8aa8f92d76b2d2b0f8b6773bbc92477",
-        "source_package_manifest_sha256": "0d087123aa9ec62a5d4b81f34dd4d15ecc8cb96b6f97d79b0a3efadd6b8598d1"
+        "finite_sha256": "5c20c3dc7abaf32ec6b06cd39d2370d956a204400ef541956e1db9e6c0d2f274",
+        "joint_sha256": "eaa6b087d0b0d507c9a009c32e56b1c3fa46f3791f54af616529f5b6a838f9e0",
+        "source_issuance_sha256": "a650d4518c483616aa010175d0a00a295d5888fd60f8e5b56e6f85cd7368f8fc",
+        "source_package_manifest_sha256": "5a772b6780741a9e99d389e26613ba7195656153b6e4b8dd3d5bd74dcbceab16"
       },
       "backend_admitted": false,
       "bad_issued_key_sign_plan_probability": null,
+      "bound_scope": "every_plan_passing_complete_gate_set",
       "faulty_storage_history_tv": null,
       "fixed_service_worst_case_capacity_users": 3,
       "fresh_iid_uniform_bytes_and_stated_mpfr_model_required": true,
+      "guard_built_into_backend": true,
       "interpretation": "table-standard-deviation",
       "issuance_history_scope": "at most capacity first-touch identities; adaptive identities, cached repeats, canonical snapshots and restarts as common deterministic logical postprocessing; abort retained",
       "issuance_only_history_at_capacity_bound_nontrivial": true,
@@ -72,17 +77,20 @@
     },
     {
       "all_accepted_setup_roots_tv": null,
+      "all_accepted_setup_roots_tv_reason": "the gate-set mass P(A\\B), P(B\\G) and the accepted-root distribution relative to mu_A remain unbounded; beta_bad remains null",
       "authenticated_predecessors": {
-        "finite_sha256": "d1b4334c933248c2f4a26a004c20f6dbd05171cde021396fbb8188dc6a015e59",
-        "joint_sha256": "c36bac08885e29595bbf34026def2f14cdc8942053f5a799cb964df1a23ed143",
-        "source_issuance_sha256": "cfcc9e45c6b4d126187115f990672a2fa8aa8f92d76b2d2b0f8b6773bbc92477",
-        "source_package_manifest_sha256": "0d087123aa9ec62a5d4b81f34dd4d15ecc8cb96b6f97d79b0a3efadd6b8598d1"
+        "finite_sha256": "5c20c3dc7abaf32ec6b06cd39d2370d956a204400ef541956e1db9e6c0d2f274",
+        "joint_sha256": "eaa6b087d0b0d507c9a009c32e56b1c3fa46f3791f54af616529f5b6a838f9e0",
+        "source_issuance_sha256": "a650d4518c483616aa010175d0a00a295d5888fd60f8e5b56e6f85cd7368f8fc",
+        "source_package_manifest_sha256": "5a772b6780741a9e99d389e26613ba7195656153b6e4b8dd3d5bd74dcbceab16"
       },
       "backend_admitted": false,
       "bad_issued_key_sign_plan_probability": null,
+      "bound_scope": "every_plan_passing_complete_gate_set",
       "faulty_storage_history_tv": null,
       "fixed_service_worst_case_capacity_users": 3,
       "fresh_iid_uniform_bytes_and_stated_mpfr_model_required": true,
+      "guard_built_into_backend": true,
       "interpretation": "literal-density-width",
       "issuance_history_scope": "at most capacity first-touch identities; adaptive identities, cached repeats, canonical snapshots and restarts as common deterministic logical postprocessing; abort retained",
       "issuance_only_history_at_capacity_bound_nontrivial": false,
@@ -129,17 +137,20 @@
     },
     {
       "all_accepted_setup_roots_tv": null,
+      "all_accepted_setup_roots_tv_reason": "the gate-set mass P(A\\B), P(B\\G) and the accepted-root distribution relative to mu_A remain unbounded; beta_bad remains null",
       "authenticated_predecessors": {
-        "finite_sha256": "d1b4334c933248c2f4a26a004c20f6dbd05171cde021396fbb8188dc6a015e59",
-        "joint_sha256": "c36bac08885e29595bbf34026def2f14cdc8942053f5a799cb964df1a23ed143",
-        "source_issuance_sha256": "cfcc9e45c6b4d126187115f990672a2fa8aa8f92d76b2d2b0f8b6773bbc92477",
-        "source_package_manifest_sha256": "0d087123aa9ec62a5d4b81f34dd4d15ecc8cb96b6f97d79b0a3efadd6b8598d1"
+        "finite_sha256": "5c20c3dc7abaf32ec6b06cd39d2370d956a204400ef541956e1db9e6c0d2f274",
+        "joint_sha256": "eaa6b087d0b0d507c9a009c32e56b1c3fa46f3791f54af616529f5b6a838f9e0",
+        "source_issuance_sha256": "a650d4518c483616aa010175d0a00a295d5888fd60f8e5b56e6f85cd7368f8fc",
+        "source_package_manifest_sha256": "5a772b6780741a9e99d389e26613ba7195656153b6e4b8dd3d5bd74dcbceab16"
       },
       "backend_admitted": false,
       "bad_issued_key_sign_plan_probability": null,
+      "bound_scope": "every_plan_passing_complete_gate_set",
       "faulty_storage_history_tv": null,
       "fixed_service_worst_case_capacity_users": 2,
       "fresh_iid_uniform_bytes_and_stated_mpfr_model_required": true,
+      "guard_built_into_backend": true,
       "interpretation": "table-standard-deviation",
       "issuance_history_scope": "at most capacity first-touch identities; adaptive identities, cached repeats, canonical snapshots and restarts as common deterministic logical postprocessing; abort retained",
       "issuance_only_history_at_capacity_bound_nontrivial": true,
@@ -186,17 +197,20 @@
     },
     {
       "all_accepted_setup_roots_tv": null,
+      "all_accepted_setup_roots_tv_reason": "the gate-set mass P(A\\B), P(B\\G) and the accepted-root distribution relative to mu_A remain unbounded; beta_bad remains null",
       "authenticated_predecessors": {
-        "finite_sha256": "d1b4334c933248c2f4a26a004c20f6dbd05171cde021396fbb8188dc6a015e59",
-        "joint_sha256": "c36bac08885e29595bbf34026def2f14cdc8942053f5a799cb964df1a23ed143",
-        "source_issuance_sha256": "cfcc9e45c6b4d126187115f990672a2fa8aa8f92d76b2d2b0f8b6773bbc92477",
-        "source_package_manifest_sha256": "0d087123aa9ec62a5d4b81f34dd4d15ecc8cb96b6f97d79b0a3efadd6b8598d1"
+        "finite_sha256": "5c20c3dc7abaf32ec6b06cd39d2370d956a204400ef541956e1db9e6c0d2f274",
+        "joint_sha256": "eaa6b087d0b0d507c9a009c32e56b1c3fa46f3791f54af616529f5b6a838f9e0",
+        "source_issuance_sha256": "a650d4518c483616aa010175d0a00a295d5888fd60f8e5b56e6f85cd7368f8fc",
+        "source_package_manifest_sha256": "5a772b6780741a9e99d389e26613ba7195656153b6e4b8dd3d5bd74dcbceab16"
       },
       "backend_admitted": false,
       "bad_issued_key_sign_plan_probability": null,
+      "bound_scope": "every_plan_passing_complete_gate_set",
       "faulty_storage_history_tv": null,
       "fixed_service_worst_case_capacity_users": 2,
       "fresh_iid_uniform_bytes_and_stated_mpfr_model_required": true,
+      "guard_built_into_backend": true,
       "interpretation": "literal-density-width",
       "issuance_history_scope": "at most capacity first-touch identities; adaptive identities, cached repeats, canonical snapshots and restarts as common deterministic logical postprocessing; abort retained",
       "issuance_only_history_at_capacity_bound_nontrivial": false,
@@ -243,17 +257,20 @@
     },
     {
       "all_accepted_setup_roots_tv": null,
+      "all_accepted_setup_roots_tv_reason": "the gate-set mass P(A\\B), P(B\\G) and the accepted-root distribution relative to mu_A remain unbounded; beta_bad remains null",
       "authenticated_predecessors": {
-        "finite_sha256": "d1b4334c933248c2f4a26a004c20f6dbd05171cde021396fbb8188dc6a015e59",
-        "joint_sha256": "c36bac08885e29595bbf34026def2f14cdc8942053f5a799cb964df1a23ed143",
-        "source_issuance_sha256": "cfcc9e45c6b4d126187115f990672a2fa8aa8f92d76b2d2b0f8b6773bbc92477",
-        "source_package_manifest_sha256": "0d087123aa9ec62a5d4b81f34dd4d15ecc8cb96b6f97d79b0a3efadd6b8598d1"
+        "finite_sha256": "5c20c3dc7abaf32ec6b06cd39d2370d956a204400ef541956e1db9e6c0d2f274",
+        "joint_sha256": "eaa6b087d0b0d507c9a009c32e56b1c3fa46f3791f54af616529f5b6a838f9e0",
+        "source_issuance_sha256": "a650d4518c483616aa010175d0a00a295d5888fd60f8e5b56e6f85cd7368f8fc",
+        "source_package_manifest_sha256": "5a772b6780741a9e99d389e26613ba7195656153b6e4b8dd3d5bd74dcbceab16"
       },
       "backend_admitted": false,
       "bad_issued_key_sign_plan_probability": null,
+      "bound_scope": "every_plan_passing_complete_gate_set",
       "faulty_storage_history_tv": null,
       "fixed_service_worst_case_capacity_users": 1,
       "fresh_iid_uniform_bytes_and_stated_mpfr_model_required": true,
+      "guard_built_into_backend": true,
       "interpretation": "table-standard-deviation",
       "issuance_history_scope": "at most capacity first-touch identities; adaptive identities, cached repeats, canonical snapshots and restarts as common deterministic logical postprocessing; abort retained",
       "issuance_only_history_at_capacity_bound_nontrivial": true,
@@ -300,17 +317,20 @@
     },
     {
       "all_accepted_setup_roots_tv": null,
+      "all_accepted_setup_roots_tv_reason": "the gate-set mass P(A\\B), P(B\\G) and the accepted-root distribution relative to mu_A remain unbounded; beta_bad remains null",
       "authenticated_predecessors": {
-        "finite_sha256": "d1b4334c933248c2f4a26a004c20f6dbd05171cde021396fbb8188dc6a015e59",
-        "joint_sha256": "c36bac08885e29595bbf34026def2f14cdc8942053f5a799cb964df1a23ed143",
-        "source_issuance_sha256": "cfcc9e45c6b4d126187115f990672a2fa8aa8f92d76b2d2b0f8b6773bbc92477",
-        "source_package_manifest_sha256": "0d087123aa9ec62a5d4b81f34dd4d15ecc8cb96b6f97d79b0a3efadd6b8598d1"
+        "finite_sha256": "5c20c3dc7abaf32ec6b06cd39d2370d956a204400ef541956e1db9e6c0d2f274",
+        "joint_sha256": "eaa6b087d0b0d507c9a009c32e56b1c3fa46f3791f54af616529f5b6a838f9e0",
+        "source_issuance_sha256": "a650d4518c483616aa010175d0a00a295d5888fd60f8e5b56e6f85cd7368f8fc",
+        "source_package_manifest_sha256": "5a772b6780741a9e99d389e26613ba7195656153b6e4b8dd3d5bd74dcbceab16"
       },
       "backend_admitted": false,
       "bad_issued_key_sign_plan_probability": null,
+      "bound_scope": "every_plan_passing_complete_gate_set",
       "faulty_storage_history_tv": null,
       "fixed_service_worst_case_capacity_users": 1,
       "fresh_iid_uniform_bytes_and_stated_mpfr_model_required": true,
+      "guard_built_into_backend": true,
       "interpretation": "literal-density-width",
       "issuance_history_scope": "at most capacity first-touch identities; adaptive identities, cached repeats, canonical snapshots and restarts as common deterministic logical postprocessing; abort retained",
       "issuance_only_history_at_capacity_bound_nontrivial": false,
@@ -357,6 +377,6 @@
     }
   ],
   "schema": "IBME/SRGG-PAPER-ADAPTIVE-HISTORY-FOLLOWUP/1/REPORT",
-  "scope": "six original Table 4 fixed roots; issuance-only adaptive history and one-fixture-key adaptive signing history are separate",
+  "scope": "six deterministic accepted roots as witnesses; guarded backend; per-root adaptive history bounds; cross-root/gate-mass and faulty histories remain null",
   "security_claim": "none"
 }

@@ -23,7 +23,7 @@ from .paper_rounding_budget import theta_certificate
 
 SCHEMA = "IBME/SRGG-SCHUR-FIXED-ROOT-JOINT-BOUND/1"
 ROOT = Path(__file__).resolve().parents[4]
-FINITE_REPORT_SHA256 = "d1b4334c933248c2f4a26a004c20f6dbd05171cde021396fbb8188dc6a015e59"
+FINITE_REPORT_SHA256 = "5c20c3dc7abaf32ec6b06cd39d2370d956a204400ef541956e1db9e6c0d2f274"
 SOURCE_FILES = (
     "experiments/research/candidates/srgg/paper_schur_convolution.py",
     "experiments/research/candidates/srgg/paper_schur_joint_bound_audit.py",

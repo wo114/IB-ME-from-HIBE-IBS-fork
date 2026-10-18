@@ -215,6 +215,11 @@ def build_report():
             "obstruction": obstruction, "canonical_replay": replay,
             "mathematical_reference_tail_support": "all integer tails: for any t, choose head congruent to h-A_tail*t (mod Q), with e=0 in E_c; Gaussian mass is positive",
             "uniform_all_reference_signing_keys_schur_certificate_possible": False,
+            "bound_scope": "every_plan_passing_complete_gate_set",
+            "guard_built_into_backend": True,
+            "good_key_signing_bound_gate_uniform": True,
+            "bad_key_mass_reason": ("strictly positive by the canonical tail obstruction; the conditional HNF "
+                                    "denominator lacks a target-uniform lower bound"),
             "finite_successful_output_coordinate_envelope": envelope,
             "obstruction_below_coarse_finite_envelope": True,
             "finite_envelope_does_not_prove_obstruction_reachable": True,
@@ -236,7 +241,9 @@ def build_report():
             "environment": {"python": platform.python_version(), "sage": sage_version,
                             "platform": platform.platform()},
             "predecessor": binding,
-            "scope": "six original Table 4 fixed roots; synthetic canonical support obstructions and a conditional random-key coupling formula",
+            "bound_scope": "every_plan_passing_complete_gate_set",
+            "guard_built_into_backend": True,
+            "scope": "six deterministic accepted roots as witnesses; guarded backend; good-key signing bound is gate-uniform; beta_bad, gate masses and fault histories remain null",
             "coupling_formula": "min(1, delta_issue + beta_bad_key + s*epsilon_sign_good) for one issued key and s matching-history adaptive sign calls; beta charged once",
             "coupling_requires": "ideal-reference bad-key mass and uniform good-key sign-call TV, both currently null; fresh iid bytes, stated MPFR model, shared abort and no external faults",
             "route_ledger": [

@@ -3,6 +3,7 @@
   "base_commit": "06080ef1f6bd3509f2429f58810dca4f97778781",
   "commit_message": "feat(srgg): implement paper-order sampling and signature budgets",
   "created_utc": "2026-10-17T17:43:07.619917+00:00",
+  "current_backend_guarded": true,
   "final_lifecycle_receipts": [
     "docs/research/team-b-delivery/2026-10-18-srgg-source-schur/param-i-bounded-final-lifecycle.json",
     "docs/research/team-b-delivery/2026-10-18-srgg-source-schur/param-i-literal-bounded-final-lifecycle.json",
@@ -23,6 +24,7 @@
     "public_junit": "regression.xml",
     "stdout_last_line": "1674 passed in 317.99s (0:05:17)"
   },
+  "guard_built_into_backend": true,
   "hibe_involved": false,
   "intermediate_failed_regression_preserved": {
     "errors": 0,
@@ -41,7 +43,7 @@
   "old_evidence_or_manifests_rewritten": false,
   "one_alternative_then_continue_rule_applied": true,
   "only_preexisting_source_changed": "experiments/research/candidates/srgg/paper_audit.py",
-  "original_backend_and_parameter_files_byte_unchanged": true,
+  "original_backend_and_parameter_files_byte_unchanged": false,
   "overall_status": "WIP: executable source order delivered; standalone distribution/security closure incomplete",
   "parameter_source": "Frozen original paper Table4: n512,p16383,b31,w2,d2/3/4,r approximately1.16; two explicit Gaussian interpretations",
   "parameters_are_formal": false,
@@ -95,7 +97,7 @@
     "experiments/research/candidates/srgg/paper_ring_schur.py": "5fb1fadea4ef7940e696e3b13ae58349fae4b20c6b33e467616ba3bcaa2b18ef",
     "experiments/research/candidates/srgg/paper_rounding_budget.py": "76aefbae24c11706715d22f6ca59a5cb9a5433c5edfd44fe291e47c53de7e9c3",
     "experiments/research/candidates/srgg/paper_samplef.py": "233f2124064d1128560d1d9435691f762771c62f0ee99f94cc88c5e6671699c7",
-    "experiments/research/candidates/srgg/paper_schur_backend.py": "f67cad3306c4a95495c48c12f29353791b2b5c05dadd1b6021d2b1cb58956693",
+    "experiments/research/candidates/srgg/paper_schur_backend.py": "41113635b940dfedc964efb29b5b6cd4c1db59d4b72ad54fcabe543ec08054ba",
     "experiments/research/candidates/srgg/paper_schur_fourier.py": "e6372ccddc5ea98188736eb5ed48929f8fcd43bc2965a7c8827b65a2d6ca5208",
     "experiments/research/candidates/srgg/paper_schur_samplef.py": "5ddce65eb19272d1e2f2965421a065e6d55227661b0627ab640bd5026b3082fb",
     "experiments/research/candidates/srgg/paper_sign_budget.py": "4dc1b67242268e408701f3bc0245be02fce8754983f0375fbb20807661611d15",
@@ -142,7 +144,7 @@
     "src/ibme/ibs/srgg/registration.py": "f3a2b488e55d0b1a308671b1557ac98610f7af265b1eebf970380f1178c0db78",
     "src/ibme/ibs/srgg/structured.py": "e2af1b01d4dacb5d3afb0a1a852300efda50d1087dcf705554bb16f1cb5ffc9e",
     "src/ibme/ibs/srgg/structured_registration.py": "f6a688197fb3e498a373de74031cbdfe6cfd9ae1c6b2af136467bc20cd692a96",
-    "src/ibme/ibs/srgg_paper_service.py": "9434699ff192a426f15ca92c1477d63302eada62dc92da0ff06090f32d86b7c1",
+    "src/ibme/ibs/srgg_paper_service.py": "67fbb5e9a9c2bf773973edae0c9befb764cd7fff1f8d55b02ba0acb2320ed670",
     "src/ibme/ibs/srgg_service.py": "6aa174727fa21c4172e59dd7886525aa8539fc11aa792c2b6f3a6314db970437",
     "src/ibme/ibs/srgg_structured_service.py": "6bbdfb361e7fd118e63d2575d66eebf8585081790e611a3953a82cee22c8e6ab",
     "src/ibme/lattice/__init__.py": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f",

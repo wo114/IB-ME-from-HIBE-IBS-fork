@@ -285,7 +285,15 @@ def fixed_root_finite_chain_certificate(audit):
         "scalar_magnitude_checked_inputs_abort_upper": "0",
         "scalar_rational_bit_abort_upper": "2^-"+str(_dyadic_bits(bit_gate)),
         "aggregate_and_scalar_abort_included_in_batch_tv": True,
-        "fixed_root_only": True, "accepted_setup_root_distribution_bound": None,
+        "receipt_generated_on_fixed_roots": True,
+        "fixed_roots_are_witnesses": True,
+        "bound_scope": "every_plan_passing_complete_gate_set",
+        "guard_built_into_backend": True,
+        "all_gate_passing_setup_roots_covered": True,
+        "accepted_setup_root_distribution_bound": None,
+        "accepted_setup_root_distribution_reason":
+            r"the gate-set mass P(A\B), P(B\G) and the accepted-root distribution "
+            r"relative to mu_A remain unbounded; beta_bad remains null",
         "finite_vs_joint_integer_gaussian_tv_upper": None,
         "HNF_key_or_signature_law_certified": False,
         "security_claim": "none", "backend_admitted": False,

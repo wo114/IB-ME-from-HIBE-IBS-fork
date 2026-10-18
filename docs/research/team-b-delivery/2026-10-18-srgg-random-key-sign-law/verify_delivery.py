@@ -19,6 +19,11 @@ REQUIRED = {
     PREFIX + "README.md", PREFIX + "README_zh-CN.md",
     PREFIX + "proof.md", PREFIX + "random-key-sign-law.json",
     PREFIX + "validation.json", PREFIX + "verify_delivery.py",
+    "experiments/research/candidates/srgg/paper_distribution_guard.py",
+    "experiments/research/candidates/srgg/paper_schur_backend.py",
+    "src/ibme/ibs/srgg_paper_service.py",
+    "tests/test_srgg_paper_distribution_guard.py",
+    "tests/test_srgg_paper_service_default.py",
 }
 
 

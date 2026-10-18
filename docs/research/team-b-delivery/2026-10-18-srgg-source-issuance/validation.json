@@ -1,65 +1,75 @@
 {
-  "schema": "IBME/SRGG-SOURCE-SCHUR-ISSUANCE-VALIDATION/1",
+  "all_accepted_setup_roots_tv": null,
+  "backend_admitted": false,
+  "bound_scope": "every_plan_passing_complete_gate_set",
   "date": "2026-10-18",
-  "scope": "six original Table 4 fixed accepted roots and one Alice first issuance per root; HIBE independent",
-  "paper_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
-  "source_parameters": {
-    "degree": 512,
-    "p": 16383,
-    "base": 31,
-    "digits": 2,
-    "modulus_Q": 15744063,
-    "r_published_approximation": "1.16",
-    "rank_d": [2, 3, 4],
-    "interpretations": ["table-standard-deviation", "literal-density-width"]
-  },
-  "identity_bytes": 5,
-  "message_bytes": null,
-  "repetitions_per_row": 1,
-  "rom_used": true,
-  "teaching_parameters": false,
   "environment": {
+    "hardware": "Intel Core Ultra 7 255HX; approximately 31.4 GiB RAM",
     "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
     "python": "3.13.15",
-    "sage": "10.9",
-    "hardware": "Intel Core Ultra 7 255HX; approximately 31.4 GiB RAM"
+    "sage": "10.9"
   },
-  "targeted_tests": {
-    "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_source_issuance_bridge.py",
-    "passed": 12,
-    "failed": 0,
-    "errors": 0,
-    "skipped": 0,
-    "wall_seconds": 73.07,
-    "stdout_summary": "12 passed in 73.07s (0:01:13)"
-  },
-  "public_receipt_command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.srgg.paper_source_issuance_bridge --output docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/source-issuance.json",
-  "receipt_sha256": "cfcc9e45c6b4d126187115f990672a2fa8aa8f92d76b2d2b0f8b6773bbc92477",
-  "finite_chain_manifest_normalized_lf_sha256": "28dbeda70aa5606a8da82efceae9770178035e773fce9ddb9f947fbc41f9c6f1",
-  "finite_chain_manifest_entries_verified": 32,
-  "inherited_source_manifest_sha256": "cb763a00b8f3c71dd27767ac05721abf61138e4fc9bc302471330e38d95cb081",
-  "package_verifier": {
-    "command": "python docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/verify_delivery.py",
-    "normal": "verified",
-    "optimized_python": "verified",
-    "package_entries": 13,
-    "finite_manifest_entries": 32,
-    "isolated_copy_clean_verified": true,
-    "isolated_copy_readme_tamper_rejected_under_python_optimized": true,
-    "isolated_copy_local_ignored_path": "build/outputs/srgg-source-issuance-2026-10-18/isolated-45d2f364"
-  },
+  "finite_chain_manifest_entries_verified": 36,
+  "finite_chain_manifest_normalized_lf_sha256": "698bdeaa45979c69766233b9ba008ac6fca9bae62b7482cd77b8033b49c2142b",
   "fixed_root_standard_interpretation_nontrivial_rows": 3,
-  "literal_density_complete_issuance_bounds": null,
-  "all_accepted_setup_roots_tv": null,
   "full_issuance_signature_fault_history_tv": null,
+  "guard_built_into_backend": true,
+  "identity_bytes": 5,
+  "inherited_source_manifest_sha256": "1210d3306053a2f69ccf463406206e25ceff96cca00f25917e966b4aefabba22",
   "known_limits": [
     "DeterministicRandom replay checks the fixture path; the TV bound assumes fresh iid uniform bytes and stated MPFR arithmetic semantics.",
     "The three literal-density-width rows have no complete first-issuance bound because the available digit-normalizer sufficient condition fails.",
     "No all-accepted-Setup-root or full adaptive issuance/signature/storage-fault history bound is established.",
-    "Functional checks and fixed-root TV do not establish an IBS security proof or NIST category."
+    "Functional checks and fixed-root TV do not establish an IBS security proof or NIST category.",
+    "The gate-set masses P(A\\B), P(B\\G), the accepted-root distribution and beta_bad remain null; the guard proves the protected accept set."
   ],
-  "security_claim": "none",
-  "backend_admitted": false,
+  "literal_density_complete_issuance_bounds": null,
+  "message_bytes": null,
+  "nist_security_category": null,
+  "package_verifier": {
+    "command": "python docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/verify_delivery.py",
+    "finite_manifest_entries": 32,
+    "isolated_copy_clean_verified": true,
+    "isolated_copy_local_ignored_path": "build/outputs/srgg-source-issuance-2026-10-18/isolated-45d2f364",
+    "isolated_copy_readme_tamper_rejected_under_python_optimized": true,
+    "normal": "verified",
+    "optimized_python": "verified",
+    "package_entries": 13
+  },
+  "paper_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
   "parameters_are_formal": false,
-  "nist_security_category": null
+  "public_receipt_command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.srgg.paper_source_issuance_bridge --output docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/source-issuance.json",
+  "receipt_sha256": "a650d4518c483616aa010175d0a00a295d5888fd60f8e5b56e6f85cd7368f8fc",
+  "repetitions_per_row": 1,
+  "rom_used": true,
+  "schema": "IBME/SRGG-SOURCE-SCHUR-ISSUANCE-VALIDATION/1",
+  "scope": "six deterministic accepted roots as witnesses; guarded backend; first-issuance TV applies to every complete-gate root; gate-set masses remain null",
+  "security_claim": "none",
+  "source_parameters": {
+    "base": 31,
+    "degree": 512,
+    "digits": 2,
+    "interpretations": [
+      "table-standard-deviation",
+      "literal-density-width"
+    ],
+    "modulus_Q": 15744063,
+    "p": 16383,
+    "r_published_approximation": "1.16",
+    "rank_d": [
+      2,
+      3,
+      4
+    ]
+  },
+  "targeted_tests": {
+    "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_source_issuance_bridge.py",
+    "errors": 0,
+    "failed": 0,
+    "passed": 12,
+    "skipped": 0,
+    "stdout_summary": "12 passed in 73.07s (0:01:13)",
+    "wall_seconds": 73.07
+  },
+  "teaching_parameters": false
 }

@@ -125,7 +125,8 @@ def main():
         require(first.get("seed_sha256") == second.get("seed_sha256") and
                 first.get("setup_attempts", 0) >= 1 and first.get("extraction_calls") == 1 and
                 first.get("private_material_exported") is False and
-                first.get("all_accepted_setup_roots_covered") is False,
+                first.get("bound_scope") == "every_plan_passing_complete_gate_set"
+                and first.get("guard_built_into_backend") is True,
                 "fixed-root execution/privacy boundary")
         for j, phase in enumerate(("master", "signature")):
             finite_phase = first[phase]
@@ -144,7 +145,8 @@ def main():
                     joint_phase.get("fixed_root_combined_tv_bound_nontrivial") is True,
                     "combined fixed-root rational bound drift")
             middle = joint_phase["mathematical_algorithm34_vs_ideal_sequential"]
-            require(middle["all_accepted_setup_roots_covered"] is False,
+            require(middle.get("bound_scope") == "every_plan_passing_complete_gate_set"
+                    and middle.get("guard_built_into_backend") is True,
                     "convolution scope drift")
             if second["interpretation"] == "literal-density-width":
                 require(middle.get("schema") == "IBME/SRGG-SCHUR-LITERAL-FOURIER-MOMENT/1" and

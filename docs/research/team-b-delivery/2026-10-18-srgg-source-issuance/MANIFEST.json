@@ -1,16 +1,16 @@
 {
   "entries": {
     "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/MANIFEST.json": {
-      "bytes": 5936,
-      "sha256": "28dbeda70aa5606a8da82efceae9770178035e773fce9ddb9f947fbc41f9c6f1"
+      "bytes": 6603,
+      "sha256": "698bdeaa45979c69766233b9ba008ac6fca9bae62b7482cd77b8033b49c2142b"
     },
     "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/finite-fixed-root.json": {
-      "bytes": 67338,
-      "sha256": "d1b4334c933248c2f4a26a004c20f6dbd05171cde021396fbb8188dc6a015e59"
+      "bytes": 80530,
+      "sha256": "5c20c3dc7abaf32ec6b06cd39d2370d956a204400ef541956e1db9e6c0d2f274"
     },
     "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/joint-fixed-root.json": {
-      "bytes": 137574,
-      "sha256": "c36bac08885e29595bbf34026def2f14cdc8942053f5a799cb964df1a23ed143"
+      "bytes": 149588,
+      "sha256": "eaa6b087d0b0d507c9a009c32e56b1c3fa46f3791f54af616529f5b6a838f9e0"
     },
     "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/proof.md": {
       "bytes": 8122,
@@ -25,28 +25,48 @@
       "sha256": "87590f751494a20cb89f49259292f841090294aa8ef5be2d0f81ddc2a8c9e60b"
     },
     "docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/source-issuance.json": {
-      "bytes": 64341,
-      "sha256": "cfcc9e45c6b4d126187115f990672a2fa8aa8f92d76b2d2b0f8b6773bbc92477"
+      "bytes": 66394,
+      "sha256": "a650d4518c483616aa010175d0a00a295d5888fd60f8e5b56e6f85cd7368f8fc"
     },
     "docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/validation.json": {
-      "bytes": 3147,
-      "sha256": "544179162d2e0fd81fc0ead09e0f0f3953f9cc39c5682f2b629f046977d32f0d"
+      "bytes": 3476,
+      "sha256": "9543e2f202ee01e35c3d1f41472fd35222a7e3afdce25b31cb8d23b21c3163a2"
     },
     "docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/verify_delivery.py": {
-      "bytes": 12793,
-      "sha256": "54180ea68c74c1d38dba210a1644d36f4c8ba071b7314c90eaab1c9935148f4c"
+      "bytes": 12965,
+      "sha256": "12bdc0a548ea67a4a6c6d6844e54ee4b06c539dd31ff022df8375a891d9cab87"
     },
     "docs/research/team-b-delivery/2026-10-18-srgg-source-schur/MANIFEST.json": {
-      "bytes": 42314,
-      "sha256": "cb763a00b8f3c71dd27767ac05721abf61138e4fc9bc302471330e38d95cb081"
+      "bytes": 42825,
+      "sha256": "1210d3306053a2f69ccf463406206e25ceff96cca00f25917e966b4aefabba22"
+    },
+    "experiments/research/candidates/srgg/paper_distribution_guard.py": {
+      "bytes": 27107,
+      "sha256": "5f14c361987cfdfe96f0e4fd51bb9435ec8bde2ed93976979d97f8277724cf19"
+    },
+    "experiments/research/candidates/srgg/paper_schur_backend.py": {
+      "bytes": 5743,
+      "sha256": "41113635b940dfedc964efb29b5b6cd4c1db59d4b72ad54fcabe543ec08054ba"
     },
     "experiments/research/candidates/srgg/paper_source_issuance_bridge.py": {
       "bytes": 20563,
-      "sha256": "9e27df9665449402884415fce0c9888f72c05011a741efe9ba4a9e45e732a632"
+      "sha256": "8670f86079bca091e080f85e9ddd7608bed39c945938aae63583228b7d803574"
     },
     "papers/2025_efficient_ibs_jia.pdf": {
       "bytes": 512758,
       "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+    },
+    "src/ibme/ibs/srgg_paper_service.py": {
+      "bytes": 11249,
+      "sha256": "67fbb5e9a9c2bf773973edae0c9befb764cd7fff1f8d55b02ba0acb2320ed670"
+    },
+    "tests/test_srgg_paper_distribution_guard.py": {
+      "bytes": 4753,
+      "sha256": "640d83fb4b973f20d4e02101e7c0f7793cd27529238e9741ccad99710f0a03fa"
+    },
+    "tests/test_srgg_paper_service_default.py": {
+      "bytes": 1659,
+      "sha256": "43d23646e1e13c791935e716479d9ea7a553c867bb20f4e1c395fb46bde5adb0"
     },
     "tests/test_srgg_paper_source_issuance_bridge.py": {
       "bytes": 7013,

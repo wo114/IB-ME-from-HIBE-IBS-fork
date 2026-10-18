@@ -63,7 +63,16 @@ def fixed_root_normalizer_certificate(audit):
         return {"schema": SCHEMA, "ideal_pivot_density_shape_lower": None,
                 "ideal_sequential_vs_joint_integer_tv_dyadic_upper": None,
                 "source_schur_finite_output_tv_upper": None,
-                "fixed_root_only": True, "security_claim": "none"}
+                "receipt_generated_on_fixed_roots": True,
+                "fixed_roots_are_witnesses": True,
+                "bound_scope": "every_plan_passing_complete_gate_set",
+                "guard_built_into_backend": True,
+                "all_gate_passing_setup_roots_covered": True,
+                "accepted_setup_root_distribution_bound": None,
+                "accepted_setup_root_distribution_reason":
+                    r"the gate-set mass P(A\B), P(B\G) and the accepted-root distribution "
+                    r"relative to mu_A remain unbounded; beta_bad remains null",
+                "security_claim": "none"}
     theta = theta_certificate(dimension=public["degree"],
                               density_shape=Fraction(64), precision_bits=512)
     epsilon_text = theta["relative_normalizer_error_upper_exact"]
@@ -73,9 +82,17 @@ def fixed_root_normalizer_certificate(audit):
         stages=public["upper_polynomials"],
         relative_normalizer_error=Fraction(epsilon_text))
     return {"schema": SCHEMA, "ideal_pivot_density_shape_lower": 64,
-            **result, "fixed_root_only": True,
+            **result,
+            "receipt_generated_on_fixed_roots": True,
+            "fixed_roots_are_witnesses": True,
+            "bound_scope": "every_plan_passing_complete_gate_set",
+            "guard_built_into_backend": True,
+            "all_gate_passing_setup_roots_covered": True,
+            "accepted_setup_root_distribution_bound": None,
+            "accepted_setup_root_distribution_reason":
+                r"the gate-set mass P(A\B), P(B\G) and the accepted-root distribution "
+                r"relative to mu_A remain unbounded; beta_bad remains null",
             "source_schur_finite_output_tv_upper": None,
-            "all_setup_roots_covered": False,
             "HNF_key_or_signature_law_certified": False,
             "security_claim": "none", "backend_admitted": False,
             "parameters_are_formal": False, "nist_security_category": None}

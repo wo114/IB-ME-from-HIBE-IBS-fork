@@ -13,10 +13,11 @@ PREFIX = "docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/"
 FINITE_PREFIX = "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/"
 FINITE_MANIFEST = FINITE_PREFIX + "MANIFEST.json"
 PREVIOUS_MANIFEST = "docs/research/team-b-delivery/2026-10-18-srgg-source-schur/MANIFEST.json"
-FINITE_MANIFEST_LF_SHA256 = "28dbeda70aa5606a8da82efceae9770178035e773fce9ddb9f947fbc41f9c6f1"
-PREVIOUS_MANIFEST_SHA256 = "cb763a00b8f3c71dd27767ac05721abf61138e4fc9bc302471330e38d95cb081"
+FINITE_MANIFEST_LF_SHA256 = "698bdeaa45979c69766233b9ba008ac6fca9bae62b7482cd77b8033b49c2142b"
+PREVIOUS_MANIFEST_SHA256 = "1210d3306053a2f69ccf463406206e25ceff96cca00f25917e966b4aefabba22"
 SCHEMA = "IBME/SRGG-SOURCE-SCHUR-ISSUANCE-DELIVERY-MANIFEST/1"
 SOURCE = "experiments/research/candidates/srgg/paper_source_issuance_bridge.py"
+GUARD_SOURCE = "experiments/research/candidates/srgg/paper_distribution_guard.py"
 REQUIRED = {
     SOURCE,
     "tests/test_srgg_paper_source_issuance_bridge.py",
@@ -129,7 +130,8 @@ def main():
     receipt = read_json(receipt_path)
     safety(receipt)
     require(receipt.get("schema") == "IBME/SRGG-SOURCE-SCHUR-FIXED-ROOT-ISSUANCE-REPORT/1" and
-            receipt.get("source_sha256") == {SOURCE: digest(file_at(SOURCE))} and
+            receipt.get("source_sha256") == {SOURCE: digest(file_at(SOURCE)),
+                                             GUARD_SOURCE: digest(file_at(GUARD_SOURCE))} and
             receipt.get("paper") == {"path": "papers/2025_efficient_ibs_jia.pdf",
                                       "sha256": digest(file_at("papers/2025_efficient_ibs_jia.pdf"))},
             "source/paper report binding")
@@ -165,7 +167,7 @@ def main():
         require(binding.get("schema") == finite_manifest["schema"] and
                 binding.get("normalized_lf_sha256") == FINITE_MANIFEST_LF_SHA256 and
                 binding.get("all_manifest_entries_sha256_verified") is True and
-                binding.get("entry_count") == len(finite_entries) == 32 and
+                binding.get("entry_count") == len(finite_entries) == 36 and
                 binding.get("dependent_file_sha256") == {
                     path: finite_entries[path]["sha256"] for path in FINITE_DEPENDENCIES},
                 "finite-chain manifest dependency binding drift")
