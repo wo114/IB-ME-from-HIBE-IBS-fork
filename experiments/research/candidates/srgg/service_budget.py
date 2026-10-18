@@ -3,6 +3,12 @@
 Read frozen public certificates, retain their hypotheses, and compose only
 the stated arithmetic terms. No Sage import, key, draw, oracle programming,
 filesystem fault probability, or complete security reduction is supplied.
+
+The default requires every declared frozen source digest to match the current
+source and fails closed on drift.  Explicit ``historical_only=True`` permits
+algebra on unchanged, manifest-bound old public receipts as assumptions.  It
+does not validate their bounds: the old directed-endpoint conversion used
+``QQ(real)`` rational reconstruction, so those bounds need revalidation.
 """
 from __future__ import annotations
 
@@ -32,6 +38,11 @@ SCHEMAS = {
     "native": "IBME/SRGG-NATIVE-SIG-INTERACTIVE-BRIDGE/1",
     "public": "IBME/SRGG-REDUCTION-PUBLIC-SAMPLERS/1",
     "hash": "IBME/SRGG-SEEDED-XOF-EMBEDDING/1",
+}
+HISTORICAL_MANIFEST_SCHEMAS = {
+    "2026-10-16-srgg-bridge": "IBME/SRGG-BRIDGE-MANIFEST/1",
+    "2026-10-16-srgg-reduction": "IBME/SRGG-REDUCTION-DELIVERY-MANIFEST/1",
+    "2026-10-16-srgg-classical-rom": "IBME/SRGG-CLASSICAL-ROM-DELIVERY-MANIFEST/1",
 }
 SOURCES = (
     "experiments/research/candidates/srgg/service_budget.py",
@@ -143,12 +154,35 @@ def _profile(receipt):
     return matches[0]
 
 
-def load_inputs(root=ROOT):
-    """Validate cross-receipt parameters and frozen declared source hashes."""
+def _historical_manifest_guard(root, name, digest):
+    """Bind historical public input bytes to their existing delivery manifest."""
+    path = Path(name)
+    schema = HISTORICAL_MANIFEST_SCHEMAS[path.parent.name]
+    manifest, _ = _read(root, path.parent / "MANIFEST.json", schema)
+    matches = [item for item in manifest.get("files", [])
+               if type(item) is dict and item.get("path") == name]
+    if len(matches) != 1 or matches[0].get("sha256") != digest or (
+            type(matches[0].get("bytes")) is not int
+            or matches[0]["bytes"] != (root / name).stat().st_size):
+        raise ValueError("historical public receipt differs from frozen manifest: " + name)
+
+
+def load_inputs(root=ROOT, *, historical_only=False):
+    """Validate receipt consistency; default also verifies current source hashes.
+
+    Historical mode verifies public receipt bytes against their frozen delivery
+    manifests but treats all numerical bounds as unvalidated input premises.
+    The third return item contains declared source hashes, not independently
+    verified historical source bytes in that mode.
+    """
+    if type(historical_only) is not bool:
+        raise ValueError("explicit boolean historical_only required")
     root = Path(root)
     receipts, hashes = {}, {}
     for label, name in INPUTS.items():
         receipts[label], hashes[name] = _read(root, name, SCHEMAS[label])
+        if historical_only:
+            _historical_manifest_guard(root, name, hashes[name])
     integrated, native = _profile(receipts["integrated"]), _profile(receipts["native"])
     execution, public, hash_receipt = (receipts[label] for label in ("execution", "public", "hash"))
     params = integrated["parameters"]
@@ -181,7 +215,7 @@ def load_inputs(root=ROOT):
         for name, digest in receipt.get("source_sha256", {}).items():
             if name in declared_sources and declared_sources[name] != digest:
                 raise ValueError("conflicting frozen source hashes")
-            if hashlib.sha256((root/name).read_bytes()).hexdigest() != digest:
+            if not historical_only and hashlib.sha256((root/name).read_bytes()).hexdigest() != digest:
                 raise ValueError("frozen source differs: "+name)
             declared_sources[name] = digest
     for section in (integrated["master_sampler"], integrated["sign_sampler"]):
@@ -390,9 +424,9 @@ def entropy_envelope(receipts, *, parent_cap, child_cap):
         "runtime_or_filesystem_failure_probability": None}
 
 
-def build_report(root=ROOT):
+def build_report(root=ROOT, *, historical_only=False):
     root = Path(root)
-    receipts, inputs, frozen_sources = load_inputs(root)
+    receipts, inputs, frozen_sources = load_inputs(root, historical_only=historical_only)
     terms = components(receipts)
     rows = (
         ("audit_lifecycle_two_keys_three_signatures", Counts(2, 3, 4, 6)),
@@ -416,7 +450,15 @@ def build_report(root=ROOT):
         uninstantiated["extra_audit_global_entropy_cap_abort"] = None
     return {"schema": SCHEMA, "parameters": _profile(receipts["integrated"])["parameters"],
         "numerical_profile": "query-bounded-deep", "input_sha256": inputs,
-        "frozen_declared_source_sha256_verified": frozen_sources,
+        "evidence_mode": "historical_conditional_arithmetic_only" if historical_only else "current_source_correspondence_only",
+        "historical_only": historical_only,
+        "current_source_guard_verified": not historical_only,
+        "current_implementation_validated": False,
+        "historical_bounds_revalidated": False,
+        "historical_interval_endpoint_status": "unvalidated: old QQ(real) endpoint reconstruction requires fresh directed-bound validation",
+        "historical_receipt_bytes_match_delivery_manifests": True if historical_only else None,
+        "frozen_declared_source_sha256_verified": None if historical_only else frozen_sources,
+        "historical_declared_source_sha256_unverified": frozen_sources if historical_only else None,
         "selected_current_source_sha256": current_sources,
         "per_call_components": {name: pack(value) for name, value in terms.items()},
         "per_call_sampling_abort_upper": {name: pack(value) for name, value in abort_components(receipts).items()},
@@ -426,6 +468,7 @@ def build_report(root=ROOT):
         "seed_prequery_term_is_not_a_complete_hardness_overlay": True,
         "uninstantiated_terms": uninstantiated,
         "hypotheses": [
+            "Historical numerical bounds are unvalidated premises, not freshly certified bounds after the QQ(real) endpoint issue.",
             "Frozen finite and ideal kernel bounds hold uniformly at every reachable admitted history.",
             "Sampler attempts receive independent uniform bytes; MPFR directed bounds are correct.",
             "All norm retries are counted; numerical and issuance failures never trigger reselection.",
@@ -443,8 +486,10 @@ def build_report(root=ROOT):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--historical-only", action="store_true",
+        help="compose unchanged old public receipts as unvalidated premises; do not certify current implementation")
     args = parser.parse_args()
-    payload = json.dumps(build_report(), indent=2)+"\n"
+    payload = json.dumps(build_report(historical_only=args.historical_only), indent=2)+"\n"
     if args.output is None:
         print(payload, end="")
     else:

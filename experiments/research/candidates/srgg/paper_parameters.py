@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from fractions import Fraction
 from functools import lru_cache
 
-from sage.all import QQ, RealIntervalField
+from sage.all import RealIntervalField
 
 from .paper_profiles import profile
 
@@ -11,8 +11,10 @@ from .paper_profiles import profile
 @lru_cache(maxsize=1)
 def pi_enclosure():
     interval = RealIntervalField(512).pi()
-    return tuple(Fraction(int(QQ(x).numerator()), int(QQ(x).denominator()))
-                 for x in interval.endpoints())
+    # QQ(RealNumber) seeks a short rational approximation and can move an
+    # outward endpoint inward. Preserve each exact binary endpoint instead.
+    return tuple(Fraction(int(x.numerator()), int(x.denominator()))
+                 for x in (endpoint.exact_rational() for endpoint in interval.endpoints()))
 
 
 @dataclass(frozen=True)
@@ -84,6 +86,7 @@ class PaperParams:
         low, high = pi_enclosure()
         return {"density": "exp(-pi*x^T*Sigma^-1*x)",
                 "interpretation": self.interpretation,
+                "interval_endpoint_conversion": "exact binary endpoint rational; no QQ(RealNumber) approximation",
                 "pi_enclosure": [str(low), str(high)],
                 "density_scale": str(low+high) if self.interpretation == "table-standard-deviation" else "1",
                 "pi_scale_absolute_error_upper": str(high-low),

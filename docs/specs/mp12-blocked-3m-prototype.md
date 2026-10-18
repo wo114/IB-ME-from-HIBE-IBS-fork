@@ -4,7 +4,7 @@
 
 该原型消费作者稿两层 CHKP 的完整 H/G：`w=n ceil(log2 q)`、`m=2n+w`，根 `n×m`、父 `n×2m`、叶 `n×3m`，固定叶实际采样 256 个位置。继续使用 MP12 Algorithm 3/4；没有切换 published 2m，也没有新增论文算法计数。代码入口为 `src/ibme/hibe/mp12_structured/blocked_prototype.py`，运行入口为 `experiments.research.blocked_3m_probe`。
 
-这是**根、父、固定叶及对象恢复的工程原型**，尚未登记共同 HIBEBackend，没有大模数 KEM、Hybrid/CLI 或完整 IB-ME 成功声明。现有 structured HIBE v1/v2、注册和 wire 保持原样。下一步完整加解密接入以本批实际资源结论为依据。
+这是**根、父、固定叶及对象恢复的工程原型**。后续已新增独立的[高基数 3m 种子 KEM](../../src/ibme/hibe/mp12_structured/radix_kem.py)，用实际有限舍入噪声完成 n=2/q93/b1024 的根→父→256叶→种子加解封装定向运行；它仍未登记共同 HIBEBackend，也没有 Hybrid/CLI 或完整 IB-ME 成功声明。该 MP12 紧凑陷门实现不与完整基/RandBasis 路线混算证据，现有 structured HIBE v1/v2、注册和 wire 保持原样。
 
 ## 运算与表示
 

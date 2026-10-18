@@ -1,0 +1,325 @@
+{
+  "epsilon_parses": {
+    "alternate_radical_over_Qs_times_256_outside": {
+      "epsilon": "1/268435456",
+      "epsilon_bits": 28,
+      "epsilon_denominator": 268435456,
+      "source_status": "alternate transcription; not the reviewed source equation"
+    },
+    "alternate_radical_over_Qs_times_2pow56_inside": {
+      "epsilon": "1/281474976710656",
+      "epsilon_bits": 48,
+      "epsilon_denominator": 281474976710656,
+      "source_status": "alternate transcription; not the reviewed source equation"
+    },
+    "source_radical_over_Qs_times_256_inside": {
+      "epsilon": "1/16777216",
+      "epsilon_bits": 24,
+      "epsilon_denominator": 16777216,
+      "source_status": "confirmed by page-9 equation: radical contains Q_s*256"
+    }
+  },
+  "global_status": {
+    "backend_admitted": false,
+    "finite_sampler_to_final_signature_law_closed": false,
+    "gaussian_normalization_closed": false,
+    "hardness_estimate_formally_validated": false,
+    "nist_security_category": null,
+    "parameters_are_formal": false,
+    "security_claim": "none",
+    "source_rows_reproduced": true,
+    "theorem_modulus_mapping_closed": false
+  },
+  "limitations": [
+    "The diagnostic w=3 modulus is not a published row and does not reuse published widths or gamma.",
+    "The smoothing check is only a necessary-condition counterexample for Z^m.",
+    "No value here identifies the HNF key or signature output law.",
+    "No generic or structured attack estimate is inferred from these gates."
+  ],
+  "paper": {
+    "locations": "Theorem 1 p.4; Table 3 p.6; Algorithms 7-8 p.8; Section 5.1 p.9",
+    "path": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "rows": [
+    {
+      "modulus_gates": {
+        "Q": 15744063,
+        "admission": false,
+        "degree_n": 512,
+        "diagnostic_Q_at_that_w": 488065953,
+        "diagnostic_is_new_parameter": true,
+        "diagnostic_smallest_w_with_p_times_31_pow_w_above_2gamma": 3,
+        "gadget_base": 31,
+        "gadget_digits_w": 2,
+        "gadget_q": 961,
+        "gamma": "42086491.7",
+        "mapping_status": "unresolved: paper theorem q is not identified with gadget q, Q, or 2Q",
+        "minimum_odd_integer_above_2gamma": 84172985,
+        "modulus_candidates": {
+          "gadget_q": {
+            "gt_2gamma": false,
+            "modulus": 961,
+            "modulus_minus_2gamma": "-84172022.4",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "ibs_Q": {
+            "gt_2gamma": false,
+            "modulus": 15744063,
+            "modulus_minus_2gamma": "-68428920.4",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "verification_2Q": {
+            "gt_2gamma": false,
+            "modulus": 31488126,
+            "modulus_minus_2gamma": "-52684857.4",
+            "odd": false,
+            "theorem_odd_and_gt_2gamma": false
+          }
+        },
+        "p": 16383,
+        "profile": "PARAM-I",
+        "rank": 2,
+        "theorem_1_literal_requirement": "odd q > max(2*gamma, s1*eta_epsilon(Z^m))"
+      },
+      "physical_stddev_diagnostic": {
+        "certificate_status": "numerical diagnostic only; normalization and interval proof unresolved",
+        "dimension": 10240,
+        "epsilon": "1/16777216",
+        "epsilon_decimal": "5.960464477539062500000000000000E-8",
+        "first_dual_mass_decimal": "5.970349443219629374635543826233E-8",
+        "interpretation": "table r is physical stddev; density shape = 2*pi*r^2",
+        "literal_necessary_condition_passes": false,
+        "literal_r": "1.16",
+        "required_r_lower_diagnostic": "1.160036183509648067082707760100",
+        "required_r_minus_literal_diagnostic": "3.618350964806708270776009974044E-5"
+      },
+      "smoothing": {
+        "alternate_radical_over_Qs_times_256_outside": {
+          "dimension": 10240,
+          "epsilon": "1/268435456",
+          "literal_r": "29/25",
+          "necessary_condition_fails": true,
+          "pi_r_squared_less_than_five": true,
+          "pi_r_squared_upper": "18502/4375",
+          "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+          "shortest_dual_mass_strict_lower": "20480/243"
+        },
+        "alternate_radical_over_Qs_times_2pow56_inside": {
+          "dimension": 10240,
+          "epsilon": "1/281474976710656",
+          "literal_r": "29/25",
+          "necessary_condition_fails": true,
+          "pi_r_squared_less_than_five": true,
+          "pi_r_squared_upper": "18502/4375",
+          "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+          "shortest_dual_mass_strict_lower": "20480/243"
+        },
+        "source_radical_over_Qs_times_256_inside": {
+          "dimension": 10240,
+          "epsilon": "1/16777216",
+          "literal_r": "29/25",
+          "necessary_condition_fails": true,
+          "pi_r_squared_less_than_five": true,
+          "pi_r_squared_upper": "18502/4375",
+          "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+          "shortest_dual_mass_strict_lower": "20480/243"
+        }
+      }
+    },
+    {
+      "modulus_gates": {
+        "Q": 15744063,
+        "admission": false,
+        "degree_n": 512,
+        "diagnostic_Q_at_that_w": 488065953,
+        "diagnostic_is_new_parameter": true,
+        "diagnostic_smallest_w_with_p_times_31_pow_w_above_2gamma": 3,
+        "gadget_base": 31,
+        "gadget_digits_w": 2,
+        "gadget_q": 961,
+        "gamma": "63653172.0",
+        "mapping_status": "unresolved: paper theorem q is not identified with gadget q, Q, or 2Q",
+        "minimum_odd_integer_above_2gamma": 127306345,
+        "modulus_candidates": {
+          "gadget_q": {
+            "gt_2gamma": false,
+            "modulus": 961,
+            "modulus_minus_2gamma": "-127305383.0",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "ibs_Q": {
+            "gt_2gamma": false,
+            "modulus": 15744063,
+            "modulus_minus_2gamma": "-111562281.0",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "verification_2Q": {
+            "gt_2gamma": false,
+            "modulus": 31488126,
+            "modulus_minus_2gamma": "-95818218.0",
+            "odd": false,
+            "theorem_odd_and_gt_2gamma": false
+          }
+        },
+        "p": 16383,
+        "profile": "PARAM-II",
+        "rank": 3,
+        "theorem_1_literal_requirement": "odd q > max(2*gamma, s1*eta_epsilon(Z^m))"
+      },
+      "physical_stddev_diagnostic": {
+        "certificate_status": "numerical diagnostic only; normalization and interval proof unresolved",
+        "dimension": 10240,
+        "epsilon": "1/16777216",
+        "epsilon_decimal": "5.960464477539062500000000000000E-8",
+        "first_dual_mass_decimal": "5.970349443219629374635543826233E-8",
+        "interpretation": "table r is physical stddev; density shape = 2*pi*r^2",
+        "literal_necessary_condition_passes": false,
+        "literal_r": "1.16",
+        "required_r_lower_diagnostic": "1.160036183509648067082707760100",
+        "required_r_minus_literal_diagnostic": "3.618350964806708270776009974044E-5"
+      },
+      "smoothing": {
+        "alternate_radical_over_Qs_times_256_outside": {
+          "dimension": 10240,
+          "epsilon": "1/268435456",
+          "literal_r": "29/25",
+          "necessary_condition_fails": true,
+          "pi_r_squared_less_than_five": true,
+          "pi_r_squared_upper": "18502/4375",
+          "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+          "shortest_dual_mass_strict_lower": "20480/243"
+        },
+        "alternate_radical_over_Qs_times_2pow56_inside": {
+          "dimension": 10240,
+          "epsilon": "1/281474976710656",
+          "literal_r": "29/25",
+          "necessary_condition_fails": true,
+          "pi_r_squared_less_than_five": true,
+          "pi_r_squared_upper": "18502/4375",
+          "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+          "shortest_dual_mass_strict_lower": "20480/243"
+        },
+        "source_radical_over_Qs_times_256_inside": {
+          "dimension": 10240,
+          "epsilon": "1/16777216",
+          "literal_r": "29/25",
+          "necessary_condition_fails": true,
+          "pi_r_squared_less_than_five": true,
+          "pi_r_squared_upper": "18502/4375",
+          "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+          "shortest_dual_mass_strict_lower": "20480/243"
+        }
+      }
+    },
+    {
+      "modulus_gates": {
+        "Q": 15744063,
+        "admission": false,
+        "degree_n": 512,
+        "diagnostic_Q_at_that_w": 488065953,
+        "diagnostic_is_new_parameter": true,
+        "diagnostic_smallest_w_with_p_times_31_pow_w_above_2gamma": 3,
+        "gadget_base": 31,
+        "gadget_digits_w": 2,
+        "gadget_q": 961,
+        "gamma": "86573930.5",
+        "mapping_status": "unresolved: paper theorem q is not identified with gadget q, Q, or 2Q",
+        "minimum_odd_integer_above_2gamma": 173147863,
+        "modulus_candidates": {
+          "gadget_q": {
+            "gt_2gamma": false,
+            "modulus": 961,
+            "modulus_minus_2gamma": "-173146900.0",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "ibs_Q": {
+            "gt_2gamma": false,
+            "modulus": 15744063,
+            "modulus_minus_2gamma": "-157403798.0",
+            "odd": true,
+            "theorem_odd_and_gt_2gamma": false
+          },
+          "verification_2Q": {
+            "gt_2gamma": false,
+            "modulus": 31488126,
+            "modulus_minus_2gamma": "-141659735.0",
+            "odd": false,
+            "theorem_odd_and_gt_2gamma": false
+          }
+        },
+        "p": 16383,
+        "profile": "PARAM-III",
+        "rank": 4,
+        "theorem_1_literal_requirement": "odd q > max(2*gamma, s1*eta_epsilon(Z^m))"
+      },
+      "physical_stddev_diagnostic": {
+        "certificate_status": "numerical diagnostic only; normalization and interval proof unresolved",
+        "dimension": 10240,
+        "epsilon": "1/16777216",
+        "epsilon_decimal": "5.960464477539062500000000000000E-8",
+        "first_dual_mass_decimal": "5.970349443219629374635543826233E-8",
+        "interpretation": "table r is physical stddev; density shape = 2*pi*r^2",
+        "literal_necessary_condition_passes": false,
+        "literal_r": "1.16",
+        "required_r_lower_diagnostic": "1.160036183509648067082707760100",
+        "required_r_minus_literal_diagnostic": "3.618350964806708270776009974044E-5"
+      },
+      "smoothing": {
+        "alternate_radical_over_Qs_times_256_outside": {
+          "dimension": 10240,
+          "epsilon": "1/268435456",
+          "literal_r": "29/25",
+          "necessary_condition_fails": true,
+          "pi_r_squared_less_than_five": true,
+          "pi_r_squared_upper": "18502/4375",
+          "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+          "shortest_dual_mass_strict_lower": "20480/243"
+        },
+        "alternate_radical_over_Qs_times_2pow56_inside": {
+          "dimension": 10240,
+          "epsilon": "1/281474976710656",
+          "literal_r": "29/25",
+          "necessary_condition_fails": true,
+          "pi_r_squared_less_than_five": true,
+          "pi_r_squared_upper": "18502/4375",
+          "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+          "shortest_dual_mass_strict_lower": "20480/243"
+        },
+        "source_radical_over_Qs_times_256_inside": {
+          "dimension": 10240,
+          "epsilon": "1/16777216",
+          "literal_r": "29/25",
+          "necessary_condition_fails": true,
+          "pi_r_squared_less_than_five": true,
+          "pi_r_squared_upper": "18502/4375",
+          "scope": "necessary-condition countercheck for literal shape width; not a sufficient smoothing proof",
+          "shortest_dual_mass_strict_lower": "20480/243"
+        }
+      }
+    }
+  ],
+  "schema": "IBME/SRGG-PARAMETER-CLOSURE/1",
+  "scope": "HIBE-independent SRGG source-symbol and parameter-gate audit",
+  "source_constants": {
+    "Q_s": 1099511627776,
+    "algorithm_displayed_perturbation_factor": 1,
+    "author_interpretation_confirmed": false,
+    "base": 31,
+    "epsilon_grouping_confirmed_from_pdf": true,
+    "factor_mapping_status": "unresolved",
+    "n": 512,
+    "p": 16383,
+    "published_r": "29/25",
+    "published_w": 2,
+    "r_dimension": 10240,
+    "r_dimension_expression": "(2+w)*5*512",
+    "visual_formula_reading": "epsilon = 1/sqrt(Q_s*256); alternate grouping parses retained for sensitivity",
+    "zeta_shape_factor_from_exact_operator": 2
+  }
+}

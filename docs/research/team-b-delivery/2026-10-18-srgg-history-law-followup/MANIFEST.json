@@ -1,0 +1,38 @@
+{
+  "entries": {
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/README.md": {
+      "bytes": 2878,
+      "sha256": "eea8056b92dfb69e3423d9e6fd79c5eb00f4120b7ff2480648a759887f128166"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/README_zh-CN.md": {
+      "bytes": 3012,
+      "sha256": "b162a565c7b5149a28bcd666a80f826ecc1a5737368d3d4df2e0ffedac77438e"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/history-law.json": {
+      "bytes": 21985,
+      "sha256": "357cef782a60a9b16439e813f74dda2c1b5ead23c82cec76c9695deb5929da92"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/proof.md": {
+      "bytes": 6567,
+      "sha256": "431b8a8dff1a022a1da60de022ddaac32327f8ae83ddd9eed64b113f07e8eb3c"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/validation.json": {
+      "bytes": 1336,
+      "sha256": "2240d62a2810298c0bb8759105f50bd69e5638ab465f961cdc7cc76f7af43886"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/verify_delivery.py": {
+      "bytes": 6100,
+      "sha256": "f86c08fe54c2b7f2440c777b78389248b537a28b01fa3261c2f327cfb389fadf"
+    },
+    "experiments/research/candidates/srgg/paper_history_law_followup.py": {
+      "bytes": 13916,
+      "sha256": "ad7c9ab949f41f96218336e6d26c16a7f207d0b72b7077a509952bc7eb189546"
+    },
+    "tests/test_srgg_paper_history_law_followup.py": {
+      "bytes": 4714,
+      "sha256": "dfb57c5d5e4ac9441cafae976fad5c3197fc6eddb8621207d1be03ce524f3ef1"
+    }
+  },
+  "schema": "IBME/SRGG-PAPER-ADAPTIVE-HISTORY-DELIVERY-MANIFEST/1",
+  "scope": "selected eight source/test/delivery files; predecessor manifests are independently verified by source code"
+}

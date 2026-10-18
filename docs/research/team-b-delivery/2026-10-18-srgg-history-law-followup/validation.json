@@ -1,0 +1,30 @@
+{
+  "schema": "IBME/SRGG-PAPER-ADAPTIVE-HISTORY-VALIDATION/1",
+  "date": "2026-10-18",
+  "scope": "six original Table 4 fixed accepted roots; separate issuance-only and one-fixture-key signing histories",
+  "targeted_tests": {
+    "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_history_law_followup.py",
+    "passed": 18,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_seconds": 9.68
+  },
+  "report_generation": {
+    "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.srgg.paper_history_law_followup --output docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/history-law.json",
+    "rows": 6,
+    "nontrivial_issuance_only_histories": 3,
+    "nontrivial_same_fixture_key_two_sign_histories": 3,
+    "full_history": null
+  },
+  "identity_bytes_replayed": 5,
+  "actual_message_signatures_drawn_by_this_batch": 0,
+  "independent_uniform_bytes_assumed_for_probability_bound": true,
+  "deterministic_fixture_seeds_are_not_distribution_evidence": true,
+  "external_storage_faults_bounded": false,
+  "all_accepted_setup_roots_bounded": false,
+  "random_issuance_then_signing_history_bounded": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}

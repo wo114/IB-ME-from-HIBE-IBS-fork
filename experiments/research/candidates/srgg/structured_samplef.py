@@ -180,7 +180,7 @@ class StructuredSampleF:
         rho = _fraction(geometry.noise_squared/a)*beta
         field = RealIntervalField(opt.precision_bits)
         scale_interval = (field(a)/(2*field.pi())).sqrt()
-        scale_low,scale_high = (QQ(endpoint) for endpoint in scale_interval.endpoints())
+        scale_low,scale_high = (endpoint.exact_rational() for endpoint in scale_interval.endpoints())
         self.scale = (scale_low+scale_high)/2
         scale_error = (scale_high-scale_low)/2
         self.series = series_certificate(dimension=d,rho=rho,scale_upper=_fraction(scale_high),

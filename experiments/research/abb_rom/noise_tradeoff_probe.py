@@ -18,7 +18,7 @@ import resource
 import sys
 import time
 from fractions import Fraction
-from math import isqrt
+from math import isfinite, isqrt
 
 from ibme.lattice.chkp.noise_budget import RoundedNoiseParams
 from ibme.lattice.chkp.rounded_noise import build_rounded_noise
@@ -227,10 +227,18 @@ def finalize_comparison(report):
         for name in REQUIRED_ESTIMATES:
             result = results.get(name)
             if (not isinstance(result, dict) or result.get("status") != "finite_estimate" or
-                    not isinstance(result.get("rop_log2"), (int, float))):
+                    type(result.get("rop_log2")) not in (int, float)):
                 complete = False
                 break
-            values.append(float(result["rop_log2"]))
+            try:
+                value = float(result["rop_log2"])
+            except OverflowError:
+                complete = False
+                break
+            if not isfinite(value):
+                complete = False
+                break
+            values.append(value)
         minimum = min(values) if complete else None
         gate = bool(
             complete
@@ -246,6 +254,8 @@ def finalize_comparison(report):
         if gate:
             candidates.append(row)
     report["comparison_model_candidates"] = [row["candidate_id"] for row in candidates]
+    report["smallest_tested_comparison_candidate"] = None
+    report["largest_tested_comparison_margin_candidate"] = None
     if candidates:
         report["smallest_tested_comparison_candidate"] = min(candidates, key=lambda row: row["n"])["candidate_id"]
         report["largest_tested_comparison_margin_candidate"] = max(

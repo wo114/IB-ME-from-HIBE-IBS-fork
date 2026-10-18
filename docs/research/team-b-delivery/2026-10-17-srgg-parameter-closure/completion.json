@@ -1,0 +1,429 @@
+{
+  "schema": "IBME/SRGG-PARAMETER-COMPLETION/1",
+  "paper": {
+    "path": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "scope": "HIBE-independent SRGG parameter closure continuation",
+  "source_table_mapping": {
+    "rows": [
+      {
+        "name": "PARAM-I",
+        "rank": 2,
+        "table1_summary": {
+          "target_bits": 100,
+          "master_public_bytes": 3104,
+          "signature_bytes": 12088,
+          "extract_cycles": 5004676,
+          "sign_cycles": 5203248,
+          "forgery_classical_bits": 103,
+          "forgery_quantum_bits": 93
+        },
+        "table4_parameters_and_sizes": {
+          "master_public_bytes": 12320,
+          "master_secret_bytes": 2048,
+          "user_secret_bytes": 4900,
+          "signature_bytes": 12148
+        },
+        "table1_mpk_equals_table4_mpk": false,
+        "table1_signature_equals_table4_signature": false,
+        "difference_explanation": null,
+        "source_size_namespace_is_preserved": true
+      },
+      {
+        "name": "PARAM-II",
+        "rank": 3,
+        "table1_summary": {
+          "target_bits": 180,
+          "master_public_bytes": 4640,
+          "signature_bytes": 17736,
+          "extract_cycles": 5490761,
+          "sign_cycles": 7007089,
+          "forgery_classical_bits": 171,
+          "forgery_quantum_bits": 155
+        },
+        "table4_parameters_and_sizes": {
+          "master_public_bytes": 27680,
+          "master_secret_bytes": 4608,
+          "user_secret_bytes": 7396,
+          "signature_bytes": 17786
+        },
+        "table1_mpk_equals_table4_mpk": false,
+        "table1_signature_equals_table4_signature": false,
+        "difference_explanation": null,
+        "source_size_namespace_is_preserved": true
+      },
+      {
+        "name": "PARAM-III",
+        "rank": 4,
+        "table1_summary": {
+          "target_bits": 256,
+          "master_public_bytes": 6176,
+          "signature_bytes": 23480,
+          "extract_cycles": 9556676,
+          "sign_cycles": 11521424,
+          "forgery_classical_bits": 242,
+          "forgery_quantum_bits": 219
+        },
+        "table4_parameters_and_sizes": {
+          "master_public_bytes": 49184,
+          "master_secret_bytes": 8192,
+          "user_secret_bytes": 9892,
+          "signature_bytes": 23516
+        },
+        "table1_mpk_equals_table4_mpk": false,
+        "table1_signature_equals_table4_signature": false,
+        "difference_explanation": null,
+        "source_size_namespace_is_preserved": true
+      }
+    ],
+    "table1_and_table4_are_distinct_source_views": true,
+    "difference_explanation": "The paper reports two size tables with different values; no compression or error cause is inferred.",
+    "author_cycle_environment_reproduced": false
+  },
+  "theorem_secondary_gate": {
+    "rows": [
+      {
+        "name": "PARAM-I",
+        "s1_source_value": "4215441/5",
+        "s1_candidate_source": "Table 4 signature sigma_bar1; response ellipse in Section 3.1/Theorem 1",
+        "eta_r_source_value": "29/25",
+        "s1_times_eta_r": "122247789/125",
+        "Q_candidate": 15744063,
+        "conditional_Q_gt_s1_eta_r": true,
+        "conditional_gate_margin": "1845760086/125",
+        "physical_stddev_two_widths_product_upper": "5378902716/875",
+        "physical_stddev_conversion_bound": "2*pi < 44/7 applied to both s1 and eta width conversions",
+        "conditional_Q_gt_converted_product_upper": true,
+        "q_mapping_to_Q_verified": false,
+        "s1_symbol_mapping_formally_verified": false,
+        "r_precision_and_normalization_verified": false,
+        "formal_theorem1_gate_closed": false
+      },
+      {
+        "name": "PARAM-II",
+        "s1_source_value": "5233571/5",
+        "s1_candidate_source": "Table 4 signature sigma_bar1; response ellipse in Section 3.1/Theorem 1",
+        "eta_r_source_value": "29/25",
+        "s1_times_eta_r": "151773559/125",
+        "Q_candidate": 15744063,
+        "conditional_Q_gt_s1_eta_r": true,
+        "conditional_gate_margin": "1816234316/125",
+        "physical_stddev_two_widths_product_upper": "954005228/125",
+        "physical_stddev_conversion_bound": "2*pi < 44/7 applied to both s1 and eta width conversions",
+        "conditional_Q_gt_converted_product_upper": true,
+        "q_mapping_to_Q_verified": false,
+        "s1_symbol_mapping_formally_verified": false,
+        "r_precision_and_normalization_verified": false,
+        "formal_theorem1_gate_closed": false
+      },
+      {
+        "name": "PARAM-III",
+        "s1_source_value": "1238066",
+        "s1_candidate_source": "Table 4 signature sigma_bar1; response ellipse in Section 3.1/Theorem 1",
+        "eta_r_source_value": "29/25",
+        "s1_times_eta_r": "35903914/25",
+        "Q_candidate": 15744063,
+        "conditional_Q_gt_s1_eta_r": true,
+        "conditional_gate_margin": "357697661/25",
+        "physical_stddev_two_widths_product_upper": "1579772216/175",
+        "physical_stddev_conversion_bound": "2*pi < 44/7 applied to both s1 and eta width conversions",
+        "conditional_Q_gt_converted_product_upper": true,
+        "q_mapping_to_Q_verified": false,
+        "s1_symbol_mapping_formally_verified": false,
+        "r_precision_and_normalization_verified": false,
+        "formal_theorem1_gate_closed": false
+      }
+    ],
+    "interpretation": "conditional arithmetic only: response width sigma_bar1, rounded r, both literal-width and physical-stddev conversions; exact source mapping remains open",
+    "all_conditional_Q_gt_s1_eta_r": true,
+    "formal_gate_closed": false
+  },
+  "resource_preflight": {
+    "hardness_receipt_sha256": "2eaa9969e75513d0be2f6d3f29bd9c2b07845fa7e0a5412e3b646cadeb581799",
+    "hardness_receipt_manifest_match": true,
+    "rows": [
+      {
+        "label": "n512-d2-b31-w8",
+        "candidate_name": "search-n512-d2-b31-w8-r264-p16383",
+        "parameters": {
+          "name": "search-n512-d2-b31-w8-r264-p16383",
+          "degree": 512,
+          "rank": 2,
+          "p": 16383,
+          "base": 31,
+          "digits": 8,
+          "r_squared": 64,
+          "master_first_squared": 1031865954433,
+          "master_second_squared": 1031865954433,
+          "signature_first_squared": 22159188660729268928705,
+          "signature_second_squared": 22159188660729268928705,
+          "raw_norm_squared_cap": 169060917974302720,
+          "user_norm_squared_cap": 338122385570209792,
+          "signature_norm_squared_cap": 238255596480161099521436160,
+          "smoothing_epsilon_bits": 80,
+          "sign_max_attempts": 16
+        },
+        "Q": 13972913866395903,
+        "coefficient_dimensions": {
+          "extraction": 10240,
+          "signing": 10752
+        },
+        "modeled_payload_bytes": {
+          "encoding_status": "counting model only; encoder, framing and snapshots not implemented here",
+          "public_b_plus_seed": 110624,
+          "root_r_cbd1_two_bits_per_coefficient": 8192,
+          "signing_tail_offset_encoding": 35712,
+          "response_context_and_binary_challenge": 60576,
+          "public_coefficient_bits": 54,
+          "tail_signed_offset_bits": 31,
+          "response_signed_offset_bits": 45
+        },
+        "ring_operation_counts": {
+          "coefficient_products_per_negacyclic_product": 262144,
+          "public_A_times_vector_ring_products": 40,
+          "public_A_times_vector_coefficient_products": 10485760,
+          "signature_commitment_ring_products": 42,
+          "signature_commitment_coefficient_products": 11010048,
+          "response_update_ring_products": 22,
+          "response_relation_check_ring_products": 42,
+          "response_total_ring_products": 64,
+          "response_total_coefficient_products": 16777216,
+          "response_count_scope": "current response_from_values including signing_relation; excludes caller's other work"
+        },
+        "runtime_observation": {
+          "dense_geometry_dimension_limit": 128,
+          "current_scalar_squared_width_limit": 1000000000000,
+          "within_dense_geometry_dimension_limit": false,
+          "within_current_scalar_width_limit": false,
+          "current_backend_executable": false,
+          "reason": "candidate is not a Config; Params, objects, wire and dense sampler admission remain separate"
+        },
+        "execution_limits": {
+          "structured_execution_degree_max": 512,
+          "structured_samplef_dimension_max": 32768,
+          "geometry_witness_coefficients_max": 1048576,
+          "checks": {
+            "degree_le_512_structured_execution_cap": true,
+            "rank_le_4_execution_cap": true,
+            "digits_le_8_execution_cap": true,
+            "modulus_bits_le_128_execution_cap": true,
+            "signing_dimension_le_32768_structured_sampler_cap": true,
+            "witness_coefficients_le_2pow20_geometry_cap": true
+          },
+          "legacy_dense_config_dimension_le_128_comparator": false,
+          "status": "listed_static_guards_pass_only",
+          "complete_runtime_preflight_performed": false,
+          "unchecked_runtime_gates": [
+            "all remaining ExecutionParams inequalities and exact types",
+            "prepared witness residual, series terms and rational-center limits",
+            "whole sampler and retry entropy budgets",
+            "objects, wire and service snapshot budgets"
+          ]
+        },
+        "execution_status": "n512_receipt_exists_but_candidate_resource_model_is_static",
+        "heuristic_attack_estimates_are_not_repeated_here": true
+      },
+      {
+        "label": "n2048-d3-b3-w22",
+        "candidate_name": "search-n2048-d3-b3-w22-r2128-p53615",
+        "parameters": {
+          "name": "search-n2048-d3-b3-w22-r2128-p53615",
+          "degree": 2048,
+          "rank": 3,
+          "p": 53615,
+          "base": 3,
+          "digits": 22,
+          "r_squared": 128,
+          "master_first_squared": 1913407931649,
+          "master_second_squared": 1913407931649,
+          "signature_first_squared": 4733600625009485181616513,
+          "signature_second_squared": 4733600625009485181616513,
+          "raw_norm_squared_cap": 4514295679507759104,
+          "user_norm_squared_cap": 9028626680392237056,
+          "signature_norm_squared_cap": 707692227841418072592395159552,
+          "smoothing_epsilon_bits": 80,
+          "sign_max_attempts": 16
+        },
+        "Q": 1682495510936535,
+        "coefficient_dimensions": {
+          "extraction": 147456,
+          "signing": 149504
+        },
+        "modeled_payload_bytes": {
+          "encoding_status": "counting model only; encoder, framing and snapshots not implemented here",
+          "public_b_plus_seed": 2585120,
+          "root_r_cbd1_two_bits_per_coefficient": 202752,
+          "signing_tail_offset_encoding": 582912,
+          "response_context_and_binary_challenge": 953376,
+          "public_coefficient_bits": 51,
+          "tail_signed_offset_bits": 33,
+          "response_signed_offset_bits": 51
+        },
+        "ring_operation_counts": {
+          "coefficient_products_per_negacyclic_product": 4194304,
+          "public_A_times_vector_ring_products": 216,
+          "public_A_times_vector_coefficient_products": 905969664,
+          "signature_commitment_ring_products": 219,
+          "signature_commitment_coefficient_products": 918552576,
+          "response_update_ring_products": 74,
+          "response_relation_check_ring_products": 219,
+          "response_total_ring_products": 293,
+          "response_total_coefficient_products": 1228931072,
+          "response_count_scope": "current response_from_values including signing_relation; excludes caller's other work"
+        },
+        "runtime_observation": {
+          "dense_geometry_dimension_limit": 128,
+          "current_scalar_squared_width_limit": 1000000000000,
+          "within_dense_geometry_dimension_limit": false,
+          "within_current_scalar_width_limit": false,
+          "current_backend_executable": false,
+          "reason": "candidate is not a Config; Params, objects, wire and dense sampler admission remain separate"
+        },
+        "execution_limits": {
+          "structured_execution_degree_max": 512,
+          "structured_samplef_dimension_max": 32768,
+          "geometry_witness_coefficients_max": 1048576,
+          "checks": {
+            "degree_le_512_structured_execution_cap": false,
+            "rank_le_4_execution_cap": true,
+            "digits_le_8_execution_cap": false,
+            "modulus_bits_le_128_execution_cap": true,
+            "signing_dimension_le_32768_structured_sampler_cap": false,
+            "witness_coefficients_le_2pow20_geometry_cap": true
+          },
+          "legacy_dense_config_dimension_le_128_comparator": false,
+          "status": "rejected_by_listed_static_guards",
+          "complete_runtime_preflight_performed": false,
+          "unchecked_runtime_gates": [
+            "all remaining ExecutionParams inequalities and exact types",
+            "prepared witness residual, series terms and rational-center limits",
+            "whole sampler and retry entropy budgets",
+            "objects, wire and service snapshot budgets"
+          ]
+        },
+        "execution_status": "preflight_only_current_execution_params_cap_degree_at_512",
+        "heuristic_attack_estimates_are_not_repeated_here": true
+      }
+    ],
+    "n512_execution_receipt": {
+      "path": "docs/research/team-b-delivery/2026-10-16-srgg-bridge/structured-execution-n512-d2w8.json",
+      "sha256": "ee8fde8955113bc06aea842ecc9128e1d0f3d793a0c3ce7a082d0cb550d06e09",
+      "manifest_match": true,
+      "schema": "IBME/SRGG-STRUCTURED-EXECUTION/1",
+      "completed": true,
+      "actual_entropy_bytes": 15099738,
+      "peak_rss_KiB": 235460,
+      "security_claim": "none",
+      "parameters_are_formal": false
+    },
+    "n2048_execution_performed": false,
+    "peak_memory_is_modeled_for_candidates_and_measured_only_for_n512": true
+  },
+  "structure_and_attack_boundaries": {
+    "rows": [
+      {
+        "label": "n512-d2-w8",
+        "degree": 512,
+        "rank": 2,
+        "digits": 8,
+        "columns": 16,
+        "mod3_one_factor_tv_bits": 406,
+        "mod3_full_ring_tv_bits": 406,
+        "mod3_shared_column_tv_bits": 402,
+        "mod3_projection_scope": {
+          "both_crt_factors_jointly_covered": true,
+          "prime_power_covered": false,
+          "other_prime_factors_covered": false,
+          "pointwise_in_Ahat": false
+        },
+        "challenge_effective_bits": 256,
+        "same_coset_success_probability": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "strong_reduction_closed": false,
+        "ring_hnf_msis_attack_cost_closed": false,
+        "public_cbd1_spectral_squared_upper": "36152725138575386955601217372821701030928733/5316911983139663491615228241121378304"
+      },
+      {
+        "label": "n2048-d3-w22",
+        "degree": 2048,
+        "rank": 3,
+        "digits": 22,
+        "columns": 66,
+        "mod3_one_factor_tv_bits": 2431,
+        "mod3_full_ring_tv_bits": 2430,
+        "mod3_shared_column_tv_bits": 2424,
+        "mod3_projection_scope": {
+          "both_crt_factors_jointly_covered": true,
+          "prime_power_covered": false,
+          "other_prime_factors_covered": false,
+          "pointwise_in_Ahat": false
+        },
+        "challenge_effective_bits": 1024,
+        "same_coset_success_probability": "1/179769313486231590772930519078902473361797697894230657273430081157732675805500963132708477322407536021120113879871393357658789768814416622492847430639474124377767893424865485276302219601246094119453082952085005768838150682342462881473913110540827237163350510684586298239947245938479716304835356329624224137216",
+        "strong_reduction_closed": false,
+        "ring_hnf_msis_attack_cost_closed": false,
+        "public_cbd1_spectral_squared_upper": "28632869921196334649684807445791324439319582481/42535295865117307932921825928971026432"
+      }
+    ],
+    "interpretation": "exact public projection and quotient counts only; projected secret/error laws and efficient attacks remain open",
+    "structured_attack_estimate_closed": false,
+    "ring_hnf_msis_correspondence_closed": false
+  },
+  "finite_law_and_hnf_boundary": {
+    "toy_hnf_probe": {
+      "params": {
+        "degree": 2,
+        "p": 5,
+        "base": 3,
+        "digits": 1
+      },
+      "raw_support": "head coefficient -5..5; first tail coefficient in {0,1}; others zero; canonical approximate fibers",
+      "reference_support": "exact HNF witnesses with the same two tails",
+      "gaussian_density": "2^(-squared_norm), finite conditioning",
+      "raw_state_count": 10,
+      "repaired_state_count": 2,
+      "repaired_to_finite_exact_gaussian_tv": "29228028/619650565",
+      "is_actual_srgg_sampler_law": false
+    },
+    "shared_filter_probe": {
+      "before_filter_tv": "1/100",
+      "including_abort_after_filter_tv": "1/100",
+      "success_left": "1/100",
+      "success_right": "1/100",
+      "conditioned_on_success_tv": "1",
+      "conditional_tv_upper": "1",
+      "is_actual_srgg_sampler_law": false
+    },
+    "toy_probe_is_actual_srgg_sampler": false,
+    "n512_hnf_key_distribution_identified": false,
+    "n512_final_signature_law_identified": false,
+    "finite_samplef_to_hnf_bridge_closed": false,
+    "reason": "exact finite pushforward helpers show the required law and conditioning inputs, but the production SRGG sampler law is not an explicit finite table"
+  },
+  "service_abort_boundary": {
+    "conditional_algorithm_abort_composition_lemma_available": true,
+    "historical_numerical_receipts_revalidated_after_endpoint_fix": false,
+    "full_service_abort_including_IO_crash_and_runtime_fault": null,
+    "reason": "historical interval-derived finite errors require revalidation; filesystem/crash/runtime fault probability also has no declared model"
+  },
+  "global_status": {
+    "source_tables_mapped": true,
+    "listed_static_resource_checks_complete": true,
+    "complete_runtime_resource_preflight_closed": false,
+    "finite_sampler_to_hnf_closed": false,
+    "ring_hnf_msis_closed": false,
+    "crt_and_subfield_structured_attacks_closed": false,
+    "native_strong_rom_qrom_closed": false,
+    "security_claim": "none",
+    "parameters_are_formal": false,
+    "backend_admitted": false,
+    "nist_security_category": null
+  },
+  "remaining_independent_tasks": [
+    "derive a production SampleF-to-HNF key law or a theorem-level coupling with explicit abort conditioning",
+    "complete ring-HNF/MSIS, CRT/subfield and structured attack models with the projected secret/error law",
+    "close the external failure model before claiming a complete service abort budget",
+    "finish native-strong ROM/QROM target-identity simulation and its query losses",
+    "run a full lifecycle on any candidate that passes the preceding proof and resource gates"
+  ]
+}
