@@ -1,0 +1,70 @@
+{
+  "backend_admitted": false,
+  "entries": {
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-symbol-mapping/README.md": {
+      "bytes": 1614,
+      "sha256": "c8bfea3045e363875907f431e6bb95739fbb98689e5ca44df4979a3788933a92"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-symbol-mapping/README_zh-CN.md": {
+      "bytes": 2358,
+      "sha256": "85aa5b3d9fb40e5887b3b444db7edd5f33a161d5303108b50efc6d55a994dba9"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-symbol-mapping/proof.md": {
+      "bytes": 6810,
+      "sha256": "7d3597f44b8beb5002c6848e426f8a24c74cca4347784d587a281e0f0296ef1b"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-symbol-mapping/source-symbol-mapping.json": {
+      "bytes": 8626,
+      "sha256": "8c33b0679b5c69992067afb75dae022b6f476efb59cb194e2f9326831f315438"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-symbol-mapping/validation.json": {
+      "bytes": 1247,
+      "sha256": "643f9ac811e313e3222f0a917ab76415a7b09e1e7f5137277c45b547fdc3275c"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-symbol-mapping/verify_delivery.py": {
+      "bytes": 6525,
+      "sha256": "6b03c36bd488b650731d310f867ccb37e0c1fe45d293763a1de680a726eae50e"
+    },
+    "experiments/research/candidates/srgg/paper_algebra.py": {
+      "bytes": 2006,
+      "sha256": "5494acd7ab7cf42b2d9f33746b2535ffcbb58df0796c0b313dd56cc39547c81a"
+    },
+    "experiments/research/candidates/srgg/paper_backend.py": {
+      "bytes": 11897,
+      "sha256": "da08ef7c93e4b921ef8a73ae233501eee693a67efefb899208f4f0a7079b6451"
+    },
+    "experiments/research/candidates/srgg/paper_parameters.py": {
+      "bytes": 4003,
+      "sha256": "3dc03c082d5595fb2f6d85ea2fdd284beb37b20c432854a38ff434f8aef201a4"
+    },
+    "experiments/research/candidates/srgg/paper_profiles.py": {
+      "bytes": 6580,
+      "sha256": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f"
+    },
+    "experiments/research/candidates/srgg/paper_smoothing_eta.py": {
+      "bytes": 8402,
+      "sha256": "79d49664fbcbbbb74b805dd06bf973a7fc8801625821873b88c30e705c8c600f"
+    },
+    "experiments/research/candidates/srgg/paper_source_symbol_mapping.py": {
+      "bytes": 13810,
+      "sha256": "a47f7401f8c4d058dc55856a95325e84d4e2a89ca76ab3f4d67dec6a14315c9c"
+    },
+    "experiments/research/candidates/srgg/paper_strong_game.py": {
+      "bytes": 10166,
+      "sha256": "7333c7affb7656874edff743a178a66b58fa4eb69c913561f8f1d2813f6886d7"
+    },
+    "papers/2025_efficient_ibs_jia.pdf": {
+      "bytes": 512758,
+      "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+    },
+    "tests/test_srgg_paper_source_symbol_mapping.py": {
+      "bytes": 7580,
+      "sha256": "26c9d1580b8e238a129bd67acaa40d47c9191663f1265aee4fe05be30c793ac2"
+    }
+  },
+  "nist_security_category": null,
+  "parameters_are_formal": false,
+  "schema": "IBME/SRGG-SOURCE-SYMBOL-MAPPING-MANIFEST/1",
+  "security_claim": "none",
+  "self_hash_excluded": true
+}

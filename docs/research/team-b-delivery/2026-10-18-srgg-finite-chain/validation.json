@@ -1,0 +1,68 @@
+{
+  "schema": "IBME/SRGG-FINITE-CHAIN-VALIDATION/1",
+  "paper_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+  "original_table4_parameters": {
+    "n": 512,
+    "p": 16383,
+    "b": 31,
+    "w": 2,
+    "q": 961,
+    "Q": 15744063,
+    "d": [2, 3, 4],
+    "r_published_rounded": "1.16",
+    "gaussian_interpretations": ["table-standard-deviation", "literal-density-width"]
+  },
+  "environment": {
+    "os": "Windows 11 host with WSL2",
+    "sage": "10.9",
+    "python": "3.13.15",
+    "hardware": "Intel Core Ultra 7 255HX; approximately 31.4 GiB RAM"
+  },
+  "execution": {
+    "fixed_roots": 6,
+    "setups_per_root": 1,
+    "five_byte_Alice_extractions_per_root": 1,
+    "messages_signed_in_this_audit": 0,
+    "finite_vs_mathematical_algorithm34": "six master and six signature certificates including abort",
+    "mathematical_algorithm34_to_ideal_sequential": "all-center theta on standard-deviation interpretation; Fourier second moment on literal-density interpretation at fixed pivot floor 64",
+    "ideal_sequential_to_joint": "independently recomputed fixed-root Schur normalizer certificate",
+    "literal_first_alternative": "coordinate-product normalizer gives chain TV upper exactly 1 on all original rows",
+    "literal_second_alternative": "Fourier second moment gives fixed-root rational chain TV upper between approximately 0.678 and 0.989",
+    "literal_third_alternative_attempted": false,
+    "binding_defect_repaired": "an independently reproduced 192-bit leaf-field mutation formerly received a P768 certificate; every live leaf field, options, scalar and parent plan are now bound, including the legitimate PaperSeriesOptions subclass",
+    "development_failure_preserved": "the first stricter binding version rejected the legitimate Table 4 PaperSeriesOptions subclass before producing a receipt; the final six-root receipt was rerun after correction",
+    "obsolete_exploratory_joint_receipts": "older ignored build/outputs joint drafts are excluded from this delivery because their source bindings are stale",
+    "uniform_random_bytes_assumed_for_tv": true,
+    "deterministic_seed_for_replay": true,
+    "rom_used_by_underlying_ibs": true
+  },
+  "tests": {
+    "focused_command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_schur_finite_chain.py tests/test_srgg_paper_schur_convolution.py tests/test_srgg_paper_schur_literal_fallback.py tests/test_srgg_paper_schur_literal_fallback_audit.py tests/test_srgg_paper_schur_literal_moment.py tests/test_srgg_paper_schur_joint_bound_audit.py",
+    "focused_passed": 44,
+    "focused_failed": 0,
+    "full_srgg_suite": {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg*.py",
+      "passed": 1767,
+      "failed": 0,
+      "elapsed_seconds": 365.56,
+      "collection_scope": "through fixed-root finite chain and mathematical Setup acceptance; later independent diagnostic tests are validated separately"
+    }
+  },
+  "receipts_sha256": {
+    "finite-fixed-root.json": "d1b4334c933248c2f4a26a004c20f6dbd05171cde021396fbb8188dc6a015e59",
+    "joint-fixed-root.json": "c36bac08885e29595bbf34026def2f14cdc8942053f5a799cb964df1a23ed143",
+    "literal-product-fallback.json": "bf2c3e166ae75cc302c9e848e18a1731f7763920f032b12b7a266858564ff5fc"
+  },
+  "limitations": {
+    "all_accepted_setup_roots": "unbounded",
+    "complete_issuance_signature_fault_history": "unbounded",
+    "original_paper_source_ambiguities": "unresolved",
+    "structural_attack_costs": "unbounded",
+    "native_strong_same_message_replacements": "known accepted counterexamples remain",
+    "paper_C_ANS_1000_run_performance": "not reproduced"
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}

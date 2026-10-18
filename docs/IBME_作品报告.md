@@ -250,7 +250,7 @@ security_proofs_produced=0
 - [现行 CLI 使用说明](FRAMEWORK_USAGE.md)、[共同实现规范](../IMPLEMENTATION_SPEC.md)和[传输/状态契约](specs/transport-and-state.md)；
 - [同版本演示与答辩脚本](COMPETITION_DEMO_AND_DEFENSE.md)及[材料一致性证据](deliveries/2026-10-18-same-version-materials/README.md)。
 
-选择当前机器上实际可用的 Python 3 解释器后，可运行只读证据核验：
+选择当前机器上实际可用的 Python 3 解释器后，可按顺序生成比较数据并核验证据。第一条命令会写回 `comparison.json`；后两条命令为只读一致性核验：
 
 ```sh
 <python> docs/research/2026-10-18-full-system-luo/evidence/compare.py
@@ -258,7 +258,7 @@ security_proofs_produced=0
 <python> docs/deliveries/2026-10-18-same-version-materials/evidence/verify.py
 ```
 
-这些校验器不需要 Sage，不生成密钥、不读取私有状态。真实新建主组合必须先用当前机器实际安装的 Sage/Python 和两个 native engine 通过预检；不得复制另一台电脑的旧 Sage 绝对路径。
+上述工具不需要 Sage，不生成密钥、不读取私有状态。真实新建主组合必须先用当前机器实际安装的 Sage/Python 和两个 native engine 通过预检；不得复制另一台电脑的旧 Sage 绝对路径。
 
 ## 10. 结论与待完成工作
 

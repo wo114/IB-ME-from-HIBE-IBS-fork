@@ -1,0 +1,61 @@
+{
+  "schema": "IBME/SRGG-PAPER-ORACLE-BUDGET-MANIFEST/1",
+  "entries": {
+    "papers/2025_efficient_ibs_jia.pdf": {
+      "bytes": 512758,
+      "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+    },
+    "experiments/research/candidates/srgg/paper_oracle_budget.py": {
+      "bytes": 6327,
+      "sha256": "21ee507e1d3cb1a734547e7365c3579bcfb062562ec5fde7cff4a26c2a7b73dd"
+    },
+    "experiments/research/candidates/srgg/paper_algebra.py": {
+      "bytes": 2006,
+      "sha256": "5494acd7ab7cf42b2d9f33746b2535ffcbb58df0796c0b313dd56cc39547c81a"
+    },
+    "experiments/research/candidates/srgg/structured_execution.py": {
+      "bytes": 38862,
+      "sha256": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+    },
+    "experiments/research/candidates/wang_pw/hashing.py": {
+      "bytes": 2416,
+      "sha256": "17ac4878d5b9541c21a1f5a4bac948248557e4a089b1f61a436df16970fa41a0"
+    },
+    "src/ibme/core/encoding.py": {
+      "bytes": 8373,
+      "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d"
+    },
+    "experiments/research/candidates/srgg/paper_profiles.py": {
+      "bytes": 6580,
+      "sha256": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f"
+    },
+    "tests/test_srgg_paper_oracle_budget.py": {
+      "bytes": 3237,
+      "sha256": "66335a0884e87f98576a810b0377bd7d67212ed1591935773e51026d1bae7017"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-oracle-budget/README_zh-CN.md": {
+      "bytes": 2057,
+      "sha256": "a32a7d6d056ceaf24e9b8857259dcc636f2a48026ca21abd882e8086bbd8cd76"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-oracle-budget/README.md": {
+      "bytes": 1327,
+      "sha256": "e99555938fe8dd50abb303bb5511f4a793763e51b5899aed87e8253edc2ee1ed"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-oracle-budget/proof.md": {
+      "bytes": 2956,
+      "sha256": "e676ccfb0698bc371fb190cb68ddd0472ca569b58ab0250841b47dd365bccff0"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-oracle-budget/validation.json": {
+      "bytes": 775,
+      "sha256": "cf234104a211f98ff1d7b478dc6cad56516fde414614f6ac3a5fa4a8f13adb63"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-oracle-budget/oracle-budget.json": {
+      "bytes": 5508,
+      "sha256": "bdbb69dd5dc0daee1c224ef1003dd0404f988e0ba3046269158460670d5bede1"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-oracle-budget/verify_delivery.py": {
+      "bytes": 5246,
+      "sha256": "49cc3d89360383000fc2f481c02701b6ab78336b6221adda0fddf6c74b93395a"
+    }
+  }
+}

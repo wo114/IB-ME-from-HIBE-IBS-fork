@@ -1,0 +1,45 @@
+{
+  "schema": "IBME/SRGG-PAPER-STRONG-GAME-VALIDATION/1",
+  "paper": {
+    "path": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+    "targeted_pages": "PDF p.4 Definition 3; p.8 Algorithms 7-8, Theorem 2 and G0"
+  },
+  "receipt": {
+    "path": "docs/research/team-b-delivery/2026-10-18-srgg-strong-game/strong-game.json",
+    "sha256": "af884405c1e020957806673a3f8918bfc3f52864ccbcac38fb0c76c7402cf5af"
+  },
+  "execution": {
+    "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.srgg.paper_strong_game --output docs/research/team-b-delivery/2026-10-18-srgg-strong-game/strong-game.json",
+    "focused_test_command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_strong_game.py",
+    "focused_tests_passed": 4,
+    "focused_tests_failed": 0,
+    "focused_tests_skipped": 0,
+    "focused_test_duration_seconds": 21.30,
+    "table4_rows": 3,
+    "explicit_width_interpretations": 2,
+    "replay_runs": 6,
+    "root_setups": 6,
+    "key_extractions": 6,
+    "successful_signatures": 6,
+    "same_message_public_replacements_accepted": 5,
+    "private_material_exported": false,
+    "environment": "WSL2 x86_64; Sage 10.9; Python 3.13.15; deterministic test-only tape"
+  },
+  "scope": {
+    "exact_public_2I_and_norm_condition": true,
+    "strict_canonical_signature_distinctness_checked": true,
+    "original_verifier_and_commitment_checked": true,
+    "paper_G0_same_message_win": false,
+    "native_strong_same_message_candidate": true,
+    "all_parameter_rows_or_all_signatures_vulnerable_proved": false,
+    "random_key_attack_success_probability_estimated": false,
+    "source_sampling_distribution_proved": false,
+    "ROM_or_QROM_reduction_completed": false,
+    "HIBE_composition_checked": false
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}

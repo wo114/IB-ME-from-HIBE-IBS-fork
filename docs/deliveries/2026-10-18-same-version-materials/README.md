@@ -50,9 +50,9 @@ suite_digest=10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346
 
 报告是同版本正文初稿，不等于赛方模板、图表、截图、PPT 和最终 PDF 已完成。
 
-## 4. 只读核验
+## 4. 比较生成与只读核验
 
-在仓库根选择当前机器实际可用的 Python 3 解释器：
+在仓库根选择当前机器实际可用的 Python 3 解释器。第一条命令生成并写回 `comparison.json`，后两条命令只读核验既有证据：
 
 ```sh
 <python> docs/research/2026-10-18-full-system-luo/evidence/compare.py

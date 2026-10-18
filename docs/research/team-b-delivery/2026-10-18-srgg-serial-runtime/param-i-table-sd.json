@@ -1,0 +1,189 @@
+{
+  "attempts": {
+    "extract_calls": [
+      1,
+      1,
+      1
+    ],
+    "setup_attempts": [
+      1,
+      1,
+      1
+    ],
+    "sign_attempts": [
+      1,
+      2,
+      1
+    ]
+  },
+  "author_1000_run_median_reproduced": false,
+  "author_C_rANS_implementation_reproduced": false,
+  "backend": "SourceSchurBackend",
+  "backend_admitted": false,
+  "environment": {
+    "cpu_affinity_count": 20,
+    "machine": "x86_64",
+    "peak_process_rss_kib": 241600,
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15",
+    "sage": "10.9"
+  },
+  "implementation": "Python/Sage",
+  "measurement_limits": "Serial Python/Sage wall and process CPU timings. The 1000 fixed verifications reuse one honest signature; setup/extract/sign cycle count is separately stated. Peak RSS includes the whole process and cannot be attributed to one operation. Other host processes were not excluded. No C/rANS code or author hardware calibration was available.",
+  "nist_security_category": null,
+  "original_table4": {
+    "Q": 15744063,
+    "author_environment": "C; gcc 8.3.0; Deepin 20.9; single Intel Core i7-10710U core at 1.1 GHz; 8 GB RAM; Table 6 medians over 1000 executions",
+    "author_report": {
+      "extract_cycles": 5004676,
+      "extract_per_second": 104,
+      "forgery_bkz": 352,
+      "forgery_classical_bits": 103,
+      "forgery_quantum_bits": 93,
+      "key_recovery_bkz": 358,
+      "key_recovery_classical_bits": 105,
+      "key_recovery_quantum_bits": 95,
+      "master_public_bytes": 12320,
+      "master_secret_bytes": 2048,
+      "setup_cycles": 1520313,
+      "setup_per_second": 222,
+      "sign_cycles": 5203248,
+      "sign_per_second": 88,
+      "signature_bytes": 12148,
+      "target_bits": 100,
+      "user_secret_bytes": 4900,
+      "verify_cycles": 1218478,
+      "verify_per_second": 236
+    },
+    "backend_admitted": false,
+    "base": 31,
+    "degree": 512,
+    "digits": 2,
+    "extraction_query_bound": 1099511627776,
+    "gamma": "42086491.7",
+    "master_first_stddev": "2843.9",
+    "master_second_stddev": "1023.0",
+    "name": "PARAM-I",
+    "nist_security_category": null,
+    "p": 16383,
+    "parameters_are_formal": false,
+    "q": 961,
+    "r_published_approximation": "1.16",
+    "r_stddev": "29/25",
+    "rank": 2,
+    "reported_results_reproduced": false,
+    "security_claim": "none",
+    "signature_first_stddev": "843088.2",
+    "signature_second_stddev": "310891.6",
+    "source_locations": "Table 3 p.6; Section 5.1 p.9; Tables 4--7 p.10",
+    "source_pdf": "papers/2025_efficient_ibs_jia.pdf",
+    "source_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "parameters_are_formal": false,
+  "private_material_exported": false,
+  "profile": {
+    "gadget_remainder_representative": "centered-mod-p",
+    "hnf_representative": "centered-mod-Q",
+    "interpretation": "table-standard-deviation",
+    "perturbation_noise_factor": 1,
+    "pi_precision_bits": 512,
+    "profile_name": "PARAM-I",
+    "r_published_approximation": "1.16",
+    "source_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "rANS_size_comparable_to_author_table7": false,
+  "schema": "IBME/SRGG-PAPER-SERIAL-RUNTIME/1",
+  "security_claim": "none",
+  "completed_utc": "2026-10-18T07:10:49.382135+00:00",
+  "status": "functional-pass",
+  "timing_comparable_to_author_table6": false,
+  "timings": {
+    "extract": {
+      "cpu": {
+        "count": 3,
+        "max_seconds": 2.2882719059999985,
+        "median_seconds": 2.1627655039999993,
+        "min_seconds": 2.150238602
+      },
+      "wall": {
+        "count": 3,
+        "max_seconds": 2.3528057689999997,
+        "median_seconds": 2.170642515000001,
+        "min_seconds": 2.159378523000001
+      }
+    },
+    "setup": {
+      "cpu": {
+        "count": 3,
+        "max_seconds": 0.6036099779999997,
+        "median_seconds": 0.5095037739999988,
+        "min_seconds": 0.48070561499999975
+      },
+      "wall": {
+        "count": 3,
+        "max_seconds": 0.6036088159999977,
+        "median_seconds": 0.5207614739999968,
+        "min_seconds": 0.5095033109999996
+      }
+    },
+    "sign": {
+      "cpu": {
+        "count": 3,
+        "max_seconds": 4.079756316000001,
+        "median_seconds": 2.6207009510000008,
+        "min_seconds": 2.559563388000001
+      },
+      "wall": {
+        "count": 3,
+        "max_seconds": 4.418615058999997,
+        "median_seconds": 2.6348084820000004,
+        "min_seconds": 2.5656822249999998
+      }
+    },
+    "verify_fixed": {
+      "cpu": {
+        "count": 1000,
+        "max_seconds": 0.019946361999998885,
+        "median_seconds": 0.00920197399999978,
+        "min_seconds": 0.00740268699999902
+      },
+      "wall": {
+        "count": 1000,
+        "max_seconds": 0.020939861000002225,
+        "median_seconds": 0.009614216999999314,
+        "min_seconds": 0.007401964000003147
+      }
+    },
+    "verify_once": {
+      "cpu": {
+        "count": 3,
+        "max_seconds": 0.010019207999999225,
+        "median_seconds": 0.009387580000000284,
+        "min_seconds": 0.007695333000000915
+      },
+      "wall": {
+        "count": 3,
+        "max_seconds": 0.010167468999998874,
+        "median_seconds": 0.010015941999999,
+        "min_seconds": 0.0076940289999996025
+      }
+    }
+  },
+  "uncompressed_object_sizes_bytes": {
+    "master": 102491,
+    "public": 34442,
+    "signature": 35297,
+    "user_key": 83988
+  },
+  "workload": {
+    "cycles": 3,
+    "identity_bytes": 5,
+    "message_bytes": 32,
+    "production_random": true,
+    "rom_used": true,
+    "serial_single_process": true,
+    "host_cpu_isolated": false,
+    "verify_fixed_calls": 1000,
+    "verify_fixed_reuses_final_signature": true
+  }
+}
