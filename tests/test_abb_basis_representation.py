@@ -89,6 +89,25 @@ def test_changed_security_or_wire_claims_fail_closed(tmp_path):
         build_representation_report(changed)
 
 
+@pytest.mark.parametrize("field", ["q", "q_bits"])
+def test_changed_per_row_modulus_metadata_fails_closed(tmp_path, field):
+    card = json.loads(SOURCE.read_text(encoding="utf-8"))
+    card["rows"][0][field] += 1
+    changed = tmp_path / f"changed-{field}.json"
+    changed.write_text(json.dumps(card), encoding="utf-8")
+    with pytest.raises(ValueError, match="row modulus metadata"):
+        build_representation_report(changed)
+
+
+def test_changed_candidate_summary_fails_closed(tmp_path):
+    card = json.loads(SOURCE.read_text(encoding="utf-8"))
+    card["comparison_model_candidates"] = [card["rows"][0]["candidate_id"]]
+    changed = tmp_path / "changed-candidates.json"
+    changed.write_text(json.dumps(card), encoding="utf-8")
+    with pytest.raises(ValueError, match="joint candidate summary"):
+        build_representation_report(changed)
+
+
 def test_runtime_summary_keeps_public_execution_and_security_separate():
     report = build_representation_report(SOURCE)
     summary = runtime_summary(report)
@@ -96,6 +115,9 @@ def test_runtime_summary_keeps_public_execution_and_security_separate():
     assert summary["rng"].startswith("none")
     assert summary["root_or_key_generations"] == summary["private_entropy_bytes"] == 0
     assert summary["complete_runtime_candidates"] == []
+    assert summary["source_root_trapdoor_comparison_candidate_count"] == 0
+    assert summary["source_ciphertext_comparison_candidate_count"] == 3
+    assert summary["source_joint_comparison_candidate_count"] == 0
     assert summary["security_claim"] == "none"
     assert summary["backend_admitted"] is summary["parameters_are_formal"] is False
 
@@ -103,6 +125,7 @@ def test_runtime_summary_keeps_public_execution_and_security_separate():
 def test_report_fingerprints_bind_the_source_card_code_and_fixed_paper():
     report = build_representation_report(SOURCE)
     assert report["source"]["sha256"] == hashlib.sha256(SOURCE.read_bytes()).hexdigest()
+    assert report["source"]["candidate_classification"]["comparison_model_candidates"] == []
     for name, digest in report["source_sha256"].items():
         assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == digest
 

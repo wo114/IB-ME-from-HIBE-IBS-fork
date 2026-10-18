@@ -21,9 +21,9 @@ import sys
 import time
 
 
-SOURCE_SCHEMA = "A/ABB-NOISE-TRADEOFF/1"
-SCHEMA = "A/ABB-BASIS-REPRESENTATION/1"
-RUNTIME_SCHEMA = "A/ABB-BASIS-REPRESENTATION-RUNTIME/1"
+SOURCE_SCHEMA = "A/ABB-NOISE-TRADEOFF/2"
+SCHEMA = "A/ABB-BASIS-REPRESENTATION/2"
+RUNTIME_SCHEMA = "A/ABB-BASIS-REPRESENTATION-RUNTIME/2"
 PRIVATE_ENTRY_WIRE_FLOOR = 6
 CURRENT_MAX_BLOB_BYTES = 128 * 2**20
 PAYLOAD_SAMPLEPRE_CALLS = 256
@@ -94,6 +94,8 @@ def _validate_source(card):
             raise ValueError("unique ABB candidate identifiers required")
         identifiers.add(identifier)
         n = _integer(row.get("n"), "LWE dimension", 1)
+        if row.get("q") != q or row.get("q_bits") != q_bits:
+            raise ValueError("source row modulus metadata mismatch")
         dimension = _integer(row.get("root_dimension"), "ABB basis dimension", n)
         if (row.get("parent_dimension") != dimension or row.get("leaf_dimension") != dimension):
             raise ValueError("ABB fixed-dimension row required")
@@ -111,7 +113,37 @@ def _validate_source(card):
             raise ValueError("source ciphertext wire floor mismatch")
         if row.get("runtime_admitted") is not False:
             raise ValueError("source must not pre-admit an ABB runtime candidate")
-    return fixed, rows
+    candidate_fields = (
+        "root_trapdoor_comparison_candidates",
+        "ciphertext_comparison_candidates",
+        "comparison_model_candidates",
+        "complete_runtime_candidates",
+    )
+    classification = {}
+    for name in candidate_fields:
+        values = card.get(name)
+        if (not isinstance(values, list) or any(not isinstance(value, str) for value in values) or
+                len(values) != len(set(values)) or
+                any(value not in identifiers for value in values)):
+            raise ValueError("source candidate summary mismatch")
+        classification[name] = list(values)
+    root = set(classification["root_trapdoor_comparison_candidates"])
+    ciphertext = set(classification["ciphertext_comparison_candidates"])
+    joint = set(classification["comparison_model_candidates"])
+    runtime = set(classification["complete_runtime_candidates"])
+    if not joint <= root & ciphertext:
+        raise ValueError("source joint candidate summary mismatch")
+    for row in rows:
+        identifier = row["candidate_id"]
+        expected = (
+            ("root_trapdoor_comparison_gate", identifier in root),
+            ("ciphertext_comparison_gate", identifier in ciphertext),
+            ("comparison_model_gate", identifier in joint),
+            ("runtime_admitted", identifier in runtime),
+        )
+        if any(row.get(field) is not value for field, value in expected):
+            raise ValueError("source row/candidate classification mismatch")
+    return fixed, rows, classification
 
 
 def _seconds_for_units(units, rates):
@@ -134,6 +166,7 @@ def _row_accounting(row):
     return {
         "candidate_id": row["candidate_id"],
         "n": row["n"],
+        "q": row["q"],
         "q_bits": row["q_bits"],
         "basis_dimension": dimension,
         "complete_basis_entries": entries,
@@ -246,7 +279,7 @@ def build_representation_report(source_card_path):
         card = json.loads(raw)
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise ValueError("valid UTF-8 JSON ABB parameter card required") from exc
-    fixed, rows = _validate_source(card)
+    fixed, rows, classification = _validate_source(card)
     root = Path(__file__).resolve().parents[3]
     source_files = (
         "experiments/research/abb_rom/basis_representation_probe.py",
@@ -266,6 +299,7 @@ def build_representation_report(source_card_path):
             "schema": card["schema"],
             "sha256": hashlib.sha256(raw).hexdigest(),
             "fixed_inputs": fixed,
+            "candidate_classification": classification,
         },
         "paper_contract": {
             "source": "Agrawal-Boneh-Boyen, CRYPTO 2010, fixed local PDF",
@@ -304,8 +338,13 @@ def build_representation_report(source_card_path):
         "representation_options": _representation_options(),
         "complete_runtime_candidates": [],
         "decision": (
-            "do not implement external backing alone: it cannot make any tested ABB target row "
-            "runnable under the current complete-basis consumers"
+            "do not implement external backing alone: it cannot make any tested ABB row runnable "
+            "under the current complete-basis consumers"
+            + (
+                "; the source also has no joint comparison candidate"
+                if not classification["comparison_model_candidates"]
+                else "; every source joint comparison candidate remains blocked by these consumers"
+            )
         ),
         "next_required_breakthrough": (
             "a cited ABB-compatible algorithm that avoids expanding the randomized full basis in "
@@ -345,6 +384,15 @@ def runtime_summary(report):
         "ciphertext_generations": 0,
         "private_entropy_bytes": 0,
         "complete_runtime_candidates": [],
+        "source_root_trapdoor_comparison_candidate_count": len(
+            report["source"]["candidate_classification"]["root_trapdoor_comparison_candidates"]
+        ),
+        "source_ciphertext_comparison_candidate_count": len(
+            report["source"]["candidate_classification"]["ciphertext_comparison_candidates"]
+        ),
+        "source_joint_comparison_candidate_count": len(
+            report["source"]["candidate_classification"]["comparison_model_candidates"]
+        ),
         "decision": report["decision"],
         "security_claim": "none",
         "backend_admitted": False,

@@ -1,9 +1,9 @@
 {
-  "schema": "A/ABB-BASIS-REPRESENTATION/1",
+  "schema": "A/ABB-BASIS-REPRESENTATION/2",
   "source": {
     "path": "docs/research/team-a-delivery/2026-10-18-abb-noise-tradeoff/parameter-card.json",
-    "schema": "A/ABB-NOISE-TRADEOFF/1",
-    "sha256": "a605b03942f611c149467960be440d424e25424f6559909bda68f8ba7558f6cb",
+    "schema": "A/ABB-NOISE-TRADEOFF/2",
+    "sha256": "051d7d86df6a4205021910c79736560060ee05b713620f3fabe326413fd9aa3a",
     "fixed_inputs": {
       "q": "411376139330301510538742295639337626245683966408394965837151957",
       "q_bits": 208,
@@ -14,6 +14,16 @@
       "encapsulations": 1048576,
       "correctness_error_bits": 128,
       "comparison_threshold_bits": 128
+    },
+    "candidate_classification": {
+      "root_trapdoor_comparison_candidates": [],
+      "ciphertext_comparison_candidates": [
+        "abb-rom-n9600-q208-chi721",
+        "abb-rom-n9728-q208-chi721",
+        "abb-rom-n10240-q208-chi721"
+      ],
+      "comparison_model_candidates": [],
+      "complete_runtime_candidates": []
     }
   },
   "paper_contract": {
@@ -53,6 +63,7 @@
     {
       "candidate_id": "abb-rom-n9472-q208-chi721",
       "n": 9472,
+      "q": 411376139330301510538742295639337626245683966408394965837151957,
       "q_bits": 208,
       "basis_dimension": 15761408,
       "complete_basis_entries": 248421982142464,
@@ -95,6 +106,7 @@
     {
       "candidate_id": "abb-rom-n9600-q208-chi721",
       "n": 9600,
+      "q": 411376139330301510538742295639337626245683966408394965837151957,
       "q_bits": 208,
       "basis_dimension": 15974400,
       "complete_basis_entries": 255181455360000,
@@ -137,6 +149,7 @@
     {
       "candidate_id": "abb-rom-n9728-q208-chi721",
       "n": 9728,
+      "q": 411376139330301510538742295639337626245683966408394965837151957,
       "q_bits": 208,
       "basis_dimension": 16187392,
       "complete_basis_entries": 262031659761664,
@@ -179,6 +192,7 @@
     {
       "candidate_id": "abb-rom-n10240-q208-chi721",
       "n": 10240,
+      "q": 411376139330301510538742295639337626245683966408394965837151957,
       "q_bits": 208,
       "basis_dimension": 17039360,
       "complete_basis_entries": 290339789209600,
@@ -277,7 +291,7 @@
     }
   ],
   "complete_runtime_candidates": [],
-  "decision": "do not implement external backing alone: it cannot make any tested ABB target row runnable under the current complete-basis consumers",
+  "decision": "do not implement external backing alone: it cannot make any tested ABB row runnable under the current complete-basis consumers; the source also has no joint comparison candidate",
   "next_required_breakthrough": "a cited ABB-compatible algorithm that avoids expanding the randomized full basis in BasisDel and SamplePre, with a new distribution/security mapping; none exists in this repository",
   "not_an_impossibility_theorem": true,
   "root_or_key_generations": 0,
@@ -289,7 +303,7 @@
     "logical_cpus": 12
   },
   "source_sha256": {
-    "experiments/research/abb_rom/basis_representation_probe.py": "09de27b7f447a5a24a49e0248fa27d0bc8f79a27023fa158e1101e78db1e66ea",
+    "experiments/research/abb_rom/basis_representation_probe.py": "332e7b7240cfa40d91ce1ca4e66bce287ce830521065b52e2f1abef212da628b",
     "src/ibme/hibe/abb_rom/objects.py": "6ba821f920cf610d73639c771dce79da8928663b45918da99991b7feacee6bb2",
     "src/ibme/hibe/abb_rom/primitives.py": "51b1fe5e251f353344b6f1642a9176dcbc48a40ebda13029b1c069faa9d5231b",
     "src/ibme/lattice/chkp/basis.py": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d",
@@ -300,8 +314,8 @@
     "papers/2010_lattice_basis_delegation_agrawal.pdf": "f12232770a19c612e5f430f94a556d74232ac08d9882e34367b60b3bbf205d11"
   },
   "measurements": {
-    "total_seconds": 0.011242831009440124,
-    "process_max_rss_kib": 23784
+    "total_seconds": 0.010636677005095407,
+    "process_max_rss_kib": 23960
   },
   "security_claim": "none",
   "backend_admitted": false,
