@@ -9,6 +9,7 @@
 - 消息容量 `k·n=8192 bit`，当前 `max_message_bytes=32`（Hybrid 的 32 B seed）；`seed32` 与 `framed32` 两种 preset 只影响 transport 配置，不改变环编码。
 - 需要 WSL 的 `~/miniconda3/envs/sage`；无 Sage 时 registry 仍可发现，但 `validate_environment` 报告 runtime 不可用，不退回 mock 或其它算法。
 - **研究参数**：没有安全等级，不是 NIST category；P5 目标参数需重新筛 `n/q/σ` 并做宽度/估计核验。
+- **目标候选（未默认登记）**：`c2-2048-2p38` = `n=2048, q=274877976577, k=39, σ=2`，PLWE 系数实例在固定 estimator 的标准攻击下约 169.9/154.2 bit；真实两级生命周期跑通一次。详见[目标参数筛选](../research/team-c-delivery/2026-10-18-lai-target-parameters/README.md)。它不是 registry preset，也不改变 `none/false/false`。
 
 ## 五方法与算法对应
 
@@ -31,7 +32,7 @@
 
 五类对象：`LaiPublicKey`、`LaiMasterSecret`、`LaiLevel1SecretKey`、`LaiLevel2SecretKey`、`LaiCiphertext`。均实现 `to_bytes/from_bytes`；公钥/密文只含公开数学数据和完整参数快照，密文无身份明文或身份摘要。
 
-- 环元素编码为 `n` 个系数，`q<2^24` 用 3 B，否则 4 B；`q<2^32`。
+- 环元素编码为 `n` 个系数，`q<2^24` 用 3 B，`q<2^32` 用 4 B，`q<2^40` 用 5 B；当前上限 `q<2^40`。
 - 对象带独立 magic、body 长度和字段长度前缀；解析拒绝截断、追加、维度错误和系数越界。
 - `validate_key_binding` 在不解密、不采样、不消耗熵的前提下检查主/一级/二级陷门方程和身份派生；供 Hybrid 适配器使用。
 - 密钥与密文较大：A 点接收者密钥约 1.4 MB、发送者密钥约 0.31 MB、内层 CT 约 101 KB；这是 256 维/当前编码的直接结果，不是性能结论。

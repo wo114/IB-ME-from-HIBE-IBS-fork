@@ -68,8 +68,8 @@ class LaiParams:
             raise InvalidParameterError("Lai l must be a positive integer")
         if self.p != 2:
             raise InvalidParameterError("Lai prototype packs messages with p=2 only")
-        if self.q >= 2 ** 32:
-            raise InvalidParameterError("Lai 4-byte serialization requires q < 2^32")
+        if self.q >= 2 ** 40:
+            raise InvalidParameterError("Lai 5-byte serialization requires q < 2^40")
         if not (0 < self.sigma and math.isfinite(self.sigma)):
             raise InvalidParameterError("Lai sigma must be finite and > 0")
         if not (0 < self.sigma_r and math.isfinite(self.sigma_r)):
@@ -85,7 +85,11 @@ class LaiParams:
 
     @property
     def coefficient_bytes(self) -> int:
-        return 3 if self.q < 2 ** 24 else 4
+        if self.q < 2 ** 24:
+            return 3
+        if self.q < 2 ** 32:
+            return 4
+        return 5
 
     @property
     def message_capacity_bits(self) -> int:

@@ -50,7 +50,7 @@ def params_bytes(params: LaiParams) -> bytes:
         raise SerializationError("Lai sigma must be positive")
     mode = 0 if params.message_mode == "seed32" else 1
     return b"".join((
-        _uint(params.q, 32, "q"), _uint(params.n, 16, "n"),
+        _uint(params.q, 64, "q"), _uint(params.n, 16, "n"),
         _uint(params.k, 16, "k"), _uint(params.l, 16, "l"),
         _uint(params.p, 16, "p"), _uint(sigma, 32, "sigma"),
         _uint(sigma_r, 32, "sigma_r"),
@@ -61,7 +61,7 @@ def params_bytes(params: LaiParams) -> bytes:
 
 
 def read_params(data: bytes, offset: int = 0) -> tuple[LaiParams, int]:
-    q, offset = _read_uint(data, offset, 32, "q")
+    q, offset = _read_uint(data, offset, 64, "q")
     n, offset = _read_uint(data, offset, 16, "n")
     k, offset = _read_uint(data, offset, 16, "k")
     l, offset = _read_uint(data, offset, 16, "l")
