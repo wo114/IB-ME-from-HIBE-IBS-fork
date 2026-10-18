@@ -104,13 +104,15 @@
         "tests/test_lai*.py"
       ],
       "source_markers": [
+        "src/ibme/hibe/lai/__init__.py",
+        "src/ibme/hibe/lai/registration.py",
         "experiments/research/candidates/lai/qualification.py"
       ],
-      "source_stage": "qualification_only",
+      "source_stage": "research_backend",
       "allow_skips": false,
       "environment": "sage",
       "layer": "primitive",
-      "scope": "Exact tag nonunit and delegation type qualification only. No Lai HIBE, sampling, encryption or anonymous backend is implemented."
+      "scope": "Lai A-point research backend (n=256) plus historical tag/type qualification. Runs two-level lifecycle, serialization, registry and hybrid suite-preflight tests. No security admission and no combination acceptance follows."
     },
     {
       "id": "luo-matrix",

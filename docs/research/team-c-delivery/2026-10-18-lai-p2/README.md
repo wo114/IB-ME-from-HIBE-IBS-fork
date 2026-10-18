@@ -137,6 +137,23 @@ PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.cli setup \
 
 覆盖：两级诚实生命周期、32 B payload、86 B 最大身份、错误 parent/child、五对象序列化往返、截断/追加/坏 magic、密文无身份明文、`validate_key_binding`、固定 RNG 可复现、registry/catalog、`ciphertext_size`。
 
+### 6.5 CI 更新
+
+`ci/suites.json` 的 `lai-ideal-hibe` 已从 `qualification_only` 更新为 `research_backend`：
+
+- tests：`tests/test_lai*.py`（自动包含 `test_lai_hibe.py`、`test_lai_p1.py`、`test_lai_qualification.py`）
+- source markers：`src/ibme/hibe/lai/__init__.py`、`src/ibme/hibe/lai/registration.py`、`experiments/research/candidates/lai/qualification.py`
+- `allow_skips=false`、`environment=sage`、`layer=primitive`
+- scope 更新为“A 点研究后端 + 历史资格测试；无安全准入、无组合验收”
+
+本地用同一 `ci/run.py` 跑 Sage 套件：
+
+```sh
+PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python ci/run.py run lai-ideal-hibe --output /tmp/lai-ci-run
+```
+
+结果：**49 passed in 116.58s**，`status=passed`、`exit_code=0`、`skipped=0`；JUnit/JSON 在 `/tmp/lai-ci-run`（不入 Git）。CI 的 `sage / lai-ideal-hibe` job 会由现有矩阵自动调度，不需要改 workflow。
+
 ## 7. 下一步
 
 1. **P3**：把 Lai 与一个就绪 IBS 接入 Wang 组合，跑四种匹配/错配、状态恢复、篡改/截断/重放；这是“组合层”的验收。
