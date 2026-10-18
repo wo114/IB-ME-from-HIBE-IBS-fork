@@ -45,6 +45,7 @@ __all__ = [
     "Ciphertext",
     "LaiScheme",
     "TEACHING_PARAMS",
+    "A_POINT_PARAMS",
 ]
 
 
@@ -92,8 +93,6 @@ class Params:
             raise ParameterError("n must be a power of two >= 2")
         if self.q % (2 * self.n) != 1:
             raise ParameterError("q must satisfy q = 1 (mod 2n)")
-        if self.q >= 2 ** 24:
-            raise ParameterError("3-byte serialization requires q < 2^24")
         if type(self.k) is not int or self.k < 1:
             raise ParameterError("k must be a positive integer")
         if not (2 ** (self.k - 1) < self.q < 2 ** self.k):
@@ -102,6 +101,8 @@ class Params:
             raise ParameterError("l must be a positive integer")
         if self.p != 2:
             raise ParameterError("this prototype packs messages with p=2 only")
+        if self.q >= 2 ** 32:
+            raise ParameterError("4-byte serialization requires q < 2^32")
         if not (0 < self.sigma and math.isfinite(self.sigma)):
             raise ParameterError("sigma must be finite and > 0")
         if not (0 < self.sigma_r and math.isfinite(self.sigma_r)):
@@ -109,9 +110,18 @@ class Params:
         if self.depth not in (1, 2):
             raise ParameterError("this prototype supports depth 1 or 2")
 
+    @property
+    def coefficient_bytes(self) -> int:
+        return 3 if self.q < 2 ** 24 else 4
+
 
 TEACHING_PARAMS = Params(q=1048609, n=8, k=21, l=2, p=2, sigma=2.0,
                          sigma_r=1.0, depth=2)
+
+# A point: one 256-bit identity element per level, 4-byte coefficients.
+# Research parameter only; q=2^31+513, q = 1 (mod 512), sigma=2.
+A_POINT_PARAMS = Params(q=2147484161, n=256, k=32, l=2, p=2, sigma=2.0,
+                        sigma_r=1.0, depth=2)
 
 
 class _Random:
@@ -542,14 +552,18 @@ class LaiScheme:
 
     # -- canonical ciphertext serialization ------------------------------
     def _encode_ring(self, value) -> bytes:
-        return b"".join(c.to_bytes(3, "big") for c in self.ring.coeffs(value))
+        width = self.params.coefficient_bytes
+        return b"".join(c.to_bytes(width, "big")
+                        for c in self.ring.coeffs(value))
 
     def _decode_ring(self, data: bytes, offset: int):
-        need = 3 * self.params.n
+        width = self.params.coefficient_bytes
+        need = width * self.params.n
         if offset + need > len(data):
             raise SerializationError("truncated ring element")
-        values = [int.from_bytes(data[offset + 3 * i:offset + 3 * i + 3], "big")
-                  for i in range(self.params.n)]
+        values = [int.from_bytes(
+            data[offset + width * i:offset + width * (i + 1)], "big")
+            for i in range(self.params.n)]
         if any(value >= self.params.q for value in values):
             raise SerializationError("ring coefficient out of range")
         return self.ring.elem(values), offset + need
