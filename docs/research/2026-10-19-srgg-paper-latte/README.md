@@ -79,6 +79,8 @@ python docs/research/2026-10-19-srgg-paper-latte/verify.py
 git diff --check
 ```
 
+2026-10-19合入维护：主线随后接收Lai，共享registry与Hybrid文件产生有效变更。新主线核对本批历史收据时使用同一命令加`--historical`，逐项provider摘要仍严格绑定固定Git `7573014`，且保留摘要篡改负例；不加参数仍检查当前源码是否与该快照一致。该选项不把原始执行证据改称新主线的重跑结果，原JSON与JUnit不改写。
+
 复现从WSL仓库根激活规定的`~/miniconda3/envs/sage`。首次构建并明确设置native路径：
 
 ```bash
