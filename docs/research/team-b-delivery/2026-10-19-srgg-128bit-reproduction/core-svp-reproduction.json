@@ -1,0 +1,105 @@
+{
+  "schema": "IBME/SRGG-PAPER-CORE-SVP-REPRODUCTION/1",
+  "paper_locations": "Section 5.2 pp.9-10; Table 5 p.10",
+  "formulas": {
+    "delta_beta": "(((pi beta)^(1/beta) beta)/(2 pi e))^(1/(2(beta-1)))",
+    "key_recovery": "||(s,e,-1)|| sqrt(beta/d) <= delta_beta^(2 beta-d-1) Q^(m/d), d=2m+1",
+    "forgery": "beta >= min_{k<=d-m} (delta_beta^(d-k) M^(m/(d-k)) - k), M=2Q",
+    "core_svp": "classical=round(0.292 beta), quantum=round(0.265 beta)"
+  },
+  "dimension_mapping": {
+    "key_recovery": "m=rank*n; d=2m+1; modulus=Q; norm=sqrt(m+1) (E||(s,e,-1)|| for CBD1)",
+    "forgery": "m=rank*n; d=((2+w)rank+1)*n; modulus=2Q; target=gamma"
+  },
+  "rows": [
+    {
+      "profile": "PARAM-I",
+      "key_author_beta": 358,
+      "key_reproduced_beta": 360,
+      "key_author_classical": 105,
+      "key_author_quantum": 95,
+      "key_reproduced_classical": 105,
+      "key_reproduced_quantum": 95,
+      "forgery_author_beta": 352,
+      "forgery_reproduced_beta": 350,
+      "forgery_author_classical": 103,
+      "forgery_author_quantum": 93,
+      "forgery_reproduced_classical": 102,
+      "forgery_reproduced_quantum": 93,
+      "meets_128_classical_euf_cma": false
+    },
+    {
+      "profile": "PARAM-II",
+      "key_author_beta": 608,
+      "key_reproduced_beta": 614,
+      "key_author_classical": 178,
+      "key_author_quantum": 161,
+      "key_reproduced_classical": 179,
+      "key_reproduced_quantum": 163,
+      "forgery_author_beta": 586,
+      "forgery_reproduced_beta": 584,
+      "forgery_author_classical": 171,
+      "forgery_author_quantum": 155,
+      "forgery_reproduced_classical": 171,
+      "forgery_reproduced_quantum": 155,
+      "meets_128_classical_euf_cma": true
+    },
+    {
+      "profile": "PARAM-III",
+      "key_author_beta": 874,
+      "key_reproduced_beta": 882,
+      "key_author_classical": 255,
+      "key_author_quantum": 232,
+      "key_reproduced_classical": 258,
+      "key_reproduced_quantum": 234,
+      "forgery_author_beta": 828,
+      "forgery_reproduced_beta": 824,
+      "forgery_author_classical": 242,
+      "forgery_author_quantum": 219,
+      "forgery_reproduced_classical": 241,
+      "forgery_reproduced_quantum": 218,
+      "meets_128_classical_euf_cma": true
+    }
+  ],
+  "selected_profile": "PARAM-II",
+  "selected_row": {
+    "profile": "PARAM-II",
+    "key_author_beta": 608,
+    "key_reproduced_beta": 614,
+    "key_author_classical": 178,
+    "key_author_quantum": 161,
+    "key_reproduced_classical": 179,
+    "key_reproduced_quantum": 163,
+    "forgery_author_beta": 586,
+    "forgery_reproduced_beta": 584,
+    "forgery_author_classical": 171,
+    "forgery_author_quantum": 155,
+    "forgery_reproduced_classical": 171,
+    "forgery_reproduced_quantum": 155,
+    "meets_128_classical_euf_cma": true
+  },
+  "target": {
+    "classical_bits": 128,
+    "claim": "128-bit classical EUF-CMA concrete-security target",
+    "selected_meets_target": true,
+    "selected_forgery_classical_bits": 171,
+    "selected_forgery_quantum_bits": 155
+  },
+  "reproduction_assessment": {
+    "key_recovery_matches_within_beta": 8,
+    "forgery_matches_within_beta": 4,
+    "author_reported_values_reproduced": "approximate; small beta differences remain"
+  },
+  "known_gaps": [
+    "Theorem 1 q>2*gamma source mapping is not repaired by the concrete estimate",
+    "native strong same-message replacement counterexample remains; target is EUF-CMA only",
+    "structural ring-HNF/CRT/subfield attack costs are not estimated here",
+    "author C/ANS sampler and performance not reproduced",
+    "not a NIST category or formal parameter admission"
+  ],
+  "scope": "paper concrete-security model reproduction and 128-bit PARAM-II decision",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}
