@@ -34,7 +34,9 @@ ABB后续已完成[完整基表示与消费者准入核验](research/team-a-deli
 
 **硬件判断口径（2026-10-18 用户明确修正）**：本机/WSL跑不了不等于算法不可行。参数与比较模型、具体实现的对象存活与算术域、硬件部署条件、实际时间/RSS分别验收。8 GiB预算和本机总内存只作部署参考，不淘汰通过参数筛选的候选；保留更大内存环境、释放对象、公共块复用和分块/外存实现的研究空间，也不预先保证它们的性能收益。
 
-**候选实现盘点（2026-10-18）**：按19条候选目录及完整独立原语研究后端口径，HIBE为3/8（CHKP、ABB-ROM、LATTE），IBS为10/11（Luo矩阵/模格、SRGG、Yu、Sageloli SIS/RSIS、Foo–Li、Wang–PW、BNN-ML-DSA、BNN-Falcon）。合计13/19；MP12实现变体不另增论文路线。未完成的6条为Lai、Zhang、Xie和继续暂缓的GKR/ABB标准模型/CHKP标准模型；Xie已有修订研究核但尚非完整共同IBSBackend。研究后端完成、默认登记/CLI、真实HIBE配对、目标参数与公平评测分别统计，不能将13条写为13套已完成IB-ME组合。
+**候选实现盘点（2026-10-19，含本批Lai交付）**：按19条候选目录及完整独立原语研究后端口径，HIBE为4/8（CHKP、ABB-ROM、LATTE、Lai），IBS为10/11（Luo矩阵/模格、SRGG、Yu、Sageloli SIS/RSIS、Foo–Li、Wang–PW、BNN-ML-DSA、BNN-Falcon）。合计14/19；MP12实现变体不另增论文路线。未完成的5条为Zhang、Xie和继续暂缓的GKR/ABB标准模型/CHKP标准模型；Xie已有修订研究核但尚非完整共同IBSBackend。研究后端完成、默认登记/CLI、真实HIBE配对、目标参数与公平评测分别统计，不能将14条写为14套已完成IB-ME组合。
+
+**Lai研究后端交付（2026-10-19）**：本批整理[P1](research/team-c-delivery/2026-10-18-lai-p1/README.md)、[公共接入/CLI](research/team-c-delivery/2026-10-18-lai-p2/README.md)和[C2显式目标配置](research/team-c-delivery/2026-10-18-lai-target-parameters/C2-FREEZE.md)，实现两级委派、五类严格对象、registry/CLI/state、5字节系数编码与生产CSPRNG。默认仍为n256研究A点；显式`target-research`为n2048/q274877976577，已有历史生命周期和负测试记录。发布复核、文件清单和本轮测试见[交付入口](research/team-c-delivery/2026-10-19-lai-publication/README_zh-CN.md)。身份短编码、原文委派类型的实现解释、无perturbation的Klein/GPV采样与原始HIBE篡改可变更明文等差异按[契约](specs/lai-hibe.md)保留，依赖外层BYTEAUTH处理完整性；不将系数LWE估计升级为结构安全或NIST等级，none/false/false不变。
 
 **IBS接入／参数最新盘点**：[逐项清单与改善顺序](deliveries/2026-10-18-ibs-inventory/README.md)固定`fc1f342`核对10个完整研究IBS，默认接入6个；Foo–Li、Yu、Sageloli SIS／RSIS四个仍未接入。至少六条路线的现有小参数已有公开伪造，不能作为安全代表；本批只引用既有记录，未新增攻击。Foo–Li临时registry容量预检通过，Yu因1—4 B容量正确拒绝。SRGG除默认degree8外，主分支已有structured及论文n512三组独立实跑，不能称只有小参数；其参数解释、实际采样和新组合仍须分别处理，不新开基础证明任务。
 

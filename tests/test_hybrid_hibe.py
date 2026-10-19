@@ -15,6 +15,7 @@ from ibme.hibe.mock import (MockHIBE, MockHIBEPublicKey, MockHIBEMasterSecret,
 from ibme.protocol.baseline import BASELINE_MOCK_PARAMS
 from ibme.protocol.hybrid_hibe import (HybridHIBE, HybridHIBEParams, HybridLimits, HybridCiphertext,
                                      HybridPublicKey, DOMAIN_KDF, SUITE, derive_dem_key,
+                                     HARD_COMPONENT_BYTES, HARD_CIPHERTEXT_WIRE_BYTES,
                                      encoded_identity, encoded_identity_bytes)
 from ibme.protocol.luo_hybrid import make_hybrid_abb10, RESEARCH_HIBE_PARAMS
 
@@ -224,3 +225,9 @@ def test_real_capsule_shape_does_not_reveal_identity_lengths(real_env):
     assert len({len(ct.to_bytes()) for ct in ciphertexts}) == 1
     inner = [b.inner_backend.load_ciphertext(ct.capsule) for ct in ciphertexts]
     assert len({len(ct.c1) for ct in inner}) == 1
+
+
+def test_ciphertext_wire_budget_is_tighter_than_key_budget():
+    assert HARD_CIPHERTEXT_WIRE_BYTES < HARD_COMPONENT_BYTES
+    with pytest.raises(SerializationError):
+        HybridCiphertext.from_bytes(b"x" * (HARD_CIPHERTEXT_WIRE_BYTES + 1))

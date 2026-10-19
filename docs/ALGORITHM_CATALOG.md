@@ -1,10 +1,10 @@
 # HIBE / IBS 算法与候选总表
 
-更新：2026-10-19（SRGG论文三档参数新增公共入口、六种LATTE完整组合及PARAM-I重复基准；其它条目保留各自核验范围）。按[统一框架](../ARCHITECTURE.md)分别管理 HIBE、IBS 模块，再装配兼容组合。本文登记 **19 条候选/模型路线：8 条 HIBE、11 条 IBS**，覆盖原[17 条基础目录](research/2026-10-10-foundations/catalog.json)及新补充的两条原生路线；这不是 19 个完整后端，也不是 19 个不同困难假设。
+更新：2026-10-19（新增Lai独立研究后端、公共接入与C2显式配置，以及SRGG论文三档参数公共入口、六种LATTE完整组合和PARAM-I重复基准；其它条目保留各自核验范围）。按[统一框架](../ARCHITECTURE.md)分别管理 HIBE、IBS 模块，再装配兼容组合。本文登记 **19 条候选/模型路线：8 条 HIBE、11 条 IBS**，覆盖原[17 条基础目录](research/2026-10-10-foundations/catalog.json)及新补充的两条原生路线；这不是 19 个完整后端，也不是 19 个不同困难假设。
 
 当前任务和外部包进度以 [PROJECT_STATUS.md](PROJECT_STATUS.md) 为准；本文用于选模块、找原文与代码、识别接入缺口。**最终三组完整组合尚未锁定，第三套 HIBE 不再强制属于 Module-LWE。** 普通签名转换成 IBS 的两个条目保留原 ID，BNN-Falcon / BNN-ML-DSA 不再重复计数。
 
-按完整独立原语研究后端口径，目前HIBE为3/8、IBS为10/11，共13/19；参数、默认登记/CLI、真实配对与完整评测另行统计。Lai、Zhang及Xie未形成完整共同后端，GKR/ABB标准模型/CHKP标准模型三条按用户要求继续暂缓。CHKP/MP12固定继续作者稿3m，安全性和HIBE匿名性采用用户确认的工作前提；当前不另行安排补充证明，具体版本和原结果记录仍保留。
+按完整独立原语研究后端口径，含本批Lai交付后HIBE为4/8、IBS为10/11，共14/19；参数、默认登记/CLI、真实配对与完整评测另行统计。Zhang及Xie未形成完整共同后端，GKR/ABB标准模型/CHKP标准模型三条按用户要求继续暂缓。CHKP/MP12固定继续作者稿3m，安全性和HIBE匿名性采用用户确认的工作前提；当前不另行安排补充证明，具体版本和原结果记录仍保留。
 
 IBS的[2026-10-18逐项盘点](deliveries/2026-10-18-ibs-inventory/README.md)固定`fc1f342`：10个完整研究算法中6个已默认登记，Foo–Li、Yu、Sageloli SIS／RSIS四个待接；至少六条路线的现有小参数已有公开伪造。本批[SRGG论文参数公共接入与LATTE实测](research/2026-10-19-srgg-paper-latte/README.md)新增独立`srgg2025-paper`入口，三档n512／两格式全部真实配对，PARAM-I两格式各3套完整重复基准及安装CLI恢复通过；不继承degree8结果，也不增加IBS算法计数。Luo显式C64B实测及其它历史结果保留，正式安全元数据仍none/false/false。
 
@@ -33,7 +33,7 @@ A本批另完成[默认ABB与结构化H/G](research/team-a-delivery/2026-10-15-f
 | `zhang2020` — Zhang 等理想格 HIBE | Ring-LWE、原文Theorem5标准模型IND-ID-CPA；匿名性映射未建立 | [19页原文](../papers/2020_ideal_lattice_hibe_zhang.pdf)PDF5/10—12；[CR资格表](research/team-c-delivery/2026-10-15-zhang-qualification/README.md)固定PDF指纹与类型/条件 | **资格核验完成、实施阻塞**：SampleLeft目标/维度、短向量与可委派g-trapdoor类型、两层长度及q条件方向未澄清；未实现HIBE或自行修补原文 |
 | `abb-standard-selective` — ABB 标准模型选择性 HIBE | 普通 LWE，标准模型选择性身份；§7 自适应 IBE 不等于 §8 自适应 HIBE | [40 页作者稿](../papers/2010_lattice_hibe_standard_agrawal.pdf) §8/Theorem 33；参数条件待独立实例化 | **模型对照**。没有完整后端；不能直接登记为满足当前自适应匿名组合前提 |
 | `chkp-standard` — CHKP §5.4 变体 | LWE 及可容许哈希条件，标准模型条件路线；匿名扩展范围另核 | [同一 CHKP 原文](../papers/2010_bonsai_trees_cash.pdf) §5.4/Theorem 5.4/Corollary 5.5；额外维度与归约成本未闭合 | **模型对照**。不能用 ROM 实现切一个开关就算消除随机预言机；不与 `chkp-rom` 参数共用结论 |
-| `lai-ideal-hibe` — Lai–Cheung–Chow，理想格陷门 HIBE | 原文 PLWE 与 INDr-ID-CCA 声明含收件人匿名性；选读 §5.1–5.2/定理10，尚需具体两层模型映射 | Inscrypt 2014／出版2015；[18 页 PDF](../papers/2015_ideal_lattice_trapdoors_lai.pdf)由用户提供并原样归档，标题/作者已核。符号参数不能直接当有限可运行配置 | **资格核验WIP，非HIBE实现**：[精确非单位/委派类型反例与15项无skip测试](research/team-c-delivery/2026-10-15-lai-qualification/README.md)。标签单位域、Algorithm7/9类型及两层公开参数仍需澄清，未自行补造Derive；通用lattice_lib不是作者HIBE。 |
+| `lai-ideal-hibe` — Lai–Cheung–Chow，理想格陷门 HIBE | 原文 PLWE 与 INDr-ID-CCA 声明含收件人匿名性；理论引用与项目工作假设分开，实际实现差异见契约 | Inscrypt 2014／出版2015；[18页PDF](../papers/2015_ideal_lattice_trapdoors_lai.pdf)。默认A点n256；显式[C2目标研究配置](research/team-c-delivery/2026-10-18-lai-target-parameters/C2-FREEZE.md)n2048/q274877976577；系数LWE/GSA估计不等于结构安全或NIST准入 | **独立研究HIBE与公共接入已实现**：[六方法/五类对象](../src/ibme/hibe/lai/)、[契约](specs/lai-hibe.md)、[发布复核](research/team-c-delivery/2026-10-19-lai-publication/README_zh-CN.md)。两级委派、32 B消息、严格codec、registry/CLI/state和CSPRNG；原文类型解释、二进制身份映射、Klein/GPV无perturbation及原始篡改行为均保留，不声称逐字复现或原文CCA继承，none/false/false不变。 |
 
 ### LATTE：本轮已确认的外部代码
 
