@@ -1,0 +1,475 @@
+........................................................................ [  4%]
+........................................................................ [  8%]
+........................................................................ [ 12%]
+........................................................................ [ 17%]
+........................................................................ [ 21%]
+........................................................................ [ 25%]
+........................................................................ [ 30%]
+........................................................................ [ 34%]
+........................................................................ [ 38%]
+.......................................................FFFFFFFFF........ [ 43%]
+.F...................................................................... [ 47%]
+........................................................................ [ 51%]
+........................................................................ [ 55%]
+........................................................................ [ 60%]
+........................................................................ [ 64%]
+........................................................................ [ 68%]
+........................................................................ [ 73%]
+........................................................................ [ 77%]
+........................................................................ [ 81%]
+........................................................................ [ 86%]
+........................................................................ [ 90%]
+........................................................................ [ 94%]
+........................................................................ [ 98%]
+..................                                                       [100%]
+=================================== FAILURES ===================================
+_ test_current_fixed_plan_bounds_are_nontrivial_only_where_numerical_envelope_passes _
+
+    def test_current_fixed_plan_bounds_are_nontrivial_only_where_numerical_envelope_passes():
+>       result = module.report()
+                 ^^^^^^^^^^^^^^^
+
+tests/test_srgg_paper_current_budget.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+experiments/research/candidates/srgg/paper_current_budget.py:176: in report
+    receipt, source_hashes = _authenticated_receipt()
+                             ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _authenticated_receipt():
+        manifest = _read_pinned(RECEIPTS/"MANIFEST.json", size=MANIFEST_BYTES,
+                                digest=MANIFEST_SHA256, label="fixed-root original manifest")
+        if manifest.get("schema") != "IBME/SRGG-PARAMETER-CLOSURE-MANIFEST/1":
+            raise ValueError("fixed-root original manifest schema mismatch")
+        expected = {"bytes": PRECISION_BYTES, "sha256": PRECISION_SHA256}
+        if manifest.get("files", {}).get("precision.json") != expected:
+            raise ValueError("precision receipt differs from original manifest entry")
+        receipt = _read_pinned(RECEIPTS/"precision.json", size=PRECISION_BYTES,
+                               digest=PRECISION_SHA256, label="fixed-root precision receipt")
+        if (receipt.get("schema") != "IBME/SRGG-FIXED-ROOT-NUMERICAL-PROFILE-COMPARISON/1"
+                or receipt.get("status") != "completed"
+                or receipt.get("profile") != "PARAM-III"
+                or receipt.get("interpretation") != "table-standard-deviation"):
+            raise ValueError("fixed-root precision receipt schema/profile/status mismatch")
+        hashes = receipt.get("module_sha256_at_import", {})
+        if set(hashes) != set(SOURCE_FILES):
+            raise ValueError("precision receipt does not bind exactly the four corrected core sources")
+        sources = manifest["selected_current_source_sha256"]
+        verified = {}
+        for name in SOURCE_FILES+SUPPORTING_SOURCE_FILES:
+            path = ROOT/name
+            if not path.is_file() or path.stat().st_size > 2*1024*1024:
+                raise ValueError("missing or oversized current source: "+name)
+            digest = sha256(path.read_bytes()).hexdigest()
+            if sources.get(name) != digest or (name in SOURCE_FILES and hashes.get(name) != digest):
+>               raise ValueError("current source differs from fixed-root authenticated source: "+name)
+E               ValueError: current source differs from fixed-root authenticated source: experiments/research/candidates/srgg/paper_backend.py
+
+experiments/research/candidates/srgg/paper_current_budget.py:114: ValueError
+_ test_exact_triangle_composition_retains_abort_and_does_not_cross_distribution_layers _
+
+    def test_exact_triangle_composition_retains_abort_and_does_not_cross_distribution_layers():
+>       for row in module.report()["rows"]:
+                   ^^^^^^^^^^^^^^^
+
+tests/test_srgg_paper_current_budget.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+experiments/research/candidates/srgg/paper_current_budget.py:176: in report
+    receipt, source_hashes = _authenticated_receipt()
+                             ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _authenticated_receipt():
+        manifest = _read_pinned(RECEIPTS/"MANIFEST.json", size=MANIFEST_BYTES,
+                                digest=MANIFEST_SHA256, label="fixed-root original manifest")
+        if manifest.get("schema") != "IBME/SRGG-PARAMETER-CLOSURE-MANIFEST/1":
+            raise ValueError("fixed-root original manifest schema mismatch")
+        expected = {"bytes": PRECISION_BYTES, "sha256": PRECISION_SHA256}
+        if manifest.get("files", {}).get("precision.json") != expected:
+            raise ValueError("precision receipt differs from original manifest entry")
+        receipt = _read_pinned(RECEIPTS/"precision.json", size=PRECISION_BYTES,
+                               digest=PRECISION_SHA256, label="fixed-root precision receipt")
+        if (receipt.get("schema") != "IBME/SRGG-FIXED-ROOT-NUMERICAL-PROFILE-COMPARISON/1"
+                or receipt.get("status") != "completed"
+                or receipt.get("profile") != "PARAM-III"
+                or receipt.get("interpretation") != "table-standard-deviation"):
+            raise ValueError("fixed-root precision receipt schema/profile/status mismatch")
+        hashes = receipt.get("module_sha256_at_import", {})
+        if set(hashes) != set(SOURCE_FILES):
+            raise ValueError("precision receipt does not bind exactly the four corrected core sources")
+        sources = manifest["selected_current_source_sha256"]
+        verified = {}
+        for name in SOURCE_FILES+SUPPORTING_SOURCE_FILES:
+            path = ROOT/name
+            if not path.is_file() or path.stat().st_size > 2*1024*1024:
+                raise ValueError("missing or oversized current source: "+name)
+            digest = sha256(path.read_bytes()).hexdigest()
+            if sources.get(name) != digest or (name in SOURCE_FILES and hashes.get(name) != digest):
+>               raise ValueError("current source differs from fixed-root authenticated source: "+name)
+E               ValueError: current source differs from fixed-root authenticated source: experiments/research/candidates/srgg/paper_backend.py
+
+experiments/research/candidates/srgg/paper_current_budget.py:114: ValueError
+__________ test_report_reads_no_entropy_and_keeps_backend_default160 ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x785935e2f5b0>
+
+    def test_report_reads_no_entropy_and_keeps_backend_default160(monkeypatch):
+        from experiments.research.candidates.srgg import paper_backend
+        class NoRead:
+            def read(self, count):
+                raise AssertionError("budget recomputation must not read entropy")
+        monkeypatch.setattr(paper_backend, "SecureRandom", NoRead)
+>       result = module.report()
+                 ^^^^^^^^^^^^^^^
+
+tests/test_srgg_paper_current_budget.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+experiments/research/candidates/srgg/paper_current_budget.py:176: in report
+    receipt, source_hashes = _authenticated_receipt()
+                             ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _authenticated_receipt():
+        manifest = _read_pinned(RECEIPTS/"MANIFEST.json", size=MANIFEST_BYTES,
+                                digest=MANIFEST_SHA256, label="fixed-root original manifest")
+        if manifest.get("schema") != "IBME/SRGG-PARAMETER-CLOSURE-MANIFEST/1":
+            raise ValueError("fixed-root original manifest schema mismatch")
+        expected = {"bytes": PRECISION_BYTES, "sha256": PRECISION_SHA256}
+        if manifest.get("files", {}).get("precision.json") != expected:
+            raise ValueError("precision receipt differs from original manifest entry")
+        receipt = _read_pinned(RECEIPTS/"precision.json", size=PRECISION_BYTES,
+                               digest=PRECISION_SHA256, label="fixed-root precision receipt")
+        if (receipt.get("schema") != "IBME/SRGG-FIXED-ROOT-NUMERICAL-PROFILE-COMPARISON/1"
+                or receipt.get("status") != "completed"
+                or receipt.get("profile") != "PARAM-III"
+                or receipt.get("interpretation") != "table-standard-deviation"):
+            raise ValueError("fixed-root precision receipt schema/profile/status mismatch")
+        hashes = receipt.get("module_sha256_at_import", {})
+        if set(hashes) != set(SOURCE_FILES):
+            raise ValueError("precision receipt does not bind exactly the four corrected core sources")
+        sources = manifest["selected_current_source_sha256"]
+        verified = {}
+        for name in SOURCE_FILES+SUPPORTING_SOURCE_FILES:
+            path = ROOT/name
+            if not path.is_file() or path.stat().st_size > 2*1024*1024:
+                raise ValueError("missing or oversized current source: "+name)
+            digest = sha256(path.read_bytes()).hexdigest()
+            if sources.get(name) != digest or (name in SOURCE_FILES and hashes.get(name) != digest):
+>               raise ValueError("current source differs from fixed-root authenticated source: "+name)
+E               ValueError: current source differs from fixed-root authenticated source: experiments/research/candidates/srgg/paper_backend.py
+
+experiments/research/candidates/srgg/paper_current_budget.py:114: ValueError
+_ test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort[rounding] _
+
+change = 'rounding'
+
+    @pytest.mark.parametrize("change", ["rounding", "target", "noise", "dimension", "endpoint", "batch_abort"])
+    def test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort(change):
+>       receipt, _ = module._authenticated_receipt()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_srgg_paper_current_budget.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _authenticated_receipt():
+        manifest = _read_pinned(RECEIPTS/"MANIFEST.json", size=MANIFEST_BYTES,
+                                digest=MANIFEST_SHA256, label="fixed-root original manifest")
+        if manifest.get("schema") != "IBME/SRGG-PARAMETER-CLOSURE-MANIFEST/1":
+            raise ValueError("fixed-root original manifest schema mismatch")
+        expected = {"bytes": PRECISION_BYTES, "sha256": PRECISION_SHA256}
+        if manifest.get("files", {}).get("precision.json") != expected:
+            raise ValueError("precision receipt differs from original manifest entry")
+        receipt = _read_pinned(RECEIPTS/"precision.json", size=PRECISION_BYTES,
+                               digest=PRECISION_SHA256, label="fixed-root precision receipt")
+        if (receipt.get("schema") != "IBME/SRGG-FIXED-ROOT-NUMERICAL-PROFILE-COMPARISON/1"
+                or receipt.get("status") != "completed"
+                or receipt.get("profile") != "PARAM-III"
+                or receipt.get("interpretation") != "table-standard-deviation"):
+            raise ValueError("fixed-root precision receipt schema/profile/status mismatch")
+        hashes = receipt.get("module_sha256_at_import", {})
+        if set(hashes) != set(SOURCE_FILES):
+            raise ValueError("precision receipt does not bind exactly the four corrected core sources")
+        sources = manifest["selected_current_source_sha256"]
+        verified = {}
+        for name in SOURCE_FILES+SUPPORTING_SOURCE_FILES:
+            path = ROOT/name
+            if not path.is_file() or path.stat().st_size > 2*1024*1024:
+                raise ValueError("missing or oversized current source: "+name)
+            digest = sha256(path.read_bytes()).hexdigest()
+            if sources.get(name) != digest or (name in SOURCE_FILES and hashes.get(name) != digest):
+>               raise ValueError("current source differs from fixed-root authenticated source: "+name)
+E               ValueError: current source differs from fixed-root authenticated source: experiments/research/candidates/srgg/paper_backend.py
+
+experiments/research/candidates/srgg/paper_current_budget.py:114: ValueError
+_ test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort[target] _
+
+change = 'target'
+
+    @pytest.mark.parametrize("change", ["rounding", "target", "noise", "dimension", "endpoint", "batch_abort"])
+    def test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort(change):
+>       receipt, _ = module._authenticated_receipt()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_srgg_paper_current_budget.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _authenticated_receipt():
+        manifest = _read_pinned(RECEIPTS/"MANIFEST.json", size=MANIFEST_BYTES,
+                                digest=MANIFEST_SHA256, label="fixed-root original manifest")
+        if manifest.get("schema") != "IBME/SRGG-PARAMETER-CLOSURE-MANIFEST/1":
+            raise ValueError("fixed-root original manifest schema mismatch")
+        expected = {"bytes": PRECISION_BYTES, "sha256": PRECISION_SHA256}
+        if manifest.get("files", {}).get("precision.json") != expected:
+            raise ValueError("precision receipt differs from original manifest entry")
+        receipt = _read_pinned(RECEIPTS/"precision.json", size=PRECISION_BYTES,
+                               digest=PRECISION_SHA256, label="fixed-root precision receipt")
+        if (receipt.get("schema") != "IBME/SRGG-FIXED-ROOT-NUMERICAL-PROFILE-COMPARISON/1"
+                or receipt.get("status") != "completed"
+                or receipt.get("profile") != "PARAM-III"
+                or receipt.get("interpretation") != "table-standard-deviation"):
+            raise ValueError("fixed-root precision receipt schema/profile/status mismatch")
+        hashes = receipt.get("module_sha256_at_import", {})
+        if set(hashes) != set(SOURCE_FILES):
+            raise ValueError("precision receipt does not bind exactly the four corrected core sources")
+        sources = manifest["selected_current_source_sha256"]
+        verified = {}
+        for name in SOURCE_FILES+SUPPORTING_SOURCE_FILES:
+            path = ROOT/name
+            if not path.is_file() or path.stat().st_size > 2*1024*1024:
+                raise ValueError("missing or oversized current source: "+name)
+            digest = sha256(path.read_bytes()).hexdigest()
+            if sources.get(name) != digest or (name in SOURCE_FILES and hashes.get(name) != digest):
+>               raise ValueError("current source differs from fixed-root authenticated source: "+name)
+E               ValueError: current source differs from fixed-root authenticated source: experiments/research/candidates/srgg/paper_backend.py
+
+experiments/research/candidates/srgg/paper_current_budget.py:114: ValueError
+_ test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort[noise] _
+
+change = 'noise'
+
+    @pytest.mark.parametrize("change", ["rounding", "target", "noise", "dimension", "endpoint", "batch_abort"])
+    def test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort(change):
+>       receipt, _ = module._authenticated_receipt()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_srgg_paper_current_budget.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _authenticated_receipt():
+        manifest = _read_pinned(RECEIPTS/"MANIFEST.json", size=MANIFEST_BYTES,
+                                digest=MANIFEST_SHA256, label="fixed-root original manifest")
+        if manifest.get("schema") != "IBME/SRGG-PARAMETER-CLOSURE-MANIFEST/1":
+            raise ValueError("fixed-root original manifest schema mismatch")
+        expected = {"bytes": PRECISION_BYTES, "sha256": PRECISION_SHA256}
+        if manifest.get("files", {}).get("precision.json") != expected:
+            raise ValueError("precision receipt differs from original manifest entry")
+        receipt = _read_pinned(RECEIPTS/"precision.json", size=PRECISION_BYTES,
+                               digest=PRECISION_SHA256, label="fixed-root precision receipt")
+        if (receipt.get("schema") != "IBME/SRGG-FIXED-ROOT-NUMERICAL-PROFILE-COMPARISON/1"
+                or receipt.get("status") != "completed"
+                or receipt.get("profile") != "PARAM-III"
+                or receipt.get("interpretation") != "table-standard-deviation"):
+            raise ValueError("fixed-root precision receipt schema/profile/status mismatch")
+        hashes = receipt.get("module_sha256_at_import", {})
+        if set(hashes) != set(SOURCE_FILES):
+            raise ValueError("precision receipt does not bind exactly the four corrected core sources")
+        sources = manifest["selected_current_source_sha256"]
+        verified = {}
+        for name in SOURCE_FILES+SUPPORTING_SOURCE_FILES:
+            path = ROOT/name
+            if not path.is_file() or path.stat().st_size > 2*1024*1024:
+                raise ValueError("missing or oversized current source: "+name)
+            digest = sha256(path.read_bytes()).hexdigest()
+            if sources.get(name) != digest or (name in SOURCE_FILES and hashes.get(name) != digest):
+>               raise ValueError("current source differs from fixed-root authenticated source: "+name)
+E               ValueError: current source differs from fixed-root authenticated source: experiments/research/candidates/srgg/paper_backend.py
+
+experiments/research/candidates/srgg/paper_current_budget.py:114: ValueError
+_ test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort[dimension] _
+
+change = 'dimension'
+
+    @pytest.mark.parametrize("change", ["rounding", "target", "noise", "dimension", "endpoint", "batch_abort"])
+    def test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort(change):
+>       receipt, _ = module._authenticated_receipt()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_srgg_paper_current_budget.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _authenticated_receipt():
+        manifest = _read_pinned(RECEIPTS/"MANIFEST.json", size=MANIFEST_BYTES,
+                                digest=MANIFEST_SHA256, label="fixed-root original manifest")
+        if manifest.get("schema") != "IBME/SRGG-PARAMETER-CLOSURE-MANIFEST/1":
+            raise ValueError("fixed-root original manifest schema mismatch")
+        expected = {"bytes": PRECISION_BYTES, "sha256": PRECISION_SHA256}
+        if manifest.get("files", {}).get("precision.json") != expected:
+            raise ValueError("precision receipt differs from original manifest entry")
+        receipt = _read_pinned(RECEIPTS/"precision.json", size=PRECISION_BYTES,
+                               digest=PRECISION_SHA256, label="fixed-root precision receipt")
+        if (receipt.get("schema") != "IBME/SRGG-FIXED-ROOT-NUMERICAL-PROFILE-COMPARISON/1"
+                or receipt.get("status") != "completed"
+                or receipt.get("profile") != "PARAM-III"
+                or receipt.get("interpretation") != "table-standard-deviation"):
+            raise ValueError("fixed-root precision receipt schema/profile/status mismatch")
+        hashes = receipt.get("module_sha256_at_import", {})
+        if set(hashes) != set(SOURCE_FILES):
+            raise ValueError("precision receipt does not bind exactly the four corrected core sources")
+        sources = manifest["selected_current_source_sha256"]
+        verified = {}
+        for name in SOURCE_FILES+SUPPORTING_SOURCE_FILES:
+            path = ROOT/name
+            if not path.is_file() or path.stat().st_size > 2*1024*1024:
+                raise ValueError("missing or oversized current source: "+name)
+            digest = sha256(path.read_bytes()).hexdigest()
+            if sources.get(name) != digest or (name in SOURCE_FILES and hashes.get(name) != digest):
+>               raise ValueError("current source differs from fixed-root authenticated source: "+name)
+E               ValueError: current source differs from fixed-root authenticated source: experiments/research/candidates/srgg/paper_backend.py
+
+experiments/research/candidates/srgg/paper_current_budget.py:114: ValueError
+_ test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort[endpoint] _
+
+change = 'endpoint'
+
+    @pytest.mark.parametrize("change", ["rounding", "target", "noise", "dimension", "endpoint", "batch_abort"])
+    def test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort(change):
+>       receipt, _ = module._authenticated_receipt()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_srgg_paper_current_budget.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _authenticated_receipt():
+        manifest = _read_pinned(RECEIPTS/"MANIFEST.json", size=MANIFEST_BYTES,
+                                digest=MANIFEST_SHA256, label="fixed-root original manifest")
+        if manifest.get("schema") != "IBME/SRGG-PARAMETER-CLOSURE-MANIFEST/1":
+            raise ValueError("fixed-root original manifest schema mismatch")
+        expected = {"bytes": PRECISION_BYTES, "sha256": PRECISION_SHA256}
+        if manifest.get("files", {}).get("precision.json") != expected:
+            raise ValueError("precision receipt differs from original manifest entry")
+        receipt = _read_pinned(RECEIPTS/"precision.json", size=PRECISION_BYTES,
+                               digest=PRECISION_SHA256, label="fixed-root precision receipt")
+        if (receipt.get("schema") != "IBME/SRGG-FIXED-ROOT-NUMERICAL-PROFILE-COMPARISON/1"
+                or receipt.get("status") != "completed"
+                or receipt.get("profile") != "PARAM-III"
+                or receipt.get("interpretation") != "table-standard-deviation"):
+            raise ValueError("fixed-root precision receipt schema/profile/status mismatch")
+        hashes = receipt.get("module_sha256_at_import", {})
+        if set(hashes) != set(SOURCE_FILES):
+            raise ValueError("precision receipt does not bind exactly the four corrected core sources")
+        sources = manifest["selected_current_source_sha256"]
+        verified = {}
+        for name in SOURCE_FILES+SUPPORTING_SOURCE_FILES:
+            path = ROOT/name
+            if not path.is_file() or path.stat().st_size > 2*1024*1024:
+                raise ValueError("missing or oversized current source: "+name)
+            digest = sha256(path.read_bytes()).hexdigest()
+            if sources.get(name) != digest or (name in SOURCE_FILES and hashes.get(name) != digest):
+>               raise ValueError("current source differs from fixed-root authenticated source: "+name)
+E               ValueError: current source differs from fixed-root authenticated source: experiments/research/candidates/srgg/paper_backend.py
+
+experiments/research/candidates/srgg/paper_current_budget.py:114: ValueError
+_ test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort[batch_abort] _
+
+change = 'batch_abort'
+
+    @pytest.mark.parametrize("change", ["rounding", "target", "noise", "dimension", "endpoint", "batch_abort"])
+    def test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort(change):
+>       receipt, _ = module._authenticated_receipt()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_srgg_paper_current_budget.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _authenticated_receipt():
+        manifest = _read_pinned(RECEIPTS/"MANIFEST.json", size=MANIFEST_BYTES,
+                                digest=MANIFEST_SHA256, label="fixed-root original manifest")
+        if manifest.get("schema") != "IBME/SRGG-PARAMETER-CLOSURE-MANIFEST/1":
+            raise ValueError("fixed-root original manifest schema mismatch")
+        expected = {"bytes": PRECISION_BYTES, "sha256": PRECISION_SHA256}
+        if manifest.get("files", {}).get("precision.json") != expected:
+            raise ValueError("precision receipt differs from original manifest entry")
+        receipt = _read_pinned(RECEIPTS/"precision.json", size=PRECISION_BYTES,
+                               digest=PRECISION_SHA256, label="fixed-root precision receipt")
+        if (receipt.get("schema") != "IBME/SRGG-FIXED-ROOT-NUMERICAL-PROFILE-COMPARISON/1"
+                or receipt.get("status") != "completed"
+                or receipt.get("profile") != "PARAM-III"
+                or receipt.get("interpretation") != "table-standard-deviation"):
+            raise ValueError("fixed-root precision receipt schema/profile/status mismatch")
+        hashes = receipt.get("module_sha256_at_import", {})
+        if set(hashes) != set(SOURCE_FILES):
+            raise ValueError("precision receipt does not bind exactly the four corrected core sources")
+        sources = manifest["selected_current_source_sha256"]
+        verified = {}
+        for name in SOURCE_FILES+SUPPORTING_SOURCE_FILES:
+            path = ROOT/name
+            if not path.is_file() or path.stat().st_size > 2*1024*1024:
+                raise ValueError("missing or oversized current source: "+name)
+            digest = sha256(path.read_bytes()).hexdigest()
+            if sources.get(name) != digest or (name in SOURCE_FILES and hashes.get(name) != digest):
+>               raise ValueError("current source differs from fixed-root authenticated source: "+name)
+E               ValueError: current source differs from fixed-root authenticated source: experiments/research/candidates/srgg/paper_backend.py
+
+experiments/research/candidates/srgg/paper_current_budget.py:114: ValueError
+__________ test_json_cli_uses_fresh_path_and_never_overwrites_receipt __________
+
+tmp_path = PosixPath('/tmp/pytest-of-zhang/pytest-0/test_json_cli_uses_fresh_path_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x785935e4c1a0>
+
+    def test_json_cli_uses_fresh_path_and_never_overwrites_receipt(tmp_path, monkeypatch):
+        output = tmp_path/"current-budget.json"
+        monkeypatch.setattr("sys.argv", ["paper_current_budget", "--output", str(output)])
+>       module.main()
+
+tests/test_srgg_paper_current_budget.py:121: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+experiments/research/candidates/srgg/paper_current_budget.py:258: in main
+    result = report(theta_precision_bits=args.theta_precision_bits)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+experiments/research/candidates/srgg/paper_current_budget.py:176: in report
+    receipt, source_hashes = _authenticated_receipt()
+                             ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _authenticated_receipt():
+        manifest = _read_pinned(RECEIPTS/"MANIFEST.json", size=MANIFEST_BYTES,
+                                digest=MANIFEST_SHA256, label="fixed-root original manifest")
+        if manifest.get("schema") != "IBME/SRGG-PARAMETER-CLOSURE-MANIFEST/1":
+            raise ValueError("fixed-root original manifest schema mismatch")
+        expected = {"bytes": PRECISION_BYTES, "sha256": PRECISION_SHA256}
+        if manifest.get("files", {}).get("precision.json") != expected:
+            raise ValueError("precision receipt differs from original manifest entry")
+        receipt = _read_pinned(RECEIPTS/"precision.json", size=PRECISION_BYTES,
+                               digest=PRECISION_SHA256, label="fixed-root precision receipt")
+        if (receipt.get("schema") != "IBME/SRGG-FIXED-ROOT-NUMERICAL-PROFILE-COMPARISON/1"
+                or receipt.get("status") != "completed"
+                or receipt.get("profile") != "PARAM-III"
+                or receipt.get("interpretation") != "table-standard-deviation"):
+            raise ValueError("fixed-root precision receipt schema/profile/status mismatch")
+        hashes = receipt.get("module_sha256_at_import", {})
+        if set(hashes) != set(SOURCE_FILES):
+            raise ValueError("precision receipt does not bind exactly the four corrected core sources")
+        sources = manifest["selected_current_source_sha256"]
+        verified = {}
+        for name in SOURCE_FILES+SUPPORTING_SOURCE_FILES:
+            path = ROOT/name
+            if not path.is_file() or path.stat().st_size > 2*1024*1024:
+                raise ValueError("missing or oversized current source: "+name)
+            digest = sha256(path.read_bytes()).hexdigest()
+            if sources.get(name) != digest or (name in SOURCE_FILES and hashes.get(name) != digest):
+>               raise ValueError("current source differs from fixed-root authenticated source: "+name)
+E               ValueError: current source differs from fixed-root authenticated source: experiments/research/candidates/srgg/paper_backend.py
+
+experiments/research/candidates/srgg/paper_current_budget.py:114: ValueError
+=========================== short test summary info ============================
+FAILED tests/test_srgg_paper_current_budget.py::test_current_fixed_plan_bounds_are_nontrivial_only_where_numerical_envelope_passes
+FAILED tests/test_srgg_paper_current_budget.py::test_exact_triangle_composition_retains_abort_and_does_not_cross_distribution_layers
+FAILED tests/test_srgg_paper_current_budget.py::test_report_reads_no_entropy_and_keeps_backend_default160
+FAILED tests/test_srgg_paper_current_budget.py::test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort[rounding]
+FAILED tests/test_srgg_paper_current_budget.py::test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort[target]
+FAILED tests/test_srgg_paper_current_budget.py::test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort[noise]
+FAILED tests/test_srgg_paper_current_budget.py::test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort[dimension]
+FAILED tests/test_srgg_paper_current_budget.py::test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort[endpoint]
+FAILED tests/test_srgg_paper_current_budget.py::test_semantic_plan_correspondence_checks_reject_wrong_shapes_and_omitted_abort[batch_abort]
+FAILED tests/test_srgg_paper_current_budget.py::test_json_cli_uses_fresh_path_and_never_overwrites_receipt
+10 failed, 1664 passed in 309.52s (0:05:09)

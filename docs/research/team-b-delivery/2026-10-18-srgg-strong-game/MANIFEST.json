@@ -1,0 +1,66 @@
+{
+  "entries": {
+    "docs/research/team-b-delivery/2026-10-18-srgg-strong-game/README.md": {
+      "bytes": 2593,
+      "sha256": "07873398c25b197a946f3f4eff290a356aea220733f010272c6a685b25cde8b3"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-strong-game/README_zh-CN.md": {
+      "bytes": 4685,
+      "sha256": "02cd56788b5d369662232fea0b1e917b54091a56fda60cbe4ae6725a62aa5d1b"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-strong-game/strong-game.json": {
+      "bytes": 13303,
+      "sha256": "592fbe840317dbbd6646546bc0cd3b7f7263e8200d1d222e462448d84d6bcaf0"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-strong-game/validation.json": {
+      "bytes": 1992,
+      "sha256": "89c077cbcd64d3b31e71c93291522a93e1cfaa9dedae8137a10f7226fbd8d291"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-strong-game/verify_delivery.py": {
+      "bytes": 12157,
+      "sha256": "2b9f615f92131743b02beb2e766ad06f3592c9d41ec200570170078a48833541"
+    },
+    "experiments/research/candidates/srgg/paper_algebra.py": {
+      "bytes": 2006,
+      "sha256": "5494acd7ab7cf42b2d9f33746b2535ffcbb58df0796c0b313dd56cc39547c81a"
+    },
+    "experiments/research/candidates/srgg/paper_backend.py": {
+      "bytes": 11897,
+      "sha256": "da08ef7c93e4b921ef8a73ae233501eee693a67efefb899208f4f0a7079b6451"
+    },
+    "experiments/research/candidates/srgg/paper_objects.py": {
+      "bytes": 11995,
+      "sha256": "782bcc7baa30d02a9846809141e1e342841129075688e2bcb332744efa9a2b3f"
+    },
+    "experiments/research/candidates/srgg/paper_parameters.py": {
+      "bytes": 4003,
+      "sha256": "3dc03c082d5595fb2f6d85ea2fdd284beb37b20c432854a38ff434f8aef201a4"
+    },
+    "experiments/research/candidates/srgg/paper_profiles.py": {
+      "bytes": 6580,
+      "sha256": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f"
+    },
+    "experiments/research/candidates/srgg/paper_schur_backend.py": {
+      "bytes": 6310,
+      "sha256": "d7ca95d2be3e966166e9f3c4021635fa3a2ce1531fbf9a2f3d586e9dc68a56d0"
+    },
+    "experiments/research/candidates/srgg/paper_strong_game.py": {
+      "bytes": 10166,
+      "sha256": "7333c7affb7656874edff743a178a66b58fa4eb69c913561f8f1d2813f6886d7"
+    },
+    "experiments/research/candidates/srgg/paper_validation.py": {
+      "bytes": 4447,
+      "sha256": "d112ef72403684d5bb2c7fed278c055ad0d78a1c3f2d304454b15a053a1c687a"
+    },
+    "papers/2025_efficient_ibs_jia.pdf": {
+      "bytes": 512758,
+      "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+    },
+    "tests/test_srgg_paper_strong_game.py": {
+      "bytes": 6052,
+      "sha256": "2ab3468460bfcb7b17e867553a94cff55196b05c7a5c656ecb92f32dbf8b609d"
+    }
+  },
+  "schema": "IBME/SRGG-PAPER-STRONG-GAME-MANIFEST/1",
+  "scope": "selected direct source, test, paper and package files; not a full Python/Sage import closure"
+}

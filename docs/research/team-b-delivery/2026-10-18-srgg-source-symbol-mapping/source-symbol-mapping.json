@@ -1,0 +1,187 @@
+{
+  "author_intended_resolution": null,
+  "backend_admitted": false,
+  "bound_source_sha256_normalized_lf": {
+    "experiments/research/candidates/srgg/paper_algebra.py": "5494acd7ab7cf42b2d9f33746b2535ffcbb58df0796c0b313dd56cc39547c81a",
+    "experiments/research/candidates/srgg/paper_backend.py": "da08ef7c93e4b921ef8a73ae233501eee693a67efefb899208f4f0a7079b6451",
+    "experiments/research/candidates/srgg/paper_parameters.py": "3dc03c082d5595fb2f6d85ea2fdd284beb37b20c432854a38ff434f8aef201a4",
+    "experiments/research/candidates/srgg/paper_profiles.py": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f",
+    "experiments/research/candidates/srgg/paper_smoothing_eta.py": "79d49664fbcbbbb74b805dd06bf973a7fc8801625821873b88c30e705c8c600f",
+    "experiments/research/candidates/srgg/paper_strong_game.py": "7333c7affb7656874edff743a178a66b58fa4eb69c913561f8f1d2813f6886d7"
+  },
+  "finite_game_trace_under_assumed_valid_forgery": {
+    "conditional_trace_is_a_real_signature_attack": false,
+    "old_message_query_then_fresh_message_target_in_X": {
+      "actual_forgery_produced_by_this_audit": false,
+      "g0_euf_fresh_pair_wins_if_valid": true,
+      "g1_fresh_pair_and_X_restrictions_win_if_valid": true,
+      "g1_win_but_printed_simulator_aborts": true,
+      "native_strong_exact_triple_wins_if_valid": true,
+      "printed_p9_simulator_aborts_before_output": true,
+      "trace_assumes_a_valid_forgery": true
+    },
+    "printed_simulator_p9_can_answer_target_signing_query": false,
+    "proof_view_equality_for_all_G1_allowed_queries_established": false,
+    "same_message_different_signature": {
+      "actual_forgery_produced_by_this_audit": false,
+      "g0_euf_fresh_pair_wins_if_valid": false,
+      "g1_fresh_pair_and_X_restrictions_win_if_valid": false,
+      "g1_win_but_printed_simulator_aborts": false,
+      "native_strong_exact_triple_wins_if_valid": true,
+      "printed_p9_simulator_aborts_before_output": true,
+      "trace_assumes_a_valid_forgery": true
+    }
+  },
+  "g1_query_count_lower_bound_counterexample": {
+    "delta": "1/2",
+    "exact_G1_X_event_probability": "1/4",
+    "explicit_extraction_query_count_qE": 1,
+    "extracted_identity_distinct_from_target": true,
+    "fixed_trace_X_exclusion_count_is_qE_not_qS": true,
+    "printed_lower_bound_holds_for_this_query_shape": false,
+    "printed_p8_delta_times_1_minus_delta_qS_for_epsilon_1": "1/2",
+    "scope": "one fixed hypothetical G0-winning transcript; only X coin flips audited",
+    "signing_query_count_qS": 0,
+    "underlying_valid_forgery_established": false
+  },
+  "nist_security_category": null,
+  "original_table3_eta_rows": [
+    {
+      "epsilon": "1/16777216",
+      "formal_eta_literal_definition": {
+        "lower_strictly_exceeds_epsilon": true,
+        "printed_r_satisfies_formal_eta_gate": false,
+        "theta_minus_one_lower_decimal_floor": "179.29894333487644292587"
+      },
+      "hypothetical_physical_sd_conversion": {
+        "conversion_stated_by_source": false,
+        "lower_strictly_exceeds_epsilon": false,
+        "theta_minus_one_lower_decimal_floor": "0.00000003582209665931",
+        "theta_minus_one_upper_decimal_ceiling": "0.00000003582209794255",
+        "upper_strictly_below_epsilon": true
+      },
+      "printed_r_exact_decimal": "1.16",
+      "profile": "PARAM-I",
+      "table3_dimension": 6144
+    },
+    {
+      "epsilon": "1/16777216",
+      "formal_eta_literal_definition": {
+        "lower_strictly_exceeds_epsilon": true,
+        "printed_r_satisfies_formal_eta_gate": false,
+        "theta_minus_one_lower_decimal_floor": "239.06525777983525723449"
+      },
+      "hypothetical_physical_sd_conversion": {
+        "conversion_stated_by_source": false,
+        "lower_strictly_exceeds_epsilon": false,
+        "theta_minus_one_lower_decimal_floor": "0.00000004776279554575",
+        "theta_minus_one_upper_decimal_ceiling": "0.00000004776279782705",
+        "upper_strictly_below_epsilon": true
+      },
+      "printed_r_exact_decimal": "1.16",
+      "profile": "PARAM-II",
+      "table3_dimension": 8192
+    },
+    {
+      "epsilon": "1/16777216",
+      "formal_eta_literal_definition": {
+        "lower_strictly_exceeds_epsilon": true,
+        "printed_r_satisfies_formal_eta_gate": false,
+        "theta_minus_one_lower_decimal_floor": "298.83157222479407154312"
+      },
+      "hypothetical_physical_sd_conversion": {
+        "conversion_stated_by_source": false,
+        "lower_strictly_exceeds_epsilon": true,
+        "theta_minus_one_lower_decimal_floor": "0.00000005970349443219",
+        "theta_minus_one_upper_decimal_ceiling": "0.00000005970349799671",
+        "upper_strictly_below_epsilon": false
+      },
+      "printed_r_exact_decimal": "1.16",
+      "profile": "PARAM-III",
+      "table3_dimension": 10240
+    }
+  ],
+  "original_table4_modulus_rows": [
+    {
+      "changing_q_would_change_original_table4_protocol": true,
+      "gadget_q_preserves_ibS_verification_modulus": false,
+      "gamma_published": "42086491.7",
+      "ibS_verification_modulus_2Q": 31488126,
+      "profile": "PARAM-I",
+      "shortfall_below_2gamma": "342144602/5",
+      "smallest_odd_q_strictly_above_2gamma": 84172985,
+      "source_theorem1_direct_application_established": false,
+      "source_theorem1_other_s1_eta_gate_established": false,
+      "table3_Q_equals_p_times_q": 15744063,
+      "table3_p": 16383,
+      "table3_q_gadget": 961,
+      "taking_q_as_2Q_is_odd": false,
+      "theorem1_q_for_direct_same_modulus_mapping": 15744063,
+      "theorem1_q_is_odd": true,
+      "theorem1_q_strictly_exceeds_2gamma": false,
+      "twice_gamma_exact": "420864917/5"
+    },
+    {
+      "changing_q_would_change_original_table4_protocol": true,
+      "gadget_q_preserves_ibS_verification_modulus": false,
+      "gamma_published": "63653172.0",
+      "ibS_verification_modulus_2Q": 31488126,
+      "profile": "PARAM-II",
+      "shortfall_below_2gamma": "111562281",
+      "smallest_odd_q_strictly_above_2gamma": 127306345,
+      "source_theorem1_direct_application_established": false,
+      "source_theorem1_other_s1_eta_gate_established": false,
+      "table3_Q_equals_p_times_q": 15744063,
+      "table3_p": 16383,
+      "table3_q_gadget": 961,
+      "taking_q_as_2Q_is_odd": false,
+      "theorem1_q_for_direct_same_modulus_mapping": 15744063,
+      "theorem1_q_is_odd": true,
+      "theorem1_q_strictly_exceeds_2gamma": false,
+      "twice_gamma_exact": "127306344"
+    },
+    {
+      "changing_q_would_change_original_table4_protocol": true,
+      "gadget_q_preserves_ibS_verification_modulus": false,
+      "gamma_published": "86573930.5",
+      "ibS_verification_modulus_2Q": 31488126,
+      "profile": "PARAM-III",
+      "shortfall_below_2gamma": "157403798",
+      "smallest_odd_q_strictly_above_2gamma": 173147863,
+      "source_theorem1_direct_application_established": false,
+      "source_theorem1_other_s1_eta_gate_established": false,
+      "table3_Q_equals_p_times_q": 15744063,
+      "table3_p": 16383,
+      "table3_q_gadget": 961,
+      "taking_q_as_2Q_is_odd": false,
+      "theorem1_q_for_direct_same_modulus_mapping": 15744063,
+      "theorem1_q_is_odd": true,
+      "theorem1_q_strictly_exceeds_2gamma": false,
+      "twice_gamma_exact": "173147861"
+    }
+  ],
+  "paper": {
+    "locations": "PDF p.3 Section 2.2; p.4 Definition 3/Theorem 1; p.6 Table 3; p.8 Theorem 2/G0/G1; p.9 simulator/Section 5.1; p.10 Table 4",
+    "path": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "parameters_are_formal": false,
+  "route_log": {
+    "game_alternative_1": "treat internal sign-oracle extraction as adversarial key query; changes stated game semantics",
+    "game_alternative_2": "use SIG signing oracle for target X; requires an unstated simulator/reduction",
+    "game_primary": "printed G0 freshness is a pair, not an exact signature triple",
+    "modulus_alternative_1": "gadget q=961 gives 2q != actual verifier modulus",
+    "modulus_alternative_2": "q=2Q is even and gives 2q != actual modulus",
+    "modulus_primary": "direct 2q=2Q forces q=Q; fails q>2gamma"
+  },
+  "schema": "IBME/SRGG-PAPER-SOURCE-SYMBOL-MAPPING/1",
+  "security_claim": "none",
+  "source_security_statement_gap": {
+    "definition3_and_G0_are_native_strong": false,
+    "definition3_and_G0_freshness": "new (id,message) pair",
+    "theorem1_conclusion": "EUF-CMA for FS[ellipsoid G+G,H], under its conditions",
+    "theorem1_supplies_theorem2_strong_premise": false,
+    "theorem2_premise": "SIG is sEUF-CMA secure",
+    "theorem2_stated_conclusion": "IBS is sEUF-ID-CMA in QROM"
+  }
+}

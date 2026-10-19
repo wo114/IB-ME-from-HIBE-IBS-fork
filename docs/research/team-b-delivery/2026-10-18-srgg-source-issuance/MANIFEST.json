@@ -1,0 +1,77 @@
+{
+  "entries": {
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/MANIFEST.json": {
+      "bytes": 6603,
+      "sha256": "b88043dfae257cb1cf4d02cc20cb0b149beda1a5d914b59027bd548f01156fb3"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/finite-fixed-root.json": {
+      "bytes": 80185,
+      "sha256": "011e9dae5f33780bf4ac7b0f025f6b7f8e172c2e3433c7c100e720c893b7914b"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/joint-fixed-root.json": {
+      "bytes": 149243,
+      "sha256": "a37226dcd2cf0a1212a0d60127dc2c1b8077fa5137792f0f0aaad9ad77b36027"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/proof.md": {
+      "bytes": 8597,
+      "sha256": "6f7d1ccb5177f688cef4131b67c71f4905ecec75d98b09f8ff7452c4f29ccbe3"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/README.md": {
+      "bytes": 3467,
+      "sha256": "fe8becae895ccda592c1c7746531fa5492816a3b406f4878ec5c8d389ec4362a"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/README_zh-CN.md": {
+      "bytes": 3945,
+      "sha256": "14d50f3d67e1243b49c48eec857cd6732bab5d883b7ce7eae7dae0ff138d65ad"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/source-issuance.json": {
+      "bytes": 66640,
+      "sha256": "964197a6a04f033421725e9ae363ec2f2269d7b6da38e6d10568a7205ebff3f8"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/validation.json": {
+      "bytes": 3476,
+      "sha256": "a79ede41c250c2a9852b44daccbecdb6835636dd11cb03b5e8dd95e9869e3c60"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/verify_delivery.py": {
+      "bytes": 12965,
+      "sha256": "eeaa4749dc32b516d826aee74b071c71129e798af7dcdb5c416a6e428b15f58c"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-schur/MANIFEST.json": {
+      "bytes": 42825,
+      "sha256": "f89aa069d6d3c3a1f6675d2048035e2135971afc41c5fa7b2758cddec1bbbf11"
+    },
+    "experiments/research/candidates/srgg/paper_distribution_guard.py": {
+      "bytes": 27923,
+      "sha256": "66491062d16f7699c9d349c2bb71746ab735c150f178df87705e23e5fd8de637"
+    },
+    "experiments/research/candidates/srgg/paper_schur_backend.py": {
+      "bytes": 6310,
+      "sha256": "d7ca95d2be3e966166e9f3c4021635fa3a2ce1531fbf9a2f3d586e9dc68a56d0"
+    },
+    "experiments/research/candidates/srgg/paper_source_issuance_bridge.py": {
+      "bytes": 20563,
+      "sha256": "04e17f925d3eae906743a068b5ca2b7e3b65ffe254b1f64880e27ea7e7d2efec"
+    },
+    "papers/2025_efficient_ibs_jia.pdf": {
+      "bytes": 512758,
+      "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+    },
+    "src/ibme/ibs/srgg_paper_service.py": {
+      "bytes": 11876,
+      "sha256": "8ea4d3375aa213bac2da27a8b2882dbf865f3927c590a8861982aa2c67d91b4e"
+    },
+    "tests/test_srgg_paper_distribution_guard.py": {
+      "bytes": 4753,
+      "sha256": "640d83fb4b973f20d4e02101e7c0f7793cd27529238e9741ccad99710f0a03fa"
+    },
+    "tests/test_srgg_paper_service_default.py": {
+      "bytes": 3128,
+      "sha256": "4dd543292f06e6858f679ee960f7ddf9d6b4f4ea2df7410dcb0fcb49089c69a2"
+    },
+    "tests/test_srgg_paper_source_issuance_bridge.py": {
+      "bytes": 7013,
+      "sha256": "3ae60b05623ba2b98d1d49b312c32f68e2d3e981ece2d39bca99fed4d00a6d6f"
+    }
+  },
+  "schema": "IBME/SRGG-SOURCE-SCHUR-ISSUANCE-DELIVERY-MANIFEST/1"
+}

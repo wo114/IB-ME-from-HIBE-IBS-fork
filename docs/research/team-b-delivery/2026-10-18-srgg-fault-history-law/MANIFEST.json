@@ -1,0 +1,82 @@
+{
+  "entries": {
+    "docs/research/team-b-delivery/2026-10-18-srgg-fault-history-law/README.md": {
+      "bytes": 2049,
+      "sha256": "2c197f23146e1cfe3d5a458161fbba380c1cb79aa3236c15ac05e93bcbf13caa"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-fault-history-law/README_zh-CN.md": {
+      "bytes": 3552,
+      "sha256": "8f3fd89441371cc7232c98942d9cb387016a5c59d09ccfa215a52363938b4046"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-fault-history-law/fault-history-law.json": {
+      "bytes": 9333,
+      "sha256": "46305e4e8d71975037606c5f235fc330487baee0bf8bc10e7a1201d84a1f94a9"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-fault-history-law/proof.md": {
+      "bytes": 8159,
+      "sha256": "60b71f3264ac121e51be1120ade2f712ea1bf1f1bcffbb1e4ff55da3468da768"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-fault-history-law/validation.json": {
+      "bytes": 914,
+      "sha256": "3ff061955de0cd79006e633328b46609a1092c7d2e4fef6f13d4b9b685d6ac15"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-fault-history-law/verify_delivery.py": {
+      "bytes": 6580,
+      "sha256": "e629b6e21252fc9b1f0f92b0a1b1632f118de55072c3865cc19f99638cceab2a"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/history-law.json": {
+      "bytes": 23757,
+      "sha256": "bc377c1346f68441b28eb63ba8288f7acf072a0aa376cbc1ada402e4f7e2c1ac"
+    },
+    "experiments/research/candidates/srgg/paper_algebra.py": {
+      "bytes": 2006,
+      "sha256": "5494acd7ab7cf42b2d9f33746b2535ffcbb58df0796c0b313dd56cc39547c81a"
+    },
+    "experiments/research/candidates/srgg/paper_fault_history_law.py": {
+      "bytes": 15985,
+      "sha256": "f67dceca9c22e90af390c46e5133263090f3768eecc73832a84289dece012559"
+    },
+    "experiments/research/candidates/srgg/paper_objects.py": {
+      "bytes": 11995,
+      "sha256": "782bcc7baa30d02a9846809141e1e342841129075688e2bcb332744efa9a2b3f"
+    },
+    "experiments/research/candidates/srgg/paper_parameters.py": {
+      "bytes": 4003,
+      "sha256": "3dc03c082d5595fb2f6d85ea2fdd284beb37b20c432854a38ff434f8aef201a4"
+    },
+    "experiments/research/candidates/srgg/paper_schur_backend.py": {
+      "bytes": 6310,
+      "sha256": "d7ca95d2be3e966166e9f3c4021635fa3a2ce1531fbf9a2f3d586e9dc68a56d0"
+    },
+    "experiments/research/candidates/srgg/paper_schur_fourier.py": {
+      "bytes": 9173,
+      "sha256": "e6372ccddc5ea98188736eb5ed48929f8fcd43bc2965a7c8827b65a2d6ca5208"
+    },
+    "experiments/research/candidates/srgg/structured_execution.py": {
+      "bytes": 38862,
+      "sha256": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+    },
+    "experiments/research/candidates/srgg/structured_geometry.py": {
+      "bytes": 16626,
+      "sha256": "08d70876337afae3a7e8722a939c9996363af8eb5f8039d6437b6906814f1120"
+    },
+    "papers/2025_efficient_ibs_jia.pdf": {
+      "bytes": 512758,
+      "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+    },
+    "src/ibme/ibs/srgg_paper_service.py": {
+      "bytes": 11876,
+      "sha256": "8ea4d3375aa213bac2da27a8b2882dbf865f3927c590a8861982aa2c67d91b4e"
+    },
+    "src/ibme/ibs/srgg_service.py": {
+      "bytes": 19932,
+      "sha256": "6aa174727fa21c4172e59dd7886525aa8539fc11aa792c2b6f3a6314db970437"
+    },
+    "tests/test_srgg_paper_fault_history_law.py": {
+      "bytes": 4080,
+      "sha256": "b86eded698310934581b363040f420a2b9eea961a6c3fedbfd512c653db6dd79"
+    }
+  },
+  "schema": "IBME/SRGG-FAULT-HISTORY-DELIVERY-MANIFEST/1",
+  "scope": "selected paper, predecessor, source, test and delivery files; not full Python/Sage import closure"
+}

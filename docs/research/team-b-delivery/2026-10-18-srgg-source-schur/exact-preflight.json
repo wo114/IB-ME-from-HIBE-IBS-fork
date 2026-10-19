@@ -1,0 +1,38 @@
+{
+  "backend_admitted": false,
+  "fixture": {
+    "degree": 512,
+    "digits": 2,
+    "entropy_bytes": 0,
+    "kind": "public deterministic SHAKE256 CBD1 fixture; not a generated root or security sample",
+    "profile": "PARAM-I",
+    "rank": 2,
+    "seed_hex": "535247472d70617065722d65786163742d72696e672d53636875722d707265666c696768742d504152414d2d492d7631",
+    "witness_redraws": 0
+  },
+  "next_action": "preserve exact reference and use the single bounded Fourier-Schur alternative",
+  "nist_security_category": null,
+  "outer_elapsed_seconds": 45.08379788900001,
+  "parameters_are_formal": false,
+  "runner": {
+    "python": "3.13.15 | packaged by conda-forge | (main, Sep  2 2026, 22:01:58) [GCC 15.3.0]",
+    "timeout_seconds": 45,
+    "worker_source": "\nimport hashlib,json\nfrom time import perf_counter\nfrom experiments.research.candidates.srgg.paper_parameters import PaperParams\nfrom experiments.research.candidates.srgg.structured_geometry import master_operator\nfrom experiments.research.candidates.srgg.paper_ring_schur import RingSchurPlan\np=PaperParams(\"PARAM-I\")\nseed=b\"SRGG-paper-exact-ring-Schur-preflight-PARAM-I-v1\"\ndata=hashlib.shake_256(seed).digest(2*p.rank*p.rank*p.digits*p.degree)\nvalues=tuple((x&1)-((x>>1)&1) for x in data)\nw=tuple(tuple(tuple(values[(i*p.rank*p.digits+j)*p.degree:(i*p.rank*p.digits+j+1)*p.degree]) for j in range(p.rank*p.digits)) for i in range(2*p.rank))\ng=master_operator(degree=p.degree,rank=p.rank,digits=p.digits,base=p.base,witness=w,first_squared=p.master_first_squared,second_squared=p.master_second_squared,r_squared=p.r_squared)\nt=perf_counter()\ntry:\n    plan=RingSchurPlan(g)\n    result={\"status\":\"prepared\",\"metadata\":plan.public_metadata()}\nexcept Exception as exc:\n    result={\"status\":\"rejected\",\"exception_type\":type(exc).__name__,\"exception_message\":str(exc)}\nresult[\"elapsed_seconds\"]=perf_counter()-t\nresult[\"fixture\"]={\"profile\":\"PARAM-I\",\"degree\":p.degree,\"rank\":p.rank,\"digits\":p.digits,\"kind\":\"public deterministic SHAKE256 CBD1 fixture; not a generated root or security sample\",\"seed_hex\":seed.hex(),\"bytes_sha256\":hashlib.sha256(data).hexdigest(),\"witness_redraws\":0,\"entropy_bytes\":0}\nprint(json.dumps(result))\n"
+  },
+  "security_claim": "none",
+  "source_provenance": {
+    "final_tested_module_sha256": "5fb1fadea4ef7940e696e3b13ae58349fae4b20c6b33e467616ba3bcaa2b18ef",
+    "frozen_snapshot_sha256": "d38c580381f152456ff6483e7be40fc512f63382f1daeed037688e92688a79da",
+    "imported_module_snapshot": "docs/research/team-b-delivery/2026-10-18-srgg-source-schur/exact-preflight-imported-source.txt",
+    "method_retried": false,
+    "note": "A final-pivot inverse cleanup was saved during the worker timeout. This snapshot reconstructs the imported variant exactly from that one recorded edit; timeout is not attributed to the final tested variant."
+  },
+  "source_sha256": {
+    "experiments/research/candidates/srgg/paper_parameters.py": "3dc03c082d5595fb2f6d85ea2fdd284beb37b20c432854a38ff434f8aef201a4",
+    "experiments/research/candidates/srgg/paper_ring_schur.py": "5fb1fadea4ef7940e696e3b13ae58349fae4b20c6b33e467616ba3bcaa2b18ef",
+    "experiments/research/candidates/srgg/structured_geometry.py": "08d70876337afae3a7e8722a939c9996363af8eb5f8039d6437b6906814f1120"
+  },
+  "status": "bounded-preparation-timeout",
+  "test_scope": "bounded exact Algorithm3 preparation with original Table4 widths; not a lifecycle, positivity, distribution or security test",
+  "wall_time_limit_seconds": 45
+}

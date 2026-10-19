@@ -1,0 +1,199 @@
+{
+  "baseline_commit": "cd31389f91e5",
+  "branch": "codex/srgg-distribution-deepseek-2026-10-18",
+  "commands": [
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_distribution_guard.py",
+      "result": "6 passed in 40.05s",
+      "scope": "six tests; positive control tampered stored factor rejected; PARAM-I frozen-receipt equality; second accepted root has identical master joint bound; literal issuance remains null; complete gate set includes issuance C gate and finite-key object/service envelope"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.srgg.paper_distribution_guard --output build/deepseek-distribution-guard.json",
+      "result": "rows=6, closed_master=6, closed_issuance=3, closed_sign_call=3, full_gate_set=10, full_history_tv=null",
+      "scope": "six original Table 4 rows; complete guarded accept set; deterministic fixture probes"
+    },
+    {
+      "command": "python docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/verify_delivery.py",
+      "result": "ok=true, rows=6",
+      "scope": "pure-Python cross-check against frozen joint/source/history receipts and pinned security fields"
+    }
+  ],
+  "current_dependency_sha256": {
+    "experiments/research/candidates/srgg/paper_backend.py": "da08ef7c93e4b921ef8a73ae233501eee693a67efefb899208f4f0a7079b6451",
+    "experiments/research/candidates/srgg/paper_distribution_chain.py": "164150dcf0eeb18ab295fd4351e944da294fe13603b3f21e8745e7aba09b89f3",
+    "experiments/research/candidates/srgg/paper_distribution_guard.py": "66491062d16f7699c9d349c2bb71746ab735c150f178df87705e23e5fd8de637",
+    "experiments/research/candidates/srgg/paper_issuance_bridge.py": "e0ceb333e125ad0776dce4482ec28d0831733c759a300d71c81330f41dd5680f",
+    "experiments/research/candidates/srgg/paper_objects.py": "782bcc7baa30d02a9846809141e1e342841129075688e2bcb332744efa9a2b3f",
+    "experiments/research/candidates/srgg/paper_parameters.py": "3dc03c082d5595fb2f6d85ea2fdd284beb37b20c432854a38ff434f8aef201a4",
+    "experiments/research/candidates/srgg/paper_profiles.py": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f",
+    "experiments/research/candidates/srgg/paper_rounding_budget.py": "76aefbae24c11706715d22f6ca59a5cb9a5433c5edfd44fe291e47c53de7e9c3",
+    "experiments/research/candidates/srgg/paper_schur_backend.py": "d7ca95d2be3e966166e9f3c4021635fa3a2ce1531fbf9a2f3d586e9dc68a56d0",
+    "experiments/research/candidates/srgg/paper_schur_convolution.py": "5d007cb634f6704117f83cd2196bafea505cf08322c12204c4708780a8a047bc",
+    "experiments/research/candidates/srgg/paper_schur_finite_chain.py": "a515ee7990f19efbf36354d28505eb638b0dbdd7c7eaea9cb14e80d62b2bfd85",
+    "experiments/research/candidates/srgg/paper_schur_fourier.py": "e6372ccddc5ea98188736eb5ed48929f8fcd43bc2965a7c8827b65a2d6ca5208",
+    "experiments/research/candidates/srgg/paper_schur_literal_moment.py": "0894b587369dd17a9a42c4bf1b36ed9f0ed988a9672b938e3f291a2cda74c89c",
+    "experiments/research/candidates/srgg/paper_schur_normalizer.py": "d4c7389acd6e5e45b2ff87e615c7d745756496a6704f31bd8cec74f42969db06",
+    "experiments/research/candidates/srgg/paper_schur_numerical.py": "0d2005bc6cd9b430c06e5c36f7c02e20fe5073463b1d504eb8dd064461c0cfb8",
+    "experiments/research/candidates/srgg/paper_schur_samplef.py": "5ddce65eb19272d1e2f2965421a065e6d55227661b0627ab640bd5026b3082fb",
+    "experiments/research/candidates/srgg/paper_setup_acceptance.py": "5e70489f384686472a118a65833992f644b2ac63056dc1320b7690e22f2ca1f7",
+    "experiments/research/candidates/srgg/paper_setup_conditioning.py": "0408504a82fc8016f10dee7978993004e007084d1f52236cb6b960ddc67caf7f",
+    "experiments/research/candidates/srgg/paper_sign_budget.py": "4dc1b67242268e408701f3bc0245be02fce8754983f0375fbb20807661611d15",
+    "experiments/research/candidates/srgg/paper_source_issuance_bridge.py": "04e17f925d3eae906743a068b5ca2b7e3b65ffe254b1f64880e27ea7e7d2efec",
+    "papers/2025_efficient_ibs_jia.pdf": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+    "src/ibme/ibs/srgg_paper/guarded.py": "211bb4074416ba8ee0503912ec16a50fe81f1e8b608b4ff95e6bbc548ee9f06c",
+    "src/ibme/ibs/srgg_paper/service.py": "9b849a2210241f4bf6dbcf09fd8732fb11f01104aebd4fc29a84b2b3a28b839c",
+    "src/ibme/ibs/srgg_paper_service.py": "8ea4d3375aa213bac2da27a8b2882dbf865f3927c590a8861982aa2c67d91b4e"
+  },
+  "date": "2026-10-18",
+  "digests": {
+    "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/README_zh-CN.md": "7011f23f7a5c7c3cf9db0dc48ad5ba69ada91f179364619ba4b5875b5cf90d7c",
+    "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/distribution-guard.json": "9a7fc6edcf460d2017dea1c427e7119f64645a9f707b469c566dd6135e2a30b1",
+    "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/proof.md": "a8a798eaf9a61e6bde2d35dc26b4b2ee1d4e2e852a30e37ab5610b849129dba0",
+    "docs/research/team-b-delivery/2026-10-18-srgg-distribution-guard-deepseek/verify_delivery.py": "9ccfdb9fab5a925bb2f89f154cea16e5ae58229c04baf22ab0734a3534499cf8",
+    "experiments/research/candidates/srgg/paper_distribution_guard.py": "66491062d16f7699c9d349c2bb71746ab735c150f178df87705e23e5fd8de637",
+    "tests/test_srgg_paper_distribution_guard.py": "640d83fb4b973f20d4e02101e7c0f7793cd27529238e9741ccad99710f0a03fa"
+  },
+  "environment": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15",
+    "sage": "10.9"
+  },
+  "frozen_receipts": {
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/finite-fixed-root.json": "011e9dae5f33780bf4ac7b0f025f6b7f8e172c2e3433c7c100e720c893b7914b",
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/joint-fixed-root.json": "a37226dcd2cf0a1212a0d60127dc2c1b8077fa5137792f0f0aaad9ad77b36027",
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/history-law.json": "bc377c1346f68441b28eb63ba8288f7acf072a0aa376cbc1ada402e4f7e2c1ac",
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/source-issuance.json": "964197a6a04f033421725e9ae363ec2f2269d7b6da38e6d10568a7205ebff3f8"
+  },
+  "notes": [
+    "The fixed-root finite/convolution/normalizer chain is gate-uniform: its numerical inputs are the gate floor 64 and root-independent constants, not the actual pivots.",
+    "The guard runs the complete gate set, including the issuance C gate and the finite-key object/service envelope; it proves the protected accept set, not the original unguarded algorithm.",
+    "The guard makes the conditional theorem an accept-set theorem; it does not bound the gate-set masses.",
+    "beta_bad is strictly positive by the canonical tail obstruction but remains unquantified.",
+    "The v1 delivery packages are rewritten in place to the guarded scope; the six roots are witnesses and v1 numeric receipts are byte-unchanged.",
+    "No push and no PR were performed; this is a local WIP delivery."
+  ],
+  "probes": {
+    "scope": "deterministic fixture searches only; not probabilities and not security evidence",
+    "sign_gate_mass": {
+      "all_attempted_fixtures_accounted_for": true,
+      "failure_types": [],
+      "note": "empirical fixture count only; it does not bound beta_bad under the ideal issuance law",
+      "roots_attempted": 3,
+      "sign_gate_accepts": 3,
+      "sign_gate_rejections": 0,
+      "stage_failures": {
+        "issuance": 0,
+        "setup": 0,
+        "sign_plan": 0
+      }
+    },
+    "unguarded_gate_gap": {
+      "enabled": false,
+      "note": "not run: the current backend is guarded; a separately frozen historical unguarded backend would be required for this comparison",
+      "requested_seeds": 6,
+      "seeds_tried": 0,
+      "status": "not_run_after_guard_unification",
+      "witness_found": null
+    }
+  },
+  "repair_provenance": {
+    "chain_input_commit": "9af579d32d574a4cf626ec40a258db721c89e105",
+    "current_repair_validation": "../2026-10-19-srgg-deepseek-repairs/validation.json",
+    "date": "2026-10-19",
+    "historical_test_records_preserved": true,
+    "new_security_proof_attempted": false,
+    "parameters_or_sampling_widths_changed": false,
+    "unified_guard_input_commit": "7131eaa60e874a1a48a355c6369de7efc3185873"
+  },
+  "rows": [
+    {
+      "capacity_history_dyadic_upper": "2^-24",
+      "first_issuance_dyadic_upper": "2^-25",
+      "interpretation": "table-standard-deviation",
+      "master_joint_dyadic_upper": "2^-26",
+      "one_sign_call_dyadic_upper": "2^-19",
+      "profile": "PARAM-I",
+      "second_accepted_root_identical_master": true,
+      "setup_attempts": 1,
+      "setup_gate_rejections": 0,
+      "signature_joint_dyadic_upper": "2^-25"
+    },
+    {
+      "first_issuance_dyadic_upper": null,
+      "interpretation": "literal-density-width",
+      "master_joint_exact_approx": "0.678080744390816",
+      "one_sign_call_dyadic_upper": "1",
+      "profile": "PARAM-I",
+      "second_accepted_root_identical_master": true,
+      "setup_attempts": 1,
+      "setup_gate_rejections": 0,
+      "signature_joint_exact_approx": "0.8963679928680288"
+    },
+    {
+      "capacity_history_dyadic_upper": "2^-24",
+      "first_issuance_dyadic_upper": "2^-25",
+      "interpretation": "table-standard-deviation",
+      "master_joint_dyadic_upper": "2^-25",
+      "one_sign_call_dyadic_upper": "2^-18",
+      "profile": "PARAM-II",
+      "second_accepted_root_identical_master": true,
+      "setup_attempts": 1,
+      "setup_gate_rejections": 0,
+      "signature_joint_dyadic_upper": "2^-24"
+    },
+    {
+      "first_issuance_dyadic_upper": null,
+      "interpretation": "literal-density-width",
+      "master_joint_exact_approx": "0.8173496821978954",
+      "one_sign_call_dyadic_upper": "1",
+      "profile": "PARAM-II",
+      "second_accepted_root_identical_master": true,
+      "setup_attempts": 1,
+      "setup_gate_rejections": 0,
+      "signature_joint_exact_approx": "0.9666388614067902"
+    },
+    {
+      "capacity_history_dyadic_upper": "2^-24",
+      "first_issuance_dyadic_upper": "2^-24",
+      "interpretation": "table-standard-deviation",
+      "master_joint_dyadic_upper": "2^-25",
+      "one_sign_call_dyadic_upper": "2^-18",
+      "profile": "PARAM-III",
+      "second_accepted_root_identical_master": true,
+      "setup_attempts": 1,
+      "setup_gate_rejections": 0,
+      "signature_joint_dyadic_upper": "2^-24"
+    },
+    {
+      "first_issuance_dyadic_upper": null,
+      "interpretation": "literal-density-width",
+      "master_joint_exact_approx": "0.8963679928680288",
+      "one_sign_call_dyadic_upper": "1",
+      "profile": "PARAM-III",
+      "second_accepted_root_identical_master": true,
+      "setup_attempts": 1,
+      "setup_gate_rejections": 0,
+      "signature_joint_exact_approx": "0.989260407097799"
+    }
+  ],
+  "schema": "IBME/SRGG-DISTRIBUTION-GUARD-VALIDATION/1",
+  "security": {
+    "backend_admitted": false,
+    "functional_or_finite_tests_are_not_a_security_proof": true,
+    "nist_security_category": null,
+    "parameters_are_formal": false,
+    "private_material_exported": false,
+    "security_claim": "none"
+  },
+  "v1_verification": {
+    "manifest_entries_checked": 61,
+    "manifest_mismatches": 0,
+    "nine_package_driver": {
+      "all_passed": true,
+      "checks": 18,
+      "normal_and_optimized": true,
+      "packages": 9
+    },
+    "random_key_sign_law_verifier": "verified (6 rows, 8 entries)"
+  }
+}

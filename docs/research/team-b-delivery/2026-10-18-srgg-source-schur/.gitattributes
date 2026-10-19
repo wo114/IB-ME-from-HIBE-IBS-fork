@@ -1,0 +1,5 @@
+# Preserve generated failure evidence byte-for-byte after the documented
+# hostname redaction. Pytest trace separators contain trailing spaces.
+# Source files and all other artifacts retain normal whitespace checks.
+intermediate-source-guard-failure.txt -text -whitespace
+intermediate-source-guard-failure.xml -text -whitespace

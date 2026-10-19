@@ -1,0 +1,150 @@
+{
+  "backend_admitted": false,
+  "baseline_commit": "cd31389f91e5",
+  "boundary_probes": [
+    {
+      "functional_pass": true,
+      "interpretation": "literal-density-width",
+      "profile": "PARAM-I",
+      "witness_gap_to_C": 0.2870510557104353,
+      "witness_lambda_max": 5936.887604935773,
+      "witness_sha256": "0509407af8861f90a3c2df332600c221a5d168cc1e097d85f6f5dfee51b3039a"
+    },
+    {
+      "functional_pass": true,
+      "interpretation": "literal-density-width",
+      "profile": "PARAM-II",
+      "witness_gap_to_C": 0.26882711761572864,
+      "witness_lambda_max": 8483.712856702552,
+      "witness_sha256": "fda46b11af23597f82e935725f175cdf3e6e84a0860f2a5bf8f4327cdb2bea22"
+    },
+    {
+      "functional_pass": true,
+      "interpretation": "literal-density-width",
+      "profile": "PARAM-III",
+      "witness_gap_to_C": 2.348091867273979,
+      "witness_lambda_max": 10980.728366291009,
+      "witness_sha256": "656f19fb2d963bc058a2e9c09eb8d60b2cd91daf0cc7bb321ad775f2e8056423"
+    }
+  ],
+  "branch": "codex/srgg-dist-chain-deepseek-2026-10-18",
+  "commands": [
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_distribution_chain.py",
+      "result": "7 passed in 27.48s"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_distribution_chain.py tests/test_srgg_paper_setup_acceptance.py tests/test_srgg_paper_source_issuance_bridge.py tests/test_srgg_paper_schur_finite_chain.py tests/test_srgg_paper_schur_numerical.py",
+      "result": "39 passed in 97.87s"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.srgg.paper_distribution_chain --lifecycle --output build/distribution-chain.json",
+      "result": "6 rows; lifecycle true; all six functional probes verified; security_claim=none"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python docs/research/team-b-delivery/2026-10-18-srgg-distribution-chain/boundary_probe.py --profile PARAM-I --interpretation literal-density-width --samples 20000 --seed 20261018 --output .../boundary-PARAM-I.json",
+      "result": "functional_pass=true; witness_lambda_max=5936.887604935773; gap_to_C=0.2870510557104353"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python docs/research/team-b-delivery/2026-10-18-srgg-distribution-chain/boundary_probe.py --profile PARAM-II --interpretation literal-density-width --samples 20000 --seed 20261018 --output .../boundary-PARAM-II.json",
+      "result": "functional_pass=true; witness_lambda_max=8483.712856702552; gap_to_C=0.26882711761572864"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python docs/research/team-b-delivery/2026-10-18-srgg-distribution-chain/boundary_probe.py --profile PARAM-III --interpretation literal-density-width --samples 20000 --seed 20261018 --output .../boundary-PARAM-III.json",
+      "result": "functional_pass=true; witness_lambda_max=10980.728366291009; gap_to_C=2.348091867273979"
+    },
+    {
+      "command": "/usr/bin/python3 docs/research/team-b-delivery/2026-10-18-srgg-distribution-chain/verify_delivery.py",
+      "result": "passed; 6 rows; 3 boundary receipts; security_claim=none"
+    }
+  ],
+  "current_dependency_sha256": {
+    "experiments/research/candidates/srgg/paper_backend.py": "da08ef7c93e4b921ef8a73ae233501eee693a67efefb899208f4f0a7079b6451",
+    "experiments/research/candidates/srgg/paper_distribution_chain.py": "164150dcf0eeb18ab295fd4351e944da294fe13603b3f21e8745e7aba09b89f3",
+    "experiments/research/candidates/srgg/paper_distribution_guard.py": "66491062d16f7699c9d349c2bb71746ab735c150f178df87705e23e5fd8de637",
+    "experiments/research/candidates/srgg/paper_issuance_bridge.py": "e0ceb333e125ad0776dce4482ec28d0831733c759a300d71c81330f41dd5680f",
+    "experiments/research/candidates/srgg/paper_objects.py": "782bcc7baa30d02a9846809141e1e342841129075688e2bcb332744efa9a2b3f",
+    "experiments/research/candidates/srgg/paper_parameters.py": "3dc03c082d5595fb2f6d85ea2fdd284beb37b20c432854a38ff434f8aef201a4",
+    "experiments/research/candidates/srgg/paper_profiles.py": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f",
+    "experiments/research/candidates/srgg/paper_rounding_budget.py": "76aefbae24c11706715d22f6ca59a5cb9a5433c5edfd44fe291e47c53de7e9c3",
+    "experiments/research/candidates/srgg/paper_schur_backend.py": "d7ca95d2be3e966166e9f3c4021635fa3a2ce1531fbf9a2f3d586e9dc68a56d0",
+    "experiments/research/candidates/srgg/paper_schur_convolution.py": "5d007cb634f6704117f83cd2196bafea505cf08322c12204c4708780a8a047bc",
+    "experiments/research/candidates/srgg/paper_schur_finite_chain.py": "a515ee7990f19efbf36354d28505eb638b0dbdd7c7eaea9cb14e80d62b2bfd85",
+    "experiments/research/candidates/srgg/paper_schur_fourier.py": "e6372ccddc5ea98188736eb5ed48929f8fcd43bc2965a7c8827b65a2d6ca5208",
+    "experiments/research/candidates/srgg/paper_schur_literal_moment.py": "0894b587369dd17a9a42c4bf1b36ed9f0ed988a9672b938e3f291a2cda74c89c",
+    "experiments/research/candidates/srgg/paper_schur_normalizer.py": "d4c7389acd6e5e45b2ff87e615c7d745756496a6704f31bd8cec74f42969db06",
+    "experiments/research/candidates/srgg/paper_schur_numerical.py": "0d2005bc6cd9b430c06e5c36f7c02e20fe5073463b1d504eb8dd064461c0cfb8",
+    "experiments/research/candidates/srgg/paper_schur_samplef.py": "5ddce65eb19272d1e2f2965421a065e6d55227661b0627ab640bd5026b3082fb",
+    "experiments/research/candidates/srgg/paper_setup_acceptance.py": "5e70489f384686472a118a65833992f644b2ac63056dc1320b7690e22f2ca1f7",
+    "experiments/research/candidates/srgg/paper_setup_conditioning.py": "0408504a82fc8016f10dee7978993004e007084d1f52236cb6b960ddc67caf7f",
+    "experiments/research/candidates/srgg/paper_sign_budget.py": "4dc1b67242268e408701f3bc0245be02fce8754983f0375fbb20807661611d15",
+    "experiments/research/candidates/srgg/paper_source_issuance_bridge.py": "04e17f925d3eae906743a068b5ca2b7e3b65ffe254b1f64880e27ea7e7d2efec",
+    "papers/2025_efficient_ibs_jia.pdf": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+    "src/ibme/ibs/srgg_paper/guarded.py": "211bb4074416ba8ee0503912ec16a50fe81f1e8b608b4ff95e6bbc548ee9f06c",
+    "src/ibme/ibs/srgg_paper/service.py": "9b849a2210241f4bf6dbcf09fd8732fb11f01104aebd4fc29a84b2b3a28b839c",
+    "src/ibme/ibs/srgg_paper_service.py": "8ea4d3375aa213bac2da27a8b2882dbf865f3927c590a8861982aa2c67d91b4e"
+  },
+  "delivery_file_sha256": {
+    "README_zh-CN.md": "0814aece238dd6c07907e5a88a4bd2995fdfee4a0c5636d4fdb0b5ce892d8013",
+    "boundary-PARAM-I.json": "cb0936bb6dce3660e19945590127db29afd108e33e1dbf8c2f2d05ee2c75f3ca",
+    "boundary-PARAM-II.json": "9c7c53d61695c8ed0737c8abe2975d56e6aeceec4f6292ec844b64674505d867",
+    "boundary-PARAM-III.json": "f7e8723d7efcbe33a282a7c019c8f4ac441f1559f439cb20ef190551510de63d",
+    "boundary_probe.py": "f746d0cd9d17e1e106dca2ac051ff75787d08d46adb4601d6003bf68b4a97423",
+    "distribution-chain.json": "83ce8b8d8675e9b72b9e85688d0b775e9f8b938a627071d4a86a545ffda0a2f1",
+    "proof.md": "12c3a2091331ab7893758926c3ecbb02d956e8257c9f0904ddbb5972e139bc39",
+    "verify_delivery.py": "7235220c7a58987123afb777ef318eb3867dbde666f24e56d2af94b8df6e3ff1"
+  },
+  "environment": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15",
+    "sage": "10.9",
+    "wsl_sage": "~/miniconda3/envs/sage"
+  },
+  "failed_routes": [
+    "exact RingSchurPlan acceptance certifier: ValueError ring Schur rational resource limit exceeded at the 16384-bit cap on a Table 4 root; not used"
+  ],
+  "frozen_receipts": {
+    "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/joint-fixed-root.json": "a37226dcd2cf0a1212a0d60127dc2c1b8077fa5137792f0f0aaad9ad77b36027",
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/history-law.json": "bc377c1346f68441b28eb63ba8288f7acf072a0aa376cbc1ada402e4f7e2c1ac",
+    "docs/research/team-b-delivery/2026-10-18-srgg-setup-acceptance/setup-acceptance.json": "ab36bae76b13e5a9bb58a596353a988f2d17d2ff7491072af65151a71c7a2cea",
+    "docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/source-issuance.json": "964197a6a04f033421725e9ae363ec2f2269d7b6da38e6d10568a7205ebff3f8"
+  },
+  "hash_normalization": "SHA-256 values are over Git-normalized LF blobs (git cat-file blob :path), not CRLF working copies.",
+  "nist_security_category": null,
+  "nulls": [
+    "unguarded beta_bad mass",
+    "original backend non-retryable 64-attempt abort",
+    "literal-density first issuance delta_issue",
+    "exact author sampler / C implementation",
+    "native strong, structural hardness, formal parameters, NIST category",
+    "fault probabilities and faulty complete histories"
+  ],
+  "parameters_are_formal": false,
+  "repair_provenance": {
+    "chain_input_commit": "9af579d32d574a4cf626ec40a258db721c89e105",
+    "current_repair_validation": "../2026-10-19-srgg-deepseek-repairs/validation.json",
+    "date": "2026-10-19",
+    "historical_test_records_preserved": true,
+    "new_security_proof_attempted": false,
+    "parameters_or_sampling_widths_changed": false,
+    "unified_guard_input_commit": "7131eaa60e874a1a48a355c6369de7efc3185873"
+  },
+  "report_sha256": "83ce8b8d8675e9b72b9e85688d0b775e9f8b938a627071d4a86a545ffda0a2f1",
+  "schema": "IBME/SRGG-PAPER-DISTRIBUTION-CHAIN-VALIDATION/1",
+  "scope": "functional tests, exact finite TV bounds and deterministic boundary probes; not a security proof",
+  "security_claim": "none",
+  "test_summary": {
+    "distribution_chain_tests": "7 passed",
+    "related_sage_subset": "39 passed"
+  },
+  "witness_replay_binding_note": "Current source pins were refreshed after fixture replay. The changed issuance-bridge constants authenticate predecessor files; the numerical results and six lifecycle witnesses are retained, not re-estimated.",
+  "witness_replay_dependency_sha256_before_pin_refresh": {
+    "experiments/research/candidates/srgg/paper_issuance_bridge.py": "e0ceb333e125ad0776dce4482ec28d0831733c759a300d71c81330f41dd5680f",
+    "experiments/research/candidates/srgg/paper_schur_backend.py": "d7ca95d2be3e966166e9f3c4021635fa3a2ce1531fbf9a2f3d586e9dc68a56d0",
+    "experiments/research/candidates/srgg/paper_schur_finite_chain.py": "a515ee7990f19efbf36354d28505eb638b0dbdd7c7eaea9cb14e80d62b2bfd85",
+    "experiments/research/candidates/srgg/paper_schur_numerical.py": "0d2005bc6cd9b430c06e5c36f7c02e20fe5073463b1d504eb8dd064461c0cfb8",
+    "experiments/research/candidates/srgg/paper_setup_acceptance.py": "5e70489f384686472a118a65833992f644b2ac63056dc1320b7690e22f2ca1f7",
+    "experiments/research/candidates/srgg/paper_source_issuance_bridge.py": "77bdf787fad18be22de252bab0dad38a822a72666a5212a05590f5da286318e6"
+  },
+  "worktree": "C:/Users/A/.codex/worktrees/srgg-dist-chain-2026-10-18/IB-ME-from-HIBE-IBS"
+}

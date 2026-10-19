@@ -29,7 +29,7 @@ class NoRead:
 
 
 def audit(profile_name="PARAM-I", *, interpretation="table-standard-deviation",
-          production_random=False, progress=None):
+          production_random=False, progress=None, backend_class=Backend):
     params = PaperParams(profile_name, interpretation)
     source = Path(params.source.source_pdf)
     if sha256(source.read_bytes()).hexdigest() != params.source.source_sha256:
@@ -39,7 +39,7 @@ def audit(profile_name="PARAM-I", *, interpretation="table-standard-deviation",
         raise RuntimeError("audit message length drift")
     rng = SecureRandom() if production_random else DeterministicRandom(
         ("paper-baseline-"+profile_name+"-"+interpretation).encode("ascii"))
-    backend = Backend(rng=rng)
+    backend = backend_class(rng=rng)
     report = {"schema": "IBME/SRGG-PAPER-AUDIT/1", "profile": params.record(),
               "started_utc": datetime.now(timezone.utc).isoformat(),
               "published_inputs": params.source.record(),
@@ -49,6 +49,7 @@ def audit(profile_name="PARAM-I", *, interpretation="table-standard-deviation",
               "environment": {"python": platform.python_version(), "sage": sage_version,
                               "platform": platform.platform(), "machine": platform.machine()},
               "randomness": "SecureRandom" if production_random else "DeterministicRandom TEST ONLY",
+              "backend_class": backend_class.__module__+"."+backend_class.__name__,
               "identity_bytes": len(identity), "message_bytes": len(message),
               "repetitions": 1, "rom_used": True, "teaching_parameters": False,
               "formal_security_parameters": False, "security_claim": "none",
@@ -73,11 +74,11 @@ def audit(profile_name="PARAM-I", *, interpretation="table-standard-deviation",
         master = issuer._load().master
         restored_master = MasterSecret.from_bytes(master.to_bytes())
         report["checks"]["master_cached_key_reused_without_entropy"] = (
-            Backend(rng=NoRead()).key_extract(restored_master, identity).to_bytes() == key.to_bytes())
+            backend_class(rng=NoRead()).key_extract(restored_master, identity).to_bytes() == key.to_bytes())
         strict, sizes = measured("codecs", lambda: codec_checks(public, master, key, signature))
         report["checks"].update(strict)
         report["object_sizes_bytes"] = sizes
-        reopened = FixedIssuer(issuer.path, Backend(rng=NoRead()),
+        reopened = FixedIssuer(issuer.path, backend_class(rng=NoRead()),
                                expected_public=public, expected_params=params)
         report["checks"]["persistent_restart_cached_key_same_without_entropy"] = (
             reopened.key_extract(identity).to_bytes() == key.to_bytes())
@@ -92,6 +93,8 @@ def audit(profile_name="PARAM-I", *, interpretation="table-standard-deviation",
         report["native_strong_probe"] = strong
         report["master_sampler"] = backend.last_master_certificate
         report["signature_sampler"] = backend.last_sign_certificate
+        report["signature_attempt_entropy"] = getattr(backend, "last_sign_attempt_certificate", None)
+        report["signature_call_entropy"] = getattr(backend, "last_sign_call_certificate", None)
         report["attempts"] = {"setup": backend.setup_attempts, "sign": backend.sign_attempts,
                               "extraction_calls": backend.extract_calls}
     report["functional_checks_passed"] = all(report["checks"].values())
@@ -106,18 +109,30 @@ def main():
     parser.add_argument("--interpretation", choices=("table-standard-deviation", "literal-density-width"),
                         default="table-standard-deviation")
     parser.add_argument("--production-random", action="store_true")
+    parser.add_argument("--sampler", choices=("joint", "source-schur"), default="joint")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     try:
+        if args.sampler == "source-schur":
+            from .paper_schur_backend import SourceSchurBackend
+            backend_class = SourceSchurBackend
+        else:
+            backend_class = Backend
         report = audit(args.profile, interpretation=args.interpretation,
-                       production_random=args.production_random, progress=lambda value: print(value, flush=True))
+                       production_random=args.production_random, progress=lambda value: print(value, flush=True),
+                       backend_class=backend_class)
     except Exception as error:
         report = {"schema": "IBME/SRGG-PAPER-AUDIT/1", "status": "execution-failed",
                   "profile": args.profile, "interpretation": args.interpretation,
-                  "error_type": type(error).__name__, "error": str(error), "security_claim": "none"}
+                  "sampler": args.sampler,
+                  "error_type": type(error).__name__,
+                  "error": "standalone audit failed; private exception details omitted",
+                  "private_material_exported": False, "security_claim": "none"}
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(report, indent=2, sort_keys=True)+"\n", encoding="utf-8")
-        raise
+        print(json.dumps({"status": "execution-failed", "output": str(args.output),
+                          "private_diagnostics_exported": False}))
+        raise SystemExit(1) from None
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, sort_keys=True)+"\n", encoding="utf-8")
     print(json.dumps({"status": report["status"], "output": str(args.output),

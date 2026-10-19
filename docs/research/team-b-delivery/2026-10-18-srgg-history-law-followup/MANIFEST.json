@@ -1,0 +1,58 @@
+{
+  "entries": {
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/README.md": {
+      "bytes": 3353,
+      "sha256": "7c757bf8a347e1c98bc0774880a730f433369130a295fbd86926b825ce07258f"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/README_zh-CN.md": {
+      "bytes": 3487,
+      "sha256": "fab598b6111fa4f5ddd6e98975f5b2a2f8625addfa7364e05f9f5c4eaa53ccc3"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/history-law.json": {
+      "bytes": 23757,
+      "sha256": "bc377c1346f68441b28eb63ba8288f7acf072a0aa376cbc1ada402e4f7e2c1ac"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/proof.md": {
+      "bytes": 7042,
+      "sha256": "a4d62b68a23b62ccafdf11da32db8f7da3f2c482b5cd01d9394ca509fc1dfb72"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/validation.json": {
+      "bytes": 1336,
+      "sha256": "2240d62a2810298c0bb8759105f50bd69e5638ab465f961cdc7cc76f7af43886"
+    },
+    "docs/research/team-b-delivery/2026-10-18-srgg-history-law-followup/verify_delivery.py": {
+      "bytes": 6380,
+      "sha256": "4f8c8a84afd7ac6af957233b6fad6a9efefb98d5b45eefa06c0ecc9c72c338a4"
+    },
+    "experiments/research/candidates/srgg/paper_distribution_guard.py": {
+      "bytes": 27923,
+      "sha256": "66491062d16f7699c9d349c2bb71746ab735c150f178df87705e23e5fd8de637"
+    },
+    "experiments/research/candidates/srgg/paper_history_law_followup.py": {
+      "bytes": 14224,
+      "sha256": "20249b9825de0ffb12b156d54f2c7b6bfbffa43f67efdfafd0f8c66a59926f0f"
+    },
+    "experiments/research/candidates/srgg/paper_schur_backend.py": {
+      "bytes": 6310,
+      "sha256": "d7ca95d2be3e966166e9f3c4021635fa3a2ce1531fbf9a2f3d586e9dc68a56d0"
+    },
+    "src/ibme/ibs/srgg_paper_service.py": {
+      "bytes": 11876,
+      "sha256": "8ea4d3375aa213bac2da27a8b2882dbf865f3927c590a8861982aa2c67d91b4e"
+    },
+    "tests/test_srgg_paper_distribution_guard.py": {
+      "bytes": 4753,
+      "sha256": "640d83fb4b973f20d4e02101e7c0f7793cd27529238e9741ccad99710f0a03fa"
+    },
+    "tests/test_srgg_paper_history_law_followup.py": {
+      "bytes": 4714,
+      "sha256": "dfb57c5d5e4ac9441cafae976fad5c3197fc6eddb8621207d1be03ce524f3ef1"
+    },
+    "tests/test_srgg_paper_service_default.py": {
+      "bytes": 3128,
+      "sha256": "4dd543292f06e6858f679ee960f7ddf9d6b4f4ea2df7410dcb0fcb49089c69a2"
+    }
+  },
+  "schema": "IBME/SRGG-PAPER-ADAPTIVE-HISTORY-DELIVERY-MANIFEST/1",
+  "scope": "selected eight source/test/delivery files; predecessor manifests are independently verified by source code"
+}

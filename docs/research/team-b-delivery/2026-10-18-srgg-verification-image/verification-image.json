@@ -1,0 +1,243 @@
+{
+  "backend_admitted": false,
+  "nist_security_category": null,
+  "paper": {
+    "locations": "Algorithms 7-8, PDF pp. 7-8",
+    "path": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "parameters_are_formal": false,
+  "proof": [
+    "Reduce the verification matrix coefficientwise by CRT modulo Q and modulo 2.",
+    "Modulo Q, Q*zeta_star vanishes and 2 is invertible; the I_d block of A makes the image all R_Q^d.",
+    "Modulo 2, all 2A and -2h columns vanish; the remaining column is zeta_star*e1.",
+    "In R_2=F_2[X]/((X+1)^n), Frobenius gives zeta_star=(X+1)^(n/2); its principal ideal and annihilator each have F_2-dimension n/2.",
+    "The CRT product yields the stated image, index and kernel cardinality for every Ahat, B and h."
+  ],
+  "rows": [
+    {
+      "coefficient_CRT": "R_(2Q) is isomorphic to R_2 x R_Q because Q is odd",
+      "input": {
+        "A_columns": 8,
+        "Q": 15744063,
+        "d": 2,
+        "n": 512,
+        "verification_columns": 9,
+        "verification_modulus": 31488126
+      },
+      "matrix": "[2A | Q*zeta_star*e1-2h] mod 2Q",
+      "mod_2": {
+        "coefficient_codimension": 768,
+        "coefficient_image_dimension": 256,
+        "image": "((X+1)^(n/2) R_2)*e1",
+        "kernel_coefficient_dimension": 4352,
+        "kernel_parametrization": "x arbitrary; t in ann(zeta_star)=((X+1)^(n/2))",
+        "other_rows_zero": true,
+        "ring_identity": "X^n+1=(X+1)^n; zeta_star=(X+1)^(n/2) in characteristic 2"
+      },
+      "mod_2Q": {
+        "image_cardinality": {
+          "Q_power": 1024,
+          "two_power": 256
+        },
+        "image_independent_of_U_and_h": true,
+        "image_index_in_full_codomain": {
+          "base": 2,
+          "exponent": 768
+        },
+        "image_via_CRT": "R_Q^d x (((X+1)^(n/2)R_2)*e1)",
+        "kernel_cardinality": {
+          "Q_power": 3584,
+          "two_power": 4352
+        }
+      },
+      "mod_Q": {
+        "coefficient_image_dimension": 1024,
+        "image": "R_Q^d",
+        "kernel_cardinality": {
+          "base": 15744063,
+          "exponent": 3584
+        },
+        "kernel_parametrization": "x_head=h*t-U*x_tail mod Q",
+        "reason": "2 is a unit mod Q; A contains I_d",
+        "surjective_for_every_U_h": true
+      },
+      "premises": [
+        "A=[I_d|U] over R_Q",
+        "h is any element of R_Q^d",
+        "zeta_star=1-X^(n/2)",
+        "R_m=(Z/mZ)[X]/(X^n+1)"
+      ],
+      "profile": "PARAM-I",
+      "scope": {
+        "IBS_attack_or_security_inferred": false,
+        "accepted_Setup_or_seeded_planted_law": null,
+        "backend_admitted": false,
+        "exact_algebraic_image_and_kernel_only": true,
+        "nist_security_category": null,
+        "paper_theorem_q_Q_2Q_mapping": null,
+        "parameters_are_formal": false,
+        "security_claim": "none",
+        "short_kernel_or_forgery_cost": null
+      },
+      "source_parameters": {
+        "Q": 15744063,
+        "p": 16383,
+        "q": 961,
+        "w": 2
+      }
+    },
+    {
+      "coefficient_CRT": "R_(2Q) is isomorphic to R_2 x R_Q because Q is odd",
+      "input": {
+        "A_columns": 12,
+        "Q": 15744063,
+        "d": 3,
+        "n": 512,
+        "verification_columns": 13,
+        "verification_modulus": 31488126
+      },
+      "matrix": "[2A | Q*zeta_star*e1-2h] mod 2Q",
+      "mod_2": {
+        "coefficient_codimension": 1280,
+        "coefficient_image_dimension": 256,
+        "image": "((X+1)^(n/2) R_2)*e1",
+        "kernel_coefficient_dimension": 6400,
+        "kernel_parametrization": "x arbitrary; t in ann(zeta_star)=((X+1)^(n/2))",
+        "other_rows_zero": true,
+        "ring_identity": "X^n+1=(X+1)^n; zeta_star=(X+1)^(n/2) in characteristic 2"
+      },
+      "mod_2Q": {
+        "image_cardinality": {
+          "Q_power": 1536,
+          "two_power": 256
+        },
+        "image_independent_of_U_and_h": true,
+        "image_index_in_full_codomain": {
+          "base": 2,
+          "exponent": 1280
+        },
+        "image_via_CRT": "R_Q^d x (((X+1)^(n/2)R_2)*e1)",
+        "kernel_cardinality": {
+          "Q_power": 5120,
+          "two_power": 6400
+        }
+      },
+      "mod_Q": {
+        "coefficient_image_dimension": 1536,
+        "image": "R_Q^d",
+        "kernel_cardinality": {
+          "base": 15744063,
+          "exponent": 5120
+        },
+        "kernel_parametrization": "x_head=h*t-U*x_tail mod Q",
+        "reason": "2 is a unit mod Q; A contains I_d",
+        "surjective_for_every_U_h": true
+      },
+      "premises": [
+        "A=[I_d|U] over R_Q",
+        "h is any element of R_Q^d",
+        "zeta_star=1-X^(n/2)",
+        "R_m=(Z/mZ)[X]/(X^n+1)"
+      ],
+      "profile": "PARAM-II",
+      "scope": {
+        "IBS_attack_or_security_inferred": false,
+        "accepted_Setup_or_seeded_planted_law": null,
+        "backend_admitted": false,
+        "exact_algebraic_image_and_kernel_only": true,
+        "nist_security_category": null,
+        "paper_theorem_q_Q_2Q_mapping": null,
+        "parameters_are_formal": false,
+        "security_claim": "none",
+        "short_kernel_or_forgery_cost": null
+      },
+      "source_parameters": {
+        "Q": 15744063,
+        "p": 16383,
+        "q": 961,
+        "w": 2
+      }
+    },
+    {
+      "coefficient_CRT": "R_(2Q) is isomorphic to R_2 x R_Q because Q is odd",
+      "input": {
+        "A_columns": 16,
+        "Q": 15744063,
+        "d": 4,
+        "n": 512,
+        "verification_columns": 17,
+        "verification_modulus": 31488126
+      },
+      "matrix": "[2A | Q*zeta_star*e1-2h] mod 2Q",
+      "mod_2": {
+        "coefficient_codimension": 1792,
+        "coefficient_image_dimension": 256,
+        "image": "((X+1)^(n/2) R_2)*e1",
+        "kernel_coefficient_dimension": 8448,
+        "kernel_parametrization": "x arbitrary; t in ann(zeta_star)=((X+1)^(n/2))",
+        "other_rows_zero": true,
+        "ring_identity": "X^n+1=(X+1)^n; zeta_star=(X+1)^(n/2) in characteristic 2"
+      },
+      "mod_2Q": {
+        "image_cardinality": {
+          "Q_power": 2048,
+          "two_power": 256
+        },
+        "image_independent_of_U_and_h": true,
+        "image_index_in_full_codomain": {
+          "base": 2,
+          "exponent": 1792
+        },
+        "image_via_CRT": "R_Q^d x (((X+1)^(n/2)R_2)*e1)",
+        "kernel_cardinality": {
+          "Q_power": 6656,
+          "two_power": 8448
+        }
+      },
+      "mod_Q": {
+        "coefficient_image_dimension": 2048,
+        "image": "R_Q^d",
+        "kernel_cardinality": {
+          "base": 15744063,
+          "exponent": 6656
+        },
+        "kernel_parametrization": "x_head=h*t-U*x_tail mod Q",
+        "reason": "2 is a unit mod Q; A contains I_d",
+        "surjective_for_every_U_h": true
+      },
+      "premises": [
+        "A=[I_d|U] over R_Q",
+        "h is any element of R_Q^d",
+        "zeta_star=1-X^(n/2)",
+        "R_m=(Z/mZ)[X]/(X^n+1)"
+      ],
+      "profile": "PARAM-III",
+      "scope": {
+        "IBS_attack_or_security_inferred": false,
+        "accepted_Setup_or_seeded_planted_law": null,
+        "backend_admitted": false,
+        "exact_algebraic_image_and_kernel_only": true,
+        "nist_security_category": null,
+        "paper_theorem_q_Q_2Q_mapping": null,
+        "parameters_are_formal": false,
+        "security_claim": "none",
+        "short_kernel_or_forgery_cost": null
+      },
+      "source_parameters": {
+        "Q": 15744063,
+        "p": 16383,
+        "q": 961,
+        "w": 2
+      }
+    }
+  ],
+  "schema": "IBME/SRGG-PAPER-VERIFICATION-IMAGE/1",
+  "security_claim": "none",
+  "source_sha256": {
+    "experiments/research/candidates/srgg/paper_algebra.py": "5494acd7ab7cf42b2d9f33746b2535ffcbb58df0796c0b313dd56cc39547c81a",
+    "experiments/research/candidates/srgg/paper_profiles.py": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f",
+    "experiments/research/candidates/srgg/paper_verification_image.py": "44d2e2ee47d1cfe0e6d71818390e334e11d2e1588753111e5f45875f4777f751",
+    "experiments/research/candidates/srgg/structured_execution.py": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+  }
+}
