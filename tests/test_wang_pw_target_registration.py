@@ -1,4 +1,8 @@
-"""Target Wang–PW selection and capacity; no target key generation here."""
+"""Target selection, capacity and debug CLI transaction failure handling.
+
+The transaction tests use real debug Wang key generation behind mock HIBE;
+they are not n512 execution or security-parameter acceptance evidence.
+"""
 from dataclasses import asdict, replace
 import json
 from pathlib import Path
@@ -169,3 +173,71 @@ def test_cli_check_reports_complete_explicit_target_selection(monkeypatch, capsy
     assert result["suite"]["hybrid_limits"] == limits()
     assert not result["compatibility"]["ok"]
     assert result["compatibility"]["metadata"]["preflight_only"]
+
+
+@pytest.mark.parametrize("replace_completed", [False, True], ids=["before-replace", "after-replace"])
+def test_target_cli_interrupted_sender_publication_blocks_retry(
+        tmp_path, monkeypatch, capsys, replace_completed):
+    """An uncertain key publication must block even an existing-key cache hit."""
+    from ibme import cli
+    from ibme.cli_state import master_pending_path
+    from ibme.core.randomness import SecureRandom
+    from ibme.ibs.wang_pw_target.backend import Backend
+    from ibme.ibs.wang_pw_target.native import build_native
+
+    monkeypatch.setenv("IBME_WANG_PW_TARGET_NATIVE", str(build_native()))
+    state = tmp_path / "state"
+    assert cli.main(["setup", "--state", str(state), "--hibe", "mock", "--ibs", "wang-pw-target",
+                     "--ibs-params", "debug-small", "--allow-mock", "--transport", "hybrid",
+                     "--hybrid-limits", json.dumps(limits())]) == 0
+    capsys.readouterr()
+    master = state / "msk.bin"
+    original_master = master.read_bytes()
+    marker = master_pending_path(master)
+    output = cli._sender_key_path(state, b"Alice")
+    extractions = []
+    original_extract = Backend.key_extract
+    original_replace = cli.os.replace
+
+    def count_extraction(backend, msk, identity):
+        extractions.append(identity)
+        return original_extract(backend, msk, identity)
+
+    def interrupt_publication(source, destination):
+        if Path(destination) == output:
+            assert marker.is_file()
+            if replace_completed:
+                original_replace(source, destination)
+            raise OSError("injected target sender publication interruption")
+        return original_replace(source, destination)
+
+    with monkeypatch.context() as patch:
+        patch.setattr(Backend, "key_extract", count_extraction)
+        # Use the same atomic-publication failpoint as shared CLI state tests.
+        patch.setattr(cli.os, "replace", interrupt_publication)
+        assert cli.main(["issue-sender-key", "Alice", "--state", str(state)]) == 2
+
+    result = capsys.readouterr()
+    assert result.out == "" and "publication interruption" in result.err
+    assert extractions == [b"Alice"]
+    assert marker.is_file() and output.exists() is replace_completed
+    assert master.read_bytes() == original_master
+    assert not list(state.glob(".ibme-state-*.tmp"))
+    before_retry = {path.name: path.read_bytes() for path in state.iterdir() if path.is_file()}
+
+    def forbidden(*args, **kwargs):
+        pytest.fail("pending target issuer loaded, sampled or published during retry")
+
+    with monkeypatch.context() as patch:
+        patch.setattr(cli, "_load_msk", forbidden)
+        patch.setattr(Backend, "key_extract", forbidden)
+        patch.setattr(SecureRandom, "read", forbidden)
+        patch.setattr(cli, "_atomic_write_state", forbidden)
+        for command, name in (("issue-sender-key", "Alice"),
+                              ("issue-sender-key", "Carol"),
+                              ("issue-receiver-key", "Bob")):
+            assert cli.main([command, name, "--state", str(state)]) == 2
+            result = capsys.readouterr()
+            assert result.out == "" and "master state pending" in result.err
+            assert {path.name: path.read_bytes() for path in state.iterdir()
+                    if path.is_file()} == before_retry
