@@ -1,0 +1,19 @@
+{
+  "command": {
+    "calls": {
+      "latte:decrypt": 1,
+      "latte:meta": 3,
+      "ring:verify": 1
+    },
+    "code": 0,
+    "entropy_bytes": 0,
+    "entropy_reads": 0,
+    "exception": null,
+    "expected_code": 0,
+    "name": "zero-entropy-restore",
+    "peak_process_rss_bytes": 356700160,
+    "seconds": 1.8842999920000096
+  },
+  "original_state_unchanged": true,
+  "status": "passed"
+}

@@ -13,6 +13,7 @@ docs/research/team-c-delivery/2026-10-19-lai-publication/README_zh-CN.md
 docs/research/team-c-delivery/2026-10-19-lai-publication/evidence/integration.xml
 docs/research/team-c-delivery/2026-10-19-lai-publication/evidence/primitive.json
 docs/research/team-c-delivery/2026-10-19-lai-publication/evidence/primitive.xml
+docs/research/team-c-delivery/2026-10-19-lai-publication/evidence/target-c2-receipt.json
 docs/research/team-c-delivery/2026-10-19-lai-publication/source-bindings.json
 docs/research/team-c-delivery/2026-10-19-lai-publication/source-lineage.json
 docs/research/team-c-delivery/2026-10-19-lai-publication/validation.json
@@ -25,6 +26,8 @@ experiments/research/candidates/lai/target_byteauth_negative.py
 experiments/research/candidates/lai/target_negative.py
 experiments/research/candidates/lai/target_parameters.py
 experiments/research/candidates/lai/target_probe.py
+experiments/research/candidates/lai/target_c2_receipt.py
+experiments/research/candidates/lai/target_state_setup.sh
 experiments/research/candidates/lai/target_wrong_identity.sh
 src/ibme/assembly/registry.py
 src/ibme/hibe/lai/__init__.py
@@ -43,3 +46,4 @@ tests/test_lai_hibe.py
 tests/test_lai_p1.py
 tests/test_lai_qualification.py
 tests/test_lai_target_parameters.py
+tests/test_lai_target_receipt.py

@@ -14,9 +14,40 @@ import pytest
 pytest.importorskip("sage.all", reason="improvement search requires WSL ~/miniconda3/envs/sage")
 
 from experiments.research.foo_li_parameter_improvement import (
-    core_svp_sis, exact_case, float_window)
+    core_svp_delta, core_svp_sis, exact_case, float_window, in_gate_exhaustive)
 
 EVIDENCE = Path("docs/research/2026-10-19-parameters/fooli-improvement-search.json")
+
+
+@pytest.mark.parametrize('blocksize,expected', [
+    (53, 1.0118866752138085), (100, 1.0092587210363348),
+    (500, 1.0034040267850965),
+])
+def test_root_hermite_factor_matches_published_reference(blocksize, expected):
+    # lattice-estimator e4333d9, estimator/reduction.py:72. These are root-
+    # Hermite factors; omitting the 1/2 in the exponent squares the factor.
+    assert core_svp_delta(blocksize) == pytest.approx(expected, rel=1e-13)
+
+
+def test_unbracketed_attack_does_not_become_an_exact_cost_at_the_search_cap():
+    cost, blocksize, dimension = core_svp_sis(2**127-1, 2048, 780304, 0.01)
+    assert cost == float('inf')
+    assert blocksize is dimension is None
+
+
+def test_search_declares_the_backend_parameters_it_does_not_cover():
+    from ibme.ibs.foo_li.params import FooLiParams
+
+    # This input shape is legal in the delivered class but absent from the
+    # n<=4 / nine-width probe grid. Empty heuristic windows cannot refute it.
+    admitted_shape = FooLiParams(q=7, n=5, m_bar=15, user_quality=1_000_000)
+    result = in_gate_exhaustive()
+    coverage = result['coverage']
+    assert admitted_shape.n > coverage['n_max']
+    assert admitted_shape.generation_width_squared not in coverage['generation_width_squared']
+    assert coverage['all_backend_parameters_covered'] is False
+    assert coverage['prefilter_is_rigorous'] is False
+    assert result['conclusion'] == 'no_candidate_window_in_declared_grid'
 
 
 def test_core_svp_model_decreases_in_target_norm_above_the_floor():
@@ -30,7 +61,7 @@ def test_core_svp_model_decreases_in_target_norm_above_the_floor():
     # In the large-n band the model is well above the floor and ordered.
     tighter, _, _ = core_svp_sis(2**127 - 1, 2048, 780304, 61.8)
     looser, _, _ = core_svp_sis(2**127 - 1, 2048, 780304, 78.0)
-    assert tighter > looser > 100
+    assert tighter > looser > at_floor
     quantum, _, _ = core_svp_sis(2**127 - 1, 2048, 780304, 78.0, quantum=True)
     assert quantum < looser
 
@@ -92,7 +123,11 @@ def test_published_search_artifact_is_self_consistent():
         pytest.skip("search artifact not generated in this checkout")
     report = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     assert report["security_claim"] == "none"
+    assert report["parameters_are_formal"] is False
+    assert report['core_svp_model']['delta_exponent'] == '1/(2*(b-1))'
     gate = report["in_gate_search"]
+    assert gate['coverage']['all_backend_parameters_covered'] is False
+    assert gate['coverage']['prefilter_is_rigorous'] is False
     assert gate["stats"]["k_n_width_probes"] >= 600
     assert gate["stats"]["windows_found"] == 0 == gate["analytic_and_gates_pass"]
     target = report["target_search"]

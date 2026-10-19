@@ -1,0 +1,28 @@
+[
+  {
+    "name": "latte-sageloli-rsis-v3-PARAM-I-byteauth",
+    "selection": {
+      "hibe": "latte", "hibe_params": "seed32",
+      "ibs": "sageloli-rsis", "ibs_params": "PARAM-I",
+      "transport": "hybrid", "protocol": "byteauth-v1", "signature_format": "reference",
+      "hybrid_limits": {
+        "backend_id": "latte3-cosac-fix-v1", "identity_max_bytes": 64,
+        "max_payload_bytes": 8388608, "max_capsule_bytes": 4194304
+      }
+    },
+    "parameter_labels": {"hibe": "research", "ibs": "research"}
+  },
+  {
+    "name": "latte-sageloli-rsis-v3-PARAM-II-byteauth",
+    "selection": {
+      "hibe": "latte", "hibe_params": "seed32",
+      "ibs": "sageloli-rsis", "ibs_params": "PARAM-II",
+      "transport": "hybrid", "protocol": "byteauth-v1", "signature_format": "reference",
+      "hybrid_limits": {
+        "backend_id": "latte3-cosac-fix-v1", "identity_max_bytes": 64,
+        "max_payload_bytes": 8388608, "max_capsule_bytes": 4194304
+      }
+    },
+    "parameter_labels": {"hibe": "research", "ibs": "research"}
+  }
+]

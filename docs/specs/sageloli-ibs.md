@@ -2,6 +2,8 @@
 
 2026-10-19 新增：[v3 环结构后端与论文 Table 6 两档实跑交付](../research/team-b-delivery/2026-10-19-sageloli-ring-target/README_zh-CN.md)。v3 采用大整数编码、环系数对象和结构化 Gaussian 采样；本页后续仍描述原 v2，因此其 128 维、int64 公钥和未执行大参数等范围说明不用于判断 v3。两版本不自动迁移，算法路线计数不变。
 
+v3 的默认登记、公共恢复器、CLI 容量配置与完整组合验收另见[环版公共接入契约](sageloli-ring-ibs.md)；本页 v2 的接入欠项不用于描述该新版本。
+
 本契约对应 HAL v1 的 *Shorter and Faster Identity-Based Signatures with Tight Security in the (Q)ROM from Lattices*，实现位于 `experiments/research/candidates/sageloli/`。矩阵 SIS 与 Ring-SIS 是两条独立原语路线，共用五方法和持久发钥服务，不读取 HIBE 私有表示。
 
 本次完整度指独立算法、对象、固定状态、恢复、失败处理及验收路径齐备。功能实现、有限采样误差、论文安全游戏对应、困难性估计与正式安全准入分别判断。两套默认参数均为公开可伪造的教学参数，`security_claim="none"`、`backend_admitted=false`、`parameters_are_formal=false`，不授予 NIST 等级。
