@@ -24,8 +24,8 @@ CHANGED = {
         "snapshot": "snapshots/ci-suites-7353770.json",
         "old_bytes": 12074,
         "old_sha256": "a494aa2ef60fa9dd4238ad14eda24b4ce7d61e10ec09f1d840c816ee67b81587",
-        "current_bytes": 12473,
-        "current_sha256": "251bffb7d8306aee12241c4002daa6d01ae36b14f853e91b27f7857ec5b583bd",
+        "current_bytes": 12493,
+        "current_sha256": "2ae1556512a95d52b97940d9fb712c5e946375b1a19c948ad302eb0c85faaeeb",
     },
     "src/ibme/lattice/matrix_sampling/mp12_extension.py": {
         "snapshot": "snapshots/mp12-extension-7353770.py",

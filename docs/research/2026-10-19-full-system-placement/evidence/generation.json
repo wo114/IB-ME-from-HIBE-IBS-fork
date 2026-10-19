@@ -1,0 +1,275 @@
+{
+  "backend_admitted": false,
+  "environment": {
+    "OMP_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "1",
+    "cold_definition": "fresh Python process; OS page cache and previously built native engines retained",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.14",
+    "rss_method": "10ms /proc process-tree samples (lower bound); Linux kernel lifetime ru_maxrss per interpreter/completed child"
+  },
+  "identity_bytes": 64,
+  "message_bytes": 32,
+  "original_receipt_sha256": "a1d764e931bd8177e2bae71516de73f699894aeb03b44dccda6a20fd08ca7b15",
+  "parameters_are_formal": false,
+  "randomness": "system CSPRNG, no fixed seed and no outer retry",
+  "repetitions": 3,
+  "schema": "FULL-IBME-BENCHMARK/1",
+  "security_claim": "none",
+  "source_commit": "58102d170606eb5abb9adf2cbdf903107596da42",
+  "states": [
+    {
+      "generation_done": true,
+      "generation_status": "passed",
+      "index": 0,
+      "public_key_sha256": "7e2d64a8480ec4f18b21e38ab867f07595afce63e5179248283cc0d865131069",
+      "restore_entropy_bytes": 0,
+      "restore_status": "passed",
+      "sizes": {
+        "ciphertext.bin": 142090,
+        "master.bin": 177780,
+        "public.bin": 14387,
+        "receiver.bin": 128244,
+        "sender.bin": 8050
+      }
+    },
+    {
+      "generation_done": true,
+      "generation_status": "passed",
+      "index": 1,
+      "public_key_sha256": "665f143bf4d859b6943bc2185cd7fa9691de958e6f52da73110a186ec1ea1714",
+      "restore_entropy_bytes": 0,
+      "restore_status": "passed",
+      "sizes": {
+        "ciphertext.bin": 142096,
+        "master.bin": 177657,
+        "public.bin": 14386,
+        "receiver.bin": 128143,
+        "sender.bin": 8050
+      }
+    },
+    {
+      "generation_done": true,
+      "generation_status": "passed",
+      "index": 2,
+      "public_key_sha256": "6bb3c30bc1d57a848a4b1d68c6e6a3cca162eb0aa1b6cdc5ddd4a9b5d05b0616",
+      "restore_entropy_bytes": 0,
+      "restore_status": "passed",
+      "sizes": {
+        "ciphertext.bin": 142063,
+        "master.bin": 177634,
+        "public.bin": 14384,
+        "receiver.bin": 128116,
+        "sender.bin": 8050
+      }
+    }
+  ],
+  "status": "passed",
+  "suite": {
+    "allow_mock": false,
+    "backend_admitted": false,
+    "hibe": "latte",
+    "hibe_params": {
+      "identity_bytes": 86,
+      "max_children": 2,
+      "max_receivers": 2,
+      "message_mode": "seed32",
+      "native_timeout_seconds": 60
+    },
+    "hibe_version": "latte3-cosac-fix-v1",
+    "hybrid_limits": {
+      "backend_id": "latte3-cosac-fix-v1",
+      "identity_max_bytes": 64,
+      "max_capsule_bytes": 4194304,
+      "max_payload_bytes": 65536
+    },
+    "ibs": "cert-ml-dsa",
+    "ibs_params": {
+      "backend_admitted": false,
+      "base_algorithm": "ml-dsa-44",
+      "identity_bytes": 64,
+      "max_identities": 16,
+      "message_max_bytes": 65536,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "timeout_seconds": 30
+    },
+    "ibs_version": "IBME/CERTIBS/1",
+    "parameters_are_formal": false,
+    "protocol": "byteauth-v1",
+    "security_claim": "none",
+    "signature_format": "reference",
+    "state_policy": "single-writer-commit-before-publish-v1",
+    "transport": "hybrid",
+    "version": "IBME/SUITE/1"
+  },
+  "timing_seconds": {
+    "cold-encrypt": {
+      "count": 3,
+      "maximum": 0.013271527000142669,
+      "mean": 0.012738518666689439,
+      "median": 0.012501346000135527,
+      "minimum": 0.012442682999790122,
+      "observations": [
+        0.013271527000142669,
+        0.012501346000135527,
+        0.012442682999790122
+      ],
+      "sample_stdev": 0.00046252972828816425
+    },
+    "first-decrypt-with-leaf-generation": {
+      "count": 3,
+      "maximum": 0.10498486000051344,
+      "mean": 0.10482872233327119,
+      "median": 0.10475683299955563,
+      "minimum": 0.10474447399974451,
+      "observations": [
+        0.10475683299955563,
+        0.10474447399974451,
+        0.10498486000051344
+      ],
+      "sample_stdev": 0.00013536031385886322
+    },
+    "import-and-build-runtime": {
+      "count": 6,
+      "maximum": 0.535980498999379,
+      "mean": 0.5083964544998404,
+      "median": 0.508020343499993,
+      "minimum": 0.48456740900019213,
+      "observations": [
+        0.535980498999379,
+        0.49529622699992615,
+        0.48456740900019213,
+        0.5184939049995592,
+        0.5135721990000093,
+        0.5024684879999768
+      ],
+      "sample_stdev": 0.01824393874948691
+    },
+    "persist-state": {
+      "count": 3,
+      "maximum": 0.038441783000052965,
+      "mean": 0.03213179733332557,
+      "median": 0.033452308000050834,
+      "minimum": 0.02450130099987291,
+      "observations": [
+        0.02450130099987291,
+        0.033452308000050834,
+        0.038441783000052965
+      ],
+      "sample_stdev": 0.007063431950195134
+    },
+    "receiver-key": {
+      "count": 3,
+      "maximum": 0.36258736600029806,
+      "mean": 0.2669451640000868,
+      "median": 0.22026121399994736,
+      "minimum": 0.21798691200001485,
+      "observations": [
+        0.36258736600029806,
+        0.22026121399994736,
+        0.21798691200001485
+      ],
+      "sample_stdev": 0.08283638219395896
+    },
+    "restore-objects": {
+      "count": 3,
+      "maximum": 0.6880734819997087,
+      "mean": 0.6677150293332185,
+      "median": 0.6677650169995104,
+      "minimum": 0.6473065890004364,
+      "observations": [
+        0.6473065890004364,
+        0.6677650169995104,
+        0.6880734819997087
+      ],
+      "sample_stdev": 0.02038349247009984
+    },
+    "restored-decrypt": {
+      "count": 9,
+      "maximum": 0.06156498200016358,
+      "mean": 0.05991396444440195,
+      "median": 0.060212456999579445,
+      "minimum": 0.05748630299967772,
+      "observations": [
+        0.060212456999579445,
+        0.06096479999996518,
+        0.05932818700057396,
+        0.06156498200016358,
+        0.05748630299967772,
+        0.05877855600010662,
+        0.06086999299986928,
+        0.060217134999220434,
+        0.059803267000461346
+      ],
+      "sample_stdev": 0.0012481584778841993
+    },
+    "sender-key": {
+      "count": 3,
+      "maximum": 0.013864138000826642,
+      "mean": 0.013143394000204959,
+      "median": 0.012843886999689857,
+      "minimum": 0.012722157000098377,
+      "observations": [
+        0.013864138000826642,
+        0.012843886999689857,
+        0.012722157000098377
+      ],
+      "sample_stdev": 0.000627143112873168
+    },
+    "setup": {
+      "count": 3,
+      "maximum": 0.9051485930003764,
+      "mean": 0.7610578376664611,
+      "median": 0.6949326269996163,
+      "minimum": 0.6830922929993903,
+      "observations": [
+        0.6830922929993903,
+        0.6949326269996163,
+        0.9051485930003764
+      ],
+      "sample_stdev": 0.12492660928254207
+    },
+    "warm-decrypt": {
+      "count": 9,
+      "maximum": 0.0595972070004791,
+      "mean": 0.05838294522214306,
+      "median": 0.05794696599969029,
+      "minimum": 0.05743404500026372,
+      "observations": [
+        0.05808170899945253,
+        0.05794696599969029,
+        0.05943847700018523,
+        0.057896463999895786,
+        0.05946901399966009,
+        0.05743404500026372,
+        0.05784093599959306,
+        0.05774168900006771,
+        0.0595972070004791
+      ],
+      "sample_stdev": 0.0008581232927816128
+    },
+    "warm-encrypt": {
+      "count": 9,
+      "maximum": 0.012258787999599008,
+      "mean": 0.011688885110945395,
+      "median": 0.011707897000633238,
+      "minimum": 0.01099882800008345,
+      "observations": [
+        0.011766689999603841,
+        0.01185949799946684,
+        0.011440061000030255,
+        0.012122353999984625,
+        0.011707897000633238,
+        0.01099882800008345,
+        0.012258787999599008,
+        0.011367272999450506,
+        0.011678576999656798
+      ],
+      "sample_stdev": 0.0003856554894723573
+    }
+  },
+  "uses_ROM": true,
+  "warm_repetitions_per_state": 3
+}

@@ -1,0 +1,976 @@
+{
+  "backend_admitted": false,
+  "environment": {
+    "OMP_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "1",
+    "cold_definition": "fresh Python process; OS page cache and previously built native engines retained",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.14",
+    "rss_method": "10ms /proc process-tree samples (lower bound); Linux kernel lifetime ru_maxrss per interpreter/completed child"
+  },
+  "identity_bytes": 64,
+  "message_bytes": 32,
+  "parameters_are_formal": false,
+  "phases": {
+    "decrypt": {
+      "top_cumulative": [
+        {
+          "calls": 5,
+          "cumulative_seconds": 1.4632773220000002,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/assembly/__init__.py",
+          "function": "decrypt",
+          "line": 300,
+          "own_seconds": 0.0005933780000000001,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 1.2156500940000001,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/byteauth.py",
+          "function": "decrypt",
+          "line": 124,
+          "own_seconds": 0.00012266300000000001,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 1.1907611930000002,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/baseline.py",
+          "function": "decrypt",
+          "line": 618,
+          "own_seconds": 0.00024594300000000004,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 520,
+          "cumulative_seconds": 0.994721127,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_abc.py",
+          "function": "read_bytes",
+          "line": 621,
+          "own_seconds": 0.001559377,
+          "primitive_calls": 520
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.647724218,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/ordinary.py",
+          "function": "ordinary",
+          "line": 11,
+          "own_seconds": 4.0623e-05,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.6476835950000001,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/mldsa.py",
+          "function": "__init__",
+          "line": 33,
+          "own_seconds": 0.00024338900000000002,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.6389786780000001,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/native/build.py",
+          "function": "source_id",
+          "line": 16,
+          "own_seconds": 0.0027378230000000003,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 535,
+          "cumulative_seconds": 0.619450449,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "open",
+          "line": 529,
+          "own_seconds": 0.000785897,
+          "primitive_calls": 535
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.46291307200000004,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/hybrid_hibe.py",
+          "function": "decrypt",
+          "line": 422,
+          "own_seconds": 0.00019906,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.434961553,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/backend.py",
+          "function": "decrypt",
+          "line": 113,
+          "own_seconds": 0.00017611700000000002,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.416715865,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/engine.py",
+          "function": "__init__",
+          "line": 27,
+          "own_seconds": 0.00016494,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.40471083900000004,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/native/build.py",
+          "function": "source_id",
+          "line": 18,
+          "own_seconds": 0.001688948,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.33059819,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/backend.py",
+          "function": "load_signature",
+          "line": 98,
+          "own_seconds": 3.9336000000000004e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.33006833300000005,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/backend.py",
+          "function": "verify",
+          "line": 81,
+          "own_seconds": 5.9024e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.247022961,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/assembly/__init__.py",
+          "function": "validate_receiver",
+          "line": 355,
+          "own_seconds": 4.4864e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 15,
+          "cumulative_seconds": 0.195326503,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/assembly/__init__.py",
+          "function": "from_bytes",
+          "line": 265,
+          "own_seconds": 0.00020947400000000002,
+          "primitive_calls": 15
+        },
+        {
+          "calls": 20,
+          "cumulative_seconds": 0.189156036,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/math.py",
+          "function": "check_basis",
+          "line": 43,
+          "own_seconds": 0.002949386,
+          "primitive_calls": 20
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.18703276100000002,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/hybrid_hibe.py",
+          "function": "load_level1_key",
+          "line": 359,
+          "own_seconds": 6.5730000000000004e-06,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.187026188,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/hybrid_hibe.py",
+          "function": "_load_secret",
+          "line": 349,
+          "own_seconds": 1.9544e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 25,
+          "cumulative_seconds": 0.18319823100000002,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/backend.py",
+          "function": "validate_key_binding",
+          "line": 136,
+          "own_seconds": 0.000648218,
+          "primitive_calls": 25
+        },
+        {
+          "calls": 25,
+          "cumulative_seconds": 0.144241206,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/codec.py",
+          "function": "decode",
+          "line": 80,
+          "own_seconds": 0.000290661,
+          "primitive_calls": 25
+        },
+        {
+          "calls": 20,
+          "cumulative_seconds": 0.136582596,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/hybrid_hibe.py",
+          "function": "_check_secret",
+          "line": 330,
+          "own_seconds": 4.1827000000000005e-05,
+          "primitive_calls": 20
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.136415606,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/hybrid_hibe.py",
+          "function": "from_bytes",
+          "line": 189,
+          "own_seconds": 3.4729e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 15,
+          "cumulative_seconds": 0.135137699,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/hybrid_hibe.py",
+          "function": "_canonical_load",
+          "line": 76,
+          "own_seconds": 0.00011328500000000001,
+          "primitive_calls": 15
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.126593594,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/objects.py",
+          "function": "from_bytes",
+          "line": 131,
+          "own_seconds": 4.755e-06,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 240,
+          "cumulative_seconds": 0.099367783,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/math.py",
+          "function": "<genexpr>",
+          "line": 52,
+          "own_seconds": 0.000481402,
+          "primitive_calls": 240
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.09716775300000001,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/objects.py",
+          "function": "from_record",
+          "line": 123,
+          "own_seconds": 4.2219000000000004e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 20,
+          "cumulative_seconds": 0.079794323,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/math.py",
+          "function": "check_leaf",
+          "line": 59,
+          "own_seconds": 0.01072898,
+          "primitive_calls": 20
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.06675497100000001,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/hybrid_hibe.py",
+          "function": "derive",
+          "line": 383,
+          "own_seconds": 5.958e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.051080751,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/objects.py",
+          "function": "__post_init__",
+          "line": 102,
+          "own_seconds": 6.2414e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.047505552,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/assembly/__init__.py",
+          "function": "_hibe_binding",
+          "line": 332,
+          "own_seconds": 1.7594e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 70,
+          "cumulative_seconds": 0.045528584000000004,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/math.py",
+          "function": "vector_hash",
+          "line": 23,
+          "own_seconds": 0.025174439,
+          "primitive_calls": 70
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.045469148,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/objects.py",
+          "function": "restore_entries",
+          "line": 176,
+          "own_seconds": 8.7472e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.044145564000000005,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/objects.py",
+          "function": "from_record",
+          "line": 82,
+          "own_seconds": 3.4642000000000005e-05,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 25,
+          "cumulative_seconds": 0.043669333000000005,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/codec.py",
+          "function": "read",
+          "line": 20,
+          "own_seconds": 0.00012041900000000001,
+          "primitive_calls": 25
+        }
+      ],
+      "top_self": [
+        {
+          "calls": 70,
+          "cumulative_seconds": 0.045528584000000004,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/math.py",
+          "function": "vector_hash",
+          "line": 23,
+          "own_seconds": 0.025174439,
+          "primitive_calls": 70
+        },
+        {
+          "calls": 123230,
+          "cumulative_seconds": 0.025024340000000003,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/codec.py",
+          "function": "integer",
+          "line": 30,
+          "own_seconds": 0.019705528,
+          "primitive_calls": 123230
+        },
+        {
+          "calls": 20,
+          "cumulative_seconds": 0.079794323,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/math.py",
+          "function": "check_leaf",
+          "line": 59,
+          "own_seconds": 0.01072898,
+          "primitive_calls": 20
+        },
+        {
+          "calls": 120,
+          "cumulative_seconds": 0.007209477000000001,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/codec.py",
+          "function": "poly",
+          "line": 52,
+          "own_seconds": 0.007197274,
+          "primitive_calls": 120
+        },
+        {
+          "calls": 2610,
+          "cumulative_seconds": 0.009612997,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/hashing.py",
+          "function": "shake256",
+          "line": 78,
+          "own_seconds": 0.0038608440000000004,
+          "primitive_calls": 2610
+        },
+        {
+          "calls": 20,
+          "cumulative_seconds": 0.189156036,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/math.py",
+          "function": "check_basis",
+          "line": 43,
+          "own_seconds": 0.002949386,
+          "primitive_calls": 20
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.6389786780000001,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/native/build.py",
+          "function": "source_id",
+          "line": 16,
+          "own_seconds": 0.0027378230000000003,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 3135,
+          "cumulative_seconds": 0.004986796,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/encoding.py",
+          "function": "encode_bytes",
+          "line": 46,
+          "own_seconds": 0.002570352,
+          "primitive_calls": 3135
+        },
+        {
+          "calls": 600,
+          "cumulative_seconds": 0.012791757,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "__str__",
+          "line": 227,
+          "own_seconds": 0.0024388440000000003,
+          "primitive_calls": 600
+        },
+        {
+          "calls": 40980,
+          "cumulative_seconds": 0.002293944,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/math.py",
+          "function": "<genexpr>",
+          "line": 67,
+          "own_seconds": 0.002293944,
+          "primitive_calls": 40980
+        },
+        {
+          "calls": 535,
+          "cumulative_seconds": 0.005749217,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "_parse_path",
+          "line": 257,
+          "own_seconds": 0.002289062,
+          "primitive_calls": 535
+        },
+        {
+          "calls": 970,
+          "cumulative_seconds": 0.0033254900000000004,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "__init__",
+          "line": 117,
+          "own_seconds": 0.001954468,
+          "primitive_calls": 970
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.40471083900000004,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/native/build.py",
+          "function": "source_id",
+          "line": 18,
+          "own_seconds": 0.001688948,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 2560,
+          "cumulative_seconds": 0.012313707,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/lamport_ots.py",
+          "function": "_image",
+          "line": 27,
+          "own_seconds": 0.001580002,
+          "primitive_calls": 2560
+        },
+        {
+          "calls": 520,
+          "cumulative_seconds": 0.994721127,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_abc.py",
+          "function": "read_bytes",
+          "line": 621,
+          "own_seconds": 0.001559377,
+          "primitive_calls": 520
+        }
+      ],
+      "total_seconds": 1.4617859870000016
+    },
+    "encrypt": {
+      "top_cumulative": [
+        {
+          "calls": 5,
+          "cumulative_seconds": 1.218748527,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/experiments/research/full_system_hotspots.py",
+          "function": "<lambda>",
+          "line": 52,
+          "own_seconds": 2.0185e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 1.21861441,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/assembly/__init__.py",
+          "function": "encrypt",
+          "line": 290,
+          "own_seconds": 5.8045000000000004e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 515,
+          "cumulative_seconds": 1.072672675,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_abc.py",
+          "function": "read_bytes",
+          "line": 621,
+          "own_seconds": 0.0016201210000000002,
+          "primitive_calls": 515
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.840157742,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/byteauth.py",
+          "function": "encrypt",
+          "line": 111,
+          "own_seconds": 7.6828e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.8081535430000001,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/baseline.py",
+          "function": "encrypt",
+          "line": 589,
+          "own_seconds": 9.6691e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.7030352080000001,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/ordinary.py",
+          "function": "ordinary",
+          "line": 11,
+          "own_seconds": 5.0895000000000007e-05,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.7029843130000001,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/mldsa.py",
+          "function": "__init__",
+          "line": 33,
+          "own_seconds": 0.000316288,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.692892717,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/native/build.py",
+          "function": "source_id",
+          "line": 16,
+          "own_seconds": 0.003732267,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 530,
+          "cumulative_seconds": 0.654297612,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "open",
+          "line": 529,
+          "own_seconds": 0.0005499480000000001,
+          "primitive_calls": 530
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.46643914700000005,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/protocol/hybrid_hibe.py",
+          "function": "encrypt",
+          "line": 391,
+          "own_seconds": 0.000322457,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.46475534700000004,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/backend.py",
+          "function": "encrypt",
+          "line": 92,
+          "own_seconds": 0.000158343,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.44358953,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/engine.py",
+          "function": "__init__",
+          "line": 27,
+          "own_seconds": 0.000174518,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.43162989700000004,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/native/build.py",
+          "function": "source_id",
+          "line": 18,
+          "own_seconds": 0.001863742,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.378365096,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/assembly/__init__.py",
+          "function": "validate_sender",
+          "line": 348,
+          "own_seconds": 3.5055e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 15,
+          "cumulative_seconds": 0.377261265,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/assembly/__init__.py",
+          "function": "from_bytes",
+          "line": 265,
+          "own_seconds": 5.4355000000000004e-05,
+          "primitive_calls": 15
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.372839643,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/objects.py",
+          "function": "from_bytes",
+          "line": 102,
+          "own_seconds": 1.7120000000000002e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.37255317800000004,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/objects.py",
+          "function": "__post_init__",
+          "line": 66,
+          "own_seconds": 4.2517e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.34145823000000003,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/backend.py",
+          "function": "sign",
+          "line": 69,
+          "own_seconds": 7.793000000000001e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 35,
+          "cumulative_seconds": 0.037069402,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "run",
+          "line": 512,
+          "own_seconds": 0.00029790400000000004,
+          "primitive_calls": 35
+        },
+        {
+          "calls": 15,
+          "cumulative_seconds": 0.036060217000000006,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "read_text",
+          "line": 539,
+          "own_seconds": 6.1226e-05,
+          "primitive_calls": 15
+        },
+        {
+          "calls": 15,
+          "cumulative_seconds": 0.035995989,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_abc.py",
+          "function": "read_text",
+          "line": 628,
+          "own_seconds": 6.8089e-05,
+          "primitive_calls": 15
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.028405827,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/lamport_ots.py",
+          "function": "generate_lamport_key",
+          "line": 100,
+          "own_seconds": 5.380000000000001e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5125,
+          "cumulative_seconds": 0.027101240000000002,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/lamport_ots.py",
+          "function": "<genexpr>",
+          "line": 107,
+          "own_seconds": 0.001651918,
+          "primitive_calls": 5125
+        },
+        {
+          "calls": 35,
+          "cumulative_seconds": 0.026886697,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "communicate",
+          "line": 1178,
+          "own_seconds": 0.000118109,
+          "primitive_calls": 35
+        },
+        {
+          "calls": 35,
+          "cumulative_seconds": 0.026692224,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "_communicate",
+          "line": 2094,
+          "own_seconds": 0.00090494,
+          "primitive_calls": 35
+        },
+        {
+          "calls": 5120,
+          "cumulative_seconds": 0.025449322,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/lamport_ots.py",
+          "function": "_image",
+          "line": 27,
+          "own_seconds": 0.00342099,
+          "primitive_calls": 5120
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.020527516000000003,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/engine.py",
+          "function": "call",
+          "line": 43,
+          "own_seconds": 7.2038e-05,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 25,
+          "cumulative_seconds": 0.017751693000000002,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/mldsa.py",
+          "function": "_run",
+          "line": 48,
+          "own_seconds": 0.000159402,
+          "primitive_calls": 25
+        },
+        {
+          "calls": 5160,
+          "cumulative_seconds": 0.016278501,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/hashing.py",
+          "function": "shake256",
+          "line": 78,
+          "own_seconds": 0.007504785000000001,
+          "primitive_calls": 5160
+        },
+        {
+          "calls": 550,
+          "cumulative_seconds": 0.013000010000000001,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "__fspath__",
+          "line": 166,
+          "own_seconds": 0.00043329500000000005,
+          "primitive_calls": 550
+        },
+        {
+          "calls": 590,
+          "cumulative_seconds": 0.012641927,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "__str__",
+          "line": 227,
+          "own_seconds": 0.002520163,
+          "primitive_calls": 590
+        },
+        {
+          "calls": 35,
+          "cumulative_seconds": 0.009735753,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "__init__",
+          "line": 817,
+          "own_seconds": 0.000260564,
+          "primitive_calls": 35
+        },
+        {
+          "calls": 535,
+          "cumulative_seconds": 0.009695259000000001,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "drive",
+          "line": 289,
+          "own_seconds": 0.001074319,
+          "primitive_calls": 535
+        },
+        {
+          "calls": 35,
+          "cumulative_seconds": 0.008242154,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "_execute_child",
+          "line": 1827,
+          "own_seconds": 0.00045811200000000005,
+          "primitive_calls": 35
+        },
+        {
+          "calls": 5410,
+          "cumulative_seconds": 0.007906012,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/encoding.py",
+          "function": "encode_bytes",
+          "line": 46,
+          "own_seconds": 0.003997154,
+          "primitive_calls": 5410
+        }
+      ],
+      "top_self": [
+        {
+          "calls": 5160,
+          "cumulative_seconds": 0.016278501,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/hashing.py",
+          "function": "shake256",
+          "line": 78,
+          "own_seconds": 0.007504785000000001,
+          "primitive_calls": 5160
+        },
+        {
+          "calls": 5410,
+          "cumulative_seconds": 0.007906012,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/encoding.py",
+          "function": "encode_bytes",
+          "line": 46,
+          "own_seconds": 0.003997154,
+          "primitive_calls": 5410
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.692892717,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/ibs/certified/native/build.py",
+          "function": "source_id",
+          "line": 16,
+          "own_seconds": 0.003732267,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.006731226000000001,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/math.py",
+          "function": "vector_hash",
+          "line": 23,
+          "own_seconds": 0.00358223,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 5120,
+          "cumulative_seconds": 0.025449322,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/lamport_ots.py",
+          "function": "_image",
+          "line": 27,
+          "own_seconds": 0.00342099,
+          "primitive_calls": 5120
+        },
+        {
+          "calls": 590,
+          "cumulative_seconds": 0.012641927,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "__str__",
+          "line": 227,
+          "own_seconds": 0.002520163,
+          "primitive_calls": 590
+        },
+        {
+          "calls": 535,
+          "cumulative_seconds": 0.005826138000000001,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "_parse_path",
+          "line": 257,
+          "own_seconds": 0.002254532,
+          "primitive_calls": 535
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.43162989700000004,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/hibe/latte/native/build.py",
+          "function": "source_id",
+          "line": 18,
+          "own_seconds": 0.001863742,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 970,
+          "cumulative_seconds": 0.003307047,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "__init__",
+          "line": 117,
+          "own_seconds": 0.001860368,
+          "primitive_calls": 970
+        },
+        {
+          "calls": 5125,
+          "cumulative_seconds": 0.027101240000000002,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/lamport_ots.py",
+          "function": "<genexpr>",
+          "line": 107,
+          "own_seconds": 0.001651918,
+          "primitive_calls": 5125
+        },
+        {
+          "calls": 515,
+          "cumulative_seconds": 1.072672675,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_abc.py",
+          "function": "read_bytes",
+          "line": 621,
+          "own_seconds": 0.0016201210000000002,
+          "primitive_calls": 515
+        },
+        {
+          "calls": 950,
+          "cumulative_seconds": 0.0070372740000000005,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_abc.py",
+          "function": "with_segments",
+          "line": 130,
+          "own_seconds": 0.001537839,
+          "primitive_calls": 950
+        },
+        {
+          "calls": 970,
+          "cumulative_seconds": 0.004700594000000001,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "__init__",
+          "line": 498,
+          "own_seconds": 0.0013935470000000002,
+          "primitive_calls": 970
+        },
+        {
+          "calls": 5610,
+          "cumulative_seconds": 0.0014648600000000001,
+          "file": "/mnt/c/Users/youzi/.codex/worktrees/abb-research-quality/ibme/src/ibme/core/types.py",
+          "function": "validate_bytes",
+          "line": 34,
+          "own_seconds": 0.0011652610000000001,
+          "primitive_calls": 5610
+        },
+        {
+          "calls": 535,
+          "cumulative_seconds": 0.009695259000000001,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "drive",
+          "line": 289,
+          "own_seconds": 0.001074319,
+          "primitive_calls": 535
+        }
+      ],
+      "total_seconds": 1.2186363869999992
+    }
+  },
+  "randomness": "fresh system CSPRNG for every encryption; no outer retry",
+  "repetitions": 5,
+  "schema": "FULL-IBME-HOTSPOTS/1",
+  "security_claim": "none",
+  "status": "passed",
+  "suite": {
+    "allow_mock": false,
+    "backend_admitted": false,
+    "hibe": "latte",
+    "hibe_params": {
+      "identity_bytes": 86,
+      "max_children": 2,
+      "max_receivers": 2,
+      "message_mode": "seed32",
+      "native_timeout_seconds": 60
+    },
+    "hibe_version": "latte3-cosac-fix-v1",
+    "hybrid_limits": {
+      "backend_id": "latte3-cosac-fix-v1",
+      "identity_max_bytes": 64,
+      "max_capsule_bytes": 4194304,
+      "max_payload_bytes": 65536
+    },
+    "ibs": "cert-ml-dsa",
+    "ibs_params": {
+      "backend_admitted": false,
+      "base_algorithm": "ml-dsa-44",
+      "identity_bytes": 64,
+      "max_identities": 16,
+      "message_max_bytes": 65536,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "timeout_seconds": 30
+    },
+    "ibs_version": "IBME/CERTIBS/1",
+    "parameters_are_formal": false,
+    "protocol": "byteauth-v1",
+    "security_claim": "none",
+    "signature_format": "reference",
+    "state_policy": "single-writer-commit-before-publish-v1",
+    "transport": "hybrid",
+    "version": "IBME/SUITE/1"
+  },
+  "suite_digest": "10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346",
+  "timing_scope": "cProfile diagnostic only; full public API and wire encoding/decoding"
+}

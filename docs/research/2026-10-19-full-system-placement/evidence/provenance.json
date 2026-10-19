@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "cli.json": "72e9ed7edcca716fb4509b904ca313e7075c95f1aa2934dbf1c3a8f6d393dadc",
+    "generation.json": "14e6acaff68a78abc12273dab4106c63fab829c4d47c88af09decdf1c571d2b3",
+    "native.json": "53f36812e5eb24eb444393036dbf5d61e030f3637c7440e9afe371b495eca664",
+    "placement.json": "6ca629f694358a985241025f6a947ef2bd039e2bf60c7585942ac1d71913e6e6",
+    "profile-source.json": "491730f46ceebc9cfbf1f6e7e971c10202c45a79ceb0e114a162f37be648233a",
+    "profile-wsl.json": "0300c363c6d8524921d8e7e8e2e1379a20ef2cc64f906fc0b1f49eb153cc5cf9",
+    "wheel-manifest.json": "20010c83939b28ac7432cda474d7bfb6d23468e5154099a6978c3a1754bf55de"
+  },
+  "collected_utc": "2026-10-19T00:43:10.187718+00:00",
+  "development_note": "initial counter hook and legacy module-alias checks were fixed; the three successful generation states from 58102d1 were retained, not resampled",
+  "generation_source_commit": "58102d170606eb5abb9adf2cbdf903107596da42",
+  "measurement_source_commit": "3ae9826b10795bea1c11b8f848c7ac90d1047843",
+  "memory_note": "placement uses only per-process lifetime kernel ru_maxrss; generic environment.rss_method mentions a sampler which this experiment did not start",
+  "private_inputs_not_published": true,
+  "profile_note": "cProfile is diagnostic; the formal placement observations are unprofiled; an earlier WSL diagnostic was replaced after a possible process overlap, with keys unchanged",
+  "wheel_sha256": "02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9"
+}

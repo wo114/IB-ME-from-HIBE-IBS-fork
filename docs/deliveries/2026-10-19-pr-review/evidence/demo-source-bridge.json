@@ -1,0 +1,20 @@
+{
+  "src/ibme/webui/server.py": {
+    "original_sha256": "5e54af726173edb00f42bc0afa018d984b42674a2ca80e020fe75921c651934f",
+    "current_sha256": "31e6d984fda6574883b21108d30fe554d3de3fc0c41448d0805ab2da27aa2f9e",
+    "snapshot": "demo-original-server.py.txt",
+    "change": "Reject invalid decrypt return type and verify original plaintext; add three regression cases"
+  },
+  "tests/test_webui.py": {
+    "original_sha256": "fc0567157c4fd4e0e9d5dfa33abe3c5e1d498bdef30b2709f2710c646077f3c1",
+    "current_sha256": "e4b56937f60d2b77f92242113e92a7878613e66fd49c009bea25692e64549dc9",
+    "snapshot": "demo-original-test_webui.py.txt",
+    "change": "Reject invalid decrypt return type and verify original plaintext; add three regression cases"
+  },
+  "experiments/run_web_demo.sh": {
+    "original_sha256": "b47e492582b4bcb6c1c49d029dfc34943fde52373c5fb5db6a1b6b175e7a207e",
+    "current_sha256": "e19ca678d7ff4e87ce1c76d0b83842b14297b5133acd7362f2680ce39a2fd794",
+    "snapshot": "demo-original-run_web_demo.sh.txt",
+    "change": "Add explicit same-wheel WSL deployment entry, without changing the original source launch"
+  }
+}
