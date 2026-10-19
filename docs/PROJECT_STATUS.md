@@ -6,6 +6,8 @@
 
 **最新分工（2026-10-18 用户明确）**：ABB10与CHKP交由队长安排的其它AI，按[执行标准与接手任务](workplans/2026-10-18-ABB10与CHKP执行标准.md)分别认领。保留原128比较模型目标，参数、真实完整运行、部署与安全声明分开；理论继续引用，不新增基础证明。各自首批时间盒及共享文件边界见标准，本线程停止A扩维不自动暂停已明确承接者的工作。统筹同步核对IBS是否真正登记/CLI/配对及默认参数问题，不因登记存在就判定安全可用。三条暂缓路线继续暂缓。
 
+**SRGG／Sageloli／Lai新交付接收核对（2026-10-19）**：[本轮固定版本核对表](deliveries/2026-10-19-readiness-audit/README.md)与[机器记录](deliveries/2026-10-19-readiness-audit/audit.json)已交，本机独立重验78项通过，公开证据验证器均通过。PR58已交SRGG三档论文参数的六种真实LATTE完整配对及PARAM-I重复基准/安装恢复；PR57已交Sageloli v2两条公共接入和小参数LATTE配对；PR59另交环原生v3两档论文规模新建/恢复，峰值约1.36/6.19 GiB，尚待v3公共接入和真实IB-ME配对，不能再用v2展开表示的TB级外推否定它；PR60已交完整Lai与C2目标实现/历史生产运行及估计，发布包缺C2逐次原始目标收据，下一项补齐可移交证据和所选组合评测。四个PR在本轮冻结核对时均开放，源码已交与main已合入分别统计；不把旧13/19盘点当作这些新交付不存在。统筹下一项优先接收已有完整配对的SRGG，收口Lai C2证据，随后接Sageloli v3与首个完整配对，不重开选参或补证明。安全元数据与历史收据保持原值，参数落地/目标实跑/接入/组合按实际完成项逐项确认。
+
 **源码交付接收（2026-10-18）**：[PR45](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/45)已关闭且未合并，原分支和提交保留；其重复包装、一级KEM及未接入AP09根不计新算法或新代表。拆出的[PR48](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/48)和[PR43](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/43)已按[本轮审查记录](deliveries/2026-10-18-pr43-48-review/README.md)合入`e102f5f`。PR48是n2/q93/b1024的独立3m种子KEM组件，仍非公共HIBEBackend、Hybrid/CLI或完整IB-ME；PR43是SRGG独立研究WIP，不替换默认joint或继承其安全／参数结论。真实回归、Linux权限复验及历史报告的环境字段差异分别归档，不把原发布驱动记为本机38/38通过。
 
 **展示材料接收**：[PR46展示卡](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/46)原始head`0c68a27c03d5092b369a95d636bc34091f6fbf33`已合入`05eec49`，392项只读核验通过，三组仍共用一个LATTE HIBE，未重跑历史密码实验。[PR47报告／演示材料](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/47)原始head`8fdac5c91e2739ef93a03cb81242bc19670b13ae`修正比较生成与只读校验的边界并同步报告指纹后，随本批接收；164项材料检查与392项参数卡检查重新执行，结果见本轮审查记录；材料初稿不计最终报告或展示界面完成。
