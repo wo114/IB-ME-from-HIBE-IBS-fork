@@ -15,6 +15,16 @@ bash experiments/run_web_demo.sh --build-native --port 8765
 
 然后在 Windows 浏览器打开 <http://127.0.0.1:8765>。服务默认仅绑定回环地址；不会更改 WSL 网络配置。
 
+代码在 Windows 盘、执行在 WSL 时，可把选定本地 wheel 放入 WSL 文件系统的独立运行副本，减少逐次读取并校验源码的跨文件系统开销。在有 setuptools 的 Python 环境构建包，再在本仓库的 WSL 路径启动：
+
+```sh
+python -m pip wheel --no-deps --no-build-isolation --no-index --wheel-dir test-results/demo-wheel .
+bash experiments/run_web_demo.sh --build-native \
+  --wheel "$PWD/test-results/demo-wheel/ibme-0.1.0-py3-none-any.whl" --port 8765
+```
+
+已有 native 构建时省略 `--build-native`。运行副本按 wheel 的 SHA-256 隔离，每次启动核对打包文件；不修改全局 Python 环境，不复制密钥状态，原生后端逐次校验照常执行。修改源码后重新构建并指定新 wheel，运行中的服务保持其启动版本。主组合的三路同参数实测见[完整流程部署消融](../../../docs/research/2026-10-19-full-system-placement/README.md)；它测量 warm 公共 API，不代表安装或服务启动时间。
+
 ```sh
 # 仅检查页面与 API 是否可达
 curl -s http://127.0.0.1:8765/api/backends | head

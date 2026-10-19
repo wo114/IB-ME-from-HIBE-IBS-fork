@@ -1,0 +1,976 @@
+{
+  "backend_admitted": false,
+  "environment": {
+    "OMP_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "1",
+    "cold_definition": "fresh Python process; OS page cache and previously built native engines retained",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.14",
+    "rss_method": "10ms /proc process-tree samples (lower bound); Linux kernel lifetime ru_maxrss per interpreter/completed child"
+  },
+  "identity_bytes": 64,
+  "message_bytes": 32,
+  "parameters_are_formal": false,
+  "phases": {
+    "decrypt": {
+      "top_cumulative": [
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.447910962,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/assembly/__init__.py",
+          "function": "decrypt",
+          "line": 300,
+          "own_seconds": 0.000770389,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.25304449700000003,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/assembly/__init__.py",
+          "function": "validate_receiver",
+          "line": 355,
+          "own_seconds": 4.571e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 20,
+          "cumulative_seconds": 0.19894136,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/math.py",
+          "function": "check_basis",
+          "line": 43,
+          "own_seconds": 0.003860472,
+          "primitive_calls": 20
+        },
+        {
+          "calls": 15,
+          "cumulative_seconds": 0.198453084,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/assembly/__init__.py",
+          "function": "from_bytes",
+          "line": 265,
+          "own_seconds": 0.00010862600000000001,
+          "primitive_calls": 15
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.194083589,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/protocol/byteauth.py",
+          "function": "decrypt",
+          "line": 124,
+          "own_seconds": 0.000129627,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 25,
+          "cumulative_seconds": 0.19385563800000002,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/backend.py",
+          "function": "validate_key_binding",
+          "line": 136,
+          "own_seconds": 0.0007591830000000001,
+          "primitive_calls": 25
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.189724157,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/protocol/hybrid_hibe.py",
+          "function": "load_level1_key",
+          "line": 359,
+          "own_seconds": 8.576e-06,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.18971558100000002,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/protocol/hybrid_hibe.py",
+          "function": "_load_secret",
+          "line": 349,
+          "own_seconds": 2.3834000000000003e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.16886350900000002,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/protocol/baseline.py",
+          "function": "decrypt",
+          "line": 618,
+          "own_seconds": 0.000311585,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 25,
+          "cumulative_seconds": 0.145717703,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/codec.py",
+          "function": "decode",
+          "line": 80,
+          "own_seconds": 0.000512045,
+          "primitive_calls": 25
+        },
+        {
+          "calls": 20,
+          "cumulative_seconds": 0.144027291,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/protocol/hybrid_hibe.py",
+          "function": "_check_secret",
+          "line": 330,
+          "own_seconds": 5.9368000000000005e-05,
+          "primitive_calls": 20
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.137000695,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/protocol/hybrid_hibe.py",
+          "function": "from_bytes",
+          "line": 189,
+          "own_seconds": 3.7557e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 15,
+          "cumulative_seconds": 0.13600145800000002,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/protocol/hybrid_hibe.py",
+          "function": "_canonical_load",
+          "line": 76,
+          "own_seconds": 8.6675e-05,
+          "primitive_calls": 15
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.12776207,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/objects.py",
+          "function": "from_bytes",
+          "line": 131,
+          "own_seconds": 6.202e-06,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 240,
+          "cumulative_seconds": 0.10119978800000001,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/math.py",
+          "function": "<genexpr>",
+          "line": 52,
+          "own_seconds": 0.0007845510000000001,
+          "primitive_calls": 240
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.10033194000000001,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/objects.py",
+          "function": "from_record",
+          "line": 123,
+          "own_seconds": 6.0567000000000005e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 20,
+          "cumulative_seconds": 0.08331135,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/math.py",
+          "function": "check_leaf",
+          "line": 59,
+          "own_seconds": 0.011288890000000001,
+          "primitive_calls": 20
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.070304642,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/protocol/hybrid_hibe.py",
+          "function": "derive",
+          "line": 383,
+          "own_seconds": 6.826300000000001e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.068203516,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/protocol/hybrid_hibe.py",
+          "function": "decrypt",
+          "line": 422,
+          "own_seconds": 0.000242457,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.052405918,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/objects.py",
+          "function": "__post_init__",
+          "line": 102,
+          "own_seconds": 0.000107947,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.050796917000000004,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/assembly/__init__.py",
+          "function": "_hibe_binding",
+          "line": 332,
+          "own_seconds": 2.2418e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.047257059000000004,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/objects.py",
+          "function": "restore_entries",
+          "line": 176,
+          "own_seconds": 0.00012964900000000002,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 70,
+          "cumulative_seconds": 0.047047622000000004,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/math.py",
+          "function": "vector_hash",
+          "line": 23,
+          "own_seconds": 0.025159267000000003,
+          "primitive_calls": 70
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.045431341,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/objects.py",
+          "function": "from_record",
+          "line": 82,
+          "own_seconds": 4.9418e-05,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.044095121,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/objects.py",
+          "function": "__post_init__",
+          "line": 62,
+          "own_seconds": 0.0006627740000000001,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 25,
+          "cumulative_seconds": 0.041596502,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/codec.py",
+          "function": "read",
+          "line": 20,
+          "own_seconds": 0.00016561900000000001,
+          "primitive_calls": 25
+        },
+        {
+          "calls": 320,
+          "cumulative_seconds": 0.04035561,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/math.py",
+          "function": "element",
+          "line": 19,
+          "own_seconds": 0.0009359660000000001,
+          "primitive_calls": 320
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.037762713,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/backend.py",
+          "function": "decrypt",
+          "line": 113,
+          "own_seconds": 0.000217013,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 40,
+          "cumulative_seconds": 0.035414557,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "run",
+          "line": 512,
+          "own_seconds": 0.00028525100000000004,
+          "primitive_calls": 40
+        },
+        {
+          "calls": 340,
+          "cumulative_seconds": 0.027854408,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/codec.py",
+          "function": "canonical",
+          "line": 9,
+          "own_seconds": 0.000465654,
+          "primitive_calls": 340
+        },
+        {
+          "calls": 270,
+          "cumulative_seconds": 0.027296708000000003,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/codec.py",
+          "function": "write",
+          "line": 13,
+          "own_seconds": 0.000173684,
+          "primitive_calls": 270
+        },
+        {
+          "calls": 40,
+          "cumulative_seconds": 0.024402092,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "communicate",
+          "line": 1178,
+          "own_seconds": 0.00011331600000000001,
+          "primitive_calls": 40
+        },
+        {
+          "calls": 40,
+          "cumulative_seconds": 0.024240074,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "_communicate",
+          "line": 2094,
+          "own_seconds": 0.001120728,
+          "primitive_calls": 40
+        },
+        {
+          "calls": 123230,
+          "cumulative_seconds": 0.023977698000000002,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/codec.py",
+          "function": "integer",
+          "line": 30,
+          "own_seconds": 0.018571492000000002,
+          "primitive_calls": 123230
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.018847053000000002,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/engine.py",
+          "function": "call",
+          "line": 43,
+          "own_seconds": 8.664000000000001e-05,
+          "primitive_calls": 10
+        }
+      ],
+      "top_self": [
+        {
+          "calls": 70,
+          "cumulative_seconds": 0.047047622000000004,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/math.py",
+          "function": "vector_hash",
+          "line": 23,
+          "own_seconds": 0.025159267000000003,
+          "primitive_calls": 70
+        },
+        {
+          "calls": 123230,
+          "cumulative_seconds": 0.023977698000000002,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/codec.py",
+          "function": "integer",
+          "line": 30,
+          "own_seconds": 0.018571492000000002,
+          "primitive_calls": 123230
+        },
+        {
+          "calls": 20,
+          "cumulative_seconds": 0.08331135,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/math.py",
+          "function": "check_leaf",
+          "line": 59,
+          "own_seconds": 0.011288890000000001,
+          "primitive_calls": 20
+        },
+        {
+          "calls": 120,
+          "cumulative_seconds": 0.006971653,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/codec.py",
+          "function": "poly",
+          "line": 52,
+          "own_seconds": 0.006959062,
+          "primitive_calls": 120
+        },
+        {
+          "calls": 2610,
+          "cumulative_seconds": 0.010122607,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/hashing.py",
+          "function": "shake256",
+          "line": 78,
+          "own_seconds": 0.004364221000000001,
+          "primitive_calls": 2610
+        },
+        {
+          "calls": 20,
+          "cumulative_seconds": 0.19894136,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/math.py",
+          "function": "check_basis",
+          "line": 43,
+          "own_seconds": 0.003860472,
+          "primitive_calls": 20
+        },
+        {
+          "calls": 3135,
+          "cumulative_seconds": 0.0049837710000000006,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/encoding.py",
+          "function": "encode_bytes",
+          "line": 46,
+          "own_seconds": 0.002666943,
+          "primitive_calls": 3135
+        },
+        {
+          "calls": 40980,
+          "cumulative_seconds": 0.002102698,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/math.py",
+          "function": "<genexpr>",
+          "line": 67,
+          "own_seconds": 0.002102698,
+          "primitive_calls": 40980
+        },
+        {
+          "calls": 2560,
+          "cumulative_seconds": 0.012676570000000002,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/lamport_ots.py",
+          "function": "_image",
+          "line": 27,
+          "own_seconds": 0.001458497,
+          "primitive_calls": 2560
+        },
+        {
+          "calls": 535,
+          "cumulative_seconds": 0.003022719,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "_parse_path",
+          "line": 257,
+          "own_seconds": 0.001188178,
+          "primitive_calls": 535
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.015523239000000001,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/lamport_ots.py",
+          "function": "verify",
+          "line": 57,
+          "own_seconds": 0.00114186,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 40,
+          "cumulative_seconds": 0.024240074,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "_communicate",
+          "line": 2094,
+          "own_seconds": 0.001120728,
+          "primitive_calls": 40
+        },
+        {
+          "calls": 320,
+          "cumulative_seconds": 0.04035561,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/math.py",
+          "function": "element",
+          "line": 19,
+          "own_seconds": 0.0009359660000000001,
+          "primitive_calls": 320
+        },
+        {
+          "calls": 970,
+          "cumulative_seconds": 0.001487583,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "__init__",
+          "line": 117,
+          "own_seconds": 0.000896217,
+          "primitive_calls": 970
+        },
+        {
+          "calls": 3395,
+          "cumulative_seconds": 0.0009676270000000001,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/types.py",
+          "function": "validate_bytes",
+          "line": 34,
+          "own_seconds": 0.000793719,
+          "primitive_calls": 3395
+        }
+      ],
+      "total_seconds": 0.44649343900000005
+    },
+    "encrypt": {
+      "top_cumulative": [
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.11096044000000001,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/assembly/__init__.py",
+          "function": "encrypt",
+          "line": 290,
+          "own_seconds": 5.855000000000001e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.086199829,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/protocol/byteauth.py",
+          "function": "encrypt",
+          "line": 111,
+          "own_seconds": 7.5188e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.054554421000000006,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/protocol/baseline.py",
+          "function": "encrypt",
+          "line": 589,
+          "own_seconds": 0.000103293,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.039874343,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/protocol/hybrid_hibe.py",
+          "function": "encrypt",
+          "line": 391,
+          "own_seconds": 0.000295977,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.038385601000000005,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/backend.py",
+          "function": "encrypt",
+          "line": 92,
+          "own_seconds": 0.000194419,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 35,
+          "cumulative_seconds": 0.036412185,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "run",
+          "line": 512,
+          "own_seconds": 0.000312358,
+          "primitive_calls": 35
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.028066785,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/lamport_ots.py",
+          "function": "generate_lamport_key",
+          "line": 100,
+          "own_seconds": 6.4088e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5125,
+          "cumulative_seconds": 0.026672594,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/lamport_ots.py",
+          "function": "<genexpr>",
+          "line": 107,
+          "own_seconds": 0.0016883100000000002,
+          "primitive_calls": 5125
+        },
+        {
+          "calls": 5120,
+          "cumulative_seconds": 0.024984284000000002,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/lamport_ots.py",
+          "function": "_image",
+          "line": 27,
+          "own_seconds": 0.003006103,
+          "primitive_calls": 5120
+        },
+        {
+          "calls": 35,
+          "cumulative_seconds": 0.024880774,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "communicate",
+          "line": 1178,
+          "own_seconds": 0.000114883,
+          "primitive_calls": 35
+        },
+        {
+          "calls": 35,
+          "cumulative_seconds": 0.024716388000000002,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "_communicate",
+          "line": 2094,
+          "own_seconds": 0.0010146,
+          "primitive_calls": 35
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.024671286,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/assembly/__init__.py",
+          "function": "validate_sender",
+          "line": 348,
+          "own_seconds": 3.8905e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 15,
+          "cumulative_seconds": 0.023642587000000003,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/assembly/__init__.py",
+          "function": "from_bytes",
+          "line": 265,
+          "own_seconds": 5.8447000000000005e-05,
+          "primitive_calls": 15
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.019708680000000003,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/ibs/certified/ordinary.py",
+          "function": "ordinary",
+          "line": 11,
+          "own_seconds": 4.8909e-05,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.019659771,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/ibs/certified/mldsa.py",
+          "function": "__init__",
+          "line": 33,
+          "own_seconds": 0.00026309,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.019090044,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/engine.py",
+          "function": "call",
+          "line": 43,
+          "own_seconds": 8.539700000000001e-05,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 25,
+          "cumulative_seconds": 0.01848877,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/ibs/certified/mldsa.py",
+          "function": "_run",
+          "line": 48,
+          "own_seconds": 0.000170636,
+          "primitive_calls": 25
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.018166501,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/engine.py",
+          "function": "__init__",
+          "line": 27,
+          "own_seconds": 0.000143238,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.018119414,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/ibs/certified/objects.py",
+          "function": "from_bytes",
+          "line": 102,
+          "own_seconds": 1.6921e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.017820075,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/ibs/certified/objects.py",
+          "function": "__post_init__",
+          "line": 66,
+          "own_seconds": 4.7407e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 5160,
+          "cumulative_seconds": 0.017062671,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/hashing.py",
+          "function": "shake256",
+          "line": 78,
+          "own_seconds": 0.007542037000000001,
+          "primitive_calls": 5160
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.014418529000000001,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/ibs/certified/backend.py",
+          "function": "sign",
+          "line": 69,
+          "own_seconds": 0.00011701800000000001,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 515,
+          "cumulative_seconds": 0.011457575000000001,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_abc.py",
+          "function": "read_bytes",
+          "line": 621,
+          "own_seconds": 0.00045018300000000005,
+          "primitive_calls": 515
+        },
+        {
+          "calls": 35,
+          "cumulative_seconds": 0.011072115,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "__init__",
+          "line": 817,
+          "own_seconds": 0.000309626,
+          "primitive_calls": 35
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.009912263000000001,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/ibs/certified/native/build.py",
+          "function": "source_id",
+          "line": 16,
+          "own_seconds": 0.000583816,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 35,
+          "cumulative_seconds": 0.00941133,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "_execute_child",
+          "line": 1827,
+          "own_seconds": 0.000465963,
+          "primitive_calls": 35
+        },
+        {
+          "calls": 530,
+          "cumulative_seconds": 0.008506741,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "open",
+          "line": 529,
+          "own_seconds": 0.00017298400000000002,
+          "primitive_calls": 530
+        },
+        {
+          "calls": 5410,
+          "cumulative_seconds": 0.007385453,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/encoding.py",
+          "function": "encode_bytes",
+          "line": 46,
+          "own_seconds": 0.0037512670000000004,
+          "primitive_calls": 5410
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.006796441,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/native/build.py",
+          "function": "source_id",
+          "line": 18,
+          "own_seconds": 0.000336001,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.006547378,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/math.py",
+          "function": "vector_hash",
+          "line": 23,
+          "own_seconds": 0.003503215,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 550,
+          "cumulative_seconds": 0.005991139,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "__fspath__",
+          "line": 166,
+          "own_seconds": 0.000181738,
+          "primitive_calls": 550
+        },
+        {
+          "calls": 590,
+          "cumulative_seconds": 0.0058786490000000005,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "__str__",
+          "line": 227,
+          "own_seconds": 0.000737586,
+          "primitive_calls": 590
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.0057721050000000005,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/assembly/__init__.py",
+          "function": "_validate_public",
+          "line": 328,
+          "own_seconds": 3.8313000000000004e-05,
+          "primitive_calls": 5
+        },
+        {
+          "calls": 535,
+          "cumulative_seconds": 0.005041902,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "drive",
+          "line": 289,
+          "own_seconds": 0.00048826,
+          "primitive_calls": 535
+        },
+        {
+          "calls": 5,
+          "cumulative_seconds": 0.004407062000000001,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/ibs/certified/mldsa.py",
+          "function": "sign",
+          "line": 80,
+          "own_seconds": 2.472e-05,
+          "primitive_calls": 5
+        }
+      ],
+      "top_self": [
+        {
+          "calls": 5160,
+          "cumulative_seconds": 0.017062671,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/hashing.py",
+          "function": "shake256",
+          "line": 78,
+          "own_seconds": 0.007542037000000001,
+          "primitive_calls": 5160
+        },
+        {
+          "calls": 5410,
+          "cumulative_seconds": 0.007385453,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/encoding.py",
+          "function": "encode_bytes",
+          "line": 46,
+          "own_seconds": 0.0037512670000000004,
+          "primitive_calls": 5410
+        },
+        {
+          "calls": 10,
+          "cumulative_seconds": 0.006547378,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/math.py",
+          "function": "vector_hash",
+          "line": 23,
+          "own_seconds": 0.003503215,
+          "primitive_calls": 10
+        },
+        {
+          "calls": 5120,
+          "cumulative_seconds": 0.024984284000000002,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/lamport_ots.py",
+          "function": "_image",
+          "line": 27,
+          "own_seconds": 0.003006103,
+          "primitive_calls": 5120
+        },
+        {
+          "calls": 5125,
+          "cumulative_seconds": 0.026672594,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/lamport_ots.py",
+          "function": "<genexpr>",
+          "line": 107,
+          "own_seconds": 0.0016883100000000002,
+          "primitive_calls": 5125
+        },
+        {
+          "calls": 535,
+          "cumulative_seconds": 0.0029069950000000003,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "_parse_path",
+          "line": 257,
+          "own_seconds": 0.001228561,
+          "primitive_calls": 535
+        },
+        {
+          "calls": 5610,
+          "cumulative_seconds": 0.0014696330000000001,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/types.py",
+          "function": "validate_bytes",
+          "line": 34,
+          "own_seconds": 0.0011888900000000002,
+          "primitive_calls": 5610
+        },
+        {
+          "calls": 20,
+          "cumulative_seconds": 0.0011867070000000002,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/codec.py",
+          "function": "poly",
+          "line": 52,
+          "own_seconds": 0.001184602,
+          "primitive_calls": 20
+        },
+        {
+          "calls": 35,
+          "cumulative_seconds": 0.024716388000000002,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/subprocess.py",
+          "function": "_communicate",
+          "line": 2094,
+          "own_seconds": 0.0010146,
+          "primitive_calls": 35
+        },
+        {
+          "calls": 5170,
+          "cumulative_seconds": 0.001153539,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/hibe/latte/codec.py",
+          "function": "integer",
+          "line": 30,
+          "own_seconds": 0.000946037,
+          "primitive_calls": 5170
+        },
+        {
+          "calls": 970,
+          "cumulative_seconds": 0.001619694,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "__init__",
+          "line": 117,
+          "own_seconds": 0.000925543,
+          "primitive_calls": 970
+        },
+        {
+          "calls": 5410,
+          "cumulative_seconds": 0.001302564,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/encoding.py",
+          "function": "_u32be",
+          "line": 38,
+          "own_seconds": 0.0008417650000000001,
+          "primitive_calls": 5410
+        },
+        {
+          "calls": 5160,
+          "cumulative_seconds": 0.001275583,
+          "file": "/home/youzi/.cache/ibme-wheel-runtimes/02627da062dc4f61bee084e93a2701e647de973306c0f87a6f4275e428e8efe9/ibme/core/hashing.py",
+          "function": "_u32be",
+          "line": 73,
+          "own_seconds": 0.0008250660000000001,
+          "primitive_calls": 5160
+        },
+        {
+          "calls": 590,
+          "cumulative_seconds": 0.0058786490000000005,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_local.py",
+          "function": "__str__",
+          "line": 227,
+          "own_seconds": 0.000737586,
+          "primitive_calls": 590
+        },
+        {
+          "calls": 950,
+          "cumulative_seconds": 0.0030049680000000002,
+          "file": "/home/youzi/miniconda3/envs/sage/lib/python3.13/pathlib/_abc.py",
+          "function": "with_segments",
+          "line": 130,
+          "own_seconds": 0.0007224870000000001,
+          "primitive_calls": 950
+        }
+      ],
+      "total_seconds": 0.11101558800000004
+    }
+  },
+  "randomness": "fresh system CSPRNG for every encryption; no outer retry",
+  "repetitions": 5,
+  "schema": "FULL-IBME-HOTSPOTS/1",
+  "security_claim": "none",
+  "status": "passed",
+  "suite": {
+    "allow_mock": false,
+    "backend_admitted": false,
+    "hibe": "latte",
+    "hibe_params": {
+      "identity_bytes": 86,
+      "max_children": 2,
+      "max_receivers": 2,
+      "message_mode": "seed32",
+      "native_timeout_seconds": 60
+    },
+    "hibe_version": "latte3-cosac-fix-v1",
+    "hybrid_limits": {
+      "backend_id": "latte3-cosac-fix-v1",
+      "identity_max_bytes": 64,
+      "max_capsule_bytes": 4194304,
+      "max_payload_bytes": 65536
+    },
+    "ibs": "cert-ml-dsa",
+    "ibs_params": {
+      "backend_admitted": false,
+      "base_algorithm": "ml-dsa-44",
+      "identity_bytes": 64,
+      "max_identities": 16,
+      "message_max_bytes": 65536,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "timeout_seconds": 30
+    },
+    "ibs_version": "IBME/CERTIBS/1",
+    "parameters_are_formal": false,
+    "protocol": "byteauth-v1",
+    "security_claim": "none",
+    "signature_format": "reference",
+    "state_policy": "single-writer-commit-before-publish-v1",
+    "transport": "hybrid",
+    "version": "IBME/SUITE/1"
+  },
+  "suite_digest": "10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346",
+  "timing_scope": "cProfile diagnostic only; full public API and wire encoding/decoding"
+}

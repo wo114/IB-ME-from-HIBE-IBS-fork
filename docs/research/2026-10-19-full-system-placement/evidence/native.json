@@ -1,0 +1,24 @@
+{
+  "latte": {
+    "binary_sha256": "d5d965ab4fcc06ccd179f35e8e718bf6faae8b77d8e438567522f5f0b86e6e93",
+    "metadata": {
+      "abi": "IBME-LATTE3-COEFF-1",
+      "n": 1024,
+      "q": 68718428161,
+      "source_id": "4a17a037c266ba982a027ff7fedffe0d391c9fe7fb2c5f8a0326b4ab67393414"
+    }
+  },
+  "mldsa": {
+    "binary_sha256": "bb222a5f6252dc85a20b517b878c03ddb7d00db70483c99d73a91e9ee2c488a8",
+    "metadata": {
+      "abi": 1,
+      "mode": 2,
+      "nonce_attempt_limit": 16384,
+      "pk": 1312,
+      "sig": 2420,
+      "sk": 2560,
+      "source_id": "ae5dc5f80d49157633cf8aeb5895e1dc91a298311adc5181d99a17e8cfb14337"
+    }
+  },
+  "scope": "post-run static metadata/hash query; no key generation, sampling or signing"
+}

@@ -79,7 +79,27 @@
     },
     "55": {
       "original_head": "961b208b921e54551484fd2c85e96c414dcee662",
-      "status": "pending"
+      "status": "verified",
+      "tests": {
+        "passed": 111,
+        "failed": 0,
+        "skipped": 0
+      },
+      "archived_evidence": {
+        "checks": 3449,
+        "fixed_Git_files": 541,
+        "loaded_provider_checks": 2376,
+        "historical_benchmark_rerun": false
+      },
+      "current_merged_tree_wheel_smoke": {
+        "wheel_sha256": "43c3651c83f06a3b105c7f2ccca7580e5c3d52cbc8fb9971acac058a9448bba5",
+        "verified_files": 552,
+        "first_install_and_cache_reuse_verified": true,
+        "global_environment_modified": false,
+        "cryptographic_benchmark_executed": false
+      },
+      "demo_source_bridges_after_integration": 3,
+      "bash_syntax": "passed"
     }
   },
   "security_claim": "none",

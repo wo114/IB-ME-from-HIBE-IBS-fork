@@ -26,4 +26,16 @@ PR52 为 Sageloli CI 状态；PR53 为 SRGG 无损编码与资源实测；PR54 �
 
 ## PR54
 
-前沿、噪声分类、完整基资源、缩放比较及 CI 目录测试 **116 passed、0 skipped**（22.67秒）。另真实重建四行公开几何／有限 CDF，复用原估计结果及其计时再分类，除环境／测量／当前源码指纹外完整数学 payload 相同；未重跑估计器。当前为2个实现研究候选、0个双侧比较候选、0个完整运行候选，资源下界和固定随机 tape成本均显式保留。重放输出为 `evidence/pr54-replay.json`，在仓库根以规定 Sage 运行 `evidence/replay_frontier.py --output <new-output.json>` 可复验。
+前沿、噪声分类、完整基资源、缩放比较及 CI 目录测试 **116 passed、0 skipped**（22.67秒）。另真实重建四行公开几何／有限 CDF，复用原估计结果及其计时再分类，除环境／测量／当前源码指纹外完整数学 payload 相同；未重跑估计器。当前为2个实现研究候选、0个双侧比较候选、0个完整运行候选，资源下界和固定随机 tape成本均显式保留。重放输出为 `evidence/pr54-replay.json`，在仓库根以规定 Sage 运行 `docs/deliveries/2026-10-19-pr-review/evidence/replay_frontier.py --output <new-output.json>` 可复验。
+
+## PR55
+
+核对 WSL wheel 安装的路径限制、文件指纹、额外模块拒绝、缓存独占锁及部署入口；未改变原语或协议。规定 Sage 下部署工具、Web、装配、BYTEAUTH 与 Hybrid 回归 **111 passed、0 skipped**（89.46秒），Bash 语法通过。真实构建当前集成树 wheel（SHA-256 `43c3651c83f06a3b105c7f2ccca7580e5c3d52cbc8fb9971acac058a9448bba5`），在 Linux `/tmp` 独立目录首次安装与再次缓存命中均核验552个文件，全局环境不变。这是当前部署 smoke，未将其当成新的密码学基准。
+
+原性能证据检查 **3449 passed**：541个打包文件与固定原Git字节完全相同，2376项加载provider核对一致，三路每路30次观测的中位数与原数据相符；本轮没有重跑历史计时或15步真实CLI。结论仍限相同wheel在本机文件系统布局的部署开销，不能写为算法或安全等级提高。
+
+PR55 增加 `run_web_demo.sh --wheel`，故原演示证据的显式源码桥接从2项增至3项；原启动脚本快照、原 provenance 和数据保持字节，再运行原369项核验通过。其它文件若有未批准漂移仍会拒绝。
+
+## 验证入口与修改范围
+
+每份 JUnit 和公开重放均在 evidence；具体测试选择见回执中的 testcase，前沿重放脚本支持新输出路径。主要修改范围为原PR源码/材料，以及本目录的审查记录；额外修复只涉及 Web 判定、ABB 行参数绑定及已批准源码/CI的历史校验桥接。原B分支和本地 Foo–Li WIP 未动。各原始PR head保存在 validation.json，最终合入提交和消息可从对应PR/Git查看。
