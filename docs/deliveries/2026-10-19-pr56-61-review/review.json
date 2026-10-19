@@ -1,0 +1,256 @@
+{
+  "schema": "IBME/PR56-61-REVIEW/1",
+  "date": "2026-10-19",
+  "integration_source": "85b87fa63d8183ceafdfd5dcac8c2147cabbdc7b",
+  "hardware": "i9-14900HX",
+  "scope": "code review, bounded independent regression, public receipt verification and merge/close operations",
+  "prs": [
+    {
+      "closedAt": "2026-10-19T05:31:58Z",
+      "headRefName": "codex/research-report-draft-2026-10-19",
+      "headRefOid": "0041b3a47bb0f88995efc92fae016c55afe19c92",
+      "mergeCommit": {
+        "oid": "18cae9432fa0fd6c745dfd22004b0830e8996def"
+      },
+      "mergedAt": "2026-10-19T05:31:58Z",
+      "number": 56,
+      "state": "MERGED",
+      "title": "docs: 新建研究报告初稿并保留旧作品报告",
+      "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/56",
+      "ci_status_counts_when_collected": {
+        "SUCCESS": 46,
+        "SKIPPED": 2
+      }
+    },
+    {
+      "closedAt": "2026-10-19T06:02:19Z",
+      "headRefName": "codex/sageloli-default-integration-2026-10-19",
+      "headRefOid": "922a90084f4d53af88656000207f96a8e2311d7f",
+      "mergeCommit": null,
+      "mergedAt": null,
+      "number": 57,
+      "state": "CLOSED",
+      "title": "feat(ibs): register sageloli backends with real LATTE pairing",
+      "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/57",
+      "ci_status_counts_when_collected": {
+        "SUCCESS": 18,
+        "SKIPPED": 1,
+        "FAILURE": 5
+      }
+    },
+    {
+      "closedAt": "2026-10-19T05:58:08Z",
+      "headRefName": "codex/srgg-paper-latte-2026-10-19",
+      "headRefOid": "6acc18f6f45000a0262d02791827643757dcd150",
+      "mergeCommit": {
+        "oid": "bc8ccb5ed9cf18964b31b3862e919d3fae8e7d71"
+      },
+      "mergedAt": "2026-10-19T05:58:08Z",
+      "number": 58,
+      "state": "MERGED",
+      "title": "feat(srgg): 论文三档参数接入公共框架与 LATTE 完整组合",
+      "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/58",
+      "ci_status_counts_when_collected": {
+        "SUCCESS": 37,
+        "SKIPPED": 2,
+        "IN_PROGRESS": 6,
+        "QUEUED": 1
+      }
+    },
+    {
+      "closedAt": "2026-10-19T06:00:01Z",
+      "headRefName": "codex/sageloli-ring-target-2026-10-19",
+      "headRefOid": "293482a0a746355ef614e8918a99b614c5df404f",
+      "mergeCommit": {
+        "oid": "798226acf4eacb7bf4a9069f974d44c7db32c4be"
+      },
+      "mergedAt": "2026-10-19T06:00:01Z",
+      "number": 59,
+      "state": "MERGED",
+      "title": "feat(sageloli): 两档论文参数环版完整实跑与可扩展采样",
+      "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/59",
+      "ci_status_counts_when_collected": {
+        "SUCCESS": 23,
+        "SKIPPED": 1
+      }
+    },
+    {
+      "closedAt": "2026-10-19T06:12:17Z",
+      "headRefName": "codex/lai-hibe-complete-2026-10-19",
+      "headRefOid": "0dd9548c9e43669f5a57ed20f63671e6d964c1d5",
+      "mergeCommit": {
+        "oid": "eadb878467ea9078d2a7c219deee48fdd2e9ccd3"
+      },
+      "mergedAt": "2026-10-19T06:12:17Z",
+      "number": 60,
+      "state": "MERGED",
+      "title": "feat(hibe): 发布 Lai 两级研究后端与 C2 目标配置",
+      "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/60",
+      "ci_status_counts_when_collected": {
+        "SUCCESS": 5,
+        "SKIPPED": 1,
+        "IN_PROGRESS": 3,
+        "QUEUED": 14
+      }
+    },
+    {
+      "closedAt": "2026-10-19T06:12:32Z",
+      "headRefName": "codex/readiness-audit-2026-10-19",
+      "headRefOid": "9c290863333d2aea0cfcdc6e15d5f3e9a27a7c31",
+      "mergeCommit": {
+        "oid": "85b87fa63d8183ceafdfd5dcac8c2147cabbdc7b"
+      },
+      "mergedAt": "2026-10-19T06:12:32Z",
+      "number": 61,
+      "state": "MERGED",
+      "title": "docs(readiness): 核对SRGG、Sageloli与Lai新交付及验收欠项",
+      "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/61",
+      "ci_status_counts_when_collected": {
+        "SUCCESS": 46,
+        "SKIPPED": 2
+      }
+    }
+  ],
+  "lai_parameter_fix": "7b13fe9",
+  "merge_resolution": "4c56e6368676b87c3480122b7ae3437ee070b956",
+  "junit": [
+    {
+      "file": "pr59-independent.xml",
+      "passed": 35,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "tested_runtime_snapshot": "32d0c0bd8d9c75efc1464cbbf91d665ba3574f52",
+      "environment": "WSL Sage10.7/Python3.12.13; OMP4/OpenBLAS1",
+      "files": [
+        "tests/test_sageloli_ring_structured.py",
+        "tests/sageloli_native"
+      ],
+      "sha256": "a677f9c4609598a58d17ac5ef1a6ed635ebc986fc0f0f24c953b4ab264746d62"
+    },
+    {
+      "file": "pr60-independent.xml",
+      "passed": 57,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "tested_runtime_snapshot": "2180286c432ce8ea5d44d32091d2ef7b9393c1e2",
+      "environment": "WSL Sage10.7/Python3.12.13; OMP4/OpenBLAS1",
+      "files": [
+        "tests/test_lai_hibe.py",
+        "tests/test_lai_p1.py",
+        "tests/test_lai_target_parameters.py",
+        "tests/test_lai_qualification.py"
+      ],
+      "sha256": "51507283080e41f8dee8adbe0e7abeea4af7f795877523616902c1a788475604"
+    },
+    {
+      "file": "lai-merged-sage.xml",
+      "passed": 132,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "tested_runtime_snapshot": "4c56e6368676b87c3480122b7ae3437ee070b956",
+      "environment": "WSL Sage10.7/Python3.12.13; OMP4/OpenBLAS1",
+      "files": [
+        "tests/test_lai_hibe.py",
+        "tests/test_lai_p1.py",
+        "tests/test_lai_target_parameters.py",
+        "tests/test_lai_qualification.py",
+        "tests/test_lai_parameter_boundary.py",
+        "tests/test_registry_extension_contract.py",
+        "tests/test_srgg_paper_registration.py"
+      ],
+      "sha256": "c79c5869a258328c83eedff24fdb08ab432e3ff71cc9851a4a2f2dd1cbf06ed2"
+    },
+    {
+      "file": "lai-merged-portable.xml",
+      "passed": 130,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "tested_runtime_snapshot": "4c56e6368676b87c3480122b7ae3437ee070b956",
+      "environment": "Windows Python3.14.0a5",
+      "files": [
+        "tests/test_hybrid_hibe.py",
+        "tests/test_cli_selection.py",
+        "tests/test_ci_catalog.py",
+        "tests/test_c_registration.py"
+      ],
+      "sha256": "e576c66ca9a8dea1cc28d2a223d024d2f901778849a9f273a698d9f2863a1877"
+    }
+  ],
+  "distinct_test_identities_across_published_runs": 297,
+  "junit_normalization": "removed hostname only; UTF-8 XML; test outcomes/timings retained; SHA-256 normalizes CRLF to LF",
+  "selected_runtime_and_test_sha256_lf": {
+    "experiments/research/candidates/sageloli/ring/__init__.py": "ef79dffe2216f969d6f1324d857f19a59710a1acc498219b7ea9dcab7576c457",
+    "experiments/research/candidates/sageloli/ring/backend.py": "037a12812690850fa606ee45bd9f90950ef3cd1ff8121593fb1577b1b302fa8e",
+    "experiments/research/candidates/sageloli/ring/codec.py": "cc57e28d90d0a5a250413abf6cb154b361be429b4378992507ec766a3b301461",
+    "experiments/research/candidates/sageloli/ring/gaussian.py": "2046c71dccd86d594daaea3509212bed0c9faa31f1014accd56a2a97e73cb3a5",
+    "experiments/research/candidates/sageloli/ring/issuer.py": "9874c2853e28cbc1259f5b3e193ffc22651da31b1719f300bb0878d6f6693fa0",
+    "experiments/research/candidates/sageloli/ring/native.cpp": "6435583f03d753c103962c85c7724b8ae9fb319dda1684c5e3265610afdd15ac",
+    "experiments/research/candidates/sageloli/ring/native.py": "b4d68e3382f35fb9af02e29efd1942e41f17e72b6908fdf117855466cd15cc41",
+    "experiments/research/candidates/sageloli/ring/objects.py": "bb2fa54630129fa9bdec3a665848729c48797151da2b74d61404809f03a433a3",
+    "experiments/research/candidates/sageloli/ring/params.py": "e37e4c68625f18c6b8a2fbab9e1df89728c90407f39c6a4b2d84c03a67a3659b",
+    "experiments/research/candidates/sageloli/ring/run.py": "be4e247786ab3cdabd74e3691f336796f0f6d655c64bd2e3c75df441b9284bd8",
+    "experiments/research/candidates/sageloli/ring/spectral.py": "7d34fccba6c447731126755f6c5e7c1fa51c04a7171089d3ace487acdb0d9368",
+    "src/ibme/assembly/catalog.py": "dc3b97f4d05d1bd52eb67d46739b554e0fa79e21fd175252552f94dd9b10a43a",
+    "src/ibme/assembly/registry.py": "a86530a5abb01241787c23b5785af7fb6c2610ebc8ac5c5ac7ca2c5727df0eb8",
+    "src/ibme/hibe/lai/__init__.py": "db2542191b73ce29c2d73f27401d7983026ac4e6d98d23d74d228071aadfde9c",
+    "src/ibme/hibe/lai/backend.py": "3645380847a776934b9f4ac05caeefd1f10382e73581ae978e799ed0c105306c",
+    "src/ibme/hibe/lai/codec.py": "1e949af0b70158d82fe2c4b6027f146313f4ba53bfb1842537374b7a9128ceb9",
+    "src/ibme/hibe/lai/engine.py": "39f35b79c8eba752f4efe553d7c931530e0888d34cc90541a31456147d227a22",
+    "src/ibme/hibe/lai/objects.py": "6bd8d2f752f9d3e60642a4e22bbaad9794a77ad7565a5f82780be01ad68ed26a",
+    "src/ibme/hibe/lai/params.py": "fecb346a02766bde6f18b3ecdfaed983fe79a82ebe8aa5f149cc060c5db8f6f6",
+    "src/ibme/hibe/lai/registration.py": "09aa8a452f5feb6771efe09cc3653b2142e7f8253dcf8b83c3853cc8b2c44eb2",
+    "src/ibme/ibs/srgg/paper.py": "67f958378b250c89d79b38c985f96bdf1cd858a5f2cb73dea5e726b4e98561bc",
+    "src/ibme/ibs/srgg/paper_registration.py": "8966d12851e42f1f72ffb174630a70084444d150034ee9f6325db8ceb95e7258",
+    "src/ibme/protocol/hybrid_hibe.py": "cb0a8d55646c711bb1e3fe0d695450ebcfa1427d9abea508c30a5588ee33d137",
+    "tests/sageloli_native/test_ring_backend.py": "5f16fb4184fb18e57c6dee7f3eb5bd8f9226595b4874d0b1d95d80c35bcd7ec3",
+    "tests/sageloli_native/test_ring_native.py": "4c1d447feb38c3ddf22cbbbcdab1790904731a39a11169c4f977cbd0b57e383c",
+    "tests/test_c_registration.py": "3d91806ddd6616926a639820b5e5956ac884693457bafbff055df2a395d6d842",
+    "tests/test_ci_catalog.py": "613b87410562c97b6cc59d6878dde9cfe5f3640817c4f05c4d368e7df843f581",
+    "tests/test_cli_selection.py": "727c23a8217824eb87e9ce860d84355cc43f860b390967ce57f71d7a14ec7ef0",
+    "tests/test_hybrid_hibe.py": "3dc8670701e033d26f52f7718df0572627bae107407c73bd039eeebfece2aa1f",
+    "tests/test_lai_hibe.py": "2f5acff089ed618faec5f4f75c257d89065e966a721ccd98ddbd889e8377933b",
+    "tests/test_lai_p1.py": "478e3f8b9871b01cddc6d28256497d7419afe9f500db13197632522fac79e6ea",
+    "tests/test_lai_parameter_boundary.py": "2c09d0d030043d34c27f9aebaf8fa1679aa0067fb5891b77bf37bb97039fe037",
+    "tests/test_lai_qualification.py": "2a099c0511eecd99e71fb655068659139ba806611c739574696b64617c6266c0",
+    "tests/test_lai_target_parameters.py": "eb6c4a5dde7eb0b28a39df6dd1f577342ef8c145f325a81facc90b12f7f542d8",
+    "tests/test_registry_extension_contract.py": "e1793a3a6947f8e90dfc0938ffb0c23bf3259d3a56832d6679dc2fb7796769bb",
+    "tests/test_sageloli_ring_structured.py": "08a9039aa2f7f798620872d38dedb81345ab66632e227709f473f5ef57b34e91",
+    "tests/test_srgg_paper_registration.py": "20f3aecec7458f308907268583984d9ecb014eb44da2918c409724ae45013579"
+  },
+  "source_binding_scope": "selected runtime and test files, not a dynamic provider capture",
+  "public_receipt_checks": {
+    "research_report": 178,
+    "srgg_functional_cases": 6,
+    "srgg_functional_checks": 204,
+    "srgg_benchmark_roots": 6,
+    "srgg_benchmark_provider_records": 1824,
+    "srgg_installed_provider_records": 154,
+    "sageloli_target_receipts": 4,
+    "lai_original_bindings": 44,
+    "lai_author_tests": 267
+  },
+  "fresh_target_lifecycle_runs": {
+    "sageloli_paper_profiles": 0,
+    "lai_C2": 0
+  },
+  "private_existing_state_files_read": 0,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "deferred": [
+    "Lai C2 portable raw target receipts",
+    "Sageloli v3 registry/CLI integration and first real HIBE pairing",
+    "SRGG PARAM-II/III repeated complete-system benchmarks"
+  ],
+  "remote_snapshot_is_live_check": false,
+  "ci_snapshot_utc": "2026-10-19T06:15:27.261214+00:00",
+  "historical_receipt_sources": {
+    "srgg": "7573014d53b5367698e161abf354b643770cf20e",
+    "sageloli": "293482a0a746355ef614e8918a99b614c5df404f",
+    "lai": "2180286c432ce8ea5d44d32091d2ef7b9393c1e2"
+  }
+}

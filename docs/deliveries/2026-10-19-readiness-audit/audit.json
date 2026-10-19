@@ -1,0 +1,125 @@
+{
+  "schema": "IBME/NEW-DELIVERIES-READINESS/1",
+  "date": "2026-10-19",
+  "base_commit": "18cae9432fa0fd6c745dfd22004b0830e8996def",
+  "scope": "frozen source and public-evidence readiness check, plus bounded independent regression; not complete PR review or security admission",
+  "existing_external_private_state_files_read": false,
+  "fresh_target_runs": {"srgg_PARAM_I_standalone": 2, "sageloli_v3_paper_points": 0, "lai_C2_lifecycle": 0},
+  "new_estimator_runs": 0,
+  "new_security_proofs": 0,
+  "local_unique_tests": 78,
+  "local_failed": 0,
+  "local_skipped": 0,
+  "pull_requests_merged_by_this_audit": [],
+  "snapshots": [
+    {
+      "pr": 57,
+      "head": "922a90084f4d53af88656000207f96a8e2311d7f",
+      "state_when_checked": "OPEN",
+      "scope": "v2 SIS/RSIS default integration and two LATTE pairings; small parameters",
+      "reported_full_pairings": 2,
+      "reported_pairing_checks_each": 34,
+      "local_pytest": [
+        {
+          "files": ["tests/test_sageloli_assembly.py"],
+          "passed": 10,
+          "deselected": 0,
+          "seconds": 28.61,
+          "OMP_NUM_THREADS": "4",
+          "OPENBLAS_NUM_THREADS": "1"
+        }
+      ],
+      "remaining": ["code review and integration", "do not treat these small v2 pairings as v3 paper-profile pairings"]
+    },
+    {
+      "pr": 58,
+      "head": "e23ab4ff5da62e51a340c18ecb4b4c61c6137f63",
+      "runtime_implementation_commit": "7573014d53b5367698e161abf354b643770cf20e",
+      "state_when_checked": "OPEN",
+      "scope": "SRGG Table 4 PARAM-I/II/III; table-standard-deviation/factor1; reference and compact",
+      "published_full_pairings": 6,
+      "published_functional_checks": 204,
+      "published_benchmark_roots": 6,
+      "published_benchmark_provider_records": 1824,
+      "published_installed_provider_records": 154,
+      "published_cli_commands": 15,
+      "published_cli_restore_processes": 1,
+      "public_verifier_status": "passed",
+      "local_pytest": [
+        {
+          "files": ["tests/test_srgg_paper_registration.py", "tests/test_srgg_paper_assembly.py"],
+          "selection": "not actual_sampled_lifecycle",
+          "passed": 26,
+          "deselected": 2,
+          "seconds": 6.15
+        },
+        {
+          "files": ["tests/test_srgg_paper_assembly.py"],
+          "selection": "actual_sampled_lifecycle",
+          "passed": 2,
+          "deselected": 10,
+          "seconds": 63.15
+        }
+      ],
+      "remaining": ["code review and merge", "selected-profile same-machine performance and presentation", "PARAM-II/III repeated performance not yet delivered"]
+    },
+    {
+      "pr": 59,
+      "tested_algorithm_snapshot": "32d0c0bd8d9c75efc1464cbbf91d665ba3574f52",
+      "latest_publication_snapshot": "293482a0a746355ef614e8918a99b614c5df404f",
+      "runtime_source_delta_between_snapshots": false,
+      "state_when_checked": "OPEN",
+      "scope": "Sageloli RSIS ring-native v3 standalone, two paper profiles",
+      "paper_profiles": [
+        {"d": 2048, "k": 65, "l": 132, "fresh_peak_rss_gib_rounded": 1.361},
+        {"d": 2048, "k": 153, "l": 308, "fresh_peak_rss_gib_rounded": 6.194}
+      ],
+      "published_fresh_recover_receipts": 4,
+      "published_original_unique_tests": 180,
+      "public_original_manifest_entries": 36,
+      "public_original_verifier": {"normal": "passed", "python_O": "passed"},
+      "latest_review_verifier": {"status": "passed", "required_source_files": 37, "unique_tests": 180},
+      "local_pytest": [
+        {
+          "files": ["tests/test_sageloli_ring_structured.py"],
+          "passed": 20,
+          "deselected": 0,
+          "seconds": 4.61
+        }
+      ],
+      "remaining": ["v3 public descriptor/CLI integration", "explicit large signature and state budgets", "first real v3 HIBE/IBME pairing"]
+    },
+    {
+      "pr": 60,
+      "head": "2180286c432ce8ea5d44d32091d2ef7b9393c1e2",
+      "state_when_checked": "OPEN",
+      "scope": "complete Lai two-level HIBE and public integration; explicit C2 target-research",
+      "c2": {"n": 2048, "q": 274877976577, "k": 39, "l": 2, "p": 2, "sigma": 2, "sigma_r": 1},
+      "historical_model": "coefficient PLWE interpreted as LWE; GSA attack set, not whole-HIBE/structural or NIST admission",
+      "historical_classical_cost_exponent": 169.94,
+      "historical_quantum_cost_exponent": 154.23,
+      "historical_c2_luo_cli_reported": true,
+      "historical_target_raw_receipts_in_public_package": false,
+      "published_original_tests": {"primitive": 57, "integration": 210, "disjoint_total": 267},
+      "source_bindings": 44,
+      "public_verifier": {"normal": "passed", "python_O": "passed", "target_c2_rerun": false},
+      "local_pytest": [
+        {
+          "files": ["tests/test_lai_hibe.py", "tests/test_lai_target_parameters.py"],
+          "passed": 20,
+          "deselected": 0,
+          "seconds": 72.12,
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1",
+          "target_c2_lifecycle_executed": false
+        }
+      ],
+      "remaining": ["code review and merge", "portable C2 target lifecycle/restore/negative receipts", "selected complete-pairing measurement", "do not use the low-strength default A-point as the target configuration"]
+    }
+  ],
+  "security_metadata_changed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "theory_basis": "original-paper references and user-authorized working assumptions; no new proof gate"
+}

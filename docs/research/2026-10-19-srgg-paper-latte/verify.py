@@ -1,4 +1,5 @@
 """Read-only audit of public SRGG receipts and their fixed Git providers."""
+import argparse
 from copy import deepcopy
 from hashlib import sha256
 import json
@@ -11,6 +12,7 @@ ROOT = HERE.parents[2]
 SOURCE = '7573014d53b5367698e161abf354b643770cf20e'
 BLOBS = {}
 FILES = set()
+CHECK_WORKTREE = True
 
 
 def require(value, message):
@@ -26,8 +28,9 @@ def source(relative):
     if relative not in BLOBS:
         BLOBS[relative] = subprocess.check_output(['git', 'show', SOURCE+':'+relative], cwd=ROOT)
     raw = BLOBS[relative]
-    require(raw.replace(b'\r\n', b'\n') == (ROOT/relative).read_bytes().replace(b'\r\n', b'\n'),
-            'working source differs from frozen Git: '+relative)
+    if CHECK_WORKTREE:
+        require(raw.replace(b'\r\n', b'\n') == (ROOT/relative).read_bytes().replace(b'\r\n', b'\n'),
+                'working source differs from frozen Git: '+relative)
     return raw
 
 
@@ -101,7 +104,9 @@ def benchmark(report, expected):
     return occurrences
 
 
-def verify():
+def verify(*, historical=False):
+    global CHECK_WORKTREE
+    CHECK_WORKTREE = not historical
     suites = read('suites.json')
     planned = read('preflight.json')
     require(len(suites) == len(planned['results']) == 6, 'six explicit suites required')
@@ -159,6 +164,7 @@ def verify():
     require(env['native_binary_sha256'] == build['binary_sha256']
             and env['native_metadata']['source_id'] == build['source_id'], 'native provenance differs')
     return dict(schema='SRGG-PAPER-PUBLIC-VERIFICATION/1', status='passed', source_commit=SOURCE,
+        source_mode='historical Git 7573014' if historical else 'current checkout',
         functional_cases=6, functional_checks=checks, independent_benchmark_roots=6,
         warm_encrypt_decrypt_pairs=18, zero_entropy_restored_decrypts=18,
         benchmark_provider_records=occurrences, installed_provider_records=installed_count,
@@ -168,4 +174,7 @@ def verify():
 
 
 if __name__ == '__main__':
-    print(json.dumps(verify(), indent=2, sort_keys=True))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--historical', action='store_true',
+                        help='audit the original Git snapshot after later integration changes')
+    print(json.dumps(verify(historical=parser.parse_args().historical), indent=2, sort_keys=True))
