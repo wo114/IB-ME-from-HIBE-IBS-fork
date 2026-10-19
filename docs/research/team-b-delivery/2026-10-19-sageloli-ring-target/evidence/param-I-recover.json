@@ -1,0 +1,101 @@
+{
+  "ROM": "SHAKE256 implementation of paper hash interfaces",
+  "backend_admitted": false,
+  "elapsed_seconds": 19.49673630899997,
+  "environment": {
+    "cpu": "Intel(R) Core(TM) Ultra 7 255HX",
+    "numpy": "2.5.3",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15 | packaged by conda-forge | (main, Sep  2 2026, 22:01:58) [GCC 15.3.0]",
+    "threads": {
+      "OMP_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "identity_bytes": 21,
+  "limits": {
+    "entropy_bytes": 274877906944,
+    "peak_bytes": 12884901888,
+    "seconds": 14400
+  },
+  "message_bytes": 33,
+  "mode": "recover",
+  "modulus": "10301051460877537453973547267843",
+  "native": {
+    "binary_sha256": "d8d62edfac006cf5a84c92411c28e7e6b58037fe5accd2dc00bcadd6dcfdeff6",
+    "exact_arithmetic": "two-prime range-checked NTT + FLINT integer polynomial products",
+    "source_id": "a41fd3e087125317d2bf2c1731e99c5639b27bce1c0b9d8456cd0682bee0ee39"
+  },
+  "new_sign_entropy_bytes": 283179648,
+  "parameters": {
+    "d": 2048,
+    "identity_max_bytes": 256,
+    "identity_width_squared": 2720281532542,
+    "k": 65,
+    "l": 132,
+    "mass_bits": 320,
+    "max_sign_attempts": 64,
+    "max_users": 2,
+    "message_max_bytes": 4096,
+    "r_squared": 49,
+    "salt_bytes": 32,
+    "signature_width_squared": 270116709797628319132317,
+    "tail_bits": 256
+  },
+  "parameters_are_formal": false,
+  "peak_rss_bytes": 1467125760,
+  "profile": "I",
+  "publication": {
+    "message_lengths_used": [
+      33,
+      42
+    ],
+    "omitted_private_sampler_fields": [
+      "raw_norm_squared_upper",
+      "transform_component_error_upper"
+    ],
+    "scope": "independent RSIS actual lifecycle, not a HIBE/IB-ME combination",
+    "test_only_seed": false
+  },
+  "randomness": "operating-system SecureRandom; no seed persisted",
+  "repetitions": 1,
+  "restore_entropy_bytes": 0,
+  "sampler": {
+    "backend_admitted": false,
+    "coefficient_dimension": 403456,
+    "continuous_ticket_bits": 52,
+    "dense_covariance_allocated": false,
+    "frequency_count": 1024,
+    "largest_factor_dimension": 65,
+    "method": "ring Fourier low-rank SampleF with discrete Gaussian rounding",
+    "raw_psd_sufficient_condition": true,
+    "security_claim": "none",
+    "stored_complex_coefficients": 13112320,
+    "total_TV_certified": false
+  },
+  "security_claim": "none",
+  "signatures_verified": 2,
+  "source_commit": "c29b45d98354c64c71f15afe778da85acdc07171",
+  "source_sha256": {
+    "__init__.py": "ef79dffe2216f969d6f1324d857f19a59710a1acc498219b7ea9dcab7576c457",
+    "backend.py": "037a12812690850fa606ee45bd9f90950ef3cd1ff8121593fb1577b1b302fa8e",
+    "codec.py": "cc57e28d90d0a5a250413abf6cb154b361be429b4378992507ec766a3b301461",
+    "gaussian.py": "2046c71dccd86d594daaea3509212bed0c9faa31f1014accd56a2a97e73cb3a5",
+    "issuer.py": "9874c2853e28cbc1259f5b3e193ffc22651da31b1719f300bb0878d6f6693fa0",
+    "native.cpp": "6435583f03d753c103962c85c7724b8ae9fb319dda1684c5e3265610afdd15ac",
+    "native.py": "b4d68e3382f35fb9af02e29efd1942e41f17e72b6908fdf117855466cd15cc41",
+    "objects.py": "bb2fa54630129fa9bdec3a665848729c48797151da2b74d61404809f03a433a3",
+    "params.py": "e37e4c68625f18c6b8a2fbab9e1df89728c90407f39c6a4b2d84c03a67a3659b",
+    "run.py": "be4e247786ab3cdabd74e3691f336796f0f6d655c64bd2e3c75df441b9284bd8",
+    "spectral.py": "7d34fccba6c447731126755f6c5e7c1fa51c04a7171089d3ace487acdb0d9368"
+  },
+  "stage": "complete",
+  "stage_current": 1024,
+  "stage_total": 1024,
+  "status": "passed",
+  "timings": {
+    "full_master_and_issued_key_recovery": 10.779606449999847,
+    "sign_after_new_process_recovery": 7.442825008,
+    "verify_saved_signature": 0.41712522499983606
+  }
+}
