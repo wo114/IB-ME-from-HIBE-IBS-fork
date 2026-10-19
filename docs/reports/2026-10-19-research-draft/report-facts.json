@@ -1,0 +1,424 @@
+{
+  "schema": "IBME-RESEARCH-DRAFT/1",
+  "date": "2026-10-19",
+  "code_baseline": "b92967b92a94a4f8e18ae177ea299167b60aac67",
+  "new_cryptographic_runs": 0,
+  "private_state_files_opened": 0,
+  "final_three_selected": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "source_sha256": {
+    "docs/research/2026-10-18-full-system-luo/evidence/comparison.json": "00673cda58d83eb066201dda24c837628382f5e519fd934a7daafdec521721c8",
+    "docs/deliveries/2026-10-18-main-showcase-cards/evidence/cards.json": "970c5303f5d8a7e73cbbfaee8dd50a3c3186f83b5c40062a32a68c4d682edcd6",
+    "docs/research/2026-10-19-full-system-placement/evidence/placement.json": "6ca629f694358a985241025f6a947ef2bd039e2bf60c7585942ac1d71913e6e6"
+  },
+  "profiles": [
+    {
+      "name": "MLDSA",
+      "source_commit": "6b5305a",
+      "receipt": "docs/research/2026-10-18-full-system-baseline/evidence/latte-mldsa44.json",
+      "security_group": "latte3-cosac-fix-bnn-mldsa44-research",
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "cert-ml-dsa",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "ml-dsa-44",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "timing_seconds": {
+        "setup": {
+          "median": 0.9844922920000272,
+          "count": 3
+        },
+        "sender-key": {
+          "median": 0.2735977610000191,
+          "count": 3
+        },
+        "receiver-key": {
+          "median": 0.7543434520000005,
+          "count": 3
+        },
+        "cold-encrypt": {
+          "median": 0.22448537600001828,
+          "count": 3
+        },
+        "first-decrypt-with-leaf-generation": {
+          "median": 0.403997454999967,
+          "count": 3
+        },
+        "warm-encrypt": {
+          "median": 0.21112540699999727,
+          "count": 9
+        },
+        "warm-decrypt": {
+          "median": 0.28011566400004995,
+          "count": 9
+        },
+        "restore-objects": {
+          "median": 0.665061913000045,
+          "count": 3
+        },
+        "restored-decrypt": {
+          "median": 0.28165395000002036,
+          "count": 9
+        }
+      },
+      "bytes": {
+        "full_ciphertext": {
+          "count": 12,
+          "minimum": 142051,
+          "maximum": 142146
+        },
+        "public_state": {
+          "minimum": 14352,
+          "maximum": 14392
+        },
+        "master_state": {
+          "minimum": 177557,
+          "maximum": 177671
+        },
+        "receiver_state": {
+          "minimum": 128017,
+          "maximum": 128098
+        },
+        "sender_state": {
+          "minimum": 8050,
+          "maximum": 8050
+        },
+        "observed_process_tree_rss_maximum": 480243712
+      }
+    },
+    {
+      "name": "Falcon",
+      "source_commit": "a709e82c01bd30db590452cef6f0401d8e8c3635",
+      "receipt": "docs/research/2026-10-18-full-system-falcon/evidence/latte-falcon512.json",
+      "security_group": "latte3-cosac-fix-bnn-falcon512-research",
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "cert-falcon",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "falcon-padded-512",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "timing_seconds": {
+        "setup": {
+          "median": 0.9112818339999933,
+          "count": 3
+        },
+        "sender-key": {
+          "median": 0.1603663570000009,
+          "count": 3
+        },
+        "receiver-key": {
+          "median": 0.5111018670000007,
+          "count": 3
+        },
+        "cold-encrypt": {
+          "median": 0.21790657800001156,
+          "count": 3
+        },
+        "first-decrypt-with-leaf-generation": {
+          "median": 0.36891676999999845,
+          "count": 3
+        },
+        "warm-encrypt": {
+          "median": 0.20034643700000032,
+          "count": 9
+        },
+        "warm-decrypt": {
+          "median": 0.2492738019999976,
+          "count": 9
+        },
+        "restore-objects": {
+          "median": 0.6742784329999978,
+          "count": 3
+        },
+        "restored-decrypt": {
+          "median": 0.24748255800000152,
+          "count": 9
+        }
+      },
+      "bytes": {
+        "full_ciphertext": {
+          "count": 12,
+          "minimum": 138150,
+          "maximum": 138207
+        },
+        "public_state": {
+          "minimum": 13973,
+          "maximum": 14020
+        },
+        "master_state": {
+          "minimum": 172047,
+          "maximum": 172371
+        },
+        "receiver_state": {
+          "minimum": 128078,
+          "maximum": 128230
+        },
+        "sender_state": {
+          "minimum": 4195,
+          "maximum": 4195
+        },
+        "observed_process_tree_rss_maximum": 480043008
+      }
+    },
+    {
+      "name": "Luo",
+      "source_commit": "949bf91562489ca43e82626405a6f6c67c07a6f4",
+      "receipt": "docs/research/2026-10-18-full-system-luo/evidence/latte-luo-compact.json",
+      "security_group": "latte3-cosac-fix-luo-module-default-compact-research",
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "luo-module",
+        "ibs_params": {
+          "degree": 256,
+          "dropped_bits": 28,
+          "eta": 1,
+          "gamma1": 125440,
+          "gamma2": 31470387200,
+          "gamma3": 15270991360,
+          "identity_max_bytes": 64,
+          "k": 11,
+          "kappa": 64,
+          "l": 10,
+          "max_cached_identities": 64,
+          "max_extract_attempts": 1024,
+          "max_sign_attempts": 1024,
+          "max_uniform_attempts": 128,
+          "message_max_bytes": 4096,
+          "q": 274877844481,
+          "root": 153250464611
+        },
+        "ibs_version": "luo-module-ref1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "compact",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "timing_seconds": {
+        "setup": {
+          "median": 0.9641046830000164,
+          "count": 3
+        },
+        "sender-key": {
+          "median": 0.3189223360000142,
+          "count": 3
+        },
+        "receiver-key": {
+          "median": 0.47276039300004413,
+          "count": 3
+        },
+        "cold-encrypt": {
+          "median": 0.6097564070000203,
+          "count": 3
+        },
+        "first-decrypt-with-leaf-generation": {
+          "median": 0.38282398300003706,
+          "count": 3
+        },
+        "warm-encrypt": {
+          "median": 0.3644610709999938,
+          "count": 9
+        },
+        "warm-decrypt": {
+          "median": 0.22922045799998614,
+          "count": 9
+        },
+        "restore-objects": {
+          "median": 0.779927889000021,
+          "count": 3
+        },
+        "restored-decrypt": {
+          "median": 0.2347678670000164,
+          "count": 9
+        }
+      },
+      "bytes": {
+        "full_ciphertext": {
+          "count": 12,
+          "minimum": 151876,
+          "maximum": 151955
+        },
+        "public_state": {
+          "minimum": 260819,
+          "maximum": 260851
+        },
+        "master_state": {
+          "minimum": 522253,
+          "maximum": 522339
+        },
+        "receiver_state": {
+          "minimum": 128166,
+          "maximum": 128243
+        },
+        "sender_state": {
+          "minimum": 313813,
+          "maximum": 313813
+        },
+        "observed_process_tree_rss_maximum": 493281280
+      }
+    }
+  ],
+  "placement": {
+    "source_commit": "3ae9826b10795bea1c11b8f848c7ac90d1047843",
+    "suite_digest": "10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346",
+    "suite": {
+      "allow_mock": false,
+      "backend_admitted": false,
+      "hibe": "latte",
+      "hibe_params": {
+        "identity_bytes": 86,
+        "max_children": 2,
+        "max_receivers": 2,
+        "message_mode": "seed32",
+        "native_timeout_seconds": 60
+      },
+      "hibe_version": "latte3-cosac-fix-v1",
+      "hybrid_limits": {
+        "backend_id": "latte3-cosac-fix-v1",
+        "identity_max_bytes": 64,
+        "max_capsule_bytes": 4194304,
+        "max_payload_bytes": 65536
+      },
+      "ibs": "cert-ml-dsa",
+      "ibs_params": {
+        "backend_admitted": false,
+        "base_algorithm": "ml-dsa-44",
+        "identity_bytes": 64,
+        "max_identities": 16,
+        "message_max_bytes": 65536,
+        "parameters_are_formal": false,
+        "security_claim": "none",
+        "timeout_seconds": 30
+      },
+      "ibs_version": "IBME/CERTIBS/1",
+      "parameters_are_formal": false,
+      "protocol": "byteauth-v1",
+      "security_claim": "none",
+      "signature_format": "reference",
+      "state_policy": "single-writer-commit-before-publish-v1",
+      "transport": "hybrid",
+      "version": "IBME/SUITE/1"
+    },
+    "independent_roots": 3,
+    "timing_seconds": {
+      "source": {
+        "encrypt": {
+          "median": 0.20608688049999557,
+          "count": 30
+        },
+        "decrypt": {
+          "median": 0.2586402149999856,
+          "count": 30
+        }
+      },
+      "windows_wheel": {
+        "encrypt": {
+          "median": 0.19531047850000505,
+          "count": 30
+        },
+        "decrypt": {
+          "median": 0.2505772774999997,
+          "count": 30
+        }
+      },
+      "wsl_wheel": {
+        "encrypt": {
+          "median": 0.010921362999994244,
+          "count": 30
+        },
+        "decrypt": {
+          "median": 0.056359590999988995,
+          "count": 30
+        }
+      }
+    }
+  },
+  "reference_pdf_sha256": {
+    "有刺无刺+作品报告.pdf": "dcd016ebda9cae48284a9bc42b239f8cf7dfe541d8839e680ee2d029710cc359",
+    "crystal队作品设计报告.pdf": "38eb547782819462df449fb65e6b6376074000c49e7d91edc9ba76b67e9999a0"
+  }
+}

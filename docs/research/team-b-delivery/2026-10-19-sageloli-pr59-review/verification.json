@@ -1,0 +1,326 @@
+{
+  "changed_files": 36,
+  "ci_expected_skipped": [
+    "strict-security"
+  ],
+  "ci_success": 23,
+  "ci_unique_tests": 165,
+  "clean_rebuilt_native_and_math_tests": 35,
+  "github_run": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39200527885",
+  "head": "32d0c0bd8d9c75efc1464cbbf91d665ba3574f52",
+  "inventory": [
+    {
+      "bytes": 5416,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/MANIFEST.json",
+      "remote_git_blob": "1c2957be2698dca5bff4b6ab7f4165c0b259dc3c",
+      "sha256": "c7c163944435e4c825dab3b6c7b7769d823a7ae5bb9b64e75d929aa53e32caea"
+    },
+    {
+      "bytes": 7824,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/README.md",
+      "remote_git_blob": "687e2ef811444f80575d0ef3fcb48e0ec23c0aed",
+      "sha256": "91f5c572d96bf8836167b8d3b17754d51e710801b08c40c7351dbc1d6ee90de4"
+    },
+    {
+      "bytes": 7639,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/README_zh-CN.md",
+      "remote_git_blob": "4fe679ed7d5c4177a29edf1002115d9c7f074b17",
+      "sha256": "6e668e7dfddfe8f6397724db97102a70cee0c3aa4b9608aa8c373d596f2e7f14"
+    },
+    {
+      "bytes": 5246,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/SOURCE_MAP.md",
+      "remote_git_blob": "7aeec5bc3d5c58aa51fd5fb18c968d833207933a",
+      "sha256": "922830e8dc1290bf800283fb9c11be3a53d192f497f8d5cb1791400355f23bc7"
+    },
+    {
+      "bytes": 4177,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/param-I-fresh.json",
+      "remote_git_blob": "c8701aa908c3ce69c54b8c465e8968382304964c",
+      "sha256": "a323d73e74db3e5f570ceb9727bcf7f382ff2177b3279ff08f8e4081765edcf7"
+    },
+    {
+      "bytes": 3725,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/param-I-recover.json",
+      "remote_git_blob": "4b78473230af3c7bddbfda3a26211792631c8506",
+      "sha256": "42cedb20956a951c67838a99ae98997106eb867036fef042a3b5d321827e0228"
+    },
+    {
+      "bytes": 4217,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/param-II-fresh.json",
+      "remote_git_blob": "5e246c3f3aacd6ba05301c65f17b6746869b1387",
+      "sha256": "9d20fc20e8414bacbf448bb4887daf76723551b560e847e1997feb928d8d0793"
+    },
+    {
+      "bytes": 3776,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/param-II-recover.json",
+      "remote_git_blob": "d072f99ecd76dc53e3a423073498a55e1abf4c5a",
+      "sha256": "3e014119198f5dc396ffcdd18597af7d58f1b4a8e54b84f257d4d5a14b4f7e27"
+    },
+    {
+      "bytes": 9408,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/source-snapshots/03b0e5e/backend.py",
+      "remote_git_blob": "fb274b63360f3c5fa440d5be93e4fb7eb8e4c53e",
+      "sha256": "84130174aa79e82d1bd8f8e35b4c24568d36a965c5ea5c4ba846c88a8b1d4e50"
+    },
+    {
+      "bytes": 7670,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/source-snapshots/03b0e5e/gaussian.py",
+      "remote_git_blob": "7f0c7bca2dd9319a4791adad7d646239b182f648",
+      "sha256": "755040447bcc389b07ff79b915950bd1a70f4470fc162a28e934d764c2018aeb"
+    },
+    {
+      "bytes": 7209,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/source-snapshots/03b0e5e/native.cpp",
+      "remote_git_blob": "1a2d60a3485c8d0b5eae69b182a9cc4cd296c0bd",
+      "sha256": "cba47ea106700903847ad737af7487e8e98212c59a7b23a5a8f23a27f9051d7c"
+    },
+    {
+      "bytes": 8390,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/source-snapshots/03b0e5e/run.py",
+      "remote_git_blob": "4e275343fdbee220b705a68461a1ef42b397afcd",
+      "sha256": "0bfb6ced62f929d8eaee9ad13b249cabe9940fa33662e1e64d7679dbb3b08c82"
+    },
+    {
+      "bytes": 6043,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/source-snapshots/03b0e5e/spectral.py",
+      "remote_git_blob": "30689005c407134492422a2ffb8b54b6551e1e6f",
+      "sha256": "3175b0690f69f8a83ae649a7bca46143ecfb5faa5c173047070f93b3eca0ec34"
+    },
+    {
+      "bytes": 9129,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/source-snapshots/78f3267/backend.py",
+      "remote_git_blob": "3f2c174dea4806b54e3fee4f1070eaf92e2a707b",
+      "sha256": "542f56de8b2c26b2fa01a86358d83302c3c8737a6690de19aee03f4412480083"
+    },
+    {
+      "bytes": 7670,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/source-snapshots/78f3267/gaussian.py",
+      "remote_git_blob": "7f0c7bca2dd9319a4791adad7d646239b182f648",
+      "sha256": "755040447bcc389b07ff79b915950bd1a70f4470fc162a28e934d764c2018aeb"
+    },
+    {
+      "bytes": 7209,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/source-snapshots/78f3267/native.cpp",
+      "remote_git_blob": "1a2d60a3485c8d0b5eae69b182a9cc4cd296c0bd",
+      "sha256": "cba47ea106700903847ad737af7487e8e98212c59a7b23a5a8f23a27f9051d7c"
+    },
+    {
+      "bytes": 8390,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/source-snapshots/78f3267/run.py",
+      "remote_git_blob": "4e275343fdbee220b705a68461a1ef42b397afcd",
+      "sha256": "0bfb6ced62f929d8eaee9ad13b249cabe9940fa33662e1e64d7679dbb3b08c82"
+    },
+    {
+      "bytes": 6030,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/source-snapshots/78f3267/spectral.py",
+      "remote_git_blob": "d6fa52c1756c4c3773dcda8b4e7f21cc0e90abbb",
+      "sha256": "809375f9edbb21090e0fbfa297c67dc90cb2586b0eca4208d1ccbacbd83c05b8"
+    },
+    {
+      "bytes": 25667,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/tests.xml",
+      "remote_git_blob": "bbc0b818ffa4d8f2a024f057c1220df8d6c644fd",
+      "sha256": "ae5216e3e9449c2afa26c416bb65e1aba06d4964fbba55aee436627b12458eb6"
+    },
+    {
+      "bytes": 4217,
+      "delivery": "PR change",
+      "path": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/verify.py",
+      "remote_git_blob": "62ac10bce13f60a795310c145dbd65839824dc4f",
+      "sha256": "11c2fe87ae1a21a9a77cc97887413d23d682c34a388f82d1073655ccc349f06e"
+    },
+    {
+      "bytes": 11503,
+      "delivery": "PR change",
+      "path": "docs/specs/sageloli-ibs.md",
+      "remote_git_blob": "fd063d7155e51cb145da72d7ec9b5c92894dcad1",
+      "sha256": "5e47de0ab726ea61144ef936b51710d7e9e1bd81a96d98665f8f6d3d1997046b"
+    },
+    {
+      "bytes": 80,
+      "delivery": "PR change",
+      "path": "experiments/research/candidates/sageloli/ring/__init__.py",
+      "remote_git_blob": "0907989e414559dd69976bf45e5f63c0ced5b68e",
+      "sha256": "ef79dffe2216f969d6f1324d857f19a59710a1acc498219b7ea9dcab7576c457"
+    },
+    {
+      "bytes": 9495,
+      "delivery": "PR change",
+      "path": "experiments/research/candidates/sageloli/ring/backend.py",
+      "remote_git_blob": "5412e6fff653d6a4df941128ac307b8cc79f2599",
+      "sha256": "037a12812690850fa606ee45bd9f90950ef3cd1ff8121593fb1577b1b302fa8e"
+    },
+    {
+      "bytes": 4738,
+      "delivery": "PR change",
+      "path": "experiments/research/candidates/sageloli/ring/codec.py",
+      "remote_git_blob": "65bbe89810db677259b8b36610f41fa7d41705ac",
+      "sha256": "cc57e28d90d0a5a250413abf6cb154b361be429b4378992507ec766a3b301461"
+    },
+    {
+      "bytes": 7889,
+      "delivery": "PR change",
+      "path": "experiments/research/candidates/sageloli/ring/gaussian.py",
+      "remote_git_blob": "746fbb5855fa40c585dd00363101cc1e71efca3f",
+      "sha256": "2046c71dccd86d594daaea3509212bed0c9faa31f1014accd56a2a97e73cb3a5"
+    },
+    {
+      "bytes": 4484,
+      "delivery": "PR change",
+      "path": "experiments/research/candidates/sageloli/ring/issuer.py",
+      "remote_git_blob": "0d1aea616baa41d2647c9dd9d755a0d44efe581e",
+      "sha256": "9874c2853e28cbc1259f5b3e193ffc22651da31b1719f300bb0878d6f6693fa0"
+    },
+    {
+      "bytes": 7391,
+      "delivery": "PR change",
+      "path": "experiments/research/candidates/sageloli/ring/native.cpp",
+      "remote_git_blob": "be627f4bc127786f94b9e680803e8452df07dd4d",
+      "sha256": "6435583f03d753c103962c85c7724b8ae9fb319dda1684c5e3265610afdd15ac"
+    },
+    {
+      "bytes": 5405,
+      "delivery": "PR change",
+      "path": "experiments/research/candidates/sageloli/ring/native.py",
+      "remote_git_blob": "98ecd74ca925521dbc1f966beab9e4ebbd8606dc",
+      "sha256": "b4d68e3382f35fb9af02e29efd1942e41f17e72b6908fdf117855466cd15cc41"
+    },
+    {
+      "bytes": 6741,
+      "delivery": "PR change",
+      "path": "experiments/research/candidates/sageloli/ring/objects.py",
+      "remote_git_blob": "6580e6ab9ec55daf4e6ee9a8f134bef0881d23af",
+      "sha256": "bb2fa54630129fa9bdec3a665848729c48797151da2b74d61404809f03a433a3"
+    },
+    {
+      "bytes": 3053,
+      "delivery": "PR change",
+      "path": "experiments/research/candidates/sageloli/ring/params.py",
+      "remote_git_blob": "3b37f40862ba46df66b09d54a8f32267e49e06a7",
+      "sha256": "e37e4c68625f18c6b8a2fbab9e1df89728c90407f39c6a4b2d84c03a67a3659b"
+    },
+    {
+      "bytes": 8661,
+      "delivery": "PR change",
+      "path": "experiments/research/candidates/sageloli/ring/run.py",
+      "remote_git_blob": "c4364b2b475bb49e45d8a7c5b20298157e16a16a",
+      "sha256": "be4e247786ab3cdabd74e3691f336796f0f6d655c64bd2e3c75df441b9284bd8"
+    },
+    {
+      "bytes": 6112,
+      "delivery": "PR change",
+      "path": "experiments/research/candidates/sageloli/ring/spectral.py",
+      "remote_git_blob": "a9b663518c95353bb7f80c096654bb181e97c697",
+      "sha256": "7d34fccba6c447731126755f6c5e7c1fa51c04a7171089d3ace487acdb0d9368"
+    },
+    {
+      "bytes": 3857,
+      "delivery": "PR change",
+      "path": "experiments/research/sageloli_ring_public_evidence.py",
+      "remote_git_blob": "958a114b2f1d53b4b68f0b14dfbbf66d20ff8b1c",
+      "sha256": "72deee748fe1c9a432f1e99b9149183fd471da00a67e5151fff4831f26bec2d1"
+    },
+    {
+      "bytes": 1444868,
+      "delivery": "already in base",
+      "path": "papers/2023_shorter_faster_ibs_sageloli.pdf",
+      "remote_git_blob": "c686c44f21494ac8e812a4248aa74b90650ac62c",
+      "sha256": "0e92f184828bc8643a774e9c334b14689346387981e766c311c596239ef73e3e"
+    },
+    {
+      "bytes": 5521,
+      "delivery": "PR change",
+      "path": "tests/sageloli_native/test_ring_backend.py",
+      "remote_git_blob": "5327e8128d252ed691b3b63a0e112196f52be9b3",
+      "sha256": "5f16fb4184fb18e57c6dee7f3eb5bd8f9226595b4874d0b1d95d80c35bcd7ec3"
+    },
+    {
+      "bytes": 2239,
+      "delivery": "PR change",
+      "path": "tests/sageloli_native/test_ring_native.py",
+      "remote_git_blob": "20b6207db23940b53a064a0f2b06275653383c09",
+      "sha256": "4c1d447feb38c3ddf22cbbbcdab1790904731a39a11169c4f977cbd0b57e383c"
+    },
+    {
+      "bytes": 5730,
+      "delivery": "PR change",
+      "path": "tests/test_sageloli_ring_structured.py",
+      "remote_git_blob": "fa48ee1aa668b332b89876e2f63b3421ee6a4477",
+      "sha256": "08a9039aa2f7f798620872d38dedb81345ab66632e227709f473f5ef57b34e91"
+    }
+  ],
+  "large_parameter_runs_reexecuted_this_audit": false,
+  "limitations": [
+    "Default CI does not build tests/sageloli_native; those 15 tests were rerun from a clean archive in prescribed WSL Sage.",
+    "Large-parameter fresh receipts use the documented earlier commits; final-version recovery is separate.",
+    "No claim of formal parameter admission or certified total floating Gaussian error."
+  ],
+  "manifest_entries": 36,
+  "mergeable": "MERGEABLE",
+  "overlapping_tests": 20,
+  "pr": 59,
+  "pr_state": "OPEN",
+  "private_material_required": false,
+  "public_executions": [
+    {
+      "elapsed_seconds": 106.28742725799998,
+      "mode": "fresh",
+      "peak_rss_bytes": 1461784576,
+      "profile": "I",
+      "receipt": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/param-I-fresh.json",
+      "source_commit": "78f3267c16694ad8aebc73e005246a0db2dae914",
+      "status": "passed"
+    },
+    {
+      "elapsed_seconds": 19.49673630899997,
+      "mode": "recover",
+      "peak_rss_bytes": 1467125760,
+      "profile": "I",
+      "receipt": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/param-I-recover.json",
+      "source_commit": "c29b45d98354c64c71f15afe778da85acdc07171",
+      "status": "passed"
+    },
+    {
+      "elapsed_seconds": 620.227388236,
+      "mode": "fresh",
+      "peak_rss_bytes": 6650318848,
+      "profile": "II",
+      "receipt": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/param-II-fresh.json",
+      "source_commit": "03b0e5e34be31a64aee1b3f65e3747185f3bea18",
+      "status": "passed"
+    },
+    {
+      "elapsed_seconds": 144.44985642600022,
+      "mode": "recover",
+      "peak_rss_bytes": 6724153344,
+      "profile": "II",
+      "receipt": "docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/evidence/param-II-recover.json",
+      "source_commit": "c29b45d98354c64c71f15afe778da85acdc07171",
+      "status": "passed"
+    }
+  ],
+  "remote_required_files": 37,
+  "status": "passed",
+  "union_unique_tests": 180,
+  "verified_at_utc": "2026-10-19T05:26:00.193842+00:00"
+}

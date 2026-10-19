@@ -1,0 +1,20 @@
+{
+  "status": "built",
+  "source_id": "4a17a037c266ba982a027ff7fedffe0d391c9fe7fb2c5f8a0326b4ab67393414",
+  "binary_sha256": "6fb0930f75d150950dbf91eddf98fce36fcb611db344af5f847ee26f94f5a958",
+  "executable": "test-results/srgg-paper-native/latte/bin/ibme-latte3",
+  "compiler": "gcc (conda-forge gcc 15.2.0-18) 15.2.0",
+  "flags": [
+    "-O2",
+    "-march=native",
+    "-fwrapv"
+  ],
+  "patches": [
+    "COSAC uses fresh 24-byte Box-Muller buffer",
+    "AES counter limited to 2^27 blocks per seed"
+  ],
+  "shake_provider": "OpenSSL EVP SHAKE256; compatibility declaration only",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

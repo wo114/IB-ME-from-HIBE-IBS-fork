@@ -284,6 +284,15 @@ def _srgg_spec():
     return backend_spec()
 
 
+def _srgg_paper_spec():
+    try:
+        import experiments.research.candidates.srgg as _srgg_candidate  # noqa: F401
+        from ibme.ibs.srgg.paper_registration import backend_spec
+    except ModuleNotFoundError as exc:
+        return _missing_candidate("srgg2025-paper", exc)
+    return backend_spec()
+
+
 def _portable_specs():
     from ibme.hibe.abb10 import ABB10HIBE, ABB10PublicKey, ABB10MasterSecret, ABB10Level1SecretKey, ABB10Level2SecretKey, ABB10_DEBUG_PARAMS
     from ibme.hibe.mock import MockHIBE, MockHIBEPublicKey, MockHIBEMasterSecret, MockHIBELevel1SecretKey, MockHIBELevel2SecretKey
@@ -366,7 +375,7 @@ def _portable_specs():
     # These explicit imports reuse delivered five-method backends/public wire.
     # "reference" is the existing suite spelling for their canonical-json-v1
     # encoding, not a second algorithm or a different signature representation.
-    specs.extend((_wang_pw_spec(), _srgg_spec()))
+    specs.extend((_wang_pw_spec(), _srgg_spec(), _srgg_paper_spec()))
     from ibme.hibe.lai.registration import backend_spec as lai_spec
     specs.append(lai_spec())
     from ibme.hibe.latte.registration import backend_spec as latte_spec

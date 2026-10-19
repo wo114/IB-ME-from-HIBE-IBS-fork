@@ -1,0 +1,69 @@
+{
+  "schema": "SRGG-PAPER-TEST-RECORD/1",
+  "implementation_commit": "7573014d53b5367698e161abf354b643770cf20e",
+  "groups": [
+    {
+      "environment": "Windows Python 3.14",
+      "files": [
+        "tests/test_srgg_paper_registration.py",
+        "tests/test_registry_extension_contract.py",
+        "tests/test_c_registration.py"
+      ],
+      "passed": 64,
+      "skipped": 2,
+      "note": "Two old real-candidate tests require Sage; not counted as actual arithmetic acceptance"
+    },
+    {
+      "environment": "WSL Sage 10.7 / Python 3.12.13",
+      "files": [
+        "tests/test_srgg_paper_registration.py"
+      ],
+      "passed": 16,
+      "skipped": 0
+    },
+    {
+      "environment": "WSL Sage 10.7 / Python 3.12.13",
+      "files": [
+        "tests/test_srgg_paper_assembly.py",
+        "tests/test_srgg_paper_backend.py",
+        "tests/test_srgg_paper_compact.py"
+      ],
+      "passed": 158,
+      "skipped": 0,
+      "junit": "adapter-regression.xml",
+      "note": "Before adding context-negative assertions to the same ten algebra cases; runtime implementation is unchanged"
+    },
+    {
+      "environment": "WSL Sage 10.7 / Python 3.12.13",
+      "files": [
+        "tests/test_srgg_paper_assembly.py"
+      ],
+      "selection": "not actual_sampled",
+      "passed": 10,
+      "deselected": 2,
+      "skipped": 0,
+      "note": "Reruns the ten existing cases with additional wrong-context assertions; not ten additional unique tests"
+    },
+    {
+      "environment": "WSL Sage 10.7 / Python 3.12.13",
+      "files": [
+        "tests/test_assembly.py",
+        "tests/test_ci_catalog.py",
+        "tests/test_cli_selection.py",
+        "tests/test_byteauth.py",
+        "tests/test_hybrid_key_binding.py"
+      ],
+      "passed": 151,
+      "skipped": 0
+    }
+  ],
+  "resolved_environment_failures": [
+    "Initial Sage shell was not conda-activated and failed to find Singular; all subsequent arithmetic uses activated prescribed environment",
+    "Fresh plain-Python discovery test now hides Sage availability consistently on Sage hosts; existing optional MP12 discovery legitimately imports Sage when installed",
+    "Windows sandbox temp creation failed; retried with repository-local temporary directory. Windows hardlink creation was denied; identical 151-case group passed under WSL",
+    "Windows pip temporary directory denied; wheel built successfully under prescribed WSL environment"
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
