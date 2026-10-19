@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="8" skipped="0" tests="8" time="2.031" timestamp="2026-10-18T22:20:10.151863+08:00" hostname="nomo"><testcase classname="tests.test_abb_basis_representation" name="test_each_row_modulus_is_bound_to_fixed_inputs[q-3-0]" time="0.036"><failure message="Failed: DID NOT RAISE ValueError">tmp_path = PosixPath('/tmp/ibme-pr50-red/test_each_row_modulus_is_bound0')
+row_index = 0, field = 'q', invalid = 3
+
+    @pytest.mark.parametrize("row_index", [0, 3])
+    @pytest.mark.parametrize("field,invalid", [("q", 3), ("q", True), ("q_bits", 1), ("q_bits", True)])
+    def test_each_row_modulus_is_bound_to_fixed_inputs(tmp_path, row_index, field, invalid):
+        card = json.loads(SOURCE.read_text(encoding="utf-8"))
+        card["rows"][row_index][field] = invalid
+        changed = tmp_path / "inconsistent-modulus.json"
+        changed.write_text(json.dumps(card), encoding="utf-8")
+&gt;       with pytest.raises(ValueError, match="row modulus"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_abb_basis_representation.py:99: Failed</failure></testcase><testcase classname="tests.test_abb_basis_representation" name="test_each_row_modulus_is_bound_to_fixed_inputs[q-3-3]" time="0.027"><failure message="Failed: DID NOT RAISE ValueError">tmp_path = PosixPath('/tmp/ibme-pr50-red/test_each_row_modulus_is_bound1')
+row_index = 3, field = 'q', invalid = 3
+
+    @pytest.mark.parametrize("row_index", [0, 3])
+    @pytest.mark.parametrize("field,invalid", [("q", 3), ("q", True), ("q_bits", 1), ("q_bits", True)])
+    def test_each_row_modulus_is_bound_to_fixed_inputs(tmp_path, row_index, field, invalid):
+        card = json.loads(SOURCE.read_text(encoding="utf-8"))
+        card["rows"][row_index][field] = invalid
+        changed = tmp_path / "inconsistent-modulus.json"
+        changed.write_text(json.dumps(card), encoding="utf-8")
+&gt;       with pytest.raises(ValueError, match="row modulus"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_abb_basis_representation.py:99: Failed</failure></testcase><testcase classname="tests.test_abb_basis_representation" name="test_each_row_modulus_is_bound_to_fixed_inputs[q-True-0]" time="0.024"><failure message="Failed: DID NOT RAISE ValueError">tmp_path = PosixPath('/tmp/ibme-pr50-red/test_each_row_modulus_is_bound2')
+row_index = 0, field = 'q', invalid = True
+
+    @pytest.mark.parametrize("row_index", [0, 3])
+    @pytest.mark.parametrize("field,invalid", [("q", 3), ("q", True), ("q_bits", 1), ("q_bits", True)])
+    def test_each_row_modulus_is_bound_to_fixed_inputs(tmp_path, row_index, field, invalid):
+        card = json.loads(SOURCE.read_text(encoding="utf-8"))
+        card["rows"][row_index][field] = invalid
+        changed = tmp_path / "inconsistent-modulus.json"
+        changed.write_text(json.dumps(card), encoding="utf-8")
+&gt;       with pytest.raises(ValueError, match="row modulus"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_abb_basis_representation.py:99: Failed</failure></testcase><testcase classname="tests.test_abb_basis_representation" name="test_each_row_modulus_is_bound_to_fixed_inputs[q-True-3]" time="0.027"><failure message="Failed: DID NOT RAISE ValueError">tmp_path = PosixPath('/tmp/ibme-pr50-red/test_each_row_modulus_is_bound3')
+row_index = 3, field = 'q', invalid = True
+
+    @pytest.mark.parametrize("row_index", [0, 3])
+    @pytest.mark.parametrize("field,invalid", [("q", 3), ("q", True), ("q_bits", 1), ("q_bits", True)])
+    def test_each_row_modulus_is_bound_to_fixed_inputs(tmp_path, row_index, field, invalid):
+        card = json.loads(SOURCE.read_text(encoding="utf-8"))
+        card["rows"][row_index][field] = invalid
+        changed = tmp_path / "inconsistent-modulus.json"
+        changed.write_text(json.dumps(card), encoding="utf-8")
+&gt;       with pytest.raises(ValueError, match="row modulus"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_abb_basis_representation.py:99: Failed</failure></testcase><testcase classname="tests.test_abb_basis_representation" name="test_each_row_modulus_is_bound_to_fixed_inputs[q_bits-1-0]" time="0.046"><failure message="Failed: DID NOT RAISE ValueError">tmp_path = PosixPath('/tmp/ibme-pr50-red/test_each_row_modulus_is_bound4')
+row_index = 0, field = 'q_bits', invalid = 1
+
+    @pytest.mark.parametrize("row_index", [0, 3])
+    @pytest.mark.parametrize("field,invalid", [("q", 3), ("q", True), ("q_bits", 1), ("q_bits", True)])
+    def test_each_row_modulus_is_bound_to_fixed_inputs(tmp_path, row_index, field, invalid):
+        card = json.loads(SOURCE.read_text(encoding="utf-8"))
+        card["rows"][row_index][field] = invalid
+        changed = tmp_path / "inconsistent-modulus.json"
+        changed.write_text(json.dumps(card), encoding="utf-8")
+&gt;       with pytest.raises(ValueError, match="row modulus"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_abb_basis_representation.py:99: Failed</failure></testcase><testcase classname="tests.test_abb_basis_representation" name="test_each_row_modulus_is_bound_to_fixed_inputs[q_bits-1-3]" time="0.046"><failure message="Failed: DID NOT RAISE ValueError">tmp_path = PosixPath('/tmp/ibme-pr50-red/test_each_row_modulus_is_bound5')
+row_index = 3, field = 'q_bits', invalid = 1
+
+    @pytest.mark.parametrize("row_index", [0, 3])
+    @pytest.mark.parametrize("field,invalid", [("q", 3), ("q", True), ("q_bits", 1), ("q_bits", True)])
+    def test_each_row_modulus_is_bound_to_fixed_inputs(tmp_path, row_index, field, invalid):
+        card = json.loads(SOURCE.read_text(encoding="utf-8"))
+        card["rows"][row_index][field] = invalid
+        changed = tmp_path / "inconsistent-modulus.json"
+        changed.write_text(json.dumps(card), encoding="utf-8")
+&gt;       with pytest.raises(ValueError, match="row modulus"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_abb_basis_representation.py:99: Failed</failure></testcase><testcase classname="tests.test_abb_basis_representation" name="test_each_row_modulus_is_bound_to_fixed_inputs[q_bits-True-0]" time="0.038"><failure message="Failed: DID NOT RAISE ValueError">tmp_path = PosixPath('/tmp/ibme-pr50-red/test_each_row_modulus_is_bound6')
+row_index = 0, field = 'q_bits', invalid = True
+
+    @pytest.mark.parametrize("row_index", [0, 3])
+    @pytest.mark.parametrize("field,invalid", [("q", 3), ("q", True), ("q_bits", 1), ("q_bits", True)])
+    def test_each_row_modulus_is_bound_to_fixed_inputs(tmp_path, row_index, field, invalid):
+        card = json.loads(SOURCE.read_text(encoding="utf-8"))
+        card["rows"][row_index][field] = invalid
+        changed = tmp_path / "inconsistent-modulus.json"
+        changed.write_text(json.dumps(card), encoding="utf-8")
+&gt;       with pytest.raises(ValueError, match="row modulus"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_abb_basis_representation.py:99: Failed</failure></testcase><testcase classname="tests.test_abb_basis_representation" name="test_each_row_modulus_is_bound_to_fixed_inputs[q_bits-True-3]" time="0.048"><failure message="Failed: DID NOT RAISE ValueError">tmp_path = PosixPath('/tmp/ibme-pr50-red/test_each_row_modulus_is_bound7')
+row_index = 3, field = 'q_bits', invalid = True
+
+    @pytest.mark.parametrize("row_index", [0, 3])
+    @pytest.mark.parametrize("field,invalid", [("q", 3), ("q", True), ("q_bits", 1), ("q_bits", True)])
+    def test_each_row_modulus_is_bound_to_fixed_inputs(tmp_path, row_index, field, invalid):
+        card = json.loads(SOURCE.read_text(encoding="utf-8"))
+        card["rows"][row_index][field] = invalid
+        changed = tmp_path / "inconsistent-modulus.json"
+        changed.write_text(json.dumps(card), encoding="utf-8")
+&gt;       with pytest.raises(ValueError, match="row modulus"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_abb_basis_representation.py:99: Failed</failure></testcase></testsuite></testsuites>

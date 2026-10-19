@@ -1,0 +1,29 @@
+{
+  "schema": "A/ABB-BASIS-REPRESENTATION-RUNTIME/3",
+  "source_schema": "A/ABB-BASIS-REPRESENTATION/3",
+  "measurements": {
+    "total_seconds": 0.11848212700000005,
+    "process_max_rss_kib": 18688
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "logical_cpus": 32
+  },
+  "row_count": 4,
+  "repetitions": 1,
+  "rng": "none; public JSON validation and exact integer accounting only",
+  "root_or_key_generations": 0,
+  "ciphertext_generations": 0,
+  "private_entropy_bytes": 0,
+  "complete_runtime_candidates": [],
+  "source_root_trapdoor_comparison_candidate_count": 0,
+  "source_ciphertext_comparison_candidate_count": 3,
+  "source_joint_comparison_candidate_count": 0,
+  "source_implementation_research_candidate_count": 3,
+  "blocked_implementation_research_candidate_count": 3,
+  "decision": "do not implement external backing alone: every source implementation research candidate remains blocked under the current complete-basis consumers",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

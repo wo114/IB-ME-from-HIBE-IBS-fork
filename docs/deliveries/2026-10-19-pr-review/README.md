@@ -1,0 +1,21 @@
+# 2026-10-19 远端 PR 接收记录
+
+按用户要求停止子智能体后，本批由主智能体独立审查 PR50–55；PR50 的版本与 234 passed／29 skipped 回归见[前批接续记录](../2026-10-18-pr49-50-review/README.md)。本批精确原 head、状态和验证见 [validation.json](validation.json)，最终合入提交以各 PR／Git 记录为准。
+
+## PR51
+
+保留演示作者和队友提交，核对 Falcon-512／ML-DSA-44／Luo 预设与已接收展示卡，后端异常不计为拒绝。另发现正常解密得到错误明文仍会报符合预期、`None` 会被当作 BOTTOM 的两项判定问题，已修正为正常模式比较原消息，且只接受明文字节或协议 BOTTOM。
+
+规定 WSL conda Sage 环境原 `tests/test_webui.py tests/test_ci_catalog.py` 为 38 passed；新回归先 3 failed，修复后 **41 passed、0 skipped**。启动脚本 Bash 语法检查通过。三个 JUnit 回执保留在 evidence 中。
+
+原始演示收据、provenance 和 369 项历史校验保持原字节。当前 server／测试与原版本的差异经 `evidence/demo-source-bridge.json` 显式绑定：原源码快照匹配原 provenance，当前文件匹配审查散列，然后才运行原校验器。运行 `python docs/deliveries/2026-10-19-pr-review/evidence/verify_demo.py` 得 **369 checks passed**、2 项明确源码桥接；未重跑历史性能／浏览器实验，也未把历史 38 项当作新版本回归。
+
+## 其它待接收项
+
+PR52 为 Sageloli CI 状态；PR53 为 SRGG 无损编码与资源实测；PR54 为 ABB 条件参数前沿；PR55 为相同 wheel 在 WSL 文件系统的部署。此记录首次提交时它们仍在审查，后续逐项更新验证结果。
+
+安全与运行口径沿用原交付，全部保留 none/false/false；网页是进程内会话，服务重启持久恢复仍由 CLI 处理。
+
+## PR52
+
+两条 Sageloli 路线仅调整为 backend.py／standalone_source，测试选择不变。CI 目录 25 passed、0 skipped；计划保存在 `evidence/pr52-plan.json`。CI 当前字节为12493 B，SRGG 发布桥接同步固定该指纹；246项原清单仍为243直接匹配＋3显式桥接，普通及 `-O` 校验通过，原 validation／快照未改。

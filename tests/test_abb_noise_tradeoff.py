@@ -8,13 +8,14 @@ pytest.importorskip("sage.all", reason="ABB projection and finite CDF require Sa
 
 from ibme.core.randomness import DeterministicRandom, SecureRandom
 from experiments.research.abb_rom.noise_tradeoff_probe import (
+    CIPHERTEXT_REQUIRED_ESTIMATES,
     COMPARISON_BITS,
     FINITE_SCALED_WIDTH,
     Q208,
+    ROOT_REQUIRED_ESTIMATES,
     build_finite_noise_certificate,
     build_tradeoff_report,
     finalize_comparison,
-    REQUIRED_ESTIMATES,
 )
 from experiments.research.abb_rom.scaled_parameter_screen import (
     abb_projection,
@@ -88,6 +89,13 @@ def test_comparison_gate_fails_closed_on_unknown_and_never_grants_security():
     for row in report["rows"]:
         row["finite_noise_table_built"] = True
         row["estimator_results"] = {
+            "root_trapdoor_recovery": {
+                name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS + 1}
+                for name in (
+                    "sis_lattice-classical",
+                    "sis_lattice-quantum",
+                )
+            },
             "ciphertext_lwe": {
                 name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS + 1}
                 for name in (
@@ -98,40 +106,102 @@ def test_comparison_gate_fails_closed_on_unknown_and_never_grants_security():
                 )
             }
         }
-    report["rows"][0]["estimator_results"]["ciphertext_lwe"]["dual-quantum"] = {
+    report["rows"][0]["estimator_results"]["root_trapdoor_recovery"]["sis_lattice-quantum"] = {
         "status": "no_finite_estimate",
         "rop_log2": None,
     }
     finalize_comparison(report)
     assert not report["rows"][0]["comparison_model_gate"]
+    assert not report["rows"][0]["implementation_research_gate"]
+    assert report["rows"][0]["root_trapdoor_comparison_status"] == "invalid_or_incomplete"
+    assert report["rows"][0]["ciphertext_comparison_gate"]
+    assert not report["rows"][0]["root_trapdoor_comparison_gate"]
     assert report["rows"][1]["comparison_model_gate"]
+    assert report["rows"][1]["implementation_research_gate"]
+    assert report["rows"][1]["root_trapdoor_comparison_status"] == "meets_target"
+    assert report["root_trapdoor_comparison_candidates"] == [report["rows"][1]["candidate_id"]]
+    assert report["ciphertext_comparison_candidates"] == [
+        report["rows"][0]["candidate_id"], report["rows"][1]["candidate_id"]
+    ]
     assert report["comparison_model_candidates"] == [report["rows"][1]["candidate_id"]]
+    assert report["implementation_research_candidates"] == [report["rows"][1]["candidate_id"]]
     assert report["complete_runtime_candidates"] == []
     assert report["secure_candidate_selected"] is False
 
 
-@pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
-@pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
-                         ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
-def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+def test_explicit_root_unknown_allows_research_but_not_formal_or_runtime_admission():
     report = build_tradeoff_report((9600,), build_cdf=False)
     row = report["rows"][0]
     row["finite_noise_table_built"] = True
-    estimates = {
-        name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
-        for name in REQUIRED_ESTIMATES
+    row["estimator_results"] = {
+        "root_trapdoor_recovery": {
+            name: {"status": "no_finite_estimate", "rop_log2": None}
+            for name in ROOT_REQUIRED_ESTIMATES
+        },
+        "ciphertext_lwe": {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS + 1}
+            for name in CIPHERTEXT_REQUIRED_ESTIMATES
+        },
     }
-    row["estimator_results"] = {"ciphertext_lwe": estimates}
+    finalize_comparison(report)
+    assert row["root_trapdoor_comparison_status"] == "explicitly_unresolved"
+    assert row["implementation_research_gate"] is True
+    assert row["comparison_model_gate"] is row["runtime_admitted"] is False
+    assert report["implementation_research_candidates"] == [row["candidate_id"]]
+    assert report["comparison_model_candidates"] == report["complete_runtime_candidates"] == []
+    assert report["secure_candidate_selected"] is False
+
+    row["estimator_results"]["root_trapdoor_recovery"] = {
+        name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS - 1}
+        for name in ROOT_REQUIRED_ESTIMATES
+    }
+    finalize_comparison(report)
+    assert row["root_trapdoor_comparison_status"] == "finite_below_target"
+    assert row["implementation_research_gate"] is False
+    assert report["implementation_research_candidates"] == []
+
+
+@pytest.mark.parametrize(
+    "role,model",
+    [
+        *(("root_trapdoor_recovery", name) for name in ROOT_REQUIRED_ESTIMATES),
+        *(("ciphertext_lwe", name) for name in CIPHERTEXT_REQUIRED_ESTIMATES),
+    ],
+)
+@pytest.mark.parametrize(
+    "invalid",
+    [float("inf"), float("-inf"), float("nan"), -1.0, True, 10**1000],
+    ids=["positive-infinity", "negative-infinity", "nan", "negative", "bool", "float-overflow"],
+)
+def test_comparison_rejects_invalid_numeric_estimates_in_every_model(role, model, invalid):
+    report = build_tradeoff_report((9600,), build_cdf=False)
+    row = report["rows"][0]
+    row["finite_noise_table_built"] = True
+    row["estimator_results"] = {
+        "root_trapdoor_recovery": {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in ROOT_REQUIRED_ESTIMATES
+        },
+        "ciphertext_lwe": {
+            name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+            for name in CIPHERTEXT_REQUIRED_ESTIMATES
+        },
+    }
     finalize_comparison(report)
     assert row["comparison_model_gate"] is True
 
-    estimates[model]["rop_log2"] = invalid
+    row["estimator_results"][role][model]["rop_log2"] = invalid
     finalize_comparison(report)
+    role_prefix = "root_trapdoor" if role == "root_trapdoor_recovery" else "ciphertext"
     assert row["comparison_estimates_complete"] is False
+    assert row[f"{role_prefix}_comparison_estimates_complete"] is False
     assert row["comparison_minimum_log2_rop"] is None
     assert row["comparison_model_gate"] is False
+    assert row["implementation_research_gate"] is False
     assert row["runtime_admitted"] is False
     assert report["comparison_model_candidates"] == []
+    assert report["implementation_research_candidates"] == []
     assert report["smallest_tested_comparison_candidate"] is None
+    assert report["smallest_tested_implementation_research_candidate"] is None
     assert report["largest_tested_comparison_margin_candidate"] is None
     assert report["secure_candidate_selected"] is False
