@@ -27,6 +27,21 @@ def check(condition, message):
 def digest(path):return sha256(path.read_bytes()).hexdigest()
 
 
+def check_fooli_source(source,facts):
+    fooli=json.loads((ROOT/'docs/research/2026-10-19-parameters/fooli-improvement-search.json').read_text('utf-8'))
+    check(len(facts['fooli']['selected'])==3,'FooLi three selected points')
+    for saved,n in zip(facts['fooli']['selected'],(1024,2048,4096)):
+        rows=[r for r in fooli['target_search']['all_cases'] if r['n']==n and r['q']==2**127-1 and r['g']==16]
+        expected=min(rows,key=lambda row:row['m_bar'])
+        check(saved==expected,'FooLi selected source row')
+        check(saved['d']==saved['m_bar']+2*saved['w'],'FooLi full dimension')
+        values=(f"{saved['core_svp_classical_bits']:.1f}／{saved['core_svp_quantum_bits']:.1f}")
+        check(f"| {n} | {saved['d']:,} | {values} |" in source,'FooLi report row')
+    check('门内穷举否定' not in source and '同等口径下的对象规模' not in source,'bounded FooLi wording')
+    check('搜索下限不表示已求出实际最便宜攻击' in source,'low-block search floor')
+    check(facts['fooli']['in_gate_search']==fooli['in_gate_search']['stats'],'FooLi finite grid source')
+
+
 def main(record=False):
     source=(HERE/'研究报告初稿.md').read_text('utf-8')
     facts=json.loads((HERE/'report-facts.json').read_text('utf-8'))
@@ -67,6 +82,7 @@ def main(record=False):
     check('<!-- generated:timing:start -->\n\n|' in source,'filled table')
     check('最终三代表尚未锁定' in source,'selection boundary')
     check('工作假设' in source and '不能解释为格密码算法本身' in source,'claim boundaries')
+    check_fooli_source(source,facts)
     with ZipFile(HERE/'研究报告初稿.docx') as z:
         xml=ET.fromstring(z.read('word/document.xml'))
         styles=ET.fromstring(z.read('word/styles.xml'))
