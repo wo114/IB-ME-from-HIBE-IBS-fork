@@ -2,13 +2,13 @@
   "schema": "A/ABB-BASIS-REPRESENTATION-RUNTIME/1",
   "source_schema": "A/ABB-BASIS-REPRESENTATION/1",
   "measurements": {
-    "total_seconds": 0.011242831009440124,
-    "process_max_rss_kib": 23784
+    "total_seconds": 0.03896404400000364,
+    "process_max_rss_kib": 18432
   },
   "environment": {
-    "python": "3.14.7",
-    "platform": "Linux-6.18.56-x86_64-with-glibc2.44",
-    "logical_cpus": 12
+    "python": "3.12.13",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "logical_cpus": 32
   },
   "row_count": 4,
   "repetitions": 1,

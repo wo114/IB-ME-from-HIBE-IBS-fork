@@ -1,0 +1,356 @@
+{
+  "BKZ_executions": 0,
+  "backend_admitted": false,
+  "formal_security_bits": null,
+  "nist_security_category": null,
+  "paper": {
+    "locations": "Theorem 1 PDF p.4; Algorithms 7-8 PDF pp.7-8; sections 5.2.1-5.2.3 and Tables 4-5 PDF pp.9-10",
+    "path": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
+  },
+  "parameters_are_formal": false,
+  "proof_scope": "universal Q-kernel construction, exact one-coordinate norm test and a counterexample to naive sparse-subring projection",
+  "real_signature_trials": 0,
+  "rows": [
+    {
+      "CRT": [
+        {
+          "Qe0_is_zero_in_component": true,
+          "factor_degree_is_attack_cost": false,
+          "prime": 3,
+          "prime_power": 3,
+          "residue_factor_count": 2,
+          "residue_factor_degree": 256
+        },
+        {
+          "Qe0_is_zero_in_component": true,
+          "factor_degree_is_attack_cost": false,
+          "prime": 31,
+          "prime_power": 961,
+          "residue_factor_count": 16,
+          "residue_factor_degree": 32
+        },
+        {
+          "Qe0_is_zero_in_component": true,
+          "factor_degree_is_attack_cost": false,
+          "prime": 43,
+          "prime_power": 43,
+          "residue_factor_count": 2,
+          "residue_factor_degree": 256
+        },
+        {
+          "Qe0_is_zero_in_component": true,
+          "factor_degree_is_attack_cost": false,
+          "prime": 127,
+          "prime_power": 127,
+          "residue_factor_count": 64,
+          "residue_factor_degree": 8
+        }
+      ],
+      "Q_MSIS_short_kernel": {
+        "dense_output_coefficients": 4608,
+        "euclidean_norm": 15744063,
+        "nonzero_over_integers": true,
+        "one_coordinate_identity_block_minimal_nonzero_scalar_kernel_norm": 15744063,
+        "scope": "search for any nonzero integer kernel vector with bound 2gamma; not target preimage or master-secret recovery",
+        "sparse_construction_BKZ_calls": 0,
+        "sparse_construction_public_matrix_reads": 0,
+        "sparse_output_nonzero_coefficients": 1,
+        "strictly_below_2gamma": true,
+        "witness": "Q times one coefficient basis vector in an identity-block column",
+        "zero_mod_Q_for_every_public_matrix": true
+      },
+      "actual_2Q_verification": {
+        "best_shift_example_zero_response": {
+          "BKZ_calls": 0,
+          "accepted_by_norm_gate": true,
+          "best_single_shift_norm_squared": 247875519747969,
+          "commitment_unchanged_for_every_public_A": true,
+          "same_message_challenge_unchanged": true,
+          "scan_integer_operations": "linear in number of A-block coefficients",
+          "scope": "conditional on an already valid source signature"
+        },
+        "best_shift_test": "S+Q^2-2Q*max_abs_A <= floor(gamma^2)",
+        "eligible_shift_coordinates": 4096,
+        "identity": "2*A*(Q*e_i)=0 mod 2Q for every A,h",
+        "known_valid_signature_required": true,
+        "matrix": "[2A | Q*zeta_star*e1-2h] mod 2Q",
+        "native_strong_game_implication": "A successful norm-eligible same-message replacement conflicts with sEUF; eligibility is not universal",
+        "sufficient_original_norm_for_any_single_Q_shift": "263424287/10",
+        "universal_kernel_witness": "Q times one coefficient basis vector in any of the first A columns",
+        "valid_signature_replacement_probability": null,
+        "witness_inside_original_signature_norm_ball": true,
+        "zero_mod_2Q_for_every_public_A_h": true
+      },
+      "actual_CRT_or_subfield_attack_cost": null,
+      "actual_accepted_setup_root_attack_success": null,
+      "actual_full_ring_HNF_or_structural_CVP_cost": null,
+      "author_report": {
+        "author_BKZ_costs_reproduced": false,
+        "author_targets_are_not_this_kernel_search": true,
+        "forgery_classical_core_SVP_bits": 103,
+        "key_recovery_classical_core_SVP_bits": 105
+      },
+      "backend_admitted": false,
+      "nist_security_category": null,
+      "original_inputs": {
+        "A_module_columns": 8,
+        "Q": 15744063,
+        "d": 2,
+        "gamma_exact_rational": "420864917/10",
+        "gamma_published_decimal": "42086491.7",
+        "n": 512,
+        "response_coefficient_count": 4608,
+        "signature_norm_squared_cap": 1771272783614168,
+        "w": 2
+      },
+      "parameters_are_formal": false,
+      "profile": "PARAM-I",
+      "security_claim": "none",
+      "subring_degree8": {
+        "ambient_ring": "Z_Q[X]/(X^512+1)",
+        "counterexample": {
+          "P_a": "0",
+          "P_a_times_s": "Y",
+          "P_s": "0",
+          "a": "X",
+          "s": "X^63"
+        },
+        "embedding_preserves_coefficient_l2_norm": true,
+        "naive_coefficient_projection_is_ring_homomorphism": false,
+        "sparse_subring": "Z_Q[Y]/(Y^8+1), Y=X^64",
+        "subfield_or_subring_attack_cost_inferred": false
+      }
+    },
+    {
+      "CRT": [
+        {
+          "Qe0_is_zero_in_component": true,
+          "factor_degree_is_attack_cost": false,
+          "prime": 3,
+          "prime_power": 3,
+          "residue_factor_count": 2,
+          "residue_factor_degree": 256
+        },
+        {
+          "Qe0_is_zero_in_component": true,
+          "factor_degree_is_attack_cost": false,
+          "prime": 31,
+          "prime_power": 961,
+          "residue_factor_count": 16,
+          "residue_factor_degree": 32
+        },
+        {
+          "Qe0_is_zero_in_component": true,
+          "factor_degree_is_attack_cost": false,
+          "prime": 43,
+          "prime_power": 43,
+          "residue_factor_count": 2,
+          "residue_factor_degree": 256
+        },
+        {
+          "Qe0_is_zero_in_component": true,
+          "factor_degree_is_attack_cost": false,
+          "prime": 127,
+          "prime_power": 127,
+          "residue_factor_count": 64,
+          "residue_factor_degree": 8
+        }
+      ],
+      "Q_MSIS_short_kernel": {
+        "dense_output_coefficients": 6656,
+        "euclidean_norm": 15744063,
+        "nonzero_over_integers": true,
+        "one_coordinate_identity_block_minimal_nonzero_scalar_kernel_norm": 15744063,
+        "scope": "search for any nonzero integer kernel vector with bound 2gamma; not target preimage or master-secret recovery",
+        "sparse_construction_BKZ_calls": 0,
+        "sparse_construction_public_matrix_reads": 0,
+        "sparse_output_nonzero_coefficients": 1,
+        "strictly_below_2gamma": true,
+        "witness": "Q times one coefficient basis vector in an identity-block column",
+        "zero_mod_Q_for_every_public_matrix": true
+      },
+      "actual_2Q_verification": {
+        "best_shift_example_zero_response": {
+          "BKZ_calls": 0,
+          "accepted_by_norm_gate": true,
+          "best_single_shift_norm_squared": 247875519747969,
+          "commitment_unchanged_for_every_public_A": true,
+          "same_message_challenge_unchanged": true,
+          "scan_integer_operations": "linear in number of A-block coefficients",
+          "scope": "conditional on an already valid source signature"
+        },
+        "best_shift_test": "S+Q^2-2Q*max_abs_A <= floor(gamma^2)",
+        "eligible_shift_coordinates": 6144,
+        "identity": "2*A*(Q*e_i)=0 mod 2Q for every A,h",
+        "known_valid_signature_required": true,
+        "matrix": "[2A | Q*zeta_star*e1-2h] mod 2Q",
+        "native_strong_game_implication": "A successful norm-eligible same-message replacement conflicts with sEUF; eligibility is not universal",
+        "sufficient_original_norm_for_any_single_Q_shift": "47909109",
+        "universal_kernel_witness": "Q times one coefficient basis vector in any of the first A columns",
+        "valid_signature_replacement_probability": null,
+        "witness_inside_original_signature_norm_ball": true,
+        "zero_mod_2Q_for_every_public_A_h": true
+      },
+      "actual_CRT_or_subfield_attack_cost": null,
+      "actual_accepted_setup_root_attack_success": null,
+      "actual_full_ring_HNF_or_structural_CVP_cost": null,
+      "author_report": {
+        "author_BKZ_costs_reproduced": false,
+        "author_targets_are_not_this_kernel_search": true,
+        "forgery_classical_core_SVP_bits": 171,
+        "key_recovery_classical_core_SVP_bits": 178
+      },
+      "backend_admitted": false,
+      "nist_security_category": null,
+      "original_inputs": {
+        "A_module_columns": 12,
+        "Q": 15744063,
+        "d": 3,
+        "gamma_exact_rational": "63653172",
+        "gamma_published_decimal": "63653172.0",
+        "n": 512,
+        "response_coefficient_count": 6656,
+        "signature_norm_squared_cap": 4051726305661584,
+        "w": 2
+      },
+      "parameters_are_formal": false,
+      "profile": "PARAM-II",
+      "security_claim": "none",
+      "subring_degree8": {
+        "ambient_ring": "Z_Q[X]/(X^512+1)",
+        "counterexample": {
+          "P_a": "0",
+          "P_a_times_s": "Y",
+          "P_s": "0",
+          "a": "X",
+          "s": "X^63"
+        },
+        "embedding_preserves_coefficient_l2_norm": true,
+        "naive_coefficient_projection_is_ring_homomorphism": false,
+        "sparse_subring": "Z_Q[Y]/(Y^8+1), Y=X^64",
+        "subfield_or_subring_attack_cost_inferred": false
+      }
+    },
+    {
+      "CRT": [
+        {
+          "Qe0_is_zero_in_component": true,
+          "factor_degree_is_attack_cost": false,
+          "prime": 3,
+          "prime_power": 3,
+          "residue_factor_count": 2,
+          "residue_factor_degree": 256
+        },
+        {
+          "Qe0_is_zero_in_component": true,
+          "factor_degree_is_attack_cost": false,
+          "prime": 31,
+          "prime_power": 961,
+          "residue_factor_count": 16,
+          "residue_factor_degree": 32
+        },
+        {
+          "Qe0_is_zero_in_component": true,
+          "factor_degree_is_attack_cost": false,
+          "prime": 43,
+          "prime_power": 43,
+          "residue_factor_count": 2,
+          "residue_factor_degree": 256
+        },
+        {
+          "Qe0_is_zero_in_component": true,
+          "factor_degree_is_attack_cost": false,
+          "prime": 127,
+          "prime_power": 127,
+          "residue_factor_count": 64,
+          "residue_factor_degree": 8
+        }
+      ],
+      "Q_MSIS_short_kernel": {
+        "dense_output_coefficients": 8704,
+        "euclidean_norm": 15744063,
+        "nonzero_over_integers": true,
+        "one_coordinate_identity_block_minimal_nonzero_scalar_kernel_norm": 15744063,
+        "scope": "search for any nonzero integer kernel vector with bound 2gamma; not target preimage or master-secret recovery",
+        "sparse_construction_BKZ_calls": 0,
+        "sparse_construction_public_matrix_reads": 0,
+        "sparse_output_nonzero_coefficients": 1,
+        "strictly_below_2gamma": true,
+        "witness": "Q times one coefficient basis vector in an identity-block column",
+        "zero_mod_Q_for_every_public_matrix": true
+      },
+      "actual_2Q_verification": {
+        "best_shift_example_zero_response": {
+          "BKZ_calls": 0,
+          "accepted_by_norm_gate": true,
+          "best_single_shift_norm_squared": 247875519747969,
+          "commitment_unchanged_for_every_public_A": true,
+          "same_message_challenge_unchanged": true,
+          "scan_integer_operations": "linear in number of A-block coefficients",
+          "scope": "conditional on an already valid source signature"
+        },
+        "best_shift_test": "S+Q^2-2Q*max_abs_A <= floor(gamma^2)",
+        "eligible_shift_coordinates": 8192,
+        "identity": "2*A*(Q*e_i)=0 mod 2Q for every A,h",
+        "known_valid_signature_required": true,
+        "matrix": "[2A | Q*zeta_star*e1-2h] mod 2Q",
+        "native_strong_game_implication": "A successful norm-eligible same-message replacement conflicts with sEUF; eligibility is not universal",
+        "sufficient_original_norm_for_any_single_Q_shift": "141659735/2",
+        "universal_kernel_witness": "Q times one coefficient basis vector in any of the first A columns",
+        "valid_signature_replacement_probability": null,
+        "witness_inside_original_signature_norm_ball": true,
+        "zero_mod_2Q_for_every_public_A_h": true
+      },
+      "actual_CRT_or_subfield_attack_cost": null,
+      "actual_accepted_setup_root_attack_success": null,
+      "actual_full_ring_HNF_or_structural_CVP_cost": null,
+      "author_report": {
+        "author_BKZ_costs_reproduced": false,
+        "author_targets_are_not_this_kernel_search": true,
+        "forgery_classical_core_SVP_bits": 242,
+        "key_recovery_classical_core_SVP_bits": 255
+      },
+      "backend_admitted": false,
+      "nist_security_category": null,
+      "original_inputs": {
+        "A_module_columns": 16,
+        "Q": 15744063,
+        "d": 4,
+        "gamma_exact_rational": "173147861/2",
+        "gamma_published_decimal": "86573930.5",
+        "n": 512,
+        "response_coefficient_count": 8704,
+        "signature_norm_squared_cap": 7495045442218830,
+        "w": 2
+      },
+      "parameters_are_formal": false,
+      "profile": "PARAM-III",
+      "security_claim": "none",
+      "subring_degree8": {
+        "ambient_ring": "Z_Q[X]/(X^512+1)",
+        "counterexample": {
+          "P_a": "0",
+          "P_a_times_s": "Y",
+          "P_s": "0",
+          "a": "X",
+          "s": "X^63"
+        },
+        "embedding_preserves_coefficient_l2_norm": true,
+        "naive_coefficient_projection_is_ring_homomorphism": false,
+        "sparse_subring": "Z_Q[Y]/(Y^8+1), Y=X^64",
+        "subfield_or_subring_attack_cost_inferred": false
+      }
+    }
+  ],
+  "schema": "IBME/SRGG-PAPER-STRUCTURAL-COST/1",
+  "security_claim": "none",
+  "source_hash_line_endings": "CRLF normalized to LF only",
+  "source_sha256": {
+    "experiments/research/candidates/srgg/paper_hardness_preflight.py": "29c712ac011226632a098bbcb46512cd70df5eca99d4f3b686366fa2e24afda5",
+    "experiments/research/candidates/srgg/paper_profiles.py": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f",
+    "experiments/research/candidates/srgg/paper_structural_cost.py": "7ce28e73e541ce2f67982ca8d50122e3ac1164b9b5ba9196172295405d1e83aa",
+    "experiments/research/candidates/srgg/paper_verification_image.py": "44d2e2ee47d1cfe0e6d71818390e334e11d2e1588753111e5f45875f4777f751",
+    "experiments/research/candidates/srgg/structured_execution.py": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67"
+  }
+}

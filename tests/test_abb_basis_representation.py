@@ -89,6 +89,17 @@ def test_changed_security_or_wire_claims_fail_closed(tmp_path):
         build_representation_report(changed)
 
 
+@pytest.mark.parametrize("row_index", [0, 3])
+@pytest.mark.parametrize("field,invalid", [("q", 3), ("q", True), ("q_bits", 1), ("q_bits", True)])
+def test_each_row_modulus_is_bound_to_fixed_inputs(tmp_path, row_index, field, invalid):
+    card = json.loads(SOURCE.read_text(encoding="utf-8"))
+    card["rows"][row_index][field] = invalid
+    changed = tmp_path / "inconsistent-modulus.json"
+    changed.write_text(json.dumps(card), encoding="utf-8")
+    with pytest.raises(ValueError, match="row modulus"):
+        build_representation_report(changed)
+
+
 def test_runtime_summary_keeps_public_execution_and_security_separate():
     report = build_representation_report(SOURCE)
     summary = runtime_summary(report)

@@ -284,12 +284,12 @@
   "ciphertext_generations": 0,
   "private_entropy_bytes": 0,
   "environment": {
-    "python": "3.14.7",
-    "platform": "Linux-6.18.56-x86_64-with-glibc2.44",
-    "logical_cpus": 12
+    "python": "3.12.13",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "logical_cpus": 32
   },
   "source_sha256": {
-    "experiments/research/abb_rom/basis_representation_probe.py": "09de27b7f447a5a24a49e0248fa27d0bc8f79a27023fa158e1101e78db1e66ea",
+    "experiments/research/abb_rom/basis_representation_probe.py": "03cc0fc2c34b6ddcc7d99d5f62e90cc18bdb039f9717b7623cf645286bc6776f",
     "src/ibme/hibe/abb_rom/objects.py": "6ba821f920cf610d73639c771dce79da8928663b45918da99991b7feacee6bb2",
     "src/ibme/hibe/abb_rom/primitives.py": "51b1fe5e251f353344b6f1642a9176dcbc48a40ebda13029b1c069faa9d5231b",
     "src/ibme/lattice/chkp/basis.py": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d",
@@ -300,8 +300,8 @@
     "papers/2010_lattice_basis_delegation_agrawal.pdf": "f12232770a19c612e5f430f94a556d74232ac08d9882e34367b60b3bbf205d11"
   },
   "measurements": {
-    "total_seconds": 0.011242831009440124,
-    "process_max_rss_kib": 23784
+    "total_seconds": 0.03896404400000364,
+    "process_max_rss_kib": 18432
   },
   "security_claim": "none",
   "backend_admitted": false,

@@ -1,0 +1,309 @@
+{
+  "schema": "A/ABB-BASIS-REPRESENTATION/1",
+  "source": {
+    "path": "docs/research/team-a-delivery/2026-10-18-abb-noise-tradeoff/parameter-card.json",
+    "schema": "A/ABB-NOISE-TRADEOFF/1",
+    "sha256": "a605b03942f611c149467960be440d424e25424f6559909bda68f8ba7558f6cb",
+    "fixed_inputs": {
+      "q": "411376139330301510538742295639337626245683966408394965837151957",
+      "q_bits": 208,
+      "scaled_noise_width": 721,
+      "identity_bytes_per_level": 86,
+      "seed_bytes": 32,
+      "independently_encrypted_bits": 256,
+      "encapsulations": 1048576,
+      "correctness_error_bits": 128,
+      "comparison_threshold_bits": 128
+    }
+  },
+  "paper_contract": {
+    "source": "Agrawal-Boneh-Boyen, CRYPTO 2010, fixed local PDF",
+    "BasisDel_section_3_1": [
+      "multiply every parent basis vector by R",
+      "complete the resulting independent set to a full target-lattice basis",
+      "apply RandBasis and output the resulting full basis"
+    ],
+    "ROM_HIBE_section_4_1": "a delegated secret key is the full short basis and Decrypt calls SamplePre with it",
+    "representation_change_is_not_automatically_a_distribution_proof": true
+  },
+  "current_consumer_contract": {
+    "KernelBasis": "validates finite m-by-m integer rows and materializes an exact Sage matrix",
+    "BasisDel": "materializes R, parent basis, transformed basis, completion and randomized basis",
+    "MatrixFiniteGPV": "accepts tuple/list basis rows, materializes columns, and retains m-by-m exact projection weights",
+    "MatrixFiniteRandBasis": "retains candidate vectors and materializes the complete chosen matrix before ToBasis",
+    "PackedMatrix": "resident bytes only and not accepted as a KernelBasis/GPV basis"
+  },
+  "accounting_constants": {
+    "private_entry_wire_floor_bytes": 6,
+    "private_entry_wire_floor_reason": "sign byte + uint32 length + at least one magnitude byte",
+    "current_secret_blob_limit_bytes": 134217728,
+    "payload_SamplePre_calls": 256,
+    "illustrative_byte_rates": {
+      "1_GiB_per_second": 1073741824,
+      "10_GiB_per_second": 10737418240,
+      "100_GiB_per_second": 107374182400
+    },
+    "illustrative_entry_touch_rates": {
+      "1e9_entries_per_second": 1000000000,
+      "1e12_entries_per_second": 1000000000000
+    },
+    "rate_results_are_lower_bound_comparators_not_benchmarks": true
+  },
+  "rows": [
+    {
+      "candidate_id": "abb-rom-n9472-q208-chi721",
+      "n": 9472,
+      "q_bits": 208,
+      "basis_dimension": 15761408,
+      "complete_basis_entries": 248421982142464,
+      "current_private_codec_minimum_bytes": 1490531892854784,
+      "public_matrix_minimum_bytes": 3881593470976,
+      "raw_32_byte_ciphertext_minimum_bytes": 104907938304,
+      "fits_current_128_MiB_secret_blob": false,
+      "ideal_external_one_basis_read_seconds": {
+        "1_GiB_per_second": 1388166,
+        "10_GiB_per_second": 138817,
+        "100_GiB_per_second": 13882
+      },
+      "ideal_external_parent_read_plus_output_write_bytes": 2981063785709568,
+      "ideal_external_parent_read_plus_output_write_seconds": {
+        "1_GiB_per_second": 2776332,
+        "10_GiB_per_second": 277634,
+        "100_GiB_per_second": 27764
+      },
+      "current_one_SamplePre_coefficient_touch_floor": 496843964284928,
+      "current_256_SamplePre_coefficient_touch_floor": 127192054856941568,
+      "current_successful_RandBasis_coefficient_touch_floor": 7830960433432178458624,
+      "current_256_SamplePre_touch_floor_seconds": {
+        "1e9_entries_per_second": 127192055,
+        "1e12_entries_per_second": 127193
+      },
+      "current_RandBasis_touch_floor_seconds": {
+        "1e9_entries_per_second": 7830960433433,
+        "1e12_entries_per_second": 7830960434
+      },
+      "touch_floor_scope": "current exact GPV coefficient reads only; excludes geometry, vector updates, rational arithmetic, rank tests, ToBasis, allocation and failures",
+      "external_storage_only_runtime_candidate": false,
+      "external_storage_only_blockers": [
+        "entrywise externalization leaves the complete-basis entry count and current codec floor unchanged",
+        "current KernelBasis and GPV consumers require resident finite sequences",
+        "current GPV retains m-by-m rational projection weights",
+        "current successful RandBasis invokes at least m complete GPV samples",
+        "public matrix and ciphertext sizes are unaffected by private-basis storage"
+      ]
+    },
+    {
+      "candidate_id": "abb-rom-n9600-q208-chi721",
+      "n": 9600,
+      "q_bits": 208,
+      "basis_dimension": 15974400,
+      "complete_basis_entries": 255181455360000,
+      "current_private_codec_minimum_bytes": 1531088732160000,
+      "public_matrix_minimum_bytes": 3987210240000,
+      "raw_32_byte_ciphertext_minimum_bytes": 106325613056,
+      "fits_current_128_MiB_secret_blob": false,
+      "ideal_external_one_basis_read_seconds": {
+        "1_GiB_per_second": 1425938,
+        "10_GiB_per_second": 142594,
+        "100_GiB_per_second": 14260
+      },
+      "ideal_external_parent_read_plus_output_write_bytes": 3062177464320000,
+      "ideal_external_parent_read_plus_output_write_seconds": {
+        "1_GiB_per_second": 2851875,
+        "10_GiB_per_second": 285188,
+        "100_GiB_per_second": 28519
+      },
+      "current_one_SamplePre_coefficient_touch_floor": 510362910720000,
+      "current_256_SamplePre_coefficient_touch_floor": 130652905144320000,
+      "current_successful_RandBasis_coefficient_touch_floor": 8152741281005568000000,
+      "current_256_SamplePre_touch_floor_seconds": {
+        "1e9_entries_per_second": 130652906,
+        "1e12_entries_per_second": 130653
+      },
+      "current_RandBasis_touch_floor_seconds": {
+        "1e9_entries_per_second": 8152741281006,
+        "1e12_entries_per_second": 8152741282
+      },
+      "touch_floor_scope": "current exact GPV coefficient reads only; excludes geometry, vector updates, rational arithmetic, rank tests, ToBasis, allocation and failures",
+      "external_storage_only_runtime_candidate": false,
+      "external_storage_only_blockers": [
+        "entrywise externalization leaves the complete-basis entry count and current codec floor unchanged",
+        "current KernelBasis and GPV consumers require resident finite sequences",
+        "current GPV retains m-by-m rational projection weights",
+        "current successful RandBasis invokes at least m complete GPV samples",
+        "public matrix and ciphertext sizes are unaffected by private-basis storage"
+      ]
+    },
+    {
+      "candidate_id": "abb-rom-n9728-q208-chi721",
+      "n": 9728,
+      "q_bits": 208,
+      "basis_dimension": 16187392,
+      "complete_basis_entries": 262031659761664,
+      "current_private_codec_minimum_bytes": 1572189958569984,
+      "public_matrix_minimum_bytes": 4094244683776,
+      "raw_32_byte_ciphertext_minimum_bytes": 107743287808,
+      "fits_current_128_MiB_secret_blob": false,
+      "ideal_external_one_basis_read_seconds": {
+        "1_GiB_per_second": 1464216,
+        "10_GiB_per_second": 146422,
+        "100_GiB_per_second": 14643
+      },
+      "ideal_external_parent_read_plus_output_write_bytes": 3144379917139968,
+      "ideal_external_parent_read_plus_output_write_seconds": {
+        "1_GiB_per_second": 2928432,
+        "10_GiB_per_second": 292844,
+        "100_GiB_per_second": 29285
+      },
+      "current_one_SamplePre_coefficient_touch_floor": 524063319523328,
+      "current_256_SamplePre_coefficient_touch_floor": 134160209797971968,
+      "current_successful_RandBasis_coefficient_touch_floor": 8483218385945363480576,
+      "current_256_SamplePre_touch_floor_seconds": {
+        "1e9_entries_per_second": 134160210,
+        "1e12_entries_per_second": 134161
+      },
+      "current_RandBasis_touch_floor_seconds": {
+        "1e9_entries_per_second": 8483218385946,
+        "1e12_entries_per_second": 8483218386
+      },
+      "touch_floor_scope": "current exact GPV coefficient reads only; excludes geometry, vector updates, rational arithmetic, rank tests, ToBasis, allocation and failures",
+      "external_storage_only_runtime_candidate": false,
+      "external_storage_only_blockers": [
+        "entrywise externalization leaves the complete-basis entry count and current codec floor unchanged",
+        "current KernelBasis and GPV consumers require resident finite sequences",
+        "current GPV retains m-by-m rational projection weights",
+        "current successful RandBasis invokes at least m complete GPV samples",
+        "public matrix and ciphertext sizes are unaffected by private-basis storage"
+      ]
+    },
+    {
+      "candidate_id": "abb-rom-n10240-q208-chi721",
+      "n": 10240,
+      "q_bits": 208,
+      "basis_dimension": 17039360,
+      "complete_basis_entries": 290339789209600,
+      "current_private_codec_minimum_bytes": 1742038735257600,
+      "public_matrix_minimum_bytes": 4536559206400,
+      "raw_32_byte_ciphertext_minimum_bytes": 113413986816,
+      "fits_current_128_MiB_secret_blob": false,
+      "ideal_external_one_basis_read_seconds": {
+        "1_GiB_per_second": 1622400,
+        "10_GiB_per_second": 162240,
+        "100_GiB_per_second": 16224
+      },
+      "ideal_external_parent_read_plus_output_write_bytes": 3484077470515200,
+      "ideal_external_parent_read_plus_output_write_seconds": {
+        "1_GiB_per_second": 3244800,
+        "10_GiB_per_second": 324480,
+        "100_GiB_per_second": 32448
+      },
+      "current_one_SamplePre_coefficient_touch_floor": 580679578419200,
+      "current_256_SamplePre_coefficient_touch_floor": 148653972075315200,
+      "current_successful_RandBasis_coefficient_touch_floor": 9894408381332979712000,
+      "current_256_SamplePre_touch_floor_seconds": {
+        "1e9_entries_per_second": 148653973,
+        "1e12_entries_per_second": 148654
+      },
+      "current_RandBasis_touch_floor_seconds": {
+        "1e9_entries_per_second": 9894408381333,
+        "1e12_entries_per_second": 9894408382
+      },
+      "touch_floor_scope": "current exact GPV coefficient reads only; excludes geometry, vector updates, rational arithmetic, rank tests, ToBasis, allocation and failures",
+      "external_storage_only_runtime_candidate": false,
+      "external_storage_only_blockers": [
+        "entrywise externalization leaves the complete-basis entry count and current codec floor unchanged",
+        "current KernelBasis and GPV consumers require resident finite sequences",
+        "current GPV retains m-by-m rational projection weights",
+        "current successful RandBasis invokes at least m complete GPV samples",
+        "public matrix and ciphertext sizes are unaffected by private-basis storage"
+      ]
+    }
+  ],
+  "representation_options": [
+    {
+      "id": "current-tuple-sage-full-basis",
+      "preserves_current_ABB_semantics": true,
+      "current_consumer_compatible": true,
+      "reduces_complete_basis_entries": false,
+      "runtime_candidate": false
+    },
+    {
+      "id": "resident-packed-matrix-v1",
+      "implementation": "src/ibme/lattice/matrix_sampling/packed.py",
+      "backing": "resident immutable bytes with a bounded native block cache; not external storage",
+      "declared_limits": {
+        "max_dimension": 1048576,
+        "max_entries": 16777216,
+        "max_payload_bytes": 536870912,
+        "max_coordinate_bits": 256
+      },
+      "preserves_entry_values_within_its_profile": true,
+      "current_consumer_compatible": false,
+      "incompatibilities": [
+        "target dimension exceeds the packed profile dimension limit",
+        "target entries exceed the packed profile entry and payload limits",
+        "ABB private coordinates allow up to 4096 bits",
+        "KernelBasis and MatrixFiniteGPV require tuple/list rows"
+      ],
+      "runtime_candidate": false
+    },
+    {
+      "id": "hypothetical-exact-external-chunks",
+      "preserves_entrywise_full_basis": true,
+      "current_consumer_compatible": false,
+      "reduces_complete_basis_entries": false,
+      "reduces_public_matrix_or_ciphertext": false,
+      "required_rewrites": [
+        "streaming complete-kernel validation without dense determinant/materialization",
+        "out-of-core exact Gram-Schmidt/projection-weight provider",
+        "streaming GPV residual updates",
+        "out-of-core ToBasis/HNF and RandBasis independence/postprocessing"
+      ],
+      "unmet_security_obligation": "show that rewritten BasisDel/RandBasis output and SamplePre retain the paper and finite-adaptation distributions",
+      "runtime_candidate": false
+    },
+    {
+      "id": "seed-only-replay",
+      "preserves_current_ABB_semantics": false,
+      "reason": "the RandBasis tape alone cannot reproduce samples without the complete input trapdoor; retaining an ancestor trapdoor in a delegated key breaks the key boundary, and replacing true coins by a PRG adds an unanalysed assumption",
+      "runtime_candidate": false
+    },
+    {
+      "id": "MP12-or-gadget-trapdoor-substitution",
+      "preserves_current_ABB_semantics": false,
+      "changes_algorithm": true,
+      "reason": "compact gadget trapdoors are a separately named implementation route, not ABB BasisDel",
+      "runtime_candidate": false
+    }
+  ],
+  "complete_runtime_candidates": [],
+  "decision": "do not implement external backing alone: it cannot make any tested ABB target row runnable under the current complete-basis consumers",
+  "next_required_breakthrough": "a cited ABB-compatible algorithm that avoids expanding the randomized full basis in BasisDel and SamplePre, with a new distribution/security mapping; none exists in this repository",
+  "not_an_impossibility_theorem": true,
+  "root_or_key_generations": 0,
+  "ciphertext_generations": 0,
+  "private_entropy_bytes": 0,
+  "environment": {
+    "python": "3.14.7",
+    "platform": "Linux-6.18.56-x86_64-with-glibc2.44",
+    "logical_cpus": 12
+  },
+  "source_sha256": {
+    "experiments/research/abb_rom/basis_representation_probe.py": "09de27b7f447a5a24a49e0248fa27d0bc8f79a27023fa158e1101e78db1e66ea",
+    "src/ibme/hibe/abb_rom/objects.py": "6ba821f920cf610d73639c771dce79da8928663b45918da99991b7feacee6bb2",
+    "src/ibme/hibe/abb_rom/primitives.py": "51b1fe5e251f353344b6f1642a9176dcbc48a40ebda13029b1c069faa9d5231b",
+    "src/ibme/lattice/chkp/basis.py": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d",
+    "src/ibme/lattice/matrix_sampling/basis.py": "3cc32bccfb51c5a4af5950212c5e70eac537cd786a30e9a4ecc2bf7fb512cc10",
+    "src/ibme/lattice/matrix_sampling/gpv.py": "9b699e1fc2f0b2a2e84c0b9b37bcd290f1af9427d11c39a420ff9b0b91e220c0",
+    "src/ibme/lattice/matrix_sampling/randbasis.py": "5a5425c35d54d639f2360bee058b570dba2a94e74c09f7b48d2927c17886c93d",
+    "src/ibme/lattice/matrix_sampling/packed.py": "7e715add92b5216887c3fa92b1d59f7d17e7ea7fb9d72cde132868e231b4132d",
+    "papers/2010_lattice_basis_delegation_agrawal.pdf": "f12232770a19c612e5f430f94a556d74232ac08d9882e34367b60b3bbf205d11"
+  },
+  "measurements": {
+    "total_seconds": 0.011242831009440124,
+    "process_max_rss_kib": 23784
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

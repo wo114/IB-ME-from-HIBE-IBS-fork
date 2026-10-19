@@ -14,6 +14,7 @@ from experiments.research.abb_rom.noise_tradeoff_probe import (
     build_finite_noise_certificate,
     build_tradeoff_report,
     finalize_comparison,
+    REQUIRED_ESTIMATES,
 )
 from experiments.research.abb_rom.scaled_parameter_screen import (
     abb_projection,
@@ -106,4 +107,31 @@ def test_comparison_gate_fails_closed_on_unknown_and_never_grants_security():
     assert report["rows"][1]["comparison_model_gate"]
     assert report["comparison_model_candidates"] == [report["rows"][1]["candidate_id"]]
     assert report["complete_runtime_candidates"] == []
+    assert report["secure_candidate_selected"] is False
+
+
+@pytest.mark.parametrize("model", REQUIRED_ESTIMATES)
+@pytest.mark.parametrize("invalid", [float("inf"), float("-inf"), float("nan"), True, 10**1000],
+                         ids=["positive-infinity", "negative-infinity", "nan", "bool", "float-overflow"])
+def test_comparison_rejects_invalid_numeric_estimates_in_every_model(model, invalid):
+    report = build_tradeoff_report((9600,), build_cdf=False)
+    row = report["rows"][0]
+    row["finite_noise_table_built"] = True
+    estimates = {
+        name: {"status": "finite_estimate", "rop_log2": COMPARISON_BITS}
+        for name in REQUIRED_ESTIMATES
+    }
+    row["estimator_results"] = {"ciphertext_lwe": estimates}
+    finalize_comparison(report)
+    assert row["comparison_model_gate"] is True
+
+    estimates[model]["rop_log2"] = invalid
+    finalize_comparison(report)
+    assert row["comparison_estimates_complete"] is False
+    assert row["comparison_minimum_log2_rop"] is None
+    assert row["comparison_model_gate"] is False
+    assert row["runtime_admitted"] is False
+    assert report["comparison_model_candidates"] == []
+    assert report["smallest_tested_comparison_candidate"] is None
+    assert report["largest_tested_comparison_margin_candidate"] is None
     assert report["secure_candidate_selected"] is False
