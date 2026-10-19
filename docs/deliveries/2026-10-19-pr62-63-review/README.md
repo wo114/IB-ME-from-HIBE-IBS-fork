@@ -18,6 +18,8 @@
 
 PR62修正提交`a3030ac`／`aa8dd3e`已通过维护者编辑权限写回原fork分支；PR63修正为`b9a06b1`。集成后的发布绑定修正为`a620b39`。上述不包含新的基础证明或参数扫描。
 
+后续C2实跑还核对了约20 MB接收密钥：PR60已将Hybrid单对象／整个包装的密钥预算改为64 MiB／64 MiB+1 KiB，共享传输契约仍写旧16 MiB／32 MiB。现同步该文档，并写明密文另有20 MiB+4096 B预解析总长限制；运行代码、默认载荷和胶囊预算不改。
+
 ## 本地复核
 
 WSL统一使用`~/miniconda3/envs/sage/bin/python`，Sage10.9／Python3.13.14。关闭pytest自动插件，使用`PYTHONPATH=src:.`；原生LATTE与Sageloli库已明确配置。
