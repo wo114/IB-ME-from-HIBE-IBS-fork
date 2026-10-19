@@ -1,0 +1,31 @@
+{
+  "schema": "IBME/PR66-REPORT-REVISION/1",
+  "source_commit": "b34257654684592d446eca59109abe707c5e49a1",
+  "decision": "hold_for_page_review",
+  "fresh_cryptographic_runs": 0,
+  "fresh_security_estimates": 0,
+  "document_checks": 197,
+  "source_tests": 5,
+  "source_test_seconds": 0.76,
+  "word_page_review_completed": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "source_sha256": {
+    "ci/suites.json": "c98ce982ba0ea14da58609c459502fd7e19ae927a4168a1693f9c52a58614cf9",
+    "tests/test_report_fooli_bindings.py": "1ac938961aca3021743c0573fedc8adf9a967606c9968329bc006169721b1d45",
+    "docs/reports/2026-10-19-research-draft/README.md": "a1f88b0292b82978edfbb446edf351157a62113697e1fa46482bdc27db54046a",
+    "docs/reports/2026-10-19-research-draft/build_report.py": "c0389bfac1837119499f70e013b4931e0246b1cb2ad30165c271a80bbbc5e360",
+    "docs/reports/2026-10-19-research-draft/check_report.py": "3573f55611b2cf8df13b1bd01ad82dcf8363e6a365c2db93b8a43f237de1388b",
+    "docs/reports/2026-10-19-research-draft/report-facts.json": "2a549729e86206576ed5f10a637acfe15ee5b4030e21520d4efe4f3f26782f70",
+    "docs/reports/2026-10-19-research-draft/validation.json": "8c8e05f0ecc34b4ef9bf13f6a27a576ebc602a5c284b3f31ad1d150ae53aa115",
+    "docs/reports/2026-10-19-research-draft/研究报告初稿.md": "19d4f042ac42ac98738f0f7bcffc2fb67fd541a676ec79572431a78856807d32",
+    "docs/reports/2026-10-19-research-draft/研究报告初稿.docx": "b3acb27cf99d874fba72bcadd90a0d814ecda182d082b56cf6774c363edf7588"
+  },
+  "artifacts": {
+    "README.md": "7a965a254a0e796386277ffcccdf136672c9bfad1d66b77e44b6ae07de5bbe34",
+    "render.json": "4eccf8d55389bb2443d883f6d5a3d418514e1d15706a3d2fdb1d5f22b2e9216b",
+    "source-binding-tests.xml": "77d00a8cae35d00065f2f4a88635b8956e474bbfdaad92ff75d6dc4d5745f3c7",
+    "verify.py": "5035a1e43bb378d78aee63252c4cb19ada994dbbbd7de9485a7eb82028c491de"
+  }
+}
