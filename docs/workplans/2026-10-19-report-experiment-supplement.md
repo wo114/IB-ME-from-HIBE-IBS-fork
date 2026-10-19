@@ -4,8 +4,8 @@
 
 目标：把报告需要的完整操作主表、主展示消息长度实测，以及冻结配置的安装验收补成可复核材料。沿用已有完整系统基准和 CLI；不默认给慢组合做三根重复基准，不把不同安全目标混排。
 
-- [ ] 在 `experiments/research/report_experiment_probe.py` 增加专用于交付的 CLI 驱动。完整 Suite 转显式 CLI 参数并逐字段回核；每命令新进程，实际系统 CSPRNG，无外层重试，超时保留占用目录。公开收据只导出输入长度/哈希、尺寸、计时/RSS、状态一致性、熵计数、源码来源和结果。
-- [ ] 用 `tests/test_report_experiment_probe.py` 先验证失败/异常/熵违规不能记成功、Suite 预算不会降回默认、容量输入严格有界、provider 变化或仓库来源混入安装记录会被拒绝。单元测试不运行目标参数生成。
+- [x] 在 `experiments/research/report_experiment_probe.py` 增加专用于交付的 CLI 驱动。完整 Suite 转显式 CLI 参数并逐字段回核；每命令新进程，实际系统 CSPRNG，无外层重试，超时保留占用目录。公开收据只导出输入长度/哈希、尺寸、计时/RSS、状态一致性、熵计数、源码来源和结果。
+- [x] 用 `tests/test_report_experiment_probe.py` 先验证失败/异常/熵违规不能记成功、Suite 预算不会降回默认、容量输入严格有界、provider 变化或仓库来源混入安装记录会被拒绝。单元测试不运行目标参数生成；Windows 11 项通过，已登记 portable framework CI。
 - [ ] 固定工具提交，构建 wheel，在仓库外隔离目录安装。A/B 补 0 B、32 B、1 KiB、实际容量边界及边界+1；新进程恢复与三种身份错配、wire 负例分开记账。B 精确使用 128 KiB Hybrid 预算。C 仅补必要长度与安装恢复、有效外层/无效内层签名检查；每次真实 Lai 委派计数，不声称零熵或叶缓存，不默认全套重复长测。
 - [ ] 顺序复用 `full_system_benchmark` 对 A/B 在同机、同源码、同线程/路径、64 B 身份与 32 B 消息各取三独立根、每根三对 warm 及三次恢复解密。A/B 不并发计时。C 保留原单根收据的独立样本口径；不与上述样本混合求排名。
 - [ ] 在 `docs/deliveries/2026-10-19-report-experiment-supplement/` 归档主表、原始公开收据、输入/环境/版本、wheel/provider 绑定与只读校验入口。新实验和复用数据分别注明，更新唯一当前进度入口；所有修改提交并推送队长仓库 PR。
