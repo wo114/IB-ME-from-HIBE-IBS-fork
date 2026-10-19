@@ -1,0 +1,33 @@
+{
+  "schema": "IBME/PR67-NUMERIC-REVIEW-FOLLOWUP/1",
+  "source_commit": "1e735e8d13cfce43a04adc3f9d0430ad47b7e6db",
+  "acceptance_scope": "isolated_numeric_research",
+  "wang_parameter_task_complete": false,
+  "fresh_n512_runs": 0,
+  "fresh_security_estimates": 0,
+  "latest_test_identities": 23,
+  "new_native_tests": 19,
+  "test_seconds": 7.68,
+  "unchanged_from_original": [
+    "experiments/research/wang_pw_numeric/gpv_kernel.c",
+    "experiments/research/wang_pw_numeric/evidence/n512-s0-2.json",
+    "experiments/research/wang_pw_numeric/evidence/n512-s0-4-short.json"
+  ],
+  "source_sha256": {
+    "experiments/research/wang_pw_numeric/gpv_kernel.py": "4d85f38e4b26b6b2b4c0f257bac2e741df8754ac480cb4317c2cc69c4137dabd",
+    "experiments/research/wang_pw_numeric/gpv_kernel.c": "01c57f29f8e28b3745663866847cf94bd901bc18ceb9b4780549b249741c3156",
+    "experiments/research/wang_pw_numeric/numeric_gpv_np_mp.py": "4be9bdff98adb73df028b517262ad1b075d88ccdcc1671abb4b8760f6c03ee54",
+    "experiments/research/wang_pw_numeric/root_basis_numpy.py": "319d3565789a4096e0ea9bc58872b8345a823f3a85c1affbea84fa0ec8242e5b",
+    "experiments/research/wang_pw_numeric/README.md": "85d54419ccbbbbf6baaeff8b7d5297f9df38da02fb9848682a6d9dbbe01a2eca",
+    "tests/test_wang_pw_numeric_native.py": "0f32287e7b47aaddd95fc07c05e79ed94e929b6d31e9fe9a037fe52af0e59af1",
+    "ci/suites.json": "179b6da1d5a444308539aa2fb91c6f5f610e880bd4c23e686ce7a8dbfce73f2d"
+  },
+  "artifacts": {
+    "pr67-fixed.xml": "bc03a5048be164f5012e74e5b7c9566258e9ca334f217376397bbaef6833e33d",
+    "README.md": "b443aaed65503267f54eb86b5573c0cf14ee35b7590183d399af9afd27563e9e",
+    "verify.py": "a7f5f8bf5d9e4cea73e2a968483488b8d7018b5170085739e0bdcfdc9bd8b434"
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
