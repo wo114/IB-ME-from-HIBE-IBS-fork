@@ -1,6 +1,14 @@
 {
   "schema": "IBME-REPORT-READINESS-AUDIT/1",
   "date": "2026-10-19",
+  "user_correction_2026_10_20": {
+    "uniform_128_bit_target_required": false,
+    "parameters_policy": "keep each representative's actual parameters, paper target and limitations; no PARAM-I replacement merely to equalize targets",
+    "primary_report_source": "LaTeX",
+    "final_submission_format": "PDF",
+    "followup": "docs/deliveries/2026-10-20-pr66-68-reception/README.md",
+    "historical_execution_receipts_unchanged": true
+  },
   "status": "assessment_complete_project_gaps_open",
   "repository": "https://github.com/youzi258/IB-ME-from-HIBE-IBS",
   "git": {

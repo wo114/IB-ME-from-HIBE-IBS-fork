@@ -1,0 +1,136 @@
+{
+  "schema": "IBME-PR66-68-RECEPTION/1",
+  "date": "2026-10-20",
+  "recorded_at_utc": "2026-10-19T17:07:52.327135+00:00",
+  "decision": "accept_corrected_content_and_selection_with_latex_pdf_format",
+  "final_competition_report_complete": false,
+  "fixed_upstream_main": "3b16cc1",
+  "local_integration_parent": "709b8e8",
+  "pr68": {
+    "head": "0d218d9e57b36a27406eecd60c533d0e72e52e7e",
+    "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/68",
+    "merged_before_this_run": true,
+    "merge_commit": "3b16cc1",
+    "scope": "three representative selection, fixed suites and open acceptance limits"
+  },
+  "pr66": {
+    "head": "db086c70aa04764c663e7d7039b59767cc12fe94",
+    "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/66",
+    "content_review": "accepted",
+    "old_word_gate": "historical, not passed",
+    "current_delivery_format": "LaTeX source -> PDF",
+    "remote_merge_record": "See Git ancestry and GitHub PR state after publication; this pre-commit receipt does not assert a future remote merge."
+  },
+  "user_decisions": {
+    "uniform_128_bit_requirement": false,
+    "primary_editable_source": "LaTeX",
+    "deliverable_format": "PDF",
+    "theory": "cite original theorems and retain explicitly stated project working assumptions; no new foundational proofs"
+  },
+  "representatives": [
+    {
+      "id": "A",
+      "suite": "LATTE-3 + BNN/ML-DSA-44",
+      "hybrid_payload_bytes": 65536,
+      "application_capacity_bytes": 59191,
+      "suite_digest": "10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346"
+    },
+    {
+      "id": "B",
+      "suite": "LATTE-3 + SRGG PARAM-I compact",
+      "hybrid_payload_bytes": 131072,
+      "application_capacity_bytes": 65364,
+      "suite_digest": "37a0d413d5daed2c407c03b4b4f1a1fe4b6454e786e9cea3dfe8676a60ce9c97"
+    },
+    {
+      "id": "C",
+      "suite": "Lai C2 + Sageloli RSIS v3 PARAM-I",
+      "hybrid_payload_bytes": 8388608,
+      "application_capacity_bytes": 3924,
+      "suite_digest": "9a3c66cfd5073721bf135466197522352010ecbc6a10a6794c710e9b10423c82"
+    }
+  ],
+  "original_experiment_inputs": {
+    "application_message_bytes": 32,
+    "external_identity_bytes": 64,
+    "inner_identity_bytes": 86,
+    "seed_bytes": 32,
+    "repetitions": "preserved per original evidence; C single shared HIBE root is not a repeated benchmark"
+  },
+  "verification": {
+    "selection_checks": 59,
+    "selection_negative_controls_rejected": 5,
+    "pr66_document_checks": 197,
+    "portable_tests": {
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0,
+      "source_binding_tests_included": 5
+    },
+    "pr66_historical_word_diagnostic_preserved": true,
+    "migration_tables": 11,
+    "migration_table_cells": 281,
+    "figures": 6,
+    "chapters": 7,
+    "appendices": 2,
+    "references": 14,
+    "pdf_pages_reviewed": 26,
+    "remote_ci_per_fixed_head": {
+      "success": 46,
+      "skipped_manual_strict_security": 2,
+      "event_groups": 2
+    },
+    "new_cryptographic_experiments": 0,
+    "sage_used": false
+  },
+  "security": {
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "actual_parameters_changed": false,
+    "cryptographic_implementation_changed": false,
+    "new_security_estimates": false,
+    "functional_and_document_checks_are_not_security_proofs": true
+  },
+  "open_items": [
+    "Exact B 128 KiB installed CLI/wheel validation.",
+    "C installed CLI/wheel and inner forgery with valid outer authentication.",
+    "Necessary message/identity boundary validation and budgeted repeated measurements.",
+    "Current body and figure/table updates for selected representatives.",
+    "Source/license consolidation and competition-specific template/anonymity."
+  ],
+  "modified_files": [
+    "docs/PROJECT_STATUS.md",
+    "docs/reports/2026-10-19-research-draft/README.md",
+    "docs/reports/2026-10-19-research-draft/build_pdf.py",
+    "docs/reports/2026-10-19-research-draft/研究报告初稿.tex",
+    "docs/reports/2026-10-19-research-draft/研究报告初稿.pdf",
+    "docs/research/2026-10-19-report-readiness/README.md",
+    "docs/research/2026-10-19-report-readiness/audit.json",
+    "docs/deliveries/2026-10-20-pr66-68-reception/README.md",
+    "docs/deliveries/2026-10-20-pr66-68-reception/latex-content.json",
+    "docs/deliveries/2026-10-20-pr66-68-reception/pdf-qa.json",
+    "docs/deliveries/2026-10-20-pr66-68-reception/portable.xml",
+    "docs/deliveries/2026-10-20-pr66-68-reception/pr66-history.json",
+    "docs/deliveries/2026-10-20-pr66-68-reception/pr66-structural.json",
+    "docs/deliveries/2026-10-20-pr66-68-reception/remote-checks.json",
+    "docs/deliveries/2026-10-20-pr66-68-reception/selection.json",
+    "docs/deliveries/2026-10-20-pr66-68-reception/reception.json"
+  ],
+  "file_sha256": {
+    "docs/reports/2026-10-19-research-draft/build_pdf.py": "1415eb2c3582bdf1298ab599430ebc3ccdd3af83f57d66cba1316bc61d192663",
+    "docs/reports/2026-10-19-research-draft/研究报告初稿.tex": "8e849bfbfcc3a43490a93250c623d4e946baadb2360204e201c0c0de76827f8e",
+    "docs/reports/2026-10-19-research-draft/研究报告初稿.pdf": "cd4547b3e0fb976eb91704743d17c11ae6ba389341249bc75813ad22daa525fd",
+    "docs/research/2026-10-19-report-readiness/audit.json": "aae4c1e58107114461b7d9e273e2d18de6608a16e7133687d5d49236ffd03dab",
+    "docs/deliveries/2026-10-20-pr66-68-reception/latex-content.json": "c9325f43c43589bb538e24bd4a38eb8c0fb0f116604e5e06e3322b49965e8502",
+    "docs/deliveries/2026-10-20-pr66-68-reception/pdf-qa.json": "556801abd87d4bafd1f821f645651edc5832c2c938a47f4393a4a706338c0c1a",
+    "docs/deliveries/2026-10-20-pr66-68-reception/portable.xml": "f53ebdbbc558ddabe2100a59ab83dfc3d946b319ceca0519355393df1f451ebc",
+    "docs/deliveries/2026-10-20-pr66-68-reception/pr66-history.json": "9832eeafb925eefe8bf9318414b4ff86f0f1062570992e9fd4203c7d3cbb953a",
+    "docs/deliveries/2026-10-20-pr66-68-reception/pr66-structural.json": "8c8e05f0ecc34b4ef9bf13f6a27a576ebc602a5c284b3f31ad1d150ae53aa115",
+    "docs/deliveries/2026-10-20-pr66-68-reception/remote-checks.json": "0c7d85bcf144d40207b6fe05bd7590c7014af2c54c59a079c6ae3d504b28e0fd",
+    "docs/deliveries/2026-10-20-pr66-68-reception/selection.json": "999c3d60f6484f16ae329863e81bcd0d354e2a3e1e999ac37cf00897e64ef1db"
+  },
+  "hash_exclusions": [
+    "README and PROJECT_STATUS are live prose; reception.json cannot hash itself."
+  ]
+}
