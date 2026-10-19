@@ -1,6 +1,6 @@
 """Verify the frozen source-Schur package against the merged main checkout.
 
-Two unrelated main-branch files changed after the package was frozen. Their
+Three unrelated main-branch files changed after the package was frozen. Their
 original bytes are retained here, and every other manifest entry must match
 the current checkout exactly. This does not extend the old research claim.
 """
@@ -24,8 +24,8 @@ CHANGED = {
         "snapshot": "snapshots/ci-suites-7353770.json",
         "old_bytes": 12074,
         "old_sha256": "a494aa2ef60fa9dd4238ad14eda24b4ce7d61e10ec09f1d840c816ee67b81587",
-        "current_bytes": 12338,
-        "current_sha256": "2619f5173738ef96a1ebefc554102827c07da1d17fd4a86a5844b3d31d4050d6",
+        "current_bytes": 12493,
+        "current_sha256": "2ae1556512a95d52b97940d9fb712c5e946375b1a19c948ad302eb0c85faaeeb",
     },
     "src/ibme/lattice/matrix_sampling/mp12_extension.py": {
         "snapshot": "snapshots/mp12-extension-7353770.py",
@@ -34,11 +34,19 @@ CHANGED = {
         "current_bytes": 5910,
         "current_sha256": "0bd6b2fc8e7c9cf46ee76530d302ab884658d0af39dedc97bbec55270f27d13f",
     },
+    "src/ibme/lattice/matrix_sampling/prime_gadget.py": {
+        "snapshot": "snapshots/prime-gadget-frozen.py",
+        "old_bytes": 5536,
+        "old_sha256": "f936c51e407c11f7d0f13c102f03a77fdebab900b449496c806f9cb156b90311",
+        "current_bytes": 6321,
+        "current_sha256": "c98d894655f69b7713bb0b8f576a9a5431277e152c799aa1ac5b799c7d7bbabf",
+    },
 }
 SELF_FILES = {
     "README.md", "validation.json", "verify_publication.py", "verify_all_publication.py",
     "snapshots/ci-suites-7353770.json",
     "snapshots/mp12-extension-7353770.py",
+    "snapshots/prime-gadget-frozen.py",
 }
 
 
@@ -104,7 +112,7 @@ def verify() -> dict:
         require(relative in entries and expected == entries[relative]["sha256"],
                 "selected source/manifest mismatch: " + relative)
 
-    # Execute the original verifier with only the two documented original
+    # Execute the original verifier with only the three documented original
     # files substituted. All other package and source checks remain live.
     spec = spec_from_file_location("srgg_frozen_source_schur_verifier", SOURCE / "verify_delivery.py")
     require(spec is not None and spec.loader is not None, "original verifier import")
@@ -132,7 +140,7 @@ def verify() -> dict:
         "unchanged_current_entries": len(entries) - len(CHANGED),
         "upstream_changed_entries": len(CHANGED),
         "selected_source_entries": len(selected),
-        "historical_verifier": "verified with two pinned original-source snapshots",
+        "historical_verifier": "verified with three pinned original-source snapshots",
         "security_claim": "none",
         "backend_admitted": False,
         "parameters_are_formal": False,

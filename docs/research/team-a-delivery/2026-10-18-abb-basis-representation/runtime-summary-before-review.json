@@ -1,0 +1,24 @@
+{
+  "schema": "A/ABB-BASIS-REPRESENTATION-RUNTIME/1",
+  "source_schema": "A/ABB-BASIS-REPRESENTATION/1",
+  "measurements": {
+    "total_seconds": 0.011242831009440124,
+    "process_max_rss_kib": 23784
+  },
+  "environment": {
+    "python": "3.14.7",
+    "platform": "Linux-6.18.56-x86_64-with-glibc2.44",
+    "logical_cpus": 12
+  },
+  "row_count": 4,
+  "repetitions": 1,
+  "rng": "none; public JSON validation and exact integer accounting only",
+  "root_or_key_generations": 0,
+  "ciphertext_generations": 0,
+  "private_entropy_bytes": 0,
+  "complete_runtime_candidates": [],
+  "decision": "do not implement external backing alone: it cannot make any tested ABB target row runnable under the current complete-basis consumers",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

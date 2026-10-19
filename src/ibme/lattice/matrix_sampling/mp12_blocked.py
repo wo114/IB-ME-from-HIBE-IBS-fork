@@ -17,10 +17,11 @@ from ibme.lattice.chkp.entropy import CheckedEntropy
 from ibme.lattice.chkp.joint_parameters import smoothing_factor
 from experiments.research.gaussian_reference import SamplingAbort, draw_uniform_integer, interval_bounds
 from .scalar import MatrixFiniteOptions, MatrixFiniteGaussian, exact_integer
-from .prime_gadget import PrimeGadgetSampler, _modulus
+from .prime_gadget import PrimeGadgetSampler, radix_geometry
 from .packed import PackedMatrix
 
 VERSION = "IBME/MP12-BLOCKED-3M/1"
+RADIX_VERSION = "IBME/MP12-RADIX-BLOCKED-3M/1"
 
 
 def _target(values, n, q):
@@ -29,18 +30,20 @@ def _target(values, n, q):
     return tuple(exact_integer(x, "syndrome", maximum=q-1) for x in values)
 
 
-def output_width(w, bound, epsilon_bits=192):
+def output_width(w, bound, epsilon_bits=192, *, radix_bits=1):
+    bits = exact_integer(radix_bits, "power-of-two radix bits", minimum=1, maximum=32)
+    gadget_gs = (1 << (2*bits))+1
     r = 4*smoothing_factor(w, epsilon_bits)
-    return max(7*r*(1+bound), 10*r*(w+bound))
+    return max((gadget_gs+2)*r*(1+bound), 2*gadget_gs*r*(w+bound))
 
 
 class PackedTrapdoor:
     """Independent [Abar | G-Abar*R] key; no ancestor secret is retained."""
 
-    def __init__(self, n, q, public, r, bound, *, column_norm_bound=None):
+    def __init__(self, n, q, public, r, bound, *, column_norm_bound=None, radix_bits=1):
         self.n = exact_integer(n, "blocked n", minimum=2, maximum=4096)
-        self.q = _modulus(q)
-        self.w = n*(q-1).bit_length()
+        self.q, self.radix_bits, self.base, self.k = radix_geometry(q, radix_bits)
+        self.w = n*self.k
         self.bound = exact_integer(bound, "declared R norm", maximum=2**256-1)
         if not isinstance(public, PackedMatrix) or not isinstance(r, PackedMatrix):
             raise ValueError("packed public and private matrices required")
@@ -53,25 +56,25 @@ class PackedTrapdoor:
         if column_norm_bound is not None and any(sum(x*x for x in col) > column_norm_bound for col in r.columns()):
             raise ValueError("blocked delegated column norm")
         self.public, self.r = public, r
-        k = (q-1).bit_length()
+        k = self.k
         # Check A*[R;I]=G using n*dimension public storage, no large inverse.
         for j, col in enumerate(r.columns()):
             values = col+tuple(int(i == j) for i in range(self.w))
             actual = public.multiply(values)
-            if any(int(actual[i]) % q != int(i == j//k)*2**(j % k) for i in range(n)):
+            if any(int(actual[i]) % q != int(i == j//k)*self.base**(j % k) for i in range(n)):
                 raise ValueError("blocked trapdoor equation")
 
     def __repr__(self):
         return f"PackedTrapdoor(n={self.n}, private_values_hidden=True)"
 
 
-def generate_root(n, q, root_r_squared, *, options=None, rng=None, **packing):
+def generate_root(n, q, root_r_squared, *, options=None, rng=None, radix_bits=1, **packing):
     n = exact_integer(n, "blocked n", minimum=2, maximum=4096)
-    q = _modulus(q)
+    q, bits, base, k = radix_geometry(q, radix_bits)
     root_r_squared = exact_integer(root_r_squared, "root width", minimum=4*n, maximum=2**80)
     opts = MatrixFiniteOptions() if options is None else options
     scalar = MatrixFiniteGaussian(root_r_squared, root_r_squared, options=opts)
-    w = n*(q-1).bit_length()
+    w = n*k
     # Check allocations and whole-operation entropy before the first read.
     if 2*n*w > 2**24:
         raise ValueError("blocked root entry budget")
@@ -85,14 +88,13 @@ def generate_root(n, q, root_r_squared, *, options=None, rng=None, **packing):
     r = PackedMatrix.from_columns(2*n, w, scalar.radius, True,
         (tuple(scalar.sample(root_r_squared, rng=source) for _ in range(2*n)) for _ in range(w)), **packing)
     a = PackedMatrix.from_rows(abar, q-1, False, **packing)
-    k = (q-1).bit_length()
     def columns():
         yield from a.columns()
         for j, col in enumerate(r.columns()):
             values = a.multiply(col)
-            yield tuple((int(i == j//k)*2**(j % k)-int(values[i])) % q for i in range(n))
+            yield tuple((int(i == j//k)*base**(j % k)-int(values[i])) % q for i in range(n))
     public = PackedMatrix.from_columns(n, 2*n+w, q-1, False, columns(), **packing)
-    return PackedTrapdoor(n, q, public, r, 2*n*w*root_r_squared)
+    return PackedTrapdoor(n, q, public, r, 2*n*w*root_r_squared, radix_bits=bits)
 
 
 class BlockedPreimageSampler:
@@ -112,11 +114,11 @@ class BlockedPreimageSampler:
         self.extension = extension
         self.dimension = t.dimension+(0 if extension is None else extension.ncols)
         self.r_squared = 4*smoothing_factor(t.w, epsilon_bits)
-        self.gadget_squared = 5*self.r_squared
-        self.output_squared = output_width(t.w, t.bound, epsilon_bits)
+        self.gadget_squared = (t.base**2+1)*self.r_squared
+        self.output_squared = output_width(t.w, t.bound, epsilon_bits, radix_bits=t.radix_bits)
         self.scalar = MatrixFiniteGaussian(self.output_squared, self.output_squared, options=self.options)
         self.gadget = PrimeGadgetSampler(t.n, t.q, self.gadget_squared,
-            epsilon_bits=epsilon_bits, options=self.options)
+            epsilon_bits=epsilon_bits, options=self.options, radix_bits=t.radix_bits)
         self.rho = QQ(self.gadget_squared)*(1+t.bound)/self.output_squared
         if not 0 <= self.rho <= QQ(1)/2:
             raise ValueError("matrix-free SPD contraction condition")
@@ -211,8 +213,8 @@ class BlockedPreimageSampler:
             max_trials=self.max_trials, proposal_scalar_tv=str(self.scalar.tv_upper),
             bernoulli_weight_error=str(self.scalar.weight_width+QQ(2)**(-self.options.mass_bits)),
             gadget_tv_total=str(self.gadget.tv_upper), target_smoothing_verified=bool(
-                self.output_squared >= 10*(t.bound+1)*smoothing_factor(self.dimension, self.epsilon_bits)))
-        return dict(profile=VERSION, q=str(self.trapdoor.q), n=self.trapdoor.n,
+                self.output_squared >= 2*(t.base**2+1)*(t.bound+1)*smoothing_factor(self.dimension, self.epsilon_bits)))
+        result = dict(profile=VERSION if t.radix_bits == 1 else RADIX_VERSION, q=str(t.q), n=t.n,
             dimension=self.dimension, output_squared=str(self.output_squared),
             stored_R_entries=self.trapdoor.prefix*self.trapdoor.w,
             full_kernel_bases=0, dense_Schur_entries=0,
@@ -225,6 +227,9 @@ class BlockedPreimageSampler:
             distribution_budget=budget,
             arithmetic_resource_abort_probability_certified=False,
             constant_time=False, security_claim="none", backend_admitted=False, parameters_are_formal=False)
+        if t.radix_bits != 1:
+            result.update(radix_bits=t.radix_bits, base=t.base, gadget_digits=t.k)
+        return result
 
 
 def delegate(trapdoor, extension, *, epsilon_bits=192, options=None, rng=None,
@@ -248,11 +253,11 @@ def delegate(trapdoor, extension, *, epsilon_bits=192, options=None, rng=None,
     entropy_budget = exact_integer(entropy_budget, "delegation entropy cap", minimum=1, maximum=2**48)
     source = CheckedEntropy(SecureRandom() if rng is None else rng, entropy_budget)
     limit = sampler.dimension*sampler.output_squared
-    k = (t.q-1).bit_length()
+    k = t.k
     def columns():
         for j in range(t.w):
             tail = extension.column(extras_count+j)
-            target = tuple((int(i == j//k)*2**(j % k)-tail[i]) % t.q for i in range(t.n))
+            target = tuple((int(i == j//k)*t.base**(j % k)-tail[i]) % t.q for i in range(t.n))
             result = sampler.sample(target, rng=source)
             if sum(x*x for x in result) > limit:
                 raise SamplingAbort("blocked parent column norm event; no retry")
@@ -263,4 +268,4 @@ def delegate(trapdoor, extension, *, epsilon_bits=192, options=None, rng=None,
         yield from extension.columns()
     public = PackedMatrix.from_columns(t.n, t.dimension+extension.ncols, t.q-1, False, public_columns(), **packing)
     return PackedTrapdoor(t.n, t.q, public, r, sampler.dimension*t.w*sampler.output_squared,
-                          column_norm_bound=limit)
+                          column_norm_bound=limit, radix_bits=t.radix_bits)

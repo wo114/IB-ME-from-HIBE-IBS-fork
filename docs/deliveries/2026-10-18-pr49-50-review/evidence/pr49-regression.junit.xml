@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="3" failures="0" skipped="0" tests="3" time="20.271" timestamp="2026-10-18T22:13:43.114609+08:00" hostname="nomo"><testcase classname="" name="tests.test_abb_probe_failure_reporting" time="0.000"><error message="collection failure">ImportError while importing test module '/mnt/d/ibme/IB-ME-from-HIBE-IBS/tests/test_abb_probe_failure_reporting.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/home/pi/miniconda3/envs/sage/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_abb_probe_failure_reporting.py:4: in &lt;module&gt;
+    from experiments.research.abb_rom.hibe_probe import safe_failure_chain,paths
+experiments/research/abb_rom/hibe_probe.py:29: in &lt;module&gt;
+    from ibme.protocol.hybrid_hibe import HybridLimits, encoded_identity
+src/ibme/protocol/hybrid_hibe.py:12: in &lt;module&gt;
+    from cryptography.exceptions import InvalidTag
+E   ModuleNotFoundError: No module named 'cryptography'</error></testcase><testcase classname="" name="tests.test_abb_real_lifecycle_contract" time="0.000"><error message="collection failure">ImportError while importing test module '/mnt/d/ibme/IB-ME-from-HIBE-IBS/tests/test_abb_real_lifecycle_contract.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/home/pi/miniconda3/envs/sage/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_abb_real_lifecycle_contract.py:20: in &lt;module&gt;
+    from ibme.protocol.hybrid_hibe import HybridLimits,encoded_identity
+src/ibme/protocol/hybrid_hibe.py:12: in &lt;module&gt;
+    from cryptography.exceptions import InvalidTag
+E   ModuleNotFoundError: No module named 'cryptography'</error></testcase><testcase classname="" name="tests.test_abb_saved_combo_probe" time="0.000"><error message="collection failure">ImportError while importing test module '/mnt/d/ibme/IB-ME-from-HIBE-IBS/tests/test_abb_saved_combo_probe.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/home/pi/miniconda3/envs/sage/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_abb_saved_combo_probe.py:5: in &lt;module&gt;
+    from experiments.research.abb_rom.saved_combo_probe import require_completed
+experiments/research/abb_rom/saved_combo_probe.py:27: in &lt;module&gt;
+    from ibme.protocol.hybrid_hibe import HybridHIBE,HybridLimits,HybridPublicKey,HybridMasterSecret
+src/ibme/protocol/hybrid_hibe.py:12: in &lt;module&gt;
+    from cryptography.exceptions import InvalidTag
+E   ModuleNotFoundError: No module named 'cryptography'</error></testcase></testsuite></testsuites>

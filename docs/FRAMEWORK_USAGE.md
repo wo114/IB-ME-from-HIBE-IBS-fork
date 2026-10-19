@@ -132,6 +132,17 @@ export PYTHONPATH="$PWD/src:$PWD"
 
 明确选定的LATTE矩阵可运行 `python -m experiments.run_combination_matrix --suite-file ci/c-combinations.json --output test-results/c-framework/new.json`。本地10配置338检查、五档系统随机CLI和原状态安装恢复见[C交付](research/team-c-delivery/2026-10-15-c-framework/README.md)；这不表示每个默认池配对都已实跑或安全准入。LATTE匿名性/修订采样、转换强UF/量子模型与正式参数仍待。
 
+## 交互演示（本机 Web）
+
+在指定 WSL Sage 环境启动本地界面：
+
+```sh
+export PYTHONPATH="$PWD/src:$PWD"
+~/miniconda3/envs/sage/bin/python -m ibme.webui --port 8765
+```
+
+浏览器打开 `http://127.0.0.1:8765`。界面开放 LATTE-3 HIBE 与 ML-DSA／Falcon／Luo 三种 IBS，提供真实 Setup、密钥签发、加密、正确匹配、错误发送者／接收者、篡改／截断拒绝、尺寸与计时；会话仅在服务进程内存中，不写私钥。其它 HIBE／IBS 仍使用 CLI 或组合测试驱动。该界面是功能演示，保持 `security_claim=none`，不构成安全证明。
+
 ## 6. 后续加入新算法
 
 完成独立 HIBE/IBS 的公开接口、对象读取器和真实参数后，在装配目录补登记、能力/容量计算及对应验证器，再将组合加入同一测试驱动。IBS 登记显式提供 `master_public_key(master)` 公共适配回调，框架不要求所有算法把主密钥公钥属性都命名为 `public_key`。登记还需如实描述 `object_parameter_binding`；新后端应保存完整公开参数快照。共同协议不需要为每个新算法复制一份。算法论文条件与正式安全准入另行记录；未交付的原语只阻塞依赖它的组合。

@@ -1,0 +1,714 @@
+{
+  "backend_admitted": false,
+  "cross_security_group_ranking": false,
+  "equal_security_targets_established": false,
+  "parameters_are_formal": false,
+  "private_state_files_opened": 0,
+  "profile_count_is_not_HIBE_algorithm_count": true,
+  "profiles": [
+    {
+      "all_successful": true,
+      "ciphertext_bytes": {
+        "count": 12,
+        "maximum": 142146,
+        "minimum": 142051
+      },
+      "cold_states": 3,
+      "environment": {
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "1",
+        "cold_definition": "fresh Python process; OS page cache and previously built native engines retained",
+        "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+        "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "python": "3.13.14",
+        "rss_method": "10ms /proc process-tree samples (lower bound); Linux kernel lifetime ru_maxrss per interpreter/completed child"
+      },
+      "file": "docs/research/2026-10-18-full-system-baseline/evidence/latte-mldsa44.json",
+      "file_sha256": "dc8e5cef04534df6cd643a6c4aa908cb7b74e5e27c27e6730becadbe038ef8ab",
+      "observed_process_tree_rss_bytes": 480243712,
+      "provider_occurrences_verified": 780,
+      "restored_decryptions": 9,
+      "security_group": "latte3-cosac-fix-bnn-mldsa44-research",
+      "source_commit": "6b5305a",
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "cert-ml-dsa",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "ml-dsa-44",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "timing_seconds": {
+        "cold-encrypt": {
+          "count": 3,
+          "maximum": 0.30128823299997975,
+          "mean": 0.24758968966667302,
+          "median": 0.22448537600001828,
+          "minimum": 0.216995460000021,
+          "observations": [
+            0.30128823299997975,
+            0.216995460000021,
+            0.22448537600001828
+          ],
+          "sample_stdev": 0.04665484838161003
+        },
+        "first-decrypt-with-leaf-generation": {
+          "count": 3,
+          "maximum": 0.4317846480000185,
+          "mean": 0.4098424349999921,
+          "median": 0.403997454999967,
+          "minimum": 0.39374520199999097,
+          "observations": [
+            0.403997454999967,
+            0.39374520199999097,
+            0.4317846480000185
+          ],
+          "sample_stdev": 0.019681786158724845
+        },
+        "import-and-build-runtime": {
+          "count": 6,
+          "maximum": 1.7245579109999767,
+          "mean": 1.5699486319999874,
+          "median": 1.583610383000007,
+          "minimum": 1.398174034999954,
+          "observations": [
+            1.541806773000019,
+            1.6254139929999951,
+            1.398174034999954,
+            1.7245579109999767,
+            1.488906806999978,
+            1.640832273000001
+          ],
+          "sample_stdev": 0.11736369096701638
+        },
+        "persist-state": {
+          "count": 3,
+          "maximum": 0.055306040999994366,
+          "mean": 0.050642566333332674,
+          "median": 0.05235171800001126,
+          "minimum": 0.0442699399999924,
+          "observations": [
+            0.0442699399999924,
+            0.055306040999994366,
+            0.05235171800001126
+          ],
+          "sample_stdev": 0.005713123566434015
+        },
+        "receiver-key": {
+          "count": 3,
+          "maximum": 0.7621466109999915,
+          "mean": 0.7351372553333325,
+          "median": 0.7543434520000005,
+          "minimum": 0.6889217030000054,
+          "observations": [
+            0.7543434520000005,
+            0.7621466109999915,
+            0.6889217030000054
+          ],
+          "sample_stdev": 0.040213558418780264
+        },
+        "restore-objects": {
+          "count": 3,
+          "maximum": 0.6999047239999641,
+          "mean": 0.6702198773333331,
+          "median": 0.665061913000045,
+          "minimum": 0.6456929949999903,
+          "observations": [
+            0.665061913000045,
+            0.6999047239999641,
+            0.6456929949999903
+          ],
+          "sample_stdev": 0.027471464055256547
+        },
+        "restored-decrypt": {
+          "count": 9,
+          "maximum": 0.38597752399999763,
+          "mean": 0.2964390755555605,
+          "median": 0.28165395000002036,
+          "minimum": 0.24504744299997583,
+          "observations": [
+            0.28165395000002036,
+            0.38597752399999763,
+            0.31506712700002026,
+            0.261400913999978,
+            0.32496220000001586,
+            0.281541016999995,
+            0.24504744299997583,
+            0.2470733200000268,
+            0.3252281850000145
+          ],
+          "sample_stdev": 0.04576136753726251
+        },
+        "sender-key": {
+          "count": 3,
+          "maximum": 0.28838928599998326,
+          "mean": 0.2595366766666795,
+          "median": 0.2735977610000191,
+          "minimum": 0.21662298300003613,
+          "observations": [
+            0.28838928599998326,
+            0.2735977610000191,
+            0.21662298300003613
+          ],
+          "sample_stdev": 0.037893088169770765
+        },
+        "setup": {
+          "count": 3,
+          "maximum": 1.0485458279999875,
+          "mean": 0.9863959223333344,
+          "median": 0.9844922920000272,
+          "minimum": 0.9261496469999884,
+          "observations": [
+            1.0485458279999875,
+            0.9844922920000272,
+            0.9261496469999884
+          ],
+          "sample_stdev": 0.06122029187434959
+        },
+        "warm-decrypt": {
+          "count": 9,
+          "maximum": 0.3455828859999883,
+          "mean": 0.29463594899999634,
+          "median": 0.28011566400004995,
+          "minimum": 0.25043693999998595,
+          "observations": [
+            0.2686028800000031,
+            0.28011566400004995,
+            0.2972499129999733,
+            0.2656261690000292,
+            0.25043693999998595,
+            0.3398434849999603,
+            0.273874740999986,
+            0.330390862999991,
+            0.3455828859999883
+          ],
+          "sample_stdev": 0.035424682835024514
+        },
+        "warm-encrypt": {
+          "count": 9,
+          "maximum": 0.27852086300003975,
+          "mean": 0.21481874733333622,
+          "median": 0.21112540699999727,
+          "minimum": 0.191402002000018,
+          "observations": [
+            0.19817773899995927,
+            0.21987673200004565,
+            0.21112540699999727,
+            0.21705989899999167,
+            0.2028293419999727,
+            0.191402002000018,
+            0.21244760100000804,
+            0.2019291409999937,
+            0.27852086300003975
+          ],
+          "sample_stdev": 0.02560025273283657
+        }
+      },
+      "warm_pairs": 9
+    },
+    {
+      "all_successful": true,
+      "ciphertext_bytes": {
+        "count": 12,
+        "maximum": 138207,
+        "minimum": 138150
+      },
+      "cold_states": 3,
+      "environment": {
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "1",
+        "cold_definition": "fresh Python process; OS page cache and previously built native engines retained",
+        "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+        "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "python": "3.13.14",
+        "rss_method": "10ms /proc process-tree samples (lower bound); Linux kernel lifetime ru_maxrss per interpreter/completed child"
+      },
+      "file": "docs/research/2026-10-18-full-system-falcon/evidence/latte-falcon512.json",
+      "file_sha256": "1937d36253490a6c4cf4447a57f2399dbaaf09805a403444d0d0bfa453c4b511",
+      "observed_process_tree_rss_bytes": 480043008,
+      "provider_occurrences_verified": 780,
+      "restored_decryptions": 9,
+      "security_group": "latte3-cosac-fix-bnn-falcon512-research",
+      "source_commit": "a709e82c01bd30db590452cef6f0401d8e8c3635",
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "cert-falcon",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "falcon-padded-512",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "timing_seconds": {
+        "cold-encrypt": {
+          "count": 3,
+          "maximum": 0.23445648299999533,
+          "mean": 0.2132054493333347,
+          "median": 0.21790657800001156,
+          "minimum": 0.18725328699999721,
+          "observations": [
+            0.18725328699999721,
+            0.23445648299999533,
+            0.21790657800001156
+          ],
+          "sample_stdev": 0.023950175076793232
+        },
+        "first-decrypt-with-leaf-generation": {
+          "count": 3,
+          "maximum": 0.3879793480000018,
+          "mean": 0.37308594999999894,
+          "median": 0.36891676999999845,
+          "minimum": 0.36236173199999655,
+          "observations": [
+            0.36891676999999845,
+            0.36236173199999655,
+            0.3879793480000018
+          ],
+          "sample_stdev": 0.013307971625504539
+        },
+        "import-and-build-runtime": {
+          "count": 6,
+          "maximum": 1.6342258199999975,
+          "mean": 1.4827811158333308,
+          "median": 1.479586464999997,
+          "minimum": 1.3334617419999972,
+          "observations": [
+            1.5535534899999988,
+            1.6342258199999975,
+            1.3334617419999972,
+            1.4946547689999932,
+            1.416272712999998,
+            1.4645181610000009
+          ],
+          "sample_stdev": 0.10501275120051107
+        },
+        "persist-state": {
+          "count": 3,
+          "maximum": 0.05498187799999954,
+          "mean": 0.04997626466666579,
+          "median": 0.050019190000000435,
+          "minimum": 0.04492772599999739,
+          "observations": [
+            0.05498187799999954,
+            0.04492772599999739,
+            0.050019190000000435
+          ],
+          "sample_stdev": 0.005027213447623665
+        },
+        "receiver-key": {
+          "count": 3,
+          "maximum": 0.6207818620000012,
+          "mean": 0.5292216766666679,
+          "median": 0.5111018670000007,
+          "minimum": 0.4557813010000018,
+          "observations": [
+            0.5111018670000007,
+            0.4557813010000018,
+            0.6207818620000012
+          ],
+          "sample_stdev": 0.08397941360444126
+        },
+        "restore-objects": {
+          "count": 3,
+          "maximum": 0.6851187500000009,
+          "mean": 0.6754713543333347,
+          "median": 0.6742784329999978,
+          "minimum": 0.6670168800000056,
+          "observations": [
+            0.6670168800000056,
+            0.6742784329999978,
+            0.6851187500000009
+          ],
+          "sample_stdev": 0.009109704734777648
+        },
+        "restored-decrypt": {
+          "count": 9,
+          "maximum": 0.30025989099999606,
+          "mean": 0.2541594346666669,
+          "median": 0.24748255800000152,
+          "minimum": 0.2073979919999971,
+          "observations": [
+            0.2291122680000015,
+            0.21052128099999834,
+            0.2073979919999971,
+            0.28602333399999225,
+            0.28063735600001394,
+            0.2291077849999965,
+            0.30025989099999606,
+            0.24748255800000152,
+            0.2968924470000047
+          ],
+          "sample_stdev": 0.037178956048510806
+        },
+        "sender-key": {
+          "count": 3,
+          "maximum": 0.16221184200000494,
+          "mean": 0.1593849210000021,
+          "median": 0.1603663570000009,
+          "minimum": 0.15557656400000042,
+          "observations": [
+            0.1603663570000009,
+            0.15557656400000042,
+            0.16221184200000494
+          ],
+          "sample_stdev": 0.0034247833509444435
+        },
+        "setup": {
+          "count": 3,
+          "maximum": 0.9632232669999965,
+          "mean": 0.9071747089999983,
+          "median": 0.9112818339999933,
+          "minimum": 0.8470190260000052,
+          "observations": [
+            0.9632232669999965,
+            0.8470190260000052,
+            0.9112818339999933
+          ],
+          "sample_stdev": 0.05821089041940692
+        },
+        "warm-decrypt": {
+          "count": 9,
+          "maximum": 0.2914061630000049,
+          "mean": 0.24743626433333313,
+          "median": 0.2492738019999976,
+          "minimum": 0.21535934499999598,
+          "observations": [
+            0.2492738019999976,
+            0.25001218799999947,
+            0.25126537999999954,
+            0.2914061630000049,
+            0.22920069099999552,
+            0.26312053499999877,
+            0.24845940400000188,
+            0.21535934499999598,
+            0.2288288710000046
+          ],
+          "sample_stdev": 0.022115518249229107
+        },
+        "warm-encrypt": {
+          "count": 9,
+          "maximum": 0.2151990259999934,
+          "mean": 0.19314476677777748,
+          "median": 0.20034643700000032,
+          "minimum": 0.16694042099999962,
+          "observations": [
+            0.20686764799999935,
+            0.1939488969999985,
+            0.20034643700000032,
+            0.1722447719999991,
+            0.2151990259999934,
+            0.16694042099999962,
+            0.20682582599999932,
+            0.20277162400000748,
+            0.17315825000000018
+          ],
+          "sample_stdev": 0.017783435522853393
+        }
+      },
+      "warm_pairs": 9
+    },
+    {
+      "all_successful": true,
+      "ciphertext_bytes": {
+        "count": 12,
+        "maximum": 151955,
+        "minimum": 151876
+      },
+      "cold_states": 3,
+      "environment": {
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "1",
+        "cold_definition": "fresh Python process; OS page cache and previously built native engines retained",
+        "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+        "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "python": "3.13.14",
+        "rss_method": "10ms /proc process-tree samples (lower bound); Linux kernel lifetime ru_maxrss per interpreter/completed child"
+      },
+      "file": "docs/research/2026-10-18-full-system-luo/evidence/latte-luo-compact.json",
+      "file_sha256": "311ff021ec88f4084a789027803d4b548725b9fa0e9c243129e9cd8a5b2b9395",
+      "observed_process_tree_rss_bytes": 493281280,
+      "provider_occurrences_verified": 780,
+      "restored_decryptions": 9,
+      "security_group": "latte3-cosac-fix-luo-module-default-compact-research",
+      "source_commit": "949bf91562489ca43e82626405a6f6c67c07a6f4",
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "luo-module",
+        "ibs_params": {
+          "degree": 256,
+          "dropped_bits": 28,
+          "eta": 1,
+          "gamma1": 125440,
+          "gamma2": 31470387200,
+          "gamma3": 15270991360,
+          "identity_max_bytes": 64,
+          "k": 11,
+          "kappa": 64,
+          "l": 10,
+          "max_cached_identities": 64,
+          "max_extract_attempts": 1024,
+          "max_sign_attempts": 1024,
+          "max_uniform_attempts": 128,
+          "message_max_bytes": 4096,
+          "q": 274877844481,
+          "root": 153250464611
+        },
+        "ibs_version": "luo-module-ref1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "compact",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "timing_seconds": {
+        "cold-encrypt": {
+          "count": 3,
+          "maximum": 0.7163873229999922,
+          "mean": 0.5636983210000039,
+          "median": 0.6097564070000203,
+          "minimum": 0.3649512329999993,
+          "observations": [
+            0.7163873229999922,
+            0.6097564070000203,
+            0.3649512329999993
+          ],
+          "sample_stdev": 0.18018835090845758
+        },
+        "first-decrypt-with-leaf-generation": {
+          "count": 3,
+          "maximum": 0.3968390999999656,
+          "mean": 0.3853023746666698,
+          "median": 0.38282398300003706,
+          "minimum": 0.37624404100000675,
+          "observations": [
+            0.37624404100000675,
+            0.3968390999999656,
+            0.38282398300003706
+          ],
+          "sample_stdev": 0.010518837043270151
+        },
+        "import-and-build-runtime": {
+          "count": 6,
+          "maximum": 1.5653257470000312,
+          "mean": 1.4752235443333366,
+          "median": 1.4566133170000057,
+          "minimum": 1.4316780429999767,
+          "observations": [
+            1.4355969019999861,
+            1.5055139400000144,
+            1.5653257470000312,
+            1.4637115190000145,
+            1.449515114999997,
+            1.4316780429999767
+          ],
+          "sample_stdev": 0.05156713397132966
+        },
+        "persist-state": {
+          "count": 3,
+          "maximum": 0.0610302619999743,
+          "mean": 0.059102017333316326,
+          "median": 0.05930837099998598,
+          "minimum": 0.056967418999988695,
+          "observations": [
+            0.0610302619999743,
+            0.056967418999988695,
+            0.05930837099998598
+          ],
+          "sample_stdev": 0.0020392669485489183
+        },
+        "receiver-key": {
+          "count": 3,
+          "maximum": 0.6646764269999608,
+          "mean": 0.5168607053333479,
+          "median": 0.47276039300004413,
+          "minimum": 0.4131452960000388,
+          "observations": [
+            0.4131452960000388,
+            0.6646764269999608,
+            0.47276039300004413
+          ],
+          "sample_stdev": 0.13143669817233763
+        },
+        "restore-objects": {
+          "count": 3,
+          "maximum": 0.8009354849999681,
+          "mean": 0.7741495509999936,
+          "median": 0.779927889000021,
+          "minimum": 0.7415852789999917,
+          "observations": [
+            0.7415852789999917,
+            0.8009354849999681,
+            0.779927889000021
+          ],
+          "sample_stdev": 0.03009407966015624
+        },
+        "restored-decrypt": {
+          "count": 9,
+          "maximum": 0.25755228399998487,
+          "mean": 0.23962246633333784,
+          "median": 0.2347678670000164,
+          "minimum": 0.22894847500003834,
+          "observations": [
+            0.23881156199996667,
+            0.2347678670000164,
+            0.25755228399998487,
+            0.24428938799997013,
+            0.2344313639999882,
+            0.23441924000002246,
+            0.25308684700002004,
+            0.23029517000003352,
+            0.22894847500003834
+          ],
+          "sample_stdev": 0.010023263080501903
+        },
+        "sender-key": {
+          "count": 3,
+          "maximum": 1.0684307899999794,
+          "mean": 0.5014699043333243,
+          "median": 0.3189223360000142,
+          "minimum": 0.11705658699997912,
+          "observations": [
+            0.11705658699997912,
+            0.3189223360000142,
+            1.0684307899999794
+          ],
+          "sample_stdev": 0.501269318392593
+        },
+        "setup": {
+          "count": 3,
+          "maximum": 0.9873643969999648,
+          "mean": 0.9613990496666626,
+          "median": 0.9641046830000164,
+          "minimum": 0.9327280690000066,
+          "observations": [
+            0.9873643969999648,
+            0.9327280690000066,
+            0.9641046830000164
+          ],
+          "sample_stdev": 0.027418468650358116
+        },
+        "warm-decrypt": {
+          "count": 9,
+          "maximum": 0.24598319899996568,
+          "mean": 0.22937472544444087,
+          "median": 0.22922045799998614,
+          "minimum": 0.2155969579999919,
+          "observations": [
+            0.22368434599997045,
+            0.2295482819999961,
+            0.21658297700003004,
+            0.23384323599998424,
+            0.2155969579999919,
+            0.24371168700002954,
+            0.22620138600001383,
+            0.22922045799998614,
+            0.24598319899996568
+          ],
+          "sample_stdev": 0.010590783569148724
+        },
+        "warm-encrypt": {
+          "count": 9,
+          "maximum": 0.937517932999981,
+          "mean": 0.46597927499999514,
+          "median": 0.3644610709999938,
+          "minimum": 0.2953026120000004,
+          "observations": [
+            0.30375053800003116,
+            0.2953026120000004,
+            0.937517932999981,
+            0.47069687499998736,
+            0.34171926599998415,
+            0.3644610709999938,
+            0.5929207140000017,
+            0.32211979999999585,
+            0.5653246659999809
+          ],
+          "sample_stdev": 0.20923829952809828
+        }
+      },
+      "warm_pairs": 9
+    }
+  ],
+  "same_benchmark_runner_verified": true,
+  "same_input_lengths_and_measurement_boundaries": true,
+  "schema": "THREE-PROFILE-FULL-SYSTEM-EVIDENCE/1",
+  "security_claim": "none",
+  "status": "passed"
+}

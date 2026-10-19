@@ -1,0 +1,169 @@
+{
+  "schema": "IBME-SAME-VERSION-MATERIALS/1",
+  "status": "draft_synchronized",
+  "contest_title": "基于多类格困难假设的抗量子身份基匹配加密通用设计和优化实现",
+  "source": {
+    "cards_path": "docs/deliveries/2026-10-18-main-showcase-cards/evidence/cards.json",
+    "cards_sha256": "970c5303f5d8a7e73cbbfaee8dd50a3c3186f83b5c40062a32a68c4d682edcd6",
+    "cards_schema": "IBME-SHOWCASE-CARDS/1",
+    "cards_commit": "0c68a27c03d5092b369a95d636bc34091f6fbf33",
+    "evidence_baseline_commit": "2fccb0871d9b68c11c1e80828fabf154496de6df"
+  },
+  "materials": {
+    "report": {
+      "path": "docs/IBME_作品报告.md",
+      "sha256": "d3ae98a1cd4699b2be3cd8474f8607ae5415f0bfb60d83530b3f8f8679040957"
+    },
+    "demo_and_defense": {
+      "path": "docs/COMPETITION_DEMO_AND_DEFENSE.md",
+      "sha256": "0ab4b017ffc91e33b6e31ae0659c114678a389004e95ec0b049cdcfb4edc8f3b"
+    }
+  },
+  "primary_demo": {
+    "card_id": "latte3-bnn-mldsa44-hybrid-byteauth",
+    "display_name": "LATTE-3 + BNN/ML-DSA-44 + Hybrid + BYTEAUTH",
+    "suite_digest": "10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346",
+    "suite": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "hibe_version": "latte3-cosac-fix-v1",
+      "ibs": "cert-ml-dsa",
+      "ibs_params": "ml-dsa-44",
+      "ibs_version": "IBME/CERTIBS/1",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false,
+      "state_policy": "single-writer-commit-before-publish-v1"
+    },
+    "measurements": {
+      "timing_seconds_median": {
+        "setup": 0.984492,
+        "sender_key": 0.273598,
+        "receiver_key": 0.754343,
+        "cold_encrypt": 0.224485,
+        "first_decrypt_with_leaf_generation": 0.403997,
+        "warm_encrypt": 0.211125,
+        "warm_decrypt": 0.280116,
+        "restore_objects": 0.665062,
+        "restored_decrypt": 0.281654
+      },
+      "bytes": {
+        "full_ciphertext_minimum": 142051,
+        "full_ciphertext_maximum": 142146,
+        "observed_process_tree_rss_maximum": 480243712
+      }
+    }
+  },
+  "benchmark_boundary": {
+    "receiver_identity_bytes": 64,
+    "sender_identity_bytes": 64,
+    "inner_receiver_identity_bytes": 86,
+    "inner_sender_identity_bytes": 86,
+    "application_message_bytes": 32,
+    "hibe_seed_bytes": 32,
+    "independent_cold_states": 3,
+    "warm_pairs_per_state": 3,
+    "warm_encryptions": 9,
+    "warm_decryptions": 9,
+    "restore_processes": 3,
+    "restored_decryptions": 9,
+    "restore_public_entropy_bytes": 0
+  },
+  "claims": {
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "security_proofs_produced": 0,
+    "nist_level_claimed": false,
+    "functional_or_performance_tests_are_security_proof": false,
+    "profiles_share_one_hibe": true,
+    "equal_security_targets_established": false,
+    "final_three_representatives_selected": false
+  },
+  "current_machine_preflight": {
+    "date": "2026-10-18",
+    "interpreter_policy": "Use the current machine's actual Sage/Python interpreter; do not copy an absolute Sage path from another machine or historical repository material.",
+    "command_arguments": [
+      "-m",
+      "ibme.cli",
+      "check",
+      "--hibe",
+      "latte",
+      "--hibe-params",
+      "seed32",
+      "--ibs",
+      "cert-ml-dsa",
+      "--ibs-params",
+      "ml-dsa-44",
+      "--transport",
+      "hybrid",
+      "--protocol",
+      "byteauth-v1",
+      "--signature-format",
+      "reference",
+      "--json"
+    ],
+    "exit_code": 2,
+    "execution": "not_executed",
+    "runtime_available": false,
+    "errors": [
+      "hibe: LATTE requires its explicit built WSL native bridge; no fallback",
+      "ML-DSA native engine missing; build in WSL, no fallback"
+    ],
+    "interpretation": "The current machine lacks the selected native engines. This is a dependency preflight rejection, not an algorithm execution failure, and it authorizes no fallback result."
+  },
+  "not_delivered": [
+    "graphical user interface",
+    "final competition report layout",
+    "final selection of three representative complete systems",
+    "formal parameter admission or a NIST security level",
+    "QROM or complete Wang-composition proof closure"
+  ],
+  "material_requirements": {
+    "shared_required_literals": [
+      "基于多类格困难假设的抗量子身份基匹配加密通用设计和优化实现",
+      "IBME-SAME-VERSION-MATERIALS/1",
+      "970c5303f5d8a7e73cbbfaee8dd50a3c3186f83b5c40062a32a68c4d682edcd6",
+      "latte3-bnn-mldsa44-hybrid-byteauth",
+      "10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346",
+      "LATTE-3 + BNN/ML-DSA-44 + Hybrid + BYTEAUTH",
+      "allow_mock=false",
+      "3 套独立系统状态",
+      "0.211125",
+      "0.280116",
+      "142051—142146 B",
+      "security_claim=none",
+      "backend_admitted=false",
+      "parameters_are_formal=false",
+      "图形界面尚未交付",
+      "最终三组代表尚未锁定"
+    ],
+    "report_required_literals": [
+      "N=1024",
+      "q=68718428161",
+      "0.200346",
+      "0.249274",
+      "0.364461",
+      "0.229220",
+      "功能、拒绝、恢复和性能数据是实现证据"
+    ],
+    "demo_required_literals": [
+      "退出码 2",
+      "execution=not_executed",
+      "LATTE requires its explicit built WSL native bridge; no fallback",
+      "ML-DSA native engine missing; build in WSL, no fallback",
+      "三种身份错配均拒绝",
+      "证据重放不是算法执行"
+    ],
+    "forbidden_literals": [
+      "333 passed",
+      "4.7MB",
+      "4.7 MB",
+      "--mock",
+      "基于两层格基 HIBE 与 SIS-IBS",
+      "真实结果使用 ABB10 HIBE + SIS-IBS",
+      "去掉命令中的"
+    ]
+  }
+}

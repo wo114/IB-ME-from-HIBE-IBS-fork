@@ -1,0 +1,553 @@
+{
+  "schema": "IBME-SHOWCASE-CARDS/1",
+  "status": "passed",
+  "evidence_baseline_commit": "2fccb0871d9b68c11c1e80828fabf154496de6df",
+  "comparison_receipt": {
+    "path": "docs/research/2026-10-18-full-system-luo/evidence/comparison.json",
+    "sha256": "00673cda58d83eb066201dda24c837628382f5e519fd934a7daafdec521721c8"
+  },
+  "selection": {
+    "current_primary_demo_candidate": "latte3-bnn-mldsa44-hybrid-byteauth",
+    "final_three_representatives_selected": false,
+    "reason": "ML-DSA-44 has the clearest standards-facing base primitive and the lowest current explanation and reproduction risk.",
+    "profiles_share_one_hibe": true,
+    "profile_count_is_not_hibe_algorithm_count": true,
+    "equal_security_targets_established": false,
+    "cross_security_group_ranking": false
+  },
+  "claims": {
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "security_proofs_produced": 0,
+    "uses_ROM": true,
+    "nist_level_claimed": false,
+    "quantum_random_oracle_model_claimed": false,
+    "functional_or_performance_tests_are_security_proof": false
+  },
+  "benchmark": {
+    "inputs": {
+      "receiver_identity_bytes": 64,
+      "sender_identity_bytes": 64,
+      "message_bytes": 32,
+      "inner_receiver_identity_bytes": 86,
+      "inner_sender_identity_bytes": 86,
+      "hibe_seed_bytes": 32
+    },
+    "repetitions": {
+      "independent_cold_states": 3,
+      "warm_pairs_per_state": 3,
+      "warm_encryptions": 9,
+      "warm_decryptions": 9,
+      "first_decryptions": 3,
+      "restore_processes": 3,
+      "restored_decryptions": 9
+    },
+    "environment": {
+      "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+      "python": "3.13.14",
+      "sage_reported_by_run_readmes": "10.9",
+      "OMP_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "1",
+      "cold_definition": "fresh Python process; OS page cache and previously built native engines retained",
+      "rss_method": "10ms /proc process-tree samples (lower bound); Linux kernel lifetime ru_maxrss per interpreter/completed child"
+    },
+    "method": {
+      "system_csprng": true,
+      "outer_retry_after_failure": false,
+      "os_page_cache_cleared": false,
+      "native_engines_rebuilt_between_states": false,
+      "restore_public_entropy_bytes": 0,
+      "restored_state_unchanged": true,
+      "all_observed_operations_successful": true,
+      "sample_is_sufficient_for_tail_probability_claim": false
+    }
+  },
+  "common_stack": {
+    "suite_version": "IBME/SUITE/1",
+    "protocol": "byteauth-v1",
+    "transport": "hybrid",
+    "state_policy": "single-writer-commit-before-publish-v1",
+    "allow_mock": false,
+    "hybrid_limits": {
+      "backend_id": "latte3-cosac-fix-v1",
+      "identity_max_bytes": 64,
+      "max_capsule_bytes": 4194304,
+      "max_payload_bytes": 65536
+    },
+    "hibe": {
+      "backend": "latte",
+      "version": "latte3-cosac-fix-v1",
+      "wire": "IBME/LATTE3/COSAC-FIX/1",
+      "paper": {
+        "path": "papers/2024_quantum_safe_hibe_zhao.pdf",
+        "title": "Quantum-safe HIBE: does it cost a LATTE?",
+        "algorithms": [
+          "Algorithm 1 KeyGen",
+          "Algorithm 2 Delegate",
+          "Algorithm 3 Extract",
+          "Algorithm 4 Encrypt",
+          "Algorithm 5 Decrypt"
+        ]
+      },
+      "upstream_source_revision": "18cfbf9a671fca34785583b58ab9f28e3be21a3c",
+      "assumption_families": [
+        "NTRU",
+        "RLWE"
+      ],
+      "proof_model_reported_by_paper": "classical random-oracle model",
+      "parameters": {
+        "N": 1024,
+        "q": 68718428161,
+        "depth": 2,
+        "sigma_standard_deviation": [
+          "6777.5879662983919609175926",
+          "351968.36683734171059914430",
+          "22559988.027951553365675150"
+        ],
+        "fft_precision_bits": 768,
+        "reduce_k_precision_bits": [
+          256,
+          768
+        ],
+        "encryption_noise": "difference of 8 Bernoulli pairs; centered-binomial standard deviation 2",
+        "message_mode": "seed32",
+        "identity_bytes": 86,
+        "max_receivers": 2,
+        "max_children": 2,
+        "native_timeout_seconds": 60
+      },
+      "implementation_notes": [
+        "KeyGen and Delegate retain the real Gaussian/FACCT path and Extract retains the fixed deterministic target-seed mechanism.",
+        "The build-time COSAC patch reads the newly generated 24-byte Box-Muller buffer, bounds the AES counter, and uses a checked OpenSSL SHAKE-256 compatibility path.",
+        "The paper's LATTE-3 target and decryption-failure tables are source context, not a project NIST or concrete-security admission."
+      ],
+      "identity_anonymity_status": "project working assumption; the paper's ID-IND-CCA result is not treated here as a completed recipient-anonymity mapping"
+    }
+  },
+  "cards": [
+    {
+      "id": "latte3-bnn-mldsa44-hybrid-byteauth",
+      "display_name": "LATTE-3 + BNN/ML-DSA-44 + Hybrid + BYTEAUTH",
+      "role": "primary_demo_candidate",
+      "security_group": "latte3-cosac-fix-bnn-mldsa44-research",
+      "source_commit": "6b5305a",
+      "receipt": {
+        "path": "docs/research/2026-10-18-full-system-baseline/evidence/latte-mldsa44.json",
+        "sha256": "dc8e5cef04534df6cd643a6c4aa908cb7b74e5e27c27e6730becadbe038ef8ab",
+        "provider_occurrences_verified": 780
+      },
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "cert-ml-dsa",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "ml-dsa-44",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "ibs": {
+        "construction": "Bellare-Namprempre-Neven certificate construction as restated in Galindo-Herranz-Kiltz 2006, Section 3 and Theorem 1",
+        "paper_path": "papers/2006_generic_ibs_galindo.pdf",
+        "base_algorithm": "pure external ML-DSA-44",
+        "base_source_revision": "d35ba3fe5449bee3e6d43e1f296c3ca818bd36be",
+        "base_assumption_family": "module-lattice assumptions used by ML-DSA",
+        "construction_condition": "conditional on security of both ordinary signature instances",
+        "base_public_key_bytes": 1312,
+        "base_signature_bytes": 2420,
+        "full_ibs_signature_bytes": 6237,
+        "official_vectors_executed": 210,
+        "not_implemented": [
+          "HashML-DSA",
+          "external-mu"
+        ]
+      },
+      "measurements": {
+        "timing_seconds": {
+          "setup": {
+            "count": 3,
+            "median": 0.984492
+          },
+          "sender-key": {
+            "count": 3,
+            "median": 0.273598
+          },
+          "receiver-key": {
+            "count": 3,
+            "median": 0.754343
+          },
+          "cold-encrypt": {
+            "count": 3,
+            "median": 0.224485
+          },
+          "first-decrypt-with-leaf-generation": {
+            "count": 3,
+            "median": 0.403997
+          },
+          "warm-encrypt": {
+            "count": 9,
+            "median": 0.211125
+          },
+          "warm-decrypt": {
+            "count": 9,
+            "median": 0.280116
+          },
+          "restore-objects": {
+            "count": 3,
+            "median": 0.665062
+          },
+          "restored-decrypt": {
+            "count": 9,
+            "median": 0.281654
+          }
+        },
+        "bytes": {
+          "full_ciphertext": {
+            "count": 12,
+            "minimum": 142051,
+            "maximum": 142146
+          },
+          "public_state": {
+            "minimum": 14352,
+            "maximum": 14392
+          },
+          "master_state": {
+            "minimum": 177557,
+            "maximum": 177671
+          },
+          "receiver_state": {
+            "minimum": 128017,
+            "maximum": 128098
+          },
+          "sender_state": {
+            "minimum": 8050,
+            "maximum": 8050
+          },
+          "observed_process_tree_rss_maximum": 480243712
+        }
+      },
+      "selection_note": "Preferred current demo path because the base signature has a standards-facing specification and extensive fixed-vector coverage; this does not make the complete IBS or IB-ME NIST-approved."
+    },
+    {
+      "id": "latte3-bnn-falcon512-hybrid-byteauth",
+      "display_name": "LATTE-3 + BNN/Falcon-padded-512 + Hybrid + BYTEAUTH",
+      "role": "compact_engineering_comparison",
+      "security_group": "latte3-cosac-fix-bnn-falcon512-research",
+      "source_commit": "a709e82c01bd30db590452cef6f0401d8e8c3635",
+      "receipt": {
+        "path": "docs/research/2026-10-18-full-system-falcon/evidence/latte-falcon512.json",
+        "sha256": "1937d36253490a6c4cf4447a57f2399dbaaf09805a403444d0d0bfa453c4b511",
+        "provider_occurrences_verified": 780
+      },
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "cert-falcon",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "falcon-padded-512",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "ibs": {
+        "construction": "Bellare-Namprempre-Neven certificate construction as restated in Galindo-Herranz-Kiltz 2006, Section 3 and Theorem 1",
+        "paper_path": "papers/2006_generic_ibs_galindo.pdf",
+        "base_algorithm": "Falcon v1.2 padded-512",
+        "base_source_package": "Falcon-impl-20211101.zip",
+        "base_source_sha256": "d9f982bd825b9903b57b686d6d26018dac173a1dff09f224cc39302f9d85a595",
+        "base_assumption_family": "NTRU-lattice signature assumptions used by Falcon",
+        "construction_condition": "conditional on security of both ordinary signature instances",
+        "degree": 512,
+        "q": 12289,
+        "base_public_key_bytes": 897,
+        "base_secret_key_bytes": 1281,
+        "base_padded_signature_bytes": 666,
+        "full_ibs_signature_bytes": 2322,
+        "official_vectors_and_selftests_executed": 200,
+        "is_fn_dsa_or_fips_206": false,
+        "sampling": "reference ffSampling/SamplerZ Gaussian path; not replaced by uniform sampling"
+      },
+      "measurements": {
+        "timing_seconds": {
+          "setup": {
+            "count": 3,
+            "median": 0.911282
+          },
+          "sender-key": {
+            "count": 3,
+            "median": 0.160366
+          },
+          "receiver-key": {
+            "count": 3,
+            "median": 0.511102
+          },
+          "cold-encrypt": {
+            "count": 3,
+            "median": 0.217907
+          },
+          "first-decrypt-with-leaf-generation": {
+            "count": 3,
+            "median": 0.368917
+          },
+          "warm-encrypt": {
+            "count": 9,
+            "median": 0.200346
+          },
+          "warm-decrypt": {
+            "count": 9,
+            "median": 0.249274
+          },
+          "restore-objects": {
+            "count": 3,
+            "median": 0.674278
+          },
+          "restored-decrypt": {
+            "count": 9,
+            "median": 0.247483
+          }
+        },
+        "bytes": {
+          "full_ciphertext": {
+            "count": 12,
+            "minimum": 138150,
+            "maximum": 138207
+          },
+          "public_state": {
+            "minimum": 13973,
+            "maximum": 14020
+          },
+          "master_state": {
+            "minimum": 172047,
+            "maximum": 172371
+          },
+          "receiver_state": {
+            "minimum": 128078,
+            "maximum": 128230
+          },
+          "sender_state": {
+            "minimum": 4195,
+            "maximum": 4195
+          },
+          "observed_process_tree_rss_maximum": 480043008
+        }
+      },
+      "selection_note": "Useful compactness comparison: the observed full IBS signature and persistent sender state are smaller than the ML-DSA profile, but no equal-security target has been established and no same-security speed ranking is claimed."
+    },
+    {
+      "id": "latte3-luo-module-default-compact-hybrid-byteauth",
+      "display_name": "LATTE-3 + Luo module IBS/default research compact + Hybrid + BYTEAUTH",
+      "role": "native_ibs_design_comparison",
+      "security_group": "latte3-cosac-fix-luo-module-default-compact-research",
+      "source_commit": "949bf91562489ca43e82626405a6f6c67c07a6f4",
+      "receipt": {
+        "path": "docs/research/2026-10-18-full-system-luo/evidence/latte-luo-compact.json",
+        "sha256": "311ff021ec88f4084a789027803d4b548725b9fa0e9c243129e9cd8a5b2b9395",
+        "provider_occurrences_verified": 780
+      },
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 65536
+        },
+        "ibs": "luo-module",
+        "ibs_params": {
+          "degree": 256,
+          "dropped_bits": 28,
+          "eta": 1,
+          "gamma1": 125440,
+          "gamma2": 31470387200,
+          "gamma3": 15270991360,
+          "identity_max_bytes": 64,
+          "k": 11,
+          "kappa": 64,
+          "l": 10,
+          "max_cached_identities": 64,
+          "max_extract_attempts": 1024,
+          "max_sign_attempts": 1024,
+          "max_uniform_attempts": 128,
+          "message_max_bytes": 4096,
+          "q": 274877844481,
+          "root": 153250464611
+        },
+        "ibs_version": "luo-module-ref1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "compact",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "ibs": {
+        "construction": "Luo-Chen-Susilo-Huang module-lattice IBS without trapdoors",
+        "paper_path": "papers/2024_ibs_without_trapdoors_luo.pdf",
+        "paper_algorithms": [
+          "Algorithm 13 Setup",
+          "Algorithm 14 Extract",
+          "Algorithm 15 Sign",
+          "Algorithm 16 Verify"
+        ],
+        "assumption_families": {
+          "key_recovery": "MLWE",
+          "key_and_message_forgery": "MSIS"
+        },
+        "proof_model_reported_by_paper": "classical random-oracle model",
+        "signature_format": "MODULE-COMPACT/1",
+        "full_ibs_signature_bytes": 16063,
+        "matrix_encoding": "explicit uniform A; the paper's SHAKE-128 seed compression is not implemented",
+        "sampling": "uniform masks, rejection sampling, and hints; not discrete Gaussian",
+        "paper_200_bit_row_difference": {
+          "paper_kappa": 49,
+          "implementation_kappa": 64,
+          "paper_signature_bytes": 14680,
+          "implementation_compact_signature_bytes": 16063,
+          "paper_row_claim_inherited": false
+        },
+        "is_c64b_profile": false
+      },
+      "measurements": {
+        "timing_seconds": {
+          "setup": {
+            "count": 3,
+            "median": 0.964105
+          },
+          "sender-key": {
+            "count": 3,
+            "median": 0.318922
+          },
+          "receiver-key": {
+            "count": 3,
+            "median": 0.472760
+          },
+          "cold-encrypt": {
+            "count": 3,
+            "median": 0.609756
+          },
+          "first-decrypt-with-leaf-generation": {
+            "count": 3,
+            "median": 0.382824
+          },
+          "warm-encrypt": {
+            "count": 9,
+            "median": 0.364461
+          },
+          "warm-decrypt": {
+            "count": 9,
+            "median": 0.229220
+          },
+          "restore-objects": {
+            "count": 3,
+            "median": 0.779928
+          },
+          "restored-decrypt": {
+            "count": 9,
+            "median": 0.234768
+          }
+        },
+        "bytes": {
+          "full_ciphertext": {
+            "count": 12,
+            "minimum": 151876,
+            "maximum": 151955
+          },
+          "public_state": {
+            "minimum": 260819,
+            "maximum": 260851
+          },
+          "master_state": {
+            "minimum": 522253,
+            "maximum": 522339
+          },
+          "receiver_state": {
+            "minimum": 128166,
+            "maximum": 128243
+          },
+          "sender_state": {
+            "minimum": 313813,
+            "maximum": 313813
+          },
+          "observed_process_tree_rss_maximum": 493281280
+        }
+      },
+      "selection_note": "Provides a native module-lattice IBS design rather than the certificate transformation, at the cost of larger observed signatures and persistent states in this research profile. It is not the separate C64B candidate and does not inherit the paper's 200-bit row."
+    }
+  ],
+  "limitations": [
+    "The three cards are complete-system research profiles with one shared LATTE HIBE; they are not three independent HIBE algorithms.",
+    "Their security groups and concrete targets are not established as equivalent, so measured medians and sizes are descriptive rather than a same-security ranking.",
+    "The benchmark batch measures honest lifecycle and restoration. Existing mismatch, tamper, malformed-wire, and forgery tests are referenced separately and were not rerun by this card-generation task.",
+    "BYTEAUTH and canonical framing provide tested byte-tamper rejection at the wrapper layer; they do not prove HIBE anonymity, CCA security, IBS unforgeability, QROM security, or a NIST level.",
+    "The current primary demo choice is an engineering decision, not the final selection of three report representatives."
+  ]
+}

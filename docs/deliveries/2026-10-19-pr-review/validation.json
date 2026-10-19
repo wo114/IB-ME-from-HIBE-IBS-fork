@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-19",
+  "mode": "single agent; no subagents",
+  "prs": {
+    "51": {
+      "original_head": "ba02121e36331c96ff52e0d5164a3bc4c0bb9b00",
+      "status": "fixed_and_verified",
+      "initial_tests": {
+        "passed": 38,
+        "failed": 0
+      },
+      "red_tests": {
+        "failed": 3
+      },
+      "final_tests": {
+        "passed": 41,
+        "failed": 0,
+        "skipped": 0
+      },
+      "historical_receipt_checks": 369,
+      "historical_source_bridges": 2,
+      "historical_data_changed": false,
+      "findings": [
+        "Normal-mode success must equal the original message",
+        "None is not the BOTTOM protocol sentinel"
+      ]
+    },
+    "52": {
+      "original_head": "c14da6920fc45541ea758f5c3822b18496b3c367",
+      "status": "verified",
+      "tests": {
+        "passed": 25,
+        "failed": 0,
+        "skipped": 0
+      },
+      "publication_overlay": {
+        "normal": "verified",
+        "optimized": "verified",
+        "direct_entries": 243,
+        "explicit_bridges": 3
+      },
+      "ci_sha256": "2ae1556512a95d52b97940d9fb712c5e946375b1a19c948ad302eb0c85faaeeb"
+    },
+    "53": {
+      "original_head": "0f318b11ab6de06e83c99970d40d4086b770c22c",
+      "status": "verified",
+      "tests": {
+        "passed": 107,
+        "failed": 0,
+        "skipped": 0
+      },
+      "archived_benchmark_verification": {
+        "status": "passed",
+        "workers": 27,
+        "functional_checks": 495,
+        "manifest_files": 76,
+        "source_files": 122
+      },
+      "new_benchmark_rerun": false,
+      "algorithm_changes": false
+    },
+    "54": {
+      "original_head": "af5438de073ab577d4a52a099140b9adef00ea10",
+      "status": "pending"
+    },
+    "55": {
+      "original_head": "961b208b921e54551484fd2c85e96c414dcee662",
+      "status": "pending"
+    }
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
