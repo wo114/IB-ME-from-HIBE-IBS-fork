@@ -7,7 +7,7 @@ exec > >(tee -a "$task_dir/environment/prepare-all.log") 2>&1
 date -u +%FT%TZ
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
-apt-get install -y -qq build-essential pkg-config ca-certificates curl \
+apt-get install -y -qq build-essential pkg-config ca-certificates curl git \
     python3-venv libssl-dev libmpfr-dev libgmp-dev libmpc-dev \
     libopenblas-dev libquadmath0 time
 python3 -m venv "$task_dir/venv"
@@ -35,6 +35,18 @@ fi
     > "$task_dir/environment/sage-explicit.lock.txt"
 "$HOME/miniconda3/envs/sage/bin/python" -c \
     'import sage.all,numpy,scipy,pytest,psutil,gmpy2,cryptography; print("all task imports passed")'
+estimator_dir="$task_dir/environment/lattice-estimator"
+estimator_revision=53da5982597709ba0fdf94ea37a84d822310fd84
+if [ ! -d "$estimator_dir" ]; then
+    git init -q "$estimator_dir"
+    git -C "$estimator_dir" remote add origin https://github.com/malb/lattice-estimator.git
+    git -C "$estimator_dir" fetch --depth=1 origin "$estimator_revision"
+    git -C "$estimator_dir" checkout --detach FETCH_HEAD
+fi
+test "$(git -C "$estimator_dir" rev-parse HEAD)" = "$estimator_revision"
+test -z "$(git -C "$estimator_dir" status --porcelain --untracked-files=no)"
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$estimator_dir" \
+    "$HOME/miniconda3/envs/sage/bin/python" -B -c 'import sage.all,estimator; print("estimator import passed; no cost estimate executed")'
 pkg-config --modversion openssl mpfr gmp openblas
 g++ --version | head -1
 df -h "$task_dir"

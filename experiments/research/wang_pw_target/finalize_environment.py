@@ -31,6 +31,18 @@ def main():
     import sage.all  # noqa: F401
     import sage.version
     versions["sage"] = sage.version.version
+    estimator_directory = environment / "lattice-estimator"
+    estimator_commit = subprocess.run(
+        ["git", "-C", str(estimator_directory), "rev-parse", "HEAD"],
+        capture_output=True, text=True, check=True, timeout=15).stdout.strip()
+    if estimator_commit != "53da5982597709ba0fdf94ea37a84d822310fd84":
+        raise RuntimeError("wrong lattice-estimator revision")
+    if subprocess.run(["git", "-C", str(estimator_directory), "status", "--porcelain",
+                       "--untracked-files=no"], capture_output=True, text=True,
+                      check=True, timeout=15).stdout.strip():
+        raise RuntimeError("modified lattice-estimator source")
+    subprocess.run([sys.executable, "-B", "-c", "import sage.all,estimator"],
+                   cwd=estimator_directory, check=True, timeout=60)
     from ibme.ibs.wang_pw_target import native
     library = native.build_native(output_directory=environment / "native" / "wang")
     os.environ["IBME_WANG_PW_TARGET_NATIVE"] = str(library)
@@ -55,6 +67,7 @@ def main():
         compiler=subprocess.run(["g++", "--version"], capture_output=True, text=True, check=True).stdout.splitlines()[0],
         wang_native=json.loads(library.with_name(library.name + ".json").read_text()),
         latte_native=dict(source_id=meta["source_id"], binary_sha256=hashlib.sha256(latte.read_bytes()).hexdigest()),
+        lattice_estimator=dict(commit=estimator_commit, import_passed=True, cost_estimate_run=False),
         dependency_locks_sha256=locks, cryptographic_experiments_run=False,
         security_claim="none", backend_admitted=False, parameters_are_formal=False,
         nist_security_category=None,
@@ -64,7 +77,8 @@ def main():
     # Shell assignments are local operator configuration, not public evidence.
     (environment / "runtime.env").write_text(
         f"export IBME_WANG_PW_TARGET_NATIVE='{library}'\n"
-        f"export IBME_LATTE3_EXECUTABLE='{latte}'\n", encoding="utf-8")
+        f"export IBME_LATTE3_EXECUTABLE='{latte}'\n"
+        f"export IBME_ESTIMATOR_DIR='{estimator_directory}'\n", encoding="utf-8")
     print(json.dumps(report, sort_keys=True))
 
 
