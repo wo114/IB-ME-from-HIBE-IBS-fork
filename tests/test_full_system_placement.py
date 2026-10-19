@@ -3,6 +3,8 @@ import copy
 
 import pytest
 
+pytest.importorskip("resource", reason="placement benchmark uses WSL/Linux kernel metrics")
+
 from experiments.research.full_system_placement import verify_generation_providers
 
 
