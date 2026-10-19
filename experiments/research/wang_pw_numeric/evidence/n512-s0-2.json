@@ -1,0 +1,51 @@
+{
+  "schema": "IBME/WANG-PW-NUMERIC-N512/1",
+  "status": "research measurement, not a formal security admission",
+  "security_claim": "none",
+  "parameters": {
+    "n": 512,
+    "q": 4294967291,
+    "gadget_bits": 32,
+    "s0": 2,
+    "m": 32768,
+    "M": 49152,
+    "m_bar": 16384,
+    "w": 16384
+  },
+  "measured": {
+    "setup_root_s": 41.49,
+    "numeric_gs_s": 715.43,
+    "width": 576.364,
+    "particulars_s": 17.91,
+    "x_c_s": 3073.90,
+    "block_gs_s": 1903.03,
+    "block_width": 576.364,
+    "sign_s": 130.50,
+    "sigma_sign": 576.364,
+    "sign_norm": 130978.66,
+    "sign_norm_log2": 16.998972250931853,
+    "equation": true
+  },
+  "sis": {
+    "estimator": "lattice-estimator local checkout, ADPS16, red_shape_model=lgsa",
+    "norm": 2,
+    "length_bound": 130978.66,
+    "classical_bits": 169.36,
+    "quantum_bits": 153.70,
+    "cost_aggregation": "minimum finite attack rop"
+  },
+  "environment": {
+    "host": "Aliyun ecs.r9i.4xlarge",
+    "vcpu": 16,
+    "ram_gib": 123,
+    "sage": "10.9",
+    "python": "3.13.16",
+    "x_kernel": "C/OpenMP, 16 threads"
+  },
+  "caveats": [
+    "numeric float QR / rounded-normal GPV sampler, not the exact finite discrete Gaussian",
+    "s0=2 is below the thesis asymptotic s0=4 choice",
+    "no smoothing-factor certification and no formal IBS security proof",
+    "the 153.70 quantum figure is a SIS estimate at the measured norm"
+  ]
+}
