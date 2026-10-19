@@ -1,0 +1,441 @@
+{
+  "schema": "IBME-REPORT-THREE-SELECTION/1",
+  "date": "2026-10-19",
+  "basis_commit": "6f04f2b73f69c96d4e8bea1d161655af39254d70",
+  "decision": "freeze-report-representatives; readiness and performance claims remain evidence-scoped",
+  "scope": {
+    "selected_full_combinations": 3,
+    "distinct_hibe_algorithms": 2,
+    "distinct_ibs_algorithms": 3,
+    "distinct_primitive_backends": 5,
+    "new_algorithms_added_by_selection": 0,
+    "equal_security_targets_established": false,
+    "cross_environment_timing_ranking": false,
+    "all_three_have_measured_performance_advantages": false,
+    "all_three_have_web_presets": false,
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "sources": {
+    "docs/research/2026-10-18-full-system-baseline/evidence/latte-mldsa44.json": "dc8e5cef04534df6cd643a6c4aa908cb7b74e5e27c27e6730becadbe038ef8ab",
+    "docs/research/2026-10-19-srgg-paper-latte/benchmark-param-i-compact.json": "91b30d1639aacbf89a5ba8bc3a604b40dac01ea684a3ddbdf18fa62b06cd95ad",
+    "docs/research/2026-10-19-srgg-paper-latte/functional-param-i-compact.json": "89761670c7e45b112f6c62fa4ae262fa6a3ad7ce564ac87e684339220f0043bd",
+    "docs/research/2026-10-19-srgg-paper-latte/installed-cli.json": "f25244dad1171121059d5b39158c9bb860aa259e10577eed7d50cdb10216728a",
+    "docs/research/2026-10-19-lai-c2-combinations/evidence/trials.json": "6c9749bb79235e14bbf5d1c2e2ba3b469709c2b5b095c9a4261a4f8c323b5897",
+    "docs/deliveries/2026-10-18-demo-acceptance/evidence/ui-mldsa44.json": "d2d2a20a5d9d84bf4159b8c297417f2f038ac42b96fca626c08bebee49d82600",
+    "docs/deliveries/2026-10-18-demo-acceptance/evidence/cli-mldsa44-raw.json": "6a39060c3bc02612159004fb7680313d180c323b0e9dadb9880970eb019a00ea",
+    "docs/research/2026-10-19-sageloli-ring-integration/evidence/integration.json": "72196d45e5d1dad2587391196411e3e10f30ee5d0ff5304e600cfbcdc0058262",
+    "docs/research/2026-10-19-srgg-paper-latte/benchmark-param-i-reference.json": "09b5e5e2eaaa3e676c5f3563dc2b7fd9e20628fbdbb6e8db7b724e1c4621218f",
+    "src/ibme/hibe/latte/params.py": "dd0a34bdacb6b70355d78f4a171b060181ac75d03008bcace4acbd451fd958d3",
+    "experiments/research/candidates/srgg/paper_profiles.py": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f",
+    "docs/specs/latte-hibe.md": "55da3789f26199700f073fcb0c118ae17468c6df77fd18655af3e62d884af2de",
+    "docs/specs/lai-hibe.md": "921c78e22e6e6e0c06f5a397b19276c6e1204d8ca8bbe906155a897d201743e6",
+    "docs/specs/srgg-paper-assembly.md": "59266b4433dbf078bf416a169bfb22c29f79175e06b6ab2e5bd126c51a0becfc",
+    "docs/specs/sageloli-ring-ibs.md": "80015ce3245c8dc3c1d0d5a9f01eaa3fb60ea37937b4401564ea1db89a93e7aa"
+  },
+  "representatives": [
+    {
+      "id": "A-latte-mldsa44",
+      "display_name": "LATTE-3 + BNN/ML-DSA-44",
+      "role": "primary-live-demo",
+      "selection_reason": "成熟完整系统与安装/恢复演示基线；标准普通签名库经BNN转换。",
+      "suite_file": "suites/A-latte-mldsa44.json",
+      "suite_digest": "10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346",
+      "parameter_notes_not_an_alternative_config": {
+        "hibe": {
+          "N": 1024,
+          "q": 68718428161,
+          "depth": 2,
+          "root_source_revision": "18cfbf9a671fca34785583b58ab9f28e3be21a3c"
+        },
+        "ibs": {
+          "base_algorithm": "ml-dsa-44",
+          "base_public_key_bytes": 1312,
+          "base_signature_bytes": 2420,
+          "full_ibs_signature_bytes": 6237
+        }
+      },
+      "capacity": {
+        "identity_bytes": 64,
+        "max_application_bytes": 59191,
+        "signature_max_bytes": 6237,
+        "ibs_input_bytes": 65536,
+        "hibe_payload_bytes": 65536,
+        "protocol_payload_overhead": 6345,
+        "signed_input_overhead": 172,
+        "inner_hibe_payload_bytes": 32,
+        "inner_hibe_identity_bytes": 86,
+        "inner_hibe_ciphertext_max_bytes": 37587
+      },
+      "observations": {
+        "kind": "three-independent-root-benchmark",
+        "source_commit": "6b5305a",
+        "environment": {
+          "OMP_NUM_THREADS": "4",
+          "OPENBLAS_NUM_THREADS": "1",
+          "cold_definition": "fresh Python process; OS page cache and previously built native engines retained",
+          "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+          "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+          "python": "3.13.14",
+          "rss_method": "10ms /proc process-tree samples (lower bound); Linux kernel lifetime ru_maxrss per interpreter/completed child"
+        },
+        "identity_bytes": 64,
+        "message_bytes": 32,
+        "independent_roots": 3,
+        "warm_pairs": 9,
+        "timing_seconds": {
+          "setup": {
+            "count": 3,
+            "median": 0.9844922920000272
+          },
+          "sender-key": {
+            "count": 3,
+            "median": 0.2735977610000191
+          },
+          "receiver-key": {
+            "count": 3,
+            "median": 0.7543434520000005
+          },
+          "cold-encrypt": {
+            "count": 3,
+            "median": 0.22448537600001828
+          },
+          "first-decrypt-with-leaf-generation": {
+            "count": 3,
+            "median": 0.403997454999967
+          },
+          "warm-encrypt": {
+            "count": 9,
+            "median": 0.21112540699999727
+          },
+          "warm-decrypt": {
+            "count": 9,
+            "median": 0.28011566400004995
+          },
+          "restore-objects": {
+            "count": 3,
+            "median": 0.665061913000045
+          },
+          "restored-decrypt": {
+            "count": 9,
+            "median": 0.28165395000002036
+          }
+        },
+        "full_ciphertext_bytes": {
+          "count": 12,
+          "minimum": 142051,
+          "maximum": 142146
+        },
+        "sampled_process_tree_rss_max_bytes": 480243712,
+        "state_bytes": {
+          "public.bin": {
+            "minimum": 14352,
+            "maximum": 14392
+          },
+          "master.bin": {
+            "minimum": 177557,
+            "maximum": 177671
+          },
+          "sender.bin": {
+            "minimum": 8050,
+            "maximum": 8050
+          },
+          "receiver.bin": {
+            "minimum": 128017,
+            "maximum": 128098
+          }
+        },
+        "uncertainty": "3 cold states are a small empirical sample; 10ms RSS sampling may miss spikes; warm observations share each state and are not independent roots"
+      }
+    },
+    {
+      "id": "B-latte-srgg-I-compact",
+      "display_name": "LATTE-3 + SRGG PARAM-I compact",
+      "role": "native-module-ibs",
+      "selection_reason": "固定HIBE，展示原生模块格IBS；compact只作无损传输格式。",
+      "suite_file": "suites/B-latte-srgg-I-compact.json",
+      "suite_digest": "37a0d413d5daed2c407c03b4b4f1a1fe4b6454e786e9cea3dfe8676a60ce9c97",
+      "parameter_notes_not_an_alternative_config": {
+        "hibe": {
+          "N": 1024,
+          "q": 68718428161,
+          "depth": 2,
+          "root_source_revision": "18cfbf9a671fca34785583b58ab9f28e3be21a3c"
+        },
+        "ibs": {
+          "degree": 512,
+          "rank": 2,
+          "p": 16383,
+          "base": 31,
+          "digits": 2,
+          "Q": 15744063,
+          "r_stddev": "1.16",
+          "master_first_stddev": "2843.9",
+          "master_second_stddev": "1023.0",
+          "signature_first_stddev": "843088.2",
+          "signature_second_stddev": "310891.6",
+          "gamma": "42086491.7",
+          "factor": 1,
+          "interpretation": "table-standard-deviation"
+        }
+      },
+      "capacity": {
+        "identity_bytes": 64,
+        "max_application_bytes": 65364,
+        "signature_max_bytes": 15704,
+        "ibs_input_bytes": 65536,
+        "hibe_payload_bytes": 131072,
+        "protocol_payload_overhead": 15812,
+        "signed_input_overhead": 172,
+        "inner_hibe_payload_bytes": 32,
+        "inner_hibe_identity_bytes": 86,
+        "inner_hibe_ciphertext_max_bytes": 37587
+      },
+      "observations": {
+        "kind": "three-independent-root-benchmark",
+        "source_commit": "7573014d53b5367698e161abf354b643770cf20e",
+        "environment": {
+          "OMP_NUM_THREADS": "4",
+          "OPENBLAS_NUM_THREADS": "1",
+          "cold_definition": "fresh Python process; OS page cache and previously built native engines retained",
+          "cpu": "Intel(R) Core(TM) i9-14900HX",
+          "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+          "python": "3.12.13",
+          "rss_method": "10ms /proc process-tree samples (lower bound); Linux kernel lifetime ru_maxrss per interpreter/completed child"
+        },
+        "identity_bytes": 64,
+        "message_bytes": 32,
+        "independent_roots": 3,
+        "warm_pairs": 9,
+        "timing_seconds": {
+          "setup": {
+            "count": 3,
+            "median": 1.3590265829998316
+          },
+          "sender-key": {
+            "count": 3,
+            "median": 21.884569502999966
+          },
+          "receiver-key": {
+            "count": 3,
+            "median": 0.4423415710000427
+          },
+          "cold-encrypt": {
+            "count": 3,
+            "median": 8.974935469999991
+          },
+          "first-decrypt-with-leaf-generation": {
+            "count": 3,
+            "median": 0.38541972399980295
+          },
+          "warm-encrypt": {
+            "count": 9,
+            "median": 7.594920373999912
+          },
+          "warm-decrypt": {
+            "count": 9,
+            "median": 0.2014437849998103
+          },
+          "restore-objects": {
+            "count": 3,
+            "median": 0.7275191490000452
+          },
+          "restored-decrypt": {
+            "count": 9,
+            "median": 0.21828273799997078
+          }
+        },
+        "full_ciphertext_bytes": {
+          "count": 12,
+          "minimum": 149191,
+          "maximum": 149291
+        },
+        "sampled_process_tree_rss_max_bytes": 506789888,
+        "state_bytes": {
+          "public.bin": {
+            "minimum": 47204,
+            "maximum": 47274
+          },
+          "master.bin": {
+            "minimum": 268017,
+            "maximum": 268246
+          },
+          "sender.bin": {
+            "minimum": 84153,
+            "maximum": 84245
+          },
+          "receiver.bin": {
+            "minimum": 128126,
+            "maximum": 128195
+          }
+        },
+        "uncertainty": "3 cold states are a small empirical sample; 10ms RSS sampling may miss spikes; warm observations share each state and are not independent roots"
+      }
+    },
+    {
+      "id": "C-lai-c2-sageloli-I",
+      "display_name": "Lai C2 + Sageloli RSIS v3 PARAM-I",
+      "role": "second-hibe-and-ring-ibs",
+      "selection_reason": "目标规模结构验证；展示另一HIBE与原生环IBS，不宣称性能胜出。",
+      "suite_file": "suites/C-lai-c2-sageloli-I.json",
+      "suite_digest": "9a3c66cfd5073721bf135466197522352010ecbc6a10a6794c710e9b10423c82",
+      "parameter_notes_not_an_alternative_config": {
+        "hibe": {
+          "identity_bytes": 86,
+          "k": 39,
+          "l": 2,
+          "max_message_bytes": 32,
+          "message_mode": "seed32",
+          "n": 2048,
+          "p": 2,
+          "q": 274877976577,
+          "sigma": 2.0,
+          "sigma_r": 1.0
+        },
+        "ibs": {
+          "d": 2048,
+          "identity_max_bytes": 256,
+          "identity_width_squared": 2720281532542,
+          "k": 65,
+          "l": 132,
+          "mass_bits": 320,
+          "max_sign_attempts": 64,
+          "max_users": 2,
+          "message_max_bytes": 4096,
+          "r_squared": 49,
+          "salt_bytes": 32,
+          "signature_width_squared": 270116709797628319132317,
+          "tail_bits": 256,
+          "q": "10301051460877537453973547267843"
+        }
+      },
+      "capacity": {
+        "hibe_payload_bytes": 8388608,
+        "ibs_input_bytes": 4096,
+        "identity_bytes": 64,
+        "inner_hibe_ciphertext_max_bytes": 1228844,
+        "inner_hibe_identity_bytes": 86,
+        "inner_hibe_payload_bytes": 32,
+        "max_application_bytes": 3924,
+        "protocol_payload_overhead": 3227932,
+        "signature_max_bytes": 3227824,
+        "signed_input_overhead": 172
+      },
+      "observations": {
+        "kind": "one-shared-root-concurrent-functional-batch",
+        "source_commit": "48f72292177a695a437154a91d315f76cb4e8d21",
+        "environment": {
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1",
+          "cold_definition": "fresh Python process; OS page cache and previously built native engines retained",
+          "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+          "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+          "python": "3.13.14",
+          "rss_method": "10ms /proc process-tree samples (lower bound); Linux kernel lifetime ru_maxrss per interpreter/completed child"
+        },
+        "identity_bytes": 64,
+        "message_bytes": 32,
+        "hibe_root_count": 1,
+        "shared_hibe_root": true,
+        "shared_level1_keys": true,
+        "repetitions_per_suite": 1,
+        "concurrent_decrypt_limit": 6,
+        "leaf_cache": false,
+        "encrypt_seconds_observation": 98.97205544600001,
+        "decrypt_seconds_observation": 424.9803374599999,
+        "derive_seconds_observation": 393.0375743420001,
+        "decrypt_kernel_lifetime_rss_bytes": 1248882688,
+        "preparation_phase_sampled_tree_rss_max_bytes": 3015589888,
+        "full_ciphertext_bytes": 4555436,
+        "object_bytes": {
+          "ciphertext": 4555436,
+          "master": 160558447,
+          "public": 5132798,
+          "sender": 144089680
+        },
+        "receiver_bytes": 20439584,
+        "standalone_signature_bytes": 3227824,
+        "functional_observations_for_selected_suite": 26,
+        "identity_cases": {
+          "both_wrong": {
+            "status": "passed",
+            "matches": false,
+            "bottom": true,
+            "real_derive_calls": 1
+          },
+          "honest": {
+            "status": "passed",
+            "matches": true,
+            "bottom": false,
+            "real_derive_calls": 1
+          },
+          "wrong_receiver": {
+            "status": "passed",
+            "matches": false,
+            "bottom": true,
+            "real_derive_calls": 1
+          },
+          "wrong_sender": {
+            "status": "passed",
+            "matches": false,
+            "bottom": true,
+            "real_derive_calls": 1
+          }
+        }
+      }
+    }
+  ],
+  "auxiliary_evidence": {
+    "A_web_exact_selected_suite": true,
+    "A_installed_cli_exact_selected_suite": true,
+    "B_installed_suite_digest": "ba8894280100ef750ece4f6a4dd7f596983e1804c91f5ecc631749db2ebf72da",
+    "B_installed_exact_selected_suite": false,
+    "B_installed_payload_budget_bytes": 65536,
+    "B_selected_payload_budget_bytes": 131072,
+    "C_cli_wheel_for_exact_selected_suite": false,
+    "C_repeated_benchmark": false,
+    "SRGG_reference_format_ciphertext_range_bytes": {
+      "count": 12,
+      "minimum": 171097,
+      "maximum": 171231
+    },
+    "SRGG_format_samples_are_paired": false
+  },
+  "bridge_controls": {
+    "latte-sageloli-I": {
+      "source": "docs/research/2026-10-19-sageloli-ring-integration/evidence/integration.json",
+      "suite_digest": "310201cb2b95f77878bef578fdb3b8484ba862cb6492a8a4d2c8f5e0c4d81ef1",
+      "full_ciphertext_bytes": 3363679,
+      "use": "Connect C to the LATTE row without treating unlike timings as a causal comparison."
+    },
+    "lai-c2-mldsa44": {
+      "source": "docs/research/2026-10-19-lai-c2-combinations/evidence/trials.json",
+      "suite_digest": "b2c612b52026d6431d5a56c780b21613db88f954809fdc3b0578439b6c86cafc",
+      "use": "Hold the IBS algorithm fixed against A; budgets and benchmark conditions still differ."
+    },
+    "lai-c2-srgg-I-compact": {
+      "source": "docs/research/2026-10-19-lai-c2-combinations/evidence/trials.json",
+      "suite_digest": "e93732262181ad12282464a4ecff1a33f924dd27e6b76a453e8ba4b170458396",
+      "use": "Hold the IBS algorithm fixed against B; budgets and benchmark conditions still differ."
+    }
+  },
+  "next_stage_gaps": {
+    "A-latte-mldsa44": [
+      "selected-message-length-and-boundary-sweep",
+      "same-release-clean-environment-reproduction"
+    ],
+    "B-latte-srgg-I-compact": [
+      "installed-CLI-wheel-acceptance-for-exact-128KiB-suite",
+      "live-demo-preset",
+      "same-environment-comparison-and-message-length-sweep"
+    ],
+    "C-lai-c2-sageloli-I": [
+      "exact-suite-installed-CLI-wheel-acceptance",
+      "empty-and-boundary-application-messages",
+      "valid-outer-auth-invalid-inner-signature-case",
+      "bounded-repeat-benchmark-if-feasible-without-long-sampling",
+      "recorded-or-advance-computed-demo-until-latency-is-reduced"
+    ]
+  }
+}
