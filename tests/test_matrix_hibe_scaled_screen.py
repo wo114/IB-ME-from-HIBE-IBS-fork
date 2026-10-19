@@ -39,7 +39,7 @@ def test_chkp_noise_matches_independent_exact_inequality_above_old_dimension_cap
     assert result["total_sampler_TV_or_failure_upper"] is None
 
 
-def test_no_pooling_independent_abb_vectors_and_no_extra_root_lwe_role():
+def test_no_pooling_and_abb_root_trapdoor_role_is_separate_from_root_lwe():
     pytest.importorskip("sage.all", reason="scalar certificates require prescribed WSL Sage")
     row = abb_projection(128, Q61)
     role = row["ciphertext_lwe"]
@@ -48,6 +48,14 @@ def test_no_pooling_independent_abb_vectors_and_no_extra_root_lwe_role():
     assert role["fresh_vector_per_bit"] is True
     assert role["samples_from_different_fresh_vectors_pooled"] is False
     assert row["root_lwe"] is None
+    root = row["root_trapdoor_recovery"]
+    assert root["n"] == row["n"]
+    assert root["m"] == row["random_rows"]
+    assert (root["length_bound"] - 1) ** 2 < 4 * row["random_rows"]
+    assert root["length_bound"] ** 2 >= 4 * row["random_rows"]
+    assert root["public_target_columns"] == row["m2"]
+    assert root["full_trapdoor_recovery_cost_estimated"] is False
+    assert root["shared_matrix_multitarget_or_amortization_applied"] is False
     assert row["normalized_quality_conditioning_used"] is False
     assert row["noise"]["strict_Regev_noise_prerequisite"]
 
