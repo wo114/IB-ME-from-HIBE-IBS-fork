@@ -1,0 +1,52 @@
+{
+  "schema": "IBME/WANG-PW-NUMERIC-N512/1",
+  "profile": "s0=4, short gadget particular",
+  "status": "research measurement, not a formal security admission",
+  "security_claim": "none",
+  "parameters": {
+    "n": 512,
+    "q": 4294967291,
+    "gadget_bits": 32,
+    "s0": 4,
+    "m": 32768,
+    "M": 49152,
+    "m_bar": 16384,
+    "w": 16384
+  },
+  "measured": {
+    "setup_root_s": 41.58,
+    "numeric_gs_s": 713.90,
+    "width": 1146.026,
+    "particulars_s": 17.90,
+    "x_c_s": 3096.35,
+    "block_gs_s": 1885.39,
+    "block_width": 1146.026,
+    "sign_s": 131.33,
+    "sigma_sign": 1146.026,
+    "sign_norm": 466193.54,
+    "sign_norm_log2": 18.830569487752722,
+    "equation": true
+  },
+  "sis": {
+    "estimator": "lattice-estimator local checkout, ADPS16, red_shape_model=lgsa",
+    "norm": 2,
+    "length_bound": 466193.54,
+    "classical_bits": 127.02,
+    "quantum_bits": 115.28,
+    "cost_aggregation": "minimum finite attack rop"
+  },
+  "environment": {
+    "host": "Aliyun ecs.r9i.4xlarge",
+    "vcpu": 16,
+    "ram_gib": 123,
+    "sage": "10.9",
+    "python": "3.13.16",
+    "x_kernel": "C/OpenMP, 16 threads"
+  },
+  "caveats": [
+    "numeric float QR / rounded-normal GPV sampler, not the exact finite discrete Gaussian",
+    "no smoothing-factor certification and no formal IBS security proof",
+    "the 115.28 quantum figure is a SIS estimate at the measured norm",
+    "s0=4 is the thesis-aligned asymptotic choice; this profile is the conservative comparison"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "IBME/PR66-67-REVIEW-MANIFEST/1",
+  "git_sources": {
+    "6c0e2d23bc39cc27378b65fb38b0acd4b93c30eb": {
+      "docs/reports/2026-10-19-research-draft/研究报告初稿.md": "073f1100f04f932e0f334c2e36a2cea767449a36626fe394837e9c7b49916ed0",
+      "docs/reports/2026-10-19-research-draft/研究报告初稿.docx": "4ebdb4692cecdf776fcf21ab0a95d30a3c5ee9864441ad1568e914c02f3d8fdd",
+      "docs/reports/2026-10-19-research-draft/check_report.py": "5d9a22127f233ad4da898d27a4489fad66756a2d580fd835e93a6374536df0d0",
+      "docs/reports/2026-10-19-research-draft/validation.json": "810e7dbc68fb51eb4c559f1ebd31d9c4ef954adb34dd76243e932e9b34cb6533",
+      "docs/research/2026-10-19-parameters/fooli-improvement-search.json": "59e5f5b7df36feda0af467dd2a2e3e101abd93a7f31df6d10388b41edbf28938",
+      "docs/research/2026-10-19-parameters/FooLi参数改进搜索与128bit目标卡.md": "74e42162d273acd8cefc27d06bc18226036bc44c6f7e112ca2ad65daccac99e9"
+    },
+    "cbbfd442cd3992369570f4d32004a9db0bc5cfd7": {
+      "experiments/research/wang_pw_numeric/.gitignore": "5c9aff029b0659718ea8f6aa03e67b46c9d9311d3bb06d216d33eeac9546140c",
+      "experiments/research/wang_pw_numeric/README.md": "2e58f5e599c9b64ff18d5604669d6fa5b212084e7d762fff162130c8a56a1a4c",
+      "experiments/research/wang_pw_numeric/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "experiments/research/wang_pw_numeric/evidence/n512-s0-2.json": "ec59c42e9019bccf1c80bf85f8f6f36cd7ce1c48f98328e54c06230f77cf38ca",
+      "experiments/research/wang_pw_numeric/evidence/n512-s0-4-short.json": "0f0f393566e3d65784054e27fa579a6da45bc2a65401f5ee3bc415b173295342",
+      "experiments/research/wang_pw_numeric/fast_root_basis.py": "3218935367242c9d92ab4ec992480bfa60f804bd0fef14442e01e9d162d785f9",
+      "experiments/research/wang_pw_numeric/gpv_kernel.c": "01c57f29f8e28b3745663866847cf94bd901bc18ceb9b4780549b249741c3156",
+      "experiments/research/wang_pw_numeric/gpv_kernel.py": "98665d26e9f35c70bdc2b5b191d83215f7d00f31b83368792daeb1937c4cfb29",
+      "experiments/research/wang_pw_numeric/numeric_gpv_ibs.py": "be9aa844bdc1f6fdc9dce94c832b40e1aa4c93c1cf454afd28e19d193c39a6ff",
+      "experiments/research/wang_pw_numeric/numeric_gpv_mp.py": "8ed9fc582e2ceb5130d17b0ae27a9e9c156da3feec2a922150afa592d37f4a7b",
+      "experiments/research/wang_pw_numeric/numeric_gpv_np_mp.py": "4fd75f0a376304e506029a8b6cc8202ba8f819f3e04a797ae0458ea507b2aeb2",
+      "experiments/research/wang_pw_numeric/numeric_gpv_scaling.py": "878073fbe3e7c5feaf670f841c72f77fe9ae7941d0f9901d0b973a92d69fcfc4",
+      "experiments/research/wang_pw_numeric/root_basis_numpy.py": "7c80e22934b48c50a36957a91c2525e24d09dd4bae23d619ff65ad50e1abada8",
+      "experiments/research/wang_pw_numeric/root_width.py": "789982b03df636686f3da7058f7e9229624e00205a4f8a9959708ef127cd0d1d",
+      "experiments/research/wang_pw_numeric/sis_scan.py": "f873516f8e3db07c8d85c18707dc0ef7988fb3c1a46023106ba4debf85016d50",
+      "tests/test_wang_pw_numeric_full.py": "ea3ff3b8ff011d73296198b922794c959797bae1c6a40a5ac7acc0454f4946e9",
+      "tests/test_wang_pw_numeric_sampler.py": "538aeed46ed2642a47017e7f7589a9d35ab02613ea46ca80e614c2dea22cf168",
+      "tests/test_wang_pw_root_basis_numpy.py": "6cbee900609da99e6620243ce2f3d32bddeb9221864ebd240b8cc6d4d3996683",
+      "src/ibme/ibs/wang_pw.py": "2043096d809993f9a1f3ee7a5d2c0a689c1737dc4351ba380c0267f726ea1e89",
+      "src/ibme/lattice/chkp/root_basis.py": "30ee87fd3ee23ae5f1fd8d8276f4f621abe3149b546578eb9239bc751c86b5da"
+    }
+  },
+  "artifacts": {
+    "boundary_controls.py": "5fbba0a3abe79b4af50c3c702b3b170dee17dd636e337ab552fcf63b9569a160",
+    "native-controls.json": "70bbe534994faca958475186cc9507a84abd82f5da3c6bdd646fb8c2538780f8",
+    "pr66-check.json": "810e7dbc68fb51eb4c559f1ebd31d9c4ef954adb34dd76243e932e9b34cb6533",
+    "pr66-ci.json": "64cdcf37abb3a3d654f173c3418cdb08d246879948c4ce3e34f8ac9be944ad4c",
+    "pr67-ci.json": "9a715232c6657645094e5e3604a11419d05b60a998858dfc3caf679abdc8c404",
+    "pr67-original.xml": "f62ff7ce9afea163088f8d8197cf2a147b918d1039ff881eaa9ea1b0071280c3",
+    "README.md": "1b026f34cff9d915994c0813e971b6415c55659398fe920054262f1c0e7f89fa",
+    "review.json": "fb2aa981906e5a2e4221a26cb02101eb41d537ee62415a2c46d8e4a7df741e56",
+    "verify.py": "b85e826901a7defec744d76229d3979a524a5285333d5e369396d243d6142a27"
+  }
+}

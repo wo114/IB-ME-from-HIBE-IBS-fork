@@ -1,0 +1,32 @@
+{
+  "source_commit": "cbbfd442cd3992369570f4d32004a9db0bc5cfd7",
+  "native_function_replaced": true,
+  "unsafe_native_execution": false,
+  "cases": [
+    {
+      "case": "wrong_basis_dtype",
+      "rejected_before_native": false,
+      "native_entry_reached": true
+    },
+    {
+      "case": "short_norm_array",
+      "rejected_before_native": false,
+      "native_entry_reached": true
+    },
+    {
+      "case": "noncontiguous_norm_array",
+      "rejected_before_native": false,
+      "native_entry_reached": true
+    },
+    {
+      "case": "nan_sigma",
+      "rejected_before_native": false,
+      "native_entry_reached": true
+    },
+    {
+      "case": "zero_threads",
+      "rejected_before_native": false,
+      "native_entry_reached": true
+    }
+  ]
+}
