@@ -1,5 +1,6 @@
 import copy
 import hashlib
+from pathlib import Path
 
 import pytest
 
@@ -11,6 +12,7 @@ from experiments.research.random_batch_acceptance import (
     case_inputs,
     parse_seed,
     public_input_manifest,
+    require_fixed_source,
     validate_public_report,
 )
 
@@ -53,6 +55,11 @@ def test_public_manifest_has_hashes_but_no_raw_inputs():
 def test_seed_parser_rejects_non_32_byte_hex(value):
     with pytest.raises(ValueError):
         parse_seed(value)
+
+
+def test_fixed_source_gate_rejects_a_nonexistent_commit():
+    with pytest.raises(ValueError, match="existing Git commit"):
+        require_fixed_source("a" * 40, Path("ci/c-combinations.json"))
 
 
 def _valid_report():

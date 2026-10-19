@@ -436,9 +436,35 @@ def _suite_from_file(path: Path):
     return config, preflight
 
 
-def build_plan(suite_file: Path, seed_hex: str, source_commit: str) -> dict:
+def require_fixed_source(source_commit: str, suite_file: Path) -> str:
     if not re.fullmatch(r"[0-9a-f]{40}", source_commit or ""):
         raise ValueError("source commit must be a full lowercase Git object id")
+    suite_path = suite_file.resolve()
+    if not suite_path.is_relative_to(ROOT):
+        raise ValueError("suite manifest must be inside the repository")
+    relative_suite = suite_path.relative_to(ROOT).as_posix()
+    commit = subprocess.run(
+        ["git", "cat-file", "-e", source_commit + "^{commit}"],
+        cwd=ROOT,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    if commit.returncode != 0:
+        raise ValueError("source commit does not identify an existing Git commit")
+    fixed_paths = ("src/ibme", "experiments/research/random_batch_acceptance.py", relative_suite)
+    comparison = subprocess.run(
+        ["git", "diff", "--quiet", source_commit, "--", *fixed_paths],
+        cwd=ROOT,
+        check=False,
+    )
+    if comparison.returncode != 0:
+        raise ValueError("runtime source or suite manifest differs from the declared commit")
+    return source_commit
+
+
+def build_plan(suite_file: Path, seed_hex: str, source_commit: str) -> dict:
+    source_commit = require_fixed_source(source_commit, suite_file)
     seed = parse_seed(seed_hex)
     config, preflight = _suite_from_file(suite_file)
     return dict(
