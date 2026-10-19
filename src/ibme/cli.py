@@ -481,7 +481,7 @@ def _load_msk(state: Path, mock: bool) -> tuple[MasterSecret, BaselineIBME, dict
 
 def _selection_requested(args) -> bool:
     return any(getattr(args, name, None) is not None for name in
-               ("hibe", "ibs", "hibe_params", "ibs_params", "transport", "protocol")) or bool(getattr(args, "allow_mock", False))
+               ("hibe", "ibs", "hibe_params", "ibs_params", "transport", "protocol", "hybrid_limits")) or bool(getattr(args, "allow_mock", False))
 
 
 def _parameter_argument(value):
@@ -520,6 +520,7 @@ def _suite_from_args(args):
         protocol=getattr(args, "protocol", None) or "byteauth-v1",
         signature_format=getattr(args, "signature_format", "reference"),
         allow_mock=getattr(args, "allow_mock", False),
+        hybrid_limits=_parameter_argument(getattr(args, "hybrid_limits", None)),
     )
 
 
@@ -894,6 +895,7 @@ def _add_selection(sub) -> None:
     sub.add_argument("--ibs", default=None, help="独立 IBS 标识；见 list-backends")
     sub.add_argument("--hibe-params", default=None, help="HIBE 参数预设或完整参数 JSON 文件")
     sub.add_argument("--ibs-params", default=None, help="IBS 参数预设或完整参数 JSON 文件")
+    sub.add_argument("--hybrid-limits", default=None, help="显式 Hybrid 容量 JSON 或 JSON 文件，纳入状态配置")
     sub.add_argument("--transport", choices=("direct", "hybrid"), default=None,
                      help="明确选择载荷路线（独立选择默认 direct；不自动降级）")
     sub.add_argument("--protocol", choices=("byteauth-v1", "baseline-v1"), default=None,
