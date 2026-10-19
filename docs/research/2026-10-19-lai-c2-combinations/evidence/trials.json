@@ -1,0 +1,1939 @@
+{
+  "backend_admitted": false,
+  "concurrent_decrypt_limit": 6,
+  "environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "cold_definition": "fresh Python process; OS page cache and previously built native engines retained",
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.14",
+    "rss_method": "10ms /proc process-tree samples (lower bound); Linux kernel lifetime ru_maxrss per interpreter/completed child"
+  },
+  "hibe_root_count": 1,
+  "identity_bytes": 64,
+  "inner_identity_bytes": 86,
+  "inner_payload_bytes": 32,
+  "leaf_cache": false,
+  "limitations": [
+    "One shared HIBE root; one IBS root and one 32-byte encryption per suite. No statistical failure estimate.",
+    "Every identity case loads serialized objects in a new process and performs one real uncached Lai Derive.",
+    "Recovery consumes fresh sampling entropy; no zero-entropy leaf recovery is claimed.",
+    "Standalone IBS negatives use an additional signature, not the signature extracted from the ciphertext.",
+    "No valid-outer/invalid-inner forgery or empty-message C2 test is included in this bounded run.",
+    "Parallel timings with shared HIBE preparation are observations, not independent-root performance rankings.",
+    "C2 and the IBS presets retain their documented research limitations; functional tests are not security proofs."
+  ],
+  "message_bytes": 32,
+  "parameters_are_formal": false,
+  "phases": [
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 226734080,
+      "name": "shared-hibe-setup",
+      "sampled_process_tree_peak_rss_bytes": 256913408,
+      "sampled_self_peak_rss_bytes": 256913408,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 2.1294653340000025,
+      "self_kernel_lifetime_peak_rss_bytes": 256303104,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 226734080,
+      "name": "shared-receiver-extract",
+      "sampled_process_tree_peak_rss_bytes": 368926720,
+      "sampled_self_peak_rss_bytes": 368926720,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 31.165530167999997,
+      "self_kernel_lifetime_peak_rss_bytes": 391335936,
+      "status": "passed"
+    },
+    {
+      "completed_children_kernel_lifetime_max_rss_bytes": 226734080,
+      "name": "shared-other-receiver-extract",
+      "sampled_process_tree_peak_rss_bytes": 429187072,
+      "sampled_self_peak_rss_bytes": 429187072,
+      "sampling_interval_seconds": 0.01,
+      "seconds": 30.998561183999996,
+      "self_kernel_lifetime_peak_rss_bytes": 479694848,
+      "status": "passed"
+    }
+  ],
+  "preparation_process": {
+    "returncode": 0,
+    "timed_out": false
+  },
+  "random_oracle_scope": "As described by the selected primitive contracts; no new proof.",
+  "randomness": "OS CSPRNG; no deterministic test stream",
+  "receiver_key_count": 2,
+  "repetitions_per_suite": 1,
+  "schema": "LAI-C2-COMPOSITIONS/1",
+  "security_claim": "none",
+  "shared_hibe_root": true,
+  "shared_level1_keys": true,
+  "shared_object_bytes": {
+    "hmsk": 4034856,
+    "hpk": 1618080,
+    "other-receiver": 20439584,
+    "receiver": 20439584
+  },
+  "source_commit": "48f72292177a695a437154a91d315f76cb4e8d21",
+  "source_set": "5fc6163ef4f6cefc8e253a4f93792950b9ab92e6b38bc0123f7af477aa778ab4",
+  "status": "passed",
+  "suites": {
+    "falcon512": {
+      "checks": [
+        {
+          "name": "public_restore",
+          "passed": true
+        },
+        {
+          "name": "master_restore",
+          "passed": true
+        },
+        {
+          "name": "sender_restore",
+          "passed": true
+        },
+        {
+          "name": "ciphertext_canonical",
+          "passed": true
+        },
+        {
+          "name": "byteauth_context",
+          "passed": true
+        },
+        {
+          "name": "byteauth_inner_bytes",
+          "passed": true
+        },
+        {
+          "name": "byteauth_signature",
+          "passed": true
+        },
+        {
+          "name": "byteauth_ots_key",
+          "passed": true
+        },
+        {
+          "name": "truncated_loader",
+          "passed": true
+        },
+        {
+          "name": "truncated_decrypt",
+          "passed": true
+        },
+        {
+          "name": "appended_loader",
+          "passed": true
+        },
+        {
+          "name": "appended_decrypt",
+          "passed": true
+        },
+        {
+          "name": "duplicate_loader",
+          "passed": true
+        },
+        {
+          "name": "duplicate_decrypt",
+          "passed": true
+        },
+        {
+          "name": "version_loader",
+          "passed": true
+        },
+        {
+          "name": "version_decrypt",
+          "passed": true
+        },
+        {
+          "name": "outer_rejection_without_derive",
+          "passed": true
+        },
+        {
+          "name": "ibs_honest",
+          "passed": true
+        },
+        {
+          "name": "ibs_wrong_message",
+          "passed": true
+        },
+        {
+          "name": "ibs_wrong_identity",
+          "passed": true
+        },
+        {
+          "name": "ibs_changed_signature",
+          "passed": true
+        },
+        {
+          "name": "ibs_random_signature",
+          "passed": true
+        }
+      ],
+      "identity_cases": {
+        "both_wrong": {
+          "bottom": true,
+          "case": "both_wrong",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219648000,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 849879040,
+              "sampled_self_peak_rss_bytes": 849879040,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 377.7128785320001,
+              "self_kernel_lifetime_peak_rss_bytes": 1060823040,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": false,
+          "original_files_unchanged": true,
+          "output_bytes": 0,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219648000,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 476868608,
+              "sampled_self_peak_rss_bytes": 476868608,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 6.490531376999797,
+              "self_kernel_lifetime_peak_rss_bytes": 489291776,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219648000,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 856399872,
+              "sampled_self_peak_rss_bytes": 856399872,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 400.61959533900017,
+              "self_kernel_lifetime_peak_rss_bytes": 1060823040,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "15c05a911061c9883f3d5af74a1410ddf5d45f4f25177b6ebeeeb9b4f8c3d70d",
+          "status": "passed",
+          "suite": "falcon512"
+        },
+        "honest": {
+          "bottom": false,
+          "case": "honest",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219967488,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 849846272,
+              "sampled_self_peak_rss_bytes": 849846272,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 394.1082279159999,
+              "self_kernel_lifetime_peak_rss_bytes": 1060388864,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": true,
+          "original_files_unchanged": true,
+          "output_bytes": 32,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219967488,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 476835840,
+              "sampled_self_peak_rss_bytes": 476835840,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 6.034389689000022,
+              "self_kernel_lifetime_peak_rss_bytes": 489529344,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 1211842560,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 858578944,
+              "sampled_self_peak_rss_bytes": 858578944,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 425.7635001289999,
+              "self_kernel_lifetime_peak_rss_bytes": 1211842560,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "15c05a911061c9883f3d5af74a1410ddf5d45f4f25177b6ebeeeb9b4f8c3d70d",
+          "status": "passed",
+          "suite": "falcon512"
+        },
+        "wrong_receiver": {
+          "bottom": true,
+          "case": "wrong_receiver",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219643904,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 849948672,
+              "sampled_self_peak_rss_bytes": 849948672,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 393.8915806990001,
+              "self_kernel_lifetime_peak_rss_bytes": 1061302272,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": false,
+          "original_files_unchanged": true,
+          "output_bytes": 0,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219643904,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 476852224,
+              "sampled_self_peak_rss_bytes": 476852224,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 6.363459865999857,
+              "self_kernel_lifetime_peak_rss_bytes": 489172992,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219643904,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 856469504,
+              "sampled_self_peak_rss_bytes": 856469504,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 416.868803071,
+              "self_kernel_lifetime_peak_rss_bytes": 1061302272,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "15c05a911061c9883f3d5af74a1410ddf5d45f4f25177b6ebeeeb9b4f8c3d70d",
+          "status": "passed",
+          "suite": "falcon512"
+        },
+        "wrong_sender": {
+          "bottom": true,
+          "case": "wrong_sender",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219910144,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 849797120,
+              "sampled_self_peak_rss_bytes": 849797120,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 394.42039433699995,
+              "self_kernel_lifetime_peak_rss_bytes": 1060286464,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": false,
+          "original_files_unchanged": true,
+          "output_bytes": 0,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219910144,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 476897280,
+              "sampled_self_peak_rss_bytes": 476897280,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 6.142017581000005,
+              "self_kernel_lifetime_peak_rss_bytes": 489316352,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219910144,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 856358912,
+              "sampled_self_peak_rss_bytes": 856358912,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 417.29337201600003,
+              "self_kernel_lifetime_peak_rss_bytes": 1060286464,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "15c05a911061c9883f3d5af74a1410ddf5d45f4f25177b6ebeeeb9b4f8c3d70d",
+          "status": "passed",
+          "suite": "falcon512"
+        }
+      },
+      "object_bytes": {
+        "ciphertext": 1329934,
+        "master": 4041535,
+        "public": 1619260,
+        "sender": 4195
+      },
+      "phases": [
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "ibs-setup",
+          "sampled_process_tree_peak_rss_bytes": 564060160,
+          "sampled_self_peak_rss_bytes": 564060160,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 0.12537517100003015,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "sender-key",
+          "sampled_process_tree_peak_rss_bytes": 578154496,
+          "sampled_self_peak_rss_bytes": 578154496,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 0.7864434489999894,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "encrypt",
+          "sampled_process_tree_peak_rss_bytes": 679219200,
+          "sampled_self_peak_rss_bytes": 679219200,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 91.09346301300002,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "restore-and-bind-objects",
+          "sampled_process_tree_peak_rss_bytes": 539779072,
+          "sampled_self_peak_rss_bytes": 539779072,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 3.8484510399999863,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "outer-and-wire-negatives",
+          "sampled_process_tree_peak_rss_bytes": 672825344,
+          "sampled_self_peak_rss_bytes": 672825344,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 52.258657288999984,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "standalone-ibs-negatives",
+          "sampled_process_tree_peak_rss_bytes": 1120395264,
+          "sampled_self_peak_rss_bytes": 560197632,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 0.2622719109999707,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        }
+      ],
+      "preflight": {
+        "capacity": {
+          "hibe_payload_bytes": 8388608,
+          "ibs_input_bytes": 65536,
+          "identity_bytes": 64,
+          "inner_hibe_ciphertext_max_bytes": 1228844,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_payload_bytes": 32,
+          "max_application_bytes": 65364,
+          "protocol_payload_overhead": 2430,
+          "signature_max_bytes": 2322,
+          "signed_input_overhead": 172
+        },
+        "errors": [],
+        "metadata": {
+          "backend_admitted": false,
+          "combination_tested": false,
+          "hibe": "lai-ideal-hibe",
+          "hibe_key_binding_capability": true,
+          "ibs": "cert-falcon",
+          "parameters_are_formal": false,
+          "persistent_identity_cache": true,
+          "preflight_only": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": false,
+            "ibs": true
+          },
+          "protocol": "byteauth-v1",
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1",
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "security_claim": "none",
+          "signature_format": "reference",
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "229db8f9ed17a9bc203be057d7a65f1cce956bb9fcd39b7e9d7d3e5e2ba7ccc7",
+          "test_only": false,
+          "transport": "hybrid"
+        },
+        "ok": true
+      },
+      "standalone_signature_bytes": 2322,
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "lai-ideal-hibe",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "k": 39,
+          "l": 2,
+          "max_message_bytes": 32,
+          "message_mode": "seed32",
+          "n": 2048,
+          "p": 2,
+          "q": 274877976577,
+          "sigma": 2.0,
+          "sigma_r": 1.0
+        },
+        "hibe_version": "lai-a-256-v1",
+        "hybrid_limits": {
+          "backend_id": "lai-a-256-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 8388608
+        },
+        "ibs": "cert-falcon",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "falcon-padded-512",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "229db8f9ed17a9bc203be057d7a65f1cce956bb9fcd39b7e9d7d3e5e2ba7ccc7"
+    },
+    "mldsa44": {
+      "checks": [
+        {
+          "name": "public_restore",
+          "passed": true
+        },
+        {
+          "name": "master_restore",
+          "passed": true
+        },
+        {
+          "name": "sender_restore",
+          "passed": true
+        },
+        {
+          "name": "ciphertext_canonical",
+          "passed": true
+        },
+        {
+          "name": "byteauth_context",
+          "passed": true
+        },
+        {
+          "name": "byteauth_inner_bytes",
+          "passed": true
+        },
+        {
+          "name": "byteauth_signature",
+          "passed": true
+        },
+        {
+          "name": "byteauth_ots_key",
+          "passed": true
+        },
+        {
+          "name": "truncated_loader",
+          "passed": true
+        },
+        {
+          "name": "truncated_decrypt",
+          "passed": true
+        },
+        {
+          "name": "appended_loader",
+          "passed": true
+        },
+        {
+          "name": "appended_decrypt",
+          "passed": true
+        },
+        {
+          "name": "duplicate_loader",
+          "passed": true
+        },
+        {
+          "name": "duplicate_decrypt",
+          "passed": true
+        },
+        {
+          "name": "version_loader",
+          "passed": true
+        },
+        {
+          "name": "version_decrypt",
+          "passed": true
+        },
+        {
+          "name": "outer_rejection_without_derive",
+          "passed": true
+        },
+        {
+          "name": "ibs_honest",
+          "passed": true
+        },
+        {
+          "name": "ibs_wrong_message",
+          "passed": true
+        },
+        {
+          "name": "ibs_wrong_identity",
+          "passed": true
+        },
+        {
+          "name": "ibs_changed_signature",
+          "passed": true
+        },
+        {
+          "name": "ibs_random_signature",
+          "passed": true
+        }
+      ],
+      "identity_cases": {
+        "both_wrong": {
+          "bottom": true,
+          "case": "both_wrong",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219619328,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 850141184,
+              "sampled_self_peak_rss_bytes": 850141184,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 377.45853166899974,
+              "self_kernel_lifetime_peak_rss_bytes": 1061642240,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": false,
+          "original_files_unchanged": true,
+          "output_bytes": 0,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219619328,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 477044736,
+              "sampled_self_peak_rss_bytes": 477044736,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 6.473511274999964,
+              "self_kernel_lifetime_peak_rss_bytes": 489304064,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219619328,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 856637440,
+              "sampled_self_peak_rss_bytes": 856637440,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 400.5924488689998,
+              "self_kernel_lifetime_peak_rss_bytes": 1061642240,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "15c05a911061c9883f3d5af74a1410ddf5d45f4f25177b6ebeeeb9b4f8c3d70d",
+          "status": "passed",
+          "suite": "mldsa44"
+        },
+        "honest": {
+          "bottom": false,
+          "case": "honest",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219877376,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 850022400,
+              "sampled_self_peak_rss_bytes": 850022400,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 393.70702122499995,
+              "self_kernel_lifetime_peak_rss_bytes": 1061486592,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": true,
+          "original_files_unchanged": true,
+          "output_bytes": 32,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219877376,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 450818048,
+              "sampled_self_peak_rss_bytes": 450818048,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 6.278309220999972,
+              "self_kernel_lifetime_peak_rss_bytes": 489418752,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 1212153856,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 858775552,
+              "sampled_self_peak_rss_bytes": 858775552,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 425.408532909,
+              "self_kernel_lifetime_peak_rss_bytes": 1212153856,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "15c05a911061c9883f3d5af74a1410ddf5d45f4f25177b6ebeeeb9b4f8c3d70d",
+          "status": "passed",
+          "suite": "mldsa44"
+        },
+        "wrong_receiver": {
+          "bottom": true,
+          "case": "wrong_receiver",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219820032,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 850137088,
+              "sampled_self_peak_rss_bytes": 850137088,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 393.06298323500005,
+              "self_kernel_lifetime_peak_rss_bytes": 1063714816,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": false,
+          "original_files_unchanged": true,
+          "output_bytes": 0,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219820032,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 450940928,
+              "sampled_self_peak_rss_bytes": 450940928,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 6.427931737000108,
+              "self_kernel_lifetime_peak_rss_bytes": 489631744,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219820032,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 856670208,
+              "sampled_self_peak_rss_bytes": 856670208,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 415.952167292,
+              "self_kernel_lifetime_peak_rss_bytes": 1063714816,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "15c05a911061c9883f3d5af74a1410ddf5d45f4f25177b6ebeeeb9b4f8c3d70d",
+          "status": "passed",
+          "suite": "mldsa44"
+        },
+        "wrong_sender": {
+          "bottom": true,
+          "case": "wrong_sender",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219680768,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 849797120,
+              "sampled_self_peak_rss_bytes": 849797120,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 393.221313591,
+              "self_kernel_lifetime_peak_rss_bytes": 1060958208,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": false,
+          "original_files_unchanged": true,
+          "output_bytes": 0,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219680768,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 476811264,
+              "sampled_self_peak_rss_bytes": 476811264,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 5.932141879000028,
+              "self_kernel_lifetime_peak_rss_bytes": 489377792,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 219680768,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 856297472,
+              "sampled_self_peak_rss_bytes": 856297472,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 416.09805114899996,
+              "self_kernel_lifetime_peak_rss_bytes": 1060958208,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "15c05a911061c9883f3d5af74a1410ddf5d45f4f25177b6ebeeeb9b4f8c3d70d",
+          "status": "passed",
+          "suite": "mldsa44"
+        }
+      },
+      "object_bytes": {
+        "ciphertext": 1333849,
+        "master": 4047076,
+        "public": 1619667,
+        "sender": 8050
+      },
+      "phases": [
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 506556416,
+          "name": "ibs-setup",
+          "sampled_process_tree_peak_rss_bytes": 428785664,
+          "sampled_self_peak_rss_bytes": 428785664,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 0.12135439899999767,
+          "self_kernel_lifetime_peak_rss_bytes": 506556416,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 506556416,
+          "name": "sender-key",
+          "sampled_process_tree_peak_rss_bytes": 450433024,
+          "sampled_self_peak_rss_bytes": 450433024,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 0.7180691800000005,
+          "self_kernel_lifetime_peak_rss_bytes": 506556416,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 506556416,
+          "name": "encrypt",
+          "sampled_process_tree_peak_rss_bytes": 627335168,
+          "sampled_self_peak_rss_bytes": 627335168,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 88.546837709,
+          "self_kernel_lifetime_peak_rss_bytes": 626700288,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 626700288,
+          "name": "restore-and-bind-objects",
+          "sampled_process_tree_peak_rss_bytes": 496254976,
+          "sampled_self_peak_rss_bytes": 496254976,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 2.3690617469999893,
+          "self_kernel_lifetime_peak_rss_bytes": 626700288,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 626700288,
+          "name": "outer-and-wire-negatives",
+          "sampled_process_tree_peak_rss_bytes": 669466624,
+          "sampled_self_peak_rss_bytes": 669466624,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 55.10498118300001,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "standalone-ibs-negatives",
+          "sampled_process_tree_peak_rss_bytes": 565411840,
+          "sampled_self_peak_rss_bytes": 564060160,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 0.7915139559999886,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        }
+      ],
+      "preflight": {
+        "capacity": {
+          "hibe_payload_bytes": 8388608,
+          "ibs_input_bytes": 65536,
+          "identity_bytes": 64,
+          "inner_hibe_ciphertext_max_bytes": 1228844,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_payload_bytes": 32,
+          "max_application_bytes": 65364,
+          "protocol_payload_overhead": 6345,
+          "signature_max_bytes": 6237,
+          "signed_input_overhead": 172
+        },
+        "errors": [],
+        "metadata": {
+          "backend_admitted": false,
+          "combination_tested": false,
+          "hibe": "lai-ideal-hibe",
+          "hibe_key_binding_capability": true,
+          "ibs": "cert-ml-dsa",
+          "parameters_are_formal": false,
+          "persistent_identity_cache": true,
+          "preflight_only": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": false,
+            "ibs": true
+          },
+          "protocol": "byteauth-v1",
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1",
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "security_claim": "none",
+          "signature_format": "reference",
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "b2c612b52026d6431d5a56c780b21613db88f954809fdc3b0578439b6c86cafc",
+          "test_only": false,
+          "transport": "hybrid"
+        },
+        "ok": true
+      },
+      "standalone_signature_bytes": 6237,
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "lai-ideal-hibe",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "k": 39,
+          "l": 2,
+          "max_message_bytes": 32,
+          "message_mode": "seed32",
+          "n": 2048,
+          "p": 2,
+          "q": 274877976577,
+          "sigma": 2.0,
+          "sigma_r": 1.0
+        },
+        "hibe_version": "lai-a-256-v1",
+        "hybrid_limits": {
+          "backend_id": "lai-a-256-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 8388608
+        },
+        "ibs": "cert-ml-dsa",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "ml-dsa-44",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "b2c612b52026d6431d5a56c780b21613db88f954809fdc3b0578439b6c86cafc"
+    },
+    "sageloli-I": {
+      "checks": [
+        {
+          "name": "public_restore",
+          "passed": true
+        },
+        {
+          "name": "master_restore",
+          "passed": true
+        },
+        {
+          "name": "sender_restore",
+          "passed": true
+        },
+        {
+          "name": "ciphertext_canonical",
+          "passed": true
+        },
+        {
+          "name": "byteauth_context",
+          "passed": true
+        },
+        {
+          "name": "byteauth_inner_bytes",
+          "passed": true
+        },
+        {
+          "name": "byteauth_signature",
+          "passed": true
+        },
+        {
+          "name": "byteauth_ots_key",
+          "passed": true
+        },
+        {
+          "name": "truncated_loader",
+          "passed": true
+        },
+        {
+          "name": "truncated_decrypt",
+          "passed": true
+        },
+        {
+          "name": "appended_loader",
+          "passed": true
+        },
+        {
+          "name": "appended_decrypt",
+          "passed": true
+        },
+        {
+          "name": "duplicate_loader",
+          "passed": true
+        },
+        {
+          "name": "duplicate_decrypt",
+          "passed": true
+        },
+        {
+          "name": "version_loader",
+          "passed": true
+        },
+        {
+          "name": "version_decrypt",
+          "passed": true
+        },
+        {
+          "name": "outer_rejection_without_derive",
+          "passed": true
+        },
+        {
+          "name": "ibs_honest",
+          "passed": true
+        },
+        {
+          "name": "ibs_wrong_message",
+          "passed": true
+        },
+        {
+          "name": "ibs_wrong_identity",
+          "passed": true
+        },
+        {
+          "name": "ibs_changed_signature",
+          "passed": true
+        },
+        {
+          "name": "ibs_random_signature",
+          "passed": true
+        }
+      ],
+      "identity_cases": {
+        "both_wrong": {
+          "bottom": true,
+          "case": "both_wrong",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177242112,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 887623680,
+              "sampled_self_peak_rss_bytes": 887623680,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 378.47839171999976,
+              "self_kernel_lifetime_peak_rss_bytes": 1100050432,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": false,
+          "original_files_unchanged": true,
+          "output_bytes": 0,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177242112,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 507961344,
+              "sampled_self_peak_rss_bytes": 507961344,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 6.301226987000064,
+              "self_kernel_lifetime_peak_rss_bytes": 520482816,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177242112,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 922419200,
+              "sampled_self_peak_rss_bytes": 922419200,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 401.43234020800014,
+              "self_kernel_lifetime_peak_rss_bytes": 1100050432,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "21c4eb1f4e9af7677fc059a2e6d680da8249fe959e987991b6d5198aa0c848f2",
+          "status": "passed",
+          "suite": "sageloli-I"
+        },
+        "honest": {
+          "bottom": false,
+          "case": "honest",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 176783360,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 887275520,
+              "sampled_self_peak_rss_bytes": 887275520,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 393.0375743420001,
+              "self_kernel_lifetime_peak_rss_bytes": 1098588160,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": true,
+          "original_files_unchanged": true,
+          "output_bytes": 32,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 176783360,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 507789312,
+              "sampled_self_peak_rss_bytes": 507789312,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 5.931750699999952,
+              "self_kernel_lifetime_peak_rss_bytes": 519684096,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 176783360,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 911659008,
+              "sampled_self_peak_rss_bytes": 911659008,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 424.9803374599999,
+              "self_kernel_lifetime_peak_rss_bytes": 1248882688,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "21c4eb1f4e9af7677fc059a2e6d680da8249fe959e987991b6d5198aa0c848f2",
+          "status": "passed",
+          "suite": "sageloli-I"
+        },
+        "wrong_receiver": {
+          "bottom": true,
+          "case": "wrong_receiver",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 176959488,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 887300096,
+              "sampled_self_peak_rss_bytes": 887300096,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 393.0445399119999,
+              "self_kernel_lifetime_peak_rss_bytes": 1099382784,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": false,
+          "original_files_unchanged": true,
+          "output_bytes": 0,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 176959488,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 507822080,
+              "sampled_self_peak_rss_bytes": 507822080,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 6.209483933000001,
+              "self_kernel_lifetime_peak_rss_bytes": 507195392,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 176959488,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 893841408,
+              "sampled_self_peak_rss_bytes": 893841408,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 416.32806931100004,
+              "self_kernel_lifetime_peak_rss_bytes": 1099382784,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "21c4eb1f4e9af7677fc059a2e6d680da8249fe959e987991b6d5198aa0c848f2",
+          "status": "passed",
+          "suite": "sageloli-I"
+        },
+        "wrong_sender": {
+          "bottom": true,
+          "case": "wrong_sender",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177315840,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 887443456,
+              "sampled_self_peak_rss_bytes": 887443456,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 394.31066838200013,
+              "self_kernel_lifetime_peak_rss_bytes": 1099145216,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": false,
+          "original_files_unchanged": true,
+          "output_bytes": 0,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177315840,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 521064448,
+              "sampled_self_peak_rss_bytes": 521064448,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 6.659926542999983,
+              "self_kernel_lifetime_peak_rss_bytes": 520765440,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177315840,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 893947904,
+              "sampled_self_peak_rss_bytes": 893947904,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 417.29148694699984,
+              "self_kernel_lifetime_peak_rss_bytes": 1099145216,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "21c4eb1f4e9af7677fc059a2e6d680da8249fe959e987991b6d5198aa0c848f2",
+          "status": "passed",
+          "suite": "sageloli-I"
+        }
+      },
+      "object_bytes": {
+        "ciphertext": 4555436,
+        "master": 160558447,
+        "public": 5132798,
+        "sender": 144089680
+      },
+      "phases": [
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "ibs-setup",
+          "sampled_process_tree_peak_rss_bytes": 685367296,
+          "sampled_self_peak_rss_bytes": 685367296,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 2.5380007819999264,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "sender-key",
+          "sampled_process_tree_peak_rss_bytes": 1192361984,
+          "sampled_self_peak_rss_bytes": 1192361984,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 50.83361423600002,
+          "self_kernel_lifetime_peak_rss_bytes": 1201573888,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "encrypt",
+          "sampled_process_tree_peak_rss_bytes": 2002632704,
+          "sampled_self_peak_rss_bytes": 2002632704,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 98.97205544600001,
+          "self_kernel_lifetime_peak_rss_bytes": 2005401600,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "restore-and-bind-objects",
+          "sampled_process_tree_peak_rss_bytes": 3015589888,
+          "sampled_self_peak_rss_bytes": 3015589888,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 35.339204995000046,
+          "self_kernel_lifetime_peak_rss_bytes": 3015413760,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "outer-and-wire-negatives",
+          "sampled_process_tree_peak_rss_bytes": 2292006912,
+          "sampled_self_peak_rss_bytes": 2292006912,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 53.163494208999964,
+          "self_kernel_lifetime_peak_rss_bytes": 3015413760,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "standalone-ibs-negatives",
+          "sampled_process_tree_peak_rss_bytes": 2189504512,
+          "sampled_self_peak_rss_bytes": 2189504512,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 2.5382332560000123,
+          "self_kernel_lifetime_peak_rss_bytes": 3015413760,
+          "status": "passed"
+        }
+      ],
+      "preflight": {
+        "capacity": {
+          "hibe_payload_bytes": 8388608,
+          "ibs_input_bytes": 4096,
+          "identity_bytes": 64,
+          "inner_hibe_ciphertext_max_bytes": 1228844,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_payload_bytes": 32,
+          "max_application_bytes": 3924,
+          "protocol_payload_overhead": 3227932,
+          "signature_max_bytes": 3227824,
+          "signed_input_overhead": 172
+        },
+        "errors": [],
+        "metadata": {
+          "backend_admitted": false,
+          "combination_tested": false,
+          "hibe": "lai-ideal-hibe",
+          "hibe_key_binding_capability": true,
+          "ibs": "sageloli-rsis",
+          "parameters_are_formal": false,
+          "persistent_identity_cache": true,
+          "preflight_only": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": false,
+            "ibs": true
+          },
+          "protocol": "byteauth-v1",
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1",
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "security_claim": "none",
+          "signature_format": "reference",
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "9a3c66cfd5073721bf135466197522352010ecbc6a10a6794c710e9b10423c82",
+          "test_only": false,
+          "transport": "hybrid"
+        },
+        "ok": true
+      },
+      "standalone_signature_bytes": 3227824,
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "lai-ideal-hibe",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "k": 39,
+          "l": 2,
+          "max_message_bytes": 32,
+          "message_mode": "seed32",
+          "n": 2048,
+          "p": 2,
+          "q": 274877976577,
+          "sigma": 2.0,
+          "sigma_r": 1.0
+        },
+        "hibe_version": "lai-a-256-v1",
+        "hybrid_limits": {
+          "backend_id": "lai-a-256-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 8388608
+        },
+        "ibs": "sageloli-rsis",
+        "ibs_params": {
+          "d": 2048,
+          "identity_max_bytes": 256,
+          "identity_width_squared": 2720281532542,
+          "k": 65,
+          "l": 132,
+          "mass_bits": 320,
+          "max_sign_attempts": 64,
+          "max_users": 2,
+          "message_max_bytes": 4096,
+          "r_squared": 49,
+          "salt_bytes": 32,
+          "signature_width_squared": 270116709797628319132317,
+          "tail_bits": 256
+        },
+        "ibs_version": "Sageloli-RSIS-structured-v3",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "9a3c66cfd5073721bf135466197522352010ecbc6a10a6794c710e9b10423c82"
+    },
+    "srgg-I": {
+      "checks": [
+        {
+          "name": "public_restore",
+          "passed": true
+        },
+        {
+          "name": "master_restore",
+          "passed": true
+        },
+        {
+          "name": "sender_restore",
+          "passed": true
+        },
+        {
+          "name": "ciphertext_canonical",
+          "passed": true
+        },
+        {
+          "name": "byteauth_context",
+          "passed": true
+        },
+        {
+          "name": "byteauth_inner_bytes",
+          "passed": true
+        },
+        {
+          "name": "byteauth_signature",
+          "passed": true
+        },
+        {
+          "name": "byteauth_ots_key",
+          "passed": true
+        },
+        {
+          "name": "truncated_loader",
+          "passed": true
+        },
+        {
+          "name": "truncated_decrypt",
+          "passed": true
+        },
+        {
+          "name": "appended_loader",
+          "passed": true
+        },
+        {
+          "name": "appended_decrypt",
+          "passed": true
+        },
+        {
+          "name": "duplicate_loader",
+          "passed": true
+        },
+        {
+          "name": "duplicate_decrypt",
+          "passed": true
+        },
+        {
+          "name": "version_loader",
+          "passed": true
+        },
+        {
+          "name": "version_decrypt",
+          "passed": true
+        },
+        {
+          "name": "outer_rejection_without_derive",
+          "passed": true
+        },
+        {
+          "name": "ibs_honest",
+          "passed": true
+        },
+        {
+          "name": "ibs_wrong_message",
+          "passed": true
+        },
+        {
+          "name": "ibs_wrong_identity",
+          "passed": true
+        },
+        {
+          "name": "ibs_changed_signature",
+          "passed": true
+        },
+        {
+          "name": "ibs_random_signature",
+          "passed": true
+        }
+      ],
+      "identity_cases": {
+        "both_wrong": {
+          "bottom": true,
+          "case": "both_wrong",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 176992256,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 851197952,
+              "sampled_self_peak_rss_bytes": 851197952,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 377.6897328110001,
+              "self_kernel_lifetime_peak_rss_bytes": 1063874560,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": false,
+          "original_files_unchanged": true,
+          "output_bytes": 0,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 176992256,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 451919872,
+              "sampled_self_peak_rss_bytes": 451919872,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 6.281237516000147,
+              "self_kernel_lifetime_peak_rss_bytes": 490577920,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 176992256,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 857710592,
+              "sampled_self_peak_rss_bytes": 857710592,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 400.71260823499983,
+              "self_kernel_lifetime_peak_rss_bytes": 1063874560,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "fb441b7f427280330f44b66ae29c5ab792b33652e85b79912a3c2996589e92b5",
+          "status": "passed",
+          "suite": "srgg-I"
+        },
+        "honest": {
+          "bottom": false,
+          "case": "honest",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177037312,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 851402752,
+              "sampled_self_peak_rss_bytes": 851402752,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 393.67531875,
+              "self_kernel_lifetime_peak_rss_bytes": 1062629376,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": true,
+          "original_files_unchanged": true,
+          "output_bytes": 32,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177037312,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 452067328,
+              "sampled_self_peak_rss_bytes": 452067328,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 5.9332904169999665,
+              "self_kernel_lifetime_peak_rss_bytes": 490561536,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177037312,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 861609984,
+              "sampled_self_peak_rss_bytes": 861609984,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 425.46897692900006,
+              "self_kernel_lifetime_peak_rss_bytes": 1213145088,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "c3fdf9d0ff2b2e5185036e3d3cfb80c2365ed14c7abaa207b0fe973b63a652a3",
+          "status": "passed",
+          "suite": "srgg-I"
+        },
+        "wrong_receiver": {
+          "bottom": true,
+          "case": "wrong_receiver",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177147904,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 851251200,
+              "sampled_self_peak_rss_bytes": 851251200,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 392.53820371100005,
+              "self_kernel_lifetime_peak_rss_bytes": 1062019072,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": false,
+          "original_files_unchanged": true,
+          "output_bytes": 0,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177147904,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 451948544,
+              "sampled_self_peak_rss_bytes": 451948544,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 6.16255454200018,
+              "self_kernel_lifetime_peak_rss_bytes": 490876928,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177147904,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 857759744,
+              "sampled_self_peak_rss_bytes": 857759744,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 415.55651235899995,
+              "self_kernel_lifetime_peak_rss_bytes": 1062019072,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "fb441b7f427280330f44b66ae29c5ab792b33652e85b79912a3c2996589e92b5",
+          "status": "passed",
+          "suite": "srgg-I"
+        },
+        "wrong_sender": {
+          "bottom": true,
+          "case": "wrong_sender",
+          "derive_phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177152000,
+              "name": "real-lai-derive",
+              "sampled_process_tree_peak_rss_bytes": 851169280,
+              "sampled_self_peak_rss_bytes": 851169280,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 394.2810590669999,
+              "self_kernel_lifetime_peak_rss_bytes": 1061466112,
+              "status": "passed"
+            }
+          ],
+          "fresh_process": true,
+          "leaf_cache": false,
+          "matches": false,
+          "original_files_unchanged": true,
+          "output_bytes": 0,
+          "phases": [
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177152000,
+              "name": "restore-objects",
+              "sampled_process_tree_peak_rss_bytes": 478072832,
+              "sampled_self_peak_rss_bytes": 478072832,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 6.486166402000208,
+              "self_kernel_lifetime_peak_rss_bytes": 490631168,
+              "status": "passed"
+            },
+            {
+              "completed_children_kernel_lifetime_max_rss_bytes": 177152000,
+              "name": "complete-protocol-decrypt",
+              "sampled_process_tree_peak_rss_bytes": 857722880,
+              "sampled_self_peak_rss_bytes": 857722880,
+              "sampling_interval_seconds": 0.01,
+              "seconds": 417.13959409899985,
+              "self_kernel_lifetime_peak_rss_bytes": 1061466112,
+              "status": "passed"
+            }
+          ],
+          "process": {
+            "returncode": 0,
+            "timed_out": false
+          },
+          "real_derive_calls": 1,
+          "source_set": "fb441b7f427280330f44b66ae29c5ab792b33652e85b79912a3c2996589e92b5",
+          "status": "passed",
+          "suite": "srgg-I"
+        }
+      },
+      "object_bytes": {
+        "ciphertext": 1341012,
+        "master": 4137669,
+        "public": 1652589,
+        "sender": 84306
+      },
+      "phases": [
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "ibs-setup",
+          "sampled_process_tree_peak_rss_bytes": 560377856,
+          "sampled_self_peak_rss_bytes": 560377856,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 0.39134037299999136,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "sender-key",
+          "sampled_process_tree_peak_rss_bytes": 574377984,
+          "sampled_self_peak_rss_bytes": 574377984,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 20.303096116999996,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "encrypt",
+          "sampled_process_tree_peak_rss_bytes": 690606080,
+          "sampled_self_peak_rss_bytes": 690606080,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 90.13114206099999,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "restore-and-bind-objects",
+          "sampled_process_tree_peak_rss_bytes": 542433280,
+          "sampled_self_peak_rss_bytes": 542433280,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 1.7659716179999805,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "outer-and-wire-negatives",
+          "sampled_process_tree_peak_rss_bytes": 685387776,
+          "sampled_self_peak_rss_bytes": 685387776,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 53.187258914999916,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        },
+        {
+          "completed_children_kernel_lifetime_max_rss_bytes": 690954240,
+          "name": "standalone-ibs-negatives",
+          "sampled_process_tree_peak_rss_bytes": 538075136,
+          "sampled_self_peak_rss_bytes": 538075136,
+          "sampling_interval_seconds": 0.01,
+          "seconds": 5.88520572099992,
+          "self_kernel_lifetime_peak_rss_bytes": 690954240,
+          "status": "passed"
+        }
+      ],
+      "preflight": {
+        "capacity": {
+          "hibe_payload_bytes": 8388608,
+          "ibs_input_bytes": 65536,
+          "identity_bytes": 64,
+          "inner_hibe_ciphertext_max_bytes": 1228844,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_payload_bytes": 32,
+          "max_application_bytes": 65364,
+          "protocol_payload_overhead": 15812,
+          "signature_max_bytes": 15704,
+          "signed_input_overhead": 172
+        },
+        "errors": [],
+        "metadata": {
+          "backend_admitted": false,
+          "combination_tested": false,
+          "hibe": "lai-ideal-hibe",
+          "hibe_key_binding_capability": true,
+          "ibs": "srgg2025-paper",
+          "parameters_are_formal": false,
+          "persistent_identity_cache": true,
+          "preflight_only": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": false,
+            "ibs": true
+          },
+          "protocol": "byteauth-v1",
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1",
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "security_claim": "none",
+          "signature_format": "compact",
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "e93732262181ad12282464a4ecff1a33f924dd27e6b76a453e8ba4b170458396",
+          "test_only": false,
+          "transport": "hybrid"
+        },
+        "ok": true
+      },
+      "standalone_signature_bytes": 13400,
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "lai-ideal-hibe",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "k": 39,
+          "l": 2,
+          "max_message_bytes": 32,
+          "message_mode": "seed32",
+          "n": 2048,
+          "p": 2,
+          "q": 274877976577,
+          "sigma": 2.0,
+          "sigma_r": 1.0
+        },
+        "hibe_version": "lai-a-256-v1",
+        "hybrid_limits": {
+          "backend_id": "lai-a-256-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 8388608
+        },
+        "ibs": "srgg2025-paper",
+        "ibs_params": {
+          "interpretation": "table-standard-deviation",
+          "profile_name": "PARAM-I"
+        },
+        "ibs_version": "SRGG-PAPER-TABLE4-factor1-v1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "compact",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "e93732262181ad12282464a4ecff1a33f924dd27e6b76a453e8ba4b170458396"
+    }
+  }
+}

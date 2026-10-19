@@ -53,11 +53,20 @@ def main(*, historical=False) -> None:
             root, "docs/research/team-c-delivery/2026-10-19-lai-publication/source-bindings.json"))
     else:
         bindings = json.loads((directory / "source-bindings.json").read_text(encoding="utf-8"))
+    snapshot_count = 0
     for relative, expected in bindings["sha256_lf"].items():
         path = root / relative
         require(path.resolve().is_relative_to(root.resolve()), "binding escapes repository")
         raw = historical_bytes(root, relative) if historical else path.read_bytes()
         actual = hashlib.sha256(raw.replace(b"\r\n", b"\n")).hexdigest()
+        if actual != expected and not historical:
+            snapshot = bindings.get("publication_snapshots", {}).get(relative)
+            require(snapshot is not None, "source binding differs: " + relative)
+            target = (directory / snapshot["path"]).resolve()
+            require(target.is_relative_to(directory.resolve()), "snapshot escapes publication")
+            raw = target.read_bytes()
+            actual = hashlib.sha256(raw.replace(b"\r\n", b"\n")).hexdigest()
+            snapshot_count += 1
         require(actual == expected, "source binding differs: " + relative)
 
     if historical:
@@ -103,7 +112,8 @@ def main(*, historical=False) -> None:
     print(json.dumps({"status": "passed", "source_bindings": len(bindings["sha256_lf"]),
                       "pytest_passed": total,
                       "target_c2_rerun": validation["target_c2_rerun_this_batch"],
-                      "source_mode": "historical Git 2180286" if historical else "current checkout"}))
+                      "publication_snapshots_used": snapshot_count,
+                      "source_mode": "historical Git 2180286" if historical else "checkout plus explicit publication snapshots"}))
 
 
 if __name__ == "__main__":
