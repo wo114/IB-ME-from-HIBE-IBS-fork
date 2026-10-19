@@ -24,6 +24,7 @@ def main(argv=None) -> int:
     parser.add_argument("--identity-bytes", type=int, default=86)
     parser.add_argument("--message-bytes", type=int, default=32)
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--rng", choices=("deterministic", "secure"), default="deterministic")
     args = parser.parse_args(argv)
 
     params = LaiParams(q=args.q, n=args.n, k=args.k, l=2, p=2,
@@ -31,14 +32,18 @@ def main(argv=None) -> int:
                        identity_bytes=args.identity_bytes,
                        max_message_bytes=args.message_bytes)
     backend = LaiHIBE()
-    rng = lambda tag: DeterministicRandom(f"seed{args.seed}-{tag}".encode())
+    if args.rng == "secure":
+        rng = lambda tag: None
+    else:
+        rng = lambda tag: DeterministicRandom(f"seed{args.seed}-{tag}".encode())
     parent = b"r" * args.identity_bytes
     child = b"s" * args.identity_bytes
     message = bytes(range(args.message_bytes))
 
     report = {"params": dict(q=params.q, n=params.n, k=params.k,
                              l=params.l, p=params.p, sigma=params.sigma),
-              "seed": args.seed, "message_bytes": len(message), "identity_bytes": args.identity_bytes,
+              "seed": args.seed if args.rng == "deterministic" else None,
+              "rng": args.rng, "message_bytes": len(message), "identity_bytes": args.identity_bytes,
               "security_claim": "none", "ok": False}
     t0 = perf_counter()
     pk, msk = backend.setup(params, rng=rng("target-setup"))

@@ -16,7 +16,8 @@ from ibme.core.errors import (
     InvalidParameterError,
     SerializationError,
 )
-from ibme.core.randomness import DeterministicRandom
+from ibme.core.randomness import DeterministicRandom, SecureRandom
+from ibme.hibe.lai.engine import _Random
 from ibme.hibe.lai import codec
 from ibme.hibe.lai.registration import ciphertext_size
 from ibme.hibe.lai import (
@@ -180,3 +181,17 @@ def test_fixed_rng_reproducible(env):
     second = backend.encrypt(pk, RCV, PHI, PAYLOAD, rng=rng(b"repro"))
     assert first.to_bytes() == second.to_bytes()
     assert backend.decrypt(sk2, first) == PAYLOAD
+
+
+def test_randomness_uses_buffered_csprng_or_test_stream():
+    production = _Random(SecureRandom())
+    assert isinstance(production._source, SecureRandom)
+    assert isinstance(_Random()._source, SecureRandom)
+    assert hasattr(production, "_buffer") and not hasattr(production, "_rng")
+
+    first = _Random(DeterministicRandom(b"lai-rng-replay"))
+    second = _Random(DeterministicRandom(b"lai-rng-replay"))
+    assert [first.randrange(2 ** 30) for _ in range(8)] == [
+        second.randrange(2 ** 30) for _ in range(8)]
+    assert [first.random() for _ in range(4)] == [
+        second.random() for _ in range(4)]
