@@ -1,0 +1,33 @@
+{
+  "backend_admitted": false,
+  "benchmark": {
+    "checks": 495,
+    "explicit_verifications": 72,
+    "independent_roots": 9,
+    "passed": 27,
+    "replaced_failed_roots": 0,
+    "successful_signatures": 54,
+    "workers": 27
+  },
+  "nist_security_category": null,
+  "parameters_are_formal": false,
+  "security_claim": "none",
+  "tests": {
+    "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_compact.py tests/test_srgg_compact_benchmark.py tests/test_srgg_paper_backend.py tests/test_srgg_structured_geometry.py tests/test_srgg_paper_schur_samplef.py tests/test_srgg_representation_audit.py",
+    "errors": 0,
+    "failures": 0,
+    "passed": 183,
+    "pytest_summary_seconds": 39.43,
+    "skipped": 0
+  },
+  "verification": {
+    "isolated_optimized_copy": "passed",
+    "local_links_valid": 22,
+    "manifest_entries": 76,
+    "manifest_tamper_rejected": true,
+    "missing_check_with_updated_manifest_rejected": true,
+    "normal_python": "passed",
+    "optimized_python": "passed",
+    "source_files_verified": 122
+  }
+}

@@ -175,9 +175,9 @@
         "tests/test_sageloli_*.py"
       ],
       "source_markers": [
-        "experiments/research/candidates/sageloli/probe.py"
+        "experiments/research/candidates/sageloli/backend.py"
       ],
-      "source_stage": "component",
+      "source_stage": "standalone_source",
       "allow_skips": false,
       "environment": "sage",
       "layer": "primitive"
@@ -188,9 +188,9 @@
         "tests/test_sageloli_*.py"
       ],
       "source_markers": [
-        "experiments/research/candidates/sageloli/probe.py"
+        "experiments/research/candidates/sageloli/backend.py"
       ],
-      "source_stage": "component",
+      "source_stage": "standalone_source",
       "allow_skips": false,
       "environment": "sage",
       "layer": "primitive"

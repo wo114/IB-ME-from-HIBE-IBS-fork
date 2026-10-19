@@ -113,6 +113,22 @@ def test_unexpected_plaintext_in_wrong_identity_case_is_marked_failed(session):
     assert session.observations[-1]["expectation_met"] is False
 
 
+def test_normal_decryption_requires_the_original_message(session):
+    session.runtime.proto = SimpleNamespace(decrypt=lambda *args: b"wrong plaintext")
+    result = server.api_decrypt({"mode": "normal"})
+    assert result["bottom"] is False
+    assert result["expectation_met"] is False
+    assert session.observations[-1]["expectation_met"] is False
+
+
+@pytest.mark.parametrize("mode", ["normal", "tamper"])
+def test_undefined_none_is_not_a_protocol_rejection(session, mode):
+    session.runtime.proto = SimpleNamespace(decrypt=lambda *args: None)
+    with pytest.raises(server.DemoError, match="无效结果"):
+        server.api_decrypt({"mode": mode})
+    assert session.observations == []
+
+
 def test_export_contains_measurements_but_no_private_objects_or_plaintext(session):
     session.observations.append(dict(operation="decrypt", mode="normal",
                                      bottom=False, expectation_met=True, seconds=0.1))
