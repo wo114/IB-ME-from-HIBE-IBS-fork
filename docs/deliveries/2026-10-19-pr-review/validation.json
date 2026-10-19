@@ -61,7 +61,21 @@
     },
     "54": {
       "original_head": "af5438de073ab577d4a52a099140b9adef00ea10",
-      "status": "pending"
+      "status": "verified",
+      "tests": {
+        "passed": 116,
+        "failed": 0,
+        "skipped": 0
+      },
+      "public_replay": {
+        "rows": 4,
+        "geometry_and_finite_CDF_recomputed": true,
+        "mathematical_payload_matches_original": true,
+        "estimator_rerun": false
+      },
+      "implementation_research_candidates": 2,
+      "joint_comparison_candidates": 0,
+      "complete_runtime_candidates": 0
     },
     "55": {
       "original_head": "961b208b921e54551484fd2c85e96c414dcee662",

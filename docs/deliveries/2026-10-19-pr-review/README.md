@@ -23,3 +23,7 @@ PR52 为 Sageloli CI 状态；PR53 为 SRGG 无损编码与资源实测；PR54 �
 ## PR53
 
 三份 codec／benchmark／表示盘点专项在规定 Sage 下 **107 passed、0 skipped**（26.21秒）。审查四种对象的原 JSON／context 保留、固定参数头、精确 signed 编码、规范 padding／宽度、缓存状态及先检查容量后分配；未改算法或默认服务。原公开核验器通过：27 workers、495功能检查、76清单文件、122源码。实测为作者归档记录，本轮未重新生成9个根或重跑历史时间／RSS；压缩不被表述为同倍率内存下降或算法加速。
+
+## PR54
+
+前沿、噪声分类、完整基资源、缩放比较及 CI 目录测试 **116 passed、0 skipped**（22.67秒）。另真实重建四行公开几何／有限 CDF，复用原估计结果及其计时再分类，除环境／测量／当前源码指纹外完整数学 payload 相同；未重跑估计器。当前为2个实现研究候选、0个双侧比较候选、0个完整运行候选，资源下界和固定随机 tape成本均显式保留。重放输出为 `evidence/pr54-replay.json`，在仓库根以规定 Sage 运行 `evidence/replay_frontier.py --output <new-output.json>` 可复验。

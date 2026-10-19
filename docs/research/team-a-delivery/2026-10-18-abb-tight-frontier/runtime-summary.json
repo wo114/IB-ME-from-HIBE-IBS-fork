@@ -1,0 +1,47 @@
+{
+  "schema": "A/ABB-TIGHT-PARAMETER-FRONTIER-RUNTIME/1",
+  "source_schema": "A/ABB-TIGHT-PARAMETER-FRONTIER/1",
+  "measurements": {
+    "finite_cdf_build_seconds": 1.087525083014043,
+    "total_seconds": 37.030470927013084,
+    "process_max_rss_kib": 301408
+  },
+  "environment": {
+    "python": "3.14.7",
+    "sage": "10.9",
+    "platform": "Linux-6.18.56-x86_64-with-glibc2.44",
+    "logical_cpus": 12
+  },
+  "row_count": 4,
+  "repetitions": 1,
+  "rng": "none; public arithmetic/CDF/estimator run",
+  "actual_finite_ciphertext_noise_CDF_built": true,
+  "root_or_key_generations": 0,
+  "ciphertext_generations": 0,
+  "private_entropy_bytes": 0,
+  "root_trapdoor_comparison_candidates": [],
+  "ciphertext_comparison_candidates": [
+    "abb-rom-tight-n8192-q179-chi721",
+    "abb-rom-tight-n8224-q180-chi721",
+    "abb-rom-tight-n8704-q180-chi721"
+  ],
+  "comparison_model_candidates": [],
+  "implementation_research_candidates": [
+    "abb-rom-tight-n8224-q180-chi721",
+    "abb-rom-tight-n8704-q180-chi721"
+  ],
+  "recommended_implementation_research_candidate": "abb-rom-tight-n8224-q180-chi721",
+  "complete_runtime_candidates": [],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "limitations": [
+    "complete finite SampleR certificate mapping into the ABB security reduction",
+    "literal finite SampleR fixed-tape entropy and m^2 scalar-draw execution",
+    "exact planted-R and complete root-trapdoor recovery cost",
+    "all relevant ciphertext attacks, multi-target/query and HIBE reduction losses",
+    "finite BasisDel/RandBasis/SamplePre total TV, abort and distribution mapping",
+    "matrix random-oracle and ROM/QROM instantiation",
+    "hundreds-of-terabytes complete-basis representation and current consumers"
+  ]
+}
