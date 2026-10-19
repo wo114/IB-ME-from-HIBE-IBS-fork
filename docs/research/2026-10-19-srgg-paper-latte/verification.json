@@ -1,0 +1,20 @@
+{
+  "backend_admitted": false,
+  "benchmark_provider_records": 1824,
+  "cli_commands": 15,
+  "cli_restore_commands": 1,
+  "distinct_provider_files": 145,
+  "functional_cases": 6,
+  "functional_checks": 204,
+  "independent_benchmark_roots": 6,
+  "installed_provider_records": 154,
+  "parameters_are_formal": false,
+  "private_state_read": false,
+  "schema": "SRGG-PAPER-PUBLIC-VERIFICATION/1",
+  "security_claim": "none",
+  "source_commit": "7573014d53b5367698e161abf354b643770cf20e",
+  "status": "passed",
+  "tampered_provider_rejected": true,
+  "warm_encrypt_decrypt_pairs": 18,
+  "zero_entropy_restored_decrypts": 18
+}

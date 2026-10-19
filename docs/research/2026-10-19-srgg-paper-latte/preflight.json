@@ -1,0 +1,776 @@
+{
+  "schema": "ibme-combination-plan-v1",
+  "status": "preflight_only",
+  "counts": {
+    "pass": 0,
+    "fail": 0,
+    "blocked": 0,
+    "not_executed": 0,
+    "planned": 6,
+    "unavailable": 0,
+    "preflight_failed": 0
+  },
+  "executed_checks": 0,
+  "executed_cases": 0,
+  "security_proof_count": 0,
+  "evidence_counts": {
+    "test_only": {
+      "cases": 0,
+      "checks": 0
+    },
+    "research": {
+      "cases": 0,
+      "checks": 0
+    }
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "limitations": [
+    "Functional checks do not establish security.",
+    "Research classification excludes mock; it does not certify parameters or security.",
+    "Preset/format/transport variants are not distinct primitive algorithms.",
+    "Random signature rejection is a bounded negative input check.",
+    "No unavailable backend is substituted; dependency/policy gates remain in force.",
+    "Restore checks use fresh objects/backends in one process, not crash or disk transactions."
+  ],
+  "results": [
+    {
+      "case": "latte-srgg-paper-param-i-reference",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "srgg2025-paper",
+        "ibs_params": "PARAM-I",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "reference",
+        "allow_mock": false,
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_payload_bytes": 131072,
+          "max_capsule_bytes": 4194304
+        }
+      },
+      "status": "planned",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 131072
+        },
+        "ibs": "srgg2025-paper",
+        "ibs_params": {
+          "interpretation": "table-standard-deviation",
+          "profile_name": "PARAM-I"
+        },
+        "ibs_version": "SRGG-PAPER-TABLE4-factor1-v1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "0be4ba45fb8679cb692e5e5d990aba244d8cce12bc5df803485dc6536b3afdd2",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 65364,
+          "signature_max_bytes": 47282,
+          "ibs_input_bytes": 65536,
+          "hibe_payload_bytes": 131072,
+          "protocol_payload_overhead": 47390,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "0be4ba45fb8679cb692e5e5d990aba244d8cce12bc5df803485dc6536b3afdd2",
+          "hibe": "latte",
+          "ibs": "srgg2025-paper",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "reference",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    },
+    {
+      "case": "latte-srgg-paper-param-i-compact",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "srgg2025-paper",
+        "ibs_params": "PARAM-I",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "compact",
+        "allow_mock": false,
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_payload_bytes": 131072,
+          "max_capsule_bytes": 4194304
+        }
+      },
+      "status": "planned",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 131072
+        },
+        "ibs": "srgg2025-paper",
+        "ibs_params": {
+          "interpretation": "table-standard-deviation",
+          "profile_name": "PARAM-I"
+        },
+        "ibs_version": "SRGG-PAPER-TABLE4-factor1-v1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "compact",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "37a0d413d5daed2c407c03b4b4f1a1fe4b6454e786e9cea3dfe8676a60ce9c97",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 65364,
+          "signature_max_bytes": 15704,
+          "ibs_input_bytes": 65536,
+          "hibe_payload_bytes": 131072,
+          "protocol_payload_overhead": 15812,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "37a0d413d5daed2c407c03b4b4f1a1fe4b6454e786e9cea3dfe8676a60ce9c97",
+          "hibe": "latte",
+          "ibs": "srgg2025-paper",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "compact",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    },
+    {
+      "case": "latte-srgg-paper-param-ii-reference",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "srgg2025-paper",
+        "ibs_params": "PARAM-II",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "reference",
+        "allow_mock": false,
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_payload_bytes": 131072,
+          "max_capsule_bytes": 4194304
+        }
+      },
+      "status": "planned",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 131072
+        },
+        "ibs": "srgg2025-paper",
+        "ibs_params": {
+          "interpretation": "table-standard-deviation",
+          "profile_name": "PARAM-II"
+        },
+        "ibs_version": "SRGG-PAPER-TABLE4-factor1-v1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "2fdb7c8f75bcf5d8363ee22a2f3520961b90f9b3f8a02e6c61dce8726c159c96",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 63194,
+          "signature_max_bytes": 67770,
+          "ibs_input_bytes": 65536,
+          "hibe_payload_bytes": 131072,
+          "protocol_payload_overhead": 67878,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "2fdb7c8f75bcf5d8363ee22a2f3520961b90f9b3f8a02e6c61dce8726c159c96",
+          "hibe": "latte",
+          "ibs": "srgg2025-paper",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "reference",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    },
+    {
+      "case": "latte-srgg-paper-param-ii-compact",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "srgg2025-paper",
+        "ibs_params": "PARAM-II",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "compact",
+        "allow_mock": false,
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_payload_bytes": 131072,
+          "max_capsule_bytes": 4194304
+        }
+      },
+      "status": "planned",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 131072
+        },
+        "ibs": "srgg2025-paper",
+        "ibs_params": {
+          "interpretation": "table-standard-deviation",
+          "profile_name": "PARAM-II"
+        },
+        "ibs_version": "SRGG-PAPER-TABLE4-factor1-v1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "compact",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "65882732b0e077ec346549008accebe5471175a897da6a6d535f2919592d4956",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 65364,
+          "signature_max_bytes": 22616,
+          "ibs_input_bytes": 65536,
+          "hibe_payload_bytes": 131072,
+          "protocol_payload_overhead": 22724,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "65882732b0e077ec346549008accebe5471175a897da6a6d535f2919592d4956",
+          "hibe": "latte",
+          "ibs": "srgg2025-paper",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "compact",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    },
+    {
+      "case": "latte-srgg-paper-param-iii-reference",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "srgg2025-paper",
+        "ibs_params": "PARAM-III",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "reference",
+        "allow_mock": false,
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_payload_bytes": 131072,
+          "max_capsule_bytes": 4194304
+        }
+      },
+      "status": "planned",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 131072
+        },
+        "ibs": "srgg2025-paper",
+        "ibs_params": {
+          "interpretation": "table-standard-deviation",
+          "profile_name": "PARAM-III"
+        },
+        "ibs_version": "SRGG-PAPER-TABLE4-factor1-v1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "32929faed691ba5bfb1de58634fcaea5ff1dd5e5fd63d8774c1445ec1f479e2a",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 42706,
+          "signature_max_bytes": 88258,
+          "ibs_input_bytes": 65536,
+          "hibe_payload_bytes": 131072,
+          "protocol_payload_overhead": 88366,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "32929faed691ba5bfb1de58634fcaea5ff1dd5e5fd63d8774c1445ec1f479e2a",
+          "hibe": "latte",
+          "ibs": "srgg2025-paper",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "reference",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    },
+    {
+      "case": "latte-srgg-paper-param-iii-compact",
+      "selection": {
+        "hibe": "latte",
+        "hibe_params": "seed32",
+        "ibs": "srgg2025-paper",
+        "ibs_params": "PARAM-III",
+        "transport": "hybrid",
+        "protocol": "byteauth-v1",
+        "signature_format": "compact",
+        "allow_mock": false,
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_payload_bytes": 131072,
+          "max_capsule_bytes": 4194304
+        }
+      },
+      "status": "planned",
+      "checks": [],
+      "executed_checks": 0,
+      "execution": "not_executed",
+      "preflight_only": true,
+      "classification": "research",
+      "security_claim": "none",
+      "backend_admitted": false,
+      "parameters_are_formal": false,
+      "security_proof_count": 0,
+      "repetition_count": 0,
+      "unavailable_backends": [],
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "latte",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "max_children": 2,
+          "max_receivers": 2,
+          "message_mode": "seed32",
+          "native_timeout_seconds": 60
+        },
+        "hibe_version": "latte3-cosac-fix-v1",
+        "hybrid_limits": {
+          "backend_id": "latte3-cosac-fix-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 131072
+        },
+        "ibs": "srgg2025-paper",
+        "ibs_params": {
+          "interpretation": "table-standard-deviation",
+          "profile_name": "PARAM-III"
+        },
+        "ibs_version": "SRGG-PAPER-TABLE4-factor1-v1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "compact",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "ac26f4a42a401e5d2b293f1dabfec46ee17ccb6f12c30b6307701615e1ffd0f2",
+      "preflight": {
+        "ok": true,
+        "errors": [],
+        "capacity": {
+          "identity_bytes": 64,
+          "max_application_bytes": 65364,
+          "signature_max_bytes": 30616,
+          "ibs_input_bytes": 65536,
+          "hibe_payload_bytes": 131072,
+          "protocol_payload_overhead": 30724,
+          "signed_input_overhead": 172,
+          "inner_hibe_payload_bytes": 32,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_ciphertext_max_bytes": 37587
+        },
+        "metadata": {
+          "security_claim": "none",
+          "backend_admitted": false,
+          "parameters_are_formal": false,
+          "combination_tested": false,
+          "preflight_only": true,
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "persistent_identity_cache": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": true,
+            "ibs": true
+          },
+          "test_only": false,
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "ac26f4a42a401e5d2b293f1dabfec46ee17ccb6f12c30b6307701615e1ffd0f2",
+          "hibe": "latte",
+          "ibs": "srgg2025-paper",
+          "protocol": "byteauth-v1",
+          "transport": "hybrid",
+          "signature_format": "compact",
+          "hibe_key_binding_capability": true,
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1"
+        }
+      },
+      "acceptance_errors": [],
+      "parameter_labels": {
+        "hibe": "research",
+        "ibs": "research"
+      }
+    }
+  ],
+  "mode": "plan"
+}

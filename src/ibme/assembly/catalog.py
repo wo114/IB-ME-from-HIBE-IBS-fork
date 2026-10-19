@@ -24,7 +24,7 @@ ROUTES = (
     AlgorithmRoute("lai-ideal-hibe", "hibe", ("lai-ideal-hibe",)),
     AlgorithmRoute("luo-matrix", "ibs", ("luo-matrix",)),
     AlgorithmRoute("luo-module", "ibs", ("luo-module",)),
-    AlgorithmRoute("srgg2025", "ibs", ("srgg2025",)),
+    AlgorithmRoute("srgg2025", "ibs", ("srgg2025", "srgg2025-paper")),
     AlgorithmRoute("yu2026", "ibs", ("yu2026",)),
     AlgorithmRoute("sageloli-sis", "ibs", ("sageloli-sis",)),
     AlgorithmRoute("sageloli-rsis", "ibs", ("sageloli-rsis",)),
