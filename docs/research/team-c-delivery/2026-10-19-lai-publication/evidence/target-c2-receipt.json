@@ -1,0 +1,119 @@
+{
+  "schema": "IBME/LAI/C2-TARGET-RECEIPT/1",
+  "date": "2026-10-19T05:52:00.948631+00:00",
+  "environment": {
+    "platform": "linux",
+    "python": "3.13.15"
+  },
+  "parameters": {
+    "identity_bytes": 86,
+    "k": 39,
+    "l": 2,
+    "max_message_bytes": 32,
+    "message_mode": "seed32",
+    "n": 2048,
+    "p": 2,
+    "q": 274877976577,
+    "sigma": 2.0,
+    "sigma_r": 1.0
+  },
+  "suite_digest": "eda3502de91eff42f10969dac9c3e92fd31468b5e1bc8b5fc17c498468b81c28",
+  "capacity": {
+    "hibe_payload_bytes": 65536,
+    "ibs_input_bytes": 4096,
+    "identity_bytes": 64,
+    "inner_hibe_ciphertext_max_bytes": 1228844,
+    "inner_hibe_identity_bytes": 86,
+    "inner_hibe_payload_bytes": 32,
+    "max_application_bytes": 3924,
+    "protocol_payload_overhead": 29563,
+    "signature_max_bytes": 29455,
+    "signed_input_overhead": 172
+  },
+  "state_bytes": 48811151,
+  "state_file_count": 15,
+  "ct_bytes": 1357049,
+  "ct_sha256": "b3950b34b9c880323992e4293f20557094492b4f1437bc06c303825d739d6438",
+  "message_bytes": 14,
+  "message_sha256": "06666e49629eb0a2f31b02d1db7b7182d0678757e4244aaccaba7ba3b8fb9a7d",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "target_c2_rerun_this_batch": true,
+  "setup": {
+    "setup": {
+      "rc": 0,
+      "seconds": 6
+    },
+    "receiver_alice": {
+      "rc": 0,
+      "seconds": 63
+    },
+    "receiver_carol": {
+      "rc": 0,
+      "seconds": 57
+    },
+    "sender_bob": {
+      "rc": 0,
+      "seconds": 8
+    },
+    "encrypt": {
+      "rc": 0,
+      "seconds": 106
+    }
+  },
+  "honest": {
+    "rc": 0,
+    "seconds": 672.05,
+    "bottom": false,
+    "output_bytes": 14,
+    "matches": true
+  },
+  "wrong_identity": {
+    "wrong_receiver": {
+      "rc": 1,
+      "seconds": 623.72,
+      "bottom": true,
+      "output_bytes": 0
+    },
+    "wrong_sender": {
+      "rc": 1,
+      "seconds": 618.64,
+      "bottom": true,
+      "output_bytes": 0
+    },
+    "both_wrong": {
+      "rc": 1,
+      "seconds": 630.31,
+      "bottom": true,
+      "output_bytes": 0
+    }
+  },
+  "outer_tamper": {
+    "rc": 0,
+    "all_ok": true,
+    "cases": {
+      "tampered_context": {
+        "rejected": true,
+        "seconds": 11.961
+      },
+      "tampered_signature": {
+        "rejected": true,
+        "seconds": 10.233
+      },
+      "tampered_inner_bytes": {
+        "rejected": true,
+        "seconds": 8.492
+      },
+      "truncated_ct": {
+        "rejected": true,
+        "seconds": 7.987
+      },
+      "appended_ct": {
+        "rejected": true,
+        "seconds": 7.708
+      }
+    }
+  },
+  "all_ok": true
+}

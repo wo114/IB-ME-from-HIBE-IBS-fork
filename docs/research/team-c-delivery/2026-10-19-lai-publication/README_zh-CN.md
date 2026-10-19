@@ -47,6 +47,31 @@ python docs/research/team-c-delivery/2026-10-19-lai-publication/verify_delivery.
 
 两组 pytest 文件无重叠，共 267 项；shell 控制流程不计入密码算法测试。公开 JUnit 仅删除 hostname、规范换行；CI JSON 将本机解释器路径改为可移交写法，处理说明在 validation 中。原始收据保留于忽略的 `build/outputs/`。
 
+## C2 目标本轮重跑
+
+本轮新增两个脚本，补上此前“代码在 PR、运行输入不在 PR”的可复现缺口：
+
+- `experiments/research/candidates/lai/target_state_setup.sh`：新建临时 state，执行 target-research setup、Alice/Carol 接收者密钥、Bob 发送者密钥和加密；显式传入的 state/CT 路径必须是新路径，不删除已有目录。
+- `experiments/research/candidates/lai/target_c2_receipt.py`：对上述 state/CT 运行 honest CLI 解密、three wrong-identity cases 和 outer BYTEAUTH tamper，输出 sanitized receipt；不写入私钥、state 内容、密文或明文。
+- 收据：`evidence/target-c2-receipt.json`，只含参数、时间、尺寸、SHA-256 和 BOTTOM/拒绝结论。
+
+运行：
+
+```sh
+STATE=/tmp/lai-c2-state-$(date +%s)
+CT="$STATE/ct.bin"
+PY=~/miniconda3/envs/sage/bin/python
+PYTHON="$PY" PYTHONPATH=src:. bash \
+  experiments/research/candidates/lai/target_state_setup.sh "$STATE" "$CT" \
+  > /tmp/lai-c2-state.log
+PYTHONPATH=src:. "$PY" \
+  experiments/research/candidates/lai/target_c2_receipt.py \
+  --state "$STATE" --ct "$CT" --setup-log /tmp/lai-c2-state.log \
+  --output docs/research/team-c-delivery/2026-10-19-lai-publication/evidence/target-c2-receipt.json
+```
+
+本轮结果：setup 6 s、Alice 63 s、Carol 57 s、Bob 8 s、encrypt 106 s；honest 672.05 s 解密一致；wrong receiver / wrong sender / both 分别 623.72/618.64/630.31 s，均 `BOTTOM`；outer tamper 5/5 拒绝；CT 1,357,049 B；state 48,811,151 B。`validation.json` 的 `target_c2_rerun_this_batch` 已更新为 `true`；原始 state/CT/私钥仍不入库。
+
 ## 参数与结论范围
 
 - A 点：`n=256, q=2147484161, k=32, l=2, p=2, sigma=2, sigma_r=1`；默认研究配置。
@@ -55,3 +80,8 @@ python docs/research/team-c-delivery/2026-10-19-lai-publication/verify_delivery.
 - 采样仍为无 perturbation 的 Klein/GPV；二进制身份映射、委派类型解释和非单位标签失败见契约。原始 HIBE 的部分篡改会得到不同明文，外层 BYTEAUTH 提供该实现的完整性拒绝，不能声称原文 CCA 性质已由代码继承。
 - PLWE 系数实例的 GSA 成本估计不是结构攻击评估或 NIST 等级。安全性与匿名性按现行 AGENTS 的论文引用/工作假设推进，本批不另补安全证明。
 - 始终保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`；无 NIST category 声明。完整组合矩阵、残差统计、目标性能优化仍未完成。
+# 2026-10-19 审查补充
+
+本轮保留 C2 原始运行收据及其14 B消息/672.05 s诚实解密等历史数值，不重跑该批密码实验。修正自定义新state与独立CT路径的目录创建；生成器先核对确切C2 Suite及摘要，禁止把其它参数标作C2；公开校验器增加收据SHA-256、三种身份负例、五种篡改、返回码及无明文输出检查。失败诊断不复制进公开收据，解密子进程设1800秒上限。新增`tests/test_lai_target_receipt.py`只做收据规则与fake-CLI路径控制流，不冒充目标规模运行。
+
+收据`state_bytes`统计发生在诚实解密前，且包括目录内日志/消息等文件；它不是私钥净大小、解密后的最终状态或峰值内存。原来的267项测试仍属于发布批次，本轮定向回归另行记录，不累加为更多独立密码实验。
