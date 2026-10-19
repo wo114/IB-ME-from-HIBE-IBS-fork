@@ -92,11 +92,26 @@ target: 128-bit classical EUF-CMA (concrete-security reproduction)
 
 Table 4 三行原值不变；本包只做复现和选择。
 
+## 参数/结构审计结论
+
+- **q/Q/2Q**：key recovery 用 `Q`，forgery 用 `2Q`；Table 5 concrete-security 可复现。但 Theorem 1 的 `q>2γ` 在 `Q` 和 `2Q` 下都不成立，仍是单独的定理级缺口。
+- **ζ**：论文 `ζζ*=2`、Algorithm 7 暗示 factor2；当前 source-Schur 默认按字面 factor1。两条路径的等价响应 law 未证明，保持 `null`。
+- **r/σ**：默认按 `table-standard-deviation`；字面 density 是另一分支。精确 `r=1.16` 在来源 `m=10240` 的平滑必要条件失败，作者值只是两位小数近似；有限采样到 HNF/签名 law 的桥保持 `null`。
+- **结构攻击**：`Q=3·31²·43·127`，存在 `2A(Qe_i)=0 mod 2Q` 的零 BKZ 成本受限核见证；ring-HNF/MSIS、CRT、子域的实际攻击成本均为 `null`，没有 128-bit 结构成本保证。
+- **native strong**：之前的回执对 default II/III 和字面 density 行记录过同消息 `±Q` 替换；default I 的本次抽样没有 eligible 对，但不构成普遍安全证明。本报告的目标限定 **EUF-CMA**，不是 strong。
+
+因此最终决策是：
+
+> **PARAM-II 可作为 128-bit 经典 EUF-CMA 的 concrete-security 研究配置；不能作为 strong、NIST 或结构攻击成本已闭合的正式配置。**
+
+完整审计字段见 [`audit.json`](audit.json)。
+
 ## 文件与复核
 
 - [`core-svp-reproduction.json`](core-svp-reproduction.json)：公式、维度映射、作者/复现值、误差和 null。
+- [`audit.json`](audit.json)：q/Q/2Q、ζ、r/σ、结构攻击、native strong 和最终决策。
 - 代码：`experiments/research/candidates/srgg/paper_core_svp_reproduction.py`
-- 测试：`tests/test_srgg_paper_core_svp_reproduction.py`
+- 测试：`tests/test_srgg_paper_core_svp_reproduction.py`、`tests/test_srgg_paper_128bit_audit.py`
 
 ```bash
 PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q \

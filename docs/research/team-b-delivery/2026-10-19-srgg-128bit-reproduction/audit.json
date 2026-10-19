@@ -1,0 +1,106 @@
+{
+  "schema": "IBME/SRGG-PAPER-128BIT-AUDIT/1",
+  "scope": "standalone SRGG IBS: 128-bit classical EUF-CMA concrete-security decision and remaining source/theorem audit",
+  "branch": "codex/srgg-128bit-2026-10-19",
+  "paper": {
+    "source": "papers/2025_efficient_ibs_jia.pdf",
+    "sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+    "locations": "Theorem 1 p.4; Table 3 p.6; Algorithms 7-8 pp.7-8; Section 5.2 and Tables 4-5 pp.9-10"
+  },
+  "decision": {
+    "selected_profile": "PARAM-II",
+    "interpretation": "table-standard-deviation",
+    "target": "128-bit classical EUF-CMA concrete-security",
+    "meets_128_bit": true,
+    "forgery_classical_bits_reproduced": 171,
+    "forgery_quantum_bits_reproduced": 155,
+    "key_recovery_classical_bits_reproduced": 179,
+    "key_recovery_quantum_bits_reproduced": 163,
+    "admitted_for": "paper Section 5.2 concrete-security model and EUF-CMA target only",
+    "not_admitted_for": [
+      "formal Theorem 1/2 reduction",
+      "strong unforgeability",
+      "NIST category",
+      "structural ring-HNF/CRT/subfield cost guarantee"
+    ]
+  },
+  "q_Q_2Q": {
+    "key_recovery_modulus": 15744063,
+    "forgery_modulus": 31488126,
+    "forgery_modulus_formula": "2Q",
+    "table5_reproduced": true,
+    "theorem_condition": "q > max(2*gamma, s1*eta_epsilon)",
+    "theorem_condition_holds_with_Q_or_2Q": false,
+    "Q_comparison": [
+      {"profile": "PARAM-I", "Q": 15744063, "two_Q": 31488126, "two_gamma": 84172983, "Q_gt_2gamma": false, "2Q_gt_2gamma": false},
+      {"profile": "PARAM-II", "Q": 15744063, "two_Q": 31488126, "two_gamma": 127306344, "Q_gt_2gamma": false, "2Q_gt_2gamma": false},
+      {"profile": "PARAM-III", "Q": 15744063, "two_Q": 31488126, "two_gamma": 173147861, "Q_gt_2gamma": false, "2Q_gt_2gamma": false}
+    ],
+    "status": "concrete Table 5 reproduction resolves the attack modulus separation (Q for key recovery, 2Q for forgery); Theorem 1 q>2gamma remains a separate unresolved theorem-level mapping"
+  },
+  "zeta": {
+    "paper": "Table 3: zeta=1+X^(n/2) and zeta*zeta*=2; Algorithm 7 uses zeta*u+c, implying a factor-2 response shape",
+    "implementation_default": "source-Schur literal factor1",
+    "alternative_route": "factor2 research proof route",
+    "equivalent_response_law_proved": false,
+    "concrete_table5_estimate_depends_on_zeta": false,
+    "status": "null",
+    "impact": "distribution/theorem mapping open; does not change the Table 5 Core-SVP arithmetic"
+  },
+  "r_sigma": {
+    "paper": "Table 4 column Std. dev.; Section 5.1 r=eta_epsilon(...)~=1.16, epsilon=1/sqrt(Q_s*256), Q_s=2^40",
+    "interpretations": [
+      "table-standard-deviation (physical std -> density shape 2*pi*s^2; selected)",
+      "literal-density-width (shape s^2)"
+    ],
+    "exact_r_1_16_smoothing_necessary_gate_at_m_10240": "fails under both reviewed readings; author value is a rounded approximation",
+    "finite_sampler_to_hnf_signing_tv": null,
+    "status": "null",
+    "impact": "implementation distribution/theorem mapping open; does not change the Table 5 Core-SVP arithmetic"
+  },
+  "structural_attacks": {
+    "Q_factorization": "3 * 31^2 * 43 * 127",
+    "universal_Q_kernel_witness": "2*A*(Q*e_i)=0 mod 2Q; zero-BKZ-cost restricted kernel",
+    "full_ring_hnf_msis_attack_cost": null,
+    "CRT_subfield_attack_cost": null,
+    "accepted_setup_root_structural_attack_cost": null,
+    "native_strong": {
+      "target_in_this_report": "EUF-CMA only, not strong",
+      "prior_receipts": "same-message Q-shift replacement accepted for default PARAM-II/III and literal-density rows; default PARAM-I standard probe found no eligible pair in the tested sample",
+      "universal_strong_security_claim": false
+    },
+    "status": "null; no structural cost bound at 128-bit",
+    "impact": "the 128-bit claim is conditional on the paper concrete-security model and does not include a structural-attack guarantee"
+  },
+  "final_configuration": {
+    "profile": "PARAM-II",
+    "interpretation": "table-standard-deviation",
+    "n": 512,
+    "p": 16383,
+    "b": 31,
+    "w": 2,
+    "q": 961,
+    "Q": 15744063,
+    "d": 3,
+    "signature_bytes_author_report": 17786,
+    "target": "128-bit classical EUF-CMA concrete-security"
+  },
+  "remaining_formal_work": [
+    "resolve Theorem 1 q>2*gamma / Q / 2Q source mapping without changing Table 4",
+    "close zeta factor1/factor2 and r/sigma finite-distribution bridge",
+    "bound ring-HNF/CRT/subfield structural attack costs",
+    "decide strong game scope or retain EUF-CMA only",
+    "NIST category and formal parameter admission (not claimed)"
+  ],
+  "verification": {
+    "reproduction_module": "experiments/research/candidates/srgg/paper_core_svp_reproduction.py",
+    "reproduction_json": "core-svp-reproduction.json",
+    "tests": "tests/test_srgg_paper_core_svp_reproduction.py",
+    "structural_cost_receipt": "build/structural-cost-128.json (local run; source module cited)",
+    "structural_attack_receipt": "build/structural-attack-128.json (local run; source module cited)"
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}
