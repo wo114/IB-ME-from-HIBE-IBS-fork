@@ -13,7 +13,6 @@ pytest.importorskip("sage.all", reason="specified WSL Sage required")
 from ibme.core.errors import InvalidParameterError, SerializationError
 from ibme.core.randomness import DeterministicRandom
 from ibme.assembly.registry import BackendRegistry
-from ibme.ibs.srgg_paper import guarded as guarded_module
 from ibme.ibs.srgg_paper.guarded import GuardedSourceSchurBackend
 from ibme.ibs.srgg_paper.registration import (
     BACKEND_ID, backend_spec, check_object, signature_size,
@@ -21,8 +20,9 @@ from ibme.ibs.srgg_paper.registration import (
 from ibme.ibs.srgg_paper.service import (
     GuardedSourceSchurFixedIssuer, SourceSchurFixedIssuer,
 )
-from experiments.research.candidates.srgg.paper_distribution_chain import (
-    ChainCertificateError,
+from experiments.research.candidates.srgg import paper_distribution_guard as guard_module
+from experiments.research.candidates.srgg.paper_distribution_guard import (
+    GateFailure,
 )
 from experiments.research.candidates.srgg.paper_parameters import PaperParams
 from experiments.research.candidates.srgg.paper_schur_backend import SourceSchurBackend
@@ -140,8 +140,8 @@ def test_guarded_backend_runs_a_real_table4_lifecycle():
 
 def test_guarded_root_gate_failure_is_retryable(monkeypatch):
     def fail(*_args, **_kwargs):
-        raise ChainCertificateError("injected root gate failure")
-    monkeypatch.setattr(guarded_module, "require_gates", fail)
+        raise GateFailure("injected root gate failure")
+    monkeypatch.setattr(guard_module, "require_gates", fail)
     backend = GuardedSourceSchurBackend(
         rng=DeterministicRandom(b"paper-source-schur-guarded-retry"),
         setup_max_attempts=1)

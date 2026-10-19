@@ -26,6 +26,7 @@ from ibme.core.randomness import DeterministicRandom
 from .paper_objects import SigningKey
 from .paper_parameters import PaperParams
 from .paper_samplef import WitnessGeometryError
+from .paper_distribution_guard import SigningKeyGateRejection
 from .paper_schur_backend import SourceSchurBackend
 
 
@@ -146,7 +147,7 @@ def replay_canonical_obstruction(params, obstruction):
         raise AssertionError("canonical synthetic key obstruction did not survive HNF/codec")
     try:
         backend._sign_plan(key)
-    except WitnessGeometryError:
+    except (WitnessGeometryError, SigningKeyGateRejection):
         rejected = True
     else:
         rejected = False

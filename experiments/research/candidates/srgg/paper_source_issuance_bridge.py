@@ -40,7 +40,7 @@ ROOT = Path(__file__).resolve().parents[4]
 FINITE = ROOT / "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/finite-fixed-root.json"
 JOINT = ROOT / "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/joint-fixed-root.json"
 FINITE_MANIFEST = ROOT / "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/MANIFEST.json"
-FINITE_MANIFEST_LF_SHA256 = "7885410d363020891189c6dc011f061f0e3e5742ac359011556c0e1e7879018d"
+FINITE_MANIFEST_LF_SHA256 = "b88043dfae257cb1cf4d02cc20cb0b149beda1a5d914b59027bd548f01156fb3"
 FINITE_PREFIX = "docs/research/team-b-delivery/2026-10-18-srgg-finite-chain/"
 FINITE_DEPENDENCIES = (
     FINITE_PREFIX + "finite-fixed-root.json",
@@ -54,7 +54,7 @@ FINITE_DEPENDENCIES = (
     "experiments/research/candidates/srgg/paper_rounding_budget.py",
 )
 PREVIOUS_MANIFEST = ROOT / "docs/research/team-b-delivery/2026-10-18-srgg-source-schur/MANIFEST.json"
-PREVIOUS_MANIFEST_SHA256 = "d03f8ab6b6fd2a990248e7776a80273749b95b48beeec0f7bd71daff3df1d685"
+PREVIOUS_MANIFEST_SHA256 = "f89aa069d6d3c3a1f6675d2048035e2135971afc41c5fa7b2758cddec1bbbf11"
 INHERITED_SOURCES = (
     "experiments/research/candidates/srgg/paper_backend.py",
     "experiments/research/candidates/srgg/paper_algebra.py",

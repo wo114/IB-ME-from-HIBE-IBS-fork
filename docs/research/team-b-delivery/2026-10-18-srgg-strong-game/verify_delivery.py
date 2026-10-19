@@ -13,7 +13,7 @@ ROOT = HERE.parents[3]
 PACKAGE = "docs/research/team-b-delivery/2026-10-18-srgg-strong-game"
 PAPER = "papers/2025_efficient_ibs_jia.pdf"
 PDF_SHA256 = "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
-RECEIPT_SHA256 = "7ee99f95f0aac31218a20950751c55d4b5085840116b9c96c4edaabec5fc7cf6"
+RECEIPT_SHA256 = "592fbe840317dbbd6646546bc0cd3b7f7263e8200d1d222e462448d84d6bcaf0"
 SOURCE_FILES = {
     "experiments/research/candidates/srgg/paper_strong_game.py",
     "experiments/research/candidates/srgg/paper_schur_backend.py",

@@ -1,156 +1,89 @@
-# SRGG 独立 IBS 分布链：好根蕴含、接受根界与 guard 组合（WIP）
+# SRGG 独立 IBS：数学好根界与实现门控的条件分布界
 
-本包只处理 Jia–Liu–Tang–Wang 独立 IBS，不涉及 HIBE、公共组合或正式安全准入。
-基线为 `cd31389f91e5` 的独立分支；原文参数
-`n=512, p=16383, b=31, w=2, q=961, Q=15744063, d=2/3/4` 与两种显式 Gaussian
-解释（`table-standard-deviation` / `literal-density-width`）均未改动。论文为
-`papers/2025_efficient_ibs_jia.pdf`，SHA-256
-`258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152`。
+修订日期：2026-10-19。本次修正范围与实现对应，不新增安全证明，不改变论文算法、原 Table 4 参数或 Gaussian 解释，不涉及 HIBE。
 
-## 一句话结论
+论文为 Jia–Liu–Tang–Wang，*Constructing Efficient Identity-Based Signatures on Lattices*，[DOI 10.1049/ise2/6684889](https://doi.org/10.1049/ise2/6684889)。冻结文件 `papers/2025_efficient_ibs_jia.pdf`，SHA-256 为 `258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152`。原参数保持 `n=512,p=16383,b=31,w=2,q=961,Q=15744063,d=2/3/4`，两种解释为 `table-standard-deviation` 和 `literal-density-width`。项目工作假设不是新增验证结果。
 
-本轮真正闭合的是**好根蕴含**：`G = {C > 64I}` 严格强于原论文数学正定门 `A`，
-并给出 master Schur pivot 的统一下界 `L2≈4.0e5/5.7e5/7.4e5`、gain/factor/center/
-entropy/object 的统一门限。因此**原后端接受集 `B` 包含 `G`**，于是
-`P(A\B) ≤ P(A\G) ≤ q_C`，且 `TV(μ(·|A), μ(·|B)) ≤ q_C/(1−q_A)`。
-这是对全部实际 CBD1 根的概率界，不是固定根外推。
+## 分版本的集合
 
-随机发钥签名方面，guard 同时作用于实际与参考后，**`beta_bad` 被
-data-processing 吸收**，不再需要单独界定：
-`TV(guarded issue + s signs) ≤ min(1, δ_issue + s·ε_good)`。
-无 guard 的 `beta_bad` 仍为 `null`（严格为正）；字面 density 解释的首发钥仍为
-`null`，单次签名仍为平凡 `1`。
+| 名称 | 含义 |
+|---|---|
+| `A` | 论文数学正定门 `Sigma_p-r²I>0` |
+| `G_C` | 数学条件 `C>64I` |
+| `B_legacy` | 历史非门控后端一次准备成功 |
+| `H_setup / H_sign` | 当前实际执行的完整 Setup／签名构造与审计门 |
 
-## 好根蕴含（六行）
+当前 `SourceSchurBackend` 默认完整门控，`GuardedSourceSchurBackend` 是兼容别名，不重复审计。旧文档的 `B` 仅指历史 `B_legacy`。Setup 门失败重试、签名门失败固定密钥中止属于服务政策。
 
-`C = νI − ν²T*Σ⁻¹T`，`C_schur = a1I − (νa2/(a2−ν))RR*`，
-`G = {C > 64I}`。所有比较均为精确有理数。
+## 保留的数学结果
 
-| 原表行 | 解释 | `T_A` | `T_C` | `T_schur` | `L2` | gain 上界 | factor 范围 |
-|---|---|---:|---:|---:|---:|---:|---:|
-| PARAM-I | std | 6246.722948 | 6197.457690 | 6246.716130 | 400780.155 | 252.6 | (250, 8192) |
-| PARAM-I | literal | 6246.722948 | 5937.174656 | 6246.674566 | 400780.155 | 39.4 | (250, 8192) |
-| PARAM-II | std | 8926.269269 | 8855.877898 | 8926.262453 | 572585.423 | 252.6 | (250, 8192) |
-| PARAM-II | literal | 8926.269269 | 8483.981684 | 8926.220885 | 572585.423 | 39.4 | (250, 8192) |
-| PARAM-III | std | 11555.616682 | 11464.494961 | 11555.609867 | 741172.329 | 252.6 | (250, 8192) |
-| PARAM-III | literal | 11555.616682 | 10983.076458 | 11555.568297 | 741172.329 | 39.4 | (250, 8192) |
-
-因为 `T_C < T_A` 且 `T_C < T_schur`，有
+精确有理数比较给出 `G_C⊂A`，且理想 master Schur pivot 下界 `L2≈400780/572585/741172>64`。既有 CBD1→complex-Wishart trace moment 使用原阶数 `k=17/22/28`：
 
 ```text
-G ⇒ A,      G ⇒ C_schur ⪰ L2 I,  L2 > 64.
+mu(G_C^c) ≤ q_C,
+TV(mu(.|A),mu(.|G_C)) ≤ q_C/(1-q_A),
+64 次独立数学 G_C 拒绝的概率 ≤ q_C^64。
 ```
 
-进一步在 `G` 上统一得到：gain 系数误差 ≤`2^-256`、gain l1 ≤`2^14`、
-stored factor 在 `(250,8192)`、adaptive center 递推误差 `<2^-96`、
-输出/对象包络 <`2^64` bit。因此未修改的 `SourceSchurBackend.setup`
-在 `G` 上必须接受，即 `G ⊂ B`。边界探针（`C` 刚过 64 的根）已在三组
-profile 上跑通 Setup / C gate / master & sign audit / object envelope /
-Extract / Sign / Verify。
-
-## 接受根分布界
-
-`B ⊆ A`（区间后端可靠时），`G ⊂ B`，故 `A\B ⊆ A\G`。用既有精确
-complex-Wishart trace moment 在 `T_C` 处求值：
-
-```text
-P(A\B) ≤ q_C,     TV(μ(·|A), μ(·|B)) ≤ q_C/(1−q_A).
-```
-
-| 原表行 | 解释 | `q_A` | `q_C` | 接受根 TV 上界 | guard 64 次中止（若全部重试） |
+| 原表行 | 解释 | `q_A` | `q_C` | 数学根律 TV 界 | 理想数学重试界 |
 |---|---|---:|---:|---:|---:|
-| PARAM-I | std | 0.205519 | 0.235130 | 0.295954 | `2^-133` |
-| PARAM-I | literal | 0.205519 | 0.487621 | 0.613760 | `2^-66` |
-| PARAM-II | std | 0.095133 | 0.113233 | 0.125138 | `2^-201` |
-| PARAM-II | literal | 0.095133 | 0.290989 | 0.321582 | `2^-113` |
-| PARAM-III | std | 0.046673 | 0.058256 | 0.061108 | `2^-262` |
-| PARAM-III | literal | 0.046673 | 0.193644 | 0.203125 | `2^-151` |
+| I | std | 0.205519 | 0.235130 | 0.295954 | `2^-133` |
+| I | literal | 0.205519 | 0.487621 | 0.613760 | `2^-66` |
+| II | std | 0.095133 | 0.113233 | 0.125138 | `2^-201` |
+| II | literal | 0.095133 | 0.290989 | 0.321582 | `2^-113` |
+| III | std | 0.046673 | 0.058256 | 0.061108 | `2^-262` |
+| III | literal | 0.046673 | 0.193644 | 0.203125 | `2^-151` |
 
-精确分数见 `distribution-chain.json`；上表小数只作阅读。**重试模型必须分开**：
-原后端只对 `WitnessGeometryError` 重试，区间/gain/center/资源失败是
-`ValueError` 直接中止；所以 `q_C^64` 只适用于“所有 `G` 失败都重试”的
-guarded 重试模型，原后端的非重试失败只有单次 `q_C` 上界。
+小数仅作近似显示；JSON 保存精确分数与向外取整的二次幂上界。这些是数学事件的结果，**实际服务的接受律与 64 次中止预算仍为 null**。
 
-## 随机发钥签名与无故障历史
+## 修正的范围错误
 
-`G` 上首次发钥 TV 为 `δ_issue`。签名 guard `g`（signing plan audit）同时作用于
-实际密钥律 `P_K` 与理想参考 `Q_K`；由 data processing：
+区间运算可靠只排除误接受，不能单独保证每个数学 `G_C` 根在固定精度下都认证成功。原数学门与理想 Schur 下界有余量，但覆盖全部 FFT／LDL／准备操作的统一数值误差包络未给出；保留的候选 gain/noise/object 常数不能替代它。
 
-```text
-TV(g#P_K, g#Q_K) ≤ TV(P_K,Q_K) ≤ δ_issue.
-```
+实际 C 门使用 192-bit 区间；数学 `C>64I` 允许贴近 64 的边界。不确定壳层的宽度／质量未界定，不能声称移动阈值后精确 `q_C` 不变。因此 `G_C⊂B_legacy` 的完备性证书、旧接受根律、统一有限准备包络、实际 C 门壳层质量、`TV(mu(.|A),mu(.|H_setup))` 和实际 Setup 中止概率均保持 null。重试的工程修复不自动给出概率界；六条固定根和三组边界回执只是功能见证。
 
-好密钥上一次签名的核距离为统一的 `ε_good`；坏密钥两侧都 abort。于是
+## 实际通过完整门后的条件界
+
+有限链、卷积、normalizer、发钥与签名的数值项使用门限 64、误差门及根无关预算。实际通过全部适用门后，保留既有 gate-uniform 条件范围。实际密钥律与参考使用同一个签名 guard 和 abort 语义：
 
 ```text
-TV(guarded issue + s signs) ≤ min(1, δ_issue + s·ε_good).
+TV(guarded issue + s signs) ≤ min(1,δ_issue+s·ε_good)。
 ```
 
-无 guard 的 `beta_bad` 仍为 `null`（大尾反例证明严格为正），但 guarded 定理
-不需要它。标准差异解释的数值与既有回执一致：
+若发钥已暴露密钥字节，两侧均保留该输出，再执行相同签名门；不抹去一侧历史中的坏密钥。无 guard 的 `beta_bad` 仍为 null 且严格为正；guard 公式不把它设为零。
 
-| 原表行 | 解释 | `δ_issue` | `ε_good` | guarded 发钥+1 签 | guarded 发钥+2 签 |
+| 原表行 | 解释 | `δ_issue` | `ε_good` | 发钥+1签 | 发钥+2签 |
 |---|---|---:|---:|---:|---:|
-| PARAM-I | std | `2^-25` | `2^-19` | `2^-19` | `2^-18` |
-| PARAM-II | std | `2^-25` | `2^-18` | `2^-18` | `2^-17` |
-| PARAM-III | std | `2^-24` | `2^-18` | `2^-18` | `2^-17` |
-| I/II/III | literal | `null` | `1` | `null` | `null` |
+| I | std | `2^-25` | `2^-19` | `2^-19` | `2^-18` |
+| II | std | `2^-25` | `2^-18` | `2^-18` | `2^-17` |
+| III | std | `2^-24` | `2^-18` | `2^-18` | `2^-17` |
+| I/II/III | literal | null | `1`（平凡） | null | null |
 
-字面 density 三组的 `ε_good` 是平凡 `1`，但 `δ_issue` 缺失，所以 guarded
-发钥+签名的组合界仍为 `null`；不能把单独的签名核界 `1` 当作组合界。
+签名核比较包含两侧相同的 64 次 norm 重试与 abort，不给出 norm-exhaustion 的单独概率。字面 density 首发钥因 gadget normalizer 充分门失败保持 null。
 
-无故障完整历史在 guarded 服务下为
-`min(1, δ_issue + s·ε_good)`；若参考根律取论文的 `μ(·|A)` 而不是同一
-`G`，再加 `q_C/(1−q_A)`。缓存重复请求不重复计费；每个新身份付一次首发钥项。
-外部磁盘/进程/锁/回滚故障没有概率模型：注入概率 `p` 的读故障给出 TV=`p`，
-所以有故障历史仍为 `null`，不能从无故障界推出。
+## 历史及实测范围
 
-## 仍为 null（不静默置零）
+仅覆盖**逻辑 API 输出与确定性持久状态**：返回密钥／签名、规范快照、缓存和共同逻辑错误。要求相同逻辑调度、相同 Setup／abort 模型，或明确条件于相同的成功 Setup 根。新身份支付一次发钥项；缓存重发不重复支付。
 
-- 无 guard 的 `beta_bad` 质量；只有严格正性，没有数值上界。
-- 全部 `B` 接受根上的有限链/发钥统一或平均界：`q_C` 只是根律距离；
-  `B\G` 的每根误差仍未界定，guarded 服务只接受 `G`。
-- 原后端非重试 64 次中止；只有单次 `q_C`。
-- 字面 density 解释的首发钥 `δ_issue`（gadget digit-normalizer 充分门失败）
-  与单次签名（平凡 `1`）。
-- 作者省略的 `SampleZ`/C 程序逐位实现、原文 `r/σ`、Algorithm 4 `d/f`、
-  `ζ` 因子、`q>2γ` 等来源歧义。
-- 精确 `RingSchurPlan` 接受证书路线：在一条 Table 4 根上于 16384-bit
-  有理数上限处失败（`ring Schur rational resource limit exceeded`），
-  未使用；本轮改用 trace-moment + 好根蕴含。该路线只闭合根律界，不闭合
-  全部 `B` 上的平均有限链误差。
-- native strong、结构困难性、正式参数准入、NIST 等级。
-- 故障概率与有故障完整历史。
-- norm-exhaustion 的单独概率（只包含在一次签名核距离里）。
+时间、锁调度、熵消耗、内部采样／运行轨迹，以及没有概率模型的磁盘／进程／回滚故障均排除。输出核界不能提升为这些可观察量的联合界；包含实际 Setup 律的完整服务历史仍为 null。旧紧凑编码的尺寸、时间、内存实测属于其冻结后端，不能直接继承为当前 guard 默认路径的实测结果。
+
+作者 SampleZ/C 对应、原文 `r/σ`、Algorithm 4 `d/f`、ζ 与 `q>2γ` 来源歧义、native strong、结构困难性、正式准入及 NIST 等级保持原状态。本次不安排补充证明。
 
 ## 文件与复现
 
-- [`proof.md`](proof.md)：模型、假设、推导、原文/代码对应、null 账本。
-- [`distribution-chain.json`](distribution-chain.json)：六行精确有理界与 null 原因。
-- [`boundary_probe.py`](boundary_probe.py)：`C` 边界见证的确定性搜索 + 完整门控生命周期探针。
-- [`boundary-PARAM-I.json`](boundary-PARAM-I.json)、[`boundary-PARAM-II.json`](boundary-PARAM-II.json)、[`boundary-PARAM-III.json`](boundary-PARAM-III.json)：三组边界回执。
-- [`validation.json`](validation.json)：测试命令、边界探针、报告与文件哈希。
-- [`verify_delivery.py`](verify_delivery.py)：纯 Python 复核精确恒等式、六行覆盖和边界回执。
-- 代码：`experiments/research/candidates/srgg/paper_distribution_chain.py`。
-- 测试：`tests/test_srgg_paper_distribution_chain.py`。
+- [proof.md](proof.md)：分版本集合、原有公式及条件范围。
+- [distribution-chain.json](distribution-chain.json)：六行数学界、条件发钥签名界、实际服务 null。
+- [validation.json](validation.json)、[verify_delivery.py](verify_delivery.py)：固定证据、指纹及复核入口。
+- `boundary-PARAM-I/II/III.json`：历史边界生命周期回执，不是概率证明。
 
 ```bash
 PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q \
-    tests/test_srgg_paper_distribution_chain.py
+  tests/test_srgg_paper_distribution_chain.py
 PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m \
-    experiments.research.candidates.srgg.paper_distribution_chain \
-    --output build/distribution-chain.json
-PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m \
-    experiments.research.candidates.srgg.paper_distribution_chain \
-    --lifecycle --output build/distribution-chain-lifecycle.json
-PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python \
-    docs/research/team-b-delivery/2026-10-18-srgg-distribution-chain/boundary_probe.py \
-    --profile PARAM-I --output docs/research/team-b-delivery/2026-10-18-srgg-distribution-chain/boundary-PARAM-I-new.json
-/usr/bin/python3 docs/research/team-b-delivery/2026-10-18-srgg-distribution-chain/verify_delivery.py
+  experiments.research.candidates.srgg.paper_distribution_chain \
+  --output build/distribution-chain-new.json
 ```
 
-输出路径必须尚不存在。环境：WSL2、Sage 10.9、Python 3.13.15；详见 JSON 中的
-platform 与依赖 SHA-256。功能测试、边界探针和有限 TV 上界都不是安全证明。
+`--lifecycle` 增加六行确定性回放；输出路径须不存在。冻结环境为 WSL2 / Sage 10.9 / Python 3.13.15；准确环境与命令见 validation。功能测试、指纹与有限 TV 界不能替代安全证明。
 
-始终：`security_claim=none`、`backend_admitted=false`、
-`parameters_are_formal=false`、`nist_security_category=null`。
+始终：`security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`、`nist_security_category=null`。

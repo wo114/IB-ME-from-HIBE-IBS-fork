@@ -1,0 +1,50 @@
+[
+  {
+    "package": "2026-10-18-srgg-distribution-chain",
+    "optimized": false,
+    "exit_code": 0,
+    "stdout": "{\"boundary_receipts\": [\"boundary-PARAM-I.json\", \"boundary-PARAM-II.json\", \"boundary-PARAM-III.json\"], \"current_dependencies\": 24, \"ok\": true, \"rows\": 6, \"scope\": \"mathematical root events and conditional logical APIs\"}"
+  },
+  {
+    "package": "2026-10-18-srgg-distribution-chain",
+    "optimized": true,
+    "exit_code": 0,
+    "stdout": "{\"boundary_receipts\": [\"boundary-PARAM-I.json\", \"boundary-PARAM-II.json\", \"boundary-PARAM-III.json\"], \"current_dependencies\": 24, \"ok\": true, \"rows\": 6, \"scope\": \"mathematical root events and conditional logical APIs\"}"
+  },
+  {
+    "package": "2026-10-18-srgg-distribution-guard-deepseek",
+    "optimized": false,
+    "exit_code": 0,
+    "stdout": "{\"current_dependencies\": 24, \"ok\": true, \"rows\": 6, \"scope\": \"conditional guarded gates; no security admission\"}"
+  },
+  {
+    "package": "2026-10-18-srgg-distribution-guard-deepseek",
+    "optimized": true,
+    "exit_code": 0,
+    "stdout": "{\"current_dependencies\": 24, \"ok\": true, \"rows\": 6, \"scope\": \"conditional guarded gates; no security admission\"}"
+  },
+  {
+    "package": "2026-10-18-srgg-source-schur",
+    "optimized": false,
+    "exit_code": 0,
+    "stdout": "{\"final_lifecycles\": 7, \"final_tests\": 1674, \"manifest_files\": 249, \"security_claim\": \"none\", \"selected_sources\": 204, \"status\": \"verified\"}"
+  },
+  {
+    "package": "2026-10-18-srgg-source-schur",
+    "optimized": true,
+    "exit_code": 0,
+    "stdout": "{\"final_lifecycles\": 7, \"final_tests\": 1674, \"manifest_files\": 249, \"security_claim\": \"none\", \"selected_sources\": 204, \"status\": \"verified\"}"
+  },
+  {
+    "package": "2026-10-18-srgg-closure-followup",
+    "optimized": false,
+    "exit_code": 0,
+    "stdout": "{\"fixed_roots\": 6, \"manifest_entries\": 20, \"ring_factors\": 16, \"security_claim\": \"none\", \"status\": \"verified\"}"
+  },
+  {
+    "package": "2026-10-18-srgg-closure-followup",
+    "optimized": true,
+    "exit_code": 0,
+    "stdout": "{\"fixed_roots\": 6, \"manifest_entries\": 20, \"ring_factors\": 16, \"security_claim\": \"none\", \"status\": \"verified\"}"
+  }
+]

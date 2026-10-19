@@ -1,68 +1,81 @@
-> **v3 current (2026-10-18)**: the separate unguarded path has been removed. SourceSchurBackend now enforces the complete gate set (Setup root rejection/retry; signing-key abort), and srgg_paper_service.FixedIssuer defaults to it. The six roots below are deterministic witnesses; every bound in this package is for every plan that passes the complete gate set. Remaining nulls: P(A\\B), P(B\\G), accepted-root distribution, beta_bad, faulty histories. Security claim: none.
+# SRGG 统一 guard：实际门控与条件分布范围
 
-# SRGG 分布链：门控集上的统一界、显式保护与仍为 null 的量（独立审计）
+修订日期：2026-10-19。本文统一旧 v3 页首与正文的版本描述，不新增安全证明，不改变原论文参数、Gaussian 解释、签名方程，不涉及 HIBE。
 
-本包只处理 Jia–Liu–Tang–Wang 独立 IBS 的分布链，不涉及 HIBE、公共组合或正式安全准入。
-基线为 `cd31389f91e5` 的独立分支；原文参数（`n=512, p=16383, b=31, w=2, Q=15744063, d=2/3/4`）和两种显式 Gaussian 解释均未改动。
-论文：`papers/2025_efficient_ibs_jia.pdf`，SHA-256 `258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152`。
+论文：Jia–Liu–Tang–Wang，*Constructing Efficient Identity-Based Signatures on Lattices*，[DOI 10.1049/ise2/6684889](https://doi.org/10.1049/ise2/6684889)。冻结 PDF `papers/2025_efficient_ibs_jia.pdf`，SHA-256 为 `258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152`。原 Table 4 输入保持 `n=512,p=16383,b=31,w=2,q=961,Q=15744063,d=2/3/4`，解释为 `table-standard-deviation` 和 `literal-density-width`。项目采用的论文安全性工作假设不是新增验证。
 
-## 一句话结论
+## 当前代码版本
 
-前人把六条固定根回执标成 `旧固定根标签`，但**回执里的每个数值项都只依赖审计门限 64 与根无关常数**：固定根只是"门控集非空"的见证，不是定理的定义域。真正缺的不是"所有接受根上的新分布定理"，而是**让后端真正执行这些门限（guard）以及门控事件的概率**。随机发钥的 `beta_bad`、数学/后端接受差 `P(A\B)` 仍是 `null`，且这份工作没有让它们变小。
+`SourceSchurBackend` 默认执行完整门控，固定发钥服务默认使用它。`GuardedSourceSchurBackend` 只是兼容别名，不叠加第二次审计。完整门包括 master/sign plan 构造、`SchurNumericalAudit`、`_source_gates`，以及 Setup 的 directed C 门和有限密钥对象包络。Setup 操作性门失败拒绝根并重试；签名门失败中止固定密钥，不重抽、不换钥。程序错误和任意运行异常不静默伪装成概率性拒绝。
 
-## 哪些界真正闭合（标准差异解释行）
+文中旧“非门控后端”只指历史版本；旧探针已停用，不能把停用写成“搜索未找到反例”。
 
-| 界 | PARAM-I | PARAM-II | PARAM-III |
-|---|---:|---:|---:|
-| master 有限→数学→理想联合 | `2^-26` | `2^-25` | `2^-25` |
-| signature 同上 | `2^-25` | `2^-24` | `2^-24` |
-| 首次发钥 TV | `2^-25` | `2^-25` | `2^-24` |
-| 容量历史（3/2/1 身份） | `2^-24` | `2^-24` | `2^-24` |
-| 单次签名调用 | `2^-19` | `2^-18` | `2^-18` |
+| 集合 | 定义 |
+|---|---|
+| `A` | 数学正定条件 `Sigma_p-r²I>0` |
+| `G_C` | 数学条件 `C>64I` |
+| `B_legacy` | 历史非门控准备成功 |
+| `H_setup` | 当前实际完整 Setup 构造和门控 |
+| `H_sign` | 当前实际完整签名构造和门控 |
 
-字面 density 解释：数学联合界非平凡但很弱（P-I/II/III master `0.678/0.817/0.896`，signature `0.896/0.967/0.989`），首次发钥因 gadget digit-normalizer 充分门失败而保持 `null`，单次签名调用为平凡 `1`。这些界的前提：独立均匀字节、规定的 768-bit MPFR 无异常模型、中止作为独立符号、门控集 `G`（所有理想 Schur pivot ≥64、gain/factor 误差门、center 误差门等），**不是**全部数学正定事件 `A`。
+旧 v3 中的 `G` 曾表示审计门，另一包却用它表示数学 C 门；现在不再混用。可靠区间给出 `B_legacy⊂A` 与 `H_setup⊂G_C⊂A`，不提供反向的实现完备性。
 
-## 真正新颖的两件事
+## 通过完整门后的统一条件界
 
-1. **门控一致性证明与复核**：把 joint/issuance/sign 回执按门限 64 重算，逐项与冻结 JSON 完全一致（`joint-fixed-root.json`、`source-issuance.json`、`history-law.json`）；另一条不同的接受根得到完全相同的 master 界。因此 `旧固定根标签` 是回执范围标签，不是不等式范围。
-2. **显式 guard（完整门控集）**：`SourceSchurBackend` 在 Setup 与签名前执行完整门控：`SchurNumericalAudit`（pivot≥64、gain/factor 协方差 ≤2^-128、center 递推 ≤2^-96）、`_source_gates`（因子范围、center 包络、熵帽、256-bit 输出/对象）、发钥 `C>64I` 门和 finite-key 对象/服务字节包络。Setup 把门失败当作根拒绝并重试；签名把门失败当作固定密钥中止。原始后端不执行这些门；guard 是**修改后的受保护接受集**，不能直接声称原论文未加门的算法也满足。
+公式依赖门限 64、gain/factor 误差门 `2^-128`、center 误差门 `2^-96`、固定数值窗口及根无关标量预算。六条根及第二条不同根只是门控非空的功能见证；实际 pivot/gain 数值只用于检查门，不替代公式中的统一常数。
 
-## 仍为 null 的量（原因见 proof.md）
+| 原表行 | 解释 | master joint | signature joint | 首发钥 | 仅发钥容量历史 | 单次签名 |
+|---|---|---:|---:|---:|---:|---:|
+| I | std | `2^-26` | `2^-25` | `2^-25` | `2^-24`（3身份） | `2^-19` |
+| II | std | `2^-25` | `2^-24` | `2^-25` | `2^-24`（2身份） | `2^-18` |
+| III | std | `2^-25` | `2^-24` | `2^-24` | `2^-24`（1身份） | `2^-18` |
+| I | literal | `0.6781…` | `0.8964…` | null | null | `1` |
+| II | literal | `0.8173…` | `0.9666…` | null | null | `1` |
+| III | literal | `0.8964…` | `0.9893…` | null | null | `1` |
 
-- `P(A\B)`：数学正定 ≠ 实际有限数值接受；缺 anti-concentration/conditioning 界。
-- `P(B\G)`：原始后端接受但审计门失败；JSON 只有确定性搜索，不是概率。
-- 接受根在 `A` 上的分布：需要上面两个质量。
-- `beta_bad`：理想 centered-HNF 发钥下签名门失败的质量；宽度远小于 `Q`，模 `Q` 不平滑，`P_D(S_h)` 没有目标一致下界；但严格为正（规范大尾见证）。
-- 完整无故障随机发钥+签名历史：`min(1, alpha_root + delta_issue + beta_bad + s*epsilon_good)`，因 `alpha_root`/`beta_bad` 为 null。
-- 故障历史：没有故障概率模型；注入故障可使 TV=1。
-- norm-exhaustion 概率、native strong、结构性困难、正式参数、NIST 等级。
+这些数值**条件于全部适用门实际通过**、独立均匀字节及规定的无异常 MPFR 模型，abort 作为输出符号。literal 首发钥的 gadget normalizer 充分门失败，组合仍为 null；单次签名的 1 是平凡界。
 
-## 独立判断：GPT 的路线是否过度保守
+## 数学好根结果不能直接变成服务预算
 
-- **正确**：全参考密钥一致证书确实不可能；`beta_bad` 与 `A\B` 确实不能由现有矩界给出；条件发钥分母是真正的瓶颈；不能宣称安全。
-- **过度保守**：`旧固定根标签` 标签掩盖了"所有数值项都是门限常数"这一事实；任务实际剩下的是 **accept-set guard + 门控质量**，不是"所有接受根上的新分布定理"。guard 是前人"两条替代路线"之外的第三条路线；它是接受集/服务语义变更，不是原算法的证明，但便宜且可审查。
-- **仍然困难且 guard 不会消除**：`P(A\B)`、`P(B\G)`、`beta_bad`、故障历史。
+[数学分布链说明](../2026-10-18-srgg-distribution-chain/proof.md)保留 `G_C⊂A`、理想 master Schur 下界 `L2>64`，以及既有 trace moment 的 `mu(G_C^c)≤q_C`、数学条件根律 `q_C/(1-q_A)` 与理想数学重试 `q_C^64`。
 
-## 文件
+统一有限准备误差包络尚未给出，192-bit C 门在边界附近不确定壳层的宽度／质量也未界定。因此旧 `B_legacy` 和当前 `H_setup` 相对论文接受律的 TV、实际门控拒绝质量、当前 64 次 Setup 中止预算仍为 null。常量赋值、边界探针和重试分支修复都不能替代这些概率界；本次不为此新开证明路线。
 
-- [`proof.md`](proof.md)：完整模型、推导、原文/代码对应、null 账本。
-- [`distribution-guard.json`](distribution-guard.json)：六行参数/解释组合的界、null 原因、guard 探针。
-- [`validation.json`](validation.json)：测试命令与结果、源/回执哈希。
-- 代码：`experiments/research/candidates/srgg/paper_distribution_guard.py`。
-- 测试：`tests/test_srgg_paper_distribution_guard.py`。
+## 随机发钥后签名
 
-## 复现
+实际与参考使用相同的签名 guard 及 abort 语义，保留已有 data-processing 条件比较：
 
-```bash
-cd IB-ME-from-HIBE-IBS
-PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q \
-    tests/test_srgg_paper_distribution_guard.py
-PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m \
-    experiments.research.candidates.srgg.paper_distribution_guard \
-    --output build/deepseek-distribution-guard.json
+```text
+TV(guarded issue + s adaptive signs) ≤ min(1,δ_issue+s·ε_good)。
 ```
 
-环境：WSL `~/miniconda3/envs/sage`（Sage 10.9 / Python 3.13.15 / Linux 6.18.33.2 / Core Ultra 9 275HX / OMP4 OpenBLAS1）。
-功能测试与有限样本不是安全证明。
+guard 公式无需单独的 `beta_bad`；无 guard 的质量仍严格为正且未量化，旧大尾反例保留。若发钥时已返回密钥，两侧历史都保留该密钥输出，再应用相同签名门。
+
+std 三行的一签组合上界为 `2^-19/2^-18/2^-18`，两签为 `2^-18/2^-17/2^-17`。literal 组合仍 null。双方使用相同 64 次 norm 重试及 abort；单独 norm-exhaustion 概率未估计。
+
+## 历史与实测范围
+
+只覆盖**逻辑 API 输出与确定性持久状态**：密钥／签名、规范快照、pending/failed/issued、缓存和匹配逻辑错误。双方要求相同逻辑调度、共同 guard/abort 语义和相同 Setup 律，或明确条件于相同成功 Setup 根。新身份支付首发钥项，缓存重发不重复支付。
+
+时间、锁调度、熵消耗、内部采样／运行轨迹不在范围。磁盘／进程／回滚／断电没有概率模型；故障历史仍 null。包含实际 Setup 律的完整服务历史仍 null，不自动加入数学 `q_C` 作为实现费用。
+
+旧 compact 尺寸、时间和 RSS 在其冻结后端上实测，不能直接继承为当前 guard 默认服务的实测结果。作者 sampler 对应、来源歧义、native strong、结构困难性、正式准入及 NIST 状态均不升级。
+
+## 文件与复现
+
+- [proof.md](proof.md)：统一版本语义与条件模型。
+- [distribution-guard.json](distribution-guard.json)：六行条件比较、探针状态及 null。
+- [validation.json](validation.json)：测试、源和回执指纹。
+- 源码：`experiments/research/candidates/srgg/paper_distribution_guard.py`。
+
+```bash
+PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q \
+  tests/test_srgg_paper_distribution_guard.py
+PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m \
+  experiments.research.candidates.srgg.paper_distribution_guard \
+  --output build/deepseek-distribution-guard-new.json
+```
+
+输出路径须不存在。历史环境为 WSL Sage 10.9 / Python 3.13.15，实际复核环境以 validation 为准。功能测试、文件指纹与有限 TV 界不能替代安全证明。
 
 始终：`security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`、`nist_security_category=null`。

@@ -1,58 +1,26 @@
-r"""Distribution chain for the standalone SRGG paper backend (research WIP).
+r"""Mathematical thresholds and conditional SRGG distribution bounds.
 
-This module closes one concrete piece of the original-parameter distribution
-chain without changing the paper parameters, the source sampler or the
-signature equations.
+The original three Table 4 rows and both Gaussian interpretations are fixed.
+For the mathematical set G_C={C>64I}, exact algebra gives G_C subset A and
+the ideal master Schur floor L2>64. The trace-moment calculation bounds
+mu(G_C^c), TV(mu(.|A),mu(.|G_C)), and exhaustion for an ideal mathematical
+G_C retry model. None of these numbers is a measured or certified budget
+for the implemented interval guard.
 
-The new observation is a *good-root implication*.  Let
+B_legacy denotes the historical unguarded backend's one-attempt success set.
+H_setup and H_sign denote the current complete implemented audit predicates.
+Interval soundness prevents false acceptance; it does not establish numerical
+completeness on G_C. The uniform preparation-error envelope, the 192-bit C-gate
+inconclusive shell, actual accepted-root law and actual Setup abort budget
+remain null. In particular G_C subset B_legacy is an additional unverified
+premise, not a consequence asserted by this module.
 
-    C = nu I - nu^2 T^* Sigma^-1 T,        T = [R; I],
-
-be the completed-square center covariance of the centered paper gadget.  The
-mathematical Setup gate is
-
-    A = {Sigma_p - r^2 I > 0},
-    Sigma_p = Sigma - nu T T^*,  nu = b^2 r^2.
-
-For the four original Table 4 rows define the good set
-
-    G = {C > 64 I}.
-
-We prove (exactly, for both explicit Gaussian interpretations) that
-
-    G  =>  A,
-    G  =>  C_schur = a1 I - (nu a2/(a2-nu)) R R^*  >  L2 I,
-    L2 > 64,
-
-with L2 about 4.0e5 / 5.7e5 / 7.4e5 for d=2/3/4.  Consequently every Plan in G
-passes the actual ``SourceSchurSampleF`` resource, pivot and gain checks with a
-large margin; the original backend's accepted set B contains G.  Since the
-backend is sound, B is also contained in A, so
-
-    P(A \ B) <= P(A \ G) <= q_C,
-    TV(mu(.|A), mu(.|B)) <= q_C / (1-q_A),
-
-where q_A and q_C are the existing exact complex-Wishart trace-moment bounds
-at the thresholds T_A and T_C.  This is a real numeric bound on the accepted
-root distribution, not a fixed-root extrapolation.
-
-The module also records the conditional *guarded* composition.  A deterministic
-guard ``g`` (the signing-plan audit) is applied to both the actual key law and
-the mathematical reference.  By data processing
-
-    TV(g#P_K, g#Q_K) <= TV(P_K,Q_K) <= delta_issue,
-
-so the random-issued-key signing bound does not need a separate beta_bad mass:
-
-    TV(guarded issue + s signs) <= min(1, delta_issue + s * epsilon_good).
-
-This is the guarded-service theorem.  The unguarded beta_bad remains null; the
-canonical large-tail obstruction proves it is strictly positive but does not
-quantify it.
-
-All fields stay ``security_claim=none``, ``backend_admitted=false``,
-``parameters_are_formal=false`` and ``nist_security_category=null``.  This is a
-research distribution certificate, not an IBS security proof.
+Conditional issuance/signing bounds apply on plans that actually pass all
+required gates. Applying the same key guard and abort atom to actual and
+reference laws gives TV <= delta_issue+s*epsilon_good. Logical API outputs
+and deterministic persistent state are the history scope; timing, internal
+sampler/runtime traces and unmodeled faults are excluded. No security claim,
+formal parameter admission, NIST category or HIBE result is added.
 """
 from __future__ import annotations
 
@@ -90,6 +58,7 @@ SCHEMA = "IBME/SRGG-PAPER-DISTRIBUTION-CHAIN/1"
 PROFILES = ("PARAM-I", "PARAM-II", "PARAM-III")
 INTERPRETATIONS = ("table-standard-deviation", "literal-density-width")
 GATE_FLOOR = Fraction(64)
+HISTORY_SCOPE = "logical_api_outputs_and_deterministic_persistent_state"
 MOMENT_ORDERS = {"PARAM-I": 17, "PARAM-II": 22, "PARAM-III": 28}
 SECURITY_FIELDS = {
     "security_claim": "none",
@@ -130,10 +99,11 @@ def _fraction_text(value):
 
 
 def good_root_constants(profile, interpretation):
-    """Exact constants of the good-root implication G => A and the gates.
+    """Exact G_C => A/Schur comparisons and candidate envelope constants.
 
-    The returned constants are root-independent.  Every inequality is checked
-    with exact rationals before the certificate is returned.
+    Rational comparisons below are exact. Constants assigned for numerical
+    error/output envelopes are not a proof that every G_C root passes the
+    finite implementation's preparation gates.
     """
     if type(profile) is not str or profile not in PROFILES:
         raise ChainCertificateError("one original Table 4 profile required")
@@ -208,6 +178,10 @@ def good_root_constants(profile, interpretation):
         "uniform_center_error_upper_exact": str(center_error_upper),
         "uniform_center_error_below_2_minus_96": error < center_error_upper,
         "uniform_object_cap_bits": object_cap_bits,
+        "scope": "mathematical G_C algebra plus candidate envelope constants",
+        "uniform_implementation_preparation_error_upper": None,
+        "G_C_implies_legacy_backend_acceptance": None,
+        "implemented_C_gate_inconclusive_shell_mass_upper": None,
         "parameters_unchanged": True,
         "bit_lengths": {
             "threshold_A": max(threshold_a.numerator.bit_length(),
@@ -233,7 +207,7 @@ def moment_bound(threshold, rows, columns, order, degree):
 
 
 def bad_root_certificate(profile, interpretation):
-    """Exact q_A/q_C bounds and the accepted-root distribution gap."""
+    """Exact q_A/q_C for mathematical events, not implemented acceptance."""
     constants = good_root_constants(profile, interpretation)
     params = PaperParams(profile, interpretation)
     threshold_a = Fraction(constants["threshold_A_squared_exact"])
@@ -259,11 +233,13 @@ def bad_root_certificate(profile, interpretation):
         "C_gate_rejection_one_attempt_upper_exact": str(q_c),
         "C_gate_rejection_one_attempt_upper_decimal": float(q_c),
         "A_minus_G_unconditional_upper_decimal": float(q_c),
-        "accepted_root_tv_upper_exact": str(ratio),
-        "accepted_root_tv_upper_decimal": float(ratio),
-        "accepted_root_tv_upper_dyadic": _dyadic_upper(ratio),
-        "guarded_64_retry_abort_upper_dyadic": _dyadic_upper(abort),
-        "guarded_64_retry_abort_below_2_minus_64": abort < Fraction(1, 2**64),
+        "mathematical_mu_A_mu_G_tv_upper_exact": str(ratio),
+        "mathematical_mu_A_mu_G_tv_upper_decimal": float(ratio),
+        "mathematical_mu_A_mu_G_tv_upper_dyadic": _dyadic_upper(ratio),
+        "mathematical_G_64_retry_abort_upper_dyadic": _dyadic_upper(abort),
+        "mathematical_G_64_retry_abort_below_2_minus_64": abort < Fraction(1, 2**64),
+        "scope": "ideal mathematical G_C predicate; all G_C failures retried",
+        "implemented_guard_retry_abort_upper": None,
         "moment_method": "negacyclic Fourier direct sum; CBD1 moment dominance; "
                          "exact complex Wishart hook moment; Markov union over n/2 blocks",
     }
@@ -276,9 +252,9 @@ def _root_seed(profile, interpretation):
 def require_gates(plan, *, params=None, gadget=None, root_phase=False):
     """Run the complete audit gate set on a prepared plan.
 
-    This is a *check*, not a new sampler.  The proof shows that every root in
-    G passes it; the function is used to replay the six frozen witnesses and
-    the boundary witnesses.
+    This is a check, not a new sampler. It defines an implemented predicate;
+    no completeness claim over the mathematical G_C set is inferred from
+    the deterministic frozen/boundary witnesses.
     """
     try:
         audit = SchurNumericalAudit(plan)
@@ -529,27 +505,40 @@ def build_row(profile, interpretation, *, lifecycle=False):
         "good_root_constants": constants,
         "bad_root_mass": bad,
         "good_root_gate_implication":
-            "G={C>64I} => A, C_schur>L2 I with L2>64, all master "
-            "pivot/gain/factor/center/object gates; hence G is contained in "
-            "the original backend accept set B.",
+            "G_C={C>64I} => A and ideal C_schur>L2 I with L2>64; "
+            "acceptance by every finite preparation gate is not established.",
         "accepted_root_distribution": {
-            "actual_backend_set_B": "G subset B subset A (sound interval backend)",
-            "A_minus_B_upper_exact": bad["C_gate_rejection_one_attempt_upper_exact"],
-            "TV_mu_A_mu_B_upper_exact": bad["accepted_root_tv_upper_exact"],
-            "TV_mu_A_mu_B_upper_dyadic": bad["accepted_root_tv_upper_dyadic"],
+            "legacy_backend_set_B":
+                "B_legacy: historical unguarded one-attempt preparation success",
+            "implemented_guard_set_H":
+                "H_setup: current complete implemented root/audit/C/object gates",
+            "soundness_inclusion": "H_setup subset G_C subset A; B_legacy subset A",
+            "G_C_subset_B_legacy_certified": None,
+            "uniform_implementation_preparation_error_upper": None,
+            "implemented_C_gate_inconclusive_shell_mass_upper": None,
+            "A_minus_B_upper_exact": None,
+            "TV_mu_A_mu_B_upper_exact": None,
+            "TV_mu_A_mu_B_upper_dyadic": None,
+            "TV_mu_A_mu_H_upper_exact": None,
             "original_backend_64_retry_abort_upper": None,
             "original_backend_reason":
-                "non-WitnessGeometryError failures terminate rather than retry; "
-                "only the one-attempt bound q_C is available",
-            "guarded_64_retry_abort_dyadic": bad[
-                "guarded_64_retry_abort_upper_dyadic"],
+                "legacy non-geometric failures did not retry; current retries "
+                "do not supply a probability bound for all implemented gates",
+            "guarded_64_retry_abort_dyadic": None,
+            "reason":
+                "mathematical q_C excludes preparation completeness and the "
+                "implemented C-gate inconclusive shell; no actual-service "
+                "acceptance or abort bound is inferred",
         },
         "guarded_composition": {
+            "scope": "conditional on H_setup, common signing guard and abort semantics",
+            "history_scope": HISTORY_SCOPE,
             "unguarded_key_TV_delta_issue": None,
             "good_key_one_call_TV_epsilon_good": None,
             "guarded_issue_plus_1_sign_TV": None,
             "guarded_issue_plus_2_signs_TV": None,
-            "guarded_no_fault_history_TV": None,
+            "conditional_logical_no_fault_history_TV": None,
+            "implemented_full_history_TV": None,
             "beta_bad_unguarded": None,
             "beta_bad_strictly_positive": True,
             "beta_bad_reason":
@@ -589,7 +578,7 @@ def build_row(profile, interpretation, *, lifecycle=False):
         composition["guarded_issue_plus_2_signs_TV"] = (
             str(_guarded_tv(delta_issue, epsilon_sign, 2))
             if _guarded_tv(delta_issue, epsilon_sign, 2) is not None else None)
-        composition["guarded_no_fault_history_TV"] = (
+        composition["conditional_logical_no_fault_history_TV"] = (
             str(_guarded_tv(delta_issue, epsilon_sign, 2))
             if _guarded_tv(delta_issue, epsilon_sign, 2) is not None else None)
         if delta_issue is not None:
@@ -621,13 +610,22 @@ def build_report(*, lifecycle=False):
         "paper_locations":
             "Table 3 p.6; Table 4 pp.9-10; Algorithm 1 p.7; Algorithms 3-8 pp.7-8",
         "scope": "independent SRGG IBS distribution chain; no HIBE",
-        "good_root_set": "G = {C > 64 I}",
+        "scope_version": "mathematical_events_and_conditional_implemented_gates_v2",
+        "good_root_set": "G_C = {C > 64 I} (mathematical)",
+        "implemented_guard_set": "H_setup / H_sign: actual complete implemented gates",
+        "history_scope": {
+            "included": HISTORY_SCOPE,
+            "excluded": ["wall_clock_timing", "internal_sampler_or_runtime_traces",
+                         "unmodeled_disk_process_lock_rollback_or_power_faults"],
+            "matching_setup_or_conditioned_success_required": True,
+            "actual_service_full_history_TV": None,
+        },
         "main_results": [
-            "G implies the mathematical positivity gate A with a 5% threshold margin",
-            "G implies the master Schur pivot floor with L2 = 4.0e5/5.7e5/7.4e5",
-            "G is contained in the original backend accept set B",
-            "P(A\\B) <= P(A\\G) <= q_C; TV(mu(.|A),mu(.|B)) <= q_C/(1-q_A)",
-            "guarded issue+sign TV <= min(1, delta_issue + s*epsilon_good) by data processing",
+            "G_C implies A; threshold gaps are about 0.79% (std) / 4.96% (literal)",
+            "G_C implies the ideal master Schur floor L2 = 4.0e5/5.7e5/7.4e5",
+            "mu(G_C^c) <= q_C; mathematical TV(mu(.|A),mu(.|G_C)) <= q_C/(1-q_A)",
+            "q_C^64 applies only to an ideal mathematical G_C retry model",
+            "conditional common-guard logical issue+sign TV <= delta_issue+s*epsilon_good",
         ],
         "source_parameters_unchanged": True,
         "independent_uniform_bytes_assumed": True,
@@ -636,27 +634,23 @@ def build_report(*, lifecycle=False):
             "MPFR real primitives; deterministic seeds do not establish this",
         "guard_is_service_change": True,
         "unguarded_original_backend": {
-            "A_minus_B_upper_exact":
-                "per-row q_C; see rows[*].accepted_root_distribution."
-                "A_minus_B_upper_exact",
-            "accepted_root_distribution_TV_upper_exact":
-                "per-row q_C/(1-q_A); see rows[*].accepted_root_distribution."
-                "TV_mu_A_mu_B_upper_exact",
+            "A_minus_B_upper_exact": None,
+            "accepted_root_distribution_TV_upper_exact": None,
             "reason":
-                "the proof gives A\\B subset A\\G and B superset G; the numeric "
-                "q_C bound is valid for A\\G, hence for A\\B.  The original "
-                "backend may accept roots outside G; they remain in A and are "
-                "counted in the same TV bound.  Only the non-retryable failure "
-                "mode prevents a 64th-power abort statement.",
+                "G_C subset B_legacy requires a uniform finite-preparation "
+                "enclosure not supplied here; interval soundness alone is "
+                "insufficient. Historical B_legacy is not the current H_setup.",
         },
         "rows": [build_row(p, i, lifecycle=lifecycle)
                  for p in PROFILES for i in INTERPRETATIONS],
         "null_ledger": [
             "unguarded beta_bad mass: null (guarded data-processing theorem does not need it)",
-            "uniform or average finite-chain/issuance TV over all B accepted roots: "
-            "null (B\\G per-root error is not bounded; only the root-law distance "
-            "to mu(.|A) is bounded by q_C/(1-q_A), and the guarded service "
-            "accepts only G)",
+            "legacy B_legacy acceptance law and all-B finite-chain/issuance TV: null",
+            "G_C subset B_legacy and uniform finite-preparation enclosure: null",
+            "implemented C-gate inconclusive-shell mass: null",
+            "implemented H_setup accepted-root law and 64-attempt abort: null",
+            "actual-service full history including Setup budget: null; logical conditional bounds only",
+            "wall-clock timing and internal sampler/runtime trace TV: null (outside logical API scope)",
             "literal-density first issuance: null (gadget digit-normalizer gate fails)",
             "literal-density one sign call: trivial 1",
             "original backend 64-attempt abort: null (non-retryable failures)",

@@ -98,7 +98,13 @@ class _Snapshot:
 
 
 class FixedIssuer(storage.FixedIssuer):
-    """One persisted key per identity under the literal paper object namespace."""
+    """One persisted key per identity under the literal paper object namespace.
+
+    Recovery validates canonical objects and public/parameter bindings. It
+    does not retrospectively certify a snapshot's numerical gates. Cached
+    retrieval preserves the exact issued key without entropy or reissuance;
+    new issuance and actual signing run their backend gates independently.
+    """
 
     def __init__(self, path, backend=None, *, expected_public=None, expected_params=None,
                  lock_timeout=300):
@@ -190,6 +196,12 @@ class FixedIssuer(storage.FixedIssuer):
                 raise
 
     def key_extract(self, identity):
+        """Return the persisted key, or issue once under the configured backend.
+
+        A cached return is not a new guard audit or a fresh issuance sample.
+        In particular, reopening an older snapshot does not certify its root
+        or cached keys as members of the current guarded acceptance set.
+        """
         identity = validate_identity(identity, max_bytes=4096)
         self._existing()
         with self._locked():

@@ -2,7 +2,7 @@
   "accepted_setup_root_distribution_bound": null,
   "backend_admitted": false,
   "bound_scope": "every_plan_passing_complete_gate_set",
-  "finite_report_sha256": "a3a904c1b683f6c8abb62eece28548a5f1cee3a15a111ce9e1734f54d179d07b",
+  "finite_report_sha256": "011e9dae5f33780bf4ac7b0f025f6b7f8e172c2e3433c7c100e720c893b7914b",
   "full_issuance_signature_history_tv": null,
   "guard_built_into_backend": true,
   "native_strong_security_proven": false,
@@ -762,11 +762,11 @@
   "scope": "six deterministic accepted roots as witnesses; guarded backend; joint finite/convolution/normalizer bounds apply to every complete-gate plan",
   "security_claim": "none",
   "source_sha256": {
-    "experiments/research/candidates/srgg/paper_distribution_guard.py": "5f14c361987cfdfe96f0e4fd51bb9435ec8bde2ed93976979d97f8277724cf19",
+    "experiments/research/candidates/srgg/paper_distribution_guard.py": "66491062d16f7699c9d349c2bb71746ab735c150f178df87705e23e5fd8de637",
     "experiments/research/candidates/srgg/paper_rounding_budget.py": "76aefbae24c11706715d22f6ca59a5cb9a5433c5edfd44fe291e47c53de7e9c3",
-    "experiments/research/candidates/srgg/paper_schur_backend.py": "41113635b940dfedc964efb29b5b6cd4c1db59d4b72ad54fcabe543ec08054ba",
+    "experiments/research/candidates/srgg/paper_schur_backend.py": "d7ca95d2be3e966166e9f3c4021635fa3a2ce1531fbf9a2f3d586e9dc68a56d0",
     "experiments/research/candidates/srgg/paper_schur_convolution.py": "5d007cb634f6704117f83cd2196bafea505cf08322c12204c4708780a8a047bc",
-    "experiments/research/candidates/srgg/paper_schur_joint_bound_audit.py": "105399a046f3ed27c1e0fa3ce0f0cac4d1011eccebb26eef160e9416c73a1ecd",
+    "experiments/research/candidates/srgg/paper_schur_joint_bound_audit.py": "97cacfe326fc5cf416b0c2d832aab08a54c9cc47177cf3a1b671e39b8b44bac8",
     "experiments/research/candidates/srgg/paper_schur_literal_moment.py": "0894b587369dd17a9a42c4bf1b36ed9f0ed988a9672b938e3f291a2cda74c89c",
     "experiments/research/candidates/srgg/paper_schur_normalizer.py": "d4c7389acd6e5e45b2ff87e615c7d745756496a6704f31bd8cec74f42969db06"
   }

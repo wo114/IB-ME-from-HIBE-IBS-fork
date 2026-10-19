@@ -7,8 +7,8 @@ floor* 64 and root-independent constants, never the actual pivot values.  Hence
 the six-root receipts are witnesses, not the theorem's domain.  The theorem is
 uniform over every root and key that passes the same audit gates.
 
-The original backend does not run ``SchurNumericalAudit`` during Setup or before
-signing.  ``SourceSchurBackend`` adds that audit as an explicit accept
+The historical backend at cd31389 does not run ``SchurNumericalAudit`` during
+Setup or before signing. The current ``SourceSchurBackend`` adds that audit as an explicit accept
 condition: Setup retries a gate failure (as a root rejection), while signing
 aborts for a key that fails the signing gate.  The probabilities of those
 rejections are *not* bounded here; they remain explicit null fields.  The
@@ -363,7 +363,8 @@ def build_row(profile, interpretation, *, seed=None, check_uniformity=True):
         "extraction_calls": backend.extract_calls,
         "identity_bytes": 5,
         "guarded_backend_ran_audit_at_setup_and_sign": True,
-        "original_backend_runs_audit": False,
+        "historical_unguarded_backend_runs_audit": False,
+        "source_schur_backend_runs_audit": True,
         "gate_floor": "64",
         "issuance_c_gate": None if backend.last_master_gate_extras is None else
             backend.last_master_gate_extras.get("c_gate"),
@@ -391,6 +392,11 @@ def build_row(profile, interpretation, *, seed=None, check_uniformity=True):
             "canonical large-tail key has a strictly negative Fourier diagonal and lies in the "
             "mathematical reference support; its mass is positive but not quantified",
         "full_history_tv": None,
+        "history_observables": "logical_api_outputs_and_deterministic_persistent_state",
+        "timing_and_internal_sampling_traces_included": False,
+        "implementation_root_law_tv_upper": None,
+        "implementation_setup_64_attempt_abort_upper": None,
+        "full_history_formula_reference": "legacy unguarded reference; not the same-guard logical comparison",
         "full_history_formula":
             "min(1, alpha_root + delta_issue + beta_bad + s*epsilon_sign_call)",
         "fault_history_tv": None,
@@ -403,61 +409,65 @@ def build_row(profile, interpretation, *, seed=None, check_uniformity=True):
 
 
 def probe_unguarded_gate_gap(profile, interpretation, count=6):
-    """Search for a root the original backend accepts but the audit rejects.
+    """Explicitly disable the historical unguarded-gap search.
 
-    The result is an empirical witness search, not a probability.  A found
-    witness proves B is not contained in the audit-gate set G.
+    The current SourceSchurBackend already enforces the audit gates. Running
+    it and checking the same gates again cannot investigate the historical
+    unguarded acceptance set. No old sampler is recreated or approximated.
     """
-    params = PaperParams(profile, interpretation)
-    for index in range(count):
-        seed = ("unguarded-gap-" + profile + "-" + interpretation + "-" + str(index)).encode("ascii")
-        backend = SourceSchurBackend(rng=DeterministicRandom(seed))
-        try:
-            public, master = backend.setup(params)
-        except Exception as error:  # noqa: BLE001 - fixture search records every failure
-            continue
-        try:
-            gadget, _scalar = backend._components(params)
-            require_gates(backend._master_plan(params, master.witness),
-                          params=params, gadget=gadget, root_phase=True)
-        except GateFailure as error:
-            return {
-                "witness_found": True,
-                "seed_index": index,
-                "seed_sha256": sha256(seed).hexdigest(),
-                "public_context_sha256": public.context.hex(),
-                "gate_failure": str(error),
-                "scope": "one unguarded Setup root accepted by the original backend and rejected by the complete gate set",
-            }
+    PaperParams(profile, interpretation)
+    if type(count) is not int or not 1 <= count <= 64:
+        raise ValueError("bounded probe count in 1..64 required")
     return {
-        "witness_found": False,
-        "seeds_tried": count,
-        "note": "no witness in this deterministic search; the logical gap remains because the original "
-                "backend does not execute the audit gates",
+        "enabled": False,
+        "status": "not_run_after_guard_unification",
+        "witness_found": None,
+        "seeds_tried": 0,
+        "requested_seeds": count,
+        "note": "not run: the current backend is guarded; a separately frozen historical "
+                "unguarded backend would be required for this comparison",
     }
 
 
 def probe_sign_gate_mass(profile, interpretation, count=3):
     """Empirical gate-failure count for issued keys; not a probability bound."""
     params = PaperParams(profile, interpretation)
+    if type(count) is not int or not 1 <= count <= 64:
+        raise ValueError("bounded probe count in 1..64 required")
     accepted = rejected = 0
+    failures = {"setup": 0, "issuance": 0, "sign_plan": 0}
+    failure_types = []
     for index in range(count):
         seed = ("sign-gate-mass-" + profile + "-" + interpretation + "-" + str(index)).encode("ascii")
         backend = SourceSchurBackend(rng=DeterministicRandom(seed))
         try:
             _public, master = backend.setup(params)
+        except Exception as error:  # noqa: BLE001 - every fixture outcome is recorded
+            failures["setup"] += 1
+            failure_types.append({"index": index, "stage": "setup", "type": type(error).__name__})
+            continue
+        try:
             key = backend.key_extract(master, b"Alice")
+        except Exception as error:  # noqa: BLE001 - no private exception text is exported
+            failures["issuance"] += 1
+            failure_types.append({"index": index, "stage": "issuance", "type": type(error).__name__})
+            continue
+        try:
             backend._sign_plan(key)
         except SigningKeyGateRejection:
             rejected += 1
-        except Exception:
-            continue
+        except Exception as error:  # noqa: BLE001 - distinguish an unexpected plan failure
+            failures["sign_plan"] += 1
+            failure_types.append({"index": index, "stage": "sign_plan", "type": type(error).__name__})
         else:
             accepted += 1
     return {
         "roots_attempted": count,
         "sign_gate_accepts": accepted,
         "sign_gate_rejections": rejected,
+        "stage_failures": failures,
+        "failure_types": failure_types,
+        "all_attempted_fixtures_accounted_for": accepted + rejected + sum(failures.values()) == count,
         "note": "empirical fixture count only; it does not bound beta_bad under the ideal issuance law",
     }
 

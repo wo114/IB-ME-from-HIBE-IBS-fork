@@ -8,7 +8,7 @@ import pytest
 pytest.importorskip("sage.all", reason="specified WSL Sage required")
 
 from experiments.research.candidates.srgg.paper_distribution_chain import (
-    ChainCertificateError, GATE_FLOOR, MOMENT_ORDERS, PROFILES,
+    ChainCertificateError, GATE_FLOOR, HISTORY_SCOPE, MOMENT_ORDERS, PROFILES,
     INTERPRETATIONS, bad_root_certificate, build_report, good_root_constants,
     lifecycle_probe, moment_bound,
 )
@@ -57,22 +57,23 @@ def _dyadic_value(text):
     return Fraction(1, 2**int(text[3:]))
 
 
-def test_bad_root_mass_and_guarded_abort_are_nontrivial():
+def test_mathematical_bad_root_mass_and_ideal_retry_abort_are_nontrivial():
     for profile in PROFILES:
         for interpretation in INTERPRETATIONS:
             cert = bad_root_certificate(profile, interpretation)
             q_a = Fraction(cert["A_rejection_one_attempt_upper_exact"])
             q_c = Fraction(cert["C_gate_rejection_one_attempt_upper_exact"])
-            tv = Fraction(cert["accepted_root_tv_upper_exact"])
+            tv = Fraction(cert["mathematical_mu_A_mu_G_tv_upper_exact"])
             assert 0 < q_a < q_c < 1
             assert tv == q_c / (1 - q_a)
             assert 0 < tv < 1
             # The exact 64th power is huge; the JSON keeps its outward
             # power-of-two upper bound instead.
             abort_upper = _dyadic_value(
-                cert["guarded_64_retry_abort_upper_dyadic"])
+                cert["mathematical_G_64_retry_abort_upper_dyadic"])
             assert q_c**64 <= abort_upper
-            assert cert["guarded_64_retry_abort_below_2_minus_64"] is True
+            assert cert["mathematical_G_64_retry_abort_below_2_minus_64"] is True
+            assert cert["implemented_guard_retry_abort_upper"] is None
 
 
 def test_moment_bound_rejects_nonpositive_threshold():
@@ -127,13 +128,31 @@ def test_full_report_has_six_rows_and_null_ledger():
     assert report["backend_admitted"] is False
     assert report["parameters_are_formal"] is False
     assert report["nist_security_category"] is None
+    assert report["scope_version"] == \
+        "mathematical_events_and_conditional_implemented_gates_v2"
+    assert report["history_scope"]["included"] == HISTORY_SCOPE
+    assert "wall_clock_timing" in report["history_scope"]["excluded"]
+    assert "internal_sampler_or_runtime_traces" in report["history_scope"]["excluded"]
+    assert report["history_scope"]["actual_service_full_history_TV"] is None
+    assert report["unguarded_original_backend"]["A_minus_B_upper_exact"] is None
     assert any("beta_bad" in item for item in report["null_ledger"])
     for row in report["rows"]:
         assert row["guarded_composition"]["beta_bad_unguarded"] is None
         assert row["guarded_composition"]["beta_bad_strictly_positive"] is True
         assert row["fault_history"]["TV"] is None
-        assert row["accepted_root_distribution"][
-            "TV_mu_A_mu_B_upper_exact"] is not None
+        acceptance = row["accepted_root_distribution"]
+        for field in ("A_minus_B_upper_exact", "TV_mu_A_mu_B_upper_exact",
+                      "TV_mu_A_mu_B_upper_dyadic", "TV_mu_A_mu_H_upper_exact",
+                      "G_C_subset_B_legacy_certified",
+                      "uniform_implementation_preparation_error_upper",
+                      "implemented_C_gate_inconclusive_shell_mass_upper",
+                      "original_backend_64_retry_abort_upper",
+                      "guarded_64_retry_abort_dyadic"):
+            assert acceptance[field] is None, field
+        assert row["guarded_composition"]["history_scope"] == HISTORY_SCOPE
+        assert row["guarded_composition"]["implemented_full_history_TV"] is None
+        assert "guarded_no_fault_history_TV" not in row["guarded_composition"]
+        assert "accepted_root_tv_upper_exact" not in row["bad_root_mass"]
 
 
 def test_one_fixed_root_lifecycle_passes_the_complete_gate_set():

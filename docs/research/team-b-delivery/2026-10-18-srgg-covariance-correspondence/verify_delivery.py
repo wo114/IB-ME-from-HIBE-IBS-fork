@@ -12,7 +12,7 @@ ROOT = HERE.parents[3]
 PACKAGE = "docs/research/team-b-delivery/2026-10-18-srgg-covariance-correspondence"
 PAPER = "papers/2025_efficient_ibs_jia.pdf"
 PDF_SHA256 = "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152"
-RECEIPT_SHA256 = "74b87bc9ab8db1a5ffe59cc6cbfcc47745ff1ff3c8ade48f98e247175c340cee"
+RECEIPT_SHA256 = "d20dc36fc8370e0c29c480b6ec66f5e02e0a37a17fe828bccc6aae82a818a0c7"
 
 sys.path.insert(0, str(ROOT))
 from experiments.research.candidates.srgg.paper_covariance_correspondence import (  # noqa: E402

@@ -10,12 +10,12 @@
     "sage": "10.9"
   },
   "finite_chain_manifest_entries_verified": 36,
-  "finite_chain_manifest_normalized_lf_sha256": "7885410d363020891189c6dc011f061f0e3e5742ac359011556c0e1e7879018d",
+  "finite_chain_manifest_normalized_lf_sha256": "b88043dfae257cb1cf4d02cc20cb0b149beda1a5d914b59027bd548f01156fb3",
   "fixed_root_standard_interpretation_nontrivial_rows": 3,
   "full_issuance_signature_fault_history_tv": null,
   "guard_built_into_backend": true,
   "identity_bytes": 5,
-  "inherited_source_manifest_sha256": "d03f8ab6b6fd2a990248e7776a80273749b95b48beeec0f7bd71daff3df1d685",
+  "inherited_source_manifest_sha256": "f89aa069d6d3c3a1f6675d2048035e2135971afc41c5fa7b2758cddec1bbbf11",
   "known_limits": [
     "DeterministicRandom replay checks the fixture path; the TV bound assumes fresh iid uniform bytes and stated MPFR arithmetic semantics.",
     "The three literal-density-width rows have no complete first-issuance bound because the available digit-normalizer sufficient condition fails.",
@@ -39,7 +39,7 @@
   "paper_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
   "parameters_are_formal": false,
   "public_receipt_command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.srgg.paper_source_issuance_bridge --output docs/research/team-b-delivery/2026-10-18-srgg-source-issuance/source-issuance.json",
-  "receipt_sha256": "7daa455d8fe8c1889e32ee7919d54af7673e8635399bcb96daf1fb43226bb18c",
+  "receipt_sha256": "964197a6a04f033421725e9ae363ec2f2269d7b6da38e6d10568a7205ebff3f8",
   "repetitions_per_row": 1,
   "rom_used": true,
   "schema": "IBME/SRGG-SOURCE-SCHUR-ISSUANCE-VALIDATION/1",

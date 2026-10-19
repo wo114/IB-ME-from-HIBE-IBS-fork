@@ -1,9 +1,10 @@
 """Persistent issuer convenience for the paper source-Schur backend.
 
-``srgg_paper_service.FixedIssuer`` remains byte-compatible and accepts an
-explicit backend.  This wrapper only changes the *default* backend to
-``SourceSchurBackend`` for callers that select the paper source-Schur route.
-It does not change Table 4, the paper objects or the old service default.
+``srgg_paper_service.FixedIssuer`` defaults to the same guarded
+``SourceSchurBackend`` and accepts an explicit backend. These historical
+convenience names retain byte-compatible persistence and do not add a second
+guard. Reopening/cached retrieval validates stored objects, not numerical
+gate admission; new issuance and actual signing execute their guards.
 """
 from __future__ import annotations
 
