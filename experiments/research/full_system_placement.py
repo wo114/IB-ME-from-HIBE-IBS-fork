@@ -25,6 +25,22 @@ from .wsl_wheel_runtime import prepare, verify_runtime, wheel_manifest
 SUITE_NAME = "latte3-hybrid-cert-ml-dsa-ml-dsa-44-reference-byteauth-v1"
 
 
+def verify_generation_providers(generation, expected):
+    """Legacy import aliases are checked by their actual provider file path."""
+    if (generation["status"] != "passed" or generation["repetitions"] != 3 or len(generation["records"]) != 3
+            or generation["identity_bytes"] != 64 or generation["message_bytes"] != 32):
+        raise ValueError("expected three completed honest generation/restore states")
+    for record in generation["records"]:
+        if record["generation"]["status"] != "passed" or record["restore"]["status"] != "passed":
+            raise ValueError("failed/partial states cannot be silently replaced or reused")
+        for name, value in record["generation"]["source_providers"].items():
+            parts = Path(value["path"]).parts
+            indexes = [index for index, part in enumerate(parts) if part in ("ibme", "experiments")]
+            relative = "/".join(parts[indexes[-1]:]) if indexes else ""
+            if expected.get(relative) != value["sha256"]:
+                raise ValueError("completed-state provider differs from wheel: " + name)
+
+
 def worker(directory, output, samples):
     from ibme.assembly import SuiteConfig, build_runtime
     from ibme.core.randomness import SecureRandom
@@ -148,19 +164,7 @@ def compare(source_root, wheel, windows_runtime, private, source_commit, samples
             "--security-group", "same-frozen-latte-mldsa44-placement"],
             root=linux_root, log=private / "generation.private-log")
     generation = json.loads((generated / "receipt.json").read_bytes())
-    if (generation["status"] != "passed" or generation["repetitions"] != 3
-            or generation["identity_bytes"] != 64 or generation["message_bytes"] != 32):
-        raise ValueError("expected three completed honest generation/restore states")
-    for record in generation["records"]:
-        if record["generation"]["status"] != "passed" or record["restore"]["status"] != "passed":
-            raise ValueError("failed/partial states cannot be silently replaced or reused")
-        for name, value in record["generation"]["source_providers"].items():
-            # A measurement-only harness fix can reuse completed states;
-            # every primitive/protocol/provider byte must still be identical.
-            relative = name.replace(".", "/")
-            candidates = (relative + ".py", relative + "/__init__.py")
-            if not any(expected.get(path) == value["sha256"] for path in candidates):
-                raise ValueError("completed-state provider differs from wheel: " + name)
+    verify_generation_providers(generation, expected)
     rows = []
     variants = list(roots)
     for state_index in range(3):
