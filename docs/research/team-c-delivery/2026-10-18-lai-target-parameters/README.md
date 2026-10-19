@@ -109,7 +109,7 @@ python -m ibme.cli decrypt --receiver alice --sender bob \
   --in ct.bin --out out.bin --state /tmp/lai-target-cli
 ```
 
-实测：setup 5 s、issue receiver 60 s、issue sender 11 s、encrypt 118 s、decrypt 572 s；14 B → **1,357,049 B** CT，解密一致；receiver key 20,439,553 B、sender key 313,778 B（sender 主要承载 IBS 签名密钥，目标 HIBE 子密钥在解密路径派生）；state 约 26 MB。suite digest `eda3502de91eff42f10969dac9c3e92fd31468b5e1bc8b5fc17c498468b81c28`。
+**2026-10-19 CSPRNG post-fix 实测**：setup 8 s、issue receiver 57 s、issue sender 6 s、encrypt 110 s、decrypt 632 s；14 B → **1,357,049 B** CT，解密一致；receiver key 20,439,553 B、sender key 313,778 B（sender 主要承载 IBS 签名密钥，目标 HIBE 子密钥在解密路径派生）；state 约 26 MB。suite digest `eda3502de91eff42f10969dac9c3e92fd31468b5e1bc8b5fc17c498468b81c28`。这取代了 pre-fix MT 版本的 5/60/11/118/572 s 收据。
 
 ### 8.3 多随机种子
 
@@ -130,13 +130,13 @@ python -m ibme.cli decrypt --receiver alice --sender bob \
 
 | 用例 | 结果 | 耗时 |
 |---|---|---|
-| context tamper | 拒绝（BOTTOM） | 9.85 s |
-| signature tamper | 拒绝 | 9.82 s |
-| inner bytes tamper | 拒绝 | 10.53 s |
-| truncated CT | 拒绝 | 9.84 s |
-| appended CT | 拒绝 | 9.71 s |
+| context tamper | 拒绝（BOTTOM） | 10.84 s |
+| signature tamper | 拒绝 | 10.46 s |
+| inner bytes tamper | 拒绝 | 8.92 s |
+| truncated CT | 拒绝 | 9.27 s |
+| appended CT | 拒绝 | 10.95 s |
 
-脚本：`experiments/research/candidates/lai/target_byteauth_negative.py`；JSON 在 `/tmp/lai-target-byteauth-negative.json`。**未单独测试**外层 wrong receiver/sender 和 replay；wrong-child/wrong-parent 已在原始 HIBE 层覆盖，replay 没有协议级状态。
+脚本：`experiments/research/candidates/lai/target_byteauth_negative.py`；JSON 在 `/tmp/lai-target-byteauth-negative.json`。以上是 **CSPRNG post-fix** 的 C2 state/CT 结果。**未单独测试**外层 wrong receiver/sender 和 replay；wrong-child/wrong-parent 已在原始 HIBE 层覆盖，replay 没有协议级状态。
 
 ## 9. 64 MiB 资源上限审查与默认决策（2026-10-18）
 
@@ -206,7 +206,7 @@ python -m ibme.cli decrypt --receiver alice --sender bob \
 
 对象尺寸与确定性路径一致（PK 1,617,969；SK1 18,821,265；SK2 34,795,753；CT 1,228,844）。该次探针没有固定种子，不能与确定性种子逐字节比较；它验证的是生产随机源路径。
 
-**剩余**：目标 CLI 完整生命周期需在修复后重跑一次，作为最终 CSPRNG 收据；此前 CLI 证据保留为功能路径证据。
+**目标 CLI 完整生命周期已在修复后重跑**：见 §8.2 的 2026-10-19 CSPRNG 收据；此前 MT 版本只保留为 pre-fix 功能证据。
 
 ## 11. 复现
 
