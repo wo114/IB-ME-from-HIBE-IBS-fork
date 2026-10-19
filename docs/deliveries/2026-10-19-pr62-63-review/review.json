@@ -1,0 +1,111 @@
+{
+  "schema": "IBME/PR62-63-REVIEW/1",
+  "integration_source": "d20642d78fef7ac8a45d311569cc54cdc897cb3d",
+  "prs": [
+    {
+      "number": 62,
+      "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/62",
+      "head": "aa8dd3e12b9855aa47dd5682904dea0a283b00e8",
+      "merge_commit": "a9d96155d476ae98ae59c717db2cf3f6e7e864e5",
+      "merged_at": "2026-10-19T07:19:45Z",
+      "state": "MERGED",
+      "ci_file": "pr62-ci.json",
+      "ci_sha256_lf": "b71fe5bd8b8e148ece3b66c5fc7eb52bbbd0203182575defe6d679d0703af23d",
+      "successful_check_runs": 46,
+      "expected_manual_skips": 2,
+      "trigger_scope": "push and pull_request duplicate event sets; 23 successes plus one manual skip each"
+    },
+    {
+      "number": 63,
+      "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/63",
+      "head": "b9a06b1f74ddbd3908a634be7cfa2a75582a7cc5",
+      "merge_commit": "7a53d173f0bf8b770a11bde3c39d3e32a4d8ae0c",
+      "merged_at": "2026-10-19T07:06:12Z",
+      "state": "MERGED",
+      "ci_file": "pr63-ci.json",
+      "ci_sha256_lf": "d43a673f9200df0cd627b721ffb4f763c56aa453bbafa8bfe85da334cb51fec8",
+      "successful_check_runs": 46,
+      "expected_manual_skips": 2,
+      "trigger_scope": "push and pull_request duplicate event sets; 23 successes plus one manual skip each"
+    }
+  ],
+  "junit": [
+    {
+      "file": "pr62-fixed.xml",
+      "sha256_lf": "d2e1ade8605f367b0c4c0ca8887b868faec5fbfbcf4c260f39ccde3fe9b37130",
+      "passed": 33,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "file": "pr63-fix.xml",
+      "sha256_lf": "98b82cec83824efef399872a026a61005d4dd4db669f64762366b7306dd079e4",
+      "passed": 77,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "file": "pr62-integrated.xml",
+      "sha256_lf": "f10156328bd8d615b84f4361a5c99c7d493963b1dcb671ace2778f6a0f931285",
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "distinct_test_identities": 110,
+  "windows_cold_discovery": "windows-cold-discovery.json",
+  "selected_source_sha256_lf": {
+    "experiments/research/candidates/sageloli/__init__.py": "7b2e62bfa09b340f2824ccc143d591ff93d25345707fa675b388a4bc115c7cc3",
+    "experiments/research/candidates/lai/target_state_setup.sh": "4d0601f050f49c7e861cca59241355b3ae74986bd1eb061f307a01b9f57d65dc",
+    "experiments/research/candidates/lai/target_c2_receipt.py": "abcc19b2b9dcbe60266f956cb0a3bdd35d4ac7df57b919c9454442409f6a7bb3",
+    "docs/research/team-c-delivery/2026-10-19-lai-publication/verify_delivery.py": "7d2e7574d54b95911102a5fb69cb326aa69af1446ca7441c611d85e8d1e31e61",
+    "tests/test_lai_target_receipt.py": "556620f0b6a572b8d8a8bd7c283084364b998d02b0cd2335c8f4eb537ac0f242",
+    "src/ibme/ibs/sageloli/ring.py": "b7206b006f16e7fa77b576a925a500b0054a6462aa62957e98f4681c1968927f",
+    "src/ibme/ibs/sageloli/ring_registration.py": "a1d9c6cd515fff29a0d1517e18b6a739abfb150285fd0d23af2e42f9fee3911f"
+  },
+  "fixes": [
+    {
+      "pr": 63,
+      "severity": "P1",
+      "problem": "Eager legacy package import loads the sampler during static registry discovery.",
+      "resolution": "Lazy package exports; unchanged actual v3 sampling and numeric parameters."
+    },
+    {
+      "pr": 62,
+      "severity": "P2",
+      "problem": "New explicit state plus an external ciphertext path writes message before creating the state.",
+      "resolution": "Create both parents; refuse existing inputs; fake-CLI path regressions."
+    },
+    {
+      "pr": 62,
+      "severity": "P2",
+      "problem": "C2 generator can mislabel another suite and public checker accepts omitted negative maps.",
+      "resolution": "Exact C2/digest checks, complete negative sets, return codes, no plaintext output, digest enforcement and subprocess bounds."
+    },
+    {
+      "pr": 62,
+      "severity": "documentation",
+      "problem": "Historical source bindings conflict with newer registry/catalog/status, and C2 rerun prose contradicts the receipt.",
+      "resolution": "Explicit frozen publication snapshots for those three files, scope wording corrected, other source mismatches still rejected."
+    }
+  ],
+  "readonly_checks": {
+    "lai_current_source_bindings": 49,
+    "lai_publication_snapshots_used": 3,
+    "lai_original_git_bindings": 44,
+    "lai_historical_pytest": 267,
+    "sageloli_checks": 696,
+    "optimized_python": true,
+    "mutation_checks": {
+      "fixture_baseline_passed": true,
+      "unmapped_runtime_change_rejected": true,
+      "changed_snapshot_rejected": true,
+      "escaping_snapshot_rejected": true
+    }
+  },
+  "original_c2_14_byte_batch_rerun_during_review": false,
+  "new_c2_32_byte_trial_evidence_separate": "docs/research/2026-10-19-lai-c2-combinations/",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
