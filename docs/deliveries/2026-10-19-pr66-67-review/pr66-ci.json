@@ -1,0 +1,492 @@
+{
+  "baseRefOid": "d959d4d0106f8a99f69c8f69a0aa820cd74963f6",
+  "headRefOid": "6c0e2d23bc39cc27378b65fb38b0acd4b93c30eb",
+  "isDraft": false,
+  "mergeStateStatus": "CLEAN",
+  "mergeable": "MERGEABLE",
+  "number": 66,
+  "state": "OPEN",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:50:48Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019334601",
+      "name": "plan",
+      "startedAt": "2026-10-19T10:50:38Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:48:52Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018591178",
+      "name": "plan",
+      "startedAt": "2026-10-19T10:48:44Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:50:35Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019336673",
+      "name": "strict-security",
+      "startedAt": "2026-10-19T10:50:36Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:48:41Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018593201",
+      "name": "strict-security",
+      "startedAt": "2026-10-19T10:48:42Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:53:12Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417366",
+      "name": "portable / framework",
+      "startedAt": "2026-10-19T10:50:51Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:51:24Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659356",
+      "name": "portable / framework",
+      "startedAt": "2026-10-19T10:48:54Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:59:26Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417492",
+      "name": "portable / luo-composition-regression",
+      "startedAt": "2026-10-19T10:50:51Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:03:44Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659238",
+      "name": "portable / luo-composition-regression",
+      "startedAt": "2026-10-19T10:48:55Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:53:48Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417710",
+      "name": "sage / abb-rom",
+      "startedAt": "2026-10-19T10:50:51Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:52:46Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659727",
+      "name": "sage / abb-rom",
+      "startedAt": "2026-10-19T10:48:55Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:54:15Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417802",
+      "name": "sage / chkp-rom",
+      "startedAt": "2026-10-19T10:50:51Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:54:04Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659696",
+      "name": "sage / chkp-rom",
+      "startedAt": "2026-10-19T10:48:55Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:51:56Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417922",
+      "name": "sage / latte",
+      "startedAt": "2026-10-19T10:50:52Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:49:59Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659504",
+      "name": "sage / latte",
+      "startedAt": "2026-10-19T10:48:55Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:53:53Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417914",
+      "name": "sage / lai-ideal-hibe",
+      "startedAt": "2026-10-19T10:51:08Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:52:51Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659666",
+      "name": "sage / lai-ideal-hibe",
+      "startedAt": "2026-10-19T10:48:55Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:53:44Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417839",
+      "name": "sage / luo-matrix",
+      "startedAt": "2026-10-19T10:52:40Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:51:05Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659608",
+      "name": "sage / luo-matrix",
+      "startedAt": "2026-10-19T10:50:02Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:56:34Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417763",
+      "name": "sage / luo-module",
+      "startedAt": "2026-10-19T10:53:47Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:56:39Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659712",
+      "name": "sage / luo-module",
+      "startedAt": "2026-10-19T10:51:14Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:06:18Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417679",
+      "name": "sage / srgg2025",
+      "startedAt": "2026-10-19T10:53:50Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:07:43Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659495",
+      "name": "sage / srgg2025",
+      "startedAt": "2026-10-19T10:53:11Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:56:50Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417800",
+      "name": "sage / yu2026",
+      "startedAt": "2026-10-19T10:53:55Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:56:13Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659577",
+      "name": "sage / yu2026",
+      "startedAt": "2026-10-19T10:53:15Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:59:42Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417733",
+      "name": "sage / sageloli-sis",
+      "startedAt": "2026-10-19T10:54:18Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T10:59:50Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659675",
+      "name": "sage / sageloli-sis",
+      "startedAt": "2026-10-19T10:54:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:01:18Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417691",
+      "name": "sage / sageloli-rsis",
+      "startedAt": "2026-10-19T10:56:37Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:00:22Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659724",
+      "name": "sage / sageloli-rsis",
+      "startedAt": "2026-10-19T10:56:16Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:02:39Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417648",
+      "name": "sage / foo-li",
+      "startedAt": "2026-10-19T10:56:52Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:01:37Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659490",
+      "name": "sage / foo-li",
+      "startedAt": "2026-10-19T10:56:42Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:01:26Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417718",
+      "name": "sage / wang-pw",
+      "startedAt": "2026-10-19T10:59:44Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:01:56Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659658",
+      "name": "sage / wang-pw",
+      "startedAt": "2026-10-19T10:59:52Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:02:27Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417795",
+      "name": "sage / cert-ml-dsa",
+      "startedAt": "2026-10-19T11:01:21Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:01:32Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659537",
+      "name": "sage / cert-ml-dsa",
+      "startedAt": "2026-10-19T11:00:24Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:03:27Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019417857",
+      "name": "sage / cert-falcon",
+      "startedAt": "2026-10-19T11:01:28Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:03:15Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018659944",
+      "name": "sage / cert-falcon",
+      "startedAt": "2026-10-19T11:01:34Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:04:01Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019419381",
+      "name": "sage / xie-ntru-ibs",
+      "startedAt": "2026-10-19T11:02:29Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:02:48Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018661133",
+      "name": "sage / xie-ntru-ibs",
+      "startedAt": "2026-10-19T11:01:40Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:09:38Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019419398",
+      "name": "sage / a-structured-hg",
+      "startedAt": "2026-10-19T11:02:42Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:09:01Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018661338",
+      "name": "sage / a-structured-hg",
+      "startedAt": "2026-10-19T11:01:59Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:07:10Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019419393",
+      "name": "sage / shared-math",
+      "startedAt": "2026-10-19T11:03:29Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:06:51Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018661188",
+      "name": "sage / shared-math",
+      "startedAt": "2026-10-19T11:02:51Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:05:23Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019419655",
+      "name": "sage / chkp-composition-regression",
+      "startedAt": "2026-10-19T11:04:03Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:04:28Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018661541",
+      "name": "sage / chkp-composition-regression",
+      "startedAt": "2026-10-19T11:03:17Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:08:43Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118019419481",
+      "name": "sage / registered-compositions",
+      "startedAt": "2026-10-19T11:05:25Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:09:05Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118018661570",
+      "name": "sage / registered-compositions",
+      "startedAt": "2026-10-19T11:04:31Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:09:48Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240335456/job/118026798389",
+      "name": "coverage",
+      "startedAt": "2026-10-19T11:09:41Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-19T11:09:21Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39240108264/job/118026574646",
+      "name": "coverage",
+      "startedAt": "2026-10-19T11:09:08Z",
+      "status": "COMPLETED",
+      "workflowName": "Catalog CI"
+    }
+  ],
+  "title": "docs(report): Foo-Li parameter section 3.5 with reviewed numbers"
+}

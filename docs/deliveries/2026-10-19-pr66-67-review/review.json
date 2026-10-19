@@ -1,0 +1,44 @@
+{
+  "schema": "IBME/PR66-67-REVIEW/1",
+  "date": "2026-10-19",
+  "base_commit": "6f04f2b73f69c96d4e8bea1d161655af39254d70",
+  "decision": "hold_both_prs",
+  "merged_prs": [],
+  "fresh_n512_runs": 0,
+  "fresh_security_estimates": 0,
+  "word_page_review_completed": false,
+  "small_sage_tests": 4,
+  "small_sage_test_seconds": 6.73,
+  "native_controls": 5,
+  "unsafe_native_execution": false,
+  "fooli_table": {
+    "reported_d": 390208,
+    "source_dimensions": [
+      390160,
+      390176
+    ],
+    "smallest_selected": {
+      "n": 1024,
+      "m_bar": 130064,
+      "w": 130048,
+      "d": 390160
+    }
+  },
+  "narrow_profile_arithmetic": {
+    "sigma": 576.364,
+    "M": 49152,
+    "beta": 127781.34165166444,
+    "beta_log2": 16.963317666967455,
+    "observed_norm": 130978.66,
+    "ratio": 1.0250217935342356
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "limitations": [
+    "No independent n512 cloud rerun.",
+    "No independent replay of the reported SIS costs.",
+    "Word layout was not reviewed.",
+    "Native controls replace the native entry, not an actual unsafe memory operation."
+  ]
+}
