@@ -1,0 +1,121 @@
+{
+  "ROM": "SHAKE256 implementation of paper hash interfaces",
+  "backend_admitted": false,
+  "elapsed_seconds": 106.28742725799998,
+  "entropy_bytes_consumed": 13031109444,
+  "environment": {
+    "cpu": "Intel(R) Core(TM) Ultra 7 255HX",
+    "numpy": "2.5.3",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.15 | packaged by conda-forge | (main, Sep  2 2026, 22:01:58) [GCC 15.3.0]",
+    "threads": {
+      "OMP_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "identity_bytes": 21,
+  "limits": {
+    "entropy_bytes": 274877906944,
+    "peak_bytes": 12884901888,
+    "seconds": 14400
+  },
+  "message_bytes": 33,
+  "mode": "fresh",
+  "modulus": "10301051460877537453973547267843",
+  "native": {
+    "binary_sha256": "dfaca86fef2f0adb9c1161353991624eab844d69a1e12a9f0759797bb51793c6",
+    "exact_arithmetic": "two-prime range-checked NTT + FLINT integer polynomial products",
+    "source_id": "8b26c14401f8f9df2bd2727f047956f77a0a35d5a0fbe241997ea547e9c23494"
+  },
+  "negative_controls": {
+    "appended": true,
+    "changed_response": true,
+    "duplicate_field": true,
+    "identity_salt": true,
+    "message_salt": true,
+    "public_context": true,
+    "truncated": true,
+    "wrong_identity": true,
+    "wrong_message": true,
+    "zero_response": true
+  },
+  "parameters": {
+    "d": 2048,
+    "identity_max_bytes": 256,
+    "identity_width_squared": 2720281532542,
+    "k": 65,
+    "l": 132,
+    "mass_bits": 320,
+    "max_sign_attempts": 64,
+    "max_users": 2,
+    "message_max_bytes": 4096,
+    "r_squared": 49,
+    "salt_bytes": 32,
+    "signature_width_squared": 270116709797628319132317,
+    "tail_bits": 256
+  },
+  "parameters_are_formal": false,
+  "peak_rss_bytes": 1461784576,
+  "profile": "I",
+  "publication": {
+    "message_lengths_used": [
+      33,
+      34
+    ],
+    "omitted_private_sampler_fields": [
+      "raw_norm_squared_upper",
+      "transform_component_error_upper"
+    ],
+    "scope": "independent RSIS actual lifecycle, not a HIBE/IB-ME combination",
+    "test_only_seed": false
+  },
+  "randomness": "operating-system SecureRandom; no seed persisted",
+  "repetitions": 1,
+  "sampler": {
+    "backend_admitted": false,
+    "coefficient_dimension": 403456,
+    "continuous_ticket_bits": 52,
+    "dense_covariance_allocated": false,
+    "frequency_count": 1024,
+    "largest_factor_dimension": 65,
+    "method": "ring Fourier low-rank SampleF with discrete Gaussian rounding",
+    "raw_psd_sufficient_condition": true,
+    "security_claim": "none",
+    "stored_complex_coefficients": 13112320,
+    "total_TV_certified": false
+  },
+  "security_claim": "none",
+  "signatures_verified": 2,
+  "sizes_bytes": {
+    "master_state": 156523480,
+    "public": 3514694,
+    "signature": 3227824,
+    "signing_key": 144089549
+  },
+  "source_commit": "78f3267c16694ad8aebc73e005246a0db2dae914",
+  "source_sha256": {
+    "__init__.py": "ef79dffe2216f969d6f1324d857f19a59710a1acc498219b7ea9dcab7576c457",
+    "backend.py": "542f56de8b2c26b2fa01a86358d83302c3c8737a6690de19aee03f4412480083",
+    "codec.py": "cc57e28d90d0a5a250413abf6cb154b361be429b4378992507ec766a3b301461",
+    "gaussian.py": "755040447bcc389b07ff79b915950bd1a70f4470fc162a28e934d764c2018aeb",
+    "issuer.py": "9874c2853e28cbc1259f5b3e193ffc22651da31b1719f300bb0878d6f6693fa0",
+    "native.cpp": "cba47ea106700903847ad737af7487e8e98212c59a7b23a5a8f23a27f9051d7c",
+    "native.py": "b4d68e3382f35fb9af02e29efd1942e41f17e72b6908fdf117855466cd15cc41",
+    "objects.py": "bb2fa54630129fa9bdec3a665848729c48797151da2b74d61404809f03a433a3",
+    "params.py": "e37e4c68625f18c6b8a2fbab9e1df89728c90407f39c6a4b2d84c03a67a3659b",
+    "run.py": "0bfb6ced62f929d8eaee9ad13b249cabe9940fa33662e1e64d7679dbb3b08c82",
+    "spectral.py": "809375f9edbb21090e0fbfa297c67dc90cb2586b0eca4208d1ccbacbd83c05b8"
+  },
+  "stage": "complete",
+  "stage_current": 1024,
+  "stage_total": 1024,
+  "status": "passed",
+  "timings": {
+    "extract": 85.13497801200015,
+    "first_sign": 9.28466944600018,
+    "negative_controls": 2.67907196200008,
+    "second_sign": 2.0156868540000232,
+    "setup": 4.993286447999935,
+    "verify": 0.5165513310000733
+  }
+}
