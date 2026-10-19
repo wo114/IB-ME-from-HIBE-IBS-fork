@@ -2,8 +2,10 @@
 from __future__ import annotations
 
 import hashlib
+import argparse
 import json
 from pathlib import Path
+import subprocess
 import xml.etree.ElementTree as ET
 
 
@@ -12,14 +14,17 @@ def require(condition: bool, message: str) -> None:
         raise RuntimeError(message)
 
 
-def main() -> None:
+def main(*, historical=False) -> None:
     directory = Path(__file__).resolve().parent
     root = directory.parents[3]
     bindings = json.loads((directory / "source-bindings.json").read_text(encoding="utf-8"))
     for relative, expected in bindings["sha256_lf"].items():
         path = root / relative
         require(path.resolve().is_relative_to(root.resolve()), "binding escapes repository")
-        actual = hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+        raw = (subprocess.check_output(
+            ["git", "show", "2180286c432ce8ea5d44d32091d2ef7b9393c1e2:"+relative], cwd=root)
+            if historical else path.read_bytes())
+        actual = hashlib.sha256(raw.replace(b"\r\n", b"\n")).hexdigest()
         require(actual == expected, "source binding differs: " + relative)
     validation = json.loads((directory / "validation.json").read_text(encoding="utf-8"))
     all_names: set[tuple[str, str]] = set()
@@ -45,8 +50,12 @@ def main() -> None:
     require(validation["windows_without_sage"]["status"] == "passed", "Windows discovery failed")
     require(validation["shell_workspace_checks"]["cases"] == 4, "shell case count differs")
     print(json.dumps({"status": "passed", "source_bindings": len(bindings["sha256_lf"]),
-                      "pytest_passed": total, "target_c2_rerun": False}))
+                      "pytest_passed": total, "target_c2_rerun": False,
+                      "source_mode": "historical Git 2180286" if historical else "current checkout"}))
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--historical', action='store_true',
+                        help='check the original publication Git snapshot after later integration changes')
+    main(historical=parser.parse_args().historical)

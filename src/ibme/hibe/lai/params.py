@@ -56,6 +56,10 @@ class LaiParams:
     message_mode: str = "seed32"
 
     def __post_init__(self) -> None:
+        # Reject the wire's unsupported domain before trial division. This
+        # path also handles attacker-controlled uint64 values while decoding.
+        if type(self.q) is not int or not 3 <= self.q < 2 ** 40:
+            raise InvalidParameterError("Lai q must be an integer in [3, 2^40)")
         if not _is_prime(self.q) or self.q < 3:
             raise InvalidParameterError("Lai q must be an odd prime")
         if not _is_power_of_two(self.n) or self.n < 2:
@@ -70,14 +74,19 @@ class LaiParams:
             raise InvalidParameterError("Lai prototype packs messages with p=2 only")
         if self.q >= 2 ** 40:
             raise InvalidParameterError("Lai 5-byte serialization requires q < 2^40")
-        if not (0 < self.sigma and math.isfinite(self.sigma)):
-            raise InvalidParameterError("Lai sigma must be finite and > 0")
-        if not (0 < self.sigma_r and math.isfinite(self.sigma_r)):
-            raise InvalidParameterError("Lai sigma_r must be finite and > 0")
+        for name in ("sigma", "sigma_r"):
+            value = getattr(self, name)
+            if (type(value) not in (int, float)
+                    or not 0 < value <= (2 ** 32 - 1) / 1_000_000
+                    or not math.isfinite(value)):
+                raise InvalidParameterError(f"Lai {name} exceeds its positive wire domain")
+            scaled = round(value * 1_000_000)
+            if scaled < 1 or scaled / 1_000_000 != value:
+                raise InvalidParameterError(f"Lai {name} must round-trip at six decimal places")
         if type(self.identity_bytes) is not int or not 1 <= self.identity_bytes <= 1024:
             raise InvalidParameterError("Lai identity_bytes must be in 1..1024")
-        if type(self.max_message_bytes) is not int or self.max_message_bytes < 0:
-            raise InvalidParameterError("Lai max_message_bytes must be non-negative")
+        if type(self.max_message_bytes) is not int or not 0 <= self.max_message_bytes <= 255:
+            raise InvalidParameterError("Lai max_message_bytes must fit its one-byte length")
         if self.max_message_bytes > (self.k * self.n - 8) // 8:
             raise InvalidParameterError("Lai max_message_bytes exceeds the ring payload")
         if self.message_mode not in ("seed32", "framed32"):
