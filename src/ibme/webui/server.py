@@ -508,10 +508,12 @@ def api_decrypt(payload: dict[str, Any]) -> dict[str, Any]:
             # demonstration. The public protocol returns BOTTOM for bad data.
             raise DemoError(f"解密未完成：{exc}") from exc
         seconds = time.perf_counter() - start
-        bottom = result is None or is_bottom(result)
+        bottom = is_bottom(result)
+        if not bottom and type(result) is not bytes:
+            raise DemoError("解密返回无效结果；协议应返回明文字节或 BOTTOM")
         text = None if bottom else _display(result)
         session.timings[f"decrypt_{mode}"] = seconds
-        expectation_met = bottom == (mode != "normal")
+        expectation_met = result == session.message if mode == "normal" else bottom
         session.observations.append({
             "operation": "decrypt", "mode": mode, "bottom": bottom,
             "expectation_met": expectation_met, "seconds": seconds,
