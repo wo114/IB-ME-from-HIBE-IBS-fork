@@ -178,7 +178,37 @@ python -m ibme.cli decrypt --receiver alice --sender bob \
 
 重新评估默认化的最低条件：4 个种子已过（但没有残差统计）、外层 BYTEAUTH tamper/truncate 已过、hybrid GSA 已过、资源政策已补；仍差 wrong-identity/replay 外层测试、残差统计和目标性能可接受性。在此之前，C2 是“可选目标配置”，不是默认。
 
-## 10. 复现
+## 10. 随机源修复（2026-10-19）
+
+**确认问题**：`src/ibme/hibe/lai/engine.py` 的 `_Random` 从 `SecureRandom` 取 32 B 后，用 `random.Random`（Mersenne Twister）产生后续所有 `randrange`/`random`/gaussian 随机数；`experiments/research/candidates/lai/backend.py` 有同样实现。MT 不是密码学 PRNG，不能作为正式随机源。
+
+**影响**：此前 C2 目标 CLI/lifecycle 收据使用该 MT 路径。算术结果和功能结论仍成立，但随机质量证据不能用于正式安全声明；旧 CLI 收据应标记为 pre-fix。
+
+**修复**：
+
+- 生产路径（`rng=None` 或 `SecureRandom`）改为 64 KiB 缓冲的 OS CSPRNG 字节流（`SecureRandom.read` → `secrets`/`os.urandom`），实现 `randrange`/`random`/gaussian 的拒绝采样与 53-bit float；
+- 显式 `DeterministicRandom` 仍走同一缓冲流，作为可复现测试源，禁止用于生产；
+- 不再使用 Mersenne Twister；`src` 与 `experiments` 两个后端都修复。
+
+**验证**：
+
+- `tests/test_lai_hibe.py + tests/test_lai_p1.py`：**36 passed**；
+- A 点生产随机源生命周期（无显式 rng）：setup 0.14 s、extract 2.35 s、derive 5.67 s、encrypt 7.57 s、decrypt 0.44 s，解密一致；
+- C2 目标生产随机源探针：见 §10.1，**通过**。
+
+### 10.1 C2 生产随机源探针
+
+`target_probe.py --rng secure`（无显式种子，`rng=None` 走 OS CSPRNG）：
+
+| setup | extract | derive | encrypt | decrypt | 结果 |
+|---|---|---|---|---|---|
+| 2.08 s | 33.20 s | 540.93 s | 106.76 s | 17.41 s | ok |
+
+对象尺寸与确定性路径一致（PK 1,617,969；SK1 18,821,265；SK2 34,795,753；CT 1,228,844）。该次探针没有固定种子，不能与确定性种子逐字节比较；它验证的是生产随机源路径。
+
+**剩余**：目标 CLI 完整生命周期需在修复后重跑一次，作为最终 CSPRNG 收据；此前 CLI 证据保留为功能路径证据。
+
+## 11. 复现
 
 候选表与尺寸计算：
 

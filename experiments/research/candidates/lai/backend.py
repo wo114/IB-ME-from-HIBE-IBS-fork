@@ -25,7 +25,6 @@ from __future__ import annotations
 
 import hashlib
 import math
-import random as _random
 import secrets
 from dataclasses import dataclass
 from typing import Iterable, Sequence
@@ -125,7 +124,14 @@ A_POINT_PARAMS = Params(q=2147484161, n=256, k=32, l=2, p=2, sigma=2.0,
 
 
 class _Random:
-    """Seedable stream for tests; production seeds from SecureRandom."""
+    """Buffered random-byte stream; production source is the OS CSPRNG.
+
+    ``None`` supplies :class:`SecureRandom`; buffering avoids one syscall per
+    coefficient.  An explicit deterministic source is test-only.  No Mersenne
+    Twister or other non-cryptographic PRNG is used.
+    """
+
+    _BLOCK = 64 * 1024
 
     def __init__(self, source=None) -> None:
         if source is None:
@@ -140,14 +146,39 @@ class _Random:
 
                 source = _SystemSource()
         self._source = source
-        seed = source.read(32)
-        self._rng = _random.Random(int.from_bytes(seed, "big"))
+        self._buffer = bytearray()
+
+    def _read(self, n: int) -> bytes:
+        if not isinstance(n, int) or isinstance(n, bool) or n < 0:
+            raise ParameterError("random byte count must be a non-negative int")
+        if n == 0:
+            return b""
+        while len(self._buffer) < n:
+            chunk = self._source.read(self._BLOCK)
+            if not isinstance(chunk, (bytes, bytearray, memoryview)) or not chunk:
+                raise ParameterError("random source returned no bytes")
+            self._buffer.extend(chunk)
+        out = bytes(self._buffer[:n])
+        del self._buffer[:n]
+        return out
+
+    def _randbelow(self, bound: int) -> int:
+        if not isinstance(bound, int) or isinstance(bound, bool) or bound <= 0:
+            raise ValueError("bound must be a positive integer")
+        k = (bound - 1).bit_length()
+        nbytes = (k + 7) // 8
+        while True:
+            value = int.from_bytes(self._read(nbytes), "big")
+            if k:
+                value >>= 8 * nbytes - k
+            if value < bound:
+                return value
 
     def randrange(self, bound: int) -> int:
-        return self._rng.randrange(bound)
+        return self._randbelow(bound)
 
     def random(self) -> float:
-        return self._rng.random()
+        return (int.from_bytes(self._read(7), "big") >> 3) * (2.0 ** -53)
 
     def gaussian(self, sigma: float, center: float = 0.0) -> int:
         if not (sigma > 0 and math.isfinite(sigma)):
@@ -157,7 +188,7 @@ class _Random:
         weights = [math.exp(-((x - center) ** 2) / (2.0 * sigma * sigma))
                    for x in range(lo, hi + 1)]
         total = sum(weights)
-        r = self._rng.random() * total
+        r = self.random() * total
         acc = 0.0
         for x, w in zip(range(lo, hi + 1), weights):
             acc += w
