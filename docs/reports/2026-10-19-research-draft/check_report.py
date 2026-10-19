@@ -72,7 +72,7 @@ def main(record=False):
         styles=ET.fromstring(z.read('word/styles.xml'))
         check(not styles.findall('.//w:pBdr',W),'title border residue')
         tables=xml.findall('.//w:tbl',W)
-        check(len(tables)==10,'docx tables')
+        check(len(tables)==11,'docx tables')
         docx_rows=[]
         for tbl in tables:
             rows=[]
