@@ -27,6 +27,12 @@ def verify():
         target = (HERE/path).resolve()
         check(target.is_relative_to(HERE), "artifact outside delivery")
         check(hashlib.sha256(target.read_bytes()).hexdigest() == digest, "artifact changed: "+path)
+    def recorded_source(path, digest):
+        if manifest["source_files"].get(path) == digest:
+            return True
+        record = manifest.get("historical_sources", {}).get(path, {}).get(digest)
+        return (record is not None and
+                hashlib.sha256((HERE/record["snapshot"]).read_bytes()).hexdigest() == digest)
     receipt = json.loads((HERE/"evidence/integration.json").read_bytes())
     check(receipt["status"] == "passed" and receipt["profile"] == "PARAM-I", "actual profile")
     check(manifest["implementation_commit"].startswith(receipt["source_commit"]), "execution source")
@@ -67,14 +73,15 @@ def verify():
     installed = json.loads((HERE/"evidence/installation.json").read_bytes())
     check(installed["wheel_contains_native_source"] and installed["all_project_providers_installed"], "independent wheel")
     for name, row in receipt["providers"].items():
-        check(manifest["source_files"].get(row["repository_path"]) == row["sha256"], "CLI provider: "+name)
+        check(recorded_source(row["repository_path"], row["sha256"]), "CLI provider: "+name)
     for name, row in installed["providers"].items():
         check(manifest["source_files"].get(row["repository_path"]) == row["sha256"], "installed provider: "+name)
     native_source = ROOT/"experiments/research/candidates/sageloli/ring/native.cpp"
     native_id = hashlib.sha256(native_source.read_bytes()+b"-O3 -fopenmp -lflint -lgmp v1").hexdigest()
     check(receipt["native"]["source_id"] == installed["native"]["source_id"] == native_id, "native source binding")
     tests = ET.parse(HERE/"evidence/regression.xml").getroot().findall(".//testcase")
-    check(len(tests) == 148 and all(not any(row.find(tag) is not None for tag in ("failure","error","skipped")) for row in tests), "148 regression passes")
+    check(len(tests) == manifest["regression"]["passed"] == 191 and
+          all(not any(row.find(tag) is not None for tag in ("failure","error","skipped")) for row in tests), "191 integrated regression passes")
     portable = json.loads((HERE/"evidence/windows-portable.json").read_bytes())
     check(portable["status"] == "passed" and len(portable["checks"]) == 8, "Windows public discovery")
     return dict(status="passed", checks=checks, private_state_read=False, experiments_rerun=False,

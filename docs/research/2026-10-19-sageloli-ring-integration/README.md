@@ -18,7 +18,45 @@
 
 论文规模测试使用一个新的系统 CSPRNG 根，不外循环重试。各 CLI 命令均为新解释器；同根组合矩阵复用该原始根与已发用户钥，后续负例与额外签名使用明确标识的固定测试流，不计为另一个全新根。失败、中止和新状态路径保留在本机私有目录。
 
-公开收据和源文件指纹由本目录 `manifest.json` 固定；只读复核运行 `python docs/research/2026-10-19-sageloli-ring-integration/verify.py`，不读取私有状态、不重跑密码实验。测试命令、实际尺寸／时间、安装恢复及最终计数随收据归档。
+实际结果：
+
+| 检查 | 本批结果 |
+|---|---|
+| 新根完整 CLI | **15 步通过**，含固定发钥、完整加解密、三种身份错配和四种 wire 修改 |
+| 原状态新进程恢复 | 通过，**0 次／0 B 新熵**；显式禁止 v3 Setup／Extract／Sign 和 LATTE 密钥生成 |
+| 同根完整组合矩阵 | **34 项通过**，含内层签名修改、随机签名、重用签名绑定新消息、实际到达 IBS 的拒绝、对象恢复和空消息 |
+| 仓库外最终 wheel 恢复 | 通过，159 个已加载项目 provider 全部来自隔离安装目录，原状态不变，新熵 0 |
+| 同步最新 main 后回归 | **191 passed，0 failed，0 skipped**；另有冻结实现的早一批 148 项，不累加 |
+| Windows 发现／容量 | 8 项标准库驱动检查通过；该 Windows 运行时未装 pytest，未声称执行 Windows pytest |
+| 公开证据复核 | 694 项通过；无私有状态读取，无密码实验重跑 |
+
+硬件为本机 Intel Core Ultra 9 275HX，WSL2、Sage10.9／Python3.13.14、NumPy2.5.1，OMP/OpenBLAS 各 4 线程；完整环境在收据中。单个 CSPRNG 根不足以估计失败率或给出公平性能排名，运行期间未隔离其它研究任务。
+
+| 单次 CLI 处理阶段 | 秒 |
+|---|---:|
+| Setup | 6.299 |
+| 发送者完整发钥 | 67.799 |
+| 第一接收者发钥 | 39.250 |
+| 首次完整加密 | 21.901 |
+| 首次完整解密 | 3.686 |
+
+这些计时从新进程中的 `CLI main` 开始，包含状态加载／校验和原生调用，不含 Python 启动及前置导入；不混称热路径吞吐。全部 CLI 加同根矩阵约 409.645 s，其中矩阵约 139.833 s。现有公共校验会重复读取较大私钥，仍有工程优化空间，本批未改变其校验语义。
+
+完整密文 **3,363,679 B**，签名 **3,227,824 B**；CLI 公钥／主状态／发送者状态分别为 **3,527,590／156,740,482／144,089,767 B**。两个接收者状态为 160,225／160,120 B，含各自缓存。不同封装对象不相加声称去重存储。各 CLI Python 主进程峰值 RSS 的最大值为 **1,609,404,416 B（约1.50 GiB）**；该指标不包括并发原生子进程的 RSS，不是整个进程树的总峰值。
+
+原始公开[完整流程收据](evidence/integration.json)、[安装恢复](evidence/installed-restore.json)、[安装包与 provider 核对](evidence/installation.json)、[最终回归](evidence/regression.xml)和[Windows 检查](evidence/windows-portable.json)由 [manifest.json](manifest.json) 固定。只读复核运行 `python docs/research/2026-10-19-sageloli-ring-integration/verify.py`，不读取私有状态、不重跑密码实验。
+
+执行期间，队友合入 Lai 与公共 Hybrid 对象容量调整。本分支合并最新 main `941feec`，集成提交 `b46f015`；原 15 步 CLI／34 项矩阵继续绑定 `28e5bee`，不改写历史输入。受上游合并影响的两份共享源码按原字节保留于 `evidence/source-at-execution/`；其余原语和新适配器不变。最终 191 项回归和仓库外 wheel 恢复在集成树执行。两个版本与 154 个现有源码文件的指纹分别核对，不能把历史记录改称在新树重建过根。
+
+最终回归命令（规定 WSL 环境，另设置真实 LATTE 执行路径）：
+
+```bash
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 PYTHONPATH=src:. OPENBLAS_NUM_THREADS=4 OMP_NUM_THREADS=4 ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_sageloli_ring_registration.py tests/sageloli_native/test_ring_assembly.py tests/test_assembly.py tests/test_combination_matrix.py tests/test_cli_selection.py tests/test_cli_state_lock.py tests/test_srgg_paper_registration.py tests/test_ci_catalog.py tests/test_hybrid_hibe.py
+```
+
+wheel 通过 `python -m pip wheel --no-deps --no-build-isolation --no-index .` 构建；Sage 使用 `pip install --no-index --no-deps --target <新的隔离目录> <wheel>` 安装，从 `/tmp` 运行本批探针的 `--restore-only`，`PYTHONPATH` 仅指定安装目录。wheel 内所有已用源码及 `native.cpp` 与交付树逐字核对；编译库的 source ID 与原算法源码一致。8 项 Windows 检查只读取公开描述符、完整参数和预检容量，并把 `SecureRandom.read` 改为一旦调用即失败，未生成密钥。
+
+早期一次单元测试读错 CLI 输出键 `report`，修正为既有 `compatibility` 后全过；一次回归命令列了不存在的文件而未收集测试，已更正。两者不计成功用例，最终无遗留失败。最终回归和公开校验数据可独立复核。
 
 ## 使用方式
 
