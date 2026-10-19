@@ -1,0 +1,45 @@
+{
+  "native": {
+    "falcon-padded-512": {
+      "binary_sha256": "8cb117604117cfc15661051838f0a24edb41ffe648292ef691e3a37ab46fd7eb",
+      "metadata": {
+        "abi": 1,
+        "fpemu": true,
+        "logn": 9,
+        "pk": 897,
+        "refill_limit": 65536,
+        "sig": 666,
+        "sk": 1281,
+        "source_id": "dd9bb426aa30a33d7c503799d9134edbaf0b4f0b7ce2edf618981958a87f7e5b",
+        "vector_driver": false,
+        "xof_limit": 16777216
+      },
+      "path_hint": "~/.cache/ibme-native-tools/demo-acceptance-20261018-33bb04d/falcon/bin/ibme-falcon512"
+    },
+    "ml-dsa-44": {
+      "binary_sha256": "bb222a5f6252dc85a20b517b878c03ddb7d00db70483c99d73a91e9ee2c488a8",
+      "metadata": {
+        "abi": 1,
+        "mode": 2,
+        "nonce_attempt_limit": 16384,
+        "pk": 1312,
+        "sig": 2420,
+        "sk": 2560,
+        "source_id": "ae5dc5f80d49157633cf8aeb5895e1dc91a298311adc5181d99a17e8cfb14337"
+      },
+      "path_hint": "~/.cache/ibme-native-tools/demo-acceptance-20261018-33bb04d/mldsa/bin/ibme-mldsa44"
+    },
+    "sageloli-rsis-v3": {
+      "binary_sha256": "fcfed1b143ebb7f3d46c34597ef6c8b64e2aa6a10a72ce4ab87338bef32d3812",
+      "metadata": {
+        "binary_sha256": "fcfed1b143ebb7f3d46c34597ef6c8b64e2aa6a10a72ce4ab87338bef32d3812",
+        "exact_arithmetic": "two-prime range-checked NTT + FLINT integer polynomial products",
+        "source_id": "a41fd3e087125317d2bf2c1731e99c5639b27bce1c0b9d8456cd0682bee0ee39"
+      },
+      "path_hint": "~/.cache/ibme-native-tools/review-sageloli-ring-v3/sageloli-ring-a41fd3e087125317d2bf2c1731e99c5639b27bce1c0b9d8456cd0682bee0ee39.so"
+    }
+  },
+  "numpy": "2.5.1",
+  "python": "3.13.14",
+  "sage": "10.9"
+}
