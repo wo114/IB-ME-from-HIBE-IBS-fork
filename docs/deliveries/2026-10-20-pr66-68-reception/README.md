@@ -7,7 +7,7 @@
 | 交付 | 固定版本与事实 | 接收边界 |
 |---|---|---|
 | PR68三代表 | 头`0d218d9e57b36a27406eecd60c533d0e72e52e7e`；远端已于2026-10-19合入`3b16cc1` | 接收A＝LATTE/ML-DSA-44、B＝LATTE/SRGG-I compact、C＝Lai C2/Sageloli RSIS v3 PARAM-I的配置和证据；不认定三者已分别赢得性能比较 |
-| PR66报告修订 | 头`db086c70aa04764c663e7d7039b59767cc12fe94`，本地集成提交`709b8e8`保留其历史 | 接收Foo-Li数值和来源绑定、有限网格与模型估计措辞；旧Word没有本轮页面核验，保留历史，不作为当前交付格式 |
+| PR66报告修订 | 头`db086c70aa04764c663e7d7039b59767cc12fe94`，经`709b8e8`合入远端main，原提交历史保留 | 接收Foo-Li数值和来源绑定、有限网格与模型估计措辞；旧Word没有本轮页面核验，保留历史，不作为当前交付格式 |
 | 新稿格式 | [直接编辑的LaTeX](../../reports/2026-10-19-research-draft/研究报告初稿.tex)、[导出PDF](../../reports/2026-10-19-research-draft/研究报告初稿.pdf)、[构建入口](../../reports/2026-10-19-research-draft/build_pdf.py) | 首次迁移保留七章、11表、6图、14项文献，明确历史基线与已选三代表的关系；仍是初稿，不是已完成全部收口的终稿 |
 
 PR66原记录明确因缺少`soffice.exe`暂缓，原来的`record.json`、`render.json`和失败诊断没有被改成通过。此次依据用户更新的交付格式，接收内容并核验直接从LaTeX生成的PDF；不把PDF核验冒充Word核验，也不将其余正文欠项一并关闭。
@@ -56,3 +56,5 @@ ROM/QROM性质逐部件按原文引用，HIBE匿名性沿用用户已确认的�
 - 本目录：`README.md`、`reception.json`、`pdf-qa.json`、`latex-content.json`、`selection.json`、`pr66-structural.json`、`pr66-history.json`、`remote-checks.json`、`portable.xml`。
 
 合计16个文件；完整路径及固定产物SHA-256见`reception.json`。这份记录只接收既有内容及完成格式迁移；初稿标为WIP的正文更新与实验欠项继续保留。
+
+内容与PDF已由提交`19b6fba`（`docs(report): receive corrected draft and switch to LaTeX PDF`）推送远端main。GitHub REST API确认PR66和PR68均为`closed/merged=true`；PR66保留历史`draft=true`标志，不代表其未合并。合并提交、时间及固定头核对写入`reception.json`，本段为发布后的接收补记。

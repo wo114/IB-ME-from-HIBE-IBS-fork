@@ -11,7 +11,14 @@
     "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/68",
     "merged_before_this_run": true,
     "merge_commit": "3b16cc1",
-    "scope": "three representative selection, fixed suites and open acceptance limits"
+    "scope": "three representative selection, fixed suites and open acceptance limits",
+    "remote_verified": {
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "merged_at": "2026-10-19T15:48:53Z",
+      "merge_commit_sha": "3b16cc1a9a59efb9a108fac7b32892fb385fc55e"
+    }
   },
   "pr66": {
     "head": "db086c70aa04764c663e7d7039b59767cc12fe94",
@@ -19,7 +26,14 @@
     "content_review": "accepted",
     "old_word_gate": "historical, not passed",
     "current_delivery_format": "LaTeX source -> PDF",
-    "remote_merge_record": "See Git ancestry and GitHub PR state after publication; this pre-commit receipt does not assert a future remote merge."
+    "remote_merge_record": "GitHub REST API confirms merged; the historical draft flag remains true and does not mean this closed PR is unmerged.",
+    "remote_verified": {
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "merged_at": "2026-10-19T17:11:17Z",
+      "merge_commit_sha": "709b8e8c2d0c6a42ca1c22f560e14f4e4a5e8c5b"
+    }
   },
   "user_decisions": {
     "uniform_128_bit_requirement": false,
@@ -132,5 +146,15 @@
   },
   "hash_exclusions": [
     "README and PROJECT_STATUS are live prose; reception.json cannot hash itself."
-  ]
+  ],
+  "publication": {
+    "content_commit": "19b6fba593a14b5109b5f1f843da2931f229c599",
+    "content_commit_message": "docs(report): receive corrected draft and switch to LaTeX PDF",
+    "remote_main_after_content_push": "19b6fba593a14b5109b5f1f843da2931f229c599",
+    "remote": "origin",
+    "branch": "main",
+    "push": "fast-forward; no force",
+    "verified_at_utc": "2026-10-19T17:13:16.999601+00:00",
+    "record_commit": "This publication receipt is committed separately after the content commit; content/PDF hashes above remain unchanged."
+  }
 }
