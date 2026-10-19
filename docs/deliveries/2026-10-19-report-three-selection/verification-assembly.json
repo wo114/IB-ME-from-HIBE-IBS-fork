@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "artifact_and_scope_checks": 68,
+  "representatives": 3,
+  "assembly_preflights": [
+    {
+      "id": "A-latte-mldsa44",
+      "runtime_available": true,
+      "preflight_ok": true,
+      "errors": []
+    },
+    {
+      "id": "B-latte-srgg-I-compact",
+      "runtime_available": true,
+      "preflight_ok": true,
+      "errors": []
+    },
+    {
+      "id": "C-lai-c2-sageloli-I",
+      "runtime_available": true,
+      "preflight_ok": true,
+      "errors": []
+    }
+  ],
+  "cryptographic_experiments_rerun": false,
+  "private_state_read": false,
+  "security_certified": false,
+  "rejected_negative_controls": 5
+}

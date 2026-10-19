@@ -2,7 +2,7 @@
 
 更新：2026-10-19（新增Lai独立研究后端、公共接入与C2显式配置，以及SRGG论文三档参数公共入口、六种LATTE完整组合和PARAM-I重复基准；其它条目保留各自核验范围）。按[统一框架](../ARCHITECTURE.md)分别管理 HIBE、IBS 模块，再装配兼容组合。本文登记 **19 条候选/模型路线：8 条 HIBE、11 条 IBS**，覆盖原[17 条基础目录](research/2026-10-10-foundations/catalog.json)及新补充的两条原生路线；这不是 19 个完整后端，也不是 19 个不同困难假设。
 
-当前任务和外部包进度以 [PROJECT_STATUS.md](PROJECT_STATUS.md) 为准；本文用于选模块、找原文与代码、识别接入缺口。**最终三组完整组合尚未锁定，第三套 HIBE 不再强制属于 Module-LWE。** 普通签名转换成 IBS 的两个条目保留原 ID，BNN-Falcon / BNN-ML-DSA 不再重复计数。
+当前任务和外部包进度以 [PROJECT_STATUS.md](PROJECT_STATUS.md) 为准；本文用于选模块、找原文与代码、识别接入缺口。**报告三组代表已按[选择与参数冻结表](deliveries/2026-10-19-report-three-selection/README.md)固定为 LATTE＋BNN/ML-DSA、LATTE＋SRGG 论文 PARAM-I compact、Lai C2＋Sageloli RSIS v3 PARAM-I：2种HIBE、3种IBS、3个完整组合；不是三种HIBE或三个性能冠军。** 普通签名转换成 IBS 的两个条目保留原 ID，BNN-Falcon / BNN-ML-DSA 不再重复计数。
 
 按完整独立原语研究后端口径，含本批Lai交付后HIBE为4/8、IBS为10/11，共14/19；参数、默认登记/CLI、真实配对与完整评测另行统计。Zhang及Xie未形成完整共同后端，GKR/ABB标准模型/CHKP标准模型三条按用户要求继续暂缓。CHKP/MP12固定继续作者稿3m，安全性和HIBE匿名性采用用户确认的工作前提；当前不另行安排补充证明，具体版本和原结果记录仍保留。
 

@@ -1,0 +1,48 @@
+{
+  "allow_mock": false,
+  "backend_admitted": false,
+  "hibe": "lai-ideal-hibe",
+  "hibe_params": {
+    "identity_bytes": 86,
+    "k": 39,
+    "l": 2,
+    "max_message_bytes": 32,
+    "message_mode": "seed32",
+    "n": 2048,
+    "p": 2,
+    "q": 274877976577,
+    "sigma": 2.0,
+    "sigma_r": 1.0
+  },
+  "hibe_version": "lai-a-256-v1",
+  "hybrid_limits": {
+    "backend_id": "lai-a-256-v1",
+    "identity_max_bytes": 64,
+    "max_capsule_bytes": 4194304,
+    "max_payload_bytes": 8388608
+  },
+  "ibs": "sageloli-rsis",
+  "ibs_params": {
+    "d": 2048,
+    "identity_max_bytes": 256,
+    "identity_width_squared": 2720281532542,
+    "k": 65,
+    "l": 132,
+    "mass_bits": 320,
+    "max_sign_attempts": 64,
+    "max_users": 2,
+    "message_max_bytes": 4096,
+    "r_squared": 49,
+    "salt_bytes": 32,
+    "signature_width_squared": 270116709797628319132317,
+    "tail_bits": 256
+  },
+  "ibs_version": "Sageloli-RSIS-structured-v3",
+  "parameters_are_formal": false,
+  "protocol": "byteauth-v1",
+  "security_claim": "none",
+  "signature_format": "reference",
+  "state_policy": "single-writer-commit-before-publish-v1",
+  "transport": "hybrid",
+  "version": "IBME/SUITE/1"
+}
