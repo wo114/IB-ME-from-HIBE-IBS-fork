@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "pr": 64,
+  "source_head": "d20642d78fef7ac8a45d311569cc54cdc897cb3d",
+  "positive": {
+    "status": "passed",
+    "source_bindings": 49,
+    "pytest_passed": 267,
+    "target_c2_rerun": true,
+    "publication_snapshots_used": 3,
+    "source_mode": "checkout plus explicit publication snapshots"
+  },
+  "negative_controls": 3,
+  "rejected": [
+    "undeclared Lai engine modification",
+    "corrupted historical snapshot",
+    "snapshot path escape"
+  ],
+  "fresh_C2_lifecycle_runs": 0
+}
