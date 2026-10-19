@@ -35,6 +35,9 @@ def test_ntt_refuses_ambiguous_crt_range(library):
     handle=SmallMatrix(library,a)
     with pytest.raises(ValueError,match="range"):
         handle.apply(np.full((1,4),2**40,dtype=np.int64))
+    huge=SmallMatrix(library,np.full((1,1,2048),2**62,dtype=np.int64))
+    with pytest.raises(ValueError,match="range"):
+        huge.apply(np.full((1,2048),2**62,dtype=np.int64))
 
 
 def test_degree_2048_signed_product_crosses_single_prime_range(library):

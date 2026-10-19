@@ -150,6 +150,7 @@ class RingBackend:
         except (ValueError,TypeError,OverflowError,SamplingAbort,UniformSamplingAbort):return False
 
     def load_signature(self,pk,raw):
+        if not isinstance(pk,PublicKey):raise TypeError("v3 ring public key required")
         sig=Signature.from_bytes(raw,pk)
         if not np.array_equal(_center(sig.z,pk.params.q),sig.z) or not np.any(sig.z) or not tail_ok(
                 sig.z,pk.params.l,pk.params.signature_width_squared):raise ValueError("invalid signature bounds")

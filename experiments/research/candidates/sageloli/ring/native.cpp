@@ -71,7 +71,10 @@ struct Small {
             maxx=std::max(maxx,uint64_t(std::abs(x[i])));
         }
         uint64_t modulus=uint64_t(primes[0])*primes[1];
-        if(__int128(bound)*maxx*cols*d>=modulus/2)throw std::runtime_error("CRT range");
+        // Divide the allowed envelope; multiplying arbitrary int64 input
+        // bounds in __int128 could itself overflow before the rejection.
+        if(maxx && bound>(modulus/2-1)/maxx/uint64_t(cols)/uint64_t(d))
+            throw std::runtime_error("CRT range");
         std::vector<uint32_t> result[2];
         for(int s=0;s<2;s++){
             auto p=primes[s];std::vector<uint32_t> b(size_t(cols)*d);

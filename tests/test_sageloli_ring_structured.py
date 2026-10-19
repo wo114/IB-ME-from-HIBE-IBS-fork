@@ -9,6 +9,17 @@ from experiments.research.candidates.sageloli.ring.gaussian import ByteSource,ro
 from experiments.research.candidates.sageloli.ring.spectral import FourierPlan,enclosed_transform,twiddles
 
 
+@pytest.mark.parametrize("bad",[memoryview(bytearray(4)).cast("I"),b"",b"too many"])
+def test_entropy_source_validates_actual_bytes_and_stops(bad):
+    from experiments.research.candidates.sageloli.ring.gaussian import SamplingAbort
+    class Broken:
+        calls=0
+        def read(self,n):self.calls+=1;return bad
+    broken=Broken();source=ByteSource(broken)
+    with pytest.raises(SamplingAbort):source.read(1)
+    assert broken.calls==1 and source.used==0
+
+
 @pytest.mark.parametrize("k",[65,153])
 def test_wide_modulus_coefficients_roundtrip_and_spare_bits_rejected(k):
     q=3**k;bits=q.bit_length();a=np.array([[0,1,q-1,2**80]],dtype=object)

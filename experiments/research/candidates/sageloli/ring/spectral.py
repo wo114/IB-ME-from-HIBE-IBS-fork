@@ -64,7 +64,9 @@ class FourierPlan:
         self.twist=twiddles(self.d)
         full,error=enclosed_transform(t,self.twist)
         self.t=np.ascontiguousarray(full[...,:self.d//2].transpose(2,0,1));del full
-        mags=np.abs(self.t)
+        # Component 1-norm is an upper bound on complex magnitude, using
+        # only exact abs/sign operations and one bounded floating addition.
+        mags=np.abs(self.t.real)+np.abs(self.t.imag)
         mags=np.nextafter(mags*(1+2.0**-40)+2*error,np.inf)
         row=np.max(np.sum(mags,axis=2),axis=1)*(1+2.0**-40)
         col=np.max(np.sum(mags,axis=1),axis=1)*(1+2.0**-40)
@@ -90,8 +92,7 @@ class FourierPlan:
     def certificate(self):
         return dict(method="ring Fourier low-rank SampleF with discrete Gaussian rounding",
             coefficient_dimension=self.rows*self.d,frequency_count=self.d//2,
-            largest_factor_dimension=self.k,raw_norm_squared_upper=self.norm_bound,
-            raw_psd_sufficient_condition=True,transform_component_error_upper=self.transform_error,
+            largest_factor_dimension=self.k,raw_psd_sufficient_condition=True,
             stored_complex_coefficients=int(self.t.size+self.b.size),
             dense_covariance_allocated=False,continuous_ticket_bits=52,
             total_TV_certified=False,security_claim="none",backend_admitted=False)

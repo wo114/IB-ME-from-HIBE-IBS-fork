@@ -96,3 +96,19 @@ def test_hash_resource_failure_rejects_and_corrupt_cache_never_reissues(backend,
     before=backend.source.used
     with pytest.raises(RuntimeError):backend.key_extract(restored,b"Alice")
     assert restored.states[b"Alice"]==("failed",None) and backend.source.used==before
+
+
+def test_publication_fault_keeps_durable_pending_and_blocks_new_entropy(backend,tmp_path,monkeypatch):
+    issuer=FixedIssuer(tmp_path,backend);issuer.initialize(small())
+    original=issuer._save;calls=0
+    def fail_after_pending(master):
+        nonlocal calls
+        calls+=1
+        if calls>=2:raise OSError("test publication fault")
+        return original(master)
+    monkeypatch.setattr(issuer,"_save",fail_after_pending)
+    with pytest.raises(OSError):issuer.key_extract(b"uncertain")
+    assert (tmp_path/"master.bin.pending").exists()
+    before=backend.source.used
+    with pytest.raises(ValueError,match="pending"):issuer.key_extract(b"uncertain")
+    assert backend.source.used==before

@@ -20,11 +20,17 @@ class ByteSource:
     def read(self,n):
         if type(n) is not int or n<0 or self.used+n>self.limit:
             raise SamplingAbort("phase entropy budget exhausted")
-        raw=self.rng.read(n)
-        if not isinstance(raw,(bytes,bytearray,memoryview)) or len(raw)!=n:
+        try:
+            raw=self.rng.read(n)
+            if not isinstance(raw,(bytes,bytearray,memoryview)):
+                raise TypeError("byte result required")
+            raw=bytes(raw)
+        except Exception as error:
+            raise SamplingAbort("entropy source failed; no retry") from error
+        if len(raw)!=n:
             raise SamplingAbort("entropy source returned invalid bytes")
         self.used+=n
-        return bytes(raw)
+        return raw
 
 
 def normal(shape,source):

@@ -21,6 +21,10 @@ IDENTITY=b"Sageloli target Alice"
 MESSAGE=b"Sageloli full parameter message!!"
 
 
+def require(condition,message):
+    if not condition:raise AssertionError(message)
+
+
 def negative_checks(backend,pk,sig):
     p=pk.params;checks={}
     checks["wrong_identity"]=not backend.verify(pk,b"Sageloli target Bob",MESSAGE,sig)
@@ -105,11 +109,11 @@ def main():
             key=timed("extract",lambda:issuer.key_extract(IDENTITY))
             sig=timed("first_sign",lambda:backend.sign(key,MESSAGE))
             report["sampler"]=key._plan.certificate()
-            assert timed("verify",lambda:backend.verify(pk,IDENTITY,MESSAGE,sig))
+            require(timed("verify",lambda:backend.verify(pk,IDENTITY,MESSAGE,sig)),"honest signature rejected")
             report["negative_controls"]=timed("negative_controls",lambda:negative_checks(backend,pk,sig))
             second=timed("second_sign",lambda:backend.sign(key,MESSAGE+b"2"))
-            assert backend.verify(pk,IDENTITY,MESSAGE+b"2",second)
-            assert backend.verify(pk,IDENTITY,MESSAGE,backend.load_signature(pk,sig.to_bytes()))
+            require(backend.verify(pk,IDENTITY,MESSAGE+b"2",second),"second signature rejected")
+            require(backend.verify(pk,IDENTITY,MESSAGE,backend.load_signature(pk,sig.to_bytes())),"signature recovery rejected")
             (args.private_directory/"public.bin").write_bytes(pk.to_bytes())
             signature_path=args.private_directory/"signature.bin"
             fd=os.open(signature_path,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
@@ -121,13 +125,13 @@ def main():
             pk=PublicKey.from_bytes(_read(args.private_directory/"public.bin"))
             issuer.expected_public=pk
             key=timed("full_master_and_issued_key_recovery",lambda:issuer.key_extract(IDENTITY))
-            assert backend.source.used==0
+            require(backend.source.used==0,"restore consumed entropy")
             report["restore_entropy_bytes"]=backend.source.used
             sig=backend.load_signature(pk,_read(args.private_directory/"signature.bin"))
-            assert timed("verify_saved_signature",lambda:backend.verify(pk,IDENTITY,MESSAGE,sig))
+            require(timed("verify_saved_signature",lambda:backend.verify(pk,IDENTITY,MESSAGE,sig)),"saved signature rejected")
             backend=RingBackend(SecureRandom(),native_path=args.native,progress=progress)
             new=timed("sign_after_new_process_recovery",lambda:backend.sign(key,MESSAGE+b"recovered"))
-            assert backend.verify(pk,IDENTITY,MESSAGE+b"recovered",new)
+            require(backend.verify(pk,IDENTITY,MESSAGE+b"recovered",new),"restored new signature rejected")
             report["signatures_verified"]=2;report["new_sign_entropy_bytes"]=backend.source.used
             report["sampler"]=key._plan.certificate()
         report["status"]="passed";report["stage"]="complete";save()
