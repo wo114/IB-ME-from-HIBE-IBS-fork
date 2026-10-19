@@ -1,0 +1,63 @@
+{
+  "schema": "IBME/SRGG-PAPER-SECURITY-PARAMETERS-VALIDATION/1",
+  "scope": "HIBE-independent SRGG Table 4 security-target candidate selection",
+  "baseline": "main checkout after merge(srgg): integrate guarded source-Schur research delivery (89f1da1)",
+  "selection": {
+    "selected_profile": "PARAM-II",
+    "selected_interpretation": "table-standard-deviation",
+    "author_target_bits": 180,
+    "author_reported_forgery_classical_bits": 171,
+    "author_reported_forgery_quantum_bits": 155,
+    "author_reported_key_recovery_classical_bits": 178,
+    "author_reported_key_recovery_quantum_bits": 161,
+    "baseline_classical_bits": 128,
+    "high_security_profile": "PARAM-III",
+    "criterion": "smallest implemented Table 4 row above the 128-bit classical baseline; PARAM-III retained for >=192-bit"
+  },
+  "candidates": [
+    {"name": "PARAM-I", "status": "implemented_table4", "target_bits": 100, "forgery_classical_bits": 103, "selected": false},
+    {"name": "PARAM-II", "status": "implemented_table4", "target_bits": 180, "forgery_classical_bits": 171, "selected": true},
+    {"name": "PARAM-III", "status": "implemented_table4", "target_bits": 256, "forgery_classical_bits": 242, "selected": false},
+    {"name": "STATIC-N1024-D4", "status": "not_executable", "reason": "current Fourier/Schur gates require n<=512"},
+    {"name": "STATIC-P-INCREASE", "status": "rejected", "reason": "p-only increase breaks HNF/signing Schur geometry; Q>2gamma tension"}
+  ],
+  "commands": [
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m pytest -q tests/test_srgg_paper_security_profiles.py",
+      "result": "5 passed in 5.13s"
+    },
+    {
+      "command": "PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m experiments.research.candidates.srgg.paper_security_profiles --output docs/research/team-b-delivery/2026-10-19-srgg-security-parameters/security-parameters.json",
+      "result": "selected PARAM-II; forgery_classical_bits 171"
+    }
+  ],
+  "table4_unchanged": {
+    "n": 512,
+    "p": 16383,
+    "b": 31,
+    "w": 2,
+    "q": 961,
+    "Q": 15744063,
+    "d": [2, 3, 4],
+    "factor": 1,
+    "interpretations": ["table-standard-deviation", "literal-density-width"]
+  },
+  "known_gaps": [
+    "author-reported bits are not reproduced",
+    "q>2*gamma fails under the natural Q mapping",
+    "Q/2Q, zeta factor1/factor2, r/sigma unit and Algorithm 4 d/f ambiguities",
+    "native-strong same-message replacement counterexamples",
+    "ring-HNF/CRT/subfield attack costs and NIST category are not established",
+    "n>512 and p-only larger profiles are not executable/valid correctness-preserving candidates"
+  ],
+  "environment": {
+    "platform": "WSL2",
+    "python": "3.13.15",
+    "sage": "10.9",
+    "wsl_sage": "~/miniconda3/envs/sage"
+  },
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}

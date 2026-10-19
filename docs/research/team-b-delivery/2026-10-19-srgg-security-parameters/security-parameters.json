@@ -1,0 +1,184 @@
+{
+  "schema": "IBME/SRGG-PAPER-SECURITY-PROFILES/1",
+  "selection_policy": {
+    "baseline_classical_bits": 128,
+    "selected_profile": "PARAM-II",
+    "selected_interpretation": "table-standard-deviation",
+    "high_security_profile": "PARAM-III",
+    "criterion": "smallest implemented Table 4 row whose author-reported forgery classical bits meet the 128-bit classical baseline; PARAM-III is retained for a >=192-bit baseline"
+  },
+  "candidates": [
+    {
+      "name": "PARAM-I",
+      "implementation_status": "implemented_table4",
+      "author_target_bits": 100,
+      "key_recovery_classical_bits": 105,
+      "key_recovery_quantum_bits": 95,
+      "forgery_classical_bits": 103,
+      "forgery_quantum_bits": 93,
+      "degree": 512,
+      "rank": 2,
+      "p": 16383,
+      "base": 31,
+      "digits": 2,
+      "Q": 15744063,
+      "gamma": "42086491.7",
+      "selected": false,
+      "rationale": "smallest Table 4 row, but 100-bit target and 103/93-bit reported forgery are below the 128-bit classical baseline",
+      "caveats": [
+        "author-reported bits are not reproduced",
+        "q>2*gamma fails under the natural Q mapping",
+        "native-strong same-message replacement counterexample remains"
+      ]
+    },
+    {
+      "name": "PARAM-II",
+      "implementation_status": "implemented_table4",
+      "author_target_bits": 180,
+      "key_recovery_classical_bits": 178,
+      "key_recovery_quantum_bits": 161,
+      "forgery_classical_bits": 171,
+      "forgery_quantum_bits": 155,
+      "degree": 512,
+      "rank": 3,
+      "p": 16383,
+      "base": 31,
+      "digits": 2,
+      "Q": 15744063,
+      "gamma": "63653172.0",
+      "selected": true,
+      "rationale": "smallest implemented Table 4 row with author-reported forgery above 128-bit classical (171/155) and key recovery 178/161; standard-deviation reading has a non-null first-issuance bridge",
+      "caveats": [
+        "author-reported bits are not reproduced",
+        "q>2*gamma fails under the natural Q mapping",
+        "native-strong same-message replacement counterexample remains"
+      ]
+    },
+    {
+      "name": "PARAM-III",
+      "implementation_status": "implemented_table4",
+      "author_target_bits": 256,
+      "key_recovery_classical_bits": 255,
+      "key_recovery_quantum_bits": 232,
+      "forgery_classical_bits": 242,
+      "forgery_quantum_bits": 219,
+      "degree": 512,
+      "rank": 4,
+      "p": 16383,
+      "base": 31,
+      "digits": 2,
+      "Q": 15744063,
+      "gamma": "86573930.5",
+      "selected": false,
+      "rationale": "high-security option for a >=192-bit baseline: 242/219-bit reported forgery, 255/232-bit key recovery; heavier d=4 profile",
+      "caveats": [
+        "author-reported bits are not reproduced",
+        "q>2*gamma fails under the natural Q mapping",
+        "native-strong same-message replacement counterexample remains"
+      ]
+    },
+    {
+      "name": "STATIC-N1024-D4",
+      "implementation_status": "not_executable",
+      "author_target_bits": 0,
+      "key_recovery_classical_bits": 0,
+      "key_recovery_quantum_bits": 0,
+      "forgery_classical_bits": 0,
+      "forgery_quantum_bits": 0,
+      "degree": 1024,
+      "rank": 4,
+      "p": 16383,
+      "base": 31,
+      "digits": 2,
+      "Q": 15744063,
+      "gamma": "not_assigned",
+      "selected": false,
+      "rationale": "larger n could raise lattice security, but current FourierSchurPlan/Schur resource gates require n<=512 and no reproduced security estimate exists for this construction",
+      "caveats": [
+        "no executable backend",
+        "no width/gamma allocation",
+        "no security estimate"
+      ]
+    },
+    {
+      "name": "STATIC-P-INCREASE",
+      "implementation_status": "rejected",
+      "author_target_bits": 0,
+      "key_recovery_classical_bits": 0,
+      "key_recovery_quantum_bits": 0,
+      "forgery_classical_bits": 0,
+      "forgery_quantum_bits": 0,
+      "degree": 512,
+      "rank": 4,
+      "p": 262143,
+      "base": 31,
+      "digits": 2,
+      "Q": 251919423,
+      "gamma": "Table4-PARAM-III",
+      "selected": false,
+      "rationale": "increasing p alone can make Q>2*gamma but the HNF head and signing Schur geometry scale with Q; fixed Table 4 signature widths no longer cover the user-key class, so this is not a valid correctness-preserving security profile",
+      "caveats": [
+        "signing geometry breaks",
+        "widths/gamma would need a new allocation",
+        "no security estimate"
+      ]
+    }
+  ],
+  "selected": {
+    "name": "PARAM-II",
+    "implementation_status": "implemented_table4",
+    "author_target_bits": 180,
+    "key_recovery_classical_bits": 178,
+    "key_recovery_quantum_bits": 161,
+    "forgery_classical_bits": 171,
+    "forgery_quantum_bits": 155,
+    "degree": 512,
+    "rank": 3,
+    "p": 16383,
+    "base": 31,
+    "digits": 2,
+    "Q": 15744063,
+    "gamma": "63653172.0",
+    "selected": true,
+    "rationale": "smallest implemented Table 4 row with author-reported forgery above 128-bit classical (171/155) and key recovery 178/161; standard-deviation reading has a non-null first-issuance bridge",
+    "caveats": [
+      "author-reported bits are not reproduced",
+      "q>2*gamma fails under the natural Q mapping",
+      "native-strong same-message replacement counterexample remains"
+    ]
+  },
+  "selected_params_record": {
+    "profile_name": "PARAM-II",
+    "interpretation": "table-standard-deviation",
+    "source_sha256": "258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152",
+    "perturbation_noise_factor": 1,
+    "hnf_representative": "centered-mod-Q",
+    "gadget_remainder_representative": "centered-mod-p",
+    "pi_precision_bits": 512,
+    "r_published_approximation": "1.16"
+  },
+  "table4_unchanged": {
+    "profiles": [
+      "PARAM-I",
+      "PARAM-II",
+      "PARAM-III"
+    ],
+    "degree": 512,
+    "p": 16383,
+    "base": 31,
+    "digits": 2,
+    "Q": 15744063
+  },
+  "known_gaps": [
+    "author target/forgery bits are reports, not reproduced estimates",
+    "the paper's q>2*gamma condition is not met by Q under the natural mapping",
+    "Q/2Q, zeta factor1/factor2, r/sigma unit and Algorithm 4 d/f ambiguities remain",
+    "native-strong has same-message replacement counterexamples",
+    "ring-HNF/CRT/subfield attack costs and NIST category are not established"
+  ],
+  "scope": "research security baseline selection; not a formal admission",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}
