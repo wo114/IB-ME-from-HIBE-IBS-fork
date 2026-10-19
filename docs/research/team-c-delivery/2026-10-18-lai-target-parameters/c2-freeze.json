@@ -1,0 +1,53 @@
+{
+  "schema": "IBME/LAI/C2-FREEZE/1",
+  "date": "2026-10-19",
+  "status": "algorithm_implementation_frozen",
+  "code_commit": "f797685",
+  "backend": "lai-ideal-hibe",
+  "version": "lai-a-256-v1",
+  "preset": "target-research",
+  "default_preset": "hybrid-research",
+  "params": {
+    "n": 2048,
+    "q": "274877976577",
+    "k": 39,
+    "l": 2,
+    "p": 2,
+    "sigma": 2.0,
+    "sigma_r": 1.0,
+    "identity_bytes": 86,
+    "max_message_bytes": 32
+  },
+  "security": {
+    "target_bits": 128,
+    "classical": 169.94,
+    "quantum_cost_model": 154.23,
+    "model": "PLWE coefficient LWE, GSA, complete attack set",
+    "estimator_commit": "53da5982597709ba0fdf94ea37a84d822310fd84",
+    "formal_admission": false,
+    "security_claim": "none"
+  },
+  "evidence": {
+    "deterministic_seeds_passed": 4,
+    "csprng_target_probe": true,
+    "csprng_cli_lifecycle": true,
+    "hibe_wrong_child": "None",
+    "hibe_wrong_parent": "None",
+    "outer_byteauth_tamper_cases_passed": 5,
+    "lai_ci_tests_passed": 57,
+    "hybrid_assembly_tests_passed": 65,
+    "outer_wrong_receiver": "BOTTOM",
+    "outer_wrong_sender": "BOTTOM",
+    "outer_wrong_both": "BOTTOM"
+  },
+  "not_in_scope": [
+    "formal security or anonymity proof",
+    "NIST category",
+    "LGSA C2 hybrid path (estimator domain error)",
+    "per-seed residual statistics",
+    "perturbation / proof-level ringSampleD",
+    "performance optimization and default promotion",
+    "P3/P4 full combination and attack matrix"
+  ],
+  "freeze_rule": "no algorithm feature changes without a new task and review; C2 remains an explicit target-research preset"
+}

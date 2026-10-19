@@ -1,12 +1,16 @@
 # 当前进度与并行任务
 
-更新：2026-10-19（新增SRGG论文参数公共接入、LATTE六组合及重复基准；主组合完整流程热点与运行位置消融、ABB10／CHKP接手标准、IBS接入盘点与C64B完整实测保留；PR43／48已合入e102f5f，PR46展示卡已合入05eec49，PR47报告材料随本批接收。PR45已关闭且未合并）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
+更新：2026-10-19（完成PR56—61接收：56、58、59、60、61已合并，57按用户决定关闭且未合并；新增研究报告、SRGG论文参数完整组合、Sageloli v3环版与Lai公共后端）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期的研究报告、交付记录与旧任务书只证明各自版本的事实，不继续发布全项目“下一轮”指令。
 
-**SRGG优先工作交付（2026-10-19）**：按用户选择完成[论文参数公共接入与LATTE完整实测](research/2026-10-19-srgg-paper-latte/README.md)，实现提交`7573014`，已提交[PR58](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/58)，尚未合并。新增独立`srgg2025-paper`，三档n512、rank2/3/4、两种签名格式，固定factor1／table-standard-deviation，不改原采样器或degree8状态。六份真实LATTE＋Hybrid＋BYTEAUTH配置204项通过；PARAM-I每格式3个独立CSPRNG根、9对热加解密及9次新进程零熵恢复通过；安装包在仓库外完成15步CLI和第16次恢复，325个不同Sage回归条目通过。参数与原始计时／provider证据独立归档，本机i9-14900HX／Sage10.7不能与旧硬件结果混排。算法完成数与已登记算法数不增加，none/false/false不变；PARAM-II／III重复性能、另一Gaussian解释完整配对及Web预设不计已完成。旧作品报告和PPT不改，研究报告PR56已单独合入。
+**本批PR审查与合并（2026-10-19）**：[审查记录、固定版本及本地回归](deliveries/2026-10-19-pr56-61-review/README.md)已归档。PR56研究报告合入`18cae94`、PR58 SRGG合入`bc8ccb5`、PR59 Sageloli v3合入`798226a`、PR60 Lai合入`eadb878`、PR61接收盘点合入`85b87fa`。Lai修复异常模数检查顺序、采样宽度wire精度/范围和消息长度边界；合并树Sage132项与Windows公共层130项回归无失败或skip。PR57是旧v2小参数接入，按用户要求关闭，分支提交保留，其登记与配对未进入main；后续直接接入PR59的v3，不延长旧表示的扩维路线。旧作品报告及PPT未改，历史运行不冒充本批重跑。
+
+**SRGG优先工作交付（2026-10-19）**：按用户选择完成[论文参数公共接入与LATTE完整实测](research/2026-10-19-srgg-paper-latte/README.md)，实现提交`7573014`，[PR58](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/58)已合入`bc8ccb5`。新增独立`srgg2025-paper`，三档n512、rank2/3/4、两种签名格式，固定factor1／table-standard-deviation，不改原采样器或degree8状态。六份真实LATTE＋Hybrid＋BYTEAUTH配置204项通过；PARAM-I每格式3个独立CSPRNG根、9对热加解密及9次新进程零熵恢复通过；安装包在仓库外完成15步CLI和第16次恢复，325个不同Sage回归条目通过。参数与原始计时／provider证据独立归档，本机i9-14900HX／Sage10.7不能与旧硬件结果混排。算法完成数与已登记算法数不增加，none/false/false不变；PARAM-II／III重复性能、另一Gaussian解释完整配对及Web预设不计已完成。旧作品报告和PPT不改，研究报告PR56已单独合入。
 
 **新研究报告（2026-10-19 用户明确）**：旧作品报告不再改写，暂不制作或更新PPT。已另建[研究报告初稿](reports/2026-10-19-research-draft/研究报告初稿.md)与[可编辑Word](reports/2026-10-19-research-draft/研究报告初稿.docx)，沿用既定七章写作标准并参考两份往年报告，填入当前构造、参数、完整系统实验、运行位置消融和真实演示。图表读取已有公开收据，不新增密码实验或参数声明；最终三代表、必要消息长度补测、来源许可及本届模板适配仍待收口。该项覆盖下方旧排期中同步PPT的要求，历史交付不改写。详见[本批说明与复核入口](reports/2026-10-19-research-draft/README.md)。
 
 **最新分工（2026-10-18 用户明确）**：ABB10与CHKP交由队长安排的其它AI，按[执行标准与接手任务](workplans/2026-10-18-ABB10与CHKP执行标准.md)分别认领。保留原128比较模型目标，参数、真实完整运行、部署与安全声明分开；理论继续引用，不新增基础证明。各自首批时间盒及共享文件边界见标准，本线程停止A扩维不自动暂停已明确承接者的工作。统筹同步核对IBS是否真正登记/CLI/配对及默认参数问题，不因登记存在就判定安全可用。三条暂缓路线继续暂缓。
+
+**SRGG／Sageloli／Lai新交付接收核对（2026-10-19）**：[PR61固定版本核对表](deliveries/2026-10-19-readiness-audit/README.md)与[机器记录](deliveries/2026-10-19-readiness-audit/audit.json)保留原采集时的四个开放PR、Ultra9/Sage10.9环境和78项独立复验；当前合并状态由上方新记录覆盖。SRGG三档论文参数六种完整LATTE配对已接收；PR59环原生v3两档论文规模新建/恢复已合入，峰值约1.36/6.19 GiB，仍待v3公共接入和真实IB-ME配对，不能再用v2展开表示的TB级外推否定它；PR60完整Lai与C2目标实现/历史生产运行及估计已合入，发布包仍缺C2逐次原始目标收据。下一项收口Lai C2可移交证据和所选组合评测，再接Sageloli v3与首个完整配对；无需重开选参或补证明。PR57旧v2接入已关闭，不列为待合并或已登记。安全元数据与历史收据保持原值，参数落地/目标实跑/接入/组合按实际完成项逐项确认。
 
 **源码交付接收（2026-10-18）**：[PR45](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/45)已关闭且未合并，原分支和提交保留；其重复包装、一级KEM及未接入AP09根不计新算法或新代表。拆出的[PR48](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/48)和[PR43](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/43)已按[本轮审查记录](deliveries/2026-10-18-pr43-48-review/README.md)合入`e102f5f`。PR48是n2/q93/b1024的独立3m种子KEM组件，仍非公共HIBEBackend、Hybrid/CLI或完整IB-ME；PR43是SRGG独立研究WIP，不替换默认joint或继承其安全／参数结论。真实回归、Linux权限复验及历史报告的环境字段差异分别归档，不把原发布驱动记为本机38/38通过。
 
@@ -34,9 +38,11 @@ ABB后续已完成[完整基表示与消费者准入核验](research/team-a-deli
 
 **硬件判断口径（2026-10-18 用户明确修正）**：本机/WSL跑不了不等于算法不可行。参数与比较模型、具体实现的对象存活与算术域、硬件部署条件、实际时间/RSS分别验收。8 GiB预算和本机总内存只作部署参考，不淘汰通过参数筛选的候选；保留更大内存环境、释放对象、公共块复用和分块/外存实现的研究空间，也不预先保证它们的性能收益。
 
-**候选实现盘点（2026-10-18）**：按19条候选目录及完整独立原语研究后端口径，HIBE为3/8（CHKP、ABB-ROM、LATTE），IBS为10/11（Luo矩阵/模格、SRGG、Yu、Sageloli SIS/RSIS、Foo–Li、Wang–PW、BNN-ML-DSA、BNN-Falcon）。合计13/19；MP12实现变体不另增论文路线。未完成的6条为Lai、Zhang、Xie和继续暂缓的GKR/ABB标准模型/CHKP标准模型；Xie已有修订研究核但尚非完整共同IBSBackend。研究后端完成、默认登记/CLI、真实HIBE配对、目标参数与公平评测分别统计，不能将13条写为13套已完成IB-ME组合。
+**候选实现盘点（2026-10-19，含本批Lai交付）**：按19条候选目录及完整独立原语研究后端口径，HIBE为4/8（CHKP、ABB-ROM、LATTE、Lai），IBS为10/11（Luo矩阵/模格、SRGG、Yu、Sageloli SIS/RSIS、Foo–Li、Wang–PW、BNN-ML-DSA、BNN-Falcon）。合计14/19；MP12实现变体不另增论文路线。未完成的5条为Zhang、Xie和继续暂缓的GKR/ABB标准模型/CHKP标准模型；Xie已有修订研究核但尚非完整共同IBSBackend。研究后端完成、默认登记/CLI、真实HIBE配对、目标参数与公平评测分别统计，不能将14条写为14套已完成IB-ME组合。
 
-**IBS接入／参数最新盘点**：[逐项清单与改善顺序](deliveries/2026-10-18-ibs-inventory/README.md)固定`fc1f342`核对10个完整研究IBS，默认接入6个；Foo–Li、Yu、Sageloli SIS／RSIS四个仍未接入。至少六条路线的现有小参数已有公开伪造，不能作为安全代表；本批只引用既有记录，未新增攻击。Foo–Li临时registry容量预检通过，Yu因1—4 B容量正确拒绝。SRGG除默认degree8外，主分支已有structured及论文n512三组独立实跑，不能称只有小参数；其参数解释、实际采样和新组合仍须分别处理，不新开基础证明任务。
+**Lai研究后端交付（2026-10-19）**：本批整理[P1](research/team-c-delivery/2026-10-18-lai-p1/README.md)、[公共接入/CLI](research/team-c-delivery/2026-10-18-lai-p2/README.md)和[C2显式目标配置](research/team-c-delivery/2026-10-18-lai-target-parameters/C2-FREEZE.md)，实现两级委派、五类严格对象、registry/CLI/state、5字节系数编码与生产CSPRNG。默认仍为n256研究A点；显式`target-research`为n2048/q274877976577，已有历史生命周期和负测试记录。发布复核、文件清单和本轮测试见[交付入口](research/team-c-delivery/2026-10-19-lai-publication/README_zh-CN.md)。身份短编码、原文委派类型的实现解释、无perturbation的Klein/GPV采样与原始HIBE篡改可变更明文等差异按[契约](specs/lai-hibe.md)保留，依赖外层BYTEAUTH处理完整性；不将系数LWE估计升级为结构安全或NIST等级，none/false/false不变。
+
+**IBS接入／参数盘点（历史基线与当前增量）**：[2026-10-18逐项清单](deliveries/2026-10-18-ibs-inventory/README.md)固定`fc1f342`核对10个完整研究IBS，默认接入6个；当前Foo–Li、Yu、Sageloli SIS／RSIS四个仍未接入。至少六条路线的现有小参数已有公开伪造，不能作为安全代表；本批只引用既有记录，未新增攻击。Foo–Li临时registry容量预检通过，Yu因1—4 B容量正确拒绝。本批SRGG论文n512三档已进入显式公共入口，并完成六种真实LATTE完整组合，见上方PR58；Sageloli v3两档论文参数单体已合入但公共接入/配对仍待，关闭的PR57不填充该项。参数解释、实际采样和具体组合按各自实物确认，不新开基础证明任务。
 
 **A0/A3当前工程交付**：已有[3m大q分块原型](research/team-a-delivery/2026-10-18-3m-feasibility/README.md)，PR40合入`4c6955f`；[288组高基数筛选](research/team-a-delivery/2026-10-18-radix-screen/README.md)随PR41合入`d861fe9`，保留66组候选，目标n4096/b4096/q93父R约9 GiB、当前探针payload约19.197 GiB；b1024/q89模型余量候选同样保留。新增[有界高基数实跑](research/team-a-delivery/2026-10-18-bounded-radix/README.md)，代码`7032c3b`/CLI修正`949bf91`：显式版本化的任意基数公开kernel/真实GPV、完整扰动、独立父R、256叶及codec接通；系统随机n2/b1024和n2/n4/n8/b4096均用q93成功，四组新进程恢复0熵，原二进制n2/q40状态亦恢复。n8父约4.15秒、256叶约44.78秒、RSS观察约225 MiB；参数不同于旧q80二进制，不报系统加速倍数。最终A专项261 pass/0skip、目录25 pass；初次CLI参数转接失败发生于私有工作前，已修并留证。PR48另提供待审的独立高基数种子KEM和n2真实功能测试；仍无高基数完整HIBEBackend、Hybrid/CLI组合、n4096私钥或目标时间/RSS，不据硬件或运行门否定算法。
 

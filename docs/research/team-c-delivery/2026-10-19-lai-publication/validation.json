@@ -1,0 +1,58 @@
+{
+  "schema": "IBME/LAI/PUBLICATION/1",
+  "date": "2026-10-19",
+  "upstream_base": "b92967b92a94a4f8e18ae177ea299167b60aac67",
+  "source_original_head": "b9688b60048a35e29c6eb5a7e1ce5a4d1a1043bf",
+  "replay_head": "4c41e64cd0cdad48fbf83d9d421770ffec633420",
+  "pytest_total": 267,
+  "primitive": {
+    "passed": 57,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 112.33
+  },
+  "integration": {
+    "passed": 210,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 125.67
+  },
+  "environment": {
+    "os": "WSL2/Linux",
+    "sage": "10.9",
+    "python": "3.13.15",
+    "OMP_NUM_THREADS": 1,
+    "OPENBLAS_NUM_THREADS": 1
+  },
+  "windows_without_sage": {
+    "status": "passed",
+    "python": "3.14.7",
+    "platform": "Windows",
+    "sage_installed": false,
+    "checks": [
+      "public descriptor discoverable",
+      "missing runtime rejected",
+      "CLI list-backends succeeds",
+      "no Sage import"
+    ]
+  },
+  "shell_workspace_checks": {
+    "status": "passed",
+    "cases": 4,
+    "scope": "fake CLI workspace control flow only; no cryptographic execution"
+  },
+  "frozen_runtime_files_unchanged": 12,
+  "target_c2_rerun_this_batch": false,
+  "estimator_rerun_this_batch": false,
+  "historical_target_raw_receipts_in_public_package": false,
+  "redactions": [
+    "JUnit hostname removed and XML reserialized to LF",
+    "CI JSON local interpreter path changed to ~/miniconda3/envs/sage/bin/python"
+  ],
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false,
+  "nist_security_category": null
+}
