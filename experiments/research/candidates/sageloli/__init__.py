@@ -6,14 +6,7 @@ research/teaching configurations and intentionally retain
 ``security_claim='none'`` and ``backend_admitted=False``.
 """
 
-from .backend import Backend, SISBackend, RSISBackend, SamplingAbort
-from .config import SISParams, RSISParams
-from .objects import (
-    SisPublicKey, RsisPublicKey, SisMasterSecret, RsisMasterSecret,
-    SisSigningKey, RsisSigningKey, SisSignature, RsisSignature,
-    PublicKey, MasterSecret, SigningKey, Signature,
-)
-from .service import FixedIssuer, IssuerPendingError, IssuerStateError
+from importlib import import_module
 
 __all__ = [
     "Backend", "SISBackend", "RSISBackend", "SamplingAbort", "SISParams", "RSISParams",
@@ -22,3 +15,27 @@ __all__ = [
     "PublicKey", "MasterSecret", "SigningKey", "Signature", "FixedIssuer",
     "IssuerPendingError", "IssuerStateError",
 ]
+
+# Importing ring.params/codec for static discovery must not initialize the
+# legacy sampler. Preserve the public v2 exports, resolving them only on use.
+_MODULES = {
+    **{name: ".backend" for name in ("Backend", "SISBackend", "RSISBackend", "SamplingAbort")},
+    **{name: ".config" for name in ("SISParams", "RSISParams")},
+    **{name: ".objects" for name in (
+        "SisPublicKey", "RsisPublicKey", "SisMasterSecret", "RsisMasterSecret",
+        "SisSigningKey", "RsisSigningKey", "SisSignature", "RsisSignature",
+        "PublicKey", "MasterSecret", "SigningKey", "Signature")},
+    **{name: ".service" for name in ("FixedIssuer", "IssuerPendingError", "IssuerStateError")},
+}
+
+
+def __getattr__(name):
+    if name not in _MODULES:
+        raise AttributeError(name)
+    value = getattr(import_module(_MODULES[name], __name__), name)
+    globals()[name] = value
+    return value
+
+
+def __dir__():
+    return sorted(set(globals()) | set(__all__))

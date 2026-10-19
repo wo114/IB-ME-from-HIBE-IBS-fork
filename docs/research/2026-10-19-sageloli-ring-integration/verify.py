@@ -75,7 +75,7 @@ def verify():
     for name, row in receipt["providers"].items():
         check(recorded_source(row["repository_path"], row["sha256"]), "CLI provider: "+name)
     for name, row in installed["providers"].items():
-        check(manifest["source_files"].get(row["repository_path"]) == row["sha256"], "installed provider: "+name)
+        check(recorded_source(row["repository_path"], row["sha256"]), "installed provider: "+name)
     native_source = ROOT/"experiments/research/candidates/sageloli/ring/native.cpp"
     native_id = hashlib.sha256(native_source.read_bytes()+b"-O3 -fopenmp -lflint -lgmp v1").hexdigest()
     check(receipt["native"]["source_id"] == installed["native"]["source_id"] == native_id, "native source binding")

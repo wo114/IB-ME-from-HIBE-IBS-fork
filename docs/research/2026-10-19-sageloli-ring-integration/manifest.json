@@ -4,12 +4,19 @@
     "evidence/installed-restore.json": "37dbf4123c63a3a55446320685c4c51a6348127830213bd39c2d50a693ef3957",
     "evidence/integration.json": "72196d45e5d1dad2587391196411e3e10f30ee5d0ff5304e600cfbcdc0058262",
     "evidence/regression.xml": "f420791f6ca5c9031322d28510cc782d6109112227e07b00cf495e39ae99190e",
+    "evidence/source-at-execution/experiments__research__candidates__sageloli____init__.py.txt": "598a365b596ddbf3e7f93b48c309eaa9c2ded903299a7c84033de13cc691c93e",
     "evidence/source-at-execution/src__ibme__assembly__registry.py.txt": "63726da62e48606d3f999306e30e7260aa6abcd9c2b93a8b9b6e59bfae36cac0",
     "evidence/source-at-execution/src__ibme__protocol__hybrid_hibe.py.txt": "00f67d1065b25fe63e41ba1752266e73f03ed586f2a008a8333682ef0d158655",
     "evidence/windows-portable.json": "0188b396b98340a30417d67ea0eed5c9904fbcd5d1c5a62fdf8a402a4761a2e9"
   },
   "base_commit": "798226acf4eacb7bf4a9069f974d44c7db32c4be",
   "historical_sources": {
+    "experiments/research/candidates/sageloli/__init__.py": {
+      "598a365b596ddbf3e7f93b48c309eaa9c2ded903299a7c84033de13cc691c93e": {
+        "commit": "b6dce1a08673a963a07e8ca4ac141f7563b7c380",
+        "snapshot": "evidence/source-at-execution/experiments__research__candidates__sageloli____init__.py.txt"
+      }
+    },
     "src/ibme/assembly/registry.py": {
       "63726da62e48606d3f999306e30e7260aa6abcd9c2b93a8b9b6e59bfae36cac0": {
         "commit": "28e5bee9adc095bb68439d3c3b1f743aea4c3e58",
@@ -46,7 +53,7 @@
   },
   "schema": "SAGELOLI-RING-INTEGRATION-MANIFEST/1",
   "source_files": {
-    "experiments/research/candidates/sageloli/__init__.py": "598a365b596ddbf3e7f93b48c309eaa9c2ded903299a7c84033de13cc691c93e",
+    "experiments/research/candidates/sageloli/__init__.py": "7b2e62bfa09b340f2824ccc143d591ff93d25345707fa675b388a4bc115c7cc3",
     "experiments/research/candidates/sageloli/algebra.py": "f050d5351226efdd4fe2a3caa763f357e2a270964efd8062ef7a49649738f048",
     "experiments/research/candidates/sageloli/backend.py": "53ee327ee7894fadfdd7847a1896c0f72f2d501eaf666537cffcda98e5a6646f",
     "experiments/research/candidates/sageloli/codec.py": "ea2f925ad61de0a66cf409d5b4f3a2ba5cb0b5c421588ae86a660fc5d30014b5",
