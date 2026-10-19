@@ -6,7 +6,7 @@
 
 更新：2026-10-19（PR56—65已接收：56、58、59、60、61、62、63、65已合并，57关闭且未合并；PR64新增Lai C2四种IBS实跑）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期研究报告和旧任务书只证明各自版本事实，不继续发布全项目下一轮指令。
 
-**报告第一项：三组代表与参数冻结（2026-10-19）**：按用户选择完成[三组选择表](deliveries/2026-10-19-report-three-selection/README.md)与[机器记录](deliveries/2026-10-19-report-three-selection/selection.json)：A＝LATTE＋BNN/ML-DSA-44（主演示），B＝LATTE＋SRGG论文PARAM-I compact（原生IBS），C＝Lai C2＋Sageloli RSIS v3 PARAM-I（另一HIBE与环IBS目标规模）。三份完整Suite逐字段绑定已有实跑，分别冻结64 KiB／128 KiB／8 MiB Hybrid预算；2种HIBE、3种IBS、5个原语后端、3个完整组合，不增加算法计数。C尚无性能优势证据，只定位结构与资源边界；不同机器／重复口径不能混排，不能认定“三组各有性能优势”已经完成。B已有64 KiB安装验收不继承到本次128 KiB配置，C的单根完整运行不冒充重复基准或安装验收。下方历史“最终三组尚未锁定”由本段覆盖；必要长度、精确配置CLI/wheel、可比较数据及新报告图表收口是后续工作，本批不重跑密码实验、不改旧报告或PPT，安全标志仍none/false/false。
+**报告第一项：三组代表与参数冻结（2026-10-19）**：按用户选择完成[三组选择表](deliveries/2026-10-19-report-three-selection/README.md)与[机器记录](deliveries/2026-10-19-report-three-selection/selection.json)：A＝LATTE＋BNN/ML-DSA-44（主演示），B＝LATTE＋SRGG论文PARAM-I compact（原生IBS），C＝Lai C2＋Sageloli RSIS v3 PARAM-I（另一HIBE与环IBS目标规模）。三份完整Suite逐字段绑定已有实跑，分别冻结64 KiB／128 KiB／8 MiB Hybrid预算；2种HIBE、3种IBS、5个原语后端、3个完整组合，不增加算法计数。C尚无性能优势证据，只定位结构与资源边界；不同机器／重复口径不能混排，不能认定“三组各有性能优势”已经完成。B的PARAM-I原文标称目标100 bit、作者量子恢复/伪造95/93 bit，不作为统一128 bit方案；若作品要求统一门槛需另取PARAM-II并补对应基准。B已有64 KiB安装验收不继承到本次128 KiB配置，C的单根完整运行不冒充重复基准或安装验收。下方历史“最终三组尚未锁定”由本段覆盖；必要长度、精确配置CLI/wheel、可比较数据及新报告图表收口是后续工作，本批不重跑密码实验、不改旧报告或PPT，安全标志仍none/false/false。
 
 **PR65参数工具审查（2026-10-19）**：[固定源码、回归及修复记录](deliveries/2026-10-19-pr64-65-review/README.md)已交并随PR65合入`d959d4d`。修正root-Hermite指数缺少1/2和搜索上限冒充精确成本，收窄621探针的有限网格结论；240个门外案例重算后仅2个经典估计≥128候选，均n4096，经典129.94/量子117.93、公钥比特打包约63.0 GiB，原n2048的147.17/133.56已撤回，仍未运行目标实例。42项Sage回归通过，研究标志none/false/false不变。
 

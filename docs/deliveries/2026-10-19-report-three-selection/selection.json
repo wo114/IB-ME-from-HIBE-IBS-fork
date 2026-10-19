@@ -177,7 +177,10 @@
           "signature_second_stddev": "310891.6",
           "gamma": "42086491.7",
           "factor": 1,
-          "interpretation": "table-standard-deviation"
+          "interpretation": "table-standard-deviation",
+          "author_report_target_bits": 100,
+          "author_report_key_recovery_quantum_bits": 95,
+          "author_report_forgery_quantum_bits": 93
         }
       },
       "capacity": {

@@ -166,7 +166,9 @@ def verify(data, *, assembly=False):
         'digits': 2, 'Q': 15744063, 'r_stddev': '1.16', 'master_first_stddev': '2843.9',
         'master_second_stddev': '1023.0', 'signature_first_stddev': '843088.2',
         'signature_second_stddev': '310891.6', 'gamma': '42086491.7', 'factor': 1,
-        'interpretation': 'table-standard-deviation'}}, 'B fixed parameter notes')
+        'interpretation': 'table-standard-deviation', 'author_report_target_bits': 100,
+        'author_report_key_recovery_quantum_bits': 95,
+        'author_report_forgery_quantum_bits': 93}}, 'B fixed parameter notes')
     check(rows[2]['parameter_notes_not_an_alternative_config'] == {
         'hibe': suites[2]['hibe_params'], 'ibs': dict(suites[2]['ibs_params'], q=str(3**65))}, 'C fixed parameter notes')
     check(read(UI)['suite'] == suites[0] and read(UI)['ok'] is True, 'A exact Web suite')
