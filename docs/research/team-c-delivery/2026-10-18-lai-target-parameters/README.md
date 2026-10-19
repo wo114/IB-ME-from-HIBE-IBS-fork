@@ -136,7 +136,19 @@ python -m ibme.cli decrypt --receiver alice --sender bob \
 | truncated CT | 拒绝 | 9.27 s |
 | appended CT | 拒绝 | 10.95 s |
 
-脚本：`experiments/research/candidates/lai/target_byteauth_negative.py`；JSON 在 `/tmp/lai-target-byteauth-negative.json`。以上是 **CSPRNG post-fix** 的 C2 state/CT 结果。**未单独测试**外层 wrong receiver/sender 和 replay；wrong-child/wrong-parent 已在原始 HIBE 层覆盖，replay 没有协议级状态。
+脚本：`experiments/research/candidates/lai/target_byteauth_negative.py`；JSON 在 `/tmp/lai-target-byteauth-negative.json`。以上是 **CSPRNG post-fix** 的 C2 state/CT 结果。**未单独测试** replay；wrong receiver/sender 见 §8.5。wrong-child/wrong-parent 已在原始 HIBE 层覆盖，replay 没有协议级状态。
+
+### 8.5 外层 wrong receiver / wrong sender
+
+脚本：[target_wrong_identity.sh](experiments/research/candidates/lai/target_wrong_identity.sh)；使用 C2 CSPRNG state/CT，三份独立 state 副本并行。
+
+| 用例 | CLI 退出 | 结果 | 耗时 |
+|---|---|---|---|
+| wrong receiver：Carol 解密 Alice 的密文 | 1 | BOTTOM | 619 s |
+| wrong sender：Alice 以 mallory 为 sender 解密 | 1 | BOTTOM | 625 s |
+| both wrong：Carol + mallory | 1 | BOTTOM | 625 s |
+
+三例都没有输出明文，均返回 BOTTOM；这补齐了组合层 wrong receiver / wrong sender / both 的负测试。replay 仍无协议级状态，未做拒绝测试。
 
 ## 9. 64 MiB 资源上限审查与默认决策（2026-10-18）
 
@@ -172,11 +184,11 @@ python -m ibme.cli decrypt --receiver alice --sender bob \
 理由：
 
 1. C2 目标 CLI 生命周期约 13 分钟（decrypt 572 s），state 约 26 MB，SK2 约 35 MB；作为日常默认会显著拖慢 setup/发钥/解密。
-2. C2 已有 4 个种子，但没有逐种子残差/容差统计；外层 BYTEAUTH 的 wrong receiver/sender 和 replay 仍未单独测。
+2. C2 已有 4 个种子，但没有逐种子残差/容差统计；外层 BYTEAUTH wrong receiver/sender 已通过，replay 仍未单独测。
 3. hybrid 攻击已用 GSA 完整集估计；LGSA 在 C2 不可用，模型差异仍是风险。
 4. Klein 无 perturbation，仍是功能级采样；目标 CLI 仍约 13 分钟、state 26 MB。
 
-重新评估默认化的最低条件：4 个种子已过（但没有残差统计）、外层 BYTEAUTH tamper/truncate 已过、hybrid GSA 已过、资源政策已补；仍差 wrong-identity/replay 外层测试、残差统计和目标性能可接受性。在此之前，C2 是“可选目标配置”，不是默认。
+重新评估默认化的最低条件：4 个种子已过（但没有残差统计）、外层 BYTEAUTH tamper/truncate 与 wrong receiver/sender 已过、hybrid GSA 已过、资源政策已补；仍差 replay 需求决策、残差统计和目标性能可接受性。在此之前，C2 是“可选目标配置”，不是默认。
 
 ## 10. 随机源修复（2026-10-19）
 

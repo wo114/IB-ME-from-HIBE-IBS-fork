@@ -36,6 +36,7 @@ identity_bytes=86, max_message_bytes=32
 | 目标 CLI CSPRNG 生命周期 | 8/57/6/110/632 s；14 B → 1,357,049 B；解密一致；state 26 MB |
 | HIBE 错误身份 | wrong-child、wrong-parent → None |
 | 外层 BYTEAUTH tamper | 5/5 拒绝 |
+| 外层 wrong receiver/sender | 3/3 返回 BOTTOM |
 | CI | Lai 套件 **57 passed**；hybrid/assembly **65 passed** |
 | 后端测试 | backend **14 passed**；P1 **22 passed** |
 
@@ -46,7 +47,7 @@ identity_bytes=86, max_message_bytes=32
 - LGSA C2 的 hybrid 路径（estimator math-domain error）；完整集用 GSA；
 - 逐种子残差/容差统计；
 - perturbation / 证明级 `ringSampleD`；
-- 外层 wrong receiver/sender 与 replay（组合/应用层，未单独测）；
+- replay（无协议级状态；应用层负责）；
 - 性能优化、默认 preset 切换、P3/P4 完整组合攻击矩阵。
 
 ## 5. 冻结规则
