@@ -293,6 +293,14 @@ def _srgg_paper_spec():
     return backend_spec()
 
 
+def _sageloli_ring_spec():
+    try:
+        from ibme.ibs.sageloli.ring_registration import backend_spec
+    except ModuleNotFoundError as exc:
+        return _missing_candidate("sageloli-rsis", exc)
+    return backend_spec()
+
+
 def _portable_specs():
     from ibme.hibe.abb10 import ABB10HIBE, ABB10PublicKey, ABB10MasterSecret, ABB10Level1SecretKey, ABB10Level2SecretKey, ABB10_DEBUG_PARAMS
     from ibme.hibe.mock import MockHIBE, MockHIBEPublicKey, MockHIBEMasterSecret, MockHIBELevel1SecretKey, MockHIBELevel2SecretKey
@@ -369,13 +377,13 @@ def _portable_specs():
     ]
     for identifier in ("gkr2025", "zhang2020", "abb-standard-selective", "chkp-standard"):
         specs.append(BackendSpec(identifier,"hibe","unavailable-v1",available=False,reason="public backend not delivered; no mock fallback"))
-    for identifier in ("yu2026","sageloli-sis","sageloli-rsis","foo-li","xie-ntru-ibs"):
+    for identifier in ("yu2026","sageloli-sis","foo-li","xie-ntru-ibs"):
         specs.append(BackendSpec(identifier,"ibs","unavailable-v1",available=False,reason="public backend not delivered; no mock fallback"))
     # The registration-proposal.json files are evidence, not executable config.
     # These explicit imports reuse delivered five-method backends/public wire.
     # "reference" is the existing suite spelling for their canonical-json-v1
     # encoding, not a second algorithm or a different signature representation.
-    specs.extend((_wang_pw_spec(), _srgg_spec(), _srgg_paper_spec()))
+    specs.extend((_wang_pw_spec(), _srgg_spec(), _srgg_paper_spec(), _sageloli_ring_spec()))
     from ibme.hibe.lai.registration import backend_spec as lai_spec
     specs.append(lai_spec())
     from ibme.hibe.latte.registration import backend_spec as latte_spec

@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "checks": [
+    "registered-v3",
+    "frozen-I",
+    "frozen-II",
+    "I-exact-wire",
+    "II-exact-wire",
+    "no-runtime-fallback",
+    "large-payload-capacity",
+    "full-params-in-suite"
+  ],
+  "execution": "portable metadata only; no Sage or key generation",
+  "source_commit": "b46f01588d5978854568c916f57377e525058eee",
+  "pytest": "not installed in this Windows runtime"
+}
