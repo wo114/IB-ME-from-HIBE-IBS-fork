@@ -21,6 +21,30 @@ def historical_bytes(root: Path, relative: str) -> bytes:
         ["git", "show", f"{HISTORICAL_COMMIT}:{relative}"], cwd=root)
 
 
+def verify_target_receipt(receipt: dict) -> None:
+    expected = {"n": 2048, "q": 274877976577, "k": 39, "l": 2, "p": 2,
+                "sigma": 2.0, "sigma_r": 1.0, "identity_bytes": 86,
+                "max_message_bytes": 32, "message_mode": "seed32"}
+    require(receipt.get("parameters") == expected, "C2 target parameters differ")
+    require(receipt.get("schema") == "IBME/LAI/C2-TARGET-RECEIPT/1", "C2 receipt schema changed")
+    require(receipt.get("all_ok") is True, "C2 target receipt did not pass")
+    honest = receipt["honest"]
+    require(honest["rc"] == 0 and honest["matches"] is True
+            and honest["output_bytes"] == receipt["message_bytes"], "C2 honest receipt differs")
+    wrong = receipt["wrong_identity"]
+    require(set(wrong) == {"wrong_receiver", "wrong_sender", "both_wrong"}, "C2 identity cases missing")
+    require(all(value["bottom"] is True and value["rc"] == 1 and value["output_bytes"] == 0
+                for value in wrong.values()), "C2 wrong-identity receipt differs")
+    outer = receipt["outer_tamper"]
+    require(outer["rc"] == 0 and outer["all_ok"] is True, "C2 outer tamper failed")
+    require(set(outer["cases"]) == {"tampered_context", "tampered_signature", "tampered_inner_bytes",
+                                     "truncated_ct", "appended_ct"}, "C2 tamper cases missing")
+    require(all(value["rejected"] is True for value in outer["cases"].values()), "C2 tamper accepted")
+    require(receipt["target_c2_rerun_this_batch"] is True, "C2 receipt scope changed")
+    require(receipt["security_claim"] == "none" and receipt["backend_admitted"] is False
+            and receipt["parameters_are_formal"] is False, "C2 security metadata changed")
+
+
 def main(*, historical=False) -> None:
     directory = Path(__file__).resolve().parent
     root = directory.parents[3]
@@ -70,15 +94,10 @@ def main(*, historical=False) -> None:
         require(validation["target_c2_rerun_this_batch"] is True, "C2 rerun scope changed")
         receipt_path = directory / "evidence" / "target-c2-receipt.json"
         require(receipt_path.exists(), "C2 receipt missing")
+        require(hashlib.sha256(receipt_path.read_bytes()).hexdigest() == validation["target_c2_receipt_sha256"],
+                "C2 receipt digest differs")
         receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
-        require(receipt["schema"] == "IBME/LAI/C2-TARGET-RECEIPT/1", "C2 receipt schema changed")
-        require(receipt["all_ok"] is True, "C2 target receipt did not pass")
-        require(receipt["honest"]["matches"] is True, "C2 honest decrypt did not match")
-        require(all(value["bottom"] and value["rc"] == 1
-                    for value in receipt["wrong_identity"].values()),
-                "C2 wrong-identity receipt differs")
-        require(receipt["outer_tamper"]["all_ok"] is True, "C2 outer tamper receipt differs")
-        require(receipt["target_c2_rerun_this_batch"] is True, "C2 receipt scope changed")
+        verify_target_receipt(receipt)
     require(validation["windows_without_sage"]["status"] == "passed", "Windows discovery failed")
     require(validation["shell_workspace_checks"]["cases"] == 4, "shell case count differs")
     print(json.dumps({"status": "passed", "source_bindings": len(bindings["sha256_lf"]),

@@ -28,6 +28,7 @@ fi
 CT=${2:-"$STATE/ct.bin"}
 [ ! -e "$CT" ] || { echo "ciphertext path already exists: $CT" >&2; exit 2; }
 mkdir -p -- "$(dirname "$CT")"
+mkdir -p -- "$STATE"
 MSG="$STATE/message.bin"
 printf 'target-cli-msg' > "$MSG"
 

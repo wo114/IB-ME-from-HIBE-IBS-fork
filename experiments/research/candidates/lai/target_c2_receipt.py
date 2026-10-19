@@ -26,6 +26,21 @@ WRONG_RECEIVER = "carol"
 WRONG_SENDER = "mallory"
 
 
+def validate_c2_meta(meta: dict) -> dict:
+    """Reject another suite before labeling its execution as the C2 recipe."""
+    from ibme.assembly import SuiteConfig
+    from ibme.hibe.lai.params import LaiParams, TARGET_CANDIDATE_PARAMS
+    from ibme.hibe.lai.registration import ASSEMBLY_VERSION
+    config = SuiteConfig.from_dict(meta.get("suite"))
+    suite = config.to_dict()
+    if (suite["hibe"] != "lai-ideal-hibe" or suite["hibe_version"] != ASSEMBLY_VERSION
+            or LaiParams(**suite["hibe_params"]) != TARGET_CANDIDATE_PARAMS
+            or suite["ibs"] != "luo-module" or suite["transport"] != "hybrid"
+            or suite["protocol"] != "byteauth-v1" or meta.get("suite_digest") != config.digest):
+        raise ValueError("receipt requires the exact C2 + Luo Hybrid BYTEAUTH suite")
+    return suite
+
+
 def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -44,7 +59,7 @@ def run_decrypt(name: str, state: Path, ct: Path, receiver: str, sender: str,
         [sys.executable, "-m", "ibme.cli", "decrypt",
          "--receiver", receiver, "--sender", sender,
          "--in", str(ct), "--out", str(out), "--state", str(state)],
-        cwd=REPO, env=cli_env(), capture_output=True, text=True)
+        cwd=REPO, env=cli_env(), capture_output=True, text=True, timeout=1800)
     text = (process.stdout or "") + (process.stderr or "")
     log.write_text(text, encoding="utf-8")
     output = out if out.exists() else None
@@ -79,7 +94,7 @@ def main(argv=None) -> int:
         raise SystemExit("sender key missing; run target_state_setup.sh first")
 
     meta = json.loads((state / "state.json").read_text(encoding="utf-8"))
-    suite = meta.get("suite", {})
+    suite = validate_c2_meta(meta)
     receipt = {
         "schema": "IBME/LAI/C2-TARGET-RECEIPT/1",
         "date": datetime.now(timezone.utc).isoformat(),
@@ -146,7 +161,7 @@ def main(argv=None) -> int:
         process = subprocess.run(
             [sys.executable, "experiments/research/candidates/lai/target_byteauth_negative.py",
              "--state", str(state), "--ct", str(ct), "--output", str(tamper_out)],
-            cwd=REPO, env=cli_env(), capture_output=True, text=True)
+            cwd=REPO, env=cli_env(), capture_output=True, text=True, timeout=300)
         if tamper_out.exists():
             tamper = json.loads(tamper_out.read_text(encoding="utf-8"))
             receipt["outer_tamper"] = {
@@ -156,14 +171,15 @@ def main(argv=None) -> int:
             }
         else:
             receipt["outer_tamper"] = {"rc": process.returncode, "all_ok": False,
-                                       "error": (process.stdout + process.stderr)[-2000:]}
+                                       "error": "tamper subprocess did not produce a receipt"}
 
-    wrong_ok = all(case["bottom"] and case["rc"] == 1
+    wrong_ok = all(case["bottom"] and case["rc"] == 1 and case["output_bytes"] == 0
                    for case in receipt["wrong_identity"].values())
     receipt["all_ok"] = bool(
         receipt["honest"]["matches"]
         and wrong_ok
-        and receipt["outer_tamper"].get("all_ok"))
+        and receipt["outer_tamper"].get("all_ok")
+        and receipt["outer_tamper"]["rc"] == 0)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(receipt, indent=2, ensure_ascii=False) + "\n",
                            encoding="utf-8")
