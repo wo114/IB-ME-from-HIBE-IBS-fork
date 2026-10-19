@@ -35,6 +35,7 @@ def test_target_rows_reject_external_storage_only_and_retain_public_size_blocker
     monkeypatch.setattr(DeterministicRandom, "read", forbidden)
     report = build_representation_report(SOURCE)
     assert report["complete_runtime_candidates"] == []
+    assert len(report["blocked_implementation_research_candidates"]) == 3
     assert report["root_or_key_generations"] == report["ciphertext_generations"] == 0
     assert report["private_entropy_bytes"] == 0
     assert report["not_an_impossibility_theorem"] is True
@@ -89,14 +90,37 @@ def test_changed_security_or_wire_claims_fail_closed(tmp_path):
         build_representation_report(changed)
 
 
-@pytest.mark.parametrize("row_index", [0, 3])
-@pytest.mark.parametrize("field,invalid", [("q", 3), ("q", True), ("q_bits", 1), ("q_bits", True)])
-def test_each_row_modulus_is_bound_to_fixed_inputs(tmp_path, row_index, field, invalid):
+@pytest.mark.parametrize("field", ["q", "q_bits"])
+def test_changed_per_row_modulus_metadata_fails_closed(tmp_path, field):
     card = json.loads(SOURCE.read_text(encoding="utf-8"))
-    card["rows"][row_index][field] = invalid
-    changed = tmp_path / "inconsistent-modulus.json"
+    card["rows"][0][field] += 1
+    changed = tmp_path / f"changed-{field}.json"
     changed.write_text(json.dumps(card), encoding="utf-8")
-    with pytest.raises(ValueError, match="row modulus"):
+    with pytest.raises(ValueError, match="row modulus metadata"):
+        build_representation_report(changed)
+
+
+def test_changed_candidate_summary_fails_closed(tmp_path):
+    card = json.loads(SOURCE.read_text(encoding="utf-8"))
+    card["comparison_model_candidates"] = [card["rows"][0]["candidate_id"]]
+    changed = tmp_path / "changed-candidates.json"
+    changed.write_text(json.dumps(card), encoding="utf-8")
+    with pytest.raises(ValueError, match="joint candidate summary"):
+        build_representation_report(changed)
+
+    card = json.loads(SOURCE.read_text(encoding="utf-8"))
+    card["implementation_research_candidates"] = [card["rows"][0]["candidate_id"]]
+    changed.write_text(json.dumps(card), encoding="utf-8")
+    with pytest.raises(ValueError, match="research candidate summary"):
+        build_representation_report(changed)
+
+
+def test_changed_research_tier_policy_fails_closed(tmp_path):
+    card = json.loads(SOURCE.read_text(encoding="utf-8"))
+    card["research_tier_policy"]["grants_security_or_runtime_admission"] = True
+    changed = tmp_path / "changed-policy.json"
+    changed.write_text(json.dumps(card), encoding="utf-8")
+    with pytest.raises(ValueError, match="research tier policy"):
         build_representation_report(changed)
 
 
@@ -107,6 +131,11 @@ def test_runtime_summary_keeps_public_execution_and_security_separate():
     assert summary["rng"].startswith("none")
     assert summary["root_or_key_generations"] == summary["private_entropy_bytes"] == 0
     assert summary["complete_runtime_candidates"] == []
+    assert summary["source_root_trapdoor_comparison_candidate_count"] == 0
+    assert summary["source_ciphertext_comparison_candidate_count"] == 3
+    assert summary["source_joint_comparison_candidate_count"] == 0
+    assert summary["source_implementation_research_candidate_count"] == 3
+    assert summary["blocked_implementation_research_candidate_count"] == 3
     assert summary["security_claim"] == "none"
     assert summary["backend_admitted"] is summary["parameters_are_formal"] is False
 
@@ -114,6 +143,10 @@ def test_runtime_summary_keeps_public_execution_and_security_separate():
 def test_report_fingerprints_bind_the_source_card_code_and_fixed_paper():
     report = build_representation_report(SOURCE)
     assert report["source"]["sha256"] == hashlib.sha256(SOURCE.read_bytes()).hexdigest()
+    assert report["source"]["candidate_classification"]["comparison_model_candidates"] == []
+    assert len(
+        report["source"]["candidate_classification"]["implementation_research_candidates"]
+    ) == 3
     for name, digest in report["source_sha256"].items():
         assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == digest
 
@@ -128,3 +161,13 @@ def test_checked_in_public_evidence_is_current_and_has_no_runtime_candidate():
     assert report["root_or_key_generations"] == runtime["root_or_key_generations"] == 0
     assert report["private_entropy_bytes"] == runtime["private_entropy_bytes"] == 0
     assert report["security_claim"] == runtime["security_claim"] == "none"
+
+@pytest.mark.parametrize("row_index", [0, 3])
+@pytest.mark.parametrize("field,invalid", [("q", 3), ("q", True), ("q_bits", 1), ("q_bits", True)])
+def test_each_row_modulus_is_bound_to_fixed_inputs(tmp_path, row_index, field, invalid):
+    card = json.loads(SOURCE.read_text(encoding="utf-8"))
+    card["rows"][row_index][field] = invalid
+    changed = tmp_path / "inconsistent-modulus.json"
+    changed.write_text(json.dumps(card), encoding="utf-8")
+    with pytest.raises(ValueError, match="row modulus"):
+        build_representation_report(changed)
