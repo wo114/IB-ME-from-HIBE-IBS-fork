@@ -87,7 +87,7 @@ def worker(directory, output, samples):
                 ("ibme.ibs.certified.mldsa", "MLDSA", "_run", "mldsa")):
             cls = getattr(sys.modules[module_name], class_name)
             stack.enter_context(patch.object(cls, method, counted_native(family, getattr(cls, method))))
-            module = sys.modules[module_name]
+            module = sys.modules["ibme.hibe.latte.native.build" if family == "latte" else module_name]
             stack.enter_context(patch.object(module, "source_id", counted_source(family, module.source_id)))
         wire = runtime.proto.encrypt(public, sender, receiver.identity, message).to_bytes()
         if runtime.proto.decrypt(public, receiver, sender.identity, wire) != message:
@@ -118,7 +118,7 @@ def child(command, *, root, log, timeout=900):
     return time.perf_counter() - start
 
 
-def compare(source_root, wheel, windows_runtime, private, source_commit, samples):
+def compare(source_root, wheel, windows_runtime, private, source_commit, samples, existing_generated=None):
     private.mkdir(parents=True, exist_ok=False, mode=0o700)
     prepared = prepare(wheel)
     linux_root = Path(prepared["runtime_root"])
@@ -138,13 +138,29 @@ def compare(source_root, wheel, windows_runtime, private, source_commit, samples
             if hashlib.sha256(source.read_bytes()).hexdigest() != digest:
                 raise AssertionError("wheel/source mismatch: " + name)
     roots = dict(source=source_root, windows_wheel=windows_runtime, wsl_wheel=linux_root)
-    generated = private / "generated"
-    generation_seconds = child([sys.executable, "-m", "experiments.research.full_system_benchmark",
-        "--private-directory", str(generated), "--suite-file", str(source_root / "ci/c-combinations.json"),
-        "--suite-name", SUITE_NAME, "--source-commit", source_commit, "--repetitions", "3",
-        "--warm-repetitions", "3", "--identity-bytes", "64", "--message-bytes", "32",
-        "--security-group", "same-frozen-latte-mldsa44-placement"],
-        root=linux_root, log=private / "generation.private-log")
+    generated = private / "generated" if existing_generated is None else existing_generated.resolve()
+    generation_seconds = None
+    if existing_generated is None:
+        generation_seconds = child([sys.executable, "-m", "experiments.research.full_system_benchmark",
+            "--private-directory", str(generated), "--suite-file", str(source_root / "ci/c-combinations.json"),
+            "--suite-name", SUITE_NAME, "--source-commit", source_commit, "--repetitions", "3",
+            "--warm-repetitions", "3", "--identity-bytes", "64", "--message-bytes", "32",
+            "--security-group", "same-frozen-latte-mldsa44-placement"],
+            root=linux_root, log=private / "generation.private-log")
+    generation = json.loads((generated / "receipt.json").read_bytes())
+    if (generation["status"] != "passed" or generation["repetitions"] != 3
+            or generation["identity_bytes"] != 64 or generation["message_bytes"] != 32):
+        raise ValueError("expected three completed honest generation/restore states")
+    for record in generation["records"]:
+        if record["generation"]["status"] != "passed" or record["restore"]["status"] != "passed":
+            raise ValueError("failed/partial states cannot be silently replaced or reused")
+        for name, value in record["generation"]["source_providers"].items():
+            # A measurement-only harness fix can reuse completed states;
+            # every primitive/protocol/provider byte must still be identical.
+            relative = name.replace(".", "/")
+            candidates = (relative + ".py", relative + "/__init__.py")
+            if not any(expected.get(path) == value["sha256"] for path in candidates):
+                raise ValueError("completed-state provider differs from wheel: " + name)
     rows = []
     variants = list(roots)
     for state_index in range(3):
@@ -184,6 +200,8 @@ def compare(source_root, wheel, windows_runtime, private, source_commit, samples
         prepared_runtime=prepared, suite=reference["suite"], suite_digest=reference["suite_digest"],
         environment=environment(), independent_roots=3, blocks_per_state_per_variant=2,
         samples_per_block=samples, identity_bytes=64, message_bytes=32, records=rows,
+        generation_source_commit=generation["source_commit"],
+        reused_completed_states=existing_generated is not None,
         timing_seconds=summary, per_state_median_seconds=per_state, fresh_generation_seconds=generation_seconds,
         unchanged_native_checks=True, security_claim="none", backend_admitted=False, parameters_are_formal=False,
         uses_ROM=True, no_outer_retry=True, cross_security_group_ranking=False,
@@ -204,6 +222,8 @@ def main():
     parser.add_argument("--windows-runtime", type=Path)
     parser.add_argument("--private-directory", type=Path)
     parser.add_argument("--source-commit")
+    parser.add_argument("--existing-generated", type=Path,
+                        help="reuse three completed generation/restore states; verify all original provider hashes")
     parser.add_argument("--samples", type=int, default=5)
     args = parser.parse_args()
     if not 3 <= args.samples <= 31:
@@ -216,7 +236,7 @@ def main():
         if not all((args.source_root, args.wheel, args.windows_runtime, args.private_directory, args.source_commit)):
             parser.error("provide source, wheel, Windows ablation root, new private directory and exact source commit")
         result = compare(args.source_root.resolve(), args.wheel.resolve(), args.windows_runtime.resolve(),
-                         args.private_directory.resolve(), args.source_commit, args.samples)
+                         args.private_directory.resolve(), args.source_commit, args.samples, args.existing_generated)
         print(json.dumps(result["timing_seconds"], sort_keys=True))
 
 
