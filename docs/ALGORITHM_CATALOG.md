@@ -1,12 +1,12 @@
 # HIBE / IBS 算法与候选总表
 
-更新：2026-10-18（补IBS 6项默认接入／4项待接、SRGG独立论文参数及LATTE＋C64B实测；其它条目保留各自核验范围）。按[统一框架](../ARCHITECTURE.md)分别管理 HIBE、IBS 模块，再装配兼容组合。本文登记 **19 条候选/模型路线：8 条 HIBE、11 条 IBS**，覆盖原[17 条基础目录](research/2026-10-10-foundations/catalog.json)及新补充的两条原生路线；这不是 19 个完整后端，也不是 19 个不同困难假设。
+更新：2026-10-19（SRGG论文三档参数新增公共入口、六种LATTE完整组合及PARAM-I重复基准；其它条目保留各自核验范围）。按[统一框架](../ARCHITECTURE.md)分别管理 HIBE、IBS 模块，再装配兼容组合。本文登记 **19 条候选/模型路线：8 条 HIBE、11 条 IBS**，覆盖原[17 条基础目录](research/2026-10-10-foundations/catalog.json)及新补充的两条原生路线；这不是 19 个完整后端，也不是 19 个不同困难假设。
 
 当前任务和外部包进度以 [PROJECT_STATUS.md](PROJECT_STATUS.md) 为准；本文用于选模块、找原文与代码、识别接入缺口。**最终三组完整组合尚未锁定，第三套 HIBE 不再强制属于 Module-LWE。** 普通签名转换成 IBS 的两个条目保留原 ID，BNN-Falcon / BNN-ML-DSA 不再重复计数。
 
 按完整独立原语研究后端口径，目前HIBE为3/8、IBS为10/11，共13/19；参数、默认登记/CLI、真实配对与完整评测另行统计。Lai、Zhang及Xie未形成完整共同后端，GKR/ABB标准模型/CHKP标准模型三条按用户要求继续暂缓。CHKP/MP12固定继续作者稿3m，安全性和HIBE匿名性采用用户确认的工作前提；当前不另行安排补充证明，具体版本和原结果记录仍保留。
 
-IBS的[最新逐项盘点](deliveries/2026-10-18-ibs-inventory/README.md)固定`fc1f342`：10个完整研究算法中6个已默认登记，Foo–Li、Yu、Sageloli SIS／RSIS四个待接；至少六条路线的现有小参数已有公开伪造。SRGG还有独立structured和论文n512参数实跑，不能与默认degree8合并计安全／配对结果。Luo显式C64B新增LATTE真实完整运行，不替换默认值、不增加算法计数；三种IBS算法当前有四个完整实测参数配置，正式安全元数据仍none/false/false。
+IBS的[2026-10-18逐项盘点](deliveries/2026-10-18-ibs-inventory/README.md)固定`fc1f342`：10个完整研究算法中6个已默认登记，Foo–Li、Yu、Sageloli SIS／RSIS四个待接；至少六条路线的现有小参数已有公开伪造。本批[SRGG论文参数公共接入与LATTE实测](research/2026-10-19-srgg-paper-latte/README.md)新增独立`srgg2025-paper`入口，三档n512／两格式全部真实配对，PARAM-I两格式各3套完整重复基准及安装CLI恢复通过；不继承degree8结果，也不增加IBS算法计数。Luo显式C64B实测及其它历史结果保留，正式安全元数据仍none/false/false。
 
 ## 1. 如何读这张表
 
@@ -51,7 +51,7 @@ A本批另完成[默认ABB与结构化H/G](research/team-a-delivery/2026-10-15-f
 |---|---|---|---|
 | `luo-matrix` — Luo 2024 矩阵 IBS | SIS 主定理，经典 ROM；公开主密钥关系还须筛查 LWE 式恢复路径；固定身份服务条件单列 | [原文](../papers/2024_ibs_without_trapdoors_luo.pdf) §3；现有参数网格未通过完整筛查，[扩参暂停决策](research/2026-10-11/IBS版本决策-模格版主线.md) | **可运行研究后端，当前暂缓扩参**。[luo.py](../src/ibme/ibs/luo.py)、[矩阵参考](../src/ibme/ibs/luo_reference.py)保留；不能为填“纯 SIS”一栏恢复不合格参数 |
 | `luo-module` — Luo 2024 模格 IBS | MLWE + MSIS，当前按经典 ROM 条件引用；不自动升级 QROM。固定身份与重复签名语义需对应论文 | 同一原文 §4 Algorithms 13–16；[专属契约](specs/luo-ibs.md)。外部已交有明确前提的总中止界及研究候选；引用条件与正式参数尚未全部准入 | **可运行研究后端，Luo当前主线**。[模块实现](../src/ibme/ibs/luo_module.py)、[compact codec](../src/ibme/ibs/luo_module_codec.py)已有；显式C64B compact已有真实CHKP接线／CLI，现补[LATTE完整重复基准及34项功能验收](deliveries/2026-10-18-ibs-inventory/README.md)。默认参数不变；两个格式／两组参数均不新增IBS算法；参数与实跑边界见[项目状态](PROJECT_STATUS.md) |
-| `srgg2025` — Jia 等 SRGG 椭球 G+G IBS | MLWE/MSIS及底层sEUF-CMA条件；原文QROM结论不能由功能测试继承 | [12页缓存原稿](../papers/2025_efficient_ibs_jia.pdf)；默认路线采用ζ一致factor2解释，独立论文参数路线保留factor1／两种Gaussian解释，未宣称作者勘误 | **完整研究IBS已实现**：[默认五方法与恢复](research/team-b-delivery/2026-10-13-srgg-full/README.md)已登记、已有LATTE34检查；n8挑战仅8bit、公开固定点伪造可行。另有structured变体和[论文n512三组独立运行](research/team-b-delivery/2026-10-16-srgg-paper-baseline/README_zh-CN.md)已随PR37合入，尚无默认登记／真实HIBE配对。参数解释、实际采样和安全声明分别记录，不能继承默认配对；PR43后续待审 |
+| `srgg2025` — Jia 等 SRGG 椭球 G+G IBS | MLWE/MSIS及底层sEUF-CMA条件；原文QROM结论不能由功能测试继承 | [12页缓存原稿](../papers/2025_efficient_ibs_jia.pdf)；默认路线采用ζ一致factor2解释，独立论文参数路线保留factor1／两种Gaussian解释，未宣称作者勘误 | **完整研究IBS已实现**：[默认五方法与恢复](research/team-b-delivery/2026-10-13-srgg-full/README.md)已登记、已有LATTE34检查；n8挑战仅8bit、公开固定点伪造可行。另有structured变体和[论文n512三组独立运行](research/team-b-delivery/2026-10-16-srgg-paper-baseline/README_zh-CN.md)；本批以独立`srgg2025-paper`入口完成[三档／两格式LATTE真实组合、PARAM-I重复基准及安装CLI恢复](research/2026-10-19-srgg-paper-latte/README.md)。不继承degree8配对；PR43已合入的独立WIP仍按自己的范围记录 |
 | `yu2026` — Yu–Liu–Li 标准模型 IBS | SIS+PRF；选LWE-PRF需额外记录LWE；固定服务、NC1/Lemma7和正式参数待核 | [26页原文](../papers/2026_ibs_ibme_yu.pdf)Figure5/Theorem3；[条件审计](research/team-b-delivery/2026-10-15-yu-backend/CONDITIONS.md) | **独立共同IBSBackend已合入PR28**：[完整五方法/对象/issuer交付](research/team-b-delivery/2026-10-15-yu-backend/README.md)。定向550项Sage通过；q3公开可伪造，1—4 B输入容量由descriptor明确阻止Wang组合；默认登记和正式准入待办 |
 | `sageloli-sis` — Sageloli 等矩阵 IBS | SIS，论文 ROM/QROM 路线；安全游戏 OSign 每次 KeyExt，与长期固定身份密钥服务的对应待核 | [73 页 HAL 完整稿](../papers/2023_shorter_faster_ibs_sageloli.pdf) §5/§6、Figure 5/6、Table 2；复合模数 `q=3^k` 参数未准入 | **独立完整研究IBS已实现并随PR34合入**：[五方法/对象/H1/H2/盐/固定服务与恢复](research/team-b-delivery/2026-10-16-sageloli-complete/README_zh-CN.md)、[v2契约](specs/sageloli-ibs.md)。全维扰动及无偏取模修订已复核，两路线合计145项无skip；教学参数可公开伪造。公共registry/CLI、真实HIBE配对和目标参数仍待，原数学探针另作历史证据 |
 | `sageloli-rsis` — Sageloli 等 Ring-SIS IBS | Ring-SIS，论文 ROM/QROM 路线；固定密钥游戏缺口与矩阵条目分别处理 | 同一原文 §7、Figure 7/8、Table 4、Appendix E；[单位账本](research/2026-10-10-foundations/sageloli-units.json)保留原标签与 bit/byte 换算 | **独立完整环IBS已实现并随PR34合入**：[五方法/环SampleDR/规范对象/固定服务与恢复](research/team-b-delivery/2026-10-16-sageloli-complete/README_zh-CN.md)、[v2契约](specs/sageloli-ibs.md)。与SIS共享上述145项复核，不重复计数；教学参数可公开伪造。公共registry/CLI、真实HIBE配对和目标参数仍待，原文MB计数不当序列化实测 |

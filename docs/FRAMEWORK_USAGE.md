@@ -25,6 +25,7 @@ python -m ibme.cli matrix
 | IBS `sis` | 教学 SIS IBS | 保留已知公开伪造反例 |
 | IBS `luo-matrix` | Luo §3 矩阵研究实现 | 采用显式功能参数；与模格是不同算法实例 |
 | IBS `luo-module` | Luo §4 模格研究实现 | reference 默认；compact 为同算法的无损签名编码 |
+| IBS `srgg2025-paper` | SRGG Table 4 三档固定论文参数 | 必须显式选择 `--ibs-params PARAM-I`／`PARAM-II`／`PARAM-III`；支持 reference／compact，需 Sage；[参数、容量和恢复契约](specs/srgg-paper-assembly.md) |
 | HIBE/IBS `mock` | 仅测试 | 必须显式 `--allow-mock`，结果标记 TEST-ONLY |
 
 这里的“兼容”表示该配置能按当前接口、容量和资源规则装配，不能据此宣称密码学安全。全部当前研究组合保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。
@@ -76,6 +77,14 @@ public, master = runtime.proto.setup(
 ```
 
 配置包括原语标识与版本、全部参数值、传输/协议/签名格式及限制。`SuiteConfig` 提供严格 JSON 读写；参数分属两边，不要求模数、维度或环相同。
+
+SRGG 论文参数使用独立入口，新的状态可这样建立；后续发钥、加解密仍使用前述共同 CLI：
+
+```text
+python -m ibme.cli setup --state srgg-paper-state --hibe latte --hibe-params seed32 --ibs srgg2025-paper --ibs-params PARAM-I --transport hybrid --signature-format compact
+```
+
+默认解释为 `table-standard-deviation`。完整参数文件必须包含 `profile_name` 与 `interpretation` 两字段，数字由固定论文版本确定。PARAM-II／III 的 reference 签名保守上界超过默认 64 KiB 载荷预算，需要 Python 装配时显式配置足够预算；本批[六份可复现 suite](research/2026-10-19-srgg-paper-latte/suites.json)统一采用128 KiB。不自动缩小参数或换签名格式；旧 `srgg2025` 仍指 degree8 调试路线。
 
 ### 预检实际检查什么
 

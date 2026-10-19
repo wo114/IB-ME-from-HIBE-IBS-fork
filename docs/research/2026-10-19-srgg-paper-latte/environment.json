@@ -1,0 +1,19 @@
+{
+  "OMP_NUM_THREADS": "4",
+  "OPENBLAS_NUM_THREADS": "1",
+  "cold_definition": "fresh Python process; OS page cache and previously built native engines retained",
+  "cpu": "Intel(R) Core(TM) i9-14900HX",
+  "native_binary_sha256": "6fb0930f75d150950dbf91eddf98fce36fcb611db344af5f847ee26f94f5a958",
+  "native_metadata": {
+    "abi": "IBME-LATTE3-COEFF-1",
+    "n": 1024,
+    "q": 68718428161,
+    "source_id": "4a17a037c266ba982a027ff7fedffe0d391c9fe7fb2c5f8a0326b4ab67393414"
+  },
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "3.12.13",
+  "rss_method": "10ms /proc process-tree samples (lower bound); Linux kernel lifetime ru_maxrss per interpreter/completed child",
+  "sage": "10.7",
+  "source_commit": "7573014d53b5367698e161abf354b643770cf20e",
+  "source_location": "Windows NTFS mounted at /mnt/d; benchmark runs from source"
+}
