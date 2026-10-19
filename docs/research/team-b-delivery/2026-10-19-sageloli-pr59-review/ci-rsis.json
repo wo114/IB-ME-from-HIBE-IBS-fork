@@ -1,0 +1,55 @@
+{
+  "combination_accepted": false,
+  "command": [
+    "/home/sage/sage/local/var/lib/sage/venv-python3.12/bin/python3",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "tests/test_sageloli_ibs.py",
+    "tests/test_sageloli_probe.py",
+    "tests/test_sageloli_ring_structured.py",
+    "tests/test_sageloli_sampling.py",
+    "tests/test_sageloli_service_recovery.py",
+    "tests/test_sageloli_uniform.py",
+    "--junitxml=<repo>/ci-results/sageloli-rsis.xml"
+  ],
+  "counts": {
+    "errors": 0,
+    "failed": 0,
+    "passed": 165,
+    "skipped": 0,
+    "tests": 165,
+    "xfailed": 0
+  },
+  "environment": "sage",
+  "exit_code": 0,
+  "files": [
+    "tests/test_sageloli_ibs.py",
+    "tests/test_sageloli_probe.py",
+    "tests/test_sageloli_ring_structured.py",
+    "tests/test_sageloli_sampling.py",
+    "tests/test_sageloli_service_recovery.py",
+    "tests/test_sageloli_uniform.py"
+  ],
+  "id": "sageloli-rsis",
+  "layer": "primitive",
+  "revision": "unavailable",
+  "security_claim": "none",
+  "skip_reasons": [],
+  "source_sha256": {
+    "ci/run.py": "942c38b3c973aadad93332818a347705f3c36cd4e972230e13427d9ca54fc839",
+    "ci/suites.json": "2ae1556512a95d52b97940d9fb712c5e946375b1a19c948ad302eb0c85faaeeb",
+    "src/ibme/assembly/catalog.py": "1a1d186d32e8d604522b764d5477b1569a2e75f1e58ee8985f34d28f013196fa",
+    "tests/test_sageloli_ibs.py": "5acb9f954cc7a0860fcc0f4e424a8865eda6f058aab5f9de89a41c6d83a0e9bb",
+    "tests/test_sageloli_probe.py": "4e95381920dc14eed9296c071c9f921368b08ef5278cfae73f69546a97ee05e2",
+    "tests/test_sageloli_ring_structured.py": "08a9039aa2f7f798620872d38dedb81345ab66632e227709f473f5ef57b34e91",
+    "tests/test_sageloli_sampling.py": "926c8d566e67009ca8a92a4d10a8da26f7d9b46e85fa582aa5de8aef6501348e",
+    "tests/test_sageloli_service_recovery.py": "f41a1922a3a5ea19b841dfcb08c1335d414b813652773fe8cee748890ae75292",
+    "tests/test_sageloli_uniform.py": "4f302054b3cf85b8d6272d1ebe13cffcaf60ce8d96c38f318333aba18a4a4a67"
+  },
+  "status": "passed",
+  "working_tree_dirty": null
+}
