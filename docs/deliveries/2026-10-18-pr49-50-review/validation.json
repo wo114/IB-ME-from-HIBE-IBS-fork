@@ -59,12 +59,48 @@
       "SUCCESS": 46,
       "SKIPPED": 2,
       "scope": "original fcc79e4 head; not conflict-resolution head"
-    }
+    },
+    "historical_v1_cards_archived_in_review_evidence": true
   },
   "pr50": {
     "original_head": "69d370062f4d5b09ff5a42d0168e9290a5606e43",
-    "status": "review_in_progress",
-    "finding": "P2: per-row modulus and modulus bit width not bound to fixed inputs; repair and regression pending"
+    "status": "fixed_integrated_and_locally_verified",
+    "finding": "P2: per-row modulus and modulus bit width not bound to fixed inputs; repair and regression pending",
+    "local_original_head_fix": {
+      "tests": {
+        "red": {
+          "tests": 8,
+          "failures": 8,
+          "errors": 0,
+          "skipped": 0
+        },
+        "targeted": {
+          "tests": 87,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      "source_head": "69d370062f4d5b09ff5a42d0168e9290a5606e43",
+      "new_remote_head": "e88cbdd7f503ed4f17156e4a223f46912e642935",
+      "remote_update_review_pending": false,
+      "original_reports_archived": true
+    },
+    "reviewed_updated_head": "e88cbdd7f503ed4f17156e4a223f46912e642935",
+    "final_tests": {
+      "tests": 263,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 29
+    },
+    "final_receipt": "evidence/pr50-v3-regression.junit.xml",
+    "resource_replay_matches_updated_upstream": true,
+    "root_and_ciphertext_joint_candidates": 0,
+    "implementation_research_candidates": 3,
+    "complete_runtime_candidates": 0,
+    "current_parameter_card_sha256": "6290ba6948b356e3ff4b517d1ae670a3b3a104f39295c18e7a6e30ef67968ee0",
+    "private_entropy_bytes": 0,
+    "validation_performed_without_subagents_after_2026_10_19_request": true
   },
   "security_claim": "none",
   "backend_admitted": false,

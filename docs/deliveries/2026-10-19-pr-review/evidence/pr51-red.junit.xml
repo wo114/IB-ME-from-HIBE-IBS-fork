@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="3" time="1.602" timestamp="2026-10-19T09:02:35.788485+08:00" hostname="nomo"><testcase classname="tests.test_webui" name="test_normal_decryption_requires_the_original_message" time="0.001"><failure message="assert True is False">session = Session(config=namespace(to_dict=&lt;function session.&lt;locals&gt;.&lt;lambda&gt; at 0x7ba9244b0fe0&gt;, digest='aaaaaaaaaaaaaaaaaaaaa...iphertext_sha256': '034cf0ee5d4bf73b5199bcc69cd2aa1d2dd7051fd3477f7230b2b649b88b4329'}], created_at=1792371756.8422637)
+
+    def test_normal_decryption_requires_the_original_message(session):
+        session.runtime.proto = SimpleNamespace(decrypt=lambda *args: b"wrong plaintext")
+        result = server.api_decrypt({"mode": "normal"})
+        assert result["bottom"] is False
+&gt;       assert result["expectation_met"] is False
+E       assert True is False
+
+tests/test_webui.py:120: AssertionError</failure></testcase><testcase classname="tests.test_webui" name="test_undefined_none_is_not_a_protocol_rejection[normal]" time="0.001"><failure message="Failed: DID NOT RAISE DemoError">session = Session(config=namespace(to_dict=&lt;function session.&lt;locals&gt;.&lt;lambda&gt; at 0x7ba924497c40&gt;, digest='aaaaaaaaaaaaaaaaaaaaa...iphertext_sha256': '034cf0ee5d4bf73b5199bcc69cd2aa1d2dd7051fd3477f7230b2b649b88b4329'}], created_at=1792371757.3380618)
+mode = 'normal'
+
+    @pytest.mark.parametrize("mode", ["normal", "tamper"])
+    def test_undefined_none_is_not_a_protocol_rejection(session, mode):
+        session.runtime.proto = SimpleNamespace(decrypt=lambda *args: None)
+&gt;       with pytest.raises(server.DemoError, match="无效结果"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE DemoError
+
+tests/test_webui.py:127: Failed</failure></testcase><testcase classname="tests.test_webui" name="test_undefined_none_is_not_a_protocol_rejection[tamper]" time="0.000"><failure message="Failed: DID NOT RAISE DemoError">session = Session(config=namespace(to_dict=&lt;function session.&lt;locals&gt;.&lt;lambda&gt; at 0x7ba9244b0e00&gt;, digest='aaaaaaaaaaaaaaaaaaaaa...iphertext_sha256': '4295480e6677211b025ac6fedbacd783107b738dc6424184ab71e08554b68b0d'}], created_at=1792371757.3688061)
+mode = 'tamper'
+
+    @pytest.mark.parametrize("mode", ["normal", "tamper"])
+    def test_undefined_none_is_not_a_protocol_rejection(session, mode):
+        session.runtime.proto = SimpleNamespace(decrypt=lambda *args: None)
+&gt;       with pytest.raises(server.DemoError, match="无效结果"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE DemoError
+
+tests/test_webui.py:127: Failed</failure></testcase></testsuite></testsuites>

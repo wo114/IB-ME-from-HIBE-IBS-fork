@@ -1,0 +1,20 @@
+{
+  "status": "built",
+  "source_id": "4a17a037c266ba982a027ff7fedffe0d391c9fe7fb2c5f8a0326b4ab67393414",
+  "binary_sha256": "d5d965ab4fcc06ccd179f35e8e718bf6faae8b77d8e438567522f5f0b86e6e93",
+  "executable": "/home/youzi/.cache/ibme-native-tools/demo-acceptance-20261018-33bb04d/latte/bin/ibme-latte3",
+  "compiler": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "flags": [
+    "-O2",
+    "-march=native",
+    "-fwrapv"
+  ],
+  "patches": [
+    "COSAC uses fresh 24-byte Box-Muller buffer",
+    "AES counter limited to 2^27 blocks per seed"
+  ],
+  "shake_provider": "OpenSSL EVP SHAKE256; compatibility declaration only",
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}

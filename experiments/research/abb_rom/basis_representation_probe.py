@@ -93,9 +93,10 @@ def _validate_source(card):
         if not isinstance(identifier, str) or not identifier or identifier in identifiers:
             raise ValueError("unique ABB candidate identifiers required")
         identifiers.add(identifier)
-        n = _integer(row.get("n"), "LWE dimension", 1)
-        if row.get("q") != q or row.get("q_bits") != q_bits:
+        if (_integer(row.get("q"), "row modulus", 3) != q or
+                _integer(row.get("q_bits"), "row modulus bit width", 1) != q_bits):
             raise ValueError("source row modulus metadata mismatch")
+        n = _integer(row.get("n"), "LWE dimension", 1)
         dimension = _integer(row.get("root_dimension"), "ABB basis dimension", n)
         if (row.get("parent_dimension") != dimension or row.get("leaf_dimension") != dimension):
             raise ValueError("ABB fixed-dimension row required")

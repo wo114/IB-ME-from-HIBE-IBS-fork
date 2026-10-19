@@ -161,3 +161,13 @@ def test_checked_in_public_evidence_is_current_and_has_no_runtime_candidate():
     assert report["root_or_key_generations"] == runtime["root_or_key_generations"] == 0
     assert report["private_entropy_bytes"] == runtime["private_entropy_bytes"] == 0
     assert report["security_claim"] == runtime["security_claim"] == "none"
+
+@pytest.mark.parametrize("row_index", [0, 3])
+@pytest.mark.parametrize("field,invalid", [("q", 3), ("q", True), ("q_bits", 1), ("q_bits", True)])
+def test_each_row_modulus_is_bound_to_fixed_inputs(tmp_path, row_index, field, invalid):
+    card = json.loads(SOURCE.read_text(encoding="utf-8"))
+    card["rows"][row_index][field] = invalid
+    changed = tmp_path / "inconsistent-modulus.json"
+    changed.write_text(json.dumps(card), encoding="utf-8")
+    with pytest.raises(ValueError, match="row modulus"):
+        build_representation_report(changed)

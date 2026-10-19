@@ -40,3 +40,5 @@
 ## 安全与范围
 
 本批未修改 ABB 后端、对象 wire、参数工厂、registry、CLI 或共享协议，没有生成密码对象，也没有宣称结构化表示不存在。所有结果继续保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`；当前源码访问下界、参数估计和功能测试都不是 LWE、匿名 HIBE、ROM/QROM 或 Wang 组合安全证明。
+
+2026-10-19 合并审查：行 `q/q_bits` 已精确绑定固定输入。原版及更新后远端报告分别归档为 `*-before-review.json`、`*-remote-e88cbdd.json`；当前文件由修复后探针实际重跑，四行资源／候选结果一致。回归及版本关系见[接收记录](../../../deliveries/2026-10-18-pr49-50-review/README.md)。

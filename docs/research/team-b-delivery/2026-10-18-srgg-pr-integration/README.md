@@ -19,3 +19,5 @@
 上段测试和 `validation.json` 是最初发布批次的历史收据，其 244/2 计数保持原样；本轮最终树改为 243/3，实际重放和命令另行归档到本次 PR 审查记录，不能据此改写旧执行次数或声称重新运行原论文参数生命周期。
 
 原文采样／参数对应、QROM 模拟、真实结构攻击成本、完整随机发钥后签名与故障历史、原生 strong 的同消息替换问题仍未闭合；旧回执中的公开替换反例须保留。`security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`、`nist_security_category=null`。功能测试及历史包通过不等于正式安全证明或 NIST 等级。
+
+2026-10-19 PR52 集成：CI 仅将已交付 Sageloli SIS／RSIS 的来源改为 backend.py、阶段改为 standalone_source；原测试选择及算法计数不变。当前 CI 固定字节更新为 12493 B／`2ae1556512a95d52b97940d9fb712c5e946375b1a19c948ad302eb0c85faaeeb`，原 CI 快照与历史 validation 保留，源码清单仍为243项直接匹配＋3项显式桥接。
