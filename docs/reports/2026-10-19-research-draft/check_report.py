@@ -98,7 +98,7 @@ def main(record=False):
             'files':{p.name:digest(p) for p in [HERE/'研究报告初稿.md',HERE/'研究报告初稿.docx',HERE/'report-facts.json']},
             'layout_review':'separate mandatory page-image review; this script does not certify layout',
             'private_state_files_opened':0,'old_report_and_ppt_sha256_unchanged':True}
-    if record:(HERE/'validation.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    if record:(HERE/'validation.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
     print(json.dumps(result,ensure_ascii=False,indent=2))
 
 

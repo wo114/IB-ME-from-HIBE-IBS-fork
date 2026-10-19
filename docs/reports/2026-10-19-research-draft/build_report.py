@@ -97,7 +97,7 @@ def generate_evidence():
             'crystal队作品设计报告.pdf': '38eb547782819462df449fb65e6b6376074000c49e7d91edc9ba76b67e9999a0',
         },
     }
-    (HERE / 'report-facts.json').write_text(json.dumps(fact, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    (HERE / 'report-facts.json').write_text(json.dumps(fact, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
     return comparison, placement
 
 
