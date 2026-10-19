@@ -702,6 +702,20 @@ def _issue_sender_key_unlocked(args) -> int:
     msk, proto, classes = _load_msk(args.state, args.mock)
     out = _sender_key_path(args.state, identity)
     selected = meta["version"] == _SELECTED_STATE_VERSION
+    # The target raw KeyExt intentionally remains stateless. At this CLI
+    # service boundary an existing committed key is the fixed issuance record.
+    # Its absence after uncertain completion is handled by the master pending
+    # transaction; a damaged existing file never triggers fresh sampling.
+    if selected and meta["suite"]["ibs"] == "wang-pw-target" and out.exists():
+        existing = SenderKey.from_bytes(_read_state_object(out, meta, "sender"), classes["sk"])
+        if existing.identity != identity:
+            raise ValueError("existing target sender file has the wrong identity")
+        _, _, runtime = _runtime_for_state(meta, args.mock)
+        public = PublicKey.from_bytes(_read_state_object(args.state / _MPK_FILE, meta, "mpk"),
+                                      classes["hpk"], classes["ipk"])
+        runtime.validate_sender(public, existing)
+        print(f"reused committed sender key: identity={args.name!r} digest={digest}")
+        return 0
     if selected or meta.get("params_preset") == _RESEARCH_PRESET:
         master_path = args.state / _MSK_FILE
         snapshot = (lambda: _state_object(msk.to_bytes(), meta, "msk")) if selected else msk.to_bytes
