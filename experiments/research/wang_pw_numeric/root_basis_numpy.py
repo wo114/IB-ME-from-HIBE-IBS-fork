@@ -1,8 +1,8 @@
 """NumPy MP12 root-basis builder for q<2^53 (q32 target).
 
-Same formula as ibme.lattice.chkp.root_basis.private_root_basis, but dense
-float64 BLAS products are exact for the q=2^32 instance because every integer
-intermediate is below 2^53.  Research prototype; no security claim.
+Same formula as ibme.lattice.chkp.root_basis.private_root_basis. The measured
+q32 instance uses q=4294967291. Float64 integer products require bounds on
+all intermediates; q<2^53 alone does not certify exactness. Research prototype.
 """
 import numpy as np
 
@@ -59,7 +59,7 @@ def root_basis_numpy(a_bar, R, q):
 if __name__ == "__main__":
     import time
 
-    from tmp.numeric_gpv_ibs import numeric_gs
+    from experiments.research.wang_pw_numeric.numeric_gpv_ibs import numeric_gs
 
     for n in (64, 128):
         q = 4294967291

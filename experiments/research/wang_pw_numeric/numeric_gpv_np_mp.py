@@ -1,7 +1,9 @@
-"""Full n=512/q32 Wang-PW prototype: numpy root + block delegation + MP GPV.
+"""n=512/q32 algebraic probe: numpy root + block delegation + numeric GPV.
 
 sigma_sign is set to the measured block GS width, so the sampler width is at
-the basis-quality scale; beta = sigma_sign * sqrt(M).  Research prototype.
+the basis-quality scale; beta = sigma_sign * sqrt(M). H1/H2 are random test
+targets, not identity/message hashes. Only the response equation is tested;
+there is no full IBS verify or public norm acceptance here. Research only.
 """
 import math
 import sys
