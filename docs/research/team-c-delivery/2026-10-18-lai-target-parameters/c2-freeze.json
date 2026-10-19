@@ -35,7 +35,10 @@
     "hibe_wrong_parent": "None",
     "outer_byteauth_tamper_cases_passed": 5,
     "lai_ci_tests_passed": 57,
-    "hybrid_assembly_tests_passed": 65
+    "hybrid_assembly_tests_passed": 65,
+    "outer_wrong_receiver": "BOTTOM",
+    "outer_wrong_sender": "BOTTOM",
+    "outer_wrong_both": "BOTTOM"
   },
   "not_in_scope": [
     "formal security or anonymity proof",
@@ -43,7 +46,6 @@
     "LGSA C2 hybrid path (estimator domain error)",
     "per-seed residual statistics",
     "perturbation / proof-level ringSampleD",
-    "outer wrong receiver/sender and replay",
     "performance optimization and default promotion",
     "P3/P4 full combination and attack matrix"
   ],
