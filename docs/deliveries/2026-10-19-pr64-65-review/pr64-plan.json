@@ -1,0 +1,401 @@
+{
+  "execution": "not_executed",
+  "mode": "preflight-only",
+  "suites": {
+    "falcon512": {
+      "preflight": {
+        "capacity": {
+          "hibe_payload_bytes": 8388608,
+          "ibs_input_bytes": 65536,
+          "identity_bytes": 64,
+          "inner_hibe_ciphertext_max_bytes": 1228844,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_payload_bytes": 32,
+          "max_application_bytes": 65364,
+          "protocol_payload_overhead": 2430,
+          "signature_max_bytes": 2322,
+          "signed_input_overhead": 172
+        },
+        "errors": [],
+        "metadata": {
+          "backend_admitted": false,
+          "combination_tested": false,
+          "hibe": "lai-ideal-hibe",
+          "hibe_key_binding_capability": true,
+          "ibs": "cert-falcon",
+          "parameters_are_formal": false,
+          "persistent_identity_cache": true,
+          "preflight_only": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": false,
+            "ibs": true
+          },
+          "protocol": "byteauth-v1",
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1",
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "security_claim": "none",
+          "signature_format": "reference",
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "229db8f9ed17a9bc203be057d7a65f1cce956bb9fcd39b7e9d7d3e5e2ba7ccc7",
+          "test_only": false,
+          "transport": "hybrid"
+        },
+        "ok": true
+      },
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "lai-ideal-hibe",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "k": 39,
+          "l": 2,
+          "max_message_bytes": 32,
+          "message_mode": "seed32",
+          "n": 2048,
+          "p": 2,
+          "q": 274877976577,
+          "sigma": 2.0,
+          "sigma_r": 1.0
+        },
+        "hibe_version": "lai-a-256-v1",
+        "hybrid_limits": {
+          "backend_id": "lai-a-256-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 8388608
+        },
+        "ibs": "cert-falcon",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "falcon-padded-512",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "229db8f9ed17a9bc203be057d7a65f1cce956bb9fcd39b7e9d7d3e5e2ba7ccc7"
+    },
+    "mldsa44": {
+      "preflight": {
+        "capacity": {
+          "hibe_payload_bytes": 8388608,
+          "ibs_input_bytes": 65536,
+          "identity_bytes": 64,
+          "inner_hibe_ciphertext_max_bytes": 1228844,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_payload_bytes": 32,
+          "max_application_bytes": 65364,
+          "protocol_payload_overhead": 6345,
+          "signature_max_bytes": 6237,
+          "signed_input_overhead": 172
+        },
+        "errors": [],
+        "metadata": {
+          "backend_admitted": false,
+          "combination_tested": false,
+          "hibe": "lai-ideal-hibe",
+          "hibe_key_binding_capability": true,
+          "ibs": "cert-ml-dsa",
+          "parameters_are_formal": false,
+          "persistent_identity_cache": true,
+          "preflight_only": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": false,
+            "ibs": true
+          },
+          "protocol": "byteauth-v1",
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1",
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "security_claim": "none",
+          "signature_format": "reference",
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "b2c612b52026d6431d5a56c780b21613db88f954809fdc3b0578439b6c86cafc",
+          "test_only": false,
+          "transport": "hybrid"
+        },
+        "ok": true
+      },
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "lai-ideal-hibe",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "k": 39,
+          "l": 2,
+          "max_message_bytes": 32,
+          "message_mode": "seed32",
+          "n": 2048,
+          "p": 2,
+          "q": 274877976577,
+          "sigma": 2.0,
+          "sigma_r": 1.0
+        },
+        "hibe_version": "lai-a-256-v1",
+        "hybrid_limits": {
+          "backend_id": "lai-a-256-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 8388608
+        },
+        "ibs": "cert-ml-dsa",
+        "ibs_params": {
+          "backend_admitted": false,
+          "base_algorithm": "ml-dsa-44",
+          "identity_bytes": 64,
+          "max_identities": 16,
+          "message_max_bytes": 65536,
+          "parameters_are_formal": false,
+          "security_claim": "none",
+          "timeout_seconds": 30
+        },
+        "ibs_version": "IBME/CERTIBS/1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "b2c612b52026d6431d5a56c780b21613db88f954809fdc3b0578439b6c86cafc"
+    },
+    "sageloli-I": {
+      "preflight": {
+        "capacity": {
+          "hibe_payload_bytes": 8388608,
+          "ibs_input_bytes": 4096,
+          "identity_bytes": 64,
+          "inner_hibe_ciphertext_max_bytes": 1228844,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_payload_bytes": 32,
+          "max_application_bytes": 3924,
+          "protocol_payload_overhead": 3227932,
+          "signature_max_bytes": 3227824,
+          "signed_input_overhead": 172
+        },
+        "errors": [],
+        "metadata": {
+          "backend_admitted": false,
+          "combination_tested": false,
+          "hibe": "lai-ideal-hibe",
+          "hibe_key_binding_capability": true,
+          "ibs": "sageloli-rsis",
+          "parameters_are_formal": false,
+          "persistent_identity_cache": true,
+          "preflight_only": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": false,
+            "ibs": true
+          },
+          "protocol": "byteauth-v1",
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1",
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "security_claim": "none",
+          "signature_format": "reference",
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "9a3c66cfd5073721bf135466197522352010ecbc6a10a6794c710e9b10423c82",
+          "test_only": false,
+          "transport": "hybrid"
+        },
+        "ok": true
+      },
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "lai-ideal-hibe",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "k": 39,
+          "l": 2,
+          "max_message_bytes": 32,
+          "message_mode": "seed32",
+          "n": 2048,
+          "p": 2,
+          "q": 274877976577,
+          "sigma": 2.0,
+          "sigma_r": 1.0
+        },
+        "hibe_version": "lai-a-256-v1",
+        "hybrid_limits": {
+          "backend_id": "lai-a-256-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 8388608
+        },
+        "ibs": "sageloli-rsis",
+        "ibs_params": {
+          "d": 2048,
+          "identity_max_bytes": 256,
+          "identity_width_squared": 2720281532542,
+          "k": 65,
+          "l": 132,
+          "mass_bits": 320,
+          "max_sign_attempts": 64,
+          "max_users": 2,
+          "message_max_bytes": 4096,
+          "r_squared": 49,
+          "salt_bytes": 32,
+          "signature_width_squared": 270116709797628319132317,
+          "tail_bits": 256
+        },
+        "ibs_version": "Sageloli-RSIS-structured-v3",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "reference",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "9a3c66cfd5073721bf135466197522352010ecbc6a10a6794c710e9b10423c82"
+    },
+    "srgg-I": {
+      "preflight": {
+        "capacity": {
+          "hibe_payload_bytes": 8388608,
+          "ibs_input_bytes": 65536,
+          "identity_bytes": 64,
+          "inner_hibe_ciphertext_max_bytes": 1228844,
+          "inner_hibe_identity_bytes": 86,
+          "inner_hibe_payload_bytes": 32,
+          "max_application_bytes": 65364,
+          "protocol_payload_overhead": 15812,
+          "signature_max_bytes": 15704,
+          "signed_input_overhead": 172
+        },
+        "errors": [],
+        "metadata": {
+          "backend_admitted": false,
+          "combination_tested": false,
+          "hibe": "lai-ideal-hibe",
+          "hibe_key_binding_capability": true,
+          "ibs": "srgg2025-paper",
+          "parameters_are_formal": false,
+          "persistent_identity_cache": true,
+          "preflight_only": true,
+          "primitive_persistent_identity_cache": {
+            "hibe": false,
+            "ibs": true
+          },
+          "protocol": "byteauth-v1",
+          "raw_object_parameter_binding": {
+            "hibe": "full-parameter-snapshot",
+            "ibs": "full-parameter-snapshot"
+          },
+          "resource_policy": "legacy-assembly-resource-v1",
+          "runtime_available": true,
+          "runtime_dependencies": {
+            "hibe": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            },
+            "ibs": {
+              "runtime_available": true,
+              "runtime_reason": ""
+            }
+          },
+          "security_claim": "none",
+          "signature_format": "compact",
+          "state_policy": "single-writer-commit-before-publish-v1",
+          "suite_digest": "e93732262181ad12282464a4ecff1a33f924dd27e6b76a453e8ba4b170458396",
+          "test_only": false,
+          "transport": "hybrid"
+        },
+        "ok": true
+      },
+      "suite": {
+        "allow_mock": false,
+        "backend_admitted": false,
+        "hibe": "lai-ideal-hibe",
+        "hibe_params": {
+          "identity_bytes": 86,
+          "k": 39,
+          "l": 2,
+          "max_message_bytes": 32,
+          "message_mode": "seed32",
+          "n": 2048,
+          "p": 2,
+          "q": 274877976577,
+          "sigma": 2.0,
+          "sigma_r": 1.0
+        },
+        "hibe_version": "lai-a-256-v1",
+        "hybrid_limits": {
+          "backend_id": "lai-a-256-v1",
+          "identity_max_bytes": 64,
+          "max_capsule_bytes": 4194304,
+          "max_payload_bytes": 8388608
+        },
+        "ibs": "srgg2025-paper",
+        "ibs_params": {
+          "interpretation": "table-standard-deviation",
+          "profile_name": "PARAM-I"
+        },
+        "ibs_version": "SRGG-PAPER-TABLE4-factor1-v1",
+        "parameters_are_formal": false,
+        "protocol": "byteauth-v1",
+        "security_claim": "none",
+        "signature_format": "compact",
+        "state_policy": "single-writer-commit-before-publish-v1",
+        "transport": "hybrid",
+        "version": "IBME/SUITE/1"
+      },
+      "suite_digest": "e93732262181ad12282464a4ecff1a33f924dd27e6b76a453e8ba4b170458396"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "IBME/PR64-65-REVIEW/1",
+  "date": "2026-10-19",
+  "base": "a9d96155d476ae98ae59c717db2cf3f6e7e864e5",
+  "pr65_original": "8e4068f825d445f3283d249ca8a8fa22f6614716",
+  "pr65_corrected": "8e87066b094796b9380d261da32291e5d3bc92f5",
+  "pr64_source": "d20642d78fef7ac8a45d311569cc54cdc897cb3d",
+  "pr64_decision": "retain author draft; target runs not delivered in this snapshot",
+  "environment": "i9-14900HX; WSL Sage10.7/Python3.12.13 OMP4/OpenBLAS1; binding controls Windows Python3.14.0a5",
+  "junit": [
+    {
+      "file": "fooli-final.xml",
+      "passed": 42,
+      "failed": 0,
+      "skipped": 0,
+      "source": "8e87066b094796b9380d261da32291e5d3bc92f5",
+      "sha256_lf": "bf2eae77f0fef795badba12cdcaa676025a9acbc28b99c4107461f13c88374c2"
+    },
+    {
+      "file": "pr64-receipt.xml",
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "source": "d20642d78fef7ac8a45d311569cc54cdc897cb3d",
+      "sha256_lf": "ccb635e69b20ab3a1f58112b6e77002eea91bebc228402128d64e4d6b0d92fa4"
+    }
+  ],
+  "unique_test_identities": 55,
+  "junit_normalization": "removed hostname; XML UTF-8, hashes normalize LF/CRLF",
+  "source_sha256_lf": {
+    "experiments/research/foo_li_parameter_improvement.py": "81a40ec804936f7cb75c7e6972d286fdd78c927b99049ef724c9e34bbb9a323c",
+    "tests/test_foo_li_parameter_improvement.py": "e3fe688b99a9c0ea28fc844f563fffb4db7ef18f24f3f1daf0105a7db381ed91",
+    "docs/research/2026-10-19-parameters/fooli-improvement-search.json": "59e5f5b7df36feda0af467dd2a2e3e101abd93a7f31df6d10388b41edbf28938",
+    "docs/research/2026-10-19-parameters/FooLi参数改进搜索与128bit目标卡.md": "74e42162d273acd8cefc27d06bc18226036bc44c6f7e112ca2ad65daccac99e9",
+    "docs/PROJECT_STATUS.md": "aec037a15414d4ce17b80b64362f2f83198a26572b58678ade0f48b502ffb39d"
+  },
+  "source_binding_scope": "five selected PR65 analysis/report/test files; no runtime provider capture",
+  "artifact_sha256_lf": {
+    "pr64-plan.json": "0f3ddd8fe413f73159a6a7f25d3368b16e148a57fefa44cce41d92c692c9bfc7",
+    "pr64-binding-controls.json": "12917bf2f80b6e6c0602576bb8bb4cc9f1959a75314d8d84538060146fcd404b"
+  },
+  "red_tests": {
+    "missing_search_coverage": 1,
+    "wrong_root_hermite_reference": 3,
+    "finite_cost_at_search_cap": 1
+  },
+  "fresh_C2_lifecycle_runs": 0,
+  "fresh_FooLi_target_instances": 0,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
