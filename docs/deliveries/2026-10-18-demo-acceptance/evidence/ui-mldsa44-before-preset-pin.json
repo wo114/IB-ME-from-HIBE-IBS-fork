@@ -1,0 +1,149 @@
+{
+  "ok": true,
+  "schema": "IBME-DEMO-MEASUREMENTS/1",
+  "suite": {
+    "allow_mock": false,
+    "backend_admitted": false,
+    "hibe": "latte",
+    "hibe_params": {
+      "identity_bytes": 86,
+      "max_children": 2,
+      "max_receivers": 2,
+      "message_mode": "seed32",
+      "native_timeout_seconds": 60
+    },
+    "hibe_version": "latte3-cosac-fix-v1",
+    "hybrid_limits": {
+      "backend_id": "latte3-cosac-fix-v1",
+      "identity_max_bytes": 64,
+      "max_capsule_bytes": 4194304,
+      "max_payload_bytes": 65536
+    },
+    "ibs": "cert-ml-dsa",
+    "ibs_params": {
+      "backend_admitted": false,
+      "base_algorithm": "ml-dsa-44",
+      "identity_bytes": 64,
+      "max_identities": 16,
+      "message_max_bytes": 65536,
+      "parameters_are_formal": false,
+      "security_claim": "none",
+      "timeout_seconds": 30
+    },
+    "ibs_version": "IBME/CERTIBS/1",
+    "parameters_are_formal": false,
+    "protocol": "byteauth-v1",
+    "security_claim": "none",
+    "signature_format": "reference",
+    "state_policy": "single-writer-commit-before-publish-v1",
+    "transport": "hybrid",
+    "version": "IBME/SUITE/1"
+  },
+  "suite_digest": "10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346",
+  "capacity": {
+    "identity_bytes": 64,
+    "max_application_bytes": 59191,
+    "signature_max_bytes": 6237,
+    "ibs_input_bytes": 65536,
+    "hibe_payload_bytes": 65536,
+    "protocol_payload_overhead": 6345,
+    "signed_input_overhead": 172,
+    "inner_hibe_payload_bytes": 32,
+    "inner_hibe_identity_bytes": 86,
+    "inner_hibe_ciphertext_max_bytes": 37587
+  },
+  "sizes": {
+    "mpk": 14385,
+    "msk": 229030,
+    "sender_key": 7932,
+    "receiver_key": 96082,
+    "wrong_receiver_key": 96067,
+    "ciphertext": 142116,
+    "message": 38
+  },
+  "timings": {
+    "build": 0.24028678000013315,
+    "setup": 0.9074616810003135,
+    "sender_key": 0.21767188400008308,
+    "receiver_key": 0.5494883910000681,
+    "wrong_receiver_key": 0.7435428429998865,
+    "encrypt": 0.2650906210001267,
+    "decrypt_normal": 0.4738415380002152,
+    "decrypt_wrong_sender": 0.3263711660001718,
+    "decrypt_wrong_receiver": 0.3073730450000767,
+    "decrypt_both_wrong": 0.32215814200026216,
+    "decrypt_tamper": 0.04197217199998704,
+    "decrypt_truncate": 0.03780871999970259
+  },
+  "identity_bytes": {
+    "sender": 5,
+    "receiver": 3,
+    "wrong_receiver": 5
+  },
+  "ciphertext_sha256": "2b1f3fb17bebb5aa3cb2342b6f69c986bb584fbcd524c04d3dba02de85cc7eda",
+  "observations": [
+    {
+      "operation": "encrypt",
+      "seconds": 0.2650906210001267,
+      "message_bytes": 38,
+      "ciphertext_bytes": 142116,
+      "ciphertext_sha256": "2b1f3fb17bebb5aa3cb2342b6f69c986bb584fbcd524c04d3dba02de85cc7eda"
+    },
+    {
+      "operation": "decrypt",
+      "mode": "normal",
+      "bottom": false,
+      "expectation_met": true,
+      "seconds": 0.4738415380002152,
+      "input_ciphertext_sha256": "2b1f3fb17bebb5aa3cb2342b6f69c986bb584fbcd524c04d3dba02de85cc7eda"
+    },
+    {
+      "operation": "decrypt",
+      "mode": "wrong_sender",
+      "bottom": true,
+      "expectation_met": true,
+      "seconds": 0.3263711660001718,
+      "input_ciphertext_sha256": "2b1f3fb17bebb5aa3cb2342b6f69c986bb584fbcd524c04d3dba02de85cc7eda"
+    },
+    {
+      "operation": "decrypt",
+      "mode": "wrong_receiver",
+      "bottom": true,
+      "expectation_met": true,
+      "seconds": 0.3073730450000767,
+      "input_ciphertext_sha256": "2b1f3fb17bebb5aa3cb2342b6f69c986bb584fbcd524c04d3dba02de85cc7eda"
+    },
+    {
+      "operation": "decrypt",
+      "mode": "both_wrong",
+      "bottom": true,
+      "expectation_met": true,
+      "seconds": 0.32215814200026216,
+      "input_ciphertext_sha256": "2b1f3fb17bebb5aa3cb2342b6f69c986bb584fbcd524c04d3dba02de85cc7eda"
+    },
+    {
+      "operation": "decrypt",
+      "mode": "tamper",
+      "bottom": true,
+      "expectation_met": true,
+      "seconds": 0.04197217199998704,
+      "input_ciphertext_sha256": "70ada88d091c57a671d0677b8731902f721c4a13b5e401a78a18bd85b38dd80f"
+    },
+    {
+      "operation": "decrypt",
+      "mode": "truncate",
+      "bottom": true,
+      "expectation_met": true,
+      "seconds": 0.03780871999970259,
+      "input_ciphertext_sha256": "a0ad30b76ee103c300abec91f4fe9651baaf99b3bafb689ab25742f4215cf6d0"
+    }
+  ],
+  "scope": "one in-memory demo session; not the archived repeated benchmark",
+  "restart_recovery": "CLI state recovery is separate; this web session is ephemeral",
+  "security": {
+    "claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "note": "研究/功能性参数；功能与性能演示不构成安全证明或 NIST 等级声明。"
+  }
+}

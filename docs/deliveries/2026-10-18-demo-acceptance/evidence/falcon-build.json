@@ -1,0 +1,92 @@
+{
+  "status": "built",
+  "source_id": "dd9bb426aa30a33d7c503799d9134edbaf0b4f0b7ce2edf618981958a87f7e5b",
+  "source_patch_count": 0,
+  "defines": {
+    "FALCON_FPEMU": 1,
+    "FALCON_FPNATIVE": 0,
+    "FALCON_AVX2": 0,
+    "FALCON_FMA": 0,
+    "FALCON_ASM_CORTEXM4": 0,
+    "FALCON_KG_CHACHA20": 0,
+    "FALCON_RAND_GETENTROPY": 0,
+    "FALCON_RAND_URANDOM": 0,
+    "FALCON_RAND_WIN32": 0
+  },
+  "stream_limits": {
+    "shake_extract_bytes": 16777216,
+    "prng_refills": 65536,
+    "timeout_seconds": "caller:1..300"
+  },
+  "compiler": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "binaries": [
+    {
+      "name": "ibme-falcon512",
+      "binary_sha256": "8cb117604117cfc15661051838f0a24edb41ffe648292ef691e3a37ab46fd7eb",
+      "metadata": {
+        "abi": 1,
+        "source_id": "dd9bb426aa30a33d7c503799d9134edbaf0b4f0b7ce2edf618981958a87f7e5b",
+        "logn": 9,
+        "pk": 897,
+        "sk": 1281,
+        "sig": 666,
+        "fpemu": true,
+        "vector_driver": false,
+        "xof_limit": 16777216,
+        "refill_limit": 65536
+      }
+    },
+    {
+      "name": "ibme-falcon-kat512",
+      "binary_sha256": "c7fadfde659b7192feb989db9aad4ab43ecc10425bac3571952c28e00279f793",
+      "metadata": {
+        "abi": 1,
+        "source_id": "dd9bb426aa30a33d7c503799d9134edbaf0b4f0b7ce2edf618981958a87f7e5b",
+        "logn": 9,
+        "pk": 897,
+        "sk": 1281,
+        "sig": 666,
+        "fpemu": true,
+        "vector_driver": true,
+        "xof_limit": 16777216,
+        "refill_limit": 65536
+      }
+    },
+    {
+      "name": "ibme-falcon1024",
+      "binary_sha256": "8ba8cb98e547ab42b7f6f43dc4bbe73319077661ada89e627ca8bfcd2fc8f578",
+      "metadata": {
+        "abi": 1,
+        "source_id": "dd9bb426aa30a33d7c503799d9134edbaf0b4f0b7ce2edf618981958a87f7e5b",
+        "logn": 10,
+        "pk": 1793,
+        "sk": 2305,
+        "sig": 1280,
+        "fpemu": true,
+        "vector_driver": false,
+        "xof_limit": 16777216,
+        "refill_limit": 65536
+      }
+    },
+    {
+      "name": "ibme-falcon-kat1024",
+      "binary_sha256": "b303d04190ad64a9cc604169c44de1a0b51b74c0276729f4555d4bd731053b08",
+      "metadata": {
+        "abi": 1,
+        "source_id": "dd9bb426aa30a33d7c503799d9134edbaf0b4f0b7ce2edf618981958a87f7e5b",
+        "logn": 10,
+        "pk": 1793,
+        "sk": 2305,
+        "sig": 1280,
+        "fpemu": true,
+        "vector_driver": true,
+        "xof_limit": 16777216,
+        "refill_limit": 65536
+      }
+    }
+  ],
+  "author_selftest_built": false,
+  "security_claim": "none",
+  "backend_admitted": false,
+  "parameters_are_formal": false
+}
