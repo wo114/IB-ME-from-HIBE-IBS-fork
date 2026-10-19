@@ -1,0 +1,140 @@
+[
+  {
+    "name": "latte-srgg-paper-param-i-reference",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "srgg2025-paper",
+      "ibs_params": "PARAM-I",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false,
+      "hybrid_limits": {
+        "backend_id": "latte3-cosac-fix-v1",
+        "identity_max_bytes": 64,
+        "max_payload_bytes": 131072,
+        "max_capsule_bytes": 4194304
+      }
+    }
+  },
+  {
+    "name": "latte-srgg-paper-param-i-compact",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "srgg2025-paper",
+      "ibs_params": "PARAM-I",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "compact",
+      "allow_mock": false,
+      "hybrid_limits": {
+        "backend_id": "latte3-cosac-fix-v1",
+        "identity_max_bytes": 64,
+        "max_payload_bytes": 131072,
+        "max_capsule_bytes": 4194304
+      }
+    }
+  },
+  {
+    "name": "latte-srgg-paper-param-ii-reference",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "srgg2025-paper",
+      "ibs_params": "PARAM-II",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false,
+      "hybrid_limits": {
+        "backend_id": "latte3-cosac-fix-v1",
+        "identity_max_bytes": 64,
+        "max_payload_bytes": 131072,
+        "max_capsule_bytes": 4194304
+      }
+    }
+  },
+  {
+    "name": "latte-srgg-paper-param-ii-compact",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "srgg2025-paper",
+      "ibs_params": "PARAM-II",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "compact",
+      "allow_mock": false,
+      "hybrid_limits": {
+        "backend_id": "latte3-cosac-fix-v1",
+        "identity_max_bytes": 64,
+        "max_payload_bytes": 131072,
+        "max_capsule_bytes": 4194304
+      }
+    }
+  },
+  {
+    "name": "latte-srgg-paper-param-iii-reference",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "srgg2025-paper",
+      "ibs_params": "PARAM-III",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "reference",
+      "allow_mock": false,
+      "hybrid_limits": {
+        "backend_id": "latte3-cosac-fix-v1",
+        "identity_max_bytes": 64,
+        "max_payload_bytes": 131072,
+        "max_capsule_bytes": 4194304
+      }
+    }
+  },
+  {
+    "name": "latte-srgg-paper-param-iii-compact",
+    "parameter_labels": {
+      "hibe": "research",
+      "ibs": "research"
+    },
+    "selection": {
+      "hibe": "latte",
+      "hibe_params": "seed32",
+      "ibs": "srgg2025-paper",
+      "ibs_params": "PARAM-III",
+      "transport": "hybrid",
+      "protocol": "byteauth-v1",
+      "signature_format": "compact",
+      "allow_mock": false,
+      "hybrid_limits": {
+        "backend_id": "latte3-cosac-fix-v1",
+        "identity_max_bytes": 64,
+        "max_payload_bytes": 131072,
+        "max_capsule_bytes": 4194304
+      }
+    }
+  }
+]
