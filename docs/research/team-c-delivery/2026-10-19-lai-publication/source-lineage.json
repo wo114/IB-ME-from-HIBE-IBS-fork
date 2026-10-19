@@ -1,0 +1,105 @@
+{
+  "original_commits_are_historical_references": true,
+  "commits": [
+    {
+      "original": "8f3469d3de466009dc25eba4d5570d7003dacc4c",
+      "published_replay": "b37a5cbebf0f5bcf740ed1f2b90c47bf31869474",
+      "subject": "feat(hibe): add Lai P1 IBE/HIBE research backend"
+    },
+    {
+      "original": "34662d8cdb4edb2c208af408c47c2d7a17e150c9",
+      "published_replay": "0f62885f0465170a5a1388a87becbf813d7a3648",
+      "subject": "feat(hibe): add Lai A-point n=256 profile and 4-byte codec"
+    },
+    {
+      "original": "a13a97bfba16f49b22c1aafa09394b82614e08db",
+      "published_replay": "4f5217bb51c5bce1840e95a7a24080ef679a40d0",
+      "subject": "feat(hibe): integrate Lai A-point backend with registry and CLI"
+    },
+    {
+      "original": "ef1bb04956f7ca80a64de1dcd9fd870a202d2520",
+      "published_replay": "4b478ccbf1b84aa5e382a5228f531c2a4f49d4c8",
+      "subject": "test(hibe): cover Lai hybrid suite preflight"
+    },
+    {
+      "original": "7a25c2458264aba99444ca56aa54f8560126010e",
+      "published_replay": "f45385f69eca0149520bff01fff62a1ab513b8c7",
+      "subject": "docs(hibe): add Lai A-point HIBE contract"
+    },
+    {
+      "original": "5e91c555b239fcb79611a3dcd142ec3a63ba49ef",
+      "published_replay": "7144a14d484df903f0580a16a090bf86d0237e0f",
+      "subject": "docs(hibe): record Lai P2 backend commits"
+    },
+    {
+      "original": "69c8314825596a6248a649c0c4238670c6826319",
+      "published_replay": "6b6a08a958cdeeadb892855e6ab55dd2a10b30f0",
+      "subject": "ci(hibe): schedule Lai backend suite under Sage"
+    },
+    {
+      "original": "bb2ddd3b017bbc7f98d44f29eb589cc9f3888872",
+      "published_replay": "c7331867fe1c409cdb8fb1d43da26052feb07033",
+      "subject": "feat(hibe): add Lai 128-bit parameter candidates and 5-byte codec"
+    },
+    {
+      "original": "2b339aac057406562f33900f8b0c0211bbcd5f1a",
+      "published_replay": "d29465a7d0d257c71d4c1b35361f17742ba4e6e5",
+      "subject": "feat(hibe): add explicit Lai target-research preset"
+    },
+    {
+      "original": "2df4791a89f04907d279b96ffe84db091788a25c",
+      "published_replay": "b6e50ec32f410a42a680f49ad296c1ac1a534027",
+      "subject": "docs(hibe): confirm C2 as selected Lai target configuration"
+    },
+    {
+      "original": "775d5ad2e0092c806d28355648b901eee7204519",
+      "published_replay": "323b0655f4e3fc5ab1484ac5e711c7d957bb0c84",
+      "subject": "fix(hibe): normalize malformed Lai parameter snapshots"
+    },
+    {
+      "original": "c484eb577ddbe46b6fc5658f3f655d58d31640f9",
+      "published_replay": "949065de59333e4cd1b53a1af5e3b5bcc28bf6fb",
+      "subject": "feat(protocol): raise hybrid component budget for target HIBE keys"
+    },
+    {
+      "original": "e80396bd61e83a46d92fdb117f31d5c71b1522b9",
+      "published_replay": "d6e8d55333157f108ca39dafeb225e7ea1f21ee7",
+      "subject": "test(hibe): record C2 target negative and CLI lifecycle"
+    },
+    {
+      "original": "021bc580e8cf38c8eec3ad2df3400e40bba5d60f",
+      "published_replay": "1da1428e83817bf0cfe5aad58504c1e6c87e81a9",
+      "subject": "docs(protocol): review hybrid 64MiB budget and C2 default strategy"
+    },
+    {
+      "original": "fa0fe484762772fe3da493a14ad06da6f7efd38b",
+      "published_replay": "3defc392b7f55e36f76c4e1d6b4576fdbb8d0577",
+      "subject": "feat(protocol): cap hybrid ciphertext wire at 20MiB"
+    },
+    {
+      "original": "dcd0309dbb45e06d8d0c9b38dda07d6b888a7ec8",
+      "published_replay": "88e097507b171e667bf228d1b0688fec0cf2943c",
+      "subject": "feat(hibe): complete Lai GSA attack estimate and target probes"
+    },
+    {
+      "original": "f79768575599d54686298a1e47e6b99df1d5ce81",
+      "published_replay": "a7e3ec731787bc605ab883fd209fd012675ad39f",
+      "subject": "fix(hibe): replace Lai MT randomness with buffered CSPRNG"
+    },
+    {
+      "original": "f74a7503be8523d748cba259b5a1fc09ae709d26",
+      "published_replay": "7687552d7488ae569d70b85233465ff9059aca18",
+      "subject": "docs(hibe): record CSPRNG target CLI receipt"
+    },
+    {
+      "original": "89f596155c77104b484a0dc97f6439f01e132ec3",
+      "published_replay": "de2ea90128cabf8b37aa44a1fb983ac7b9ae79ad",
+      "subject": "docs(hibe): freeze C2 research target implementation"
+    },
+    {
+      "original": "b9688b60048a35e29c6eb5a7e1ce5a4d1a1043bf",
+      "published_replay": "4c41e64cd0cdad48fbf83d9d421770ffec633420",
+      "subject": "test(hibe): add C2 wrong-identity matrix and freeze evidence"
+    }
+  ]
+}

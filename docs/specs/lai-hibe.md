@@ -1,4 +1,4 @@
-# Lai A 点独立研究 HIBE 契约
+# Lai 独立研究 HIBE 契约（A 点与 C2 目标候选）
 
 本契约限定 `ibme.hibe.lai` 的 `lai-ideal-hibe`、`lai-a-256-v1`。接口沿用[公共规范](../../IMPLEMENTATION_SPEC.md)；原文为 Lai–Cheung–Chow, *Trapdoors for Ideal Lattices with Applications*, Inscrypt 2014 / LNCS 8957:239–256（[本地 PDF](../../papers/2015_ideal_lattice_trapdoors_lai.pdf)）。逐批实测见[P1](../research/team-c-delivery/2026-10-18-lai-p1/README.md)与[P2](../research/team-c-delivery/2026-10-18-lai-p2/README.md)。
 
@@ -8,8 +8,8 @@
 - `R_q=F_q[x]/(x^256+1)`；`g=(1,2,…,2^31)`；两级身份、每层 256 bit 二进制身份（SHAKE 输出），每层最多 86 B 原始身份。
 - 消息容量 `k·n=8192 bit`，当前 `max_message_bytes=32`（Hybrid 的 32 B seed）；`seed32` 与 `framed32` 两种 preset 只影响 transport 配置，不改变环编码。
 - 需要 WSL 的 `~/miniconda3/envs/sage`；无 Sage 时 registry 仍可发现，但 `validate_environment` 报告 runtime 不可用，不退回 mock 或其它算法。
-- **研究参数**：没有安全等级，不是 NIST category；P5 目标参数需重新筛 `n/q/σ` 并做宽度/估计核验。
-- **目标候选（未默认登记）**：`c2-2048-2p38` = `n=2048, q=274877976577, k=39, σ=2`，PLWE 系数实例在固定 estimator 的 GSA 完整攻击集下约 169.9/154.2 bit；真实两级生命周期已跑通多个种子。详见[目标参数筛选](../research/team-c-delivery/2026-10-18-lai-target-parameters/README.md)与[算法冻结记录](../research/team-c-delivery/2026-10-18-lai-target-parameters/C2-FREEZE.md)。它作为显式 `target-research` preset 登记，不是默认 preset，也不改变 `none/false/false`。
+- **研究参数**：A 点没有安全等级；C2 已完成候选筛查和真实运行，但两者都不是 NIST category 或正式准入参数。估计、采样限制和运行证据分别记录。
+- **目标候选（已显式登记，非默认）**：`c2-2048-2p38` = `n=2048, q=274877976577, k=39, l=2, p=2, σ=2, σ_r=1`，PLWE 系数实例在固定 estimator 的 GSA 攻击集下约 169.9/154.2 bit；真实两级生命周期已跑通多个种子，并完成生产 CSPRNG 探针和 CLI 生命周期。详见[目标参数筛选](../research/team-c-delivery/2026-10-18-lai-target-parameters/README.md)与[算法冻结记录](../research/team-c-delivery/2026-10-18-lai-target-parameters/C2-FREEZE.md)。它作为显式 `target-research` preset 登记，不是默认 preset，也不改变 `none/false/false`。
 
 ## 五方法与算法对应
 
@@ -26,7 +26,7 @@
 
 ## 身份编码（研究选择）
 
-原文没有给出身份到 `R_q` 的编码。本实现把身份 SHAKE 到 `n` 个二进制系数（每层 256 bit），而不是均匀环元素；原因是加密中的 `e1=-e0^T R` 只有在 `id_i·R_i` 保持短时才使解密残差落在 Babai 容差内。均匀 hash 身份在本参数下实测残差约 2.06M，超过容差 242k，直接失败。该选择把每层身份空间限制为 `2^256`，但足以绑定 86 B 输入（碰撞约 128 bit）；不是原文逐字规定。
+原文没有给出身份到 `R_q` 的编码。本实现把身份 SHAKE 到 `n` 个二进制系数（A 点每层 256 bit，C2 每层 2048 bit），而不是均匀环元素；原因是加密中的 `e1=-e0^T R` 只有在 `id_i·R_i` 保持短时才使解密残差落在 Babai 容差内。P1 的均匀 hash 身份探针实测残差约 2.06M，超过容差 242k，直接失败，见[P1 记录](../research/team-c-delivery/2026-10-18-lai-p1/README.md)。二进制选择把每层身份空间限制为 `2^n`；A 点为 `2^256`（理想哈希碰撞约 128 bit），C2 为 `2^2048`。这只是身份编码空间说明，不是整体安全等级；两种配置均接受每层最多 86 B 原始身份输入，且该编码不是原文逐字规定。
 
 ## 对象、wire 与绑定
 
@@ -40,8 +40,8 @@
 ## 随机源
 
 - 生产路径（`rng=None` 或 `SecureRandom`）使用 64 KiB 缓冲的 OS CSPRNG 字节流（`SecureRandom.read` → `secrets`/`os.urandom`），**不使用 Mersenne Twister**；采样仍经统一的 `randrange`/`random` 接口。
-- `DeterministicRandom` 只作为显式测试源；它同样走缓冲字节流，输出可复现，禁止用于生产密钥/签名。
-- `src/ibme/hibe/lai/engine.py` 与 `experiments/research/candidates/lai/backend.py` 均已修复；目标 CLI 收据应在修复后重跑，旧收据只证明功能路径。
+- `DeterministicRandom` 只作为显式测试源；它同样走缓冲字节流，输出可复现，禁止用于生产密钥/加密。
+- `src/ibme/hibe/lai/engine.py` 与 `experiments/research/candidates/lai/backend.py` 均已修复；目标 CSPRNG 探针及 CLI 生命周期已在修复后重跑，见[目标记录 §8.2、§10.1](../research/team-c-delivery/2026-10-18-lai-target-parameters/README.md)。pre-fix MT 收据保留为历史功能证据。
 
 ## 状态与并发
 
@@ -53,4 +53,5 @@
 - HIBE 的 `Derive=Extract` 原文只有一句；本实现采用“每层追加 `a_ID` 块、密钥线性增长”的显式补全，见 P1/P2 文档。
 - 采样为 Klein/GPV 陪集采样，**没有 perturbation**；功能通过不等于证明级 `ringSampleD` 分布。单位 tag 采样有 4096 次上限，`h_id+h'` 非单位时解密失败。
 - 本版本始终 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。PLWE/ring-SIS、HIBE 匿名性、两层模型映射、正式参数/估计和 Wang 组合前提均不因本契约升级。
-- 目标参数缩放、采样扰动、`n=1024` 性能、CI 套件与组合配对仍是后续工作；本契约只冻结当前 A 点研究后端。
+- A 点研究后端和显式 C2 目标配置均已实现；CI 覆盖 A 点两级生命周期、对象、登记、预检及候选参数表。C2 的真实生命周期、CLI 和错误身份/篡改结果属于独立探针记录，不冒充 CI 中的目标级重复运行。C2 不提升为默认；完整组合矩阵、残差统计和性能优化未完成。
+- 按项目 2026-10-18 工作前提，安全与身份匿名性以原文引用/工作假设推进，不另行安排补充证明，也不因未补证明阻塞组合、测试或交付。采样差异、参数估计范围和已知功能结果仍须随配置保留，不升级安全元数据。

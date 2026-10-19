@@ -1,0 +1,50 @@
+{
+  "id": "lai-ideal-hibe",
+  "layer": "primitive",
+  "environment": "sage",
+  "files": [
+    "tests/test_lai_hibe.py",
+    "tests/test_lai_p1.py",
+    "tests/test_lai_qualification.py",
+    "tests/test_lai_target_parameters.py"
+  ],
+  "status": "passed",
+  "security_claim": "none",
+  "combination_accepted": false,
+  "command": [
+    "~/miniconda3/envs/sage/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "tests/test_lai_hibe.py",
+    "tests/test_lai_p1.py",
+    "tests/test_lai_qualification.py",
+    "tests/test_lai_target_parameters.py",
+    "--junitxml=<repo>/build/outputs/lai-publication-2026-10-19/primitive/lai-ideal-hibe.xml"
+  ],
+  "exit_code": 0,
+  "counts": {
+    "tests": 57,
+    "passed": 57,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xfailed": 0
+  },
+  "skip_reasons": [],
+  "source_sha256": {
+    "tests/test_lai_hibe.py": "2f5acff089ed618faec5f4f75c257d89065e966a721ccd98ddbd889e8377933b",
+    "tests/test_lai_p1.py": "478e3f8b9871b01cddc6d28256497d7419afe9f500db13197632522fac79e6ea",
+    "tests/test_lai_qualification.py": "2a099c0511eecd99e71fb655068659139ba806611c739574696b64617c6266c0",
+    "tests/test_lai_target_parameters.py": "eb6c4a5dde7eb0b28a39df6dd1f577342ef8c145f325a81facc90b12f7f542d8",
+    "ci/run.py": "942c38b3c973aadad93332818a347705f3c36cd4e972230e13427d9ca54fc839",
+    "ci/suites.json": "179b6da1d5a444308539aa2fb91c6f5f610e880bd4c23e686ce7a8dbfce73f2d",
+    "src/ibme/assembly/catalog.py": "1a1d186d32e8d604522b764d5477b1569a2e75f1e58ee8985f34d28f013196fa"
+  },
+  "revision": "unavailable",
+  "working_tree_dirty": null,
+  "publication_redaction": "Local interpreter path replaced; original revision unavailable/dirty null retained."
+}

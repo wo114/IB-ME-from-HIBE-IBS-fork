@@ -6,8 +6,8 @@
 
 **2026-10-18 用户确认选 `c2-2048-2p38`：`n=2048, q=274877976577, k=39, l=2, p=2, σ=2, σ_r=1`。C3 不选，仅保留备选记录。**
 
-- PLWE 系数实例估计：**169.9 bit 经典 / 154.2 bit 量子**（固定 estimator、标准攻击；混合攻击未计入，见 §4）。
-- 两级生命周期在 Sage 里真实跑通一次（86 B 身份、32 B 消息）：setup 2.79 s、extract 42.21 s、derive 645.0 s、encrypt 121.04 s、decrypt 21.79 s；解密一致。
+- PLWE 系数实例估计：**169.9 bit 经典 / 154.2 bit 量子**（固定 estimator、§4 所列 GSA 攻击集，包含混合攻击；C2 的 LGSA 混合路径失败记录保留）。这是对应成本模型的估计，不是整体 HIBE 安全等级。
+- 两级生命周期已跑 4 个确定性种子和一次生产 CSPRNG 探针（86 B 身份、32 B 消息），并在随机源修复后重跑目标 CLI，见 §8、§10。首个历史探针为 setup 2.79 s、extract 42.21 s、derive 645.0 s、encrypt 121.04 s、decrypt 21.79 s，解密一致；该历史计时不冒充修复后的生产随机源实测。
 - 作为目标候选，它的对象很大：PK 1.62 MB、MSK 2.42 MB、SK1 18.8 MB、SK2 34.8 MB、内层 CT 1.23 MB；这是当前 A 点之外的“可用性代价”。
 - `c3-2048-2p39` 作为正确性余量更大的备选（164.1/148.9 bit），尚未跑生命周期；`c1-1024` 只有 74.2/67.3 bit，淘汰；A 点只有 11.7/10.6 bit，只能作研究基线。
 
@@ -43,7 +43,7 @@ C2 的实际单次运行（86 B 身份）：PK 1,617,969 B、MSK 2,416,693 B、S
 - C2 完整集最小值：**169.94 bit 经典 / 154.23 bit 量子**（仍是 `usvp`）；C3：164.10 / 148.93。hybrid 项没有把最小值拉低。
 - 结果 JSON：[security-estimate.json](security-estimate.json)。这是启发式筛查，不是 NIST 等级或 HIBE 安全证明。
 
-正确性余量代理：以 n=256 的 q=2^30 失败（残差/容差=1.126）和 q=2^31 通过为基线，按 `n^1.9`、`k^2`、`σ^3` 缩放；C2 代理余量 2.76，实测单次通过。它不是完整误差界证明。
+正确性余量代理：以 n=256 的 q=2^30 失败（残差/容差=1.126）和 q=2^31 通过为基线，按 `n^1.9`、`k^2`、`σ^3` 缩放；C2 代理余量 2.76。§8、§10 记录了后续真实运行；这些运行不把代理升级为完整误差界。
 
 ## 5. 选择理由
 
@@ -140,7 +140,7 @@ python -m ibme.cli decrypt --receiver alice --sender bob \
 
 ### 8.5 外层 wrong receiver / wrong sender
 
-脚本：[target_wrong_identity.sh](experiments/research/candidates/lai/target_wrong_identity.sh)；使用 C2 CSPRNG state/CT，三份独立 state 副本并行。
+脚本：[target_wrong_identity.sh](../../../../experiments/research/candidates/lai/target_wrong_identity.sh)；使用 C2 CSPRNG state/CT，三份独立 state 副本并行。该脚本需要已经完成目标生命周期、并含相应 Carol 接收者密钥的 state；原始 state 保持在仓库外，不随公开交付上传。
 
 | 用例 | CLI 退出 | 结果 | 耗时 |
 |---|---|---|---|
@@ -171,7 +171,7 @@ python -m ibme.cli decrypt --receiver alice --sender bob \
 - **容量足够**：C2 的 receiver 文件 20,439,553 B（含 IBS 密钥），HIBE SK1=18.82 MB；解密路径派生的 SK2=34.80 MB；C3 的 SK2 约 36.51 MB。64 MiB 对 C2/C3 都有余量；C4（约 67 MB）仍不支持。
 - **网络/DoS 风险已收口**：`HARD_CAPSULE_BYTES` 仍为 4 MiB，`HybridCiphertext` 总字段上限约 4 MiB capsule + 16 MiB body；2026-10-19 增加 `HARD_CIPHERTEXT_WIRE_BYTES=20 MiB`，`HybridCiphertext.from_bytes` 在解析前就按 20 MiB 拒绝超长输入，不再先接受 64 MiB。keys 仍用 64 MiB component/wire。
 - **内存峰值**：64 MiB component 的 frame/unframe/规范化可能同时持有 2–3 份，峰值约 128–192 MB；C2 目标 CLI 在本地 state 路径实际成功，但不应把该上限解释为可安全接收 64 MiB 远程密钥。
-- **测试**：`tests/test_hybrid_hibe.py tests/test_assembly.py` **65 passed**（含 ciphertext wire cap）；Lai CI 套件 **56 passed**；C2 目标 CLI 生命周期成功。没有刚好 64 MiB 边界的单元测试，64 MiB 仍是硬上限而非性能目标。
+- **历史测试**：`tests/test_hybrid_hibe.py tests/test_assembly.py` **65 passed**（含 ciphertext wire cap）；本次上限审查时 Lai CI 套件为 **56 passed**，随机源测试加入后的记录为 **57 passed**，见[P2 §6.5](../2026-10-18-lai-p2/README.md)和[C2 冻结记录](C2-FREEZE.md)。C2 目标 CLI 生命周期成功。没有刚好 64 MiB 边界的单元测试，64 MiB 仍是硬上限而非性能目标。
 - **其他后端**：只是放宽上限，不改变小参数后端的行为；A 点/默认 CLI 不受影响。
 
 ### 9.3 默认配置决策
@@ -183,10 +183,10 @@ python -m ibme.cli decrypt --receiver alice --sender bob \
 
 理由：
 
-1. C2 目标 CLI 生命周期约 13 分钟（decrypt 572 s），state 约 26 MB，SK2 约 35 MB；作为日常默认会显著拖慢 setup/发钥/解密。
+1. C2 修复后目标 CLI 生命周期约 13.5 分钟（decrypt 632 s；旧 MT 路径为 572 s），state 约 26 MB，SK2 约 35 MB；作为日常默认会显著拖慢 setup/发钥/解密。
 2. C2 已有 4 个种子，但没有逐种子残差/容差统计；外层 BYTEAUTH wrong receiver/sender 已通过，replay 仍未单独测。
 3. hybrid 攻击已用 GSA 完整集估计；LGSA 在 C2 不可用，模型差异仍是风险。
-4. Klein 无 perturbation，仍是功能级采样；目标 CLI 仍约 13 分钟、state 26 MB。
+4. Klein 无 perturbation，仍是功能级采样；目标 CLI 约 13.5 分钟、state 26 MB。
 
 重新评估默认化的最低条件：4 个种子已过（但没有残差统计）、外层 BYTEAUTH tamper/truncate 与 wrong receiver/sender 已过、hybrid GSA 已过、资源政策已补；仍差 replay 需求决策、残差统计和目标性能可接受性。在此之前，C2 是“可选目标配置”，不是默认。
 
@@ -222,25 +222,39 @@ python -m ibme.cli decrypt --receiver alice --sender bob \
 
 ## 11. 复现
 
-候选表与尺寸计算：
+以下命令从仓库根目录在 WSL 执行。候选表与尺寸计算不运行 estimator，也不生成密钥：
 
 ```sh
 PYTHONPATH=src:. python -m experiments.research.candidates.lai.target_parameters
 ```
 
-估计器运行使用固定 checkout（仓库外）：
-
-```sh
-# 模型：LWE.Parameters(n, m=(2+k)*n, q, Xs=D(2), Xe=D(4))
-# ADPS16 classical/quantum, lgsa, deny_list=("arora-gb","bkw",
-#   "bdd_hybrid","bdd_mitm_hybrid","dual_hybrid")
-```
-
-C2 生命周期探针已入仓：`experiments/research/candidates/lai/target_probe.py`。运行：
+估计器运行使用固定 checkout（仓库外），脚本检查提交必须为 `53da5982597709ba0fdf94ea37a84d822310fd84`。以下命令使用已有 checkout，不下载或安装依赖：
 
 ```sh
 PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python \
-  -m experiments.research.candidates.lai.target_probe
+  -m experiments.research.candidates.lai.security_estimate \
+  --estimator-path "$HOME/lattice-estimator" \
+  --output build/outputs/lai-security-estimate.json
 ```
 
-记录的单次运行使用 86 B 身份、32 B 消息、固定种子；不是 JUnit/CI 收据，也不是多随机种子统计。
+实际脚本分别尝试 `gsa`/`lgsa` 和经典/量子成本模型，`deny_list=("arora-gb", "bkw")`，保留 `bdd_hybrid`、`bdd_mitm_hybrid`、`dual_hybrid`。C2 的 LGSA 异常写入结果，§4 的估计取 GSA；早期排除混合攻击的筛查命令不再是当前结果的复现入口。
+
+C2 生命周期探针已入仓：[target_probe.py](../../../../experiments/research/candidates/lai/target_probe.py)。指定测试种子或生产随机源，每次分别运行一条完整生命周期：
+
+```sh
+PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python \
+  -m experiments.research.candidates.lai.target_probe --rng deterministic --seed 0
+PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python \
+  -m experiments.research.candidates.lai.target_probe --rng secure
+```
+
+探针使用 86 B 身份、32 B 消息；`--seed 0/1/2/3` 对应 §8.3 的四个固定测试种子，`--rng secure` 走生产 CSPRNG。历史计时保持原值，新运行不应期望逐秒或逐字节复现。该探针不属于默认 CI 的目标级生命周期测试，也不测完整残差分布。
+
+A 点、对象、公共登记和候选参数表使用仓库 CI 入口；不把这组测试写成 C2 多次真实运行：
+
+```sh
+PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python \
+  ci/run.py run lai-ideal-hibe --output build/outputs/lai-ci-run
+```
+
+本报告的 `/tmp` JSON、CLI state 和密文路径是历史本地证据位置，不是公开包内的附件；私钥/state 不随仓库发布。公开包包含源代码、复现命令、参数估计 JSON 及冻结摘要；目标负测试与 CLI 的逐次原始收据未在此目录归档。按当前项目约定，安全/匿名性以原文引用和工作假设推进，不另行补充安全证明；已记录的实现差异和 `none/false/false` 元数据保持不变。

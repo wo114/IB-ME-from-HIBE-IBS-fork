@@ -60,7 +60,7 @@ SECURITY_MODEL = dict(
     problem="PLWE coefficient LWE: n secret dimension, m=(l+k)n samples",
     secret="discrete Gaussian sigma",
     error="discrete Gaussian p*sigma",
-    cost_model="ADPS16 Core-SVP classical 0.292 / quantum 0.265, LGSA",
+    cost_model="ADPS16 Core-SVP classical 0.292 / quantum 0.265, GSA",
     attacks="usvp, bdd, bdd_hybrid, bdd_mitm_hybrid, dual, dual_hybrid (GSA)",
     excluded=("LGSA shape at C2: estimator math-domain error; GSA used for the complete "
               "set. arora-gb/bkw denied as in the pinned screens."),
