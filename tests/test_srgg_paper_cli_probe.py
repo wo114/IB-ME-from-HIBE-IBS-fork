@@ -30,7 +30,7 @@ def test_complete_report_b_selection_roundtrips_through_actual_cli_parser(tmp_pa
     args, selected = probe.setup_arguments(tmp_path/'state', write_suite(tmp_path, expected.to_dict()))
     actual = _suite_from_args(build_parser().parse_args(list(map(str, args))))
     assert actual.to_dict() == selected.to_dict() == expected.to_dict()
-    assert selected.digest == '8b9fef332ed20f8c34fc1eedb3f81b5f3b3236533e6bca7c07d6687ccf546c61'
+    assert selected.digest == probe.REPORT_B_DIGEST
 
 
 def test_historical_no_file_probe_keeps_original_budget(tmp_path):

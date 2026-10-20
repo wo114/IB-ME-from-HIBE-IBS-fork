@@ -11,6 +11,7 @@
 | 启动本地界面、查看Web预设和会话边界 | [Web演示说明](../src/ibme/webui/README.md) |
 | 看报告三代表和精确配置 | [三代表选择与冻结Suite](deliveries/2026-10-19-report-three-selection/README.md) |
 | 阅读／修改当前报告 | [报告说明](reports/2026-10-19-research-draft/README.md)、[LaTeX](reports/2026-10-19-research-draft/研究报告初稿.tex)、[PDF](reports/2026-10-19-research-draft/研究报告初稿.pdf) |
+| 核对本届官方报告格式和签字页 | [2026复赛官方模板及指纹](competition/2026/README.md) |
 | 理解模块与公共构造 | [架构](../ARCHITECTURE.md)、[复用指南](FRAMEWORK_REUSE_GUIDE.md) |
 | 接入原语、检查接口和验收边界 | [公共规范](../IMPLEMENTATION_SPEC.md)、[算法专属契约](specs/) |
 | 分工、文件认领和交接 | [协作流程](../AI_WORKFLOW.md)、[三人计划](workplans/三人方案分工与统一框架交付.md)、[仓库规则](../AGENTS.md) |

@@ -12,6 +12,8 @@ import time
 from .c_framework_cli_probe import ALICE, BOB, CAROL, EVE, command, replay, snapshot
 
 
+REPORT_B_DIGEST = '8b9fef332ed20f8c34fc1eedb3f81b5f3b3236533e6bca7c07d6687ccf546c61'
+
 def require(condition, message):
     if not condition:
         raise ValueError(message)
@@ -32,6 +34,7 @@ def setup_arguments(state, suite_file=None):
     if suite_file is None:
         return args, None
     expected = SuiteConfig.from_json(Path(suite_file).read_bytes())
+    require(expected.digest == REPORT_B_DIGEST, 'not the current frozen report B Suite')
     raw = expected.to_dict()
     require(raw['hibe'] == 'latte' and raw['ibs'] == 'srgg2025-paper'
             and raw['signature_format'] == 'compact' and raw['transport'] == 'hybrid'

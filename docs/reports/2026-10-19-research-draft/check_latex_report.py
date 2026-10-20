@@ -1,7 +1,8 @@
-"""Check that the current LaTeX report matches the frozen three-suite record.
+"""Check the LaTeX report against the frozen suites and official 2026 template.
 
-This is a read-only consistency check.  It does not run cryptographic code and
-does not turn functional evidence into a security proof.
+This is a read-only consistency and release-hygiene check.  It does not run
+cryptographic code, replace a manual anonymity review, or turn functional
+evidence into a security proof.
 """
 
 from __future__ import annotations
@@ -25,6 +26,7 @@ SELECTION = (
     / "2026-10-19-report-three-selection"
     / "selection.json"
 )
+TEMPLATE_FACTS = ROOT / "docs" / "competition" / "2026" / "template-facts.json"
 
 
 class Checks:
@@ -46,12 +48,57 @@ def main() -> int:
         action="store_true",
         help="also require a nontrivial PDF no older than the LaTeX source",
     )
+    parser.add_argument(
+        "--submission-ready",
+        action="store_true",
+        help="require the platform work number and a current PDF in addition to draft checks",
+    )
     args = parser.parse_args()
 
     checks = Checks()
     text = SOURCE.read_text(encoding="utf-8")
     raw_selection = SELECTION.read_bytes()
     selection = json.loads(raw_selection)
+    template_facts = json.loads(TEMPLATE_FACTS.read_text(encoding="utf-8"))
+
+    checks.expect(
+        "official template schema",
+        template_facts.get("schema") == "IBME-OFFICIAL-COMPETITION-TEMPLATE/1",
+        str(template_facts.get("schema")),
+    )
+    imported_templates = template_facts.get("imported_files", [])
+    checks.expect("two official blank templates", len(imported_templates) == 2)
+    for item in imported_templates:
+        relative = item.get("repository_path", "")
+        path = ROOT / relative
+        checks.expect(f"official file exists: {relative}", path.is_file(), str(path))
+        if not path.is_file():
+            continue
+        payload = path.read_bytes()
+        checks.expect(
+            f"official file size: {relative}",
+            len(payload) == item.get("bytes"),
+            f"{len(payload)} != {item.get('bytes')}",
+        )
+        checks.expect(
+            f"official file digest: {relative}",
+            hashlib.sha256(payload).hexdigest() == item.get("sha256"),
+        )
+
+    official_layout = template_facts.get("report_template_layout", {})
+    logo_path = ROOT / official_layout.get("logo_repository_path", "missing")
+    checks.expect("official report logo exists", logo_path.is_file(), str(logo_path))
+    if logo_path.is_file():
+        logo_bytes = logo_path.read_bytes()
+        checks.expect(
+            "official report logo size",
+            len(logo_bytes) == official_layout.get("logo_bytes"),
+            str(len(logo_bytes)),
+        )
+        checks.expect(
+            "official report logo digest",
+            hashlib.sha256(logo_bytes).hexdigest() == official_layout.get("logo_sha256"),
+        )
 
     checks.expect(
         "selection schema",
@@ -126,8 +173,46 @@ def main() -> int:
     contains("list of figures", r"\listoffigures")
     contains("list of tables", r"\listoftables")
     contains("competition-style running header", r"\fancypagestyle{mainmatter}")
-    contains("competition-style total page footer", r"\pageref*{LastPage}")
-    contains("last-page marker", r"\label{LastPage}")
+    contains(
+        "official generic running header",
+        r"\newcommand{\reportheader}{全国密码技术竞赛作品设计报告}",
+    )
+    for side in ("top", "bottom", "left", "right"):
+        contains(f"official {side} margin", f"{side}=20mm")
+    checks.expect("official page-only footer", r"\pageref*{LastPage}" not in text)
+    checks.expect("obsolete last-page marker absent", r"\label{LastPage}" not in text)
+    checks.expect(
+        "work number used on cover and information sheet",
+        text.count(r"\worknumberfield{") == 2,
+    )
+
+    work_number_match = re.search(
+        r"\\newcommand\{\\worknumber\}\{([^{}]*)\}",
+        text,
+    )
+    checks.expect("work number macro exists", work_number_match is not None)
+    if args.submission_ready:
+        work_number = work_number_match.group(1).strip() if work_number_match else ""
+        checks.expect(
+            "platform work number filled",
+            bool(work_number) and work_number not in {"待填写", "TODO", "TBD"},
+        )
+
+    anonymous_forbidden = (
+        "github.com/youzi258",
+        "youzi258",
+        "/home/",
+        r"C:\\Users\\",
+        "单位名称",
+        "领队老师",
+        "指导老师",
+        "团队成员",
+    )
+    for fragment in anonymous_forbidden:
+        checks.expect(
+            f"anonymous source excludes: {fragment}",
+            fragment not in text,
+        )
     checks.expect(
         "figures numbered within chapters",
         r"\counterwithout{figure}{chapter}" not in text,
@@ -236,6 +321,16 @@ def main() -> int:
         evidence_rows == [f"E{i:02d}" for i in range(1, 20)],
         repr(evidence_rows),
     )
+    evidence_paths = re.findall(
+        r"\\evidenceitem\{[^{}]*\}\{([^{}]+)\}",
+        text,
+    )
+    checks.expect("twenty-four repository-relative evidence paths", len(evidence_paths) == 24)
+    for relative in evidence_paths:
+        checks.expect(
+            f"evidence path exists: {relative}",
+            relative.startswith("docs/") and (ROOT / relative).is_file(),
+        )
     bibliography = [
         int(number)
         for number in re.findall(
@@ -277,16 +372,24 @@ def main() -> int:
     for phrase in stale_phrases:
         checks.expect(f"stale phrase absent: {phrase}", phrase not in text)
 
-    if args.require_pdf:
+    if args.require_pdf or args.submission_ready:
         checks.expect("PDF exists", PDF.is_file(), str(PDF))
         if PDF.is_file():
             pdf_bytes = PDF.read_bytes()
             checks.expect("PDF header", pdf_bytes.startswith(b"%PDF-"))
             checks.expect("PDF has nontrivial size", len(pdf_bytes) > 100_000, str(len(pdf_bytes)))
+            pdf_inputs = [SOURCE]
+            pdf_inputs.extend(HERE / relative for relative in figure_paths)
             checks.expect(
-                "PDF no older than source",
-                PDF.stat().st_mtime_ns >= SOURCE.stat().st_mtime_ns,
+                "PDF no older than LaTeX and figures",
+                PDF.stat().st_mtime_ns
+                >= max(path.stat().st_mtime_ns for path in pdf_inputs if path.is_file()),
             )
+            for fragment in (b"github.com/youzi258", b"youzi258", b"/home/"):
+                checks.expect(
+                    f"PDF bytes exclude anonymous token: {fragment.decode()}",
+                    fragment not in pdf_bytes,
+                )
 
     if checks.failures:
         print(f"LaTeX report validation failed: {len(checks.failures)}/{checks.count} checks")

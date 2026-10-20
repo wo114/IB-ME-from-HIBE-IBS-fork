@@ -1,17 +1,18 @@
 % !TeX program = xelatex
 % Primary editable source. Initial body migrated from PR66 db086c7.
 % Build from this directory with: tectonic 研究报告初稿.tex
-% Competition-report layout follows the two archived 2025 exemplars.
+% Competition-report layout follows the official 2026 template; the archived
+% 2025 exemplars are used only as secondary references for content structure.
 % Requires the existing figures/ directory. No Word conversion is used.
 \documentclass[UTF8,a4paper,12pt,oneside,openany,fontset=fandol]{ctexrep}
 \usepackage[
-  top=25mm,
-  bottom=24mm,
-  left=25mm,
-  right=25mm,
+  top=20mm,
+  bottom=20mm,
+  left=20mm,
+  right=20mm,
   headheight=15pt,
-  headsep=7mm,
-  footskip=12mm
+  headsep=5mm,
+  footskip=10mm
 ]{geometry}
 \usepackage{amsmath,amssymb,graphicx,longtable,tabularx,array,booktabs,alltt,needspace}
 \usepackage[table]{xcolor}
@@ -22,6 +23,10 @@
 \newcommand{\reporttitle}{基于多类格困难假设的抗量子身份基匹配加密通用设计与优化实现}
 \newcommand{\competitiontitle}{2026年第十一届全国密码技术竞赛作品设计报告}
 \newcommand{\reportdate}{2026年10月20日}
+% The competition platform assigns this value. Keep empty in review drafts and
+% set it exactly once before running the submission-ready check.
+\newcommand{\worknumber}{}
+\newcommand{\worknumberfield}[1]{\underline{\makebox[#1][c]{\worknumber}}}
 \hypersetup{
   pdftitle={\reporttitle},
   pdfsubject={\competitiontitle},
@@ -44,7 +49,8 @@
 \setcounter{tocdepth}{2}
 \renewcommand{\listfigurename}{图目录}
 \renewcommand{\listtablename}{表目录}
-\newcommand{\reportheader}{基于多类格困难假设的抗量子身份基匹配加密通用设计与优化实现}
+\newcommand{\reportheader}{全国密码技术竞赛作品设计报告}
+\newcommand{\evidenceitem}[2]{\noindent #1\par{\noindent\scriptsize\color{black!70}\nolinkurl{#2}\par}\smallskip}
 \fancypagestyle{frontmatter}{
   \fancyhf{}
   \renewcommand{\headrulewidth}{0pt}
@@ -54,7 +60,7 @@
 \fancypagestyle{mainmatter}{
   \fancyhf{}
   \fancyhead[C]{\small\songti\reportheader}
-  \fancyfoot[C]{\small 第\,\thepage\,页\quad 共\,\pageref*{LastPage}\,页}
+  \fancyfoot[C]{\small\thepage}
   \renewcommand{\headrulewidth}{0.4pt}
   \renewcommand{\footrulewidth}{0pt}
 }
@@ -69,7 +75,7 @@
 \noindent
 \begin{minipage}[t]{0.73\textwidth}
 \zihao{4}
-作品编号：\underline{\hspace{47mm}}\\[8mm]
+作品编号：\worknumberfield{47mm}\\[8mm]
 作品类别：\(\boxtimes\)软件设计\quad
 \(\square\)硬件制作\quad
 \(\square\)工程实践\\[3mm]
@@ -112,7 +118,7 @@
 \hline
 \centering\heiti\zihao{3}基本信息表\arraybackslash\\[1mm]
 \hline
-编号：\underline{\hspace{48mm}}\\
+编号：\worknumberfield{48mm}\\
 \hline
 作品题目：\reporttitle\\
 \hline
@@ -160,7 +166,7 @@
 \fancypagestyle{plain}{
   \fancyhf{}
   \fancyhead[C]{\small\songti\reportheader}
-  \fancyfoot[C]{\small 第\,\thepage\,页\quad 共\,\pageref*{LastPage}\,页}
+  \fancyfoot[C]{\small\thepage}
   \renewcommand{\headrulewidth}{0.4pt}
   \renewcommand{\footrulewidth}{0pt}
 }
@@ -323,7 +329,7 @@ C & Lai C2＋Sageloli RSIS v3 PARAM-I & 另一HIBE与原生环IBS目标规模 & 
 \endgroup
 A、B的LATTE参数为N=1024、q=68718428161、seed32模式，最多2个接收父身份、每父2个发送子身份。A的认证转换签名包含用户公钥、机构证书与消息签名，不能用底层ML-DSA单个签名大小代替完整IBS尺寸。[4,11,12]
 
-B采用SRGG论文PARAM-I：n=512、rank=2、p=16383、base=31、digits=2、Q=15744063，并冻结factor1和表格标准差解释。原文标称目标100 bit，并列出量子密钥恢复／伪造95／93 bit；这里只引用作者口径，不把它改写为完整IBME的统一安全等级。[6,E15]
+B采用SRGG论文PARAM-I，基础参数为n=512、rank=2、p=16383、base=31、digits=2。实现同时冻结Q=15744063、factor1和表格标准差解释。原文标称目标100 bit，并列出量子密钥恢复／伪造95／93 bit；这里只引用作者口径，不把它改写为完整IBME的统一安全等级。[6,E15]
 
 C采用Lai C2的n=2048、q=274877976577、k=39、l=2，与Sageloli PARAM-I的d=2048、k=65、l=132、q=\(3^{65}\)组合。该配置真实完成目标规模完整运行，但密钥、密文和委派成本高，定位是结构覆盖与资源边界而非性能冠军。[10,15,E16]
 
@@ -533,7 +539,7 @@ A、B进程树RSS采样最大值分别为480243712和506789888字节。C的诚�
 \section{Luo显式C64B补充}
 另有一组LATTE与Luo-C64B compact的完整运行，采用相同64字节身份和32字节应用消息、3套独立系统状态、9对热运行与9次恢复解密。热加密与解密中位数为0.548812和0.227047秒，完整wire为152225至152269字节，进程树RSS观测494772224字节。[E05]
 
-C64B参数为N=256、k=11、l=10、q=274877844481、\ensuremath{\eta}=1、\ensuremath{\kappa}=64、\(\gamma_1\)=190000、\(\gamma_2\)=60000000000、\(\gamma_3\)=27487784448、dropped\_bits=28，Extract与Sign上限各4096。另有固定测试随机源的34项功能验收，不能把这34项重复计为CSPRNG性能样本。该变体加密较默认研究档更慢，结果用于说明参数代价，不宣称加速或新增算法。
+C64B参数为N=256、k=11、l=10、q=274877844481、\ensuremath{\eta}=1、\ensuremath{\kappa}=64、\(\gamma_1\)=190000。该档还设置\(\gamma_2\)=60000000000、\(\gamma_3\)=27487784448、dropped\_bits=28，Extract与Sign上限各4096。另有固定测试随机源的34项功能验收，不能把这34项重复计为CSPRNG性能样本。该变体加密较默认研究档更慢，结果用于说明参数代价，不宣称加速或新增算法。
 
 \section{同参数部署消融}
 部署实验使用LATTE与BNN/ML-DSA-44完整组合，三路采用同一密码参数、同一三套已生成系统状态和同一原生构建。wheel在Windows和WSL目录中内容相同，仓库源码亦逐文件核对。每个状态按三路轮转并镜像执行，共18个进程块，每块5对操作，每路各30次完整加密与30次解密。[E11]
@@ -735,25 +741,25 @@ MP12研究变体、高基数参数、编码变化及同算法参数档不另计�
 \endfoot
 \bottomrule
 \endlastfoot
-E01 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-18-full-system-baseline/README.md}{MLDSA完整基线} & 版本输入计时尺寸与恢复 \\
-E02 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-18-full-system-falcon/README.md}{Falcon完整基线} & 同上 \\
-E03 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-18-full-system-luo/README.md}{Luo完整基线} & 同上 \\
-E04 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/deliveries/2026-10-18-main-showcase-cards/README.md}{三组参数卡}与\href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-18-full-system-luo/evidence/comparison.json}{比较JSON} & 三组Suite参数和统一统计 \\
-E05 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/deliveries/2026-10-18-ibs-inventory/README.md}{IBS接入盘点与C64B} & 实际默认入口与C64B完整运行 \\
-E06 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/team-c-delivery/2026-10-15-c-framework/README.md}{共同框架真实接入}与\href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/deliveries/2026-10-12-chkp-luo/README.md}{CHKP及Luo} & 真实配对与CLI边界 \\
-E07 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/team-b-delivery/2026-10-18-srgg-compact-benchmark/README_zh-CN.md}{SRGG compact与论文参数基准} & 单体采样签验恢复与编码 \\
-E08 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/ALGORITHM_CATALOG.md}{算法总表} & 19条路线和各独立交付入口 \\
-E09 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/team-a-delivery/2026-10-18-bounded-radix/README.md}{高基数有界运行}与\href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/deliveries/2026-10-18-pr43-48-review/README.md}{组件接收} & 小规模组件与目标投影 \\
-E10 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/team-a-delivery/2026-10-18-abb-tight-frontier/README.md}{ABB紧边界资源材料} & 公开参数算术与资源下界 \\
-E11 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-19-full-system-placement/README.md}{完整系统运行位置消融} & 三路完整计时与版本校验 \\
-E12 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/deliveries/2026-10-18-demo-acceptance/README.md}{演示实际验收}与\href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/deliveries/2026-10-19-pr-review/README.md}{后续审查} & Web与CLI及判定修订 \\
-E13 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-19-parameters/FooLi%E5%8F%82%E6%95%B0%E6%94%B9%E8%BF%9B%E6%90%9C%E7%B4%A2%E4%B8%8E128bit%E7%9B%AE%E6%A0%87%E5%8D%A1.md}{Foo-Li参数改进搜索}与\href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-19-parameters/fooli-improvement-search.json}{逐点结果} & 有限网格预筛、模型估计与候选目标卡 \\
-E14 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/README_zh-CN.md}{Sageloli环版论文参数实跑} & 论文两点独立实跑与边界 \\
-E15 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/main/docs/deliveries/2026-10-19-report-three-selection/README.md}{三代表选择、冻结Suite与机器记录} & A／B／C参数、容量、摘要、观测及剩余验收 \\
-E16 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/main/docs/research/2026-10-19-lai-c2-combinations/README.md}{Lai C2四组合完整收据}与\href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/main/docs/research/2026-10-19-sageloli-ring-integration/README.md}{Sageloli公共接入} & C的目标规模完整运行与LATTE桥接 \\
-E17 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/main/docs/deliveries/2026-10-19-project-admission/README.md}{已完成方案安全前提} & 已完成默认安全与已知反例单列 \\
-E18 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/main/docs/deliveries/2026-10-19-report-experiment-supplement/README.md}{同机实验主表与安装补测} & A／B各三根，三组64条CLI与3个内层负例 \\
-E19 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/main/docs/research/2026-10-19-primary-random-batch/README.md}{主展示随机批量验收} & 独立Xeon环境3根、12配对、60项检查 \\
+E01 & \evidenceitem{MLDSA完整基线}{docs/research/2026-10-18-full-system-baseline/README.md} & 版本输入计时尺寸与恢复 \\
+E02 & \evidenceitem{Falcon完整基线}{docs/research/2026-10-18-full-system-falcon/README.md} & 同上 \\
+E03 & \evidenceitem{Luo完整基线}{docs/research/2026-10-18-full-system-luo/README.md} & 同上 \\
+E04 & \evidenceitem{三组参数卡}{docs/deliveries/2026-10-18-main-showcase-cards/README.md}\evidenceitem{比较JSON}{docs/research/2026-10-18-full-system-luo/evidence/comparison.json} & 三组Suite参数和统一统计 \\
+E05 & \evidenceitem{IBS接入盘点与C64B}{docs/deliveries/2026-10-18-ibs-inventory/README.md} & 实际默认入口与C64B完整运行 \\
+E06 & \evidenceitem{共同框架真实接入}{docs/research/team-c-delivery/2026-10-15-c-framework/README.md}\evidenceitem{CHKP及Luo}{docs/deliveries/2026-10-12-chkp-luo/README.md} & 真实配对与CLI边界 \\
+E07 & \evidenceitem{SRGG compact与论文参数基准}{docs/research/team-b-delivery/2026-10-18-srgg-compact-benchmark/README_zh-CN.md} & 单体采样签验恢复与编码 \\
+E08 & \evidenceitem{算法总表}{docs/ALGORITHM_CATALOG.md} & 19条路线和各独立交付入口 \\
+E09 & \evidenceitem{高基数有界运行}{docs/research/team-a-delivery/2026-10-18-bounded-radix/README.md}\evidenceitem{组件接收}{docs/deliveries/2026-10-18-pr43-48-review/README.md} & 小规模组件与目标投影 \\
+E10 & \evidenceitem{ABB紧边界资源材料}{docs/research/team-a-delivery/2026-10-18-abb-tight-frontier/README.md} & 公开参数算术与资源下界 \\
+E11 & \evidenceitem{完整系统运行位置消融}{docs/research/2026-10-19-full-system-placement/README.md} & 三路完整计时与版本校验 \\
+E12 & \evidenceitem{演示实际验收}{docs/deliveries/2026-10-18-demo-acceptance/README.md}\evidenceitem{后续审查}{docs/deliveries/2026-10-19-pr-review/README.md} & Web与CLI及判定修订 \\
+E13 & \evidenceitem{Foo-Li参数改进搜索与逐点结果}{docs/research/2026-10-19-parameters/fooli-improvement-search.json} & 有限网格预筛、模型估计与候选目标卡 \\
+E14 & \evidenceitem{Sageloli环版论文参数实跑}{docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/README_zh-CN.md} & 论文两点独立实跑与边界 \\
+E15 & \evidenceitem{三代表选择、冻结Suite与机器记录}{docs/deliveries/2026-10-19-report-three-selection/README.md} & A／B／C参数、容量、摘要、观测及剩余验收 \\
+E16 & \evidenceitem{Lai C2四组合完整收据}{docs/research/2026-10-19-lai-c2-combinations/README.md}\evidenceitem{Sageloli公共接入}{docs/research/2026-10-19-sageloli-ring-integration/README.md} & C的目标规模完整运行与LATTE桥接 \\
+E17 & \evidenceitem{已完成方案安全前提}{docs/deliveries/2026-10-19-project-admission/README.md} & 已完成默认安全与已知反例单列 \\
+E18 & \evidenceitem{同机实验主表与安装补测}{docs/deliveries/2026-10-19-report-experiment-supplement/README.md} & A／B各三根，三组64条CLI与3个内层负例 \\
+E19 & \evidenceitem{主展示随机批量验收}{docs/research/2026-10-19-primary-random-batch/README.md} & 独立Xeon环境3根、12配对、60项检查 \\
 \end{longtable}
 \endgroup
 
@@ -830,8 +836,7 @@ E18另外完成64条精确安装CLI及3个完整协议内层负例。每个应�
 
 \begingroup\small\noindent [15] Russell W. F. Lai, Henry K. F. Cheung, Sherman S. M. Chow. Trapdoors for Ideal Lattices with Applications. Inscrypt 2014, LNCS 8957:239--256, 2015. DOI 10.1007/978-3-319-16745-9\_14. 本文使用本地归档的完整PDF及\S{}5.1--5.2与Theorem 10。\par\endgroup
 
-以上文献的归档版本与文件指纹以\href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/papers/index.md}{论文库索引}为准。正式成稿还需统一文献格式并完成第三方代码与许可证清单；当前引用不替代该清单。
+以上文献的归档版本与文件指纹以支撑材料中的\nolinkurl{papers/index.md}为准。正式成稿还需统一文献格式并完成第三方代码与许可证清单；当前引用不替代该清单。
 \par\endgroup
 
-\label{LastPage}
 \end{document}
