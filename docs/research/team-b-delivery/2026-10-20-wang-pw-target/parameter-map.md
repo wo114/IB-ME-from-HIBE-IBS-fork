@@ -2,7 +2,7 @@
 
 本表固定 Wang 等 ePrint 2022/1718 仓库论文版本：`papers/2022_identity_matchmaking_wang.pdf`，PDF 第7–8页 Lemma 2.5–2.7、第16页 Figure 4 与 Parameter Selection、第17–19页 Theorem 5.1/算法B；外层采用已有 Pan–Wagner ROM 转换与固定发钥服务语义。按当前 AGENTS 引用所选论文，不另开基础安全证明。以下有限工程选取不冒充原文给出的数值参数表。
 
-**当前实现范围（2026-10-20）**：独立[`wang-pw-target`](../../../../src/ibme/ibs/wang_pw_target/)已实现五方法、H1/H2/PW盐绑定、固定整数范数验签、C++有限Gaussian/GPV、规范对象、固定发行服务、registry和CLI。服务器已有n2/q257三根、n4/q4294967291磁盘恢复及182项测试收据；本地另完成真实服务的跨进程初发/零熵复用/恢复签验，以及真实LATTE作者参数＋Wang debug的16步独立进程CLI，无msk的角色目录可独立新加密或恢复解密。详见[本批交付](../../2026-10-19-wang-pw-target-s0-4/README_zh-CN.md)与[独立进程组合测试](../../../../tests/test_wang_pw_target_combination_process.py)。**新后端n512主档尚未启动，正式参数未准入**；PR67旧n512数值探针与旧q17后端均保持各自历史范围，不迁移计时、范数或153.70估计，也不新增算法计数。
+**当前实现范围（2026-10-20）**：独立[`wang-pw-target`](../../../../src/ibme/ibs/wang_pw_target/)已实现五方法、H1/H2/PW盐绑定、固定整数范数验签、C++有限Gaussian/GPV、规范对象、固定发行服务、registry和CLI。服务器已有n2/q257三根、n4/q4294967291磁盘恢复及182项测试收据；本地另完成真实服务的跨进程初发/零熵复用/恢复签验，以及真实LATTE作者参数＋Wang debug的16步独立进程CLI，无msk的角色目录可独立新加密或恢复解密。详见[本批交付](../../2026-10-19-wang-pw-target-s0-4/README_zh-CN.md)与[独立进程组合测试](../../../../tests/test_wang_pw_target_combination_process.py)。**新后端n512单根主档于2026-10-20北京时间09:53启动，尚无最终结果，正式参数未准入**；PR67旧n512数值探针与旧q17后端均保持各自历史范围，不迁移计时、范数或153.70估计，也不新增算法计数。
 
 ## 原文、工程参数与历史探针
 
@@ -75,6 +75,8 @@ beta_SIS = ceil(sqrt(1+L_Rhat²) * (ceil(B_verify)+B_reference)).
 这次调用仅筛查上述**配置参考包络**与乐观谱界1；`uniform_beta_established=false`、`reference_envelope_justified_uniformly=false`，没有把单次签名范数当统一β，也没有排除另有来源的更紧包络。该版本的`red_shape_model`对norm2被忽略，不能把lgsa名称当成欧氏分支额外生效的形状模型。此本地收据不证明服务器新增工具已经安装验收，也不包含n512根/发钥/签名运行。
 
 ## 内存规划与实际验收分开
+
+2026-10-20 服务器以冻结源码 `b47cc6a` 补齐完整环境及 231 项回归，当前[服务器条件筛查回执](../../2026-10-19-wang-pw-target-s0-4/evidence/server-resume/parameter-screen.json)绑定该版本真实文件字节，收到同一 β≥q 输入拒绝；历史本地回执保留其原始哈希。n512 单根主档随后于北京时间 09:53 启动，16 线程、110 GiB / 21600 s，尚无最终结果；启动不意味着参数准入。
 
 主档单个用户完整basis为18 GiB，主basis为8 GiB；紧凑主秘密约576 MiB、紧凑用户密钥约2112 MiB（均再加规范头与参数），签名精确393320 B。小编码不消除GPV准备阶段的稠密basis/QR内存。
 

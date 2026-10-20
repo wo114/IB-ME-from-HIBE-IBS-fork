@@ -1,10 +1,12 @@
 # Wang–PW s0=4 独立研究后端与服务器验收
 
-**WIP 检查点（2026-10-20）：SSH 已恢复，全部依赖已补齐；正在同步冻结代码并重新验收完整环境，n512 尚未启动。未推送、未建 PR。**
+**WIP 检查点（2026-10-20）：完整环境与服务器 231 项回归通过；n512 单根主档于北京时间 09:53 启动，尚无最终结果。未推送、未建 PR。**
 
-本批已交付独立 `wang-pw-target` 后端、C++ 有限整数 Gaussian/GPV 采样、规范对象、固定发钥服务、公共装配/CLI、参数审计和可监控的生命周期驱动。服务器核心依赖与 Wang/LATTE 两套 native 验证后，完成 **182 项测试**、q257 三个独立生产随机根，以及 q32 小维数的真实磁盘恢复。**n512 主档没有启动**，其完整生命周期、耗时和峰值内存仍待回填。
+本批已交付独立 `wang-pw-target` 后端、C++ 有限整数 Gaussian/GPV 采样、规范对象、固定发钥服务、公共装配/CLI、参数审计和可监控的生命周期驱动。早批服务器 182 项与小参数回执保留；当前冻结 `b47cc6a` 完成 **231 passed / 0 failed / 0 errors / 0 skipped，61.37 s**、q257 三个生产随机根，以及 q32 磁盘恢复后的独立进程签名。**n512 已启动但尚未完成**，其完整生命周期、最终耗时和峰值内存仍待回填。
 
 此前公网 SSH 连续超时发生在 n512 启动前。2026-10-20 连接恢复后，已补齐固定 `lattice-estimator` 并通过 Sage 导入，已有 Sage 环境采用 install 补齐，没有重建。历史 schema-1 `environment-ready.json` 只证明先前核心环境；完整环境使用新 schema-2 回执，须另核实际源码、归档、依赖锁和 native，不能沿用旧 ready 标记启动主档。
+
+当前证据位于 [server-resume](evidence/server-resume/)：[环境](evidence/server-resume/environment-ready.json)、[源码传输](evidence/server-resume/source-transfer.json)、[JUnit](evidence/server-resume/server-tests.xml)、[启动前核对](evidence/server-resume/target-launch-preflight.json)、[本地复核](evidence/server-resume/review.json)与[23文件哈希清单](evidence/server-resume/manifest.json)。服务器解包的 3297 文件与归档逐项一致，18 份环境绑定源码与 Git `b47cc6a` 字节一致。`target-initial-running.json` 和 `target-supervisor-initial.json` 只是在 09:55 取得的 Setup 运行快照，不是完成回执，不据其早期 RSS 推断最终峰值。
 
 主档是本项目选定的 `s0=4,n=512,q=4294967291` 有限研究候选，**不是原论文给出的数值参数表，也不是已准入安全参数**。全部代码与回执保持：
 
@@ -25,6 +27,10 @@ nist_security_category=null
 | `fffc4f0` — `feat(wang-pw): persist fixed target issuance and audit parameter limits` | 固定发行服务、公共 selector、CLI 状态保护、参数审计与论文对应材料 |
 | `9135ec8` — `test(wang-pw): add monitored lifecycle and complete task environment` | 环境安装/验收工具、分阶段运行与 RSS 记录、真实 LATTE 组合测试及补充故障测试 |
 | `8373da5` — `feat(wang-pw): supervise target runs with explicit resource limits` | 外部时间/进程树 RSS 监督器，信号与异常清理、公开退出回执及 10 项真实子进程测试 |
+| `5d93c5a` — `fix(wang-pw): make environment recovery and readiness verifiable` | 保留已有 Sage、可续取冻结 estimator、原子发布 schema-2 ready 与 15 项故障测试 |
+| `8a157db` — `test(wang-pw): verify fixed-source SIS rejection and native service recovery` | 实际条件 SIS 工具拒绝、显式库存路径、真实发钥服务跨进程零熵复用 |
+| `8abe24c` — `feat(wang-pw): sign restored keys in isolated interpreter and retain safe failures` | 独立恢复签名、公开失败白名单、真实独立进程组合；保留早期 debug GS 拒绝 |
+| `b47cc6a` — `docs(wang-pw): distinguish target implementation and pending server acceptance` | 本次服务器运行源码冻结点；后续回执不追写为新源码 |
 
 实现见 [目标后端](../../../src/ibme/ibs/wang_pw_target/)、[接口契约](../../specs/wang-pw-target-ibs.md)、[参数与论文对应](../team-b-delivery/2026-10-20-wang-pw-target/parameter-map.md)；实测驱动和完整操作说明见 [实验目录](../../../experiments/research/wang_pw_target/README.md)。本目录日期为本批服务器交付日期，保留既有参数对应文档的路径。
 
@@ -111,11 +117,11 @@ w(x)=floor(2^192 * exp(-((x-c)^2-dist(c,Z)^2)/(2*sigma^2))).
 
 当前配置采用与公开验签门相同的参考包络时，即使乐观投影谱界取 1，也得到 `beta=5260239171 >= q=4294967291`，已进入平凡 SIS 区，因此这个已配置参考包络不合格。[本地真实调用](evidence/local/parameter-screen.json)已收到固定 estimator 的预期输入拒绝，成本与位数均为 null；该历史回执绑定调用当时的文件字节，后续库存路径支持修订不追写旧哈希。审计没有据此宣布所有可能更紧包络均不可能，也没有把源码能运行写成参数已完成。按正确统一 beta、根列数 m 和冻结成本模型的参数决策仍未交付；本批不安排新增基础安全证明来替代这一事实。
 
-## 7. 已验证核心环境、待完成工具与已有实测
+## 7. 历史核心环境与当前完整验收
 
 [环境回执](evidence/environment/environment-ready.json) 在源码 `9135ec8` 下先完成 Python/Sage 导入、Wang native ABI/哈希与 LATTE metadata 检查，随后才执行测试和算法。回执中的 `cryptographic_experiments_run=false` 描述环境准备步骤本身；后续算法证据另存于 `evidence/public/`。
 
-该历史核心回执的 `status=ready` 不表示新增后的全部任务环境已经完成。冻结 `lattice-estimator` 版本为 `53da5982597709ba0fdf94ea37a84d822310fd84`；2026-10-20 服务器已完成版本与导入校验。源码冻结后的完整 schema-2 环境验收、服务器新回归与 n512 结果分别留证，不以下载或导入成功替代正确 SIS 输入审计；本地已有的条件输入拒绝也不是完整攻击成本估计。
+该历史核心回执的 `status=ready` 不表示新增后的全部任务环境已经完成。冻结 `lattice-estimator` 版本为 `53da5982597709ba0fdf94ea37a84d822310fd84`；2026-10-20 服务器已完成完整 schema-2 验收和 231 项回归。当前[服务器工具回执](evidence/server-resume/parameter-screen.json)真实收到同一配置参考包络 β≥q 的预期拒绝，记录当前源哈希；这不是完整攻击成本估计，不产生经典/量子安全位数。
 
 | 项目 | 服务器记录 |
 |---|---|
@@ -124,20 +130,22 @@ w(x)=floor(2^192 * exp(-((x-c)^2-dist(c,Z)^2)/(2*sigma^2))).
 | 主要运行时 | Sage 10.9，Python 3.12.15，NumPy 2.5.4，SciPy 1.18.1 |
 | 辅助包 | pytest 9.1.1，psutil 7.2.2，gmpy2 2.3.2，cryptography 50.0.2 |
 | 依赖锁 | [venv requirements](evidence/environment/requirements.lock.txt)、[Sage 显式锁](evidence/environment/sage-explicit.lock.txt)；锁哈希及两 native 源/二进制哈希见环境回执 |
-| 冻结 lattice-estimator | 2026-10-20 服务器固定版本/导入已通过；完整新 ready 回执另存，现有历史核心回执不包含此项 |
+| 冻结 lattice-estimator | 2026-10-20 完整新 ready 已含固定版本/导入；真实条件输入筛查预期拒绝，未给正式成本 |
 
 [pytest 日志](evidence/public/server-tests.log) 为 **182 passed in 16.88s**；[JUnit](evidence/public/server-tests.xml) 精确记录 182 项、0 failures、0 errors、0 skipped。它覆盖 9 个 `test_wang_pw_target_*` 文件和 `test_cli_selection.py`；未把 n512 Setup 作为常规单测执行。
 
 资源监督器在本地规定的 WSL Sage 环境中与 CLI registration 一起复跑：
 `python -B -m pytest -q -p no:cacheprovider tests/test_wang_pw_target_runner.py tests/test_wang_pw_target_registration.py`，
 **25 passed in 21.36s**（其中 runner 10 项）。它覆盖正常/非零退出、时间与整树 RSS 超限、TERM 后 KILL、残留后代、信号及监控异常清理。
-这些结果与服务器 182 项存在重叠，不相加作为独立覆盖数；监督器还未上传服务器验收。
+这些结果与早批服务器 182 项和当前 231 项存在重叠，不相加作为独立覆盖数。当前 231 项包含监督器及新增独立进程测试；另有 [debug-supervisor](evidence/server-resume/debug-supervisor/receipt.json) 对真实 q32 生命周期进行整树资源监督，正常退出且后代清理为零。
 
 | 独立算法实测 | n / q；重复 / 恢复 | driver 总时长 | 采样 RSS 峰值 | 结果 |
 |---|---|---:|---:|---|
 | [debug-q257-three.json](evidence/public/debug-q257-three.json) | 2 / 257；3 个顺序 CSPRNG 新根 / 内存规范往返 | 0.412003428 s | 69345280 B | 3 根均完成全部 6 阶段，观测公钥各异 |
 | [debug-q32-disk.json](evidence/public/debug-q32-disk.json) | 4 / 4294967291；1 个 CSPRNG 新根 / 私密磁盘实际读回 | 0.352356696 s | 74903552 B | 6 阶段全部通过 |
-| n512 主档 | 512 / 4294967291 | **待运行/回填** | **待运行/回填** | **没有启动**；连接及完整环境校验完成后再运行 |
+| 当前 [q257 三根](evidence/server-resume/debug-q257-three.json) | 2 / 257；3 个顺序 CSPRNG 新根 / 内存规范往返 | 见回执 | 见回执 | 当前冻结代码全部阶段通过；恢复仍为同进程 |
+| 当前 [q32 独立恢复](evidence/server-resume/debug-q32-independent.json) | 4 / 4294967291；1 个 CSPRNG 新根 / 私密磁盘实际读回 | 0.892022932 s | 148267008 B | 六阶段全过，恢复签名在新解释器执行；子进程自身 RSS 74543104 B |
+| n512 主档 | 512 / 4294967291；单个新 CSPRNG 根 | **运行中/待最终回填** | **待最终回填** | 2026-10-20 09:53 启动；110 GiB / 21600 s / 16 线程；没有隐藏重抽 |
 
 这两份 debug 实测均为身份 64 B、消息 32 B、4 线程、`OMP_NUM_THREADS=4`、`OPENBLAS_NUM_THREADS=4`。每根依次执行 Setup、Extract、Sign、公开 Verify/负例、Restore、Sign-restored。q32 恢复由真实落盘的 PK/MSK/SK/签名规范编码完成；秘密文件保留在服务器仓库外的私密目录，不加入 Git 证据。两份回执均记录源码运行期间未变。
 
@@ -154,11 +162,13 @@ PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest \
 
 算法复跑使用 `experiments.research.wang_pw_target.run_lifecycle` 的 `debug-q257 --repetitions 3` 与 `debug-q32 --private-state <仓库外私密目录>`；按[驱动说明](../../../experiments/research/wang_pw_target/README.md)选择全新的输出与 phase-log 文件，不覆盖既有证据，不传固定测试种子即可保持生产 CSPRNG 模式。
 
-## 8. n512 验收待回填
+## 8. n512 验收进行中
 
 稠密用户 basis 单份约 18 GiB，根 basis 单份约 8 GiB；紧凑对象不消除 QR 工作区。本档审计规划约 123.314 GiB，含多个用户方阵、临时缓冲与 20% 余量，**不是实测上界**。服务器实际总 RAM 约 123.666 GiB，尚需扣除操作系统和其它进程，不能仅凭“128G”规格判定足够。
 
-SSH 已恢复且新增工具已安装；接下来核验冻结源码的完整 schema-2 环境，再启动受监控的 n512。目标运行应串行记录全部阶段、实际参数/线程、明确失败与资源门、规范磁盘恢复、独立进程恢复后签名、对象实际字节数、总时长和 RSS，并保留外层 `/usr/bin/time -v` 高水位。n512 结果、日志入口及其源版本由统筹运行后在此回填；失败阶段同样保留，不由小维数结果代替。目标规模资源验收与正式参数决策分开，功能测试和有限攻击未成功不构成安全证明或 NIST 等级结论。
+完整 schema-2 环境、源码与归档/锁/native、231 项回归、生产随机 debug 生命周期和独立恢复签名均通过后，已启动受监控的 n512。目标运行串行记录全部阶段、实际参数/线程、明确失败与资源门、规范磁盘恢复、独立进程恢复后签名、对象实际字节数、总时长和 RSS；外层 `/usr/bin/time -v` 原始文件保留服务器，公开副本去掉含私密路径的完整 argv 行。n512 最终结果待回填；失败阶段同样保留，不由小维数结果代替。目标规模资源验收与正式参数决策分开，功能测试和有限攻击未成功不构成安全证明或 NIST 等级结论。
+
+本地独立进程测试首跑曾有一个生产随机 n2/q32 根被既定 GS 门 32 拒绝：[原输出脱敏副本](evidence/local/independent-first-run.log)、[失败记录](evidence/local/independent-first-run.json)。首跑未启 JUnit，未补造原 JUnit。接口测试的发钥 fixture 后改为已有明确测试种子，签名子进程仍为生产 CSPRNG；本次服务器整套 231 项通过不抹去该失败，也不把 debug 根拒绝称为 n512 失败。
 
 已选定首轮单根监督限额为 **110 GiB / 21600 s**，采样进程树 RSS，超限先 TERM、最多等待 60 s 后 KILL；这是运行资源门，不是所需时间或内存的估计。启动命令模板如下，须先完成环境准备并选择全新公开输出目录：
 
