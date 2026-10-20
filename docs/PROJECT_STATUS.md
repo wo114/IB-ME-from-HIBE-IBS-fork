@@ -1,5 +1,7 @@
 # 当前进度与并行任务
 
+**Wang n512失败与QR修复（2026-10-20，WIP）**：[最终结果与诊断](research/2026-10-19-wang-pw-target-s0-4/README_zh-CN.md#12-n512-sign-失败与方阵-qr-修复)：原`b47cc6a`单根Setup536.626s、Extract5431.945s通过，Sign在152.287s后MemoryError，总6121.073s；六阶段未完成。生命周期采样峰值39.011GiB，未触及监督器门；13份运行源码未变。找到SciPy1.18.1 FULL QR的LP64缓冲计数缺陷及额外18GiB缓冲，本地`24f8207`改方阵economic，28项回归通过，尚无目标修复实跑，不能唯一归因原异常或保证资源足够。原PK/SK保留服务器，失败回执不改写；用户要求继续后，仅原钥续签/恢复/服务/组合/CLI串行推进，不重新Setup/Extract，未推送或建PR。参数beta>=q拒绝与none/false/false/null不变。下列Wang运行中描述均为原运行早期快照，由本段最终失败结果覆盖。
+
 **Wang验收口径与包检查（2026-10-20，本地`8d87bce/111cc36`）**：[最新检查](research/2026-10-19-wang-pw-target-s0-4/README_zh-CN.md#11-内存观测口径ci-选择与-wheel-解包检查)将单条RSS观测与完整内存验收分开，旧目标验收字段改为null/not-performed；审计26项通过。公共角色导入专项已加入Wang Sage CI选择，CI配置25项通过，远端尚未执行。离线wheel解包后在仓库外隔离加载149个项目模块，核CLI/二进制身份/主档登记/native源码，禁取熵和算法执行；不冒称实际安装或角色恢复。原服务器与后续部署源码保持b47cc6a/dd751fa不变，目标全生命周期仍待最终实跑；算法参数与安全声明不变。
 
 **Wang通用CLI复用入口（2026-10-20，本地`dd751fa`）**：[角色导入与原二进制身份](research/2026-10-19-wang-pw-target-s0-4/README_zh-CN.md#10-通用-cli-角色导入与原二进制身份本地完成n512-待执行)已补规范hex及无master的`import-role`，保留管理导入来源、发布pending和缓存恢复，缺钥／损坏／新身份及误放master均拒绝。规定WSL Sage专项103项、runner 5项及补丁后完整链1项、旧CLI状态110项、既有Wang CLI 3项均通过，计数重叠不相加；真实LATTE作者档＋Wang n2/q257的通用CLI串行16进程仅新增一次签名，明确不是n512验收。服务器已独立部署并核3338文件，未动原运行目录；10:48快照原n512单根仍Extract、约3264s、采样峰值34.268GiB。目标服务／研究组合／通用CLI后续实跑均待原六阶段成功终止后串行执行，不重抽、不中途推送，参数拒绝与none/false/false/null不变。

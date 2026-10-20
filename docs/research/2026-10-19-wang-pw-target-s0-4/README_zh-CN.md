@@ -1,8 +1,8 @@
 # Wang–PW s0=4 独立研究后端与服务器验收
 
-**WIP 检查点（2026-10-20）：完整环境与服务器 231 项回归通过；n512 单根主档于北京时间 09:53 启动，尚无最终结果。未推送、未建 PR。**
+**WIP 检查点（2026-10-20）：原 n512 单根于北京时间 11:35:49 在 Sign 发生 MemoryError，Setup/Extract 已通过，六阶段未完成。QR 最小修复 `24f8207` 通过本地 28 项回归，目标规模尚未验证；用户已要求继续复用原钥推进，未重新 Setup/Extract。未推送、未建 PR。**
 
-本批已交付独立 `wang-pw-target` 后端、C++ 有限整数 Gaussian/GPV 采样、规范对象、固定发钥服务、公共装配/CLI、参数审计和可监控的生命周期驱动。早批服务器 182 项与小参数回执保留；当前冻结 `b47cc6a` 完成 **231 passed / 0 failed / 0 errors / 0 skipped，61.37 s**、q257 三个生产随机根，以及 q32 磁盘恢复后的独立进程签名。**n512 已启动但尚未完成**，其完整生命周期、最终耗时和峰值内存仍待回填。
+本批已交付独立 `wang-pw-target` 后端、C++ 有限整数 Gaussian/GPV 采样、规范对象、固定发钥服务、公共装配/CLI、参数审计和可监控的生命周期驱动。早批服务器 182 项与小参数回执保留；当前冻结 `b47cc6a` 完成 **231 passed / 0 failed / 0 errors / 0 skipped，61.37 s**、q257 三个生产随机根，以及 q32 磁盘恢复后的独立进程签名。**原 n512 完整生命周期失败**，最终公开回执、失败诊断与修复见[第12节](#12-n512-sign-失败与方阵-qr-修复)。
 
 此前公网 SSH 连续超时发生在 n512 启动前。2026-10-20 连接恢复后，已补齐固定 `lattice-estimator` 并通过 Sage 导入，已有 Sage 环境采用 install 补齐，没有重建。历史 schema-1 `environment-ready.json` 只证明先前核心环境；完整环境使用新 schema-2 回执，须另核实际源码、归档、依赖锁和 native，不能沿用旧 ready 标记启动主档。
 
@@ -145,7 +145,7 @@ w(x)=floor(2^192 * exp(-((x-c)^2-dist(c,Z)^2)/(2*sigma^2))).
 | [debug-q32-disk.json](evidence/public/debug-q32-disk.json) | 4 / 4294967291；1 个 CSPRNG 新根 / 私密磁盘实际读回 | 0.352356696 s | 74903552 B | 6 阶段全部通过 |
 | 当前 [q257 三根](evidence/server-resume/debug-q257-three.json) | 2 / 257；3 个顺序 CSPRNG 新根 / 内存规范往返 | 见回执 | 见回执 | 当前冻结代码全部阶段通过；恢复仍为同进程 |
 | 当前 [q32 独立恢复](evidence/server-resume/debug-q32-independent.json) | 4 / 4294967291；1 个 CSPRNG 新根 / 私密磁盘实际读回 | 0.892022932 s | 148267008 B | 六阶段全过，恢复签名在新解释器执行；子进程自身 RSS 74543104 B |
-| n512 主档 | 512 / 4294967291；单个新 CSPRNG 根 | **运行中/待最终回填** | **待最终回填** | 2026-10-20 09:53 启动；110 GiB / 21600 s / 16 线程；没有隐藏重抽 |
+| [n512 原单根](evidence/target-failure/target-n512.json) | 512 / 4294967291；单个新 CSPRNG 根 | 6121.073011933 s | 41887293440 B（生命周期采样） | Setup/Extract 通过，Sign MemoryError；Verify/Restore/Sign-restored 未执行；16线程，无重抽 |
 
 这两份 debug 实测均为身份 64 B、消息 32 B、4 线程、`OMP_NUM_THREADS=4`、`OPENBLAS_NUM_THREADS=4`。每根依次执行 Setup、Extract、Sign、公开 Verify/负例、Restore、Sign-restored。q32 恢复由真实落盘的 PK/MSK/SK/签名规范编码完成；秘密文件保留在服务器仓库外的私密目录，不加入 Git 证据。两份回执均记录源码运行期间未变。
 
@@ -162,11 +162,11 @@ PYTHONPATH=src ~/miniconda3/envs/sage/bin/python -m pytest \
 
 算法复跑使用 `experiments.research.wang_pw_target.run_lifecycle` 的 `debug-q257 --repetitions 3` 与 `debug-q32 --private-state <仓库外私密目录>`；按[驱动说明](../../../experiments/research/wang_pw_target/README.md)选择全新的输出与 phase-log 文件，不覆盖既有证据，不传固定测试种子即可保持生产 CSPRNG 模式。
 
-## 8. n512 验收进行中
+## 8. n512 原运行资源门与失败结果
 
 稠密用户 basis 单份约 18 GiB，根 basis 单份约 8 GiB；紧凑对象不消除 QR 工作区。本档审计规划约 123.314 GiB，含多个用户方阵、临时缓冲与 20% 余量，**不是实测上界**。服务器实际总 RAM 约 123.666 GiB，尚需扣除操作系统和其它进程，不能仅凭“128G”规格判定足够。
 
-完整 schema-2 环境、源码与归档/锁/native、231 项回归、生产随机 debug 生命周期和独立恢复签名均通过后，已启动受监控的 n512。目标运行串行记录全部阶段、实际参数/线程、明确失败与资源门、规范磁盘恢复、独立进程恢复后签名、对象实际字节数、总时长和 RSS；外层 `/usr/bin/time -v` 原始文件保留服务器，公开副本去掉含私密路径的完整 argv 行。n512 最终结果待回填；失败阶段同样保留，不由小维数结果代替。目标规模资源验收与正式参数决策分开，功能测试和有限攻击未成功不构成安全证明或 NIST 等级结论。
+完整 schema-2 环境、源码与归档/锁/native、231 项回归、生产随机 debug 生命周期和独立恢复签名均通过后，已启动受监控的 n512。目标运行串行记录全部阶段、实际参数/线程、明确失败与资源门、规范磁盘恢复、独立进程恢复后签名、对象实际字节数、总时长和 RSS；外层 `/usr/bin/time -v` 原始文件保留服务器，公开副本去掉含私密路径的完整 argv 行。原 n512 已于 2026-10-20 11:35:49（北京时间）失败终止；最终回执见第12节，失败阶段保留，不由小维数结果代替。目标规模资源验收与正式参数决策分开，功能测试和有限攻击未成功不构成安全证明或 NIST 等级结论。
 
 本地独立进程测试首跑曾有一个生产随机 n2/q32 根被既定 GS 门 32 拒绝：[原输出脱敏副本](evidence/local/independent-first-run.log)、[失败记录](evidence/local/independent-first-run.json)。首跑未启 JUnit，未补造原 JUnit。接口测试的发钥 fixture 后改为已有明确测试种子，签名子进程仍为生产 CSPRNG；本次服务器整套 231 项通过不抹去该失败，也不把 debug 根拒绝称为 n512 失败。
 
@@ -242,3 +242,16 @@ python -u -m experiments.research.wang_pw_target.run_guarded \
 这是 **wheel 解包交付态检查**，不是 `pip install`、角色恢复或目标算法执行。research reuse harness 不在 wheel 中，公共 CLI 无此依赖；可靠入口为 `python -m ibme.cli`。目标角色恢复仍待原 n512 运行结束后在服务器原位串行验收。[本批 review](evidence/resource-audit/review.json)与[manifest](evidence/resource-audit/manifest.json)绑定源码及六份公开载荷。
 
 服务器原根继续使用 `b47cc6a`，已部署的后续运行源码仍为 `dd751fa`；本批只修本地审计口径和 CI 选择，不替换或修改这些冻结目录。n512 生命周期／服务／组合／通用 CLI 的最终结果仍待回填；β≥q 拒绝及 none/false/false/null 安全字段保持不变。
+
+
+## 12. n512 Sign 失败与方阵 QR 修复
+
+[最终公开回执](evidence/target-failure/target-n512.json)、[监督器](evidence/target-failure/supervisor.json)、[13份冻结源码核验](evidence/target-failure/source-verification.json)、[失败后诊断](evidence/target-failure/post-failure-diagnostics.json)与[复核清单](evidence/target-failure/manifest.json)分别归档。原运行 `b47cc6a` 的 Setup 为 536.625661122 s、Extract 为 5431.945237035 s；用户钥已落盘。Sign 在 152.287426335 s 后报告 MemoryError，总时长 6121.073011933 s。六阶段完成根数为0，Verify/Restore/Sign-restored 未执行。driver/supervisor 均退出1，未发 TERM/KILL、未触及110 GiB或21600 s门。生命周期采样峰值41887293440 B、外部监督器采样峰值41677619200 B是不同采样观察，不能混成精确高水位；全部13份源码保持冻结。只收集公开材料，GNU time公开副本删除1行完整argv，密钥/实际签名/盐/私密状态未下载。
+
+调用链为 Sign → 用户完整基准备 → QR。`49152²=2415919104`，单份int64/float64方阵18 GiB。[SciPy 1.18.1源码核对](evidence/target-failure/scipy-source-review.json)显示 FULL QR 在 `_linalg_qr.hh:125` 使用 `CBLAS_INT` 保存 `M*max_dim` 缓冲计数，LP64的int32不能表示该尺寸；包装层将相应分配失败映射为MemoryError。该路径不是f2py。FULL还会保留额外方阵缓冲，主要方阵存储估计约72 GiB；失败后系统CommitLimit约61.8 GiB、无swap，低RSS并不排除真实内存承诺不足。公开失败回执没有异常栈，因此尚不能唯一确定历史异常发生在该源码行；失败后内存快照也不是失败瞬间测量，不能断言128 GB物理RAM已经耗尽。
+
+本地修复提交 `24f820723c65617fd202c636a1d3ad366d456359`，`fix(wang-pw): avoid full QR buffer for square target bases`，仅修改 `src/ibme/ibs/wang_pw_target/math.py` 与新增 `tests/test_wang_pw_target_qr.py`。对本项目方阵显式调用 `qr(..., mode="economic", overwrite_a=True)`，保留整数基，Q/R维度和Householder顺序保持，减少一份18 GiB缓冲并绕过FULL计数路径；主要方阵约54 GiB只是静态存储估计，另有密钥、对象和BLAS开销。未改变论文算法、数学参数、Gaussian内核或随机源，不是结构化替代算法。
+
+规定WSL Sage命令与源码绑定见[review.json](evidence/target-failure/review.json)，`tests/test_wang_pw_target_qr.py tests/test_wang_pw_target_backend.py tests/test_wang_pw_target_independent.py` 为[28 passed / 0 failed/error/skip，22.569 s](evidence/target-failure/qr-regression.xml)。覆盖方阵FULL/economic的star/norms对应、正交与重构、整数基不变、布局及非方阵/奇异拒绝；小规模回归不证明n512恢复成功或逐位/分布认证。
+
+原失败回执永久保留，不能改写为六阶段成功。失败后自动跟进已暂停；用户随后明确“按照目标继续持续推进”，据此准备在独立新源码/证据目录复用原PK/SK续签、独立重载签验、服务adopt/recover、真实LATTE组合及通用CLI，全部串行、资源监督，任何新失败停链留证。不得重抽根、重新发钥或覆盖原冻结目录；旧 `reuse-dd751fa` 仍包含FULL QR，不能直接用于新目标签名。上述后续在本检查点均未执行。原参数参考包络的beta>=q拒绝与none/false/false/null保持。
