@@ -4,7 +4,7 @@ import json
 import pytest
 
 from experiments.research.backend_optimization_probe import (
-    validate_inputs, expected_suite, assert_installed_providers, public_failure, summarize_pairs,
+    validate_inputs, expected_suite, assert_installed_providers, public_failure, summarize_pairs, failed_batch,
 )
 
 
@@ -39,6 +39,9 @@ def test_public_failures_never_include_exception_text_or_private_bytes():
     report = public_failure("derive", RuntimeError("SECRET-PRIVATE-BYTES"))
     assert report == dict(status="failed", failure_stage="derive", exception_type="RuntimeError", no_outer_retry=True)
     assert "SECRET" not in json.dumps(report)
+    nested = dict(label="A", records=["private"], secret="SECRET", **report)
+    batch = failed_batch("A", [], nested)
+    assert batch == dict(label="A", records=[], **report)
 
 
 def test_recompute_paired_summary_does_not_pool_independent_roots():

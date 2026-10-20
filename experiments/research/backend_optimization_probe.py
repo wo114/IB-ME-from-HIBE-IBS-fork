@@ -59,6 +59,11 @@ def public_failure(stage, exc):
     return dict(status="failed", failure_stage=stage, exception_type=type(exc).__name__, no_outer_retry=True)
 
 
+def failed_batch(label, records, failure):
+    return dict(label=label, records=records, **{name:failure[name] for name in
+                ("status", "failure_stage", "exception_type", "no_outer_retry")})
+
+
 def summarize_pairs(records):
     result = {}
     for record in records:
@@ -338,7 +343,7 @@ def run(args):
             process = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT)
         if process.returncode:
             failure = json.loads((directory/"failure.json").read_bytes()) if (directory/"failure.json").exists() else public_failure("worker", RuntimeError())
-            _write(args.public_output, dict(label=args.label, records=records, **failure))
+            _write(args.public_output, failed_batch(args.label, records, failure))
             raise RuntimeError("optimization worker failed; original occupied state retained")
         records.append(json.loads((directory/"receipt.json").read_bytes()))
         print(json.dumps(dict(label=args.label, completed_root=index, status="passed")), flush=True)
