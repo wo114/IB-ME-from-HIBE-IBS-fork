@@ -1,9 +1,14 @@
 {
   "schema": "IBME/WANG-PW-PUBLICATION-MANIFEST/1",
-  "scope": "All PR delta files relative to upstream baseline, excluding this manifest itself",
-  "baseline_commit": "b0397d2bba320ac25d06e6e4c6ad638787dafdcb",
+  "scope": "Current PR delta files relative to main 018daf3, excluding this manifest itself; refreshed after PR84 integration review",
+  "baseline_commit": "018daf33a233a936719a7df9f50d1a776a1fee27",
   "hash_basis": "Git blob bytes; not a retrospective execution-source binding",
   "files": [
+    {
+      "path": ".github/workflows/basic-checks.yml",
+      "bytes": 5784,
+      "sha256": "14d9ec4b96f761c15fd438d20dd4cb4c208cf425d182394b3d5c61833b64c8e5"
+    },
     {
       "path": "IMPLEMENTATION_SPEC.md",
       "bytes": 19167,
@@ -11,8 +16,8 @@
     },
     {
       "path": "ci/suites.json",
-      "bytes": 13302,
-      "sha256": "6f49ecae940e548a41b74863b10e3d89f772fa73be2fc09c234e4656fc38d6f4"
+      "bytes": 13301,
+      "sha256": "746d9879ae5d87bb348f351c19b7aaad295ed05023d31425848e8f7852dc9254"
     },
     {
       "path": "docs/ALGORITHM_CATALOG.md",
@@ -21,13 +26,23 @@
     },
     {
       "path": "docs/PROJECT_STATUS.md",
-      "bytes": 13862,
-      "sha256": "f529a07af2b34f84b06c8cf822d6ae52f9def2323a58778f3363da9285bd2573"
+      "bytes": 14322,
+      "sha256": "53a5740574d72cdf99c4cb94ca57162d93085a8b0f2cb6f4425aef313b8743dd"
+    },
+    {
+      "path": "docs/deliveries/2026-10-21-pr84-review/README.md",
+      "bytes": 3350,
+      "sha256": "584bb4a6783cea77013d758914004de599c67b0152d23124bbd0d6352b02a6b0"
+    },
+    {
+      "path": "docs/deliveries/2026-10-21-pr84-review/validation.json",
+      "bytes": 5486,
+      "sha256": "fc80f7b83ae5dc2cf735ce35ef5ebad0cbf6b339688627e9eb1118694760adae"
     },
     {
       "path": "docs/research/2026-10-19-wang-pw-target-s0-4/PUBLICATION_zh-CN.md",
-      "bytes": 5670,
-      "sha256": "60db4bc5ac3636c9903c770427e3e033747734def46681a3e36d032a63ae83a8"
+      "bytes": 6184,
+      "sha256": "4c63f020ebd6a1d0d9d9224eab87c5be4939cebe5256f929f6680391b664349c"
     },
     {
       "path": "docs/research/2026-10-19-wang-pw-target-s0-4/README_zh-CN.md",
@@ -1026,13 +1041,13 @@
     },
     {
       "path": "docs/research/team-b-delivery/2026-10-20-wang-pw-target/parameter-map.md",
-      "bytes": 13264,
-      "sha256": "acf130b3e5a7991b346d1a13720c9d3b6f6e7f46bdfe11bc995151353e68722b"
+      "bytes": 13257,
+      "sha256": "33292c71297e9bd552b28692dfec69fbfcd7887d23d74e1c48b74039e8767b65"
     },
     {
       "path": "docs/specs/wang-pw-target-ibs.md",
-      "bytes": 8405,
-      "sha256": "890671af04ada1c9089e4cc12f097e7e6f984047e05076f8da815016e69f038d"
+      "bytes": 8574,
+      "sha256": "41c3884c42aef6e19049a229e8cb4fa2213295f0fdcba6c6a381ef365faba5c5"
     },
     {
       "path": "experiments/research/wang_pw_target/README.md",
@@ -1151,8 +1166,8 @@
     },
     {
       "path": "src/ibme/ibs/wang_pw_target/native.py",
-      "bytes": 15828,
-      "sha256": "f0c35b20fbf5090a447a92b2ead62a9535b9f50afbc565b2dd276c0654da5b28"
+      "bytes": 16154,
+      "sha256": "ac72004d48fc00a97ffdb4dd7d22ca00bbfaeb17115df0e83304b3faeb9a1620"
     },
     {
       "path": "src/ibme/ibs/wang_pw_target/native/README.md",
@@ -1261,8 +1276,8 @@
     },
     {
       "path": "tests/test_wang_pw_target_native.py",
-      "bytes": 6475,
-      "sha256": "8311484a4dd6c0cb3567776d20bbcd986834103f1a2efccfde13e06f3f6ded3e"
+      "bytes": 7408,
+      "sha256": "6f1bc4c0edd22d20c79c6ecb8642e8078c462de21e96cf941151c0117fe35579"
     },
     {
       "path": "tests/test_wang_pw_target_native_reasons.py",
@@ -1321,8 +1336,8 @@
     },
     {
       "path": "tests/test_wang_pw_target_runner.py",
-      "bytes": 10640,
-      "sha256": "c2aede619b85081b3841e986d5aa3875a3ede76e8e3256580e8aa15aac83e49a"
+      "bytes": 10883,
+      "sha256": "9f7b8d7cd8fd9ab66449b808b823244d4cec437a4946a8d58cd8258697809187"
     },
     {
       "path": "tests/test_wang_pw_target_screen.py",

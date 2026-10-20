@@ -93,6 +93,11 @@ jobs:
       - name: Build pinned Falcon engines and author selftest
         if: ${{ matrix.id == 'cert-falcon' }}
         run: sage -python -m ibme.ibs.certified.falcon_native.build --selftest
+      - name: Install Wang-PW native build dependencies
+        if: ${{ matrix.id == 'wang-pw' }}
+        run: |
+          apt-get update -qq
+          apt-get install -y --no-install-recommends g++ libmpfr-dev libgmp-dev libssl-dev
       - name: Build Wang-PW target native sampler
         if: ${{ matrix.id == 'wang-pw' }}
         run: |

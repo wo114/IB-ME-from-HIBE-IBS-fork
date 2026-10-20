@@ -18,6 +18,7 @@ import math
 import os
 from pathlib import Path
 import platform
+import shlex
 import subprocess
 import sys
 import tempfile
@@ -110,6 +111,12 @@ def build_native(*, output_directory=None):
         raise SamplingError("native Gaussian sampler requires the configured WSL/Linux toolchain",
                             public_reason="native-build")
     compiler = os.environ.get("CXX", "g++")
+    try:
+        compiler_command = shlex.split(compiler)
+    except ValueError as exc:
+        raise SamplingError("invalid CXX compiler command", public_reason="native-build") from exc
+    if not compiler_command:
+        raise SamplingError("empty CXX compiler command", public_reason="native-build")
     content = _SOURCE.read_bytes()
     source_hash = hashlib.sha256(content).hexdigest()
     tag = hashlib.sha256(content + platform.platform().encode() + compiler.encode() + sys.prefix.encode()).hexdigest()[:24]
@@ -129,7 +136,7 @@ def build_native(*, output_directory=None):
         if (prefix / "include" / "mpfr.h").is_file():
             prefix_flags = ["-I", str(prefix / "include"), "-L", str(prefix / "lib"),
                             "-Wl,-rpath," + str(prefix / "lib")]
-        command = [compiler, "-std=c++17", "-O3", "-fopenmp", "-fPIC", "-shared", "-fno-fast-math",
+        command = [*compiler_command, "-std=c++17", "-O3", "-fopenmp", "-fPIC", "-shared", "-fno-fast-math",
                    "-ffp-contract=off", *prefix_flags, f'-DIBME_SOURCE_SHA256="{source_hash}"', str(_SOURCE),
                    "-o", str(temporary), "-lmpfr", "-lgmp", "-lcrypto"]
         try:

@@ -1,0 +1,128 @@
+{
+  "schema": "IBME/PR84-REVIEW/1",
+  "date": "2026-10-21",
+  "reviewed_head": "0b434759b5ea3d4f0c5b04fbfcaf5a383a71a57e",
+  "ci_fix_commit": "3bac06df2eac47a6ba18fff435bc9a65c4b54be8",
+  "completion_status": "completed; WIP labels corrected by user",
+  "test": {
+    "command": "PYTHONPATH=src CXX='g++ -std=gnu++11' IBME_WANG_PW_TARGET_NATIVE=<explicit native library> <Sage Python> ci/run.py run wang-pw --output <fresh directory>",
+    "python": "/home/youzi/miniforge3/envs/sage/bin/python3.13",
+    "counts": {
+      "tests": 1157,
+      "passed": 1061,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 96,
+      "xfailed": 0
+    },
+    "status": "partial",
+    "exit_code": 0,
+    "junit_time_seconds": 99.897,
+    "skip_reasons": [
+      {
+        "reason": "existing frozen estimator is absent; no download is attempted",
+        "count": 1
+      },
+      {
+        "reason": "explicitly prepare the external LATTE bridge before this test",
+        "count": 88
+      },
+      {
+        "reason": "explicitly prepare the external LATTE native bridge first",
+        "count": 1
+      },
+      {
+        "reason": "prepare the existing LATTE bridge",
+        "count": 4
+      },
+      {
+        "reason": "prepare the external LATTE native bridge before this test",
+        "count": 1
+      },
+      {
+        "reason": "the configured existing estimator checkout is absent",
+        "count": 1
+      }
+    ],
+    "identity_message_lengths": "Several real debug-dimension profiles and fixed test inputs; not a new n512 benchmark",
+    "repetitions": "One complete suite invocation; multiple test cases are not independent target-scale repetitions",
+    "tested_worktree_head": "89f93c6b2f4c142f277c58f756f3dcb5ae75fab8",
+    "tested_worktree_dirty": true,
+    "raw_receipt_local_path_outside_git": "/tmp/ibme-pr84-final-route.Y7gN3f/wang-pw.json",
+    "raw_receipt_sha256": "1c27815480c37f36baba7efa185175e893e9a1c6bd7c4f17a6d53587578c8e99",
+    "tested_file_sha256": {
+      ".github/workflows/basic-checks.yml": "14d9ec4b96f761c15fd438d20dd4cb4c208cf425d182394b3d5c61833b64c8e5",
+      "ci/suites.json": "746d9879ae5d87bb348f351c19b7aaad295ed05023d31425848e8f7852dc9254",
+      "src/ibme/ibs/wang_pw_target/native.py": "ac72004d48fc00a97ffdb4dd7d22ca00bbfaeb17115df0e83304b3faeb9a1620",
+      "tests/test_wang_pw_target_native.py": "6f1bc4c0edd22d20c79c6ecb8642e8078c462de21e96cf941151c0117fe35579",
+      "tests/test_wang_pw_target_runner.py": "9f7b8d7cd8fd9ab66449b808b823244d4cec437a4946a8d58cd8258697809187"
+    }
+  },
+  "environment": {
+    "os": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "sage_python": "3.13",
+    "native_library": "Explicit prebuilt Wang-PW Gaussian library; local file outside Git",
+    "cpu_model": "Intel(R) Core(TM) Ultra 9 185H",
+    "sage": "10.9"
+  },
+  "parameters": {
+    "target_n": 512,
+    "target_q": 4294967291,
+    "root_rho_width_s0": 4,
+    "historical_identity_bytes": 64,
+    "historical_message_bytes": 32,
+    "historical_signature_wire_bytes": 393320
+  },
+  "security": {
+    "model": "Wang/Pan-Wagner ROM work premise as cited in the selected papers; no new proof",
+    "approx_quantum_bits": 115,
+    "bits_status": "project-working-assumption-only",
+    "target_profiles_are_teaching_parameters": false,
+    "debug_profiles_are_security_evidence": false,
+    "ci_receipt_security_claim": "none",
+    "new_target_scale_run": false,
+    "functional_tests_prove_security": false
+  },
+  "additional_regression": {
+    "command": "PYTHONPATH=src:. <Sage Python> -m pytest -q -p no:cacheprovider --tb=short tests/test_ci_catalog.py tests/test_wang_pw_target_runner.py",
+    "passed": 35,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.97
+  },
+  "first_remote_ci": {
+    "head": "3bac06df2eac47a6ba18fff435bc9a65c4b54be8",
+    "job_url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/actions/runs/39466940546/job/118780772019",
+    "failure_phase": "Build Wang-PW target native sampler; tests did not execute",
+    "followup": "Parse Sage CXX=g++ -std=gnu++11 as a compiler command with arguments, retain explicit C++17, and install explicit C++/MPFR/GMP/OpenSSL development packages before the native build"
+  },
+  "clean_native_smoke": {
+    "command": "PYTHONPATH=src:. <Sage Python>: build_native(output_directory=<new empty directory>), _library(), draw_gaussian_batch([0,0.3,-1.25],[1.5,1.5,4.0],threads=1)",
+    "abi_version": 1,
+    "draw_count": 3,
+    "source_sha256": "cc6a8891d639eff9cc9ad945681fad01d4f7a84203615204cddf2f259dc5aa3e",
+    "status": "passed"
+  },
+  "previous_route": {
+    "counts": {
+      "tests": 1154,
+      "passed": 1058,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 96,
+      "xfailed": 0
+    },
+    "status": "partial",
+    "exit_code": 0,
+    "junit_time_seconds": 89.952
+  },
+  "native_compiler_regression": {
+    "command": "PYTHONPATH=src:. CXX='g++ -std=gnu++11' IBME_WANG_PW_TARGET_NATIVE=<explicit native library> <Sage Python> -m pytest -q -p no:cacheprovider --tb=short tests/test_wang_pw_target_native.py tests/test_wang_pw_target_native_reasons.py tests/test_wang_pw_target_environment.py tests/test_ci_catalog.py tests/test_wang_pw_target_runner.py",
+    "passed": 121,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 11.95,
+    "scope": "Real build, load and sampling with Sage CXX flags; malformed compiler commands; environment, CI catalog and runner regression. Overlaps the complete route; do not sum case counts."
+  }
+}

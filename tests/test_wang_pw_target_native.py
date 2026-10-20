@@ -17,6 +17,29 @@ SEED = bytes(range(32))
 NATIVE = pytest.mark.skipif(os.name == "nt", reason="native sampler uses configured WSL/Linux libraries")
 
 
+@NATIVE
+def test_native_build_accepts_sage_compiler_command_with_flags(tmp_path, monkeypatch):
+    from ibme.ibs.wang_pw_target import native
+
+    # Sage's container exports this conventional CXX value, including flags.
+    monkeypatch.setenv("CXX", "g++ -std=gnu++11")
+    built = native.build_native(output_directory=tmp_path)
+    monkeypatch.setenv("IBME_WANG_PW_TARGET_NATIVE", str(built.resolve()))
+    assert native.draw_gaussian(8, seed=SEED, test_only=True).shape == (8,)
+
+
+@NATIVE
+@pytest.mark.parametrize("compiler", ["", "'unterminated"])
+def test_invalid_compiler_command_has_explicit_build_failure(tmp_path, monkeypatch, compiler):
+    from ibme.ibs.wang_pw_target import native
+
+    monkeypatch.setenv("CXX", compiler)
+    with pytest.raises(SamplingError) as error:
+        native.build_native(output_directory=tmp_path)
+    assert error.value.public_reason == "native-build"
+    assert not list(tmp_path.iterdir())
+
+
 def test_seed_and_input_policies_before_native_load():
     with pytest.raises(ValueError, match="test_only"):
         draw_gaussian(4, seed=SEED)

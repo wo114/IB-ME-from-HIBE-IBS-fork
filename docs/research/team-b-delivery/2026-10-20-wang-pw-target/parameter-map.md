@@ -4,7 +4,7 @@
 
 本表固定 Wang 等 ePrint 2022/1718 仓库论文版本：`papers/2022_identity_matchmaking_wang.pdf`，PDF 第7–8页 Lemma 2.5–2.7、第16页 Figure 4 与 Parameter Selection、第17–19页 Theorem 5.1/算法B；外层采用已有 Pan–Wagner ROM 转换与固定发钥服务语义。按当前 AGENTS 引用所选论文，不另开基础安全证明。以下有限工程选取不冒充原文给出的数值参数表。
 
-**当前实现范围（2026-10-20）**：独立[`wang-pw-target`](../../../../src/ibme/ibs/wang_pw_target/)已实现五方法、H1/H2/PW盐绑定、固定整数范数验签、C++有限Gaussian/GPV、规范对象、固定发行服务、registry和CLI。服务器已有n2/q257三根、n4/q4294967291磁盘恢复及182项测试收据；本地另完成真实服务的跨进程初发/零熵复用/恢复签验，以及真实LATTE作者参数＋Wang debug的16步独立进程CLI，无msk的角色目录可独立新加密或恢复解密。详见[本批交付](../../2026-10-19-wang-pw-target-s0-4/README_zh-CN.md)与[独立进程组合测试](../../../../tests/test_wang_pw_target_combination_process.py)。**n512原根Setup/Extract成功，Sign先以MemoryError失败；economic QR原钥续签又以SamplingError失败；单次诊断续签于13:34:27以native-gpv/code1失败**，详见[终态](../../2026-10-19-wang-pw-target-s0-4/README_zh-CN.md#16-单次诊断终态与资源门定位)。尚无目标成功签名或完整链，完整参数材料仍[WIP](../../2026-10-19-wang-pw-target-s0-4/parameter-completion-audit.md)；PR67旧n512数值探针与旧q17后端均保持各自历史范围，不迁移计时、范数或153.70估计，也不新增算法计数。
+**当前实现范围（2026-10-21复核）**：独立[`wang-pw-target`](../../../../src/ibme/ibs/wang_pw_target/)已完成五方法、H1/H2/PW盐绑定、固定整数范数验签、C++有限Gaussian、规范对象、固定发行服务、registry和CLI。n512原根Setup/Extract完成后，最终MP12扰动路线已有两次独立恢复签验、公开负例、服务导入／恢复、真实LATTE组合和通用CLI成功回执；十四份公开成功回执及其范围见[完整交付](../../2026-10-19-wang-pw-target-s0-4/PUBLICATION_zh-CN.md)。用户确认历史发布提交的WIP为误标，本项实现交付已完成。早期MemoryError、GPV续签失败和[参数条件历史审计](../../2026-10-19-wang-pw-target-s0-4/parameter-completion-audit.md)继续保留，不能作为最新“尚无目标成功签名”结论；分阶段原根复用不写成同一版本全新六阶段。PR67数值探针、旧q17与debug测试分别记账，不迁移153.70估计，也不新增算法计数。
 
 ## 原文、工程参数与历史探针
 
@@ -42,7 +42,7 @@ F_id=[A|H1],       F_id*[X;I]=G
 
 用户签名使用 `math.full_basis(A,X,q)` 从**公开A和自己X**建立F_id的basis。构造式正号需保持一致：`H1=G-A*X`，所以builder的第二块正好重建H1。用户从自己的X还可构造短particular `[X*d;d]`，其中`G*d=H2`。这个过程不需要主R或主basis。签名的平滑条件必须针对该用户basis或用户G-trapdoor重新核对。
 
-完整basis GPV是本档选定的有限采样实现路线；原论文的DelTrap/SamplePre以G-trapdoor描述。代数关系和参数约定如上公开保留，不能把仅有方程成立写成分布已等同原文。原文已有条件由引用与实现条件表对应，不另行启动完整安全归约任务。
+完整basis GPV用于已保存的Setup/Extract及早期签名路线；最终签名采用直接使用用户X的MP12扰动SampleD，见[修正记录](../../2026-10-19-wang-pw-target-s0-4/solution-perturbation-route.md)。原论文的DelTrap/SamplePre以G-trapdoor描述。代数关系和参数约定如上公开保留，不能把仅有方程成立写成分布已等同原文；原文已有条件由引用与实现条件表对应，不另行启动完整安全归约任务。
 
 ## SIS输入不能来自一条实测签名
 
@@ -78,7 +78,7 @@ beta_SIS = ceil(sqrt(1+L_Rhat²) * (ceil(B_verify)+B_reference)).
 
 ## 内存规划与实际验收分开
 
-2026-10-20 服务器以冻结源码 `b47cc6a` 补齐完整环境及 231 项回归，当前[服务器条件筛查回执](../../2026-10-19-wang-pw-target-s0-4/evidence/server-resume/parameter-screen.json)绑定该版本真实文件字节，收到同一 β≥q 输入拒绝；历史本地回执保留其原始哈希。n512 单根主档随后于北京时间 09:53 启动，16 线程、110 GiB / 21600 s，尚无最终结果；启动不意味着参数准入。
+历史启动批次：2026-10-20 服务器以冻结源码 `b47cc6a` 补齐完整环境及 231 项回归，[当时的服务器条件筛查回执](../../2026-10-19-wang-pw-target-s0-4/evidence/server-resume/parameter-screen.json)绑定该版本真实文件字节，收到同一 β≥q 输入拒绝；历史本地回执保留其原始哈希。n512 单根主档于北京时间 09:53 启动，16 线程、110 GiB / 21600 s；该批最终失败及后续扰动路线成功按[完整交付](../../2026-10-19-wang-pw-target-s0-4/PUBLICATION_zh-CN.md)分别记录。
 
 主档单个用户完整basis为18 GiB，主basis为8 GiB；紧凑主秘密约576 MiB、紧凑用户密钥约2112 MiB（均再加规范头与参数），签名精确393320 B。小编码不消除GPV准备阶段的稠密basis/QR内存。
 
