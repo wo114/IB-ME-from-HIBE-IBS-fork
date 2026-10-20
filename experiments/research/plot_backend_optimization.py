@@ -46,7 +46,12 @@ def render(directory):
     fig.text(.03, .015, "Dots: root ratios; orange: median root ratio. C curve uses 2 stateless + 3 prepared observations; no cross-security ranking.", fontsize=8, color="#454A51")
     fig.tight_layout(rect=(.01,.055,.99,.93))
     for extension in ("svg", "pdf", "png"):
-        fig.savefig(directory/("optimization."+extension), dpi=180, bbox_inches="tight")
+        output = directory/("optimization."+extension)
+        fig.savefig(output, dpi=180, bbox_inches="tight")
+        if extension == "svg":
+            # Matplotlib path data has trailing spaces; retain XML whitespace
+            # separators while making generated artifacts pass Git checks.
+            output.write_bytes(("\n".join(line.rstrip() for line in output.read_text(encoding="utf-8").splitlines())+"\n").encode("utf-8"))
     plt.close(fig)
     lines = ["# 同参数完整流程对照", "", "时间为三根各自根内中位数再取中位数；收益比为逐根off/on比值的中位数，两者相除不一定相等。", "",
              "| 组 | 操作 | 关闭／s | 开启／s | 根内收益比中位数 | 三根收益比范围 |",
