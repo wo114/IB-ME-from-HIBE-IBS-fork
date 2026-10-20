@@ -168,3 +168,36 @@ Always retain `security_claim=none`, `backend_admitted=false`,
 `parameters_are_formal=false`, and `nist_security_category=null` until a
 separate authorized parameter decision changes them. Functional and negative
 tests are implementation evidence, not a security proof.
+
+## Reusing the completed root without reissuing identity keys
+
+Wait for the original lifecycle/supervisor to terminate before starting these
+target-size operations. Use a new private output directory and the unchanged
+original `public_key.bin`, `master_secret.bin` and `signing_key.bin`; never copy
+private inputs or resulting issuer/role state into Git or public evidence.
+
+`run_reused_service` provides independent `--mode adopt` and `--mode recover`
+invocations with `--source-directory`, `--state-directory` and canonical
+`--identity-hex`. It explicitly imports the existing root/key through
+`FixedIssuer.adopt_existing`, retains the `imported` ledger provenance, and
+compares the recovered canonical key to its source. Setup, extraction and
+cryptographic sampling entry points are disabled. This audits management import
+and fixed recovery, not the service's original issuance history or sampling
+distribution. Snapshot recovery validates the full secret equations; it is a
+target-size operation, not a cheap header read.
+
+`run_reused_combination run --public-key-file ... --signing-key-file ... --state
+...` is a separate research-driver CLI over the public SuiteRuntime API. It
+imports exactly the original Wang binary identity and canonical user key, creates
+only a real LATTE author-profile root and two receiver keys, then runs separate
+role processes. It needs one fresh Wang signature; restart, identity-mismatch
+and wire/OTS-replacement checks reuse that ciphertext. Role state contains no
+master. This is distinct from the general `ibme.cli` target-size test: the latter
+accepts printable UTF-8 identities, whereas the lifecycle's original 64-byte
+identity is binary. Renaming that identity would require a different extraction
+and is not a valid reuse of the original user key.
+
+Both drivers print public JSON without raw exception messages. Run them under
+the existing external resource supervisor at target size, sequentially with the
+original experiment. Preserve failure receipts and partial private state; do not
+restart failed operations or rerun Setup/Extract to obtain a success.
