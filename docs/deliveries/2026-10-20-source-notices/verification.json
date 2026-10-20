@@ -14,40 +14,13 @@
       "case": "missing-license.zip",
       "result": "rejected",
       "reason": "source archive missing required files: ['src/ibme/hibe/latte/native/upstream/LICENSE']"
+    },
+    {
+      "case": "actual stale working-tree wheel",
+      "result": "rejected",
+      "reason": "Package module absent from declared Git commit"
     }
   ],
-  "source_archive": {
-    "archive": {
-      "bytes": 20898248,
-      "excluded_reference_pdfs": true,
-      "files": 3334,
-      "retained_files_checked": 90,
-      "sha256": "adaa4081d8fdc6b1f594240eeb23fc072d0afabc5c6bd06d55a8a49bb16c31df"
-    },
-    "crypto_executed": false,
-    "groups": [
-      {
-        "component": "LATTE native",
-        "files": 35
-      },
-      {
-        "component": "ML-DSA reference",
-        "files": 26
-      },
-      {
-        "component": "Falcon reference",
-        "files": 18
-      },
-      {
-        "component": "LATTE sampler research snapshot",
-        "files": 2
-      }
-    ],
-    "private_state_opened": false,
-    "source_commit": "8dc1a81fc81cdec4f6663125cc48f9dc6dc2fc7c",
-    "status": "passed",
-    "upstream_files": 81
-  },
   "schema": "ibme-source-notice-verification-v1",
   "date": "2026-10-20",
   "test_environment": {
@@ -55,7 +28,7 @@
     "os": "Windows",
     "dependencies": "Python standard library, Git, existing setuptools/wheel; no downloads"
   },
-  "status": "WIP: fresh exported-source wheel pending",
+  "status": "passed",
   "crypto_parameters_changed": false,
   "current_completed_config_security": "secure/true/true",
   "new_security_claim_or_attack": false,
@@ -63,7 +36,10 @@
     "python docs/deliveries/2026-10-20-source-notices/verify.py --revision 8dc1a81 --archive <ignored>/ibme-source-reviewed.zip",
     "python docs/deliveries/2026-10-20-source-notices/verify.py --revision 5a997dd --wheel <ignored>/wheel/ibme-0.1.0-py3-none-any.whl",
     "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir <ignored>/wheel",
-    "git diff --check"
+    "git diff --check",
+    "git archive --format=zip --output <ignored>/source-clean-55b4fa6.zip 55b4fa6",
+    "Extract the checked archive to a new empty directory; run python -m pip wheel . --no-deps --no-build-isolation there",
+    "python docs/deliveries/2026-10-20-source-notices/verify.py --revision 55b4fa6 --archive <ignored>/source-clean-55b4fa6.zip --wheel <ignored>/wheel-clean-55b4fa6/ibme-0.1.0-py3-none-any.whl"
   ],
   "modified_files": [
     ".gitattributes",
@@ -76,6 +52,14 @@
   ],
   "commits": [
     {
+      "commit": "55b4fa6c100b965c92fa85c5280d14560bbbfad6",
+      "message": "fix(release): reject wheel modules left by another branch"
+    },
+    {
+      "commit": "d50fac0cf0f4fa5be9c3edf0ac4dac9df4fa487a",
+      "message": "docs(release): archive source and wheel notice verification"
+    },
+    {
       "commit": "8dc1a81fc81cdec4f6663125cc48f9dc6dc2fc7c",
       "message": "fix(release): bind source archives to the reviewed commit"
     },
@@ -85,7 +69,7 @@
     }
   ],
   "git_file_sha256": {
-    "NOTICE.md": "b6d5183837e6eb3cb0df9e3e63f174668438057af3c8509c8cad108621a170df",
+    "NOTICE.md": "a1ef093349a87e8222dd374b9cc365d2c84df80603dbb55112ded7af9893495b",
     ".gitattributes": "4f4a65f87116334e738412e37ce7d4fcf0203ef06a12c1be01ae77e9e33c12f4",
     "docs/third-party-code.json": "c7a13f84d358221173eb710e3c3f5b1484a413e83f61c410ebb1c09ce6c76506",
     "LICENSE": "4c0836c695ab4bc4a0ec262bbae2a75f7f6295ef3d3882ae52fd777e70b0984d"
@@ -125,7 +109,87 @@
       "sha256": "a8b90d6a4dab754377ed6216defa5c757ee0c9c4509d7dc5860191dc920439c3",
       "bytes": 2065895
     },
-    "scope": "License/upstream checks only; later full source guard rejects three extra package modules"
+    "scope": "License/upstream checks only; later full source guard rejects three extra package modules",
+    "package_source_consistent": false,
+    "accepted_as_release_wheel": false,
+    "stale_python_modules": [
+      "experiments/research/backend_optimization_probe.py",
+      "experiments/research/verify_backend_optimization.py",
+      "ibme/protocol/prepared.py"
+    ]
   },
-  "stale_wheel_rejected": true
+  "stale_wheel_rejected": true,
+  "source_commit": "55b4fa6c100b965c92fa85c5280d14560bbbfad6",
+  "earlier_source_archive_check": {
+    "archive": {
+      "bytes": 20898248,
+      "excluded_reference_pdfs": true,
+      "files": 3334,
+      "retained_files_checked": 90,
+      "sha256": "adaa4081d8fdc6b1f594240eeb23fc072d0afabc5c6bd06d55a8a49bb16c31df"
+    },
+    "crypto_executed": false,
+    "groups": [
+      {
+        "component": "LATTE native",
+        "files": 35
+      },
+      {
+        "component": "ML-DSA reference",
+        "files": 26
+      },
+      {
+        "component": "Falcon reference",
+        "files": 18
+      },
+      {
+        "component": "LATTE sampler research snapshot",
+        "files": 2
+      }
+    ],
+    "private_state_opened": false,
+    "source_commit": "8dc1a81fc81cdec4f6663125cc48f9dc6dc2fc7c",
+    "status": "passed",
+    "upstream_files": 81
+  },
+  "clean_export_build": {
+    "status": "passed",
+    "source_commit": "55b4fa6c100b965c92fa85c5280d14560bbbfad6",
+    "upstream_files": 81,
+    "groups": [
+      {
+        "component": "LATTE native",
+        "files": 35
+      },
+      {
+        "component": "ML-DSA reference",
+        "files": 26
+      },
+      {
+        "component": "Falcon reference",
+        "files": 18
+      },
+      {
+        "component": "LATTE sampler research snapshot",
+        "files": 2
+      }
+    ],
+    "crypto_executed": false,
+    "private_state_opened": false,
+    "archive": {
+      "files": 3335,
+      "retained_files_checked": 90,
+      "excluded_reference_pdfs": true,
+      "sha256": "69faa210a130bc651f7259b2dec4d1e4aa1a1964a27faf59b5c854dc589d5ef2",
+      "bytes": 20900919
+    },
+    "wheel": {
+      "upstream_files_checked": 79,
+      "root_notices_checked": 2,
+      "package_files_checked": 587,
+      "python_files_checked": 498,
+      "sha256": "75b4dacd42c318324a7a1d682fcead030a22731f66fab7b0ab2980789e1a1d39",
+      "bytes": 2054515
+    }
+  }
 }
