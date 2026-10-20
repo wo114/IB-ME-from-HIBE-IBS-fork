@@ -67,6 +67,33 @@ norm2路径忽略shape model；没有声称额外GSA/LGSA或量子成本已评�
 没有证明所有Wang参数或所有实现路线不可能。下一步仍须落实已有文献的有限谱/范数界、
 采样与中止预算、全适用攻击和实际资源；不新增s0=2有限论证或基础安全归约。
 
+## 现成直接 G-trapdoor 采样工具的复用边界
+
+2026-10-20只读核对现有实现，并复读[Wang](../../../papers/2022_identity_matchmaking_wang.pdf) PDF第7–8、16页及
+[MP12](../../../papers/2011_lattice_trapdoors_micciancio.pdf) PDF第27–29页的
+SamplePre/Algorithm 3、4对应。Wang的发钥目标逐列为`G-H1`，用户满足
+`[A|H1]*[X;I]=G`；原文MP12采样机械可用于该正号约定，仍需满足其gadget平滑、
+协方差正定与宽度条件。这里没有更换哈希、盐或验签方程，也没有宣布实现分布已对应。
+
+仓库[`mp12_blocked.py`](../../../src/ibme/lattice/matrix_sampling/mp12_blocked.py)已有完整
+扰动/gadget及matrix-free精度修正；但**不能直接替换当前Wang采样器**：
+
+- [`packed.py`](../../../src/ibme/lattice/matrix_sampling/packed.py)最多`2^24`项、512MiB，
+  当前根R有`2^28`项，用户X有`2^29`项；`delegate`也限整次发钥`2^24`项。
+- 该工具固定按Frobenius声明上界选择更宽输出，包含
+  `output_squared >= 10*r_squared*(w+bound)`的trace充分条件；并不接受当前Wang固定宽度作为直接输入。
+  该充分条件拒绝不代表原文以谱范数表述的条件一定拒绝。当前尚无保持原签名宽度的目标规模适配回执。
+- [`mp12_bounds.py`](../../../src/ibme/lattice/matrix_sampling/mp12_bounds.py)的分布预算维数最多8192，
+  尚未覆盖目标49152维；旧structured工具还有限制`n<=128,prefix<=512`及稠密精确Schur逆。
+- 不直接用其`generate_root`替换现有Setup：该入口使用`[I|Abar]`normal-form根，
+  且要求`root_r_squared>=4*n`，与当前uniform Abar和`s0=4`约定不同。
+
+matrix-free路线在结构上可省去用户basis和star两份共36GiB方阵及QR工作区；
+仍需保存用户X并执行大量精确乘法、区间求解，尚无目标RSS/时间实测，不能据此宣称更快或满足128GB。
+[`lattice/trapdoor.py`](../../../src/ibme/lattice/trapdoor.py)中缺扰动的代数参考不能代替完整采样器。
+因此下一项可行性条件是**既有原根/用户X、固定宽度下满足已有谱/平滑条件的实现**；
+扩容、改变宽度、生成新根都没有在本轮执行。原钥确定性资源审计与该路线评估分别记账。
+
 ## 验证与交付
 
 [实现入口](../../../experiments/research/wang_pw_target/plan_parameters.py)与

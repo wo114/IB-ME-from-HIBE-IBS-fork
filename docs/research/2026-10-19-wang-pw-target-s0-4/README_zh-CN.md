@@ -415,3 +415,16 @@ n2048/k64读数约121.04，裸阵列3456 GiB。现q32/4 GiB对象/65535维等门
 禁取熵测试不覆盖模块导入前的系统行为。公开二维反例与损坏/越界/信息泄漏等负例通过。
 服务器尚未部署/执行此入口，`server_attempts=0`，不是新的n512签名或原钥审计结果。
 唯一诊断续签授权已用完；新增服务器计算须另获用户明确授权，不能自动续签或启动后续链。
+
+## 20. 支持数诊断修正与直接采样复用边界
+
+实现 `4ea2250` 修正 `parameter_audit.py` 的原生窗口支持数上限：
+`radius=ceil(T*sigma)+1` 且包括两端，资源边界下完整支持数为`2*2^40+3`，旧值少算2。
+仅修两项未归一化floor-loss诊断，不改变采样器、参数、算法、接受门或任何旧回执。
+`total_tv_bound`、`abort_probability_bound`仍为null；不把支持数估计当归一化误差界。
+规定WSL Sage的审计/规划两文件回归 **50 passed / 0 failures/errors/skips，10.110 s**；
+[命令、源码绑定、JUnit及日志](evidence/support-cap/review.json)已归档，无native加载或采样。
+
+[现成MP12直接采样工具复用边界](parameter-route-planning.md#现成直接-g-trapdoor-采样工具的复用边界)
+核清了Algorithm 3/4的方程对应与容量、trace宽度、预算维数及根分布差异；
+没有修改共享工具或替换原根，不能声称该路线已有目标规模签名或正式参数。
