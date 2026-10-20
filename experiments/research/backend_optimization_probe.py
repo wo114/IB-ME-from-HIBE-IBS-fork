@@ -119,6 +119,24 @@ def _configure(backend, label, enabled):
         backend.configure_ntt_preparation(enabled)
 
 
+def address_mismatch_ciphertext(proto, public, sender, receiver_id, encrypted_receiver, encrypted_sender):
+    """Correct IBS/OTS payload, with only the HIBE address changed.
+
+    An invalid payload would be a vacuous rejection even if HIBE ignored IDs.
+    Each case uses a new IBS signature and a fresh one-use OTS key.
+    """
+    from ibme.core.encoding import encode_bytes
+    from ibme.core.lamport_ots import generate_lamport_key
+    from ibme.protocol.baseline import Ciphertext, encode_message, encode_signature
+    from ibme.protocol.byteauth import authenticate_inner, encode_bound_message
+    ots = generate_lamport_key()
+    envelope = encode_bound_message(ots.public_key.commitment(), b"address-control")
+    signature = proto.ibs_backend.sign(sender.signing_key, encode_message(receiver_id, envelope))
+    inner = Ciphertext(proto.hibe_backend.encrypt(public.hpk, encrypted_receiver, encrypted_sender,
+                        encode_signature(signature)+encode_bytes(envelope)))
+    return authenticate_inner(public, inner.to_bytes(), ots)
+
+
 def _backup(directory, destination, name):
     backup = directory/(name+".private.tar")
     with tarfile.open(backup, "x") as archive:
@@ -297,8 +315,7 @@ def worker(directory):
                                     ("both-wrong", b"D"*64, b"E"*64)):
                 # Actual wrong-address HIBE encryption, same opaque prepared key;
                 # no extra roots, sender extraction or slow delegation required.
-                bad_inner = Ciphertext(proto.hibe_backend.encrypt(public.hpk, rcv, snd, b"invalid"))
-                bad = authenticate_inner(public, bad_inner.to_bytes(), generate_lamport_key())
+                bad = address_mismatch_ciphertext(proto, public, sender, receiver_id, rcv, snd)
                 checks[name] = phase("negative-"+name, "validation", lambda: decrypt(bad.to_bytes())) is BOTTOM
             if not all(checks.values()):
                 raise AssertionError("a required full-protocol rejection failed")

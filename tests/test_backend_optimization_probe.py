@@ -55,3 +55,22 @@ def test_recompute_paired_summary_does_not_pool_independent_roots():
     records[0]["phases"][0]["status"] = "failed"
     with pytest.raises(ValueError):
         summarize_pairs(records)
+
+
+def test_address_control_has_valid_inner_and_outer_before_changing_hibe_address():
+    from experiments.research.backend_optimization_probe import address_mismatch_ciphertext
+    from ibme.core.randomness import DeterministicRandom
+    from ibme.hibe.mock import MockHIBE
+    from ibme.ibs.mock import MockIBSBackend
+    from ibme.protocol.baseline import BASELINE_MOCK_PARAMS, BOTTOM
+    from ibme.protocol.byteauth import ByteAuthenticatedIBME
+    proto = ByteAuthenticatedIBME(MockHIBE(), MockIBSBackend())
+    public, master = proto.setup(BASELINE_MOCK_PARAMS, rng=DeterministicRandom(b"TEST-ONLY-CONTROL"))
+    sender = proto.skgen(master, b"Alice")
+    receiver = proto.rkgen(master, b"Bob")
+    good = address_mismatch_ciphertext(proto, public, sender, b"Bob", b"Bob", b"Alice")
+    assert proto.decrypt(public, receiver, b"Alice", good.to_bytes()) == b"address-control"
+    for rcv, snd in ((b"Wrong", b"Alice"), (b"Bob", b"Wrong"), (b"Wrong", b"Wrong")):
+        bad = address_mismatch_ciphertext(proto, public, sender, b"Bob", rcv, snd)
+        assert bad.ots_key.verify(bad.signed_body(), bad.signature)
+        assert proto.decrypt(public, receiver, b"Alice", bad.to_bytes()) is BOTTOM
