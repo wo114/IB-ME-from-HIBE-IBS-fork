@@ -156,4 +156,25 @@ export PYTHONPATH="$PWD/src:$PWD"
 
 ## 6. 后续加入新算法
 
-完成独立 HIBE/IBS 的公开接口、对象读取器和真实参数后，在装配目录补登记、能力/容量计算及对应验证器，再将组合加入同一测试驱动。IBS 登记显式提供 `master_public_key(master)` 公共适配回调，框架不要求所有算法把主密钥公钥属性都命名为 `public_key`。登记还需如实描述 `object_parameter_binding`；新后端应保存完整公开参数快照。共同协议不需要为每个新算法复制一份。算法论文条件与正式安全准入另行记录；未交付的原语只阻塞依赖它的组合。
+完成独立 HIBE/IBS 的公开接口、对象读取器和真实参数后，在算法自己的 `registration.py` 提供 `backend_spec()`，无需先编辑中央 registry：
+
+```python
+from ibme.assembly import default_registry, make_suite, validate_suite
+from my_hibe.registration import backend_spec as my_hibe_spec
+from my_ibs.registration import backend_spec as my_ibs_spec
+
+registry = default_registry(extra_providers=(my_hibe_spec, my_ibs_spec))
+suite = make_suite(
+    hibe="my-hibe", ibs="my-ibs",
+    hibe_params="paper-profile", ibs_params="paper-profile",
+    transport="hybrid", signature_format="compact-v2",
+    registry=registry,
+)
+report = validate_suite(suite, registry=registry)
+```
+
+provider 必须是调用方直接传入的零参数可调用对象，返回一个 `BackendSpec` 或一组描述符。整批先校验后登记；重复 ID 或任一不完整描述符都会使整批失败，不留下半注册状态。每次 `default_registry()` 都产生独立实例，扩展不会泄漏到其它调用方。Suite JSON 只能选择已登记 ID，不能携带 Python 导入路径；框架也不自动扫描第三方插件。
+
+IBS 描述符显式提供 `master_public_key(master)` 公共适配回调，框架不要求所有算法把主密钥公钥属性都命名为 `public_key`。登记还需如实描述 `object_parameter_binding`、精确参数快照、签名格式、容量函数、环境依赖和准入 profile。CLI 将 `--signature-format` 原样交给所选 IBS 的 `signature_formats` 校验，因此新增格式不必修改 CLI 白名单。共同协议不需要为每个新算法复制一份。
+
+要进入 stock CLI 默认清单，仍需由项目把 provider 加入内建固定清单并补 CI；要进入 Web，还需增加适合交互时延且已验收的展示 preset。算法论文条件与项目准入另行记录；未交付的原语只阻塞依赖它的组合。

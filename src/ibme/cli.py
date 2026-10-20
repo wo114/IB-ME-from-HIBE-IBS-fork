@@ -909,8 +909,8 @@ def _add_selection(sub) -> None:
     sub.add_argument("--protocol", choices=("byteauth-v1", "baseline-v1"), default=None,
                      help="固定密文协议（独立选择默认 byteauth-v1）")
     sub.add_argument("--allow-mock", action="store_true", help="允许显式选择 TEST-ONLY mock 原语")
-    sub.add_argument("--signature-format", choices=("reference", "compact"), default="reference",
-                     help="固定签名解码格式；compact 仅适用于已实现该格式的 IBS")
+    sub.add_argument("--signature-format", default="reference",
+                     help="固定签名解码格式；可用值由所选 IBS 的 registry 描述符声明，不自动降级")
 
 
 def build_parser() -> argparse.ArgumentParser:

@@ -44,6 +44,8 @@ encode_message(id, message) = DOMAIN_MSG || encode_bytes(id) || encode_bytes(mes
 
 公开装配 API：`make_suite(hibe=..., ibs=..., hibe_params=..., ibs_params=..., transport=..., protocol=..., signature_format=...)` 生成配置；`validate_suite(config)` 返回 `ok/errors/capacity/metadata`；`build_runtime(config, ibs_rng=..., ots_rng=...)` 返回 `proto`、两类参数、严格对象 `decoders` 和公开校验方法。后端 ID 不认识、版本错、未交付、格式不支持或必需能力缺失均拒绝，不自动替换。`allow_mock` 必须显式开启，结果标记 TEST-ONLY。
 
+新原语可以在自己的 registration 模块公开零参数 provider，返回一个 `BackendSpec` 或一组描述符；调用方通过 `default_registry(extra_providers=(provider,))` 显式装入。一个 provider 的登记必须原子完成，任何重复、不完整或角色错误都使整批拒绝。`extra_specs` 仅是同一校验路径的直接形式。两者都由 Python 调用方持有，不能写进 Suite JSON、状态文件或命令行作为导入路径，也不进行环境入口点自动扫描。stock CLI 的签名格式字符串由所选 IBS 的 `signature_formats` 校验，而不是由 CLI 维护算法名白名单。
+
 `capacity` 按最大身份、IBS 输入和实际签名编码、协议组帧、BYTEAUTH 开销、HIBE 载荷、Hybrid 种子/身份/胶囊预算计算。`check` / `matrix` 只做静态预检，输出 `preflight_only` / `not_executed`；不能记为已运行组合。配置严格绑定完整选参；裸原语对象只能核对其 wire 实际编码的字段和公开绑定能力。旧 ABB10/SIS 和 mock 的字段缺失由 `raw_object_parameter_binding` 明确报告，CLI v2 通过额外对象封装绑定完整 suite；不能从裸旧对象追溯未编码的生成宽度或限额。没有公钥绑定能力的 direct 后端必须如实标记，Hybrid 不允许缺失。新后端应提供完整公开参数快照；加载成功仍不证明生成分布。
 
 ## 3. 原语公共接口

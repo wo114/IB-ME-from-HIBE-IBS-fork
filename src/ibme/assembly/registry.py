@@ -71,16 +71,25 @@ class BackendSpec:
 
 
 class BackendRegistry:
-    """A caller-owned registry; duplicates fail instead of replacing code silently."""
+    """A caller-owned registry; duplicates fail instead of replacing code silently.
+
+    New adapters can remain in their algorithm package and expose an explicit
+    zero-argument provider returning one ``BackendSpec`` or an iterable of
+    specs.  Providers are invoked only when Python code passes them to
+    :meth:`register_provider`; suite JSON can never name or import one.
+    """
     def __init__(self, specs=()):
         self._specs = {}
-        for spec in specs:
-            self.register(spec)
+        self.register_many(specs)
 
     def register(self, spec):
+        self.register_many((spec,))
+
+    @staticmethod
+    def _register_into(spec, records):
         if not isinstance(spec, BackendSpec) or spec.role not in ("hibe", "ibs"):
             raise InvalidParameterError("invalid backend descriptor")
-        if not spec.id or not spec.version or (spec.role, spec.id) in self._specs:
+        if not spec.id or not spec.version or (spec.role, spec.id) in records:
             raise InvalidParameterError("duplicate/empty backend identifier or version")
         if any(type(value) is not bool for value in
                (spec.available, spec.test_only, spec.two_level, spec.key_binding,
@@ -113,7 +122,44 @@ class BackendRegistry:
                                                or not callable(spec.master_public_key)))
                     or (spec.role == "hibe" and not callable(spec.ciphertext_size))):
                 raise InvalidParameterError("incomplete runnable backend descriptor")
-        self._specs[spec.role, spec.id] = spec
+        records[spec.role, spec.id] = spec
+
+    def register_many(self, specs):
+        """Atomically add an explicit batch of descriptors.
+
+        A malformed or duplicate item leaves this registry unchanged.  This is
+        useful for providers that publish a related HIBE/IBS family: callers do
+        not end up with half a provider after a validation error.
+        """
+        if isinstance(specs, BackendSpec):
+            batch = (specs,)
+        else:
+            try:
+                batch = tuple(specs)
+            except TypeError as exc:
+                raise InvalidParameterError("backend descriptor batch must be iterable") from exc
+        records = dict(self._specs)
+        for spec in batch:
+            self._register_into(spec, records)
+        self._specs = records
+
+    def register_provider(self, provider):
+        """Invoke one caller-selected provider and atomically register its specs."""
+        if not callable(provider):
+            raise InvalidParameterError("backend provider must be callable")
+        supplied = provider()
+        if isinstance(supplied, BackendSpec):
+            batch = (supplied,)
+        else:
+            try:
+                batch = tuple(supplied)
+            except TypeError as exc:
+                raise InvalidParameterError(
+                    "backend provider must return a BackendSpec or iterable of BackendSpec"
+                ) from exc
+        if not batch:
+            raise InvalidParameterError("backend provider returned no descriptors")
+        self.register_many(batch)
 
     def get(self, role, identifier):
         try:
@@ -436,14 +482,24 @@ def _portable_specs():
     return specs
 
 
-def default_registry():
-    specs = _portable_specs()
+def default_registry(*, extra_specs=(), extra_providers=()):
+    """Build a fresh default registry and apply explicit caller extensions.
+
+    ``extra_specs`` is convenient for tests or one-off adapters.  Production
+    algorithm packages should normally expose a ``backend_spec`` provider and
+    pass it through ``extra_providers``.  Neither path is persisted in suite
+    JSON, and every call returns an independent registry.
+    """
+    registry = BackendRegistry(_portable_specs())
     # Public optional entry, with no Sage import on non-Sage hosts. The caller
     # supplies the private arithmetic executable through an explicit local
     # environment setting; suite JSON cannot specify executables or imports.
     from ibme.hibe.mp12_chkp import default_backend_spec
-    specs.append(default_backend_spec())
-    return BackendRegistry(specs)
+    registry.register_provider(default_backend_spec)
+    registry.register_many(extra_specs)
+    for provider in extra_providers:
+        registry.register_provider(provider)
+    return registry
 
 
 def default_backend_catalog():
