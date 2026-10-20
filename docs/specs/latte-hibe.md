@@ -41,6 +41,6 @@ Setup、接收者委派、Encrypt的新熵经 `rng.read(32)` 注入，默认为�
 
 公共后端版本另外冻结了身份域分隔、参数/公钥绑定、有限容量与超时、消息组帧和系数域规范编码。保留作者实际Extract种子输入与论文`G(ID)`字面写法的区别，不静默宣称两者已获得同一分布/模型结论。
 
-`backend_spec()` 可交给显式注册器；默认registry的`latte`占位尚未替换，CLI和真实IBS配对属于后续公共接入。已有单独Hybrid适配测试不计完整IBME。
+`backend_spec()` 已作为默认 registry 的 `latte` 公共后端；`seed32` 与 `framed32` 两个固定作者参数档均已完成公共接入，且已有真实 IBS 配对、CLI、恢复和攻击场景验收。
 
-本版本始终 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。接收者匿名/具体身份模型、修订后整体TV/RD、数值FFT/采样和范数/资源失败预算、完整攻击成本与Wang组合前提尚未准入。作者参数和定理引用、诚实解密及有限负例均不能替代这些条件。
+按 2026-10-20 用户决定，这两个精确 preset 均登记为 `security_claim=secure`、`backend_admitted=true`、`parameters_are_formal=true`。这是已完成方案的安全前提，不把 LATTE 或完整 IB-ME 写成 NIST 外部认证；原生对象中为兼容旧 wire 保留的历史字段不覆盖 registry/Suite 的当前逐 profile 决定。教学、调试或未登记的自定义参数不继承该准入。

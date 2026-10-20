@@ -46,7 +46,9 @@ CLI / 应用 / 统一评测
 | 统一选择与装配 | [assembly](src/ibme/assembly/__init__.py)、[registry](src/ibme/assembly/registry.py) | 显式后端登记、严格配置快照、无随机性的能力/容量预检、公开对象恢复 |
 | 组合验收 | [run_combination_matrix.py](experiments/run_combination_matrix.py) | 同一驱动执行各已实现组合；静态兼容与真实执行分开记录 |
 
-装配机制复用现有构造函数。`SuiteConfig` 保存后端标识与版本、各自完整参数、包装/格式/限额和声明；读取器与工厂由代码注册，JSON 不能指定任意导入。`validate_suite` 在发钥或状态写入前报告不兼容项；`build_runtime` 构造共同协议及对应解码器。命令与 Python 示例见 [使用指南](docs/FRAMEWORK_USAGE.md)。接口、容量通过不代表论文安全前提已核准。
+装配机制复用现有构造函数。`SuiteConfig` 保存后端标识与版本、各自完整参数、包装/格式/限额和声明；读取器与工厂由代码注册，JSON 不能指定任意导入。算法包可以公开零参数 `backend_spec` provider，调用方用 `default_registry(extra_providers=(backend_spec,))` 显式接入，不必修改共同协议或中央注册表；provider 批量登记是原子的，重复或不完整描述符不会留下半注册状态。stock CLI 使用默认 registry，项目内建或 Web 展示仍须经过固定清单审查。
+
+`validate_suite` 在发钥或状态写入前报告不兼容项；`build_runtime` 构造共同协议及对应解码器。命令与 Python 示例见 [使用指南](docs/FRAMEWORK_USAGE.md)。接口、容量通过不代表论文安全前提已核准。
 
 ## 4. 原语接口
 

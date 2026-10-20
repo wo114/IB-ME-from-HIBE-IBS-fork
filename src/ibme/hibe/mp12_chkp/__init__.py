@@ -82,6 +82,8 @@ def backend_metadata():
         id=BACKEND_ID, version=BACKEND_VERSION, available=present,
         test_only=False, reason=reason,
         parameter_presets=["n2-reference"] if present else [],
+        security_claim="none", backend_admitted=False,
+        formal_parameter_presets=[], admission_basis="",
         signature_formats=["reference"], two_level=present, key_binding=present,
         object_parameter_binding="full-parameter-snapshot" if present else "backend-specific",
         master_public_key_capability=False, persistent_identity_cache=present,

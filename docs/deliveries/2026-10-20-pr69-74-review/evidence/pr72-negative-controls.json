@@ -1,0 +1,27 @@
+{
+  "checks": 3,
+  "controls": [
+    {
+      "manifest_rehashed_in_memory": true,
+      "name": "alter-master-median",
+      "reason": "master table derived from actual receipts",
+      "result": "rejected"
+    },
+    {
+      "manifest_rehashed_in_memory": true,
+      "name": "claim-C-restore-zero-entropy",
+      "reason": "installed coverage boundaries",
+      "result": "rejected"
+    },
+    {
+      "manifest_rehashed_in_memory": true,
+      "name": "provider-outside-installed-wheel",
+      "reason": "benchmark provider outside installation",
+      "result": "rejected"
+    }
+  ],
+  "experiments_rerun": false,
+  "original_files_changed": false,
+  "private_state_read": false,
+  "status": "passed"
+}

@@ -2,17 +2,29 @@
 
 ## 当前编辑入口
 
-2026-10-20 用户改为 **LaTeX 源稿 → PDF 交付**。从现在起直接编辑[LaTeX源文件](研究报告初稿.tex)，使用[PDF](研究报告初稿.pdf)阅读；[build_pdf.py](build_pdf.py)直接编译源稿，不经过Word。已有Markdown、Word、`build_report.py`和`validation.json`保留为PR66固定版本的历史材料，不要求三种格式继续同步编辑。
+2026-10-20 起以 **LaTeX 源稿 → PDF** 为唯一当前编辑链。直接编辑[LaTeX源文件](研究报告初稿.tex)，使用[PDF](研究报告初稿.pdf)阅读；[build_pdf.py](build_pdf.py)直接编译源稿，不经过Word。已有Markdown、Word、`build_report.py`和`validation.json`是PR66固定版本的历史材料，不再与当前正文同步。
 
-本版迁移PR66已修订的七章正文、11张表、6幅图和14项文献，加入自动目录、全篇连续图表编号、跨页表头和可点击来源。封面说明正文沿用的历史基点与PR68已冻结三代表的区别；本轮仅接收修订并迁移格式，不将旧三组重复基线改称新三代表。后续仍需更新正文状态、三代表图表和补测结果，不能直接作为竞赛终稿提交。三组不要求统一达到128位，各自保留真实参数、论文目标和限制。
+当前正文采用冻结的三代表：A为LATTE-3＋BNN/ML-DSA-44，B为LATTE-3＋SRGG PARAM-I compact，C为Lai C2＋Sageloli RSIS v3 PARAM-I。旧LATTE＋ML-DSA／Falcon／Luo数据作为辅助基线。七章正文、12张表、6幅图、19个证据入口和15项文献分别保留参数、样本与环境，不作跨目标排名。按2026-10-20用户“默认已经做好的都是安全的”的决定，三组使用`secure/true/true`并按安全方案表述，理论引用选定原文。
 
-编译需要Tectonic或带中文支持的XeLaTeX，使用TeX发行版的Fandol字体，不绑定Windows或本机字体路径。在仓库根执行：
+已接入PR69随机批次与PR72同机补测：三组精确安装、恢复和有效外层下的内层签名负例均完成，A/B含各自最大应用消息和越界；新增附录同机A/B基准直接从公开主表取值。PR71、74是另外的独立安装批次，不与PR72重复累计。剩余为C的3924 B最大消息及受预算约束的多根重复、来源许可、本届模板／匿名信息和同一发布版本复现。
+
+## 当前竞赛版式
+
+当前版式以仓库保存的[2026年第十一届复赛官方模板及指纹](../../competition/2026/README.md)为权威基线，2025年优秀作品只作为内容组织的次级参考。现稿采用官方A4页面和四边20mm页边距，正文页眉固定为“全国密码技术竞赛作品设计报告”，页脚只显示页码；继续保留“赛事封面—基本信息表—目录—图表目录—正文”的可读结构、宋体正文、黑体标题、首行缩进、章内图表编号和书刊式三线表。官方模板给出的一级、二级标题本身注明可按作品实际情况增删，因此正文继续使用本项目七章结构。
+
+当前封面把作品类别标为软件设计，作品编号由单一`\worknumber`宏控制，并在封面和基本信息表复用；工作稿保持空值，赛事系统分配编号后只需填写一次。封面标志已替换为官方模板内嵌JPEG的逐字节副本[figures/cacr-logo.jpg](figures/cacr-logo.jpg)，SHA-256为`908993f5ce1186b588114ea4a2f30e88691dbf1e7aef9b43a1b7080ff1324b4e`。公开证据索引不再嵌入带仓库账号的GitHub链接，而改用支撑材料根目录下可核对的相对路径。
+
+本稿仍待完成上述C补测、来源许可、同一发布版本复现及最终匿名复核。提交前须填写系统作品编号，分别准备设计报告PDF、支撑材料和审批及签字页；签字页不并入匿名设计报告。
+
+编译需要Tectonic或带中文支持的XeLaTeX，使用TeX发行版的Fandol字体，不绑定Windows、某一Sage环境或本机字体路径。在仓库根执行：
 
 ```text
-python docs/reports/2026-10-19-research-draft/build_pdf.py
+python3 docs/reports/2026-10-19-research-draft/check_latex_report.py
+python3 docs/reports/2026-10-19-research-draft/build_pdf.py
+python3 docs/reports/2026-10-19-research-draft/check_latex_report.py --require-pdf
 ```
 
-也可用`--engine /路径/tectonic`指定引擎。图像使用同目录已有`figures/`，所有辅助文件生成在临时目录，成功后才替换PDF。每次改稿后重新编译并检查PDF页面；结构检查不能替代目视检查。本轮编译环境、摘要、逐页核验与接收范围见[接收记录](../../deliveries/2026-10-20-pr66-68-reception/README.md)。
+可用`--engine /路径/tectonic`指定引擎。`check_latex_report.py`复核三代表配置与公开数据、官方模板指纹、版式、支撑材料相对路径和已知匿名字段；`--submission-ready`另外要求填写作品编号并生成当前PDF。编译、逐页目视和最终指纹见下方本轮核验记录；编号尚未填写，本稿不标为可直接上传。原PR66／68历史迁移记录见[接收记录](../../deliveries/2026-10-20-pr66-68-reception/README.md)。
 
 ## PR66历史稿说明
 
@@ -70,4 +82,10 @@ python docs/reports/2026-10-19-research-draft/check_report.py --record
 
 新增正文、Word、此说明，`build_report.py`、`check_report.py`、`report-facts.json`、`validation.json`及`figures/`下6张图；只在`docs/PROJECT_STATUS.md`顶部增加当前入口和用户决定。旧`docs/IBME_作品报告.md`、`docs/COMPETITION_DEMO_AND_DEFENSE.md`与`ib-me.pptx`未修改。
 
-旧作品报告SHA-256仍为`d3ae98a1cd4699b2be3cd8474f8607ae5415f0bfb60d83530b3f8f8679040957`，PPT仍为`c1bd68722c4f2fee16f86a3ad8343a36b6223c0d07b3d9a27238b555c8dea4b4`。最终三代表选择、必要消息长度补测、来源与许可汇总、本届提交模板与匿名信息仍待完成。理论沿用原文引用及用户确认工作前提，实际参数和已知不安全调试档如实区别；所有相关组合的`none/false/false`安全元数据保持原样。
+旧作品报告SHA-256仍为`d3ae98a1cd4699b2be3cd8474f8607ae5415f0bfb60d83530b3f8f8679040957`，PPT仍为`c1bd68722c4f2fee16f86a3ad8343a36b6223c0d07b3d9a27238b555c8dea4b4`。在PR66固定时，最终三代表、必要消息长度补测、来源许可、本届模板与匿名信息尚未完成，相关组合当时也仍保留`none/false/false`。这些是历史版本边界，不覆盖本页顶部记录的当前三代表及默认安全口径状态。
+
+## 2026-10-20本轮接收核验
+
+已合并处理作者最新`6831e30`中的官方模板与匿名相对路径，并保留PR69／72的新证据和用户确认的`secure/true/true`。Windows Tectonic 0.17.0重新编译为31页A4（封面／信息表2页、罗马数字前置4页、正文及附录／文献25页），20种字体全部嵌入；31页逐页渲染检查完成，未见截断、重叠、空白页或缺字，Unicode替换字符为0。LaTeX／PDF复核160项通过；官方两份DOCX及内嵌标志另以原始字节和XML页边距复核。
+
+当前TeX SHA-256为`daf46194447c9d80e4063c5a97b3c21c719ea9ee01d4a79e737a81e08ff8814b`，PDF SHA-256为`f39a96c6b55b64bc2b5986ff0e0a54199fe22849f9e2dbb6680a714247c0f2cc`。本机编译只出现fontconfig默认配置缺失提示，未出现LaTeX溢出、缺字或未定义引用警告。作品编号保留空值，`--submission-ready`应因此拒绝；本稿尚未标为最终上传件。原作者28／31／30页的历史记录不替代这次核验。完整接收、测试和限制见[本轮审查交付](../../deliveries/2026-10-20-pr69-74-review/README.md)。

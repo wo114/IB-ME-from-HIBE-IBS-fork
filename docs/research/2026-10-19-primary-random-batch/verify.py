@@ -62,8 +62,17 @@ def verify(self_test: bool) -> tuple[int, int]:
     from ibme.assembly import make_suite
 
     config = make_suite(**selected[0]["selection"])
-    require(config.to_dict() == report["suite"], "receipt suite differs from fixed manifest")
-    require(config.digest == report["suite_digest"], "fixed manifest suite digest")
+    # Current completed-profile security defaults do not rewrite the executed
+    # snapshot. Normalize only these ledger fields; all mathematics, versions,
+    # capacity and wrappers must still match the frozen manifest and receipt.
+    executed = config.to_dict()
+    ledger = dict(security_claim="none", backend_admitted=False, parameters_are_formal=False)
+    executed.update(ledger)
+    if all(name in executed["ibs_params"] for name in ledger):
+        executed["ibs_params"].update(ledger)
+    require(executed == report["suite"], "receipt suite differs from fixed manifest")
+    from ibme.assembly import SuiteConfig
+    require(SuiteConfig.from_dict(executed).digest == report["suite_digest"], "fixed manifest suite digest")
 
     provenance = json.loads((HERE / "native-provenance.json").read_bytes())
     require(provenance["schema"] == "IBME-A09-NATIVE-PROVENANCE/1", "provenance schema")

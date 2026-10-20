@@ -25,7 +25,7 @@ encode_message(id, message) = DOMAIN_MSG || encode_bytes(id) || encode_bytes(mes
 
 每个后端使用自己的显式参数类型。旧 `Params` 的字段、uint32 格式和教学约束只见 [教学兼容规范](docs/specs/teaching-lattice.md)；`LuoMatrixParams`、`LuoModuleParams` 和 `CHKPParams` 不自动转换为旧类型。HIBE/IBS 不要求相同 n、q、环或困难假设。代码中矩阵列数称 `m_matrix`，消息称 `message`。
 
-参数记录必须包含论文/算法版本、来源位置、完整数值、身份和消息限额、随机与中止策略、资源上限、已验证条件和安全声明。未完成安全准入时使用 `security_claim=none`、`backend_admitted=false`，另行记录参数是否正式；这些标记允许合法研究运行，不能伪装为已安全准入的默认配置。
+参数记录必须包含论文/算法版本、来源位置、完整数值、身份和消息限额、随机与中止策略、资源上限、已验证条件和安全声明。按2026-10-20用户决定，已经完成并冻结采用的目标／论文参数默认安全，使用 `security_claim=secure`、`backend_admitted=true`、`parameters_are_formal=true`；公共registry列出精确preset。尚未完成、mock、教学档、已知攻击负控和仅数值投影继续使用none/false/false，不继承同一后端其它配置的安全标记。
 
 身份限额为最大长度。组合需同时满足 HIBE 与 IBS 的入口限制；采用 Hybrid 时还须满足编码后的两层身份宽度。IBS 单独调用按自身契约验证身份，不依赖某次 HIBE 调用为它完成校验。
 
@@ -43,6 +43,8 @@ encode_message(id, message) = DOMAIN_MSG || encode_bytes(id) || encode_bytes(mes
 装配预检应在熵消费、发钥或状态写入前拒绝不兼容配置。一个原语阻塞仅阻塞依赖它的组合。不同算法可以使用同一困难假设；参数或编码调整不能重复计作新密码算法。第三个 HIBE 候选不再强制 Module-LWE；具体候选与优先级由当前状态记录维护。
 
 公开装配 API：`make_suite(hibe=..., ibs=..., hibe_params=..., ibs_params=..., transport=..., protocol=..., signature_format=...)` 生成配置；`validate_suite(config)` 返回 `ok/errors/capacity/metadata`；`build_runtime(config, ibs_rng=..., ots_rng=...)` 返回 `proto`、两类参数、严格对象 `decoders` 和公开校验方法。后端 ID 不认识、版本错、未交付、格式不支持或必需能力缺失均拒绝，不自动替换。`allow_mock` 必须显式开启，结果标记 TEST-ONLY。
+
+新原语可以在自己的 registration 模块公开零参数 provider，返回一个 `BackendSpec` 或一组描述符；调用方通过 `default_registry(extra_providers=(provider,))` 显式装入。一个 provider 的登记必须原子完成，任何重复、不完整或角色错误都使整批拒绝。`extra_specs` 仅是同一校验路径的直接形式。两者都由 Python 调用方持有，不能写进 Suite JSON、状态文件或命令行作为导入路径，也不进行环境入口点自动扫描。stock CLI 的签名格式字符串由所选 IBS 的 `signature_formats` 校验，而不是由 CLI 维护算法名白名单。
 
 `capacity` 按最大身份、IBS 输入和实际签名编码、协议组帧、BYTEAUTH 开销、HIBE 载荷、Hybrid 种子/身份/胶囊预算计算。`check` / `matrix` 只做静态预检，输出 `preflight_only` / `not_executed`；不能记为已运行组合。配置严格绑定完整选参；裸原语对象只能核对其 wire 实际编码的字段和公开绑定能力。旧 ABB10/SIS 和 mock 的字段缺失由 `raw_object_parameter_binding` 明确报告，CLI v2 通过额外对象封装绑定完整 suite；不能从裸旧对象追溯未编码的生成宽度或限额。没有公钥绑定能力的 direct 后端必须如实标记，Hybrid 不允许缺失。新后端应提供完整公开参数快照；加载成功仍不证明生成分布。
 
@@ -126,7 +128,7 @@ Decrypt:
 
 2026-10-18 用户确认当前研发默认所选论文算法具备所需安全性，HIBE 具备身份匿名性；理论材料以引用原文为主。安全性、匿名性的补充证明、逐个 hybrid 和完整归约闭合不列为实现、组合或评测的前置任务。原文明确声明的性质注明出处，原文未明确声明但项目采用的性质注明工作假设，不将其记录为新完成的证明。
 
-上述工作前提不改变安全元数据字段的既有含义；实际算法版本、参数、实现改动、已知问题和失败结果继续单列。ROM、QROM、标准模型、正确性概率、攻击估计和实际测试分别记录，不相互替代；BYTEAUTH/Hybrid 不自动给出 CCA 或 QROM 结论。
+2026-10-20 用户确认：已经完成的方案默认安全，不以“本项目准入”替代安全性，不再等待额外完整归约闭合。该前提对应已完成的精确profile，历史收据仍保留原值；实际算法版本、参数、实现改动、已知问题和失败结果继续单列。ROM、QROM、标准模型、正确性概率、攻击估计和实际测试分别记录；BYTEAUTH/Hybrid不自动扩大底层论文引用的安全模型。
 
 ## 6. 分层验收
 

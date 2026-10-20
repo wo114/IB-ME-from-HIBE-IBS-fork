@@ -64,6 +64,7 @@ def test_fixed_source_gate_rejects_a_nonexistent_commit():
 
 def _valid_report():
     from ibme.assembly import make_suite
+    from ibme.core.security import security_fields
 
     seed = SEED.hex()
     runner_hash = hashlib.sha256(b"runner").hexdigest()
@@ -113,9 +114,7 @@ def _valid_report():
                 failed_checks=0,
                 suite=suite,
                 suite_digest=config.digest,
-                security_claim="none",
-                backend_admitted=False,
-                parameters_are_formal=False,
+                **security_fields(suite),
                 input_manifest=manifest,
                 cryptographic_randomness=dict(
                     source="SecureRandom / operating-system CSPRNG",
@@ -168,9 +167,7 @@ def _valid_report():
         total_checks_planned=60,
         roots=roots,
         security=dict(
-            security_claim="none",
-            backend_admitted=False,
-            parameters_are_formal=False,
+            **security_fields(suite),
             functional_tests_are_security_proof=False,
         ),
     )

@@ -78,6 +78,8 @@ def worker(directory, *, restore=False):
             entropy_patch = patch.object(SecureRandom, "read", counted)
             entropy_patch.start()
             config = SuiteConfig.from_json((directory/"suite.json").read_bytes())
+            from ibme.core.security import security_fields
+            report.update(security_fields(config.to_dict()))
             runtime = build_runtime(config)
             proto = runtime.proto
         # Count every use of the common system source, including IBS/OTS
@@ -246,8 +248,10 @@ def run(directory, selection, *, repetitions, warm_repetitions, message_bytes,
         cross_security_group_ranking=False, repetitions=repetitions, warm_repetitions_per_state=warm_repetitions,
         identity_bytes=identity_bytes, message_bytes=message_bytes, records=records,
         timing_seconds={name:summarize(values) for name, values in timings.items()},
-        environment=environment(), uses_ROM=True, security_claim="none", backend_admitted=False,
-        parameters_are_formal=False, randomness="system CSPRNG, no fixed seed and no outer retry",
+        environment=environment(), uses_ROM=True,
+        **{name: config.to_dict()[name] for name in
+           ("security_claim", "backend_admitted", "parameters_are_formal")},
+        randomness="system CSPRNG, no fixed seed and no outer retry",
         measurements_scope="public protocol APIs, wrappers, validation, wire encode/decode and native launches; new Python process per generation/restore; built engines and OS page caches retained",
         uncertainty="3 cold states are a small empirical sample; 10ms RSS sampling may miss spikes; warm observations share each state and are not independent roots")
     write(directory/"receipt.json", report)

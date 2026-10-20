@@ -12,6 +12,8 @@ import time
 from .c_framework_cli_probe import ALICE, BOB, CAROL, EVE, command, replay, snapshot
 
 
+REPORT_B_DIGEST = '8b9fef332ed20f8c34fc1eedb3f81b5f3b3236533e6bca7c07d6687ccf546c61'
+
 def require(condition, message):
     if not condition:
         raise ValueError(message)
@@ -32,6 +34,7 @@ def setup_arguments(state, suite_file=None):
     if suite_file is None:
         return args, None
     expected = SuiteConfig.from_json(Path(suite_file).read_bytes())
+    require(expected.digest == REPORT_B_DIGEST, 'not the current frozen report B Suite')
     raw = expected.to_dict()
     require(raw['hibe'] == 'latte' and raw['ibs'] == 'srgg2025-paper'
             and raw['signature_format'] == 'compact' and raw['transport'] == 'hybrid'
@@ -46,6 +49,7 @@ def setup_arguments(state, suite_file=None):
 
 
 def generate(directory, source_commit, *, suite_file=None):
+    from ibme.core.security import security_fields
     setup_args, expected_suite = setup_arguments(directory / 'state', suite_file)
     directory.mkdir(parents=True, exist_ok=False)
     state = directory / 'state'
@@ -117,7 +121,7 @@ def generate(directory, source_commit, *, suite_file=None):
             ciphertext_bytes=len(wire), public_key_bytes=(state/'mpk.bin').stat().st_size,
             total_seconds=time.perf_counter()-started,
             randomness='system CSPRNG; no fixed seed or outer retry; new process per CLI command',
-            security_claim='none', backend_admitted=False, parameters_are_formal=False)
+            **security_fields(meta['suite']))
         if expected_suite is not None:
             receipt.update(requested_suite_digest=expected_suite.digest,
                            installed_suite_digest=meta['suite_digest'], frozen_suite_matched=True)

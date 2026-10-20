@@ -44,7 +44,7 @@ class Backend(IBSBackend):
 
     def __init__(self,*,rng=None,signature_format='reference'):
         _format(signature_format)
-        from experiments.research.candidates.srgg.paper_backend import Backend as PaperBackend
+        from experiments.research.candidates.srgg.paper_runtime import Backend as PaperBackend
         self._backend=PaperBackend(rng=rng)
         self.rng=self._backend.rng
         self.signature_format=signature_format

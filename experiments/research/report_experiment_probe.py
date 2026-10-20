@@ -33,9 +33,9 @@ def write_new(path, value):
 
 def setup_arguments(suite, state):
     from ibme.assembly import SuiteConfig
-    require(suite.get('security_claim') == 'none' and suite.get('backend_admitted') is False
-            and suite.get('parameters_are_formal') is False and suite.get('allow_mock') is False,
-            'real research suite required')
+    from ibme.core.security import ADMITTED_SECURITY, UNADMITTED_SECURITY, security_tuple
+    require(security_tuple(suite) in (ADMITTED_SECURITY, UNADMITTED_SECURITY)
+            and suite.get('allow_mock') is False, 'real supported suite required')
     SuiteConfig.from_dict(suite)
     args = ['setup', '--state', str(state)]
     for name in ('hibe', 'ibs', 'hibe_params', 'ibs_params', 'transport', 'protocol',
@@ -222,6 +222,7 @@ def command(directory, name, args, *, expected=0, zero=False, timeout=1200, acti
 def generate(directory, suite, *, source_commit, prefix, lengths=None, identity_negatives=True,
              with_inner_check=False, timeout=1200):
     from ibme.assembly import SuiteConfig, validate_suite
+    from ibme.core.security import security_fields
     from experiments.research.runtime_metrics import environment
     config = SuiteConfig.from_dict(suite)
     report = validate_suite(config)
@@ -311,8 +312,7 @@ def generate(directory, suite, *, source_commit, prefix, lengths=None, identity_
                       identity_negatives_executed=identity_negatives, inner_signature_check_executed=with_inner_check,
                       state_file_bytes={p.name: p.stat().st_size for p in state.iterdir() if p.is_file() and p.suffix == '.bin'},
                       restored_state_unchanged=True, restored_decrypt_zero_entropy=zero,
-                      root_count=1, no_outer_retry=True, security_claim='none', backend_admitted=False,
-                      parameters_are_formal=False, uses_ROM=True,
+                      root_count=1, no_outer_retry=True, **security_fields(suite), uses_ROM=True,
                       limitations=['Single root functional supplement, not a repeated benchmark.',
                                    'CLI main timings and process wall timings are separate.',
                                    'RSS samples may miss spikes; kernel ru_maxrss is lifetime, not phase-isolated.'])

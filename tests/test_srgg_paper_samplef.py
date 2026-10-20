@@ -7,7 +7,10 @@ pytest.importorskip("sage.all", reason="specified WSL Sage required")
 from sage.all import ComplexIntervalField, QQ, RealField, identity_matrix, matrix, vector
 
 from ibme.core.randomness import DeterministicRandom, SecureRandom
-from experiments.research.candidates.srgg.paper_samplef import PaperSampleF, PaperSeriesOptions, WitnessGeometryError
+from experiments.research.candidates.srgg.paper_samplef import (
+    PaperSampleF, PaperSeriesOptions, WitnessGeometryError)
+from experiments.research.candidates.srgg.paper_runtime import PaperScalarOptions
+from experiments.research.candidates.srgg.wide_scalar import WideScalarGaussian, WideScalarOptions
 from experiments.research.candidates.srgg.paper_samplef import _negacyclic_spectrum
 from experiments.research.candidates.srgg.structured_geometry import StructuredGeometry
 from experiments.research.candidates.srgg.structured_samplef import SeriesOptions
@@ -182,3 +185,43 @@ def test_paper_computational_term_reserve_does_not_change_legacy_options():
                    {"precision_bits": 128}, {"max_entropy_bytes": 0}):
         with pytest.raises(ValueError):
             PaperSeriesOptions(**kwargs)
+
+
+def test_paper_scalar_reserve_accepts_long_exact_centers_without_relaxing_legacy():
+    center = QQ(1)/2**9000
+    ordinary = WideScalarGaussian(1, 1)
+    paper = WideScalarGaussian(1, 1, options=PaperScalarOptions())
+    with pytest.raises(ValueError):
+        ordinary.checked_inputs(1, center)
+    assert paper.checked_inputs(1, center)[2] == center
+    assert WideScalarOptions().rational_bits == 8192
+
+
+def test_public_runtime_enlarges_storage_and_preserves_frozen_research_defaults():
+    from dataclasses import asdict
+    from ibme.ibs.srgg.paper import Backend as PublicBackend
+    from experiments.research.candidates.srgg.paper_backend import Backend as ResearchBackend
+
+    runtime = PublicBackend()._backend
+    reference = ResearchBackend()
+    current_options, historical_options = asdict(runtime.scalar_options), asdict(reference.scalar_options)
+    assert current_options.pop("rational_bits") == 32768
+    assert historical_options.pop("rational_bits") == 8192
+    assert current_options == historical_options
+    center = QQ(1)/2**9000
+    assert WideScalarGaussian(1, 1, options=runtime.scalar_options).checked_inputs(1, center)[2] == center
+    with pytest.raises(ValueError):
+        WideScalarGaussian(1, 1, options=reference.scalar_options).checked_inputs(1, center)
+
+
+def test_paper_scalar_reserve_preserves_the_exact_finite_law_for_existing_inputs():
+    ordinary = WideScalarGaussian(1, 1)
+    paper = WideScalarGaussian(1, 1, options=PaperScalarOptions())
+    assert paper.finite_distribution(1, QQ(1)/3) == ordinary.finite_distribution(1, QQ(1)/3)
+
+
+@pytest.mark.parametrize('kwargs', [dict(rational_bits=True), dict(rational_bits=127),
+    dict(rational_bits=32769), dict(max_uniform_trials=0), dict(tail_bits=7)])
+def test_paper_scalar_reserve_retains_explicit_resource_gates(kwargs):
+    with pytest.raises(ValueError):
+        PaperScalarOptions(**kwargs)

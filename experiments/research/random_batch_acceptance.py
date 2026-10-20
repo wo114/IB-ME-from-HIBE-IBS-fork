@@ -197,6 +197,7 @@ def _root_worker(directory: Path) -> dict:
     from experiments.research.runtime_metrics import environment, measured_phase
     from ibme.assembly import SuiteConfig, build_runtime, validate_suite
     from ibme.core.randomness import SecureRandom
+    from ibme.core.security import security_fields
     from ibme.protocol.baseline import BOTTOM
 
     plan = json.loads((directory / "plan.json").read_bytes())
@@ -214,9 +215,7 @@ def _root_worker(directory: Path) -> dict:
         input_manifest=expected_manifest,
         phases=phases,
         cases=[],
-        security_claim="none",
-        backend_admitted=False,
-        parameters_are_formal=False,
+        **security_fields(config.to_dict()),
         security_proofs_produced=0,
         uses_ROM=True,
     )
@@ -489,6 +488,7 @@ def build_plan(suite_file: Path, seed_hex: str, source_commit: str) -> dict:
 
 
 def _aggregate(plan: dict, attempts: list[dict]) -> dict:
+    from ibme.core.security import security_fields
     roots = []
     for attempt in attempts:
         directory = Path(attempt["directory"])
@@ -553,9 +553,7 @@ def _aggregate(plan: dict, attempts: list[dict]) -> dict:
         total_checks_planned=ROOT_COUNT * RECEIVERS_PER_ROOT * SENDERS_PER_ROOT * len(CHECK_NAMES),
         roots=roots,
         security=dict(
-            security_claim="none",
-            backend_admitted=False,
-            parameters_are_formal=False,
+            **security_fields(plan["suite"]),
             security_proofs_produced=0,
             functional_tests_are_security_proof=False,
             selected_algorithm_security_and_hibe_anonymity="project working assumptions with cited sources",
@@ -570,6 +568,7 @@ def _aggregate(plan: dict, attempts: list[dict]) -> dict:
 
 def validate_public_report(report: dict, *, expected_commit: str | None = None) -> int:
     from ibme.assembly import SuiteConfig
+    from ibme.core.security import security_fields
 
     require(type(report) is dict and report.get("schema") == SCHEMA, "public report schema")
     require(report.get("status") == "passed", "public report status")
@@ -583,6 +582,7 @@ def validate_public_report(report: dict, *, expected_commit: str | None = None) 
     require(suite.get("ibs_params", {}).get("base_algorithm") == "ml-dsa-44", "ML-DSA-44 profile")
     require(suite.get("transport") == "hybrid" and suite.get("protocol") == "byteauth-v1", "wrapper selection")
     require(SuiteConfig.from_dict(suite).digest == report.get("suite_digest"), "suite digest")
+    expected_security = security_fields(suite)
     require(report.get("identity_bytes") == IDENTITY_BYTES, "identity length")
     require(report.get("message_lengths") == list(MESSAGE_LENGTHS), "message lengths")
     seed = parse_seed(report.get("input_seed_hex"))
@@ -614,9 +614,8 @@ def validate_public_report(report: dict, *, expected_commit: str | None = None) 
         )
         require(root.get("failed_checks") == 0 and root.get("completed_checks") == 20, "root checks")
         require(root.get("suite") == suite and root.get("suite_digest") == report["suite_digest"], "root suite")
-        require(root.get("security_claim") == "none", "root security claim")
-        require(root.get("backend_admitted") is False, "root backend admission")
-        require(root.get("parameters_are_formal") is False, "root formal parameters")
+        require(all(root.get(name) == value and type(root.get(name)) is type(value)
+                    for name, value in expected_security.items()), "root security snapshot")
         entropy = root.get("cryptographic_randomness", {})
         require(entropy.get("source") == "SecureRandom / operating-system CSPRNG", "crypto RNG source")
         require(entropy.get("deterministic_test_seed_injected") is False, "test/crypto RNG separation")
@@ -670,9 +669,8 @@ def validate_public_report(report: dict, *, expected_commit: str | None = None) 
     require(report.get("totals") == {name: 12 for name in CHECK_NAMES}, "aggregate check totals")
     require(report.get("total_checks_passed") == report.get("total_checks_planned") == 60, "aggregate total")
     security = report.get("security", {})
-    require(security.get("security_claim") == "none", "security claim")
-    require(security.get("backend_admitted") is False, "backend admission")
-    require(security.get("parameters_are_formal") is False, "formal parameters")
+    require(all(security.get(name) == value and type(security.get(name)) is type(value)
+                for name, value in expected_security.items()), "security snapshot")
     require(security.get("functional_tests_are_security_proof") is False, "test/security separation")
 
     forbidden = {"receiver_identity_hex", "sender_identity_hex", "message_hex", "ciphertext_hex"}
