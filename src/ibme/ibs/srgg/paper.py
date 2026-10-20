@@ -42,12 +42,24 @@ class Backend(IBSBackend):
     parameters_are_formal=False
     nist_security_category=None
 
-    def __init__(self,*,rng=None,signature_format='reference'):
+    def __init__(self,*,rng=None,signature_format='reference',plan_cache_entries=2):
         _format(signature_format)
         from experiments.research.candidates.srgg.paper_backend import Backend as PaperBackend
-        self._backend=PaperBackend(rng=rng)
+        self._backend=PaperBackend(rng=rng,plan_cache_entries=plan_cache_entries)
         self.rng=self._backend.rng
         self.signature_format=signature_format
+
+    def configure_sign_plan_cache(self,capacity):
+        self._backend.configure_sign_plan_cache(capacity)
+
+    def clear_sign_plan_cache(self):
+        self._backend.clear_sign_plan_cache()
+
+    def sign_plan_cache_info(self):
+        return self._backend.sign_plan_cache_info()
+
+    def prepare_signing(self,key):
+        return self._backend.prepare_signing(key)
 
     def setup(self,params):
         if type(params) is not PaperSuiteParams:
