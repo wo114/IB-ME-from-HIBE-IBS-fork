@@ -2,6 +2,8 @@
 
 本表固定 Wang 等 ePrint 2022/1718 仓库论文版本：`papers/2022_identity_matchmaking_wang.pdf`，PDF 第7–8页 Lemma 2.5–2.7、第16页 Figure 4 与 Parameter Selection、第17–19页 Theorem 5.1/算法B；外层采用已有 Pan–Wagner ROM 转换与固定发钥服务语义。按当前 AGENTS 引用所选论文，不另开基础安全证明。以下有限工程选取不冒充原文给出的数值参数表。
 
+**当前实现范围（2026-10-20）**：独立[`wang-pw-target`](../../../../src/ibme/ibs/wang_pw_target/)已实现五方法、H1/H2/PW盐绑定、固定整数范数验签、C++有限Gaussian/GPV、规范对象、固定发行服务、registry和CLI。服务器已有n2/q257三根、n4/q4294967291磁盘恢复及182项测试收据；本地另完成真实服务的跨进程初发/零熵复用/恢复签验，以及真实LATTE作者参数＋Wang debug的16步独立进程CLI，无msk的角色目录可独立新加密或恢复解密。详见[本批交付](../../2026-10-19-wang-pw-target-s0-4/README_zh-CN.md)与[独立进程组合测试](../../../../tests/test_wang_pw_target_combination_process.py)。**新后端n512主档尚未启动，正式参数未准入**；PR67旧n512数值探针与旧q17后端均保持各自历史范围，不迁移计时、范数或153.70估计，也不新增算法计数。
+
 ## 原文、工程参数与历史探针
 
 | 项 | 本档约定 | 来源与限制 |
@@ -17,7 +19,7 @@
 | 有限采样 | MPFR精度256 bit、概率质量整数192 bit、截断半径20个标准差 | 实际实现与累计误差另给回执；精度数字本身不是已认证的整链误差。每次Gaussian拒绝预算4096。 |
 | PW外层 | 身份盐、消息盐、内部身份哈希及内部消息哈希均256 bit | 四个预言机域分隔，外层盐与基础H1/H2职责分开；不得认为256位字段直接赋予IBS 256位安全性。 |
 | debug档 | `n=2/4`，q允许17/257或主档q，根宽度仍4，其他维数按同式派生 | `small_params()`默认n2/q257，仅运行真实算法与负例，不用于安全强度结论。小模数下不声称签名阈值满足SIS非平凡性。 |
-| 失败与资源 | Setup/Extract/Sign默认各1次，threads16 | 失败明确报告，无隐式重抽。完整快照包含threads；独立`math_context`排除线程数，便于线程调度不改变数学哈希域。 |
+| 失败与资源 | Setup/Extract/Sign默认各1次，threads16 | 失败明确报告，无隐式重抽。完整快照包含threads；`math_context`只是排除线程数的数学配置比较辅助函数。当前H1/H2绑定完整规范公钥摘要（含threads）；不得给既有密钥改线程快照后声称同一哈希上下文。 |
 | 固定安全元数据 | `none/false/false/null` | 分别为security_claim、backend_admitted、parameters_are_formal、nist_security_category。 |
 
 乘数8的有限工程参考是普通一维平滑充分界
@@ -25,7 +27,7 @@
 
 ## 用户密钥与采样basis
 
-本档的根公钥为 `A=[Abar | G-Abar*R]`。真正发钥应对每列执行
+本档的根公钥为 `A=[Abar | G-Abar*R]`。现有后端发钥对每列执行
 
 ```text
 X_j <- SamplePre(A, master_trapdoor, (G-H1)_j, s_del)
@@ -36,7 +38,7 @@ F_id=[A|H1],       F_id*[X;I]=G
 只把用户G-trapdoor X、公钥与身份/参数上下文交给用户。原型中的
 `T_id=[[B_master,X],[0,I]]` **不能作为用户密钥交付**：它包含完整主陷门basis，可用于其它身份。虽然按先B后X的列序，其精确GS确为 `diag(B_master_star,I)`，这个代数事实不能使泄露主basis的密钥成为有效IBS实现。
 
-用户签名可以用 `private_root_basis(A,X,q)` 从**公开A和自己X**建立F_id的basis。构造式正号需保持一致：`H1=G-A*X`，所以builder的第二块正好重建H1。用户从自己的X还可构造短particular `[X*d;d]`，其中`G*d=H2`。这个过程不需要主R或主basis。签名的平滑条件必须针对该用户basis或用户G-trapdoor重新核对。
+用户签名使用 `math.full_basis(A,X,q)` 从**公开A和自己X**建立F_id的basis。构造式正号需保持一致：`H1=G-A*X`，所以builder的第二块正好重建H1。用户从自己的X还可构造短particular `[X*d;d]`，其中`G*d=H2`。这个过程不需要主R或主basis。签名的平滑条件必须针对该用户basis或用户G-trapdoor重新核对。
 
 完整basis GPV是本档选定的有限采样实现路线；原论文的DelTrap/SamplePre以G-trapdoor描述。代数关系和参数约定如上公开保留，不能把仅有方程成立写成分布已等同原文。原文已有条件由引用与实现条件表对应，不另行启动完整安全归约任务。
 
@@ -66,7 +68,11 @@ beta_SIS = ceil(sqrt(1+L_Rhat²) * (ceil(B_verify)+B_reference)).
 
 显式提供 `measured['uniform_bounds']={reference_norm_bound: 整数, simulation_spectral_bound: 整数, source: 来源文本}` 时，审计才做相应β换算；它仍不认证调用者的来源。缺任一项则真实β保持null。无论换算是否落在非平凡区，安全标记均不提升，也不新增安全证明。
 
-只读核验发现既有WSL `~/lattice-estimator` 可复用，HEAD为 `53da5982597709ba0fdf94ea37a84d822310fd84`；仓库内 `test-results/lattice-estimator` 未安装，不能直接假设PR67旧默认路径存在。该版本 `estimator/sis_lattice.py` 对norm2、β≥q明确拒绝；`red_shape_model` 对norm2被忽略，不能把lgsa名称当成该欧氏分支额外的有效形状模型。本批没有运行缺正确β的估计，也没有下载另一份estimator。
+`audit()`的estimator库存尊重`IBME_ESTIMATOR_DIR`显式绝对路径；显式空值、缺失或错误目录报告不可用，不静默回退。未指定时才检查仓库`test-results/lattice-estimator`及`~/lattice-estimator`。库存只读取源码/版本信息，不导入、运行estimator或消费熵；源码文件存在与版本匹配、环境可导入和实际执行分别报告。不能直接假设PR67旧默认路径存在。
+
+另有独立[`screen_parameters.py`](../../../../experiments/research/wang_pw_target/screen_parameters.py)和[本地真实调用回执](../../2026-10-19-wang-pw-target-s0-4/evidence/local/parameter-screen.json)，已使用既有WSL checkout，固定HEAD `53da5982597709ba0fdf94ea37a84d822310fd84`，核对25份estimator源码及调用期间未变，无自动下载。该次实际调用`estimator.SIS.lattice(SIS.Parameters(n=512,m=32768,q=4294967291,length_bound=5260239171,norm=2))`，显式成本模型`RC.MATZOV`；在`estimator/sis_lattice.py:79::cost_euclidean`收到`ValueError: SIS trivially easy. Please set norm bound < q.`。回执为`expected-parameter-rejection`、`estimator_api_invoked=true`，不是“未运行estimator”。由于输入门拒绝，成本模型未进入评估，经典/量子位数均为null，`all_attack_estimation_performed=false`；这不是完成全部攻击估计或正式参数准入。
+
+这次调用仅筛查上述**配置参考包络**与乐观谱界1；`uniform_beta_established=false`、`reference_envelope_justified_uniformly=false`，没有把单次签名范数当统一β，也没有排除另有来源的更紧包络。该版本的`red_shape_model`对norm2被忽略，不能把lgsa名称当成欧氏分支额外生效的形状模型。此本地收据不证明服务器新增工具已经安装验收，也不包含n512根/发钥/签名运行。
 
 ## 内存规划与实际验收分开
 

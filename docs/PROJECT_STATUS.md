@@ -1,10 +1,14 @@
 # 当前进度与并行任务
 
-**PR67修订复核（2026-10-19，按隔离数值研究范围接收）**：[修复、实际测试与接收边界](deliveries/2026-10-19-pr66-67-review/followup/README.md)冻结`1e735e8`，补齐native ABI类型/维度/布局/有限正数/线程检查及优化模式保护，缓存绑定C源，移除tmp入口，修正文档口径和beta算术。23项Sage测试通过、0跳过（原4项＋19项边界/优化模式检查），现有Wang CI通配符会收集新增测试。C源码与两份n512原始收据未改，未重跑云端目标或独立重算SIS；允许接收为数值研究原型，**Wang IBS目标参数、身份消息/PW与公开范数验签、状态和完整IB-ME仍未完成**，不升级正式参数/算法计数/none-false-false。最终远端检查以修订头为准。PR66仍需修正下述报告问题并核验Word，不随本项关闭。
+**Wang–PW独立s0=4研究后端（2026-10-20）**：[本批实现与实测](research/2026-10-19-wang-pw-target-s0-4/README_zh-CN.md)新增`wang-pw-target`，与旧q17 `wang-pw`及PR67数值原型并存，仍按同一条Wang–PW算法路线计数。独立五方法、H1/H2与PW盐绑定、整数方程/公开范数验签、C++有限整数Gaussian/GPV、严格对象、固定发钥服务、registry与CLI已实现。服务器核心环境下182项测试、n2/q257三个CSPRNG根与n4/q4294967291磁盘恢复已有收据；本地另通过真实native固定服务的子进程初发／零熵缓存恢复／恢复签验，以及[真实LATTE作者档＋Wang debug的16步独立进程CLI](../tests/test_wang_pw_target_combination_process.py)。后者在仅公开状态＋对应sender或receiver密钥、无msk的新目录完成新加密和恢复解密，并拒绝三种身份错配、位翻转、截断及追加。旧同进程32项组合、服务器测试与本地新进程验证分别记账，不相加冒充多根目标基准。
+
+**Wang参数与下一步**：`s0=4,n=512,q=4294967291`是项目有限研究候选，不是作者数值参数表；**本后端的n512完整生命周期尚未启动**，不能继承PR67的旧n512范数、计时或153.70估计。[冻结estimator的本地真实调用](research/2026-10-19-wang-pw-target-s0-4/evidence/local/parameter-screen.json)已对配置参考包络`beta=5260239171>=q`返回预期拒绝；这不是“未运行”，也没有产出安全位数或完成全部攻击估计。该β采用`B_reference=ceil(B_verify)`与乐观谱界1，尚不是已确立的统一归约β；拒绝不排除另有来源的更紧包络。服务器完整工具验收、n512分阶段运行/恢复/资源实测及参数决策待交付；保持`security_claim=none/backend_admitted=false/parameters_are_formal=false/nist_security_category=null`，不另开补充安全证明任务。
+
+**PR67修订复核的历史范围（2026-10-19，按隔离数值研究范围接收）**：[修复、实际测试与接收边界](deliveries/2026-10-19-pr66-67-review/followup/README.md)冻结`1e735e8`，补齐native ABI类型/维度/布局/有限正数/线程检查及优化模式保护，缓存绑定C源，移除tmp入口，修正文档口径和beta算术。23项Sage测试通过、0跳过（原4项＋19项边界/优化模式检查），现有Wang CI通配符会收集新增测试。C源码与两份n512原始收据未改，未重跑云端目标或独立重算SIS；允许接收为数值研究原型，**该PR本身未交付Wang IBS目标参数、身份消息/PW与公开范数验签、状态和完整IB-ME**，不升级正式参数/算法计数/none-false-false。新的独立后端范围见上方当前交付，不回写为PR67的成果。最终远端检查以修订头为准。PR66仍需修正下述报告问题并核验Word，不随本项关闭。
 
 **PR66／67初审历史快照（2026-10-19，固定旧头）**：[固定头、复现及修订条件](deliveries/2026-10-19-pr66-67-review/README.md)保留当时两者暂缓合并的依据。PR66 `6c0e2d2`的新增表3维度390208在其E13数据中不存在（n1024对应390160或390176），仍有“门内穷举否定”和跨口径固有差距措辞；原报告结构检查182项可过，不能替代新增数值来源核验。PR67旧头 `cbbfd44`原有4项Sage数值测试通过，5项受控native输入均未在C入口前拒绝；未执行非法原生访存。原n512云端数值记录保留，153.70仅为单次实测范数下的SIS估计。旧头各46项CI成功、2项手动检查预期未运行不替代后续修订头检查；不新增基础证明要求，不启动储备三线。
 
-更新：2026-10-19（PR56—65已接收：56、58、59、60、61、62、63、65已合并，57关闭且未合并；PR64新增Lai C2四种IBS实跑）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期研究报告和旧任务书只证明各自版本事实，不继续发布全项目下一轮指令。
+更新：2026-10-20（新增Wang–PW独立后端与分层实测；其余PR56—65接收记录沿用既有核验：56、58、59、60、61、62、63、65已合并，57关闭且未合并；PR64新增Lai C2四种IBS实跑）。本文是**唯一的当前进度和任务排序入口**。根规范负责长期契约；带日期研究报告和旧任务书只证明各自版本事实，不继续发布全项目下一轮指令。
 
 **PR65参数工具审查（2026-10-19）**：[固定源码、回归及修复记录](deliveries/2026-10-19-pr64-65-review/README.md)已交并随PR65合入`d959d4d`。修正root-Hermite指数缺少1/2和搜索上限冒充精确成本，收窄621探针的有限网格结论；240个门外案例重算后仅2个经典估计≥128候选，均n4096，经典129.94/量子117.93、公钥比特打包约63.0 GiB，原n2048的147.17/133.56已撤回，仍未运行目标实例。42项Sage回归通过，研究标志none/false/false不变。
 
@@ -145,7 +149,7 @@ C1/C3本批新增：[Lai精确资格反例](research/team-c-delivery/2026-10-15-
 | 教学 ABB10 + 教学 SIS | 实际代码、CLI、历史攻击与回归 | 教学参数及公开认证反例；不能计入已准入安全组合 |
 | Luo 矩阵 IBS | 本地真实研究算法、适配器与历史参数筛查 | 当前暂停继续扩网格，保留为比较实例 |
 | Luo 模格 IBS | 真实算法、NTT/Hint、固定状态及reference/compact；C64B完整17字段、正确性条件/中止界、原文安全引用映射和第二十四步终验收收尾；实际CHKP组合已核对compact16383 B | 默认参数不变、C64B仍显式选择；研究候选不是正式安全等级，不自动补写完整基础归约/QROM；版本变化定向复核 |
-| Wang+PW IBS | [完整研究五方法](../experiments/research/candidates/wang_pw/)、真实采样/恢复；默认已登记，本轮LATTE+Hybrid+BYTEAUTH公共组合32检查通过 | q17调试参数不安全；正式参数/根近均匀、固定服务安全映射及其它未测配对仍待，不计已准入安全组合 |
+| Wang+PW IBS | 旧q17[研究签名链](../experiments/research/candidates/wang_pw/)及历史LATTE32项保留；新增[独立s0=4目标研究后端](../src/ibme/ibs/wang_pw_target/)的五方法、C++有限Gaussian/GPV、规范对象、固定服务、registry/CLI与恢复，真实LATTE＋Wang debug的同进程32项及独立进程16步CLI已通过 | 新后端n512尚未启动，旧PR67数据不迁移；当前配置参考包络β≥q已由冻结estimator真实拒绝，未得到安全位数，不排除有来源的更紧包络。正式参数、n512资源/恢复及其它未测配对仍待，none/false/false/null；不新增算法计数或补充证明任务 |
 | Foo–Li IBS | [PR27独立共同后端](research/team-b-delivery/2026-10-15-foo-li-backend/README.md)：完整五方法/四对象、固定发钥/pending/持久服务、可选descriptor；统筹294项Sage无skip并核对固定head后合入 | q3/n1公开伪造及错误上下文负控保留；默认registry/真实HIBE配对、模型和正式参数未准入 |
 | SRGG IBS | [完整研究后端](../experiments/research/candidates/srgg/backend.py)及默认登记/既有LATTE34项保留；PR37已接收持久issuer、公开适配、显式structured后端/服务、条件数值/模型材料及独立[published profiles研究链](research/team-b-delivery/2026-10-16-srgg-paper-baseline/README_zh-CN.md)，本轮完整1431项无skip | ζ factor2/factor-one、r归一化、q/Q、HNF与固定服务、ROM/QROM仍有条件缺口；paper原生strong有同消息替换反例，某些有限界为1；正式安全及新structured/paper的真实HIBE组合未准入 |
 | Sageloli SIS／RSIS | PR34两条独立五方法／固定服务与145项回归继续保留；PR59环原生v3两档论文规模单体、PR63公共入口及PARAM-I的LATTE配对已合入，本批再补Lai C2配对，见顶部交付 | 矩阵SIS公共接入、环PARAM-II完整组合仍待；有限采样误差与正式字段按各自契约保留，不新增基础证明任务。旧小参数公开伪造不作为目标参数代表，none/false/false保持 |

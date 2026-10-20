@@ -94,6 +94,8 @@ load_signature(self, pk, data: bytes) -> signature
 
 每个模块给出论文算法—实现映射、正确性条件、真实随机分布、失败事件、格式和恢复语义。需要离散高斯的算法必须说明宽度约定并做统计诊断；使用均匀掩码的算法按原论文实现。SIS 方程、gadget、陷门委派或 NTT 仅约束使用它们的后端，不能作为所有 HIBE/IBS 的通用接口要求。
 
+Wang–PW 目标规模版本的独立 selector `wang-pw-target`、s0=4 宽度、用户/主陷门隔离、规范对象和固定服务要求见 [目标规模 IBS 契约](docs/specs/wang-pw-target-ibs.md)。它与旧 q17 `wang-pw` 共存；公共接入、小规模实跑、n512 生命周期和正式参数分别验收，不另计为新 IBS 算法。
+
 ## 4. 基线 IB-ME 算法
 
 现有构造为 `BaselineIBME(hibe_backend, ibs_backend)`。`setup(params, *, ibs_params=None, rng=None)` 将 `params` 交给 HIBE，将显式 `ibs_params` 交给 IBS；省略后者时仅为旧调用兼容而复用 `params`。其他公共方法保持 `skgen`、`rkgen`、`encrypt`、`decrypt`、`load_ciphertext`。
