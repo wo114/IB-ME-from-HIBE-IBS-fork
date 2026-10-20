@@ -1,0 +1,129 @@
+{
+  "wheel": {
+    "status": "passed",
+    "source_commit": "5a997dd3b14788afa9df2823ced022dcffdd346d",
+    "upstream_files": 81,
+    "groups": [
+      {
+        "component": "LATTE native",
+        "files": 35
+      },
+      {
+        "component": "ML-DSA reference",
+        "files": 26
+      },
+      {
+        "component": "Falcon reference",
+        "files": 18
+      },
+      {
+        "component": "LATTE sampler research snapshot",
+        "files": 2
+      }
+    ],
+    "crypto_executed": false,
+    "private_state_opened": false,
+    "wheel": {
+      "upstream_files_checked": 79,
+      "root_notices_checked": 2,
+      "sha256": "a8b90d6a4dab754377ed6216defa5c757ee0c9c4509d7dc5860191dc920439c3",
+      "bytes": 2065895
+    }
+  },
+  "negative_controls": [
+    {
+      "case": "before.zip",
+      "result": "rejected",
+      "reason": "source archive commit mismatch"
+    },
+    {
+      "case": "bad-reference.zip",
+      "result": "rejected",
+      "reason": "reference material remains in source archive: ['papers/exclusion-control.pdf']"
+    },
+    {
+      "case": "missing-license.zip",
+      "result": "rejected",
+      "reason": "source archive missing required files: ['src/ibme/hibe/latte/native/upstream/LICENSE']"
+    }
+  ],
+  "source_archive": {
+    "archive": {
+      "bytes": 20898248,
+      "excluded_reference_pdfs": true,
+      "files": 3334,
+      "retained_files_checked": 90,
+      "sha256": "adaa4081d8fdc6b1f594240eeb23fc072d0afabc5c6bd06d55a8a49bb16c31df"
+    },
+    "crypto_executed": false,
+    "groups": [
+      {
+        "component": "LATTE native",
+        "files": 35
+      },
+      {
+        "component": "ML-DSA reference",
+        "files": 26
+      },
+      {
+        "component": "Falcon reference",
+        "files": 18
+      },
+      {
+        "component": "LATTE sampler research snapshot",
+        "files": 2
+      }
+    ],
+    "private_state_opened": false,
+    "source_commit": "8dc1a81fc81cdec4f6663125cc48f9dc6dc2fc7c",
+    "status": "passed",
+    "upstream_files": 81
+  },
+  "schema": "ibme-source-notice-verification-v1",
+  "date": "2026-10-20",
+  "test_environment": {
+    "python": "3.12.14",
+    "os": "Windows",
+    "dependencies": "Python standard library, Git, existing setuptools/wheel; no downloads"
+  },
+  "status": "passed",
+  "crypto_parameters_changed": false,
+  "current_completed_config_security": "secure/true/true",
+  "new_security_claim_or_attack": false,
+  "commands": [
+    "python docs/deliveries/2026-10-20-source-notices/verify.py --revision 8dc1a81 --archive <ignored>/ibme-source-reviewed.zip",
+    "python docs/deliveries/2026-10-20-source-notices/verify.py --revision 5a997dd --wheel <ignored>/wheel/ibme-0.1.0-py3-none-any.whl",
+    "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir <ignored>/wheel",
+    "git diff --check"
+  ],
+  "modified_files": [
+    ".gitattributes",
+    "NOTICE.md",
+    "docs/PROJECT_STATUS.md",
+    "docs/deliveries/2026-10-20-source-notices/README.md",
+    "docs/deliveries/2026-10-20-source-notices/verify.py",
+    "docs/third-party-code.json",
+    "docs/deliveries/2026-10-20-source-notices/verification.json"
+  ],
+  "commits": [
+    {
+      "commit": "8dc1a81fc81cdec4f6663125cc48f9dc6dc2fc7c",
+      "message": "fix(release): bind source archives to the reviewed commit"
+    },
+    {
+      "commit": "5a997dd3b14788afa9df2823ced022dcffdd346d",
+      "message": "docs(release): record upstream notices and exclude reference PDFs"
+    }
+  ],
+  "git_file_sha256": {
+    "NOTICE.md": "b6d5183837e6eb3cb0df9e3e63f174668438057af3c8509c8cad108621a170df",
+    ".gitattributes": "4f4a65f87116334e738412e37ce7d4fcf0203ef06a12c1be01ae77e9e33c12f4",
+    "docs/third-party-code.json": "c7a13f84d358221173eb710e3c3f5b1484a413e83f61c410ebb1c09ce6c76506",
+    "LICENSE": "4c0836c695ab4bc4a0ec262bbae2a75f7f6295ef3d3882ae52fd777e70b0984d"
+  },
+  "remaining_work": [
+    "Environment/container/native binary release dependency inventory when that distribution is built",
+    "Final release version reproduction and competition identifier/anonymous submission review",
+    "Paper-cache integrity tests require separately fetched fixed reference PDFs"
+  ]
+}
