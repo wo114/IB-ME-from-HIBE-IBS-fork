@@ -26,8 +26,33 @@ import threading
 import numpy as np
 
 
+PUBLIC_SAMPLING_REASONS = frozenset((
+    "unknown", "random-source", "numerical-gs-gate", "delegated-public-matrix",
+    "signature-equation-or-norm", "native-library-validation", "native-library-load",
+    "native-build", "native-return-code",
+))
+
+
+def safe_sampling_reason(value):
+    return value if type(value) is str and value in PUBLIC_SAMPLING_REASONS else "unknown"
+
+
+def safe_native_code(value):
+    return value if type(value) is int and 1 <= value <= 6 else None
+
+
 class SamplingError(RuntimeError):
-    """An explicit native resource, arithmetic, entropy or rejection failure."""
+    """Sampling failure with optional bounded public codes.
+
+    RuntimeError arguments remain compatible with existing local callers.
+    Their text may contain private diagnostics and must never be published.
+    Only the separately filtered reason/code may enter a public receipt.
+    """
+
+    def __init__(self, *args, public_reason="unknown", native_code=None):
+        super().__init__(*args)
+        self.public_reason = safe_sampling_reason(public_reason)
+        self.native_code = safe_native_code(native_code)
 
 
 _LOCK = threading.Lock()
@@ -74,14 +99,15 @@ def _verify_receipt(path):
         if receipt.get("library_sha256") != library_hash:
             raise ValueError("native library hash mismatch")
     except (OSError, ValueError, TypeError) as exc:
-        raise SamplingError(str(exc)) from exc
+        raise SamplingError(str(exc), public_reason="native-library-validation") from exc
     return expected_source, library_hash
 
 
 def build_native(*, output_directory=None):
     """Build outside the checkout, with MPFR/GMP/OpenSSL/OpenMP already installed."""
     if os.name == "nt":
-        raise SamplingError("native Gaussian sampler requires the configured WSL/Linux toolchain")
+        raise SamplingError("native Gaussian sampler requires the configured WSL/Linux toolchain",
+                            public_reason="native-build")
     compiler = os.environ.get("CXX", "g++")
     content = _SOURCE.read_bytes()
     source_hash = hashlib.sha256(content).hexdigest()
@@ -108,7 +134,8 @@ def build_native(*, output_directory=None):
         try:
             result = subprocess.run(command, capture_output=True, text=True, timeout=180)
             if result.returncode:
-                raise SamplingError("native Gaussian build failed: " + result.stderr[-6000:])
+                raise SamplingError("native Gaussian build failed: " + result.stderr[-6000:],
+                                    public_reason="native-build")
             receipt = dict(schema=_RECEIPT_SCHEMA, abi_version=1, source_sha256=source_hash,
                            library_sha256=_file_sha256(temporary), compiler=compiler)
             temporary_receipt.write_text(json.dumps(receipt, sort_keys=True, separators=(",", ":")) + "\n",
@@ -116,7 +143,7 @@ def build_native(*, output_directory=None):
             os.replace(temporary, target)
             os.replace(temporary_receipt, _receipt_path(target))
         except (OSError, subprocess.SubprocessError) as exc:
-            raise SamplingError("native Gaussian build unavailable") from exc
+            raise SamplingError("native Gaussian build unavailable", public_reason="native-build") from exc
         finally:
             temporary.unlink(missing_ok=True)
             temporary_receipt.unlink(missing_ok=True)
@@ -130,7 +157,8 @@ def _library():
         if explicit is not None:
             path = Path(explicit)
             if not explicit.strip() or not path.is_absolute():
-                raise SamplingError("explicit native library requires an absolute file path")
+                raise SamplingError("explicit native library requires an absolute file path",
+                                    public_reason="native-library-validation")
             path = path.resolve()
         else:
             path = build_native().resolve()
@@ -142,11 +170,12 @@ def _library():
                 lib.ibme_dg_version.restype = ctypes.c_int
                 lib.ibme_dg_source_sha256.restype = ctypes.c_char_p
                 if lib.ibme_dg_version() != 1:
-                    raise SamplingError("wrong native sampler ABI")
+                    raise SamplingError("wrong native sampler ABI", public_reason="native-library-validation")
                 if lib.ibme_dg_source_sha256() != source_hash.encode("ascii"):
-                    raise SamplingError("loaded native source hash mismatch")
+                    raise SamplingError("loaded native source hash mismatch", public_reason="native-library-validation")
             except (OSError, AttributeError) as exc:
-                raise SamplingError("native library is unavailable or lacks the bound ABI") from exc
+                raise SamplingError("native library is unavailable or lacks the bound ABI",
+                                    public_reason="native-library-load") from exc
             p, u, i, d, z = ctypes.c_void_p, ctypes.c_uint64, ctypes.c_int, ctypes.c_double, ctypes.c_size_t
             lib.ibme_draw_gaussian.argtypes = [p, u, p, p, i, d, i, i, i, p, z, i, p, z]
             lib.ibme_sample_gpv.argtypes = [p, p, p, p, p, u, u, d, d, i, i, i, p, z, i, p, z]
@@ -201,7 +230,8 @@ def _integer_array(value, label, *, fortran=True):
 
 def _checked(result, error):
     if result:
-        raise SamplingError(f"native sampler error {result}: " + error.value.decode("utf-8", errors="replace"))
+        raise SamplingError(f"native sampler error {result}: " + error.value.decode("utf-8", errors="replace"),
+                            public_reason="native-return-code", native_code=result)
 
 
 def draw_gaussian(count, center=0.0, sigma=1.0, *, seed=None, test_only=False, threads=1,

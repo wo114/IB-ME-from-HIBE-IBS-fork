@@ -16,9 +16,27 @@ from ibme.core.types import validate_bytes, validate_identity
 from .hashing import (identity_matrix, inner_identity, inner_message, message_vector,
                       uniform_residues)
 from .math import full_basis, gadget, gram_schmidt, matmul_mod, short_particular
-from .native import SamplingError, draw_gaussian, sample_gpv
+from .native import (SamplingError, draw_gaussian, sample_gpv, safe_native_code,
+                     safe_sampling_reason)
 from .objects import MasterSecret, PublicKey, Signature, SigningKey
 from .params import Params
+
+
+SIGN_DIAGNOSTIC_STAGES = frozenset((
+    "not-started", "input", "user-basis", "user-qr", "user-gs-gate", "public-matrix",
+    "random-salt", "message-hash", "particular", "native-gpv", "signature-object",
+    "final-verify", "complete", "unknown",
+))
+
+
+def safe_sign_diagnostic(value):
+    """Project only fixed public codes; never expose measurements or strings."""
+    value = value if type(value) is dict else {}
+    stage = value.get("stage")
+    reason = value.get("failure_reason", "unknown")
+    return dict(stage=stage if type(stage) is str and stage in SIGN_DIAGNOSTIC_STAGES else "unknown",
+                failure_reason=None if reason is None else safe_sampling_reason(reason),
+                native_code=safe_native_code(value.get("native_code")))
 
 
 def checked_identity(p, value):
@@ -61,6 +79,15 @@ class Backend:
         self.test_only = test_only
         self._root = self._user = None
         self.last_metrics = {}
+        self._sign_diagnostic = dict(stage="not-started", failure_reason=None, native_code=None)
+
+    def public_sign_diagnostic(self):
+        """Return a fresh, bounded public projection of the last sign attempt."""
+        return safe_sign_diagnostic(self._sign_diagnostic)
+
+    def _sign_stage(self, stage):
+        self._sign_diagnostic["stage"] = (
+            stage if type(stage) is str and stage in SIGN_DIAGNOSTIC_STAGES else "unknown")
 
     def clear_prepared(self):
         """Release transient dense bases before restore or another large run."""
@@ -69,7 +96,7 @@ class Backend:
     def _read(self, size):
         raw = self.rng.read(size)
         if type(raw) is not bytes or len(raw) != size:
-            raise SamplingError("invalid random source; no entropy fallback")
+            raise SamplingError("invalid random source; no entropy fallback", public_reason="random-source")
         return raw
 
     def _options(self, p):
@@ -78,11 +105,18 @@ class Backend:
                     tail_sigma=p.gaussian_tail_sigma, mass_bits=p.mass_bits,
                     precision_bits=p.precision_bits, max_attempts=p.max_gaussian_attempts)
 
-    def _prepare(self, base, trapdoor, p, limit):
+    def _prepare(self, base, trapdoor, p, limit, *, on_stage=None):
+        if on_stage is not None:
+            on_stage("user-basis")
         public, basis = full_basis(base, trapdoor, p.q)
+        if on_stage is not None:
+            on_stage("user-qr")
         star, norms, width = gram_schmidt(basis)
+        if on_stage is not None:
+            on_stage("user-gs-gate")
         if width > limit:
-            raise SamplingError("numerical Gram-Schmidt exceeds the fixed public gate")
+            raise SamplingError("numerical Gram-Schmidt exceeds the fixed public gate",
+                                public_reason="numerical-gs-gate")
         return public, basis, star, norms, width
 
     def setup(self, params):
@@ -129,32 +163,57 @@ class Backend:
             self._root = None
 
     def sign(self, sk, message):
-        if type(sk) is not SigningKey:
-            raise TypeError("Wang target signing key required")
-        pk, p = sk.public_key, sk.public_key.params
-        message = checked_message(p, message)
-        self._root = None
-        if self._user is not None and self._user[0] is sk:
-            _, basis, star, norms = self._user
-        else:
-            self._user = None
-            public, basis, star, norms, width = self._prepare(pk.a, sk.trapdoor, p, p.user_gs_limit)
-            expected_h1 = identity_matrix(pk, inner_identity(p, sk.identity, sk.identity_salt))
-            if not np.array_equal(public[:, p.m:], expected_h1):
-                raise SamplingError("delegated public matrix mismatch")
-            self._user = (sk, basis, star, norms)
-            self.last_metrics["user_numerical_gs"] = width
-        salt = self._read(p.salt_bytes)
-        x = inner_identity(p, sk.identity, sk.identity_salt)
-        y = inner_message(p, message, salt)
-        target = message_vector(pk, x, y)
-        particular = short_particular(sk.trapdoor, target, p.q)
-        z = sample_gpv(basis, star, norms, particular, p.sign_sigma, **self._options(p))
-        signature = Signature(pk.context, sk.identity_salt, salt, z)
-        if not self.verify(pk, sk.identity, message, signature):
-            raise SamplingError("signature equation/norm gate failed; no hidden reroll")
-        self.last_metrics["signature_norm_sq"] = sum(int(v)*int(v) for v in z)
-        return signature
+        self._sign_diagnostic = dict(stage="input", failure_reason=None, native_code=None)
+        try:
+            if type(sk) is not SigningKey:
+                raise TypeError("Wang target signing key required")
+            pk, p = sk.public_key, sk.public_key.params
+            message = checked_message(p, message)
+            self._root = None
+            if self._user is not None and self._user[0] is sk:
+                _, basis, star, norms = self._user
+            else:
+                self._user = None
+                public, basis, star, norms, width = self._prepare(
+                    pk.a, sk.trapdoor, p, p.user_gs_limit, on_stage=self._sign_stage)
+                self._sign_stage("public-matrix")
+                expected_h1 = identity_matrix(pk, inner_identity(p, sk.identity, sk.identity_salt))
+                if not np.array_equal(public[:, p.m:], expected_h1):
+                    raise SamplingError("delegated public matrix mismatch",
+                                        public_reason="delegated-public-matrix")
+                self._user = (sk, basis, star, norms)
+                self.last_metrics["user_numerical_gs"] = width
+            self._sign_stage("random-salt")
+            salt = self._read(p.salt_bytes)
+            self._sign_stage("message-hash")
+            x = inner_identity(p, sk.identity, sk.identity_salt)
+            y = inner_message(p, message, salt)
+            target = message_vector(pk, x, y)
+            self._sign_stage("particular")
+            particular = short_particular(sk.trapdoor, target, p.q)
+            self._sign_stage("native-gpv")
+            z = sample_gpv(basis, star, norms, particular, p.sign_sigma, **self._options(p))
+            self._sign_stage("signature-object")
+            signature = Signature(pk.context, sk.identity_salt, salt, z)
+            self._sign_stage("final-verify")
+            if not self.verify(pk, sk.identity, message, signature):
+                raise SamplingError("signature equation/norm gate failed; no hidden reroll",
+                                    public_reason="signature-equation-or-norm")
+            self.last_metrics["signature_norm_sq"] = sum(int(v)*int(v) for v in z)
+            self._sign_stage("complete")
+            return signature
+        except BaseException as exc:
+            reason, code = "unknown", None
+            if isinstance(exc, SamplingError):
+                try:
+                    reason = safe_sampling_reason(exc.public_reason)
+                    code = safe_native_code(exc.native_code)
+                except BaseException:
+                    # Diagnostic metadata must never replace the original
+                    # failure, even for an incomplete or hostile subclass.
+                    reason, code = "unknown", None
+            self._sign_diagnostic.update(failure_reason=reason, native_code=code)
+            raise
 
     def verify(self, pk, identity, message, signature):
         try:

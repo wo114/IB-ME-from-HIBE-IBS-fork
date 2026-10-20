@@ -32,6 +32,7 @@ from ibme.core.errors import SerializationError
 from ibme.core.randomness import DeterministicRandom
 from ibme.ibs.wang_pw_target import Backend, Params, small_params
 from ibme.ibs.wang_pw_target import native
+from ibme.ibs.wang_pw_target.backend import safe_sign_diagnostic
 from ibme.ibs.wang_pw_target.objects import MasterSecret, PublicKey, Signature, SigningKey, wire_sizes
 
 
@@ -40,10 +41,28 @@ PHASES = ("setup", "extract", "sign", "verify", "restore", "sign-restored")
 SCHEMA = "IBME/WANG-PW-TARGET-LIFECYCLE/1"
 KINDS = ("public_key", "master_secret", "signing_key", "signature")
 INDEPENDENT_SCHEMA = "IBME/WANG-PW-INDEPENDENT-SIGNER/1"
+INDEPENDENT_OPERATION_STAGES = frozenset((
+    "read-key", "decode-key", "read-message", "create-backend", "sign",
+    "encode-signature", "observe-signature", "write-signature", "complete", "unknown",
+))
+INDEPENDENT_FAILURE_TYPES = frozenset((
+    "SamplingError", "SerializationError", "ValueError", "TypeError", "RuntimeError",
+    "FileNotFoundError", "PermissionError", "OSError", "MemoryError", "OverflowError",
+    "ArithmeticError", "FloatingPointError", "LinAlgError", "AssertionError", "EOFError",
+    "KeyboardInterrupt", "SystemExit", "TimeoutError", "BrokenPipeError", "IndexError", "KeyError",
+))
+
+
+def safe_independent_failure_type(value):
+    return value if type(value) is str and value in INDEPENDENT_FAILURE_TYPES else "unrecognized"
+
+
+def safe_independent_operation_stage(value):
+    return value if type(value) is str and value in INDEPENDENT_OPERATION_STAGES else "unknown"
 
 
 def safe_independent_receipt(raw):
-    """Copy known public fields/types only; never relay a child's diagnostics."""
+    """Copy known fields only, including strictly bounded diagnostic codes."""
     if not isinstance(raw, (bytes, str)) or len(raw) > 65536:
         return None
     try:
@@ -66,12 +85,12 @@ def safe_independent_receipt(raw):
         result["security_claim"] = "none"
     if "nist_security_category" in report and report["nist_security_category"] is None:
         result["nist_security_category"] = None
-    failure_types = {"SamplingError", "SerializationError", "ValueError", "TypeError", "RuntimeError",
-                     "FileNotFoundError", "PermissionError", "OSError", "MemoryError", "OverflowError",
-                     "ArithmeticError", "FloatingPointError", "LinAlgError", "AssertionError", "EOFError",
-                     "KeyboardInterrupt", "SystemExit", "TimeoutError", "BrokenPipeError", "IndexError", "KeyError"}
     if report["status"] == "failed" and "failure_type" in report:
-        result["failure_type"] = report["failure_type"] if type(report["failure_type"]) is str and report["failure_type"] in failure_types else "unrecognized"
+        result["failure_type"] = safe_independent_failure_type(report["failure_type"])
+    if "operation_stage" in report:
+        result["operation_stage"] = safe_independent_operation_stage(report["operation_stage"])
+    if "sign_diagnostic" in report:
+        result["sign_diagnostic"] = safe_sign_diagnostic(report["sign_diagnostic"])
     for name in ("signature_wire_bytes", "identity_bytes", "message_bytes", "rss_current_bytes",
                  "rss_phase_peak_observed_bytes", "rss_peak_observed_bytes", "rss_sampling_errors"):
         if type(report.get(name)) is int and 0 <= report[name] < 2**63:

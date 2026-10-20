@@ -15,9 +15,10 @@ import stat
 import time
 
 from ibme.ibs.wang_pw_target import Backend
+from ibme.ibs.wang_pw_target.backend import safe_sign_diagnostic
 from ibme.ibs.wang_pw_target.objects import SigningKey, wire_sizes
 
-from .run_lifecycle import RSSMonitor
+from .run_lifecycle import RSSMonitor, safe_independent_failure_type
 
 
 def private_read(path, maximum):
@@ -67,20 +68,26 @@ def main(argv=None):
                   issuer_inputs_provided=False, key_restored_without_issuer=False,
                   sampling_mode="production-csprng", security_claim="none",
                   backend_admitted=False, parameters_are_formal=False,
-                  nist_security_category=None)
+                  nist_security_category=None, operation_stage="read-key")
     backend = None
     try:
         # There is no setup, extraction, master-key or issuer-state argument.
         raw = private_read(args.key_file, (1 << 32) - 1)
+        report["operation_stage"] = "decode-key"
         key = SigningKey.from_bytes(raw)
         report["key_restored_without_issuer"] = True
         del raw
         gc.collect()
+        report["operation_stage"] = "read-message"
         message = private_read(args.message_file, key.public_key.params.message_max_bytes)
+        report["operation_stage"] = "create-backend"
         backend = Backend()
+        report["operation_stage"] = "sign"
         signature = backend.sign(key, message)
         public = key.public_key
+        report["operation_stage"] = "encode-signature"
         wire = signature.to_bytes()
+        report["operation_stage"] = "observe-signature"
         observations = dict(
             honest=backend.verify(public, key.identity, message, signature),
             wrong_identity_rejected=not backend.verify(public, key.identity + b"!", message, signature),
@@ -89,15 +96,23 @@ def main(argv=None):
         )
         if not all(observations.values()):
             raise ValueError("independent signing observation failed")
+        report["operation_stage"] = "write-signature"
         private_write(args.signature_file, wire)
-        report.update(status="passed", public_context=public.context.hex(),
+        report.update(status="passed", operation_stage="complete", public_context=public.context.hex(),
                       signature_wire_bytes=len(wire), identity_bytes=len(key.identity),
                       message_bytes=len(message), observations=observations,
                       metrics=dict(backend.last_metrics))
     except BaseException as exc:
         # Paths, coefficients, salts and raw exception text are not public.
-        report.update(status="failed", failure_type=type(exc).__name__)
+        report.update(status="failed", failure_type=safe_independent_failure_type(type(exc).__name__))
     finally:
+        diagnostic = dict(stage="not-started", failure_reason=None, native_code=None)
+        if backend is not None:
+            try:
+                diagnostic = backend.public_sign_diagnostic()
+            except BaseException:
+                diagnostic = None
+        report["sign_diagnostic"] = safe_sign_diagnostic(diagnostic)
         if backend is not None:
             backend.clear_prepared()
         report.update(duration_seconds=time.monotonic() - started, **monitor.finish())

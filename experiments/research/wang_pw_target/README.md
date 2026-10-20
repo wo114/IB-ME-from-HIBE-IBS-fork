@@ -248,3 +248,28 @@ does not change normal CLI algorithm semantics. Run sequentially under the
 resource supervisor after the original lifecycle terminates, with a fresh
 private target directory. A failed child stops the chain without retry.
 Small-profile tests and actual n512 acceptance must be recorded separately.
+
+## Bounded independent-signing diagnostics
+
+The independent signer adds optional `operation_stage` and `sign_diagnostic`
+fields to its existing v1 public JSON receipt. The latter contains only
+`stage`, `failure_reason`, and `native_code`. Stages denote the last operation
+entered, not a completed operation. Backend stages separate user-basis
+construction, numerical QR, the fixed GS gate, the delegated public-matrix
+check, salt/hash/particular construction, native GPV, signature construction,
+and final verification. The process stage also distinguishes private reads,
+decoding, signature encoding, observations, and private publication.
+
+Only fixed enumerated reasons and strict integer native return codes 1--6
+are public. Unknown codes and diagnostic-reader failures become fixed
+placeholders. Exception messages, dynamic exception class names, extra
+diagnostic fields, paths, salts, coefficients, and newly measured secret-key
+statistics are not forwarded. The lifecycle parent filters these fields
+again; old receipts without them remain readable. Native code 6 is a general
+C++ exception category and does not by itself identify an allocation failure.
+
+Diagnostics neither change sampling nor add a retry. They do not identify
+the reason for an earlier receipt that recorded only `SamplingError`, and
+the previously frozen server checkouts are not modified by this local patch.
+The one-shot continuation controller remains bound to its earlier frozen
+source; it must not be treated as deployment of this diagnostic patch.
