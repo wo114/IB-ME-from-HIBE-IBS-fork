@@ -327,6 +327,21 @@ class HybridHIBE:
         return dict(hpk=_BoundDecoder(self.load_public_key), hmsk=_BoundDecoder(self.load_master_secret),
                     sk1=_BoundDecoder(self.load_level1_key), sk2=_BoundDecoder(self.load_level2_key))
 
+    def validate_key_binding(self, public_key, secret_key):
+        """Entropy-free validation against the requested root and Hybrid limits."""
+        kinds = ((HybridMasterSecret, self.master_type),
+                 (HybridLevel1SecretKey, self.level1_type),
+                 (HybridLevel2SecretKey, self.level2_type))
+        try:
+            self._check_public(public_key)
+            for wrapper, inner in kinds:
+                if isinstance(secret_key, wrapper):
+                    self._check_secret(secret_key, wrapper, inner)
+                    return compare_digest(public_key.context, secret_key.public_key.context)
+            return False
+        except (IBMEError, TypeError, ValueError, AttributeError):
+            return False
+
     def _check_public(self, public):
         if not isinstance(public, HybridPublicKey) or not isinstance(public.inner, self.public_key_type):
             raise TypeError("expected the selected hybrid public key")

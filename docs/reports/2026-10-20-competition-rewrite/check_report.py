@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 import re
 import sys
@@ -126,13 +127,37 @@ def main() -> int:
         r"security\_claim",
         r"backend\_admitted",
         r"parameters\_are\_formal",
-        "WSL",
         "收据",
     )
     for fragment in forbidden_fragments:
         checks.expect(f"internal process language absent: {fragment}", fragment not in text)
     checks.expect("PR numbers absent", re.search(r"\bPR\s*#?\d+\b", text) is None)
     checks.expect("evidence IDs absent", re.search(r"\bE\d{2}\b", text) is None)
+
+    master = json.loads((ROOT / "docs/deliveries/2026-10-19-report-experiment-supplement/master-table.json").read_bytes())
+    def significant(value):
+        places = max(0, 2 - math.floor(math.log10(abs(value))))
+        return f"{value:.{places}f}"
+    for title, key in (("系统建立", "setup"), ("发送者发钥", "sender-key"),
+                       ("接收者发钥", "receiver-key"), ("热加密", "warm-encrypt"),
+                       ("热解密", "warm-decrypt"), ("恢复后解密", "restored-decrypt")):
+        values = [master["rows"][label]["benchmark"]["timing_seconds"][key]["median"] for label in ("A", "B")]
+        checks.expect("measured A/B row: " + title,
+                      f"{title} & {significant(values[0])} & {significant(values[1])}" in text)
+    kib = []
+    for label in ("A", "B"):
+        size = master["rows"][label]["benchmark"]["ciphertext_bytes"]
+        endpoints = {round(size[key] / 1024) for key in ("minimum", "maximum")}
+        checks.expect("wire range rounds to one KiB value: " + label, len(endpoints) == 1)
+        kib.append(round(size["minimum"] / 1024))
+    checks.expect("wire units derived from full measured bytes",
+                  f"A、B完整密文分别约{kib[0]} KiB和{kib[1]} KiB" in text)
+    checks.expect("deployment baseline names explicit", "相对Windows源码，WSL安装包" in text)
+    checks.expect("prepared state is process-local", "进程内保留的叶钥状态" in text)
+    checks.expect("Lai masks are fresh encryption randomness", "每次加密新采样短矩阵" in text)
+    checks.expect("C application capacity comes from IBS input", "3924字节应用上限则由IBS的4096字节" in text)
+    checks.expect("deployment uses a common WSL runtime", "三路实验均由同一WSL Sage/Python运行" in text)
+    checks.expect("same-wheel deployment ratio kept distinct", "同一wheel的两种位置对照则为17.88和4.45" in text)
 
     for token in ("github.com/youzi258", "youzi258", "/home/", "C:\\Users\\"):
         checks.expect(f"anonymous source excludes {token}", token not in text)
@@ -173,7 +198,17 @@ def main() -> int:
             payload = PDF.read_bytes()
             checks.expect("PDF header", payload.startswith(b"%PDF-"))
             checks.expect("PDF has nontrivial size", len(payload) > 100_000, str(len(payload)))
-            checks.expect("PDF is current", PDF.stat().st_mtime_ns >= SOURCE.stat().st_mtime_ns)
+            build_path = HERE / "build-manifest.json"
+            checks.expect("PDF build manifest exists", build_path.is_file())
+            try:
+                build = json.loads(build_path.read_bytes())
+            except (OSError, ValueError):
+                build = {}
+            checks.expect("PDF build manifest schema", build.get("schema") == "IBME-COMPETITION-REPORT-BUILD/1")
+            checks.expect("PDF source binding", build.get("source") == SOURCE.name
+                          and build.get("source_sha256") == hashlib.sha256(SOURCE.read_bytes()).hexdigest())
+            checks.expect("PDF byte binding", build.get("pdf") == PDF.name
+                          and build.get("pdf_sha256") == hashlib.sha256(payload).hexdigest())
             for token in (b"github.com/youzi258", b"youzi258", b"/home/"):
                 checks.expect(f"anonymous PDF excludes {token!r}", token not in payload)
 

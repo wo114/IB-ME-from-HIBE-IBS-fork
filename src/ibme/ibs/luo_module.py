@@ -262,7 +262,7 @@ class LuoModulePublicKey(IBSPublicKey):
         object.__setattr__(self, "_ring", ring)
         object.__setattr__(self, "_prepared", ring.prepare_matrix(self.A))
 
-    def matvec(self, vector): return self._ring.matvec(self._prepared, vector)
+    def matvec(self, vector, *, prepared=True): return self._ring.matvec(self._prepared, vector, prepared_twiddles=prepared)
 
     def to_bytes(self): return _frame(b"PUBLIC", (self.params.to_bytes(), _pack(tuple(poly for row in self.A for poly in row)), _pack(self.t)))
 
@@ -433,11 +433,18 @@ class LuoModuleIBSBackend:
     backend_admitted = False
     research_only = True
 
-    def __init__(self, *, rng=None):
+    def __init__(self, *, rng=None, prepared_ntt=True):
         self._rng = SecureRandom() if rng is None else rng
         if not callable(getattr(self._rng, "read", None)):
             raise RandomnessError("module rng must implement read(n)")
         self.last_extract_attempts = self.last_sign_attempts = 0
+        self.configure_ntt_preparation(prepared_ntt)
+
+    def configure_ntt_preparation(self, enabled):
+        """Same-parameter diagnostic switch; does not change keys or wire."""
+        if type(enabled) is not bool:
+            raise ValueError("NTT preparation selection must be bool")
+        self.prepared_ntt = enabled
 
     def _draw(self, p, count, bound):
         return tuple(tuple(_below(2 * bound + 1, self._rng, p.max_uniform_attempts) - bound
@@ -451,7 +458,7 @@ class LuoModuleIBSBackend:
                              for _ in range(p.l)) for _ in range(p.k))
         s1, s2 = self._draw(p, p.l, p.eta), self._draw(p, p.k, p.eta)
         ring = p.ring()
-        t = _add(ring.matvec(ring.prepare_matrix(matrix), s1), s2, p.q)
+        t = _add(ring.matvec(ring.prepare_matrix(matrix), s1, prepared_twiddles=self.prepared_ntt), s2, p.q)
         public = LuoModulePublicKey(p, matrix, t)
         return public, LuoModuleMasterSecret(public, s1, s2)
 
@@ -473,7 +480,7 @@ class LuoModuleIBSBackend:
         for attempt in range(1, p.max_extract_attempts + 1):
             self.last_extract_attempts = attempt
             y1, y2 = self._draw(p, p.l, p.gamma1), self._draw(p, p.k, p.gamma1)
-            w = _add(pk.matvec(y1), y2, p.q)
+            w = _add(pk.matvec(y1, prepared=self.prepared_ntt), y2, p.q)
             cid = identity_challenge(pk, _map(w, rounding.power2round), ident)
             z1, z2 = _add(_sparse_vector(msk.s1, cid), y1), _add(_sparse_vector(msk.s2, cid), y2)
             if max(_norm(z1), _norm(z2)) <= p.gamma1 - p.beta1:
@@ -495,7 +502,7 @@ class LuoModuleIBSBackend:
         for attempt in range(1, p.max_sign_attempts + 1):
             self.last_sign_attempts = attempt
             y = self._draw(p, p.l, p.gamma2)
-            w = pk.matvec(y)
+            w = pk.matvec(y, prepared=self.prepared_ntt)
             c = message_challenge(pk, _map(w, rounding.high_bits), sk.identity, msg)
             z = _add(_sparse_vector(sk.z1, c), y)
             sid2c, w0c = _sparse_vector(sk.z2, c), _sparse_vector(w0, c)
@@ -529,7 +536,7 @@ class LuoModuleIBSBackend:
             combined = tuple(tuple((high * 2**p.dropped_bits + value) % p.q for high, value in zip(u, v))
                              for u, v in zip(signature.w1, tcid))
             response = _sparse_vector(combined, signature.c, p.q)
-            az = pk.matvec(signature.z)
+            az = pk.matvec(signature.z, prepared=self.prepared_ntt)
             candidate = tuple(tuple((a - b) % p.q for a, b in zip(u, v)) for u, v in zip(az, response))
             rounding = p.rounding()
             high = tuple(tuple(rounding.use_hint(h, value) for h, value in zip(hints, poly))
