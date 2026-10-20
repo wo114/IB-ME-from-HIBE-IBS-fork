@@ -2,6 +2,8 @@
 
 更新：2026-10-20。本页所据主线基线为PR76（main `c414a2f`），PR77在此基础上形成作品报告重写指导；PR69／72／73及来源许可整理已经进入主线，PR71／74保留独立记录。本页只维护当前结论、负责人和下一步。逐轮提交、失败与复跑明细见各交付目录；整理前的全部文字保留在[历史快照](history/PROJECT_STATUS-through-2026-10-20.md)。找文件从[文档导航](README.md)进入。
 
+本批审查PR75准备复用及PR78演示改版；Web改版不修改作品报告，也不在本PR内追加性能实验或最终发布复现，不据此改变其它任务的既有排序。
+
 ## 1. 已确认的组织方式
 
 - 一个公共 IB-ME 框架，HIBE／IBS 独立实现和选参；就绪且适配的组合进入真实验收，单个原语受阻不暂停其它工作。
@@ -19,16 +21,16 @@
 | 代表 | 冻结组合与预算 | 已有实物 | 当前边界 |
 |---|---|---|---|
 | A：主演示 | [LATTE＋BNN/ML-DSA-44，64 KiB](deliveries/2026-10-19-report-three-selection/suites/A-latte-mldsa44.json) | 重复基准、安装CLI、恢复、Web及部署消融；[A09批次](research/2026-10-19-primary-random-batch/README.md)3根／12配对／60项；[PR72](deliveries/2026-10-19-report-experiment-supplement/README.md)同机基准和0／32／1024／59191 B安装往返、长度／身份越界拒绝 | A09的Xeon／Nix批次与PR72的i9／Sage10.7分别记账；最终发布环境仍须复现 |
-| B：原生IBS对照 | [LATTE＋SRGG论文PARAM-I compact，128 KiB](deliveries/2026-10-19-report-three-selection/suites/B-latte-srgg-I-compact.json) | 功能矩阵、重复基准；[PR71精确安装](research/2026-10-20-report-b-installed/README.md)；PR72同机基准和0／32／1024／65364 B安装往返、越界和内层负例 | 两个独立安装批次不重复累计成同一性能基准；Web预设及最终发布复现仍待 |
+| B：原生IBS对照 | [LATTE＋SRGG论文PARAM-I compact，128 KiB](deliveries/2026-10-19-report-three-selection/suites/B-latte-srgg-I-compact.json) | 功能矩阵、重复基准；[PR71精确安装](research/2026-10-20-report-b-installed/README.md)；PR72同机基准和0／32／1024／65364 B安装往返、越界和内层负例；[固定Web入口及六情形](deliveries/2026-10-20-web-redesign/README.md)已测 | 两个独立安装批次不重复累计成同一性能基准；最终发布复现另列 |
 | C：另一HIBE与环IBS | [Lai C2＋Sageloli RSIS v3 PARAM-I，8 MiB](deliveries/2026-10-19-report-three-selection/suites/C-lai-c2-sageloli-I.json) | 目标规模、四身份场景；[PR74安装与空消息](research/2026-10-20-report-c-installed/README.md)；PR72补0／1024 B、越界、恢复和有效外层下内层拒绝，4次真实未缓存委派 | 多根重复和3924 B最大消息诚实解密仍未做；恢复委派需要新熵，无性能优势结论 |
 
-三代表是2种HIBE、3种IBS、5个原语后端、3个完整组合。Web现有的LATTE＋ML-DSA／Falcon／Luo三预设是另一集合。按2026-10-20用户决定，已完成方案默认安全，三代表当前配置使用 `secure/true/true`；[逐profile范围](deliveries/2026-10-19-project-admission/README.md)区分已完成配置与教学、已知反例和未完成项。历史收据保留原字段与摘要，不回写成新实验。
+三代表是2种HIBE、3种IBS、5个原语后端、3个完整组合。Web主入口已对齐A/B/C，LATTE＋Falcon／Luo保留在补充方案。按2026-10-20用户决定，已完成方案默认安全，三代表当前配置使用 `secure/true/true`；[逐profile范围](deliveries/2026-10-19-project-admission/README.md)区分已完成配置与教学、已知反例和未完成项。历史收据保留原字段与摘要，不回写成新实验。
 
 ### 其它后端与研究材料
 
 | 范围 | 已接收的结果 | 尚未由此完成的工作 |
 |---|---|---|
-| 公共框架／CLI／Web | 独立选参、能力和容量预检、规范wire、固定状态及真实组合工具；见[使用指南](FRAMEWORK_USAGE.md) | Web服务重启恢复仍未实现，持久恢复使用CLI；未测配对不算支持完成 |
+| 公共框架／CLI／Web | 独立选参、能力和容量预检、规范wire、固定状态及真实组合工具；[Web改版](deliveries/2026-10-20-web-redesign/README.md)加入A/B/C固定入口、精简工作区、实际阶段与刷新重连，A/B六情形浏览器实跑 | C本轮只核对固定配置与环境，未新增长流程实验；Web服务重启清空会话，持久恢复使用CLI |
 | LATTE／Lai、SRGG论文档、Sageloli环v3 | LATTE的多IBS配对、Sageloli PARAM-I公共接入、Lai C2四个IBS组合均有实跑 | 各参数档的重复性能、安装和负例按实际覆盖分别验收；不把v2展开外推套到环v3 |
 | ABB-ROM／CHKP／MP12各变体 | 已有小参数完整研究流程、对象和恢复；[3m原型](research/team-a-delivery/2026-10-18-3m-feasibility/README.md)与资源筛查保留 | 目标参数完整运行仍由队长安排的其它AI推进；本机资源受限不等于算法普遍不可行，暂不在本线程扩维 |
 | Wang＋PW | 既有小参数五方法后端与服务；[PR67数值原型修订](deliveries/2026-10-19-pr66-67-review/followup/README.md)已合入 | n512数值采样记录尚非这组参数下的完整IBS；身份／消息绑定、PW、固定公开范数验签、恢复与完整组合仍待 |
@@ -40,6 +42,7 @@
 
 | 接收内容 | 当前可引用的入口 |
 |---|---|
+| PR78：三代表演示改版 | [最终审查与独立实跑](deliveries/2026-10-20-pr78-review/README.md)完成A/B各一根及六情形；修复刷新中的方案按钮锁定与消息还原提示。C仅预检、服务重启清空会话；待PR75接收及精确头CI后合并 |
 | PR77：作品报告重写审核稿 | [重写指导意见](reports/2026-10-20-revision-review/README.md)明确保留官方版式与证据基础、整体替换正文，不再按旧稿句级润色；当前LaTeX／PDF尚未执行重写，不能把审核稿完成记为成稿完成 |
 | PR76：来源许可与精简发布包 | [来源、上游声明及归档复核](deliveries/2026-10-20-source-notices/README.md)已进入主线；最终发行依赖清单和同版本发布复现仍待 |
 | PR73：公共登记扩展与当前安全标记／报告 | 已完成方案按用户决定默认安全，历史收据兼容；SRGG精确有理数实现上限修复，报告使用本届官方模板；见[本轮接收](deliveries/2026-10-20-pr69-74-review/README.md) |
@@ -80,7 +83,7 @@
 
 ### 当前批次与在途PR
 
-PR69／72／73／76均已审查合并，PR71／74此前已经合并。PR73审定头`78b966f`的46项自动检查通过，另2项预期手动检查跳过，合并为`1c1e36e`；AGENTS与当前安全配置已按用户最新决定接收。[PR75](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/75)的五组数据已齐，原头`1e765f1`已补齐五组数据，本分支同步PR76／77后完成最终审查与检查，合并结果以远端为准。[PR77](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/77)只确立下一步正文重写指导，不把正文、图表、补测或最终PDF提前记为完成。各历史批次的源码、收据和原字段不回写。
+PR69／72／73／76／77均已审查合并，PR71／74此前已经合并。PR73审定头`78b966f`的46项自动检查通过，另2项预期手动检查跳过，合并为`1c1e36e`；AGENTS与当前安全配置已按用户最新决定接收。[PR75](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/75)在`5f7f35f`完成主线同步、237项本地回归及全量数据复核，等待该精确头CI与合并。[PR78](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/78)已与其集成并完成59项Web回归、A/B独立浏览器实跑和两处界面返工，按依赖顺序接收。[PR77](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/77)只确立下一步正文重写指导，不把正文、图表、补测或最终PDF提前记为完成。各历史批次的源码、收据和原字段不回写。
 
 ## 4. 当前入口与证据定位
 
