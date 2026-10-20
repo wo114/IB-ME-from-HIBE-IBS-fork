@@ -1,17 +1,20 @@
 """MP12 SampleD with perturbation for the Wang–PW target profile.
 
-The user trapdoor T = [X; I] satisfies F_id·T = G (mod q) with F_id = [A|H1].
-We sample z with the ideal coset Gaussian D_{Λ^⊥_{h2}(F_id), s_p} by
+Offline perturbation (MP12 Algorithm 3, Section 5.4):
 
-    p ~ N(0, Sigma),  Sigma = s_p² I − sigma_g² T T^T   (MP12 Lemma 5.3)
-    z_g ~ D_{Λ^⊥_{h2 - F_id p}(G), sigma_g}             (gadget blocks)
-    z = p + T z_g
+    p ~ D_{Z^m, s} with covariance  Sigma_p = s^2 I − sigma_g^2 T T^T,
+    Sigma_p >= 2 T T^T,  Sigma_G = sigma_g^2 I >= 2 I,  s from the parameter
+    profile (never from the key).
 
-so Cov(z) = Sigma + sigma_g² T T^T = s_p² I.  The perturbation width is
-derived from the spectral norm ||T||_2 (power iteration), never from the
-Frobenius norm, which would inflate s_p by two orders of magnitude.
+Following [Pei10, Theorem 3.1] as stated in MP12 Section 5.4, D_{Z^m, s} is
+sampled by (1) a continuous Gaussian with covariance Sigma_p − sigma_r^2 I and
+(2) independent per-coordinate discrete-Gaussian rounding around the sampled
+real values (Gaussian parameter sigma_r), not nearest-integer rounding.
 
-All randomness comes from the backend's source (SecureRandom in production,
+The signature is z = p + T z_g with z_g ~ D_{Lambda^perp_{h2 - F p}(G), sigma_g}
+sampled per gadget block, so Cov(z) = Sigma_p + sigma_g^2 T T^T = s^2 I.
+
+All randomness comes from the backend source (SecureRandom in production,
 DeterministicRandom under test_only).  The final vector is checked with exact
 mod-q arithmetic and the public squared-norm gate before it is returned.
 """
@@ -24,14 +27,15 @@ import numpy as np
 from scipy.linalg import cholesky
 
 from .math import gadget, gram_schmidt
-from .native import draw_gaussian, sample_gpv, SamplingError
+from .native import draw_gaussian_batch, sample_gpv, SamplingError
 
-# Gadget coset width: ker(G) bidiagonal GS norms are ~sqrt(5) <= 2.24, so 4
-# leaves a two-sigma smoothing margin for the Klein/GPV block sampler.
+# Gadget coset width (standard deviation).  ker(G) bidiagonal GS norms are
+# ~sqrt(5) <= 2.24, so 4 leaves a smoothing margin; Sigma_G = 16 I >= 2 I.
 GADGET_SIGMA = 4.0
-# Power iteration is deterministic and deliberately conservative.
+# Per-coordinate Gaussian rounding width (standard deviation).  Its variance is
+# ~1, so the continuous covariance is Sigma_p − I.  sigma_r = 1 >= eta(Z).
+ROUNDING_SIGMA = 1.0
 POWER_ITERATIONS = 48
-POWER_MARGIN = 1.10
 
 
 def gadget_kernel_basis(k: int, q: int) -> np.ndarray:
@@ -72,8 +76,9 @@ def trapdoor_spectral_norm(trapdoor: np.ndarray, iterations: int = POWER_ITERATI
     return math.sqrt(eigenvalue)
 
 
-def _covariance(trapdoor: np.ndarray, s: float, sigma_g: float) -> np.ndarray:
-    """Sigma = s² I − sigma_g² T T^T as a dense (dim, dim) float64 array."""
+def perturbation_covariance(trapdoor: np.ndarray, width: float,
+                            sigma_g: float = GADGET_SIGMA) -> np.ndarray:
+    """Sigma_p = width^2 I − sigma_g^2 T T^T as a dense (dim, dim) float64 array."""
     x = np.asarray(trapdoor, dtype=np.float64)
     m, w = x.shape
     dim = m + w
@@ -86,42 +91,73 @@ def _covariance(trapdoor: np.ndarray, s: float, sigma_g: float) -> np.ndarray:
         np.fill_diagonal(covariance[m:, m:], 1.0)
         covariance *= -(sigma_g * sigma_g)
         diagonal = np.diag(covariance).copy()
-        diagonal += s * s
+        diagonal += width * width
         np.fill_diagonal(covariance, diagonal)
     return covariance
 
 
-def perturbation_factor(trapdoor: np.ndarray, sigma_g: float = GADGET_SIGMA,
-                        *, max_doublings: int = 8):
-    """Return (s_p, L) with L the lower Cholesky factor of Sigma (LL^T = Sigma).
+def check_mp12_margin(params, trapdoor: np.ndarray) -> float:
+    """Enforce the MP12 Algorithm 3 conditions and return ||T||_2.
 
-    s_p starts at POWER_MARGIN·1.05·sigma_g·||T||_2 and doubles until the
-    covariance is numerically positive definite.
+    Sigma_G = sigma_g^2 I >= 2 I (sigma_g >= sqrt(2)) and
+    Sigma_p = s^2 I − sigma_g^2 T T^T >= 2 T T^T, i.e. s >= ||T||_2·sqrt(sigma_g^2+2).
     """
-    lam = trapdoor_spectral_norm(trapdoor)
-    s = sigma_g * lam * POWER_MARGIN * 1.05
-    for _ in range(int(max_doublings)):
-        covariance = _covariance(trapdoor, s, sigma_g)
-        try:
-            lower = cholesky(covariance, lower=True, overwrite_a=True, check_finite=False)
-        except np.linalg.LinAlgError:
-            lower = None
-        if lower is not None:
-            return s, lower
-        s *= 2.0
-    raise SamplingError("perturbation covariance never became positive definite",
-                        public_reason="native-return-code")
-
-
-def sample_perturbation(lower: np.ndarray, options: dict) -> np.ndarray:
-    """p = round(L g) with g an integer standard Gaussian of matching size."""
-    dim = lower.shape[0]
-    g = draw_gaussian(dim, sigma=1.0, **options)
-    if g.shape != (dim,):
-        raise SamplingError("native perturbation draw returned the wrong shape",
+    if GADGET_SIGMA * GADGET_SIGMA < 2.0:
+        raise SamplingError("gadget covariance violates Sigma_G >= 2 I",
                             public_reason="native-return-code")
-    product = lower @ g.astype(np.float64)
-    return np.rint(product).astype(np.int64)
+    norm = trapdoor_spectral_norm(trapdoor)
+    required = norm * math.sqrt(GADGET_SIGMA * GADGET_SIGMA + 2.0)
+    width = params.sign_sigma
+    if not width >= required:
+        raise SamplingError("fixed sign width violates the MP12 perturbation margin",
+                            public_reason="native-return-code")
+    return norm
+
+
+def _standard_normal(read, count: int) -> np.ndarray:
+    """Box–Muller standard normals from the backend cryptographic source."""
+    raw = read(16 * count)
+    u = np.frombuffer(raw, dtype="<u8").astype(np.float64)
+    u = (u + 0.5) * (2.0 ** -64)
+    pairs = u[: 2 * count].reshape(count, 2)
+    radius = np.sqrt(-2.0 * np.log(pairs[:, 0]))
+    angle = 2.0 * np.pi * pairs[:, 1]
+    return radius * np.cos(angle)
+
+
+def sample_from_covariance(covariance: np.ndarray, read, options: dict,
+                           count: int = 1) -> np.ndarray:
+    """Sample D_{Z^dim, Sigma}^{count} by continuous Gaussian + Gaussian rounding.
+
+    The continuous draw uses covariance Sigma − ROUNDING_SIGMA^2 I; the
+    per-coordinate rounding is a discrete Gaussian of width ROUNDING_SIGMA
+    centered at the sampled real value (not nearest-integer rounding).  The
+    rounding variance restores Sigma.  Returns (count, dim), or (dim,) if count=1.
+    """
+    dim = covariance.shape[0]
+    count = int(count)
+    if count < 1:
+        raise ValueError("sample count must be positive")
+    continuous_covariance = covariance.copy()
+    diagonal = np.diag(continuous_covariance).copy()
+    np.fill_diagonal(continuous_covariance, diagonal - ROUNDING_SIGMA * ROUNDING_SIGMA)
+    try:
+        lower = cholesky(continuous_covariance, lower=True, overwrite_a=True, check_finite=False)
+    except np.linalg.LinAlgError:
+        raise SamplingError("perturbation covariance is not positive definite",
+                            public_reason="native-return-code")
+    normals = _standard_normal(read, dim * count).reshape(count, dim)
+    centers = (lower @ normals.T).T
+    del lower
+    out = draw_gaussian_batch(centers, np.full((count, dim), ROUNDING_SIGMA), **options)
+    return out.reshape(dim) if count == 1 else out
+
+
+def sample_perturbation(params, trapdoor: np.ndarray, read, options: dict) -> np.ndarray:
+    """MP12 Section 5.4 offline perturbation with the fixed profile width."""
+    check_mp12_margin(params, trapdoor)
+    covariance = perturbation_covariance(trapdoor, params.sign_sigma)
+    return sample_from_covariance(covariance, read, options)
 
 
 def sample_gadget_solution(p, residue: np.ndarray, sigma_g: float, options: dict) -> np.ndarray:
@@ -163,9 +199,7 @@ def sign_with_perturbation(backend, sk, message) -> "Signature":
     y = inner_message(p, message, salt)
     target = message_vector(pk, x, y)
     backend._sign_stage("perturbation")
-    s_p, lower = perturbation_factor(sk.trapdoor, GADGET_SIGMA)
-    perturbation = sample_perturbation(lower, backend._options(p))
-    del lower
+    perturbation = sample_perturbation(p, sk.trapdoor, backend._read, backend._options(p))
     backend._sign_stage("particular")
     f_id = np.hstack((pk.a, expected))
     residual = (target - matmul_mod(f_id, perturbation.reshape(-1, 1), p.q)[:, 0]) % p.q
@@ -181,8 +215,7 @@ def sign_with_perturbation(backend, sk, message) -> "Signature":
         raise SamplingError("signature equation/norm gate failed; no hidden reroll",
                             public_reason="signature-equation-or-norm")
     backend.last_metrics["signature_norm_sq"] = sum(int(v) * int(v) for v in z)
-    backend.last_metrics["perturbation_width"] = s_p
+    backend.last_metrics["perturbation_width"] = p.sign_sigma
     backend._sign_stage("complete")
     return signature
-
 
