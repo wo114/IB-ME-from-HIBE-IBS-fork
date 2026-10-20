@@ -1,5 +1,7 @@
 # 当前进度与并行任务
 
+**Wang原钥资源审计准备（2026-10-20，本地，WIP）**：`f15f0ed`新增[只读确定性入口](research/2026-10-19-wang-pw-target-s0-4/recovered-key-resource-audit.md)，只凭原用户SK检查规范对象、公矩阵、基/QR、最大GS及逐坐标sigma资源门，不发钥/签名、不加载native或进行密码学取熵、不输出私密数值；动态中心未检查。规定WSL Sage五文件123项回归全过，含真实debug SK独立解释器禁调用与公开二维反例。尚未部署/执行服务器审计或新签名，原诊断失败和参数拒绝不变；新增服务器计算等待明确授权，完整目标保持active、未推送/PR，none/false/false/null不变。
+
 **Wang单次原钥诊断终态（2026-10-20，失败，WIP）**：[最终回执与本地定位](research/2026-10-19-wang-pw-target-s0-4/README_zh-CN.md#16-单次诊断终态与资源门定位)：冻结`ed10d6f`的一次原钥续签于北京时间13:34:27失败，1719.051s、采样RSS峰值60601245696B（56.440GiB），`native-gpv / native-return-code / code1`；无签名产物，child/supervisor均退出1、清理后0存活、无超限/超时。3387份源码及原私密文件元数据未变，维持n512/q4294967291/s0=4、16线程、110GiB/21600s，无新Wang根/发钥/重试或后续链。只收公开回执，已删除本次监控，完整目标仍active。ABI/维度/policy核对通过；公开二维探针复现“通过最大GS门仍被逐坐标sigma资源门拒绝”，但不能唯一归因服务器是sigma范围还是中心范围。完整参数材料见[WIP审计](research/2026-10-19-wang-pw-target-s0-4/parameter-completion-audit.md)，现有β≥q拒绝保留。旧两次失败永久保留，原始六阶段及目标服务/组合/CLI未完成，未推送/PR，安全字段保持none/false/false/null。
 
 **Wang独立签名诊断补齐（2026-10-20，本地，WIP）**：[阶段与原因码](research/2026-10-19-wang-pw-target-s0-4/README_zh-CN.md#14-独立签名阶段诊断本地完成目标仍-wip)新增固定进程阶段、后端阶段/原因及native整数码；直接stdout与父进程均做白名单过滤，不输出异常原文或新增密钥统计。规定WSL Sage两批219项通过（173项相关回归、46项后端诊断，无重叠）；与af11011的真实n2/q257冷热签名逐字节和随机源调用一致，首夹具GS拒绝保留。独立归档核16份载荷、7实现绑定及27份旧失败证据。stage表示最后进入阶段，不表示通过；native码6不单独证明内存故障。算法、参数、C++采样器、接受门和重试策略未改。该本地测试批次不含服务器实跑；新授权诊断见上一段。旧SamplingError实际原因仍未知，原始六阶段和后续目标链仍未完成；未推送/建PR，安全字段保持none/false/false/null。
