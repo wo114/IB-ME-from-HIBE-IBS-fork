@@ -262,7 +262,7 @@ class LuoModulePublicKey(IBSPublicKey):
         object.__setattr__(self, "_ring", ring)
         object.__setattr__(self, "_prepared", ring.prepare_matrix(self.A))
 
-    def matvec(self, vector, *, prepared=True): return self._ring.matvec(self._prepared, vector, prepared=prepared)
+    def matvec(self, vector, *, prepared=True): return self._ring.matvec(self._prepared, vector, prepared_twiddles=prepared)
 
     def to_bytes(self): return _frame(b"PUBLIC", (self.params.to_bytes(), _pack(tuple(poly for row in self.A for poly in row)), _pack(self.t)))
 
@@ -458,7 +458,7 @@ class LuoModuleIBSBackend:
                              for _ in range(p.l)) for _ in range(p.k))
         s1, s2 = self._draw(p, p.l, p.eta), self._draw(p, p.k, p.eta)
         ring = p.ring()
-        t = _add(ring.matvec(ring.prepare_matrix(matrix), s1, prepared=self.prepared_ntt), s2, p.q)
+        t = _add(ring.matvec(ring.prepare_matrix(matrix), s1, prepared_twiddles=self.prepared_ntt), s2, p.q)
         public = LuoModulePublicKey(p, matrix, t)
         return public, LuoModuleMasterSecret(public, s1, s2)
 

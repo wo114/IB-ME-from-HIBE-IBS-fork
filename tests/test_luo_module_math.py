@@ -63,7 +63,7 @@ def test_prepared_butterflies_match_original_for_signed_boundaries(n, q, root):
         assert ring.multiply(coefficients, coefficients) == ring.multiply(coefficients, coefficients, prepared=False)
     rows = (((1,)*n, (q-1,)*n),)
     matrix = ring.prepare_matrix(rows)
-    assert ring.matvec(matrix, rows[0]) == ring.matvec(matrix, rows[0], prepared=False)
+    assert ring.matvec(prepared=matrix, vector=rows[0]) == ring.matvec(matrix, rows[0], prepared_twiddles=False)
 
 
 @pytest.mark.parametrize("q", [17, 31, 41, 97])

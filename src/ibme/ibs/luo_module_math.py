@@ -153,17 +153,18 @@ class NegacyclicRing:
             raise ValueError("matrix dimensions mismatch")
         return tuple(tuple(self.ntt(poly) for poly in row) for row in rows)
 
-    def matvec(self, matrix, vector, *, prepared=True):
+    def matvec(self, prepared, vector, *, prepared_twiddles=True):
+        matrix = prepared  # Preserve the original public matrix keyword.
         if not matrix or len(vector) != len(matrix[0]):
             raise ValueError("matrix/vector dimensions mismatch")
-        hats = tuple(self.ntt(poly, prepared=prepared) for poly in vector)
+        hats = tuple(self.ntt(poly, prepared=prepared_twiddles) for poly in vector)
         output = []
         for row in matrix:
             if len(row) != len(hats):
                 raise ValueError("matrix row dimension mismatch")
             product = tuple(sum(row[j][i] * hats[j][i] for j in range(len(hats))) % self.q
                             for i in range(self.degree))
-            output.append(self.inverse_ntt(product, prepared=prepared))
+            output.append(self.inverse_ntt(product, prepared=prepared_twiddles))
         return tuple(output)
 
 
