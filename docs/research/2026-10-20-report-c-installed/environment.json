@@ -1,0 +1,21 @@
+{
+  "classification": "one-root installed CLI and authenticated-inner negative; not a performance benchmark",
+  "code_placement": "isolated wheel runtime on WSL Linux filesystem",
+  "cpu_model": "Intel(R) Core(TM) Ultra 9 275HX",
+  "cwd_outside_repository": true,
+  "interpreter": "/home/youzi/miniconda3/envs/sage/bin/python3.13",
+  "native_source_checks": "unchanged; enforced by installed Library",
+  "omp_num_threads": 1,
+  "openblas_num_threads": 1,
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "3.13.14 | packaged by conda-forge | (main, Jun 12 2026, 09:50:25) [GCC 14.3.0]",
+  "pythonpath_only_installed_runtime": true,
+  "sage": "10.9",
+  "sageloli_native_metadata": {
+    "binary_sha256": "fcfed1b143ebb7f3d46c34597ef6c8b64e2aa6a10a72ce4ab87338bef32d3812",
+    "exact_arithmetic": "two-prime range-checked NTT + FLINT integer polynomial products",
+    "source_id": "a41fd3e087125317d2bf2c1731e99c5639b27bce1c0b9d8456cd0682bee0ee39"
+  },
+  "sageloli_native_path": "/home/youzi/.cache/ibme-native-tools/review-sageloli-ring-v3/sageloli-ring-a41fd3e087125317d2bf2c1731e99c5639b27bce1c0b9d8456cd0682bee0ee39.so",
+  "sageloli_native_rebuilt": false
+}
