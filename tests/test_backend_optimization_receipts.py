@@ -2,6 +2,7 @@
 from copy import deepcopy
 import json
 from pathlib import Path
+from pathlib import PurePosixPath
 
 import pytest
 
@@ -43,6 +44,34 @@ def test_mixed_or_unrecognized_security_snapshots_are_rejected(field, value):
     data, installation, manifest = deepcopy(inputs())
     data[field] = value
     with pytest.raises(ValueError, match="security"):
+        validate_batch(data, installation, manifest)
+
+
+@pytest.mark.parametrize("spelling", ("parent", "dot", "double-slash"))
+def test_noncanonical_provider_paths_are_rejected_even_with_matching_manifest(spelling):
+    data, installation, manifest = deepcopy(inputs())
+    provider = next(iter(data["records"][0]["providers"].values()))
+    root = installation["runtime_root"]
+    relative = str(PurePosixPath(provider["path"]).relative_to(root))
+    separator = {"parent": "/../checkout/", "dot": "/./", "double-slash": "//"}[spelling]
+    provider["path"] = root+separator+relative
+    changed_relative = str(PurePosixPath(provider["path"]).relative_to(root))
+    manifest["files"][changed_relative] = provider["sha256"]
+    with pytest.raises(ValueError, match="canonical"):
+        validate_batch(data, installation, manifest)
+
+
+@pytest.mark.parametrize("bad_digest", (None, "not-a-source-digest"))
+def test_matching_malformed_provider_digests_cannot_certify_a_source(bad_digest):
+    data, installation, manifest = deepcopy(inputs())
+    first = next(iter(data["records"][0]["providers"].values()))
+    path = first["path"]
+    for record in data["records"]:
+        for provider in record["providers"].values():
+            if provider["path"] == path:
+                provider["sha256"] = bad_digest
+    manifest["files"][str(PurePosixPath(path).relative_to(installation["runtime_root"]))] = bad_digest
+    with pytest.raises(ValueError, match="source digest"):
         validate_batch(data, installation, manifest)
 
 

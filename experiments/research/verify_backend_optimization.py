@@ -3,6 +3,7 @@ import argparse
 import json
 import math
 from pathlib import Path, PurePosixPath
+import re
 import statistics
 
 from ibme.assembly import SuiteConfig
@@ -55,12 +56,23 @@ def validate_batch(data, installation, manifest):
         require(record["no_outer_retry"] is True and record["randomness"] == "fresh system CSPRNG", "generation policy")
         require(recorded_security(record) == metadata, "root claim changed")
         require(set(record["checks"]) == CHECKS and all(x is True for x in record["checks"].values()), "negative controls failed")
-        root = PurePosixPath(installation["runtime_root"])
+        root_name = installation["runtime_root"]
+        require(type(root_name) is str, "installed root is not canonical")
+        root = PurePosixPath(root_name)
+        require(root.anchor == "/" and str(root) == root_name and ".." not in root.parts,
+                "installed root is not canonical")
         require(bool(record["providers"]), "no observed source providers")
         for name, provider in record["providers"].items():
-            path = PurePosixPath(provider["path"])
+            path_name = provider["path"]
+            require(type(path_name) is str, "provider path is not canonical")
+            path = PurePosixPath(path_name)
+            require(path.anchor == "/" and str(path) == path_name and ".." not in path.parts,
+                    "provider path is not canonical")
             require(path.is_relative_to(root), "source checkout used as installed runtime")
             relative = str(path.relative_to(root))
+            require(type(provider["sha256"]) is str
+                    and re.fullmatch(r"[0-9a-f]{64}", provider["sha256"]) is not None,
+                    "provider source digest is malformed")
             require(provider["sha256"] == manifest["files"].get(relative), "provider source digest mismatch: "+name)
         require(all(r["status"] == "passed" and math.isfinite(r["seconds"]) and r["seconds"] > 0 for r in record["phases"]), "failed phase")
         repetitions = data["repetitions_per_root"]
