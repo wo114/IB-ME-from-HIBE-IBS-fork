@@ -31,8 +31,11 @@ MAGIC = b"WPTISS01"
 MAX_STATE_BYTES = (1 << 32) - 1
 MAX_USERS = 64
 MAX_PARAMS_BYTES = 32768
-_ENTRY_STATUS = {"pending": 0, "failed": 1, "issued": 2}
+_ENTRY_STATUS = {"pending": 0, "failed": 1, "issued": 2, "imported": 3}
 _STATE_STATUS = {"ready": 0, "failed": 1}
+_COMPLETE_ENTRIES = frozenset(("issued", "imported"))
+_COMPLETE_ENTRY_CODES = frozenset(_ENTRY_STATUS[name] for name in _COMPLETE_ENTRIES)
+_ENTRY_NAMES = {value: name for name, value in _ENTRY_STATUS.items()}
 
 # Share error contracts and audited filesystem/lock mechanics, but neither the
 # old JSON snapshot codec, its secret object classes nor its 1 MiB capacity.
@@ -134,7 +137,7 @@ class _Snapshot:
         del raw_master
         for identity, (status, key) in sorted(self.entries.items()):
             identity = _identity(identity, params)
-            if status not in _ENTRY_STATUS or (status == "issued") != (key is not None):
+            if status not in _ENTRY_STATUS or (status in _COMPLETE_ENTRIES) != (key is not None):
                 raise IssuerStateError("invalid target issuer ledger entry")
             if key is not None and (type(key) is not SigningKey or key.identity != identity
                                     or key.public_key.context != public.context
@@ -188,7 +191,7 @@ class _Snapshot:
                 if status not in _ENTRY_STATUS.values():
                     raise ValueError("invalid target ledger status")
                 key_count = _length(handle, 8, bounds["signing_key"], empty=True)
-                if (status == _ENTRY_STATUS["issued"]) != bool(key_count):
+                if (status in _COMPLETE_ENTRY_CODES) != bool(key_count):
                     raise ValueError("invalid target key presence")
                 key_start = handle.tell()
                 if key_start + key_count > total:
@@ -197,7 +200,9 @@ class _Snapshot:
                 entries.append((identity, status, key_start, key_count))
             if handle.tell() != total:
                 raise ValueError("appended target snapshot bytes")
-            if state != _STATE_STATUS["ready"] or any(status != _ENTRY_STATUS["issued"] for _, status, _, _ in entries):
+            if state != _STATE_STATUS["ready"] or any(
+                    status not in _COMPLETE_ENTRY_CODES
+                    for _, status, _, _ in entries):
                 raise IssuerPendingError("target issuer ledger is unfinished; automatic retry is blocked")
             # Check embedded public roots/identities before either private
             # trapdoor decoder performs expensive target-sized algebra.
@@ -224,12 +229,12 @@ class _Snapshot:
             handle.seek(master_start)
             master = MasterSecret.from_bytes(_read(handle, master_count))
             result = cls(master, max_users)
-            for identity, _, start, size in entries:
+            for identity, status, start, size in entries:
                 handle.seek(start)
                 key = SigningKey.from_bytes(_read(handle, size))
                 if key.identity != identity or key.public_key.to_bytes() != public_raw:
                     raise ValueError("target issued key identity or public context mismatch")
-                result.entries[identity] = ("issued", key)
+                result.entries[identity] = (_ENTRY_NAMES[status], key)
             return result
         except IssuerPendingError:
             raise
@@ -336,6 +341,79 @@ class FixedIssuer(_legacy.FixedIssuer):
             except BaseException:
                 self._block(snapshot)
                 raise
+
+    def adopt_existing(self, master: MasterSecret, signing_keys, *, max_users=None):
+        """Administratively import existing keys without Setup or extraction.
+
+        Imported entries remain distinguishable from keys issued by this
+        service. Canonical decoding checks the exact root/key equations and
+        identity bindings; it does not attest to their original sampling law,
+        Gram--Schmidt quality, or any previous issuance history. The supplied
+        keys must be a nonempty, capacity-bounded iterable of SigningKey.
+        Cryptographic randomness and native sampling are never requested.
+        """
+        if type(master) is not MasterSecret or type(master.public_key) is not PublicKey:
+            raise TypeError("exact Wang-PW target master secret required")
+        public, params = master.public_key, master.public_key.params
+        if type(params) is not Params:
+            raise TypeError("exact Wang-PW target parameters required")
+        if max_users is None:
+            max_users = 4 if params.is_debug else 1
+        _preflight(params, max_users)
+        public_raw = public.to_bytes()
+        entries = {}
+        for key in signing_keys:
+            if len(entries) >= max_users:
+                raise IssuerCapacityError("target imported keys exceed the advertised identity capacity")
+            if type(key) is not SigningKey:
+                raise TypeError("exact Wang-PW target signing keys required")
+            identity = _identity(key.identity, params)
+            if identity in entries:
+                raise IssuerStateError("duplicate imported identity")
+            if (type(key.public_key) is not PublicKey or key.public_key.params != params
+                    or key.public_key.to_bytes() != public_raw):
+                raise IssuerStateError("imported key public context or parameters mismatch")
+            entries[identity] = ("imported", key)
+        if not entries:
+            raise ValueError("at least one existing signing key is required")
+        self._directory(create=True)
+        self._check_empty()
+        with self._locked():
+            self._check_empty()
+            snapshot = None
+            try:
+                self._begin()
+                try:
+                    checked_master = MasterSecret.from_bytes(master.to_bytes())
+                    checked_entries = {}
+                    for identity, (_, key) in entries.items():
+                        checked_key = SigningKey.from_bytes(key.to_bytes())
+                        if (checked_key.identity != identity
+                                or checked_key.public_key.to_bytes() != public_raw):
+                            raise ValueError("imported key changed canonical binding")
+                        checked_entries[identity] = ("imported", checked_key)
+                    if checked_master.public_key.to_bytes() != public_raw:
+                        raise ValueError("imported master changed canonical binding")
+                except Exception:
+                    raise IssuerStateError("imported Wang-PW material failed canonical validation") from None
+                snapshot = _Snapshot(checked_master, max_users, checked_entries)
+                self._atomic_write(snapshot)
+                self._finish()
+                return snapshot.master.public_key
+            except BaseException:
+                self._block(snapshot)
+                raise
+
+    def key_origin(self, identity):
+        """Return 'imported' or 'issued' for an existing key, without issuance."""
+        identity = _identity(identity)
+        self._existing()
+        with self._locked():
+            snapshot = self._load()
+            identity = _identity(identity, snapshot.master.params)
+            if identity not in snapshot.entries:
+                raise IssuerStateError("identity has no stored Wang-PW key")
+            return snapshot.entries[identity][0]
 
     def key_extract(self, identity):
         identity = _identity(identity)
