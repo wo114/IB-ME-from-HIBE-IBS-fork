@@ -1,58 +1,129 @@
 % !TeX program = xelatex
 % Primary editable source. Initial body migrated from PR66 db086c7.
 % Build from this directory with: tectonic 研究报告初稿.tex
+% Competition-report layout follows the two archived 2025 exemplars.
 % Requires the existing figures/ directory. No Word conversion is used.
 \documentclass[UTF8,a4paper,12pt,oneside,openany,fontset=fandol]{ctexrep}
-\usepackage[top=22mm,bottom=22mm,left=25mm,right=25mm]{geometry}
-\usepackage{amsmath,amssymb,graphicx,longtable,array,booktabs,alltt,needspace}
+\usepackage[
+  top=25mm,
+  bottom=24mm,
+  left=25mm,
+  right=25mm,
+  headheight=15pt,
+  headsep=7mm,
+  footskip=12mm
+]{geometry}
+\usepackage{amsmath,amssymb,graphicx,longtable,tabularx,array,booktabs,alltt,needspace}
 \usepackage[table]{xcolor}
-\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{fancyhdr}
+\usepackage[font=small,labelfont=bf,labelsep=quad]{caption}
 \usepackage[hidelinks,unicode,bookmarksnumbered]{hyperref}
 \usepackage{xurl}
-\hypersetup{pdftitle={基于多类格困难假设的抗量子身份基匹配加密通用设计与优化实现},pdfauthor={IB-ME项目组}}
-\ctexset{chapter={beforeskip=0pt,afterskip=20pt},section={beforeskip=16pt,afterskip=9pt}}
+\newcommand{\reporttitle}{基于多类格困难假设的抗量子身份基匹配加密通用设计与优化实现}
+\newcommand{\competitiontitle}{2026年第十一届全国密码技术竞赛作品设计报告}
+\newcommand{\reportdate}{2026年10月20日}
+\hypersetup{
+  pdftitle={\reporttitle},
+  pdfsubject={\competitiontitle},
+  pdfkeywords={身份基匹配加密, 格密码, HIBE, IBS, 抗量子密码}
+}
+\ctexset{
+  chapter={format=\centering\heiti\zihao{2},beforeskip=0pt,afterskip=24pt},
+  section={format=\heiti\zihao{3},beforeskip=18pt,afterskip=10pt},
+  subsection={format=\heiti\zihao{4},beforeskip=12pt,afterskip=6pt}
+}
 \setlength{\parindent}{2em}
-\setlength{\parskip}{4pt}
-\linespread{1.15}
+\setlength{\parskip}{0pt}
+\linespread{1.28}
 \setlength{\emergencystretch}{3em}
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.25}
-\counterwithout{figure}{chapter}
-\counterwithout{table}{chapter}
 \setlength{\LTpre}{9pt}
 \setlength{\LTpost}{9pt}
 \graphicspath{{figures/}}
-\pagestyle{plain}
+\setcounter{tocdepth}{2}
+\renewcommand{\listfigurename}{图目录}
+\renewcommand{\listtablename}{表目录}
+\newcommand{\reportheader}{基于多类格困难假设的抗量子身份基匹配加密通用设计与优化实现}
+\fancypagestyle{frontmatter}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[C]{\thepage}
+}
+\fancypagestyle{mainmatter}{
+  \fancyhf{}
+  \fancyhead[C]{\small\songti\reportheader}
+  \fancyfoot[C]{\small 第\,\thepage\,页\quad 共\,\pageref*{LastPage}\,页}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
 \newlength{\tableavail}
 \AddToHook{cmd/section/before}{\Needspace{8\baselineskip}}
 \begin{document}
 \hypersetup{pageanchor=false}
+\pagenumbering{gobble}
 \begin{titlepage}
-\centering
-\vspace*{28mm}
-{\LARGE\bfseries 基于多类格困难假设的抗量子\par}
-\vspace{5mm}
-{\LARGE\bfseries 身份基匹配加密通用设计与优化实现\par}
-\vspace{18mm}
-{\Large 研究报告（工作稿）\par}
-\vspace{4mm}
-{\large LaTeX／PDF 主稿\par}
-\vspace{14mm}
-{\large IB-ME项目组\par}
-\vspace{4mm}
-{\large 2026年10月20日\par}
-\vfill
-\begin{minipage}{0.92\textwidth}
-本稿已经按冻结选择统一正文：A 为 LATTE-3＋BNN/ML-DSA-44，B 为 LATTE-3＋SRGG PARAM-I compact，C 为 Lai C2＋Sageloli RSIS v3 PARAM-I。旧 LATTE＋ML-DSA／Falcon／Luo 三组重复数据仅作为辅助工程基线，不再称为最终三代表。
-
-三组分别保留实际参数、论文目标、模型、样本边界和实现限制，不要求统一达到128位，也不进行跨目标速度排名。三组精确 profile 已获项目内部准入；该口径不等同于完整 IB-ME 获得外部 NIST 认证。
+\thispagestyle{empty}
+\vspace*{7mm}
+\noindent
+\begin{minipage}[t]{0.73\textwidth}
+\zihao{4}
+作品编号：\underline{\hspace{47mm}}\\[8mm]
+作品类别：\(\boxtimes\)软件设计\quad
+\(\square\)硬件制作\quad
+\(\square\)工程实践\\[3mm]
+\hspace*{5em}\(\square\)密码应用技术\quad
+\(\square\)其它
+\end{minipage}%
+\begin{minipage}[t]{0.27\textwidth}
+\raggedleft
+\includegraphics[width=30mm]{figures/cacr-logo.jpg}
 \end{minipage}
-\end{titlepage}
-\pagenumbering{roman}
-\hypersetup{pageanchor=true}
 
-\chapter*{摘要}
-\addcontentsline{toc}{chapter}{摘要}
+\vspace{34mm}
+\begin{center}
+{\heiti\zihao{-2}\competitiontitle\par}
+\vspace{5mm}
+\rule{0.86\textwidth}{1.2pt}
+
+\vspace{24mm}
+{\zihao{3}作品题目：基于多类格困难假设的抗量子\par}
+\vspace{4mm}
+{\zihao{3}身份基匹配加密通用设计与优化实现\par}
+
+\vfill
+{\zihao{4}\reportdate\par}
+\vspace{5mm}
+{\zihao{4}中国密码学会\par}
+\end{center}
+\end{titlepage}
+
+\clearpage
+\thispagestyle{empty}
+\begingroup
+\zihao{-4}
+\linespread{1.25}\selectfont
+\setlength{\arrayrulewidth}{0.6pt}
+\setlength{\tabcolsep}{3mm}
+\renewcommand{\arraystretch}{1.18}
+\noindent
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|}
+\hline
+\centering\heiti\zihao{3}基本信息表\arraybackslash\\[1mm]
+\hline
+编号：\underline{\hspace{48mm}}\\
+\hline
+作品题目：\reporttitle\\
+\hline
+作品类别：\(\boxtimes\)软件设计\quad
+\(\square\)硬件制作\quad
+\(\square\)工程实践\quad
+\(\square\)密码应用技术\quad
+\(\square\)其它\\
+\hline
+\noindent\textbf{作品内容摘要：}\par
+\setlength{\parindent}{2em}
 身份基匹配加密要求通信双方同时满足身份条件。发送者指定接收身份，接收者指定期望的发送身份，只有双方身份均匹配时才能恢复消息。这一需求将消息保密与发送来源认证结合起来，但从论文构造走向可运行系统，还需要解决底层算法替换、参数独立配置、签名载荷容量、密文字节完整性和持久状态恢复等问题。
 
 本作品采用 Wang 等提出的两层匿名分层身份基加密与身份基签名通用构造，建立 HIBE、IBS 与协议装配相互分离的软件框架。系统把接收身份置于 HIBE 第一层，把发送身份置于第二层，并使用 IBS 认证接收身份与消息。针对原语消息容量与应用载荷之间的差异，实现以32字节种子为入口的混合加密；针对原始密文表示可能存在的可修改空间，实现绑定完整内层密文字节的一次性签名包装。统一配置、规范序列化、固定发钥服务和状态加载机制用于支持多实例切换与新进程恢复。
@@ -61,14 +132,39 @@
 
 另对A完成同参数部署消融，将运行副本从 Windows 挂载目录移至 WSL 文件系统后，完整热加密与解密中位数由206.087和258.640毫秒降至10.921和56.360毫秒。该收益来自本机部署与文件访问开销，不能解释为格密码算法本身获得相同倍数的加速。
 
-作品已形成命令行与网页演示，覆盖合法匹配、身份错配、密文修改和持久状态恢复。理论说明引用原文，并沿用项目所选算法安全、HIBE具有身份匿名性的工程工作前提。三组精确参数 profile 当前为 project-admitted/true/true；这是项目依据论文引用、参数冻结和工程验收作出的内部准入，不是新的安全证明，也不授予完整系统外部 NIST 等级。尚待收口的是B、C精确配置的安装验收、必要消息边界、同发布版本复现及来源许可材料。
-
-关键词：身份基匹配加密；格密码；分层身份基加密；身份基签名；可复现评测
+作品已形成命令行与网页演示，覆盖合法匹配、身份错配、密文修改和持久状态恢复。理论说明引用原文，并沿用项目所选算法安全、HIBE具有身份匿名性的工程工作前提。三组精确参数 profile 当前为 project-admitted/true/true；这是项目依据论文引用、参数冻结和工程验收作出的内部准入，不是新的安全证明，也不等同于完整 IB-ME 获得外部 NIST 认证。尚待收口的是B、C精确配置的安装验收、必要消息边界、同发布版本复现及来源许可材料。
+\\
+\hline
+\textbf{关键词（五个）：}身份基匹配加密；格密码；分层身份基加密；身份基签名；可复现评测\\
+\hline
+\end{tabularx}
+\endgroup
 
 \clearpage
+\hypersetup{pageanchor=true}
+\pagenumbering{roman}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[C]{\thepage}
+}
+\pagestyle{frontmatter}
 \tableofcontents
 \clearpage
+\listoffigures
+\clearpage
+\listoftables
+\clearpage
 \pagenumbering{arabic}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[C]{\small\songti\reportheader}
+  \fancyfoot[C]{\small 第\,\thepage\,页\quad 共\,\pageref*{LastPage}\,页}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\pagestyle{mainmatter}
 \chapter{作品概述}
 \section{问题与应用场景}
 考虑一个按身份投递保密消息的场景。发送者甲希望把消息交给身份为乙的接收者，乙希望只接收来自甲的消息。仅有接收者加密并不足以满足这一需求，因为能够生成密文不等于具有期望发送身份；仅有数字签名也不足以限制谁能读取消息。身份基匹配加密将两个条件放入一个协议，使解密同时依赖接收者持有的密钥身份和接收者给定的发送身份。[1]
@@ -85,7 +181,7 @@
 \small
 \setlength{\tableavail}{\dimexpr\textwidth-4\tabcolsep\relax}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.25\tableavail}>{\raggedright\arraybackslash}p{0.35\tableavail}>{\raggedright\arraybackslash}p{0.4\tableavail}@{}}
-\caption{自拟题目与已有成果对照}\\
+\caption{自拟题目与已有成果对照}\label{tab:requirements}\\
 \toprule
 \rowcolor{black!8} 题目要求 & 已有实现与证据 & 本稿判断 \\
 \midrule
@@ -133,9 +229,9 @@ LWE类问题提供带噪声线性关系的困难性基础，SIS类问题对应�
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth,height=0.52\textheight,keepaspectratio]{figures/matching.png}
-\caption{身份双向匹配与两层路径}
+\caption{身份双向匹配与两层路径}\label{fig:matching}
 \end{figure}
-图1中 s 是发送密钥绑定的实际身份，s\ensuremath{\prime}是接收者期望的发送身份；r 是加密目标，r\ensuremath{\prime}是接收密钥绑定的身份。诚实恢复条件为 s=s\ensuremath{\prime}且 r=r\ensuremath{\prime}。图示是正确性目标，拒绝效果仍由对应组合的实际试验验证。
+图~\ref{fig:matching}中 s 是发送密钥绑定的实际身份，s\ensuremath{\prime}是接收者期望的发送身份；r 是加密目标，r\ensuremath{\prime}是接收密钥绑定的身份。诚实恢复条件为 s=s\ensuremath{\prime}且 r=r\ensuremath{\prime}。图示是正确性目标，拒绝效果仍由对应组合的实际试验验证。
 
 \section{通用构造}
 Wang等的通用构造将两层匿名HIBE与IBS组合。[1] 本项目基线流程与代码中的身份顺序一致，始终为 parent\_id=rcv、child\_id=phi，其中 phi 是发送密钥绑定的发送身份。令 Enc 表示带域分隔和长度前缀的规范编码，\ensuremath{\bot}表示密码学拒绝。
@@ -179,7 +275,7 @@ BYTEAUTH层使用新生成的 Lamport 一次性签名密钥认证完整内部密
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth,height=0.52\textheight,keepaspectratio]{figures/layers.png}
-\caption{加密封装与解密检查顺序}
+\caption{加密封装与解密检查顺序}\label{fig:layers}
 \end{figure}
 \section{理论引用与项目工作前提}
 理论部分以固定版本原文为依据。Wang通用构造、CHKP、Luo及认证转换分别按相应文献引用；ML-DSA采用FIPS204中的算法版本，Falcon采用归档的v1.2规范与固定实现。[1-5,11-13] 引用底层标准只说明底层普通签名的来源，不意味着认证转换后的IBS或整个IBME获得相同标准认证。
@@ -205,7 +301,7 @@ BYTEAUTH层使用新生成的 Lamport 一次性签名密钥认证完整内部密
 \small
 \setlength{\tableavail}{\dimexpr\textwidth-6\tabcolsep\relax}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.24\tableavail}>{\raggedright\arraybackslash}p{0.27\tableavail}>{\raggedright\arraybackslash}p{0.25\tableavail}>{\raggedright\arraybackslash}p{0.24\tableavail}@{}}
-\caption{展示配置与用途}\\
+\caption{展示配置与用途}\label{tab:representatives}\\
 \toprule
 \rowcolor{black!8} 代表 & 精确组合 & 主要用途 & 容量与边界 \\
 \midrule
@@ -254,13 +350,13 @@ ABB最新紧边界候选n=8224、模数约180比特、噪声参数721，公开�
 \section{原生IBS参数研究与目标规模（Foo-Li）}
 Foo-Li后端已具备五方法、固定发钥与恢复的完整单体实现，但本稿按E13已核对的ACISP会议版与作者机构开放版记录使用论文的渐近充分条件，未据此宣称已检索所有可能的扩展稿；所核对版本未给出可直接复用的数值实例，与Sageloli论文列出两组数值点的方式不同。[8,E13] 因此该路线的具体参数只能由实现方从论文充分条件推导。当前可运行的q=3、n=1教学配置存在公开伪造，不能作为参数代表。
 
-本作品对该路线做了两层参数工作。第一层是有限网格预筛：在后端参数门的选定网格内（素数位长3至32每档最大素数、n至4、生成宽度16至\(2^{28}\)九档）检查正则性与质量链联动，621个探针未找到可交精确筛查的候选窗口；预筛使用浮点镜像并带四比特余量，空窗口不是严格排除证书，也不覆盖网格外的合法形状，因此只表述为该网格内未发现，而非全部门内参数的否定。第二层是目标推导：在门外的q至2\textasciicircum{}127\ensuremath{-}1、n至4096范围内做带失败归因的搜索，240个候选中130个未通过解析检查、64个被标准LLL界排除、44个经典硬度估计不足，其余2个通过当前解析模型检查且经典core-SVP估计不低于128比特。该方案质量链使归约范数快速增长，本批已测经典128比特估计点位于n=4096，如表3所示。
+本作品对该路线做了两层参数工作。第一层是有限网格预筛：在后端参数门的选定网格内（素数位长3至32每档最大素数、n至4、生成宽度16至\(2^{28}\)九档）检查正则性与质量链联动，621个探针未找到可交精确筛查的候选窗口；预筛使用浮点镜像并带四比特余量，空窗口不是严格排除证书，也不覆盖网格外的合法形状，因此只表述为该网格内未发现，而非全部门内参数的否定。第二层是目标推导：在门外的q至2\textasciicircum{}127\ensuremath{-}1、n至4096范围内做带失败归因的搜索，240个候选中130个未通过解析检查、64个被标准LLL界排除、44个经典硬度估计不足，其余2个通过当前解析模型检查且经典core-SVP估计不低于128比特。该方案质量链使归约范数快速增长，本批已测经典128比特估计点位于n=4096，如表~\ref{tab:fooli-grid}所示。
 
 \begingroup
 \small
 \setlength{\tableavail}{\dimexpr\textwidth-6\tabcolsep\relax}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.24\tableavail}>{\raggedright\arraybackslash}p{0.27\tableavail}>{\raggedright\arraybackslash}p{0.25\tableavail}>{\raggedright\arraybackslash}p{0.24\tableavail}@{}}
-\caption{Foo-Li选定网格的core-SVP估计（\(q=2^{127}-1\)、g=16，各n取本批最小\ensuremath{\bar m}，Chen-Nguyen启发式）}\\
+\caption{Foo-Li选定网格的core-SVP估计（\(q=2^{127}-1\)、g=16，各n取本批最小\ensuremath{\bar m}，Chen-Nguyen启发式）}\label{tab:fooli-grid}\\
 \toprule
 \rowcolor{black!8} n & 完整维度d & 经典／量子（比特） & 本模型判断 \\
 \midrule
@@ -280,7 +376,7 @@ Foo-Li后端已具备五方法、固定发钥与恢复的完整单体实现，�
 4096 & 1,560,592 & 129.9／117.9 & 仅经典估计不低于128 \\
 \end{longtable}
 \endgroup
-表3每行完整参数和\ensuremath{\bar m}在report-facts.json中绑定E13逐点记录，维度满足d=\ensuremath{\bar m}+2nk。n=1024的15.2／13.8来自b=53搜索下限；搜索下限不表示已求出实际最便宜攻击，也不能据本批网格证明4096是所有参数域的最小可行维度。
+表~\ref{tab:fooli-grid}每行完整参数和\ensuremath{\bar m}在report-facts.json中绑定E13逐点记录，维度满足d=\ensuremath{\bar m}+2nk。n=1024的15.2／13.8来自b=53搜索下限；搜索下限不表示已求出实际最便宜攻击，也不能据本批网格证明4096是所有参数域的最小可行维度。
 
 按E13公钥估计排序的最小候选为\(q=2^{127}-1\)、n=4096、\ensuremath{\bar m}=520208，公钥紧凑比特打包估计约63GiB，经典core-SVP估计129.94、量子117.93比特；本批没有同时达到经典与量子128的候选。该候选未生成目标密钥，且超过现后端执行门。其余主密钥、用户私钥和签名的目标尺寸需在明确表示和计算公式下另行核算，不作为本稿已测数据。
 
@@ -294,7 +390,7 @@ Foo-Li后端已具备五方法、固定发钥与恢复的完整单体实现，�
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.88\textwidth,height=0.52\textheight,keepaspectratio]{figures/architecture.png}
-\caption{软件模块与配置数据流}
+\caption{软件模块与配置数据流}\label{fig:architecture}
 \end{figure}
 公共Suite绑定算法版本、两组原语参数、签名格式、包装及状态策略。相同的算法名称但不同参数、编码或上下文不能静默混用。装配预检还要计入身份编码和BYTEAUTH内部承诺产生的额外字节，发现容量不足时在发起长计算前明确拒绝。
 
@@ -341,7 +437,7 @@ A使用Intel Core Ultra9 275HX、Sage10.9／Python3.13.14、OMP4／BLAS1；B使�
 \small
 \setlength{\tableavail}{\dimexpr\textwidth-4\tabcolsep\relax}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.25\tableavail}>{\raggedright\arraybackslash}p{0.35\tableavail}>{\raggedright\arraybackslash}p{0.4\tableavail}@{}}
-\caption{完整系统功能证据}\\
+\caption{完整系统功能证据}\label{tab:functional-evidence}\\
 \toprule
 \rowcolor{black!8} 场景 & 期望结果 & 已有证据 \\
 \midrule
@@ -372,7 +468,7 @@ A使用Intel Core Ultra9 275HX、Sage10.9／Python3.13.14、OMP4／BLAS1；B使�
 \small
 \setlength{\tableavail}{\dimexpr\textwidth-6\tabcolsep\relax}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.22\tableavail}>{\raggedright\arraybackslash}p{0.28\tableavail}>{\raggedright\arraybackslash}p{0.25\tableavail}>{\raggedright\arraybackslash}p{0.25\tableavail}@{}}
-\caption{冻结三代表的完整协议观测}\\
+\caption{冻结三代表的完整协议观测}\label{tab:representative-observations}\\
 \toprule
 \rowcolor{black!8} 代表 & 样本边界 & 完整加密／解密（秒） & 完整密文wire（字节） \\
 \midrule
@@ -392,21 +488,21 @@ B & 3根、9对热运行；中位数 & 7.594920／0.201444 & 149191--149291 \\
 C & 1个共享HIBE根；单次观察 & 98.972055／424.980337 & 4555436 \\
 \end{longtable}
 \endgroup
-表5只把三组放在同一位置说明量级，不构成统一统计比较。A与B的数值是热运行中位数，C是一次目标规模观察且解密包含393.037574秒的真实Lai委派；A、B、C的机器和线程设置也不同。C的结构覆盖价值不能改写为性能优势，A、B的中位数也不能与C单次值计算加速比。
+表~\ref{tab:representative-observations}只把三组放在同一位置说明量级，不构成统一统计比较。A与B的数值是热运行中位数，C是一次目标规模观察且解密包含393.037574秒的真实Lai委派；A、B、C的机器和线程设置也不同。C的结构覆盖价值不能改写为性能优势，A、B的中位数也不能与C单次值计算加速比。
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth,height=0.52\textheight,keepaspectratio]{figures/baseline.png}
-\caption{旧LATTE三IBS辅助基线的热运行观察}
+\caption{旧LATTE三IBS辅助基线的热运行观察}\label{fig:legacy-baseline}
 \end{figure}
-图4保留ML-DSA、Falcon和Luo三组旧辅助基线的9次热运行观察，并以短横线表示中位数。它用于分析固定LATTE下的工程差异，不代表新的A、B、C，也不能用于宣称低概率失败界或大规模用户吞吐保证。
+图~\ref{fig:legacy-baseline}保留ML-DSA、Falcon和Luo三组旧辅助基线的9次热运行观察，并以短横线表示中位数。它用于分析固定LATTE下的工程差异，不代表新的A、B、C，也不能用于宣称低概率失败界或大规模用户吞吐保证。
 
 \section{完整尺寸与内存}
 \begingroup
 \small
 \setlength{\tableavail}{\dimexpr\textwidth-6\tabcolsep\relax}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.34\tableavail}>{\raggedright\arraybackslash}p{0.22\tableavail}>{\raggedright\arraybackslash}p{0.22\tableavail}>{\raggedright\arraybackslash}p{0.22\tableavail}@{}}
-\caption{冻结三代表的完整wire及对象尺寸 单位字节}\\
+\caption{冻结三代表的完整wire及对象尺寸（单位：字节）}\label{tab:object-sizes}\\
 \toprule
 \rowcolor{black!8} 对象 & A & B & C \\
 \midrule
@@ -445,7 +541,7 @@ C64B参数为N=256、k=11、l=10、q=274877844481、\ensuremath{\eta}=1、\ensur
 \small
 \setlength{\tableavail}{\dimexpr\textwidth-6\tabcolsep\relax}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.24\tableavail}>{\raggedright\arraybackslash}p{0.27\tableavail}>{\raggedright\arraybackslash}p{0.25\tableavail}>{\raggedright\arraybackslash}p{0.24\tableavail}@{}}
-\caption{运行位置消融 时间中位数单位毫秒}\\
+\caption{运行位置消融（时间中位数，单位：毫秒）}\label{tab:placement}\\
 \toprule
 \rowcolor{black!8} 运行位置 & 完整加密 & 完整解密 & 每项观察次数 \\
 \midrule
@@ -468,7 +564,7 @@ WSL同一wheel & 10.921 & 56.360 & 30 \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth,height=0.52\textheight,keepaspectratio]{figures/placement.png}
-\caption{同参数完整系统部署消融}
+\caption{同参数完整系统部署消融}\label{fig:placement}
 \end{figure}
 从同一wheel在两个位置的差异，以及Windows源码与Windows wheel差异较小的结果，可以判断本机主要收益来自运行位置改变。相对Windows源码，WSL副本完整加密与解密约为原来的1/18.87和1/4.59。该实验不降低参数，不减少完整校验，不共享秘密随机性，也不省去wire编解码与原生进程启动。
 
@@ -484,7 +580,7 @@ SRGG单体实验使用Core Ultra7 255HX、Sage10.9、Python3.13.15、OMP和OpenB
 \small
 \setlength{\tableavail}{\dimexpr\textwidth-6\tabcolsep\relax}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.24\tableavail}>{\raggedright\arraybackslash}p{0.27\tableavail}>{\raggedright\arraybackslash}p{0.25\tableavail}>{\raggedright\arraybackslash}p{0.24\tableavail}@{}}
-\caption{SRGG签名无损编码尺寸中位数 单位字节}\\
+\caption{SRGG签名无损编码尺寸中位数（单位：字节）}\label{tab:srgg-encoding}\\
 \toprule
 \rowcolor{black!8} 论文参数档 & 原JSON & compact & 说明 \\
 \midrule
@@ -518,9 +614,9 @@ PARAM III & 67076 & 26264 & 同上 \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.82\textwidth,height=0.52\textheight,keepaspectratio]{figures/demo-success-detail.png}
-\caption{已归档的合法匹配演示截图局部}
+\caption{已归档的合法匹配演示截图局部}\label{fig:demo-success}
 \end{figure}
-图6从2026年10月18日验收原图裁取加密与合法匹配区域，未改动其中内容，不是本次重新运行截图。截图用于说明应用流程，截图中的单次耗时不替代第5章重复实验。
+图~\ref{fig:demo-success}从2026年10月18日验收原图裁取加密与合法匹配区域，未改动其中内容，不是本次重新运行截图。截图用于说明应用流程，截图中的单次耗时不替代第5章重复实验。
 
 命令行提供独立持久状态与恢复流程，可在新进程中加载原状态继续解密。网页为单个临时会话，服务重启后需重新建立；这两个入口的状态能力分别解释。网页当前只展示LATTE组合，不能据此宣称所有已登记后端均可在界面任意切换。
 
@@ -552,7 +648,7 @@ SRGG无损编码与CHKP高基数组件分别提供存储表示和资源可行性
 \small
 \setlength{\tableavail}{\dimexpr\textwidth-4\tabcolsep\relax}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.24\tableavail}>{\raggedright\arraybackslash}p{0.2\tableavail}>{\raggedright\arraybackslash}p{0.56\tableavail}@{}}
-\caption{HIBE路线清单}\\
+\caption{HIBE路线清单}\label{tab:hibe-inventory}\\
 \toprule
 \rowcolor{black!8} 路线 & 独立完整研究后端 & 截至本稿的状态 \\
 \midrule
@@ -582,7 +678,7 @@ Lai理想格HIBE & 有 & C2目标profile项目准入；与四种IBS完整配对�
 \small
 \setlength{\tableavail}{\dimexpr\textwidth-4\tabcolsep\relax}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.24\tableavail}>{\raggedright\arraybackslash}p{0.2\tableavail}>{\raggedright\arraybackslash}p{0.56\tableavail}@{}}
-\caption{IBS路线清单}\\
+\caption{IBS路线清单}\label{tab:ibs-inventory}\\
 \toprule
 \rowcolor{black!8} 路线 & 独立完整研究后端 & 默认框架与真实接线 \\
 \midrule
@@ -613,7 +709,7 @@ Xie NTRU IBS & 无 & 修订研究核，尚非共同IBSBackend \\
 MP12研究变体、高基数参数、编码变化及同算法参数档不另计一篇独立方案。以上状态按当前目录和后续已合入交付共同确定；目录中的旧日期说明保留为历史证据，不能覆盖较新交付。已知不安全调试参数具体记录在E08，不能从某个调试配置的公开伪造推广到整篇论文算法。
 
 \chapter{参数与公开证据索引}
-三代表配置、容量和逐组观测以E15的selection.json为当前机器入口；A、B原重复收据和C目标规模收据保持原始Suite摘要，E15同时保存准入更新后的当前摘要与原evidence摘要。图4及旧辅助表来自E04比较JSON，部署消融来自E11，表3按明确的q、g和最小\ensuremath{\bar m}从E13逐点结果生成。正文使用归档实测值，文档生成不会调用任何密码采样或打开运行私钥。
+三代表配置、容量和逐组观测以E15的selection.json为当前机器入口；A、B原重复收据和C目标规模收据保持原始Suite摘要，E15同时保存准入更新后的当前摘要与原evidence摘要。图~\ref{fig:legacy-baseline}及旧辅助表来自E04比较JSON，部署消融来自E11，表~\ref{tab:fooli-grid}按明确的q、g和最小\ensuremath{\bar m}从E13逐点结果生成。正文使用归档实测值，文档生成不会调用任何密码采样或打开运行私钥。
 
 \begingroup
 \small
@@ -622,7 +718,7 @@ MP12研究变体、高基数参数、编码变化及同算法参数档不另计�
 \setlength{\LTpost}{5pt}
 \setlength{\tableavail}{\dimexpr\textwidth-4\tabcolsep\relax}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.09\tableavail}>{\raggedright\arraybackslash}p{0.55\tableavail}>{\raggedright\arraybackslash}p{0.36\tableavail}@{}}
-\caption{公开证据索引}\\
+\caption{公开证据索引}\label{tab:evidence-index}\\
 \toprule
 \rowcolor{black!8} 编号 & 证据 & 用途 \\
 \midrule
@@ -656,15 +752,16 @@ E16 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/main/docs/resea
 E17 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/main/docs/deliveries/2026-10-19-project-admission/README.md}{项目准入清单} & 精确profile准入与负控排除边界 \\
 \end{longtable}
 \endgroup
-本版直接编辑本目录的LaTeX源文件；执行build\_pdf.py导出PDF，编译时读取figures目录的六张已归档图片。重画历史图表仍按build\_report.py的公开统计输入进行。密码学复跑与文稿编译分别执行，不打开运行私钥。
-
-本稿写作参照仓库\href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/workplans/2026-10-18-%E4%BD%9C%E5%93%81%E6%8A%A5%E5%91%8A%E8%A7%84%E5%88%92%E4%B8%8E%E6%88%90%E7%A8%BF%E6%B8%85%E5%8D%95.md}{2026年10月18日写作标准}及用户提供的两份2025年报告：crystal队《车联网级后量子密码算法融合优化方案》、有刺无刺队《面向全同态加密方案的噪声增长与计算效率优化》。只借鉴章节组织、指标先行与图表解释，不转用其数据、创新结论、作品编号或本届提交要求。参考PDF与其提取文本不随本稿提交。
 
 \chapter*{参考文献}
 \addcontentsline{toc}{chapter}{参考文献}
 \begingroup
-\setlength{\parskip}{2pt}
-\begingroup\small\noindent [1] Yuejun Wang, Baocang Wang, Qiqi Lai, Yu Zhan. Identity-based Matchmaking Encryption with Stronger Security and Instantiation on Lattices. Theoretical Computer Science. DOI 10.1016/j.tcs.2024.115048. 固定本地稿见 papers/2022\_identity\_matchmaking\_wang.pdf，Construction 1及相关图表。\par\endgroup
+\footnotesize
+\linespread{1.04}\selectfont
+\let\small\footnotesize
+\raggedright
+\setlength{\parskip}{1pt}
+\begingroup\small\noindent [1] Yuejun Wang, Baocang Wang, Qiqi Lai, Yu Zhan. Identity-based Matchmaking Encryption with Stronger Security and Instantiation on Lattices. Theoretical Computer Science. DOI 10.1016/j.tcs.2024.115048. 固定本地稿见 \nolinkurl{papers/2022_identity_matchmaking_wang.pdf}，Construction 1及相关图表。\par\endgroup
 
 \begingroup\small\noindent [2] David Cash, Dennis Hofheinz, Eike Kiltz, Chris Peikert. Bonsai Trees, or How to Delegate a Lattice Basis. EUROCRYPT 2010，固定作者全文2011年6月14日版，\S{}5。\par\endgroup
 
@@ -697,4 +794,5 @@ E17 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/main/docs/deliv
 以上文献的归档版本与文件指纹以\href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/papers/index.md}{论文库索引}为准。正式成稿还需统一文献格式并完成第三方代码与许可证清单；当前引用不替代该清单。
 \par\endgroup
 
+\label{LastPage}
 \end{document}

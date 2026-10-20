@@ -6,7 +6,13 @@
 
 当前正文已同步冻结的三代表：A为LATTE-3＋BNN/ML-DSA-44，B为LATTE-3＋SRGG PARAM-I compact，C为Lai C2＋Sageloli RSIS v3 PARAM-I。旧LATTE＋ML-DSA／Falcon／Luo重复数据仅作辅助工程基线。七章正文、11张表、6幅图和15项文献已更新为这一口径，A、B、C各自保留实际参数、样本结构、环境和限制，不做跨环境速度排名。三组精确profile按项目决定为`project-admitted/true/true`；这不等同于完整IB-ME获得外部NIST认证。
 
-当前仍是工作稿。成稿前还需补B的精确128KiB安装验收、C的安装恢复与内层负例、必要消息边界，并完成来源许可、本届模板／匿名信息及同一发布版本复现。
+## 当前竞赛版式
+
+本轮不是只读取PDF文本，而是把仓库中的两份2025年优秀作品分别渲染封面、基本信息表、目录、正文和图表页，再与现稿逐页对照。两份作品共有的“赛事封面—基本信息表—目录—正文”结构已经采用；较完整样稿中的图目录、表目录、题名页眉、“第x页 共y页”页脚和章内图表编号也已采用。正文继续使用宋体、黑体标题、A4版心、首行缩进和书刊式三线表，不复制样稿的作品编号、实验数据、创新结论或队伍信息。
+
+当前封面把官方赛题类别标为软件设计，作品编号保留空栏，供赛事系统生成后填写；“工作稿”“LaTeX/PDF主稿”和项目组等内部文字已经从参赛封面移除。摘要与关键词移入基本信息表，内部编译说明和样稿来源说明只保留在本README，不占参赛正文。封面CACR标志从[crystal队作品设计报告](../../../papers/crystal队作品设计报告.pdf)首页内嵌JPEG无损提取，文件为[figures/cacr-logo.jpg](figures/cacr-logo.jpg)，SHA-256为`c188a962275f89c0f6aa3a766cf71e9a098246a4dd8d86f649d8844f72efbf34`；正式提交前如赛事方提供第十一届官方模板或更高分辨率标志，应以官方材料替换并复核。
+
+当前仍是工作稿。成稿前还需补B的精确128KiB安装验收、C的安装恢复与内层负例、必要消息边界，完成来源许可和同一发布版本复现，并按赛事系统填写作品编号、确认第十一届官方模板及匿名要求。
 
 编译需要Tectonic或带中文支持的XeLaTeX，使用TeX发行版的Fandol字体，不绑定Windows、某一Sage环境或本机字体路径。在仓库根执行：
 
@@ -16,9 +22,9 @@ python3 docs/reports/2026-10-19-research-draft/build_pdf.py
 python3 docs/reports/2026-10-19-research-draft/check_latex_report.py --require-pdf
 ```
 
-也可用`--engine /路径/tectonic`指定引擎。图像使用同目录的`figures/`，所有辅助文件生成在临时目录，成功后才替换PDF。`check_latex_report.py`从冻结`selection.json`复核代表ID、准入、参数、容量、时间、尺寸、结构及图片引用；它不替代PDF逐页目视检查或密码学安全证明。原PR66／68的格式迁移记录仍见[接收记录](../../deliveries/2026-10-20-pr66-68-reception/README.md)。
+也可用`--engine /路径/tectonic`指定引擎。图像使用同目录的`figures/`，所有辅助文件生成在临时目录，成功后才替换PDF。`check_latex_report.py`从冻结`selection.json`复核代表ID、准入、参数、容量、时间、尺寸、章节、图表交叉引用和竞赛版式标记；当前为92项通过。它不替代PDF逐页目视检查或密码学安全证明。原PR66／68的格式迁移记录仍见[接收记录](../../deliveries/2026-10-20-pr66-68-reception/README.md)。
 
-当前成品已用Tectonic 0.17.0重编：28页A4，16种字体全部嵌入，源稿与PDF的SHA-256分别为`0de73f22b1b5dc9e8af1eb02533a9007e7d89a83699acfba215cc27dba9adea5`和`b5cf1945b91ae1211433f870fa9a1bb578f0b930978136ba92d3902860b36668`。全部28页已渲染目视，未见截断、重叠、空白孤页或缺字；Poppler文本抽取无Unicode替换字符。编译日志无LaTeX溢出、缺字或未定义引用警告；仅出现本机NixOS fontconfig规则解析警告，不影响嵌入的Fandol／Latin Modern字体或PDF内容。
+当前成品已用Tectonic 0.17.0重编：31页A4，其中封面和基本信息表2页、罗马数字前置页4页、阿拉伯数字正文及附录／文献25页；19种字体全部嵌入。源稿与PDF的SHA-256分别为`64ee007ab6fa494d8e31352787b11e1f75d6e1cecd2d9b87a51cc0f5fab51d61`和`6175f536d7802acc786cace7cd1e4ca7f7832edac8a50a0e79bb4543097f3b2a`。全部31页已渲染目视，未见截断、重叠、空白孤页、单句孤页或缺字；Poppler文本抽取无Unicode替换字符。最终编译日志无LaTeX溢出、缺字、未定义引用或版面警告；页面渲染时出现的本机NixOS fontconfig规则解析警告不影响嵌入字体或PDF内容。
 
 ## PR66历史稿说明
 
