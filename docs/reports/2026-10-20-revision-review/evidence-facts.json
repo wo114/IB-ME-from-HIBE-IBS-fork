@@ -1,0 +1,353 @@
+{
+  "schema": "ibme-report-revision-review-v1",
+  "date": "2026-10-20",
+  "review_baseline": "c414a2f9601bdbe1994e0ae4f7167fe4806ae508",
+  "supplemental_pr75_head": "1e765f1bd9e6661dd611ba1c895e74c8b83a3d3b",
+  "supplemental_installation_source": "b4b31d8f76654e108e4443e369e67729b2b6936b",
+  "new_cryptographic_experiments": 0,
+  "private_state_files_read": 0,
+  "review_scope": "Editorial revision draft; PR75 data read without merging or approving its final code.",
+  "checks": {
+    "status": "passed",
+    "source_python_files_bound_to_git": 495,
+    "five_batches_counts_status_and_stage_medians": true,
+    "certificate_native_verify_calls_2_to_1": true,
+    "luo_replay_nine_pairs_equal": true,
+    "codec_three_roots_per_profile": true,
+    "placement_medians_from_thirty_observations_per_operation": true,
+    "current_report_unchanged": true
+  },
+  "original_report_sha256": {
+    "docs/reports/2026-10-19-research-draft/研究报告初稿.tex": "daf46194447c9d80e4063c5a97b3c21c719ea9ee01d4a79e737a81e08ff8814b",
+    "docs/reports/2026-10-19-research-draft/研究报告初稿.pdf": "f39a96c6b55b64bc2b5986ff0e0a54199fe22849f9e2dbb6680a714247c0f2cc"
+  },
+  "sources": [
+    {
+      "commit": "1e765f1bd9e6661dd611ba1c895e74c8b83a3d3b",
+      "path": "docs/research/2026-10-20-multi-backend-optimization/source-manifest.json",
+      "sha256": "37a60bdec5a232fbc9d9f6a019b6a0c06e3913e749730fff26a2ebae497cf3cc"
+    },
+    {
+      "commit": "1e765f1bd9e6661dd611ba1c895e74c8b83a3d3b",
+      "path": "docs/research/2026-10-20-multi-backend-optimization/installation.json",
+      "sha256": "610efa3328232e1ec32fd03b67e5abd5eb2b74b2adcb2a9c7c50c989ff1eb28f"
+    },
+    {
+      "commit": "1e765f1bd9e6661dd611ba1c895e74c8b83a3d3b",
+      "path": "docs/research/2026-10-20-multi-backend-optimization/verified-summary.json",
+      "sha256": "7ff0ce91b06da2ca387ea06388a1f71333c16616ce5175ba323c51898ad4a255"
+    },
+    {
+      "commit": "1e765f1bd9e6661dd611ba1c895e74c8b83a3d3b",
+      "path": "docs/research/2026-10-20-multi-backend-optimization/A.json",
+      "sha256": "8c9a4767595477569c46c9d8607a7674443d3933fda350d99deebff65df66976"
+    },
+    {
+      "commit": "1e765f1bd9e6661dd611ba1c895e74c8b83a3d3b",
+      "path": "docs/research/2026-10-20-multi-backend-optimization/B.json",
+      "sha256": "086c402785447ab3ff9af5b60c417a831045634b27e470eb24c03ce54b5f3553"
+    },
+    {
+      "commit": "1e765f1bd9e6661dd611ba1c895e74c8b83a3d3b",
+      "path": "docs/research/2026-10-20-multi-backend-optimization/C.json",
+      "sha256": "cd6a34544ac6a70d7036bedafa2ea298d542a2e57e7195ede35321f1f2789f2f"
+    },
+    {
+      "commit": "1e765f1bd9e6661dd611ba1c895e74c8b83a3d3b",
+      "path": "docs/research/2026-10-20-multi-backend-optimization/Luo.json",
+      "sha256": "d7067d8fd6008f7a28159e45f87b2f349f80e0cf6d231f0b463d75121754f010"
+    },
+    {
+      "commit": "1e765f1bd9e6661dd611ba1c895e74c8b83a3d3b",
+      "path": "docs/research/2026-10-20-multi-backend-optimization/Falcon.json",
+      "sha256": "276635552a83cb6b0b4919965a45f99d96de638ddcb1be381a29b4262a33e684"
+    },
+    {
+      "commit": "1e765f1bd9e6661dd611ba1c895e74c8b83a3d3b",
+      "path": "docs/research/2026-10-20-multi-backend-optimization/Luo-replay.json",
+      "sha256": "e27e3fc71c1a800ca02488f0447673aa1426dd80368bb7ac13889ec592d41229"
+    },
+    {
+      "commit": "c414a2f9601bdbe1994e0ae4f7167fe4806ae508",
+      "path": "docs/research/team-b-delivery/2026-10-18-srgg-compact-benchmark/benchmark.json",
+      "sha256": "b757dde0b1706f9571a06301b0511c8129f67c8b4e8567ab8270cdf8ac0dcea1"
+    },
+    {
+      "commit": "c414a2f9601bdbe1994e0ae4f7167fe4806ae508",
+      "path": "docs/research/2026-10-19-full-system-placement/evidence/placement.json",
+      "sha256": "6ca629f694358a985241025f6a947ef2bd039e2bf60c7585942ac1d71913e6e6"
+    },
+    {
+      "commit": "c414a2f9601bdbe1994e0ae4f7167fe4806ae508",
+      "path": "docs/deliveries/2026-10-19-report-experiment-supplement/master-table.json",
+      "sha256": "e2041dbd507871d8c082b6440ab752d8119fc365a29fd9539d203a20976e42a6"
+    }
+  ],
+  "optimizations": {
+    "A": {
+      "independent_roots": 3,
+      "observations_per_mode_per_root": 3,
+      "negative_checks_per_root": 9,
+      "operations": {
+        "encrypt": {
+          "off_seconds": 0.07874074599999403,
+          "on_seconds": 0.07552533899999503,
+          "median_root_speedup": 1.042573883713375,
+          "root_speedup_min": 0.8382917495216523,
+          "root_speedup_max": 1.3133633196214336
+        },
+        "decrypt": {
+          "off_seconds": 0.14086257999997542,
+          "on_seconds": 0.12975445000000718,
+          "median_root_speedup": 1.0856088558039252,
+          "root_speedup_min": 0.9916529791453389,
+          "root_speedup_max": 1.3389593023146025
+        }
+      }
+    },
+    "B": {
+      "independent_roots": 3,
+      "observations_per_mode_per_root": 3,
+      "negative_checks_per_root": 9,
+      "operations": {
+        "encrypt": {
+          "off_seconds": 6.872047511999995,
+          "on_seconds": 6.221236641000019,
+          "median_root_speedup": 1.029981407035822,
+          "root_speedup_min": 1.0090201364297249,
+          "root_speedup_max": 1.9214701241294643
+        },
+        "decrypt": {
+          "off_seconds": 0.1202851339999711,
+          "on_seconds": 0.11221264799996788,
+          "median_root_speedup": 1.0640628140244963,
+          "root_speedup_min": 0.7323615125767043,
+          "root_speedup_max": 1.2020711197344223
+        }
+      }
+    },
+    "C": {
+      "independent_roots": 1,
+      "original_decrypt_seconds": 526.2724327254999,
+      "preparation_seconds": 509.5477861249999,
+      "prepared_decrypt_seconds": 28.56756990399981,
+      "leaf_key_bytes": 36414052,
+      "repeated_decrypt_ratio": 18.422023101510476,
+      "amortized_seconds_from_stage_medians": {
+        "1": 538.1153560289997,
+        "2": 283.34146296649976,
+        "3": 198.41683194566644,
+        "10": 79.5223485164998,
+        "100": 33.66304776524981
+      }
+    },
+    "Luo": {
+      "independent_roots": 3,
+      "observations_per_mode_per_root": 3,
+      "negative_checks_per_root": 9,
+      "operations": {
+        "encrypt": {
+          "off_seconds": 0.45438913299994965,
+          "on_seconds": 0.7294851189999463,
+          "median_root_speedup": 0.5817653019938076,
+          "root_speedup_min": 0.38625899372171146,
+          "root_speedup_max": 1.2726326414091498
+        },
+        "decrypt": {
+          "off_seconds": 0.16109386700009054,
+          "on_seconds": 0.15878001100008987,
+          "median_root_speedup": 1.0145727159572961,
+          "root_speedup_min": 0.9781982229792268,
+          "root_speedup_max": 1.0465682390360123
+        }
+      }
+    },
+    "Falcon": {
+      "independent_roots": 3,
+      "observations_per_mode_per_root": 3,
+      "negative_checks_per_root": 9,
+      "operations": {
+        "encrypt": {
+          "off_seconds": 0.12122239499999843,
+          "on_seconds": 0.09874633999999993,
+          "median_root_speedup": 1.1536034723242337,
+          "root_speedup_min": 0.9652821938052004,
+          "root_speedup_max": 1.2276140563791884
+        },
+        "decrypt": {
+          "off_seconds": 0.1589859450000013,
+          "on_seconds": 0.1509499409999986,
+          "median_root_speedup": 1.0579844570432082,
+          "root_speedup_min": 0.933160508076748,
+          "root_speedup_max": 1.2473654693247094
+        }
+      }
+    },
+    "Luo_controlled_replay": {
+      "decrypt": {
+        "independent_roots": 3,
+        "median_root_speedup": 1.074002964446492,
+        "root_off_medians": [
+          0.165650513000001,
+          0.15875169799999966,
+          0.22905704400000104
+        ],
+        "root_on_medians": [
+          0.15423655099999856,
+          0.15857014100000022,
+          0.183308561999997
+        ],
+        "root_speedups": [
+          1.074002964446492,
+          1.0011449633509466,
+          1.2495708956573712
+        ]
+      },
+      "encrypt": {
+        "independent_roots": 3,
+        "median_root_speedup": 1.02527130552743,
+        "root_off_medians": [
+          0.4798415200000008,
+          0.9031105099999994,
+          0.2947320970000007
+        ],
+        "root_on_medians": [
+          0.4684321649999994,
+          0.8680547789999995,
+          0.2874674199999987
+        ],
+        "root_speedups": [
+          1.0243564721905922,
+          1.0403842382394164,
+          1.02527130552743
+        ]
+      }
+    }
+  },
+  "srgg_same_object_encoding": {
+    "PARAM-I": {
+      "key": {
+        "json_bytes": 84165,
+        "compact_bytes": 18256,
+        "reduction_percent": 78.30927345095942,
+        "paired_ratio_median": 4.610265118317265
+      },
+      "master": {
+        "json_bytes": 102606,
+        "compact_bytes": 20306,
+        "reduction_percent": 80.20973432352883,
+        "paired_ratio_median": 5.05298926425687
+      },
+      "public": {
+        "json_bytes": 34463,
+        "compact_bytes": 12374,
+        "reduction_percent": 64.09482633549024,
+        "paired_ratio_median": 2.785113948601907
+      },
+      "signature": {
+        "json_bytes": 35368,
+        "compact_bytes": 13400,
+        "reduction_percent": 62.11264419814522,
+        "paired_ratio_median": 2.639402985074627
+      }
+    },
+    "PARAM-II": {
+      "key": {
+        "json_bytes": 176919,
+        "compact_bytes": 36496,
+        "reduction_percent": 79.37135073112555,
+        "paired_ratio_median": 4.847627137220518
+      },
+      "master": {
+        "json_bytes": 218520,
+        "compact_bytes": 41106,
+        "reduction_percent": 81.18890719384953,
+        "paired_ratio_median": 5.316012260983798
+      },
+      "public": {
+        "json_bytes": 76954,
+        "compact_bytes": 27734,
+        "reduction_percent": 63.96028796423838,
+        "paired_ratio_median": 2.774716953919377
+      },
+      "signature": {
+        "json_bytes": 51117,
+        "compact_bytes": 19288,
+        "reduction_percent": 62.26695619852496,
+        "paired_ratio_median": 2.650197013687267
+      }
+    },
+    "PARAM-III": {
+      "key": {
+        "json_bytes": 303453,
+        "compact_bytes": 60880,
+        "reduction_percent": 79.93758506259618,
+        "paired_ratio_median": 4.984444809461235
+      },
+      "master": {
+        "json_bytes": 377344,
+        "compact_bytes": 69074,
+        "reduction_percent": 81.69468707598372,
+        "paired_ratio_median": 5.4628948663751915
+      },
+      "public": {
+        "json_bytes": 136433,
+        "compact_bytes": 49238,
+        "reduction_percent": 63.910490863647354,
+        "paired_ratio_median": 2.770888338275316
+      },
+      "signature": {
+        "json_bytes": 67076,
+        "compact_bytes": 26264,
+        "reduction_percent": 60.84441529011867,
+        "paired_ratio_median": 2.553914102954615
+      }
+    }
+  },
+  "deployment": {
+    "source": {
+      "decrypt_median_ms": 258.6402149999856,
+      "encrypt_median_ms": 206.08688049999557
+    },
+    "windows_wheel": {
+      "decrypt_median_ms": 250.5772774999997,
+      "encrypt_median_ms": 195.31047850000505
+    },
+    "wsl_wheel": {
+      "decrypt_median_ms": 56.359590999988995,
+      "encrypt_median_ms": 10.921362999994244
+    },
+    "source_over_wsl_wheel": {
+      "encrypt": 18.870069651572262,
+      "decrypt": 4.589107380144687
+    },
+    "windows_wheel_over_wsl_wheel": {
+      "encrypt": 17.883342811708392,
+      "decrypt": 4.446044995252869
+    }
+  },
+  "same_machine_AB": {
+    "A": {
+      "independent_roots": 3,
+      "warm_encrypt_seconds": 0.07847284700000046,
+      "warm_decrypt_seconds": 0.15195069799997896,
+      "ciphertext_bytes": {
+        "count": 12,
+        "maximum": 142123,
+        "minimum": 142066
+      },
+      "sampled_process_tree_peak_rss_bytes": 482492416
+    },
+    "B": {
+      "independent_roots": 3,
+      "warm_encrypt_seconds": 9.172153894000019,
+      "warm_decrypt_seconds": 0.16066960599999902,
+      "ciphertext_bytes": {
+        "count": 12,
+        "maximum": 149273,
+        "minimum": 149204
+      },
+      "sampled_process_tree_peak_rss_bytes": 508166144
+    }
+  }
+}
