@@ -387,11 +387,11 @@ def private_run_directory(path, run_id, public_paths, required_bytes):
 def run_one(params, index, args, recorder, private_directory):
     root_started = time.monotonic()
     if args.test_seed is None:
-        backend = Backend()
+        backend = Backend(sampler=args.sampler)
     else:
         seed = hashlib.sha256(b"WANG-PW-LIFECYCLE-DEBUG-v1" + bytes.fromhex(args.test_seed)
                               + index.to_bytes(4, "big")).digest()
-        backend = Backend(rng=DeterministicRandom(seed), test_only=True)
+        backend = Backend(rng=DeterministicRandom(seed), test_only=True, sampler=args.sampler)
     identity = bytes((i * 17 + 3) % 256 for i in range(args.identity_bytes))
     message = bytes((i * 29 + 5) % 256 for i in range(args.message_bytes))
     store = WireStore(None if private_directory is None else private_directory / f"root-{index:03d}")
@@ -553,6 +553,7 @@ def arguments(argv=None):
     parser.add_argument("--rss-interval", type=float, default=.1)
     parser.add_argument("--test-seed", help="32-byte hexadecimal seed; debug only; never production evidence")
     parser.add_argument("--stop-after", choices=PHASES)
+    parser.add_argument("--sampler", choices=("gpv", "perturbation"), default="gpv")
     args = parser.parse_args(argv)
     if args.profile == "target" and args.private_state is None:
         parser.error("target requires --private-state outside Git for real on-disk restoration")
@@ -641,3 +642,4 @@ def main(argv=None):
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

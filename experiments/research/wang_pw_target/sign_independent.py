@@ -60,6 +60,7 @@ def main(argv=None):
     parser.add_argument("--key-file", required=True, type=Path)
     parser.add_argument("--message-file", required=True, type=Path)
     parser.add_argument("--signature-file", required=True, type=Path)
+    parser.add_argument("--sampler", choices=("gpv", "perturbation"), default="gpv")
     args = parser.parse_args(argv)
     started = time.monotonic()
     monitor = RSSMonitor(.1)
@@ -81,7 +82,7 @@ def main(argv=None):
         report["operation_stage"] = "read-message"
         message = private_read(args.message_file, key.public_key.params.message_max_bytes)
         report["operation_stage"] = "create-backend"
-        backend = Backend()
+        backend = Backend(sampler=args.sampler)
         report["operation_stage"] = "sign"
         signature = backend.sign(key, message)
         public = key.public_key
@@ -122,3 +123,4 @@ def main(argv=None):
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

@@ -19,6 +19,7 @@ from .math import full_basis, gadget, gram_schmidt, matmul_mod, short_particular
 from .native import (SamplingError, draw_gaussian, sample_gpv, safe_native_code,
                      safe_sampling_reason)
 from .objects import MasterSecret, PublicKey, Signature, SigningKey
+from .perturbation import sign_with_perturbation
 from .params import Params
 
 
@@ -70,7 +71,10 @@ class Backend:
     backend_admitted = False
     parameters_are_formal = False
 
-    def __init__(self, *, rng=None, test_only=False):
+    def __init__(self, *, rng=None, test_only=False, sampler="gpv"):
+        if sampler not in ("gpv", "perturbation"):
+            raise ValueError("sampler must be gpv or perturbation")
+        self.sampler = sampler
         if type(test_only) is not bool:
             raise TypeError("test_only must be bool")
         if rng is not None and not isinstance(rng, SecureRandom) and not test_only:
@@ -167,6 +171,8 @@ class Backend:
         try:
             if type(sk) is not SigningKey:
                 raise TypeError("Wang target signing key required")
+            if self.sampler == "perturbation":
+                return sign_with_perturbation(self, sk, message)
             pk, p = sk.public_key, sk.public_key.params
             message = checked_message(p, message)
             self._root = None
@@ -237,3 +243,4 @@ class Backend:
         if not signature_shape(pk, signature):
             raise SerializationError("signature context/dimension/norm mismatch")
         return signature
+

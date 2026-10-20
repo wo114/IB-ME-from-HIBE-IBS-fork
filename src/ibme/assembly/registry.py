@@ -313,8 +313,8 @@ def _wang_pw_target_factory(rng, fmt):
     from ibme.core.randomness import DeterministicRandom
     from ibme.ibs.wang_pw_target import Backend
     if type(rng) is DeterministicRandom:
-        return Backend(rng=rng, test_only=True)
-    return Backend(rng=rng)
+        return Backend(rng=rng, test_only=True, sampler="perturbation")
+    return Backend(rng=rng, sampler="perturbation")
 
 
 def _wang_pw_target_check(value, params):
@@ -353,7 +353,7 @@ def _wang_pw_target_spec():
         default_preset=lambda transport: "s0-4",
         validate_configuration=_wang_pw_target_configuration,
         validate_environment=_wang_pw_target_environment,
-        reason="s0=4 discrete-Gaussian GPV research; debug-small is unsafe; no security admission")
+        reason="s0=4 discrete-Gaussian MP12 SampleD (perturbation); debug-small is unsafe; no security admission")
 
 
 def _srgg_spec():
@@ -509,3 +509,4 @@ def default_backend_catalog():
     listing = BackendRegistry(_portable_specs()).list()
     listing["hibe"].append(backend_metadata())
     return listing
+
