@@ -142,6 +142,7 @@
       $(preset.group === "main" ? "#presets" : "#extraPresets").append(button);
     }
     renderSelection();
+    refreshControls();
   }
 
   function renderParameters() {
