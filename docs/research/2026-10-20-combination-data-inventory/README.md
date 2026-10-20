@@ -2,6 +2,8 @@
 
 2026-10-20，按远端 main `1112ea7` 及已归档收据核对。**已有两个 HIBE 与五类 IBS 的 10 个组合实跑，也已有分批性能比较；尚没有统一机器、输入、参数预算、计时方式和重复次数的完整 2×5 性能矩阵。** 本索引整理现有数据，不新增密码实验，不修改报告或原始收据。
 
+交付时已同步 main `d770bc2`：PR75 准备复用、PR78 Web 改版及 PR81 精度修复均已合并，代码与队友审查材料保持原样。下面的跨组合表继续使用各自明确的归档批次，PR75 的优化消融单列。
+
 ## 当前主要配置的覆盖
 
 | HIBE ＼ IBS | BNN/ML-DSA-44 | BNN/Falcon-512 | Luo 模格 | SRGG 论文 PARAM-I compact | Sageloli RSIS v3 PARAM-I |
@@ -58,7 +60,7 @@ A/B 分别采用 64/128 KiB 的冻结 Hybrid 载荷预算；参数与目标仍�
 - [LATTE＋Sageloli 公共集成](../2026-10-19-sageloli-ring-integration/README.md)：单根 15 步 CLI、34 项同根组合检查，32 B 消息；加密 21.901128 s、首次解密 3.686476 s，密文 3363679 B。该 CLI 时间含状态读取／校验，与 warm API 基准边界不同；它补齐功能覆盖，不能直接补成上述重复基准的一列。
 - [早期 LATTE 十配置矩阵](../team-c-delivery/2026-10-15-c-framework/evidence/profile-combinations.json)：10/10 配置、338 检查确已执行，包括 ML-DSA 三档、Falcon 两档、Luo 两种编码、Luo 矩阵版、Wang/PW 和旧 SRGG 小参数。固定公开测试随机流、每配置一次，消息 10 B；其中的小参数条目不替代现在的论文／目标规模数据。
 - [ABB＋Luo 历史研究组合](../team-a-delivery/2026-10-14-abb-complete/README.md)、[CHKP＋Luo](../../deliveries/2026-10-12-chkp-luo/README.md)也有执行证据。它们的研究小参数和目标规模状态按原材料区分，不混入这里两种 HIBE 的主表。
-- [PR75](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/75)已有 A/B/C/Luo/Falcon 的准备复用开／关数据，当前仍是开放 PR。它比较的是同组优化前后；C 为单根会话摊销，其余为各三根，不是新增 HIBE×IBS 统一网格。
+- [PR75 的数据与成本表](../2026-10-20-multi-backend-optimization/README.md)已有 A/B/C/Luo/Falcon 的准备复用开／关数据，交付同步时[该 PR](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/75)已合并。它比较的是同组优化前后；C 为单根会话摊销，其余为各三根，不是新增 HIBE×IBS 统一网格。
 - `ci/c-combinations.json` 等文件登记可选配置；只有对应 `execution=executed`／原始收据的条目才记为实跑。可装配不等于已有实验数据。
 
 ## 本次核对

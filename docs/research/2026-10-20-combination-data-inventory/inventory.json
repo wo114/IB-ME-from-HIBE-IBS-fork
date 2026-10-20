@@ -1119,9 +1119,10 @@
       }
     ]
   },
-  "pending_optimization_pr": {
+  "optimization_pr": {
     "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/75",
     "status_at_audit": "OPEN",
+    "status_at_delivery_sync": "MERGED",
     "included_in_main_grid_statistics": false,
     "scope": "same-combination optimization off/on; not a cross-HIBE factorial benchmark"
   },
@@ -1140,5 +1141,6 @@
   },
   "cryptographic_experiments_rerun": false,
   "original_receipts_modified": false,
-  "private_state_read": false
+  "private_state_read": false,
+  "delivery_upstream_main": "d770bc2dd92186a19e2da4660bdf201aec6370b8"
 }
