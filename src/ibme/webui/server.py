@@ -22,19 +22,22 @@ import time
 import traceback
 from dataclasses import dataclass, field
 from http import HTTPStatus
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
-from ibme.assembly import build_runtime, list_backends, make_suite, validate_suite
+from ibme.assembly import SuiteConfig, build_runtime, list_backends, make_suite, validate_suite
 from ibme.core.errors import IBMEError
 from ibme.protocol.baseline import is_bottom
+from ibme.webui.jobs import DemoJobs, JobBusyError
 
 STATIC = Path(__file__).resolve().parent / "static"
 MAX_BODY = 1 << 20
 _LOCK = threading.RLock()
 _SESSION: "Session | None" = None
+_JOBS: DemoJobs | None = None
+_CATALOG: dict[str, Any] | None = None
 
 SECURITY = {
     "claim": "secure",
@@ -43,16 +46,12 @@ SECURITY = {
     "note": "已按论文安全结论、既定身份匿名性前提和完成的工程验收授予默认安全口径。",
 }
 
-RECOMMENDED_HIBE = {"latte"}
-RECOMMENDED_IBS = {"cert-ml-dsa", "cert-falcon", "luo-module"}
-# The interactive demo intentionally exposes one HIBE engine. Other research
-# HIBEs (ABB-ROM, CHKP, MP12 variants) remain available through the CLI and the
-# report matrix; some have minute-scale Setup or need optional runtimes, which
-# would block a single-threaded demo server.
-DEMO_HIBE = {"latte"}
-# Only IBS routes that have a short, runnable demonstration path here. The
-# remaining research IBS backends stay reachable through the CLI and tests.
-DEMO_IBS = {"cert-ml-dsa", "cert-falcon", "luo-module"}
+RECOMMENDED_HIBE = {"latte", "lai-ideal-hibe"}
+RECOMMENDED_IBS = {"cert-ml-dsa", "srgg2025-paper", "sageloli-rsis"}
+DEMO_HIBE = {"latte", "lai-ideal-hibe"}
+DEMO_IBS = {"cert-ml-dsa", "cert-falcon", "luo-module", "srgg2025-paper", "sageloli-rsis"}
+# The old individual-field API remains limited to its original three routes;
+# report representatives select a complete, frozen Suite by preset ID.
 DEMO_IBS_PRESETS = {
     "cert-ml-dsa": "ml-dsa-44",
     "cert-falcon": "falcon-padded-512",
@@ -63,35 +62,52 @@ PRESETS = [
     {
         "id": "primary",
         "label": "LATTE-3 + ML-DSA-44",
-        "note": "推荐主演示：NTRU/RLWE HIBE + MLWE/MSIS 认证 IBS，Hybrid + BYTEAUTH。",
+        "note": "LATTE · BNN / ML-DSA-44",
+        "code": "A", "group": "main", "title": "标准签名转换",
+        "suite_file": "A-latte-mldsa44.json",
         "hibe": "latte",
         "ibs": "cert-ml-dsa",
         "transport": "hybrid",
         "protocol": "byteauth-v1",
         "signature_format": "reference",
-        "tone": "primary",
+    },
+    {
+        "id": "srgg", "label": "LATTE + SRGG",
+        "title": "原生身份签名", "note": "LATTE · SRGG PARAM-I",
+        "code": "B", "group": "main", "suite_file": "B-latte-srgg-I-compact.json",
+        "hibe": "latte", "ibs": "srgg2025-paper", "transport": "hybrid",
+        "protocol": "byteauth-v1", "signature_format": "compact",
+        "wait_note": "首次准备约需几十秒。",
+    },
+    {
+        "id": "ring", "label": "Lai C2 + Sageloli RSIS",
+        "title": "环格组合", "note": "Lai C2 · Sageloli RSIS PARAM-I",
+        "code": "C", "group": "main", "suite_file": "C-lai-c2-sageloli-I.json",
+        "hibe": "lai-ideal-hibe", "ibs": "sageloli-rsis", "transport": "hybrid",
+        "protocol": "byteauth-v1", "signature_format": "reference",
+        "wait_note": "准备和解密可能需要数分钟。",
     },
     {
         "id": "compact",
         "label": "LATTE-3 + Falcon-512",
-        "note": "紧凑签名对照：Falcon v1.2 padded-512，完整密文通常略小。",
+        "note": "LATTE · BNN / Falcon-512",
+        "title": "Falcon", "code": "F", "group": "extra",
         "hibe": "latte",
         "ibs": "cert-falcon",
         "transport": "hybrid",
         "protocol": "byteauth-v1",
         "signature_format": "reference",
-        "tone": "blue",
     },
     {
         "id": "native",
         "label": "LATTE-3 + Luo 模格",
-        "note": "原生格 IBS 对照：MLWE/MSIS，compact 编码，签名较长。",
+        "note": "LATTE · Luo 模格 IBS",
+        "title": "Luo", "code": "L", "group": "extra",
         "hibe": "latte",
         "ibs": "luo-module",
         "transport": "hybrid",
         "protocol": "byteauth-v1",
         "signature_format": "compact",
-        "tone": "teal",
     },
 ]
 
@@ -152,10 +168,10 @@ def _selection(payload: dict[str, Any]) -> tuple[str, str, str, str, str]:
         return value
 
     hibe = text("hibe", "latte")
-    if hibe not in DEMO_HIBE:
+    if hibe != "latte":
         raise DemoError("交互演示仅开放 LATTE-3 HIBE；其它 HIBE 后端请使用 CLI 或报告矩阵。")
     ibs = text("ibs", "cert-ml-dsa")
-    if ibs not in DEMO_IBS:
+    if ibs not in DEMO_IBS_PRESETS:
         raise DemoError("交互演示仅开放 ML-DSA、Falcon、Luo 三种 IBS；其它 IBS 后端请使用 CLI 或报告矩阵。")
     return (
         hibe,
@@ -167,6 +183,17 @@ def _selection(payload: dict[str, Any]) -> tuple[str, str, str, str, str]:
 
 
 def _make_config(payload: dict[str, Any]):
+    if "preset" in payload:
+        preset = next((p for p in PRESETS if p["id"] == payload["preset"]), None)
+        if preset is None:
+            raise DemoError("未知演示配置")
+        for name in ("hibe", "ibs", "transport", "protocol", "signature_format"):
+            if name in payload and payload[name] != preset[name]:
+                raise DemoError("所选演示配置与请求参数不一致")
+        if "suite_file" in preset:
+            path = STATIC / preset["suite_file"]
+            return SuiteConfig.from_dict(json.loads(path.read_text(encoding="utf-8")))
+        payload = preset
     hibe, ibs, transport, protocol, signature_format = _selection(payload)
     try:
         return make_suite(
@@ -194,6 +221,11 @@ def _identity_bytes(text: Any, label: str, capacity: int) -> bytes:
     if any(byte < 0x20 or byte == 0x7F for byte in raw):
         raise DemoError(f"{label}不能包含控制字符")
     return raw
+
+
+def _progress(phase: str) -> None:
+    if _JOBS is not None:
+        _JOBS.report(phase)
 
 
 def _message_bytes(text: Any, capacity: int) -> bytes:
@@ -274,7 +306,7 @@ def api_backends() -> dict[str, Any]:
         "scope": {
             "hibe": sorted(DEMO_HIBE),
             "ibs": sorted(DEMO_IBS),
-            "note": "交互演示开放 LATTE-3 HIBE 与 ML-DSA / Falcon / Luo 三种 IBS；其它后端请使用 CLI 或报告矩阵。",
+            "note": "A/B/C 固定方案，以及 Falcon、Luo 补充方案。",
         },
         "security": SECURITY,
     }
@@ -315,6 +347,7 @@ def api_export() -> dict[str, Any]:
 
 
 def api_check(payload: dict[str, Any]) -> dict[str, Any]:
+    _progress("检查运行环境")
     config = _make_config(payload)
     report = validate_suite(config)
     return {
@@ -331,6 +364,9 @@ def api_check(payload: dict[str, Any]) -> dict[str, Any]:
 def api_bootstrap(payload: dict[str, Any]) -> dict[str, Any]:
     global _SESSION
     with _LOCK:
+        if _SESSION is not None:
+            raise DemoError("已有会话，请先结束当前会话")
+        _progress("检查配置")
         config = _make_config(payload)
         report = validate_suite(config)
         if not report.ok:
@@ -345,6 +381,7 @@ def api_bootstrap(payload: dict[str, Any]) -> dict[str, Any]:
             raise DemoError("发送者、接收者和错误接收者必须是三个不同的身份")
 
         events: list[dict[str, Any]] = []
+        _progress("准备运行环境")
         start = time.perf_counter()
         try:
             runtime = build_runtime(config)
@@ -353,21 +390,25 @@ def api_bootstrap(payload: dict[str, Any]) -> dict[str, Any]:
         build_seconds = time.perf_counter() - start
         events.append({"label": "构建运行时", "seconds": build_seconds})
 
+        _progress("初始化公共参数")
         start = time.perf_counter()
         public, master = runtime.proto.setup(runtime.hibe_params, ibs_params=runtime.ibs_params)
         setup_seconds = time.perf_counter() - start
         events.append({"label": "Setup", "seconds": setup_seconds})
 
+        _progress("签发发送者密钥")
         start = time.perf_counter()
         sender_key = runtime.proto.skgen(master, sender_id)
         sender_seconds = time.perf_counter() - start
         events.append({"label": "签发发送者密钥", "seconds": sender_seconds})
 
+        _progress("签发接收者密钥")
         start = time.perf_counter()
         receiver_key = runtime.proto.rkgen(master, receiver_id)
         receiver_seconds = time.perf_counter() - start
         events.append({"label": "签发接收者密钥", "seconds": receiver_seconds})
 
+        _progress("签发测试身份密钥")
         start = time.perf_counter()
         wrong_receiver_key = runtime.proto.rkgen(master, wrong_id)
         wrong_seconds = time.perf_counter() - start
@@ -392,6 +433,7 @@ def api_bootstrap(payload: dict[str, Any]) -> dict[str, Any]:
             "receiver_key": receiver_seconds,
             "wrong_receiver_key": wrong_seconds,
         }
+        _progress("读取密钥尺寸")
         session.sizes = {
             "mpk": len(public.to_bytes()),
             "msk": len(master.to_bytes()),
@@ -415,6 +457,7 @@ def api_encrypt(payload: dict[str, Any]) -> dict[str, Any]:
             raise DemoError("请先初始化演示会话")
         capacity = int(session.runtime.capacity["max_application_bytes"])
         message = _message_bytes(payload.get("message", ""), capacity)
+        _progress("加密消息")
         start = time.perf_counter()
         try:
             ciphertext = session.runtime.proto.encrypt(
@@ -497,6 +540,7 @@ def api_decrypt(payload: dict[str, Any]) -> dict[str, Any]:
         else:  # truncate
             receiver_key, claimed_sender = session.receiver_key, session.sender_id
             wire = wire[:-1]
+        _progress("验证密文并解密")
         start = time.perf_counter()
         try:
             result = session.runtime.proto.decrypt(
@@ -563,16 +607,23 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if path in ("/", "/index.html"):
                 self._send(200, (STATIC / "index.html").read_bytes(), "text/html; charset=utf-8")
+            elif path in ("/app.css", "/app.js"):
+                mime = "text/css" if path.endswith(".css") else "text/javascript"
+                self._send(200, (STATIC / path[1:]).read_bytes(), mime + "; charset=utf-8")
+            elif path == "/api/jobs":
+                self._send(200, {"ok": True, "job": _JOBS.snapshot() if _JOBS else None})
             elif path == "/api/backends":
-                self._send(200, api_backends())
+                self._send(200, _CATALOG if _CATALOG is not None else api_backends())
             elif path == "/api/state":
-                self._send(200, api_state())
+                self._send(200, self._read(api_state))
             elif path == "/api/export":
-                self._send(200, api_export())
+                self._send(200, self._read(api_export))
             elif path == "/favicon.ico":
                 self._send(HTTPStatus.NO_CONTENT, b"", "image/x-icon")
             else:
                 self._send(HTTPStatus.NOT_FOUND, {"ok": False, "error": "not found"})
+        except JobBusyError as exc:
+            self._send(HTTPStatus.CONFLICT, {"ok": False, "error": str(exc)})
         except DemoError as exc:
             self._send(HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
         except Exception as exc:  # pragma: no cover - defensive boundary
@@ -598,14 +649,27 @@ class Handler(BaseHTTPRequestHandler):
                 raise DemoError("请求体不是合法 JSON") from exc
             if not isinstance(payload, dict):
                 raise DemoError("请求体必须是 JSON 对象")
+            if path == "/api/jobs":
+                if _JOBS is None:
+                    raise DemoError("任务服务尚未启动")
+                operation = payload.get("operation")
+                if type(operation) is not str or operation not in {"check", "bootstrap", "encrypt", "decrypt", "reset"}:
+                    raise DemoError("未知演示操作")
+                body = payload.get("payload", {})
+                if type(body) is not dict:
+                    raise DemoError("操作参数必须是 JSON 对象")
+                self._send(HTTPStatus.ACCEPTED, {"ok": True, "job": _JOBS.submit(operation, body)})
+                return
             if path == "/api/reset":
-                self._send(200, api_reset())
+                self._send(200, self._call("reset", {}, lambda _: api_reset()))
                 return
             handler = routes.get(path)
             if handler is None:
                 self._send(HTTPStatus.NOT_FOUND, {"ok": False, "error": "not found"})
                 return
-            self._send(200, handler(payload))
+            self._send(200, self._call(path.rsplit("/", 1)[-1], payload, handler))
+        except JobBusyError as exc:
+            self._send(HTTPStatus.CONFLICT, {"ok": False, "error": str(exc)})
         except DemoError as exc:
             self._send(HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
         except IBMEError as exc:
@@ -614,27 +678,57 @@ class Handler(BaseHTTPRequestHandler):
             traceback.print_exc()
             self._send(HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": f"{type(exc).__name__}: {exc}"})
 
+    def _call(self, operation, payload, fallback):
+        if _JOBS is None:
+            return fallback(payload)
+        job = _JOBS.call(operation, payload)
+        if job["status"] == "failed":
+            raise DemoError(job["error"])
+        return job["result"]
+
+    @staticmethod
+    def _read(function):
+        # These views copy plain public metadata only. Do not create a new job
+        # and overwrite a result that another browser is still polling.
+        if not _LOCK.acquire(blocking=False):
+            raise JobBusyError("当前操作正在执行，请等待完成")
+        try:
+            return function()
+        finally:
+            _LOCK.release()
+
 
 def main(argv: list[str] | None = None) -> int:
+    global _JOBS, _CATALOG
     parser = argparse.ArgumentParser(description="IB-ME interactive demo UI (secure profiles)")
     parser.add_argument("--host", default="127.0.0.1", help="bind address (default: 127.0.0.1)")
     parser.add_argument("--port", type=int, default=8765, help="TCP port (default: 8765)")
     args = parser.parse_args(argv)
-    # Sage's cysignals initialisation installs signal handlers and therefore
-    # requires the main interpreter thread. Use the single-threaded HTTPServer
-    # so every backend operation runs in that thread; the demo serialises
-    # requests anyway and one browser session does not need concurrency.
-    server = HTTPServer((args.host, args.port), Handler)
+    # Import/probe optional Sage modules on the main thread. HTTP threads only
+    # submit work: every preflight and crypto call is pumped here, retaining
+    # Sage/cysignals main-thread semantics while long work stays pollable.
+    _CATALOG = api_backends()
+    _JOBS = DemoJobs({
+        "check": api_check, "bootstrap": api_bootstrap,
+        "encrypt": api_encrypt, "decrypt": api_decrypt,
+        "reset": lambda _: api_reset(),
+    })
+    server = ThreadingHTTPServer((args.host, args.port), Handler)
+    http_thread = threading.Thread(target=server.serve_forever, daemon=True)
+    http_thread.start()
     print("IB-ME interactive demo", flush=True)
     print(f"  URL: http://127.0.0.1:{args.port}", flush=True)
     print("  security_claim=secure; backend_admitted=true", flush=True)
     print("  press Ctrl+C to stop", flush=True)
     try:
-        server.serve_forever()
+        while True:
+            _JOBS.run_pending()
     except KeyboardInterrupt:
         pass
     finally:
+        server.shutdown()
         server.server_close()
+        http_thread.join()
     return 0
 
 

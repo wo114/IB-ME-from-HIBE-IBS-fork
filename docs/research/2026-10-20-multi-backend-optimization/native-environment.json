@@ -1,0 +1,60 @@
+{
+  "artifacts": {
+    "falcon512": {
+      "bytes": 121832,
+      "path": "/mnt/d/ibme/IB-ME-from-HIBE-IBS/test-results/pr64-65-review/falcon-native/bin/ibme-falcon512",
+      "sha256": "de7d7c5e285d375e432bf7d2c3625e3f2f295cc57ba6c2a008beeca1164ee366"
+    },
+    "latte": {
+      "bytes": 1812920,
+      "path": "/mnt/d/ibme/IB-ME-from-HIBE-IBS/test-results/srgg-paper-native/latte/bin/ibme-latte3",
+      "sha256": "6fb0930f75d150950dbf91eddf98fce36fcb611db344af5f847ee26f94f5a958"
+    },
+    "mldsa44": {
+      "bytes": 45016,
+      "path": "/mnt/d/ibme/IB-ME-from-HIBE-IBS/test-results/pr64-65-review/mldsa-native/bin/ibme-mldsa44",
+      "sha256": "99e8d0e84dbefa89c456869f128b4cb4f93ec6002bed5b95910e54d8a0c96dd0"
+    },
+    "sageloli-ring": {
+      "bytes": 31056,
+      "path": "/mnt/d/ibme/IB-ME-from-HIBE-IBS/test-results/pr64-65-review/sageloli-native/sageloli-ring-a41fd3e087125317d2bf2c1731e99c5639b27bce1c0b9d8456cd0682bee0ee39.so",
+      "sha256": "3e2bc9a1ee6d5f6e8494cda8836e8dece76622ab99addda114e1066c67fe0387"
+    }
+  },
+  "engine_metadata": {
+    "falcon512": {
+      "abi": 1,
+      "fpemu": true,
+      "logn": 9,
+      "pk": 897,
+      "refill_limit": 65536,
+      "sig": 666,
+      "sk": 1281,
+      "source_id": "dd9bb426aa30a33d7c503799d9134edbaf0b4f0b7ce2edf618981958a87f7e5b",
+      "vector_driver": false,
+      "xof_limit": 16777216
+    },
+    "latte": {
+      "abi": "IBME-LATTE3-COEFF-1",
+      "n": 1024,
+      "q": 68718428161,
+      "source_id": "4a17a037c266ba982a027ff7fedffe0d391c9fe7fb2c5f8a0326b4ab67393414"
+    },
+    "mldsa44": {
+      "abi": 1,
+      "mode": 2,
+      "nonce_attempt_limit": 16384,
+      "pk": 1312,
+      "sig": 2420,
+      "sk": 2560,
+      "source_id": "ae5dc5f80d49157633cf8aeb5895e1dc91a298311adc5181d99a17e8cfb14337"
+    }
+  },
+  "scope": "post-run environment/fingerprint inventory; not a new cryptographic experiment",
+  "software": {
+    "cryptography": "50.0.2",
+    "numpy": "2.4.3",
+    "sage": "10.7"
+  },
+  "source_snapshot": "b4b31d8f76654e108e4443e369e67729b2b6936b"
+}

@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-20",
+  "pr": 78,
+  "submitted_head": "2ecb7a5795760bfce15b6a80e7a99ace438ff9a2",
+  "dependency_pr75": "5f7f35ff477dacd117607f564d433b27ffc835d1",
+  "server_started_from_commit": "d36b51f",
+  "scope": "Fresh integration correctness via browser; not a repeated performance benchmark",
+  "tests": {
+    "command": "python -m pytest -q -p no:cacheprovider tests/test_webui.py tests/test_webui_jobs.py tests/test_webui_http.py tests/test_ci_catalog.py",
+    "environment": "WSL ~/miniconda3/envs/sage; OMP_NUM_THREADS=OPENBLAS_NUM_THREADS=1",
+    "passed": 59,
+    "failed": 0,
+    "skipped": 0,
+    "javascript_syntax": "passed",
+    "shell_syntax": "passed"
+  },
+  "browser_runs": {
+    "A": {
+      "new_roots": 1,
+      "encryptions": 1,
+      "decryptions": 6,
+      "all_expected": true,
+      "identity_bytes": {
+        "sender": 5,
+        "receiver": 3,
+        "wrong_receiver": 5
+      },
+      "message_bytes": 36,
+      "suite_digest": "bb8006f036dfcbe3ea2d765e2cdf44a595568f4465e3b786d0b802fb4e0baf91"
+    },
+    "B": {
+      "new_roots": 1,
+      "encryptions": 1,
+      "decryptions": 6,
+      "all_expected": true,
+      "identity_bytes": {
+        "sender": 5,
+        "receiver": 3,
+        "wrong_receiver": 5
+      },
+      "message_bytes": 36,
+      "suite_digest": "8b9fef332ed20f8c34fc1eedb3f81b5f3b3236533e6bca7c07d6687ccf546c61"
+    }
+  },
+  "fixes": [
+    {
+      "file": "src/ibme/webui/static/app.js",
+      "issue": "New preset buttons remained enabled after reloading during a running operation",
+      "change": "Apply refreshControls immediately after renderPresets creates buttons",
+      "recheck": "During a real B encryption after reload, phase remained 加密消息 and all five preset buttons were disabled"
+    },
+    {
+      "file": "src/ibme/webui/static/app.js",
+      "issue": "Restoring the exact original message left the previous re-encrypt warning visible",
+      "change": "Recompute the hint for both changed and restored text",
+      "recheck": "66000 UTF-8 bytes disable encryption and old-ciphertext verification; restoring the original message enables verification with the matching hint"
+    }
+  ],
+  "c": {
+    "frozen_preflight_receipt": "matched",
+    "max_application_bytes": 3924,
+    "independent_browser_preflight": "configuration ready; 3.8 KiB displayed",
+    "new_complete_web_run": false
+  },
+  "limitations": [
+    "Web state remains process-local and is lost on service restart",
+    "C has no new complete Web crypto run in this review",
+    "A/B each one new root, not a multi-root timing comparison"
+  ],
+  "source_sha256": {
+    "src/ibme/webui/server.py": "34b96d7f4ef392f0f459cb7d213facb14247edf157f1a210842198f09bb8f392",
+    "src/ibme/webui/jobs.py": "ed85949f2e129c7a3edf943432d761f3629368d9371bf316396d4313038140f4",
+    "src/ibme/webui/static/app.js": "d06c1bd0f1d2faedfab52503b414446bcdb206779323b118ac7ea8f9f8cbcf16"
+  },
+  "evidence_sha256": {
+    "evidence/regression.xml": "21b55289c585c0fa4a13c124018f2a565456076b80ef5d9b370a9e54fc436f44",
+    "evidence/web-A.json": "d6076432d4298668062763f513701744ebe218291096212dfc5d764fbfac3c9c",
+    "evidence/web-B-records.png": "be22f02fad69dad597e9d8f1783b9d8c835beb77e38846f4030ca9645e27c332",
+    "evidence/web-B.json": "8e306277e78f7dda80d40c07a40da540328fd2237337ebe9355f85e42b7dbc68"
+  }
+}

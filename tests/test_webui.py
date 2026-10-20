@@ -155,3 +155,31 @@ def test_export_without_session_is_rejected(monkeypatch):
     monkeypatch.setattr(server, "_SESSION", None)
     with pytest.raises(server.DemoError):
         server.api_export()
+
+
+@pytest.mark.parametrize("preset_id,filename", [
+    ("primary", "A-latte-mldsa44.json"),
+    ("srgg", "B-latte-srgg-I-compact.json"),
+    ("ring", "C-lai-c2-sageloli-I.json"),
+])
+def test_report_presets_select_exact_frozen_suites(preset_id, filename):
+    path = Path(__file__).resolve().parents[1] / (
+        "docs/deliveries/2026-10-19-report-three-selection/suites"
+    ) / filename
+    expected = json.loads(path.read_text(encoding="utf-8"))
+    assert server._make_config({"preset": preset_id}).to_dict() == expected
+
+
+def test_preset_cannot_silently_accept_a_conflicting_algorithm():
+    with pytest.raises(server.DemoError, match="配置"):
+        server._make_config({"preset": "srgg", "ibs": "cert-falcon"})
+    with pytest.raises(server.DemoError):
+        server._make_config({"preset": "unregistered"})
+
+
+def test_main_presets_are_the_report_three_and_extras_remain_available():
+    main = [p["id"] for p in server.PRESETS if p.get("group") == "main"]
+    assert main == ["primary", "srgg", "ring"]
+    assert {p["id"] for p in server.PRESETS if p.get("group") == "extra"} == {
+        "compact", "native"
+    }
