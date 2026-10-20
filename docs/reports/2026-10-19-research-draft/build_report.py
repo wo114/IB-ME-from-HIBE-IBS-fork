@@ -18,6 +18,7 @@ DOCX = HERE / '研究报告初稿.docx'
 COMPARISON = 'docs/research/2026-10-18-full-system-luo/evidence/comparison.json'
 CARDS = 'docs/deliveries/2026-10-18-main-showcase-cards/evidence/cards.json'
 PLACEMENT = 'docs/research/2026-10-19-full-system-placement/evidence/placement.json'
+FOOLI = 'docs/research/2026-10-19-parameters/fooli-improvement-search.json'
 BASE_COMMIT = 'b92967b92a94a4f8e18ae177ea299167b60aac67'
 LABELS = ['MLDSA', 'Falcon', 'Luo']
 
@@ -65,8 +66,20 @@ def generate_evidence():
          f"{placement['timing_seconds'][key]['decrypt']['median'] * 1000:.3f}",
          placement['timing_seconds'][key]['encrypt']['count']]
         for name, key in variants])
+    fooli = load(FOOLI)
+    selected = []
+    for n in (1024, 2048, 4096):
+        candidates = [row for row in fooli['target_search']['all_cases']
+                      if row['q'] == 2**127 - 1 and row['n'] == n and row['g'] == 16]
+        selected.append(min(candidates, key=lambda row: row['m_bar']))
+    fooli_table = table(['n', '完整维度d', '经典／量子（比特）', '本模型判断'], [
+        [row['n'], f"{row['d']:,}",
+         f"{row['core_svp_classical_bits']:.1f}／{row['core_svp_quantum_bits']:.1f}",
+         '搜索下限' if row['core_svp_attack_blocksize'] == 53 else
+         ('仅经典估计不低于128' if row['core_svp_classical_bits'] >= 128 else '经典估计不足128')]
+        for row in selected])
     text = SOURCE.read_text(encoding='utf-8')
-    for key, body in [('timing', timing), ('sizes', sizes), ('placement', placement_table)]:
+    for key, body in [('timing', timing), ('sizes', sizes), ('placement', placement_table), ('fooli', fooli_table)]:
         pattern = rf'(<!-- generated:{key}:start -->).*?(<!-- generated:{key}:end -->)'
         text, count = re.subn(pattern, lambda m: m[1] + '\n\n' + body + '\n\n' + m[2], text, flags=re.S)
         assert count == 1, key
@@ -76,7 +89,11 @@ def generate_evidence():
         'new_cryptographic_runs': 0, 'private_state_files_opened': 0,
         'final_three_selected': False, 'security_claim': 'none',
         'backend_admitted': False, 'parameters_are_formal': False,
-        'source_sha256': {p: sha(ROOT / p) for p in [COMPARISON, CARDS, PLACEMENT]},
+        'source_sha256': {p: sha(ROOT / p) for p in [COMPARISON, CARDS, PLACEMENT, FOOLI]},
+        'fooli': {'selection': 'q=2**127-1, g=16; minimum m_bar in each declared n',
+                  'source_schema_version': fooli['schema_version'], 'selected': selected,
+                  'in_gate_search': fooli['in_gate_search']['stats'],
+                  'core_svp_model': fooli['core_svp_model']},
         'profiles': [{
             'name': label, 'source_commit': p['source_commit'], 'receipt': p['file'],
             'security_group': p['security_group'], 'suite': p['suite'],

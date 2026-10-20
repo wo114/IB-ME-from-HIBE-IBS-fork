@@ -1,0 +1,309 @@
+{
+  "schema": "IBME-LATEX-PDF-QA/1",
+  "recorded_at_utc": "2026-10-19T17:07:52.327135+00:00",
+  "status": "passed",
+  "primary_source": "docs/reports/2026-10-19-research-draft/研究报告初稿.tex",
+  "output": "docs/reports/2026-10-19-research-draft/研究报告初稿.pdf",
+  "source_sha256": "8e849bfbfcc3a43490a93250c623d4e946baadb2360204e201c0c0de76827f8e",
+  "pdf_sha256": "cd4547b3e0fb976eb91704743d17c11ae6ba389341249bc75813ad22daa525fd",
+  "engine": {
+    "name": "Tectonic",
+    "version": "0.17.0",
+    "release_archive_sha256": "1a715688baf591e650c8aeb160ae934e181685eecbb38b317de30b269ac5d606",
+    "warnings_or_errors": []
+  },
+  "build_command": "python -B docs/reports/2026-10-19-research-draft/build_pdf.py --engine <tectonic-path>",
+  "build_exit_code": 0,
+  "page_count": 26,
+  "page_size": "A4",
+  "render_dpi": 110,
+  "visual_review": {
+    "all_pages_reviewed": true,
+    "reviewed_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26
+    ],
+    "final_changed_pages_reinspected": [
+      23,
+      24
+    ],
+    "final_pdf_render_pixels_match_reviewed_pages": true,
+    "findings": [
+      {
+        "page": 1,
+        "render_sha256": "322632a28bcb7876dd3263801df4586b3f76fc4cbf73d6d75502777cc9d88b77",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 2,
+        "render_sha256": "b7050aa9459ba6839a38ec38328839368766d49e6584e5d09ea339a43ddfd9a9",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 3,
+        "render_sha256": "8213dc516a8a36673d5cf5791d3c8d8b34ad225eeb9882be0698cb73e465123d",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 4,
+        "render_sha256": "93aec0347c4d844eaf4958cb44fd52dc7acfc60054abec7aecd97112582aec87",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 5,
+        "render_sha256": "8a26811f9c5ccac34d490c7b599b52750c37c1e28fc8eb12bc6c70d9fe373c1a",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 6,
+        "render_sha256": "fbbc42cba9852e4d363a880b4d9fa7085bfb6613026bac2f3c51fbc165ad319c",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 7,
+        "render_sha256": "82bb794ba1ee726ef571d3950800460ee8a52484736cd319077c15110bf8e8dc",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 8,
+        "render_sha256": "37ddac89f7810e482da89499cf5c0115780c58979c374157ef4d2aacc397e2f4",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 9,
+        "render_sha256": "5dacf9aa8aa9575023ca01bb6a0022bf4c1ed2f0ec648331d4273e0a141fbdff",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 10,
+        "render_sha256": "9242023e6ab1930060788b8aee2001f43f6bc2ab68bfbd8301b597238db3ad1b",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 11,
+        "render_sha256": "bbad6b20505016e76d97671c67e6dc80faa1eb08aa1dbc9eecf690437827850b",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 12,
+        "render_sha256": "3dedad2190826f0537b7a230d429e71ae1a24599c6c46a99854af76d719e7477",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 13,
+        "render_sha256": "97e129b89056247a441607e517e1986e7fb96113ccd2c456c0ef991908fb05e5",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 14,
+        "render_sha256": "6a1fa2015af50ac5519bc64731597faf3f0ab7860e0802cece302585d2ba2008",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 15,
+        "render_sha256": "85baaff0135ec2a116b6f9c4039052f8c26ce34d9ecb7a925504fa8747b12ca9",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 16,
+        "render_sha256": "25e24f11fc2a2d0d28aee8997f9ed0d2615a3282e9954e9e671771a0b053583a",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 17,
+        "render_sha256": "38569195f5dd2c42e04082320964adaa75af64dd3ce27d1be932252df9ad70e3",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 18,
+        "render_sha256": "c3c3a308d8ebbf5696bde1744cee5e7421a1f4eea764763d7624d321e09388f0",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 19,
+        "render_sha256": "4420e4cb4c3857e8f80dbf3f2545d38a44a9fba7dd11a5d70ea42a78b538c3d7",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 20,
+        "render_sha256": "62bd9358f55da24e616907c208aafe2130f159055b4081360502fa044ef4ab04",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 21,
+        "render_sha256": "7a2c0abe7066ceab051b9b83669c50e28ef66a3db2b385b254498a5e517111fd",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 22,
+        "render_sha256": "7e186d71316365906fb796f5037616e7b1a51680c4e9eab6abb6530f6f281a5f",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 23,
+        "render_sha256": "25b083854fd1f2f7798c8cbd6ad7d709a17f73852d92cbad06cc74ecf5894587",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 24,
+        "render_sha256": "54adc44823eeb789cc2af72cbb43170a914d2628d47015ff0d3865f6388f2d4c",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 25,
+        "render_sha256": "87d90853419c951a8708a2ada8f30959363cbdad6a59131956450b3547cbcf92",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      },
+      {
+        "page": 26,
+        "render_sha256": "e3b30cbea1dfcd237aefb74dba7b1a3eb7a6901f43da16299d85ba0cba59f873",
+        "review": "pass; no clipping, overlap, missing glyphs or illegible tables/figures observed"
+      }
+    ],
+    "render_files_committed": false
+  },
+  "content_and_metadata_checks": {
+    "pages": 26,
+    "a4_all_pages": true,
+    "no_empty_pages": true,
+    "corrected_dimension_present": true,
+    "rejected_dimension_absent": true,
+    "no_unicode_replacement_character": true,
+    "bibliography_14_present": true,
+    "all_chapter_titles_present": true,
+    "tables_11_present": true,
+    "figures_6_present": true,
+    "external_links": 21,
+    "all_external_links_https": true,
+    "bookmarks": 41,
+    "characters_outside_page_count": 0,
+    "fonts_all_embedded": true,
+    "fonts_count": 15,
+    "final_build_pixels_match_reviewed_render": true,
+    "pages_changed_by_final_table_pagination": [
+      23,
+      24
+    ]
+  },
+  "text_extraction": "Poppler pdftotext; pypdf CJK extraction for embedded Fandol CID fonts was unsuitable and is not used for content validation",
+  "font_report": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nIHAIZV+FandolSong-Bold-Identity-H    CID Type 0C       Identity-H       yes yes no       4  0\nBZIVMZ+FandolSong-Regular-Identity-H CID Type 0C       Identity-H       yes yes no       6  0\nIXFAWU+LMRoman12-Regular-Identity-H  CID Type 0C       Identity-H       yes yes yes      8  0\nTQTHRL+LMRoman12-Bold-Identity-H     CID Type 0C       Identity-H       yes yes yes     18  0\nYEUUOC+LMRoman10-Bold-Identity-H     CID Type 0C       Identity-H       yes yes yes     66  0\nAKHCZK+LMRoman10-Regular-Identity-H  CID Type 0C       Identity-H       yes yes yes     68  0\nDDIEWW+CMSY10                        Type 1C           Builtin          yes yes yes     77  0\nVDVGTR+LMMono10-Regular-Identity-H   CID Type 0C       Identity-H       yes yes yes     81  0\nFKPJSN+CMR10                         Type 1C           Builtin          yes yes yes     83  0\nPVTTLK+CMMI8                         Type 1C           Builtin          yes yes yes     84  0\nJAGKKY+CMMI10                        Type 1C           Builtin          yes yes yes     85  0\nCAFSZL+FandolFang-Regular-Identity-H CID Type 0C       Identity-H       yes yes no      86  0\nNOMARO+CMMI12                        Type 1C           Builtin          yes yes yes     95  0\nKPXLOM+CMR8                          Type 1C           Builtin          yes yes yes     96  0\nUTACNV+CMR12                         Type 1C           Builtin          yes yes yes    103  0\n",
+  "external_evidence_links": [
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-18-full-system-baseline/README.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-18-full-system-falcon/README.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-18-full-system-luo/README.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/deliveries/2026-10-18-main-showcase-cards/README.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-18-full-system-luo/evidence/comparison.json"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/deliveries/2026-10-18-ibs-inventory/README.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/team-c-delivery/2026-10-15-c-framework/README.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/deliveries/2026-10-12-chkp-luo/README.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/team-b-delivery/2026-10-18-srgg-compact-benchmark/README_zh-CN.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/ALGORITHM_CATALOG.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/team-a-delivery/2026-10-18-bounded-radix/README.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/deliveries/2026-10-18-pr43-48-review/README.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/team-a-delivery/2026-10-18-abb-tight-frontier/README.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-19-full-system-placement/README.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/deliveries/2026-10-18-demo-acceptance/README.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/deliveries/2026-10-19-pr-review/README.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-19-parameters/FooLi%E5%8F%82%E6%95%B0%E6%94%B9%E8%BF%9B%E6%90%9C%E7%B4%A2%E4%B8%8E128bit%E7%9B%AE%E6%A0%87%E5%8D%A1.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-19-parameters/fooli-improvement-search.json"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/README_zh-CN.md"
+    },
+    {
+      "page": 25,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/workplans/2026-10-18-%E4%BD%9C%E5%93%81%E6%8A%A5%E5%91%8A%E8%A7%84%E5%88%92%E4%B8%8E%E6%88%90%E7%A8%BF%E6%B8%85%E5%8D%95.md"
+    },
+    {
+      "page": 26,
+      "uri": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/papers/index.md"
+    }
+  ],
+  "migration_consistency_receipt": "latex-content.json",
+  "historical_word_page_review_completed": false,
+  "cryptographic_experiments_rerun": 0,
+  "limits": [
+    "Initial format migration retains historical body and experiment scope; not competition final content.",
+    "Visual review and content checks do not prove cryptographic security.",
+    "Archived Word is preserved without new page QA.",
+    "Source/license consolidation and competition-specific submission template remain open."
+  ]
+}

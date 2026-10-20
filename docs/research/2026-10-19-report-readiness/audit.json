@@ -1,0 +1,220 @@
+{
+  "schema": "IBME-REPORT-READINESS-AUDIT/1",
+  "date": "2026-10-19",
+  "user_correction_2026_10_20": {
+    "uniform_128_bit_target_required": false,
+    "parameters_policy": "keep each representative's actual parameters, paper target and limitations; no PARAM-I replacement merely to equalize targets",
+    "primary_report_source": "LaTeX",
+    "final_submission_format": "PDF",
+    "followup": "docs/deliveries/2026-10-20-pr66-68-reception/README.md",
+    "historical_execution_receipts_unchanged": true
+  },
+  "status": "assessment_complete_project_gaps_open",
+  "repository": "https://github.com/youzi258/IB-ME-from-HIBE-IBS",
+  "git": {
+    "starting_head": "4bea689",
+    "upstream": "origin/main",
+    "updated_main": "f4220c33908378870cc7637164d980b6b110fbd3",
+    "commits_received": 434,
+    "update": "git fetch --prune origin; git merge --ff-only origin/main",
+    "working_tree_clean_before_update": true,
+    "work_branch": "codex/report-readiness-2026-10-19",
+    "pull_requests_merged_by_this_audit": 0
+  },
+  "environment": {
+    "cpu": "Intel(R) Core(TM) Ultra 9 185H",
+    "logical_cpus": 22,
+    "memory_total_kib": 32262588,
+    "os": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "python": "3.14.6",
+    "pytest": "9.1.1",
+    "pytest_installation": "temporary target directory; project dependencies unchanged",
+    "required_sage_environment": "~/miniconda3/envs/sage",
+    "required_sage_available": false
+  },
+  "counts": {
+    "catalog_routes": {
+      "hibe": 8,
+      "ibs": 11
+    },
+    "complete_independent_research_routes_from_delivery_inventory": {
+      "hibe": 4,
+      "ibs": 10
+    },
+    "available_default_registry_routes_observed": {
+      "hibe": 4,
+      "ibs": 7
+    },
+    "counts_do_not_imply_formal_security_or_all_pairs_acceptance": true
+  },
+  "open_pull_requests_observed": [
+    {
+      "number": 68,
+      "head": "0d218d9e57b36a27406eecd60c533d0e72e52e7e",
+      "draft": false,
+      "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/68",
+      "scope": "three representative suites proposed; no merge performed",
+      "independent_readonly_check": {
+        "checks": 59,
+        "negative_controls_rejected": 5,
+        "exit_code": 0,
+        "assembly_preflight_executed": false,
+        "target_cryptographic_runs": 0,
+        "method": "export fixed verifier directory and its listed public sources with git archive, run verify.py --self-test outside working tree"
+      }
+    },
+    {
+      "number": 66,
+      "head": "db086c70aa04764c663e7d7039b59767cc12fe94",
+      "draft": true,
+      "url": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/66",
+      "scope": "Foo-Li table and wording corrected in draft; revised Word page QA pending",
+      "independent_validation_in_this_audit": "read diff and delivery; did not rerun revised 197-check validator or render Word"
+    }
+  ],
+  "proposed_representatives": [
+    {
+      "id": "A",
+      "hibe": "LATTE-3",
+      "ibs": "BNN/ML-DSA-44",
+      "hybrid_payload_bytes": 65536,
+      "max_application_bytes": 59191,
+      "capacity_is_not_executed_length_coverage": true
+    },
+    {
+      "id": "B",
+      "hibe": "LATTE-3",
+      "ibs": "SRGG PARAM-I compact",
+      "hybrid_payload_bytes": 131072,
+      "max_application_bytes": 65364,
+      "author_target_bits": 100,
+      "author_quantum_key_recovery_bits": 95,
+      "author_quantum_forgery_bits": 93,
+      "exact_installed_suite_pending": true
+    },
+    {
+      "id": "C",
+      "hibe": "Lai C2",
+      "ibs": "Sageloli RSIS v3 PARAM-I",
+      "hybrid_payload_bytes": 8388608,
+      "max_application_bytes": 3924,
+      "full_ciphertext_bytes_observed": 4555436,
+      "encrypt_seconds_single_observation": 98.972055,
+      "decrypt_seconds_single_observation": 424.980337,
+      "exact_installed_suite_pending": true,
+      "repeated_benchmark_pending": true
+    }
+  ],
+  "portable_tests": {
+    "command": "PYTHONPATH=<temporary pytest target>:src:. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 PYTHONDONTWRITEBYTECODE=1 python -B -m pytest -q -p no:cacheprovider --tb=short tests/test_ci_catalog.py tests/test_c_registration.py tests/test_srgg_paper_registration.py tests/test_sageloli_ring_registration.py tests/test_webui.py tests/test_registry_extension_contract.py tests/test_cli_selection.py -k 'not real_ibs_recovery_and_protocol_bridge_with_test_only_hibe' --junitxml=<new output>",
+    "passed": 164,
+    "deselected": 2,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "seconds": 9.26,
+    "junit": "portable.xml",
+    "output": "................................................. [ 43%]\n........................................................................ [ 87%]\n....................                                                     [100%]\n164 passed, 2 deselected in 9.26s\n",
+    "scope": "portable discovery/configuration/UI and existing test-only or small-parameter state behavior; not target-suite arithmetic or performance"
+  },
+  "evidence_checks": {
+    "showcase_cards": {
+      "command": "python -O docs/deliveries/2026-10-18-main-showcase-cards/evidence/verify.py",
+      "exit_code": 0,
+      "output": "{\n  \"backend_admitted\": false,\n  \"checks\": 392,\n  \"entropy_bytes_consumed\": 0,\n  \"keys_generated\": 0,\n  \"parameters_are_formal\": false,\n  \"private_state_files_opened\": 0,\n  \"profiles\": 3,\n  \"provider_occurrences_reused_from_verified_comparison\": 2340,\n  \"schema\": \"IBME-SHOWCASE-CARDS/1\",\n  \"security_claim\": \"none\",\n  \"security_proofs_produced\": 0,\n  \"status\": \"passed\"\n}\n"
+    },
+    "srgg_paper": {
+      "command": "python -O docs/research/2026-10-19-srgg-paper-latte/verify.py --historical",
+      "exit_code": 0,
+      "output": "{\n  \"backend_admitted\": false,\n  \"benchmark_provider_records\": 1824,\n  \"cli_commands\": 15,\n  \"cli_restore_commands\": 1,\n  \"distinct_provider_files\": 145,\n  \"functional_cases\": 6,\n  \"functional_checks\": 204,\n  \"independent_benchmark_roots\": 6,\n  \"installed_provider_records\": 154,\n  \"parameters_are_formal\": false,\n  \"private_state_read\": false,\n  \"schema\": \"SRGG-PAPER-PUBLIC-VERIFICATION/1\",\n  \"security_claim\": \"none\",\n  \"source_commit\": \"7573014d53b5367698e161abf354b643770cf20e\",\n  \"source_mode\": \"historical Git 7573014\",\n  \"status\": \"passed\",\n  \"tampered_provider_rejected\": true,\n  \"warm_encrypt_decrypt_pairs\": 18,\n  \"zero_entropy_restored_decrypts\": 18\n}\n"
+    },
+    "sageloli_v3": {
+      "command": "python -O docs/research/2026-10-19-sageloli-ring-integration/verify.py",
+      "exit_code": 0,
+      "output": "{\"checks\": 696, \"cryptographic_security_certified\": false, \"experiments_rerun\": false, \"parameters_are_formal\": false, \"private_state_read\": false, \"status\": \"passed\"}\n"
+    },
+    "lai_c2": {
+      "command": "python -O docs/research/2026-10-19-lai-c2-combinations/verify.py",
+      "exit_code": 0,
+      "output": "{\"artifact_and_scope_checks\": 582, \"experiments_rerun\": false, \"functional_observations\": 104, \"identity_trials\": 16, \"private_state_read\": false, \"security_certified\": false, \"status\": \"passed\", \"suites\": 4}\n"
+    },
+    "research_draft": {
+      "command": "python docs/reports/2026-10-19-research-draft/check_report.py",
+      "exit_code": 0,
+      "output": "{\n  \"status\": \"passed\",\n  \"checks\": 178,\n  \"new_cryptographic_runs\": 0,\n  \"files\": {\n    \"研究报告初稿.md\": \"6d56c5183a4cd927d7f8a14dd45ae4ab9babb35127047c613915e93dd9e19627\",\n    \"研究报告初稿.docx\": \"b79b75206076da6538db93e4c3cb9a2a6b9d7dfff380d48231e2160fab634f20\",\n    \"report-facts.json\": \"56db36e82f177de40453c77f95a0c6637c133f941cb641c1e079cad7c24b47c5\"\n  },\n  \"layout_review\": \"separate mandatory page-image review; this script does not certify layout\",\n  \"private_state_files_opened\": 0,\n  \"old_report_and_ppt_sha256_unchanged\": true\n}\n"
+    },
+    "demo": {
+      "command": "python -O docs/deliveries/2026-10-18-demo-acceptance/evidence/verify.py",
+      "exit_code": 1,
+      "output": "Traceback (most recent call last):\n  File \"/home/youzi/codex_projects/ibme/IB-ME-from-HIBE-IBS/docs/deliveries/2026-10-18-demo-acceptance/evidence/verify.py\", line 91, in <module>\n    main()\n    ~~~~^^\n  File \"/home/youzi/codex_projects/ibme/IB-ME-from-HIBE-IBS/docs/deliveries/2026-10-18-demo-acceptance/evidence/verify.py\", line 28, in main\n    require(hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == expected, name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/youzi/codex_projects/ibme/IB-ME-from-HIBE-IBS/docs/deliveries/2026-10-18-demo-acceptance/evidence/verify.py\", line 18, in require\n    raise ValueError(label)\nValueError: src/ibme/webui/server.py\n"
+    },
+    "deployment_ablation": {
+      "command": "python -O docs/research/2026-10-19-full-system-placement/evidence/check.py",
+      "exit_code": 0,
+      "output": "{\"checks\": 3449, \"git_exact\": 541, \"git_text_newline_normalized\": 0, \"loaded_provider_checks\": 2376, \"packaged_git_files\": 541, \"status\": \"passed\"}\n"
+    },
+    "demo_bridge": {
+      "command": "python -O docs/deliveries/2026-10-19-pr-review/evidence/verify_demo.py",
+      "exit_code": 1,
+      "output": "Traceback (most recent call last):\n  File \"/home/youzi/codex_projects/ibme/IB-ME-from-HIBE-IBS/docs/deliveries/2026-10-19-pr-review/evidence/verify_demo.py\", line 46, in <module>\n    main()\n    ~~~~^^\n  File \"/home/youzi/codex_projects/ibme/IB-ME-from-HIBE-IBS/docs/deliveries/2026-10-19-pr-review/evidence/verify_demo.py\", line 40, in main\n    runpy.run_path(str(ORIGINAL / \"verify.py\"), run_name=\"__main__\")\n    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 294, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/youzi/codex_projects/ibme/IB-ME-from-HIBE-IBS/docs/deliveries/2026-10-18-demo-acceptance/evidence/verify.py\", line 91, in <module>\n    main()\n    ~~~~^^\n  File \"/home/youzi/codex_projects/ibme/IB-ME-from-HIBE-IBS/docs/deliveries/2026-10-18-demo-acceptance/evidence/verify.py\", line 31, in main\n    require(hashlib.sha256(raw).hexdigest() == provider[\"sha256\"], name + \" SHA256\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/youzi/codex_projects/ibme/IB-ME-from-HIBE-IBS/docs/deliveries/2026-10-18-demo-acceptance/evidence/verify.py\", line 18, in require\n    raise ValueError(label)\nValueError: ibme.assembly.registry SHA256\n"
+    }
+  },
+  "observed_evidence_drift": [
+    {
+      "module": "ibme.assembly.registry",
+      "path": "src/ibme/assembly/registry.py",
+      "recorded_sources_matching": [
+        "33bb04dabb9ae41c6a37464e159114387d1aebb9",
+        "f2f232d61cc2fe8aed96396856c19e3101e04b4a"
+      ]
+    },
+    {
+      "module": "ibme.cli",
+      "path": "src/ibme/cli.py",
+      "recorded_sources_matching": [
+        "33bb04dabb9ae41c6a37464e159114387d1aebb9",
+        "f2f232d61cc2fe8aed96396856c19e3101e04b4a"
+      ]
+    },
+    {
+      "module": "ibme.protocol.hybrid_hibe",
+      "path": "src/ibme/protocol/hybrid_hibe.py",
+      "recorded_sources_matching": [
+        "33bb04dabb9ae41c6a37464e159114387d1aebb9",
+        "f2f232d61cc2fe8aed96396856c19e3101e04b4a"
+      ]
+    }
+  ],
+  "packaging": {
+    "notice_claim_needs_revision": "NOTICE.md describes all code except three documents as original despite existing third-party native source snapshots",
+    "new_reference_pdf_export_ignore": {
+      "papers/crystal队作品设计报告.pdf": "unspecified",
+      "papers/有刺无刺+作品报告.pdf": "unspecified"
+    },
+    "archive_contents_policy_review_pending": true
+  },
+  "scope": {
+    "protocol_or_primitive_code_changed": false,
+    "parameters_changed": false,
+    "old_report_or_ppt_changed": false,
+    "new_target_parameter_systems_generated": 0,
+    "target_parameter_cryptographic_lifecycles_rerun": 0,
+    "attack_estimates_recomputed": 0,
+    "word_layout_review_performed": false,
+    "test_only_keys": "ephemeral objects may be generated by existing portable tests; count not instrumented",
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "tests_are_not_security_proofs": true
+  },
+  "recommendation_order": [
+    "review existing PR68 selection and PR66 corrected draft; retain accurate evidence scope",
+    "freeze per-component parameter and claim cards; disclose target differences",
+    "complete exact-suite CLI/wheel, missing inner-authentication and length/batch cases",
+    "collect comparable grouped measurements and evidence-backed representative advantages",
+    "update existing research draft, figures and requirements traceability",
+    "repair historical/current evidence verification handoff without rewriting receipts",
+    "complete attribution, distribution inventory, clean-environment reproducibility and final document QA"
+  ]
+}

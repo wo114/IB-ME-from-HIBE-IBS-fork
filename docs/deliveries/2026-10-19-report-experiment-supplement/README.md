@@ -87,18 +87,24 @@ python -O docs/deliveries/2026-10-19-report-experiment-supplement/verify.py
 python -O docs/deliveries/2026-10-19-report-experiment-supplement/verify.py --negative-controls
 ```
 
-实际运行入口为 `experiments.research.full_system_benchmark` 与 `experiments.research.report_experiment_probe`。先在规定WSL Sage环境从固定源码构建/安装wheel并按所选后端契约准备原生桥及Hybrid依赖；设置 `REPO` 为仓库路径、`SITE` 为新隔离安装目录，从仓库外运行、令 `PYTHONPATH` 仅包含该安装和第三方依赖目录。以下是本批相同选择的复现命令；每个私有目录必须是新路径，失败后不重复使用：
+实际运行入口为 `experiments.research.full_system_benchmark` 与 `experiments.research.report_experiment_probe`。先在规定WSL Sage环境从固定源码构建/安装wheel并按所选后端契约准备原生桥及Hybrid依赖；设置 `REPO` 为仓库路径、`SITE` 为新隔离安装目录、`RUNS` 为WSL用户目录中的新私有运行路径，从仓库外运行、令 `PYTHONPATH` 仅包含该安装和第三方依赖目录。后续运行使用持久目录，结束后核实私有备份完成，避免再次丢失临时状态。以下是本批相同选择的复现命令；每个私有目录必须是新路径，失败后不重复使用：
 
 ```bash
-python -m experiments.research.full_system_benchmark --suite-file "$REPO/docs/deliveries/2026-10-19-report-experiment-supplement/benchmark-suites.json" --suite-name A --private-directory /tmp/ibme-reproduce/benchmark-A --security-group report-A-unranked --source-commit eeb3108fc634a2d3d56b329c62f528414965e05d
-python -m experiments.research.full_system_benchmark --suite-file "$REPO/docs/deliveries/2026-10-19-report-experiment-supplement/benchmark-suites.json" --suite-name B --private-directory /tmp/ibme-reproduce/benchmark-B --security-group report-B-unranked --source-commit eeb3108fc634a2d3d56b329c62f528414965e05d
-python -m experiments.research.report_experiment_probe --suite "$REPO/docs/deliveries/2026-10-19-report-three-selection/suites/A-latte-mldsa44.json" --private-directory /tmp/ibme-reproduce/cli-A --installed-prefix "$SITE" --source-commit eeb3108fc634a2d3d56b329c62f528414965e05d --with-inner-check
-python -m experiments.research.report_experiment_probe --suite "$REPO/docs/deliveries/2026-10-19-report-three-selection/suites/B-latte-srgg-I-compact.json" --private-directory /tmp/ibme-reproduce/cli-B --installed-prefix "$SITE" --source-commit eeb3108fc634a2d3d56b329c62f528414965e05d --with-inner-check
-python -m experiments.research.report_experiment_probe --suite "$REPO/docs/deliveries/2026-10-19-report-three-selection/suites/C-lai-c2-sageloli-I.json" --private-directory /tmp/ibme-reproduce/cli-C --installed-prefix "$SITE" --source-commit eeb3108fc634a2d3d56b329c62f528414965e05d --lengths 0 1024 --skip-identity-negatives --with-inner-check
+python -m experiments.research.full_system_benchmark --suite-file "$REPO/docs/deliveries/2026-10-19-report-experiment-supplement/benchmark-suites.json" --suite-name A --private-directory "$RUNS/benchmark-A" --security-group report-A-unranked --source-commit eeb3108fc634a2d3d56b329c62f528414965e05d
+python -m experiments.research.full_system_benchmark --suite-file "$REPO/docs/deliveries/2026-10-19-report-experiment-supplement/benchmark-suites.json" --suite-name B --private-directory "$RUNS/benchmark-B" --security-group report-B-unranked --source-commit eeb3108fc634a2d3d56b329c62f528414965e05d
+python -m experiments.research.report_experiment_probe --suite "$REPO/docs/deliveries/2026-10-19-report-three-selection/suites/A-latte-mldsa44.json" --private-directory "$RUNS/cli-A" --installed-prefix "$SITE" --source-commit eeb3108fc634a2d3d56b329c62f528414965e05d --with-inner-check
+python -m experiments.research.report_experiment_probe --suite "$REPO/docs/deliveries/2026-10-19-report-three-selection/suites/B-latte-srgg-I-compact.json" --private-directory "$RUNS/cli-B" --installed-prefix "$SITE" --source-commit eeb3108fc634a2d3d56b329c62f528414965e05d --with-inner-check
+python -m experiments.research.report_experiment_probe --suite "$REPO/docs/deliveries/2026-10-19-report-three-selection/suites/C-lai-c2-sageloli-I.json" --private-directory "$RUNS/cli-C" --installed-prefix "$SITE" --source-commit eeb3108fc634a2d3d56b329c62f528414965e05d --lengths 0 1024 --skip-identity-negatives --with-inner-check
 ```
 
-校验器绑定全部公开产物、三份既定Suite、wheel源文件与固定Git、每次实际provider、计数/熵/拒绝/四次Lai委派，并从原始阶段重算次数/中位数与主表。实际只读结果见[verification.json](verification.json)；[三个受控负例](negative-controls.json)在内存同步修改清单哈希后，仍分别拒绝伪改主表、把C恢复写成零熵、把provider移出安装目录，未修改原始数据。工具单元测试及相关CLI/CI目录回归为Windows 88项通过；远端检查属于PR状态，不能由本批文档预先宣称。
+校验器绑定全部公开产物、三份既定Suite、wheel源文件与固定Git、每次实际provider、计数/熵/拒绝/四次Lai委派，并从原始阶段重算次数/中位数与主表。实际只读结果见[verification.json](verification.json)；[三个受控负例](negative-controls.json)在内存同步修改清单哈希后，仍分别拒绝伪改主表、把C恢复写成零熵、把provider移出安装目录，未修改原始数据。工具单元测试及相关CLI/CI目录回归原88项通过；同步最新main后，连同原主线Foo–Li来源测试共93项再次通过（Windows Python 3.14.0a5，88＋5，不累计两轮）。远端检查属于PR状态，不能由本批文档预先宣称。
+
+```powershell
+$env:PYTHONPATH='src;.'
+python -m pytest tests/test_report_experiment_probe.py tests/test_cli_selection.py tests/test_ci_catalog.py tests/test_report_fooli_bindings.py -q -p no:cacheprovider
+git diff --check
+```
 
 本批所有配置仍为研究执行，security_claim=none、backend_admitted=false、parameters_are_formal=false。论文安全性和HIBE匿名性沿用用户工作前提，实际版本/参数/采样边界保持；未新增证明或宣称NIST等级、三组性能优势、大规模并发能力。
 
-下一步主要是把本批表/图和三组选择写入新研究报告、衔接演示、整理许可/来源与发布复现；C重复性能与最大消息长度、三组独立业务优势仍不能算已完成。
+下一步主要是把本批表/图和三组选择写入最新主线的LaTeX/PDF研究报告、衔接演示、整理许可/来源与发布复现；C重复性能与最大消息长度、三组独立业务优势仍不能算已完成。
