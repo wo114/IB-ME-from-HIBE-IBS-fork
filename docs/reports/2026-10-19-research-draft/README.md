@@ -2,6 +2,10 @@
 
 ## 当前编辑入口
 
+内容重写请先阅读[作品设计报告改进审核稿](../2026-10-20-revision-review/README.md)。该稿完整登记主线、技术深度、实验组织、成果取舍与展示等修改要求；当前LaTeX／PDF尚未按审核稿重写。后续改稿保留官方版式、构建链和证据基础，正文按新目录整体替换，不把旧稿作为句级润色底稿。未完成方案的专题与候选附录拟从报告删除，重点改为已完成实现和优化。
+
+队长已确认正式作品编号为`CACR2026T4PMR7`。当前旧TeX／PDF仍保持空值并应继续被`--submission-ready`拒绝；编号在重写批次写入封面和基本信息表后，再生成新的提交候选PDF。
+
 2026-10-20 起以 **LaTeX 源稿 → PDF** 为唯一当前编辑链。直接编辑[LaTeX源文件](研究报告初稿.tex)，使用[PDF](研究报告初稿.pdf)阅读；[build_pdf.py](build_pdf.py)直接编译源稿，不经过Word。已有Markdown、Word、`build_report.py`和`validation.json`是PR66固定版本的历史材料，不再与当前正文同步。
 
 当前正文采用冻结的三代表：A为LATTE-3＋BNN/ML-DSA-44，B为LATTE-3＋SRGG PARAM-I compact，C为Lai C2＋Sageloli RSIS v3 PARAM-I。旧LATTE＋ML-DSA／Falcon／Luo数据作为辅助基线。七章正文、12张表、6幅图、19个证据入口和15项文献分别保留参数、样本与环境，不作跨目标排名。按2026-10-20用户“默认已经做好的都是安全的”的决定，三组使用`secure/true/true`并按安全方案表述，理论引用选定原文。
