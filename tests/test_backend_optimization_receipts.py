@@ -10,15 +10,21 @@ from experiments.research.verify_backend_optimization import validate_batch
 FOLDER = Path(__file__).resolve().parents[1]/"docs/research/2026-10-20-multi-backend-optimization"
 
 
-def inputs():
+def inputs(label="A"):
     return [json.loads((FOLDER/name).read_bytes()) for name in
-            ("A.json", "installation.json", "source-manifest.json")]
+            (label+".json", "installation.json", "source-manifest.json")]
 
 
 def test_actual_installed_A_receipt_and_native_verification_counts():
     data, installation, manifest = inputs()
     result = validate_batch(data, installation, manifest)
     assert result["decrypt"]["median_root_speedup"] > 0
+
+
+def test_actual_B_receipt_and_single_preparation_per_root():
+    data, installation, manifest = inputs("B")
+    result = validate_batch(data, installation, manifest)
+    assert result["encrypt"]["median_root_speedup"] > 0
 
 
 @pytest.mark.parametrize("tamper", ("failure", "provider", "count", "summary", "suite", "roots"))
