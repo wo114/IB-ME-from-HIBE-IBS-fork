@@ -145,12 +145,15 @@ def _backup(directory, destination, name):
         for path in sorted(directory.glob("*.bin")):
             archive.add(path, arcname=path.name, recursive=False)
     os.chmod(backup, 0o600)
-    destination.mkdir(parents=True, exist_ok=True)
+    destination.mkdir(parents=True, exist_ok=True, mode=0o700)
     target = destination/(directory.parent.name+"-"+directory.name+"-"+backup.name)
-    if target.exists():
-        raise FileExistsError("private backup target already occupied")
-    shutil.copyfile(backup, target)
-    os.chmod(target, 0o600)
+    # Set permissions before writing any bytes; O_EXCL also closes the gap
+    # between a prior exists() check and an overwriting copy operation.
+    descriptor = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    with os.fdopen(descriptor, "wb") as output, backup.open("rb") as source:
+        shutil.copyfileobj(source, output, length=1024*1024)
+        output.flush()
+        os.fsync(output.fileno())
     if target.stat().st_size != backup.stat().st_size:
         raise OSError("private backup size mismatch")
 
