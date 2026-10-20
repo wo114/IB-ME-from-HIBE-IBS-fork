@@ -1,0 +1,54 @@
+{
+  "schema": "ibme-third-party-source-index-v1",
+  "scope": "Existing vendored upstream manifests; dependency binary release inventory is separate",
+  "components": [
+    {
+      "component": "LATTE native",
+      "manifest": "src/ibme/hibe/latte/native/upstream/UPSTREAM.json",
+      "repository": "https://github.com/cqs-technology/latte",
+      "commit": "18cfbf9a671fca34785583b58ab9f28e3be21a3c",
+      "directory": "latte_3",
+      "license": "MIT; original file notices retained",
+      "files_in_manifest": 35
+    },
+    {
+      "component": "ML-DSA reference",
+      "manifest": "src/ibme/ibs/certified/native/upstream/UPSTREAM.json",
+      "repository": "https://github.com/pq-crystals/dilithium",
+      "commit": "d35ba3fe5449bee3e6d43e1f296c3ca818bd36be",
+      "archive_sha256": "12211d2527f8ad2ea3506479e65ad48f8b518d540e5508a008df6ea4e4092ad2",
+      "license_choice": "CC0/Public Domain; original LICENSE and source attribution retained",
+      "files_in_manifest": 26
+    },
+    {
+      "component": "Falcon reference",
+      "manifest": "src/ibme/ibs/certified/falcon_native/upstream/UPSTREAM.json",
+      "upstream": "https://falcon-sign.info/",
+      "archive_url": "https://falcon-sign.info/Falcon-impl-20211101.zip",
+      "archive_sha256": "d9f982bd825b9903b57b686d6d26018dac173a1dff09f224cc39302f9d85a595",
+      "archive_revision": "2021-11-01",
+      "specification": "Falcon v1.2 (2020-10-01)",
+      "license": "MIT, original notice in every C/header and README.txt",
+      "files_in_manifest": 18
+    },
+    {
+      "component": "LATTE sampler research snapshot",
+      "manifest": "experiments/research/reuse/vendor/latte/UPSTREAM.json",
+      "repository": "https://github.com/cqs-technology/latte",
+      "revision": "18cfbf9a671fca34785583b58ab9f28e3be21a3c",
+      "license": "MIT",
+      "production_use": false,
+      "files_in_manifest": 2
+    }
+  ],
+  "not_an_originality_claim_for_other_files": true,
+  "third_party_materials": [
+    "papers/",
+    "支持特定功能的格基函数加密研究.pdf",
+    "978-3-031-51476-0_21.pdf",
+    "ib-me.pptx",
+    "docs/competition/2026/",
+    "docs/reports/2026-10-19-research-draft/figures/cacr-logo.jpg"
+  ],
+  "no_cryptographic_metadata_changed": true
+}
