@@ -29,7 +29,8 @@ import numpy as np
 PUBLIC_SAMPLING_REASONS = frozenset((
     "unknown", "random-source", "numerical-gs-gate", "delegated-public-matrix",
     "signature-equation-or-norm", "native-library-validation", "native-library-load",
-    "native-build", "native-return-code",
+    "native-build", "native-return-code", "native-gaussian-width-range",
+    "native-gaussian-center-range",
 ))
 
 
@@ -230,8 +231,15 @@ def _integer_array(value, label, *, fortran=True):
 
 def _checked(result, error):
     if result:
-        raise SamplingError(f"native sampler error {result}: " + error.value.decode("utf-8", errors="replace"),
-                            public_reason="native-return-code", native_code=result)
+        raw = error.value
+        reason = "native-return-code"
+        if type(result) is int and result == 1 and type(raw) is bytes:
+            reason = {
+                b"Gaussian sigma outside fixed resource range": "native-gaussian-width-range",
+                b"Gaussian center outside fixed resource range": "native-gaussian-center-range",
+            }.get(raw, reason)
+        raise SamplingError(f"native sampler error {result}: " + raw.decode("utf-8", errors="replace"),
+                            public_reason=reason, native_code=result)
 
 
 def draw_gaussian(count, center=0.0, sigma=1.0, *, seed=None, test_only=False, threads=1,
