@@ -27,6 +27,7 @@ def test_portable_discriminated_objects_and_explicit_descriptor(algorithm,monkey
     import ibme.ibs.certified.registration as registration
     def forbidden(*args,**kwargs):pytest.fail("descriptor starts native engine")
     monkeypatch.setattr(registration,"Falcon",forbidden)
+    monkeypatch.setattr(registration,"ordinary",lambda params:object())
     params=CertifiedIBSParams(base_algorithm=algorithm)
     assert CertifiedIBSParams.from_bytes(params.to_bytes())==params
     profile=PROFILES[algorithm]
@@ -44,7 +45,7 @@ def test_portable_discriminated_objects_and_explicit_descriptor(algorithm,monkey
     with pytest.raises(InvalidParameterError):spec.validate_configuration(CertifiedIBSParams(),{})
     assert registration.signature_size(params,"reference")>2*PROFILES[algorithm].signature_bytes
     for change in (dict(base_algorithm="falcon-512"),dict(base_algorithm="fn-dsa-512"),
-                   dict(backend_admitted=True),dict(security_claim="NIST-5")):
+                   dict(backend_admitted=False),dict(security_claim="NIST-5")):
         with pytest.raises(InvalidParameterError):replace(params,**change)
     values=json.loads(params.to_bytes());del values["base_algorithm"]
     with pytest.raises(SerializationError):CertifiedIBSParams.from_bytes(json.dumps(values).encode())

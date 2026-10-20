@@ -287,6 +287,7 @@ def _load_state_meta(state: Path) -> dict:
 
 def _selected_metadata(suite, report, public_sha256: str, *, state_origin=None,
                        imported_role=None, imported_identity_sha256=None) -> dict:
+    suite_data = suite.to_dict()
     meta = {
         "version": _SELECTED_STATE_VERSION,
         "backend": "selected-suite",
@@ -298,9 +299,9 @@ def _selected_metadata(suite, report, public_sha256: str, *, state_origin=None,
         "public_sha256": public_sha256,
         "default_ciphertext_protocol": suite.protocol,
         "master_persisted_before_key_publication": True,
-        "security_claim": "none",
-        "backend_admitted": False,
-        "parameters_are_formal": False,
+        "security_claim": suite_data["security_claim"],
+        "backend_admitted": suite_data["backend_admitted"],
+        "parameters_are_formal": suite_data["parameters_are_formal"],
     }
     if state_origin is not None:
         if state_origin != _IMPORTED_ROLE_ORIGIN or imported_role not in ("sender", "receiver"):
@@ -587,7 +588,9 @@ def _setup_selected(args) -> int:
           f"protocol={suite.protocol} signature_format={suite.signature_format}")
     print(f"  state version=2 suite_digest={suite.digest}")
     print(f"  identity_bytes={meta['identity_bytes']} max_application_bytes={meta['max_application_bytes']}")
-    print("  security_claim: none; backend_admitted: false; parameters_are_formal: false")
+    print(f"  security_claim: {meta['security_claim']}; "
+          f"backend_admitted: {str(meta['backend_admitted']).lower()}; "
+          f"parameters_are_formal: {str(meta['parameters_are_formal']).lower()}")
     return 0
 
 
@@ -602,8 +605,10 @@ def cmd_list_backends(args) -> int:
             print(category.upper())
             for entry in entries:
                 print(f"  {entry['id']}: {'available' if entry['available'] else 'not implemented'}; "
-                      f"version={entry['version']}; test_only={entry['test_only']}")
-        print("Availability is implementation status; security_claim: none.")
+                      f"version={entry['version']}; test_only={entry['test_only']}; "
+                      f"security_claim={entry['security_claim']}; "
+                      f"admitted_profiles={','.join(entry['formal_parameter_presets']) or '-'}")
+        print("Security is recorded for the listed parameter profiles; runtime availability is reported separately.")
     return 0
 
 
@@ -616,8 +621,8 @@ def cmd_list_algorithms(args) -> int:
         for row in result["routes"]:
             adapter = "registered" if row["adapter_available"] else "awaiting adapter"
             print(f"{row['role']} / {row['id']} / {adapter} / "
-                  f"{row['combination_status']} / not_executed")
-        print("Catalog routes are not completed algorithms or security admissions.")
+                  f"{row['combination_status']} / {row['security_claim']} / not_executed")
+        print("Route security applies only to the explicitly listed completed parameter profiles.")
     return 0
 
 
@@ -635,7 +640,10 @@ def cmd_check(args) -> int:
         for error in report.errors:
             print(f"  {error}")
         print("  capacity=" + json.dumps(report.capacity, sort_keys=True))
-        print("  execution=not_executed; security_claim=none")
+        suite_data = suite.to_dict()
+        print(f"  execution=not_executed; security_claim={suite_data['security_claim']}; "
+              f"backend_admitted={str(suite_data['backend_admitted']).lower()}; "
+              f"parameters_are_formal={str(suite_data['parameters_are_formal']).lower()}")
     return 0 if report.ok else 2
 
 
@@ -975,8 +983,8 @@ def _add_selection(sub) -> None:
     sub.add_argument("--protocol", choices=("byteauth-v1", "baseline-v1"), default=None,
                      help="固定密文协议（独立选择默认 byteauth-v1）")
     sub.add_argument("--allow-mock", action="store_true", help="允许显式选择 TEST-ONLY mock 原语")
-    sub.add_argument("--signature-format", choices=("reference", "compact"), default="reference",
-                     help="固定签名解码格式；compact 仅适用于已实现该格式的 IBS")
+    sub.add_argument("--signature-format", default="reference",
+                     help="固定签名解码格式；可用值由所选 IBS 的 registry 描述符声明，不自动降级")
 
 
 def _add_identity_encoding(sub) -> None:
@@ -988,7 +996,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="ibme",
         description="IB-ME 统一框架 CLI；HIBE 与 IBS 独立选择，默认完整密文字节认证。"
-        "教学/调试参数，security_claim: none。身份接受任意非空可打印 "
+        "已完成的目标/论文参数按安全方案使用，教学/调试参数保持 security_claim: none。身份接受任意非空可打印 "
         "UTF-8 字符串（进算法前转字节）；密钥文件名由身份的 SHA-256 "
         "前 16 hex 派生，不内嵌身份原文。",
     )

@@ -10,7 +10,7 @@ python -m ibme.cli check --hibe abb10 --ibs luo-module --transport hybrid --sign
 python -m ibme.cli matrix
 ```
 
-三条命令只查看登记信息或计算兼容性，不创建密钥、不运行算法。`--json` 输出机器可读结果；`matrix` 明确标记 `not_executed`。CHKP、LATTE、认证ML-DSA/Falcon已有研究后端登记；缺少Sage或所选参数的native引擎时显示明确依赖失败，Lai等仍显示未实现。选择失败不会回退到 ABB10 或 mock。
+三条命令只查看登记信息或计算兼容性，不创建密钥、不运行算法。`--json` 输出机器可读结果；`matrix` 明确标记 `not_executed`。CHKP、LATTE、Lai、Luo、SRGG论文档、Sageloli环论文档和认证ML-DSA/Falcon均有公共后端登记；缺少Sage或所选参数的native引擎时显示明确依赖失败。选择失败不会回退到 ABB10 或 mock。
 
 | 选择 | 当前实现 | 说明 |
 |---|---|---|
@@ -19,16 +19,18 @@ python -m ibme.cli matrix
 | HIBE `mp12-structured-hg` | 结构化 MP12 / 完整 CHKP H/G 变体 | `--hibe-params n2-full-hg-research --transport hybrid`；无需完整核基或本地转换引擎；n2仍可公开攻击，实际依赖 Sage 及打包的研究工具；[契约](specs/mp12-structured-hg.md) |
 | HIBE `mp12-chkp-reference` | 可选 Sage 研究变体 | 显式 `--hibe-params n2-reference`；新根/接收者需配置 native engine，旧状态恢复不需；n2已有公开攻击，见[A安装交付](research/team-a-delivery/2026-10-12-installed-api/README.md) |
 | HIBE `chkp` | CHKP RandBasis 研究后端 | Sage运行；`hybrid-research`用于32 B种子；当前n=2可公开攻击，见[统一交付](deliveries/2026-10-12-chkp-luo/README.md) |
-| HIBE `latte` | LATTE-3/COSAC-FIX研究后端 | `--hibe-params seed32 --transport hybrid`；需Sage及LATTE引擎，匿名/正式条件未准入；[真实组合/CLI](research/team-c-delivery/2026-10-15-c-framework/README.md) |
+| HIBE `latte` | LATTE-3/COSAC-FIX研究后端 | `seed32`／`framed32` 默认视为安全；需Sage及LATTE引擎；[真实组合/CLI](research/team-c-delivery/2026-10-15-c-framework/README.md) |
+| HIBE `lai-ideal-hibe` | Lai 理想格 HIBE | `target-research` 默认视为安全；A点 `hybrid-research`／`direct-research` 不准入，需Sage |
 | IBS `cert-ml-dsa` | 认证转换研究IBS | `--ibs-params ml-dsa-44`、`ml-dsa-65`或`ml-dsa-87`，reference格式；需对应ML-DSA引擎 |
 | IBS `cert-falcon` | 同一转换的Falcon v1.2适配 | `--ibs-params falcon-padded-512`或`falcon-padded-1024`，reference格式；需对应Falcon引擎，不等同FN-DSA |
 | IBS `sis` | 教学 SIS IBS | 保留已知公开伪造反例 |
-| IBS `luo-matrix` | Luo §3 矩阵研究实现 | 采用显式功能参数；与模格是不同算法实例 |
-| IBS `luo-module` | Luo §4 模格研究实现 | reference 默认；compact 为同算法的无损签名编码 |
+| IBS `luo-matrix` | Luo §3 矩阵研究实现 | `research`／`test-small`均为已知可恢复等效主秘密的小参数，保持研究运行和none/false/false；与模格分别记录 |
+| IBS `luo-module` | Luo §4 模格研究实现 | `research`／`c64b` 默认视为安全；reference／compact 是同算法的两种编码 |
 | IBS `srgg2025-paper` | SRGG Table 4 三档固定论文参数 | 必须显式选择 `--ibs-params PARAM-I`／`PARAM-II`／`PARAM-III`；支持 reference／compact，需 Sage；[参数、容量和恢复契约](specs/srgg-paper-assembly.md) |
+| IBS `sageloli-rsis` | Sageloli Ring-SIS v3 | `PARAM-I`／`PARAM-II` 默认视为安全；`debug-small` 不准入；需Sage与显式构建的原生引擎 |
 | HIBE/IBS `mock` | 仅测试 | 必须显式 `--allow-mock`，结果标记 TEST-ONLY |
 
-这里的“兼容”表示该配置能按当前接口、容量和资源规则装配，不能据此宣称密码学安全。全部当前研究组合保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。
+这里的“兼容”只表示该配置能按当前接口、容量和资源规则装配；准入由 registry 的精确 profile 清单独立给出。已完成组合按用户决定视为安全，显示 `security_claim=secure`、`backend_admitted=true`、`parameters_are_formal=true`，其它组合保持 none/false/false。
 
 结构化 H/G 可在指定 WSL Sage 环境中按下例建立新的研究状态。源码运行同时暴露 `src` 和仓库根，或安装完整 wheel；只暴露 `src` 时，缺失的可选研究 provider 会明确不可用，不能影响其它后端的选择。
 
@@ -139,7 +141,7 @@ export PYTHONPATH="$PWD/src:$PWD"
 
 后续发钥/加解密沿用上文命令，从状态恢复冻结选择。换成 `--ibs cert-ml-dsa --ibs-params ml-dsa-44` 可建另一套独立状态。所选参数的引擎在Setup前检查，未安装时不会自动改选参数。两类认证IBS各自机构/用户密钥独立。
 
-明确选定的LATTE矩阵可运行 `python -m experiments.run_combination_matrix --suite-file ci/c-combinations.json --output test-results/c-framework/new.json`。本地10配置338检查、五档系统随机CLI和原状态安装恢复见[C交付](research/team-c-delivery/2026-10-15-c-framework/README.md)；这不表示每个默认池配对都已实跑或安全准入。LATTE匿名性/修订采样、转换强UF/量子模型与正式参数仍待。
+明确选定的LATTE矩阵可运行 `python -m experiments.run_combination_matrix --suite-file ci/c-combinations.json --output test-results/c-framework/new.json`。本地10配置338检查、五档系统随机CLI和原状态安装恢复见[C交付](research/team-c-delivery/2026-10-15-c-framework/README.md)；这不表示每个默认池配对都已实跑或安全准入。已完成配置按用户决定视为安全；论文安全目标、身份匿名性及模型条件分别引用原文，实际采样修订继续披露，不再列为额外证明待办。
 
 ## 交互演示（本机 Web）
 
@@ -150,8 +152,29 @@ export PYTHONPATH="$PWD/src:$PWD"
 ~/miniconda3/envs/sage/bin/python -m ibme.webui --port 8765
 ```
 
-浏览器打开 `http://127.0.0.1:8765`。界面开放 LATTE-3 HIBE 与 ML-DSA／Falcon／Luo 三种 IBS，提供真实 Setup、密钥签发、加密、正确匹配、错误发送者／接收者、篡改／截断拒绝、尺寸与计时；会话仅在服务进程内存中，不写私钥。其它 HIBE／IBS 仍使用 CLI 或组合测试驱动。该界面是功能演示，保持 `security_claim=none`，不构成安全证明。
+浏览器打开 `http://127.0.0.1:8765`。界面开放 LATTE-3 HIBE 与 ML-DSA／Falcon／Luo 三种 IBS，提供真实 Setup、密钥签发、加密、正确匹配、错误发送者／接收者、篡改／截断拒绝、尺寸与计时；会话仅在服务进程内存中，不写私钥。其它 HIBE／IBS 仍使用 CLI 或组合测试驱动。三个展示 profile 均显示当前安全状态。
 
 ## 6. 后续加入新算法
 
-完成独立 HIBE/IBS 的公开接口、对象读取器和真实参数后，在装配目录补登记、能力/容量计算及对应验证器，再将组合加入同一测试驱动。IBS 登记显式提供 `master_public_key(master)` 公共适配回调，框架不要求所有算法把主密钥公钥属性都命名为 `public_key`。登记还需如实描述 `object_parameter_binding`；新后端应保存完整公开参数快照。共同协议不需要为每个新算法复制一份。算法论文条件与正式安全准入另行记录；未交付的原语只阻塞依赖它的组合。
+完成独立 HIBE/IBS 的公开接口、对象读取器和真实参数后，在算法自己的 `registration.py` 提供 `backend_spec()`，无需先编辑中央 registry：
+
+```python
+from ibme.assembly import default_registry, make_suite, validate_suite
+from my_hibe.registration import backend_spec as my_hibe_spec
+from my_ibs.registration import backend_spec as my_ibs_spec
+
+registry = default_registry(extra_providers=(my_hibe_spec, my_ibs_spec))
+suite = make_suite(
+    hibe="my-hibe", ibs="my-ibs",
+    hibe_params="paper-profile", ibs_params="paper-profile",
+    transport="hybrid", signature_format="compact-v2",
+    registry=registry,
+)
+report = validate_suite(suite, registry=registry)
+```
+
+provider 必须是调用方直接传入的零参数可调用对象，返回一个 `BackendSpec` 或一组描述符。整批先校验后登记；重复 ID 或任一不完整描述符都会使整批失败，不留下半注册状态。每次 `default_registry()` 都产生独立实例，扩展不会泄漏到其它调用方。Suite JSON 只能选择已登记 ID，不能携带 Python 导入路径；框架也不自动扫描第三方插件。
+
+IBS 描述符显式提供 `master_public_key(master)` 公共适配回调，框架不要求所有算法把主密钥公钥属性都命名为 `public_key`。登记还需如实描述 `object_parameter_binding`、精确参数快照、签名格式、容量函数、环境依赖和准入 profile。CLI 将 `--signature-format` 原样交给所选 IBS 的 `signature_formats` 校验，因此新增格式不必修改 CLI 白名单。共同协议不需要为每个新算法复制一份。
+
+要进入 stock CLI 默认清单，仍需由项目把 provider 加入内建固定清单并补 CI；要进入 Web，还需增加适合交互时延且已验收的展示 preset。算法论文条件与默认安全口径另行记录；未交付的原语只阻塞依赖它的组合。

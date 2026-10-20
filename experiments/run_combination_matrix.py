@@ -108,7 +108,11 @@ def plan_case(name, options, *, registry=None):
             result["status"] = "unavailable"
         config = make_suite(**options, registry=registry)
         preflight = validate_suite(config, registry=registry)
-        result.update(suite=config.to_dict(), suite_digest=config.digest, preflight=preflight.to_dict())
+        suite=config.to_dict()
+        result.update(suite=suite, suite_digest=config.digest, preflight=preflight.to_dict(),
+                      security_claim=suite["security_claim"],
+                      backend_admitted=suite["backend_admitted"],
+                      parameters_are_formal=suite["parameters_are_formal"])
         # The negative checks need a different message within the input budget.
         result["acceptance_errors"] = (["acceptance checks require at least one application byte"]
                                        if preflight.ok and preflight.capacity["max_application_bytes"] < 1 else [])
@@ -349,6 +353,10 @@ def summarize(results):
     complete = (bool(results) and counts["pass"] == len(results)
                 and len(executed) == len(results)
                 and all(item.get("executed_checks", 0) > 0 for item in executed))
+    claims={item.get("security_claim","none") for item in results}
+    claim=(next(iter(claims)) if len(claims)==1 else "mixed") if results else "none"
+    admitted=bool(results) and all(item.get("backend_admitted") is True for item in results)
+    formal=bool(results) and all(item.get("parameters_are_formal") is True for item in results)
     return dict(schema="ibme-combination-run-v1", status="pass" if complete else "incomplete",
                 counts=counts, executed_checks=sum(item.get("executed_checks", 0) for item in executed),
                 executed_cases=len(executed), security_proof_count=0,
@@ -356,9 +364,9 @@ def summarize(results):
                     checks=sum(item.get("executed_checks", 0) for item in executed if item.get("classification") == kind))
                     for kind in ("test_only", "research")},
                 environment=dict(python=sys.version.split()[0], platform=platform.platform()),
-                security_claim="none", backend_admitted=False, parameters_are_formal=False,
+                security_claim=claim, backend_admitted=admitted, parameters_are_formal=formal,
                 limitations=["Functional checks do not establish security.",
-                             "Research classification excludes mock; it does not certify parameters or security.",
+                             "Project admission is explicit registry metadata; this runner never grants it from a passing test.",
                              "Preset/format/transport variants are not distinct primitive algorithms.",
                              "Random signature rejection is a bounded negative input check.",
                              "No unavailable backend is substituted; dependency/policy gates remain in force.",

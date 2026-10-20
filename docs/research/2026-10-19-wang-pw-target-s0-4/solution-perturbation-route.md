@@ -1,6 +1,8 @@
 # Wang–PW target 签名路线：扰动采样（MP12 SampleD）完整方案
 
-日期：2026-10-20。状态：**方案设计（尚未实施）**。适用对象：`wang-pw-target`（n=512, q=4294967291, s0=4）。
+本项目暂按约115位量子安全的工作假设开展实现与比较；当前配置的具体攻击成本尚未复核。
+
+日期：2026-10-20。状态：**实现及修订记录；最新范围见 PUBLICATION_zh-CN.md**。适用对象：`wang-pw-target`（n=512, q=4294967291, s0=4）。
 本文件不改变既有参数、不写安全结论；`security_claim=none`、`parameters_are_formal=false`、`backend_admitted=false` 不变。
 
 ## 0 结论先说

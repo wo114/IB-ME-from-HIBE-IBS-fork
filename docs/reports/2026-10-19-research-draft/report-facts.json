@@ -11,7 +11,144 @@
   "source_sha256": {
     "docs/research/2026-10-18-full-system-luo/evidence/comparison.json": "00673cda58d83eb066201dda24c837628382f5e519fd934a7daafdec521721c8",
     "docs/deliveries/2026-10-18-main-showcase-cards/evidence/cards.json": "970c5303f5d8a7e73cbbfaee8dd50a3c3186f83b5c40062a32a68c4d682edcd6",
-    "docs/research/2026-10-19-full-system-placement/evidence/placement.json": "6ca629f694358a985241025f6a947ef2bd039e2bf60c7585942ac1d71913e6e6"
+    "docs/research/2026-10-19-full-system-placement/evidence/placement.json": "6ca629f694358a985241025f6a947ef2bd039e2bf60c7585942ac1d71913e6e6",
+    "docs/research/2026-10-19-parameters/fooli-improvement-search.json": "59e5f5b7df36feda0af467dd2a2e3e101abd93a7f31df6d10388b41edbf28938"
+  },
+  "fooli": {
+    "selection": "q=2**127-1, g=16; minimum m_bar in each declared n",
+    "source_schema_version": 2,
+    "selected": [
+      {
+        "q": 170141183460469231731687303715884105727,
+        "n": 1024,
+        "k": 127,
+        "g": 16,
+        "m_bar": 130064,
+        "w": 130048,
+        "m": 260112,
+        "d": 390160,
+        "bits": 160,
+        "r_squared": 57,
+        "master_quality_squared": 270633009152,
+        "user_quality_squared": 3652731317263919776284672,
+        "s_squared": 107982570652047,
+        "t_squared": 1457439795588303990737584527,
+        "beta_red_squared": "8308279262650510991776781671171099841249973682870601749440",
+        "analytic_prescreen_pass": true,
+        "failed_checks": [],
+        "backend_gates_pass": false,
+        "failed_gates": [
+          "q_cap",
+          "n_cap",
+          "m_bar_cap",
+          "dimension_cap",
+          "quality_caps",
+          "width_caps",
+          "sigma_cap"
+        ],
+        "lll_bound_excludes": false,
+        "core_svp_classical_bits": 15.18,
+        "core_svp_quantum_bits": 13.78,
+        "core_svp_cost_status": "bracketed",
+        "core_svp_attack_blocksize": 53,
+        "core_svp_attack_dimension": 2762,
+        "public_matrix_kib": 4129278.0,
+        "stage": "below_128_bits"
+      },
+      {
+        "q": 170141183460469231731687303715884105727,
+        "n": 2048,
+        "k": 127,
+        "g": 16,
+        "m_bar": 260112,
+        "w": 260096,
+        "m": 520208,
+        "d": 780304,
+        "bits": 160,
+        "r_squared": 57,
+        "master_quality_squared": 1082465452032,
+        "user_quality_squared": 58438308927480728099782656,
+        "s_squared": 431903715361167,
+        "t_squared": 23316885262064810511813280143,
+        "beta_red_squared": "4252966874616549535145782018316149287812834520998922965140416",
+        "analytic_prescreen_pass": true,
+        "failed_checks": [],
+        "backend_gates_pass": false,
+        "failed_gates": [
+          "q_cap",
+          "n_cap",
+          "m_bar_cap",
+          "dimension_cap",
+          "quality_caps",
+          "width_caps",
+          "sigma_cap"
+        ],
+        "lll_bound_excludes": false,
+        "core_svp_classical_bits": 51.39,
+        "core_svp_quantum_bits": 46.64,
+        "core_svp_cost_status": "bracketed",
+        "core_svp_attack_blocksize": 177,
+        "core_svp_attack_dimension": 5171,
+        "public_matrix_kib": 16516604.0,
+        "stage": "below_128_bits"
+      },
+      {
+        "q": 170141183460469231731687303715884105727,
+        "n": 4096,
+        "k": 127,
+        "g": 16,
+        "m_bar": 520208,
+        "w": 520192,
+        "m": 1040400,
+        "d": 1560592,
+        "bits": 160,
+        "r_squared": 58,
+        "master_quality_squared": 4329728638976,
+        "user_quality_squared": 951372786046904442018201600,
+        "s_squared": 1757869827424662,
+        "t_squared": 386257351135043203459389850006,
+        "beta_red_squared": "2293912509596007531680838849096589119240108464361456185394587008",
+        "analytic_prescreen_pass": true,
+        "failed_checks": [],
+        "backend_gates_pass": false,
+        "failed_gates": [
+          "q_cap",
+          "n_cap",
+          "m_bar_cap",
+          "dimension_cap",
+          "quality_caps",
+          "width_caps",
+          "sigma_cap"
+        ],
+        "lll_bound_excludes": false,
+        "core_svp_classical_bits": 129.94,
+        "core_svp_quantum_bits": 117.93,
+        "core_svp_cost_status": "bracketed",
+        "core_svp_attack_blocksize": 446,
+        "core_svp_attack_dimension": 9894,
+        "public_matrix_kib": 66065400.0,
+        "stage": "target"
+      }
+    ],
+    "in_gate_search": {
+      "k_n_width_probes": 621,
+      "windows_found": 0,
+      "exact_screens": 0
+    },
+    "core_svp_model": {
+      "delta_exponent": "1/(2*(b-1))",
+      "reference": "https://github.com/malb/lattice-estimator/blob/e4333d9bf9ef42fd8a29651b0c559fba7ce0d834/estimator/reduction.py#L72",
+      "blocksize_search": [
+        53,
+        1200
+      ],
+      "cost_rates_times_b_minus_1": [
+        0.292,
+        0.265
+      ],
+      "unbracketed_cost": "null; excluded from target selection",
+      "estimator_package_executed": false
+    }
   },
   "profiles": [
     {

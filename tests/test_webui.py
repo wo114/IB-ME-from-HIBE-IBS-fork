@@ -6,6 +6,7 @@ exercised in the WSL Sage environment by the demo itself.
 """
 import pytest
 import json
+import copy
 from types import SimpleNamespace
 from pathlib import Path
 
@@ -38,7 +39,15 @@ def test_demo_presets_match_published_showcase_suites(preset_id):
     expected = next(c["suite"] for c in cards if c["suite"]["ibs"] == preset["ibs"])
     # A displayed preset must select the published configuration even if the
     # registry's general default later changes (Falcon defaults to 1024).
-    assert server._make_config(preset).to_dict() == expected
+    current=server._make_config(preset).to_dict()
+    policy=("security_claim","backend_admitted","parameters_are_formal")
+    left,right=copy.deepcopy(current),copy.deepcopy(expected)
+    for record in (left,right):
+        for key in policy:record.pop(key)
+        for key in policy:record["ibs_params"].pop(key,None)
+    assert left==right
+    assert (current["security_claim"],current["backend_admitted"],
+            current["parameters_are_formal"]) == ("secure",True,True)
 
 
 def test_identity_validation_uses_utf8_length_and_rejects_controls():
@@ -68,9 +77,9 @@ def test_no_session_state_is_inactive_and_keeps_security_flags():
     server.api_reset()
     state = server.api_state()
     assert state["active"] is False
-    assert state["security"]["claim"] == "none"
-    assert state["security"]["backend_admitted"] is False
-    assert state["security"]["parameters_are_formal"] is False
+    assert state["security"]["claim"] == "secure"
+    assert state["security"]["backend_admitted"] is True
+    assert state["security"]["parameters_are_formal"] is True
 
 
 @pytest.fixture
@@ -146,3 +155,31 @@ def test_export_without_session_is_rejected(monkeypatch):
     monkeypatch.setattr(server, "_SESSION", None)
     with pytest.raises(server.DemoError):
         server.api_export()
+
+
+@pytest.mark.parametrize("preset_id,filename", [
+    ("primary", "A-latte-mldsa44.json"),
+    ("srgg", "B-latte-srgg-I-compact.json"),
+    ("ring", "C-lai-c2-sageloli-I.json"),
+])
+def test_report_presets_select_exact_frozen_suites(preset_id, filename):
+    path = Path(__file__).resolve().parents[1] / (
+        "docs/deliveries/2026-10-19-report-three-selection/suites"
+    ) / filename
+    expected = json.loads(path.read_text(encoding="utf-8"))
+    assert server._make_config({"preset": preset_id}).to_dict() == expected
+
+
+def test_preset_cannot_silently_accept_a_conflicting_algorithm():
+    with pytest.raises(server.DemoError, match="配置"):
+        server._make_config({"preset": "srgg", "ibs": "cert-falcon"})
+    with pytest.raises(server.DemoError):
+        server._make_config({"preset": "unregistered"})
+
+
+def test_main_presets_are_the_report_three_and_extras_remain_available():
+    main = [p["id"] for p in server.PRESETS if p.get("group") == "main"]
+    assert main == ["primary", "srgg", "ring"]
+    assert {p["id"] for p in server.PRESETS if p.get("group") == "extra"} == {
+        "compact", "native"
+    }

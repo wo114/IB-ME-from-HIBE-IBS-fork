@@ -1,5 +1,7 @@
 # Wang–PW s0=4 monitored lifecycle
 
+**2026-10-20 用户确认的比较口径：** 本项目暂按约115位量子安全的工作假设开展实现与比较；当前配置的具体攻击成本尚未复核。
+
 This directory contains a real research implementation driver. It calls the
 new `ibme.ibs.wang_pw_target.Backend` and compact canonical objects, not the
 isolated PR67 random-target equation probe. Setup root Gaussian sampling and

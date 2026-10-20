@@ -1,7 +1,8 @@
 """The nineteen literature routes, distinct from executable backend variants.
 
-This module never imports an algorithm, reads randomness, or grants security
-admission. Backend readiness is obtained from the caller's registry.
+This module never imports an algorithm or reads randomness.  It reports the
+coordinator-owned security of completed profiles already attached to registry descriptors;
+it does not infer admission from availability or test execution.
 """
 from dataclasses import dataclass
 
@@ -50,14 +51,23 @@ def algorithm_catalog(*, registry=None):
     for route in ROUTES:
         entries = [registered[name, route.role] for name in route.backends
                    if (name, route.role) in registered]
+        admitted = [entry for entry in entries if entry["backend_admitted"]]
         rows.append(dict(
             id=route.id, role=route.role, backend_ids=list(route.backends),
             registered_backends=entries,
             adapter_available=any(s["available"] for s in entries),
             runtime_available=any(s["available"] and s["runtime_available"] for s in entries),
             combination_status="awaiting_selected_combination_acceptance",
-            execution="not_executed", security_claim="none",
+            execution="not_executed",
+            security_claim="secure" if admitted else "none",
+            backend_admitted=bool(admitted),
+            admitted_backends=[entry["id"] for entry in admitted],
+            formal_parameter_presets={entry["id"]:entry["formal_parameter_presets"]
+                                      for entry in admitted},
         ))
     return dict(kind="algorithm_route_catalog", counts={
         role: sum(row["role"] == role for row in rows) for role in ("hibe", "ibs")
-    }, routes=rows, execution="not_executed", security_claim="none")
+    }, admitted_counts={
+        role: sum(row["role"] == role and row["backend_admitted"] for row in rows)
+        for role in ("hibe", "ibs")
+    }, routes=rows, execution="not_executed", security_claim="per-route")

@@ -1,6 +1,8 @@
 """Explicit backend records. Registration is executable code, never JSON imports.
 
-Descriptors describe engineering capabilities, not admitted security properties.
+Descriptors carry both engineering capabilities and the security status of
+completed profiles. A completed backend does not promote its teaching, debug,
+or known-negative-control presets.
 Parameter and object checks belong here, outside the shared Wang protocol.
 """
 from dataclasses import dataclass, fields, replace
@@ -8,6 +10,7 @@ import importlib.util
 import math
 
 from ibme.core.errors import InvalidParameterError, SerializationError
+from ibme.core.security import COMPLETED_SECURITY_CLAIM
 from ibme.lattice.params import Params
 from ibme.lattice.gadget import gadget_width
 
@@ -44,6 +47,14 @@ class BackendSpec:
     default_preset: object = None
     validate_configuration: object = None
     validate_environment: object = None
+    # Completed profiles are treated as secure by the user's explicit decision.
+    # The named presets are immutable completed parameter snapshots; they
+    # do not include teaching/debug/attack-control profiles merely because the
+    # implementation that hosts them is complete.
+    security_claim: str = "none"
+    backend_admitted: bool = False
+    formal_parameter_presets: tuple = ()
+    admission_basis: str = ""
 
     def parse_params(self, values):
         if not self.available:
@@ -60,21 +71,44 @@ class BackendSpec:
 
 
 class BackendRegistry:
-    """A caller-owned registry; duplicates fail instead of replacing code silently."""
+    """A caller-owned registry; duplicates fail instead of replacing code silently.
+
+    New adapters can remain in their algorithm package and expose an explicit
+    zero-argument provider returning one ``BackendSpec`` or an iterable of
+    specs.  Providers are invoked only when Python code passes them to
+    :meth:`register_provider`; suite JSON can never name or import one.
+    """
     def __init__(self, specs=()):
         self._specs = {}
-        for spec in specs:
-            self.register(spec)
+        self.register_many(specs)
 
     def register(self, spec):
+        self.register_many((spec,))
+
+    @staticmethod
+    def _register_into(spec, records):
         if not isinstance(spec, BackendSpec) or spec.role not in ("hibe", "ibs"):
             raise InvalidParameterError("invalid backend descriptor")
-        if not spec.id or not spec.version or (spec.role, spec.id) in self._specs:
+        if not spec.id or not spec.version or (spec.role, spec.id) in records:
             raise InvalidParameterError("duplicate/empty backend identifier or version")
         if any(type(value) is not bool for value in
                (spec.available, spec.test_only, spec.two_level, spec.key_binding,
-                spec.persistent_identity_cache)):
+                spec.persistent_identity_cache, spec.backend_admitted)):
             raise InvalidParameterError("backend availability/capability flags must be explicit booleans")
+        if (type(spec.security_claim) is not str or not spec.security_claim
+                or type(spec.formal_parameter_presets) is not tuple
+                or any(type(name) is not str for name in spec.formal_parameter_presets)
+                or type(spec.admission_basis) is not str):
+            raise InvalidParameterError("backend admission metadata must be explicit and immutable")
+        if spec.backend_admitted:
+            if (not spec.available or spec.test_only or spec.security_claim != COMPLETED_SECURITY_CLAIM
+                    or not spec.formal_parameter_presets or not spec.admission_basis
+                    or not spec.presets
+                    or not set(spec.formal_parameter_presets) <= set(spec.presets)):
+                raise InvalidParameterError("admitted backend requires available non-test declared profiles and basis")
+        elif (spec.security_claim != "none" or spec.formal_parameter_presets
+              or spec.admission_basis):
+            raise InvalidParameterError("unadmitted backend cannot publish admission metadata")
         if any(hook is not None and not callable(hook) for hook in
                (spec.default_preset, spec.validate_configuration, spec.validate_environment)):
             raise InvalidParameterError("backend policy/dependency hooks must be callable")
@@ -88,7 +122,44 @@ class BackendRegistry:
                                                or not callable(spec.master_public_key)))
                     or (spec.role == "hibe" and not callable(spec.ciphertext_size))):
                 raise InvalidParameterError("incomplete runnable backend descriptor")
-        self._specs[spec.role, spec.id] = spec
+        records[spec.role, spec.id] = spec
+
+    def register_many(self, specs):
+        """Atomically add an explicit batch of descriptors.
+
+        A malformed or duplicate item leaves this registry unchanged.  This is
+        useful for providers that publish a related HIBE/IBS family: callers do
+        not end up with half a provider after a validation error.
+        """
+        if isinstance(specs, BackendSpec):
+            batch = (specs,)
+        else:
+            try:
+                batch = tuple(specs)
+            except TypeError as exc:
+                raise InvalidParameterError("backend descriptor batch must be iterable") from exc
+        records = dict(self._specs)
+        for spec in batch:
+            self._register_into(spec, records)
+        self._specs = records
+
+    def register_provider(self, provider):
+        """Invoke one caller-selected provider and atomically register its specs."""
+        if not callable(provider):
+            raise InvalidParameterError("backend provider must be callable")
+        supplied = provider()
+        if isinstance(supplied, BackendSpec):
+            batch = (supplied,)
+        else:
+            try:
+                batch = tuple(supplied)
+            except TypeError as exc:
+                raise InvalidParameterError(
+                    "backend provider must return a BackendSpec or iterable of BackendSpec"
+                ) from exc
+        if not batch:
+            raise InvalidParameterError("backend provider returned no descriptors")
+        self.register_many(batch)
 
     def get(self, role, identifier):
         try:
@@ -100,6 +171,10 @@ class BackendRegistry:
         return {role: [dict(id=s.id, version=s.version, available=s.available,
                            test_only=s.test_only, reason=s.reason,
                            parameter_presets=sorted(s.presets or {}),
+                           security_claim=s.security_claim,
+                           backend_admitted=s.backend_admitted,
+                           formal_parameter_presets=list(s.formal_parameter_presets),
+                           admission_basis=s.admission_basis,
                            signature_formats=list(s.signature_formats),
                            two_level=s.two_level, key_binding=s.key_binding,
                            object_parameter_binding=s.object_parameter_binding,
@@ -401,6 +476,7 @@ def _portable_specs():
     from ibme.ibs.luo import LuoIBSBackend, LuoMatrixParams, LuoPublicKey, LuoMasterSecret, LuoSigningKey
     from ibme.ibs.luo_module import LuoModuleIBSBackend, LuoModuleParams, LuoModulePublicKey, LuoModuleMasterSecret, LuoModuleSigningKey
     from ibme.ibs.luo_module_codec import LuoModuleCompactIBSBackend
+    from ibme.ibs.luo_module_profiles import c64b_params
     from ibme.protocol.byteauth import BYTEAUTH_DEBUG_PARAMS
     from ibme.protocol.baseline import BASELINE_MOCK_PARAMS
 
@@ -453,16 +529,21 @@ def _portable_specs():
         BackendSpec("luo-matrix", "ibs", "luo-matrix-ref1", LuoMatrixParams,
                     {"research":matrix,"test-small":replace(LuoMatrixParams(),identity_max_bytes=64,message_max_bytes=4096)},
                     lambda rng,fmt:LuoIBSBackend(rng=rng),ins(LuoPublicKey,LuoMasterSecret,LuoSigningKey),
-                    _luo_check,_matrix_size,persistent_identity_cache=True,reason="functional research parameters; none/false",
+                    _luo_check,_matrix_size,persistent_identity_cache=True,
+                    reason="completed research backend; n4/m8 eta1 presets have published equivalent-master recovery and forgery evidence",
                     object_parameter_binding="full-parameter-snapshot",master_public_key=lambda obj:obj.public_key,
                     default_preset=lambda transport: "research"),
         BackendSpec("luo-module", "ibs", "luo-module-ref1", LuoModuleParams,
-                    {"research":LuoModuleParams(),"test-small":tiny},
+                    {"research":LuoModuleParams(),"c64b":c64b_params(),"test-small":tiny},
                     lambda rng,fmt:(LuoModuleCompactIBSBackend if fmt=="compact" else LuoModuleIBSBackend)(rng=rng),
                     ins(LuoModulePublicKey,LuoModuleMasterSecret,LuoModuleSigningKey),_luo_check,_module_size,
-                    signature_formats=("reference","compact"),persistent_identity_cache=True,reason="research module backend; none/false",
+                    signature_formats=("reference","compact"),persistent_identity_cache=True,
+                    reason="completed Luo module backend; secure research profile",
                     object_parameter_binding="full-parameter-snapshot",master_public_key=lambda obj:obj.public_key,
-                    default_preset=lambda transport: "research"),
+                    default_preset=lambda transport: "research",
+                    security_claim=COMPLETED_SECURITY_CLAIM, backend_admitted=True,
+                    formal_parameter_presets=("research","c64b"),
+                    admission_basis="cited Luo construction plus completed default/C64B compact/reference combination acceptance"),
     ]
     for identifier in ("gkr2025", "zhang2020", "abb-standard-selective", "chkp-standard"):
         specs.append(BackendSpec(identifier,"hibe","unavailable-v1",available=False,reason="public backend not delivered; no mock fallback"))
@@ -479,9 +560,7 @@ def _portable_specs():
     from ibme.ibs.certified.registration import backend_spec as certified_spec, falcon_backend_spec
     # The existing route selector 'latte' names the delivered LATTE-3 engine;
     # its algorithm/wire version remains the explicit COSAC-FIX revision.
-    specs.extend((replace(latte_spec(), id="latte", reason="LATTE-3 research; anonymity/formal mapping pending; none/false"),
-                  replace(certified_spec(), reason="BNN + ML-DSA research; conversion/model admission pending; none/false"),
-                  replace(falcon_backend_spec(), reason="BNN + Falcon v1.2 research; conversion/model admission pending; none/false")))
+    specs.extend((replace(latte_spec(), id="latte"), certified_spec(), falcon_backend_spec()))
     from ibme.hibe.abb_rom.registration import backend_spec as abb_spec
     specs.append(replace(abb_spec(),id="abb-rom"))
     from ibme.hibe.mp12_structured.registration import backend_spec as structured_spec
@@ -489,14 +568,24 @@ def _portable_specs():
     return specs
 
 
-def default_registry():
-    specs = _portable_specs()
+def default_registry(*, extra_specs=(), extra_providers=()):
+    """Build a fresh default registry and apply explicit caller extensions.
+
+    ``extra_specs`` is convenient for tests or one-off adapters.  Production
+    algorithm packages should normally expose a ``backend_spec`` provider and
+    pass it through ``extra_providers``.  Neither path is persisted in suite
+    JSON, and every call returns an independent registry.
+    """
+    registry = BackendRegistry(_portable_specs())
     # Public optional entry, with no Sage import on non-Sage hosts. The caller
     # supplies the private arithmetic executable through an explicit local
     # environment setting; suite JSON cannot specify executables or imports.
     from ibme.hibe.mp12_chkp import default_backend_spec
-    specs.append(default_backend_spec())
-    return BackendRegistry(specs)
+    registry.register_provider(default_backend_spec)
+    registry.register_many(extra_specs)
+    for provider in extra_providers:
+        registry.register_provider(provider)
+    return registry
 
 
 def default_backend_catalog():

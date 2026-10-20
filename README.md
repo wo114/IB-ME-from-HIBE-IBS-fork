@@ -1,62 +1,48 @@
 # IB-ME from HIBE + IBS
 
-一个共享的身份基匹配加密框架，独立实现 HIBE 和 IBS，再装配满足条件的组合。统一使用王老师的两层匿名 HIBE + IBS 通用构造；身份顺序固定为 `(rcv, phi)`。
+一个共享的身份基匹配加密研究框架：独立实现 HIBE 和 IBS，再通过王老师的两层匿名 HIBE＋IBS 通用构造装配。身份顺序固定为 `(rcv, phi)`，复用 Hybrid、BYTEAUTH、CLI、状态恢复和评测工具。
 
 ## 从这里开始
 
-| 要了解什么 | 唯一入口 |
+| 你要做什么 | 入口 |
 |---|---|
-| 当前进度、负责人、外部交付与下一步 | [PROJECT_STATUS](docs/PROJECT_STATUS.md) |
-| CHKP与Luo本轮完成内容、尺寸与证据 | [2026-10-12统一交付README](docs/deliveries/2026-10-12-chkp-luo/README.md) |
-| 模块结构与组合方式 | [ARCHITECTURE](ARCHITECTURE.md) |
-| 公共接口、兼容预检与验收 | [IMPLEMENTATION_SPEC](IMPLEMENTATION_SPEC.md) |
-| 分工、交接与提交 | [三人方案分工](docs/workplans/三人方案分工与统一框架交付.md)、[AGENTS](AGENTS.md)、[AI_WORKFLOW](AI_WORKFLOW.md) |
-| 分别选择 HIBE / IBS、预检和运行 | [框架使用指南](docs/FRAMEWORK_USAGE.md) |
-| 通用构造、公共框架与算法专属适配怎么分 | [其他队员复用说明](docs/FRAMEWORK_REUSE_GUIDE.md) |
-| 交给实现者的任务模板 | [DELEGATION_PROMPTS](DELEGATION_PROMPTS.md) |
-| 算法、代码与论文 | [现行算法总表](docs/ALGORITHM_CATALOG.md)、[论文库](papers/index.md) |
-| 已知漏洞与历史记录 | [安全回归](docs/KNOWN_SECURITY_GAPS.md)、[重建历史](docs/history/PROJECT_RESTART-through-2026-10-10.md) |
+| 看当前完成情况、负责人和剩余工作 | [当前进度](docs/PROJECT_STATUS.md) |
+| 找文档、代码、参数和历史证据 | [仓库与文档导航](docs/README.md) |
+| 选择后端、预检、使用 CLI | [框架使用指南](docs/FRAMEWORK_USAGE.md) |
+| 启动本机演示界面 | [Web 演示说明](src/ibme/webui/README.md) |
+| 看报告选定的三组组合及完整配置 | [三代表与冻结 Suite](docs/deliveries/2026-10-19-report-three-selection/README.md) |
+| 阅读或修改当前报告 | [重写说明](docs/reports/2026-10-20-competition-rewrite/README.md) · [LaTeX](docs/reports/2026-10-20-competition-rewrite/作品设计报告.tex) · [PDF](docs/reports/2026-10-20-competition-rewrite/作品设计报告.pdf) |
+| 参与开发或接入原语 | [架构](ARCHITECTURE.md) · [接口与验收](IMPLEMENTATION_SPEC.md) · [协作流程](AI_WORKFLOW.md) · [仓库规则](AGENTS.md) |
 
-## 框架与当前能力
+## 当前能力与展示范围
 
-```text
-HIBE 模块 ─┐
-           ├─ 组合配置与兼容检查 ─ 共享 IB-ME 协议 ─ CLI / 统一验收与评测
-IBS 模块 ──┘
+公共装配层支持分别选择 HIBE、IBS 和各自参数，发钥前检查版本、能力及容量。LATTE、Lai C2 与多种 IBS 已有真实完整组合记录；ABB-ROM、CHKP 及明确命名的 MP12 变体也保留各自研究后端和实验边界。具体完成情况统一在进度页维护，后端登记和完整组合实跑分别判断。
+
+报告已选定 A＝LATTE＋BNN/ML-DSA-44、B＝LATTE＋SRGG 论文 PARAM-I compact、C＝Lai C2＋Sageloli RSIS v3 PARAM-I。它们用于说明不同实现价值，不能称为三个性能冠军，也不代表三种 HIBE。Web主入口已对齐A/B/C，A/B完成六情形实跑；C本轮只核对配置与环境。Falcon／Luo保留在补充方案。
+
+报告采用 LaTeX→PDF；旧 Markdown、Word、作品报告和 PPT 保留为历史材料。接口接入、研究功能、参数与安全声明分别记录。按项目当前决定，已完成真实实现、参数冻结、公共接入和所需组合验收的精确 profile 使用 `security_claim=secure`、`backend_admitted=true`、`parameters_are_formal=true`；mock、教学参数、公开攻击负控和未交付后端仍为 `none/false/false`。这是一项已完成方案的安全前提，不把完整 IB-ME 冒充外部 NIST 认证；功能测试也不替代安全证明。具体清单见[默认安全口径记录](docs/deliveries/2026-10-19-project-admission/README.md)，已知反例见[安全回归记录](docs/KNOWN_SECURITY_GAPS.md)。
+
+## 运行入口
+
+在仓库的 WSL 路径下，使用项目指定的 Sage 环境查看后端和兼容性：
+
+```sh
+PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.cli list-backends
+PYTHONPATH=src:. ~/miniconda3/envs/sage/bin/python -m ibme.cli check --hibe latte --ibs cert-ml-dsa --transport hybrid
 ```
 
-统一装配已经支持独立选择 HIBE、IBS 及各自参数，并在发钥前检查版本、能力和容量。CLI 提供 `list-backends`、`check`、`matrix` 与独立选择的 `setup`；真实组合测试由共用驱动执行，静态预检与实际结果分别记录。
+本机演示的完整启动、原生依赖构建与运行副本说明见 [Web 演示说明](src/ibme/webui/README.md)。CLI 状态恢复、参数选择和组合测试命令见[框架使用指南](docs/FRAMEWORK_USAGE.md)。
 
-除**教学 ABB10 + Hybrid + Luo 模格 IBS + BYTEAUTH**外，真实CHKP完整基研究后端及其Luo C64B组合已完成本轮功能验收；独立MP12紧凑委派变体的可安装入口同时保留。两个HIBE的小参数均有公开攻击，正式安全组合仍未完成。`security_claim=none`，功能测试不等于安全证明；具体版本、数据和边界见统一交付及当前进度表。Boyen–Li增强隐私不在开发范围。
-
-HIBE/IBS 可以由不同成员同时实现，一项阻塞不暂停其它模块；每个模块通过自己的单体契约后进入对应组合的功能测试。正式安全结论另按论文、参数和组合前提核验。
-
-## 环境与运行入口
-
-Python 项目位于 `src/ibme/`，测试位于 `tests/`，研究原型位于 `experiments/research/`。已配置依赖的环境可先查看：
+## 目录分工
 
 ```text
-python -m ibme.cli list-backends
-python -m ibme.cli check --hibe abb10 --ibs luo-module --transport hybrid --signature-format compact
+src/ibme/       公共装配、协议、原语适配器、CLI 与界面
+experiments/    运行驱动、研究实现与对照实验
+tests/          自动测试与固定向量
+ci/             检查分组与执行入口
+params/         教学参数样例；实际配置还可能在后端及冻结 Suite 中
+docs/           当前进度、契约、报告、交付与历史证据
+papers/         论文及来源清单
 ```
 
-新 CLI 可分别选择原语，也保留旧预设。未安装 editable package 时先设置 PowerShell `$env:PYTHONPATH = 'src'`；完整调用见[使用指南](docs/FRAMEWORK_USAGE.md)。需要 Sage 的研究代码统一使用 WSL 环境 `~/miniconda3/envs/sage`。新的安装或环境变更单独确认。
-
-## 保留的历史参数反例
-
-下面保留已有的 2026-09—10 反例说明。文中的旧交付日期对应历史证据；当前修复与剩余问题以 [PROJECT_STATUS](docs/PROJECT_STATUS.md)及[安全回归](docs/KNOWN_SECURITY_GAPS.md)为准。BYTEAUTH 已处理当前包装的字节篡改目标，旧教学认证反例仍保留。
-
-### 参数自查结论（2026-09，实测）
-
-**在当前教学参数下，方案的两个核心安全性质均不成立。** 以下结论全部由实际运行代码得出，复现脚本见 `experiments/attacks/`，完整记录见 [交接说明与安全发现](docs/交接说明与安全发现.md)。
-
-- **SIS-IBS 可被平凡伪造，IB-ME 强可认证性不成立。** 验签范数界 `beta = 789.04` 超过模数 `q = 257`，`F_id·z = h2 (mod q)` 退化为普通线性方程组。实测：不持有任何签名密钥即可伪造出通过 `verify()` 的签名，并据此端到端伪造出接收者正常解密、且归因于被冒充发送者的密文。LLL 可将伪造范数压至 **6.71**，而诚实签名实测落在 **184.7–784.7**，因此**不存在任何验签界能同时接受诚实签名并拒绝伪造**。
-- **HIBE 的 LWE 实例约 2^33。** `lattice-estimator` 对 `n=8, q=2^19, σ=1.0, m=473` 给出 usvp/bdd ≈ 2^33.1（同一环境对 Kyber512 给出 2^143.8，与公开基准吻合）。
-
-复现：
-
-```text
-python experiments/attacks/forge_ibs.py
-```
-
-**边界：** 这是**实例化参数选择**的缺陷，不是指导论文构造 3.3.1 / 3.4.1 的缺陷。论文要求 `q` 相对范数界足够大，本项目的参数恰好相反。
+部分公开适配器会调用 `experiments/research/`，安装包也包含其中的候选模块；研究目录中的代码不全是可随意移动的草稿。文档位置和维护约定见[仓库与文档导航](docs/README.md)。
