@@ -128,9 +128,15 @@ def full_basis(base, trapdoor, q):
 
 
 def gram_schmidt(basis):
-    # scipy overwrite avoids the prototype's additional whole-array copy.
+    if basis.ndim != 2 or basis.shape[0] != basis.shape[1]:
+        raise ValueError("square basis required for Gram-Schmidt")
+    # For a square basis, economic and full QR have the same Q/R shapes and
+    # Householder order. Explicit economic mode also avoids SciPy 1.18.1's
+    # FULL-mode CBLAS_INT M*max(M,N) temporary-buffer count, which overflows
+    # int32 for the target's 49152-square user basis. Keep the integer basis
+    # intact for GPV and let QR overwrite only this floating work copy.
     work = np.array(basis, dtype=np.float64, order="F")
-    orthogonal, upper = qr(work, overwrite_a=True, check_finite=False)
+    orthogonal, upper = qr(work, mode="economic", overwrite_a=True, check_finite=False)
     diagonal = upper.diagonal().copy()
     if np.any(~np.isfinite(diagonal)) or np.any(diagonal == 0):
         raise ValueError("singular/nonfinite numerical Gram-Schmidt")
