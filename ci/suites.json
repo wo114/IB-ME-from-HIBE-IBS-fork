@@ -151,7 +151,8 @@
         "tests/test_srgg_*.py"
       ],
       "source_markers": [
-        "experiments/research/candidates/srgg/backend.py"
+        "experiments/research/candidates/srgg/backend.py",
+        "experiments/research/candidates/srgg/paper_runtime.py"
       ],
       "source_stage": "standalone_source",
       "allow_skips": false,

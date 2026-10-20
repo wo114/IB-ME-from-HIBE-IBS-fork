@@ -226,5 +226,45 @@
   "pdf_sha256": "f39a96c6b55b64bc2b5986ff0e0a54199fe22849f9e2dbb6680a714247c0f2cc",
   "tex_sha256": "daf46194447c9d80e4063c5a97b3c21c719ea9ee01d4a79e737a81e08ff8814b",
   "private_state_opened_for_receipt_checks": false,
-  "report_submission_ready": false
+  "report_submission_ready": false,
+  "runtime_source_followup": {
+    "source_commit": "bdffe264ff406cc95ed315af457451a259ac51c3",
+    "diagnostic_head": "3af5d5a8fa9290cd8e6fb10b173c0faf2907173e",
+    "diagnostic_job": 118520188552,
+    "diagnostic_result": {
+      "passed": 2085,
+      "failed": 18,
+      "errors": 2
+    },
+    "reason": "Frozen research source and exact scalar class binding after the initial storage repair",
+    "original_research_sources_byte_exact": {
+      "experiments/research/candidates/srgg/paper_backend.py": "da08ef7c93e4b921ef8a73ae233501eee693a67efefb899208f4f0a7079b6451",
+      "experiments/research/candidates/srgg/paper_samplef.py": "233f2124064d1128560d1d9435691f762771c62f0ee99f94cc88c5e6671699c7"
+    },
+    "runtime_adapter": "experiments/research/candidates/srgg/paper_runtime.py",
+    "runtime_adapter_sha256": "aa59d436969d3982039322ca8dd95e7766176be678df8c9272c5fa59acfc4ff3",
+    "old_manifests_or_receipts_rewritten": false,
+    "historic_bounds_extended_to_new_input_domain": false,
+    "tests": [
+      {
+        "path": "evidence/pr73-frozen-source-runtime.xml",
+        "tests": 142,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "evidence/pr73-runtime-routing.xml",
+        "tests": 68,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "commands": [
+      "python -m pytest -q tests/test_srgg_paper_current_budget.py tests/test_srgg_paper_history_law_followup.py tests/test_srgg_paper_schur_finite_chain.py tests/test_srgg_paper_source_issuance_bridge.py tests/test_srgg_paper_samplef.py tests/test_srgg_paper_assembly.py tests/test_srgg_wide_scalar.py",
+      "python -m pytest -q tests/test_srgg_paper_samplef.py tests/test_srgg_paper_registration.py tests/test_ci_catalog.py",
+      "git diff --exit-code 7caaff4 -- experiments/research/candidates/srgg/paper_backend.py experiments/research/candidates/srgg/paper_samplef.py"
+    ]
+  }
 }

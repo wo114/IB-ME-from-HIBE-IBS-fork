@@ -8,7 +8,8 @@ from sage.all import ComplexIntervalField, QQ, RealField, identity_matrix, matri
 
 from ibme.core.randomness import DeterministicRandom, SecureRandom
 from experiments.research.candidates.srgg.paper_samplef import (
-    PaperSampleF, PaperScalarOptions, PaperSeriesOptions, WitnessGeometryError)
+    PaperSampleF, PaperSeriesOptions, WitnessGeometryError)
+from experiments.research.candidates.srgg.paper_runtime import PaperScalarOptions
 from experiments.research.candidates.srgg.wide_scalar import WideScalarGaussian, WideScalarOptions
 from experiments.research.candidates.srgg.paper_samplef import _negacyclic_spectrum
 from experiments.research.candidates.srgg.structured_geometry import StructuredGeometry
@@ -194,6 +195,23 @@ def test_paper_scalar_reserve_accepts_long_exact_centers_without_relaxing_legacy
         ordinary.checked_inputs(1, center)
     assert paper.checked_inputs(1, center)[2] == center
     assert WideScalarOptions().rational_bits == 8192
+
+
+def test_public_runtime_enlarges_storage_and_preserves_frozen_research_defaults():
+    from dataclasses import asdict
+    from ibme.ibs.srgg.paper import Backend as PublicBackend
+    from experiments.research.candidates.srgg.paper_backend import Backend as ResearchBackend
+
+    runtime = PublicBackend()._backend
+    reference = ResearchBackend()
+    current_options, historical_options = asdict(runtime.scalar_options), asdict(reference.scalar_options)
+    assert current_options.pop("rational_bits") == 32768
+    assert historical_options.pop("rational_bits") == 8192
+    assert current_options == historical_options
+    center = QQ(1)/2**9000
+    assert WideScalarGaussian(1, 1, options=runtime.scalar_options).checked_inputs(1, center)[2] == center
+    with pytest.raises(ValueError):
+        WideScalarGaussian(1, 1, options=reference.scalar_options).checked_inputs(1, center)
 
 
 def test_paper_scalar_reserve_preserves_the_exact_finite_law_for_existing_inputs():
