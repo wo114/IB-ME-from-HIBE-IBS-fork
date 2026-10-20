@@ -1,0 +1,167 @@
+{
+  "schema": "ibme-pr75-review-v1",
+  "date": "2026-10-20",
+  "status": "WIP",
+  "pull_request": "https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/75",
+  "reviewed_original_head": "938dd8e9c2ed7137abbdc80aa48ed81d96423cfe",
+  "reviewed_source_head": "0b67036dd2a4279829948008f5117403c1594e3a",
+  "accepted_main": "1c1e36e3a671151c73c72c2c066707de790f542d",
+  "merge_allowed": false,
+  "missing_datasets": [
+    "B.json",
+    "C.json",
+    "Luo.json",
+    "Falcon.json"
+  ],
+  "original_data_source_commit": "b4b31d8f76654e108e4443e369e67729b2b6936b",
+  "original_public_data_rewritten": false,
+  "current_security": {
+    "security_claim": "secure",
+    "backend_admitted": true,
+    "parameters_are_formal": true
+  },
+  "historical_security": {
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false
+  },
+  "known_unsafe_parameters_included": false,
+  "tests": [
+    {
+      "evidence": "evidence/runtime-cache-integration.xml",
+      "passed": 121,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 197.884,
+      "command": "python -m pytest -q tests/test_backend_optimization_probe.py tests/test_backend_optimization_receipts.py tests/test_cert_certificate_cache.py tests/test_prepared_receiver.py tests/test_srgg_paper_assembly.py tests/test_srgg_paper_current_budget.py tests/test_srgg_paper_history_law_followup.py tests/test_srgg_paper_plan_cache.py tests/test_srgg_paper_schur_finite_chain.py tests/test_srgg_paper_source_issuance_bridge.py"
+    },
+    {
+      "evidence": "evidence/provenance-final.xml",
+      "passed": 32,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 3.925,
+      "command": "python -m pytest -q tests/test_backend_optimization_probe.py tests/test_backend_optimization_receipts.py"
+    },
+    {
+      "evidence": "evidence/final-common.xml",
+      "passed": 65,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 12.484,
+      "command": "python -m pytest -q tests/test_backend_optimization_probe.py tests/test_backend_optimization_receipts.py tests/test_ci_catalog.py tests/test_project_admission.py"
+    }
+  ],
+  "test_groups_overlap": true,
+  "initial_diagnostics": [
+    {
+      "group": "safety snapshot integration",
+      "passed": 123,
+      "failed": 6,
+      "resolved": true
+    },
+    {
+      "group": "malformed provenance acceptance",
+      "passed": 12,
+      "failed": 5,
+      "resolved": true
+    }
+  ],
+  "test_environment": {
+    "runtime": "WSL ~/miniconda3/envs/sage",
+    "PYTHONPATH": "src:.",
+    "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "sage": "10.9",
+    "python": "3.13.14",
+    "system": "Linux",
+    "kernel": "6.18.33.2-microsoft-standard-WSL2",
+    "processor": "Intel(R) Core(TM) Ultra 9 275HX",
+    "wsl_mem_total": "16092860 kB",
+    "test_type": "functional regressions, not comparative benchmarks",
+    "wsl_environment": "~/miniconda3/envs/sage",
+    "omp_threads": 1,
+    "openblas_threads": 1,
+    "portable_python": "3.12.14"
+  },
+  "source_binding_check": {
+    "status": "passed",
+    "python_sources": 495,
+    "source_commit": "b4b31d8f76654e108e4443e369e67729b2b6936b",
+    "command": "python docs/deliveries/2026-10-20-pr75-review/verify_sources.py",
+    "private_state_opened": false,
+    "native_binaries_authenticated": false,
+    "cryptography_rerun": false
+  },
+  "wheel_check": {
+    "status": "passed",
+    "source_commit": "efa9c7bdcc51f819c491896661e96d2d32c34e84",
+    "wheel_file": "ibme-0.1.0-py3-none-any.whl",
+    "wheel_sha256": "dc0d76acaa904ff10862b45c5b6ffe1063fa62230a4a90c8ee3fcdc874859068",
+    "bytes": 2066528,
+    "exact_source_entries": {
+      "experiments/research/candidates/srgg/paper_runtime.py": "6799b955b6290f29db688be850d206566c9914ab8e04c56839ce38602e5c6986",
+      "ibme/protocol/prepared.py": "237dfde9644d0725fdd2a4e1d5aa3afb23bb8910545d9469b8f2f75019d38b72",
+      "ibme/ibs/certified/backend.py": "ee52448f7702846dc6e0d7b32b3d88d592496176d580aae31d385752fb39c0c7",
+      "ibme/ibs/luo_module_math.py": "73e37609b1326e3ea3384ebe34a4e37ec04ed63dbac98800a987ec3261498397"
+    },
+    "private_state_artifacts_found": [],
+    "build": "bundled Windows Python; no dependency downloads or Sage execution"
+  },
+  "build_command": "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir test-results/pr75-review-2026-10-20/runtime-wheel",
+  "frozen_sources_baseline": "7caaff4c086c4a8b2ac3fd8931f11f37c50ba163",
+  "modified_files_against_accepted_main": [
+    "ci/suites.json",
+    "docs/research/2026-10-20-multi-backend-optimization/A.json",
+    "docs/research/2026-10-20-multi-backend-optimization/README.md",
+    "docs/research/2026-10-20-multi-backend-optimization/installation.json",
+    "docs/research/2026-10-20-multi-backend-optimization/source-manifest.json",
+    "docs/specs/prepared-receiver.md",
+    "docs/workplans/2026-10-20-multi-backend-optimization.md",
+    "experiments/research/backend_optimization_probe.py",
+    "experiments/research/candidates/srgg/paper_runtime.py",
+    "experiments/research/verify_backend_optimization.py",
+    "src/ibme/ibs/certified/backend.py",
+    "src/ibme/ibs/luo_module.py",
+    "src/ibme/ibs/luo_module_math.py",
+    "src/ibme/ibs/srgg/paper.py",
+    "src/ibme/protocol/hybrid_hibe.py",
+    "src/ibme/protocol/prepared.py",
+    "tests/test_backend_optimization_probe.py",
+    "tests/test_backend_optimization_receipts.py",
+    "tests/test_cert_certificate_cache.py",
+    "tests/test_luo_module_backend.py",
+    "tests/test_luo_module_math.py",
+    "tests/test_prepared_receiver.py",
+    "tests/test_srgg_paper_plan_cache.py"
+  ],
+  "extra_delivery_files": [
+    "README.md",
+    "review.json",
+    "verify_sources.py",
+    "evidence/runtime-cache-integration.xml",
+    "evidence/provenance-final.xml",
+    "evidence/final-common.xml"
+  ],
+  "new_attack_executed": false,
+  "scope_limitations": [
+    "Four full installed datasets missing; no full five-group completion claim",
+    "Unit checks and source wheel build do not replace installed full-flow performance measurements",
+    "Historical paper scalar certificates remain in their original source and input domain",
+    "Prepared C decryption retains a leaf secret; count first preparation and extra state separately",
+    "RSS samples are lower bounds for process-tree peaks; NTT counts do not measure heap memory",
+    "No cross-security-target performance ranking or additional NIST level claim"
+  ],
+  "sha256": {
+    "docs/deliveries/2026-10-20-pr75-review/evidence/final-common.xml": "59fbdd6654434d0e3c941837d46ef68a8adf2815e67491eec8629ec917d58c31",
+    "docs/deliveries/2026-10-20-pr75-review/evidence/provenance-final.xml": "661f3757ff37bd6d43f28211a3699bc27670f6061b406154b02817afbd1e71d9",
+    "docs/deliveries/2026-10-20-pr75-review/evidence/runtime-cache-integration.xml": "d382eb87ba3d8f6b40f64bf72c2fe0603a307a88d71e4c25b663c4b1b0e7ab28",
+    "docs/deliveries/2026-10-20-pr75-review/verify_sources.py": "1c034b2f065433377526f9985fcbe2f828d22849aed7bb31432aba921ec7126d",
+    "docs/research/2026-10-20-multi-backend-optimization/A.json": "8c9a4767595477569c46c9d8607a7674443d3933fda350d99deebff65df66976",
+    "docs/research/2026-10-20-multi-backend-optimization/source-manifest.json": "37a60bdec5a232fbc9d9f6a019b6a0c06e3913e749730fff26a2ebae497cf3cc"
+  }
+}

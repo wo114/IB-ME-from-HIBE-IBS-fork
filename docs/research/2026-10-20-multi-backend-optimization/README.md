@@ -20,7 +20,7 @@
 
 实际安装代码为`b4b31d8f76654e108e4443e369e67729b2b6936b`；[安装清单](installation.json)给出wheel摘要，[源码清单](source-manifest.json)包含495个包内Python文件摘要。所有实际导入的`ibme`／研究模块必须位于独立安装目录且匹配清单。运行在指定WSL Sage环境，单独向安装目录安装cryptography 50.0.2，未修改系统Python。原生二进制沿用经ABI／源码检查的原构建。
 
-A/B/C的Suite摘要与[三代表冻结配置](../../deliveries/2026-10-19-report-three-selection/README.md)逐项相同。输入固定64 B发送者／接收者身份、32 B应用消息，使用系统CSPRNG，每次加密使用新IBS随机性和新OTS。每组保留`none/false/false`，不增加安全证明，不跨安全目标排名。
+A/B/C的数学参数、预算和编码与[三代表冻结配置](../../deliveries/2026-10-19-report-three-selection/README.md)逐项比较；旧A记录保留当时的完整Suite摘要，新运行采用当前`secure/true/true`配置及其新摘要。输入固定64 B发送者／接收者身份、32 B应用消息，使用系统CSPRNG，每次加密使用新IBS随机性和新OTS。原数据不回写，不增加安全证明，不跨安全目标排名。
 
 A/B/Luo/Falcon各生成3个独立根；每根两种模式各3轮完整加密和解密，顺序交错。参数、同一根、同一用户钥、既有LATTE叶钥及安装完全相同。计时包含Suite验证、规范wire编码／解析、Hybrid、BYTEAUTH、IBS和原生进程启动。首次生成、准备、预热独立记录；完整流程计时采用相同10 ms RSS观察器。RSS是整棵进程树采样峰值的下界，不能解释为单独缓存的堆大小。多次使用同一根的点不是独立根样本。
 
