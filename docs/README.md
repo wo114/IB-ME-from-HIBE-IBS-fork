@@ -10,7 +10,7 @@
 | 使用后端、CLI、配置和恢复 | [框架使用指南](FRAMEWORK_USAGE.md) |
 | 启动本地界面、查看Web预设和会话边界 | [Web演示说明](../src/ibme/webui/README.md) |
 | 看报告三代表和精确配置 | [三代表选择与冻结Suite](deliveries/2026-10-19-report-three-selection/README.md) |
-| 阅读／修改当前报告 | [报告说明](reports/2026-10-19-research-draft/README.md)、[LaTeX](reports/2026-10-19-research-draft/研究报告初稿.tex)、[PDF](reports/2026-10-19-research-draft/研究报告初稿.pdf) |
+| 阅读／修改当前报告 | [重写说明](reports/2026-10-20-competition-rewrite/README.md)、[LaTeX](reports/2026-10-20-competition-rewrite/作品设计报告.tex)、[PDF](reports/2026-10-20-competition-rewrite/作品设计报告.pdf) |
 | 核对本届官方报告格式和签字页 | [2026复赛官方模板及指纹](competition/2026/README.md) |
 | 理解模块与公共构造 | [架构](../ARCHITECTURE.md)、[复用指南](FRAMEWORK_REUSE_GUIDE.md) |
 | 接入原语、检查接口和验收边界 | [公共规范](../IMPLEMENTATION_SPEC.md)、[算法专属契约](specs/) |
@@ -58,7 +58,7 @@
 |---|---|
 | 当前状态、负责人和待办 | 更新`PROJECT_STATUS.md`对应行，给出证据链接 |
 | 稳定的架构、接口与操作方法 | 根目录架构／规范、`specs/`和使用指南 |
-| 当前作品报告 | `reports/2026-10-19-research-draft/`；编辑TeX，编译并检查PDF |
+| 当前作品报告 | `reports/2026-10-20-competition-rewrite/`；编辑TeX，编译并检查PDF；前一版在`reports/2026-10-19-research-draft/`保留为审计快照 |
 | 新的实验数据与原文对应 | `research/<日期-主题>/`或已有owner交付目录，保留执行版本及原始收据 |
 | 一批成果的验收与合入记录 | `deliveries/<日期-主题>/`，不反向改写旧批次结论 |
 | 旧状态、旧任务与旧稿 | `history/`、原日期任务书或原材料位置；明确其版本和替代入口 |
