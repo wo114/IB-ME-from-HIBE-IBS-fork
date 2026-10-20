@@ -18,6 +18,8 @@ import sys
 import tarfile
 from unittest.mock import patch
 
+from ibme.core.security import security_fields
+
 
 def expected_suite(label):
     from ibme.assembly import make_suite
@@ -180,8 +182,8 @@ def worker(directory):
     report = dict(schema="IBME-BACKEND-OPTIMIZATION/1", root=args["root"], label=label,
                   suite=config.to_dict(), suite_digest=config.digest, source_commit=args["source_commit"],
                   wheel_sha256=manifest["wheel_sha256"], phases=[], environment=environment(),
-                  identity_bytes=64, message_bytes=32, security_claim="none", backend_admitted=False,
-                  parameters_are_formal=False, no_outer_retry=True, randomness="fresh system CSPRNG",
+                  identity_bytes=64, message_bytes=32, **security_fields(config.to_dict()),
+                  no_outer_retry=True, randomness="fresh system CSPRNG",
                   scope="full Suite protocol, validation, Hybrid, BYTEAUTH, IBS, wire encode/decode",
                   status="started")
     entropy, calls = dict(bytes=0, reads=0), {}
@@ -367,7 +369,7 @@ def run(args):
     result = dict(schema="IBME-BACKEND-OPTIMIZATION-BATCH/1", status="passed", label=args.label,
                   independent_roots=roots, repetitions_per_root=args.repetitions, records=records,
                   comparison="single-root explicit receiver-state amortization" if args.label == "C" else "interleaved paired same-root warm full-protocol ablation",
-                  security_claim="none", backend_admitted=False, parameters_are_formal=False,
+                  **security_fields(config.to_dict()),
                   cross_security_group_ranking=False, summary={} if args.label == "C" else summarize_pairs(records))
     _write(args.public_output, result)
 

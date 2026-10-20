@@ -21,6 +21,31 @@ def test_actual_installed_A_receipt_and_native_verification_counts():
     assert result["decrypt"]["median_root_speedup"] > 0
 
 
+def test_current_security_snapshot_keeps_the_same_math_and_observations():
+    from ibme.core.security import security_fields
+    from experiments.research.backend_optimization_probe import expected_suite
+
+    data, installation, manifest = deepcopy(inputs())
+    current = expected_suite("A")
+    data.update(security_fields(current.to_dict()))
+    for record in data["records"]:
+        record.update(security_fields(current.to_dict()), suite=current.to_dict(), suite_digest=current.digest)
+    result = validate_batch(data, installation, manifest)
+    original, _, _ = inputs()
+    assert result == validate_batch(original, installation, manifest)
+    # The fixture on disk remains the original historical execution snapshot.
+    assert original["security_claim"] == "none"
+
+
+@pytest.mark.parametrize("field,value", (("backend_admitted", 0), ("parameters_are_formal", 1),
+    ("security_claim", "NIST-5"), ("security_claim", "project-admitted")))
+def test_mixed_or_unrecognized_security_snapshots_are_rejected(field, value):
+    data, installation, manifest = deepcopy(inputs())
+    data[field] = value
+    with pytest.raises(ValueError, match="security"):
+        validate_batch(data, installation, manifest)
+
+
 @pytest.mark.parametrize("tamper", ("failure", "provider", "count", "summary", "suite", "roots"))
 def test_tampered_receipts_do_not_inherit_success(tamper):
     data, installation, manifest = deepcopy(inputs())

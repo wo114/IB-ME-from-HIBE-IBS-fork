@@ -52,7 +52,7 @@
       "allow_skips": true,
       "environment": "sage",
       "layer": "primitive",
-      "scope": "Public LATTE codec/configuration and earlier reuse diagnostics. The standalone LATTE-3 implementation is delivered, but tests/test_latte_hibe.py needs the prescribed WSL native build and is not scheduled by this container job. Its real lifecycle evidence is separate; no full native rerun or default registry admission follows."
+      "scope": "Public LATTE codec/configuration and earlier reuse diagnostics. The standalone LATTE-3 implementation, native lifecycle and common combinations are delivered; seed32/framed32 have current security of completed profiles. This portable job still does not rerun the native lifecycle required by tests/test_latte_hibe.py."
     },
     {
       "id": "gkr2025",
@@ -112,7 +112,7 @@
       "allow_skips": false,
       "environment": "sage",
       "layer": "primitive",
-      "scope": "Lai A-point research backend (n=256), target-parameter candidate screen and historical tag/type qualification. Runs two-level lifecycle, serialization, registry, hybrid suite-preflight and portable candidate-table tests. No security admission and no combination acceptance follows."
+      "scope": "Lai A-point research backend (n=256), C2 target profile and historical tag/type qualification. Runs two-level lifecycle, serialization, registry, hybrid suite-preflight and portable candidate-table tests. Current security of completed profiles applies only to the exact target-research profile, not the A-point profiles."
     },
     {
       "id": "luo-matrix",
@@ -236,7 +236,7 @@
       "allow_skips": false,
       "environment": "sage",
       "layer": "primitive",
-      "scope": "BNN certification IBS + pure external ML-DSA-44/65/87; official vectors and fixed identity lifecycle, not a complete HIBE pairing or security admission."
+      "scope": "BNN certification IBS + pure external ML-DSA-44/65/87; official vectors, fixed identity lifecycle and completed HIBE pairings. All three exact profiles have current security of completed profiles."
     },
     {
       "id": "cert-falcon",
@@ -251,7 +251,7 @@
       "allow_skips": false,
       "environment": "sage",
       "layer": "primitive",
-      "scope": "BNN certification IBS + Falcon v1.2 padded 512/1024; all official KATs, Gaussian author selftest and fixed-state contracts. Not FN-DSA/FIPS 206, HIBE composition or security admission."
+      "scope": "BNN certification IBS + Falcon v1.2 padded 512/1024; all official KATs, Gaussian author selftest, fixed-state contracts and completed HIBE pairings. Both exact profiles have current security of completed profiles; they are not FN-DSA/FIPS 206."
     },
     {
       "id": "xie-ntru-ibs",
@@ -285,6 +285,7 @@
         "tests/test_cli_selection.py",
         "tests/test_cli_master_state.py",
         "tests/test_cli_state_lock.py",
+        "tests/test_report_experiment_probe.py",
         "tests/test_byteauth.py",
           "tests/test_prepared_receiver.py",
           "tests/test_cert_certificate_cache.py",

@@ -112,7 +112,7 @@ def factory(rng, fmt):
 
 
 def backend_spec():
-    from ibme.assembly.registry import BackendSpec
+    from ibme.assembly.registry import BackendSpec, COMPLETED_SECURITY_CLAIM
     return BackendSpec(
         BACKEND_ID, "ibs", VERSION, RingParams,
         {"PARAM-I": paper_params(), "PARAM-II": paper_params("PARAM-II"), "debug-small": small()},
@@ -121,4 +121,7 @@ def backend_spec():
         object_parameter_binding="full-parameter-snapshot", master_public_key=master_public_key,
         default_preset=lambda transport: "PARAM-I", validate_configuration=validate_configuration,
         validate_environment=environment,
-        reason="structured RSIS v3; Table6 paper profiles; debug-small is unsafe; no security admission")
+        reason="completed structured RSIS v3; Table 6 profiles project admitted; debug-small remains unsafe and excluded",
+        security_claim=COMPLETED_SECURITY_CLAIM,backend_admitted=True,
+        formal_parameter_presets=("PARAM-I","PARAM-II"),
+        admission_basis="cited Sageloli construction, frozen Table 6 profiles, and completed standalone/common-combination acceptance")

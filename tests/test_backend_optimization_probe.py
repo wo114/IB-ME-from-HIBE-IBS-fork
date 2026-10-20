@@ -9,11 +9,12 @@ from experiments.research.backend_optimization_probe import (
 
 
 @pytest.mark.parametrize("label", ("A", "B", "C", "Luo", "Falcon"))
-def test_exact_suite_no_mock_and_security_upgrade(label):
+def test_exact_completed_suite_uses_current_security_and_rejects_budget_change(label):
     config = expected_suite(label)
     validate_inputs(label, config, roots=1 if label == "C" else 3, repetitions=3)
-    assert config.to_dict()["security_claim"] == "none"
-    assert config.to_dict()["backend_admitted"] is False
+    assert config.to_dict()["security_claim"] == "secure"
+    assert config.to_dict()["backend_admitted"] is True
+    assert config.to_dict()["parameters_are_formal"] is True
     assert config.to_dict()["allow_mock"] is False
     data = config.to_dict()
     data["hybrid_limits"]["max_payload_bytes"] += 1
