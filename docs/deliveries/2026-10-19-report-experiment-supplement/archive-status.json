@@ -1,0 +1,17 @@
+{
+  "schema": "REPORT-EXPERIMENT-ARCHIVE/1",
+  "observed_date": "2026-10-20",
+  "source_commit": "eeb3108fc634a2d3d56b329c62f528414965e05d",
+  "public_receipts_retained": true,
+  "wheel_retained": true,
+  "private_directory": "/tmp/ibme-report-eeb3108/private",
+  "private_directory_present": false,
+  "installed_prefix_present": false,
+  "private_state_archive_available": false,
+  "attempted_backup_bytes": 0,
+  "observation": "WSL was stopped and restarted at archival inspection; the original /tmp installation and private-state directories were absent. The exact cleanup cause is not established.",
+  "completed_experiment_receipts_rewritten": false,
+  "historical_restore_checks_passed": true,
+  "private_state_handover_available": false,
+  "reproduction_requires_new_roots": true
+}
