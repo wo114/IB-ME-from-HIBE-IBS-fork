@@ -2,10 +2,14 @@
 
 import json
 import math
+from pathlib import Path
 
 import pytest
 
-from ibme.ibs.wang_pw_target.parameter_audit import GIB, audit
+from ibme.ibs.wang_pw_target import parameter_audit
+from ibme.ibs.wang_pw_target.parameter_audit import (
+    ESTIMATOR_ARCHIVED_COMMIT, GIB, audit, estimator_inventory,
+)
 from ibme.ibs.wang_pw_target.params import TARGET_PROFILE, small_params
 
 
@@ -95,3 +99,102 @@ def test_finite_diagnostics_are_scaled_and_explicitly_not_total_tv():
 def test_bad_measurement_and_uniform_bound_inputs_are_rejected(measured):
     with pytest.raises((ValueError, TypeError)):
         audit(TARGET_PROFILE, measured)
+
+
+def estimator_checkout(path, *, revision=ESTIMATOR_ARCHIVED_COMMIT):
+    (path / "estimator").mkdir(parents=True)
+    # Importing this fixture would fail, so inventory must remain file-only.
+    (path / "estimator" / "__init__.py").write_text("raise AssertionError('estimator executed')\n")
+    (path / ".git").mkdir()
+    (path / ".git" / "HEAD").write_text(revision + "\n")
+    return path
+
+
+@pytest.fixture
+def inventory_defaults(tmp_path, monkeypatch):
+    repository = tmp_path / "repository"
+    home = tmp_path / "home"
+    monkeypatch.setattr(parameter_audit, "__file__", str(repository / "src/ibme/ibs/wang_pw_target/parameter_audit.py"))
+    monkeypatch.setattr(Path, "home", classmethod(lambda cls: home))
+    monkeypatch.delenv("IBME_ESTIMATOR_DIR", raising=False)
+    default = estimator_checkout(repository / "test-results/lattice-estimator")
+    fallback = estimator_checkout(home / "lattice-estimator", revision="a" * 40)
+    return default, fallback
+
+
+def test_estimator_explicit_checkout_overrides_defaults_without_inspecting_them(tmp_path, monkeypatch, inventory_defaults):
+    selected = estimator_checkout(tmp_path / "task/environment/lattice-estimator")
+    monkeypatch.setenv("IBME_ESTIMATOR_DIR", str(selected))
+    result = estimator_inventory()
+    assert result["available"] is True
+    assert result["selection_source"] == "IBME_ESTIMATOR_DIR"
+    assert result["existing_checkouts"] == [{"path": str(selected), "git_head": ESTIMATOR_ARCHIVED_COMMIT}]
+    assert result["selected_checkout"] == result["existing_checkouts"][0]
+    assert result["selected_revision_matches_archived"] is True
+    assert result["unavailable_reason"] is None
+    assert result["default_locations_inspected"] is False
+    assert result["repository_default_checkout_present"] is None
+
+
+@pytest.mark.parametrize("bad", ["", "  ", "relative-checkout", "missing", "file", "wrong-tree"])
+def test_bad_explicit_estimator_path_reports_unavailable_without_default_fallback(tmp_path, monkeypatch, inventory_defaults, bad):
+    selected = tmp_path / bad
+    if bad == "file":
+        selected.write_text("not a checkout")
+    elif bad == "wrong-tree":
+        selected.mkdir()
+    value = bad if bad in ("", "  ", "relative-checkout") else str(selected)
+    monkeypatch.setenv("IBME_ESTIMATOR_DIR", value)
+    result = estimator_inventory()
+    assert result["available"] is False
+    assert result["selection_source"] == "IBME_ESTIMATOR_DIR"
+    assert result["selected_checkout"] is None
+    assert result["existing_checkouts"] == []
+    assert result["selected_revision_matches_archived"] is None
+    assert result["unavailable_reason"].startswith("IBME_ESTIMATOR_DIR")
+    assert result["default_locations_inspected"] is False
+    assert result["repository_default_checkout_present"] is None
+
+
+def test_estimator_defaults_remain_ordered_and_revision_mismatch_is_visible(monkeypatch, inventory_defaults):
+    default, fallback = inventory_defaults
+    result = estimator_inventory()
+    assert result["available"] is True
+    assert result["selection_source"] == "default_locations"
+    assert result["default_locations_inspected"] is True
+    assert result["repository_default_checkout_present"] is True
+    assert [row["path"] for row in result["existing_checkouts"]] == [str(default), str(fallback)]
+    (default / "estimator/__init__.py").unlink()
+    result = estimator_inventory()
+    assert result["selected_checkout"] == {"path": str(fallback), "git_head": "a" * 40}
+    assert result["selected_revision_matches_archived"] is False
+    assert result["repository_default_checkout_present"] is False
+    (fallback / "estimator/__init__.py").unlink()
+    result = estimator_inventory()
+    assert result["available"] is False
+    assert result["selected_checkout"] is None
+    assert result["unavailable_reason"] == "no local default estimator checkout found"
+
+
+def test_estimator_inventory_is_read_only_without_entropy_network_or_execution(tmp_path, monkeypatch):
+    import os
+    import secrets
+    import socket
+    import subprocess
+
+    selected = estimator_checkout(tmp_path / "estimator")
+    monkeypatch.setenv("IBME_ESTIMATOR_DIR", str(selected))
+    before = {path.relative_to(selected): path.read_bytes() for path in selected.rglob("*") if path.is_file()}
+    def forbidden(*args, **kwargs):
+        pytest.fail("inventory attempted entropy, network, subprocess or file mutation")
+    monkeypatch.setattr(os, "urandom", forbidden)
+    monkeypatch.setattr(secrets, "token_bytes", forbidden)
+    monkeypatch.setattr(socket, "create_connection", forbidden)
+    monkeypatch.setattr(subprocess, "run", forbidden)
+    monkeypatch.setattr(Path, "write_text", forbidden)
+    monkeypatch.setattr(Path, "write_bytes", forbidden)
+    result = estimator_inventory()
+    assert result["available"] is True
+    assert result["executed"] is False and result["automatic_download"] is False
+    after = {path.relative_to(selected): path.read_bytes() for path in selected.rglob("*") if path.is_file()}
+    assert after == before

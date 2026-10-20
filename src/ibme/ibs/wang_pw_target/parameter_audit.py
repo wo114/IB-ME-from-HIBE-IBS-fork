@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import math
+import os
 from pathlib import Path
 from typing import Any
 
@@ -48,16 +49,54 @@ def _git_head(path: Path) -> str | None:
 
 
 def estimator_inventory() -> dict[str, Any]:
+    """Inventory local source files; never import or execute the estimator.
+
+    An explicitly configured checkout is authoritative, including when it is
+    unavailable. In that case defaults are not inspected or silently selected.
+    File presence alone does not establish importability or a matching version.
+    """
     repository = Path(__file__).resolve().parents[4]
-    candidates = (repository / "test-results" / "lattice-estimator", Path.home() / "lattice-estimator")
+    explicit = os.environ.get("IBME_ESTIMATOR_DIR")
+    explicit_selected = explicit is not None
+    unavailable_reason = None
+    repository_default_present = None
+    if explicit_selected:
+        if not explicit.strip():
+            candidates = ()
+            unavailable_reason = "IBME_ESTIMATOR_DIR is empty"
+        elif not Path(explicit).is_absolute():
+            candidates = ()
+            unavailable_reason = "IBME_ESTIMATOR_DIR requires an absolute checkout path"
+        else:
+            candidates = (Path(explicit),)
+    else:
+        candidates = (repository / "test-results" / "lattice-estimator", Path.home() / "lattice-estimator")
     existing = []
-    for candidate in candidates:
-        if (candidate / "estimator" / "__init__.py").is_file():
+    for index, candidate in enumerate(candidates):
+        try:
+            present = (candidate / "estimator" / "__init__.py").is_file()
+        except (OSError, ValueError):
+            present = False
+        if not explicit_selected and index == 0:
+            repository_default_present = present
+        if present:
             existing.append({"path": str(candidate), "git_head": _git_head(candidate)})
+    selected = existing[0] if existing else None
+    if selected is None and unavailable_reason is None:
+        unavailable_reason = ("IBME_ESTIMATOR_DIR has no accessible estimator/__init__.py file"
+                              if explicit_selected else "no local default estimator checkout found")
     return {
         "existing_checkouts": existing,
-        "repository_default_checkout_present": (candidates[0] / "estimator" / "__init__.py").is_file(),
+        "available": selected is not None,
+        "availability_scope": "source-file inventory only; import and execution are not checked",
+        "selection_source": "IBME_ESTIMATOR_DIR" if explicit_selected else "default_locations",
+        "selected_checkout": selected,
+        "unavailable_reason": unavailable_reason,
+        "default_locations_inspected": not explicit_selected,
+        "repository_default_checkout_present": repository_default_present,
         "archived_commit": ESTIMATOR_ARCHIVED_COMMIT,
+        "selected_revision_matches_archived": (None if selected is None or selected["git_head"] is None
+                                              else selected["git_head"] == ESTIMATOR_ARCHIVED_COMMIT),
         "executed": False,
         "automatic_download": False,
         "norm": 2,

@@ -463,3 +463,85 @@ def test_real_sampler_fixed_service_sign_restore_and_sign_again(tmp_path):
     assert Backend().verify(public, IDENTITY, b"after-restart", second)
     assert not Backend().verify(public, b"Bob", b"after-restart", second)
     assert not Backend().verify(public, IDENTITY, b"changed", second)
+
+
+_REAL_SERVICE_CHILD = r'''
+import hashlib,json,os,secrets,sys
+from contextlib import ExitStack
+from unittest.mock import patch
+from ibme.core.randomness import SecureRandom
+from ibme.ibs.wang_pw_target import Backend
+from ibme.ibs.wang_pw_target import backend,native
+from ibme.ibs.wang_pw_target.service import FixedIssuer
+
+attempts=[]
+def forbidden(*args,**kwargs):
+    attempts.append(True)
+    raise AssertionError('cached service used entropy, native sampling or fresh issuance')
+
+path,mode=sys.argv[1:]
+with ExitStack() as stack:
+    stack.enter_context(patch.object(Backend,'setup',forbidden))
+    if mode!='first':
+        stack.enter_context(patch.object(Backend,'key_extract',forbidden))
+    if mode=='cached':
+        stack.enter_context(patch.object(SecureRandom,'read',forbidden))
+        stack.enter_context(patch.object(os,'urandom',forbidden))
+        stack.enter_context(patch.object(secrets,'token_bytes',forbidden))
+        if hasattr(os,'getrandom'):
+            stack.enter_context(patch.object(os,'getrandom',forbidden))
+        for module,names in ((backend,('draw_gaussian','sample_gpv')),
+                             (native,('_library','draw_gaussian','draw_gaussian_batch','sample_gpv'))):
+            for name in names:
+                stack.enter_context(patch.object(module,name,forbidden))
+    issuer=FixedIssuer(path,Backend())
+    key=issuer.key_extract(b'Alice')
+    public=issuer.public_key()
+    report={'key_digest':hashlib.sha256(key.to_bytes()).hexdigest(),
+            'public_digest':hashlib.sha256(public.to_bytes()).hexdigest()}
+    if mode=='cached':
+        report['entropy_or_sampling_calls']=len(attempts)
+    if mode=='sign':
+        signer=Backend()
+        signature=signer.sign(key,b'restored-service-child')
+        report.update(verified=signer.verify(public,b'Alice',b'restored-service-child',signature),
+                      wrong_identity_rejected=not signer.verify(public,b'Bob',b'restored-service-child',signature),
+                      wrong_message_rejected=not signer.verify(public,b'Alice',b'changed',signature))
+print(json.dumps(report,sort_keys=True))
+'''
+
+
+@pytest.mark.skipif(not os.environ.get("IBME_WANG_PW_TARGET_NATIVE"),
+                    reason="real child-process lifecycle requires an explicitly prebuilt target native library")
+def test_real_service_child_first_issuance_zero_entropy_restart_and_restored_signing(tmp_path):
+    """One native root; first issuance and each recovery use fresh interpreters.
+
+    The separate crash/concurrency tests above exercise transaction mechanics
+    with their explicitly algebraic fixture, not native-sampler crash behavior.
+    """
+    from ibme.ibs.wang_pw_target import Backend
+
+    issuer = FixedIssuer(tmp_path / "real-process-service", Backend())
+    public = issuer.initialize(replace(small_params(), threads=1), max_users=1)
+    root = Path(__file__).resolve().parents[1]
+    environment = {**os.environ, "PYTHONPATH": os.pathsep.join((str(root / "src"), str(root)))}
+
+    def run(mode):
+        result = subprocess.run(
+            [sys.executable, "-c", _REAL_SERVICE_CHILD, str(issuer.path), mode],
+            env=environment, capture_output=True, text=True, timeout=90,
+        )
+        assert result.returncode == 0, result.stderr
+        assert not result.stderr
+        return json.loads(result.stdout)
+
+    first = run("first")
+    assert first["public_digest"] == digest(public)
+    state_digest = digest((issuer.path / service.STATE_FILE).read_bytes())
+    cached = run("cached")
+    assert cached == {**first, "entropy_or_sampling_calls": 0}
+    assert digest((issuer.path / service.STATE_FILE).read_bytes()) == state_digest
+    signed = run("sign")
+    assert signed == {**first, "verified": True, "wrong_identity_rejected": True,
+                      "wrong_message_rejected": True}
+    assert digest((issuer.path / service.STATE_FILE).read_bytes()) == state_digest
