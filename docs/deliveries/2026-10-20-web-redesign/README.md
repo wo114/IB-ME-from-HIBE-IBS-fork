@@ -63,4 +63,4 @@ WSL 中按 wheel 摘要隔离，600 个安装文件核对通过。Hybrid／NumPy
 | 启动与说明 | `experiments/run_web_demo.sh`、`src/ibme/webui/README.md`、`.gitignore` |
 | 任务记录 | `docs/superpowers/plans/2026-10-20-web-demo-redesign.md`、`docs/PROJECT_STATUS.md`、本目录 |
 
-本轮未修改作品报告、密码算法、参数或历史实验数据；后续性能优化与最终发布复现按用户要求暂缓。
+本轮未修改作品报告、密码算法、参数或历史实验数据；后续新增性能实验与最终发布复现不属于本PR范围；任务排序见当前进度表。

@@ -378,9 +378,10 @@
   });
   $("#testMode").addEventListener("change", () => emptyResult("点击解密验证，查看本次结果。"));
   $("#message").addEventListener("input", () => {
-    if (state.session?.has_ciphertext && $("#message").value !== state.session.last_message) {
+    if (state.session?.has_ciphertext) {
       state.decrypt = null;
-      emptyResult("消息已修改，请重新加密。");
+      const dirty = $("#message").value !== state.session.last_message;
+      emptyResult(dirty ? "消息已修改，请重新加密。" : "消息与现有密文一致，可继续解密验证。");
       renderParameters();
     }
     refreshControls();
