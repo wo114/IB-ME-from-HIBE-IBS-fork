@@ -23,13 +23,13 @@ LATTE 的 `compat/libXKCP.a.headers/SimpleFIPS202.h` 是本项目 API 声明；�
 
 ## 源码交付包
 
-[.gitattributes](.gitattributes) 的 `export-ignore` 排除上述三个根参考文件和 `papers/` 下的 PDF，保留论文索引、项目代码、原许可、来源清单及本项目报告。例如：
+[.gitattributes](.gitattributes) 的 `export-ignore` 排除上述三个根参考文件。默认 Git／GitHub 源码归档保留 `papers/` 的 PDF，以供 CI 核验固定论文。精简交付包使用专用导出入口额外过滤论文 PDF，保留论文索引、项目代码、原许可、来源清单及本项目报告：
 
 ```text
-git archive --format=zip --output ibme-source.zip HEAD
+python docs/deliveries/2026-10-20-source-notices/export_source.py --revision HEAD --output ibme-source.zip
 ```
 
-该命令只导出指定提交。`export-ignore` 不改变工作目录或 Git 历史；直接复制目录、克隆仓库或其它打包方式不自动遵守它。包大小和文件数随提交变化，不沿用早期的 78 文件／约 2 MB 数字。作品平台的最终匿名提交件还须按[本届要求](docs/competition/2026/README.md)另行准备。
+该命令只导出指定提交，拒绝覆盖已有输出。过滤不改变工作目录或 Git 历史；直接复制目录、克隆仓库或普通 Git／GitHub 归档不应用专用过滤。包大小和文件数随提交变化，不沿用早期的 78 文件／约 2 MB 数字。作品平台的最终匿名提交件还须按[本届要求](docs/competition/2026/README.md)另行准备。
 
 构建 wheel 时，以固定提交归档的全新解压目录为源。切换分支后复用原工作目录的 `build/` 可能夹带另一分支文件；交付检查逐个比对包内源码与声明提交，不以构建成功或少数文件一致代替完整比对。
 

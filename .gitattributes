@@ -26,11 +26,11 @@
 # the normal whitespace checks. This file is not a production sampler.
 experiments/research/reuse/vendor/latte/sample_z.upstream.c -text -eol -whitespace
 
-# 第三方参考资料不随精简源码包分发；保留索引与引用记录。
+# 三个根参考文件不随源码归档分发；保留索引与引用记录。
 # export-ignore 只影响 git archive，不删除工作文件或历史。
-# 论文缓存核验需要另行恢复固定版本PDF；不能宣称精简包包含全部研究缓存。
+# papers/ PDF保留在默认源码归档，供CI核验固定论文；精简交付包通过
+# docs/deliveries/2026-10-20-source-notices/export_source.py另行过滤。
 # 当前归属、保留声明及交付检查见 NOTICE.md。
 支持特定功能的格基函数加密研究.pdf export-ignore
 978-3-031-51476-0_21.pdf           export-ignore
 ib-me.pptx                         export-ignore
-papers/**/*.pdf                    export-ignore

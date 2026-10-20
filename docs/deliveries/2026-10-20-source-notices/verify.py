@@ -15,6 +15,7 @@ ROOT_REFERENCES = {
 REQUIRED = {
     "LICENSE", "NOTICE.md", INDEX, "papers/index.md",
     "src/ibme/cli.py", "src/ibme/assembly/registry.py",
+    "docs/deliveries/2026-10-20-source-notices/export_source.py",
     "docs/reports/2026-10-19-research-draft/研究报告初稿.pdf",
     "docs/competition/2026/附件二-作品设计报告模板.docx",
     "docs/competition/2026/附件三-审批及签字页.docx",

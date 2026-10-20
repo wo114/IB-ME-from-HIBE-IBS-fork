@@ -28,7 +28,7 @@
     "os": "Windows",
     "dependencies": "Python standard library, Git, existing setuptools/wheel; no downloads"
   },
-  "status": "passed",
+  "status": "WIP: dedicated export source package rebuild pending",
   "crypto_parameters_changed": false,
   "current_completed_config_security": "secure/true/true",
   "new_security_claim_or_attack": false,
@@ -191,5 +191,37 @@
       "sha256": "75b4dacd42c318324a7a1d682fcead030a22731f66fab7b0ab2980789e1a1d39",
       "bytes": 2054515
     }
+  },
+  "ci_archive_regression": {
+    "old_head": "34b355705c7e14b80ba8e456bf00284077ef0906",
+    "cause": "Container actions/checkout downloads GitHub REST archive and applies export-ignore",
+    "abb_old_result": {
+      "passed": 245,
+      "failed": 10,
+      "skipped": 39
+    },
+    "chkp_old_result": {
+      "passed": 1095,
+      "failed": 2,
+      "skipped": 44
+    },
+    "global_pdf_exclusion_removed": true,
+    "default_archive_papers_restored": 24,
+    "paper_bytes_match_git": true,
+    "local_recovery_tests": [
+      {
+        "path": "evidence/abb-source-recovery.xml",
+        "passed": 27,
+        "failed": 0,
+        "skipped": 0
+      },
+      {
+        "path": "evidence/chkp-source-recovery.xml",
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0
+      }
+    ],
+    "new_remote_checks": "pending"
   }
 }
