@@ -213,7 +213,8 @@
     {
       "id": "wang-pw",
       "tests": [
-        "tests/test_wang_pw_*.py"
+        "tests/test_wang_pw_*.py",
+        "tests/test_cli_role_import.py"
       ],
       "source_markers": [
         "experiments/research/candidates/wang_pw/backend.py",
