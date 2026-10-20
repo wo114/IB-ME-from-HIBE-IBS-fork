@@ -428,3 +428,26 @@ n2048/k64读数约121.04，裸阵列3456 GiB。现q32/4 GiB对象/65535维等门
 [现成MP12直接采样工具复用边界](parameter-route-planning.md#现成直接-g-trapdoor-采样工具的复用边界)
 核清了Algorithm 3/4的方程对应与容量、trace宽度、预算维数及根分布差异；
 没有修改共享工具或替换原根，不能声称该路线已有目标规模签名或正式参数。
+
+## 21. 条件采样分量与 PW 查询损失（本地完成，整链仍 WIP）
+
+实现 `65d832d` 新增[纯标量预算入口与推导范围](conditional-component-budgets.md)。
+固定 tail20/mass192/4096 proposals，在每步 sigma>=1、精确窗口/权重及理想随机字节等
+明确条件下，分别计算尾与量化、有限拒绝、PW Theorem 2 的经典查询分量。
+一次生命周期的理想尾＋量化向上界为 `2^-155`；条件有限拒绝向上界为 `2^-759`。
+二者不是实际 native 总 TV 或全部中止概率，不解释已有 code1。
+
+诚实 Setup/Extract/Sign 次数与游戏查询 `Q_C/Q_S/Q_H` 分开；默认游戏查询只是示例，
+间接查询覆盖与固定服务对应仍为未认证假设。新增显式三个签名尝试的坐标上界输出，
+没有重放服务器历史、创建新签名或把失败当成功。
+
+规定WSL Sage三文件回归 **77 passed / 0 failures/errors/skips，JUnit 12.482 s**，
+其中新增27项；旧50项在本批重跑，不能再与本批相加。
+独立有理数与120位Decimal参考、非法策略/查询预算及禁用native/算法/执行期密码学取熵的
+子进程均通过。[完整输出、测试日志、源码字节绑定与manifest](evidence/component-budgets/review.json)已归档。
+没有修改参数、native、接受门或旧证据，没有新增服务器运行。
+
+真实逐坐标资源门/动态中心、native数值对应、完整安全参数及目标签验/后续链仍未完成。
+一次原钥确定性审计仍待此前确认；诊断续签授权已用完，不自动重试。
+`native_total_tv_bound`、`native_abort_probability_bound`继续null，安全字段none/false/false/null，
+完整目标仍active，未推送或建PR。
