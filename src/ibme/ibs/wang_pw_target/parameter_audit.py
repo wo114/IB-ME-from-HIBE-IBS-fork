@@ -133,6 +133,10 @@ def audit(params: WangPWTargetParams, measured: dict[str, Any] | None = None) ->
     ``reference_norm_bound`` and ``simulation_spectral_bound``, plus a nonempty
     ``source``. They are caller-supplied uniform claims awaiting source review,
     not inferred from the other measurements and not certified by this helper.
+
+    A supplied RSS value is only an observation. This helper does not inspect
+    lifecycle or supervisor receipts, so it cannot accept a completed target
+    run, even when that value is below the memory threshold.
     """
     if type(params) is not WangPWTargetParams:
         raise TypeError("WangPWTargetParams required")
@@ -254,8 +258,14 @@ def audit(params: WangPWTargetParams, measured: dict[str, Any] | None = None) ->
                       "assumptions": ["one instance/process", "root dense cache released before user QR", "no concurrent serialization or extra key cache beyond allowance"],
                       "required_peak_threshold_bytes": MEMORY_TARGET_BYTES,
                       "measured_peak_rss_bytes": peak, "measured_under_128gib": memory_observed_ok,
-                      "target_n512_run_measured": p.n == 512 and peak is not None,
-                      "target_memory_acceptance": p.n == 512 and memory_observed_ok is True},
+                      "target_peak_observation_supplied": p.n == 512 and peak is not None,
+                      "target_n512_run_measured": None,
+                      "target_memory_acceptance": None,
+                      "target_memory_assessment": "not-performed",
+                      "complete_lifecycle_evidence_checked": False,
+                      "target_memory_assessment_note": (
+                          "RSS input does not establish a completed run; separately check the full profile, "
+                          "all six phases, independent restored signing, frozen source and final supervisor receipt")},
         "observations": observations,
         "archived_sample_costs_not_used_as_admission": ignored_costs,
         "estimator": estimator_inventory(),

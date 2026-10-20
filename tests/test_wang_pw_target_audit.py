@@ -37,7 +37,12 @@ def test_measurements_cannot_substitute_for_uniform_bounds_or_certification():
     assert result["archived_sample_costs_not_used_as_admission"]["quantum_bits"] == 153.70
     assert result["parameters_are_formal"] is False
     assert result["nist_security_category"] is None
-    assert result["resources"]["target_memory_acceptance"] is True
+    assert result["resources"]["measured_under_128gib"] is True
+    assert result["resources"]["target_peak_observation_supplied"] is True
+    assert result["resources"]["target_n512_run_measured"] is None
+    assert result["resources"]["target_memory_acceptance"] is None
+    assert result["resources"]["target_memory_assessment"] == "not-performed"
+    assert result["resources"]["complete_lifecycle_evidence_checked"] is False
     assert result["finite_sampler_diagnostics"]["total_tv_bound"] is None
     assert result["finite_sampler_diagnostics"]["gs_bound_certified"] is False
 
@@ -71,10 +76,30 @@ def test_wire_memory_planning_does_not_count_as_peak_measurement():
     assert resource["planning_five_user_square_arrays_bytes"] == 90*GIB
     assert resource["planning_is_a_measured_peak"] is False
     assert resource["measured_peak_rss_bytes"] is None
-    assert resource["target_memory_acceptance"] is False
+    assert resource["target_memory_acceptance"] is None
+    assert resource["target_peak_observation_supplied"] is False
     assert audit(p, {"peak_rss_bytes": 128*GIB})["resources"]["measured_under_128gib"] is False
     assert audit(p, {"peak_rss_bytes": 128*GIB-1})["resources"]["measured_under_128gib"] is True
-    assert audit(small_params(), {"peak_rss_bytes": GIB})["resources"]["target_memory_acceptance"] is False
+    small = audit(small_params(), {"peak_rss_bytes": GIB})["resources"]
+    assert small["target_peak_observation_supplied"] is False
+    assert small["target_memory_acceptance"] is None
+
+
+@pytest.mark.parametrize("peak", [GIB, 96*GIB, 128*GIB, 128*GIB+1])
+def test_peak_and_caller_completion_flags_cannot_promote_an_incomplete_run(peak):
+    # A Setup-only snapshot, a terminated run and a caller's claimed success
+    # must all stay distinct from independently checked lifecycle evidence.
+    resources = audit(TARGET_PROFILE, {
+        "peak_rss_bytes": peak,
+        "requested_lifecycle_complete": True,
+        "source_files_unchanged_during_run": True,
+        "status": "passed",
+    })["resources"]
+    assert resources["measured_under_128gib"] is (peak < 128*GIB)
+    assert resources["target_peak_observation_supplied"] is True
+    assert resources["target_n512_run_measured"] is None
+    assert resources["target_memory_acceptance"] is None
+    assert resources["complete_lifecycle_evidence_checked"] is False
 
 
 def test_finite_diagnostics_are_scaled_and_explicitly_not_total_tv():

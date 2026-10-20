@@ -82,7 +82,7 @@ beta_SIS = ceil(sqrt(1+L_Rhat²) * (ceil(B_verify)+B_reference)).
 
 审计采用五个用户方阵的规划余量（basis、QR工作、Q/R及额外复制余量）、两个大型trapdoor临时缓冲、主/用户紧凑状态、一次完整wire缓冲及native逐线程工作区，再留20%工作空间。当前主档规划约123.314 GiB，前提是单进程单实例、用户QR前释放主basis/star缓存、没有额外并发序列化或多份缓存。这个数字仅用于容量规划，不是malloc/LAPACK内存上界证明，也不是RSS实测。
 
-`peak_rss_bytes` 未提供时，`target_memory_acceptance=false`；n2/n4的RSS不能冒充n512。必须真正运行n512完整实例并记录 `peak_RSS < 128 GiB` 才能验收目标内存；恰好128 GiB也不通过。若机器可用物理内存低于规划值，应先明确资源条件，不将估计当作已跑通。
+`audit()` 仅记录调用者提供的 RSS：`measured_under_128gib` 比较门槛，`target_peak_observation_supplied` 说明是否为 n512 参数提供了观测。工具不检查完整生命周期回执，因此 `target_n512_run_measured=null`、`target_memory_acceptance=null`、`target_memory_assessment=not-performed`；旧版本曾仅据一条低于门槛的观测输出验收 true，本轮收紧该口径，旧冻结回执不追写。最终验收须另外核对完整参数、全部六阶段、独立进程恢复签名、冻结源码与最终监督器回执，并记录 `peak_RSS < 128 GiB`；恰好128 GiB也不通过。n2/n4或中途峰值不能冒充完成的n512实例。若机器可用物理内存低于规划值，应先明确资源条件，不将估计当作已跑通。
 
 ## 有限采样诊断不冒充整链TV
 
