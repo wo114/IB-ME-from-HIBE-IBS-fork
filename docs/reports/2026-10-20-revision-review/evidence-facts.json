@@ -4,6 +4,8 @@
   "review_baseline": "c414a2f9601bdbe1994e0ae4f7167fe4806ae508",
   "supplemental_pr75_head": "1e765f1bd9e6661dd611ba1c895e74c8b83a3d3b",
   "supplemental_installation_source": "b4b31d8f76654e108e4443e369e67729b2b6936b",
+  "confirmed_work_number": "CACR2026T4PMR7",
+  "work_number_status": "Confirmed by the team lead on 2026-10-20; not yet written into the unchanged draft TeX/PDF.",
   "new_cryptographic_experiments": 0,
   "private_state_files_read": 0,
   "review_scope": "Editorial revision draft; PR75 data read without merging or approving its final code.",
@@ -20,6 +22,26 @@
   "original_report_sha256": {
     "docs/reports/2026-10-19-research-draft/研究报告初稿.tex": "daf46194447c9d80e4063c5a97b3c21c719ea9ee01d4a79e737a81e08ff8814b",
     "docs/reports/2026-10-19-research-draft/研究报告初稿.pdf": "f39a96c6b55b64bc2b5986ff0e0a54199fe22849f9e2dbb6680a714247c0f2cc"
+  },
+  "editorial_audit": {
+    "current_pdf_pages": 31,
+    "archived_exemplar_pdf_pages": {
+      "papers/crystal队作品设计报告.pdf": 56,
+      "papers/有刺无刺+作品报告.pdf": 69
+    },
+    "current_system_implementation_pdf_pages": "15-17",
+    "crystal_core_technology_pdf_pages": "17-43",
+    "current_tex_counts": {
+      "body_numbered_chapters": 7,
+      "appendix_numbered_chapters": 2,
+      "chapter_commands_total": 9,
+      "subsections": 0,
+      "figures": 6,
+      "longtables": 12,
+      "evidence_id_occurrences": 72,
+      "internal_process_term_occurrences": 45
+    },
+    "counting_note": "Page counts use PDF physical pages. Chapter counts separate the seven numbered chapters before \\appendix from the two numbered appendix chapters; the unnumbered references chapter is excluded. Evidence IDs use E[0-9]{2}; internal terms use the documented review pattern for PR numbers, registry/profile/security fields, wheel/WSL, hashes, receipts, work assumptions, and dated user decisions. Counts diagnose emphasis and are not page-count targets."
   },
   "sources": [
     {
