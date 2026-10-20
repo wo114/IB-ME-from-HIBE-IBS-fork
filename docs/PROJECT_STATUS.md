@@ -18,7 +18,7 @@
 
 | 代表 | 冻结组合与预算 | 已有实物 | 当前边界 |
 |---|---|---|---|
-| A：主演示 | [LATTE＋BNN/ML-DSA-44，64 KiB](deliveries/2026-10-19-report-three-selection/suites/A-latte-mldsa44.json) | 三根重复基准、安装CLI、跨进程恢复、Web实跑和部署消融 | 新随机批量记录在PR69，尚待接收；最终发布环境仍须复现 |
+| A：主演示 | [LATTE＋BNN/ML-DSA-44，64 KiB](deliveries/2026-10-19-report-three-selection/suites/A-latte-mldsa44.json) | 三根重复基准、安装CLI、跨进程恢复、Web实跑和部署消融；[A09随机批量](research/2026-10-19-primary-random-batch/README.md)3根／12配对／60项通过 | 随机批次来自独立Xeon／Nix环境，不混入旧性能基准；最终发布环境仍须复现 |
 | B：原生IBS对照 | [LATTE＋SRGG论文PARAM-I compact，128 KiB](deliveries/2026-10-19-report-three-selection/suites/B-latte-srgg-I-compact.json) | 完整功能矩阵及三根重复基准 | 旧64 KiB安装记录不能继承为本次128 KiB配置；精确配置CLI／wheel仍待 |
 | C：另一HIBE与环IBS | [Lai C2＋Sageloli RSIS v3 PARAM-I，8 MiB](deliveries/2026-10-19-report-three-selection/suites/C-lai-c2-sageloli-I.json) | 目标规模单根完整运行、四种身份情形及公开收据 | 安装恢复、有效外层下的内层负例和受预算约束的重复测量仍待；没有性能优势结论 |
 
@@ -40,6 +40,7 @@
 
 | 接收内容 | 当前可引用的入口 |
 |---|---|
+| PR69：主演示随机多身份／消息批量 | [固定源码85a93e2、完整收据与只读复核](research/2026-10-19-primary-random-batch/README.md)。3个独立CSPRNG根，每根2×2身份配对，消息0／1／32／1024 B；60/60符合预期，无失败样本替换，不作为失败概率或跨方案排名 |
 | PR66、68：报告内容修正、三代表选择、LaTeX／PDF迁移 | [2026-10-20接收记录](deliveries/2026-10-20-pr66-68-reception/README.md)。两PR已合并；旧Word渲染失败诊断不再阻塞PDF交付，报告仍为WIP |
 | PR67：隔离数值研究原型 | [修复与23项实际测试](deliveries/2026-10-19-pr66-67-review/followup/README.md)。审定头`4fe3a93`合入`05373b2`；不记为Wang目标参数完成 |
 | PR64：Lai C2四个新增配对 | [完整Suite、实测与收据](research/2026-10-19-lai-c2-combinations/README.md)。单根并发批次不当作公平重复基准 |
@@ -53,7 +54,7 @@
 | 顺序 | 交付物 | 完成判据 |
 |---|---|---|
 | 1 | 三代表冻结配置的安装与功能证据收口 | 优先补B的128 KiB CLI／wheel、C的安装恢复和有效外层下内层负例；使用同一Suite，不能沿用不同预算的旧结果 |
-| 2 | 必要消息长度／边界、随机批次和有限重复 | PR69待审查；其提交数据暂不记入main完成项。接收后只补仍缺的场景；C的分钟级运行设置预算，不无限扩网格 |
+| 2 | 必要消息长度／边界和有限重复 | 主展示A09随机批次已有独立收据；各冻结Suite的最大长度／越界和重复数据按实际覆盖补齐。C的分钟级运行设置预算，不无限扩网格 |
 | 3 | 三代表可解释比较 | 同环境、输入、计时和资源口径才能计算排名或收益；保留各组实际目标。C目前展示结构与资源边界，不虚构优势 |
 | 4 | LaTeX报告正文与新三代表一致 | 原三组LATTE重复基线作为历史比较；更新现状、代表图表和补测结果，编译PDF并逐页检查 |
 | 5 | 来源许可、提交模板及发布复现 | 整理引用／代码许可、本届模板和匿名信息；源码、Suite、演示、收据和报告对应同一发布版本 |
@@ -74,7 +75,7 @@
 
 ### 在途PR
 
-截至本页接收基线，[PR69：主演示随机多身份批量验收](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/69)开放，提交头为`3c039f9`。这里仅登记在途范围，未审定其结论、未合并、未重跑该实验；接收后更新本页相应完成项。
+本轮接收[PR69：主演示随机多身份批量验收](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/69)的固定源码及公开证据，保留PR70整理后的当前页结构。其它在途的实验补充与接入／报告PR按实际审查结果接收，不提前合计数据或升级声明。
 
 ## 4. 当前入口与证据定位
 
