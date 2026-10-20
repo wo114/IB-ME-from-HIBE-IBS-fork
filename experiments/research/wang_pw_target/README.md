@@ -192,12 +192,59 @@ imports exactly the original Wang binary identity and canonical user key, create
 only a real LATTE author-profile root and two receiver keys, then runs separate
 role processes. It needs one fresh Wang signature; restart, identity-mismatch
 and wire/OTS-replacement checks reuse that ciphertext. Role state contains no
-master. This is distinct from the general `ibme.cli` target-size test: the latter
-accepts printable UTF-8 identities, whereas the lifecycle's original 64-byte
-identity is binary. Renaming that identity would require a different extraction
-and is not a valid reuse of the original user key.
+master. This remains distinct from the general `ibme.cli` target-size test.
+The lifecycle's original 64-byte identity is binary. Renaming that identity
+would require a different extraction and is not a valid reuse of the original
+user key.
 
 Both drivers print public JSON without raw exception messages. Run them under
 the existing external resource supervisor at target size, sequentially with the
 original experiment. Preserve failure receipts and partial private state; do not
 restart failed operations or rerun Setup/Extract to obtain a success.
+
+## General CLI reuse of existing canonical roles
+
+The general CLI keeps its default printable UTF-8 input. Explicit
+`--identity-encoding hex` decodes canonical lowercase hex into the original
+identity bytes, including NUL or non-UTF-8 bytes. Length limits apply after
+decoding; whitespace, odd-length text and noncanonical hex are rejected.
+The selected encoding applies to every identity in that command. For example,
+use `426f62` for receiver `Bob` when the same command uses a hex sender.
+
+`ibme import-role --suite-file ... --public-key-file ... --sender-key-file ...
+--state NEWDIR` imports one canonical protocol SenderKey. Replace the sender
+option with `--receiver-key-file` for one canonical protocol ReceiverKey.
+These inputs are composite protocol objects, not bare primitive secret files.
+The explicit suite must match all public parameters and the selected codecs.
+No master is imported and no Setup, Extract or Sign is performed by import.
+
+The output retains v2 state envelopes with explicit imported-role provenance
+and `master_persisted_before_key_publication=false`. Import is a management
+operation, not certification of generation history or distribution. The
+existing issuance lock and `msk.bin.pending` cover publication. Failure retains
+the marker and partial state for inspection. Existing state is not overwritten
+or resumed. Imported state can only restore its registered identity and role;
+missing/damaged keys or a new identity never trigger extraction, even if a
+master file is subsequently placed there. Any `msk.bin` entry in imported role
+state blocks all role commands before loading a runtime. Existing receiver-cache transactions
+remain in use. No malicious rollback or hard-power-loss guarantee is added.
+
+After `run_reused_combination run` succeeds, its prepared role directories can
+be reused without another root or extraction:
+
+```bash
+python -B -m experiments.research.wang_pw_target.run_reused_cli run \
+  --source-directory /absolute/private/completed-reuse-combination \
+  --state /absolute/private/new-general-cli-reuse
+```
+
+This harness invokes the general CLI parser and dispatch in separate
+interpreters, with Wang Setup/Extract explicitly disabled by the harness.
+It imports the three existing roles, preserves the original binary sender,
+and requests one fresh encryption/signature. Recovery, identity-mismatch and
+wire/OTS-replacement checks reuse that ciphertext. It captures CLI stdout and
+stderr privately and emits bounded public receipts; the harness protection
+does not change normal CLI algorithm semantics. Run sequentially under the
+resource supervisor after the original lifecycle terminates, with a fresh
+private target directory. A failed child stops the chain without retry.
+Small-profile tests and actual n512 acceptance must be recorded separately.

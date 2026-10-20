@@ -10,6 +10,8 @@
 
 身份为非空字节串；CLI 的 UTF-8 文本必须先转换为字节。消息可以为空。身份顺序固定为 `(parent_id, child_id) = (receiver_id, sender_id)`。身份比较使用规范化原始字节的常数时间比较；不得把显示文本当作另一套身份。
 
+CLI 默认保留可打印 UTF-8 文本输入；显式 `--identity-encoding hex` 使用规范小写十六进制解码为原始身份字节，拒绝空值、空白、奇数位、非规范字符和解码后超限。这个选项只改变命令行表示，不改变身份哈希、协议对象或密文格式。
+
 ```text
 encode_bytes(x) = uint32_be(len(x)) || x
 encode_identity(id) = DOMAIN_ID || encode_bytes(id)
@@ -45,6 +47,10 @@ encode_message(id, message) = DOMAIN_MSG || encode_bytes(id) || encode_bytes(mes
 公开装配 API：`make_suite(hibe=..., ibs=..., hibe_params=..., ibs_params=..., transport=..., protocol=..., signature_format=...)` 生成配置；`validate_suite(config)` 返回 `ok/errors/capacity/metadata`；`build_runtime(config, ibs_rng=..., ots_rng=...)` 返回 `proto`、两类参数、严格对象 `decoders` 和公开校验方法。后端 ID 不认识、版本错、未交付、格式不支持或必需能力缺失均拒绝，不自动替换。`allow_mock` 必须显式开启，结果标记 TEST-ONLY。
 
 `capacity` 按最大身份、IBS 输入和实际签名编码、协议组帧、BYTEAUTH 开销、HIBE 载荷、Hybrid 种子/身份/胶囊预算计算。`check` / `matrix` 只做静态预检，输出 `preflight_only` / `not_executed`；不能记为已运行组合。配置严格绑定完整选参；裸原语对象只能核对其 wire 实际编码的字段和公开绑定能力。旧 ABB10/SIS 和 mock 的字段缺失由 `raw_object_parameter_binding` 明确报告，CLI v2 通过额外对象封装绑定完整 suite；不能从裸旧对象追溯未编码的生成宽度或限额。没有公钥绑定能力的 direct 后端必须如实标记，Hybrid 不允许缺失。新后端应提供完整公开参数快照；加载成功仍不证明生成分布。
+
+`import-role` 显式接收完整 `SuiteConfig`、规范组合公钥及唯一发送或接收角色对象，并经公开 runtime 绑定检查。它只在新的空状态目录内发布原有 v2 对象封装，不导入 master、不执行 Setup/Extract/Sign；元数据记录 `state_origin=imported-canonical-role-v1`、角色、完整身份摘要及 `master_persisted_before_key_publication=false`。该来源表示管理导入，不认证对象生成分布，也不表示 CLI 完成过原始发钥。旧 setup 状态的格式和来源语义保持原样。
+
+角色导入在既有发行锁内使用 `msk.bin.pending` 门覆盖发布过程；公钥、角色对象先于元数据发布，全部成功后才移除门。失败保留现场，后续命令保守拒绝，不自动续做或重新发钥。导入目录只允许同角色、同身份的已有密钥恢复；缺失、损坏、新身份或错误角色均拒绝。若目录被另放 `msk.bin` 文件、目录或链接，所有角色命令均拒绝，不能转为发钥服务。接收者叶缓存继续采用既有持久事务；这些保证限于已测试的同 OS 本地协作进程，不扩张为恶意存储认证、反回滚或硬断电保证。
 
 ## 3. 原语公共接口
 
