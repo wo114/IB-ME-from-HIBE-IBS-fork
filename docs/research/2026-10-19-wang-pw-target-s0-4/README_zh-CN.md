@@ -330,3 +330,74 @@ Setup的原GS门被拒，原失败材料已保留；最终使用既有生命周�
 子stdout/stderr均0 B，没有签名输出。这是运行中观察，不是最终峰值、阶段通过或签名成功。
 规范阶段/原因码目前尚未输出，不能据CPU时间、RSS或进程存活推断QR/GS门通过。
 最终仍需核子进程完整回执、观察项、资源/退出/清理、源码及原对象元数据稳定。
+
+## 16. 单次诊断终态与资源门定位
+
+本节覆盖第15节的运行中状态，保留原启动快照。已授权的一次 `ed10d6f` 原PK/SK续签于
+北京时间 **13:34:27** 失败，签名程序1719.051400285 s，监督器1719.442749671 s。
+[原始子回执](evidence/diagnostic-failure/child.stdout.log)给出
+`operation_stage=sign`、`sign_diagnostic={stage:native-gpv,failure_reason:native-return-code,native_code:1}`。
+未产生签名，也没有诚实验签或负例通过的观察项；不能回填为一次成功签名。
+
+[资源回执](evidence/diagnostic-failure/supervisor.json)记录采样峰值60601245696 B（约56.440 GiB），
+未触110 GiB/21600 s门，child/supervisor均退出1，未发TERM/KILL、无记录错误，清理后0存活。
+[终态复核](evidence/diagnostic-failure/post-failure-check.json)核实际两进程均消失、3387份源码仍匹配，
+原私密文件的设备/inode/大小/权限/修改时间/状态时间元数据均未变。元数据一致不等同于重新认证生成分布。
+不下载密钥、盐、实际签名或私密状态；原对象仍在服务器原位。未重试、未生成新Wang根或身份钥，
+未启动服务/组合/通用CLI后续链。此次监控已删除，完整大目标仍未完成且未自行暂停。
+
+[源码逐项核对](evidence/diagnostic-failure/source-review.json)排除了公开维度、policy及ABI错位：
+`M=49152,columns=1,threads=16` 均在原生门内；`M*M` 为uint64运算，未重复FULL QR的int32计数问题；
+Python已检查norms正且有限、star有限。code1仍不能区分下列数据相关分支：
+
+- 有效坐标标准差 `sign_sigma/sqrt(norms[i])` 超过 `2^40/20=54975581388.8`；
+  对本档等价于某GS长度小于约 `6.087376104758189e-5`。
+- 动态坐标中心非有限或绝对值超过 `2^50`。
+
+现有用户GS门只给最大长度上界1048576，没有最小长度保证。
+[公开二维探针](evidence/diagnostic-failure/native-code1-probe.json)使用幺模整数基
+`[[1000000,1],[1,0]]`（行列式−1）、零特解和本档公开sign_sigma：最大GS约1000000，通过现有上门；
+第二GS平方约 `1e-12`，有效sigma约 `3.34657e12`，在原native预计算阶段立即以code1拒绝。
+另一项一维sigma=`1e12`探针同样拒绝。两项均复用既建本地库、未构建、未调用Wang的Setup/Extract/Sign、
+未接触目标钥。它们确认工程门不匹配可发生，**不能证明服务器实际触发了哪一分支**。
+
+原[探针脚本](evidence/diagnostic-failure/native-code1-probe.py)按运行原件保存，依赖原ignored输出位置及当时的
+`ed10d6f` Python桥和已建本地.so；不能把它复制到本证据目录直接重跑，或用后续原因码补丁解释旧输出。
+[review](evidence/diagnostic-failure/review.json)、[manifest](evidence/diagnostic-failure/manifest.json)与
+[离线verifier](evidence/diagnostic-failure/verify_delivery.py)绑定公开材料、冻结版本、原始退出、资源及观察项；
+verifier只核回执一致性，不重新访问服务器、读取私密输入或执行算法。
+
+完整参数另见[逐项WIP审计](parameter-completion-audit.md)：根近均匀条件、GS与数值采样、有限误差/中止预算、
+PW查询损失、Rhat的委派宽度映射、SIS与资源筛查均独立列项。现有参考包络β≥q的真实拒绝仍保留，
+不以本地接口通过或未来一次签名成功代替参数完成。用户要求完整安全参数也纳入完成条件；
+不做s0=2有限论证、不另补基础安全归约，安全字段仍none/false/false/null，完整前不推送/建PR。
+
+## 17. 原生资源原因码细分（本地）
+
+实现提交 `420edbd`，`fix(wang-pw): distinguish native Gaussian range failures`，仅修改
+`src/ibme/ibs/wang_pw_target/native.py` 与新增 `tests/test_wang_pw_target_native_reasons.py`。
+严格整数code1加**完整匹配**的两条固定C++消息，分别映射为
+`native-gaussian-width-range`、`native-gaussian-center-range`。其他码、未知文本、前后缀或嵌入字段
+继续只公开 `native-return-code`；原异常参数与既有成功返回行为保持。公开字段结构不变，
+不输出原异常文本、系数、中心数值或路径。没有修改native源码、参数、随机源、接受门或重试策略。
+这项细分只适用于将来实际使用该提交产生的回执，不能追写到本节之前的服务器失败中。
+
+规定WSL Sage＋显式既建native的十文件回归为 **278 passed / 0 failed/error/skip，33.416 s**，
+详见[JUnit](evidence/native-reasons/regression.xml)、[日志](evidence/native-reasons/regression.log)、
+[命令与源码绑定](evidence/native-reasons/review.json)及[manifest](evidence/native-reasons/manifest.json)。
+新专项含两项真实一维GPV宽度/中心资源拒绝和公开投影测试；其他回归仍含真实小参数生命周期。
+JUnit仅将一个本机hostname替换为`local-wsl`，原始与公开字节哈希及变换均有记录。
+本地测试不是n512成功签名；补丁未部署到服务器，没有再次签名或启动后续链。
+
+## 18. 安全参数路线的廉价规划
+
+用户要求完整安全参数也作为完成条件；具体缺口见[逐项审计](parameter-completion-audit.md)。
+新增[条件成本与资源规划](parameter-route-planning.md)，实现 `fb919a3`：固定已有estimator，
+9个独立、最长60秒的子进程，只有标量与单norm2 MATZOV成本，不生成根/钥/签名或修改服务器。
+规划谱界没有认证常数/失败概率，成本不能当IBS安全位数。
+
+n512/k54虽令规划beta略低于q，工具成本读数约43.03且三份裸阵列153.77 GiB；
+n2048/k64读数约121.04，裸阵列3456 GiB。现q32/4 GiB对象/65535维等门也未支持这些规划点。
+仅扩大q没有给出可交付正式参数；更高成本行同样未通过全部有限条件或现实现资源门。
+28项规划/筛查测试通过，源码、原始结果、测试与manifest见规划报告。两条方向分别是原钥工程资源门定位，
+以及有文献有限条件支持的参数＋可承载实现研究；不把任何一个方向的局部通过写成全部完成。

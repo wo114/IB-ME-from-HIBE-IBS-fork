@@ -2,7 +2,7 @@
 
 本表固定 Wang 等 ePrint 2022/1718 仓库论文版本：`papers/2022_identity_matchmaking_wang.pdf`，PDF 第7–8页 Lemma 2.5–2.7、第16页 Figure 4 与 Parameter Selection、第17–19页 Theorem 5.1/算法B；外层采用已有 Pan–Wagner ROM 转换与固定发钥服务语义。按当前 AGENTS 引用所选论文，不另开基础安全证明。以下有限工程选取不冒充原文给出的数值参数表。
 
-**当前实现范围（2026-10-20）**：独立[`wang-pw-target`](../../../../src/ibme/ibs/wang_pw_target/)已实现五方法、H1/H2/PW盐绑定、固定整数范数验签、C++有限Gaussian/GPV、规范对象、固定发行服务、registry和CLI。服务器已有n2/q257三根、n4/q4294967291磁盘恢复及182项测试收据；本地另完成真实服务的跨进程初发/零熵复用/恢复签验，以及真实LATTE作者参数＋Wang debug的16步独立进程CLI，无msk的角色目录可独立新加密或恢复解密。详见[本批交付](../../2026-10-19-wang-pw-target-s0-4/README_zh-CN.md)与[独立进程组合测试](../../../../tests/test_wang_pw_target_combination_process.py)。**新后端n512单根主档于2026-10-20北京时间09:53启动，尚无最终结果，正式参数未准入**；PR67旧n512数值探针与旧q17后端均保持各自历史范围，不迁移计时、范数或153.70估计，也不新增算法计数。
+**当前实现范围（2026-10-20）**：独立[`wang-pw-target`](../../../../src/ibme/ibs/wang_pw_target/)已实现五方法、H1/H2/PW盐绑定、固定整数范数验签、C++有限Gaussian/GPV、规范对象、固定发行服务、registry和CLI。服务器已有n2/q257三根、n4/q4294967291磁盘恢复及182项测试收据；本地另完成真实服务的跨进程初发/零熵复用/恢复签验，以及真实LATTE作者参数＋Wang debug的16步独立进程CLI，无msk的角色目录可独立新加密或恢复解密。详见[本批交付](../../2026-10-19-wang-pw-target-s0-4/README_zh-CN.md)与[独立进程组合测试](../../../../tests/test_wang_pw_target_combination_process.py)。**n512原根Setup/Extract成功，Sign先以MemoryError失败；economic QR原钥续签又以SamplingError失败；单次诊断续签于13:34:27以native-gpv/code1失败**，详见[终态](../../2026-10-19-wang-pw-target-s0-4/README_zh-CN.md#16-单次诊断终态与资源门定位)。尚无目标成功签名或完整链，完整参数材料仍[WIP](../../2026-10-19-wang-pw-target-s0-4/parameter-completion-audit.md)；PR67旧n512数值探针与旧q17后端均保持各自历史范围，不迁移计时、范数或153.70估计，也不新增算法计数。
 
 ## 原文、工程参数与历史探针
 
