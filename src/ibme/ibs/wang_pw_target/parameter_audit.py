@@ -189,7 +189,9 @@ def audit(params: WangPWTargetParams, measured: dict[str, Any] | None = None) ->
     memory_observed_ok = None if peak is None else peak < MEMORY_TARGET_BYTES
 
     coordinate_count = p.m_bar*p.w + p.m*p.w + p.dimension
-    support_cap = 2 * (1 << 40) + 1  # Native radius gate; no such array is allocated.
+    # Proposal uses radius=ceil(tail*sigma)+1, then includes both endpoints.
+    # At sigma=2**40/tail this gives 2*(2**40+1)+1 points; no array is allocated.
+    support_cap = 2 * (1 << 40) + 3
     mass_loss_diagnostic = math.ldexp(float(support_cap), -p.mass_bits)
     ignored_costs = {}
     for key in ("classical_bits", "quantum_bits", "sis_classical_bits", "sis_quantum_bits"):

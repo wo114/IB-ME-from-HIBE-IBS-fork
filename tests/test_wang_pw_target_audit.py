@@ -115,6 +115,31 @@ def test_finite_diagnostics_are_scaled_and_explicitly_not_total_tv():
     assert result["estimator"]["automatic_download"] is False
 
 
+def test_native_window_support_counts_extra_radius_and_both_endpoints():
+    # Bind the arithmetic to the current native source without loading it.
+    source = Path(parameter_audit.__file__).with_name("native").joinpath("gaussian.cpp").read_text()
+    assert "constexpr uint64_t MAX_RADIUS = 1ULL << 40;" in source
+    assert "value>double(MAX_RADIUS)/p.tail" in source
+    assert "radius=(uint64_t)std::ceil(p.tail*value)+1;" in source
+    maximum = 1 << 40
+    for tail in (20.0, 32.0):
+        sigma = maximum / tail  # Accepted equality at Proposal's width gate.
+        radius = math.ceil(tail * sigma) + 1
+        assert radius == maximum + 1
+        # Translation by floor(center) does not change the inclusive count.
+        left, right = 7 - radius, 7 + radius
+        support = right - left + 1
+        assert support == 2 * maximum + 3
+        p = small_params(gaussian_tail_sigma=tail)
+        dg = audit(p)["finite_sampler_diagnostics"]
+        assert dg["native_max_window_support"] == support
+        loss = math.ldexp(float(support), -p.mass_bits)
+        assert dg["sum_floor_weight_loss_envelope_diagnostic"] == loss
+        assert dg["sum_floor_loss_times_coordinate_count_diagnostic"] == min(
+            1.0, loss * (p.m_bar * p.w + p.m * p.w + p.dimension))
+        assert dg["total_tv_bound"] is None and dg["abort_probability_bound"] is None
+
+
 @pytest.mark.parametrize("measured", [
     [], {"peak_rss_bytes": 0}, {"peak_rss_bytes": True}, {"sign_norm": float("nan")},
     {"uniform_bounds": {"reference_norm_bound": 0}},
