@@ -26,17 +26,11 @@
 # the normal whitespace checks. This file is not a production sampler.
 experiments/research/reuse/vendor/latte/sample_z.upstream.c -text -eol -whitespace
 
-# 第三方参考资料：不随提交物打包
-#
-# 这三个文件是撰写作品时查阅的参考材料，不是作品产出，也不被任何代码读取
-# （实测：仅在 5 个文档中作为参考文献按名字提及）。团队对它们有合法访问权，
-# 但"可以查阅"不等于"可以再分发"，因此打包对外提交物时不应包含。
-#
-# export-ignore 只影响 `git archive` 的输出，不影响仓库本身：私有仓库内部
-# 照常保留这三份材料供随时查阅。实测 git archive 体积 5912 KB -> 2000 KB。
-#
-# 打包提交物：
-#     git archive --format=zip -o 作品提交.zip HEAD
+# 第三方参考资料不随精简源码包分发；保留索引与引用记录。
+# export-ignore 只影响 git archive，不删除工作文件或历史。
+# 论文缓存核验需要另行恢复固定版本PDF；不能宣称精简包包含全部研究缓存。
+# 当前归属、保留声明及交付检查见 NOTICE.md。
 支持特定功能的格基函数加密研究.pdf export-ignore
 978-3-031-51476-0_21.pdf           export-ignore
 ib-me.pptx                         export-ignore
+papers/**/*.pdf                    export-ignore
