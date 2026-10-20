@@ -1,910 +1,114 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>IB-ME 交互演示</title>
-<style>
-  :root{
-    --bg:#f5f7fb;
-    --panel:#ffffff;
-    --ink:#172033;
-    --muted:#68738a;
-    --line:#e3e8f1;
-    --line-strong:#cfd7e6;
-    --brand:#2563eb;
-    --brand-soft:#eaf1ff;
-    --teal:#0f766e;
-    --teal-soft:#e6f7f4;
-    --amber:#b45309;
-    --amber-soft:#fff4df;
-    --red:#c2413b;
-    --red-soft:#fdecea;
-    --green:#15803d;
-    --green-soft:#e9f8ee;
-    --violet:#6d28d9;
-    --violet-soft:#f1ebff;
-    --shadow:0 8px 24px rgba(23,32,51,.06);
-    --radius:16px;
-    --mono:"Cascadia Code","SFMono-Regular",Consolas,"Liberation Mono",monospace;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{
-    background:
-      radial-gradient(1200px 500px at 8% -10%, #e7efff 0%, transparent 55%),
-      radial-gradient(900px 420px at 100% 0%, #e6f7f4 0%, transparent 50%),
-      var(--bg);
-    color:var(--ink);
-    font-family:"Segoe UI","Microsoft YaHei","PingFang SC",system-ui,-apple-system,sans-serif;
-    font-size:14px;
-    line-height:1.55;
-    min-height:100vh;
-  }
-  .app{max-width:1280px;margin:0 auto;padding:24px 24px 40px}
-  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
-  .brand{display:flex;align-items:center;gap:13px;min-width:0}
-  .logo{
-    width:48px;height:48px;border-radius:14px;flex:none;
-    background:linear-gradient(135deg,#2563eb 0%,#0f766e 100%);
-    display:grid;place-items:center;color:#fff;
-    box-shadow:0 8px 18px rgba(37,99,235,.24);
-  }
-  .logo svg{width:26px;height:26px}
-  .brand h1{font-size:21px;line-height:1.2;margin:0;letter-spacing:.2px}
-  .brand p{margin:2px 0 0;color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .chips{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-  .chip{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid transparent;white-space:nowrap}
-  .chip .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
-  .chip.blue{color:#1d4ed8;background:#eaf1ff;border-color:#d6e3ff}
-  .chip.amber{color:#92400e;background:#fff4df;border-color:#fde7bd}
-  .chip.gray{color:#4b5563;background:#f1f4f9;border-color:#e3e8f1}
-  .chip.green{color:#166534;background:#e9f8ee;border-color:#c9ecd5}
-  .notice{
-    display:flex;gap:10px;align-items:flex-start;
-    background:linear-gradient(90deg,#fffbeb,#fff7ed);
-    border:1px solid #fde7bd;color:#7c4a03;
-    border-radius:12px;padding:10px 13px;font-size:12.5px;margin-bottom:18px;
-  }
-  .notice svg{width:16px;height:16px;flex:none;margin-top:2px}
-  .layout{display:grid;grid-template-columns:372px minmax(0,1fr);gap:18px;align-items:start}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
-  .side{position:sticky;top:18px}
-  .main{display:flex;flex-direction:column;gap:14px}
-  .step{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:var(--brand);margin-bottom:10px}
-  .step .num{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:7px;background:var(--brand-soft);color:var(--brand);font-size:11px;letter-spacing:0}
-  .step .hint{color:var(--muted);font-weight:500;letter-spacing:0;text-transform:none;font-size:11.5px;margin-left:auto}
-  .presets{display:flex;flex-direction:column;gap:7px}
-  .preset{
-    display:flex;gap:10px;align-items:flex-start;text-align:left;width:100%;
-    border:1px solid var(--line);background:#fbfcfe;border-radius:11px;padding:9px 10px;
-    cursor:pointer;transition:border-color .15s,background .15s,transform .15s;
-    font-family:inherit;color:inherit;
-  }
-  .preset:hover{border-color:#b9c9e8;background:#fff;transform:translateY(-1px)}
-  .preset.active{border-color:var(--brand);background:var(--brand-soft);box-shadow:0 0 0 1px rgba(37,99,235,.12)}
-  .preset .tick{width:18px;height:18px;border-radius:6px;flex:none;margin-top:1px;border:1.5px solid var(--line-strong);display:grid;place-items:center;background:#fff;color:transparent;font-size:11px;font-weight:800}
-  .preset.active .tick{background:var(--brand);border-color:var(--brand);color:#fff}
-  .preset .p-title{font-size:12.5px;font-weight:700;line-height:1.35}
-  .preset .p-note{font-size:11px;color:var(--muted);line-height:1.4;margin-top:2px}
-  .tag{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;margin-left:5px;vertical-align:1px}
-  .tag.primary{color:#1d4ed8;background:#dbe7ff}
-  .tag.blue{color:#1d4ed8;background:#e2ebff}
-  .tag.teal{color:#0f766e;background:#d8f3ee}
-  .tag.amber{color:#92400e;background:#fdecc8}
-  .tag.violet{color:#6d28d9;background:#eadfff}
-  details.advanced{margin-top:10px;border-top:1px dashed var(--line);padding-top:9px}
-  details.advanced summary{cursor:pointer;color:var(--muted);font-size:12px;user-select:none}
-  details.advanced summary:hover{color:var(--brand)}
-  .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
-  .field{display:flex;flex-direction:column;gap:4px;min-width:0}
-  .field.wide{grid-column:1 / -1}
-  .field label,.field > span{font-size:11px;color:var(--muted);font-weight:600}
-  select,input,textarea{
-    width:100%;border:1px solid var(--line-strong);background:#fff;color:var(--ink);
-    border-radius:9px;padding:8px 9px;font-family:inherit;font-size:12.5px;outline:none;
-    transition:border-color .15s,box-shadow .15s;
-  }
-  select:focus,input:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
-  textarea{resize:vertical;min-height:74px;line-height:1.5}
-  select:disabled,input:disabled,textarea:disabled{background:#f6f8fb;color:#7b8497;cursor:not-allowed}
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:7px;
-    border:1px solid transparent;border-radius:9px;padding:8px 12px;
-    font-family:inherit;font-size:12.5px;font-weight:700;line-height:1.2;
-    cursor:pointer;transition:transform .12s,filter .12s,background .12s,opacity .12s;
-    user-select:none;white-space:nowrap;
-  }
-  .btn:hover:not(:disabled){transform:translateY(-1px);filter:brightness(.98)}
-  .btn:active:not(:disabled){transform:translateY(0)}
-  .btn:disabled{opacity:.45;cursor:not-allowed}
-  .btn svg{width:15px;height:15px;flex:none}
-  .btn.primary{background:var(--brand);color:#fff;box-shadow:0 4px 10px rgba(37,99,235,.2)}
-  .btn.secondary{background:#fff;border-color:var(--line-strong);color:#334155}
-  .btn.success{background:var(--green);color:#fff}
-  .btn.warn{background:var(--amber);color:#fff}
-  .btn.danger{background:var(--red);color:#fff}
-  .btn.ghost{background:transparent;border-color:var(--line);color:var(--muted)}
-  .btn.block{width:100%}
-  .btn-row{display:flex;gap:8px;flex-wrap:wrap}
-  .check-box{margin-top:10px;border-radius:10px;padding:9px 10px;font-size:11.5px;line-height:1.5;border:1px solid var(--line);background:#fbfcfe;color:var(--muted)}
-  .check-box.ok{border-color:#c9ecd5;background:var(--green-soft);color:#166534}
-  .check-box.bad{border-color:#f3c7c3;background:var(--red-soft);color:#8a2c27}
-  .check-box.loading{border-color:#d6e3ff;background:var(--brand-soft);color:#1d4ed8}
-  .check-box ul{margin:5px 0 0;padding-left:16px}
-  .check-box li{margin:1px 0}
-  .meta-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
-  .mini{display:inline-flex;gap:4px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:6px;padding:2px 6px;font-size:10.5px;color:#475569;font-family:var(--mono)}
-  .divider{height:1px;background:var(--line);margin:14px 0}
-  .identity-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
-  .identity-grid .field label{white-space:nowrap}
-  .session-box{margin-top:10px;border:1px solid var(--line);border-radius:11px;padding:10px;background:#fbfcfe;font-size:11.5px;color:var(--muted)}
-  .session-box .session-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:6px;color:var(--ink);font-weight:700;font-size:12px}
-  .session-box .kv{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-family:var(--mono);font-size:10.5px}
-  .session-box .kv span:nth-child(odd){color:var(--muted)}
-  .main .flow-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
-  .main .flow-head .title{font-size:15px;font-weight:800;letter-spacing:.1px}
-  .main .flow-head .sub{font-size:11.5px;color:var(--muted);margin-top:1px}
-  .message-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:5px;font-size:11px;color:var(--muted)}
-  .message-meta .count{font-family:var(--mono)}
-  .cipher-strip{display:none;align-items:center;gap:10px;margin-top:10px;border:1px dashed #c9d7f4;background:#f7faff;border-radius:10px;padding:8px 10px;font-size:11.5px;color:#1e3a8a}
-  .cipher-strip.show{display:flex}
-  .cipher-strip .lock{width:28px;height:28px;border-radius:8px;background:var(--brand-soft);display:grid;place-items:center;color:var(--brand);flex:none}
-  .cipher-strip .c-main{font-weight:700}
-  .cipher-strip .c-sub{color:var(--muted);font-size:10.5px;font-family:var(--mono)}
-  .cipher-strip .c-size{margin-left:auto;text-align:right}
-  .cipher-strip .c-size b{font-family:var(--mono);font-size:13px;color:var(--brand)}
-  .decrypt-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:4px}
-  .decrypt-grid .btn{padding:9px 8px;font-size:12px}
-  .result{margin-top:12px;border-radius:12px;border:1px solid var(--line);background:#fbfcfe;padding:12px 13px;min-height:72px}
-  .result.ok{border-color:#c9ecd5;background:linear-gradient(180deg,#f4fdf7,#ecfaf1)}
-  .result.bottom{border-color:#f3d9a8;background:linear-gradient(180deg,#fffaf0,#fff5e2)}
-  .result.bad{border-color:#f3c7c3;background:linear-gradient(180deg,#fff7f6,#fdeeec)}
-  .result .r-head{display:flex;align-items:center;gap:8px;font-weight:800;font-size:13px}
-  .result .r-head .icon{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;flex:none}
-  .result.ok .r-head .icon{background:#d6f2df;color:#15803d}
-  .result.bottom .r-head .icon{background:#fbe7bf;color:#92400e}
-  .result.bad .r-head .icon{background:#f8d7d4;color:#b91c1c}
-  .result .r-time{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:500}
-  .result .r-body{margin-top:7px;font-size:12px;color:#374151}
-  .result pre{margin:7px 0 0;padding:9px 10px;border-radius:8px;background:#fff;border:1px solid var(--line);font-family:var(--mono);font-size:11.5px;white-space:pre-wrap;word-break:break-word;max-height:150px;overflow:auto}
-  .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-  .metric{border:1px solid var(--line);border-radius:10px;padding:9px 10px;background:#fbfcfe;min-width:0}
-  .metric .k{font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .metric .v{font-family:var(--mono);font-size:14px;font-weight:700;margin-top:1px;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .metric .v small{font-family:inherit;font-size:10px;color:var(--muted);font-weight:500}
-  .metric.accent{background:var(--brand-soft);border-color:#d6e3ff}
-  .metric.accent .v{color:var(--brand)}
-  details.details{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
-  details.details summary{cursor:pointer;color:var(--muted);font-size:11.5px}
-  details.details pre{margin:8px 0 0;padding:10px;border-radius:9px;background:#0f172a;color:#dbeafe;font-family:var(--mono);font-size:10.5px;line-height:1.5;max-height:260px;overflow:auto;white-space:pre-wrap;word-break:break-word}
-  .log-card{margin-top:16px;padding:14px 16px}
-  .log-head{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11.5px;font-weight:700;color:var(--muted);letter-spacing:.4px;text-transform:uppercase}
-  .link{border:0;background:none;color:var(--brand);font:inherit;font-size:11px;cursor:pointer;padding:0}
-  .log{margin-top:7px;max-height:150px;overflow:auto;font-family:var(--mono);font-size:11px;color:#475569;display:flex;flex-direction:column;gap:3px}
-  .log .entry{display:flex;gap:8px;align-items:flex-start}
-  .log .t{color:#94a3b8;flex:none}
-  .log .m{word-break:break-word}
-  .log .entry.ok .m{color:#166534}
-  .log .entry.err .m{color:#b91c1c}
-  .log .entry.warn .m{color:#92400e}
-  footer{margin-top:18px;color:#8a94a6;font-size:11px;text-align:center;line-height:1.6}
-  .progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#2563eb,#0f766e);z-index:50;transition:width .25s ease;opacity:0}
-  .progress.on{opacity:1;width:70%}
-  .progress.done{opacity:0;width:100%}
-  .toast{
-    position:fixed;right:22px;bottom:24px;z-index:60;max-width:min(440px,calc(100vw - 44px));
-    background:#1e293b;color:#f8fafc;border-radius:10px;padding:10px 13px;font-size:12px;
-    box-shadow:0 12px 30px rgba(15,23,42,.25);display:none;
-  }
-  .toast.show{display:block;animation:toastIn .18s ease}
-  .toast.err{background:#7f1d1d}
-  @keyframes toastIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  .spin{width:13px;height:13px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;display:inline-block;animation:spin .7s linear infinite;vertical-align:-2px}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .muted{color:var(--muted)}
-  .mono{font-family:var(--mono)}
-  .nowrap{white-space:nowrap}
-  @media (max-width:1080px){
-    .layout{grid-template-columns:340px minmax(0,1fr)}
-    .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
-  }
-  @media (max-width:860px){
-    .app{padding:16px 14px 30px}
-    .layout{grid-template-columns:1fr}
-    .side{position:static}
-    .decrypt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .brand p{white-space:normal}
-    .topbar{align-items:flex-start;flex-direction:column}
-    .chips{justify-content:flex-start}
-  }
-  @media (max-width:520px){
-    .identity-grid,.field-grid{grid-template-columns:1fr}
-    .metrics{grid-template-columns:1fr 1fr}
-    .decrypt-grid{grid-template-columns:1fr 1fr}
-  }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>IB-ME · 身份匹配演示</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
 </head>
 <body>
-<div class="progress" id="progress"></div>
-<div class="toast" id="toast"></div>
-<div class="app">
-  <header class="topbar">
-    <div class="brand">
-      <div class="logo" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="4" y="10" width="16" height="10" rx="2"></rect>
-          <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
-          <path d="M12 14v2"></path>
-        </svg>
-      </div>
-      <div>
-        <h1>IB-ME 交互演示</h1>
-        <p>两层格 HIBE + IBS · 身份基匹配加密 · 本地真实后端</p>
-      </div>
+  <div class="app">
+    <header class="masthead">
+      <a class="wordmark" href="/" aria-label="IB-ME 演示首页">IB-ME<span>身份基匹配加密</span></a>
+      <nav class="tabs" aria-label="页面">
+        <button type="button" class="tab active" data-view="demo" aria-pressed="true">演示</button>
+        <button type="button" class="tab" data-view="records" aria-pressed="false">运行记录</button>
+      </nav>
+      <div class="connection" id="connection" role="status"><i></i><span>连接中</span></div>
+    </header>
+
+    <div class="error-banner" id="errorBanner" role="alert" hidden>
+      <span id="errorText"></span>
+      <button type="button" class="text-button" id="reconnectBtn" hidden>重新连接</button>
+      <button type="button" class="dismiss" id="dismissError" aria-label="关闭错误提示">×</button>
     </div>
-    <div class="chips">
-      <span class="chip blue"><span class="dot"></span>真实格后端</span>
-      <span class="chip amber">security_claim = secure</span>
-      <span class="chip gray" id="envChip">环境检查中</span>
-    </div>
-  </header>
 
-  <div class="notice">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
-    <div><b>方案安全性：</b>主演示使用作者 LATTE-3 参数与 BNN/ML-DSA-44 认证转换；按选定论文的安全性和身份匿名性前提，已完成的方案作为安全方案使用。当前采用的算法、参数及实验结果均可查看。</div>
-  </div>
-
-  <div class="layout">
-    <aside class="card side">
-      <div class="step"><span class="num">1</span>选择实例 <span class="hint">HIBE × IBS</span></div>
-      <div class="presets" id="presets"></div>
-
-      <details class="advanced">
-        <summary>自定义组合与参数</summary>
-        <div class="field-grid">
-          <div class="field"><label for="hibe">HIBE</label><select id="hibe"></select></div>
-          <div class="field"><label for="ibs">IBS</label><select id="ibs"></select></div>
-          <div class="field"><label for="transport">载荷路线</label><select id="transport"><option value="hybrid">hybrid（大载荷）</option><option value="direct">direct</option></select></div>
-          <div class="field"><label for="protocol">密文协议</label><select id="protocol"><option value="byteauth-v1">byteauth-v1</option><option value="baseline-v1">baseline-v1</option></select></div>
-          <div class="field wide"><label for="signature_format">IBS 签名格式</label><select id="signature_format"><option value="reference">reference</option><option value="compact">compact（仅部分 IBS）</option></select></div>
-        </div>
-        <div class="muted" style="font-size:10.5px;margin-top:7px;line-height:1.45">本界面开放 LATTE-3 HIBE 与 ML-DSA / Falcon / Luo 三种 IBS；ABB-ROM、CHKP、MP12 等其它后端请使用 CLI 或报告矩阵。</div>
-      </details>
-
-      <div class="btn-row" style="margin-top:11px">
-        <button class="btn secondary block" id="checkBtn" type="button">检查配置</button>
-      </div>
-      <div class="check-box" id="checkBox">选择实例后点击“检查配置”。</div>
-
-      <div class="divider"></div>
-      <div class="step"><span class="num">2</span>演示身份 <span class="hint">UTF-8，≤ 容量</span></div>
-      <div class="identity-grid">
-        <div class="field"><label for="senderName">发送者</label><input id="senderName" value="Alice" autocomplete="off"></div>
-        <div class="field"><label for="receiverName">接收者</label><input id="receiverName" value="Bob" autocomplete="off"></div>
-        <div class="field"><label for="wrongName">错误接收者</label><input id="wrongName" value="Carol" autocomplete="off"></div>
-      </div>
-      <button class="btn primary block" id="bootstrapBtn" type="button" style="margin-top:9px" disabled>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2"></path><path d="M15.5 8.5 19 5"></path><circle cx="7.5" cy="15.5" r="5.5"></circle><path d="M11.4 11.6 19 4"></path></svg>
-        初始化并签发演示密钥
-      </button>
-      <div class="session-box" id="sessionBox">
-        <div class="session-head"><span>会话状态</span><span class="chip gray">未初始化</span></div>
-        <div class="muted">初始化会执行真实 Setup，并为 Alice / Bob / Carol 签发密钥。私钥只保存在本进程内存中。</div>
-      </div>
-      <div class="btn-row" style="margin-top:9px">
-        <button class="btn ghost block" id="resetBtn" type="button" disabled>清除当前会话</button>
-      </div>
-    </aside>
-
-    <main class="main">
-      <section class="card">
-        <div class="flow-head">
-          <div>
-            <div class="title">加密与身份匹配</div>
-            <div class="sub" id="flowSub">先完成左侧初始化；随后 Alice 指定接收者 Bob 加密。</div>
-          </div>
-          <span class="chip gray" id="cipherChip">尚无密文</span>
-        </div>
-        <div class="field">
-          <label for="message">应用消息（UTF-8 文本）</label>
-          <textarea id="message" rows="3">IB-ME demo: Alice → Bob</textarea>
-          <div class="message-meta"><span>只有接收者身份与声称发送者都匹配时才恢复明文。</span><span class="count" id="msgCount">0 B</span></div>
-        </div>
-        <div class="btn-row" style="margin-top:9px">
-          <button class="btn primary" id="encryptBtn" type="button" disabled>加密</button>
-          <span class="muted" style="font-size:11.5px;align-self:center" id="encryptHint">初始化后可用</span>
-        </div>
-        <div class="cipher-strip" id="cipherStrip">
-          <div class="lock" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
-          </div>
-          <div><div class="c-main">完整外层密文</div><div class="c-sub" id="cipherSha">—</div></div>
-          <div class="c-size"><b id="cipherSize">—</b><div class="c-sub" id="cipherTime">—</div></div>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="step"><span class="num">3</span>解密尝试 <span class="hint">正确匹配 / 三类拒绝 / 篡改</span></div>
-        <div class="decrypt-grid">
-          <button class="btn success" data-mode="normal" type="button" disabled>正确双方</button>
-          <button class="btn warn" data-mode="wrong_sender" type="button" disabled>错误发送者</button>
-          <button class="btn warn" data-mode="wrong_receiver" type="button" disabled>错误接收者</button>
-          <button class="btn warn" data-mode="both_wrong" type="button" disabled>双方都错</button>
-          <button class="btn danger" data-mode="tamper" type="button" disabled>篡改 1 bit</button>
-          <button class="btn danger" data-mode="truncate" type="button" disabled>截断 1 字节</button>
-        </div>
-        <div class="result" id="result" aria-live="polite">
-          <div class="r-head"><span class="icon">?</span><span>等待操作</span></div>
-          <div class="r-body">加密后点击任一解密按钮；拒绝时协议返回 <span class="mono">BOTTOM</span>。</div>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="step"><span class="num">4</span>观测指标 <span class="hint">尺寸 / 时间</span></div>
-        <div class="metrics" id="metrics">
-          <div class="metric"><div class="k">完整密文</div><div class="v" id="mCipher">—</div></div>
-          <div class="metric"><div class="k">消息</div><div class="v" id="mMessage">—</div></div>
-          <div class="metric"><div class="k">公钥 mpk</div><div class="v" id="mMpk">—</div></div>
-          <div class="metric"><div class="k">主密钥 msk</div><div class="v" id="mMsk">—</div></div>
-          <div class="metric"><div class="k">发送者密钥</div><div class="v" id="mSender">—</div></div>
-          <div class="metric"><div class="k">接收者密钥</div><div class="v" id="mReceiver">—</div></div>
-          <div class="metric"><div class="k">Setup</div><div class="v" id="mSetup">—</div></div>
-          <div class="metric accent"><div class="k">加密 / 解密</div><div class="v" id="mCrypto">—</div></div>
-        </div>
-        <details class="details">
-          <summary>技术细节（实际参数、容量、计时原始值）</summary>
-          <pre id="details">尚无会话。</pre>
+    <div class="layout" id="demoView">
+      <aside class="sidebar" aria-label="演示设置">
+        <div class="section-label">方案</div>
+        <div class="presets" id="presets" aria-label="三组代表方案"></div>
+        <details class="extras" id="extras">
+          <summary>补充方案</summary>
+          <div id="extraPresets" class="presets"></div>
         </details>
-        <div class="btn-row" style="margin-top:10px">
-          <button class="btn ghost" id="exportBtn" type="button" disabled>导出本次实测 JSON</button>
-          <span class="muted" style="font-size:11.5px">仅导出参数、尺寸、计时和结果；不含密钥与消息正文。</span>
+
+        <div class="identity-section">
+          <div class="section-label">身份</div>
+          <label class="field" for="senderName"><span>发送者</span><input id="senderName" value="Alice" autocomplete="off" spellcheck="false"></label>
+          <label class="field" for="receiverName"><span>接收者</span><input id="receiverName" value="Bob" autocomplete="off" spellcheck="false"></label>
+          <details class="test-identity">
+            <summary>错配测试身份</summary>
+            <label class="field" for="wrongName"><span class="sr-only">错配测试身份</span><input id="wrongName" value="Carol" autocomplete="off" spellcheck="false"></label>
+          </details>
         </div>
-      </section>
+
+        <div class="session-actions">
+          <p class="check-status" id="checkStatus" role="status">正在读取方案</p>
+          <p class="wait-note" id="waitNote" hidden></p>
+          <button type="button" class="button primary full" id="startBtn" disabled>开始演示</button>
+          <button type="button" class="text-button reset" id="resetBtn" hidden>结束当前会话</button>
+        </div>
+      </aside>
+
+      <main class="workspace" id="workspace">
+        <div class="workspace-heading">
+          <div><p class="eyebrow" id="schemeCaption">方案 A</p><h1>消息加密与验证</h1></div>
+          <span class="session-status" id="sessionStatus">未开始</span>
+        </div>
+        <div class="route-line"><span id="routeSender">Alice</span><span class="route-arrow" aria-hidden="true">→</span><span id="routeReceiver">Bob</span><span class="route-caption">双方身份匹配时恢复消息</span></div>
+
+        <div class="job-status" id="jobStatus" role="status" aria-live="polite" hidden>
+          <span class="spinner" aria-hidden="true"></span><span id="jobPhase">正在执行</span><span class="elapsed" id="jobElapsed">0 s</span>
+        </div>
+
+        <div class="workbench">
+          <section class="message-pane" aria-labelledby="messageHeading">
+            <div class="pane-heading"><h2 id="messageHeading">原始消息</h2><span id="messageCount" class="byte-count">0 B</span></div>
+            <label class="sr-only" for="message">待加密消息</label>
+            <textarea id="message" spellcheck="false" placeholder="输入一条消息">周五下午三点，实验室见。</textarea>
+            <div class="pane-footer"><button type="button" class="button primary" id="encryptBtn" disabled>加密消息 <span aria-hidden="true">↗</span></button><span class="quiet" id="messageLimit"></span></div>
+          </section>
+
+          <section class="result-pane" aria-labelledby="resultHeading">
+            <div class="pane-heading"><h2 id="resultHeading">解密结果</h2><span id="resultLabel" class="result-label"></span></div>
+            <div class="result-content" id="resultContent" aria-live="polite"><p class="empty-state">开始演示，加密一条消息。</p></div>
+            <div class="decrypt-toolbar">
+              <label class="sr-only" for="testMode">验证情形</label>
+              <select id="testMode" disabled>
+                <option value="normal">双方身份正确</option>
+                <option value="wrong_sender">发送者不匹配</option>
+                <option value="wrong_receiver">接收者不匹配</option>
+                <option value="both_wrong">双方身份都不匹配</option>
+                <option value="tamper">篡改密文 1 bit</option>
+                <option value="truncate">截断密文 1 字节</option>
+              </select>
+              <button type="button" class="button secondary" id="decryptBtn" disabled>解密验证</button>
+            </div>
+          </section>
+        </div>
+
+        <div class="cipher-line" id="cipherLine"><span id="cipherStatus">尚未生成密文</span><code id="cipherDigest"></code></div>
+        <div class="measurements" aria-label="本次测量">
+          <div><span class="measure-label">密文大小</span><span class="measure-value" id="metricCipher">—</span></div>
+          <div><span class="measure-label">加密耗时</span><span class="measure-value" id="metricEncrypt">—</span></div>
+          <div><span class="measure-label">解密耗时</span><span class="measure-value" id="metricDecrypt">—</span></div>
+        </div>
+
+        <details class="technical" id="technical">
+          <summary>参数与更多指标</summary>
+          <dl class="parameter-grid" id="parameterGrid"></dl>
+          <details class="raw-parameters"><summary>完整配置</summary><pre id="rawParameters">尚未读取配置。</pre></details>
+        </details>
+        <p class="session-footnote">刷新可继续当前会话；关闭或重启服务后，需重新开始。</p>
+      </main>
+    </div>
+
+    <main class="records-view" id="recordsView" hidden>
+      <div class="workspace-heading"><div><p class="eyebrow">当前会话</p><h1>运行记录</h1></div><button type="button" class="button secondary" id="exportBtn" disabled>导出 JSON <span aria-hidden="true">↓</span></button></div>
+      <div class="table-wrap"><table><caption class="sr-only">本次会话的实际操作与结果</caption><thead><tr><th scope="col">操作</th><th scope="col">情形</th><th scope="col">耗时</th><th scope="col">结果</th></tr></thead><tbody id="recordsBody"><tr><td colspan="4" class="empty-records">开始演示后，这里会记录每次操作。</td></tr></tbody></table></div>
     </main>
   </div>
-
-  <section class="card log-card">
-    <div class="log-head"><span>运行日志</span><button class="link" id="clearLog" type="button">清空</button></div>
-    <div class="log" id="log"></div>
-  </section>
-
-  <footer>
-    本地演示 · 刷新页面可重连当前会话；服务重启后会话丢失，持久恢复使用 CLI · 参数为研究/功能性配置<br>
-    功能与性能结果不替代 LWE / SIS / HIBE / IBS / IB-ME 安全证明
-  </footer>
-</div>
-
-<script>
-(() => {
-  "use strict";
-  const $ = (s) => document.querySelector(s);
-  const $$ = (s) => Array.from(document.querySelectorAll(s));
-  const state = {
-    backends: null,
-    presets: [],
-    session: null,
-    checkOk: false,
-    busy: false,
-    selectedPreset: null,
-    logCount: 0,
-  };
-
-  const fmtBytes = (n) => {
-    if (n === null || n === undefined || Number.isNaN(n)) return "—";
-    if (n < 1024) return `${n} B`;
-    if (n < 1024 * 1024) return `${(n / 1024).toFixed(1)} KB`;
-    return `${(n / 1024 / 1024).toFixed(2)} MB`;
-  };
-  const fmtTime = (s) => {
-    if (s === null || s === undefined || Number.isNaN(s)) return "—";
-    if (s < 1) return `${(s * 1000).toFixed(0)} ms`;
-    return `${s.toFixed(2)} s`;
-  };
-  const fmtShort = (s, n = 12) => (s ? `${s.slice(0, n)}…` : "—");
-  const escapeHtml = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
-  }[c]));
-  const now = () => new Date().toLocaleTimeString("zh-CN", { hour12: false });
-
-  function toast(message, kind = "warn") {
-    const el = $("#toast");
-    el.textContent = message;
-    el.className = `toast show${kind === "err" ? " err" : ""}`;
-    clearTimeout(toast._timer);
-    toast._timer = setTimeout(() => { el.className = "toast"; }, 4200);
-  }
-
-  function log(message, kind = "") {
-    const el = $("#log");
-    const entry = document.createElement("div");
-    entry.className = `entry ${kind}`;
-    entry.innerHTML = `<span class="t">${now()}</span><span class="m">${escapeHtml(message)}</span>`;
-    el.prepend(entry);
-    state.logCount += 1;
-    if (state.logCount > 80) el.lastElementChild?.remove();
-  }
-
-  async function api(path, body) {
-    const init = body === undefined
-      ? { method: "GET", headers: { "Accept": "application/json" } }
-      : { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(body) };
-    const response = await fetch(path, init);
-    let data;
-    try { data = await response.json(); } catch (_) { data = { ok: false, error: `HTTP ${response.status}` }; }
-    if (!response.ok) throw new Error(data.error || `HTTP ${response.status}`);
-    return data;
-  }
-
-  function setBusy(busy, label = "") {
-    state.busy = busy;
-    document.body.classList.toggle("busy", busy);
-    const progress = $("#progress");
-    progress.className = busy ? "progress on" : "progress";
-    if (busy && label) log(label, "");
-    refreshButtons();
-  }
-
-  function refreshButtons() {
-    const b = state.busy;
-    const hasSession = !!state.session;
-    const hasCipher = !!(state.session && state.session.has_ciphertext);
-    $("#checkBtn").disabled = b || hasSession;
-    $("#bootstrapBtn").disabled = b || !state.checkOk || hasSession;
-    $("#encryptBtn").disabled = b || !hasSession;
-    $("#resetBtn").disabled = b || !hasSession;
-    $("#exportBtn").disabled = b || !hasSession;
-    $$("[data-mode]").forEach((el) => { el.disabled = b || !hasCipher; });
-    $$("#presets .preset").forEach((el) => { el.disabled = b || hasSession; });
-    ["#hibe", "#ibs", "#transport", "#protocol", "#signature_format", "#senderName", "#receiverName", "#wrongName"].forEach((sel) => {
-      const el = $(sel);
-      if (el) el.disabled = b || hasSession;
-    });
-    $("#message").disabled = b;
-  }
-
-  function selection() {
-    return {
-      hibe: $("#hibe").value,
-      ibs: $("#ibs").value,
-      transport: $("#transport").value,
-      protocol: $("#protocol").value,
-      signature_format: $("#signature_format").value,
-    };
-  }
-
-  function applyPreset(preset) {
-    state.selectedPreset = preset.id;
-    $("#hibe").value = preset.hibe;
-    $("#ibs").value = preset.ibs;
-    $("#transport").value = preset.transport;
-    $("#protocol").value = preset.protocol;
-    $("#signature_format").value = preset.signature_format;
-    $$("#presets .preset").forEach((el) => el.classList.toggle("active", el.dataset.preset === preset.id));
-    state.checkOk = false;
-    refreshButtons();
-  }
-
-  function syncPresetSelection(suite) {
-    const match = state.presets.find((p) =>
-      p.hibe === suite.hibe && p.ibs === suite.ibs && p.transport === suite.transport &&
-      p.protocol === suite.protocol && p.signature_format === suite.signature_format);
-    state.selectedPreset = match ? match.id : null;
-    $$("#presets .preset").forEach((el) => {
-      el.classList.toggle("active", !!match && el.dataset.preset === match.id);
-    });
-  }
-
-  function renderPresets() {
-    const box = $("#presets");
-    box.innerHTML = "";
-    state.presets.forEach((preset) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "preset";
-      btn.dataset.preset = preset.id;
-      btn.innerHTML = `
-        <span class="tick">✓</span>
-        <span>
-          <span class="p-title">${escapeHtml(preset.label)}<span class="tag ${escapeHtml(preset.tone || "primary")}">${preset.id === "primary" ? "推荐" : "对照"}</span></span>
-          <div class="p-note">${escapeHtml(preset.note)}</div>
-        </span>`;
-      btn.addEventListener("click", () => {
-        applyPreset(preset);
-        check();
-      });
-      box.appendChild(btn);
-    });
-  }
-
-  function populateSelects() {
-    const fill = (id, rows) => {
-      const sel = $(id);
-      sel.innerHTML = "";
-      rows.forEach((row) => {
-        const option = document.createElement("option");
-        option.value = row.id;
-        option.textContent = row.recommended ? `${row.id}（推荐）` : row.id;
-        option.title = `${row.version || ""}${row.runtime_available ? "" : " · 运行时不可用"}`;
-        sel.appendChild(option);
-      });
-    };
-    fill("#hibe", state.backends.hibe);
-    fill("#ibs", state.backends.ibs);
-    const runtimeReady = state.backends.hibe.some((r) => r.runtime_available) && state.backends.ibs.some((r) => r.runtime_available);
-    const chip = $("#envChip");
-    chip.textContent = runtimeReady ? "后端可运行" : "后端依赖未就绪";
-    chip.className = `chip ${runtimeReady ? "green" : "amber"}`;
-  }
-
-  function renderCheck(data) {
-    const box = $("#checkBox");
-    if (!data) {
-      box.className = "check-box";
-      box.textContent = "选择实例后点击“检查配置”。";
-      return;
-    }
-    if (data.loading) {
-      box.className = "check-box loading";
-      box.innerHTML = `<span class="spin"></span> 正在做纯静态预检（不取熵、不建状态）…`;
-      return;
-    }
-    if (data.ok) {
-      const cap = data.capacity || {};
-      box.className = "check-box ok";
-      box.innerHTML = `<b>配置可用</b> · 身份 ≤ ${cap.identity_bytes ?? "?"} B · 消息 ≤ ${cap.max_application_bytes ?? "?"} B · 签名 ≤ ${cap.signature_max_bytes ?? "?"} B
-        <div class="meta-row"><span class="mini">suite ${fmtShort(data.suite?.digest, 16)}</span><span class="mini">${escapeHtml(data.suite?.transport || "")}</span><span class="mini">${escapeHtml(data.suite?.protocol || "")}</span></div>`;
-      $('#flowSub').textContent = `配置可用：${data.suite?.hibe} + ${data.suite?.ibs}；点击左侧“初始化并签发演示密钥”。`;
-    } else {
-      box.className = "check-box bad";
-      const errors = (data.errors || []).map((e) => `<li>${escapeHtml(e)}</li>`).join("");
-      box.innerHTML = `<b>配置不可用</b><ul>${errors || "<li>未知错误</li>"}</ul>`;
-      if ((data.errors || []).some((e) => /Sage|WSL|native|engine|requires/i.test(e))) {
-        box.innerHTML += `<div style="margin-top:6px">请在规定的 WSL Sage 环境启动服务：<span class="mono">PYTHONPATH=src python -m ibme.webui</span></div>`;
-      }
-    }
-  }
-
-  function renderCheckFromSession(session) {
-    const box = $("#checkBox");
-    const cap = session.capacity || {};
-    box.className = "check-box ok";
-    box.innerHTML = `<b>当前会话已就绪</b> · 身份 ≤ ${cap.identity_bytes ?? "?"} B · 消息 ≤ ${cap.max_application_bytes ?? "?"} B · 签名 ≤ ${cap.signature_max_bytes ?? "?"} B
-      <div class="meta-row"><span class="mini">suite ${fmtShort(session.suite?.digest, 16)}</span><span class="mini">${escapeHtml(session.suite?.transport || "")}</span><span class="mini">${escapeHtml(session.suite?.protocol || "")}</span></div>`;
-    $('#flowSub').textContent = `当前会话：${session.suite.hibe} + ${session.suite.ibs}；点击“清除当前会话”可重新选择。`;
-  }
-
-  function renderSession() {
-    const box = $("#sessionBox");
-    if (!state.session) {
-      box.innerHTML = `<div class="session-head"><span>会话状态</span><span class="chip gray">未初始化</span></div><div class="muted">初始化会执行真实 Setup，并为 Alice / Bob / Carol 签发密钥。私钥只保存在本进程内存中。</div>`;
-      $('#flowSub').textContent = "先完成左侧初始化；随后 Alice 指定接收者 Bob 加密。";
-      $("#cipherChip").textContent = "尚无密文";
-      $("#cipherChip").className = "chip gray";
-      $("#cipherStrip").classList.remove("show");
-      return;
-    }
-    const s = state.session;
-    const size = s.sizes || {};
-    const id = s.identities || {};
-    box.innerHTML = `
-      <div class="session-head"><span>会话状态</span><span class="chip green"><span class="dot"></span>已就绪</span></div>
-      <div class="kv">
-        <span>HIBE</span><span>${escapeHtml(s.suite.hibe)} / ${escapeHtml(s.suite.hibe_version)}</span>
-        <span>IBS</span><span>${escapeHtml(s.suite.ibs)} / ${escapeHtml(s.suite.ibs_version)}</span>
-        <span>身份</span><span>${escapeHtml(id.sender)} → ${escapeHtml(id.receiver)}（错误 ${escapeHtml(id.wrong_receiver)}）</span>
-        <span>mpk / msk</span><span>${fmtBytes(size.mpk)} / ${fmtBytes(size.msk)}</span>
-        <span>发送 / 接收钥</span><span>${fmtBytes(size.sender_key)} / ${fmtBytes(size.receiver_key)}</span>
-        <span>容量</span><span>身份 ≤ ${s.capacity.identity_bytes} B · 消息 ≤ ${s.capacity.max_application_bytes} B</span>
-      </div>`;
-    $('#flowSub').textContent = `已就绪：${s.suite.hibe} + ${s.suite.ibs}；Alice 指定 Bob 加密，Bob 用 (Bob, Alice) 解密。`;
-    $("#encryptHint").textContent = "加密会计算 IBS 签名并做 HIBE/Hybrid 封装";
-  }
-
-  function renderCipher(data) {
-    const strip = $("#cipherStrip");
-    strip.classList.add("show");
-    $("#cipherSize").textContent = fmtBytes(data.bytes);
-    $("#cipherTime").textContent = fmtTime(data.seconds);
-    $("#cipherSha").textContent = `sha256 ${fmtShort(data.sha256, 20)}`;
-    $("#cipherChip").textContent = `已加密 ${fmtBytes(data.bytes)}`;
-    $("#cipherChip").className = "chip blue";
-    $("#encryptHint").textContent = "可重复加密；解密按钮已启用";
-  }
-
-  function renderResult(data, mode) {
-    const box = $("#result");
-    if (data && data.error) {
-      box.className = "result bad";
-      box.innerHTML = `<div class="r-head"><span class="icon">!</span><span>操作失败</span></div><div class="r-body">${escapeHtml(data.error)}</div>`;
-      return;
-    }
-    if (!data) {
-      box.className = "result";
-      box.innerHTML = `<div class="r-head"><span class="icon">?</span><span>等待操作</span></div><div class="r-body">加密后点击任一解密按钮；拒绝时协议返回 <span class="mono">BOTTOM</span>。</div>`;
-      return;
-    }
-    const isBottom = data.bottom;
-    const modeLabel = {
-      normal: "正确双方", wrong_sender: "错误发送者", wrong_receiver: "错误接收者",
-      both_wrong: "双方都错", tamper: "篡改 1 bit", truncate: "截断 1 字节",
-    }[mode] || mode;
-    if (data.expectation_met === false) {
-      box.className = "result bad";
-      box.innerHTML = `<div class="r-head"><span class="icon">!</span><span>结果不符合该场景预期</span><span class="r-time">${fmtTime(data.seconds)}</span></div>
-        <div class="r-body">${escapeHtml(modeLabel)}：实际${isBottom ? "返回 BOTTOM" : "恢复了消息"}，请检查当前配置与运行记录。</div>`;
-      return;
-    }
-    if (isBottom) {
-      const hard = mode === "tamper" || mode === "truncate";
-      box.className = `result ${hard ? "bad" : "bottom"}`;
-      box.innerHTML = `
-        <div class="r-head"><span class="icon">×</span><span>BOTTOM · 拒绝解密</span><span class="r-time">${fmtTime(data.seconds)}</span></div>
-        <div class="r-body"><b>${escapeHtml(modeLabel)}</b>：${escapeHtml(data.detail)}</div>`;
-    } else {
-      box.className = "result ok";
-      box.innerHTML = `
-        <div class="r-head"><span class="icon">✓</span><span>恢复成功</span><span class="r-time">${fmtTime(data.seconds)}</span></div>
-        <div class="r-body"><b>${escapeHtml(modeLabel)}</b>：${escapeHtml(data.detail)}</div>
-        <pre>${escapeHtml(data.message)}</pre>`;
-    }
-  }
-
-  function renderMetrics() {
-    const s = state.session;
-    const size = (s && s.sizes) || {};
-    const t = (s && s.timings) || {};
-    $("#mCipher").textContent = fmtBytes(size.ciphertext);
-    $("#mMessage").textContent = fmtBytes(size.message);
-    $("#mMpk").textContent = fmtBytes(size.mpk);
-    $("#mMsk").textContent = fmtBytes(size.msk);
-    $("#mSender").textContent = fmtBytes(size.sender_key);
-    $("#mReceiver").textContent = fmtBytes(size.receiver_key);
-    $("#mSetup").textContent = fmtTime(t.setup);
-    const enc = t.encrypt;
-    const dec = Object.entries(t).filter(([k]) => k.startsWith("decrypt_")).map(([, v]) => v).pop();
-    $("#mCrypto").textContent = `${fmtTime(enc)} / ${fmtTime(dec)}`;
-    $("#details").textContent = s ? JSON.stringify({
-      suite: s.suite, capacity: s.capacity, sizes: s.sizes, timings: s.timings,
-      parameters: s.parameters,
-      ciphertext_sha256: s.ciphertext_sha256, security: s.security,
-    }, null, 2) : "尚无会话。";
-  }
-
-  function updateMessageCount() {
-    const value = $("#message").value;
-    const bytes = new TextEncoder().encode(value).length;
-    const cap = state.session ? state.session.capacity.max_application_bytes : null;
-    $("#msgCount").textContent = cap ? `${bytes} / ${cap} B` : `${bytes} B`;
-    $("#msgCount").style.color = cap && bytes > cap ? "#b91c1c" : "";
-  }
-
-  async function check() {
-    if (state.busy) return;
-    const body = selection();
-    setBusy(true, `检查配置：${body.hibe} + ${body.ibs}`);
-    renderCheck({ loading: true });
-    $("#bootstrapBtn").disabled = true;
-    try {
-      const data = await api("/api/check", body);
-      state.checkOk = !!data.ok;
-      renderCheck(data);
-      log(data.ok ? `配置可用：${body.hibe} + ${body.ibs}` : `配置不可用：${(data.errors || []).join("；")}`, data.ok ? "ok" : "err");
-      if (!data.ok) toast("配置不可用，请查看左侧错误信息", "err");
-    } catch (err) {
-      state.checkOk = false;
-      renderCheck({ ok: false, errors: [err.message] });
-      log(`检查失败：${err.message}`, "err");
-      toast(err.message, "err");
-    } finally {
-      setBusy(false);
-      refreshButtons();
-    }
-  }
-
-  async function bootstrap() {
-    if (state.busy || !state.checkOk) return;
-    const body = {
-      ...selection(),
-      sender: $("#senderName").value,
-      receiver: $("#receiverName").value,
-      wrong_receiver: $("#wrongName").value,
-    };
-    setBusy(true, "初始化：构建运行时 → Setup → 签发 Alice / Bob / Carol 密钥");
-    $("#bootstrapBtn").innerHTML = `<span class="spin"></span> 正在初始化…`;
-    try {
-      const data = await api("/api/bootstrap", body);
-      state.session = data.state;
-      state.checkOk = true;
-      renderSession();
-      renderMetrics();
-      (data.events || []).forEach((ev) => log(`${ev.label} · ${fmtTime(ev.seconds)}`, "ok"));
-      log(`会话就绪：${data.state.suite.hibe} + ${data.state.suite.ibs}，身份 ${data.state.identities.sender}/${data.state.identities.receiver}`, "ok");
-      toast("初始化完成，可以加密了");
-      $("#encryptHint").textContent = "加密会计算 IBS 签名并做 HIBE/Hybrid 封装";
-      renderResult(null);
-    } catch (err) {
-      log(`初始化失败：${err.message}`, "err");
-      toast(err.message, "err");
-      renderResult({ error: err.message });
-    } finally {
-      $("#bootstrapBtn").innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2"></path><path d="M15.5 8.5 19 5"></path><circle cx="7.5" cy="15.5" r="5.5"></circle><path d="M11.4 11.6 19 4"></path></svg> 初始化并签发演示密钥`;
-      setBusy(false);
-      refreshButtons();
-    }
-  }
-
-  async function encrypt() {
-    if (state.busy || !state.session) return;
-    const message = $("#message").value;
-    if (!message) { toast("消息不能为空", "err"); return; }
-    setBusy(true, "加密：IBS 签名 → HIBE/Hybrid 封装 → 外层字节认证");
-    $("#encryptBtn").innerHTML = `<span class="spin"></span> 加密中…`;
-    try {
-      const data = await api("/api/encrypt", { message });
-      state.session = data.state;
-      renderCipher(data.ciphertext);
-      renderMetrics();
-      renderResult(null);
-      log(`加密完成：${fmtBytes(data.ciphertext.message_bytes)} → ${fmtBytes(data.ciphertext.bytes)}，${fmtTime(data.ciphertext.seconds)}`, "ok");
-      toast("加密完成，点击右侧解密按钮");
-    } catch (err) {
-      log(`加密失败：${err.message}`, "err");
-      toast(err.message, "err");
-      renderResult({ error: err.message });
-    } finally {
-      $("#encryptBtn").textContent = "加密";
-      setBusy(false);
-      refreshButtons();
-    }
-  }
-
-  async function decrypt(mode) {
-    if (state.busy || !state.session) return;
-    const button = document.querySelector(`[data-mode="${mode}"]`);
-    const original = button.textContent;
-    setBusy(true, `解密尝试：${original}`);
-    button.innerHTML = `<span class="spin"></span> 解密中…`;
-    try {
-      const data = await api("/api/decrypt", { mode });
-      state.session = data.state;
-      renderResult(data, mode);
-      renderMetrics();
-      const label = {
-        normal: "正确双方", wrong_sender: "错误发送者", wrong_receiver: "错误接收者",
-        both_wrong: "双方都错", tamper: "篡改 1 bit", truncate: "截断 1 字节",
-      }[mode] || mode;
-      log(`${label}：${data.bottom ? "BOTTOM（拒绝）" : "恢复成功"}，${fmtTime(data.seconds)}`, data.expectation_met === false ? "err" : (data.bottom ? "warn" : "ok"));
-    } catch (err) {
-      log(`解密失败：${err.message}`, "err");
-      toast(err.message, "err");
-      renderResult({ error: err.message });
-    } finally {
-      button.textContent = original;
-      setBusy(false);
-      refreshButtons();
-    }
-  }
-
-  async function reset() {
-    if (state.busy) return;
-    if (!confirm("清除当前演示会话？已生成的临时密钥和密文会丢失。")) return;
-    setBusy(true, "清除会话");
-    try {
-      await api("/api/reset", {});
-      state.session = null;
-      state.checkOk = false;
-      renderSession();
-      renderMetrics();
-      renderResult(null);
-      renderCheck(null);
-      $("#cipherChip").textContent = "尚无密文";
-      $("#cipherChip").className = "chip gray";
-      $("#cipherStrip").classList.remove("show");
-      log("会话已清除", "");
-      setBusy(false);
-      await check();
-    } catch (err) {
-      toast(err.message, "err");
-    } finally {
-      setBusy(false);
-      refreshButtons();
-    }
-  }
-
-  async function exportMeasurements() {
-    if (state.busy || !state.session) return;
-    try {
-      const data = await api("/api/export");
-      const blob = new Blob([JSON.stringify(data, null, 2) + "\n"], {type:"application/json"});
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "ibme-demo-measurements.json";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-      log("已导出本次会话的公开实测数据", "ok");
-    } catch (err) {
-      toast(err.message, "err");
-    }
-  }
-
-  function bind() {
-    $("#checkBtn").addEventListener("click", check);
-    $("#bootstrapBtn").addEventListener("click", bootstrap);
-    $("#encryptBtn").addEventListener("click", encrypt);
-    $("#resetBtn").addEventListener("click", reset);
-    $("#exportBtn").addEventListener("click", exportMeasurements);
-    $$("[data-mode]").forEach((btn) => btn.addEventListener("click", () => decrypt(btn.dataset.mode)));
-    ["#hibe", "#ibs", "#transport", "#protocol", "#signature_format"].forEach((sel) => {
-      const el = $(sel);
-      el.addEventListener("change", () => {
-        state.checkOk = false;
-        state.selectedPreset = null;
-        $$("#presets .preset").forEach((p) => p.classList.remove("active"));
-        renderCheck(null);
-        refreshButtons();
-      });
-    });
-    $("#message").addEventListener("input", updateMessageCount);
-    $("#clearLog").addEventListener("click", () => { $("#log").innerHTML = ""; state.logCount = 0; });
-  }
-
-  async function init() {
-    bind();
-    updateMessageCount();
-    try {
-      const data = await api("/api/backends");
-      state.backends = data;
-      state.presets = data.presets || [];
-      populateSelects();
-      renderPresets();
-      const primary = state.presets.find((p) => p.id === "primary") || state.presets[0];
-      if (primary) applyPreset(primary);
-      const current = await api("/api/state");
-      if (current.active && current.state) {
-        state.session = current.state;
-        state.checkOk = true;
-        $("#hibe").value = current.state.suite.hibe;
-        $("#ibs").value = current.state.suite.ibs;
-        $("#transport").value = current.state.suite.transport;
-        $("#protocol").value = current.state.suite.protocol;
-        $("#signature_format").value = current.state.suite.signature_format;
-        syncPresetSelection(current.state.suite);
-        renderCheckFromSession(current.state);
-        if (current.state.last_message !== null && current.state.last_message !== undefined) {
-          $("#message").value = current.state.last_message;
-          updateMessageCount();
-        }
-        renderSession();
-        renderMetrics();
-        log("检测到已有会话，已恢复界面状态", "ok");
-        if (current.state.has_ciphertext) {
-          $("#cipherChip").textContent = `已有密文 ${fmtBytes(current.state.sizes.ciphertext)}`;
-          $("#cipherChip").className = "chip blue";
-          $("#cipherStrip").classList.add("show");
-          $("#cipherSize").textContent = fmtBytes(current.state.sizes.ciphertext);
-          $("#cipherTime").textContent = "历史密文";
-          $("#cipherSha").textContent = `sha256 ${fmtShort(current.state.ciphertext_sha256, 20)}`;
-        }
-      } else {
-        await check();
-      }
-    } catch (err) {
-      log(`启动失败：${err.message}`, "err");
-      toast(err.message, "err");
-      renderCheck({ ok: false, errors: [err.message] });
-      $("#envChip").textContent = "服务未就绪";
-      $("#envChip").className = "chip amber";
-    } finally {
-      refreshButtons();
-    }
-  }
-
-  init();
-})();
-</script>
 </body>
 </html>

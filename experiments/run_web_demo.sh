@@ -8,6 +8,9 @@ if [[ ! -x "$sage_python" ]]; then
   echo '需要 WSL 的 ~/miniconda3/envs/sage/bin/python。' >&2
   exit 2
 fi
+# Sage's optional tools (for example Singular) are resolved through PATH even
+# when the interpreter itself was selected by absolute path.
+export PATH="$(dirname "$sage_python"):$PATH"
 cd "$project_root"
 export PYTHONPATH="$project_root/src${PYTHONPATH:+:$PYTHONPATH}"
 export OMP_NUM_THREADS="${OMP_NUM_THREADS:-4}"
