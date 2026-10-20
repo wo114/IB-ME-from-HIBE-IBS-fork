@@ -13,6 +13,7 @@ import hashlib
 import importlib.metadata
 import importlib
 import json
+import math
 import os
 from pathlib import Path
 import platform
@@ -38,6 +39,76 @@ ROOT = Path(__file__).resolve().parents[3]
 PHASES = ("setup", "extract", "sign", "verify", "restore", "sign-restored")
 SCHEMA = "IBME/WANG-PW-TARGET-LIFECYCLE/1"
 KINDS = ("public_key", "master_secret", "signing_key", "signature")
+INDEPENDENT_SCHEMA = "IBME/WANG-PW-INDEPENDENT-SIGNER/1"
+
+
+def safe_independent_receipt(raw):
+    """Copy known public fields/types only; never relay a child's diagnostics."""
+    if not isinstance(raw, (bytes, str)) or len(raw) > 65536:
+        return None
+    try:
+        report = json.loads(raw)
+    except (ValueError, UnicodeError, RecursionError):
+        return None
+    if (type(report) is not dict or report.get("schema") != INDEPENDENT_SCHEMA
+            or report.get("status") not in ("passed", "failed")):
+        return None
+    result = dict(schema=INDEPENDENT_SCHEMA, status=report["status"])
+    for name in ("issuer_inputs_provided", "key_restored_without_issuer"):
+        if type(report.get(name)) is bool:
+            result[name] = report[name]
+    for name in ("backend_admitted", "parameters_are_formal"):
+        if report.get(name) is False:
+            result[name] = False
+    if report.get("sampling_mode") == "production-csprng":
+        result["sampling_mode"] = "production-csprng"
+    if report.get("security_claim") == "none":
+        result["security_claim"] = "none"
+    if "nist_security_category" in report and report["nist_security_category"] is None:
+        result["nist_security_category"] = None
+    failure_types = {"SamplingError", "SerializationError", "ValueError", "TypeError", "RuntimeError",
+                     "FileNotFoundError", "PermissionError", "OSError", "MemoryError", "OverflowError",
+                     "ArithmeticError", "FloatingPointError", "LinAlgError", "AssertionError", "EOFError",
+                     "KeyboardInterrupt", "SystemExit", "TimeoutError", "BrokenPipeError", "IndexError", "KeyError"}
+    if report["status"] == "failed" and "failure_type" in report:
+        result["failure_type"] = report["failure_type"] if type(report["failure_type"]) is str and report["failure_type"] in failure_types else "unrecognized"
+    for name in ("signature_wire_bytes", "identity_bytes", "message_bytes", "rss_current_bytes",
+                 "rss_phase_peak_observed_bytes", "rss_peak_observed_bytes", "rss_sampling_errors"):
+        if type(report.get(name)) is int and 0 <= report[name] < 2**63:
+            result[name] = report[name]
+    for name in ("duration_seconds", "rss_sampling_interval_seconds"):
+        value = report.get(name)
+        if type(value) in (int, float) and 0 <= value <= 1e12 and math.isfinite(value):
+            result[name] = value
+    context = report.get("public_context")
+    if type(context) is str and len(context) == 64 and all(c in "0123456789abcdef" for c in context):
+        result["public_context"] = context
+    if type(report.get("observations")) is dict:
+        result["observations"] = {name: report["observations"][name] for name in
+                                  ("honest", "wrong_identity_rejected", "wrong_message_rejected", "canonical_size_matches")
+                                  if type(report["observations"].get(name)) is bool}
+    if type(report.get("metrics")) is dict:
+        result["metrics"] = {}
+        for name in ("root_numerical_gs", "user_numerical_gs", "signature_norm_sq"):
+            value = report["metrics"].get(name)
+            if type(value) in (int, float) and 0 <= value <= 1e40 and math.isfinite(value):
+                result["metrics"][name] = value
+    return result
+
+
+class IndependentSignerFailure(RuntimeError):
+    def __init__(self, reason, returncode, receipt):
+        super().__init__("independent signer subprocess failed")
+        self.reason, self.returncode, self.receipt = reason, returncode, receipt
+
+
+def public_failure_record(exc):
+    result = dict(type=type(exc).__name__, message=public_failure(exc))
+    if isinstance(exc, IndependentSignerFailure):
+        result.update(reason=exc.reason, child_returncode=exc.returncode)
+        if exc.receipt is not None:
+            result["independent_signer"] = exc.receipt
+    return result
 
 
 def utc_now():
@@ -55,7 +126,8 @@ def sha256_file(path):
 def source_bindings():
     package = ROOT / "src" / "ibme" / "ibs" / "wang_pw_target"
     paths = set(package.rglob("*.py")) | set(package.rglob("*.cpp"))
-    paths.update((Path(__file__).resolve(), Path(__file__).with_name("README.md")))
+    paths.update((Path(__file__).resolve(), Path(__file__).with_name("README.md"),
+                  Path(__file__).with_name("sign_independent.py")))
     return {path.relative_to(ROOT).as_posix(): sha256_file(path) for path in sorted(paths)}
 
 
@@ -103,6 +175,11 @@ class RSSMonitor:
     def sample(self):
         try:
             rss = self.process.memory_info().rss
+            for child in self.process.children(recursive=True):
+                try:
+                    rss += child.memory_info().rss
+                except psutil.NoSuchProcess:
+                    pass
         except psutil.Error:
             with self.lock:
                 self.errors += 1
@@ -131,6 +208,7 @@ class RSSMonitor:
         with self.lock:
             return dict(rss_current_bytes=self.current, rss_phase_peak_observed_bytes=self.phase_peak,
                         rss_peak_observed_bytes=self.peak, rss_sampling_errors=self.errors,
+                        rss_scope="sampled process-tree RSS sum; shared pages can be counted repeatedly",
                         rss_sampling_interval_seconds=self.interval)
 
     def finish(self):
@@ -140,6 +218,10 @@ class RSSMonitor:
 
 
 def public_failure(exc):
+    if isinstance(exc, IndependentSignerFailure):
+        return {"nonzero-exit": "independent signer exited unsuccessfully",
+                "invalid-public-receipt": "independent signer returned an invalid public receipt",
+                "public-receipt-mismatch": "independent signer public receipt did not match the requested operation"}[exc.reason]
     text = str(exc)
     prefixes = ("native sampler error ", "numerical Gram-Schmidt exceeds", "root trapdoor exceeds",
                 "delegated trapdoor exceeds", "signature equation/norm gate failed", "delegated public matrix mismatch",
@@ -200,7 +282,7 @@ class Recorder:
         try:
             observations = action()
         except BaseException as exc:
-            phase.update(status="failed", failure=dict(type=type(exc).__name__, message=public_failure(exc)))
+            phase.update(status="failed", failure=public_failure_record(exc))
             raise
         else:
             phase.update(status="passed", observations=observations)
@@ -360,12 +442,43 @@ def run_one(params, index, args, recorder, private_directory):
 
     def sign_restored():
         # This path receives the restored user key only; no Setup/Extract call.
-        result = backend.sign(state["sk"], message)
+        independent = None
+        if store.directory is not None:
+            from .sign_independent import private_read, private_write
+            backend.clear_prepared()
+            gc.collect()
+            message_file = store.directory / "independent-message.bin"
+            signature_file = store.directory / "signature-independent.bin"
+            private_write(message_file, message)
+            # The independent interpreter gets only its user key and message.
+            # The outer resource supervisor also observes this child process.
+            completed = subprocess.run(
+                [sys.executable, "-B", "-m", "experiments.research.wang_pw_target.sign_independent",
+                 "--key-file", str(store.directory / "signing_key.bin"),
+                 "--message-file", str(message_file), "--signature-file", str(signature_file)],
+                stdin=subprocess.DEVNULL, capture_output=True, check=False)
+            independent = safe_independent_receipt(completed.stdout)
+            if completed.returncode != 0:
+                raise IndependentSignerFailure("nonzero-exit", completed.returncode, independent)
+            if independent is None:
+                raise IndependentSignerFailure("invalid-public-receipt", completed.returncode, None)
+            if (independent.get("status") != "passed" or independent.get("issuer_inputs_provided") is not False
+                    or independent.get("key_restored_without_issuer") is not True
+                    or independent.get("public_context") != state["pk"].context.hex()
+                    or any(independent.get("observations", {}).get(name) is not True for name in
+                           ("honest", "wrong_identity_rejected", "wrong_message_rejected", "canonical_size_matches"))):
+                raise IndependentSignerFailure("public-receipt-mismatch", completed.returncode, independent)
+            result = backend.load_signature(state["pk"], private_read(signature_file, wire_sizes(params)["signature"]))
+        else:
+            result = backend.sign(state["sk"], message)
         old = state["signature"]
         observations = dict(honest=backend.verify(state["pk"], identity, message, result),
                             identity_salt_preserved=result.identity_salt == old.identity_salt,
                             message_salt_fresh=result.message_salt != old.message_salt,
                             metrics=dict(backend.last_metrics))
+        observations["independent_process"] = independent is not None
+        if independent is not None:
+            observations["independent_signer"] = independent
         if not all(observations[name] for name in ("honest", "identity_salt_preserved", "message_salt_fresh")):
             raise AssertionError("a restored-signing observation failed")
         if store.directory is not None:
@@ -476,7 +589,8 @@ def main(argv=None):
         recorder.event(dict(event="preflight-start", run_id=run_id, profile=args.profile))
         recorder.save()
         private = private_run_directory(args.private_state, run_id, (args.output, args.phase_log),
-                                        args.repetitions * (sum(expected_sizes.values()) + expected_sizes["signature"]))
+                                        args.repetitions * (sum(expected_sizes.values()) + 2 * expected_sizes["signature"]
+                                                            + args.message_bytes))
         document["environment"] = environment()
         document["status"] = "running"
         for index in range(1, args.repetitions + 1):
@@ -491,7 +605,7 @@ def main(argv=None):
             raise RuntimeError("source files changed during execution; evidence is not a frozen run")
     except BaseException as exc:
         document.update(status="failed", requested_lifecycle_complete=False,
-                        failure=dict(type=type(exc).__name__, message=public_failure(exc)))
+                        failure=public_failure_record(exc))
     finally:
         document.update(finished_utc=utc_now(), duration_seconds=time.monotonic() - started, **monitor.finish())
         document["summary"] = summary(document["roots"])
