@@ -241,7 +241,7 @@ reference 与 compact 是同一 Luo 模格算法的两种签名编码，不是�
 
 ## 8. 如何接到统一选择和兼容检查
 
-第二阶段在现有 `BackendRegistry` 注册，不复制一个新的装配系统。注册表机制可共用，**登记内容和检查函数由算法负责人提供**。
+第二阶段在现有 `BackendRegistry` 注册，不复制一个新的装配系统。注册表机制可共用，**登记内容和检查函数由算法负责人提供**。算法包应把描述符封装成零参数 `backend_spec()` provider；集成人可用 `default_registry(extra_providers=(backend_spec,))` 直接完成隔离接入与组合测试，无需先改中央 registry。provider 返回多项时整批原子登记，失败不会残留一半；Suite JSON 仍不能指定导入路径。
 
 | `BackendSpec` 项目 | 需要提供什么 |
 |---|---|

@@ -46,6 +46,7 @@ def setup_arguments(state, suite_file=None):
 
 
 def generate(directory, source_commit, *, suite_file=None):
+    from ibme.core.security import security_fields
     setup_args, expected_suite = setup_arguments(directory / 'state', suite_file)
     directory.mkdir(parents=True, exist_ok=False)
     state = directory / 'state'
@@ -117,7 +118,7 @@ def generate(directory, source_commit, *, suite_file=None):
             ciphertext_bytes=len(wire), public_key_bytes=(state/'mpk.bin').stat().st_size,
             total_seconds=time.perf_counter()-started,
             randomness='system CSPRNG; no fixed seed or outer retry; new process per CLI command',
-            security_claim='none', backend_admitted=False, parameters_are_formal=False)
+            **security_fields(meta['suite']))
         if expected_suite is not None:
             receipt.update(requested_suite_digest=expected_suite.digest,
                            installed_suite_digest=meta['suite_digest'], frozen_suite_matched=True)

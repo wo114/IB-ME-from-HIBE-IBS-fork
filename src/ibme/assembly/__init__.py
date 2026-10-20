@@ -1,8 +1,9 @@
 """Independent HIBE/IBS selection, entropy-free compatibility and assembly.
 
-This layer reuses the existing protocol and primitive algorithms. Every built-in
-suite retains security_claim=none and backend_admitted=false. A compatible
-configuration is not a claim that a full combination has been tested or proved.
+This layer reuses the existing protocol and primitive algorithms.  Current
+security of completed profiles is derived from the two selected backend descriptors and
+their exact parameter snapshots; teaching/debug/negative-control profiles stay
+unadmitted even when their host implementation is complete.
 """
 from dataclasses import asdict, dataclass
 import hashlib
@@ -11,15 +12,20 @@ import json
 
 from ibme.core.encoding import encode_message
 from ibme.core.errors import IBMEError, InvalidParameterError, SerializationError
+from ibme.core.security import (ADMITTED_SECURITY, COMPLETED_SECURITY_CLAIM,
+                                UNADMITTED_SECURITY)
 from ibme.core.types import validate_bytes, validate_identity
 from ibme.lattice.params import Params
 from ibme.protocol.baseline import BaselineIBME, PublicKey, MasterSecret, SenderKey, ReceiverKey, DOMAIN_SIGNATURE, MAGIC_CIPHERTEXT, BOTTOM
 from ibme.protocol.byteauth import ByteAuthenticatedIBME, ENVELOPE_OVERHEAD, MAX_INNER_BYTES
-from .registry import BackendSpec, BackendRegistry, default_registry, default_backend_catalog, environment_status
+from .registry import (BackendSpec, BackendRegistry, default_registry,
+                       default_backend_catalog, environment_status)
 
 SUITE_VERSION = "IBME/SUITE/1"
 STATE_POLICY = "single-writer-commit-before-publish-v1"
 _MAX_CONFIG_BYTES = 32768
+_UNADMITTED = UNADMITTED_SECURITY
+_ADMITTED = ADMITTED_SECURITY
 
 
 def _json(value):
@@ -58,8 +64,10 @@ class SuiteConfig:
                   "security_claim","backend_admitted","parameters_are_formal"}
         if type(data) is not dict or set(data)!=expected:
             raise InvalidParameterError("suite requires exactly its versioned fields")
-        if (data["version"]!=SUITE_VERSION or data["security_claim"]!="none"
-                or data["backend_admitted"] is not False or data["parameters_are_formal"] is not False
+        admission=(data["security_claim"],data["backend_admitted"],data["parameters_are_formal"])
+        if (data["version"]!=SUITE_VERSION or admission not in (_UNADMITTED,_ADMITTED)
+                or type(data["backend_admitted"]) is not bool
+                or type(data["parameters_are_formal"]) is not bool
                 or type(data["allow_mock"]) is not bool):
             raise InvalidParameterError("unsupported suite version/type or security claim")
         for name in ("hibe","hibe_version","ibs","ibs_version","transport","protocol","signature_format","state_policy"):
@@ -95,39 +103,57 @@ def list_backends(*, registry=None):
     return registry.list() if registry is not None else default_backend_catalog()
 
 
+def _select_params(spec, selected, transport):
+    if not spec.available:
+        if selected not in (None, {}):
+            raise InvalidParameterError("unavailable backend has no parameter preset")
+        return None
+    if selected is None:
+        if spec.default_preset is not None:
+            selected=spec.default_preset(transport)
+            if type(selected) is not str or selected not in spec.presets:
+                raise InvalidParameterError(f"{spec.id}: default_preset must select a declared preset")
+        elif len(spec.presets)==1:
+            selected=next(iter(spec.presets))
+        else:
+            raise InvalidParameterError(f"{spec.id}: select parameters explicitly; no default preset declared")
+    if isinstance(selected,spec.params_type):
+        return selected
+    if type(selected) is str:
+        if selected not in spec.presets:
+            raise InvalidParameterError(f"{spec.id}: unknown parameter preset {selected!r}")
+        return spec.presets[selected]
+    return spec.parse_params(selected)
+
+
+def _profile_is_formal(spec, params):
+    return (spec.backend_admitted and params is not None
+            and any(params == spec.presets[name] for name in spec.formal_parameter_presets))
+
+
+def _suite_admission(hs, hp, ins, ip):
+    admitted=(hs.backend_admitted and ins.backend_admitted
+              and _profile_is_formal(hs,hp) and _profile_is_formal(ins,ip))
+    return _ADMITTED if admitted else _UNADMITTED
+
+
 def make_suite(*, hibe="abb10", ibs="sis", hibe_params=None, ibs_params=None,
                transport="direct", protocol="byteauth-v1", signature_format="reference",
                allow_mock=False, hybrid_limits=None, state_policy=STATE_POLICY, registry=None):
     registry=registry or default_registry()
     hs,ins=registry.get("hibe",hibe),registry.get("ibs",ibs)
-    def params(spec, selected):
-        if not spec.available:
-            if selected not in (None, {}):
-                raise InvalidParameterError("unavailable backend has no parameter preset")
-            return {}
-        if selected is None:
-            if spec.default_preset is not None:
-                selected=spec.default_preset(transport)
-                if type(selected) is not str or selected not in spec.presets:
-                    raise InvalidParameterError(f"{spec.id}: default_preset must select a declared preset")
-            elif len(spec.presets)==1:
-                selected=next(iter(spec.presets))
-            else:
-                raise InvalidParameterError(f"{spec.id}: select parameters explicitly; no default preset declared")
-        if isinstance(selected,spec.params_type):
-            return asdict(selected)
-        if type(selected) is str:
-            if selected not in spec.presets:
-                raise InvalidParameterError(f"{spec.id}: unknown parameter preset {selected!r}")
-            return asdict(spec.presets[selected])
-        return asdict(spec.parse_params(selected))
+    hp=_select_params(hs,hibe_params,transport)
+    ip=_select_params(ins,ibs_params,transport)
+    claim,admitted,formal=_suite_admission(hs,hp,ins,ip)
     limits=hybrid_limits if hybrid_limits is not None else ({
         "backend_id":hs.version,"identity_max_bytes":64,"max_payload_bytes":65536,"max_capsule_bytes":4*2**20
     } if transport=="hybrid" else {})
     return SuiteConfig.from_dict(dict(version=SUITE_VERSION,hibe=hibe,hibe_version=hs.version,
-        hibe_params=params(hs,hibe_params),ibs=ibs,ibs_version=ins.version,ibs_params=params(ins,ibs_params),
+        hibe_params={} if hp is None else asdict(hp),ibs=ibs,ibs_version=ins.version,
+        ibs_params={} if ip is None else asdict(ip),
         transport=transport,protocol=protocol,signature_format=signature_format,allow_mock=allow_mock,
-        hybrid_limits=limits,state_policy=state_policy,security_claim="none",backend_admitted=False,parameters_are_formal=False))
+        hybrid_limits=limits,state_policy=state_policy,security_claim=claim,
+        backend_admitted=admitted,parameters_are_formal=formal))
 
 
 @dataclass(frozen=True)
@@ -149,7 +175,15 @@ def _resolve(config, registry):
             raise InvalidParameterError(f"{spec.role}: backend version mismatch; no automatic migration")
         if not spec.available:
             raise InvalidParameterError(f"{spec.id}: unavailable: {spec.reason}")
-    return data,hs,ins,hs.parse_params(data["hibe_params"]),ins.parse_params(data["ibs_params"])
+    hp,ip=hs.parse_params(data["hibe_params"]),ins.parse_params(data["ibs_params"])
+    expected=_suite_admission(hs,hp,ins,ip)
+    actual=(data["security_claim"],data["backend_admitted"],data["parameters_are_formal"])
+    # Old receipts and persisted states retain their original immutable suite
+    # digest.  They may remain explicitly unadmitted, but no caller can promote
+    # a profile that is absent from the current coordinator admission list.
+    if actual not in (expected,_UNADMITTED):
+        raise InvalidParameterError("suite admission metadata differs from selected backend profiles")
+    return data,hs,ins,hp,ip
 
 
 def validate_suite(config, *, registry=None):
@@ -160,6 +194,18 @@ def validate_suite(config, *, registry=None):
                   combination_tested=False,preflight_only=True)
     try:
         data,hs,ins,hp,ip=_resolve(config,registry)
+        metadata.update(security_claim=data["security_claim"],
+                        backend_admitted=data["backend_admitted"],
+                        parameters_are_formal=data["parameters_are_formal"],
+                        primitive_admission={
+                            "hibe": dict(id=hs.id,backend_admitted=hs.backend_admitted,
+                                         parameters_are_formal=_profile_is_formal(hs,hp),
+                                         security_claim=hs.security_claim,
+                                         admission_basis=hs.admission_basis),
+                            "ibs": dict(id=ins.id,backend_admitted=ins.backend_admitted,
+                                        parameters_are_formal=_profile_is_formal(ins,ip),
+                                        security_claim=ins.security_claim,
+                                        admission_basis=ins.admission_basis)})
         runtime_status={spec.role:environment_status(spec) for spec in (hs,ins)}
         metadata.update(runtime_available=all(row["runtime_available"] for row in runtime_status.values()),
                         runtime_dependencies=runtime_status,
@@ -274,7 +320,11 @@ class _BoundedProtocol:
     security_claim = "none"
     backend_admitted = False
     parameters_are_formal = False
-    def _bind(self, runtime): self._runtime=runtime
+    def _bind(self, runtime):
+        self._runtime=runtime
+        self.security_claim=runtime.metadata["security_claim"]
+        self.backend_admitted=runtime.metadata["backend_admitted"]
+        self.parameters_are_formal=runtime.metadata["parameters_are_formal"]
     def setup(self, params, *, ibs_params=None, rng=None):
         if params!=self._runtime.hibe_params or ibs_params!=self._runtime.ibs_params:
             raise InvalidParameterError("setup parameters differ from explicit suite")
@@ -407,4 +457,5 @@ def build_runtime(config, *, ibs_rng=None, ots_rng=None, registry=None):
 
 
 __all__=["SuiteConfig","SuiteRuntime","CompatibilityReport","BackendSpec","BackendRegistry",
-         "default_registry","make_suite","validate_suite","build_runtime","list_backends"]
+         "COMPLETED_SECURITY_CLAIM","default_registry","make_suite","validate_suite",
+         "build_runtime","list_backends"]

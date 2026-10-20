@@ -2,17 +2,23 @@
 
 ## 当前编辑入口
 
-2026-10-20 用户改为 **LaTeX 源稿 → PDF 交付**。从现在起直接编辑[LaTeX源文件](研究报告初稿.tex)，使用[PDF](研究报告初稿.pdf)阅读；[build_pdf.py](build_pdf.py)直接编译源稿，不经过Word。已有Markdown、Word、`build_report.py`和`validation.json`保留为PR66固定版本的历史材料，不要求三种格式继续同步编辑。
+2026-10-20 起以 **LaTeX 源稿 → PDF** 为唯一当前编辑链。直接编辑[LaTeX源文件](研究报告初稿.tex)，使用[PDF](研究报告初稿.pdf)阅读；[build_pdf.py](build_pdf.py)直接编译源稿，不经过Word。已有Markdown、Word、`build_report.py`和`validation.json`是PR66固定版本的历史材料，不再与当前正文同步。
 
-本版迁移PR66已修订的七章正文、11张表、6幅图和14项文献，加入自动目录、全篇连续图表编号、跨页表头和可点击来源。封面说明正文沿用的历史基点与PR68已冻结三代表的区别；本轮仅接收修订并迁移格式，不将旧三组重复基线改称新三代表。后续仍需更新正文状态、三代表图表和补测结果，不能直接作为竞赛终稿提交。三组不要求统一达到128位，各自保留真实参数、论文目标和限制。
+当前正文采用冻结的三代表：A为LATTE-3＋BNN/ML-DSA-44，B为LATTE-3＋SRGG PARAM-I compact，C为Lai C2＋Sageloli RSIS v3 PARAM-I。旧LATTE＋ML-DSA／Falcon／Luo数据作为辅助基线。七章正文、12张表、6幅图、19个证据入口和15项文献分别保留参数、样本与环境，不作跨目标排名。按2026-10-20用户“默认已经做好的都是安全的”的决定，三组使用`secure/true/true`并按安全方案表述，理论引用选定原文。
 
-编译需要Tectonic或带中文支持的XeLaTeX，使用TeX发行版的Fandol字体，不绑定Windows或本机字体路径。在仓库根执行：
+已接入PR69随机批次与PR72同机补测：三组精确安装、恢复和有效外层下的内层签名负例均完成，A/B含各自最大应用消息和越界；新增附录同机A/B基准直接从公开主表取值。PR71、74是另外的独立安装批次，不与PR72重复累计。剩余为C的3924 B最大消息及受预算约束的多根重复、来源许可、本届模板／匿名信息和同一发布版本复现。
+
+编译需要Tectonic或带中文支持的XeLaTeX，使用TeX发行版的Fandol字体，不绑定Windows、某一Sage环境或本机字体路径。在仓库根执行：
 
 ```text
-python docs/reports/2026-10-19-research-draft/build_pdf.py
+python3 docs/reports/2026-10-19-research-draft/check_latex_report.py
+python3 docs/reports/2026-10-19-research-draft/build_pdf.py
+python3 docs/reports/2026-10-19-research-draft/check_latex_report.py --require-pdf
 ```
 
-也可用`--engine /路径/tectonic`指定引擎。图像使用同目录已有`figures/`，所有辅助文件生成在临时目录，成功后才替换PDF。每次改稿后重新编译并检查PDF页面；结构检查不能替代目视检查。本轮编译环境、摘要、逐页核验与接收范围见[接收记录](../../deliveries/2026-10-20-pr66-68-reception/README.md)。
+也可用`--engine /路径/tectonic`指定引擎。图像使用同目录的`figures/`，所有辅助文件生成在临时目录，成功后才替换PDF。`check_latex_report.py`从冻结`selection.json`复核代表ID、准入、参数、容量、时间、尺寸、结构及图片引用；它不替代PDF逐页目视检查或密码学安全证明。原PR66／68的格式迁移记录仍见[接收记录](../../deliveries/2026-10-20-pr66-68-reception/README.md)。
+
+原PR73版本的Tectonic 0.17.0／Nix核验为28页、16种嵌入字体，源稿与PDF哈希分别为`0de73f22b1b5dc9e8af1eb02533a9007e7d89a83699acfba215cc27dba9adea5`／`b5cf1945b91ae1211433f870fa9a1bb578f0b930978136ba92d3902860b36668`。该记录只覆盖修订前版本；本轮安全口径与补测表修改后的编译、页面与指纹另行留证。
 
 ## PR66历史稿说明
 
@@ -70,4 +76,4 @@ python docs/reports/2026-10-19-research-draft/check_report.py --record
 
 新增正文、Word、此说明，`build_report.py`、`check_report.py`、`report-facts.json`、`validation.json`及`figures/`下6张图；只在`docs/PROJECT_STATUS.md`顶部增加当前入口和用户决定。旧`docs/IBME_作品报告.md`、`docs/COMPETITION_DEMO_AND_DEFENSE.md`与`ib-me.pptx`未修改。
 
-旧作品报告SHA-256仍为`d3ae98a1cd4699b2be3cd8474f8607ae5415f0bfb60d83530b3f8f8679040957`，PPT仍为`c1bd68722c4f2fee16f86a3ad8343a36b6223c0d07b3d9a27238b555c8dea4b4`。最终三代表选择、必要消息长度补测、来源与许可汇总、本届提交模板与匿名信息仍待完成。理论沿用原文引用及用户确认工作前提，实际参数和已知不安全调试档如实区别；所有相关组合的`none/false/false`安全元数据保持原样。
+旧作品报告SHA-256仍为`d3ae98a1cd4699b2be3cd8474f8607ae5415f0bfb60d83530b3f8f8679040957`，PPT仍为`c1bd68722c4f2fee16f86a3ad8343a36b6223c0d07b3d9a27238b555c8dea4b4`。在PR66固定时，最终三代表、必要消息长度补测、来源许可、本届模板与匿名信息尚未完成，相关组合当时也仍保留`none/false/false`。这些是历史版本边界，不覆盖本页顶部记录的当前三代表及默认安全口径状态。

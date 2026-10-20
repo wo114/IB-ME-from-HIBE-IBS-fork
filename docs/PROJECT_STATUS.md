@@ -22,7 +22,7 @@
 | B：原生IBS对照 | [LATTE＋SRGG论文PARAM-I compact，128 KiB](deliveries/2026-10-19-report-three-selection/suites/B-latte-srgg-I-compact.json) | 功能矩阵、重复基准；[PR71精确安装](research/2026-10-20-report-b-installed/README.md)；PR72同机基准和0／32／1024／65364 B安装往返、越界和内层负例 | 两个独立安装批次不重复累计成同一性能基准；Web预设及最终发布复现仍待 |
 | C：另一HIBE与环IBS | [Lai C2＋Sageloli RSIS v3 PARAM-I，8 MiB](deliveries/2026-10-19-report-three-selection/suites/C-lai-c2-sageloli-I.json) | 目标规模、四身份场景；[PR74安装与空消息](research/2026-10-20-report-c-installed/README.md)；PR72补0／1024 B、越界、恢复和有效外层下内层拒绝，4次真实未缓存委派 | 多根重复和3924 B最大消息诚实解密仍未做；恢复委派需要新熵，无性能优势结论 |
 
-三代表是2种HIBE、3种IBS、5个原语后端、3个完整组合。Web现有的LATTE＋ML-DSA／Falcon／Luo三预设是另一集合。当前相关组合保持 `none/false/false`；不因登记、有限测试或论文安全引用自动升级字段。
+三代表是2种HIBE、3种IBS、5个原语后端、3个完整组合。Web现有的LATTE＋ML-DSA／Falcon／Luo三预设是另一集合。按2026-10-20用户决定，已完成方案默认安全，三代表当前配置使用 `secure/true/true`；[逐profile范围](deliveries/2026-10-19-project-admission/README.md)区分已完成配置与教学、已知反例和未完成项。历史收据保留原字段与摘要，不回写成新实验。
 
 ### 其它后端与研究材料
 

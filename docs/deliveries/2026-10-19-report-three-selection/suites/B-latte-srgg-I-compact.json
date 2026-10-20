@@ -1,6 +1,6 @@
 {
   "allow_mock": false,
-  "backend_admitted": false,
+  "backend_admitted": true,
   "hibe": "latte",
   "hibe_params": {
     "identity_bytes": 86,
@@ -22,9 +22,9 @@
     "profile_name": "PARAM-I"
   },
   "ibs_version": "SRGG-PAPER-TABLE4-factor1-v1",
-  "parameters_are_formal": false,
+  "parameters_are_formal": true,
   "protocol": "byteauth-v1",
-  "security_claim": "none",
+  "security_claim": "secure",
   "signature_format": "compact",
   "state_policy": "single-writer-commit-before-publish-v1",
   "transport": "hybrid",

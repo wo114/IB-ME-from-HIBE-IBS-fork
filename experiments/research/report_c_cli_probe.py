@@ -19,7 +19,7 @@ import time
 
 ALICE, BOB = 'A'*64, 'B'*64
 MESSAGE = b''
-DIGEST = '9a3c66cfd5073721bf135466197522352010ecbc6a10a6794c710e9b10423c82'
+DIGEST = '8692c5917fcd731fb6b2109f1a5307014c66edbd4a1f17d4190b14873cf4a200'
 
 
 def require(condition, message):
@@ -179,6 +179,7 @@ def require_plaintext(path):
 
 
 def generate(directory, suite_file, source_commit, timeout=900):
+    from ibme.core.security import security_fields
     setup, expected = setup_arguments(directory/'state', suite_file)
     require(type(timeout) is int and 1 <= timeout <= 900, 'worker timeout must be 1..900 seconds')
     directory.mkdir(parents=True, mode=0o700, exist_ok=False)
@@ -258,7 +259,7 @@ def generate(directory, suite_file, source_commit, timeout=900):
             overall_timeout_seconds=1800,
             total_seconds=time.perf_counter()-started,
             randomness='default OS CSPRNG; fixed public inputs; no seed injection or outer retry',
-            security_claim='none', backend_admitted=False, parameters_are_formal=False)
+            **security_fields(expected.to_dict()))
         (directory/'receipt.json').write_text(json.dumps(receipt, indent=2, sort_keys=True)+'\n', encoding='utf-8')
         return dict(status='passed', cli_commands=len(rows), inner_negative=True,
                     real_restored_derive=True, total_seconds=receipt['total_seconds'])

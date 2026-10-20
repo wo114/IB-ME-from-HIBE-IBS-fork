@@ -21,7 +21,8 @@ def registry():
     ibs = builtins.get("ibs", "luo-module")
     # No Luo ID/default-preset conventions are available to the driver.
     ibs = replace(ibs, id="brand-new-ibs", presets={"explicit-parameters": ibs.presets["research"]},
-                  default_preset=lambda transport: "explicit-parameters")
+                  default_preset=lambda transport: "explicit-parameters",security_claim="none",
+                  backend_admitted=False,formal_parameter_presets=(),admission_basis="")
     return BackendRegistry([hibe, ibs])
 
 
