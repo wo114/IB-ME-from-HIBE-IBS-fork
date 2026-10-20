@@ -33,8 +33,10 @@ from .native import draw_gaussian_batch, sample_gpv, SamplingError
 # ~sqrt(5) <= 2.24, so 4 leaves a smoothing margin; Sigma_G = 16 I >= 2 I.
 GADGET_SIGMA = 4.0
 # Per-coordinate Gaussian rounding width (standard deviation).  Its variance is
-# ~1, so the continuous covariance is Sigma_p − I.  sigma_r = 1 >= eta(Z).
-ROUNDING_SIGMA = 1.0
+# ~sigma_r^2, so the continuous covariance is Sigma_p − sigma_r^2 I.  In the
+# paper's rho convention r = sigma_r*sqrt(2*pi); the smoothing tail
+# eps = rho_{1/r}(Z minus 0) is ~1e-19 for sigma_r = 1.5 (see smoothing_epsilon).
+ROUNDING_SIGMA = 1.5
 POWER_ITERATIONS = 48
 
 
@@ -146,6 +148,22 @@ def check_mp12_margin(params, trapdoor: np.ndarray) -> float:
     return norm
 
 
+def smoothing_epsilon(sigma_r: float = ROUNDING_SIGMA) -> float:
+    """MP12/Pei10 rounding smoothing tail rho_{1/r}(Z minus 0), r = sigma_r*sqrt(2*pi).
+
+    Per-coordinate statistical-distance term for the discrete-Gaussian rounding;
+    the total union bound is dimension * smoothing_epsilon.
+    """
+    r = sigma_r * math.sqrt(2.0 * math.pi)
+    total = 0.0
+    for x in range(1, 64):
+        term = math.exp(-math.pi * (r * x) ** 2)
+        total += term
+        if term == 0.0:
+            break
+    return 2.0 * total
+
+
 def _standard_normal(read, count: int) -> np.ndarray:
     """Box–Muller standard normals from the backend cryptographic source."""
     raw = read(16 * count)
@@ -250,5 +268,6 @@ def sign_with_perturbation(backend, sk, message) -> "Signature":
     backend.last_metrics["perturbation_width"] = p.sign_sigma
     backend._sign_stage("complete")
     return signature
+
 
 

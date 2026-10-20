@@ -476,9 +476,9 @@ GPT 复核发现的两处实质偏差及修正：
 
 | 项 | 实测 |
 |---|---|
-| 签名耗时 / 峰值 RSS | **175.2 s、177.5 s / 41.3 GB** |
+| 签名耗时 / 峰值 RSS | **175.8 s、175.2 s / 41.3 GB**（σ_r=1.5 最终版；见 evidence/sign-v3-*.json） |
 | 固定扰动宽度 | **3,346,570.4 = sign_sigma**（两条一致，与密钥无关） |
-| 签名范数平方 | 5.47e17 / 5.52e17（验签界 3.46e18，占 15.9%） |
+| 签名范数平方 | 5.497e17 / 5.530e17（验签界 3.46e18，占 15.9%） |
 | 签名 wire | 393,320 B |
 | 独立公开验签 | 两条 honest、错身份/错消息/篡改/截断/超界全拒、零熵（[收据](evidence/perturbation-20261020/final-public-verifier.json)） |
 | 固定发钥服务 | adopt 118.3 s、recover 51.5 s，同 canonical key/身份/公钥、零熵（[adopt](evidence/perturbation-20261020/final-service-adopt.json)、[recover](evidence/perturbation-20261020/final-service-recover.json)） |
@@ -495,3 +495,4 @@ GPT 复核发现的两处实质偏差及修正：
 其后 sign/verify/restore 及恢复签名在修正版上单独复验（见上表）。
 `security_claim=none`、`parameters_are_formal=false`、`backend_admitted=false` 不变；
 β≥q 的 SIS 包络限制在原档已存在，本路线未改变它，也未把它写成已闭合。
+

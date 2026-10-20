@@ -21,6 +21,7 @@ from ibme.ibs.wang_pw_target.perturbation import (GADGET_SIGMA, ROUNDING_SIGMA,
                                                   perturbation_covariance,
                                                   sample_from_covariance,
                                                   sample_perturbation,
+                                                  smoothing_epsilon,
                                                   spectral_norm_upper_bound,
                                                   trapdoor_spectral_norm)
 
@@ -71,6 +72,12 @@ def test_spectral_norm_estimate_matches_svd():
     assert 0.85 * exact <= lam <= 1.15 * exact
 
 
+def test_rounding_smoothing_tail_is_negligible():
+    epsilon = smoothing_epsilon()
+    assert 0.0 < epsilon < 1e-15
+    assert 49152 * epsilon < 1e-10
+
+
 def test_spectral_norm_upper_bound_is_certified():
     rng = np.random.default_rng(5)
     x = rng.normal(0.0, 4.0, size=(60, 30))
@@ -103,7 +110,7 @@ def test_gaussian_rounding_matches_exact_one_dimensional_law():
         mask = np.isclose(sample_centers, center)
         chunk = values[mask]
         empirical = np.array([(chunk == x).mean() for x in grid])
-        weights = np.exp(-0.5 * (grid - center) ** 2)
+        weights = np.exp(-0.5 * ((grid - center) / ROUNDING_SIGMA) ** 2)
         exact = weights / weights.sum()
         assert 0.5 * np.abs(empirical - exact).sum() < 0.08, float(center)
 
@@ -133,7 +140,7 @@ def test_rounding_support_is_full_integers_not_a_scaled_sublattice():
     # Old construction p = round(L g) with L = diag(1000, 1) could only produce
     # multiples of 1000 in the first coordinate; Gaussian rounding gives every
     # integer with the discrete-Gaussian weights.
-    sigma = np.diag([1_000_000.0, 2.0])
+    sigma = np.diag([1_000_000.0, 4.0])
     samples = 20000
     source = DeterministicRandom(b"support")
 
@@ -233,6 +240,7 @@ def test_perturbation_rejects_tampered_signatures(perturbed):
     zero = Signature(sig.context, sig.identity_salt, sig.message_salt,
                      np.zeros(p.dimension, dtype=np.int64))
     assert not backend.verify(pk, b"alice", b"message", zero)
+
 
 
 
