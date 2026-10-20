@@ -96,8 +96,40 @@ def perturbation_covariance(trapdoor: np.ndarray, width: float,
     return covariance
 
 
+def spectral_norm_upper_bound(trapdoor: np.ndarray, iterations: int = POWER_ITERATIONS) -> tuple[float, float]:
+    """Certified upper bound on ||T||_2 via the residual of the power iterate.
+
+    For the symmetric M = T T^T and any unit vector u,
+        lambda_max <= u^T M u + ||M u − (u^T M u) u||.
+    Returns (estimate, upper_bound); the margin gate uses the upper bound.
+    """
+    x = np.asarray(trapdoor, dtype=np.float64)
+    m, w = x.shape
+    gen = np.random.default_rng(0x57504157)
+    v = gen.standard_normal(w)
+    v /= np.linalg.norm(v)
+    for _ in range(int(iterations)):
+        wv = x.T @ (x @ v) + v
+        norm = float(np.linalg.norm(wv))
+        if not math.isfinite(norm) or norm <= 0.0:
+            break
+        v = wv / norm
+    tv = np.concatenate((x @ v, v))
+    shift = float(np.linalg.norm(tv))
+    if shift <= 0.0:
+        raise SamplingError("spectral-norm estimate failed", public_reason="native-return-code")
+    u = tv / shift
+    tt_u = x.T @ u[:m] + u[m:]
+    quotient = float(tt_u @ tt_u)
+    mu = np.concatenate((x @ tt_u, tt_u))
+    residual = float(np.linalg.norm(mu - quotient * u))
+    estimate = math.sqrt(max(quotient, 0.0))
+    bound = math.sqrt(max(quotient, 0.0) + residual)
+    return estimate, bound
+
+
 def check_mp12_margin(params, trapdoor: np.ndarray) -> float:
-    """Enforce the MP12 Algorithm 3 conditions and return ||T||_2.
+    """Enforce the MP12 Algorithm 3 conditions and return the certified ||T||_2 bound.
 
     Sigma_G = sigma_g^2 I >= 2 I (sigma_g >= sqrt(2)) and
     Sigma_p = s^2 I − sigma_g^2 T T^T >= 2 T T^T, i.e. s >= ||T||_2·sqrt(sigma_g^2+2).
@@ -105,7 +137,7 @@ def check_mp12_margin(params, trapdoor: np.ndarray) -> float:
     if GADGET_SIGMA * GADGET_SIGMA < 2.0:
         raise SamplingError("gadget covariance violates Sigma_G >= 2 I",
                             public_reason="native-return-code")
-    norm = trapdoor_spectral_norm(trapdoor)
+    _estimate, norm = spectral_norm_upper_bound(trapdoor)
     required = norm * math.sqrt(GADGET_SIGMA * GADGET_SIGMA + 2.0)
     width = params.sign_sigma
     if not width >= required:
@@ -218,4 +250,5 @@ def sign_with_perturbation(backend, sk, message) -> "Signature":
     backend.last_metrics["perturbation_width"] = p.sign_sigma
     backend._sign_stage("complete")
     return signature
+
 

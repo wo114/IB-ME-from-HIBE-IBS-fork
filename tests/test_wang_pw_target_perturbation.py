@@ -21,6 +21,7 @@ from ibme.ibs.wang_pw_target.perturbation import (GADGET_SIGMA, ROUNDING_SIGMA,
                                                   perturbation_covariance,
                                                   sample_from_covariance,
                                                   sample_perturbation,
+                                                  spectral_norm_upper_bound,
                                                   trapdoor_spectral_norm)
 
 
@@ -68,6 +69,17 @@ def test_spectral_norm_estimate_matches_svd():
     lam = trapdoor_spectral_norm(np.rint(x).astype(np.int64), iterations=200)
     exact = float(np.linalg.norm(np.vstack((x, np.eye(24))), 2))
     assert 0.85 * exact <= lam <= 1.15 * exact
+
+
+def test_spectral_norm_upper_bound_is_certified():
+    rng = np.random.default_rng(5)
+    x = rng.normal(0.0, 4.0, size=(60, 30))
+    matrix = np.rint(x).astype(np.int64)
+    estimate, bound = spectral_norm_upper_bound(matrix, iterations=120)
+    exact = float(np.linalg.norm(np.vstack((matrix.astype(float), np.eye(30))), 2))
+    assert exact <= bound
+    assert bound <= 1.2 * exact
+    assert estimate <= bound
 
 
 def test_perturbation_covariance_is_psd():
@@ -221,6 +233,7 @@ def test_perturbation_rejects_tampered_signatures(perturbed):
     zero = Signature(sig.context, sig.identity_salt, sig.message_salt,
                      np.zeros(p.dimension, dtype=np.int64))
     assert not backend.verify(pk, b"alice", b"message", zero)
+
 
 
 
