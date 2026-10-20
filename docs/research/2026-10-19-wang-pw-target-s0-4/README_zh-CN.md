@@ -228,3 +228,17 @@ python -u -m experiments.research.wang_pw_target.run_guarded \
 该提交已部署到服务器**独立后续源码目录**：[传输回执](evidence/cli-reuse-preparation/reuse-source-transfer.json)核 3338 个普通文件与归档一致，SHA-256 `90a44ace9acc65daee79041e6112b055de0fc0547ebc0e54902109ae0c3ff210`，native 源码与原运行源码一致。北京时间 10:48 的[快照](evidence/cli-reuse-preparation/running-snapshot.json)仍为原根 Extract、约 3263.9 s，driver 存活，13 份源码未变，采样 RSS 峰值 36794908672 B；不是最终性能或完整成功。
 
 原六阶段成功退出后，后续才串行执行固定服务 adopt、独立 recover、研究组合及通用 CLI 复用；当前这些 **n512 后续任务均未执行**。任一步失败保留回执，不重启或重新发钥。本批[manifest](evidence/cli-reuse-preparation/manifest.json)绑定公开材料，实现提交的八份源码／规范另由 review 绑定；秘密、实际签名、盐及私密状态仅在服务器原位使用。β≥q 筛查拒绝及 `security_claim=none / backend_admitted=false / parameters_are_formal=false / nist_security_category=null` 不变。完整任务尚未结束，本批未推送或创建 PR。
+
+## 11. 内存观测口径、CI 选择与 wheel 解包检查
+
+`8d87bce` 修复参数审计的验收口径：一条调用者提供的 n512 RSS 不再直接令目标内存验收为 true。`measured_under_128gib` 继续报告数值是否低于门槛，新增 `target_peak_observation_supplied`；`target_n512_run_measured` 和 `target_memory_acceptance` 改为 **null**，并标明 `target_memory_assessment=not-performed`。这是两个旧字段从布尔值到 null 的兼容变化；该帮助函数不检查原始回执，调用者附加完成标记也不能代替完整验收。最终必须另外核对完整参数、六阶段、独立进程恢复签名、冻结源码及最终监督器结果。
+
+规定 WSL Sage 环境运行 `python -B -m pytest -q -p no:cacheprovider tests/test_wang_pw_target_audit.py --junitxml=...`：[26 passed / 0 failed/error/skip](evidence/resource-audit/audit.xml)，4.15 s，包括未完成／终止观测及调用者自称完成不能升级验收的回归。该修复没有改变算法、参数、采样器或服务器正在运行的源码；旧筛查与运行回执保留原始哈希。
+
+`111cc36` 将 `tests/test_cli_role_import.py` 纳入 Wang 的 Sage CI suite，避免新公共导入测试遗漏于后续远端验收。[实际文件选择](evidence/resource-audit/ci-selection.json)包含该文件；`python -B -m pytest -q -p no:cacheprovider tests/test_ci_catalog.py --junitxml=...` 为 [25 passed / 0 failed/error/skip](evidence/resource-audit/ci-catalog.xml)，13.31 s。这里只验证本地调度配置，尚未推送，也没有声称远端 CI 已执行103项；不与此前测试数量累加。
+
+利用现有 bundled Python 的 setuptools 84.0.0 / wheel 0.48.0，离线执行 `python -B -m pip wheel --no-index --no-deps --no-build-isolation . -w <新输出目录>`，未安装或下载依赖。wheel 为 2069809 B、SHA-256 `c3c4f9828450014a91dcf5277b3237dd01d44d200cf5d5f8aa6b0f5ff95d44cd`。随后解包，在仓库外工作目录用 WSL Sage 的 `-I -B` 运行[公开 probe](evidence/resource-audit/wheel-probe.py)：[回执](evidence/resource-audit/wheel-preflight.json)核149个已加载的项目模块均来自该解包目录，公共 CLI/import-role、二进制身份、完整主档登记及 Gaussian C++ 源文件存在，四份关键源文件 SHA-256 与提交字节匹配。密码学取熵、Setup/Extract/Sign 和 native 动态加载被禁用。
+
+这是 **wheel 解包交付态检查**，不是 `pip install`、角色恢复或目标算法执行。research reuse harness 不在 wheel 中，公共 CLI 无此依赖；可靠入口为 `python -m ibme.cli`。目标角色恢复仍待原 n512 运行结束后在服务器原位串行验收。[本批 review](evidence/resource-audit/review.json)与[manifest](evidence/resource-audit/manifest.json)绑定源码及六份公开载荷。
+
+服务器原根继续使用 `b47cc6a`，已部署的后续运行源码仍为 `dd751fa`；本批只修本地审计口径和 CI 选择，不替换或修改这些冻结目录。n512 生命周期／服务／组合／通用 CLI 的最终结果仍待回填；β≥q 拒绝及 none/false/false/null 安全字段保持不变。
