@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-20",
+  "pr": 79,
+  "submitted_head": "ba2b86d821b284978274479acd7cccb7692a570a",
+  "main_accepted_pr75": "1009bf9a08550fa18aa23198da92a1e257c210b9",
+  "main_accepted_pr78": "0ec0feb0d3ed19d289effbbb65a3162885ea26c6",
+  "decision": "accept as first-batch WIP after final head checks",
+  "fixes": [
+    "A/B wire sizes converted from actual bytes to about 139/146 KiB",
+    "deployment baselines distinguish Windows source, Windows wheel and WSL wheel",
+    "match relation expressed as a requirement rather than unconditional acceptance equivalence",
+    "Lai leaf state described as process-local, C Web preflight separated from complete runs",
+    "references linked to actual methods; related work added",
+    "table rows derived from measured JSON and rounded to three significant figures",
+    "PDF currentness bound to source/PDF hashes rather than checkout times",
+    "two orphan sections and one orphan continuation removed"
+  ],
+  "cryptographic_code_changed": false,
+  "parameters_changed": false,
+  "security_metadata_changed": false,
+  "new_cryptographic_experiments": 0,
+  "original_checker_fresh_checkout": "1/67 failure: PDF is current",
+  "fixed_checker": "80 pass",
+  "submission_ready": "expected 1/81 WIP failure",
+  "remaining": [
+    "expand protocol and five primitives",
+    "expand four optimization methods and figures",
+    "complete experiment tables and required bounded gaps",
+    "accurate demonstration material and final release reproduction",
+    "final typesetting and submission QA"
+  ],
+  "source_bindings": {
+    "docs/deliveries/2026-10-19-report-experiment-supplement/master-table.json": "e2041dbd507871d8c082b6440ab752d8119fc365a29fd9539d203a20976e42a6",
+    "docs/research/2026-10-20-multi-backend-optimization/verified-summary.json": "7ff0ce91b06da2ca387ea06388a1f71333c16616ce5175ba323c51898ad4a255",
+    "docs/research/2026-10-19-full-system-placement/evidence/placement.json": "6ca629f694358a985241025f6a947ef2bd039e2bf60c7585942ac1d71913e6e6"
+  }
+}
