@@ -255,3 +255,29 @@ python -u -m experiments.research.wang_pw_target.run_guarded \
 规定WSL Sage命令与源码绑定见[review.json](evidence/target-failure/review.json)，`tests/test_wang_pw_target_qr.py tests/test_wang_pw_target_backend.py tests/test_wang_pw_target_independent.py` 为[28 passed / 0 failed/error/skip，22.569 s](evidence/target-failure/qr-regression.xml)。覆盖方阵FULL/economic的star/norms对应、正交与重构、整数基不变、布局及非方阵/奇异拒绝；小规模回归不证明n512恢复成功或逐位/分布认证。
 
 原失败回执永久保留，不能改写为六阶段成功。失败后自动跟进已暂停；用户随后明确“按照目标继续持续推进”，据此准备在独立新源码/证据目录复用原PK/SK续签、独立重载签验、服务adopt/recover、真实LATTE组合及通用CLI，全部串行、资源监督，任何新失败停链留证。不得重抽根、重新发钥或覆盖原冻结目录；旧 `reuse-dd751fa` 仍包含FULL QR，不能直接用于新目标签名。上述后续在本检查点均未执行。原参数参考包络的beta>=q拒绝与none/false/false/null保持。
+
+## 13. 原钥续签失败与停链
+
+本节覆盖前面各检查点“后续待执行”的时效状态，保留第12节原运行的失败事实。用户要求继续后，服务器独立部署 `24f820723c65617fd202c636a1d3ad366d456359`；[传输回执](evidence/continuation-failure/source-transfer.json)核3356份普通文件与Git归档一致，native源/库匹配，未修改原运行目录。原PK/SK在服务器原位使用，没有新Wang根或身份钥。原始64 B二进制身份和32 B消息保持；仅进行一次新签名尝试。
+
+[启动回执](evidence/continuation-failure/launch.json)、[最终签名回执](evidence/continuation-failure/child.stdout.log)、[资源监督器](evidence/continuation-failure/supervisor.json)和[失败后核验](evidence/continuation-failure/post-failure-check.json)给出以下结果：
+
+| 项目 | 实际结果 |
+|---|---|
+| 时间 | 2026-10-20 03:59:35Z启动，04:29:04Z结束，即北京时间11:59:35—12:29:04 |
+| 原钥独立重载 | `key_restored_without_issuer=true`，无issuer输入 |
+| 新签名 | `status=failed / failure_type=SamplingError`，1768.937484054 s，没有签名文件 |
+| 资源 | 监督器1769.334650790 s，采样峰值60600950784 B，约56.439 GiB；未超110 GiB/21600 s |
+| 退出与清理 | child/supervisor均退出1，未发TERM/KILL，清理后0存活；失败后再次核两PID均消失 |
+| 源码 | 失败后3356份文件仍逐项匹配部署manifest |
+| 后续 | 第二次独立签名、公开独立验签、服务adopt/recover、LATTE组合、通用CLI均未启动 |
+
+参数仍为 `n=512,q=4294967291,s0=4`，固定根/用户GS门512/1048576，签名rho宽度8388608，盐32 B，16线程；完整参数沿用[原始主档快照](evidence/target-failure/target-n512.json)并收录于本批[review](evidence/continuation-failure/review.json)。运行仍为生产CSPRNG和C++有限离散Gaussian：MPFR256、192-bit质量、20σ窗口、最多4096提案；浮点QR和中心仍是研究近似。环境沿用已经验收的Linux x86-64、8物理核/16逻辑CPU、132785688576 B内存、Sage10.9/Python3.12.15、NumPy2.5.4/SciPy1.18.1、psutil7.2.2及同一native库；这是一条原根上的一次失败记录，不是重复公平性能基准。哈希沿用域分隔SHAKE与原ROM研究口径，不增加安全模型声明。
+
+独立签名程序为避免公开私密信息只记录异常类型，没有异常栈、内部阶段或失败时metrics。`SamplingError`可能来自数值GS门、委派公开矩阵核对、随机源/native采样或最终签名方程/范数门；本回执不足以区分，也未单独证明QR已完成。native的C++异常捕获会将`std::bad_alloc`等转为返回码6，再包装为`SamplingError`；当前未保存native码，因此也未排除native分配失败。峰值低于资源门只说明本次没有触发该监督门。后续若获准继续，应先增加不含系数、盐或密钥统计的固定阶段/原因码，再决定是否运行；本批未重跑或放宽任何门限。
+
+串行控制器另由 `401b73548524ab6134f3f510a89c726513c1c31b` 提交，仅新增 [run_reused_continuation.py](../../../experiments/research/wang_pw_target/run_reused_continuation.py) 与 [test_wang_pw_target_continuation.py](../../../tests/test_wang_pw_target_continuation.py)。它绑定冻结源码、native/环境和原失败回执，使用永久一次性声明、串行外部监督、完整参数/每项观察/子进程计数/退出/清理检查；超时或中断转发清理，非零监督器退出时清理已经观察并绑定PID创建时间的子树。采样间隙、主机故障和恶意进程隔离仍不在保证内。`--check-only`为只读预检，不等待、不启动、不加锁。
+
+规定WSL Sage的 [JUnit](evidence/continuation-failure/controller-tests.xml) 与 [pytest结果](evidence/continuation-failure/controller-tests.log)为 **84 passed / 0 failed/error/skip，4.510 s**，命令和两份实现源码的Git字节绑定见review。测试只用公开夹具，不生成真实根或调用目标采样；日志原件含混合编码WSL启动提示，保留在本地ignored outputs，公开副本从pytest进度段开始，截去199 B前缀并记录原件哈希。controller未部署、未执行；[包外公开验签脚本](evidence/continuation-failure/verify-reused-public.py)仅归档待用，也未执行n512验签。原钥续签先失败，因此没有启动后续链来补造通过结果。
+
+自动跟进已暂停，所有私密对象留在服务器；只取回公开回执和脱敏日志。[manifest](evidence/continuation-failure/manifest.json)绑定本批材料。原始同版本六阶段仍未完成，跨版本续跑也失败，目标任务保持WIP。本批形成本地提交，尚未推送或创建PR；beta>=q筛查拒绝及 `security_claim=none / backend_admitted=false / parameters_are_formal=false / nist_security_category=null` 保持不变。
