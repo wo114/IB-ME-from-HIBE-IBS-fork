@@ -199,6 +199,32 @@ python -u -m experiments.research.wang_pw_target.run_guarded \
 
 真实 LATTE 作者档＋Wang 非安全 n2/q257/s0=4 的新驱动及故障测试为 [4 passed，64.83 s](evidence/reuse-preparation/reused-combination-local.log)；该实际命令未启 JUnit，未为补证据重复运行或补造 XML。随后收紧失败类型白名单，相关两项 [2 passed / 2 deselected，1.75 s](evidence/reuse-preparation/reuse-child-failures.xml)。这些计数存在重叠，不相加为总覆盖，也不与服务器早批 231 项累加。
 
-新驱动是**专用研究命令行＋公开组合 API**。通用 `ibme.cli` 只接受可打印 UTF-8，不能表示主档已经绑定的二进制身份，因此尚未完成通用 CLI 的 n512 实测；不能把身份换成 Alice 或十六进制文本冒充同一把钥。原始主档的六阶段成功也不自动证明目标固定服务或完整组合成功。等待原主档终止后，才能在外部资源监督下串行执行这些目标复用任务；失败保留回执，不重抽根、重新发钥或放宽门限。
+新驱动是**专用研究命令行＋公开组合 API**。该检查点时通用 `ibme.cli` 只接受可打印 UTF-8，不能表示主档已经绑定的二进制身份；后续公共入口补齐见下节，其 n512 实测仍未完成。不能把身份换成 Alice 或十六进制文本冒充同一把钥。原始主档的六阶段成功也不自动证明目标固定服务或完整组合成功。等待原主档终止后，才能在外部资源监督下串行执行这些目标复用任务；失败保留回执，不重抽根、重新发钥或放宽门限。
 
 本批六份公开材料由[manifest](evidence/reuse-preparation/manifest.json)绑定，另存原始运行快照，不覆盖早期启动证据；没有上传私密状态、密钥、盐、实际签名或本机原生库。正式参数的配置参考包络 β≥q 拒绝仍在，none/false/false/null 不变；研究代码与小规模组合通过不升级参数准入。
+
+## 10. 通用 CLI 角色导入与原二进制身份（本地完成，n512 待执行）
+
+实现提交 `dd751fabbff9c90eaa71d5acff69de85b8197e34`，`feat(cli): import canonical roles and preserve binary Wang identities`。本批未改变 Wang/LATTE 的算法、数学参数或 native 源码；未修改原服务器 `b47cc6a` 运行目录，也没有生成第二个 Wang 根。修改文件为公共 CLI、角色导入模块、新驱动、两份测试及公共规范／Wang 契约／实验 README。
+
+- 通用 `issue-* / encrypt / decrypt` 增加显式 `--identity-encoding hex`，将规范小写 hex 解码回原身份 bytes，按解码后容量检查；默认可打印 UTF-8 保持兼容，不改变哈希、对象或密文。
+- `import-role` 接收规范 SuiteConfig、组合公钥及唯一组合角色钥，调用公共 runtime 绑定校验；无 master 输入，不执行 Setup/Extract/Sign。沿用 v2 envelope，记录管理导入来源及 `master_persisted_before_key_publication=false`，不认证原始采样分布或发钥历史。
+- 发行锁及 `msk.bin.pending` 覆盖发布，元数据最后写。异常／硬退出保留现场并阻断使用；仅恢复同角色、同身份的已有钥。另放 `msk.bin` 文件、目录或链接时所有角色命令均拒绝，不读取 master。
+- [通用 CLI 验收](../../../experiments/research/wang_pw_target/run_reused_cli.py)只复用上节三个角色：一进程包装输入，16 个独立进程实际调用公共 parser/dispatch，最多一次新 Wang 签名；覆盖缓存恢复、诚实收发／重启、三个身份错配、位翻转、截断、追加及有效新 OTS 替换拒绝。禁发钥由验收 harness 执行。
+
+规定 WSL Sage 下的最终结果如下；计数重叠，不相加，也不与旧 231 项服务器测试累加：
+
+| `python -B -m pytest -q -p no:cacheprovider` 的测试文件 | 最终结果与 JUnit |
+|---|---|
+| `tests/test_cli_role_import.py` | [103 passed / 0 failed/error/skip](evidence/cli-reuse-preparation/cli-import-final.xml)，89.88 s |
+| `tests/test_wang_pw_target_reused_cli.py` | [5 passed](evidence/cli-reuse-preparation/generic-cli-final.xml)，89.49 s；禁止 master 补丁后完整链另复跑 [1 passed / 4 deselected](evidence/cli-reuse-preparation/generic-cli-role-only-recheck.xml)，91.15 s |
+| `tests/test_cli_selection.py tests/test_cli_state_lock.py tests/test_cli_master_state.py tests/test_cli_receiver_state.py` | [110 passed](evidence/cli-reuse-preparation/legacy-cli-final.xml)，28.41 s |
+| `tests/test_wang_pw_target_cli.py tests/test_wang_pw_target_combination_process.py` | [3 passed](evidence/cli-reuse-preparation/existing-wang-cli.xml)，53.44 s；pytest 后 shell 退出变量为空造成外层 exit=1，JUnit 与[原始 pytest 输出](evidence/cli-reuse-preparation/existing-wang-cli.log)保留，不伪造外层退出 0 |
+
+新真实组合使用 LATTE 作者档 `n=1024,q=68718428161` 与 Wang 非安全 `n=2,q=257,s0=4`。源 Wang 根使用固定测试流，导入／缓存恢复禁止密码学采样；新加密及接收叶派生执行实际后端。回执明确 `generic_ibme_cli_tested=true`、`generic_ibme_cli_target_tested=false`；只有成功执行且完整公开参数匹配主档时才设置目标规模标记。
+
+[审查记录](evidence/cli-reuse-preparation/review.json)保留首轮 97 项中误放 master 的 2 项失败及修复、runner 参数外壳解码的 1 项失败及修复；首轮日志仅留本地，不发布私密夹具。sender 导入保留完整公开 validator，包含额外大对象 encode/decode，目标规模时间／内存尚未实测。测试不增加安全声明，也不提供恶意回滚或硬断电保证。
+
+该提交已部署到服务器**独立后续源码目录**：[传输回执](evidence/cli-reuse-preparation/reuse-source-transfer.json)核 3338 个普通文件与归档一致，SHA-256 `90a44ace9acc65daee79041e6112b055de0fc0547ebc0e54902109ae0c3ff210`，native 源码与原运行源码一致。北京时间 10:48 的[快照](evidence/cli-reuse-preparation/running-snapshot.json)仍为原根 Extract、约 3263.9 s，driver 存活，13 份源码未变，采样 RSS 峰值 36794908672 B；不是最终性能或完整成功。
+
+原六阶段成功退出后，后续才串行执行固定服务 adopt、独立 recover、研究组合及通用 CLI 复用；当前这些 **n512 后续任务均未执行**。任一步失败保留回执，不重启或重新发钥。本批[manifest](evidence/cli-reuse-preparation/manifest.json)绑定公开材料，实现提交的八份源码／规范另由 review 绑定；秘密、实际签名、盐及私密状态仅在服务器原位使用。β≥q 筛查拒绝及 `security_claim=none / backend_admitted=false / parameters_are_formal=false / nist_security_category=null` 不变。完整任务尚未结束，本批未推送或创建 PR。
