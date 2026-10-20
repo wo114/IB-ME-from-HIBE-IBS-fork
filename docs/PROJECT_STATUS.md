@@ -61,8 +61,8 @@
 |---|---|---|
 | 1 | C的必要最大长度和有限重复 | A/B最大长度及三组容量／身份越界已有PR72记录；C仍缺3924 B诚实往返及多根重复，按分钟级预算决定补测，不无限扩网格 |
 | 2 | 三代表可解释比较 | PR72已有同机A/B数据；保留各组实际目标，不按等安全排名。C目前展示结构与资源边界，不虚构优势 |
-| 3 | 作品报告正文整体重写 | [重写审核稿](reports/2026-10-20-revision-review/README.md)已经明确旧稿只能作为证据与版式基础，不能继续句级润色；下一步按新目录替换摘要、正文、图表和总结，突出已完成通用设计与优化 |
-| 4 | 来源许可、提交模板及发布复现 | [来源与许可清单](../NOTICE.md)及[源码归档／wheel复核](deliveries/2026-10-20-source-notices/README.md)已补齐；官方模板已归档，作品编号已由队长确认为`CACR2026T4PMR7`但尚未写入旧稿。最终发行依赖清单、匿名复核、源码／Suite／演示／收据／报告同版本复现仍待 |
+| 3 | 作品报告正文整体重写 | [新稿第一批](reports/2026-10-20-competition-rewrite/README.md)已建立独立LaTeX／PDF，完成正式编号、中英文摘要、七章结构及第1章问题与贡献重写；旧稿保持审计快照。下一步展开协议、五个原语、四项优化和实验图表，当前仍非提交候选版 |
+| 4 | 来源许可、提交模板及发布复现 | [来源与许可清单](../NOTICE.md)及[源码归档／wheel复核](deliveries/2026-10-20-source-notices/README.md)已补齐；官方模板已归档，作品编号`CACR2026T4PMR7`已写入新稿封面和基本信息表。最终发行依赖清单、匿名复核、源码／Suite／演示／证据／报告同版本复现仍待 |
 | 独立推进 | ABB10／CHKP／Wang的目标参数交付 | 由现负责人提交版本、参数、真实完整运行和资源数据；不阻塞已有三代表的作品收口 |
 
 以上是工程与交付欠项，不新增安全证明任务，也不要求全部候选先完成目标参数才能交作品。
@@ -85,7 +85,7 @@ PR69／72／73／76均已审查合并，PR71／74此前已经合并。PR73审定
 ## 4. 当前入口与证据定位
 
 - 找文件：[仓库与文档导航](README.md)；运行：[框架使用指南](FRAMEWORK_USAGE.md)、[Web演示](../src/ibme/webui/README.md)。
-- 报告：[LaTeX／PDF说明](reports/2026-10-19-research-draft/README.md)；参数：[三代表完整Suite](deliveries/2026-10-19-report-three-selection/README.md)。
+- 报告：[当前重写LaTeX／PDF说明](reports/2026-10-20-competition-rewrite/README.md)，[31页旧稿](reports/2026-10-19-research-draft/README.md)仅作审计快照；参数：[三代表完整Suite](deliveries/2026-10-19-report-three-selection/README.md)。
 - 规范：[架构](../ARCHITECTURE.md)、[接口](../IMPLEMENTATION_SPEC.md)、[算法专属契约](specs/)、[复用指南](FRAMEWORK_REUSE_GUIDE.md)。
 - 来源：[论文库](../papers/index.md)、[安全回归与历史反例](KNOWN_SECURITY_GAPS.md)；旧轮次状态：[历史快照](history/PROJECT_STATUS-through-2026-10-20.md)。
 

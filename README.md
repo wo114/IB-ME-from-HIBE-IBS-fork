@@ -11,7 +11,7 @@
 | 选择后端、预检、使用 CLI | [框架使用指南](docs/FRAMEWORK_USAGE.md) |
 | 启动本机演示界面 | [Web 演示说明](src/ibme/webui/README.md) |
 | 看报告选定的三组组合及完整配置 | [三代表与冻结 Suite](docs/deliveries/2026-10-19-report-three-selection/README.md) |
-| 阅读或修改当前报告 | [报告说明](docs/reports/2026-10-19-research-draft/README.md) · [LaTeX](docs/reports/2026-10-19-research-draft/研究报告初稿.tex) · [PDF](docs/reports/2026-10-19-research-draft/研究报告初稿.pdf) |
+| 阅读或修改当前报告 | [重写说明](docs/reports/2026-10-20-competition-rewrite/README.md) · [LaTeX](docs/reports/2026-10-20-competition-rewrite/作品设计报告.tex) · [PDF](docs/reports/2026-10-20-competition-rewrite/作品设计报告.pdf) |
 | 参与开发或接入原语 | [架构](ARCHITECTURE.md) · [接口与验收](IMPLEMENTATION_SPEC.md) · [协作流程](AI_WORKFLOW.md) · [仓库规则](AGENTS.md) |
 
 ## 当前能力与展示范围
