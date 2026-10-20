@@ -54,6 +54,7 @@ def verify(revision, archive=None, wheel=None):
                   crypto_executed=False, private_state_opened=False)
     if archive:
         with zipfile.ZipFile(archive) as zipped:
+            require(zipped.comment == revision.encode(), "source archive commit mismatch")
             names = set(zipped.namelist())
             forbidden = sorted(n for n in names if n in ROOT_REFERENCES
                                or (n.startswith("papers/") and n.lower().endswith(".pdf")))
