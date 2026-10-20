@@ -114,10 +114,28 @@ def main() -> int:
     contains("representative A in report", "LATTE-3＋BNN/ML-DSA-44")
     contains("representative B in report", "LATTE-3＋SRGG PARAM-I compact")
     contains("representative C in report", "Lai C2＋Sageloli RSIS v3 PARAM-I")
-    contains("security of completed profiles in report", "secure/true/true")
+    contains("security of completed profiles in report",
+             r"security\_claim=secure、backend\_admitted=true、parameters\_are\_formal=true")
     contains("external certification caveat", "不等同于完整 IB-ME 获得外部 NIST 认证")
     contains("different-environment comparison caveat", "不计算跨组加速比")
     contains("Lai paper reference", "Trapdoors for Ideal Lattices with Applications")
+    contains("competition cover title", r"\competitiontitle")
+    contains("basic information sheet", "基本信息表")
+    contains("software-design category", r"\boxtimes\)软件设计")
+    contains("table of contents", r"\tableofcontents")
+    contains("list of figures", r"\listoffigures")
+    contains("list of tables", r"\listoftables")
+    contains("competition-style running header", r"\fancypagestyle{mainmatter}")
+    contains("competition-style total page footer", r"\pageref*{LastPage}")
+    contains("last-page marker", r"\label{LastPage}")
+    checks.expect(
+        "figures numbered within chapters",
+        r"\counterwithout{figure}{chapter}" not in text,
+    )
+    checks.expect(
+        "tables numbered within chapters",
+        r"\counterwithout{table}{chapter}" not in text,
+    )
 
     if all(rep_id in reps for rep_id in expected_ids):
         a, b, c = (reps[rep_id] for rep_id in expected_ids)
@@ -182,8 +200,21 @@ def main() -> int:
     checks.expect("seven body chapters and two appendices", chapters == expected_chapters, repr(chapters))
     checks.expect("twelve longtables", text.count("\\begin{longtable}") == 12)
     checks.expect("six figures", text.count("\\begin{figure}") == 6)
+    checks.expect("twelve table labels", text.count(r"\label{tab:") == 12)
+    checks.expect("six figure labels", text.count(r"\label{fig:") == 6)
+    checks.expect(
+        "no hard-coded figure or table references",
+        re.search(r"(?:图|表)\d+", text) is None,
+    )
     checks.expect("balanced TeX groups", text.count("\\begingroup") == text.count("\\endgroup"))
-    for environment in ("document", "titlepage", "minipage", "longtable", "figure"):
+    for environment in (
+        "document",
+        "titlepage",
+        "minipage",
+        "tabularx",
+        "longtable",
+        "figure",
+    ):
         checks.expect(
             f"balanced {environment} environment",
             text.count(f"\\begin{{{environment}}}")
@@ -191,7 +222,11 @@ def main() -> int:
         )
 
     figure_paths = re.findall(r"\\includegraphics(?:\[[^]]*\])?\{([^}]+)\}", text)
-    checks.expect("six graphic references", len(figure_paths) == 6, repr(figure_paths))
+    checks.expect(
+        "cover logo and six body graphic references",
+        len(figure_paths) == 7 and figure_paths[0] == "figures/cacr-logo.jpg",
+        repr(figure_paths),
+    )
     for relative in figure_paths:
         checks.expect(f"figure exists: {relative}", (HERE / relative).is_file())
 
