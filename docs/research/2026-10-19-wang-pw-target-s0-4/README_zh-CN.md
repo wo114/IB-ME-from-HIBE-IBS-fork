@@ -451,3 +451,47 @@ n2048/k64读数约121.04，裸阵列3456 GiB。现q32/4 GiB对象/65535维等门
 一次原钥确定性审计仍待此前确认；诊断续签授权已用完，不自动重试。
 `native_total_tv_bound`、`native_abort_probability_bound`继续null，安全字段none/false/false/null，
 完整目标仍active，未推送或建PR。
+
+## 22 扰动采样路线：目标规模签验成功（2026-10-20 晚，GPT 复核后修正版）
+
+原路线（完整转换基 + GPV 逐坐标宽度）在目标规模失败，已定位为基的条件数问题而非构造 bug：
+原钥只读审计返回 `resource-rejected / coordinate-width-resource-rejected`（1666 s、峰值 60.5 GB，
+[收据](evidence/key-audit-20261020/)）；Sage 精确行列式非零；60 位高精度 Cholesky 实测真实 GS 范数
+最小 8.0e-6（dim=192）/ 3.7e-6（dim=384）；fplll LLL 在 dim=192 上 17 分钟未完成。改用 **MP12
+Algorithm 3 / §5.4 的扰动 SampleD（直接使用用户陷门 X）**，方案与修正记录见
+[solution-perturbation-route.md](solution-perturbation-route.md)。
+
+GPT 复核发现的两处实质偏差及修正：
+
+1. **扰动分布**：原实现 `p = round(L·g)`（整数高斯乘矩阵后 nearest rounding）支持集只覆盖
+   `L·Z^m` 的舍入像（如 `L=1000I` 时 p 只能落在 1000 倍数）。修正为 MP12 §5.4 / [Pei10, Thm 3.1]：
+   连续高斯 `N(0, Σ_p − σ_r²I)` + 逐坐标**以实数为中心的离散高斯随机舍入**（σ_r=1，复用 C++ 任意中心内核）。
+   新增测试：1-D/2-D 可枚举概率对照（TV < 0.05/0.08）、`L=diag(1000,1)` 支持集反例。
+2. **固定宽度**：原实现按私钥谱范数估计选宽、Cholesky 失败翻倍（实测 ≈2.31e6，偏离参数档）。
+   修正为固定 `s = params.sign_sigma = sign_width/√(2π) ≈ 3,346,570`，不依赖私钥、不翻倍；
+   采样前强制 MP12 条件 `Σ_G ≥ 2I`、`Σ_p ≥ 2TTᵀ`（`s ≥ ||T||₂·√(σ_g²+2)`）。
+   谱范数门限改用**认证上界** `λ_max ≤ uᵀMu + ||Mu − (uᵀMu)u||`，不再使用估计值。
+
+目标规模实测（原 n512 extract 密钥，独立进程、零熵、生产随机源，最终代码）：
+
+| 项 | 实测 |
+|---|---|
+| 签名耗时 / 峰值 RSS | **175.2 s、177.5 s / 41.3 GB** |
+| 固定扰动宽度 | **3,346,570.4 = sign_sigma**（两条一致，与密钥无关） |
+| 签名范数平方 | 5.47e17 / 5.52e17（验签界 3.46e18，占 15.9%） |
+| 签名 wire | 393,320 B |
+| 独立公开验签 | 两条 honest、错身份/错消息/篡改/截断/超界全拒、零熵（[收据](evidence/perturbation-20261020/final-public-verifier.json)） |
+| 固定发钥服务 | adopt 118.3 s、recover 51.5 s，同 canonical key/身份/公钥、零熵（[adopt](evidence/perturbation-20261020/final-service-adopt.json)、[recover](evidence/perturbation-20261020/final-service-recover.json)） |
+| LATTE + Wang 组合 | `passed`，13 项观测全真、11 个独立进程、255 s、单次新签名（[收据](evidence/perturbation-20261020/final-combination.json)） |
+| 通用 CLI | `passed`，16 个公共 CLI 进程、17 独立进程（[收据](evidence/perturbation-20261020/final-generic-cli.json)） |
+
+**采样误差预算（新增项，尚未并入原预算）**：旧 §21 的条件分量预算针对 GPV 路线，不适用于新路线。
+新路线可界定的项：连续高斯 double 精度（κ≈1.6，~1e-15/坐标）、舍入核截尾（±21 窗口，~2e-220）、
+舍入核方差与 1 的离散修正（O(e^-π) 量级）；**合并的总 TV/中止预算尚未认证**，
+`total_tv_bound`/`abort_probability_bound` 保持 null。旧版（2.31e6、nearest-rounding 扰动）的
+签名/服务/组合/CLI 回执仅作历史功能证据保留，不再作为新路线验收结论。
+
+六阶段目标生命周期：setup 631.8 s、extract 5469.9 s 已用原 GPV 委派完成并保存（本批未重跑）；
+其后 sign/verify/restore 及恢复签名在修正版上单独复验（见上表）。
+`security_claim=none`、`parameters_are_formal=false`、`backend_admitted=false` 不变；
+β≥q 的 SIS 包络限制在原档已存在，本路线未改变它，也未把它写成已闭合。
