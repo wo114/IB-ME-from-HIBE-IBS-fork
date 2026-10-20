@@ -1,0 +1,22 @@
+{
+  "classification": "one-root installation/functional acceptance; not a performance benchmark",
+  "code_placement": "isolated wheel runtime on WSL Linux filesystem",
+  "cpu_model": "Intel(R) Core(TM) Ultra 9 275HX",
+  "cwd_outside_repository": true,
+  "interpreter": "/home/youzi/miniconda3/envs/sage/bin/python3.13",
+  "native_binary_sha256": "d5d965ab4fcc06ccd179f35e8e718bf6faae8b77d8e438567522f5f0b86e6e93",
+  "native_executable": "/home/youzi/.cache/ibme-native-tools/latte3-bridge-v1/bin/ibme-latte3",
+  "native_metadata": {
+    "abi": "IBME-LATTE3-COEFF-1",
+    "n": 1024,
+    "q": 68718428161,
+    "source_id": "4a17a037c266ba982a027ff7fedffe0d391c9fe7fb2c5f8a0326b4ab67393414"
+  },
+  "native_source_checks": "unchanged; checked by installed Native on each construction",
+  "omp_num_threads": 4,
+  "openblas_num_threads": 1,
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "3.13.14 | packaged by conda-forge | (main, Jun 12 2026, 09:50:25) [GCC 14.3.0]",
+  "pythonpath_only_installed_runtime": true,
+  "sage": "10.9"
+}
