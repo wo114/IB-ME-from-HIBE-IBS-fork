@@ -18,7 +18,6 @@ parameters_are_formal = true
 | HIBE | `lai-ideal-hibe` | `target-research` |
 | IBS | `cert-ml-dsa` | `ml-dsa-44`、`ml-dsa-65`、`ml-dsa-87` |
 | IBS | `cert-falcon` | `falcon-padded-512`、`falcon-padded-1024` |
-| IBS | `luo-matrix` | `research` |
 | IBS | `luo-module` | `research`、`c64b` |
 | IBS | `srgg2025-paper` | `PARAM-I`、`PARAM-II`、`PARAM-III` |
 | IBS | `sageloli-rsis` | `PARAM-I`、`PARAM-II` |
@@ -26,6 +25,8 @@ parameters_are_formal = true
 其中主演示 `LATTE-3 + BNN/ML-DSA-44 + Hybrid + BYTEAUTH` 的Suite及BNN参数快照均输出 `secure/true/true`。LATTE-3采用原论文80-bit目标表中的作者参数，ML-DSA-44采用FIPS 204基础签名参数；各自实际目标和模型分别引用，不额外声称完整IB-ME获得NIST认证。
 
 以下对象不因实现代码存在而自动准入：mock、教学参数、`debug-small`、已知 q3/q17/n1/n2 公开攻击负控、只完成估计或资源投影而没有目标运行的参数，以及尚未交付公共后端的路线。它们继续使用 `none/false/false`。
+
+Luo矩阵版的`research`也属于已知反例：实际为n=4、m=8、η=1的M2 functional配置，仓库[原参数筛查](../../research/2026-10-09-m2/README.md)已记录其等效主秘密恢复和有效伪造。它保留可运行研究接口，标记为`none/false/false`；Luo模格版的`research`和`c64b`为另两份配置，不受此例外影响。
 
 旧提交中的实验收据、Suite摘要和哈希不改写。当前 `make_suite` 输出上述安全元数据；旧 `none/false/false` Suite仍可按原摘要加载和复核，不能把改变标记写成新增密码实验。未完成配置和已知反例不能伪造安全字段绕过按profile校验。
 

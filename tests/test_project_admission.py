@@ -9,7 +9,6 @@ ADMITTED_BACKENDS = {
         "lai-ideal-hibe": {"target-research"},
     },
     "ibs": {
-        "luo-matrix": {"research"},
         "luo-module": {"research", "c64b"},
         "srgg2025-paper": {"PARAM-I", "PARAM-II", "PARAM-III"},
         "sageloli-rsis": {"PARAM-I", "PARAM-II"},
@@ -45,7 +44,6 @@ def test_primary_and_completed_showcase_profiles_are_admitted():
         ("cert-falcon","falcon-padded-512","reference"),
         ("luo-module","research","compact"),
         ("luo-module","c64b","compact"),
-        ("luo-matrix","research","reference"),
         ("srgg2025-paper","PARAM-I","compact"),
         ("sageloli-rsis","PARAM-I","reference"),
     ):
@@ -96,6 +94,17 @@ def test_unadmitted_profile_cannot_forge_project_admission():
     report=validate_suite(promoted)
     assert not report.ok
     assert "admission metadata" in " ".join(report.errors)
+
+
+def test_luo_matrix_functional_preset_remains_a_known_unsafe_parameter_exception():
+    config=make_suite(hibe="latte",hibe_params="seed32",ibs="luo-matrix",
+                      ibs_params="research",transport="hybrid")
+    params=config.to_dict()["ibs_params"]
+    assert (params["n"],params["m"],params["eta"],params["q"])==(4,8,1,2**31-1)
+    assert _security(config)==("none",False,False)
+    promoted=SuiteConfig.from_dict({**config.to_dict(),"security_claim":"secure",
+                                    "backend_admitted":True,"parameters_are_formal":True})
+    assert "admission metadata" in " ".join(validate_suite(promoted).errors)
 
 
 def test_legacy_main_suite_snapshot_remains_loadable_without_rewriting_history():

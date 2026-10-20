@@ -24,7 +24,7 @@ python -m ibme.cli matrix
 | IBS `cert-ml-dsa` | 认证转换研究IBS | `--ibs-params ml-dsa-44`、`ml-dsa-65`或`ml-dsa-87`，reference格式；需对应ML-DSA引擎 |
 | IBS `cert-falcon` | 同一转换的Falcon v1.2适配 | `--ibs-params falcon-padded-512`或`falcon-padded-1024`，reference格式；需对应Falcon引擎，不等同FN-DSA |
 | IBS `sis` | 教学 SIS IBS | 保留已知公开伪造反例 |
-| IBS `luo-matrix` | Luo §3 矩阵研究实现 | `research` 默认视为安全；与模格是不同算法实例 |
+| IBS `luo-matrix` | Luo §3 矩阵研究实现 | `research`／`test-small`均为已知可恢复等效主秘密的小参数，保持研究运行和none/false/false；与模格分别记录 |
 | IBS `luo-module` | Luo §4 模格研究实现 | `research`／`c64b` 默认视为安全；reference／compact 是同算法的两种编码 |
 | IBS `srgg2025-paper` | SRGG Table 4 三档固定论文参数 | 必须显式选择 `--ibs-params PARAM-I`／`PARAM-II`／`PARAM-III`；支持 reference／compact，需 Sage；[参数、容量和恢复契约](specs/srgg-paper-assembly.md) |
 | IBS `sageloli-rsis` | Sageloli Ring-SIS v3 | `PARAM-I`／`PARAM-II` 默认视为安全；`debug-small` 不准入；需Sage与显式构建的原生引擎 |
