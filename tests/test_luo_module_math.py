@@ -48,6 +48,24 @@ def test_x_power_n_equals_minus_one_and_matrix_product():
         assert result[i] == tuple(sum(poly[j] for poly in products) % 769 for j in range(8))
 
 
+@pytest.mark.parametrize("n,q,root", [(4, 17, 2), (8, 769, 27), (256, 274877844481, 153250464611)])
+def test_prepared_butterflies_match_original_for_signed_boundaries(n, q, root):
+    ring = NegacyclicRing(n, q, root)
+    info = ring.preparation_info()
+    assert info["twiddle_integers"] == 2*(n-1)
+    assert info["permutation_integers"] == n
+    source = random.Random(20261020)
+    for coefficients in ((0,)*n, (q-1,)*n, tuple((-1)**i*(q+1) for i in range(n)),
+                         tuple(source.randrange(-2*q, 2*q) for _ in range(n))):
+        fast = ring.ntt(coefficients)
+        assert fast == ring.ntt(coefficients, prepared=False)
+        assert ring.inverse_ntt(fast) == ring.inverse_ntt(fast, prepared=False)
+        assert ring.multiply(coefficients, coefficients) == ring.multiply(coefficients, coefficients, prepared=False)
+    rows = (((1,)*n, (q-1,)*n),)
+    matrix = ring.prepare_matrix(rows)
+    assert ring.matvec(matrix, rows[0]) == ring.matvec(matrix, rows[0], prepared=False)
+
+
 @pytest.mark.parametrize("q", [17, 31, 41, 97])
 def test_complete_small_rounding_and_all_three_hint_lemmas(q):
     for alpha in range(2, q, 2):

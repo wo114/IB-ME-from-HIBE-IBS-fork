@@ -24,6 +24,23 @@ def tiny_params(**changes):
 def backend(seed): return LuoModuleIBSBackend(rng=DeterministicRandom(seed))
 
 
+def test_prepared_and_reference_ntt_give_identical_key_and_signature_bytes():
+    seed = b"TEST-ONLY-LUO-PREPARED-EQUIVALENCE"
+    fast = LuoModuleIBSBackend(rng=DeterministicRandom(seed))
+    reference = LuoModuleIBSBackend(rng=DeterministicRandom(seed), prepared_ntt=False)
+    pk, msk = fast.setup(tiny_params())
+    old_pk, old_msk = reference.setup(tiny_params())
+    assert pk.to_bytes() == old_pk.to_bytes()
+    sk = fast.key_extract(msk, b"Alice")
+    old_sk = reference.key_extract(old_msk, b"Alice")
+    assert sk.to_bytes() == old_sk.to_bytes()
+    for message in (b"first", b"second", b"third"):
+        sig, old_sig = fast.sign(sk, message), reference.sign(old_sk, message)
+        assert sig.to_bytes() == old_sig.to_bytes()
+        assert fast.verify(pk, b"Alice", message, old_sig)
+        assert reference.verify(pk, b"Alice", message, sig)
+
+
 @pytest.fixture(scope="module")
 def small():
     b = backend(b"module-small-contract")
