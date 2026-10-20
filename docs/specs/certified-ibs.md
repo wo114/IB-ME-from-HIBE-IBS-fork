@@ -28,7 +28,7 @@ PK/MSK/SK/SIG 各有独立 magic/version；字段采用固定递增1字节tag、
 
 每次原生操作独立进程、严格长度和EOF、公开资源/超时限制。生产熵由Python安全随机源输入；C桥只读取显式32 B tape，不调用原vendor的操作系统随机源。原vendor保持不变；链接包装限制 ExpandMask 的16位nonce使用范围，界外直接中止，不换种子重试。成功路径与上游一致，有限中止事件及整体查询损失仍需映射。
 
-ML-DSA基元参数为 FIPS204 标准参数，完整认证 IBS/IBME 的正式准入继续 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。原文 Theorem 1 为经典标准签名到 IBS 的条件性依据；不据此宣称完整量子安全、NIST等级、强不可伪造或 Wang 组合已准入。参数集、格式或库复用不新增密码算法或原创性。
+ML-DSA基元参数为 FIPS204 标准参数。按 2026-10-19 项目决定，`ml-dsa-44/65/87` 三个精确档的 BNN 认证 IBS 均登记为 `security_claim=project-admitted`、`backend_admitted=true`、`parameters_are_formal=true`。原文 Theorem 1 是普通签名到 IBS 的条件性依据；项目准入不等于完整 IB-ME 获得 NIST 认证，也不把参数集、格式或库复用重复计算为新算法或原创性。
 
 ## 5. Falcon v1.2 第二适配
 
@@ -42,4 +42,4 @@ ML-DSA基元参数为 FIPS204 标准参数，完整认证 IBS/IBME 的正式准�
 
 所有C源码不改；编译固定FPEMU整数模拟IEEE-754，关闭AVX/FMA/ChaCha-keygen及OS熵源。GNU链接包装限制每操作跨单元SHAKE输出16MiB、PRNG refill65536次；超时1..300 s为完整进程后备上限。相同编译单元内部调用可能不经过链接包装，不能把计数解释为所有内部调用次数；完整进程超时仍强制有界。有限中止直接失败，发钥保留pending，不换种子重试。尚未从实验推导整体TV/RD、数值/中止概率或侧信道保证。
 
-完整IBS签名还包括第二份Falcon签名、用户公钥和转换编码；应使用可选descriptor的完整尺寸。两种descriptor的配置检查拒绝跨家族参数。默认registry、真实HIBE组合、强不可伪造/量子游戏及安全准入须分别完成，不因底层KAT成功放行。
+完整IBS签名还包括第二份Falcon签名、用户公钥和转换编码；应使用可选descriptor的完整尺寸。两种descriptor的配置检查拒绝跨家族参数。`falcon-padded-512/1024` 已完成默认 registry、真实 HIBE 组合及恢复验收，并按当前项目决定登记为 `project-admitted/true/true`；这不是 FN-DSA/FIPS 206 认证，底层 KAT 也不单独替代组合验收。

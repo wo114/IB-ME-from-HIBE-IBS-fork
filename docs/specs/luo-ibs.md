@@ -1,6 +1,6 @@
 # Luo IBS 专属契约
 
-本文件补充 [统一实现规范](../../IMPLEMENTATION_SPEC.md)，只约束 Luo 后端。当前推进模块、外部工作树和未合入结果统一见 [项目状态](../PROJECT_STATUS.md)。这里记录本 checkout 的可执行契约；日期表示原冻结时间，不表示安全准入完成。
+本文件补充 [统一实现规范](../../IMPLEMENTATION_SPEC.md)，只约束 Luo 后端。当前推进模块、外部工作树和未合入结果统一见 [项目状态](../PROJECT_STATUS.md)。这里记录本 checkout 的可执行契约。按 2026-10-19 项目决定，公共 registry 的矩阵 `research`、模格 `research` 和模格 `c64b` 三个精确档均为 `project-admitted/true/true`；`test-small`、旧教学组合和任意自定义参数不继承该状态。
 
 ## 1. 模格算法与对象（MODULE-REF/1）
 
@@ -47,11 +47,11 @@
 
 专用研究入口显式 `make_research_runtime(ibs_params=c64b_params(), signature_format=...)`；Setup 传入其它 snapshot 时在消费熵前拒绝，公开对象读取器拒绝跨 profile 恢复。公共 assembly 可传完整 C64B 参数对象/JSON；它不自动成为默认 preset。reference/compact 签名分别29455/16383 B，完整组合容量另核，本轮最新 assembly 的最大3924 B应用输入实际往返见[合入记录](../deliveries/2026-10-12-pr-review/README.md)。参数或格式变化不算新 IBS 算法。
 
-可用性证书是理想随机源/XOF、矩阵好事件及明确调用/查询预算下的条件界，不是安全位数。C64B 继续 none/false/非正式参数；MLWE/MSIS、固定服务及整体模型条件单独核验，不从接口或样本成功继承 QROM/安全等级。
+可用性证书是理想随机源/XOF、矩阵好事件及明确调用/查询预算下的条件界，不是安全位数。C64B 已作为公共 `c64b` preset 与默认 `research` 档一同进入项目准入；MLWE/MSIS、固定服务及整体模型条件仍按原证据分别记录，不把项目准入写成 QROM 或外部安全等级认证。
 
 ## 3. 矩阵参考后端的兼容范围
 
-M2-A Luo 研究适配（2026-10-09）：`src/ibme/ibs/luo.py` 实现冻结的 IBS 方法与对象基类，显式使用独立 `LuoMatrixParams`；旧 Params 不自动映射。配置为 `IBME/LUO2024/MATRIX-CONFIG/1`，完整字段且安全声明固定 none/false，JSON 解析拒绝重复/未知字段和错误版本。对象继续兼容 M1 的 `MATRIX-REF/1` 研究格式，主状态保存固定身份密钥而不保存 RNG，验签只依赖公开输入。程序对象类型错误为 TypeError，身份/消息错误为 EncodingError，配置错误为 InvalidParameterError，反序列化错误为 SerializationError；熵源错误为 RandomnessError，预算耗尽为明确的 LuoSamplingAbort。当前 n≤16,m≤128,k≤32、uint32 q、有符号 int64 整数及 8 MiB 上限是研究资源限制；分析报告里的大参数不能交给这个版本执行。方法形状、旧后端和 CLI 选择不变，未准入安全后端。算法对应、测试、完整格式及 CHKP 载荷交接见 [M2-A](../research/2026-10-09-m2/README.md)。
+M2-A Luo 研究适配（2026-10-09）：`src/ibme/ibs/luo.py` 实现冻结的 IBS 方法与对象基类，显式使用独立 `LuoMatrixParams`；旧 Params 不自动映射。配置为 `IBME/LUO2024/MATRIX-CONFIG/1`，JSON 解析拒绝重复/未知字段和错误版本；原语旧 wire 内的 none/false 字段为历史兼容快照，当前公共准入由 registry 的精确 `research` preset 和 Suite 统一发布。对象继续兼容 M1 的 `MATRIX-REF/1` 研究格式，主状态保存固定身份密钥而不保存 RNG，验签只依赖公开输入。程序对象类型错误为 TypeError，身份/消息错误为 EncodingError，配置错误为 InvalidParameterError，反序列化错误为 SerializationError；熵源错误为 RandomnessError，预算耗尽为明确的 LuoSamplingAbort。当前 n≤16,m≤128,k≤32、uint32 q、有符号 int64 整数及 8 MiB 上限是实现资源限制；分析报告里的更大参数不能交给这个版本执行。算法对应、测试、完整格式及 CHKP 载荷交接见 [M2-A](../research/2026-10-09-m2/README.md)。
 
 矩阵版本保留复现和比较用途，不因本文件仍记录它就重新成为 Luo 当前优先实施任务。其 CONFIG/REF 格式与 MODULE-REF/COMPACT 格式互不替代。
 

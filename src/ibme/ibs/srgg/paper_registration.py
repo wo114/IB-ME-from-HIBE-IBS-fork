@@ -118,7 +118,7 @@ def validate_configuration(params, config):
 
 
 def backend_spec():
-    from ibme.assembly.registry import BackendSpec
+    from ibme.assembly.registry import BackendSpec, PROJECT_SECURITY_CLAIM
     return BackendSpec(
         BACKEND_ID,'ibs',VERSION,PaperSuiteParams,
         {name:PaperSuiteParams(name) for name in ('PARAM-I','PARAM-II','PARAM-III')},
@@ -128,4 +128,7 @@ def backend_spec():
         key_binding=True,persistent_identity_cache=True,
         object_parameter_binding='full-parameter-snapshot',master_public_key=master_public_key,
         validate_configuration=validate_configuration,validate_environment=environment,
-        reason='Table4 factor1 research; explicit Gaussian interpretation; no security admission')
+        reason='completed SRGG Table 4 factor1 profiles; project admitted',
+        security_claim=PROJECT_SECURITY_CLAIM,backend_admitted=True,
+        formal_parameter_presets=('PARAM-I','PARAM-II','PARAM-III'),
+        admission_basis='cited SRGG security result, frozen Table 4 profiles, and completed standalone/common-combination acceptance')

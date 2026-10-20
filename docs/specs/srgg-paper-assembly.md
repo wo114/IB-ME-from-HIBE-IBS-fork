@@ -36,4 +36,4 @@ compact 适配器在原 codec 的参数／上下文／维度／规范编码检�
 
 需要规定 WSL conda Sage 环境以及从仓库冻结源码构建的 LATTE 引擎；完整安装必须包含 `experiments.research.candidates.srgg` provider，不能仅复制 `src`。入口缺失时不回退教学参数或 mock。
 
-这仍是研究执行配置。沿用项目已确认的论文安全性／HIBE 匿名性工作前提，理论引用原文；`security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`、NIST category 空值不变。论文作者报告的目标位数不转换成本项目安全等级。完整组合实测和源码指纹见[本批记录](../research/2026-10-19-srgg-paper-latte/README.md)。
+沿用项目已确认的论文安全性／HIBE 匿名性工作前提，理论引用原文。`PARAM-I/II/III` 三个冻结论文档已完成公共接入和组合验收，按 2026-10-19 项目决定登记为 `security_claim=project-admitted`、`backend_admitted=true`、`parameters_are_formal=true`。NIST category 仍为空，论文作者报告的目标位数不转换成本项目的外部认证等级。完整组合实测和源码指纹见[本批记录](../research/2026-10-19-srgg-paper-latte/README.md)。

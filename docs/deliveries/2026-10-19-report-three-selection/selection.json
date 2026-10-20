@@ -2,6 +2,13 @@
   "schema": "IBME-REPORT-THREE-SELECTION/1",
   "date": "2026-10-19",
   "basis_commit": "6f04f2b73f69c96d4e8bea1d161655af39254d70",
+  "admission_update": {
+    "date": "2026-10-20",
+    "claim": "project-admitted",
+    "backend_admitted": true,
+    "parameters_are_formal": true,
+    "historical_execution_receipts_rewritten": false
+  },
   "decision": "freeze-report-representatives; readiness and performance claims remain evidence-scoped",
   "scope": {
     "selected_full_combinations": 3,
@@ -13,9 +20,9 @@
     "cross_environment_timing_ranking": false,
     "all_three_have_measured_performance_advantages": false,
     "all_three_have_web_presets": false,
-    "security_claim": "none",
-    "backend_admitted": false,
-    "parameters_are_formal": false
+    "security_claim": "project-admitted",
+    "backend_admitted": true,
+    "parameters_are_formal": true
   },
   "sources": {
     "docs/research/2026-10-18-full-system-baseline/evidence/latte-mldsa44.json": "dc8e5cef04534df6cd643a6c4aa908cb7b74e5e27c27e6730becadbe038ef8ab",
@@ -29,10 +36,10 @@
     "docs/research/2026-10-19-srgg-paper-latte/benchmark-param-i-reference.json": "09b5e5e2eaaa3e676c5f3563dc2b7fd9e20628fbdbb6e8db7b724e1c4621218f",
     "src/ibme/hibe/latte/params.py": "dd0a34bdacb6b70355d78f4a171b060181ac75d03008bcace4acbd451fd958d3",
     "experiments/research/candidates/srgg/paper_profiles.py": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f",
-    "docs/specs/latte-hibe.md": "55da3789f26199700f073fcb0c118ae17468c6df77fd18655af3e62d884af2de",
-    "docs/specs/lai-hibe.md": "921c78e22e6e6e0c06f5a397b19276c6e1204d8ca8bbe906155a897d201743e6",
-    "docs/specs/srgg-paper-assembly.md": "59266b4433dbf078bf416a169bfb22c29f79175e06b6ab2e5bd126c51a0becfc",
-    "docs/specs/sageloli-ring-ibs.md": "80015ce3245c8dc3c1d0d5a9f01eaa3fb60ea37937b4401564ea1db89a93e7aa"
+    "docs/specs/latte-hibe.md": "0c11c446034af9686536833cabf224c061e6f80fad707204cb9a3da86e52e104",
+    "docs/specs/lai-hibe.md": "bdebe87c9af67ea2615ac15c5b71edcdb1f05a493a8b1c489738c2faad54de69",
+    "docs/specs/srgg-paper-assembly.md": "6d8db55cdc1d1dbf4f7ecd2eca0174f398b1caeb4baecc94e4523e5997f2fc98",
+    "docs/specs/sageloli-ring-ibs.md": "12874a2c9b33696a6866da22d9aecd361a062e5ca43a05df1c58d02c9e225ac8"
   },
   "representatives": [
     {
@@ -41,7 +48,8 @@
       "role": "primary-live-demo",
       "selection_reason": "成熟完整系统与安装/恢复演示基线；标准普通签名库经BNN转换。",
       "suite_file": "suites/A-latte-mldsa44.json",
-      "suite_digest": "10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346",
+      "suite_digest": "19f946c846a1886e6898a85a68ab8cb64398cb248dc1790ed5c3a2faf72b194f",
+      "evidence_suite_digest": "10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346",
       "parameter_notes_not_an_alternative_config": {
         "hibe": {
           "N": 1024,
@@ -155,7 +163,8 @@
       "role": "native-module-ibs",
       "selection_reason": "固定HIBE，展示原生模块格IBS；compact只作无损传输格式。",
       "suite_file": "suites/B-latte-srgg-I-compact.json",
-      "suite_digest": "37a0d413d5daed2c407c03b4b4f1a1fe4b6454e786e9cea3dfe8676a60ce9c97",
+      "suite_digest": "a6c5ad746bb78f368bd6e43e5b34b6c4288d2dc030110a892289f85f6d6bffa9",
+      "evidence_suite_digest": "37a0d413d5daed2c407c03b4b4f1a1fe4b6454e786e9cea3dfe8676a60ce9c97",
       "parameter_notes_not_an_alternative_config": {
         "hibe": {
           "N": 1024,
@@ -282,7 +291,8 @@
       "role": "second-hibe-and-ring-ibs",
       "selection_reason": "目标规模结构验证；展示另一HIBE与原生环IBS，不宣称性能胜出。",
       "suite_file": "suites/C-lai-c2-sageloli-I.json",
-      "suite_digest": "9a3c66cfd5073721bf135466197522352010ecbc6a10a6794c710e9b10423c82",
+      "suite_digest": "ed583932bc7f72b156541ca6e78ef9575ab749171f23702761c15f7ad58f6bf6",
+      "evidence_suite_digest": "9a3c66cfd5073721bf135466197522352010ecbc6a10a6794c710e9b10423c82",
       "parameter_notes_not_an_alternative_config": {
         "hibe": {
           "identity_bytes": 86,
@@ -390,8 +400,10 @@
     }
   ],
   "auxiliary_evidence": {
-    "A_web_exact_selected_suite": true,
-    "A_installed_cli_exact_selected_suite": true,
+    "A_web_exact_selected_suite": false,
+    "A_installed_cli_exact_selected_suite": false,
+    "A_web_exact_cryptographic_configuration": true,
+    "A_installed_cli_exact_cryptographic_configuration": true,
     "B_installed_suite_digest": "ba8894280100ef750ece4f6a4dd7f596983e1804c91f5ecc631749db2ebf72da",
     "B_installed_exact_selected_suite": false,
     "B_installed_payload_budget_bytes": 65536,

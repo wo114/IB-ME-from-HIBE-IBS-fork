@@ -8,8 +8,8 @@
 - `R_q=F_q[x]/(x^256+1)`；`g=(1,2,…,2^31)`；两级身份、每层 256 bit 二进制身份（SHAKE 输出），每层最多 86 B 原始身份。
 - 消息容量 `k·n=8192 bit`，当前 `max_message_bytes=32`（Hybrid 的 32 B seed）；`seed32` 与 `framed32` 两种 preset 只影响 transport 配置，不改变环编码。
 - 需要 WSL 的 `~/miniconda3/envs/sage`；无 Sage 时 registry 仍可发现，但 `validate_environment` 报告 runtime 不可用，不退回 mock 或其它算法。
-- **研究参数**：A 点没有安全等级；C2 已完成候选筛查和真实运行，但两者都不是 NIST category 或正式准入参数。估计、采样限制和运行证据分别记录。
-- **目标候选（已显式登记，非默认）**：`c2-2048-2p38` = `n=2048, q=274877976577, k=39, l=2, p=2, σ=2, σ_r=1`，PLWE 系数实例在固定 estimator 的 GSA 攻击集下约 169.9/154.2 bit；真实两级生命周期已跑通多个种子，并完成生产 CSPRNG 探针和 CLI 生命周期。详见[目标参数筛选](../research/team-c-delivery/2026-10-18-lai-target-parameters/README.md)与[算法冻结记录](../research/team-c-delivery/2026-10-18-lai-target-parameters/C2-FREEZE.md)。它作为显式 `target-research` preset 登记，不是默认 preset，也不改变 `none/false/false`。
+- **参数区分**：A 点只作小型研究和回归，不进入项目准入；C2 是已完成真实运行与公共验收的目标档。两者都不写成 NIST category，估计、采样限制和运行证据分别记录。
+- **目标参数（已显式登记，非默认）**：`c2-2048-2p38` = `n=2048, q=274877976577, k=39, l=2, p=2, σ=2, σ_r=1`，PLWE 系数实例在固定 estimator 的 GSA 攻击集下约 169.9/154.2 bit；真实两级生命周期已跑通多个种子，并完成生产 CSPRNG 探针、CLI 生命周期和公共组合验收。详见[目标参数筛选](../research/team-c-delivery/2026-10-18-lai-target-parameters/README.md)与[算法冻结记录](../research/team-c-delivery/2026-10-18-lai-target-parameters/C2-FREEZE.md)。它作为显式 `target-research` preset 登记，并按当前项目决定输出 `project-admitted/true/true`；默认 A 点仍为 `none/false/false`。
 
 ## 五方法与算法对应
 
@@ -52,6 +52,6 @@
 - `ringDelTrap` 输出修正为 `m×k`（原文 Algorithm 9 印刷 `(m+k)×k` 与方程矛盾），旧 tag 归一化为 `(h'g-a1)/h`。
 - HIBE 的 `Derive=Extract` 原文只有一句；本实现采用“每层追加 `a_ID` 块、密钥线性增长”的显式补全，见 P1/P2 文档。
 - 采样为 Klein/GPV 陪集采样，**没有 perturbation**；功能通过不等于证明级 `ringSampleD` 分布。单位 tag 采样有 4096 次上限，`h_id+h'` 非单位时解密失败。
-- 本版本始终 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。PLWE/ring-SIS、HIBE 匿名性、两层模型映射、正式参数/估计和 Wang 组合前提均不因本契约升级。
+- 公共准入按精确 profile 判断：`target-research` 为 `security_claim=project-admitted`、`backend_admitted=true`、`parameters_are_formal=true`；`hybrid-research` 与 `direct-research` 两个 A 点保持 `none/false/false`。项目准入不改写原始估计范围，也不表示外部 NIST 认证。
 - A 点研究后端和显式 C2 目标配置均已实现；CI 覆盖 A 点两级生命周期、对象、登记、预检及候选参数表。C2 的真实生命周期、CLI 和错误身份/篡改结果属于独立探针记录，不冒充 CI 中的目标级重复运行。C2 不提升为默认；完整组合矩阵、残差统计和性能优化未完成。
-- 按项目 2026-10-18 工作前提，安全与身份匿名性以原文引用/工作假设推进，不另行安排补充证明，也不因未补证明阻塞组合、测试或交付。采样差异、参数估计范围和已知功能结果仍须随配置保留，不升级安全元数据。
+- 按项目 2026-10-18 工作前提，安全与身份匿名性以原文引用/工作假设推进，不另行安排补充证明，也不因未补证明阻塞组合、测试或交付。采样差异、参数估计范围和已知功能结果仍须随配置保留；2026-10-19 的项目准入决定仅适用于上述 C2 精确快照。

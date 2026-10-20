@@ -75,14 +75,18 @@ def _selected_environment(params):
 
 
 def backend_spec():
-    from ibme.assembly.registry import BackendSpec
+    from ibme.assembly.registry import BackendSpec, PROJECT_SECURITY_CLAIM
     return BackendSpec("cert-ml-dsa", "ibs", VERSION, CertifiedIBSParams,
         {f"ml-dsa-{n}": CertifiedIBSParams(base_algorithm=f"ml-dsa-{n}") for n in (44,65,87)},
         factory, {"ipk":CertifiedPublicKey,"imsk":CertifiedMasterSecret,"sk":CertifiedSigningKey},
         check_object, signature_size=signature_size, key_binding=True, persistent_identity_cache=True,
         object_parameter_binding="full-parameter-snapshot", master_public_key=master_public_key,
         default_preset=lambda config:"ml-dsa-44", validate_environment=environment,
-        validate_configuration=mldsa_configuration)
+        validate_configuration=mldsa_configuration,
+        reason="completed BNN certification conversion with FIPS 204 ML-DSA profiles; project admitted",
+        security_claim=PROJECT_SECURITY_CLAIM, backend_admitted=True,
+        formal_parameter_presets=("ml-dsa-44", "ml-dsa-65", "ml-dsa-87"),
+        admission_basis="BNN conversion theorem, FIPS 204 base profiles, fixed-vector validation, and completed IBS/combination acceptance")
 
 
 def falcon_environment():
@@ -90,11 +94,15 @@ def falcon_environment():
 
 
 def falcon_backend_spec():
-    from ibme.assembly.registry import BackendSpec
+    from ibme.assembly.registry import BackendSpec, PROJECT_SECURITY_CLAIM
     return BackendSpec("cert-falcon", "ibs", VERSION, CertifiedIBSParams,
         {f"falcon-padded-{n}": CertifiedIBSParams(base_algorithm=f"falcon-padded-{n}") for n in (512,1024)},
         factory, {"ipk":CertifiedPublicKey,"imsk":CertifiedMasterSecret,"sk":CertifiedSigningKey},
         check_object, signature_size=signature_size, key_binding=True, persistent_identity_cache=True,
         object_parameter_binding="full-parameter-snapshot", master_public_key=master_public_key,
         default_preset=lambda config:"falcon-padded-1024", validate_environment=falcon_environment,
-        validate_configuration=falcon_configuration)
+        validate_configuration=falcon_configuration,
+        reason="completed BNN certification conversion with pinned Falcon v1.2 profiles; project admitted",
+        security_claim=PROJECT_SECURITY_CLAIM, backend_admitted=True,
+        formal_parameter_presets=("falcon-padded-512", "falcon-padded-1024"),
+        admission_basis="BNN conversion theorem, pinned Falcon v1.2 profiles, author-vector validation, and completed IBS/combination acceptance")

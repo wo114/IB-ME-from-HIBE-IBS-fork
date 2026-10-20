@@ -43,11 +43,15 @@ def configuration(params,config):
 
 
 def backend_spec():
-    from ibme.assembly.registry import BackendSpec
+    from ibme.assembly.registry import BackendSpec,PROJECT_SECURITY_CLAIM
     return BackendSpec("latte3-research","hibe",ASSEMBLY_VERSION,LATTEParams,
         {"seed32":LATTEParams(),"framed32":LATTEParams(message_mode="framed32")},factory,
         {"hpk":LATTEPublicKey,"hmsk":LATTEMasterSecret,"sk1":LATTELevel1SecretKey,"sk2":LATTELevel2SecretKey},
         check_object,two_level=True,key_binding=True,persistent_identity_cache=True,
+        reason="completed LATTE-3/COSAC-FIX backend; project admitted from cited paper security and HIBE-anonymity premise",
         ciphertext_size=ciphertext_size,object_parameter_binding="full-parameter-snapshot",
         default_preset=lambda transport:"seed32" if transport=="hybrid" else "framed32",
-        validate_environment=environment,validate_configuration=configuration)
+        validate_environment=environment,validate_configuration=configuration,
+        security_claim=PROJECT_SECURITY_CLAIM,backend_admitted=True,
+        formal_parameter_presets=("seed32","framed32"),
+        admission_basis="LATTE-3 author profile, cited security result, project HIBE-anonymity premise, and completed lifecycle/combination acceptance")

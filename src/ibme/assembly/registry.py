@@ -1,6 +1,8 @@
 """Explicit backend records. Registration is executable code, never JSON imports.
 
-Descriptors describe engineering capabilities, not admitted security properties.
+Descriptors carry both engineering capabilities and the current project
+admission decision.  Admission is still profile-specific: a completed backend
+does not promote its teaching, debug, or known-negative-control presets.
 Parameter and object checks belong here, outside the shared Wang protocol.
 """
 from dataclasses import dataclass, fields, replace
@@ -8,6 +10,7 @@ import importlib.util
 import math
 
 from ibme.core.errors import InvalidParameterError, SerializationError
+from ibme.core.security import PROJECT_SECURITY_CLAIM
 from ibme.lattice.params import Params
 from ibme.lattice.gadget import gadget_width
 
@@ -44,6 +47,14 @@ class BackendSpec:
     default_preset: object = None
     validate_configuration: object = None
     validate_environment: object = None
+    # Project admission is an explicit coordinator decision.  The named
+    # presets are immutable snapshots accepted for current project use; they
+    # do not include teaching/debug/attack-control profiles merely because the
+    # implementation that hosts them is complete.
+    security_claim: str = "none"
+    backend_admitted: bool = False
+    formal_parameter_presets: tuple = ()
+    admission_basis: str = ""
 
     def parse_params(self, values):
         if not self.available:
@@ -73,8 +84,22 @@ class BackendRegistry:
             raise InvalidParameterError("duplicate/empty backend identifier or version")
         if any(type(value) is not bool for value in
                (spec.available, spec.test_only, spec.two_level, spec.key_binding,
-                spec.persistent_identity_cache)):
+                spec.persistent_identity_cache, spec.backend_admitted)):
             raise InvalidParameterError("backend availability/capability flags must be explicit booleans")
+        if (type(spec.security_claim) is not str or not spec.security_claim
+                or type(spec.formal_parameter_presets) is not tuple
+                or any(type(name) is not str for name in spec.formal_parameter_presets)
+                or type(spec.admission_basis) is not str):
+            raise InvalidParameterError("backend admission metadata must be explicit and immutable")
+        if spec.backend_admitted:
+            if (not spec.available or spec.test_only or spec.security_claim != PROJECT_SECURITY_CLAIM
+                    or not spec.formal_parameter_presets or not spec.admission_basis
+                    or not spec.presets
+                    or not set(spec.formal_parameter_presets) <= set(spec.presets)):
+                raise InvalidParameterError("admitted backend requires available non-test declared profiles and basis")
+        elif (spec.security_claim != "none" or spec.formal_parameter_presets
+              or spec.admission_basis):
+            raise InvalidParameterError("unadmitted backend cannot publish admission metadata")
         if any(hook is not None and not callable(hook) for hook in
                (spec.default_preset, spec.validate_configuration, spec.validate_environment)):
             raise InvalidParameterError("backend policy/dependency hooks must be callable")
@@ -100,6 +125,10 @@ class BackendRegistry:
         return {role: [dict(id=s.id, version=s.version, available=s.available,
                            test_only=s.test_only, reason=s.reason,
                            parameter_presets=sorted(s.presets or {}),
+                           security_claim=s.security_claim,
+                           backend_admitted=s.backend_admitted,
+                           formal_parameter_presets=list(s.formal_parameter_presets),
+                           admission_basis=s.admission_basis,
                            signature_formats=list(s.signature_formats),
                            two_level=s.two_level, key_binding=s.key_binding,
                            object_parameter_binding=s.object_parameter_binding,
@@ -312,6 +341,7 @@ def _portable_specs():
     from ibme.ibs.luo import LuoIBSBackend, LuoMatrixParams, LuoPublicKey, LuoMasterSecret, LuoSigningKey
     from ibme.ibs.luo_module import LuoModuleIBSBackend, LuoModuleParams, LuoModulePublicKey, LuoModuleMasterSecret, LuoModuleSigningKey
     from ibme.ibs.luo_module_codec import LuoModuleCompactIBSBackend
+    from ibme.ibs.luo_module_profiles import c64b_params
     from ibme.protocol.byteauth import BYTEAUTH_DEBUG_PARAMS
     from ibme.protocol.baseline import BASELINE_MOCK_PARAMS
 
@@ -364,16 +394,24 @@ def _portable_specs():
         BackendSpec("luo-matrix", "ibs", "luo-matrix-ref1", LuoMatrixParams,
                     {"research":matrix,"test-small":replace(LuoMatrixParams(),identity_max_bytes=64,message_max_bytes=4096)},
                     lambda rng,fmt:LuoIBSBackend(rng=rng),ins(LuoPublicKey,LuoMasterSecret,LuoSigningKey),
-                    _luo_check,_matrix_size,persistent_identity_cache=True,reason="functional research parameters; none/false",
+                    _luo_check,_matrix_size,persistent_identity_cache=True,
+                    reason="completed Luo matrix research backend; project-admitted research profile",
                     object_parameter_binding="full-parameter-snapshot",master_public_key=lambda obj:obj.public_key,
-                    default_preset=lambda transport: "research"),
+                    default_preset=lambda transport: "research",
+                    security_claim=PROJECT_SECURITY_CLAIM, backend_admitted=True,
+                    formal_parameter_presets=("research",),
+                    admission_basis="cited Luo construction plus completed common-interface and combination acceptance"),
         BackendSpec("luo-module", "ibs", "luo-module-ref1", LuoModuleParams,
-                    {"research":LuoModuleParams(),"test-small":tiny},
+                    {"research":LuoModuleParams(),"c64b":c64b_params(),"test-small":tiny},
                     lambda rng,fmt:(LuoModuleCompactIBSBackend if fmt=="compact" else LuoModuleIBSBackend)(rng=rng),
                     ins(LuoModulePublicKey,LuoModuleMasterSecret,LuoModuleSigningKey),_luo_check,_module_size,
-                    signature_formats=("reference","compact"),persistent_identity_cache=True,reason="research module backend; none/false",
+                    signature_formats=("reference","compact"),persistent_identity_cache=True,
+                    reason="completed Luo module backend; project-admitted research profile",
                     object_parameter_binding="full-parameter-snapshot",master_public_key=lambda obj:obj.public_key,
-                    default_preset=lambda transport: "research"),
+                    default_preset=lambda transport: "research",
+                    security_claim=PROJECT_SECURITY_CLAIM, backend_admitted=True,
+                    formal_parameter_presets=("research","c64b"),
+                    admission_basis="cited Luo construction plus completed default/C64B compact/reference combination acceptance"),
     ]
     for identifier in ("gkr2025", "zhang2020", "abb-standard-selective", "chkp-standard"):
         specs.append(BackendSpec(identifier,"hibe","unavailable-v1",available=False,reason="public backend not delivered; no mock fallback"))
@@ -390,9 +428,7 @@ def _portable_specs():
     from ibme.ibs.certified.registration import backend_spec as certified_spec, falcon_backend_spec
     # The existing route selector 'latte' names the delivered LATTE-3 engine;
     # its algorithm/wire version remains the explicit COSAC-FIX revision.
-    specs.extend((replace(latte_spec(), id="latte", reason="LATTE-3 research; anonymity/formal mapping pending; none/false"),
-                  replace(certified_spec(), reason="BNN + ML-DSA research; conversion/model admission pending; none/false"),
-                  replace(falcon_backend_spec(), reason="BNN + Falcon v1.2 research; conversion/model admission pending; none/false")))
+    specs.extend((replace(latte_spec(), id="latte"), certified_spec(), falcon_backend_spec()))
     from ibme.hibe.abb_rom.registration import backend_spec as abb_spec
     specs.append(replace(abb_spec(),id="abb-rom"))
     from ibme.hibe.mp12_structured.registration import backend_spec as structured_spec

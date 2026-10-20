@@ -48,7 +48,7 @@ def instance():
 
 @pytest.mark.parametrize("changes", [dict(base_algorithm="dilithium2"), dict(identity_bytes=True),
     dict(message_max_bytes=1.0), dict(max_identities=0), dict(timeout_seconds=301),
-    dict(backend_admitted=0), dict(parameters_are_formal=True), dict(security_claim="NIST-2")])
+    dict(backend_admitted=0), dict(parameters_are_formal=False), dict(security_claim="NIST-2")])
 def test_parameter_rejections(changes):
     with pytest.raises(InvalidParameterError):
         CertifiedIBSParams(**changes)
@@ -61,12 +61,19 @@ def test_complete_parameters_and_public_codec_are_portable():
     assert CertifiedPublicKey.from_bytes(pk.to_bytes()) == pk
     assert replace(pk, params=replace(p, timeout_seconds=31)).context != pk.context
     values = json.loads(p.to_bytes())
-    malformed = [p.to_bytes() + b" ", p.to_bytes().replace(b'"none"', b'"none","security_claim":"none"'),
+    malformed = [p.to_bytes() + b" ", p.to_bytes().replace(
+                 b'"project-admitted"',b'"project-admitted","security_claim":"project-admitted"'),
                  json.dumps({k:v for k,v in values.items() if k != "identity_bytes"}).encode(),
                  json.dumps(dict(values, extra=1)).encode(), b'[]', b'"text"']
     for data in malformed:
         with pytest.raises(SerializationError):
             CertifiedIBSParams.from_bytes(data)
+
+
+def test_exact_legacy_admission_snapshot_remains_decodable():
+    legacy=CertifiedIBSParams(security_claim="none",backend_admitted=False,
+                              parameters_are_formal=False)
+    assert CertifiedIBSParams.from_bytes(legacy.to_bytes())==legacy
 
 
 def test_buffer_limits_use_all_dimensions_before_copying():

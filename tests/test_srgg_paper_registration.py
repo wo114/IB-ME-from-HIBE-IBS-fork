@@ -98,8 +98,9 @@ def test_fixed_paper_params_roundtrip_and_capacity_without_setup(monkeypatch, pr
     assert result.capacity['identity_bytes'] == 64
     assert result.capacity['max_application_bytes'] >= 1024
     assert result.capacity['signature_max_bytes'] == spec.signature_size(params,fmt)
-    assert result.metadata['security_claim'] == 'none'
-    assert not result.metadata['backend_admitted'] and not result.metadata['parameters_are_formal']
+    assert result.metadata['security_claim'] == 'project-admitted'
+    assert result.metadata['backend_admitted'] is True
+    assert result.metadata['parameters_are_formal'] is True
 
 
 @pytest.mark.parametrize('bad', [None, {}, {'profile_name':'PARAM-I'},

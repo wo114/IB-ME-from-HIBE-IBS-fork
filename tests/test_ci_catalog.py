@@ -18,7 +18,12 @@ def test_all_nineteen_routes_match_catalog_and_ci():
     assert result["counts"] == {"hibe": 8, "ibs": 11}
     assert len(ROUTES) == len({r.id for r in ROUTES}) == 19
     assert {r.id for r in ROUTES} == {s["id"] for s in config["algorithms"]}
-    assert all(r["execution"] == "not_executed" and r["security_claim"] == "none"
+    assert all(r["execution"] == "not_executed" for r in result["routes"])
+    admitted={r["id"] for r in result["routes"] if r["backend_admitted"]}
+    assert admitted == {"latte","lai-ideal-hibe","luo-matrix","luo-module",
+                        "srgg2025","sageloli-rsis","cert-ml-dsa","cert-falcon"}
+    assert result["admitted_counts"] == {"hibe":2,"ibs":6}
+    assert all(r["security_claim"] == ("project-admitted" if r["backend_admitted"] else "none")
                for r in result["routes"])
     assert not any(r["id"] in ("mock", "sis") for r in result["routes"])
     catalog = (run.ROOT / "docs/ALGORITHM_CATALOG.md").read_text(encoding="utf-8")

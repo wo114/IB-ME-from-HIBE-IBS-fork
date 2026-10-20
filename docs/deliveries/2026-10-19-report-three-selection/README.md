@@ -2,6 +2,8 @@
 
 选择基线：`6f04f2b73f69c96d4e8bea1d161655af39254d70`，2026-10-19。
 
+> 2026-10-20 当前视图更新：三组精确 profile 已按项目决定改为 `project-admitted/true/true`。下列算法、参数、包装与预算均未改变；原始执行收据仍保留当时的 `none/false/false` 和旧 Suite 摘要，未被回写。机器记录同时保存当前摘要与 evidence 摘要，复核器只允许这三个准入字段发生迁移。
+
 报告正文固定采用 **A：LATTE＋BNN/ML-DSA-44、B：LATTE＋SRGG PARAM-I compact、C：Lai C2＋Sageloli RSIS v3 PARAM-I**。三组都已有真实完整 IB-ME 运行，统一保留 Hybrid 和 BYTEAUTH。A 用于现场主演示，B 解释原生 IBS 接入，C 解释另一条 HIBE 与环 IBS 的目标规模实现。
 
 这是报告代表的选择，不是三个性能冠军。**目前不能认定三组分别具有已测的性能优势**，尤其 C 的主要价值是结构覆盖与目标规模验证；还没有速度、通信量或多用户优势证据。若作品必须声称“三组各有性能优势”，现有数据不足，不能通过改名补齐。所选三组是 **2 种 HIBE、3 种 IBS、5 个独立原语后端、3 个完整组合**，不写成三种 HIBE；没有新增算法计数。
@@ -36,11 +38,11 @@ SRGG 的采样标准差冻结为主密钥 `2843.9/1023.0`、签名 `843088.2/310
 
 B 固定采用 PARAM-I：原文标称目标为 100 bit，并报告量子密钥恢复／伪造成本为 95／93 bit；这些数值按原文引用，不是本项目重估。
 
-| 代表 | Suite SHA-256（规范 ASCII JSON） |
-|---|---|
-| A | `10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346` |
-| B | `37a0d413d5daed2c407c03b4b4f1a1fe4b6454e786e9cea3dfe8676a60ce9c97` |
-| C | `9a3c66cfd5073721bf135466197522352010ecbc6a10a6794c710e9b10423c82` |
+| 代表 | 当前项目准入 Suite SHA-256 | 原执行 evidence Suite SHA-256 |
+|---|---|---|
+| A | `19f946c846a1886e6898a85a68ab8cb64398cb248dc1790ed5c3a2faf72b194f` | `10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346` |
+| B | `a6c5ad746bb78f368bd6e43e5b34b6c4288d2dc030110a892289f85f6d6bffa9` | `37a0d413d5daed2c407c03b4b4f1a1fe4b6454e786e9cea3dfe8676a60ce9c97` |
+| C | `ed583932bc7f72b156541ca6e78ef9575ab749171f23702761c15f7ad58f6bf6` | `9a3c66cfd5073721bf135466197522352010ecbc6a10a6794c710e9b10423c82` |
 
 [selection.json](selection.json)保存三组配置摘要、完整输入／样本口径、由原始 JSON 提取的观测、容量、来源文件哈希和辅助对照。Suite JSON 可由 `ibme.assembly.SuiteConfig.from_dict` 加载；现有 CLI 使用各项选择参数，不能把这些文件当作不存在的 `--suite` 参数传入。
 
@@ -96,7 +98,7 @@ SRGG 已有安装 CLI 使用 64 KiB，其摘要是 `ba8894280100ef750ece4f6a4dd7
 | Lai C2 HIBE | 论文 PLWE 路线 | [契约](../../specs/lai-hibe.md)；二进制身份、Derive 类型解释、Klein/GPV 无 perturbation、非单位 tag 失败及尝试帽均保留 |
 | Sageloli RSIS v3 IBS | 论文环 SIS 路线及 ROM/QROM 引用条件 | [v3 契约](../../specs/sageloli-ring-ibs.md)；固定身份服务、有限精度／FFT 采样边界仍按原交付记录 |
 
-这些是逐部件的假设与版本说明，不合并成“三个独立困难假设”或“三种安全等级”。按照用户确认的工作前提，安全性及 HIBE 身份匿名性引用论文并区分工作假设，不新增补充证明任务；实际实现差异和已知失败继续披露。所有配置保持 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`，不新增 NIST、QROM 或标准模型整体安全声明。未选择已知公开可伪造的调试参数。
+这些是逐部件的假设与版本说明，不合并成“三个独立困难假设”或“三种安全等级”。按照用户确认的工作前提，安全性及 HIBE 身份匿名性引用论文并区分工作假设，不新增补充证明任务；实际实现差异和已知失败继续披露。三组精确 profile 当前均为 `security_claim=project-admitted`、`backend_admitted=true`、`parameters_are_formal=true`；这是项目内部准入，不新增 NIST、QROM 或标准模型整体认证声明。已知公开可伪造的调试参数不在准入清单中。
 
 ## 只读复核
 

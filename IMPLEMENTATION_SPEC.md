@@ -25,7 +25,7 @@ encode_message(id, message) = DOMAIN_MSG || encode_bytes(id) || encode_bytes(mes
 
 每个后端使用自己的显式参数类型。旧 `Params` 的字段、uint32 格式和教学约束只见 [教学兼容规范](docs/specs/teaching-lattice.md)；`LuoMatrixParams`、`LuoModuleParams` 和 `CHKPParams` 不自动转换为旧类型。HIBE/IBS 不要求相同 n、q、环或困难假设。代码中矩阵列数称 `m_matrix`，消息称 `message`。
 
-参数记录必须包含论文/算法版本、来源位置、完整数值、身份和消息限额、随机与中止策略、资源上限、已验证条件和安全声明。未完成安全准入时使用 `security_claim=none`、`backend_admitted=false`，另行记录参数是否正式；这些标记允许合法研究运行，不能伪装为已安全准入的默认配置。
+参数记录必须包含论文/算法版本、来源位置、完整数值、身份和消息限额、随机与中止策略、资源上限、已验证条件和安全声明。公共 registry 对每个后端列出精确准入 preset；当前完成并获项目准入的目标／论文参数使用 `security_claim=project-admitted`、`backend_admitted=true`、`parameters_are_formal=true`。其它参数使用 none/false/false；mock、教学档、已知攻击负控和仅数值投影不得继承同一后端的准入。
 
 身份限额为最大长度。组合需同时满足 HIBE 与 IBS 的入口限制；采用 Hybrid 时还须满足编码后的两层身份宽度。IBS 单独调用按自身契约验证身份，不依赖某次 HIBE 调用为它完成校验。
 
@@ -126,7 +126,7 @@ Decrypt:
 
 2026-10-18 用户确认当前研发默认所选论文算法具备所需安全性，HIBE 具备身份匿名性；理论材料以引用原文为主。安全性、匿名性的补充证明、逐个 hybrid 和完整归约闭合不列为实现、组合或评测的前置任务。原文明确声明的性质注明出处，原文未明确声明但项目采用的性质注明工作假设，不将其记录为新完成的证明。
 
-上述工作前提不改变安全元数据字段的既有含义；实际算法版本、参数、实现改动、已知问题和失败结果继续单列。ROM、QROM、标准模型、正确性概率、攻击估计和实际测试分别记录，不相互替代；BYTEAUTH/Hybrid 不自动给出 CCA 或 QROM 结论。
+2026-10-19 用户决定：上述工作前提与已经完成的工程验收共同构成项目准入依据，不再等待额外完整归约闭合。准入是精确 profile 的项目决策，历史收据仍保留原值；实际算法版本、参数、实现改动、已知问题和失败结果继续单列。ROM、QROM、标准模型、正确性概率、攻击估计和实际测试分别记录；BYTEAUTH/Hybrid 不自动扩大底层论文所引用的安全模型。
 
 ## 6. 分层验收
 

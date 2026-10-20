@@ -6,7 +6,7 @@
 
 - 一个公共 IB-ME 框架，HIBE／IBS 独立实现和选参；就绪且适配的组合进入真实验收，单个原语受阻不暂停其它工作。
 - 报告三代表已经选定，详见[选型与参数冻结](deliveries/2026-10-19-report-three-selection/README.md)。三组不要求共同达到128位；各自保留论文目标、实际参数、模型和限制，不做跨目标性能排名。
-- 按用户确认，以所选算法安全、HIBE 身份匿名为研发工作前提，理论说明引用原文；不新增基础安全性、匿名性或完整归约证明任务。实现偏差、参数估计和已知问题仍须记录。
+- 按用户确认，以所选算法安全、HIBE 身份匿名为研发工作前提，理论说明引用原文；不新增基础安全性、匿名性或完整归约证明任务。已完成真实实现、参数冻结、公共接入和所需组合验收的精确 profile 由项目准入；实现偏差、参数估计和已知问题仍须记录。
 - GKR、ABB标准模型、CHKP标准模型三条储备继续暂缓；Ext／ReExt 与 Boyen–Li 增强隐私不在范围。
 - 当前报告直接编辑 LaTeX，以 PDF 交付；旧 Markdown、Word、作品报告和 PPT 保留为历史材料，后续不要求三种稿件同步修改。
 
@@ -22,7 +22,7 @@
 | B：原生IBS对照 | [LATTE＋SRGG论文PARAM-I compact，128 KiB](deliveries/2026-10-19-report-three-selection/suites/B-latte-srgg-I-compact.json) | 完整功能矩阵及三根重复基准 | 旧64 KiB安装记录不能继承为本次128 KiB配置；精确配置CLI／wheel仍待 |
 | C：另一HIBE与环IBS | [Lai C2＋Sageloli RSIS v3 PARAM-I，8 MiB](deliveries/2026-10-19-report-three-selection/suites/C-lai-c2-sageloli-I.json) | 目标规模单根完整运行、四种身份情形及公开收据 | 安装恢复、有效外层下的内层负例和受预算约束的重复测量仍待；没有性能优势结论 |
 
-三代表是2种HIBE、3种IBS、5个原语后端、3个完整组合。Web现有的LATTE＋ML-DSA／Falcon／Luo三预设是另一集合。当前相关组合保持 `none/false/false`；不因登记、有限测试或论文安全引用自动升级字段。
+三代表是2种HIBE、3种IBS、5个原语后端、3个完整组合。Web现有的LATTE＋ML-DSA／Falcon／Luo三预设是另一集合。三代表的精确参数 profile 当前均为 `project-admitted/true/true`；这是[项目内部准入](deliveries/2026-10-19-project-admission/README.md)，不等同于完整组合获得外部 NIST 认证。mock、教学参数、公开攻击负控、仅投影和未交付后端仍为 `none/false/false`。
 
 ### 其它后端与研究材料
 

@@ -1,5 +1,7 @@
 # 三组完整系统主展示参数卡
 
+> 当前状态更新（2026-10-19）：本交付中的原始卡片JSON保留生成时的 `none/false/false` 与证据哈希；用户随后已对三组完成展示 profile 授予项目准入，当前 Suite 输出 `project-admitted/true/true`。准入清单见[最新项目准入交付](../2026-10-19-project-admission/README.md)。
+
 本交付把已经实际跑通的三组 LATTE-3 完整系统整理为可直接用于界面、作品报告和答辩的参数卡。当前建议把 **LATTE-3 + BNN/ML-DSA-44 + Hybrid + BYTEAUTH** 作为主演示底座；Falcon-padded-512 用于紧凑性工程对照，Luo 模格默认 compact 用于展示原生格 IBS 路线。
 
 这只是当前展示决策，不是最终三组代表的锁定。三组共用同一个 LATTE HIBE，不能写成三种 HIBE；各组具体安全目标尚未证明等价，因此不能把本页数据排序成“同安全等级最快”。机器可读卡片见 [cards.json](evidence/cards.json)，只读一致性核验见 [verify.py](evidence/verify.py)。
