@@ -57,6 +57,10 @@ class NegacyclicRing:
     _untwist: tuple = field(init=False, repr=False, compare=False)
     _forward_steps: tuple = field(init=False, repr=False, compare=False)
     _inverse_steps: tuple = field(init=False, repr=False, compare=False)
+    _permutation: tuple = field(init=False, repr=False, compare=False)
+    _forward_twiddles: tuple = field(init=False, repr=False, compare=False)
+    _inverse_twiddles: tuple = field(init=False, repr=False, compare=False)
+    _inverse_n: int = field(init=False, repr=False, compare=False)
 
     def __post_init__(self):
         n, q, root = (_integer(x) for x in (self.degree, self.q, self.root))
@@ -71,6 +75,37 @@ class NegacyclicRing:
         lengths = tuple(2**i for i in range(1, n.bit_length()))
         object.__setattr__(self, "_forward_steps", tuple(pow(omega, n // length, q) for length in lengths))
         object.__setattr__(self, "_inverse_steps", tuple(pow(inverse_omega, n // length, q) for length in lengths))
+        bits = n.bit_length()-1
+        object.__setattr__(self, "_permutation", tuple(int(f"{i:0{bits}b}"[::-1], 2) for i in range(n)))
+        for name, steps in (("_forward_twiddles", self._forward_steps), ("_inverse_twiddles", self._inverse_steps)):
+            stages = []
+            for length, step in zip(lengths, steps):
+                values = [1]
+                for _ in range(length//2-1):
+                    values.append(values[-1]*step % q)
+                stages.append(tuple(values))
+            object.__setattr__(self, name, tuple(stages))
+        object.__setattr__(self, "_inverse_n", pow(n, -1, q))
+
+    def preparation_info(self):
+        """Public storage counts, not an estimate of total Python heap usage."""
+        return dict(twiddle_integers=2*(self.degree-1), permutation_integers=self.degree,
+                    inverse_integers=1)
+
+    def _cyclic_prepared(self, coefficients, twiddles):
+        values = _poly(coefficients, self.degree)
+        a = [values[i] for i in self._permutation]
+        n, q = self.degree, self.q
+        length = 2
+        for factors in twiddles:
+            half = length//2
+            for start in range(0, n, length):
+                for offset, factor in enumerate(factors):
+                    j = start+offset
+                    u, v = a[j], a[j+half]*factor % q
+                    a[j], a[j+half] = (u+v) % q, (u-v) % q
+            length *= 2
+        return tuple(a)
 
     def _cyclic(self, coefficients, steps):
         a = list(_poly(coefficients, self.degree))
@@ -96,35 +131,40 @@ class NegacyclicRing:
             length *= 2
         return tuple(a)
 
-    def ntt(self, coefficients):
+    def ntt(self, coefficients, *, prepared=True):
         a = _poly(coefficients, self.degree)
-        return self._cyclic(tuple(x * twist % self.q for x, twist in zip(a, self._twist)), self._forward_steps)
+        twisted = tuple(x * twist % self.q for x, twist in zip(a, self._twist))
+        if prepared:
+            return self._cyclic_prepared(twisted, self._forward_twiddles)
+        return self._cyclic(twisted, self._forward_steps)
 
-    def inverse_ntt(self, transformed):
-        a = self._cyclic(transformed, self._inverse_steps)
-        inverse_n = pow(self.degree, -1, self.q)
+    def inverse_ntt(self, transformed, *, prepared=True):
+        a = (self._cyclic_prepared(transformed, self._inverse_twiddles) if prepared
+             else self._cyclic(transformed, self._inverse_steps))
+        inverse_n = self._inverse_n if prepared else pow(self.degree, -1, self.q)
         return tuple(x * inverse_n * untwist % self.q for x, untwist in zip(a, self._untwist))
 
-    def multiply(self, a, b):
-        ah, bh = self.ntt(a), self.ntt(b)
-        return self.inverse_ntt(tuple(x * y % self.q for x, y in zip(ah, bh)))
+    def multiply(self, a, b, *, prepared=True):
+        ah, bh = self.ntt(a, prepared=prepared), self.ntt(b, prepared=prepared)
+        return self.inverse_ntt(tuple(x * y % self.q for x, y in zip(ah, bh)), prepared=prepared)
 
     def prepare_matrix(self, rows):
         if not rows or not rows[0] or any(len(row) != len(rows[0]) for row in rows):
             raise ValueError("matrix dimensions mismatch")
         return tuple(tuple(self.ntt(poly) for poly in row) for row in rows)
 
-    def matvec(self, prepared, vector):
-        if not prepared or len(vector) != len(prepared[0]):
+    def matvec(self, prepared, vector, *, prepared_twiddles=True):
+        matrix = prepared  # Preserve the original public matrix keyword.
+        if not matrix or len(vector) != len(matrix[0]):
             raise ValueError("matrix/vector dimensions mismatch")
-        hats = tuple(self.ntt(poly) for poly in vector)
+        hats = tuple(self.ntt(poly, prepared=prepared_twiddles) for poly in vector)
         output = []
-        for row in prepared:
+        for row in matrix:
             if len(row) != len(hats):
                 raise ValueError("matrix row dimension mismatch")
             product = tuple(sum(row[j][i] * hats[j][i] for j in range(len(hats))) % self.q
                             for i in range(self.degree))
-            output.append(self.inverse_ntt(product))
+            output.append(self.inverse_ntt(product, prepared=prepared_twiddles))
         return tuple(output)
 
 
