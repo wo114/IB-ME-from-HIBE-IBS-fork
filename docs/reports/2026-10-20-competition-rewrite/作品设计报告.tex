@@ -17,6 +17,20 @@
 \usepackage[font=small,labelfont=bf,labelsep=quad]{caption}
 \usepackage[hidelinks,unicode,bookmarksnumbered]{hyperref}
 \usepackage{xurl}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc}
+
+\definecolor{ibmeblue}{HTML}{2F5597}
+\definecolor{ibmelight}{HTML}{EAF0F8}
+\definecolor{ibmegreen}{HTML}{EAF4EA}
+\definecolor{ibmegray}{HTML}{F2F2F2}
+\tikzset{
+  flow/.style={draw=ibmeblue,rounded corners=2pt,fill=ibmelight,
+    align=center,minimum height=10mm,text width=31mm,font=\small},
+  check/.style={draw=black!55,rounded corners=2pt,fill=ibmegreen,
+    align=center,minimum height=10mm,text width=31mm,font=\small},
+  flowarrow/.style={-{Latex[length=2.2mm]},thick,draw=black!65}
+}
 
 \newcommand{\reporttitle}{基于多类格困难假设的抗量子身份基匹配加密通用设计与优化实现}
 \newcommand{\competitiontitle}{2026年第十一届全国密码技术竞赛作品设计报告}
@@ -129,7 +143,7 @@
 
 本作品实现相互独立的HIBE与IBS组件，并以统一装配层形成三组完整实例。系统使用32字节种子的混合封装承载应用消息，以一次性字节认证覆盖完整内层密文，并支持规范序列化、固定发钥状态和跨进程恢复。围绕真实瓶颈，作品进一步完成环结构表示与低秩采样、SRGG四类对象无损编码、Lai接收会话复用以及同参数部署消融。
 
-实测表明，SRGG论文参数下主状态可缩至原JSON表示的约五分之一，单根Lai会话实验在一次真实委派后将后续单条解密中位数降至28.57秒，但需509.55秒准备和约34.73 MiB叶钥状态；以Windows源码运行为基线，WSL同参数部署的完整加密与解密中位时间比分别为18.87和4.59。作品据此给出优化收益、准备代价与适用边界，而不把不同安全目标或不同环境的数值作简单排名。\\
+实测表明，SRGG论文参数下主状态可缩至原JSON表示的约五分之一，单根Lai会话实验在一次真实委派后将后续单条解密中位数降至28.57秒，但需509.55秒准备和约34.73 MiB叶钥状态；统一WSL环境中的部署位置消融，以Windows盘源码为基线，Linux盘同一安装包的完整加密与解密中位时间比分别为18.87和4.59。作品据此给出优化收益、准备代价与适用边界，而不把不同安全目标或不同环境的数值作简单排名。\\
 \hline
 \textbf{关键词（五个）：}身份基匹配加密；格密码；分层身份基加密；身份基签名；系统优化\\
 \hline
@@ -147,7 +161,7 @@
 
 本作品围绕上述缺口完成抗量子IB-ME通用框架及三组真实实例。框架将HIBE、IBS和公共协议分层，固定身份路径为“接收者—发送者”，在装配前检查能力与容量。协议层以32字节种子进入HIBE，使用混合加密承载可变长应用消息，并以一次性签名认证完整内层密文字节。规范编码、域分隔、严格解析和可恢复发钥状态共同保证不同组件可以在不读取彼此私有矩阵或陷门的条件下组合。
 
-作品的实现优化集中在四个真实瓶颈。Sageloli环IBS以多项式和低秩频域计算避免展开巨型旋转矩阵，使论文PARAM-I与PARAM-II均完成真实生命周期；SRGG对公钥、主状态、用户密钥和签名设计无损紧凑编码，三档参数下分别获得约2.55至5.46倍的对象级缩减；单根Lai接收会话实验复用已经验证的叶钥，把后续解密中位数由526.27秒量级降至28.57秒，同时如实保留509.55秒准备与约34.73 MiB状态成本；同参数部署消融对照Windows源码及两地安装包；以Windows源码为基线，WSL安装包完整加密和解密的时间比分别约18.87和4.59。
+作品的实现优化集中在四个真实瓶颈。Sageloli环IBS以多项式和低秩频域计算避免展开巨型旋转矩阵，使论文PARAM-I与PARAM-II均完成真实生命周期；SRGG对公钥、主状态、用户密钥和签名设计无损紧凑编码，三档参数下分别获得约2.55至5.46倍的对象级缩减；单根Lai接收会话实验复用已经验证的叶钥，把后续解密中位数由526.27秒量级降至28.57秒，同时如实保留509.55秒准备与约34.73 MiB状态成本；统一WSL环境中的部署位置消融对照Windows盘源码及两地安装包；以Windows盘源码为基线，Linux盘同一安装包完整加密和解密的时间比分别约18.87和4.59。
 
 实验分别报告独立根、同根重复、运行环境、消息与身份长度、对象尺寸及计时边界。三组代表承担不同说明任务：A用于现场交互与完整工程基线，B展示原生模块格IBS及无损编码，C展示另一类HIBE、环IBS和长会话摊销。本文不把不同环境或不同安全目标下的绝对时间解释为等条件优劣，而是从完整协议成本、优化作用位置和实际使用方式说明系统价值。
 
@@ -162,7 +176,7 @@ Identity-Based Matchmaking Encryption (IB-ME) releases a plaintext only when bot
 
 This work implements a common post-quantum IB-ME framework with replaceable HIBE and IBS components and three complete instantiations. The protocol fixes the hierarchy path as receiver then sender, checks component capabilities before assembly, encapsulates a 32-byte seed for hybrid encryption, and authenticates the complete inner ciphertext with a one-time byte-authentication layer. Canonical encoding, domain separation, strict parsing, and recoverable authority state allow components to be replaced without exposing their private matrices or trapdoors to the protocol layer.
 
-The implementation addresses four measured bottlenecks. A structured polynomial representation and low-rank frequency-domain sampling make the target Sageloli ring-IBS parameters executable. Lossless SRGG encodings reduce public, authority, user-key, and signature objects by factors of approximately 2.55 to 5.46 across three parameter sets. A single-root receiver-session experiment amortizes a real Lai delegation: subsequent decryption has a median of 28.57 seconds after a 509.55-second preparation step and retains about 34.73 MiB of leaf-key state. A controlled deployment study compares Windows source execution with identical installation packages on Windows and WSL. Relative to the Windows source baseline, the WSL deployment has observed complete-operation time ratios of 18.87 for encryption and 4.59 for decryption.
+The implementation addresses four measured bottlenecks. A structured polynomial representation and low-rank frequency-domain sampling make the target Sageloli ring-IBS parameters executable. Lossless SRGG encodings reduce public, authority, user-key, and signature objects by factors of approximately 2.55 to 5.46 across three parameter sets. A single-root receiver-session experiment amortizes a real Lai delegation: subsequent decryption has a median of 28.57 seconds after a 509.55-second preparation step and retains about 34.73 MiB of leaf-key state. Within the same WSL Sage/Python environment, a deployment study contrasts source and wheel files on a Windows mount with the same wheel on the Linux file system. Relative to the mounted-source baseline, the Linux-file-system deployment has complete-operation time ratios of 18.87 for encryption and 4.59 for decryption.
 
 The evaluation records environments, identity and message lengths, independent roots, repeated operations, object sizes, and timing boundaries separately. The three representative systems serve distinct purposes: interactive demonstration, a native module-lattice IBS with compact encoding, and a second HIBE with a native ring IBS and session amortization. Results from different environments or security targets are therefore not treated as a single performance ranking.
 
@@ -251,62 +265,527 @@ A、B在同一环境下提供多根完整基准，用于观察更换IBS后的成
 
 \chapter{方案原理与完整协议设计}
 
-\section{两层身份路径与角色}
-系统包含可信发钥机构、发送者、接收者和不可信传输信道。发钥机构分别建立HIBE与IBS主密钥。发送者身份\(s\)用于提取IBS签名密钥；接收者身份\(r\)用于提取HIBE第一层密钥。加密时使用路径\((r,s)\)，解密时接收者从\(r'\)的第一层密钥派生到期望发送身份\(s'\)。路径顺序在所有实例中保持一致。
+\section{角色、符号与两层身份路径}
+系统包含可信发钥机构、发送者、接收者和不可信传输信道。发钥机构分别运行HIBE与IBS的建立算法，但两类主秘密相互独立；公共组合层只持有规范接口和公开对象，不读取格基、陷门或签名秘密的内部表示。表~\ref{tab:protocol-symbols}给出本章符号。
 
-\section{基线组合流程}
-令\(\operatorname{Enc}\)表示带域分隔与长度前缀的规范编码。发送者首先对\(\operatorname{Enc}(r,M)\)生成IBS签名，再把签名与消息编码为HIBE载荷并沿\((r,s)\)加密。接收者沿\((r',s')\)派生叶钥、解密载荷并验证签名。任何派生、解码或验签失败均输出\(\bot\)。该流程同时把接收目标和发送身份绑定到最终输出。
-
-\section{混合封装与完整字节认证}
-实际系统不直接让HIBE承载应用载荷，而是封装32字节随机种子，通过HKDF-SHA-256派生AES-256-GCM密钥。一次性签名覆盖完整内层HIBE密文字节及公共上下文，其公钥承诺又进入IBS覆盖的内部消息。由此形成“应用载荷认证—发送身份认证—完整密文字节认证”三层职责分离。
-
-\section{规范编码、拒绝与状态恢复}
-所有可传输对象使用唯一字段顺序、显式长度和版本域。解析器拒绝截断、追加、重复字段和非规范整数；密码学不匹配返回统一失败。公开状态、主状态和用户密钥可以规范保存，恢复后仍需重新检查公共上下文和对象类型，避免把缓存便利变成绕过验证的入口。
-
-\chapter{已实现原语与三组实例化}
-
-\section{五个核心原语的职责}
 \begin{table}[htbp]
 \centering
 \small
-\caption{五个核心原语在三组实例中的职责}
-\label{tab:five-primitives}
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}p{0.13\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.19\textwidth}@{}}
+\caption{完整协议中的主要符号}
+\label{tab:protocol-symbols}
+\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{0.13\textwidth}>{\raggedright\arraybackslash}X@{}}
 \toprule
-\rowcolor{black!8} 原语 & 类型 & 在完整系统中的作用 & 所属代表 \\
+\rowcolor{black!8} 符号 & 含义 \\
 \midrule
-LATTE-3 & HIBE & 两层接收者—发送者路径与短种子封装 & A、B \\
-Lai C2 & HIBE & 另一理想格委派路径及接收会话 & C \\
-BNN/ML-DSA-44 & IBS & 机构证书与用户消息签名的认证转换 & A \\
-SRGG PARAM-I & IBS & 原生模块格身份签名与紧凑对象编码 & B \\
-Sageloli RSIS v3 & IBS & 原生环身份签名与目标规模结构化执行 & C \\
+\(r,s\) & 发送者指定的接收身份、发送者自身身份 \\
+\(r',s'\) & 接收密钥绑定的身份、接收者声明的期望发送身份 \\
+\(M\) & 应用消息；不直接作为HIBE明文 \\
+\(\mathsf{ek}_s\) & 由IBS主秘密为发送身份\(s\)签发的发送密钥 \\
+\(\mathsf{dk}_{r'}\) & 由HIBE主秘密为接收身份\(r'\)签发的一级接收密钥 \\
+\(\mathsf{sk}_{r',s'}\) & 从\(\mathsf{dk}_{r'}\)沿第二层身份\(s'\)派生的HIBE叶钥 \\
+\(\mathrm{LP}(x)\) & \(4\)字节大端长度后接字节串\(x\)的单射编码 \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\section{实例化原则}
-各原语独立保存参数、密钥和随机性，公共协议只使用规范接口。完整实例必须同时满足身份宽度、签名输入、HIBE载荷和外层传输预算；参数档变化只表示同一算法的配置，不被重复计算为新方案。后续技术内容将按“论文关系—身份或消息进入方式—采样与委派—实际参数—实现差异”的统一顺序展开。
+本作品固定HIBE路径顺序为“接收者在第一层、发送者在第二层”，即加密地址为\((r,s)\)，解密地址为\((r',s')\)。只有当两层地址均匹配且内部IBS验证通过时才返回消息。接收者并不持有一个可解开任意发送者路径的静态叶钥；它持有一级密钥，并在解密时按自己期望的发送身份派生二级叶钥。这一顺序贯穿两种HIBE、三种IBS和全部传输格式。
 
-\section{三组选择的互补性}
-A提供交互性最强的基线；B在保持LATTE不变的情况下观察原生模块格IBS和紧凑编码；C同时更换HIBE与IBS，用来展示目标规模环结构和长会话模型。这样的组织把算法替换、实现优化和使用方式分开，避免用一个综合分数掩盖成本来源。
+\section{通用构造的五个算法}
+设两层HIBE为\(\mathcal H\)，IBS为\(\mathcal S\)。Wang等的通用构造给出二者的组合依据~[1]；本作品把它实现为以下五个稳定协议入口。
+
+\subsection{系统建立与双方发钥}
+系统建立分别调用两个原语，允许二者使用不同环、模数、维度和采样分布：
+\begin{align*}
+ (\mathsf{hpk},\mathsf{hmsk})&\leftarrow\mathcal H.\mathsf{Setup}(\mathsf{par}_{H}),\\
+ (\mathsf{ipk},\mathsf{imsk})&\leftarrow\mathcal S.\mathsf{Setup}(\mathsf{par}_{S}),\\
+ \mathsf{pk}&=(\mathsf{hpk},\mathsf{ipk}),\qquad
+ \mathsf{msk}=(\mathsf{hmsk},\mathsf{imsk}).
+\end{align*}
+发送者发钥与接收者发钥承担不同职责：
+\[
+ \mathsf{ek}_s\leftarrow\mathcal S.\mathsf{Extract}(\mathsf{imsk},s),\qquad
+ \mathsf{dk}_r\leftarrow\mathcal H.\mathsf{Extract}(\mathsf{hmsk},r).
+\]
+发送密钥绑定IBS身份，接收密钥绑定HIBE第一层身份。原语对象各自保存完整参数和公共上下文；装配时不要求两个模数相同，也不允许把某一原语的秘密随机性复用给另一原语。
+
+\subsection{基线加密与解密}
+先忽略大载荷和外层字节认证，基线加密对接收身份与消息作规范绑定：
+\begin{align*}
+ m_{\rm sig}&=\operatorname{EncMsg}(r,M),\\
+ \sigma&\leftarrow\mathcal S.\mathsf{Sign}(\mathsf{ek}_s,m_{\rm sig}),\\
+ P&=\mathsf D_{\rm sig}\parallel\mathrm{LP}(\sigma)\parallel\mathrm{LP}(M),\\
+ C_H&\leftarrow\mathcal H.\mathsf{Encrypt}(\mathsf{hpk},(r,s),P).
+\end{align*}
+解密者从\(\mathsf{dk}_{r'}\)沿\(s'\)派生\(\mathsf{sk}_{r',s'}\)，解出并严格解析\(P\)，再检查
+\[
+ \mathcal S.\mathsf{Verify}
+   (\mathsf{ipk},s',\operatorname{EncMsg}(r',M),\sigma)=1.
+\]
+因此，错误接收身份会在HIBE路径或后续认证层失败，错误发送身份会导致叶钥地址和IBS验证同时不一致。解析、解密或验证任一步失败都只得到\(\bot\)，不会返回未认证的部分明文。
+
+\section{从应用消息到完整密文}
+基线公式仍没有解决两个工程问题：签名与应用消息可能远大于HIBE明文空间；规范序列化后的HIBE密文字节也可能含有原始数学解码可以容忍、但网络协议不应接受的改动。本作品依次加入有界消息封装、混合加密和一次性完整字节认证，形成图~\ref{fig:full-data-flow}所示的数据流。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[node distance=8mm and 8mm]
+  \node[flow] (msg) {应用消息\(M\)\\一次性公钥承诺};
+  \node[flow,right=of msg] (env) {规范信封\(E\)\\绑定接收身份};
+  \node[flow,right=of env] (ibs) {IBS签名\(\sigma\)\\绑定发送身份};
+  \node[flow,right=of ibs] (hyb) {Hybrid-HIBE\\封装32 B种子};
+  \node[flow,below=12mm of hyb] (outer) {BYTEAUTH\\签完整内层字节};
+  \node[check,left=of outer] (otscheck) {先验一次性签名\\与公共上下文};
+  \node[check,left=of otscheck] (open) {再解HIBE／AEAD\\解析\(\sigma,E\)};
+  \node[check,left=of open] (verify) {验IBS与公钥承诺\\成功才输出\(M\)};
+  \draw[flowarrow] (msg) -- (env);
+  \draw[flowarrow] (env) -- (ibs);
+  \draw[flowarrow] (ibs) -- (hyb);
+  \draw[flowarrow] (hyb) -- node[right,font=\small]{发送} (outer);
+  \draw[flowarrow] (outer) -- (otscheck);
+  \draw[flowarrow] (otscheck) -- (open);
+  \draw[flowarrow] (open) -- (verify);
+  \node[draw=black!45,dashed,rounded corners=3pt,fit=(msg)(env)(ibs)(hyb),
+    inner sep=4mm,label={[font=\small]above:发送端逐层构造}] {};
+  \node[draw=black!45,dashed,rounded corners=3pt,fit=(outer)(otscheck)(open)(verify),
+    inner sep=4mm,label={[font=\small]below:接收端逆序检查}] {};
+\end{tikzpicture}
+\caption{完整IB-ME中消息、身份、签名与密文的实际数据流}
+\label{fig:full-data-flow}
+\end{figure}
+
+\subsection{一次性公钥承诺进入IBS消息}
+每次加密先生成一把Lamport型一次性签名密钥\((\mathsf{ovk},\mathsf{osk})\)，取64字节域分隔承诺\(d_{\rm ovk}\)，再构造
+\[
+ E=\mathsf D_{\rm bound}\parallel
+   \mathrm{LP}(d_{\rm ovk})\parallel\mathrm{LP}(M).
+\]
+基线IBS实际签名的是\(\operatorname{EncMsg}(r,E)\)，而不是裸消息\(M\)。这样，外层一次性公钥和接收目标在同一个IBS认证链中绑定。Lamport公钥包含1024个64字节哈希像，签名包含512个64字节原像；它们较大，但只使用一次，且无需长期保存临时私钥~[11]。
+
+\subsection{32字节种子的混合封装}
+基线载荷改为
+\[
+ P=\mathsf D_{\rm sig}\parallel\mathrm{LP}(\sigma)\parallel\mathrm{LP}(E).
+\]
+混合适配层不把\(P\)直接送入HIBE，而是新取32字节均匀种子\(z\)和12字节nonce \(n\)：
+\begin{align*}
+ C_0&\leftarrow\mathcal H.\mathsf{Encrypt}
+   (\mathsf{hpk},(\operatorname{Pad}_P(r),\operatorname{Pad}_C(s)),z),\\
+ K&=\operatorname{HKDF\text{-}SHA256}
+   (z;\mathsf{ctx}_H,\mathsf D_{\rm kdf}),\\
+ C_1&=\operatorname{AES\text{-}256\text{-}GCM.Enc}
+   (K,n,P;\mathsf{AAD}).
+\end{align*}
+其中AAD规范绑定HIBE公共上下文、完整胶囊\(C_0\)、nonce和载荷长度；HKDF与GCM分别采用RFC~5869和NIST SP~800-38D给出的原语~[9,10]。HIBE始终只承载固定32字节种子，而签名和应用消息由AEAD承载。每次加密都重新抽取种子与nonce，不缓存DEM密钥。
+
+身份填充为
+\[
+ \operatorname{Pad}_{\rho}(x)=\mathsf D_{\rm id}\parallel\rho
+   \parallel\mathrm{LP}(x)\parallel 0^{L-|x|},
+ \qquad \rho\in\{P,C\},
+\]
+其中角色字节区分父层与子层。对当前64字节外部身份，HIBE实际接收86字节定长身份；编码保持单射，不用身份哈希替代原字符串，也不在Hybrid头部公开身份摘要。
+
+\subsection{完整内层字节的一次性认证}
+令\(B\)为包含Hybrid-HIBE对象的完整基线密文字节，外层签名输入为
+\[
+ X=\mathsf D_{\rm ct}\parallel\mathrm{LP}(\mathsf{ctx}_{\rm IBME})
+   \parallel\mathrm{LP}(\mathsf{ovk})\parallel\mathrm{LP}(B),
+ \qquad \tau\leftarrow\mathsf{OTS.Sign}(\mathsf{osk},X).
+\]
+最终密文是\(\mathsf{ctx}_{\rm IBME},\mathsf{ovk},B,\tau\)的版本化规范帧。若攻击者在同一\(\mathsf{ovk}\)下修改任一受保护字节，需要伪造一次性签名；若持有接收密钥的实体换一把新的一次性公钥并重签，内部IBS已经认证旧公钥承诺，仍不能通过最后的承诺一致性检查。该层解决的是完整传输字节的认证，不把HIBE的原始数学解码改写成另一种算法，也不单独声称获得CCA定理。
+
+\section{接收端的检查顺序与失败语义}
+完整解密严格按从外到内的顺序执行：
+\begin{enumerate}
+  \item 在分配大对象前检查总长度、版本、字段数量及各字段预算；
+  \item 核对IB-ME公共上下文并验证\(\tau\)，失败即返回\(\bot\)；
+  \item 规范加载内层密文，拒绝截断、追加、重复字段与非规范整数；
+  \item 从\(\mathsf{dk}_{r'}\)沿\(s'\)派生叶钥，核对叶钥与公钥及完整路径绑定；
+  \item HIBE解出恰好32字节种子，重新导出\(K\)，再验证GCM标签与AAD；
+  \item 解析\(\sigma\)和\(E\)，调用所选IBS自己的签名加载器；
+  \item 以\(s'\)验证\(\operatorname{EncMsg}(r',E)\)，再比较\(E\)中的承诺与外层\(\mathsf{ovk}\)；
+  \item 全部成功才返回\(M\)，否则统一返回\(\bot\)。
+\end{enumerate}
+数据不匹配使用统一失败结果，避免由不同错配暴露部分明文或中间对象；缺少运行依赖、参数类型错误和资源预算错误则作为运行故障单独报告，便于部署者区分“密文不合法”和“系统没有正确启动”。
+
+\section{装配前的容量与能力检查}
+通用接口只说明方法形状，真正装配还必须证明对象能放入下一层。表~\ref{tab:suite-capacity}列出三组冻结配置的关键容量。A、B的HIBE相同，但Hybrid预算和IBS输入上限不同；C的大签名需要8~MiB载荷预算，而其应用消息上限反而由Sageloli的4096字节签名输入界限决定。
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{三组完整实例的实际装配容量}
+\label{tab:suite-capacity}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.22\textwidth}rrrr@{}}
+\toprule
+\rowcolor{black!8} 组 & HIBE／IBS & HIBE内层 & Hybrid载荷 & 签名上界 & 应用消息上限 \\
+\midrule
+A & LATTE／BNN-ML-DSA-44 & 32 B & 64 KiB & 6,237 B & 59,191 B \\
+B & LATTE／SRGG-I compact & 32 B & 128 KiB & 15,704 B & 65,364 B \\
+C & Lai C2／Sageloli-I & 32 B & 8 MiB & 3,227,824 B & 3,924 B \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+系统在建立或加载配置时依次检查：两层身份能力与顺序、外部和内部身份宽度、IBS消息及签名上限、Hybrid载荷与胶囊预算、对象解码器、参数快照、公钥—私钥语义绑定、固定发钥需求和失败处理能力。任何一项不满足都在取随机数和写状态之前拒绝；不会自动缩短消息、切换参数或回退到教学实现。
+
+\section{规范状态、恢复与职责边界}
+公开参数、主状态、双方密钥和密文均有独立版本域、对象类别和唯一字段顺序。主状态为同一身份保存固定发钥结果；发钥开始但未能确定完成时留下不可自动重试的状态，防止崩溃后以同一身份重新抽取另一把密钥。应用层在持有本地锁期间先提交主状态，再原子发布用户密钥；恢复后重新核对配置、公钥摘要、身份和原语方程。
+
+上述事务顺序支持故障后保守恢复。本地明文状态仍需防回滚保护；跨节点唯一发钥需要独立协调服务。
+
+\chapter{已实现原语与三组实例化}
+
+\section{实例化选择与统一观察维度}
+通用层并不把所有格方案压成相同的数据结构，而是要求每个后端交付同一组可核查能力：建立、固定身份发钥、签名或两层委派、验证或解密、规范对象编解码，以及对身份宽度、消息容量和运行依赖的声明。表~\ref{tab:five-primitives}列出最终报告采用的五个核心原语；它们组成三组代表，而不是五套互不相干的演示程序。
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{五个核心原语及其在三组代表中的职责}
+\label{tab:five-primitives}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.18\textwidth}>{\raggedright\arraybackslash}p{0.12\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.18\textwidth}@{}}
+\toprule
+\rowcolor{black!8} 原语 & 类别 & 核心参数或结构 & 所属代表 \\
+\midrule
+LATTE-3 & HIBE & $N=1024$，$q=68718428161$，深度2 & A、B的保密与身份路径 \\
+Lai C2 & HIBE & $n=2048$，$q=274877976577$，深度2 & C的保密与身份路径 \\
+BNN/ML-DSA-44 & IBS & 机构证书加用户签名的通用转换 & A的发送者认证 \\
+SRGG PARAM-I & IBS & $n=512$，模块秩2，原生模块格签名 & B的发送者认证 \\
+Sageloli RSIS v3 & IBS & $d=2048$，$q=3^{65}$，原生环签名 & C的发送者认证 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+本章按同一顺序说明每个后端：先给出论文中的关键代数关系，再说明身份和消息如何进入关系，随后列出本作品固定的参数与源码适配。这样可以区分“采用哪篇论文的算法”“为公共接口增加了哪些编码”和“为使目标参数实际运行做了哪些工程工作”。参数档变化只表示同一算法的配置，不重复计作新算法。
+
+\section{LATTE-3：基于NTRU格陷门的两层HIBE}
+\subsection{根陷门、委派与叶密钥}
+LATTE~[2]工作在负循环环
+\[
+  R_q=\mathbb Z_q[x]/(x^N+1),\qquad N=1024,
+  \quad q=68718428161.
+\]
+建立阶段抽取短多项式$f,g$，求解NTRU关系
+\[
+  fG-gF=q,
+  \qquad h=g f^{-1}\pmod q,
+\]
+并以
+\[
+  S_0=\begin{pmatrix}g&-f\\G&-F\end{pmatrix}
+\]
+作为根陷门基。接收身份$r$首先经带公共上下文和长度前缀的域分隔哈希映射为$A_1=H_1(r)$，Delegate从$S_0$生成对应的一级短基；发送身份$s$再进入第二个独立域的$A'_2=H_2(r,s)$，Extract从一级基抽取叶密钥。导入后的叶密钥必须满足精确关系
+\[
+  t_0+t_1h+t_2A_1=A'_2\pmod q,
+\]
+因此外层对象字段一致而环方程不一致的伪造私钥不能通过恢复。
+
+本作品固定作者LATTE-3的两层参数，不提供任意深度或任意模数的“参数生成器”。一级路径对应接收者，二级路径对应发送者；最终叶钥只用于$(r,s)$。HIBE明文模式固定为32字节种子，应用消息不直接进入LATTE密文，从而避免把作者短消息空间误写成任意长载荷能力。
+
+\subsection{采样、密文检查与源码适配}
+建立和一级委派使用作者的高精度Gaussian/ffSampling路径；加密噪声是8对Bernoulli差形成的中心二项分布，标准差为2。终层Extract保留作者由目标NTT字节确定采样种子的机制，同一完整路径在固定主状态下得到固定叶钥。解密不仅执行Decode，还以恢复出的种子重新加密并比较完整密文分量；错误身份、噪声越界或密文篡改统一得到拒绝。
+
+作者源码以固定提交随仓库保留。本作品在临时构建目录应用三项边界明确的适配：修正COSAC读取新生成24字节Box--Muller缓冲区的位置；以经向量对照的OpenSSL SHAKE接口替代原链接接口；为AES计数器流设置显式块数上限。每次原生输出仍由独立Sage精确检查根/父基的环核关系、行列式指标和叶钥原像关系，不能仅凭C结构体可解析就进入公共协议。
+
+\section{Lai C2：理想格委派与目标参数HIBE}
+\subsection{两层委派和密文方程}
+Lai等的理想格陷门方案~[3]同样使用两层身份，但其陷门组织与LATTE不同。建立阶段生成公开向量$\mathbf a=(\mathbf a_0,\mathbf a_1)$及短陷门$R$，满足
+\[
+  \mathbf a_0^{\mathsf T}R+\mathbf a_1=\mathbf g.
+\]
+把两层外部身份分别哈希为二进制环元素$\mathrm{id}_1,\mathrm{id}_2$，定义
+\[
+  \mathbf a_{\mathrm{id}_1}=\mathbf u_0+\mathrm{id}_1\mathbf u_1,
+  \qquad
+  \mathbf a_{\mathrm{ID}}=\mathbf a_{\mathrm{id}_1}+\mathrm{id}_2\mathbf u_2.
+\]
+一级发钥把$\mathbf a_{\mathrm{id}_1}$追加到公开矩阵，二级委派再追加$\mathbf a_{\mathrm{ID}}$；因而密钥随层数线性增长，而不是复制一个固定大小标签。
+
+每次加密新采样短矩阵$R_0,R_1,R_2$，再组合
+\[
+  R_{\mathrm{ID}}=R_0+\mathrm{id}_1R_1+\mathrm{id}_2R_2,
+  \qquad \mathbf e_1=-\mathbf e_0^{\mathsf T}R_{\mathrm{ID}},
+\]
+并计算
+\[
+  \mathbf u=F_1\mathbf s+p\mathbf e_0,
+  \qquad
+  \mathbf v=(\mathbf a_{\mathrm{ID}}+h'\mathbf g)\mathbf s
+           +p\mathbf e_1+\mathbf m.
+\]
+叶钥解密先检查$h_2+h'$是单位，再由叶陷门$T_2$计算$\mathbf y=\mathbf u^{\mathsf T}T_2+\mathbf v$并进行Babai反演，并检查误差模$p$的结构后输出消息。其中$h_2$为叶钥的单位标签，$T_2$与加密时新采样的$R_2$不同。这里$p=2$，本作品只把32字节Hybrid种子编码到消息位置。
+
+\subsection{C2参数和实现补全}
+代表C固定使用C2快照
+\[
+  n=2048,\quad q=274877976577,\quad k=39,\quad
+  \ell=2,\quad p=2,\quad \sigma=2,\quad \sigma_r=1.
+\]
+固定估计脚本对相应PLWE系数实例给出的经典/量子模型数值约为169.9/154.2 bit；这是参数筛选记录，不改写成整个IB-ME的外部标准认证等级。每层外部身份上限为86字节，经过SHAKE映射为$n$个二进制系数。采用二进制而非均匀环元素，是为了保持$\mathrm{id}_iR_i$的短性；均匀环映射的对照实验会使残差超过Babai容差。
+
+原文对“Derive=Extract”只有简述，本作品显式采用每层追加身份块的实现；原文算法中的矩阵形状矛盾按其实际方程修正为$m\times k$。陪集采样使用Klein/GPV实现，不加入未实现的perturbation。这些选择随参数快照和对象版本保存，载入主钥、一级钥、叶钥时重新验证相应陷门方程，避免把实现补全伪装成原文逐字代码。
+
+\section{BNN/ML-DSA-44：由普通签名构造IBS}
+BNN转换~[6]把普通签名分成机构证书和用户消息签名两层。设机构密钥为$(\mathsf{vk}_{\rm CA},\mathsf{sk}_{\rm CA})$；为身份$s$发钥时生成用户密钥$(\mathsf{vk}_s,\mathsf{sk}_s)$，并计算
+\[
+  \mathsf{cert}_s=\mathsf{DS.Sign}_{\mathsf{sk}_{\rm CA}}
+       (\mathsf{Enc}(s,\mathsf{vk}_s)).
+\]
+对协议消息$M'$签名时，用户计算
+\[
+  \tau=\mathsf{DS.Sign}_{\mathsf{sk}_s}
+       (\mathsf{Enc}(\mathsf{ctx},s,\mathsf{vk}_s,\mathsf{cert}_s,M')),
+  \qquad
+  \sigma=(\mathsf{vk}_s,\mathsf{cert}_s,\tau).
+\]
+验证者必须先用机构公钥验证证书，再用证书内的用户公钥验证消息签名；只通过其中一层不能接受。
+
+代表A的普通签名固定为ML-DSA-44~[7]。其基础公钥为1312字节、基础签名为2420字节；加入用户公钥、机构证书、用户签名和规范帧后，完整IBS签名为6237字节。ML-DSA-44基础参数对应NIST安全类别2；此处只说明所选基础原语的标准参数，不把该类别外推为整个组合系统的认证。机构签发和用户签名各使用新32字节随机量，已发身份在持久主状态中固定复用同一用户钥与证书。
+
+\section{SRGG PARAM-I：原生模块格IBS}
+Jia等提出的SRGG方案~[4]工作在$R_Q=\mathbb Z_Q[x]/(x^n+1)$。公开矩阵写作
+\[
+  A=[I_d\mid \widehat A\mid B],
+\]
+身份$s$通过$h=H_1(P,s)$进入目标陪集，用户短见证$y$满足$Ay=h\pmod Q$。签名阶段令$\zeta=1+x^{n/2}$、$j=\zeta^\star e_1$，构造
+\[
+  M_h=[\,2A\mid Qj-2h\,]\pmod {2Q}.
+\]
+扰动向量$p_0$给出承诺$W=M_hp_0$，挑战$c=H_2(P,W,M')$；再按论文Algorithm 7生成标量$u$和响应
+\[
+  z=p_0+\begin{bmatrix}y\\1\end{bmatrix}(\zeta u+c).
+\]
+验证者检查对象上下文、二元挑战和$\lVert z\rVert_2\leq\gamma$，恢复
+\[
+  W'=M_hz-Qjc\pmod {2Q},
+\]
+并重新计算挑战。身份由公开目标$h$进入矩阵，消息由挑战哈希进入响应，二者在同一验签方程中绑定。
+
+代表B固定Table 4的PARAM-I：$n=512$、模块秩$d=2$、$p=16383$、gadget基31且位数2、$Q=15744063$、$\gamma=42086491.7$。论文表中该档目标为100 bit，作者报告的量子密钥恢复/伪造成本为95/93 bit；本作品按来源保留这一档，不把不同方案的作者目标强行换算成统一排名。实现保持固定身份账本、论文采样和原范数门，只把外部签名字节选择为第4章所述的无损紧凑格式。
+
+\section{Sageloli RSIS v3：原生环身份签名}
+Sageloli方案~[5]直接在$q=3^k$的负循环环上组织公钥和陷门。建立阶段抽取短根$R$并形成
+\[
+  A=[\bar A\mid g-\bar A R].
+\]
+发钥时为身份$s$抽取32字节盐$\rho$，计算$h=H_1(P,\rho,s)$，再采样身份陷门$T_s$使
+\[
+  AT_s=h-g\pmod q.
+\]
+签名另取32字节消息盐$\eta$，通过相关扰动和三进制陪集采样得到非零响应$z$。验证检查两个分块范数门及精确方程
+\[
+  [A,h]z=H_2(P,\rho,s,\eta,M')\pmod q.
+\]
+盐进入哈希但随签名公开；保密性仍由HIBE承担，IBS负责把发送身份与协议消息绑定。
+
+代表C固定PARAM-I：$(d,k,\ell)=(2048,65,132)$、$q=3^{65}$、$r^2=49$，身份与签名采样宽度平方分别为
+\[
+  2720281532542,
+  \qquad
+  270116709797628319132317.
+\]
+该签名的规范reference编码为3227824字节，因此C显式配置8 MiB Hybrid载荷，而不是沿用64 KiB默认值。PARAM-II也已完成原语生命周期，但最终三组代表只采用PARAM-I，避免在正文中把同一算法的参数档重复列成新方案。
+
+\section{三组代表的控制关系}
+表~\ref{tab:representative-control}给出三组选择改变了什么、保持了什么。A和B共用LATTE，能够观察替换IBS与编码后的影响；C同时更换HIBE和IBS，承担目标规模环结构与长会话展示。三组都经过同一Wang协议、Hybrid和BYTEAUTH边界，因而不是三个专用脚本拼接出的互不兼容样例。
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{三组代表的原语、容量与主要观察任务}
+\label{tab:representative-control}
+\begin{tabularx}{\textwidth}{@{}c>{\raggedright\arraybackslash}p{0.19\textwidth}>{\raggedright\arraybackslash}p{0.22\textwidth}rr>{\raggedright\arraybackslash}X@{}}
+\toprule
+\rowcolor{black!8} 组别 & HIBE & IBS & 应用上限 & IBS签名 & 主要观察任务 \\
+\midrule
+A & LATTE-3 & BNN/ML-DSA-44 & 59191 B & 6237 B & 现场交互与完整工程基线 \\
+B & LATTE-3 & SRGG PARAM-I compact & 65364 B & 15704 B & 原生模块格IBS与无损编码 \\
+C & Lai C2 & Sageloli PARAM-I & 3924 B & 3227824 B & 目标规模环实现与会话摊销 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+应用上限已经扣除协议域、长度帧、一次性承诺和IBS签名；它不是HIBE短消息上限。A、B、C的HIBE内层都只加密32字节种子，Hybrid总载荷分别为64 KiB、128 KiB和8 MiB。C的约3.08 MiB签名需要较大的Hybrid包络；3924字节应用上限则由IBS的4096字节签名输入预算扣除协议编码开销得到，并非8 MiB载荷空间已经耗尽。
 
 \chapter{面向目标规模与重复使用的关键优化}
 
+\section{从“算法可调用”到“目标规模可运行”}
+五个原语接入统一接口后，瓶颈并不都出现在环乘法：Sageloli首先受制于稠密矩阵表示，SRGG的大量空间花在通用JSON十进制文本，Lai的重复解密反复执行同一路径委派，LATTE/ML-DSA组合则受源码读取与原生进程装载影响。因此本作品没有用一项“统一加速”包装所有结果，而是在表示、编码、会话和部署四个层面分别建立同参数对照，如图~\ref{fig:optimization-layers}所示。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[node distance=6mm and 8mm]
+  \node[flow] (math) {数学对象\\环矩阵与陷门};
+  \node[flow,right=of math] (wire) {规范对象\\密钥、签名与密文};
+  \node[flow,right=of wire] (session) {协议使用\\一次或连续消息};
+  \node[flow,right=of session] (runtime) {运行部署\\源码、安装包与文件系统};
+  \node[check,below=of math] (mopt) {多项式表示\\低秩频域采样};
+  \node[check,below=of wire] (wopt) {位域紧凑编码\\严格无损解码};
+  \node[check,below=of session] (sopt) {显式接收会话\\准备成本摊销};
+  \node[check,below=of runtime] (ropt) {同一安装包\\运行位置消融};
+  \draw[flowarrow] (math) -- (wire);
+  \draw[flowarrow] (wire) -- (session);
+  \draw[flowarrow] (session) -- (runtime);
+  \draw[flowarrow] (math) -- (mopt);
+  \draw[flowarrow] (wire) -- (wopt);
+  \draw[flowarrow] (session) -- (sopt);
+  \draw[flowarrow] (runtime) -- (ropt);
+\end{tikzpicture}
+\caption{四类优化各自作用的系统层次}
+\label{fig:optimization-layers}
+\end{figure}
+
 \section{Sageloli环表示与低秩采样}
-Sageloli实现直接保存环多项式，并围绕关系
+Sageloli论文参数中$d=2048$、$\ell=132$；如果把一个环元素展开成$d\times d$旋转矩阵，再显式构造完整协方差，存储与分解规模会在运行前就失去可行性。本作品直接保存环多项式系数：公钥形状为$\ell\times d$，根为$(\ell-k)\times k\times d$，身份钥为$\ell\times k\times d$。所有公开关系仍在原环上检查，例如
 \[
   A=[\bar A\mid g-\bar A R],\qquad A T_{\mathrm{id}}=H_1(\mathrm{id})-g
 \]
-组织公钥和身份钥~[5]，并采用格陷门采样工具~[8]，避免为每个多项式展开完整旋转矩阵。相关扰动的形状矩阵在负循环Fourier频率上分解，最大特征分解为\(k\times k\)，避免构造完整系数空间协方差；大整数编码、FLINT点积和带幅度检查的双素数NTT/CRT分别处理精确算术。该组织已支撑两档论文参数的独立生命周期。
+，但对象中不出现这些多项式的稠密旋转展开。实现采用原方案~[5]及其格陷门采样工具~[8]。
+
+\subsection{频域低秩平方根}
+令
+\[
+  J=\begin{bmatrix}-T\\I\end{bmatrix},\qquad
+  c=9r^2,\qquad a=s^2-r^2.
+\]
+相关扰动所需的连续密度形状为
+\[
+  \Sigma=aI-cJJ^\star.
+\]
+负循环Fourier变换把环乘法对角化。在每个频率上只需计算
+\[
+  G=J^\star J=U\operatorname{diag}(\lambda_i)U^\star,
+\]
+并采用稳定的低秩平方根
+\[
+  L=\sqrt a I-
+  JU\operatorname{diag}\!\left(
+    \frac{c}{\sqrt a+\sqrt{a-c\lambda_i}}
+  \right)U^\star J^\star.
+\]
+直接展开可得$LL^\star=aI-cJJ^\star$。最大特征分解规模由稠密的$d(\ell+k)$维降为每个频率一个$k\times k$分块，保存量为
+\[
+  O(d\ell k+dk^2).
+\]
+PARAM-I中$k=65$，与直接展开相比，这一变化决定了论文规模能否进入真实采样，而不只是改变一个常数。
+
+\subsection{数值计划和精确验收的分工}
+频域计划负责连续相关扰动；随后仍逐系数执行任意中心离散Gaussian和三进制陪集采样，并在每次调用后检查精确模方程。计划建立前用区间验证的twiddle误差包络和$\lVert T\rVert_2^2\leq\lVert T\rVert_1\lVert T\rVert_\infty$检查正定充分条件。大模数$q=3^k$的公开点积使用FLINT整数多项式；私有小整数乘法使用双素数NTT/CRT，并先证明完整整数卷积幅度小于CRT模积的一半，避免把计算模数误当成方案模数。
+
+该优化复用的是由固定陷门决定的数值计划，不复用随机扰动或离散样本。每次发钥和签名仍消耗新熵并经过原范数门。结构化实现已经让PARAM-I与PARAM-II两档原语完成独立生命周期，代表C采用其中PARAM-I。
 
 \section{SRGG四类对象无损编码}
-SRGG紧凑格式依据系数实际范围分别编码24-bit模系数、2-bit小系数、Zigzag有符号整数和1-bit挑战，并检查最小位宽与尾部填充。解码恢复的是同一数学对象，而不是改变参数或省略字段。三档实测中，公钥约缩小2.77倍，主状态5.05至5.46倍，用户密钥4.61至4.98倍，签名2.55至2.65倍；额外代价是编码、边界检查和解码时间。
+SRGG的参考对象使用规范JSON，适合审阅但会把每个系数展开成十进制文本、分隔符和字段名。紧凑格式保持相同参数、上下文和数学对象，只按字段的真实值域选用四种编码，如表~\ref{tab:srgg-codec-fields}所示。
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{SRGG紧凑格式的字段级编码}
+\label{tab:srgg-codec-fields}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.22\textwidth}>{\raggedright\arraybackslash}p{0.24\textwidth}>{\raggedright\arraybackslash}X@{}}
+\toprule
+\rowcolor{black!8} 数据 & 编码 & 规范性检查 \\
+\midrule
+公开模$Q$系数 & 固定24 bit，无符号 & $0\leq x<Q$，不做隐式模约减 \\
+CBD1陷门系数 & 固定2 bit & $-1,0,1$对应三个码字，第四个拒绝 \\
+短钥/响应整数 & Zigzag加最小统一位宽 & 位宽0--257、拒绝非最小表示和越域整数 \\
+二元挑战 & 每系数1 bit & 固定$n=512$个系数 \\
+对象头与上下文 & magic、版本、类别、参数档、来源摘要 & 类别、来源、参数、公钥上下文逐项绑定 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+位流按MSB优先打包，末字节未使用低位必须全零；矩阵按行、多项式按升幂系数排序。解析器在分配系数数组前计算固定形状所需长度，并拒绝截断、追加、未知类别、错误来源、非零padding、身份乱序和公钥不匹配。解码后重新编码并要求逐字节一致，所以“可解码”不会悄悄接受另一种表示。
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{SRGG三档真实对象的reference/compact字节数}
+\label{tab:srgg-compact-sizes}
+\begin{tabular}{@{}crrrr@{}}
+\toprule
+\rowcolor{black!8} 参数档 & 公钥 & 主状态 & 用户钥 & 签名 \\
+\midrule
+PARAM-I reference & 34463 & 102606 & 84165 & 35368 \\
+PARAM-I compact & 12374 & 20306 & 18256 & 13400 \\
+PARAM-II reference & 76954 & 218520 & 176919 & 51117 \\
+PARAM-II compact & 27734 & 41106 & 36496 & 19288 \\
+PARAM-III reference & 136433 & 377344 & 303453 & 67076 \\
+PARAM-III compact & 49238 & 69074 & 60880 & 26264 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+配对实测显示：公钥约缩小2.77倍，主状态5.05至5.46倍，用户钥4.61至4.98倍，签名2.55至2.65倍。表中签名是对应实样本的对象尺寸；完整Suite仍按所有合法输出的保守容量上界预检，代表B使用的签名预算为15704字节。紧凑格式减少磁盘和传输字节，不自动减少采样时的Python/Sage工作集；编码、规范检查和解码本身也需要时间。
 
 \section{Lai接收会话}
-对固定公共上下文、接收身份和期望发送身份，接收会话执行一次真实委派并验证叶钥，随后每条消息继续完成完整解密与验签。当前实测的一次准备为509.55秒，后续解密中位数为28.57秒，额外保存约34.73 MiB叶钥。首条消息并未因此变快；会话价值来自多条连续消息对准备成本的摊销。
+无状态解密每次都从接收者一级钥为期望发送者执行Lai C2的真实二级委派。对聊天、数据流等固定身份对，这一步与密文内容无关。本作品因此提供显式进程内接收会话：
+
+\begin{enumerate}
+  \item 校验公共上下文、一级钥根绑定和接收身份；
+  \item 对固定$(r,s)$真实执行一次Derive；
+  \item 验证叶钥的根、完整路径和陷门方程；
+  \item 后续每条密文仅复用该叶钥，仍执行Suite绑定、严格解析、BYTEAUTH、Hybrid解密、IBS验签和OTS承诺检查；
+  \item 使用者显式关闭会话；关闭后拒绝继续解密，且会话不可序列化。
+\end{enumerate}
+
+设准备时间为$T_{\rm prep}$，会话内单次解密中位数为$T_{\rm sess}$，连续处理$N$条消息时的每条平均成本为
+\[
+  \bar T(N)=\frac{T_{\rm prep}}{N}+T_{\rm sess}.
+\]
+目标参数单根实测中，原无状态解密中位数为526.272秒（2次），$T_{\rm prep}=509.548$秒，$T_{\rm sess}=28.568$秒（3次），额外叶钥规范编码为36414052字节，即34.73 MiB。表~\ref{tab:lai-amortization}把实测与公式外推明确分开。
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Lai C2接收会话的单根摊销}
+\label{tab:lai-amortization}
+\begin{tabular}{@{}crl@{}}
+\toprule
+\rowcolor{black!8} 连续解密条数$N$ & 含准备的每条平均成本/s & 数据性质 \\
+\midrule
+1 & 538.115 & 由实际准备和会话中位数计算 \\
+2 & 283.341 & 由实际准备和会话中位数计算 \\
+3 & 198.417 & 由实际准备和会话中位数计算 \\
+10 & 79.522 & 同根公式外推，未执行10次 \\
+100 & 33.663 & 同根公式外推，未执行100次 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+首条消息的538.115秒反而略高于原无状态中位数526.272秒；会话的价值从多条连续消息才出现。它以34.73 MiB秘密状态和显式生命周期换取委派摊销，不应把28.568秒单独写成“Lai解密时间”。
+
+\section{有界准备复用及其负面对照}
+同一套准备接口还覆盖两个较小热点。BNN/ML-DSA-44只缓存“机构证书对该身份与用户公钥验证成功”这一公开语句，命中后仍逐条调用原生引擎验证用户消息签名；默认LRU容量64、上限256，可设为0关闭。SRGG只缓存由同一冻结签名钥和数值选项决定的SampleF计划，默认2条、上限16；每次签名重新建立熵预算并抽取新样本。
+
+三根同参数完整流程消融中，A的解密根内收益比中位数为1.086，逐根范围0.992--1.339；B的加密收益比中位数为1.030，范围1.009--1.921。结果确认原生证书验签次数由每条2次降为1次、SRGG每根出现1次计划miss和4次hit，但有限样本有回退和明显波动，不能宣称稳定翻倍。这一负面对照说明：减少一个局部调用不等于端到端时间按相同比例下降，最终报告只把它们作为有界准备复用，而不作为核心性能结论。
 
 \section{同参数部署消融}
-部署实验保持算法参数、三套系统状态和原生构建一致，对照Windows仓库源码、Windows安装包和WSL安装包三种运行方式；两地安装包内容相同，操作按轮转与镜像顺序执行。相对Windows源码，WSL安装包完整加密与解密的中位时间比分别约18.87和4.59；只比较两地同一安装包时则约17.88和4.45。该结果说明本机部署形态对端到端成本的影响，具体加载与文件访问贡献需要结合阶段测量解释，不将全部差异归因于单一文件操作。
+代表A每次建立原生适配器都要读取、哈希并核对冻结源码。剖析显示5次完整加密触发515次\texttt{read\_bytes}，在宿主挂载目录累计约1.073秒；同一安装包置于Linux本地文件系统后，这部分约为0.011秒。优化没有跳过源码摘要、ABI或二进制检查，而是按wheel摘要建立只读运行副本，并在每次复用前核对546个内容文件。
+
+三路实验均由同一WSL Sage/Python运行，固定算法、参数、三份状态和原生引擎；对照Windows盘上的源码、Windows盘上的安装包和WSL Linux文件系统中的同一安装包。这里的Windows/WSL标签指文件放置位置，不是两套操作系统解释器。每路按轮转与镜像顺序执行，共30次完整加密和30次完整解密，结果见表~\ref{tab:placement-ablation}。
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{代表A同参数运行位置消融}
+\label{tab:placement-ablation}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}Xrrr@{}}
+\toprule
+\rowcolor{black!8} 运行方式 & 加密中位数/ms & 解密中位数/ms & 每项观察数 \\
+\midrule
+Windows盘源码，WSL挂载 & 206.087 & 258.640 & 30 \\
+同一wheel，Windows盘WSL挂载 & 195.310 & 250.577 & 30 \\
+同一wheel，WSL Linux文件系统 & 10.921 & 56.360 & 30 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+相对Windows源码，WSL安装包的加密与解密时间比分别为18.87和4.59；同一wheel的两种位置对照则为17.88和4.45。完整密文仍为142036--142153字节，每次加密继续使用新系统随机数，原语调用数、校验次数和wire均未改变。剖析批次用于定位热点，三根正式计时用于衡量端到端收益。该结果反映本机部署位置的影响；不能把全部差异归因于单一文件操作，也不能当作密码算法运算加速或Windows与Linux解释器的速度比较。
+
+\section{优化结论：收益必须和状态一起报告}
+四类工作分别解决“存不下稠密矩阵”“对象表示冗长”“固定身份对重复委派”和“固定源码反复慢读”问题。它们共同遵守三条边界：不降低论文参数，不省略验签或密文检查，不缓存随机输出。相应代价也保留在结果中：低秩采样需要数值误差与正定门，compact需要额外编解码，接收会话保存秘密叶钥，部署优化需要固定安装包和清单。这样的分层报告使评委能够判断某项收益是否适用于自己的使用场景，而不是只看到脱离条件的单个倍数。
 
 \chapter{实验设计、对照结果与分析}
 
@@ -378,6 +857,12 @@ C目前只有有限消息长度的实测；最大应用消息和独立根重复�
 \noindent[7] NIST. Module-Lattice-Based Digital Signature Standard. FIPS 204, 2024.\par
 
 \noindent[8] Daniele Micciancio, Chris Peikert. Trapdoors for Lattices: Simpler, Tighter, Faster, Smaller. \emph{EUROCRYPT 2012}.\par
+
+\noindent[9] Hugo Krawczyk, Pasi Eronen. HMAC-based Extract-and-Expand Key Derivation Function (HKDF). RFC 5869, 2010.\par
+
+\noindent[10] NIST. Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC. Special Publication 800-38D, 2007.\par
+
+\noindent[11] Leslie Lamport. Constructing Digital Signatures from a One Way Function. SRI International, CSL-98, 1979.\par
 \endgroup
 
 \end{document}

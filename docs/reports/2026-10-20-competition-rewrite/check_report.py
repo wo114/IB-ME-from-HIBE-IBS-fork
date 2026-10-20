@@ -1,4 +1,4 @@
-"""Validate the first competition-report rewrite without running cryptography."""
+"""Validate the active competition-report rewrite without running cryptography."""
 
 from __future__ import annotations
 
@@ -39,7 +39,7 @@ def main() -> int:
     parser.add_argument(
         "--submission-ready",
         action="store_true",
-        help="apply final-release checks; expected to fail during the first rewrite batch",
+        help="apply final-release checks; expected to fail until every rewrite batch is complete",
     )
     args = parser.parse_args()
 
@@ -87,7 +87,9 @@ def main() -> int:
     checks.expect("Chinese keywords", "关键词：" in text)
     checks.expect("English keywords", "Keywords:" in text)
     checks.expect("table of contents", r"\tableofcontents" in text)
-    checks.expect("subsection hierarchy introduced", text.count(r"\subsection{") >= 7)
+    checks.expect("technical subsection hierarchy", text.count(r"\subsection{") >= 18)
+    checks.expect("protocol and optimization figures", text.count(r"\begin{figure}") >= 2)
+    checks.expect("technical comparison tables", text.count(r"\begin{table}") >= 10)
 
     required_fragments = (
         "LATTE-3＋BNN/ML-DSA-44",
@@ -102,6 +104,14 @@ def main() -> int:
         "509.55秒准备",
         "约34.73 MiB",
         "18.87和4.59",
+        r"t_0+t_1h+t_2A_1=A'_2\pmod q",
+        r"R_{\mathrm{ID}}=R_0+\mathrm{id}_1R_1+\mathrm{id}_2R_2",
+        r"\mathsf{cert}_s=\mathsf{DS.Sign}",
+        r"M_h=[\,2A\mid Qj-2h\,]\pmod {2Q}",
+        r"[A,h]z=H_2(P,\rho,s,\eta,M')\pmod q",
+        r"L=\sqrt a I-",
+        "36414052字节",
+        "宿主挂载目录",
     )
     for fragment in required_fragments:
         checks.expect(f"required report fact: {fragment}", fragment in text)
@@ -144,6 +154,10 @@ def main() -> int:
                   f"A、B完整密文分别约{kib[0]} KiB和{kib[1]} KiB" in text)
     checks.expect("deployment baseline names explicit", "相对Windows源码，WSL安装包" in text)
     checks.expect("prepared state is process-local", "进程内保留的叶钥状态" in text)
+    checks.expect("Lai masks are fresh encryption randomness", "每次加密新采样短矩阵" in text)
+    checks.expect("C application capacity comes from IBS input", "3924字节应用上限则由IBS的4096字节" in text)
+    checks.expect("deployment uses a common WSL runtime", "三路实验均由同一WSL Sage/Python运行" in text)
+    checks.expect("same-wheel deployment ratio kept distinct", "同一wheel的两种位置对照则为17.88和4.45" in text)
 
     for token in ("github.com/youzi258", "youzi258", "/home/", "C:\\Users\\"):
         checks.expect(f"anonymous source excludes {token}", token not in text)
@@ -152,9 +166,19 @@ def main() -> int:
         int(number)
         for number in re.findall(r"^\\noindent\[(\d+)\]", text, flags=re.MULTILINE)
     ]
-    checks.expect("eight ordered references", reference_numbers == list(range(1, 9)), repr(reference_numbers))
+    checks.expect("eleven ordered references", reference_numbers == list(range(1, 12)), repr(reference_numbers))
     checks.expect("balanced TeX groups", text.count(r"\begingroup") == text.count(r"\endgroup"))
-    for environment in ("document", "titlepage", "minipage", "tabularx", "table", "tabular"):
+    for environment in (
+        "document",
+        "titlepage",
+        "minipage",
+        "tabularx",
+        "table",
+        "tabular",
+        "figure",
+        "tikzpicture",
+        "enumerate",
+    ):
         checks.expect(
             f"balanced {environment}",
             text.count(f"\\begin{{{environment}}}") == text.count(f"\\end{{{environment}}}"),
@@ -189,7 +213,7 @@ def main() -> int:
                 checks.expect(f"anonymous PDF excludes {token!r}", token not in payload)
 
     if args.submission_ready:
-        checks.expect("all six rewrite batches complete", False, "only batch 1 is complete")
+        checks.expect("all six rewrite batches complete", False, "only batches 1 and 2 are complete")
 
     if checks.failures:
         print(f"Competition report rewrite validation failed: {len(checks.failures)}/{checks.count} checks")
