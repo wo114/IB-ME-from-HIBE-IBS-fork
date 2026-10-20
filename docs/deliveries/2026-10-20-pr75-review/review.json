@@ -86,7 +86,7 @@
     "wsl_environment": "~/miniconda3/envs/sage",
     "omp_threads": 1,
     "openblas_threads": 1,
-    "portable_python": "3.12.14"
+    "packaging_python": "3.12.14"
   },
   "source_binding_check": {
     "status": "passed",
@@ -156,12 +156,13 @@
     "RSS samples are lower bounds for process-tree peaks; NTT counts do not measure heap memory",
     "No cross-security-target performance ranking or additional NIST level claim"
   ],
-  "sha256": {
-    "docs/deliveries/2026-10-20-pr75-review/evidence/final-common.xml": "59fbdd6654434d0e3c941837d46ef68a8adf2815e67491eec8629ec917d58c31",
-    "docs/deliveries/2026-10-20-pr75-review/evidence/provenance-final.xml": "661f3757ff37bd6d43f28211a3699bc27670f6061b406154b02817afbd1e71d9",
-    "docs/deliveries/2026-10-20-pr75-review/evidence/runtime-cache-integration.xml": "d382eb87ba3d8f6b40f64bf72c2fe0603a307a88d71e4c25b663c4b1b0e7ab28",
+  "git_file_sha256": {
+    "docs/deliveries/2026-10-20-pr75-review/evidence/final-common.xml": "4ee3f9c4af9d3078c0b49da86ff1fa44bdf8338c6b4dbf51e280c9c5be04a773",
+    "docs/deliveries/2026-10-20-pr75-review/evidence/provenance-final.xml": "acc2b1016581462efdcc5622637a4083c27da0698af81290c420ce98ca543b0c",
+    "docs/deliveries/2026-10-20-pr75-review/evidence/runtime-cache-integration.xml": "803748d2f9572d5199473a2ff64d0cdd5852668112cc3cb900df64195f80dfb2",
     "docs/deliveries/2026-10-20-pr75-review/verify_sources.py": "1c034b2f065433377526f9985fcbe2f828d22849aed7bb31432aba921ec7126d",
     "docs/research/2026-10-20-multi-backend-optimization/A.json": "8c9a4767595477569c46c9d8607a7674443d3933fda350d99deebff65df66976",
     "docs/research/2026-10-20-multi-backend-optimization/source-manifest.json": "37a60bdec5a232fbc9d9f6a019b6a0c06e3913e749730fff26a2ebae497cf3cc"
-  }
+  },
+  "hash_scope": "Git file blob bytes; excludes platform checkout newline conversions"
 }
