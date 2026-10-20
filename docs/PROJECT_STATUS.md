@@ -1,6 +1,6 @@
 # 当前进度与并行任务
 
-更新：2026-10-20。当前整理基线为远端 main `102e35f`（PR70）；本页只维护当前结论、负责人和下一步。逐轮提交、失败与复跑明细见各交付目录；整理前的全部文字保留在[历史快照](history/PROJECT_STATUS-through-2026-10-20.md)。找文件从[文档导航](README.md)进入。
+更新：2026-10-20。当前基线为远端 main `b9d219f`，已接收PR69／72并保留已合并PR71／74的独立记录；本页只维护当前结论、负责人和下一步。逐轮提交、失败与复跑明细见各交付目录；整理前的全部文字保留在[历史快照](history/PROJECT_STATUS-through-2026-10-20.md)。找文件从[文档导航](README.md)进入。
 
 ## 1. 已确认的组织方式
 
@@ -18,9 +18,9 @@
 
 | 代表 | 冻结组合与预算 | 已有实物 | 当前边界 |
 |---|---|---|---|
-| A：主演示 | [LATTE＋BNN/ML-DSA-44，64 KiB](deliveries/2026-10-19-report-three-selection/suites/A-latte-mldsa44.json) | 三根重复基准、安装CLI、跨进程恢复、Web实跑和部署消融 | 新随机批量记录在PR69，尚待接收；最终发布环境仍须复现 |
-| B：原生IBS对照 | [LATTE＋SRGG论文PARAM-I compact，128 KiB](deliveries/2026-10-19-report-three-selection/suites/B-latte-srgg-I-compact.json) | 完整功能矩阵及三根重复基准 | 旧64 KiB安装记录不能继承为本次128 KiB配置；精确配置CLI／wheel仍待 |
-| C：另一HIBE与环IBS | [Lai C2＋Sageloli RSIS v3 PARAM-I，8 MiB](deliveries/2026-10-19-report-three-selection/suites/C-lai-c2-sageloli-I.json) | 目标规模单根完整运行、四种身份情形及公开收据 | 安装恢复、有效外层下的内层负例和受预算约束的重复测量仍待；没有性能优势结论 |
+| A：主演示 | [LATTE＋BNN/ML-DSA-44，64 KiB](deliveries/2026-10-19-report-three-selection/suites/A-latte-mldsa44.json) | 重复基准、安装CLI、恢复、Web及部署消融；[A09批次](research/2026-10-19-primary-random-batch/README.md)3根／12配对／60项；[PR72](deliveries/2026-10-19-report-experiment-supplement/README.md)同机基准和0／32／1024／59191 B安装往返、长度／身份越界拒绝 | A09的Xeon／Nix批次与PR72的i9／Sage10.7分别记账；最终发布环境仍须复现 |
+| B：原生IBS对照 | [LATTE＋SRGG论文PARAM-I compact，128 KiB](deliveries/2026-10-19-report-three-selection/suites/B-latte-srgg-I-compact.json) | 功能矩阵、重复基准；[PR71精确安装](research/2026-10-20-report-b-installed/README.md)；PR72同机基准和0／32／1024／65364 B安装往返、越界和内层负例 | 两个独立安装批次不重复累计成同一性能基准；Web预设及最终发布复现仍待 |
+| C：另一HIBE与环IBS | [Lai C2＋Sageloli RSIS v3 PARAM-I，8 MiB](deliveries/2026-10-19-report-three-selection/suites/C-lai-c2-sageloli-I.json) | 目标规模、四身份场景；[PR74安装与空消息](research/2026-10-20-report-c-installed/README.md)；PR72补0／1024 B、越界、恢复和有效外层下内层拒绝，4次真实未缓存委派 | 多根重复和3924 B最大消息诚实解密仍未做；恢复委派需要新熵，无性能优势结论 |
 
 三代表是2种HIBE、3种IBS、5个原语后端、3个完整组合。Web现有的LATTE＋ML-DSA／Falcon／Luo三预设是另一集合。三代表的精确参数 profile 当前均为 `project-admitted/true/true`；这是[项目内部准入](deliveries/2026-10-19-project-admission/README.md)，不等同于完整组合获得外部 NIST 认证。mock、教学参数、公开攻击负控、仅投影和未交付后端仍为 `none/false/false`。
 
@@ -40,6 +40,9 @@
 
 | 接收内容 | 当前可引用的入口 |
 |---|---|
+| PR72：同机实验主表与必要补测 | [A/B各三根、三组精确安装和公开主表](deliveries/2026-10-19-report-experiment-supplement/README.md)。64条CLI与3个内层负例；原临时私有状态未能归档，历史恢复成功可引用，但不能移交原状态 |
+| PR71／74：B／C独立精确安装验收 | [B的15条CLI与新进程恢复](research/2026-10-20-report-b-installed/README.md)、[C的12条CLI与内层负例](research/2026-10-20-report-c-installed/README.md)。两PR已合并；与PR72在源码、环境和输入上分别记账 |
+| PR69：主演示随机多身份／消息批量 | [固定源码85a93e2、完整收据与只读复核](research/2026-10-19-primary-random-batch/README.md)。3个独立CSPRNG根，每根2×2身份配对，消息0／1／32／1024 B；60/60符合预期，无失败样本替换，不作为失败概率或跨方案排名 |
 | PR66、68：报告内容修正、三代表选择、LaTeX／PDF迁移 | [2026-10-20接收记录](deliveries/2026-10-20-pr66-68-reception/README.md)。两PR已合并；旧Word渲染失败诊断不再阻塞PDF交付，报告仍为WIP |
 | PR70：当前文档导航与历史分层 | 48个检查完成（46成功、2个严格安全手动项按设计跳过），已快进接收为main `102e35f`；旧项目进度文字只作历史快照 |
 | PR67：隔离数值研究原型 | [修复与23项实际测试](deliveries/2026-10-19-pr66-67-review/followup/README.md)。审定头`4fe3a93`合入`05373b2`；不记为Wang目标参数完成 |
@@ -53,11 +56,10 @@
 
 | 顺序 | 交付物 | 完成判据 |
 |---|---|---|
-| 1 | 三代表冻结配置的安装与功能证据收口 | 优先补B的128 KiB CLI／wheel、C的安装恢复和有效外层下内层负例；使用同一Suite，不能沿用不同预算的旧结果 |
-| 2 | 必要消息长度／边界、随机批次和有限重复 | PR69待审查；其提交数据暂不记入main完成项。接收后只补仍缺的场景；C的分钟级运行设置预算，不无限扩网格 |
-| 3 | 三代表可解释比较 | 同环境、输入、计时和资源口径才能计算排名或收益；保留各组实际目标。C目前展示结构与资源边界，不虚构优势 |
-| 4 | LaTeX报告最终收口 | 主稿已同步A／B／C、项目准入、接入现状与新表格，并重编28页A4 PDF逐页检查；在途补测只在审定后增量更新，再完成模板、匿名与许可收口 |
-| 5 | 来源许可、提交模板及发布复现 | 整理引用／代码许可、本届模板和匿名信息；源码、Suite、演示、收据和报告对应同一发布版本 |
+| 1 | C的必要最大长度和有限重复 | A/B最大长度及三组容量／身份越界已有PR72记录；C仍缺3924 B诚实往返及多根重复，按分钟级预算决定补测，不无限扩网格 |
+| 2 | 三代表可解释比较 | PR72已有同机A/B数据；保留各组实际目标，不按等安全排名。C目前展示结构与资源边界，不虚构优势 |
+| 3 | LaTeX报告正文与合入证据一致 | PR73已按本届官方模板完成版式、标志、匿名路径和30页PDF检查；下一轮增量同步PR69／71／72／74的新证据后重编复核 |
+| 4 | 来源许可与发布复现 | 官方空白模板和签字页已固定来源及指纹；继续整理引用／代码许可，确保源码、Suite、演示、收据和报告对应同一发布版本 |
 | 独立推进 | ABB10／CHKP／Wang的目标参数交付 | 由现负责人提交版本、参数、真实完整运行和资源数据；不阻塞已有三代表的作品收口 |
 
 以上是工程与交付欠项，不新增安全证明任务，也不要求全部候选先完成目标参数才能交作品。
@@ -75,13 +77,7 @@
 
 ### 在途PR
 
-| PR | 在途范围 | 当前处理 |
-|---|---|---|
-| [PR69](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/69) | 主演示随机多身份批量验收，头`3c039f9` | 未审定、未合并，不记入main完成项 |
-| [PR71](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/71) | B精确128KiB Suite的安装CLI／wheel及恢复证据，头`8e06a74` | CI尚在运行；与PR72的B安装验收有重叠，应先比较证据和工具再决定保留边界 |
-| [PR72](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/72) | A／B同机基准、三组安装与消息边界、内层签名负例，头`09c0c22` | CI尚在运行；公开收据记录了原批次的历史安全字段与私有状态未留存边界，未审定前不改写当前报告结论 |
-
-在途实验的原始收据保留运行当时的安全字段，不因后来的项目准入而改写；接收时应在当前文档明确区分历史收据与现行profile。相互重叠的安装证据不重复累加为独立结果。
+本轮接收PR69和PR72，PR71／74已经合并。[PR73](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/73)的接入扩展、安全字段及报告仍独立审查；本届官方模板、签字页、来源指纹和版式对齐也已加入该PR。按2026-10-20用户最新决定修订AGENTS与安全口径后接收，各历史批次的源码、收据和原字段不回写。
 
 ## 4. 当前入口与证据定位
 
