@@ -65,7 +65,7 @@ def read_pids(directory):
 
 def test_success_captures_outputs_without_claiming_lifecycle_or_argv(tmp_path):
     directory = tmp_path / "success"
-    result = subprocess.run(invocation(directory, "import sys; print('public-out'); print('public-err',file=sys.stderr)",
+    result = subprocess.run(invocation(directory, "import sys,time; print('public-out'); print('public-err',file=sys.stderr); time.sleep(.2)",
                                        extra=(SECRET, "/private/never-publish/key.bin")),
                             capture_output=True, text=True, timeout=10)
     assert result.returncode == 0
@@ -79,6 +79,9 @@ def test_success_captures_outputs_without_claiming_lifecycle_or_argv(tmp_path):
     public = result.stdout + result.stderr + "".join(p.read_text() for p in directory.iterdir())
     assert SECRET not in public and "/private/never-publish/key.bin" not in public
     assert "--max-rss-gib" not in public
+    # A live child is needed to make the sampled RSS assertion deterministic;
+    # the supervisor documents that an instantaneous child can exit between
+    # polls and therefore legitimately produce a zero sampled peak.
     assert data["rss_samples"] >= 1 and data["sampled_tree_rss_peak_bytes"] > 0
 
 
