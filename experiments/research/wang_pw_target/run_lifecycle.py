@@ -474,7 +474,8 @@ def run_one(params, index, args, recorder, private_directory):
             completed = subprocess.run(
                 [sys.executable, "-B", "-m", "experiments.research.wang_pw_target.sign_independent",
                  "--key-file", str(store.directory / "signing_key.bin"),
-                 "--message-file", str(message_file), "--signature-file", str(signature_file)],
+                 "--message-file", str(message_file), "--signature-file", str(signature_file),
+                 "--sampler", args.sampler],
                 stdin=subprocess.DEVNULL, capture_output=True, check=False)
             independent = safe_independent_receipt(completed.stdout)
             if completed.returncode != 0:
@@ -642,4 +643,5 @@ def main(argv=None):
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
 
