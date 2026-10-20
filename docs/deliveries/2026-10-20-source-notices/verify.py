@@ -1,6 +1,7 @@
 """Read-only upstream Git-source and release archive checks; no crypto execution."""
 import argparse
 import hashlib
+import io
 import json
 from pathlib import Path, PurePosixPath
 import subprocess
@@ -71,6 +72,20 @@ def verify(revision, archive=None, wheel=None):
     if wheel:
         with zipfile.ZipFile(wheel) as zipped:
             names = zipped.namelist()
+            package_files = [n for n in names if n.startswith(("ibme/", "experiments/"))
+                             and not n.endswith("/")]
+            require(bool(package_files), "wheel contains no package sources")
+            requests = "".join(revision + ":" + ("src/" + n if n.startswith("ibme/") else n)
+                               + "\n" for n in package_files).encode()
+            payload = io.BytesIO(subprocess.check_output(["git", "cat-file", "--batch"],
+                                                        input=requests, cwd=ROOT))
+            for name in package_files:
+                header = payload.readline().decode().split()
+                require(len(header) == 3 and header[1] == "blob" and header[2].isdigit(),
+                        "wheel package file is not in the declared commit: " + name)
+                raw = payload.read(int(header[2]))
+                require(payload.read(1) == b"\n" and raw == zipped.read(name),
+                        "wheel package source changed: " + name)
             count = 0
             for name, raw in sources.items():
                 if name.startswith("src/"):
@@ -83,6 +98,8 @@ def verify(revision, archive=None, wheel=None):
                 require(len(matches) == 1 and zipped.read(matches[0]) == blob(revision, name),
                         "wheel root notice missing or changed: " + name)
             result["wheel"] = dict(upstream_files_checked=count, root_notices_checked=2,
+                                   package_files_checked=len(package_files),
+                                   python_files_checked=sum(n.endswith(".py") for n in package_files),
                                    sha256=hashlib.sha256(Path(wheel).read_bytes()).hexdigest(),
                                    bytes=Path(wheel).stat().st_size)
     return result

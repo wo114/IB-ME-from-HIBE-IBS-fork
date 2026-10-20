@@ -31,6 +31,8 @@ git archive --format=zip --output ibme-source.zip HEAD
 
 该命令只导出指定提交。`export-ignore` 不改变工作目录或 Git 历史；直接复制目录、克隆仓库或其它打包方式不自动遵守它。包大小和文件数随提交变化，不沿用早期的 78 文件／约 2 MB 数字。作品平台的最终匿名提交件还须按[本届要求](docs/competition/2026/README.md)另行准备。
 
+构建 wheel 时，以固定提交归档的全新解压目录为源。切换分支后复用原工作目录的 `build/` 可能夹带另一分支文件；交付检查逐个比对包内源码与声明提交，不以构建成功或少数文件一致代替完整比对。
+
 精简源码包不含论文 PDF 缓存。核对论文缓存完整性的研究测试需要按论文索引获取其固定来源；这不影响包内代码和许可保留，也不表示这些缓存测试已在精简包中离线通过。打包复核命令及实际结果见[来源与归档检查](docs/deliveries/2026-10-20-source-notices/README.md)。
 
 当前实现和安全配置以 [README](README.md)、[PROJECT_STATUS](docs/PROJECT_STATUS.md) 及公共 registry 为准：已完成配置按用户决定采用 `secure/true/true`，已知不安全小参数、教学档、未完成项和历史快照分别记录。来源许可说明不代替参数记录或安全依据。

@@ -1,35 +1,4 @@
 {
-  "wheel": {
-    "status": "passed",
-    "source_commit": "5a997dd3b14788afa9df2823ced022dcffdd346d",
-    "upstream_files": 81,
-    "groups": [
-      {
-        "component": "LATTE native",
-        "files": 35
-      },
-      {
-        "component": "ML-DSA reference",
-        "files": 26
-      },
-      {
-        "component": "Falcon reference",
-        "files": 18
-      },
-      {
-        "component": "LATTE sampler research snapshot",
-        "files": 2
-      }
-    ],
-    "crypto_executed": false,
-    "private_state_opened": false,
-    "wheel": {
-      "upstream_files_checked": 79,
-      "root_notices_checked": 2,
-      "sha256": "a8b90d6a4dab754377ed6216defa5c757ee0c9c4509d7dc5860191dc920439c3",
-      "bytes": 2065895
-    }
-  },
   "negative_controls": [
     {
       "case": "before.zip",
@@ -86,7 +55,7 @@
     "os": "Windows",
     "dependencies": "Python standard library, Git, existing setuptools/wheel; no downloads"
   },
-  "status": "passed",
+  "status": "WIP: fresh exported-source wheel pending",
   "crypto_parameters_changed": false,
   "current_completed_config_security": "secure/true/true",
   "new_security_claim_or_attack": false,
@@ -125,5 +94,38 @@
     "Environment/container/native binary release dependency inventory when that distribution is built",
     "Final release version reproduction and competition identifier/anonymous submission review",
     "Paper-cache integrity tests require separately fetched fixed reference PDFs"
-  ]
+  ],
+  "initial_wheel_notice_only_check": {
+    "status": "passed",
+    "source_commit": "5a997dd3b14788afa9df2823ced022dcffdd346d",
+    "upstream_files": 81,
+    "groups": [
+      {
+        "component": "LATTE native",
+        "files": 35
+      },
+      {
+        "component": "ML-DSA reference",
+        "files": 26
+      },
+      {
+        "component": "Falcon reference",
+        "files": 18
+      },
+      {
+        "component": "LATTE sampler research snapshot",
+        "files": 2
+      }
+    ],
+    "crypto_executed": false,
+    "private_state_opened": false,
+    "wheel": {
+      "upstream_files_checked": 79,
+      "root_notices_checked": 2,
+      "sha256": "a8b90d6a4dab754377ed6216defa5c757ee0c9c4509d7dc5860191dc920439c3",
+      "bytes": 2065895
+    },
+    "scope": "License/upstream checks only; later full source guard rejects three extra package modules"
+  },
+  "stale_wheel_rejected": true
 }

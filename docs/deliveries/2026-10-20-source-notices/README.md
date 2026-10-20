@@ -14,7 +14,9 @@
 python docs/deliveries/2026-10-20-source-notices/verify.py --revision HEAD
 git archive --format=zip --output <本地忽略目录>/ibme-source.zip HEAD
 python docs/deliveries/2026-10-20-source-notices/verify.py --revision HEAD --archive <本地忽略目录>/ibme-source.zip
+# 将已核验归档解压至全新目录，进入该目录后执行下一条构建命令。
 python -m pip wheel . --no-deps --no-build-isolation --wheel-dir <本地忽略目录>/wheel
+# 以下检查由原Git工作区执行，并明确传入构建时的提交。
 python docs/deliveries/2026-10-20-source-notices/verify.py --revision HEAD --wheel <本地忽略目录>/wheel/ibme-0.1.0-py3-none-any.whl
 git diff --check
 ```
@@ -22,5 +24,7 @@ git diff --check
 脚本按声明的提交逐字节核对四份清单中的 81 个文件，随后核对源码包的 Git 提交标识、排除项和应保留项目／许可，或 wheel 中三组原生上游文件与根 NOTICE／LICENSE。它只读取公开 Git 对象和构建包，不访问真实密钥、不执行算法、不安装外部依赖。检查结果及完整文件列表随本目录的 `verification.json` 归档；打包结果只代表被核验的那个提交。
 
 基线归档实际仍含 24 份 `papers/` PDF；新归档为 0，原工作文件保留。81 个上游文件、源码包的 90 个必要文件、wheel 的 79 个原生上游文件及两份根许可声明均通过字节比对。另以无关提交的归档、加入占位 PDF 和缺失原许可的包检查拒绝行为，不使用实际私钥。各实际提交与包的摘要分别记录，不将先前包冒称最终发布版。
+
+WIP返工：首次工作树构建虽通过上述许可检查，全量包内源码复核随后发现 `build/` 中夹带另一分支的三个模块：`backend_optimization_probe.py`、`verify_backend_optimization.py`、`protocol/prepared.py`。该包不作新提交的合格安装包。已补充逐文件 Git blob 比对及全新归档目录构建要求，待新包完成后更新本目录结果；旧诊断保留，不能用删掉该检查来放行。
 
 当前已完成配置继续按用户决定安全，使用 `secure/true/true`；本批无新增参数、攻击、功能运行或安全等级声明，功能测试不能替代安全证明。环境／容器／原生二进制的最终发行依赖清单与作品编号、匿名复核和发布版本复现仍待完成。
