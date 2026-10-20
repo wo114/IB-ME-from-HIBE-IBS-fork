@@ -1,5 +1,6 @@
 """BNN certification conversion; independent of HIBE and the Wang protocol."""
 import threading
+from collections import OrderedDict
 
 from ibme.core.errors import EncodingError, RandomnessError, SerializationError
 from ibme.core.randomness import SecureRandom
@@ -15,11 +16,49 @@ class IssuancePending(RuntimeError):
 
 
 class CertifiedIBS:
-    def __init__(self, rng=None):
+    def __init__(self, rng=None, *, certificate_cache_entries=64):
         self.rng = SecureRandom() if rng is None else rng
         if not callable(getattr(self.rng, "read", None)):
             raise RandomnessError("certified IBS requires read(n) randomness")
         self._rng_lock = threading.Lock()
+        self._certificate_lock = threading.Lock()
+        self.configure_certificate_cache(certificate_cache_entries)
+
+    def configure_certificate_cache(self, capacity):
+        """Bound process-local public verification results; zero disables reuse."""
+        if type(capacity) is not int or not 0 <= capacity <= 256:
+            raise ValueError("certificate cache capacity must be in 0..256")
+        with self._certificate_lock:
+            self._certificate_capacity = capacity
+            self._certificates = OrderedDict()
+            self._certificate_hits = self._certificate_misses = 0
+
+    def clear_certificate_cache(self):
+        with self._certificate_lock:
+            self._certificates.clear()
+
+    def certificate_cache_info(self):
+        with self._certificate_lock:
+            return dict(capacity=self._certificate_capacity, entries=len(self._certificates),
+                        hits=self._certificate_hits, misses=self._certificate_misses)
+
+    def _certificate_valid(self, engine, pk, identity, signature):
+        # Cache the complete *public verification statement*, never a message
+        # signature or a result keyed only by an identity/context digest.
+        statement = (pk.params.base_algorithm, pk.authority_public,
+                     certificate_message(pk, identity, signature.user_public), signature.certificate)
+        with self._certificate_lock:
+            if statement in self._certificates:
+                self._certificate_hits += 1
+                self._certificates.move_to_end(statement)
+                return True
+            self._certificate_misses += 1
+            valid = engine.verify(*statement[1:]) is True
+            if valid and self._certificate_capacity:
+                self._certificates[statement] = None
+                while len(self._certificates) > self._certificate_capacity:
+                    self._certificates.popitem(last=False)
+            return valid
 
     def _seed(self):
         with self._rng_lock:
@@ -90,8 +129,7 @@ class CertifiedIBS:
                 or signature.context != pk.context):
             return False
         engine = ordinary(pk.params)
-        return bool(engine.verify(pk.authority_public, certificate_message(pk, identity, signature.user_public),
-                                  signature.certificate)
+        return bool(self._certificate_valid(engine, pk, identity, signature)
                     and engine.verify(signature.user_public, application_message(
                         pk, identity, signature.user_public, signature.certificate, message), signature.message_signature))
 
