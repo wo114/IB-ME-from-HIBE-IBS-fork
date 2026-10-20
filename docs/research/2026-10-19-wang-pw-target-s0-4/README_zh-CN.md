@@ -281,3 +281,52 @@ python -u -m experiments.research.wang_pw_target.run_guarded \
 规定WSL Sage的 [JUnit](evidence/continuation-failure/controller-tests.xml) 与 [pytest结果](evidence/continuation-failure/controller-tests.log)为 **84 passed / 0 failed/error/skip，4.510 s**，命令和两份实现源码的Git字节绑定见review。测试只用公开夹具，不生成真实根或调用目标采样；日志原件含混合编码WSL启动提示，保留在本地ignored outputs，公开副本从pytest进度段开始，截去199 B前缀并记录原件哈希。controller未部署、未执行；[包外公开验签脚本](evidence/continuation-failure/verify-reused-public.py)仅归档待用，也未执行n512验签。原钥续签先失败，因此没有启动后续链来补造通过结果。
 
 自动跟进已暂停，所有私密对象留在服务器；只取回公开回执和脱敏日志。[manifest](evidence/continuation-failure/manifest.json)绑定本批材料。原始同版本六阶段仍未完成，跨版本续跑也失败，目标任务保持WIP。本批形成本地提交，尚未推送或创建PR；beta>=q筛查拒绝及 `security_claim=none / backend_admitted=false / parameters_are_formal=false / nist_security_category=null` 保持不变。
+
+## 14. 独立签名阶段诊断（本地完成，目标仍 WIP）
+
+第13节的旧回执不能定位 `SamplingError`。本批在本地补充两层固定码：进程层
+`operation_stage` 区分读钥、解码、读消息、创建后端、签名、编码、观察和写盘；后端
+`sign_diagnostic` 只包含 `stage/failure_reason/native_code`，区分用户基构造、QR、
+固定GS门、委派公矩阵检查、盐与哈希、特解、native GPV、签名对象及最终验签。
+**stage 只说明最后进入哪个阶段，不表示该阶段通过。** native code 6 只是C++异常大类，
+仍不能单凭它推断 `std::bad_alloc`。
+
+直接stdout及父进程回执均重新检查固定白名单；动态异常类名、异常原文、额外诊断字段、
+路径、盐、系数和新增密钥统计不进入公开诊断。bool/float/字符串不冒充native整数码；
+诊断读取失败保留原失败类型。旧回执没有新增字段仍可读取，不补造历史阶段。
+每次签名重置诊断，返回字典与内部状态隔离，恶意/缺失异常属性不替换原异常。
+
+本批仅增加诊断，没有修改 `gaussian.cpp`、参数、随机源、采样选项、GS/范数门或重试策略。
+原两次失败及冻结服务器目录保持不变；本地诊断批次截至新增授权前未执行新的目标签名、
+未部署补丁、未恢复自动跟进；随后授权的单次服务器实跑见第15节。
+原始同版本六阶段、原钥独立签名、后续服务/组合/通用CLI目标验收仍未完成。
+本地代码测试与目标验收分开，详见本节的公开证据；安全字段和beta>=q筛查拒绝继续保留。
+
+两批本地测试共 **219项、无重叠、0失败/错误/跳过**：173项相关回归（JUnit
+39.147 s）与46项后端诊断（2.581 s）。[review](evidence/sign-diagnostics-local/review.json)、
+[独立归档审查](evidence/sign-diagnostics-local/independent-review.json)和
+[manifest](evidence/sign-diagnostics-local/manifest.json)绑定源码、JUnit及脱敏日志。
+与 `af11011` 的真实 `n=2/q=257/s0=4/threads=2` 夹具比较：两次冷/热缓存签名均
+536 B逐字节一致，RNG读取尺寸及字节、数值输入和交叉验签一致。首个自选夹具曾在旧后端
+Setup的原GS门被拒，原失败材料已保留；最终使用既有生命周期测试夹具，没有放宽门限。
+独立归档审查核7份实现文件对应 `ed10d6f`、5份算法/参数/编码文件未变、27份早期失败
+证据未变，逐项复核16份载荷的字节/hash。审查没有重跑采样，也不替代目标实跑。
+
+## 15. 单次原钥诊断续签（2026-10-20，运行中）
+
+用户在查看本地补丁后，明确允许**一次**原PK/SK诊断续签。冻结实现为
+`ed10d6f126fb5deb89692164d749b95d5512b0a6`；使用新的源码、公开输出和私密输出目录，
+归档82,913,280 B，SHA256 `3ff98d978b79b47c1ce6ea9b4f5f141df988728e7cc856a111620ad64fd56f61`，
+3387份普通文件解包后逐项匹配，原b47cc6a的18份环境绑定源码未变。现有native源码与库
+回执重新核对，未重建、未安装依赖，未生成Wang根或身份钥。
+
+[启动回执](evidence/diagnostic-launch/launch.json)记录北京时间 **13:05:48** 启动，
+监督器PID11850、创建时间1792472747.64，子签名进程PID11851、创建时间1792472747.70；
+维持 `n512/q4294967291/s0=4`、16线程、110 GiB/21600 s上限，失败即停，不自动重试。
+这里只授权这一次签名，没有启动第二签名、固定服务、组合或CLI后续链。
+
+[13:08:46快照](evidence/diagnostic-launch/monitor-130846.json)核两个进程均存活，
+监督器累计177.149 s，采样进程树RSS峰值41,275,936,768 B（约38.44 GiB），无超限/超时，
+子stdout/stderr均0 B，没有签名输出。这是运行中观察，不是最终峰值、阶段通过或签名成功。
+规范阶段/原因码目前尚未输出，不能据CPU时间、RSS或进程存活推断QR/GS门通过。
+最终仍需核子进程完整回执、观察项、资源/退出/清理、源码及原对象元数据稳定。
