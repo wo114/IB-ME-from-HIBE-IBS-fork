@@ -1,0 +1,333 @@
+{
+  "negative_controls": [
+    {
+      "case": "before.zip",
+      "result": "rejected",
+      "reason": "source archive commit mismatch"
+    },
+    {
+      "case": "bad-reference.zip",
+      "result": "rejected",
+      "reason": "reference material remains in source archive: ['papers/exclusion-control.pdf']"
+    },
+    {
+      "case": "missing-license.zip",
+      "result": "rejected",
+      "reason": "source archive missing required files: ['src/ibme/hibe/latte/native/upstream/LICENSE']"
+    },
+    {
+      "case": "actual stale working-tree wheel",
+      "result": "rejected",
+      "reason": "Package module absent from declared Git commit"
+    },
+    {
+      "case": "dedicated exporter existing output",
+      "result": "rejected",
+      "reason": "FileExistsError; original output retained"
+    }
+  ],
+  "schema": "ibme-source-notice-verification-v1",
+  "date": "2026-10-20",
+  "test_environment": {
+    "python": "3.12.14",
+    "os": "Windows",
+    "dependencies": "Python standard library, Git, existing setuptools/wheel; no downloads"
+  },
+  "status": "passed",
+  "crypto_parameters_changed": false,
+  "current_completed_config_security": "secure/true/true",
+  "new_security_claim_or_attack": false,
+  "commands": [
+    "python docs/deliveries/2026-10-20-source-notices/verify.py --revision 8dc1a81 --archive <ignored>/ibme-source-reviewed.zip",
+    "python docs/deliveries/2026-10-20-source-notices/verify.py --revision 5a997dd --wheel <ignored>/wheel/ibme-0.1.0-py3-none-any.whl",
+    "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir <ignored>/wheel",
+    "git diff --check",
+    "git archive --format=zip --output <ignored>/source-clean-55b4fa6.zip 55b4fa6",
+    "Extract the checked archive to a new empty directory; run python -m pip wheel . --no-deps --no-build-isolation there",
+    "python docs/deliveries/2026-10-20-source-notices/verify.py --revision 55b4fa6 --archive <ignored>/source-clean-55b4fa6.zip --wheel <ignored>/wheel-clean-55b4fa6/ibme-0.1.0-py3-none-any.whl"
+  ],
+  "modified_files": [
+    ".gitattributes",
+    "NOTICE.md",
+    "docs/PROJECT_STATUS.md",
+    "docs/deliveries/2026-10-20-source-notices/README.md",
+    "docs/deliveries/2026-10-20-source-notices/evidence/abb-source-recovery.xml",
+    "docs/deliveries/2026-10-20-source-notices/evidence/chkp-source-recovery.xml",
+    "docs/deliveries/2026-10-20-source-notices/export_source.py",
+    "docs/deliveries/2026-10-20-source-notices/verification.json",
+    "docs/deliveries/2026-10-20-source-notices/verify.py",
+    "docs/third-party-code.json"
+  ],
+  "commits": [
+    {
+      "commit": "da0a064214ac5c8ab784f6d23248e23bfe0d260b",
+      "message": "fix(release): preserve CI paper cache with a separate lean export"
+    },
+    {
+      "commit": "34b355705c7e14b80ba8e456bf00284077ef0906",
+      "message": "docs(release): bind the clean wheel to all packaged sources"
+    },
+    {
+      "commit": "55b4fa6c100b965c92fa85c5280d14560bbbfad6",
+      "message": "fix(release): reject wheel modules left by another branch"
+    },
+    {
+      "commit": "d50fac0cf0f4fa5be9c3edf0ac4dac9df4fa487a",
+      "message": "docs(release): archive source and wheel notice verification"
+    },
+    {
+      "commit": "8dc1a81fc81cdec4f6663125cc48f9dc6dc2fc7c",
+      "message": "fix(release): bind source archives to the reviewed commit"
+    },
+    {
+      "commit": "5a997dd3b14788afa9df2823ced022dcffdd346d",
+      "message": "docs(release): record upstream notices and exclude reference PDFs"
+    }
+  ],
+  "git_file_sha256": {
+    "NOTICE.md": "33ffc6a0d71e631cba71db9ccf9aa1ebf8c64451598a3a5066dd6565042e6800",
+    ".gitattributes": "6801e6f7ca3cdc0fadcdf10804b9d1779026f4bf8412c45968af1fa29b4f95d0",
+    "docs/third-party-code.json": "c7a13f84d358221173eb710e3c3f5b1484a413e83f61c410ebb1c09ce6c76506",
+    "LICENSE": "4c0836c695ab4bc4a0ec262bbae2a75f7f6295ef3d3882ae52fd777e70b0984d",
+    "docs/deliveries/2026-10-20-source-notices/export_source.py": "5fa0e2a997d06d46a651f6f35424ad3907aac456119afc13985b386184459e6f",
+    "docs/deliveries/2026-10-20-source-notices/evidence/abb-source-recovery.xml": "1e5821e503c66d92049544fb5b7677979afcdcb3e72f93b0cd90d08591c471c8",
+    "docs/deliveries/2026-10-20-source-notices/evidence/chkp-source-recovery.xml": "dad7ce7d781acb42016706d4c06b28ced851d7fe0c80a75738c641a6b8f4b9f6"
+  },
+  "remaining_work": [
+    "Environment/container/native binary release dependency inventory when that distribution is built",
+    "Final release version reproduction and competition identifier/anonymous submission review",
+    "Paper-cache integrity tests require separately fetched fixed reference PDFs"
+  ],
+  "initial_wheel_notice_only_check": {
+    "status": "passed",
+    "source_commit": "5a997dd3b14788afa9df2823ced022dcffdd346d",
+    "upstream_files": 81,
+    "groups": [
+      {
+        "component": "LATTE native",
+        "files": 35
+      },
+      {
+        "component": "ML-DSA reference",
+        "files": 26
+      },
+      {
+        "component": "Falcon reference",
+        "files": 18
+      },
+      {
+        "component": "LATTE sampler research snapshot",
+        "files": 2
+      }
+    ],
+    "crypto_executed": false,
+    "private_state_opened": false,
+    "wheel": {
+      "upstream_files_checked": 79,
+      "root_notices_checked": 2,
+      "sha256": "a8b90d6a4dab754377ed6216defa5c757ee0c9c4509d7dc5860191dc920439c3",
+      "bytes": 2065895
+    },
+    "scope": "License/upstream checks only; later full source guard rejects three extra package modules",
+    "package_source_consistent": false,
+    "accepted_as_release_wheel": false,
+    "stale_python_modules": [
+      "experiments/research/backend_optimization_probe.py",
+      "experiments/research/verify_backend_optimization.py",
+      "ibme/protocol/prepared.py"
+    ]
+  },
+  "stale_wheel_rejected": true,
+  "source_commit": "da0a064214ac5c8ab784f6d23248e23bfe0d260b",
+  "earlier_source_archive_check": {
+    "archive": {
+      "bytes": 20898248,
+      "excluded_reference_pdfs": true,
+      "files": 3334,
+      "retained_files_checked": 90,
+      "sha256": "adaa4081d8fdc6b1f594240eeb23fc072d0afabc5c6bd06d55a8a49bb16c31df"
+    },
+    "crypto_executed": false,
+    "groups": [
+      {
+        "component": "LATTE native",
+        "files": 35
+      },
+      {
+        "component": "ML-DSA reference",
+        "files": 26
+      },
+      {
+        "component": "Falcon reference",
+        "files": 18
+      },
+      {
+        "component": "LATTE sampler research snapshot",
+        "files": 2
+      }
+    ],
+    "private_state_opened": false,
+    "source_commit": "8dc1a81fc81cdec4f6663125cc48f9dc6dc2fc7c",
+    "status": "passed",
+    "upstream_files": 81
+  },
+  "ci_archive_regression": {
+    "old_head": "34b355705c7e14b80ba8e456bf00284077ef0906",
+    "cause": "Container actions/checkout downloads GitHub REST archive and applies export-ignore",
+    "abb_old_result": {
+      "passed": 245,
+      "failed": 10,
+      "skipped": 39
+    },
+    "chkp_old_result": {
+      "passed": 1095,
+      "failed": 2,
+      "skipped": 44
+    },
+    "global_pdf_exclusion_removed": true,
+    "default_archive_papers_restored": 24,
+    "paper_bytes_match_git": true,
+    "local_recovery_tests": [
+      {
+        "path": "evidence/abb-source-recovery.xml",
+        "passed": 27,
+        "failed": 0,
+        "skipped": 0
+      },
+      {
+        "path": "evidence/chkp-source-recovery.xml",
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0
+      }
+    ],
+    "new_remote_checks": "See GitHub PR76 checks at its reviewed final head; this receipt records local results",
+    "local_recovery_environment": {
+      "runtime": "WSL ~/miniconda3/envs/sage",
+      "sage": "10.9",
+      "python": "3.13.14",
+      "PYTHONPATH": "src:.",
+      "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "commands": [
+      "python -m pytest -q tests/test_abb_basis_representation.py tests/test_abb_tight_parameter_frontier.py",
+      "python -m pytest -q tests/test_chkp_leaf_cache_audit.py"
+    ]
+  },
+  "earlier_clean_export_build": {
+    "status": "passed",
+    "source_commit": "55b4fa6c100b965c92fa85c5280d14560bbbfad6",
+    "upstream_files": 81,
+    "groups": [
+      {
+        "component": "LATTE native",
+        "files": 35
+      },
+      {
+        "component": "ML-DSA reference",
+        "files": 26
+      },
+      {
+        "component": "Falcon reference",
+        "files": 18
+      },
+      {
+        "component": "LATTE sampler research snapshot",
+        "files": 2
+      }
+    ],
+    "crypto_executed": false,
+    "private_state_opened": false,
+    "archive": {
+      "files": 3335,
+      "retained_files_checked": 90,
+      "excluded_reference_pdfs": true,
+      "sha256": "69faa210a130bc651f7259b2dec4d1e4aa1a1964a27faf59b5c854dc589d5ef2",
+      "bytes": 20900919
+    },
+    "wheel": {
+      "upstream_files_checked": 79,
+      "root_notices_checked": 2,
+      "package_files_checked": 587,
+      "python_files_checked": 498,
+      "sha256": "75b4dacd42c318324a7a1d682fcead030a22731f66fab7b0ab2980789e1a1d39",
+      "bytes": 2054515
+    }
+  },
+  "clean_export_build": {
+    "status": "passed",
+    "source_commit": "da0a064214ac5c8ab784f6d23248e23bfe0d260b",
+    "upstream_files": 81,
+    "groups": [
+      {
+        "component": "LATTE native",
+        "files": 35
+      },
+      {
+        "component": "ML-DSA reference",
+        "files": 26
+      },
+      {
+        "component": "Falcon reference",
+        "files": 18
+      },
+      {
+        "component": "LATTE sampler research snapshot",
+        "files": 2
+      }
+    ],
+    "crypto_executed": false,
+    "private_state_opened": false,
+    "archive": {
+      "files": 3338,
+      "retained_files_checked": 91,
+      "excluded_reference_pdfs": true,
+      "sha256": "9c7785b8c329a277023fe411b444947a6203687da8478204061c0b2b7b172d85",
+      "bytes": 20905020
+    },
+    "wheel": {
+      "upstream_files_checked": 79,
+      "root_notices_checked": 2,
+      "package_files_checked": 587,
+      "python_files_checked": 498,
+      "sha256": "98d44813b997a04e766910aa32aab07ff2bcd4caf129b735628319c00656730a",
+      "bytes": 2054598
+    },
+    "dedicated_export": {
+      "status": "exported",
+      "source_commit": "da0a064214ac5c8ab784f6d23248e23bfe0d260b",
+      "files": 3338,
+      "excluded_reference_files": [
+        "papers/2006_generic_ibs_galindo.pdf",
+        "papers/2008_gpv_trapdoors_full.pdf",
+        "papers/2009_generating_shorter_bases_alwen_peikert_full.pdf",
+        "papers/2010_bonsai_trees_cash.pdf",
+        "papers/2010_lattice_basis_delegation_agrawal.pdf",
+        "papers/2010_lattice_hibe_standard_agrawal.pdf",
+        "papers/2011_lattice_trapdoors_micciancio.pdf",
+        "papers/2011_peikert_parallel_gaussian_author.pdf",
+        "papers/2015_ideal_lattice_trapdoors_lai.pdf",
+        "papers/2016_ntru_ibs_xie.pdf",
+        "papers/2020_falcon_spec_fouque.pdf",
+        "papers/2020_ideal_lattice_hibe_zhang.pdf",
+        "papers/2021_short_ibs_pan.pdf",
+        "papers/2022_identity_matchmaking_wang.pdf",
+        "papers/2023_shorter_faster_ibs_sageloli.pdf",
+        "papers/2023_tightly_secure_ibs_foo.pdf",
+        "papers/2024_ibs_without_trapdoors_luo.pdf",
+        "papers/2024_ml_dsa_fips204.pdf",
+        "papers/2024_quantum_safe_hibe_zhao.pdf",
+        "papers/2025_adaptive_hibe_goyal.pdf",
+        "papers/2025_efficient_ibs_jia.pdf",
+        "papers/2026_ibs_ibme_yu.pdf",
+        "papers/crystal队作品设计报告.pdf",
+        "papers/有刺无刺+作品报告.pdf"
+      ]
+    },
+    "default_archive_reference_pdfs": 24,
+    "default_reference_bytes_match_git": true
+  },
+  "final_export_command": "python docs/deliveries/2026-10-20-source-notices/export_source.py --revision da0a064 --output <ignored>/source-clean-da0a064.zip"
+}
