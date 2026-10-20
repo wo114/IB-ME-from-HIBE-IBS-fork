@@ -43,7 +43,7 @@
 | PR77：作品报告重写审核稿 | [重写指导意见](reports/2026-10-20-revision-review/README.md)明确保留官方版式与证据基础、整体替换正文，不再按旧稿句级润色；当前LaTeX／PDF尚未执行重写，不能把审核稿完成记为成稿完成 |
 | PR76：来源许可与精简发布包 | [来源、上游声明及归档复核](deliveries/2026-10-20-source-notices/README.md)已进入主线；最终发行依赖清单和同版本发布复现仍待 |
 | PR73：公共登记扩展与当前安全标记／报告 | 已完成方案按用户决定默认安全，历史收据兼容；SRGG精确有理数实现上限修复，报告使用本届官方模板；见[本轮接收](deliveries/2026-10-20-pr69-74-review/README.md) |
-| PR75：准备复用与完整流程优化 | [首轮返工](deliveries/2026-10-20-pr75-review/README.md)及[五组同安装数据、成本表与图](research/2026-10-20-multi-backend-optimization/README.md)齐全；本分支同步PR76／77主线后进行最终审查。C单根会话摊销、Luo相同随机流控制和归档安装b4b31d8分别记账，发布版精确复现另列 |
+| PR75：准备复用与完整流程优化 | [首轮返工](deliveries/2026-10-20-pr75-review/README.md)及[五组同安装数据、成本表与图](research/2026-10-20-multi-backend-optimization/README.md)齐全；[最终审查](deliveries/2026-10-20-pr75-final-review/README.md)已通过本地定向回归，待精确头CI与远端合并。C单根会话摊销、Luo相同随机流控制和归档安装b4b31d8分别记账，发布版精确复现另列 |
 | PR72：同机实验主表与必要补测 | [A/B各三根、三组精确安装和公开主表](deliveries/2026-10-19-report-experiment-supplement/README.md)。64条CLI与3个内层负例；原临时私有状态未能归档，历史恢复成功可引用，但不能移交原状态 |
 | PR71／74：B／C独立精确安装验收 | [B的15条CLI与新进程恢复](research/2026-10-20-report-b-installed/README.md)、[C的12条CLI与内层负例](research/2026-10-20-report-c-installed/README.md)。两PR已合并；与PR72在源码、环境和输入上分别记账 |
 | PR69：主演示随机多身份／消息批量 | [固定源码85a93e2、完整收据与只读复核](research/2026-10-19-primary-random-batch/README.md)。3个独立CSPRNG根，每根2×2身份配对，消息0／1／32／1024 B；60/60符合预期，无失败样本替换，不作为失败概率或跨方案排名 |

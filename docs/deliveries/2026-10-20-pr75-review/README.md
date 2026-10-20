@@ -1,4 +1,6 @@
-# PR75 审查与返工（WIP）
+# PR75 首轮审查与返工（历史WIP）
+
+本页保留首轮固定版本记录。后续五组数据已经补齐，当前接收结论见[最终审查](../2026-10-20-pr75-final-review/README.md)，不再以本页的旧缺项判断当前PR。
 
 2026-10-20。审查原头 `938dd8e9c2ed7137abbdc80aa48ed81d96423cfe`；本次接收代码与安全字段兼容修复，不将尚缺的四组实验计为完成。[PR75](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/75)保留草稿，待原负责人补齐 B／C／Luo／Falcon 的安装版完整流程消融、准备及状态／内存成本后再作合并判断。当前进度统一见[PROJECT_STATUS](../../PROJECT_STATUS.md)。
 
