@@ -1,5 +1,7 @@
 # 当前进度与并行任务
 
+**Wang原根复用验收准备（2026-10-20，本地`f56e488`）**：[管理导入、独立恢复与组合复用](research/2026-10-19-wang-pw-target-s0-4/README_zh-CN.md#9-原根复用的后续验收准备本地完成目标规模未执行)保留`imported/issued`来源，禁用新Wang Setup/Extract；定向服务/随机源64项通过，真实LATTE作者档＋Wang debug复用驱动4项通过，随后错误回执白名单2项通过，计数不累加。目标原始64 B二进制身份保持，专用研究驱动串行11进程且仅新增一次签名；通用`ibme.cli`的n512实测仍未完成。服务器仍跑冻结`b47cc6a`单根，快照时Setup已通过536.6 s、正在Extract、采样峰值34.268 GiB；未改运行源码、未重抽、未执行目标复用任务。正式参数及安全字段不变。
+
 **Wang服务器验收增量（2026-10-20）**：源码冻结 `b47cc6a`，完整 schema-2 环境、固定 estimator 与两套 native 验收通过；[当前服务器 JUnit](research/2026-10-19-wang-pw-target-s0-4/evidence/server-resume/server-tests.xml)为 231 passed / 0 failed / 0 errors / 0 skipped，61.37 s。当前三根 q257 与单根 q32 独立进程恢复签名均通过，[启动前核对](research/2026-10-19-wang-pw-target-s0-4/evidence/server-resume/target-launch-preflight.json)后才启动 n512。主档单根、16线程、110 GiB / 21600 s，运行中；早期运行快照不作为最终结果或峰值。
 
 **Wang–PW独立s0=4研究后端（2026-10-20）**：[本批实现与实测](research/2026-10-19-wang-pw-target-s0-4/README_zh-CN.md)新增`wang-pw-target`，与旧q17 `wang-pw`及PR67数值原型并存，仍按同一条Wang–PW算法路线计数。独立五方法、H1/H2与PW盐绑定、整数方程/公开范数验签、C++有限整数Gaussian/GPV、严格对象、固定发钥服务、registry与CLI已实现。服务器核心环境下182项测试、n2/q257三个CSPRNG根与n4/q4294967291磁盘恢复已有收据；本地另通过真实native固定服务的子进程初发／零熵缓存恢复／恢复签验，以及[真实LATTE作者档＋Wang debug的16步独立进程CLI](../tests/test_wang_pw_target_combination_process.py)。后者在仅公开状态＋对应sender或receiver密钥、无msk的新目录完成新加密和恢复解密，并拒绝三种身份错配、位翻转、截断及追加。旧同进程32项组合、服务器测试与本地新进程验证分别记账，不相加冒充多根目标基准。

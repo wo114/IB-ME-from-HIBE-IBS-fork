@@ -183,3 +183,22 @@ python -u -m experiments.research.wang_pw_target.run_guarded \
 ```
 
 监督器回执的 `lifecycle_complete=null` 保持“未评估”：子进程正常退出本身不证明完成全部算法，必须另外检查生命周期 JSON 的实际阶段与状态。
+
+## 9. 原根复用的后续验收准备（本地完成，目标规模未执行）
+
+本地后续源码为 `f56e488`，由三个提交组成：`c2cb2c9`（显式管理导入与来源持久化）、`7b728f3`（随机源失败负例）、`f56e488`（独立进程真实组合复用驱动）。**服务器原主档仍使用 `b47cc6a`，没有修改运行目录、增加第二个 n512 根或重新发钥。** [本批运行快照与审查](evidence/reuse-preparation/review.json)取得时总运行约 1367.6 s，已完成 Setup 536.625661122 s，处于 Extract，整树采样峰值 36794908672 B（约 34.268 GiB）；这仍不是最终性能或完整成功。服务器 13 份绑定源码与原运行记录逐项核对无变化，原记录又与本地冻结 Git blob 相符。
+
+本批实现和测试文件如下；未改变原算法、数学参数或采样器：
+
+- [固定服务](../../../src/ibme/ibs/wang_pw_target/service.py)新增 `adopt_existing` 与 `key_origin`。导入保留 `imported` 状态，原服务首次发出的钥仍是 `issued`；二者在磁盘恢复后可区分。导入按规范编码检查根、身份、参数和精确密钥方程，不认证其原始采样分布或 GS 质量。
+- [服务复用驱动](../../../experiments/research/wang_pw_target/run_reused_service.py)分别提供 adopt/recover 命令。两次独立解释器禁用 Setup、Extract 和密码学采样入口，核恢复后的完整密钥字节与原件相同，快照不变。导入证明管理操作及固定复用，不将原始 Backend 的发钥历史改写为服务完成。
+- [真实组合复用驱动](../../../experiments/research/wang_pw_target/run_reused_combination.py)使用公开 SuiteRuntime/协议对象，保持原始二进制身份及规范 PK/SK，仅新建 LATTE 作者档根与两个接收钥。11 个顺序独立进程共新增一次 Wang 签名；同一密文覆盖诚实收发、重启恢复、三个身份错配、位翻转、截断、追加与有效新 OTS 替换拒绝。各角色只有公开状态与自己的钥，无主密钥。
+- 测试为 `test_wang_pw_target_adoption.py`、`test_wang_pw_target_reused_service.py`、`test_wang_pw_target_random_failures.py` 和 `test_wang_pw_target_reused_combination.py`；驱动调用说明补在[实验 README](../../../experiments/research/wang_pw_target/README.md)。
+
+规定 WSL Sage 环境运行 `python -B -m pytest -q -p no:cacheprovider tests/test_wang_pw_target_adoption.py tests/test_wang_pw_target_reused_service.py tests/test_wang_pw_target_random_failures.py tests/test_wang_pw_target_service.py --junitxml=...`：[64 passed / 0 failure/error/skip，23.86 s](evidence/reuse-preparation/reuse-and-random-tests.xml)。其中随机源测试覆盖错误类型、短读、长读及异常；仅在测试子进程 LD_PRELOAD 注入 OpenSSL `RAND_bytes` 失败，真实 Gaussian/GPV 明确中止、无重试或样本返回，未更改生产 ABI/库。
+
+真实 LATTE 作者档＋Wang 非安全 n2/q257/s0=4 的新驱动及故障测试为 [4 passed，64.83 s](evidence/reuse-preparation/reused-combination-local.log)；该实际命令未启 JUnit，未为补证据重复运行或补造 XML。随后收紧失败类型白名单，相关两项 [2 passed / 2 deselected，1.75 s](evidence/reuse-preparation/reuse-child-failures.xml)。这些计数存在重叠，不相加为总覆盖，也不与服务器早批 231 项累加。
+
+新驱动是**专用研究命令行＋公开组合 API**。通用 `ibme.cli` 只接受可打印 UTF-8，不能表示主档已经绑定的二进制身份，因此尚未完成通用 CLI 的 n512 实测；不能把身份换成 Alice 或十六进制文本冒充同一把钥。原始主档的六阶段成功也不自动证明目标固定服务或完整组合成功。等待原主档终止后，才能在外部资源监督下串行执行这些目标复用任务；失败保留回执，不重抽根、重新发钥或放宽门限。
+
+本批六份公开材料由[manifest](evidence/reuse-preparation/manifest.json)绑定，另存原始运行快照，不覆盖早期启动证据；没有上传私密状态、密钥、盐、实际签名或本机原生库。正式参数的配置参考包络 β≥q 拒绝仍在，none/false/false/null 不变；研究代码与小规模组合通过不升级参数准入。
