@@ -43,7 +43,7 @@ def signer(monkeypatch, capsys):
     class Backend:
         last_metrics = {}
 
-        def __init__(self):
+        def __init__(self, **kwargs):
             step("create-backend")
 
         def sign(self, restored, message):
@@ -182,3 +182,4 @@ def test_parent_normalizes_unstructured_diagnostic(diagnostic):
 def test_old_receipts_do_not_acquire_invented_diagnostic_fields():
     child = dict(schema=run_lifecycle.INDEPENDENT_SCHEMA, status="failed", failure_type="SamplingError")
     assert run_lifecycle.safe_independent_receipt(json.dumps(child)) == child
+
