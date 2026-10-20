@@ -1,0 +1,2307 @@
+{
+  "execution_cwd": "/tmp",
+  "fixed_source_files": {
+    "experiments/benchmark.py": {
+      "sha256": "2fee987536f00e3a235dbb0b9792717c1dbe0844503d359773ee9987e88b968c",
+      "source_path": "experiments/benchmark.py"
+    },
+    "experiments/research/a_framework_cli_replay.py": {
+      "sha256": "1a5d15a92f19dbfcd026e77df709741a2cc5f69e3182c75f6c860a31a9cf2750",
+      "source_path": "experiments/research/a_framework_cli_replay.py"
+    },
+    "experiments/research/audit_chkp_delivery.py": {
+      "sha256": "3557166faf770373ee1a9172453f25b13b97ba8ed64131c748e9ec26c65bc073",
+      "source_path": "experiments/research/audit_chkp_delivery.py"
+    },
+    "experiments/research/audit_luo_abort_delivery.py": {
+      "sha256": "4b4af0f58e815c23a4a1e4b83b922226b699abb18307ebdb5f95f5cdbd3f3cc1",
+      "source_path": "experiments/research/audit_luo_abort_delivery.py"
+    },
+    "experiments/research/audit_luo_acceptance_evidence.py": {
+      "sha256": "78fb70cfce218aefed98edc7ad8dab479b6fd4f5e26e2bf15627a681cedc5a33",
+      "source_path": "experiments/research/audit_luo_acceptance_evidence.py"
+    },
+    "experiments/research/audit_luo_c64b_delivery.py": {
+      "sha256": "5c48b29c8ffcb3f004753ed3adf6caa167c61ca043dd4a334ff53936f696f0fd",
+      "source_path": "experiments/research/audit_luo_c64b_delivery.py"
+    },
+    "experiments/research/audit_luo_c64b_selection.py": {
+      "sha256": "19ea7b203240b03115661747c8dd1e449b2bb292ee9525c9215e07628d7fb1a3",
+      "source_path": "experiments/research/audit_luo_c64b_selection.py"
+    },
+    "experiments/research/audit_luo_candidate_probe.py": {
+      "sha256": "a7ae517cfc4007fd908d15fe1f8ea398cdc35d08710e99c51d7d23a32c2023a8",
+      "source_path": "experiments/research/audit_luo_candidate_probe.py"
+    },
+    "experiments/research/audit_luo_lifecycle.py": {
+      "sha256": "c456e66c69bcda302f89b96fad73eedcbfe29a42a9a562bfce51ee10ddbf930e",
+      "source_path": "experiments/research/audit_luo_lifecycle.py"
+    },
+    "experiments/research/blocked_3m_probe.py": {
+      "sha256": "75a5d5ac8dc692d5bab7065ba7e20b1c3a7317af7538a4e14dbaa1509c19a985",
+      "source_path": "experiments/research/blocked_3m_probe.py"
+    },
+    "experiments/research/blocked_3m_projection.py": {
+      "sha256": "37d78f007ca692e3c56cf62b41610af3f9c1c94c3fcbb025a2848c0ef0ae65e5",
+      "source_path": "experiments/research/blocked_3m_projection.py"
+    },
+    "experiments/research/blocked_3m_reference.py": {
+      "sha256": "335cdcc5ef1243e9e262cb07fa7d428ad7432b4ffe0fa4e9fba6932df788ea22",
+      "source_path": "experiments/research/blocked_3m_reference.py"
+    },
+    "experiments/research/c_framework_cli_probe.py": {
+      "sha256": "33b31545dd5e1edd7abdf1c42105175dc6524bebf7a1091050873a7962943a42",
+      "source_path": "experiments/research/c_framework_cli_probe.py"
+    },
+    "experiments/research/candidate_catalog.py": {
+      "sha256": "05728f797456b343c4f5a08134b9b71e53e5fe8a8eb538cbb53e2c8e3d96c204",
+      "source_path": "experiments/research/candidate_catalog.py"
+    },
+    "experiments/research/candidate_preflight.py": {
+      "sha256": "88efc48fa03eef27642c9e34c9b87f146ae47153a8ad37edb4a48b187fb6f4d6",
+      "source_path": "experiments/research/candidate_preflight.py"
+    },
+    "experiments/research/candidates/lai/backend.py": {
+      "sha256": "ea3a5d03944ff0f6d33eac1329bf56399a6ecce52b29a3a4b64828c2e2e30071",
+      "source_path": "experiments/research/candidates/lai/backend.py"
+    },
+    "experiments/research/candidates/lai/qualification.py": {
+      "sha256": "93fc41c16aacfd7aa679256ffe9eabbeac5542938d2970a8330216366a138268",
+      "source_path": "experiments/research/candidates/lai/qualification.py"
+    },
+    "experiments/research/candidates/lai/security_estimate.py": {
+      "sha256": "622c240463888d6ebd40c43d554d0eb3389f1f057e7109ab810350844f595c68",
+      "source_path": "experiments/research/candidates/lai/security_estimate.py"
+    },
+    "experiments/research/candidates/lai/target_byteauth_negative.py": {
+      "sha256": "721a2ed286ea6f91658737d76800b9307671e176aec1ecca6ca37373087bc76c",
+      "source_path": "experiments/research/candidates/lai/target_byteauth_negative.py"
+    },
+    "experiments/research/candidates/lai/target_c2_receipt.py": {
+      "sha256": "abcc19b2b9dcbe60266f956cb0a3bdd35d4ac7df57b919c9454442409f6a7bb3",
+      "source_path": "experiments/research/candidates/lai/target_c2_receipt.py"
+    },
+    "experiments/research/candidates/lai/target_negative.py": {
+      "sha256": "9659a8b0270fda831dd2ec535e44ed6bf6f2719991488c8c8938a7681e1b5b20",
+      "source_path": "experiments/research/candidates/lai/target_negative.py"
+    },
+    "experiments/research/candidates/lai/target_parameters.py": {
+      "sha256": "844c236eb8af588b08658b54d0400fe52d5ff86a2799eb44f9767b2df9d89d80",
+      "source_path": "experiments/research/candidates/lai/target_parameters.py"
+    },
+    "experiments/research/candidates/lai/target_probe.py": {
+      "sha256": "22f07efe61a08dfc023ace7c1b54087bcc5df5b7b2ed162c9277eb1544dadc22",
+      "source_path": "experiments/research/candidates/lai/target_probe.py"
+    },
+    "experiments/research/candidates/sageloli/__init__.py": {
+      "sha256": "7b2e62bfa09b340f2824ccc143d591ff93d25345707fa675b388a4bc115c7cc3",
+      "source_path": "experiments/research/candidates/sageloli/__init__.py"
+    },
+    "experiments/research/candidates/sageloli/algebra.py": {
+      "sha256": "f050d5351226efdd4fe2a3caa763f357e2a270964efd8062ef7a49649738f048",
+      "source_path": "experiments/research/candidates/sageloli/algebra.py"
+    },
+    "experiments/research/candidates/sageloli/backend.py": {
+      "sha256": "53ee327ee7894fadfdd7847a1896c0f72f2d501eaf666537cffcda98e5a6646f",
+      "source_path": "experiments/research/candidates/sageloli/backend.py"
+    },
+    "experiments/research/candidates/sageloli/codec.py": {
+      "sha256": "ea2f925ad61de0a66cf409d5b4f3a2ba5cb0b5c421588ae86a660fc5d30014b5",
+      "source_path": "experiments/research/candidates/sageloli/codec.py"
+    },
+    "experiments/research/candidates/sageloli/config.py": {
+      "sha256": "bf906cbf299cd8ee50561c572ea1db184dd1ce95bb447b962a50f58a62a4e9d6",
+      "source_path": "experiments/research/candidates/sageloli/config.py"
+    },
+    "experiments/research/candidates/sageloli/hashing.py": {
+      "sha256": "b99d8bc5190c176f3f86b950cc3bc601b38309793b4ad6637b06c83d72eb8384",
+      "source_path": "experiments/research/candidates/sageloli/hashing.py"
+    },
+    "experiments/research/candidates/sageloli/objects.py": {
+      "sha256": "f2dc7727a704314f54933504c3a99ed4093c993c83639686543f16f7cd025356",
+      "source_path": "experiments/research/candidates/sageloli/objects.py"
+    },
+    "experiments/research/candidates/sageloli/probe.py": {
+      "sha256": "c394ebae943c81b2fbfbe73a850e00dc076029d7b3fdd5e3d63d9c851df4ad69",
+      "source_path": "experiments/research/candidates/sageloli/probe.py"
+    },
+    "experiments/research/candidates/sageloli/ring/__init__.py": {
+      "sha256": "ef79dffe2216f969d6f1324d857f19a59710a1acc498219b7ea9dcab7576c457",
+      "source_path": "experiments/research/candidates/sageloli/ring/__init__.py"
+    },
+    "experiments/research/candidates/sageloli/ring/backend.py": {
+      "sha256": "037a12812690850fa606ee45bd9f90950ef3cd1ff8121593fb1577b1b302fa8e",
+      "source_path": "experiments/research/candidates/sageloli/ring/backend.py"
+    },
+    "experiments/research/candidates/sageloli/ring/codec.py": {
+      "sha256": "cc57e28d90d0a5a250413abf6cb154b361be429b4378992507ec766a3b301461",
+      "source_path": "experiments/research/candidates/sageloli/ring/codec.py"
+    },
+    "experiments/research/candidates/sageloli/ring/gaussian.py": {
+      "sha256": "2046c71dccd86d594daaea3509212bed0c9faa31f1014accd56a2a97e73cb3a5",
+      "source_path": "experiments/research/candidates/sageloli/ring/gaussian.py"
+    },
+    "experiments/research/candidates/sageloli/ring/issuer.py": {
+      "sha256": "9874c2853e28cbc1259f5b3e193ffc22651da31b1719f300bb0878d6f6693fa0",
+      "source_path": "experiments/research/candidates/sageloli/ring/issuer.py"
+    },
+    "experiments/research/candidates/sageloli/ring/native.cpp": {
+      "sha256": "6435583f03d753c103962c85c7724b8ae9fb319dda1684c5e3265610afdd15ac",
+      "source_path": "experiments/research/candidates/sageloli/ring/native.cpp"
+    },
+    "experiments/research/candidates/sageloli/ring/native.py": {
+      "sha256": "b4d68e3382f35fb9af02e29efd1942e41f17e72b6908fdf117855466cd15cc41",
+      "source_path": "experiments/research/candidates/sageloli/ring/native.py"
+    },
+    "experiments/research/candidates/sageloli/ring/objects.py": {
+      "sha256": "bb2fa54630129fa9bdec3a665848729c48797151da2b74d61404809f03a433a3",
+      "source_path": "experiments/research/candidates/sageloli/ring/objects.py"
+    },
+    "experiments/research/candidates/sageloli/ring/params.py": {
+      "sha256": "e37e4c68625f18c6b8a2fbab9e1df89728c90407f39c6a4b2d84c03a67a3659b",
+      "source_path": "experiments/research/candidates/sageloli/ring/params.py"
+    },
+    "experiments/research/candidates/sageloli/ring/run.py": {
+      "sha256": "be4e247786ab3cdabd74e3691f336796f0f6d655c64bd2e3c75df441b9284bd8",
+      "source_path": "experiments/research/candidates/sageloli/ring/run.py"
+    },
+    "experiments/research/candidates/sageloli/ring/spectral.py": {
+      "sha256": "7d34fccba6c447731126755f6c5e7c1fa51c04a7171089d3ace487acdb0d9368",
+      "source_path": "experiments/research/candidates/sageloli/ring/spectral.py"
+    },
+    "experiments/research/candidates/sageloli/rsis.py": {
+      "sha256": "6677d35d328ebb96036c11f5550eae812a69f695b7db444e33a288dddb679321",
+      "source_path": "experiments/research/candidates/sageloli/rsis.py"
+    },
+    "experiments/research/candidates/sageloli/sampling.py": {
+      "sha256": "3defafc05cdf236c4026264188f094f86271ed083356fbd06a70eb09161074d4",
+      "source_path": "experiments/research/candidates/sageloli/sampling.py"
+    },
+    "experiments/research/candidates/sageloli/service.py": {
+      "sha256": "92763134b396aade921e74c0f68cae0537825bd7b865c2c9fc513d0d2727a684",
+      "source_path": "experiments/research/candidates/sageloli/service.py"
+    },
+    "experiments/research/candidates/sageloli/sis.py": {
+      "sha256": "229a1fbc60b3d57f0be3bc863a33c31d938983c1302cc26aa378704847d86126",
+      "source_path": "experiments/research/candidates/sageloli/sis.py"
+    },
+    "experiments/research/candidates/sageloli/uniform.py": {
+      "sha256": "078a239cf1a9928edc90b85a9568155b82af5ca11d7f70e6c46a110e53b76e35",
+      "source_path": "experiments/research/candidates/sageloli/uniform.py"
+    },
+    "experiments/research/candidates/sageloli/width_check.py": {
+      "sha256": "d9088d2f45accd1e2f17a27c30e97fed1e3878c12518063da4e17e04d78de264",
+      "source_path": "experiments/research/candidates/sageloli/width_check.py"
+    },
+    "experiments/research/candidates/srgg/aggregate_budget.py": {
+      "sha256": "ade4d313fefe5973030ac6ae29b4eb40bce83b440b7b8dee342ec789466b9a20",
+      "source_path": "experiments/research/candidates/srgg/aggregate_budget.py"
+    },
+    "experiments/research/candidates/srgg/algebra.py": {
+      "sha256": "da04d7b4198a7442dd35889edc73b4f8fa29aec93bb04418ab2dfde9c590c68b",
+      "source_path": "experiments/research/candidates/srgg/algebra.py"
+    },
+    "experiments/research/candidates/srgg/audit.py": {
+      "sha256": "08fa57bfd37f5beef884d37a724073fb65dcf12c42f54bcb61ca6a6832f09b58",
+      "source_path": "experiments/research/candidates/srgg/audit.py"
+    },
+    "experiments/research/candidates/srgg/backend.py": {
+      "sha256": "41088d067f534872997d241fec8f010221b30293cb50f2356ec1fe73aef890e2",
+      "source_path": "experiments/research/candidates/srgg/backend.py"
+    },
+    "experiments/research/candidates/srgg/benchmark_process.py": {
+      "sha256": "c2aa2f7ce89b72ee9ac68189c2f66bcb8fae632687d1425f7597b602228506fc",
+      "source_path": "experiments/research/candidates/srgg/benchmark_process.py"
+    },
+    "experiments/research/candidates/srgg/bounded_classical_cost.py": {
+      "sha256": "82444fa081e07a51ebabae642e55341fc407b3479e7cca8414c768d439c9674a",
+      "source_path": "experiments/research/candidates/srgg/bounded_classical_cost.py"
+    },
+    "experiments/research/candidates/srgg/bounded_classical_runner.py": {
+      "sha256": "a96c5e67d43af1960c38172a3ed7824e7766f3bc51d9a5984b1cf402f9c7f9f8",
+      "source_path": "experiments/research/candidates/srgg/bounded_classical_runner.py"
+    },
+    "experiments/research/candidates/srgg/classical_cost.py": {
+      "sha256": "18f8a673156fddffbce6ca21179b19d7410b0b3c7f48a482d66a5e5ab5081268",
+      "source_path": "experiments/research/candidates/srgg/classical_cost.py"
+    },
+    "experiments/research/candidates/srgg/classical_runner.py": {
+      "sha256": "04c068b44204a362d7855aa214b1a10ed2b24c1144a4eaa3f8a54560914f77e1",
+      "source_path": "experiments/research/candidates/srgg/classical_runner.py"
+    },
+    "experiments/research/candidates/srgg/closure_ledger.py": {
+      "sha256": "c6830c1e9106747bc6d1a3ee5b00912d39518a4d61e7edcfbe3bf9ca82502a28",
+      "source_path": "experiments/research/candidates/srgg/closure_ledger.py"
+    },
+    "experiments/research/candidates/srgg/compact_benchmark.py": {
+      "sha256": "f7bf5397e43bc92ae95ef8ac16469e5d7a0309af3044cd9f75337c0e05bab4f5",
+      "source_path": "experiments/research/candidates/srgg/compact_benchmark.py"
+    },
+    "experiments/research/candidates/srgg/compact_benchmark_worker.py": {
+      "sha256": "0d2df60907d88dbf882ad4baf8f42dd2f2b1b66920a6b8e25db7aa93d65a8a64",
+      "source_path": "experiments/research/candidates/srgg/compact_benchmark_worker.py"
+    },
+    "experiments/research/candidates/srgg/conditional_xof.py": {
+      "sha256": "d36885d537ae4830d6a436df0d8cb497802a9e6873a96275f39243a05d2e9acb",
+      "source_path": "experiments/research/candidates/srgg/conditional_xof.py"
+    },
+    "experiments/research/candidates/srgg/config.py": {
+      "sha256": "94c3be05b35559db42add52fd4b7b3d0ad180f4c6cc1672654728067533af80e",
+      "source_path": "experiments/research/candidates/srgg/config.py"
+    },
+    "experiments/research/candidates/srgg/convolution_bridge.py": {
+      "sha256": "2588c06e96adddf2c7cd6b53bd22542541bd5b3f6ad422288122abeb5dffc5fb",
+      "source_path": "experiments/research/candidates/srgg/convolution_bridge.py"
+    },
+    "experiments/research/candidates/srgg/crt_projection.py": {
+      "sha256": "4fbaf3cd133e2d1309a460cf96fc6310a7fa07cf03624f33dd506f70c6e7a29c",
+      "source_path": "experiments/research/candidates/srgg/crt_projection.py"
+    },
+    "experiments/research/candidates/srgg/cur_obstruction.py": {
+      "sha256": "253052b0e4aca949ff2c9246b7e705c44490c9d99ddf0b87a097196fda1a72ef",
+      "source_path": "experiments/research/candidates/srgg/cur_obstruction.py"
+    },
+    "experiments/research/candidates/srgg/fiber_normalizers.py": {
+      "sha256": "21a9072cd0243db7fd75d3af035dff23366652aba0bb59cfc8e7247acfae4461",
+      "source_path": "experiments/research/candidates/srgg/fiber_normalizers.py"
+    },
+    "experiments/research/candidates/srgg/formal_candidates.py": {
+      "sha256": "8c5e9c7e841c192b48668866392750ff9a463039d4947ee15c2be65d9921c045",
+      "source_path": "experiments/research/candidates/srgg/formal_candidates.py"
+    },
+    "experiments/research/candidates/srgg/full_audit.py": {
+      "sha256": "855838f41fd6e14fd6e5d637da6c095ee56a55bfb2c92d7ef1100dd00e0b1ef3",
+      "source_path": "experiments/research/candidates/srgg/full_audit.py"
+    },
+    "experiments/research/candidates/srgg/full_sampling.py": {
+      "sha256": "a639481162e40caa209af1f0e6f0a97a2699f599fb0ed7cdda595ab13f56ab6f",
+      "source_path": "experiments/research/candidates/srgg/full_sampling.py"
+    },
+    "experiments/research/candidates/srgg/geometry.py": {
+      "sha256": "6166de10c02678449973bbda10442463e027db5696dbd037fe1bb573f1b3c297",
+      "source_path": "experiments/research/candidates/srgg/geometry.py"
+    },
+    "experiments/research/candidates/srgg/hardness_search.py": {
+      "sha256": "1f69c43133868cf6b7fb8580f9a724ccc1ab194cf3271fc48219e097c59eb312",
+      "source_path": "experiments/research/candidates/srgg/hardness_search.py"
+    },
+    "experiments/research/candidates/srgg/hashing.py": {
+      "sha256": "7944b247c7abc79f6a74f4d599cbd80c0a7030acf61943e9d1a5e66f340be78b",
+      "source_path": "experiments/research/candidates/srgg/hashing.py"
+    },
+    "experiments/research/candidates/srgg/integrated_bridge.py": {
+      "sha256": "239359f7fff774d8cd3511841c03baec74a72b81d6ea8bca603eae66e52c31f5",
+      "source_path": "experiments/research/candidates/srgg/integrated_bridge.py"
+    },
+    "experiments/research/candidates/srgg/issuance_analysis.py": {
+      "sha256": "3c2227a51192ffec18a7cbbe2102a60848d6fc0aff323e00247cf204de680c75",
+      "source_path": "experiments/research/candidates/srgg/issuance_analysis.py"
+    },
+    "experiments/research/candidates/srgg/mixed_domain.py": {
+      "sha256": "0248648d964a20d0ea4f6b3fc2cc3ae2a022c5f3fb38846171c86ee6dd4e8c76",
+      "source_path": "experiments/research/candidates/srgg/mixed_domain.py"
+    },
+    "experiments/research/candidates/srgg/native_sig.py": {
+      "sha256": "a0791f0a3c483902f38baf0897e6a77620ea22429ca15e708807edb3f97d55ae",
+      "source_path": "experiments/research/candidates/srgg/native_sig.py"
+    },
+    "experiments/research/candidates/srgg/numeric_audit.py": {
+      "sha256": "346fd3bbb30119f79a5ebe0dbd3490f92afc9ce8f895010f66a42bfc0e86ecaf",
+      "source_path": "experiments/research/candidates/srgg/numeric_audit.py"
+    },
+    "experiments/research/candidates/srgg/objects.py": {
+      "sha256": "4fd2b9d941249914f2b43e573de1a138b473b12e5ab20e103a920b9db5ca21fd",
+      "source_path": "experiments/research/candidates/srgg/objects.py"
+    },
+    "experiments/research/candidates/srgg/oracle_ledger.py": {
+      "sha256": "6ef6cf7feaf6558577750182259f7a9a3078f839670e43f259d44b8b8de45187",
+      "source_path": "experiments/research/candidates/srgg/oracle_ledger.py"
+    },
+    "experiments/research/candidates/srgg/paper_algebra.py": {
+      "sha256": "5494acd7ab7cf42b2d9f33746b2535ffcbb58df0796c0b313dd56cc39547c81a",
+      "source_path": "experiments/research/candidates/srgg/paper_algebra.py"
+    },
+    "experiments/research/candidates/srgg/paper_audit.py": {
+      "sha256": "a7b54c904664b6b0821cadf46392db70cdc0c38b73d72d02f2c9f68c42473a40",
+      "source_path": "experiments/research/candidates/srgg/paper_audit.py"
+    },
+    "experiments/research/candidates/srgg/paper_backend.py": {
+      "sha256": "da08ef7c93e4b921ef8a73ae233501eee693a67efefb899208f4f0a7079b6451",
+      "source_path": "experiments/research/candidates/srgg/paper_backend.py"
+    },
+    "experiments/research/candidates/srgg/paper_compact.py": {
+      "sha256": "020c685441cfb8774ac0e64daf01951ff16bfece3341ae04d2bc34ed81c8226a",
+      "source_path": "experiments/research/candidates/srgg/paper_compact.py"
+    },
+    "experiments/research/candidates/srgg/paper_compact_bits.py": {
+      "sha256": "5b61ae4d17f1b3cf3cd2d34d22de3d898de3a6e051093d78abe1c432e2b5d39a",
+      "source_path": "experiments/research/candidates/srgg/paper_compact_bits.py"
+    },
+    "experiments/research/candidates/srgg/paper_covariance_correspondence.py": {
+      "sha256": "560cbd7208d1e5654ad7e8c3259fd38d21650ffd5277fef22e65b78ef44c6aa4",
+      "source_path": "experiments/research/candidates/srgg/paper_covariance_correspondence.py"
+    },
+    "experiments/research/candidates/srgg/paper_current_budget.py": {
+      "sha256": "a917dc37ea0c6aabd35a8f6c27297a6ae50e55d4ad5ce7367c1e5ad93e98bbc6",
+      "source_path": "experiments/research/candidates/srgg/paper_current_budget.py"
+    },
+    "experiments/research/candidates/srgg/paper_fault_history_law.py": {
+      "sha256": "f67dceca9c22e90af390c46e5133263090f3768eecc73832a84289dece012559",
+      "source_path": "experiments/research/candidates/srgg/paper_fault_history_law.py"
+    },
+    "experiments/research/candidates/srgg/paper_forgery_input_mapping.py": {
+      "sha256": "f6e8c9c0186b2f0ff7904031a078d069c94d6a641b9b2dde14dd4cef9b028484",
+      "source_path": "experiments/research/candidates/srgg/paper_forgery_input_mapping.py"
+    },
+    "experiments/research/candidates/srgg/paper_hardness_preflight.py": {
+      "sha256": "29c712ac011226632a098bbcb46512cd70df5eca99d4f3b686366fa2e24afda5",
+      "source_path": "experiments/research/candidates/srgg/paper_hardness_preflight.py"
+    },
+    "experiments/research/candidates/srgg/paper_history_law.py": {
+      "sha256": "fb458dc8651d0a112516a7f303f966680c78cb9c50780c73831ca958c3596ad3",
+      "source_path": "experiments/research/candidates/srgg/paper_history_law.py"
+    },
+    "experiments/research/candidates/srgg/paper_history_law_followup.py": {
+      "sha256": "ad7c9ab949f41f96218336e6d26c16a7f207d0b72b7077a509952bc7eb189546",
+      "source_path": "experiments/research/candidates/srgg/paper_history_law_followup.py"
+    },
+    "experiments/research/candidates/srgg/paper_issuance_audit.py": {
+      "sha256": "42b29974d2bb0044e8272c61d0040a7f3135410a799a0414fdebc0293bdd14f0",
+      "source_path": "experiments/research/candidates/srgg/paper_issuance_audit.py"
+    },
+    "experiments/research/candidates/srgg/paper_issuance_bridge.py": {
+      "sha256": "4ee37c08e0ffb8e47b69234275ab8903eade7758e27f83966350faf08e1c830a",
+      "source_path": "experiments/research/candidates/srgg/paper_issuance_bridge.py"
+    },
+    "experiments/research/candidates/srgg/paper_key_recovery_mapping.py": {
+      "sha256": "c973cc9fe723239def37fc24dd6b2b89a61ae419d59206c263a79618801544fe",
+      "source_path": "experiments/research/candidates/srgg/paper_key_recovery_mapping.py"
+    },
+    "experiments/research/candidates/srgg/paper_norm_budget.py": {
+      "sha256": "51817a3bc353722b25dd58a81bdf7e38319023d5c3836593500aa8bdd6424a89",
+      "source_path": "experiments/research/candidates/srgg/paper_norm_budget.py"
+    },
+    "experiments/research/candidates/srgg/paper_objects.py": {
+      "sha256": "782bcc7baa30d02a9846809141e1e342841129075688e2bcb332744efa9a2b3f",
+      "source_path": "experiments/research/candidates/srgg/paper_objects.py"
+    },
+    "experiments/research/candidates/srgg/paper_oracle_budget.py": {
+      "sha256": "21ee507e1d3cb1a734547e7365c3579bcfb062562ec5fde7cff4a26c2a7b73dd",
+      "source_path": "experiments/research/candidates/srgg/paper_oracle_budget.py"
+    },
+    "experiments/research/candidates/srgg/paper_parameters.py": {
+      "sha256": "3dc03c082d5595fb2f6d85ea2fdd284beb37b20c432854a38ff434f8aef201a4",
+      "source_path": "experiments/research/candidates/srgg/paper_parameters.py"
+    },
+    "experiments/research/candidates/srgg/paper_precision_audit.py": {
+      "sha256": "46f1681902326703e6091cb7ffda0a13b7bbf8bd233682ebdf42cc30abd976cf",
+      "source_path": "experiments/research/candidates/srgg/paper_precision_audit.py"
+    },
+    "experiments/research/candidates/srgg/paper_profiles.py": {
+      "sha256": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f",
+      "source_path": "experiments/research/candidates/srgg/paper_profiles.py"
+    },
+    "experiments/research/candidates/srgg/paper_random_key_sign_law.py": {
+      "sha256": "adf136600eb7ebf845911a41ee12d33de04914e142f51fc069b71d7d77306b67",
+      "source_path": "experiments/research/candidates/srgg/paper_random_key_sign_law.py"
+    },
+    "experiments/research/candidates/srgg/paper_resource_audit.py": {
+      "sha256": "b999bb8ffec032a6b26d694d8cd92b4527e9e3b4890f7ec2862d479bb7f4463d",
+      "source_path": "experiments/research/candidates/srgg/paper_resource_audit.py"
+    },
+    "experiments/research/candidates/srgg/paper_ring_crt_lift.py": {
+      "sha256": "fdd7d751a3d8e423d6c5cfdd806fb27e59dbe2589266264bee96d970f8fb2255",
+      "source_path": "experiments/research/candidates/srgg/paper_ring_crt_lift.py"
+    },
+    "experiments/research/candidates/srgg/paper_ring_schur.py": {
+      "sha256": "5fb1fadea4ef7940e696e3b13ae58349fae4b20c6b33e467616ba3bcaa2b18ef",
+      "source_path": "experiments/research/candidates/srgg/paper_ring_schur.py"
+    },
+    "experiments/research/candidates/srgg/paper_rounding_budget.py": {
+      "sha256": "76aefbae24c11706715d22f6ca59a5cb9a5433c5edfd44fe291e47c53de7e9c3",
+      "source_path": "experiments/research/candidates/srgg/paper_rounding_budget.py"
+    },
+    "experiments/research/candidates/srgg/paper_runtime_benchmark.py": {
+      "sha256": "cc7812da4682a9e6abfbd56c69c918fe4341b369264c0758356e7f023ecd7e9a",
+      "source_path": "experiments/research/candidates/srgg/paper_runtime_benchmark.py"
+    },
+    "experiments/research/candidates/srgg/paper_samplef.py": {
+      "sha256": "233f2124064d1128560d1d9435691f762771c62f0ee99f94cc88c5e6671699c7",
+      "source_path": "experiments/research/candidates/srgg/paper_samplef.py"
+    },
+    "experiments/research/candidates/srgg/paper_schur_backend.py": {
+      "sha256": "f67cad3306c4a95495c48c12f29353791b2b5c05dadd1b6021d2b1cb58956693",
+      "source_path": "experiments/research/candidates/srgg/paper_schur_backend.py"
+    },
+    "experiments/research/candidates/srgg/paper_schur_convolution.py": {
+      "sha256": "bd3726771509bfc23b83d6e096ac62c9244d5f3921cfda7e2574608dd7a9a5e1",
+      "source_path": "experiments/research/candidates/srgg/paper_schur_convolution.py"
+    },
+    "experiments/research/candidates/srgg/paper_schur_finite_chain.py": {
+      "sha256": "1ea3666027c3793b99a4d6107084885ae68937915f560c502c4aaa62ce4c9a77",
+      "source_path": "experiments/research/candidates/srgg/paper_schur_finite_chain.py"
+    },
+    "experiments/research/candidates/srgg/paper_schur_finite_chain_audit.py": {
+      "sha256": "da8b2da6b61799cecb82cb22ac7ad6595cc1bb02fa550cbe6f815880b600ea3c",
+      "source_path": "experiments/research/candidates/srgg/paper_schur_finite_chain_audit.py"
+    },
+    "experiments/research/candidates/srgg/paper_schur_fourier.py": {
+      "sha256": "e6372ccddc5ea98188736eb5ed48929f8fcd43bc2965a7c8827b65a2d6ca5208",
+      "source_path": "experiments/research/candidates/srgg/paper_schur_fourier.py"
+    },
+    "experiments/research/candidates/srgg/paper_schur_joint_bound_audit.py": {
+      "sha256": "df32df61cd27db8c1d42899a3ae5cd8593c7322d67b63f4a48e191ea16a4a2d7",
+      "source_path": "experiments/research/candidates/srgg/paper_schur_joint_bound_audit.py"
+    },
+    "experiments/research/candidates/srgg/paper_schur_literal_fallback.py": {
+      "sha256": "cb0f1907277139402f3fd72b2d503a64a87c37e62f511438c460b541d4a184b3",
+      "source_path": "experiments/research/candidates/srgg/paper_schur_literal_fallback.py"
+    },
+    "experiments/research/candidates/srgg/paper_schur_literal_fallback_audit.py": {
+      "sha256": "30669cea34e9701fece5bfb2604f9b03a865e2d06d42eae4dd0f61e9a199e893",
+      "source_path": "experiments/research/candidates/srgg/paper_schur_literal_fallback_audit.py"
+    },
+    "experiments/research/candidates/srgg/paper_schur_literal_moment.py": {
+      "sha256": "1c51ceb330fd250b3cfc89d55b1a989f932b03432b306ff1fb2cbcbe91b0918d",
+      "source_path": "experiments/research/candidates/srgg/paper_schur_literal_moment.py"
+    },
+    "experiments/research/candidates/srgg/paper_schur_normalizer.py": {
+      "sha256": "17d673e5e793385a3cc83e0c91f5f92f9cb523553981c96139afab8a94f72ef6",
+      "source_path": "experiments/research/candidates/srgg/paper_schur_normalizer.py"
+    },
+    "experiments/research/candidates/srgg/paper_schur_numerical.py": {
+      "sha256": "0d2005bc6cd9b430c06e5c36f7c02e20fe5073463b1d504eb8dd064461c0cfb8",
+      "source_path": "experiments/research/candidates/srgg/paper_schur_numerical.py"
+    },
+    "experiments/research/candidates/srgg/paper_schur_numerical_audit.py": {
+      "sha256": "2898d7d8e6ab7d5ecccf39a80ab5586f38a5bb9d19fcd46331ef00f6ccd3fff9",
+      "source_path": "experiments/research/candidates/srgg/paper_schur_numerical_audit.py"
+    },
+    "experiments/research/candidates/srgg/paper_schur_samplef.py": {
+      "sha256": "5ddce65eb19272d1e2f2965421a065e6d55227661b0627ab640bd5026b3082fb",
+      "source_path": "experiments/research/candidates/srgg/paper_schur_samplef.py"
+    },
+    "experiments/research/candidates/srgg/paper_service_resource_envelope.py": {
+      "sha256": "18678d2bd6ab020654e61a8c6a4ed7eb2dbd074c8fd3e9ec2b0baae404801ddd",
+      "source_path": "experiments/research/candidates/srgg/paper_service_resource_envelope.py"
+    },
+    "experiments/research/candidates/srgg/paper_setup_acceptance.py": {
+      "sha256": "5e70489f384686472a118a65833992f644b2ac63056dc1320b7690e22f2ca1f7",
+      "source_path": "experiments/research/candidates/srgg/paper_setup_acceptance.py"
+    },
+    "experiments/research/candidates/srgg/paper_setup_backend_gap.py": {
+      "sha256": "1b1cfe028df7c42bade539deed5e0c37db15de20638d4e274d13f5b5f6511c33",
+      "source_path": "experiments/research/candidates/srgg/paper_setup_backend_gap.py"
+    },
+    "experiments/research/candidates/srgg/paper_setup_conditioning.py": {
+      "sha256": "0408504a82fc8016f10dee7978993004e007084d1f52236cb6b960ddc67caf7f",
+      "source_path": "experiments/research/candidates/srgg/paper_setup_conditioning.py"
+    },
+    "experiments/research/candidates/srgg/paper_sign_budget.py": {
+      "sha256": "4dc1b67242268e408701f3bc0245be02fce8754983f0375fbb20807661611d15",
+      "source_path": "experiments/research/candidates/srgg/paper_sign_budget.py"
+    },
+    "experiments/research/candidates/srgg/paper_smoothing_eta.py": {
+      "sha256": "79d49664fbcbbbb74b805dd06bf973a7fc8801625821873b88c30e705c8c600f",
+      "source_path": "experiments/research/candidates/srgg/paper_smoothing_eta.py"
+    },
+    "experiments/research/candidates/srgg/paper_source_issuance_bridge.py": {
+      "sha256": "9e27df9665449402884415fce0c9888f72c05011a741efe9ba4a9e45e732a632",
+      "source_path": "experiments/research/candidates/srgg/paper_source_issuance_bridge.py"
+    },
+    "experiments/research/candidates/srgg/paper_source_symbol_mapping.py": {
+      "sha256": "a47f7401f8c4d058dc55856a95325e84d4e2a89ca76ab3f4d67dec6a14315c9c",
+      "source_path": "experiments/research/candidates/srgg/paper_source_symbol_mapping.py"
+    },
+    "experiments/research/candidates/srgg/paper_strong_game.py": {
+      "sha256": "7333c7affb7656874edff743a178a66b58fa4eb69c913561f8f1d2813f6886d7",
+      "source_path": "experiments/research/candidates/srgg/paper_strong_game.py"
+    },
+    "experiments/research/candidates/srgg/paper_structural_attack_followup.py": {
+      "sha256": "6520df059bf2ebc2325f5218c1b44430886f8e49c3ace102c8507296a69c54ff",
+      "source_path": "experiments/research/candidates/srgg/paper_structural_attack_followup.py"
+    },
+    "experiments/research/candidates/srgg/paper_structural_cost.py": {
+      "sha256": "7ce28e73e541ce2f67982ca8d50122e3ac1164b9b5ba9196172295405d1e83aa",
+      "source_path": "experiments/research/candidates/srgg/paper_structural_cost.py"
+    },
+    "experiments/research/candidates/srgg/paper_validation.py": {
+      "sha256": "d112ef72403684d5bb2c7fed278c055ad0d78a1c3f2d304454b15a053a1c687a",
+      "source_path": "experiments/research/candidates/srgg/paper_validation.py"
+    },
+    "experiments/research/candidates/srgg/paper_verification_image.py": {
+      "sha256": "44d2e2ee47d1cfe0e6d71818390e334e11d2e1588753111e5f45875f4777f751",
+      "source_path": "experiments/research/candidates/srgg/paper_verification_image.py"
+    },
+    "experiments/research/candidates/srgg/parameter_closure.py": {
+      "sha256": "26ae381838fd386e63b49fbaec5a00fa5763ab64cd31787937eabc2cc1f6ed92",
+      "source_path": "experiments/research/candidates/srgg/parameter_closure.py"
+    },
+    "experiments/research/candidates/srgg/parameter_completion.py": {
+      "sha256": "3db2e9f4735d2550f9ff2c90f6fe12ed89ba83213635df16aff570a79c2fca9c",
+      "source_path": "experiments/research/candidates/srgg/parameter_completion.py"
+    },
+    "experiments/research/candidates/srgg/parameter_screen.py": {
+      "sha256": "3cebaa982342d6f16e16933074cdebdd52c2a3115ef7230ee28221a65d80ac1c",
+      "source_path": "experiments/research/candidates/srgg/parameter_screen.py"
+    },
+    "experiments/research/candidates/srgg/perturbation.py": {
+      "sha256": "9da652bfc7f3d6d08fc3626370571df4d950b82de856c3b8f4c2a8f6e0adf835",
+      "source_path": "experiments/research/candidates/srgg/perturbation.py"
+    },
+    "experiments/research/candidates/srgg/perturbation_audit.py": {
+      "sha256": "3a8c6f0ab5d95d848a2b786363c3857fba0ee89e2b5f5cfa93bbc069dccb82fb",
+      "source_path": "experiments/research/candidates/srgg/perturbation_audit.py"
+    },
+    "experiments/research/candidates/srgg/psf_bridge.py": {
+      "sha256": "98422dfcd35a167843972e90a2a92b31dc317cee85e81291b3aabb2889f704aa",
+      "source_path": "experiments/research/candidates/srgg/psf_bridge.py"
+    },
+    "experiments/research/candidates/srgg/public_pairs.py": {
+      "sha256": "524c49ac6855801eca696a9f8cb46cf2c1c2ad847d4f2ead8966ac507bb4ec9e",
+      "source_path": "experiments/research/candidates/srgg/public_pairs.py"
+    },
+    "experiments/research/candidates/srgg/qualification_audit.py": {
+      "sha256": "fe59428b0965264d7919614bd38cf6f476cec4d10b4f2d73ec558f502b507c8e",
+      "source_path": "experiments/research/candidates/srgg/qualification_audit.py"
+    },
+    "experiments/research/candidates/srgg/quotient_challenge.py": {
+      "sha256": "9a4c19bc245a18e353ba5ceab1c4dc85c42f51701b6d8df9a5a230ab9eaf3cc1",
+      "source_path": "experiments/research/candidates/srgg/quotient_challenge.py"
+    },
+    "experiments/research/candidates/srgg/raw_h2_relabel.py": {
+      "sha256": "c705426e7b8cc6061a5096fd94009e3ba091051a9b08dba05f9f760c57ff7153",
+      "source_path": "experiments/research/candidates/srgg/raw_h2_relabel.py"
+    },
+    "experiments/research/candidates/srgg/reduction_samplers.py": {
+      "sha256": "ef0c2059689367d5d267c4acd84167617c97a8b0504dd1c9d4c9124e53e69717",
+      "source_path": "experiments/research/candidates/srgg/reduction_samplers.py"
+    },
+    "experiments/research/candidates/srgg/representation_audit.py": {
+      "sha256": "f8fbbf9b6ecd092ce5b0e81721110596e5fa6875c5037f825578d72b1d30f66e",
+      "source_path": "experiments/research/candidates/srgg/representation_audit.py"
+    },
+    "experiments/research/candidates/srgg/resource_probe.py": {
+      "sha256": "0f9b95882d9afa9f17512628a1a25f79c3646806ffcfe25aafdc26624c56103f",
+      "source_path": "experiments/research/candidates/srgg/resource_probe.py"
+    },
+    "experiments/research/candidates/srgg/runtime.py": {
+      "sha256": "a1ac5b86292a22acb82548cd0f83d300ef52dc59382afbb6562c33f2ce66d8c9",
+      "source_path": "experiments/research/candidates/srgg/runtime.py"
+    },
+    "experiments/research/candidates/srgg/sampling.py": {
+      "sha256": "b9fa8e13a4467ecf00edea7a57fbd5284569f934bb654bf024ef20c2853c9628",
+      "source_path": "experiments/research/candidates/srgg/sampling.py"
+    },
+    "experiments/research/candidates/srgg/sampling_audit.py": {
+      "sha256": "e93645ceedabfe415f4d3cf99799ead474e65f5eda61699d73ad96522e72c7c6",
+      "source_path": "experiments/research/candidates/srgg/sampling_audit.py"
+    },
+    "experiments/research/candidates/srgg/sampling_error.py": {
+      "sha256": "cc3d4239040f275e8192a4e6893ab5e787c6f4e21f879ecb7d6dd0f0529d062b",
+      "source_path": "experiments/research/candidates/srgg/sampling_error.py"
+    },
+    "experiments/research/candidates/srgg/seeded_xof.py": {
+      "sha256": "37b1f68ccd36d1c6c908e4d4e0e9348b3f78fa8e8fb54c82bad5523e5a4102d3",
+      "source_path": "experiments/research/candidates/srgg/seeded_xof.py"
+    },
+    "experiments/research/candidates/srgg/service_audit.py": {
+      "sha256": "e308fda3ef68b56c314f7fa37d470e1835f35e0f2e2f37ed19af967fa073efae",
+      "source_path": "experiments/research/candidates/srgg/service_audit.py"
+    },
+    "experiments/research/candidates/srgg/service_budget.py": {
+      "sha256": "c67c99dddbce8036c98eca7b96f92eb59a5e5547f4354b9b5112143be54c485c",
+      "source_path": "experiments/research/candidates/srgg/service_budget.py"
+    },
+    "experiments/research/candidates/srgg/source_correspondence.py": {
+      "sha256": "9a910fedcc625b239f6707dde4066d34ced1ffe96321034fdd25d7347da1656d",
+      "source_path": "experiments/research/candidates/srgg/source_correspondence.py"
+    },
+    "experiments/research/candidates/srgg/spectral_bounds.py": {
+      "sha256": "069d79c12f495b7e664ff0b0194188022088a21fb70eb4083800c93e1524a3d5",
+      "source_path": "experiments/research/candidates/srgg/spectral_bounds.py"
+    },
+    "experiments/research/candidates/srgg/strong_structure.py": {
+      "sha256": "62ec3be1e55239aa7ff659be96815722c4e54b18e0efe3e02f8dac2c152cdba1",
+      "source_path": "experiments/research/candidates/srgg/strong_structure.py"
+    },
+    "experiments/research/candidates/srgg/structured_backend.py": {
+      "sha256": "748fbec0a18635f569962b1899fa277afa4b65333526e615d01458720ba5e6e8",
+      "source_path": "experiments/research/candidates/srgg/structured_backend.py"
+    },
+    "experiments/research/candidates/srgg/structured_execution.py": {
+      "sha256": "88c8fd716524cca92b83af7ca20167d2cbb5a65d9ab24a7523876b6db30b9e67",
+      "source_path": "experiments/research/candidates/srgg/structured_execution.py"
+    },
+    "experiments/research/candidates/srgg/structured_geometry.py": {
+      "sha256": "08d70876337afae3a7e8722a939c9996363af8eb5f8039d6437b6906814f1120",
+      "source_path": "experiments/research/candidates/srgg/structured_geometry.py"
+    },
+    "experiments/research/candidates/srgg/structured_samplef.py": {
+      "sha256": "9d8fcebf8b86b7c380e6ef81f3bd275710d6dfd2d3d8a66ff1ecb2a684e5bec5",
+      "source_path": "experiments/research/candidates/srgg/structured_samplef.py"
+    },
+    "experiments/research/candidates/srgg/wide_scalar.py": {
+      "sha256": "2f404dd95ec1c909c3c40dcc8b6e4b070d25864c2e2aaa0a80e8b291df5689ca",
+      "source_path": "experiments/research/candidates/srgg/wide_scalar.py"
+    },
+    "experiments/research/candidates/wang_pw/__init__.py": {
+      "sha256": "c55aee574c6accdc243abbbf3344c7fee1795fe314c03ffa44d284c010d1bba6",
+      "source_path": "experiments/research/candidates/wang_pw/__init__.py"
+    },
+    "experiments/research/candidates/wang_pw/audit.py": {
+      "sha256": "ef136cb83f188025bf5d8e46a0f69f38a87428c48b784dbad0f4d3a830fdc60b",
+      "source_path": "experiments/research/candidates/wang_pw/audit.py"
+    },
+    "experiments/research/candidates/wang_pw/backend.py": {
+      "sha256": "f24067f6436122d874d0a502d1f9afcacb7b08664f799e1be10daaa1baa0a1df",
+      "source_path": "experiments/research/candidates/wang_pw/backend.py"
+    },
+    "experiments/research/candidates/wang_pw/codec.py": {
+      "sha256": "2f08b4c501bf3707cf048aed8a795859e782facfc5814645e5214374b378347c",
+      "source_path": "experiments/research/candidates/wang_pw/codec.py"
+    },
+    "experiments/research/candidates/wang_pw/engine.py": {
+      "sha256": "1bef58a42599990e8ba6d545c82563d88e8e4a30dfb55f4a3ea0fe058427f951",
+      "source_path": "experiments/research/candidates/wang_pw/engine.py"
+    },
+    "experiments/research/candidates/wang_pw/hashing.py": {
+      "sha256": "17ac4878d5b9541c21a1f5a4bac948248557e4a089b1f61a436df16970fa41a0",
+      "source_path": "experiments/research/candidates/wang_pw/hashing.py"
+    },
+    "experiments/research/candidates/wang_pw/objects.py": {
+      "sha256": "75160d38b2b4e2eaa14df560019abd12d3168518c06156dcde40f0243bb488ef",
+      "source_path": "experiments/research/candidates/wang_pw/objects.py"
+    },
+    "experiments/research/candidates/wang_pw/params.py": {
+      "sha256": "0f9f361c7cb4da1b08a9c33964d32e3f97b795296772e1ef66dfe075cc4c8798",
+      "source_path": "experiments/research/candidates/wang_pw/params.py"
+    },
+    "experiments/research/candidates/xie/codec.py": {
+      "sha256": "0b83e21314e25f501495eec83c450dea22772f461d07061dd3f0b8b5e8fd99e4",
+      "source_path": "experiments/research/candidates/xie/codec.py"
+    },
+    "experiments/research/candidates/xie/execution.py": {
+      "sha256": "6c7bbf84b2d64f68601c13fda42dc66d32fa482c8cdfe02a493d4011de08cf88",
+      "source_path": "experiments/research/candidates/xie/execution.py"
+    },
+    "experiments/research/candidates/xie/hashing.py": {
+      "sha256": "87becb614ec8c66d5b2c5a38b91c97ead3c1c3ed08452f3bb616cf0ed88a1e90",
+      "source_path": "experiments/research/candidates/xie/hashing.py"
+    },
+    "experiments/research/candidates/xie/negative_controls.py": {
+      "sha256": "f6a4239a9622776e6088155f8645e800317f4d4393fd5139239e96946535eb84",
+      "source_path": "experiments/research/candidates/xie/negative_controls.py"
+    },
+    "experiments/research/candidates/xie/objects.py": {
+      "sha256": "03368f0ec20e6e2fa2399db31c47555f26ae5041983cdf641274fffe3b1e37b7",
+      "source_path": "experiments/research/candidates/xie/objects.py"
+    },
+    "experiments/research/candidates/xie/params.py": {
+      "sha256": "04fc08eb92c7f665204b2b56ab34bf98400a875a86736afe9e9f56d495edb0c8",
+      "source_path": "experiments/research/candidates/xie/params.py"
+    },
+    "experiments/research/candidates/xie/probe.py": {
+      "sha256": "6ca8a60c48375181be5e70c428a82a3a3cbd3becd0ef2fb3558078749e60a440",
+      "source_path": "experiments/research/candidates/xie/probe.py"
+    },
+    "experiments/research/candidates/xie/public_vectors.py": {
+      "sha256": "88a5c8220509b23955f69ff0f7fb5d33af84e32125d50630464a7c9981d16e4c",
+      "source_path": "experiments/research/candidates/xie/public_vectors.py"
+    },
+    "experiments/research/candidates/xie/qualification.py": {
+      "sha256": "5919618e8f789ea501a6344d946240f24285676f366347622ae4b09e4a22b229",
+      "source_path": "experiments/research/candidates/xie/qualification.py"
+    },
+    "experiments/research/candidates/xie/ring.py": {
+      "sha256": "63cde58c130b7ca7713c57b327d8091a5f962bcabc35b29319df3ff6ff8d3823",
+      "source_path": "experiments/research/candidates/xie/ring.py"
+    },
+    "experiments/research/candidates/xie/runtime.py": {
+      "sha256": "74da930da182b284cef6a63e1dcabbfb9c5ec59ed0db72bc5b03f37337d8db2e",
+      "source_path": "experiments/research/candidates/xie/runtime.py"
+    },
+    "experiments/research/candidates/xie/verification.py": {
+      "sha256": "c872e1d09d9c7b4d5ce1847d7453a0991252a0ccf8ca29560dff87fd02bc5ab6",
+      "source_path": "experiments/research/candidates/xie/verification.py"
+    },
+    "experiments/research/candidates/yu/audit.py": {
+      "sha256": "c4419c82eeeebce2188bfbfae2008dd473e3fa86d1ba7335bc516496d89720ef",
+      "source_path": "experiments/research/candidates/yu/audit.py"
+    },
+    "experiments/research/candidates/yu/bpr.py": {
+      "sha256": "4b0801092d0865e2320c9e6a999d40603115ce1a0bd81606fdefdd5f80f6c55c",
+      "source_path": "experiments/research/candidates/yu/bpr.py"
+    },
+    "experiments/research/candidates/yu/circuits.py": {
+      "sha256": "1c5452df81fe381a3e256bbb2e0d72b1a6b267ce7ee72dbcdeb0059c777079bc",
+      "source_path": "experiments/research/candidates/yu/circuits.py"
+    },
+    "experiments/research/candidates/yu/evaluation.py": {
+      "sha256": "3f07fbc22b9d1edd9962455144a1ff125b95793b5035740fc2c2049c36830cbf",
+      "source_path": "experiments/research/candidates/yu/evaluation.py"
+    },
+    "experiments/research/candidates/yu/homomorphic_reference.py": {
+      "sha256": "09c15b1cd2d488a39be2acf2f6f21890067e1a34d58ac086dc7e72d81154ce38",
+      "source_path": "experiments/research/candidates/yu/homomorphic_reference.py"
+    },
+    "experiments/research/candidates/yu/lifecycle_audit.py": {
+      "sha256": "71f7f59418eb8bf3d04946a76ce617f5b0f7de83f3b076a655b5058ae6ad1393",
+      "source_path": "experiments/research/candidates/yu/lifecycle_audit.py"
+    },
+    "experiments/research/candidates/yu/profiles.py": {
+      "sha256": "3b03d252c91eb9cb890e358036b4a0067a449d91e1ad9439b264196f926425b5",
+      "source_path": "experiments/research/candidates/yu/profiles.py"
+    },
+    "experiments/research/candidates/yu/qualification.py": {
+      "sha256": "4fac9845193fab160c25539c879f67ea707039154e51a732b2485543616577d2",
+      "source_path": "experiments/research/candidates/yu/qualification.py"
+    },
+    "experiments/research/candidates/yu/standalone.py": {
+      "sha256": "c0aa2a5a754c15f6153ba4c605b838cc1b59e89bd14a69dd2efd5181626c976d",
+      "source_path": "experiments/research/candidates/yu/standalone.py"
+    },
+    "experiments/research/candidates/yu/trapdoors.py": {
+      "sha256": "eaefe74f099d8d886da61b99a68dc810cc3bf306ebbb3eca837fabe3cdc9d6ce",
+      "source_path": "experiments/research/candidates/yu/trapdoors.py"
+    },
+    "experiments/research/certified_falcon_vectors.py": {
+      "sha256": "b94e0403a11e68ebc0682b51342517514d4a423490903944d5030a2f8ffab23a",
+      "source_path": "experiments/research/certified_falcon_vectors.py"
+    },
+    "experiments/research/certified_ibs_probe.py": {
+      "sha256": "b0582f8238f7efda20bb43ba2bb0b5ffaf9e09fd58e03ffa25e55a5331c43b00",
+      "source_path": "experiments/research/certified_ibs_probe.py"
+    },
+    "experiments/research/chkp_basis.py": {
+      "sha256": "bdfbc85416e6f1b1bc08c773f35ef944ff6c107f2efab47a49ac07cea5ae6a99",
+      "source_path": "experiments/research/chkp_basis.py"
+    },
+    "experiments/research/chkp_basis_reduce.py": {
+      "sha256": "101f0c13a1027ffe1d82b9386b1be5a270a7024d8aeebb8ca7a7b722f2913218",
+      "source_path": "experiments/research/chkp_basis_reduce.py"
+    },
+    "experiments/research/chkp_capacity_audit.py": {
+      "sha256": "014139c9bccc0a78d15bcf487cc6c04ad961f9d834cd2556e979b02e72ef7389",
+      "source_path": "experiments/research/chkp_capacity_audit.py"
+    },
+    "experiments/research/chkp_cli_acceptance.py": {
+      "sha256": "65ae5f1d209106dce2f623b4549f42ef4384bee02d25677fe0f93296ef5510bf",
+      "source_path": "experiments/research/chkp_cli_acceptance.py"
+    },
+    "experiments/research/chkp_combination.py": {
+      "sha256": "165200f9c62b579d209632f331c3542de656d55fddebf10f68572de6c8b842bb",
+      "source_path": "experiments/research/chkp_combination.py"
+    },
+    "experiments/research/chkp_genbasis.py": {
+      "sha256": "d9bf8a0d71b0ae3ccccd32b24e1a7ebdc9652a44e7e4640d97c423c6bb389aa8",
+      "source_path": "experiments/research/chkp_genbasis.py"
+    },
+    "experiments/research/chkp_gpv.py": {
+      "sha256": "22bbcd43e812ff8d0ec7c64177c69cc8506468fa0aecbde3f43255153e927cc0",
+      "source_path": "experiments/research/chkp_gpv.py"
+    },
+    "experiments/research/chkp_leaf_audit.py": {
+      "sha256": "0fb4242a374c0445693c4cbb494f87f64ecdf4259aa0b9dfbf81bad930e0108b",
+      "source_path": "experiments/research/chkp_leaf_audit.py"
+    },
+    "experiments/research/chkp_leaf_cache.py": {
+      "sha256": "8c8197e60044b4d91a7fef929b784054771d4c530bced50bbf2508f252b8deb5",
+      "source_path": "experiments/research/chkp_leaf_cache.py"
+    },
+    "experiments/research/chkp_leaf_cache_audit.py": {
+      "sha256": "d7c7692d07de77af624b0c79fd8a76d6bbdae5c2f4df11462eb2caed803f8345",
+      "source_path": "experiments/research/chkp_leaf_cache_audit.py"
+    },
+    "experiments/research/chkp_leaf_cache_types.py": {
+      "sha256": "bb3657e05c07b5c0a0cbdd7f9e8885b16a83f458304d07ef016d7de9ad1772cd",
+      "source_path": "experiments/research/chkp_leaf_cache_types.py"
+    },
+    "experiments/research/chkp_leaf_cache_wire.py": {
+      "sha256": "906ec0c5678a7373d03d053d3e39c261d0a019c64f00de4c24375e3f29ea5ca8",
+      "source_path": "experiments/research/chkp_leaf_cache_wire.py"
+    },
+    "experiments/research/chkp_leaf_reference.py": {
+      "sha256": "2e33cd9b5155400b0132a87a41654e8d17f3102e739d964c614b307d7f745c5c",
+      "source_path": "experiments/research/chkp_leaf_reference.py"
+    },
+    "experiments/research/chkp_lifecycle.py": {
+      "sha256": "3538f6435261a16c5b42d97ef85c54fe88dc2aa43a5d8f65562ffc8e3f7e640c",
+      "source_path": "experiments/research/chkp_lifecycle.py"
+    },
+    "experiments/research/chkp_paper_preflight.py": {
+      "sha256": "0a24ad05e1150f241c6104fc0a6816523531c6ea1e1d34a67d5c1a02d20770dc",
+      "source_path": "experiments/research/chkp_paper_preflight.py"
+    },
+    "experiments/research/chkp_parameter_profile.py": {
+      "sha256": "db26430b47c7e24afab9b8ae2d03b74b49971ef0f3c324fa7f011c7988eee6ca",
+      "source_path": "experiments/research/chkp_parameter_profile.py"
+    },
+    "experiments/research/chkp_public_lll_comparison.py": {
+      "sha256": "ae27a6d59bd139c8402d01f3724ce4257a95b4e92d79663c17712985b4f33ac8",
+      "source_path": "experiments/research/chkp_public_lll_comparison.py"
+    },
+    "experiments/research/chkp_published_formal_screen.py": {
+      "sha256": "ead481f259b2c757ca62a5d5936d5c38e13327dda3f6a32ff9e991509f1d2909",
+      "source_path": "experiments/research/chkp_published_formal_screen.py"
+    },
+    "experiments/research/chkp_randbasis.py": {
+      "sha256": "69d970490202fcf69da4389d4435e1538f6c1c49b83441365291260134dc2282",
+      "source_path": "experiments/research/chkp_randbasis.py"
+    },
+    "experiments/research/chkp_resume_pre_entropy.py": {
+      "sha256": "1358538947dac0f884b68f876a11bac2f5799f2e5ad06ad9c87981d5ce63cee5",
+      "source_path": "experiments/research/chkp_resume_pre_entropy.py"
+    },
+    "experiments/research/chkp_t1_audit.py": {
+      "sha256": "e4dff61efd5701c141c2b36002fddd0d8a5984846ca4c013cb01ec0a4dbfab1d",
+      "source_path": "experiments/research/chkp_t1_audit.py"
+    },
+    "experiments/research/chkp_t2_audit.py": {
+      "sha256": "b56d0d329361911c980458e005043fe928f07b361511a56b849128016beb72f3",
+      "source_path": "experiments/research/chkp_t2_audit.py"
+    },
+    "experiments/research/chkp_t2_conditions.py": {
+      "sha256": "344921b1ffaeff2e8c47361eda53848eafaab9b12b800906809a5b56fa0ede90",
+      "source_path": "experiments/research/chkp_t2_conditions.py"
+    },
+    "experiments/research/chkp_tobasis.py": {
+      "sha256": "0293834acff71a1599d14dccc92558f7198c8ffabbcb255c6965452c355abd4a",
+      "source_path": "experiments/research/chkp_tobasis.py"
+    },
+    "experiments/research/chkp_width_audit.py": {
+      "sha256": "ec01800e9076bf394f265cbbd1154edd9925e793c5829c113e38f75398ac1846",
+      "source_path": "experiments/research/chkp_width_audit.py"
+    },
+    "experiments/research/fetch_candidate_sources.py": {
+      "sha256": "9f0c877c82e2c9d1f6fd2512638674b2ec5cb0daa7f8ddda4bd92e432dc48541",
+      "source_path": "experiments/research/fetch_candidate_sources.py"
+    },
+    "experiments/research/first_suite/__init__.py": {
+      "sha256": "98a3203836217e8d437e31a13137e43f5d3759be61d7b2e901ff700e676ba931",
+      "source_path": "experiments/research/first_suite/__init__.py"
+    },
+    "experiments/research/first_suite/compact_delegation.py": {
+      "sha256": "75798c6d64fbe81ea7252099835bc2f0fb552f25a771be43e9d90d76f5112dbe",
+      "source_path": "experiments/research/first_suite/compact_delegation.py"
+    },
+    "experiments/research/first_suite/compact_delegation_probe.py": {
+      "sha256": "1f1b04ea8a8217ba2e9de2d5f388ebd15f65743cd18d2a72b7fa43ddabb79936",
+      "source_path": "experiments/research/first_suite/compact_delegation_probe.py"
+    },
+    "experiments/research/first_suite/computational_parameter_plan.py": {
+      "sha256": "86f0a72057d3f64e62c3a1f78aa628cb5aeac63e34c019f2c5e950f86173748b",
+      "source_path": "experiments/research/first_suite/computational_parameter_plan.py"
+    },
+    "experiments/research/first_suite/computational_root.py": {
+      "sha256": "1c50724fcbbc58e1fe217ea40e2d094c01e964dca915c869bd663a2955884e82",
+      "source_path": "experiments/research/first_suite/computational_root.py"
+    },
+    "experiments/research/first_suite/delegation_state.py": {
+      "sha256": "af72d7e62439603ab6a8a68fd7e06c14bd14cd5e8a41ab29d998c28946f79db4",
+      "source_path": "experiments/research/first_suite/delegation_state.py"
+    },
+    "experiments/research/first_suite/entropy.py": {
+      "sha256": "34635bec00dbafad3f6fb9dfa598da5bf5397ab4f1fc05209d039dcd50ad82fd",
+      "source_path": "experiments/research/first_suite/entropy.py"
+    },
+    "experiments/research/first_suite/finite_gaussian.py": {
+      "sha256": "5c55da74e4aaa40e2375e48a419884dc7cfe5ace537951a6e4b649c3959fd5b0",
+      "source_path": "experiments/research/first_suite/finite_gaussian.py"
+    },
+    "experiments/research/first_suite/finite_gpv.py": {
+      "sha256": "f1d59d1eeace1c98cd12e91a6c2305e93969ee9d0e137c5c85b07e031fc87699",
+      "source_path": "experiments/research/first_suite/finite_gpv.py"
+    },
+    "experiments/research/first_suite/finite_randbasis.py": {
+      "sha256": "503b36bec17b6fc41f33426812ad56ffa0bff6deaec15ade7fc7224c1472271f",
+      "source_path": "experiments/research/first_suite/finite_randbasis.py"
+    },
+    "experiments/research/first_suite/finite_sampler_probe.py": {
+      "sha256": "6ff2a753f0b355738e2d33ff89bec58e9645c17960ae4c1119120c9006ae5dfd",
+      "source_path": "experiments/research/first_suite/finite_sampler_probe.py"
+    },
+    "experiments/research/first_suite/hibe_probe.py": {
+      "sha256": "1cb0d1d16eb9975099c747c0711ad312f2b488829032973c03cac21821d5c2ad",
+      "source_path": "experiments/research/first_suite/hibe_probe.py"
+    },
+    "experiments/research/first_suite/hibe_reference.py": {
+      "sha256": "1806b423408ad65654926df27f0f5d3ba4316c4c7a514fab95d3af2896d34106",
+      "source_path": "experiments/research/first_suite/hibe_reference.py"
+    },
+    "experiments/research/first_suite/hibe_registry.py": {
+      "sha256": "960a03b5baab29662dd37a8a67454226bfe427f03e7ec339a64af25f3232cb81",
+      "source_path": "experiments/research/first_suite/hibe_registry.py"
+    },
+    "experiments/research/first_suite/identity.py": {
+      "sha256": "9493184d9f08d2737a1b3ad75ddaca9e3d51c1c04247b56b22ed0e6a2c499f12",
+      "source_path": "experiments/research/first_suite/identity.py"
+    },
+    "experiments/research/first_suite/leaf_state.py": {
+      "sha256": "21aeba623b40d26df57ae385ff9ea34da4d6318ccf631f681af2a62119bf1250",
+      "source_path": "experiments/research/first_suite/leaf_state.py"
+    },
+    "experiments/research/first_suite/lifecycle_probe.py": {
+      "sha256": "d15aa153fb6b15744bdccb433aa2a9712925b6a05f8f9a9fe86d5ec736727828",
+      "source_path": "experiments/research/first_suite/lifecycle_probe.py"
+    },
+    "experiments/research/first_suite/parameter_resource_probe.py": {
+      "sha256": "ffb257de676a98fddc89a0dfe2265493228372e33b7ff54464c86d4024b0d60c",
+      "source_path": "experiments/research/first_suite/parameter_resource_probe.py"
+    },
+    "experiments/research/first_suite/private_basis_bridge.py": {
+      "sha256": "6ee978a9a13655036ef751dc23fde8b2e5261c8ee0215864889b77a71f4cb00f",
+      "source_path": "experiments/research/first_suite/private_basis_bridge.py"
+    },
+    "experiments/research/first_suite/root_generation.py": {
+      "sha256": "842f3098433a7ef4eb5bff14f509221f503f03856b3354db1cc1026df1cb7e75",
+      "source_path": "experiments/research/first_suite/root_generation.py"
+    },
+    "experiments/research/first_suite/root_probe.py": {
+      "sha256": "edbc14830056dd8c20707ae22a8f26602fb87c3da6678533a10c93d8e20ce7bd",
+      "source_path": "experiments/research/first_suite/root_probe.py"
+    },
+    "experiments/research/first_suite/seed_kem.py": {
+      "sha256": "5e71f28dd2de57f621ebefff798ab25d11cd2e130989bfbbd47a0e9c5299535f",
+      "source_path": "experiments/research/first_suite/seed_kem.py"
+    },
+    "experiments/research/first_suite/tree_probe.py": {
+      "sha256": "a6ded72700bbd0f8c490b12ea047546e7296779f8352e59e9cb8c2c21536daa4",
+      "source_path": "experiments/research/first_suite/tree_probe.py"
+    },
+    "experiments/research/fixed_key_transform_audit.py": {
+      "sha256": "6dd3c14d5f866c3f66d2ac4acefbcc1c5bea7a03c96403c5a5238a6d813341ae",
+      "source_path": "experiments/research/fixed_key_transform_audit.py"
+    },
+    "experiments/research/foo_li_backend_audit.py": {
+      "sha256": "0b5e112e08892a806ca838cf17d092ebfc869847938cca58ffd9b91f9d5bfc4e",
+      "source_path": "experiments/research/foo_li_backend_audit.py"
+    },
+    "experiments/research/foo_li_fixed_key_audit.py": {
+      "sha256": "86370468a6f66cc0d147080872bdccd30985d338a511a19b833892e623720be7",
+      "source_path": "experiments/research/foo_li_fixed_key_audit.py"
+    },
+    "experiments/research/foo_li_initialization.py": {
+      "sha256": "efb60ea254c2dd81a4d99707794c48054d8c10c7c916cc09ffd7b85e7e1228bf",
+      "source_path": "experiments/research/foo_li_initialization.py"
+    },
+    "experiments/research/foo_li_installed_audit.py": {
+      "sha256": "e2ab80befa81966603f9a59726011ccc82ba90358589b92ee211fee410f830ee",
+      "source_path": "experiments/research/foo_li_installed_audit.py"
+    },
+    "experiments/research/foo_li_matrix_mass_audit.py": {
+      "sha256": "373ee614c39fe6078321912250b0c7b556a1802cb354232c783555d19f632741",
+      "source_path": "experiments/research/foo_li_matrix_mass_audit.py"
+    },
+    "experiments/research/foo_li_oracle_model.py": {
+      "sha256": "0593b78c2752877b650a180248c449f47196a8344c32cc12c6ac21f26d5cbd78",
+      "source_path": "experiments/research/foo_li_oracle_model.py"
+    },
+    "experiments/research/foo_li_parameter_improvement.py": {
+      "sha256": "81a40ec804936f7cb75c7e6972d286fdd78c927b99049ef724c9e34bbb9a323c",
+      "source_path": "experiments/research/foo_li_parameter_improvement.py"
+    },
+    "experiments/research/foo_li_parameter_screen.py": {
+      "sha256": "89bbd489374e9b561b12e06a61c662c3059cb43f6066417c0b209af78fdbe272",
+      "source_path": "experiments/research/foo_li_parameter_screen.py"
+    },
+    "experiments/research/foo_li_public_verifier.py": {
+      "sha256": "b3a4e49263709ef460fab6ec4235c6dee1d4a9434dba4d943f65e801595c163b",
+      "source_path": "experiments/research/foo_li_public_verifier.py"
+    },
+    "experiments/research/foo_li_runtime_audit.py": {
+      "sha256": "85f7e73ee8a10c5a006844534ba5d19fcd5232f249cde3f8b18bbe98098c2407",
+      "source_path": "experiments/research/foo_li_runtime_audit.py"
+    },
+    "experiments/research/foo_li_runtime_reference.py": {
+      "sha256": "84b28a8f8cb71f8520f6365c7b200fbe6d91cbb7aa2aadc4edb11fc73ef99b5e",
+      "source_path": "experiments/research/foo_li_runtime_reference.py"
+    },
+    "experiments/research/foo_li_seed_slot_audit.py": {
+      "sha256": "dec1ab4bade41a24c12131fe3349fe6193b9797183451016f6f79c4b2d11812e",
+      "source_path": "experiments/research/foo_li_seed_slot_audit.py"
+    },
+    "experiments/research/full_system_benchmark.py": {
+      "sha256": "ad477b02bf55d97467ec98cb06dc9ce5d610e3d34562331f6d56612848f3b49c",
+      "source_path": "experiments/research/full_system_benchmark.py"
+    },
+    "experiments/research/full_system_hotspots.py": {
+      "sha256": "da24ea6a1aa1c77657e206f01e4a7250d7bc7f90db4f4e0abf1ee9285ae8987b",
+      "source_path": "experiments/research/full_system_hotspots.py"
+    },
+    "experiments/research/full_system_placement.py": {
+      "sha256": "fbb6bcd1a160ca573eccd5dcb07c61f7ccdd41cfcdf1fa72f2ddbd20c39acc46",
+      "source_path": "experiments/research/full_system_placement.py"
+    },
+    "experiments/research/gaussian_reference.py": {
+      "sha256": "0e003b3a813b9fbdf7919e98dcbf7906cf2676e54ac14d28ac6e826b28436f13",
+      "source_path": "experiments/research/gaussian_reference.py"
+    },
+    "experiments/research/general_gadget_audit.py": {
+      "sha256": "35fa0b6b5c345de4d865cf875712114e6f8e2108b58448ef63860abc2959f235",
+      "source_path": "experiments/research/general_gadget_audit.py"
+    },
+    "experiments/research/general_gadget_reference.py": {
+      "sha256": "69e68a33baab3c85fe84525ce92a45e81723c667c64b526fa2dc321b2b098ab0",
+      "source_path": "experiments/research/general_gadget_reference.py"
+    },
+    "experiments/research/ibme_chain_audit.py": {
+      "sha256": "4a6a30d40f048a43e4d385e1d2c24b05841b54efd876573a57ab36c1a3e3a8d0",
+      "source_path": "experiments/research/ibme_chain_audit.py"
+    },
+    "experiments/research/ibme_handoff_screen.py": {
+      "sha256": "bede9415ecad753b4a88df7c882e4a5994a7b7481fd31a017a920a3325c016dd",
+      "source_path": "experiments/research/ibme_handoff_screen.py"
+    },
+    "experiments/research/ibme_joint_parameters.py": {
+      "sha256": "74b63d07714a997ce50c8444ac758c40c4df6a48efd3db7b3cad11d764494ba3",
+      "source_path": "experiments/research/ibme_joint_parameters.py"
+    },
+    "experiments/research/ibme_noise_budget.py": {
+      "sha256": "5e3da6149b03d8419743a9d76279690c356df0316e0d6a283f6efff4ffd251af",
+      "source_path": "experiments/research/ibme_noise_budget.py"
+    },
+    "experiments/research/ibme_root_sampler_audit.py": {
+      "sha256": "00bc6af3eae975d1428af5cd51af9b5f8e8d4dc467270fb0f7279a36713b00dc",
+      "source_path": "experiments/research/ibme_root_sampler_audit.py"
+    },
+    "experiments/research/ibme_rounded_noise.py": {
+      "sha256": "8b53e5f6a2838983e0e3c329f56d84fe26984aabacf9f3b86d662fc4794b2e4d",
+      "source_path": "experiments/research/ibme_rounded_noise.py"
+    },
+    "experiments/research/ibme_rounded_noise_audit.py": {
+      "sha256": "7da150c940ac937f52e497cd1ececce7881da6c1ff4479a7744574e438c1a2b0",
+      "source_path": "experiments/research/ibme_rounded_noise_audit.py"
+    },
+    "experiments/research/lai_c2_combinations.py": {
+      "sha256": "ddc018f047fa4043001d2311e11462bf0b7b9c1fb7976b67195417d3d9956c33",
+      "source_path": "experiments/research/lai_c2_combinations.py"
+    },
+    "experiments/research/latte_hibe_probe.py": {
+      "sha256": "4b7d3dd3cb0b83f79bb242142249138ca912a147fc1e3b58fb488c59aa1ed93a",
+      "source_path": "experiments/research/latte_hibe_probe.py"
+    },
+    "experiments/research/luo_acceptance_benchmark.py": {
+      "sha256": "a5bbaeaf1bc6391d7cc468c5895bdfc4e3de3e3b8ba0b4785a3be8d5dc8c7a52",
+      "source_path": "experiments/research/luo_acceptance_benchmark.py"
+    },
+    "experiments/research/luo_assembly_handoff.py": {
+      "sha256": "5bb6ebbd04017cc3d0451b7b96205d79fd3e19b9d2bc04ca3b1f9a170c2163e1",
+      "source_path": "experiments/research/luo_assembly_handoff.py"
+    },
+    "experiments/research/luo_candidate_probe.py": {
+      "sha256": "3e08126cc333b9520fc23e4e52d2248b2dcc526f82f1e9d1c2edffb4686c2a2f",
+      "source_path": "experiments/research/luo_candidate_probe.py"
+    },
+    "experiments/research/luo_compact_audit.py": {
+      "sha256": "d90a25809fab3fe06532c968c5d6a3446be88fec1d5d824a6d29b78fe8c399ac",
+      "source_path": "experiments/research/luo_compact_audit.py"
+    },
+    "experiments/research/luo_cross_version.py": {
+      "sha256": "15e8b66e98fc2bc046adaa76191a478bf220d341d27dc9b3b52361fcfa47efc8",
+      "source_path": "experiments/research/luo_cross_version.py"
+    },
+    "experiments/research/luo_hybrid_audit.py": {
+      "sha256": "44460eb5ca47821e405749e4717d93c4c0a87194b1cb9b66163bc1f2067a809b",
+      "source_path": "experiments/research/luo_hybrid_audit.py"
+    },
+    "experiments/research/luo_joint_parameter_screen.py": {
+      "sha256": "41232c92af735377e005a4e0e32bc2eff343ce8ae04f3cb8719532a6f34b2e7f",
+      "source_path": "experiments/research/luo_joint_parameter_screen.py"
+    },
+    "experiments/research/luo_lifecycle_benchmark.py": {
+      "sha256": "95ffaa03c6fbdda61fdcc04d0ee6131e2ff6d1b762adfd1d768222f49c882fdb",
+      "source_path": "experiments/research/luo_lifecycle_benchmark.py"
+    },
+    "experiments/research/luo_matrix_audit.py": {
+      "sha256": "3df3b40195d04a3efadcec80615a57304739de9dacc6dc9628b598cb31d9ddd8",
+      "source_path": "experiments/research/luo_matrix_audit.py"
+    },
+    "experiments/research/luo_matrix_reference.py": {
+      "sha256": "e5781e8c027c6e1c8bcb964e8e34851d7628de1ba4aa7748a22fba782ab41cff",
+      "source_path": "experiments/research/luo_matrix_reference.py"
+    },
+    "experiments/research/luo_module_audit.py": {
+      "sha256": "58f239ac6e462837de79b1d668540a24f02a84c88a6f59223c4fb387fb4cbade",
+      "source_path": "experiments/research/luo_module_audit.py"
+    },
+    "experiments/research/luo_module_security_screen.py": {
+      "sha256": "eda9a0343ff01f8cde04501c9190c3f1c9267ff083720e94899e5738ad3e8f48",
+      "source_path": "experiments/research/luo_module_security_screen.py"
+    },
+    "experiments/research/luo_parameter_screen.py": {
+      "sha256": "eed0fc5fb99248d2aa30cab64a7703f2a56bb2ab662583e2e080e0fb993edb7f",
+      "source_path": "experiments/research/luo_parameter_screen.py"
+    },
+    "experiments/research/luo_public_master_lwe_probe.py": {
+      "sha256": "fdf4c742b7bd4fe8d607e0ce9c5206aff71c9d0888690a1572dbb806a3429757",
+      "source_path": "experiments/research/luo_public_master_lwe_probe.py"
+    },
+    "experiments/research/luo_robust_abort_certificate.py": {
+      "sha256": "28c0bdaae844ab802c178e6ea820002812e8a6306accb606d14b7692a32eb1b8",
+      "source_path": "experiments/research/luo_robust_abort_certificate.py"
+    },
+    "experiments/research/matrix_structured_parameter_screen.py": {
+      "sha256": "d71bb2980da924fcf6e2de3026076771386d67b686621e022d0d4f3decada66c",
+      "source_path": "experiments/research/matrix_structured_parameter_screen.py"
+    },
+    "experiments/research/matrix_structured_probe.py": {
+      "sha256": "3dd16c7c8ad6f936d3c15f5ffb1acd4365ddd0b40e890fe7752c50ea5cf1dee8",
+      "source_path": "experiments/research/matrix_structured_probe.py"
+    },
+    "experiments/research/mp12_sampled_audit.py": {
+      "sha256": "cd75a5202906df9d65133f38eaa77f384b8dc810c84381b63cbb2672d2eaca65",
+      "source_path": "experiments/research/mp12_sampled_audit.py"
+    },
+    "experiments/research/mp12_sampled_reference.py": {
+      "sha256": "a01b198a7bbcefbb54b387f6ab0b24961b5e74c3689ea4e2f30c74c35ba1061b",
+      "source_path": "experiments/research/mp12_sampled_reference.py"
+    },
+    "experiments/research/mp12_trapdoor_chain.py": {
+      "sha256": "4500bcc2d6df1e3e1f40724402d1d1f2ddffb50df831e71ea1d9debece48f2e0",
+      "source_path": "experiments/research/mp12_trapdoor_chain.py"
+    },
+    "experiments/research/mp12_trapdoor_chain_audit.py": {
+      "sha256": "ca0388030a78a250b4a0f634b34b0a2776875119f0dc0c36b1a445ab699e4673",
+      "source_path": "experiments/research/mp12_trapdoor_chain_audit.py"
+    },
+    "experiments/research/online_gaussian_reference.py": {
+      "sha256": "0ede2571fba9f7f835af21fce45f65719ea31b515df0199819376e07bba44ffa",
+      "source_path": "experiments/research/online_gaussian_reference.py"
+    },
+    "experiments/research/online_mp12_reference.py": {
+      "sha256": "67ef14da368416138ad6598c0161afd023542f5912c55e79369328523cfe6d5b",
+      "source_path": "experiments/research/online_mp12_reference.py"
+    },
+    "experiments/research/online_sampling_audit.py": {
+      "sha256": "fa86419eac6b3eb8ca7efe232fa7b3e3c91d955c2707af1adf43034392f3f83d",
+      "source_path": "experiments/research/online_sampling_audit.py"
+    },
+    "experiments/research/pr34_sampling_review.py": {
+      "sha256": "d304e21ae9f97e40b65182fd354cdd2cbfe75843fd13b1b324f2607ad13f685a",
+      "source_path": "experiments/research/pr34_sampling_review.py"
+    },
+    "experiments/research/prepared_context_benchmark.py": {
+      "sha256": "5e535bffb499e65f94b8458059c861c99e2362798ace0894f7dadd375d30f2f5",
+      "source_path": "experiments/research/prepared_context_benchmark.py"
+    },
+    "experiments/research/prepared_context_stream.py": {
+      "sha256": "11556a0fee92c09c8f541eacd09a1887064d203718383e0f94d640d34cb654f3",
+      "source_path": "experiments/research/prepared_context_stream.py"
+    },
+    "experiments/research/primitive_gate_audit.py": {
+      "sha256": "e1ceed3574a195286ed9bf0978e305e1bffd5ffa11bc4c5f43e8a2337611f463",
+      "source_path": "experiments/research/primitive_gate_audit.py"
+    },
+    "experiments/research/primitive_spec_audit.py": {
+      "sha256": "93b8a3b763e5018a3d58abdf56562bbca5dbe7a3f7d341533eea612b518cd7ad",
+      "source_path": "experiments/research/primitive_spec_audit.py"
+    },
+    "experiments/research/report_experiment_probe.py": {
+      "sha256": "3015ae266073cbc8b06dca2342c63f9f3e9388a051dcd08dedfe1395e769b480",
+      "source_path": "experiments/research/report_experiment_probe.py"
+    },
+    "experiments/research/runtime_metrics.py": {
+      "sha256": "a96c1f30e898d5061d5a5b13bd63a368d6d9ef46b76883a02a0498aff3df9d72",
+      "source_path": "experiments/research/runtime_metrics.py"
+    },
+    "experiments/research/sageloli_parameter_units.py": {
+      "sha256": "253d3617a0f5f885253ee3629525bb7b46f74fd997ce5c3e2cf02c043c484e5f",
+      "source_path": "experiments/research/sageloli_parameter_units.py"
+    },
+    "experiments/research/sageloli_ring_integration.py": {
+      "sha256": "e67da61d18d39c10999365a8ccc423ccd43e93b0e05195d8e36619223c61d931",
+      "source_path": "experiments/research/sageloli_ring_integration.py"
+    },
+    "experiments/research/sageloli_ring_public_evidence.py": {
+      "sha256": "72deee748fe1c9a432f1e99b9149183fd471da00a67e5151fff4831f26bec2d1",
+      "source_path": "experiments/research/sageloli_ring_public_evidence.py"
+    },
+    "experiments/research/sampling_reference_audit.py": {
+      "sha256": "ac96f6f9d032939b6a3d56b65476cbade2797133f5001bf206efaabdf8ec3e87",
+      "source_path": "experiments/research/sampling_reference_audit.py"
+    },
+    "experiments/research/srgg_bridge_delivery_check.py": {
+      "sha256": "20887f2b575a7e4c6c7436053a09dc05073e428f11fd56278fd087308f798f44",
+      "source_path": "experiments/research/srgg_bridge_delivery_check.py"
+    },
+    "experiments/research/srgg_classical_rom_delivery_check.py": {
+      "sha256": "a36c0740c5a71ad6653566df2c2031b44a4186240968fc477ef2ba7d3c477c34",
+      "source_path": "experiments/research/srgg_classical_rom_delivery_check.py"
+    },
+    "experiments/research/srgg_paper_cli_probe.py": {
+      "sha256": "20e207675613c1ec14ef26f3b57ad99f284a2272dd26d10c2eb32621005c2ac6",
+      "source_path": "experiments/research/srgg_paper_cli_probe.py"
+    },
+    "experiments/research/srgg_proof_followup_delivery_check.py": {
+      "sha256": "2b47fc5c2d5fb5fce7497e2517612048a1ff03c95f6a269b60cb3b47c0a0ed7c",
+      "source_path": "experiments/research/srgg_proof_followup_delivery_check.py"
+    },
+    "experiments/research/srgg_reduction_delivery_check.py": {
+      "sha256": "e42326d07c997e7cfd3788e98e9c4849ce4a7b5c70eaa28df2945089d83e1a6b",
+      "source_path": "experiments/research/srgg_reduction_delivery_check.py"
+    },
+    "experiments/research/srgg_structured_samplef_execution.py": {
+      "sha256": "9a0669ae3ad2919aea4ee14e9f90daf8b0b3ec032d84ecaa5d4fc50aa5d69d1a",
+      "source_path": "experiments/research/srgg_structured_samplef_execution.py"
+    },
+    "experiments/research/srgg_structured_service_audit.py": {
+      "sha256": "3fdbe3c1538fdc9c535f0e595a6eb54b2ce42f50d931c5f00ca6f6e5ec9f5bfc",
+      "source_path": "experiments/research/srgg_structured_service_audit.py"
+    },
+    "experiments/research/srgg_structured_service_delivery_check.py": {
+      "sha256": "442409143ed5d5d899b32c6df048a8b31bd79411eaa82c3e847252698f87bcc2",
+      "source_path": "experiments/research/srgg_structured_service_delivery_check.py"
+    },
+    "experiments/research/structured_feasibility.py": {
+      "sha256": "d5bc00fdc67e884698b8e2f023ccef8332e408831b8b1fae0786b88b9fff395c",
+      "source_path": "experiments/research/structured_feasibility.py"
+    },
+    "experiments/research/structured_finite192_probe.py": {
+      "sha256": "d8baf71fb8f872a8b349c1ece9b4daace39a512fc54baf87892acf8d5ede1480",
+      "source_path": "experiments/research/structured_finite192_probe.py"
+    },
+    "experiments/research/structured_framework_probe.py": {
+      "sha256": "6582901aaaa5ba9d694cf627303fc7e925f0b4ec5baace81e38c733986344ec5",
+      "source_path": "experiments/research/structured_framework_probe.py"
+    },
+    "experiments/research/structured_hg_budget.py": {
+      "sha256": "5438fe21a982905ece8b1d9faa9533c96b559c8d35054c69e397039c29733441",
+      "source_path": "experiments/research/structured_hg_budget.py"
+    },
+    "experiments/research/structured_hibe_probe.py": {
+      "sha256": "19a78881904592074d51c99e5bf4532c292c41dc5acbcd2cf6d56d598e90115f",
+      "source_path": "experiments/research/structured_hibe_probe.py"
+    },
+    "experiments/research/structured_identity_view.py": {
+      "sha256": "326b30edaf13aa6176ec09db93447eea146cf0190dbaf57de55daea4314feae1",
+      "source_path": "experiments/research/structured_identity_view.py"
+    },
+    "experiments/research/structured_radix_screen.py": {
+      "sha256": "42cbb15de6abb50e91ccc66a3d1fa6b9d485f9042f99c0540403cd20b1f34259",
+      "source_path": "experiments/research/structured_radix_screen.py"
+    },
+    "experiments/research/structured_service_budget.py": {
+      "sha256": "382406c63650968fa455700cd573c34e9adf7e8887eceae14ed2bee76a5df500",
+      "source_path": "experiments/research/structured_service_budget.py"
+    },
+    "experiments/research/structured_target_screen.py": {
+      "sha256": "9f1bcc5ce9673eb20c6e95558e6265b736f39053a856cc2233bdb506832c8f94",
+      "source_path": "experiments/research/structured_target_screen.py"
+    },
+    "experiments/research/verify_luo_compact_vectors.py": {
+      "sha256": "d3fc535d626a3304f1a33193223f9d852de545f54974acae81806231e5d4613b",
+      "source_path": "experiments/research/verify_luo_compact_vectors.py"
+    },
+    "experiments/research/wang_pw_independent_audit.py": {
+      "sha256": "d3fcf64dd9ae4008875a83488fef74d71ef05ec614949115698f7d356eb9b070",
+      "source_path": "experiments/research/wang_pw_independent_audit.py"
+    },
+    "experiments/research/wang_pw_linear_audit.py": {
+      "sha256": "de41e1cceeba4b5eeeccef663da8b2ddf3f17f7ae77cab80ad6e40a69aedab28",
+      "source_path": "experiments/research/wang_pw_linear_audit.py"
+    },
+    "experiments/research/wang_pw_receipt.py": {
+      "sha256": "41645b0c719053acb7a3ece73124e048c09b399cc5c8caadd767f4e2fffa4374",
+      "source_path": "experiments/research/wang_pw_receipt.py"
+    },
+    "experiments/research/wang_pw_service_audit.py": {
+      "sha256": "434ae4d7c6fc9d718dab86ce2c3f93edec7f63ba5b874cae669a4fcf66336fbd",
+      "source_path": "experiments/research/wang_pw_service_audit.py"
+    },
+    "experiments/research/wang_pw_service_delivery_check.py": {
+      "sha256": "1148098c8f71500e01d4609459c1e0bd59faa765a67e483ef696cf502f87c76f",
+      "source_path": "experiments/research/wang_pw_service_delivery_check.py"
+    },
+    "experiments/research/wsl_wheel_runtime.py": {
+      "sha256": "7693f470be3d2992c5fc1684109ddb9cf1f581ad8bf963ea5224bef08ef618bd",
+      "source_path": "experiments/research/wsl_wheel_runtime.py"
+    },
+    "experiments/research/yu_backend_audit.py": {
+      "sha256": "85f894752f232a6613de7e6d47752f5dabdb9e3329814609003d18f3fdd743e3",
+      "source_path": "experiments/research/yu_backend_audit.py"
+    },
+    "experiments/research/yu_delivery_check.py": {
+      "sha256": "3ddfd04cdf4e3e1bc98d4f8a94e3a9439c587f83b8a4498f30da2200d1a08a46",
+      "source_path": "experiments/research/yu_delivery_check.py"
+    },
+    "experiments/research/yu_installed_audit.py": {
+      "sha256": "3a36acaf17cd7268465686ee80fefc794499c60e541a5894f15fba5b03ee0640",
+      "source_path": "experiments/research/yu_installed_audit.py"
+    },
+    "experiments/run_combination_matrix.py": {
+      "sha256": "08a969035dc3ee4c0da0a19d47aae1bd66b63b7b62cf8990b4680822e43a6b0f",
+      "source_path": "experiments/run_combination_matrix.py"
+    },
+    "ibme/__init__.py": {
+      "sha256": "f0e3dd70a3752229d5209b58ef760914242569406374c427a463a45823090bb8",
+      "source_path": "src/ibme/__init__.py"
+    },
+    "ibme/assembly/__init__.py": {
+      "sha256": "7a1ba4f52c312cec497ff443f4e275e0d5f52105cafe917eeeb34e52f958373d",
+      "source_path": "src/ibme/assembly/__init__.py"
+    },
+    "ibme/assembly/catalog.py": {
+      "sha256": "dc3b97f4d05d1bd52eb67d46739b554e0fa79e21fd175252552f94dd9b10a43a",
+      "source_path": "src/ibme/assembly/catalog.py"
+    },
+    "ibme/assembly/registry.py": {
+      "sha256": "5babe0d506c41c95ee5d519b5443a0eb3e907a88d30e1a034ccc93ef16cdc99b",
+      "source_path": "src/ibme/assembly/registry.py"
+    },
+    "ibme/cli.py": {
+      "sha256": "02694708680c8300538e40fc9f216efc4da6e780d14ea82c92f091c6f48975bd",
+      "source_path": "src/ibme/cli.py"
+    },
+    "ibme/cli_state.py": {
+      "sha256": "531aa3d7f4c9d6e1929847b3ed603b2427911e9fa4c1f98db440d8ae70d35567",
+      "source_path": "src/ibme/cli_state.py"
+    },
+    "ibme/core/__init__.py": {
+      "sha256": "c602a8ccbdde94afc37529e9f625ce7f8f501734e55e7704380c0078bd3f08ac",
+      "source_path": "src/ibme/core/__init__.py"
+    },
+    "ibme/core/encoding.py": {
+      "sha256": "705ba169dd71831dd5cef558f90a2cf084c0d1da91da51f38c3f448d098a996d",
+      "source_path": "src/ibme/core/encoding.py"
+    },
+    "ibme/core/errors.py": {
+      "sha256": "904ad7f0d3419cb53fe21fff2c140ce9aad1bee95083e3522577b38c3675374e",
+      "source_path": "src/ibme/core/errors.py"
+    },
+    "ibme/core/hashing.py": {
+      "sha256": "26ee586dc3cf0f94a190a8fabf2691798f489ee75692d0a941d05de4fef91ee4",
+      "source_path": "src/ibme/core/hashing.py"
+    },
+    "ibme/core/lamport_ots.py": {
+      "sha256": "6322e025e01c299e20769ba6cd3a3bb02b9a14a98cf7fc530c81950adda046a5",
+      "source_path": "src/ibme/core/lamport_ots.py"
+    },
+    "ibme/core/randomness.py": {
+      "sha256": "e8896ab16d3282ce77e3e700e9b5ea5ce725349753af5646fb4ffaa39fd44202",
+      "source_path": "src/ibme/core/randomness.py"
+    },
+    "ibme/core/types.py": {
+      "sha256": "29200f3609497d14521aaf498b69cbef1f74ca02e4a84dc07ccd1135a1707c56",
+      "source_path": "src/ibme/core/types.py"
+    },
+    "ibme/hibe/__init__.py": {
+      "sha256": "8b471e5f2ca4a5b22cb2a695d6f75d1891962ff135ff0662e64f47abbde4cd1e",
+      "source_path": "src/ibme/hibe/__init__.py"
+    },
+    "ibme/hibe/abb10.py": {
+      "sha256": "a7121a89e3645e87fa059564b745ed1487dfb7f9510a10973c42d0b5e94a9d32",
+      "source_path": "src/ibme/hibe/abb10.py"
+    },
+    "ibme/hibe/abb_rom/__init__.py": {
+      "sha256": "f71b36a98291ae4fd3301f7790527cdc2b5049479347100db4051c71d92a822e",
+      "source_path": "src/ibme/hibe/abb_rom/__init__.py"
+    },
+    "ibme/hibe/abb_rom/backend.py": {
+      "sha256": "5b407064520a08307f7aaf503b23bcc9f83764fbdc3049e1c4f21b539fc3f1ca",
+      "source_path": "src/ibme/hibe/abb_rom/backend.py"
+    },
+    "ibme/hibe/abb_rom/bit_encryption.py": {
+      "sha256": "a38121004f3a06ad85679edccda9e58cb460b9eb7fa6d6bec23c6e76382369a6",
+      "source_path": "src/ibme/hibe/abb_rom/bit_encryption.py"
+    },
+    "ibme/hibe/abb_rom/identity.py": {
+      "sha256": "77f2a3375fb6d2ce05f91287a529bd0de811fdb1eaef4730ac4b53159a98ad9b",
+      "source_path": "src/ibme/hibe/abb_rom/identity.py"
+    },
+    "ibme/hibe/abb_rom/key_validation.py": {
+      "sha256": "3978f7df00cd97a237da33109acfc14bb14617e3969f93341e29897e9c4b9b49",
+      "source_path": "src/ibme/hibe/abb_rom/key_validation.py"
+    },
+    "ibme/hibe/abb_rom/objects.py": {
+      "sha256": "6ba821f920cf610d73639c771dce79da8928663b45918da99991b7feacee6bb2",
+      "source_path": "src/ibme/hibe/abb_rom/objects.py"
+    },
+    "ibme/hibe/abb_rom/parameter_gate.py": {
+      "sha256": "7623917cf78b46f4388a43d31137a1ffbea5e5f04a5c5191b1f6dafa82efb593",
+      "source_path": "src/ibme/hibe/abb_rom/parameter_gate.py"
+    },
+    "ibme/hibe/abb_rom/parameter_screen.py": {
+      "sha256": "166a593d0d89f8f7f125a9149fd19910c79ffd433c424b531b6055853ee281de",
+      "source_path": "src/ibme/hibe/abb_rom/parameter_screen.py"
+    },
+    "ibme/hibe/abb_rom/params.py": {
+      "sha256": "dffc31745ae5606e06d1879c2de4401bef6896a9bade77dcf7d1a8bcb85eb5e0",
+      "source_path": "src/ibme/hibe/abb_rom/params.py"
+    },
+    "ibme/hibe/abb_rom/primitives.py": {
+      "sha256": "51b1fe5e251f353344b6f1642a9176dcbc48a40ebda13029b1c069faa9d5231b",
+      "source_path": "src/ibme/hibe/abb_rom/primitives.py"
+    },
+    "ibme/hibe/abb_rom/profiles.py": {
+      "sha256": "75031856227d5c50bb5d741ba2fc1d279d6fe72b8b2356ed78ed9df03dc384c7",
+      "source_path": "src/ibme/hibe/abb_rom/profiles.py"
+    },
+    "ibme/hibe/abb_rom/registration.py": {
+      "sha256": "45fd9cb08b7144b636921aab0edfc1b8d531cc167053a7511318301faabdfdef",
+      "source_path": "src/ibme/hibe/abb_rom/registration.py"
+    },
+    "ibme/hibe/abb_rom/trapgen.py": {
+      "sha256": "e632c46da9c563b3ee3d6df18b957d33f1712207f4cf16600415e358e328320a",
+      "source_path": "src/ibme/hibe/abb_rom/trapgen.py"
+    },
+    "ibme/hibe/api.py": {
+      "sha256": "b81ec0a7ec48c8b5f2fbbed7182b0c22952167d355f92943918a419ab8a5ac4a",
+      "source_path": "src/ibme/hibe/api.py"
+    },
+    "ibme/hibe/chkp/__init__.py": {
+      "sha256": "d241115e0b4cd894352d3e0693275a5fc9a35430f402c537c141481cba05ae4c",
+      "source_path": "src/ibme/hibe/chkp/__init__.py"
+    },
+    "ibme/hibe/chkp/backend.py": {
+      "sha256": "8889baefe5241d2daef46db6c96c6c9f54106904126d50ebbba79df3ed9fda67",
+      "source_path": "src/ibme/hibe/chkp/backend.py"
+    },
+    "ibme/hibe/chkp/objects.py": {
+      "sha256": "2943f8085f431e4feaeb1c865e055fbda5af165e8d121dc71d40acd223e24a89",
+      "source_path": "src/ibme/hibe/chkp/objects.py"
+    },
+    "ibme/hibe/chkp/params.py": {
+      "sha256": "fbbb52373c55ab1848f884c16cf3fd1315e5570a3c283ed5c88c8f44db64e87d",
+      "source_path": "src/ibme/hibe/chkp/params.py"
+    },
+    "ibme/hibe/lai/__init__.py": {
+      "sha256": "db2542191b73ce29c2d73f27401d7983026ac4e6d98d23d74d228071aadfde9c",
+      "source_path": "src/ibme/hibe/lai/__init__.py"
+    },
+    "ibme/hibe/lai/backend.py": {
+      "sha256": "3645380847a776934b9f4ac05caeefd1f10382e73581ae978e799ed0c105306c",
+      "source_path": "src/ibme/hibe/lai/backend.py"
+    },
+    "ibme/hibe/lai/codec.py": {
+      "sha256": "1e949af0b70158d82fe2c4b6027f146313f4ba53bfb1842537374b7a9128ceb9",
+      "source_path": "src/ibme/hibe/lai/codec.py"
+    },
+    "ibme/hibe/lai/engine.py": {
+      "sha256": "39f35b79c8eba752f4efe553d7c931530e0888d34cc90541a31456147d227a22",
+      "source_path": "src/ibme/hibe/lai/engine.py"
+    },
+    "ibme/hibe/lai/objects.py": {
+      "sha256": "6bd8d2f752f9d3e60642a4e22bbaad9794a77ad7565a5f82780be01ad68ed26a",
+      "source_path": "src/ibme/hibe/lai/objects.py"
+    },
+    "ibme/hibe/lai/params.py": {
+      "sha256": "fecb346a02766bde6f18b3ecdfaed983fe79a82ebe8aa5f149cc060c5db8f6f6",
+      "source_path": "src/ibme/hibe/lai/params.py"
+    },
+    "ibme/hibe/lai/registration.py": {
+      "sha256": "09aa8a452f5feb6771efe09cc3653b2142e7f8253dcf8b83c3853cc8b2c44eb2",
+      "source_path": "src/ibme/hibe/lai/registration.py"
+    },
+    "ibme/hibe/latte/__init__.py": {
+      "sha256": "1cbcade113fb2cb372331a22e1567386ed948a6d708b5d6aded64c48d691206e",
+      "source_path": "src/ibme/hibe/latte/__init__.py"
+    },
+    "ibme/hibe/latte/backend.py": {
+      "sha256": "c93dcc104546b403ebbdc5cfedcbd778c5e37ff5fd11eb563fbe2eedb71f200a",
+      "source_path": "src/ibme/hibe/latte/backend.py"
+    },
+    "ibme/hibe/latte/codec.py": {
+      "sha256": "0db1ef3924687e2d7338c2404fbf2e02e33e4882ebae769d538d9ce3cd82416e",
+      "source_path": "src/ibme/hibe/latte/codec.py"
+    },
+    "ibme/hibe/latte/engine.py": {
+      "sha256": "9f39a46ab193c2433a8312b016ba35623dd5a4730b493c98b5768e3538a05630",
+      "source_path": "src/ibme/hibe/latte/engine.py"
+    },
+    "ibme/hibe/latte/math.py": {
+      "sha256": "044ca86fdfc90aeed1da1ccd56b1c34afe9def4dc37dff9510bc07961398b07b",
+      "source_path": "src/ibme/hibe/latte/math.py"
+    },
+    "ibme/hibe/latte/native/__init__.py": {
+      "sha256": "cd15ca790f3fa0d4b2c60d5f992f0bfe44938ae42a87f65b6c0bd28f66b4d0af",
+      "source_path": "src/ibme/hibe/latte/native/__init__.py"
+    },
+    "ibme/hibe/latte/native/bridge.c": {
+      "sha256": "3f68af02e74bbb59e829d9b128dd26072a2ec72748981561d4376b41f7acbdf0",
+      "source_path": "src/ibme/hibe/latte/native/bridge.c"
+    },
+    "ibme/hibe/latte/native/build.py": {
+      "sha256": "c061fe3d01c206c2fe3020a7884681e7ad16799540e6936ac6754265bb01efde",
+      "source_path": "src/ibme/hibe/latte/native/build.py"
+    },
+    "ibme/hibe/latte/native/compat/libXKCP.a.headers/SimpleFIPS202.h": {
+      "sha256": "f310de8a8e48f390e1cdc13935d83d0b178652a5fb4ffe5977b5ceeb15e81374",
+      "source_path": "src/ibme/hibe/latte/native/compat/libXKCP.a.headers/SimpleFIPS202.h"
+    },
+    "ibme/hibe/latte/native/shake.c": {
+      "sha256": "85969bca02166c393689fed96e2dbd1354bdfb7c8b2fc1aba571c77f8c4c2b02",
+      "source_path": "src/ibme/hibe/latte/native/shake.c"
+    },
+    "ibme/hibe/latte/native/upstream/cpucycles.c": {
+      "sha256": "d6e266716610e7d66ff6d3c302f61cae018612412ca051f8b1b1b3942ff29572",
+      "source_path": "src/ibme/hibe/latte/native/upstream/cpucycles.c"
+    },
+    "ibme/hibe/latte/native/upstream/cpucycles.h": {
+      "sha256": "86e0e9dbde96774fc11b7e39f59386a3839a3047152697f6b6f737c5e8397953",
+      "source_path": "src/ibme/hibe/latte/native/upstream/cpucycles.h"
+    },
+    "ibme/hibe/latte/native/upstream/decrypt.c": {
+      "sha256": "0fc7d60d77799d352cbfade0863d01e899088b8a094118d15aea16aec97aa332",
+      "source_path": "src/ibme/hibe/latte/native/upstream/decrypt.c"
+    },
+    "ibme/hibe/latte/native/upstream/decrypt.h": {
+      "sha256": "96183bf7e3936ef6f91bda52222e1ce27373ea6aa30442414fbe39cb870470b5",
+      "source_path": "src/ibme/hibe/latte/native/upstream/decrypt.h"
+    },
+    "ibme/hibe/latte/native/upstream/delegate.c": {
+      "sha256": "f1440475742ffa9b1ae1095cffed543b4d488ec3508755391aa21772f2e18eaa",
+      "source_path": "src/ibme/hibe/latte/native/upstream/delegate.c"
+    },
+    "ibme/hibe/latte/native/upstream/delegate.h": {
+      "sha256": "0b469f24ec826896e93419ac8a9c9ad7860f031432e70c32dd6f2f93e9b08881",
+      "source_path": "src/ibme/hibe/latte/native/upstream/delegate.h"
+    },
+    "ibme/hibe/latte/native/upstream/encode.c": {
+      "sha256": "fc9749702334915c723b7ba5a8feadb0c32251245f9aafe183a15d82ec5d2ea9",
+      "source_path": "src/ibme/hibe/latte/native/upstream/encode.c"
+    },
+    "ibme/hibe/latte/native/upstream/encode.h": {
+      "sha256": "28b8e89fc8ef1fcb48d45bcb6c6bec7d2f1dfedcfe3919b369417e2393f08901",
+      "source_path": "src/ibme/hibe/latte/native/upstream/encode.h"
+    },
+    "ibme/hibe/latte/native/upstream/encrypt.c": {
+      "sha256": "e4ca7b2953e22282761366b0943fc67fcab6b707bc359aca3dfe12002d111db9",
+      "source_path": "src/ibme/hibe/latte/native/upstream/encrypt.c"
+    },
+    "ibme/hibe/latte/native/upstream/encrypt.h": {
+      "sha256": "b1a3398c010b42148e1b507fa86692da2b10c767c893321470364f5e21d72a0d",
+      "source_path": "src/ibme/hibe/latte/native/upstream/encrypt.h"
+    },
+    "ibme/hibe/latte/native/upstream/extract.c": {
+      "sha256": "4b6c9dea79fefaadc3326ce044c15eb985945fc167dac9ee4e2b6c85e572e78b",
+      "source_path": "src/ibme/hibe/latte/native/upstream/extract.c"
+    },
+    "ibme/hibe/latte/native/upstream/extract.h": {
+      "sha256": "0cb4ab873574060cd602c2b6a2bcce0ee72642600438f74ac397c6f83c863d95",
+      "source_path": "src/ibme/hibe/latte/native/upstream/extract.h"
+    },
+    "ibme/hibe/latte/native/upstream/fastrandombytes.c": {
+      "sha256": "25323309d9c61140e60bddda26cb487224fd919b911a687d257dee60af4e614b",
+      "source_path": "src/ibme/hibe/latte/native/upstream/fastrandombytes.c"
+    },
+    "ibme/hibe/latte/native/upstream/fastrandombytes.h": {
+      "sha256": "a1ec071b3cd0e8e6675e202ea89a288561489326a3337bcb2e9130c416dd2a1d",
+      "source_path": "src/ibme/hibe/latte/native/upstream/fastrandombytes.h"
+    },
+    "ibme/hibe/latte/native/upstream/fft.c": {
+      "sha256": "0a39f0a625102a3143ae5ad8e497113e45f6f505652909cbb997fd62269dc5e8",
+      "source_path": "src/ibme/hibe/latte/native/upstream/fft.c"
+    },
+    "ibme/hibe/latte/native/upstream/fft.h": {
+      "sha256": "5a0ad5da15e6c92fa97e1cad9408560cf162c20325a5e255afeadd3dfb0c11bb",
+      "source_path": "src/ibme/hibe/latte/native/upstream/fft.h"
+    },
+    "ibme/hibe/latte/native/upstream/keygen.c": {
+      "sha256": "b45c6a9a9206910514a87a9a01d96abdd72d7bb0f0bd55522dd6b2a214cb8e13",
+      "source_path": "src/ibme/hibe/latte/native/upstream/keygen.c"
+    },
+    "ibme/hibe/latte/native/upstream/keygen.h": {
+      "sha256": "2e8cf754ab57c9dc5bcd81800415036a20aa1290d6f325e68495a4fbd29b7d92",
+      "source_path": "src/ibme/hibe/latte/native/upstream/keygen.h"
+    },
+    "ibme/hibe/latte/native/upstream/mat.c": {
+      "sha256": "fad094fee6a808b626329df65926f203e11f1fb6c9bc0e2f81ed99abcc19e45e",
+      "source_path": "src/ibme/hibe/latte/native/upstream/mat.c"
+    },
+    "ibme/hibe/latte/native/upstream/mat.h": {
+      "sha256": "6a1751e3c2f3896228a5f30f94ffe12c35be99c33a0f66bf8e8f28b0640ee152",
+      "source_path": "src/ibme/hibe/latte/native/upstream/mat.h"
+    },
+    "ibme/hibe/latte/native/upstream/ntt.c": {
+      "sha256": "0ebb377d0b1b5ba60e22201f2cb2eaa08b203e59b30b3958a972a198329312a7",
+      "source_path": "src/ibme/hibe/latte/native/upstream/ntt.c"
+    },
+    "ibme/hibe/latte/native/upstream/ntt.h": {
+      "sha256": "975211c81eaefb11a9b805dcc4ae51d7308843b11844063ef2d30e25c8c66ce5",
+      "source_path": "src/ibme/hibe/latte/native/upstream/ntt.h"
+    },
+    "ibme/hibe/latte/native/upstream/param.h": {
+      "sha256": "824034fce0c17403ed87c8ecd9a43e087ca2b3f203a8ff4f9ded4c9c20ea25d5",
+      "source_path": "src/ibme/hibe/latte/native/upstream/param.h"
+    },
+    "ibme/hibe/latte/native/upstream/poly.c": {
+      "sha256": "d3e33182268ceed4007fcc085d1b765f429598b9eb707fd572719f0f3bd5a3c8",
+      "source_path": "src/ibme/hibe/latte/native/upstream/poly.c"
+    },
+    "ibme/hibe/latte/native/upstream/poly.h": {
+      "sha256": "6fbf172e2f8b22d30b1c2305f4052971b0e4bed447a96f73172a6d2cdd243450",
+      "source_path": "src/ibme/hibe/latte/native/upstream/poly.h"
+    },
+    "ibme/hibe/latte/native/upstream/randombytes.c": {
+      "sha256": "5368c6968c51cea0b396ae1fce00913dadf5fcf08a5800c3362c02b11dd93525",
+      "source_path": "src/ibme/hibe/latte/native/upstream/randombytes.c"
+    },
+    "ibme/hibe/latte/native/upstream/randombytes.h": {
+      "sha256": "7aaff138f307a007225d268b5325d8ee674699a95fe69ca4db92a5e2ea451d75",
+      "source_path": "src/ibme/hibe/latte/native/upstream/randombytes.h"
+    },
+    "ibme/hibe/latte/native/upstream/red.h": {
+      "sha256": "545ffd249edc37a3132d505e18f277511c0a071518f59b2f47f28cab9981ad46",
+      "source_path": "src/ibme/hibe/latte/native/upstream/red.h"
+    },
+    "ibme/hibe/latte/native/upstream/sample_fft.c": {
+      "sha256": "70c33f49d75346b20321ad59fcb0f4d9a1ea6f96a5b34e0cfe25365da7b9e30e",
+      "source_path": "src/ibme/hibe/latte/native/upstream/sample_fft.c"
+    },
+    "ibme/hibe/latte/native/upstream/sample_fft.h": {
+      "sha256": "afb5686e378dbeb64a8625ef05cfccd1b49db6bad4068d538f8e266889453c0c",
+      "source_path": "src/ibme/hibe/latte/native/upstream/sample_fft.h"
+    },
+    "ibme/hibe/latte/native/upstream/sample_z.c": {
+      "sha256": "17c11233a75dbe60f8b3c3f0f8db953f42e3a6777f46ff1952d9c92ee5f78329",
+      "source_path": "src/ibme/hibe/latte/native/upstream/sample_z.c"
+    },
+    "ibme/hibe/latte/native/upstream/sample_z.h": {
+      "sha256": "1092d3074883dd9652be1faa4fc3310e537fee1b0d53514a4af6db170b939457",
+      "source_path": "src/ibme/hibe/latte/native/upstream/sample_z.h"
+    },
+    "ibme/hibe/latte/native/upstream/test.c": {
+      "sha256": "bbc243d30d2d26e2455c0d54916dcdcffb88e9d7832122e0fa9e7d0129c69a00",
+      "source_path": "src/ibme/hibe/latte/native/upstream/test.c"
+    },
+    "ibme/hibe/latte/objects.py": {
+      "sha256": "f96f6454d87898c8315b5d48f7106fe309eb19310d8db2ed4ee68940ba1c985e",
+      "source_path": "src/ibme/hibe/latte/objects.py"
+    },
+    "ibme/hibe/latte/params.py": {
+      "sha256": "dd0a34bdacb6b70355d78f4a171b060181ac75d03008bcace4acbd451fd958d3",
+      "source_path": "src/ibme/hibe/latte/params.py"
+    },
+    "ibme/hibe/latte/registration.py": {
+      "sha256": "0b74bcf06ec6ad467f28166de44a94ffd815c59d3b7ed45cbf5d5776d116e633",
+      "source_path": "src/ibme/hibe/latte/registration.py"
+    },
+    "ibme/hibe/mock.py": {
+      "sha256": "48f53e2fdd383cd361ea304056f289f6f4dfee23558b3825038d4b363113002a",
+      "source_path": "src/ibme/hibe/mock.py"
+    },
+    "ibme/hibe/mp12_chkp/__init__.py": {
+      "sha256": "a3829f2c989f4d1eeaef0ddeaea826f291cce867d83e05d15ac3d37f57a4b703",
+      "source_path": "src/ibme/hibe/mp12_chkp/__init__.py"
+    },
+    "ibme/hibe/mp12_structured/__init__.py": {
+      "sha256": "d9abce512645ab8a0125b66f5d9cbd05a7e631a86c9c12da8cdddfea4ace37b7",
+      "source_path": "src/ibme/hibe/mp12_structured/__init__.py"
+    },
+    "ibme/hibe/mp12_structured/backend.py": {
+      "sha256": "cdcda7111a7e6becf388148a02c6192117d93aaf01be5dd7f0cf473a0fb60b9f",
+      "source_path": "src/ibme/hibe/mp12_structured/backend.py"
+    },
+    "ibme/hibe/mp12_structured/blocked_prototype.py": {
+      "sha256": "cd0e04ecc8c56def01c3c98976d79fe17bc16f1ea8c5f852c6e3116dddaf3ea5",
+      "source_path": "src/ibme/hibe/mp12_structured/blocked_prototype.py"
+    },
+    "ibme/hibe/mp12_structured/objects.py": {
+      "sha256": "29a4006ccdef2e3bbc041b75dab4886bce221e5ca513a50871dfe6bc0d91f487",
+      "source_path": "src/ibme/hibe/mp12_structured/objects.py"
+    },
+    "ibme/hibe/mp12_structured/params.py": {
+      "sha256": "c7d909eaabdb6fab8c86fb72a5b585eb66b0ddce7336ecfa0379887d3c87d6b9",
+      "source_path": "src/ibme/hibe/mp12_structured/params.py"
+    },
+    "ibme/hibe/mp12_structured/radix_kem.py": {
+      "sha256": "a58ba6b0bcc7e65a57ea934796c0160b7d6e9eb11b8c7101db5b1e7bdef3c3ac",
+      "source_path": "src/ibme/hibe/mp12_structured/radix_kem.py"
+    },
+    "ibme/hibe/mp12_structured/registration.py": {
+      "sha256": "5da02f1930a7d9847e3e3793d716cfbcd20ed6ad9da67f94c12c659aa3bf9826",
+      "source_path": "src/ibme/hibe/mp12_structured/registration.py"
+    },
+    "ibme/ibs/__init__.py": {
+      "sha256": "09f78edc872e40b5c0644b187db5e8f6aa2fb9a74455eb41571b9e71a63920c4",
+      "source_path": "src/ibme/ibs/__init__.py"
+    },
+    "ibme/ibs/api.py": {
+      "sha256": "e08bfaf4c73c0471966103156f3b88debda5f37b06b493c63dde7b4372da661c",
+      "source_path": "src/ibme/ibs/api.py"
+    },
+    "ibme/ibs/certified/__init__.py": {
+      "sha256": "4a8a4ff59d305a297547328a40b4ae4ef51070b5f07fd5e30ba86a1ae8dfd2c3",
+      "source_path": "src/ibme/ibs/certified/__init__.py"
+    },
+    "ibme/ibs/certified/backend.py": {
+      "sha256": "aec3b9a86edb6e65963572ba0235ade4971a46a9ff2ff3a170e0916e3702908f",
+      "source_path": "src/ibme/ibs/certified/backend.py"
+    },
+    "ibme/ibs/certified/codec.py": {
+      "sha256": "375c6af2ba7d25d6f6dd1e16807c9544b53fda8c3521a603ac7691f20cbb9a95",
+      "source_path": "src/ibme/ibs/certified/codec.py"
+    },
+    "ibme/ibs/certified/falcon.py": {
+      "sha256": "4cda3936882f82e6e4e5e9859ff9c6b44053f8dd3591c3c8f26cffb0b358de4d",
+      "source_path": "src/ibme/ibs/certified/falcon.py"
+    },
+    "ibme/ibs/certified/falcon_native/bridge.c": {
+      "sha256": "3aa9bffcdbb6271c8b188223899d599b23370e3c5da46f08dddf18ab7bccfb3c",
+      "source_path": "src/ibme/ibs/certified/falcon_native/bridge.c"
+    },
+    "ibme/ibs/certified/falcon_native/build.py": {
+      "sha256": "3c74136824514a6eef41ee5587250f3127799f71aef114ff7853ee26cc787454",
+      "source_path": "src/ibme/ibs/certified/falcon_native/build.py"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/codec.c": {
+      "sha256": "01c33a46d0b53bbc532a052ca243e9d995cae88a358b9c9b88917f2a863c8f2c",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/codec.c"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/common.c": {
+      "sha256": "5e0bd5caa0e4029c3d154ac816e03a12ad61910baa4ddc999d6f9f63507f17fa",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/common.c"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/config.h": {
+      "sha256": "2d0a02fe1727b4cf36347b85cd06554c8418fa287ca6568a325cc5a173958c72",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/config.h"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/falcon.c": {
+      "sha256": "71963824bb7ffe12dd24c2477f3a7b5bd6bb7c54637a975ab31eab7da082a0fd",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/falcon.c"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/falcon.h": {
+      "sha256": "dad8ed7c0dd2a69128d3f70df6fdd1775e89199de3f1f5dc972fbab5954d35f1",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/falcon.h"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/fft.c": {
+      "sha256": "e61a5af0b998f9701e5de783899eb2dffb0169fc78ce38574f1a9975bf15ad0a",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/fft.c"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/fpr.c": {
+      "sha256": "6b9cd10b6a849ecc4cfc1f2f159d147fc94df4545f571618f7ef8e78a2d26c48",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/fpr.c"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/fpr.h": {
+      "sha256": "f1d04e17b8c99ae6c649406d0379721b24db428d047c9bea3b26686806deca72",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/fpr.h"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/inner.h": {
+      "sha256": "ca4787ce08073ba3724515e0b856960c9abde5aec76fee0de1b862aa474e71c9",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/inner.h"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/keygen.c": {
+      "sha256": "1a172953aef52c8dbdc24d1cf96b5f39a4771d10fe38e4aaa04d2721fa2172c9",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/keygen.c"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/rng.c": {
+      "sha256": "7968e4049a747cea06f3fca468894a6d3066681c347ee2b2921c211576e76c08",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/rng.c"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/shake.c": {
+      "sha256": "3c7201d3ec42d37a2c5c3ef12994b8f88067d1038ee2a99fc40e616c58e1c6ad",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/shake.c"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/sign.c": {
+      "sha256": "79ed0e185b757459ffc8292aed1e79d71efd6a082600d8ba0984850eb039ed9a",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/sign.c"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/speed.c": {
+      "sha256": "fa569072177a021951b3e38e2ae4ab862e17fed1d841bdcea0b5a167986e1605",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/speed.c"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/test_falcon.c": {
+      "sha256": "a1c5772cc6a6227c37f385313e020bc296243295e24a57f7b35e7b3241c64bdd",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/test_falcon.c"
+    },
+    "ibme/ibs/certified/falcon_native/upstream/vrfy.c": {
+      "sha256": "a7232f888c87f21a26ea612abc7c86a09236d28f148c9e8caa6c5f9a5744a77a",
+      "source_path": "src/ibme/ibs/certified/falcon_native/upstream/vrfy.c"
+    },
+    "ibme/ibs/certified/mldsa.py": {
+      "sha256": "fd8fed18dc289030e2adad85ecd8b8fc6c2f7e17c662042ab93c2bad5268d4e0",
+      "source_path": "src/ibme/ibs/certified/mldsa.py"
+    },
+    "ibme/ibs/certified/native/__init__.py": {
+      "sha256": "62f466791afbf57c1bc80709057afab22f70ba89bc9e5f4dd4e18523a981c518",
+      "source_path": "src/ibme/ibs/certified/native/__init__.py"
+    },
+    "ibme/ibs/certified/native/bridge.c": {
+      "sha256": "8947a86b262082879898d5b812d8bcb3960d3ab66495b47557bdae9ef6b645ae",
+      "source_path": "src/ibme/ibs/certified/native/bridge.c"
+    },
+    "ibme/ibs/certified/native/build.py": {
+      "sha256": "0896118146222ac587f635be99bf340573d7808f8017b8be4ae58f440facc801",
+      "source_path": "src/ibme/ibs/certified/native/build.py"
+    },
+    "ibme/ibs/certified/native/upstream/ref/api.h": {
+      "sha256": "eff2fe4cca86cb72543628656a40af6720bb66f1781a5fadd55454c695472598",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/api.h"
+    },
+    "ibme/ibs/certified/native/upstream/ref/config.h": {
+      "sha256": "4f798c78a3b44669fc0febc116b9235692a555987b09d528df3e644415d4dea9",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/config.h"
+    },
+    "ibme/ibs/certified/native/upstream/ref/fips202.c": {
+      "sha256": "e4e486d8c839805ae9ad0c2976c3ad4455eeb9a4126835cb1583d7c287ccd9f6",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/fips202.c"
+    },
+    "ibme/ibs/certified/native/upstream/ref/fips202.h": {
+      "sha256": "e5e06085263e4b7726c398095fd2c6d65e8f1c714de49537198d937d9dae9bb6",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/fips202.h"
+    },
+    "ibme/ibs/certified/native/upstream/ref/ntt.c": {
+      "sha256": "921b76ae7a183305893800e69c0b9ea561bffd2a6e85621767eb789c02a0f8d0",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/ntt.c"
+    },
+    "ibme/ibs/certified/native/upstream/ref/ntt.h": {
+      "sha256": "32345efead2c237177f3c0e050c26caf6c9d1772a629664632d9ff32f2693a3e",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/ntt.h"
+    },
+    "ibme/ibs/certified/native/upstream/ref/packing.c": {
+      "sha256": "af51fe6b63164c17a765fcca14afa1ad2bfa11a1389a1964781951cdaf0f6016",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/packing.c"
+    },
+    "ibme/ibs/certified/native/upstream/ref/packing.h": {
+      "sha256": "73b2a0840e23e53edaf9a3509120864ec7ee82b1a2329f35816642a788c96509",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/packing.h"
+    },
+    "ibme/ibs/certified/native/upstream/ref/params.h": {
+      "sha256": "1d6c116396e3d20f40d72c35a093af2be9f03177282762bdbdb282bb4c4b64af",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/params.h"
+    },
+    "ibme/ibs/certified/native/upstream/ref/poly.c": {
+      "sha256": "845f8991d166c9facbfc9646da77e9e9f6b75f0ea8fb9d629e8ac5f234707d6d",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/poly.c"
+    },
+    "ibme/ibs/certified/native/upstream/ref/poly.h": {
+      "sha256": "2b63cc2ec62c027dd16cf92bd120a4bc4f3a41a94a4a51b2005d366fc30a0330",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/poly.h"
+    },
+    "ibme/ibs/certified/native/upstream/ref/polyvec.c": {
+      "sha256": "2fa664c380a5bef7e2e9868e0b8f02f8353c4bd81afe0d6328b498baf6864eac",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/polyvec.c"
+    },
+    "ibme/ibs/certified/native/upstream/ref/polyvec.h": {
+      "sha256": "6523a95d74add7e36129831fd5a72370c6275703fafd1529b6af59ef9645368e",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/polyvec.h"
+    },
+    "ibme/ibs/certified/native/upstream/ref/randombytes.c": {
+      "sha256": "5058333ccae5c1903f9cfbcbfa19f41260fc97c07e0d39317bd750d51c1d4c86",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/randombytes.c"
+    },
+    "ibme/ibs/certified/native/upstream/ref/randombytes.h": {
+      "sha256": "5ece412ed498abfd892ecec23480910b76cb8ea1b605da10adc5584ede79f048",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/randombytes.h"
+    },
+    "ibme/ibs/certified/native/upstream/ref/reduce.c": {
+      "sha256": "3088cac3d23355a3f9adaac9fd4ee864be9caf5fb0ad30bcb4a4da17dba0e4f4",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/reduce.c"
+    },
+    "ibme/ibs/certified/native/upstream/ref/reduce.h": {
+      "sha256": "9abe0b725e0608948eaa74fabd01c4701de5480ce9494a5f6bfa35140eee0399",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/reduce.h"
+    },
+    "ibme/ibs/certified/native/upstream/ref/rounding.c": {
+      "sha256": "7223dbbe56b1fba226d536d64eaf05b1ad3f249d33ec767ee655eee471478816",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/rounding.c"
+    },
+    "ibme/ibs/certified/native/upstream/ref/rounding.h": {
+      "sha256": "7459644c21e7cbfe48361a1f6b6fda687ff8792f8e0577a0862b3de620558d25",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/rounding.h"
+    },
+    "ibme/ibs/certified/native/upstream/ref/sign.c": {
+      "sha256": "3abd138813b3f803f4f3cbabb706b93e319e19e27b8defa99dd065f8fc416bed",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/sign.c"
+    },
+    "ibme/ibs/certified/native/upstream/ref/sign.h": {
+      "sha256": "a22ea01f54c68888d75db42def615aa7ca6050679894aab3a048904d98830210",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/sign.h"
+    },
+    "ibme/ibs/certified/native/upstream/ref/symmetric-shake.c": {
+      "sha256": "5b23002163d0dd4a1030e51fed8994a06972644e923df0feca6d1d183f4bdd45",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/symmetric-shake.c"
+    },
+    "ibme/ibs/certified/native/upstream/ref/symmetric.h": {
+      "sha256": "a272fe9473a968936121a1aa52ac928790bb653b3697fe58ffd3935f08aaaa14",
+      "source_path": "src/ibme/ibs/certified/native/upstream/ref/symmetric.h"
+    },
+    "ibme/ibs/certified/objects.py": {
+      "sha256": "218dd536c74930642086ca3af06668b65de5a1b009b5122b3a0763acf0e45848",
+      "source_path": "src/ibme/ibs/certified/objects.py"
+    },
+    "ibme/ibs/certified/ordinary.py": {
+      "sha256": "407770e79bfd38475e562d7a0920b5dcf5740ac6c117efc7d70b635a6db8b2cc",
+      "source_path": "src/ibme/ibs/certified/ordinary.py"
+    },
+    "ibme/ibs/certified/params.py": {
+      "sha256": "53e67f001dd02ff5d48be8cf68276bb36466268f640a52abbd08b48c770010aa",
+      "source_path": "src/ibme/ibs/certified/params.py"
+    },
+    "ibme/ibs/certified/registration.py": {
+      "sha256": "9a84588d66b94446e7a99517310525db41db05d92e46949a5430a4b829c8f27c",
+      "source_path": "src/ibme/ibs/certified/registration.py"
+    },
+    "ibme/ibs/foo_li/__init__.py": {
+      "sha256": "f4a73ae166b3b13f5974d454df86b5ca32aa4f5b241233294eabeede62e7ae7a",
+      "source_path": "src/ibme/ibs/foo_li/__init__.py"
+    },
+    "ibme/ibs/foo_li/backend.py": {
+      "sha256": "856e877cae54d882e3d19fc7e14b1ba0f9e37f7d0728f18643679309e3566890",
+      "source_path": "src/ibme/ibs/foo_li/backend.py"
+    },
+    "ibme/ibs/foo_li/codec.py": {
+      "sha256": "88e5afb187f5bb692fbdec7d25bc97a4f427146e7e75b5db62c31b49c1b6d09d",
+      "source_path": "src/ibme/ibs/foo_li/codec.py"
+    },
+    "ibme/ibs/foo_li/keys.py": {
+      "sha256": "1bb7d5b6ad248d71bd1965550987984671a45a9af7ebbacf8a74b2f5a946dd9f",
+      "source_path": "src/ibme/ibs/foo_li/keys.py"
+    },
+    "ibme/ibs/foo_li/objects.py": {
+      "sha256": "964440c97892790beb1d0a864eab58ca806a7e004ad84ae7b12d3252a98f74be",
+      "source_path": "src/ibme/ibs/foo_li/objects.py"
+    },
+    "ibme/ibs/foo_li/params.py": {
+      "sha256": "eb693790305db1ee21a5674d80e71d13375a1a6d4f8da12907cd0791be6cb479",
+      "source_path": "src/ibme/ibs/foo_li/params.py"
+    },
+    "ibme/ibs/foo_li/registration.py": {
+      "sha256": "129afc2e88c345caa012432a7f2fbec9fa928a982e7e09ef02ec5030c3de8cb5",
+      "source_path": "src/ibme/ibs/foo_li/registration.py"
+    },
+    "ibme/ibs/foo_li/service.py": {
+      "sha256": "d99ab2b1188dfc41ce509e7c7545fef4f417e51f126d27bd447dd0e7184c5e37",
+      "source_path": "src/ibme/ibs/foo_li/service.py"
+    },
+    "ibme/ibs/foo_li/state_validation.py": {
+      "sha256": "92c8cddd1919be60d40225bff8384404b520fd0364c35dde24e5de0754198cd1",
+      "source_path": "src/ibme/ibs/foo_li/state_validation.py"
+    },
+    "ibme/ibs/luo.py": {
+      "sha256": "728319d4ca14c004b258717b3ffecf083760920f15fa79bfe0af761de81a67bf",
+      "source_path": "src/ibme/ibs/luo.py"
+    },
+    "ibme/ibs/luo_module.py": {
+      "sha256": "4395e275df3a4d1373d8a49db8f97444699c4155cd9d2612e741cd76bba5b275",
+      "source_path": "src/ibme/ibs/luo_module.py"
+    },
+    "ibme/ibs/luo_module_codec.py": {
+      "sha256": "bb99eb6a18a06be204ab0274de8e295522589d8100cc2c9f944c7cf4980b06df",
+      "source_path": "src/ibme/ibs/luo_module_codec.py"
+    },
+    "ibme/ibs/luo_module_math.py": {
+      "sha256": "099f54071b53aba1735f00a777dc8159405781cd6723c97b6acba8a87e53202f",
+      "source_path": "src/ibme/ibs/luo_module_math.py"
+    },
+    "ibme/ibs/luo_module_profiles.py": {
+      "sha256": "6a17ab63257e8c3c0dc35eff35d0489741604410cecfb80465e008ea72dba02e",
+      "source_path": "src/ibme/ibs/luo_module_profiles.py"
+    },
+    "ibme/ibs/luo_reference.py": {
+      "sha256": "993a9da05f302c73464860028e54a3dad95557a23ca334df4dbb5f4090c236b0",
+      "source_path": "src/ibme/ibs/luo_reference.py"
+    },
+    "ibme/ibs/mock.py": {
+      "sha256": "c91902e02252a07dba1a777f1fa444de05058ca2f2c228356c82f3ca951b51a8",
+      "source_path": "src/ibme/ibs/mock.py"
+    },
+    "ibme/ibs/sageloli/__init__.py": {
+      "sha256": "a1753e33175ddccabcc8e4b6eda278188bc0309353c8f0030a470259a792102e",
+      "source_path": "src/ibme/ibs/sageloli/__init__.py"
+    },
+    "ibme/ibs/sageloli/ring.py": {
+      "sha256": "b7206b006f16e7fa77b576a925a500b0054a6462aa62957e98f4681c1968927f",
+      "source_path": "src/ibme/ibs/sageloli/ring.py"
+    },
+    "ibme/ibs/sageloli/ring_registration.py": {
+      "sha256": "a1d9c6cd515fff29a0d1517e18b6a739abfb150285fd0d23af2e42f9fee3911f",
+      "source_path": "src/ibme/ibs/sageloli/ring_registration.py"
+    },
+    "ibme/ibs/sis_ibs.py": {
+      "sha256": "a66f160d1c0ceb35080db2fa039dbe7f41bb7a71ebf223a6e35965d70486ed61",
+      "source_path": "src/ibme/ibs/sis_ibs.py"
+    },
+    "ibme/ibs/srgg/__init__.py": {
+      "sha256": "13171ee08e6b7097367c6e290c8010f041e5cb74867842f78a89f3de8586170f",
+      "source_path": "src/ibme/ibs/srgg/__init__.py"
+    },
+    "ibme/ibs/srgg/paper.py": {
+      "sha256": "67f958378b250c89d79b38c985f96bdf1cd858a5f2cb73dea5e726b4e98561bc",
+      "source_path": "src/ibme/ibs/srgg/paper.py"
+    },
+    "ibme/ibs/srgg/paper_registration.py": {
+      "sha256": "8966d12851e42f1f72ffb174630a70084444d150034ee9f6325db8ceb95e7258",
+      "source_path": "src/ibme/ibs/srgg/paper_registration.py"
+    },
+    "ibme/ibs/srgg/registration.py": {
+      "sha256": "f3a2b488e55d0b1a308671b1557ac98610f7af265b1eebf970380f1178c0db78",
+      "source_path": "src/ibme/ibs/srgg/registration.py"
+    },
+    "ibme/ibs/srgg/structured.py": {
+      "sha256": "e2af1b01d4dacb5d3afb0a1a852300efda50d1087dcf705554bb16f1cb5ffc9e",
+      "source_path": "src/ibme/ibs/srgg/structured.py"
+    },
+    "ibme/ibs/srgg/structured_registration.py": {
+      "sha256": "f6a688197fb3e498a373de74031cbdfe6cfd9ae1c6b2af136467bc20cd692a96",
+      "source_path": "src/ibme/ibs/srgg/structured_registration.py"
+    },
+    "ibme/ibs/srgg_paper_service.py": {
+      "sha256": "9434699ff192a426f15ca92c1477d63302eada62dc92da0ff06090f32d86b7c1",
+      "source_path": "src/ibme/ibs/srgg_paper_service.py"
+    },
+    "ibme/ibs/srgg_service.py": {
+      "sha256": "6aa174727fa21c4172e59dd7886525aa8539fc11aa792c2b6f3a6314db970437",
+      "source_path": "src/ibme/ibs/srgg_service.py"
+    },
+    "ibme/ibs/srgg_structured_service.py": {
+      "sha256": "6bbdfb361e7fd118e63d2575d66eebf8585081790e611a3953a82cee22c8e6ab",
+      "source_path": "src/ibme/ibs/srgg_structured_service.py"
+    },
+    "ibme/ibs/wang_pw.py": {
+      "sha256": "2043096d809993f9a1f3ee7a5d2c0a689c1737dc4351ba380c0267f726ea1e89",
+      "source_path": "src/ibme/ibs/wang_pw.py"
+    },
+    "ibme/ibs/wang_pw_service.py": {
+      "sha256": "a36103a4f0aeb79ff10faec15ae7f41a2100d7cd65719e32d8bcfbf282c79d09",
+      "source_path": "src/ibme/ibs/wang_pw_service.py"
+    },
+    "ibme/ibs/yu/__init__.py": {
+      "sha256": "f8dec426cc7679c5f71306e41d6120fdd80c50b794025f903ea931939a32a66f",
+      "source_path": "src/ibme/ibs/yu/__init__.py"
+    },
+    "ibme/ibs/yu/backend.py": {
+      "sha256": "6f51718a25b0929ae65ee20b7313705095c17293e0df3de9d83a58dc6cd6f67f",
+      "source_path": "src/ibme/ibs/yu/backend.py"
+    },
+    "ibme/ibs/yu/codec.py": {
+      "sha256": "901dc532368bc2fdf26f6379c79d545a9dad63f0933a3e70f7a69b4243355b3a",
+      "source_path": "src/ibme/ibs/yu/codec.py"
+    },
+    "ibme/ibs/yu/keys.py": {
+      "sha256": "8a5c13aff0a702c8fc36061e87394a28f88e1927fe3e5c27a980402f8743729f",
+      "source_path": "src/ibme/ibs/yu/keys.py"
+    },
+    "ibme/ibs/yu/objects.py": {
+      "sha256": "13683ee92abd1b15f93abea9e0293215daf0ab61de3b77719fa81ebb96f85aa4",
+      "source_path": "src/ibme/ibs/yu/objects.py"
+    },
+    "ibme/ibs/yu/params.py": {
+      "sha256": "c15428cc34c09c2d111be9a0e8d2a812ca4e134603a8b862196e56e647f9d025",
+      "source_path": "src/ibme/ibs/yu/params.py"
+    },
+    "ibme/ibs/yu/registration.py": {
+      "sha256": "6537615917ee9109d335f706507bdbc42d5800b04fee5d8ee37cd9b76787bd78",
+      "source_path": "src/ibme/ibs/yu/registration.py"
+    },
+    "ibme/ibs/yu/runtime.py": {
+      "sha256": "7aec90099a83ad34efba8e958dd93caec70dbde99b2b897f869edb7f45f82c9a",
+      "source_path": "src/ibme/ibs/yu/runtime.py"
+    },
+    "ibme/ibs/yu/service.py": {
+      "sha256": "06ba7848611626f5c1ef68746b740fd5f9839640b0d108c5fd43144217be52dd",
+      "source_path": "src/ibme/ibs/yu/service.py"
+    },
+    "ibme/lattice/__init__.py": {
+      "sha256": "e9bfbc68dbb758c7099849d957e258bb9d299853e75a96529b6ea0020cea9c0f",
+      "source_path": "src/ibme/lattice/__init__.py"
+    },
+    "ibme/lattice/chkp/__init__.py": {
+      "sha256": "820d7a2834b36d5cea29d0c165fa01c425af1739c103ea6323da8bacfd62c921",
+      "source_path": "src/ibme/lattice/chkp/__init__.py"
+    },
+    "ibme/lattice/chkp/basis.py": {
+      "sha256": "7fd52468d8211bab21d4bd60faad0735abfb473219ca3d18a889e446405cdd7d",
+      "source_path": "src/ibme/lattice/chkp/basis.py"
+    },
+    "ibme/lattice/chkp/basis_reduce.py": {
+      "sha256": "df6718f883e090a35fb4bacda155104341b89d4b5206b4215f6f2cbc37c48ebc",
+      "source_path": "src/ibme/lattice/chkp/basis_reduce.py"
+    },
+    "ibme/lattice/chkp/delegation_state.py": {
+      "sha256": "6b035047384aa33a79d19bc1271a86637687cd1e5a9345b28cfbf1f59c308984",
+      "source_path": "src/ibme/lattice/chkp/delegation_state.py"
+    },
+    "ibme/lattice/chkp/entropy.py": {
+      "sha256": "fe449ebd5ccadfb8a8b73652b874fcd69e0683292368d9c03ef8c6d215fcc8d6",
+      "source_path": "src/ibme/lattice/chkp/entropy.py"
+    },
+    "ibme/lattice/chkp/extended_gpv.py": {
+      "sha256": "3e86014f3f468d056ce1fab99f047c40c4242a3e9d521ca66c88f0ff769f0632",
+      "source_path": "src/ibme/lattice/chkp/extended_gpv.py"
+    },
+    "ibme/lattice/chkp/finite_gaussian.py": {
+      "sha256": "bd087124b957fd45ad6205dececd4cbc1011807793bff42c2b73359b8ef55433",
+      "source_path": "src/ibme/lattice/chkp/finite_gaussian.py"
+    },
+    "ibme/lattice/chkp/finite_gpv.py": {
+      "sha256": "c266109ac28a3cdd0dc84086fab4432de65f9b383135c280cbc484088f65622e",
+      "source_path": "src/ibme/lattice/chkp/finite_gpv.py"
+    },
+    "ibme/lattice/chkp/finite_randbasis.py": {
+      "sha256": "09147b4b5015c158d08e7cdcd53c825a034de23a8b35946d7c2d8cd94441d8e6",
+      "source_path": "src/ibme/lattice/chkp/finite_randbasis.py"
+    },
+    "ibme/lattice/chkp/gaussian.py": {
+      "sha256": "948cea7ffdee747dc237b0ec75861848088091ee6a107b92032d64dfbee5fa2c",
+      "source_path": "src/ibme/lattice/chkp/gaussian.py"
+    },
+    "ibme/lattice/chkp/identity.py": {
+      "sha256": "1921bcebea84321e14508b251906795f235ee60c46843c8f66a2a8f367d99718",
+      "source_path": "src/ibme/lattice/chkp/identity.py"
+    },
+    "ibme/lattice/chkp/joint_parameters.py": {
+      "sha256": "887fb6c938d25ef2466ec7af1ca5311f3e55269c6aa72ee57a51db74e8763c92",
+      "source_path": "src/ibme/lattice/chkp/joint_parameters.py"
+    },
+    "ibme/lattice/chkp/leaf_state.py": {
+      "sha256": "c799db9542cb6cb314ef742eb3df553c19d12b57588afb8fd5f157c4539c5568",
+      "source_path": "src/ibme/lattice/chkp/leaf_state.py"
+    },
+    "ibme/lattice/chkp/noise_budget.py": {
+      "sha256": "4d493f2c305fd614705ab28f6fc3920b0ae06b195b0b0960719ff51314508790",
+      "source_path": "src/ibme/lattice/chkp/noise_budget.py"
+    },
+    "ibme/lattice/chkp/root_basis.py": {
+      "sha256": "30ee87fd3ee23ae5f1fd8d8276f4f621abe3149b546578eb9239bc751c86b5da",
+      "source_path": "src/ibme/lattice/chkp/root_basis.py"
+    },
+    "ibme/lattice/chkp/root_generation.py": {
+      "sha256": "9ce55d6aca23435d3b772d14cfe48cca04cd9923fd20ba6d2376804b8ded2fff",
+      "source_path": "src/ibme/lattice/chkp/root_generation.py"
+    },
+    "ibme/lattice/chkp/rounded_noise.py": {
+      "sha256": "f093b75e82116f39b5817a01ee89ead1bcbaec8df6d231380354b4e992638411",
+      "source_path": "src/ibme/lattice/chkp/rounded_noise.py"
+    },
+    "ibme/lattice/chkp/seed_kem.py": {
+      "sha256": "62e3a03c498268e7a7aa5e7c0926a34f7bf7e4f0fb8eacccbd6c8ddb1cb202f1",
+      "source_path": "src/ibme/lattice/chkp/seed_kem.py"
+    },
+    "ibme/lattice/chkp/tape.py": {
+      "sha256": "a4cef3ab500cca076c365e53de8a72084651daa90af86bdfa4598a38817e7f84",
+      "source_path": "src/ibme/lattice/chkp/tape.py"
+    },
+    "ibme/lattice/chkp/tobasis.py": {
+      "sha256": "4d54c20fa120d31b69903a029e4d287c688f67e397563e96b1df8a79f3a0adde",
+      "source_path": "src/ibme/lattice/chkp/tobasis.py"
+    },
+    "ibme/lattice/gadget.py": {
+      "sha256": "2e9a63ec243989d9d9404eecdcf908ed3ce8fea2845042aecad259f60ee2a31d",
+      "source_path": "src/ibme/lattice/gadget.py"
+    },
+    "ibme/lattice/gaussian.py": {
+      "sha256": "4d8010f490585f0541c568738f4814f4e33280028dedb28f390e4310f5f32f5c",
+      "source_path": "src/ibme/lattice/gaussian.py"
+    },
+    "ibme/lattice/matrix_sampling/__init__.py": {
+      "sha256": "db15615ccef53acf421db6f65f45e2fb865445f66309f3c44bb133694de3f71b",
+      "source_path": "src/ibme/lattice/matrix_sampling/__init__.py"
+    },
+    "ibme/lattice/matrix_sampling/basis.py": {
+      "sha256": "3cc32bccfb51c5a4af5950212c5e70eac537cd786a30e9a4ecc2bf7fb512cc10",
+      "source_path": "src/ibme/lattice/matrix_sampling/basis.py"
+    },
+    "ibme/lattice/matrix_sampling/chkp_profiles.py": {
+      "sha256": "674e67f4a1cd95396746ba717fca7c479028bb5351007bc4cdbdfec56305db75",
+      "source_path": "src/ibme/lattice/matrix_sampling/chkp_profiles.py"
+    },
+    "ibme/lattice/matrix_sampling/exact_gram.py": {
+      "sha256": "668ded4456a40b191a4db3db861172a643ebd3c328aa512aeb5eadefb94485c7",
+      "source_path": "src/ibme/lattice/matrix_sampling/exact_gram.py"
+    },
+    "ibme/lattice/matrix_sampling/gpv.py": {
+      "sha256": "9b699e1fc2f0b2a2e84c0b9b37bcd290f1af9427d11c39a420ff9b0b91e220c0",
+      "source_path": "src/ibme/lattice/matrix_sampling/gpv.py"
+    },
+    "ibme/lattice/matrix_sampling/modular.py": {
+      "sha256": "f97bb1e133c91f3093546de87fb48b2e4ba82bc79a46c8f1dd15c9b3c112fd4e",
+      "source_path": "src/ibme/lattice/matrix_sampling/modular.py"
+    },
+    "ibme/lattice/matrix_sampling/mp12_blocked.py": {
+      "sha256": "40b408ef3e5e00bf925efcbef2568ad3ad017ba388cbc44689534a0ae77ef0c4",
+      "source_path": "src/ibme/lattice/matrix_sampling/mp12_blocked.py"
+    },
+    "ibme/lattice/matrix_sampling/mp12_bounds.py": {
+      "sha256": "43c09691ff43355261b7f2a52148c8e9f0b0a7be0e28fd56e4b040791e57e28b",
+      "source_path": "src/ibme/lattice/matrix_sampling/mp12_bounds.py"
+    },
+    "ibme/lattice/matrix_sampling/mp12_extension.py": {
+      "sha256": "0bd6b2fc8e7c9cf46ee76530d302ab884658d0af39dedc97bbec55270f27d13f",
+      "source_path": "src/ibme/lattice/matrix_sampling/mp12_extension.py"
+    },
+    "ibme/lattice/matrix_sampling/mp12_structured.py": {
+      "sha256": "06a9aea5226ef74e2ab235b1645bc4810c96e1b2059cd4dee1b57caeaac1874c",
+      "source_path": "src/ibme/lattice/matrix_sampling/mp12_structured.py"
+    },
+    "ibme/lattice/matrix_sampling/packed.py": {
+      "sha256": "7e715add92b5216887c3fa92b1d59f7d17e7ea7fb9d72cde132868e231b4132d",
+      "source_path": "src/ibme/lattice/matrix_sampling/packed.py"
+    },
+    "ibme/lattice/matrix_sampling/prime_gadget.py": {
+      "sha256": "c98d894655f69b7713bb0b8f576a9a5431277e152c799aa1ac5b799c7d7bbabf",
+      "source_path": "src/ibme/lattice/matrix_sampling/prime_gadget.py"
+    },
+    "ibme/lattice/matrix_sampling/randbasis.py": {
+      "sha256": "5a5425c35d54d639f2360bee058b570dba2a94e74c09f7b48d2927c17886c93d",
+      "source_path": "src/ibme/lattice/matrix_sampling/randbasis.py"
+    },
+    "ibme/lattice/matrix_sampling/scalar.py": {
+      "sha256": "6365371e7fdbdc86b022d5a55e53d59a0f58564ca715efac873f9fdde66c9b68",
+      "source_path": "src/ibme/lattice/matrix_sampling/scalar.py"
+    },
+    "ibme/lattice/modmat.py": {
+      "sha256": "8368a610ae101e95f01750bc2a38bc956d810ef433ca9fc2d18a2487a4575d94",
+      "source_path": "src/ibme/lattice/modmat.py"
+    },
+    "ibme/lattice/params.py": {
+      "sha256": "a97f5035e51ef3b7452cba472536a13bcf961c4406f8724daa771c3246bd97be",
+      "source_path": "src/ibme/lattice/params.py"
+    },
+    "ibme/lattice/research/__init__.py": {
+      "sha256": "89e656c9c2e8a5fedab17c1f160316a3b248f3ae62727275bc4306e1e0b3fb53",
+      "source_path": "src/ibme/lattice/research/__init__.py"
+    },
+    "ibme/lattice/trapdoor.py": {
+      "sha256": "97df75614485f08b3393db9d0f084b7cdd27490c0733cdb6617a9efa076fdbc8",
+      "source_path": "src/ibme/lattice/trapdoor.py"
+    },
+    "ibme/protocol/__init__.py": {
+      "sha256": "362828a85b5b1190ae145b8dde11d83a2f61cc58079aaef860ae7cde8e05b240",
+      "source_path": "src/ibme/protocol/__init__.py"
+    },
+    "ibme/protocol/baseline.py": {
+      "sha256": "3bffb26ce97294c8268430719c8ed1fbf66b118bb11bc5930e7e27f8dcab0b16",
+      "source_path": "src/ibme/protocol/baseline.py"
+    },
+    "ibme/protocol/byteauth.py": {
+      "sha256": "d174c0be104ab756c70fdb7fea8ade13b3afb8d6b59e6295019db42efe2f7414",
+      "source_path": "src/ibme/protocol/byteauth.py"
+    },
+    "ibme/protocol/hybrid_hibe.py": {
+      "sha256": "cb0a8d55646c711bb1e3fe0d695450ebcfa1427d9abea508c30a5588ee33d137",
+      "source_path": "src/ibme/protocol/hybrid_hibe.py"
+    },
+    "ibme/protocol/luo_hybrid.py": {
+      "sha256": "9d9d9095da3fadd33a57c5027abf1c0f41a63452f64f92ae1b2603071810e572",
+      "source_path": "src/ibme/protocol/luo_hybrid.py"
+    },
+    "ibme/webui/__init__.py": {
+      "sha256": "cd433d0114b5cd7dd6b92cad5b937256b5c2fd384d67a655cc29943819262194",
+      "source_path": "src/ibme/webui/__init__.py"
+    },
+    "ibme/webui/__main__.py": {
+      "sha256": "540fd0a5992ca535482a9d44b2e268ce3a39bb47a0576f301214afa5ef4494b9",
+      "source_path": "src/ibme/webui/__main__.py"
+    },
+    "ibme/webui/server.py": {
+      "sha256": "31e6d984fda6574883b21108d30fe554d3de3fc0c41448d0805ab2da27aa2f9e",
+      "source_path": "src/ibme/webui/server.py"
+    }
+  },
+  "installed_prefix": "/tmp/ibme-report-eeb3108/site",
+  "mldsa_binary_sha256": "99e8d0e84dbefa89c456869f128b4cb4f93ec6002bed5b95910e54d8a0c96dd0",
+  "native": {
+    "IBME_LATTE3_EXECUTABLE": {
+      "path": "/mnt/d/ibme/IB-ME-from-HIBE-IBS/test-results/srgg-paper-native/latte/bin/ibme-latte3",
+      "sha256": "6fb0930f75d150950dbf91eddf98fce36fcb611db344af5f847ee26f94f5a958"
+    },
+    "IBME_SAGELOLI_RING_NATIVE": {
+      "path": "/mnt/d/ibme/IB-ME-from-HIBE-IBS/test-results/pr64-65-review/sageloli-native/sageloli-ring-a41fd3e087125317d2bf2c1731e99c5639b27bce1c0b9d8456cd0682bee0ee39.so",
+      "sha256": "3e2bc9a1ee6d5f6e8494cda8836e8dece76622ab99addda114e1066c67fe0387"
+    }
+  },
+  "source_commit": "eeb3108fc634a2d3d56b329c62f528414965e05d",
+  "wheel_sha256": "927397aa5d5e3e01c86fdf62ce6a1bbc638c9b1d4148fd0fa0e0ae3824a60662"
+}
