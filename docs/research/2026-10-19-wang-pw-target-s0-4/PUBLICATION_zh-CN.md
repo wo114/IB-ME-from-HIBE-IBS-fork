@@ -1,6 +1,6 @@
 # Wang–PW s0=4 完整文件交付
 
-整理始于2026-10-20，发布于2026-10-21。基于独立开发分支 `2d5d2bf` 及两份既有未提交采样器文件的快照，
+整理始于2026-10-20，发布于2026-10-21。包含独立开发分支至 `ffe0157` 的全部交付，
 合并队长仓库 `b0397d2` 的公共框架。正文、源码、测试、公开成功/失败记录一起交付。
 
 ## 比较口径
@@ -24,10 +24,11 @@
 
 参数为 `n=512,q=4294967291,s0=4`（rho宽度）；身份64 B、消息32 B，生产CSPRNG，
 固定签名rho宽度8388608、标准差约3346570.4，签名wire393320 B。
-`evidence/perturbation-20261020/sign-final-1.json`、`sign-final-2.json`记录两次恢复后签名与验签通过，
-约175.2/177.5秒、峰值RSS约41.3 GB；公开验证器覆盖错误身份/消息、篡改、截断和超界。
-同目录 `final-service-adopt/recover.json`、`final-combination.json`、`final-generic-cli.json`
+`evidence/perturbation-20261020/sign-v3-1.json`、`sign-v3-2.json`记录最终两次恢复后签名与验签通过，
+约175.8/175.2秒、峰值RSS约41.3 GB；`final2-public-verifier.json`覆盖错误身份/消息、篡改、截断和超界。
+同目录 `final2-service-adopt/recover.json`、`final2-combination.json`、`final2-generic-cli.json`
 保存导入服务恢复、LATTE真实组合及16个公共CLI进程/17个独立进程的成功结果。
+前一轮 `sign-final-*` / `final-*` 七份回执同时保留，共十四份公开成功回执。
 服务导入没有执行原始首发钥；组合和CLI不重新执行Wang Setup/Extract。
 
 原Setup/Extract与后续签名修订属于分阶段复用，不是同一源码版本的全新六阶段性能实验。
@@ -37,16 +38,19 @@
 
 提交 `f88de89` 将整数高斯线性放大后取整改为连续高斯加任意中心离散Gaussian随机舍入，
 固定使用参数档的 `sign_sigma`，不依钥改宽或翻倍。`99ea21a`及后续提交保留进一步修订。
-本次还保存来源工作树的两份未提交文件，见 `publication/source-snapshot.json`：
-`ROUNDING_SIGMA` 从1.0变为1.5，并增加平滑尾诊断及相应测试。目标回执没有绑定这一新增快照；
-本地回归通过不能充作该快照的n512目标实跑，未在本批重抽根、发钥或启动服务器实验。
+本次最初保存来源工作树的两份未提交文件，见 `publication/source-snapshot.json`：
+`ROUNDING_SIGMA` 从1.0变为1.5，并增加平滑尾诊断及相应测试。随后原分支将相同算法内容提交为
+`3d911c8`，补交v3/final2回执，最新文档提交为 `ffe0157`。两份代码与已测试快照的Python AST一致，
+合并仅统一末尾空行；来源核对见 `publication/late-source-update.json`。
+原README将v3标为1.5最终版，但保存的回执仍缺少运行源码、提交及native摘要绑定。
+本次本地回归与回执核对分别记录，发布过程没有启动新的服务器实验。
 
 ## 已知限制
 
 1. `spectral_norm_upper_bound` 中的Rayleigh商加残差不能普遍上界最大特征值：单位向量落在较小
    特征值的特征空间时残差可为0。当前函数名和既有注释中的“certified”不应作为认证结论引用；
    数值检查通过不等于对所有陷门保证Algorithm 3余量。本交付保留实现及问题，未开展新证明。
-2. 当前1.5舍入宽度快照与回执中的1.0版本分开。MP12参数单位、舍入平滑、浮点连续采样、
+2. 最终v3与前一轮回执分开保存，运行源码绑定的限制如上。MP12参数单位、舍入平滑、浮点连续采样、
    GPV及完整历史的合并TV/中止预算未由本批认证；局部平滑尾诊断不替代总预算。
 3. 配置参考包络的SIS输入 `beta=5260239171>=q` 被工具拒绝；它不是实际IBS被攻破的证明，
    也没有产生经典/量子安全位数。约115位仅按上面的项目工作假设使用。
@@ -70,5 +74,5 @@
 python docs/research/2026-10-19-wang-pw-target-s0-4/publication/verify_delivery.py
 ```
 
-该验证器检查已提交Git内容、七份目标公开回执及其子进程观察项和本批JUnit统计。
+该验证器检查已提交Git内容、十四份目标公开回执及其子进程观察项和本批JUnit统计。
 这些检查用于归档完整性与实现回归；没有源码/native绑定的历史回执不因现在计算摘要就获得追溯认证。

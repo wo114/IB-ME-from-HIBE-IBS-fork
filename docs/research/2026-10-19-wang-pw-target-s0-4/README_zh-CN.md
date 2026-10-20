@@ -469,7 +469,7 @@ GPT 复核发现的两处实质偏差及修正：
 
 1. **扰动分布**：原实现 `p = round(L·g)`（整数高斯乘矩阵后 nearest rounding）支持集只覆盖
    `L·Z^m` 的舍入像（如 `L=1000I` 时 p 只能落在 1000 倍数）。修正为 MP12 §5.4 / [Pei10, Thm 3.1]：
-   连续高斯 `N(0, Σ_p − σ_r²I)` + 逐坐标**以实数为中心的离散高斯随机舍入**（σ_r=1，复用 C++ 任意中心内核）。
+   连续高斯 `N(0, Σ_p − σ_r²I)` + 逐坐标**以实数为中心的离散高斯随机舍入**（初版σ_r=1，最终σ_r=1.5，复用 C++ 任意中心内核）。
    新增测试：1-D/2-D 可枚举概率对照（TV < 0.05/0.08）、`L=diag(1000,1)` 支持集反例。
 2. **固定宽度**：原实现按私钥谱范数估计选宽、Cholesky 失败翻倍（实测 ≈2.31e6，偏离参数档）。
    修正为固定 `s = params.sign_sigma = sign_width/√(2π) ≈ 3,346,570`，不依赖私钥、不翻倍；
@@ -480,17 +480,18 @@ GPT 复核发现的两处实质偏差及修正：
 
 | 项 | 实测 |
 |---|---|
-| 签名耗时 / 峰值 RSS | **175.2 s、177.5 s / 41.3 GB** |
+| 签名耗时 / 峰值 RSS | **175.8 s、175.2 s / 41.3 GB**（σ_r=1.5 最终版；见 evidence/perturbation-20261020/sign-v3-*.json） |
 | 固定扰动宽度 | **3,346,570.4 = sign_sigma**（两条一致，与密钥无关） |
-| 签名范数平方 | 5.47e17 / 5.52e17（验签界 3.46e18，占 15.9%） |
+| 签名范数平方 | 5.497e17 / 5.530e17（验签界 3.46e18，占 15.9%） |
 | 签名 wire | 393,320 B |
-| 独立公开验签 | 两条 honest、错身份/错消息/篡改/截断/超界全拒、零熵（[收据](evidence/perturbation-20261020/final-public-verifier.json)） |
-| 固定发钥服务 | adopt 118.3 s、recover 51.5 s，同 canonical key/身份/公钥、零熵（[adopt](evidence/perturbation-20261020/final-service-adopt.json)、[recover](evidence/perturbation-20261020/final-service-recover.json)） |
-| LATTE + Wang 组合 | `passed`，13 项观测全真、11 个独立进程、255 s、单次新签名（[收据](evidence/perturbation-20261020/final-combination.json)） |
-| 通用 CLI | `passed`，16 个公共 CLI 进程、17 独立进程（[收据](evidence/perturbation-20261020/final-generic-cli.json)） |
+| 独立公开验签 | 两条 honest、错身份/错消息/篡改/截断/超界全拒、零熵（[收据](evidence/perturbation-20261020/final2-public-verifier.json)） |
+| 固定发钥服务 | adopt 119.0 s、recover 51.2 s，同 canonical key/身份/公钥、零熵（[adopt](evidence/perturbation-20261020/final2-service-adopt.json)、[recover](evidence/perturbation-20261020/final2-service-recover.json)） |
+| LATTE + Wang 组合 | `passed`，13 项观测全真、11 个独立进程、255 s、单次新签名（[收据](evidence/perturbation-20261020/final2-combination.json)） |
+| 通用 CLI | `passed`，16 个公共 CLI 进程、17 独立进程（[收据](evidence/perturbation-20261020/final2-generic-cli.json)） |
 
 **采样误差预算（新增项，尚未并入原预算）**：旧 §21 的条件分量预算针对 GPV 路线，不适用于新路线。
-新路线可界定的项：连续高斯 double 精度（κ≈1.6，~1e-15/坐标）、舍入核截尾（±21 窗口，~2e-220）、
+以下局部数值记录初版σ_r=1的预算，最终1.5版本的整链预算仍未合并：
+连续高斯 double 精度（κ≈1.6，~1e-15/坐标）、舍入核截尾（±21 窗口，~2e-220）、
 舍入核方差与 1 的离散修正（O(e^-π) 量级）；**合并的总 TV/中止预算尚未认证**，
 `total_tv_bound`/`abort_probability_bound` 保持 null。旧版（2.31e6、nearest-rounding 扰动）的
 签名/服务/组合/CLI 回执仅作历史功能证据保留，不再作为新路线验收结论。

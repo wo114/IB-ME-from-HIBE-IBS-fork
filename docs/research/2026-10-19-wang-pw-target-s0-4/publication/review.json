@@ -2,9 +2,10 @@
   "schema": "IBME/WANG-PW-PUBLICATION-REVIEW/1",
   "scope": "Complete Wang implementation files and public execution history; publish only, no new server run",
   "upstream_baseline": "b0397d2bba320ac25d06e6e4c6ad638787dafdcb",
-  "development_head": "2d5d2bf8bc09d9c775c533392feab4591c3a2eaf",
-  "development_commits_preserved": 42,
+  "development_head": "ffe01574f8e8161a9b2ca38052f58e2262c9e4a9",
+  "development_commits_preserved": 44,
   "preexisting_uncommitted_files": "source-snapshot.json",
+  "late_source_update": "late-source-update.json",
   "security": {
     "project_assumption_approx_quantum_bits": 115,
     "quantum_bits_status": "project-working-assumption-only",
@@ -68,10 +69,17 @@
     "docs/research/2026-10-19-wang-pw-target-s0-4/evidence/perturbation-20261020/final-service-adopt.json",
     "docs/research/2026-10-19-wang-pw-target-s0-4/evidence/perturbation-20261020/final-service-recover.json",
     "docs/research/2026-10-19-wang-pw-target-s0-4/evidence/perturbation-20261020/final-combination.json",
-    "docs/research/2026-10-19-wang-pw-target-s0-4/evidence/perturbation-20261020/final-generic-cli.json"
+    "docs/research/2026-10-19-wang-pw-target-s0-4/evidence/perturbation-20261020/final-generic-cli.json",
+    "docs/research/2026-10-19-wang-pw-target-s0-4/evidence/perturbation-20261020/sign-v3-1.json",
+    "docs/research/2026-10-19-wang-pw-target-s0-4/evidence/perturbation-20261020/sign-v3-2.json",
+    "docs/research/2026-10-19-wang-pw-target-s0-4/evidence/perturbation-20261020/final2-public-verifier.json",
+    "docs/research/2026-10-19-wang-pw-target-s0-4/evidence/perturbation-20261020/final2-service-adopt.json",
+    "docs/research/2026-10-19-wang-pw-target-s0-4/evidence/perturbation-20261020/final2-service-recover.json",
+    "docs/research/2026-10-19-wang-pw-target-s0-4/evidence/perturbation-20261020/final2-combination.json",
+    "docs/research/2026-10-19-wang-pw-target-s0-4/evidence/perturbation-20261020/final2-generic-cli.json"
   ],
   "target_receipts_bind_current_source_snapshot": false,
-  "target_receipt_binding_limit": "The saved final receipts have no commit/source/native digest binding; the additional ROUNDING_SIGMA=1.5 snapshot has no saved n512 run",
+  "target_receipt_binding_limit": "Both final and v3/final2 saved receipts lack commit/source/native digest binding; the source README labels v3 as ROUNDING_SIGMA=1.5",
   "lifecycle_scope": "Earlier Setup/Extract reused with later signing revisions; not a fresh six-stage run under one source version",
   "service_scope": "Imported canonical keys, fixed restoration and no fresh issuance history",
   "known_issues": [
@@ -80,7 +88,7 @@
     "The recorded SIS envelope beta=5260239171 is at least q=4294967291 and was rejected by the estimator; no current security-bit estimate follows"
   ],
   "publication_checks": {
-    "private_key_header_scan_new_history_blobs": 303,
+    "private_key_header_scan_new_history_blobs": 340,
     "new_history_private_or_runtime_binary_paths_found": [],
     "new_history_private_key_headers_found": [],
     "no_server_run_started_for_publication": true
