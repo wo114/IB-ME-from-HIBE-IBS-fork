@@ -1,0 +1,69 @@
+{
+  "schema": "IBME-OFFICIAL-COMPETITION-TEMPLATE/1",
+  "competition": "2026年第十一届全国密码技术竞赛",
+  "notice": {
+    "title": "2026第十一届全国密码技术竞赛复赛通知",
+    "published_at": "2026-09-23 10:21:33",
+    "url": "https://www.chinacodes.com.cn/news/lookAllNews.do",
+    "attachment_display_name": "复赛通知附件.zip",
+    "attachment_store_name": "202609231018303757927840146.zip",
+    "outer_archive_bytes": 474115,
+    "outer_archive_sha256": "28c701c4668a7074ffe2db9e4ccfdb35ba312a8310fc454e1360d305c193413e",
+    "inner_archive_bytes": 474122,
+    "inner_archive_sha256": "c278c7231adcdcf7eb871634640c2e98075ea0c384a9e236b88c60b5edd6b883"
+  },
+  "imported_files": [
+    {
+      "role": "report-template",
+      "original_name": "附件二---作品设计报告（模板）.docx",
+      "repository_path": "docs/competition/2026/附件二-作品设计报告模板.docx",
+      "bytes": 47751,
+      "sha256": "4f81348bf085527f7ebe5de2787fd91ba05e5b5531754916badb005fcfb512c2"
+    },
+    {
+      "role": "approval-signature-page",
+      "original_name": "附件三---审批及签字页.docx",
+      "repository_path": "docs/competition/2026/附件三-审批及签字页.docx",
+      "bytes": 18375,
+      "sha256": "577e1d07423a204393082378ca80b05543e7da53e1a02b1c1b317ce90304ee1e"
+    }
+  ],
+  "report_template_layout": {
+    "page_size_twips": {
+      "width": 11906,
+      "height": 16838
+    },
+    "page_margins_twips": {
+      "top": 1134,
+      "right": 1134,
+      "bottom": 1134,
+      "left": 1134,
+      "header": 851,
+      "footer": 992,
+      "gutter": 0
+    },
+    "page_margins_mm": {
+      "top": 20.0,
+      "right": 20.0,
+      "bottom": 20.0,
+      "left": 20.0,
+      "header": 15.0,
+      "footer": 17.5
+    },
+    "header_text": "全国密码技术竞赛作品设计报告",
+    "footer": "page-number-only",
+    "logo_repository_path": "docs/reports/2026-10-19-research-draft/figures/cacr-logo.jpg",
+    "logo_bytes": 23900,
+    "logo_sha256": "908993f5ce1186b588114ea4a2f30e88691dbf1e7aef9b43a1b7080ff1324b4e"
+  },
+  "omitted_from_repository": [
+    {
+      "role": "team-list",
+      "reason": "contains personal and organizational information not needed to build the work"
+    },
+    {
+      "role": "complete-official-archives",
+      "reason": "contain the omitted team list; imported blank templates already preserve required format evidence"
+    }
+  ]
+}
