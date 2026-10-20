@@ -6,7 +6,7 @@ from pathlib import PurePosixPath
 
 import pytest
 
-from experiments.research.verify_backend_optimization import validate_batch
+from experiments.research.verify_backend_optimization import validate_batch, validate_replay
 
 FOLDER = Path(__file__).resolve().parents[1]/"docs/research/2026-10-20-multi-backend-optimization"
 
@@ -26,6 +26,43 @@ def test_actual_B_receipt_and_single_preparation_per_root():
     data, installation, manifest = inputs("B")
     result = validate_batch(data, installation, manifest)
     assert result["encrypt"]["median_root_speedup"] > 0
+
+
+@pytest.mark.parametrize("label", ("C", "Luo", "Falcon"))
+def test_all_remaining_installed_receipts(label):
+    assert validate_batch(*inputs(label))
+
+
+def test_luo_replay_is_separate_and_reuses_original_roots():
+    _, installation, manifest = inputs()
+    replay = json.loads((FOLDER/"Luo-replay.json").read_bytes())
+    assert validate_replay(replay, installation, manifest)["encrypt"]["independent_roots"] == 3
+    assert replay["new_roots"] == 0
+    changed = deepcopy(replay)
+    row = next(r for r in changed["records"][0]["phases"] if "pair_ciphertext_and_entropy_equal" in r)
+    row["pair_ciphertext_and_entropy_equal"] = False
+    with pytest.raises(ValueError, match="replay"):
+        validate_replay(changed, installation, manifest)
+
+
+@pytest.mark.parametrize("operation", ("derive", "entropy"))
+def test_C_prepared_measurements_must_not_sample_again(operation):
+    data, installation, manifest = deepcopy(inputs("C"))
+    row = next(r for r in data["records"][0]["phases"] if r["name"] == "prepared-decrypt")
+    if operation == "derive":
+        row["native_calls"]["hibe:derive"] = 1
+    else:
+        row["entropy"]["bytes"] = 1
+    with pytest.raises(ValueError, match="sampled again"):
+        validate_batch(data, installation, manifest)
+
+
+def test_falcon_message_verification_cannot_be_skipped():
+    data, installation, manifest = deepcopy(inputs("Falcon"))
+    row = next(r for r in data["records"][0]["phases"] if r["name"] == "decrypt" and r["mode"] == "on")
+    row["native_calls"]["falcon:verify"] = 0
+    with pytest.raises(ValueError, match="certificate verification"):
+        validate_batch(data, installation, manifest)
 
 
 def test_current_security_snapshot_keeps_the_same_math_and_observations():

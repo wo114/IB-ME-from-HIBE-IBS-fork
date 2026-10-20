@@ -1,5 +1,6 @@
 """Read-only consistency/provenance checks; does not replay cryptography."""
 import argparse
+import hashlib
 import json
 import math
 from pathlib import Path, PurePosixPath
@@ -119,6 +120,35 @@ def summarize(data):
                 independent_roots=1, paired_benchmark=False)
 
 
+def validate_replay(data, installation, manifest):
+    require(data["status"] == "passed" and data["source_commit"] == installation["source_commit"] == manifest["source_commit"], "replay source/status")
+    require(data["wheel_sha256"] == installation["wheel_sha256"] == manifest["wheel_sha256"], "replay wheel")
+    require(data["new_roots"] == 0 and data["reused_independent_roots"] == 3
+            and data["pairs_per_root"] == 3 and {r["root"] for r in data["records"]} == {0,1,2}, "replay root scope")
+    metadata = recorded_security(data)
+    require(data["suite"] == suite_at_recorded_security("Luo", metadata).to_dict(), "replay Suite")
+    require("TEST-ONLY" in data["randomness"] and "not production" in data["randomness"], "replay randomness scope")
+    driver = Path(__file__).with_name("luo_ntt_replay_ablation.py")
+    require(hashlib.sha256(driver.read_bytes()).hexdigest() == data["driver_sha256"], "replay driver source")
+    root = PurePosixPath(installation["runtime_root"])
+    for name, provider in data["providers"].items():
+        path = PurePosixPath(provider["path"])
+        require(path.is_absolute() and str(path) == provider["path"] and ".." not in path.parts
+                and path.is_relative_to(root), "replay provider path")
+        require(re.fullmatch(r"[0-9a-f]{64}", provider["sha256"]) is not None
+                and provider["sha256"] == manifest["files"].get(str(path.relative_to(root))), "replay provider source: "+name)
+    for record in data["records"]:
+        require(record["status"] == "passed" and record["input_files_unchanged"] is True, "replay state changed")
+        for mode in ("off", "on"):
+            for name in ("encrypt", "decrypt"):
+                rows = [r for r in record["phases"] if r["mode"] == mode and r["name"] == name]
+                require(len(rows) == 3 and all(r["status"] == "passed" and math.isfinite(r["seconds"]) and r["seconds"] > 0 for r in rows), "replay phases")
+        pairs = [r for r in record["phases"] if "pair_ciphertext_and_entropy_equal" in r]
+        require(len(pairs) == 3 and all(r["pair_ciphertext_and_entropy_equal"] is True for r in pairs), "replay byte/entropy equivalence")
+    require(summarize_pairs(data["records"]) == data["summary"], "replay summary")
+    return data["summary"]
+
+
 def verify(directory):
     installation = json.loads((directory/"installation.json").read_bytes())
     manifest = json.loads((directory/"source-manifest.json").read_bytes())
@@ -128,8 +158,13 @@ def verify(directory):
         result[label] = validate_batch(data, installation, manifest)
         environments.extend(r["environment"] for r in data["records"])
     require(all(e == environments[0] for e in environments), "different declared benchmark environments")
-    return dict(status="consistent", scope="read-only metadata, counts and arithmetic; not a cryptographic rerun",
-                source_commit=installation["source_commit"], summary=result)
+    checked = dict(status="consistent", scope="read-only metadata, counts and arithmetic; not a cryptographic rerun",
+                   source_commit=installation["source_commit"], summary=result)
+    if (directory/"Luo-replay.json").exists():
+        replay = json.loads((directory/"Luo-replay.json").read_bytes())
+        require(replay["environment"] == environments[0], "replay declared environment mismatch")
+        checked["supplemental_Luo_replay"] = validate_replay(replay, installation, manifest)
+    return checked
 
 
 def main():
