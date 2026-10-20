@@ -59,7 +59,7 @@ def configuration(params, config):
 
 
 def backend_spec():
-    from ibme.assembly.registry import BackendSpec
+    from ibme.assembly.registry import BackendSpec, COMPLETED_SECURITY_CLAIM
 
     return BackendSpec(
         "lai-ideal-hibe", "hibe", ASSEMBLY_VERSION, LaiParams,
@@ -70,9 +70,12 @@ def backend_spec():
         {"hpk": LaiPublicKey, "hmsk": LaiMasterSecret,
          "sk1": LaiLevel1SecretKey, "sk2": LaiLevel2SecretKey},
         check_object, two_level=True, key_binding=True,
-        reason="Lai A-point research backend; none/false",
+        reason="completed Lai backend; target-research C2 profile project admitted",
         ciphertext_size=ciphertext_size,
         object_parameter_binding="full-parameter-snapshot",
         default_preset=lambda transport: (
             "hybrid-research" if transport == "hybrid" else "direct-research"),
-        validate_environment=environment, validate_configuration=configuration)
+        validate_environment=environment, validate_configuration=configuration,
+        security_claim=COMPLETED_SECURITY_CLAIM, backend_admitted=True,
+        formal_parameter_presets=("target-research",),
+        admission_basis="cited Lai construction, selected C2 target profile, and completed target lifecycle/combination acceptance")

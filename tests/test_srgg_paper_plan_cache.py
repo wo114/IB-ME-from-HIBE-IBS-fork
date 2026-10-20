@@ -5,7 +5,7 @@ import pytest
 
 pytest.importorskip("sage.all", reason="specified WSL Sage required")
 
-from experiments.research.candidates.srgg.paper_backend import Backend
+from experiments.research.candidates.srgg.paper_runtime import Backend
 from experiments.research.candidates.srgg.paper_algebra import PaperRing, public_matrix
 from experiments.research.candidates.srgg.paper_objects import PublicKey, SigningKey
 from experiments.research.candidates.srgg.paper_parameters import PaperParams

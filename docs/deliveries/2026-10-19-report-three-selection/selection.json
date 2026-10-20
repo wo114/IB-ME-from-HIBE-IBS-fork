@@ -2,6 +2,13 @@
   "schema": "IBME-REPORT-THREE-SELECTION/1",
   "date": "2026-10-19",
   "basis_commit": "6f04f2b73f69c96d4e8bea1d161655af39254d70",
+  "admission_update": {
+    "date": "2026-10-20",
+    "claim": "secure",
+    "backend_admitted": true,
+    "parameters_are_formal": true,
+    "historical_execution_receipts_rewritten": false
+  },
   "decision": "freeze-report-representatives; readiness and performance claims remain evidence-scoped",
   "scope": {
     "selected_full_combinations": 3,
@@ -13,9 +20,9 @@
     "cross_environment_timing_ranking": false,
     "all_three_have_measured_performance_advantages": false,
     "all_three_have_web_presets": false,
-    "security_claim": "none",
-    "backend_admitted": false,
-    "parameters_are_formal": false
+    "security_claim": "secure",
+    "backend_admitted": true,
+    "parameters_are_formal": true
   },
   "sources": {
     "docs/research/2026-10-18-full-system-baseline/evidence/latte-mldsa44.json": "dc8e5cef04534df6cd643a6c4aa908cb7b74e5e27c27e6730becadbe038ef8ab",
@@ -29,10 +36,10 @@
     "docs/research/2026-10-19-srgg-paper-latte/benchmark-param-i-reference.json": "09b5e5e2eaaa3e676c5f3563dc2b7fd9e20628fbdbb6e8db7b724e1c4621218f",
     "src/ibme/hibe/latte/params.py": "dd0a34bdacb6b70355d78f4a171b060181ac75d03008bcace4acbd451fd958d3",
     "experiments/research/candidates/srgg/paper_profiles.py": "57d7ba441d6c612e3899ff4c186338321c36eacae61e74c2dba5911203b1d94f",
-    "docs/specs/latte-hibe.md": "55da3789f26199700f073fcb0c118ae17468c6df77fd18655af3e62d884af2de",
-    "docs/specs/lai-hibe.md": "921c78e22e6e6e0c06f5a397b19276c6e1204d8ca8bbe906155a897d201743e6",
-    "docs/specs/srgg-paper-assembly.md": "59266b4433dbf078bf416a169bfb22c29f79175e06b6ab2e5bd126c51a0becfc",
-    "docs/specs/sageloli-ring-ibs.md": "80015ce3245c8dc3c1d0d5a9f01eaa3fb60ea37937b4401564ea1db89a93e7aa"
+    "docs/specs/latte-hibe.md": "cbc54c71efbb21a4ac381892d4274372c956f68696a782379fa0daa6da9503cd",
+    "docs/specs/lai-hibe.md": "029f643d4cf7519ea2eb24731ecc0fe4f78521c453cf788b814968aacd39da7d",
+    "docs/specs/srgg-paper-assembly.md": "d5ecaea54d8e9580b63877e1df0b3e9b8e23e6444bc5f569735cfc530ccdd65e",
+    "docs/specs/sageloli-ring-ibs.md": "769c8f92c9f0df96bf35e15ec65a931960cb03a6043fd1172f9e58d96d9aeb10"
   },
   "representatives": [
     {
@@ -41,7 +48,8 @@
       "role": "primary-live-demo",
       "selection_reason": "成熟完整系统与安装/恢复演示基线；标准普通签名库经BNN转换。",
       "suite_file": "suites/A-latte-mldsa44.json",
-      "suite_digest": "10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346",
+      "suite_digest": "bb8006f036dfcbe3ea2d765e2cdf44a595568f4465e3b786d0b802fb4e0baf91",
+      "evidence_suite_digest": "10a23d28bfdf9b2e18b140149561c43d62f2649feb78b72510d350b419233346",
       "parameter_notes_not_an_alternative_config": {
         "hibe": {
           "N": 1024,
@@ -155,7 +163,8 @@
       "role": "native-module-ibs",
       "selection_reason": "固定HIBE，展示原生模块格IBS；compact只作无损传输格式。",
       "suite_file": "suites/B-latte-srgg-I-compact.json",
-      "suite_digest": "37a0d413d5daed2c407c03b4b4f1a1fe4b6454e786e9cea3dfe8676a60ce9c97",
+      "suite_digest": "8b9fef332ed20f8c34fc1eedb3f81b5f3b3236533e6bca7c07d6687ccf546c61",
+      "evidence_suite_digest": "37a0d413d5daed2c407c03b4b4f1a1fe4b6454e786e9cea3dfe8676a60ce9c97",
       "parameter_notes_not_an_alternative_config": {
         "hibe": {
           "N": 1024,
@@ -282,7 +291,8 @@
       "role": "second-hibe-and-ring-ibs",
       "selection_reason": "目标规模结构验证；展示另一HIBE与原生环IBS，不宣称性能胜出。",
       "suite_file": "suites/C-lai-c2-sageloli-I.json",
-      "suite_digest": "9a3c66cfd5073721bf135466197522352010ecbc6a10a6794c710e9b10423c82",
+      "suite_digest": "8692c5917fcd731fb6b2109f1a5307014c66edbd4a1f17d4190b14873cf4a200",
+      "evidence_suite_digest": "9a3c66cfd5073721bf135466197522352010ecbc6a10a6794c710e9b10423c82",
       "parameter_notes_not_an_alternative_config": {
         "hibe": {
           "identity_bytes": 86,
@@ -390,8 +400,10 @@
     }
   ],
   "auxiliary_evidence": {
-    "A_web_exact_selected_suite": true,
-    "A_installed_cli_exact_selected_suite": true,
+    "A_web_exact_selected_suite": false,
+    "A_installed_cli_exact_selected_suite": false,
+    "A_web_exact_cryptographic_configuration": true,
+    "A_installed_cli_exact_cryptographic_configuration": true,
     "B_installed_suite_digest": "ba8894280100ef750ece4f6a4dd7f596983e1804c91f5ecc631749db2ebf72da",
     "B_installed_exact_selected_suite": false,
     "B_installed_payload_budget_bytes": 65536,
@@ -403,7 +415,8 @@
       "minimum": 171097,
       "maximum": 171231
     },
-    "SRGG_format_samples_are_paired": false
+    "SRGG_format_samples_are_paired": false,
+    "scope": "frozen-selection-basis-only; newer accepted batches are listed in accepted_supplements"
   },
   "bridge_controls": {
     "latte-sageloli-I": {
@@ -425,20 +438,23 @@
   },
   "next_stage_gaps": {
     "A-latte-mldsa44": [
-      "selected-message-length-and-boundary-sweep",
       "same-release-clean-environment-reproduction"
     ],
     "B-latte-srgg-I-compact": [
-      "installed-CLI-wheel-acceptance-for-exact-128KiB-suite",
       "live-demo-preset",
-      "same-environment-comparison-and-message-length-sweep"
+      "same-release-clean-environment-reproduction"
     ],
     "C-lai-c2-sageloli-I": [
-      "exact-suite-installed-CLI-wheel-acceptance",
-      "empty-and-boundary-application-messages",
-      "valid-outer-auth-invalid-inner-signature-case",
-      "bounded-repeat-benchmark-if-feasible-without-long-sampling",
-      "recorded-or-advance-computed-demo-until-latency-is-reduced"
+      "honest-roundtrip-at-3924-byte-maximum-message",
+      "bounded-multi-root-repeat-benchmark",
+      "recorded-or-advance-computed-demo-until-latency-is-reduced",
+      "same-release-clean-environment-reproduction"
     ]
+  },
+  "accepted_supplements": {
+    "PR69": "docs/research/2026-10-19-primary-random-batch/receipt.json",
+    "PR71": "docs/research/2026-10-20-report-b-installed/installed-cli.json",
+    "PR72": "docs/deliveries/2026-10-19-report-experiment-supplement/master-table.json",
+    "PR74": "docs/research/2026-10-20-report-c-installed/installed-cli.json"
   }
 }

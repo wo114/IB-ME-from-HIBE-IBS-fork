@@ -11,6 +11,7 @@
 | 启动本地界面、查看Web预设和会话边界 | [Web演示说明](../src/ibme/webui/README.md) |
 | 看报告三代表和精确配置 | [三代表选择与冻结Suite](deliveries/2026-10-19-report-three-selection/README.md) |
 | 阅读／修改当前报告 | [报告说明](reports/2026-10-19-research-draft/README.md)、[LaTeX](reports/2026-10-19-research-draft/研究报告初稿.tex)、[PDF](reports/2026-10-19-research-draft/研究报告初稿.pdf) |
+| 核对本届官方报告格式和签字页 | [2026复赛官方模板及指纹](competition/2026/README.md) |
 | 理解模块与公共构造 | [架构](../ARCHITECTURE.md)、[复用指南](FRAMEWORK_REUSE_GUIDE.md) |
 | 接入原语、检查接口和验收边界 | [公共规范](../IMPLEMENTATION_SPEC.md)、[算法专属契约](specs/) |
 | 分工、文件认领和交接 | [协作流程](../AI_WORKFLOW.md)、[三人计划](workplans/三人方案分工与统一框架交付.md)、[仓库规则](../AGENTS.md) |
@@ -39,6 +40,7 @@
 | 要查的结果 | 固定入口 |
 |---|---|
 | 三代表如何选、参数与容量是多少 | [三代表选择、Suite与来源指纹](deliveries/2026-10-19-report-three-selection/README.md) |
+| 三代表的同机基准、必要消息长度和精确安装 | [报告第二项主表、原始公开收据、CSV与图](deliveries/2026-10-19-report-experiment-supplement/README.md)；接收状态见当前进度 |
 | A：LATTE＋ML-DSA完整基准 | [原重复基准](research/2026-10-18-full-system-baseline/README.md)、[同参数部署消融](research/2026-10-19-full-system-placement/README.md) |
 | B：LATTE＋SRGG论文档 | [参数、完整功能矩阵及重复测量](research/2026-10-19-srgg-paper-latte/README.md) |
 | C：Lai C2＋Sageloli环v3 | [Lai四组合完整收据](research/2026-10-19-lai-c2-combinations/README.md)、[Sageloli公共接入与LATTE安装恢复](research/2026-10-19-sageloli-ring-integration/README.md)；后者不能替代C的安装验收 |

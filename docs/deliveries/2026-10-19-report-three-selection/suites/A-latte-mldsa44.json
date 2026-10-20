@@ -1,6 +1,6 @@
 {
   "allow_mock": false,
-  "backend_admitted": false,
+  "backend_admitted": true,
   "hibe": "latte",
   "hibe_params": {
     "identity_bytes": 86,
@@ -18,19 +18,19 @@
   },
   "ibs": "cert-ml-dsa",
   "ibs_params": {
-    "backend_admitted": false,
+    "backend_admitted": true,
     "base_algorithm": "ml-dsa-44",
     "identity_bytes": 64,
     "max_identities": 16,
     "message_max_bytes": 65536,
-    "parameters_are_formal": false,
-    "security_claim": "none",
+    "parameters_are_formal": true,
+    "security_claim": "secure",
     "timeout_seconds": 30
   },
   "ibs_version": "IBME/CERTIBS/1",
-  "parameters_are_formal": false,
+  "parameters_are_formal": true,
   "protocol": "byteauth-v1",
-  "security_claim": "none",
+  "security_claim": "secure",
   "signature_format": "reference",
   "state_policy": "single-writer-commit-before-publish-v1",
   "transport": "hybrid",

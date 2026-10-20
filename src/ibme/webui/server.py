@@ -2,9 +2,8 @@
 
 This is a *demonstration* front end, not a production service. It keeps one
 ephemeral session in process memory, never writes private key material to disk,
-and never exposes the master secret to the browser. All suites retain
-``security_claim=none``, ``backend_admitted=false`` and
-``parameters_are_formal=false``.
+and never exposes the master secret to the browser.  The displayed completed
+profiles carry the coordinator's current security of completed profiles metadata.
 
 Run in the prescribed WSL Sage environment::
 
@@ -38,10 +37,10 @@ _LOCK = threading.RLock()
 _SESSION: "Session | None" = None
 
 SECURITY = {
-    "claim": "none",
-    "backend_admitted": False,
-    "parameters_are_formal": False,
-    "note": "研究/功能性参数；功能与性能演示不构成安全证明或 NIST 等级声明。",
+    "claim": "secure",
+    "backend_admitted": True,
+    "parameters_are_formal": True,
+    "note": "已按论文安全结论、既定身份匿名性前提和完成的工程验收授予默认安全口径。",
 }
 
 RECOMMENDED_HIBE = {"latte"}
@@ -617,7 +616,7 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="IB-ME interactive demo UI (research parameters only)")
+    parser = argparse.ArgumentParser(description="IB-ME interactive demo UI (secure profiles)")
     parser.add_argument("--host", default="127.0.0.1", help="bind address (default: 127.0.0.1)")
     parser.add_argument("--port", type=int, default=8765, help="TCP port (default: 8765)")
     args = parser.parse_args(argv)
@@ -628,7 +627,7 @@ def main(argv: list[str] | None = None) -> int:
     server = HTTPServer((args.host, args.port), Handler)
     print("IB-ME interactive demo", flush=True)
     print(f"  URL: http://127.0.0.1:{args.port}", flush=True)
-    print("  security_claim=none; research/functional parameters only", flush=True)
+    print("  security_claim=secure; backend_admitted=true", flush=True)
     print("  press Ctrl+C to stop", flush=True)
     try:
         server.serve_forever()

@@ -2,6 +2,8 @@
 
 版本：2026-10-19。公共入口 `srgg2025-paper`，算法版本 `SRGG-PAPER-TABLE4-factor1-v1`。它复用已经交付的论文参数实现，不复制协议或修改采样器。
 
+2026-10-20运行适配：公共后端通过 `experiments/research/candidates/srgg/paper_runtime.py` 使用32768位精确有理数存储储备，承接原8192项级数；其它参数、宽度、精度、tail/mass、尝试帽和熵预算保持原值。历史研究的 `paper_backend.py` 与 `paper_samplef.py` 保持原始字节和8192位标量限制，既有按源码绑定的有限分布证书继续只描述该原始实现及原输入域。当前运行适配不回写旧清单，也不把旧证书扩展为新输入域的验证结果。
+
 ## 参数与论文对应
 
 依据固定[论文 PDF](../../papers/2025_efficient_ibs_jia.pdf)（SHA-256 `258583c5b90255afe91343a282cb62840198b1192b6462dfc9597a24f8c01152`）Table 3、§5.1、Tables 4–7。原始数值由 [paper_profiles.py](../../experiments/research/candidates/srgg/paper_profiles.py) 保存。
@@ -36,4 +38,4 @@ compact 适配器在原 codec 的参数／上下文／维度／规范编码检�
 
 需要规定 WSL conda Sage 环境以及从仓库冻结源码构建的 LATTE 引擎；完整安装必须包含 `experiments.research.candidates.srgg` provider，不能仅复制 `src`。入口缺失时不回退教学参数或 mock。
 
-这仍是研究执行配置。沿用项目已确认的论文安全性／HIBE 匿名性工作前提，理论引用原文；`security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`、NIST category 空值不变。论文作者报告的目标位数不转换成本项目安全等级。完整组合实测和源码指纹见[本批记录](../research/2026-10-19-srgg-paper-latte/README.md)。
+沿用项目已确认的论文安全性／HIBE 匿名性工作前提，理论引用原文。`PARAM-I/II/III` 三个冻结论文档已完成公共接入和组合验收，按 2026-10-20 用户决定登记为 `security_claim=secure`、`backend_admitted=true`、`parameters_are_formal=true`。NIST category 仍为空，论文作者报告的目标位数不转换成本项目的外部认证等级。完整组合实测和源码指纹见[本批记录](../research/2026-10-19-srgg-paper-latte/README.md)。

@@ -38,4 +38,4 @@ CLI 新增通用 `--hybrid-limits`，接受 JSON 或 JSON 文件，用于 `check
 
 默认 CI 的既有 `tests/test_sageloli_*.py` 包含新增 portable 注册／容量检查。需要原生库的适配、损坏密钥恢复和真实小配置组合位于 `tests/sageloli_native/test_ring_assembly.py`，显式执行。论文规模完整 CLI、同根组合矩阵和仓库外恢复分别留存收据，不由静态预检或小配置回归推定。
 
-论文安全性沿用项目工作前提；SHAKE 的实际工程使用、ROM/QROM 引用和工作假设仍按原交付解释。本次工程接入不新增安全证明或安全等级；有限浮点／FFT 采样误差未由本次认证。安全字段继续 `security_claim=none`、`backend_admitted=false`、`parameters_are_formal=false`。PARAM-II 的独立 IBS 实跑不自动计为完整组合已测，`debug-small` 不用于安全展示。
+论文安全性沿用项目工作前提；SHAKE 的实际工程使用、ROM/QROM 引用和工作假设仍按原交付解释。本次工程接入不新增安全证明或外部标准等级；有限浮点／FFT 采样误差仍按原交付边界记录。`PARAM-I` 与 `PARAM-II` 两个论文档按 2026-10-20 用户决定登记为 `security_claim=secure`、`backend_admitted=true`、`parameters_are_formal=true`；`debug-small` 明确保持 `none/false/false`，不用于安全展示。

@@ -3,6 +3,8 @@ from dataclasses import asdict, dataclass
 import json
 
 from ibme.core.errors import InvalidParameterError, SerializationError
+from ibme.core.security import (ADMITTED_SECURITY, COMPLETED_SECURITY_CLAIM,
+                                UNADMITTED_SECURITY, security_tuple)
 from .ordinary import PROFILES
 
 VERSION = "IBME/CERTIBS/1"
@@ -15,9 +17,9 @@ class CertifiedIBSParams:
     message_max_bytes: int = 65536
     max_identities: int = 16
     timeout_seconds: int = 30
-    security_claim: str = "none"
-    backend_admitted: bool = False
-    parameters_are_formal: bool = False
+    security_claim: str = COMPLETED_SECURITY_CLAIM
+    backend_admitted: bool = True
+    parameters_are_formal: bool = True
 
     def __post_init__(self):
         if type(self.base_algorithm) is not str or self.base_algorithm not in PROFILES:
@@ -27,9 +29,10 @@ class CertifiedIBSParams:
             value = getattr(self, name)
             if type(value) is not int or not low <= value <= high:
                 raise InvalidParameterError(f"certified IBS {name} outside resource bounds")
-        if (self.security_claim != "none" or type(self.security_claim) is not str
-                or self.backend_admitted is not False or self.parameters_are_formal is not False):
-            raise InvalidParameterError("certified IBS has no formal security admission")
+        if (type(self.security_claim) is not str or type(self.backend_admitted) is not bool
+                or type(self.parameters_are_formal) is not bool
+                or security_tuple(self) not in (ADMITTED_SECURITY,UNADMITTED_SECURITY)):
+            raise InvalidParameterError("certified IBS requires current admission or an exact legacy snapshot")
 
     def to_bytes(self):
         return json.dumps(dict(version=VERSION, **asdict(self)), sort_keys=True,

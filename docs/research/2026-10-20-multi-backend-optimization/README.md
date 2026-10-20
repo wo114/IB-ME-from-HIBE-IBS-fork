@@ -2,6 +2,8 @@
 
 本任务按用户确认的“三代表优先，再补Luo／Falcon”推进。实现已提交[PR75](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/75)，当前实验材料仍在补齐。旧作品报告、PPT及PR73的报告正文不在修改范围。
 
+2026-10-20审查衔接：当前配置沿用用户确认的`secure/true/true`；本目录整批固定原wheel `b4b31d8`，保留其`none/false/false`和原摘要，后续辅助组也按该归档快照做同源对照，不冒称合并后版本实跑。只读复核兼容这两个完整快照，算法、预算、格式和原始测量仍精确比较。当前SRGG运行储备和计划复用已移入独立适配，历史研究源码保持原字节。发布版本复现须明确其新源码与清单，不能把已有记录改写为新版本实跑。
+
 ## 改动和成本
 
 | 对象 | 实现 | 成本／边界 |
@@ -18,7 +20,7 @@
 
 实际安装代码为`b4b31d8f76654e108e4443e369e67729b2b6936b`；[安装清单](installation.json)给出wheel摘要，[源码清单](source-manifest.json)包含495个包内Python文件摘要。所有实际导入的`ibme`／研究模块必须位于独立安装目录且匹配清单。运行在指定WSL Sage环境，单独向安装目录安装cryptography 50.0.2，未修改系统Python。原生二进制沿用经ABI／源码检查的原构建。
 
-A/B/C的Suite摘要与[三代表冻结配置](../../deliveries/2026-10-19-report-three-selection/README.md)逐项相同。本批为i9-14900HX、WSL Linux 6.6.87.2、Sage环境Python 3.12.13，不和历史另一台机器的绝对耗时混算。输入固定64 B发送者／接收者身份、32 B应用消息，使用系统CSPRNG，每次加密使用新IBS随机性和新OTS。每组保留`none/false/false`，不增加安全证明，不跨安全目标排名。
+A/B/C的数学参数、预算和编码与[三代表冻结配置](../../deliveries/2026-10-19-report-three-selection/README.md)逐项比较；本批记录保留当时的完整Suite摘要，当前`secure/true/true`配置另有新摘要。本批为i9-14900HX、WSL Linux 6.6.87.2、Sage环境Python 3.12.13，不和历史另一台机器的绝对耗时混算。输入固定64 B发送者／接收者身份、32 B应用消息，使用系统CSPRNG，每次加密使用新IBS随机性和新OTS。原数据不回写，不增加安全证明，不跨安全目标排名。
 
 A/B/Luo/Falcon各生成3个独立根；每根两种模式各3轮完整加密和解密，顺序交错。参数、同一根、同一用户钥、既有LATTE叶钥及安装完全相同。计时包含Suite验证、规范wire编码／解析、Hybrid、BYTEAUTH、IBS和原生进程启动。首次生成、准备、预热独立记录；完整流程计时采用相同10 ms RSS观察器。RSS是整棵进程树采样峰值的下界，不能解释为单独缓存的堆大小。多次使用同一根的点不是独立根样本。
 

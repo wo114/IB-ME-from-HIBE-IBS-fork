@@ -18,6 +18,8 @@ import sys
 import tarfile
 from unittest.mock import patch
 
+from ibme.core.security import security_fields
+
 
 def expected_suite(label):
     from ibme.assembly import make_suite
@@ -143,12 +145,15 @@ def _backup(directory, destination, name):
         for path in sorted(directory.glob("*.bin")):
             archive.add(path, arcname=path.name, recursive=False)
     os.chmod(backup, 0o600)
-    destination.mkdir(parents=True, exist_ok=True)
+    destination.mkdir(parents=True, exist_ok=True, mode=0o700)
     target = destination/(directory.parent.name+"-"+directory.name+"-"+backup.name)
-    if target.exists():
-        raise FileExistsError("private backup target already occupied")
-    shutil.copyfile(backup, target)
-    os.chmod(target, 0o600)
+    # Set permissions before writing any bytes; O_EXCL also closes the gap
+    # between a prior exists() check and an overwriting copy operation.
+    descriptor = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    with os.fdopen(descriptor, "wb") as output, backup.open("rb") as source:
+        shutil.copyfileobj(source, output, length=1024*1024)
+        output.flush()
+        os.fsync(output.fileno())
     if target.stat().st_size != backup.stat().st_size:
         raise OSError("private backup size mismatch")
 
@@ -180,8 +185,8 @@ def worker(directory):
     report = dict(schema="IBME-BACKEND-OPTIMIZATION/1", root=args["root"], label=label,
                   suite=config.to_dict(), suite_digest=config.digest, source_commit=args["source_commit"],
                   wheel_sha256=manifest["wheel_sha256"], phases=[], environment=environment(),
-                  identity_bytes=64, message_bytes=32, security_claim="none", backend_admitted=False,
-                  parameters_are_formal=False, no_outer_retry=True, randomness="fresh system CSPRNG",
+                  identity_bytes=64, message_bytes=32, **security_fields(config.to_dict()),
+                  no_outer_retry=True, randomness="fresh system CSPRNG",
                   scope="full Suite protocol, validation, Hybrid, BYTEAUTH, IBS, wire encode/decode",
                   status="started")
     entropy, calls = dict(bytes=0, reads=0), {}
@@ -367,7 +372,7 @@ def run(args):
     result = dict(schema="IBME-BACKEND-OPTIMIZATION-BATCH/1", status="passed", label=args.label,
                   independent_roots=roots, repetitions_per_root=args.repetitions, records=records,
                   comparison="single-root explicit receiver-state amortization" if args.label == "C" else "interleaved paired same-root warm full-protocol ablation",
-                  security_claim="none", backend_admitted=False, parameters_are_formal=False,
+                  **security_fields(config.to_dict()),
                   cross_security_group_ranking=False, summary={} if args.label == "C" else summarize_pairs(records))
     _write(args.public_output, result)
 

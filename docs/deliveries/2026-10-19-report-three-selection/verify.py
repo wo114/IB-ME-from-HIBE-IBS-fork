@@ -24,6 +24,7 @@ SOURCES = (
     'docs/specs/srgg-paper-assembly.md', 'docs/specs/sageloli-ring-ibs.md',
 )
 IDS = ('A-latte-mldsa44', 'B-latte-srgg-I-compact', 'C-lai-c2-sageloli-I')
+ADMISSION_FIELDS = ('security_claim', 'backend_admitted', 'parameters_are_formal')
 
 
 def canonical(value):
@@ -37,6 +38,23 @@ def digest(value):
 
 def read(path):
     return json.loads((ROOT / path).read_bytes())
+
+
+def legacy_admission_view(suite):
+    """Return the executed cryptographic configuration with its original ledger values.
+
+    Admission changed after the executions were archived.  This normalization
+    is deliberately limited to the three ledger fields; every algorithm,
+    parameter, wrapper, budget and wire version must still match byte-for-byte.
+    """
+    value = deepcopy(suite)
+    value.update(security_claim='none', backend_admitted=False,
+                 parameters_are_formal=False)
+    params = value.get('ibs_params', {})
+    if all(name in params for name in ADMISSION_FIELDS):
+        params.update(security_claim='none', backend_admitted=False,
+                      parameters_are_formal=False)
+    return value
 
 
 def benchmark_facts(report):
@@ -110,6 +128,11 @@ def verify(data, *, assembly=False):
 
     check(data['schema'] == 'IBME-REPORT-THREE-SELECTION/1', 'selection schema')
     check(data['basis_commit'] == '6f04f2b73f69c96d4e8bea1d161655af39254d70', 'selection basis')
+    check(data['admission_update'] == {
+        'date': '2026-10-20', 'claim': 'secure',
+        'backend_admitted': True, 'parameters_are_formal': True,
+        'historical_execution_receipts_rewritten': False,
+    }, 'admission update boundary')
     check(set(data['sources']) == set(SOURCES), 'source inventory')
     for path, expected in data['sources'].items():
         check(sha256((ROOT / path).read_bytes()).hexdigest() == expected, 'source changed: ' + path)
@@ -119,30 +142,34 @@ def verify(data, *, assembly=False):
         'new_algorithms_added_by_selection': 0,
         'equal_security_targets_established': False, 'cross_environment_timing_ranking': False,
         'all_three_have_measured_performance_advantages': False,
-        'all_three_have_web_presets': False, 'security_claim': 'none',
-        'backend_admitted': False, 'parameters_are_formal': False,
+        'all_three_have_web_presets': False, 'security_claim': 'secure',
+        'backend_admitted': True, 'parameters_are_formal': True,
     }, 'scope and claim boundaries')
     rows = data['representatives']
     check(tuple(r['id'] for r in rows) == IDS, 'three fixed representatives')
     base, srgg, lai = read(BASE), read(SRGG), read(LAI)
     sg = lai['suites']['sageloli-I']
-    suites = (base['suite'], srgg['suite'], sg['suite'])
+    evidence_suites = (base['suite'], srgg['suite'], sg['suite'])
+    suite_files = ('suites/A-latte-mldsa44.json', 'suites/B-latte-srgg-I-compact.json',
+                   'suites/C-lai-c2-sageloli-I.json')
+    suites = tuple(json.loads((HERE / path).read_bytes()) for path in suite_files)
     facts = (benchmark_facts(base), benchmark_facts(srgg), lai_facts(lai))
     capacities = (read(UI)['capacity'], read(SRGG_FUNCTIONAL)['results'][0]['preflight']['capacity'],
                   sg['preflight']['capacity'])
-    suite_files = ('suites/A-latte-mldsa44.json', 'suites/B-latte-srgg-I-compact.json',
-                   'suites/C-lai-c2-sageloli-I.json')
     assembly_results = []
-    for row, suite, observed, capacity, suite_file in zip(rows, suites, facts, capacities, suite_files, strict=True):
+    for row, suite, evidence_suite, observed, capacity, suite_file in zip(
+            rows, suites, evidence_suites, facts, capacities, suite_files, strict=True):
         name = row['id']
         check(row['suite_file'] == suite_file, name + ': suite file')
-        check(json.loads((HERE / suite_file).read_bytes()) == suite, name + ': exact executed suite')
         check(row['suite_digest'] == digest(suite), name + ': suite digest')
+        check(row['evidence_suite_digest'] == digest(evidence_suite), name + ': evidence suite digest')
+        check(legacy_admission_view(suite) == evidence_suite,
+              name + ': admission-only transition from executed suite')
         check(row['observations'] == observed, name + ': measured facts')
         check(row['capacity'] == capacity, name + ': capacity')
-        check(suite['security_claim'] == 'none' and suite['backend_admitted'] is False
-              and suite['parameters_are_formal'] is False and suite['allow_mock'] is False,
-              name + ': research flags')
+        check(suite['security_claim'] == 'secure' and suite['backend_admitted'] is True
+              and suite['parameters_are_formal'] is True and suite['allow_mock'] is False,
+              name + ': security of completed profiles flags')
         check(suite['transport'] == 'hybrid' and suite['protocol'] == 'byteauth-v1', name + ': full wrappers')
         if assembly:
             from ibme.assembly import SuiteConfig, make_suite, validate_suite
@@ -171,30 +198,35 @@ def verify(data, *, assembly=False):
         'author_report_forgery_quantum_bits': 93}}, 'B fixed parameter notes')
     check(rows[2]['parameter_notes_not_an_alternative_config'] == {
         'hibe': suites[2]['hibe_params'], 'ibs': dict(suites[2]['ibs_params'], q=str(3**65))}, 'C fixed parameter notes')
-    check(read(UI)['suite'] == suites[0] and read(UI)['ok'] is True, 'A exact Web suite')
+    check(read(UI)['suite'] == evidence_suites[0] and read(UI)['ok'] is True,
+          'A Web evidence configuration')
     cli = read(CLI)
-    check(cli['parameters'] == suites[0] and cli['status'] == 'passed'
-          and cli['restore']['status'] == 'passed', 'A exact installed CLI')
+    check(cli['parameters'] == evidence_suites[0] and cli['status'] == 'passed'
+          and cli['restore']['status'] == 'passed', 'A installed CLI evidence configuration')
     functional = read(SRGG_FUNCTIONAL)
-    check(functional['results'][0]['suite'] == suites[1] and functional['executed_checks'] == 34
-          and functional['counts']['fail'] == 0, 'B exact functional suite')
+    check(functional['results'][0]['suite'] == evidence_suites[1]
+          and functional['executed_checks'] == 34
+          and functional['counts']['fail'] == 0, 'B functional evidence configuration')
     auxiliary = read(SRGG_INSTALLED)['parameters']
-    changed = deepcopy(suites[1])
+    changed = deepcopy(evidence_suites[1])
     changed['hybrid_limits']['max_payload_bytes'] = 65536
     check(auxiliary == changed and digest(auxiliary) != digest(suites[1]), 'B installed suite is different')
     check(data['auxiliary_evidence']['B_installed_suite_digest'] == digest(auxiliary)
           and data['auxiliary_evidence']['B_installed_exact_selected_suite'] is False, 'B no acceptance inheritance')
     check(data['auxiliary_evidence']['C_cli_wheel_for_exact_selected_suite'] is False
-          and data['auxiliary_evidence']['C_repeated_benchmark'] is False, 'C pending acceptance')
-    check(data['auxiliary_evidence']['A_web_exact_selected_suite'] is True
-          and data['auxiliary_evidence']['A_installed_cli_exact_selected_suite'] is True
+          and data['auxiliary_evidence']['C_repeated_benchmark'] is False, 'C selection-basis evidence boundary')
+    check(data['auxiliary_evidence']['A_web_exact_selected_suite'] is False
+          and data['auxiliary_evidence']['A_installed_cli_exact_selected_suite'] is False
+          and data['auxiliary_evidence']['A_web_exact_cryptographic_configuration'] is True
+          and data['auxiliary_evidence']['A_installed_cli_exact_cryptographic_configuration'] is True
           and data['auxiliary_evidence']['B_installed_payload_budget_bytes'] == 65536
           and data['auxiliary_evidence']['B_selected_payload_budget_bytes'] == 131072, 'exact acceptance budgets')
     reference = read('docs/research/2026-10-19-srgg-paper-latte/benchmark-param-i-reference.json')
     check(data['auxiliary_evidence']['SRGG_reference_format_ciphertext_range_bytes']
           == benchmark_facts(reference)['full_ciphertext_bytes']
           and data['auxiliary_evidence']['SRGG_format_samples_are_paired'] is False, 'format comparison scope')
-    check(sg['suite_digest'] == digest(suites[2]) and lai['status'] == 'passed', 'C exact executed suite')
+    check(sg['suite_digest'] == digest(evidence_suites[2]) and lai['status'] == 'passed',
+          'C executed evidence suite')
     check(suites[2]['hibe_params']['n'] == 2048 and suites[2]['ibs_params']['d'] == 2048
           and suites[2]['ibs_version'] == 'Sageloli-RSIS-structured-v3', 'C target and v3, no debug')
     check(set(sg['identity_cases']) == {'honest', 'wrong_sender', 'wrong_receiver', 'both_wrong'}
@@ -208,7 +240,8 @@ def verify(data, *, assembly=False):
         check(controls[name]['suite_digest'] == lai['suites'][source_name]['suite_digest'], 'Lai bridge: ' + name)
     return {'status': 'passed', 'artifact_and_scope_checks': count, 'representatives': 3,
             'assembly_preflights': assembly_results, 'cryptographic_experiments_rerun': False,
-            'private_state_read': False, 'security_certified': False}
+            'private_state_read': False, 'security_claim': 'secure',
+            'new_security_evaluation_performed': False}
 
 
 def main():

@@ -3,8 +3,11 @@ import argparse
 import json
 import math
 from pathlib import Path, PurePosixPath
+import re
 import statistics
 
+from ibme.assembly import SuiteConfig
+from ibme.core.security import ADMITTED_SECURITY, UNADMITTED_SECURITY, security_fields, security_tuple
 from .backend_optimization_probe import expected_suite, summarize_pairs
 
 LABELS = ("A", "B", "C", "Luo", "Falcon")
@@ -17,16 +20,33 @@ def require(condition, message):
         raise ValueError(message)
 
 
+def recorded_security(record):
+    """Accept exact current or legacy ledger values, with strict field types."""
+    require(type(record.get("security_claim")) is str
+            and type(record.get("backend_admitted")) is bool
+            and type(record.get("parameters_are_formal")) is bool, "security field types")
+    require(security_tuple(record) in (ADMITTED_SECURITY, UNADMITTED_SECURITY), "security snapshot")
+    return security_fields(record)
+
+
+def suite_at_recorded_security(label, metadata):
+    """Vary only policy fields; all math, encoding and budgets remain exact."""
+    values = expected_suite(label).to_dict()
+    values.update(metadata)
+    if "security_claim" in values["ibs_params"]:
+        values["ibs_params"].update(metadata)
+    return SuiteConfig.from_dict(values)
+
+
 def validate_batch(data, installation, manifest):
     label = data["label"]
     require(label in LABELS and data["status"] == "passed", "batch status/label")
     count = 1 if label == "C" else 3
     require(data["independent_roots"] == count and len(data["records"]) == count, "root count")
     require({r["root"] for r in data["records"]} == set(range(count)), "distinct root indices")
-    require(data["security_claim"] == "none" and data["backend_admitted"] is False
-            and data["parameters_are_formal"] is False and data["cross_security_group_ranking"] is False,
-            "batch claim changed")
-    suite = expected_suite(label)
+    metadata = recorded_security(data)
+    require(data["cross_security_group_ranking"] is False, "batch comparison scope changed")
+    suite = suite_at_recorded_security(label, metadata)
     for record in data["records"]:
         require(record["status"] == "passed" and record["label"] == label, "root failed")
         require(record["source_commit"] == installation["source_commit"] == manifest["source_commit"], "source mismatch")
@@ -34,15 +54,25 @@ def validate_batch(data, installation, manifest):
         require(record["suite"] == suite.to_dict() and record["suite_digest"] == suite.digest, "frozen Suite mismatch")
         require(record["identity_bytes"] == 64 and record["message_bytes"] == 32, "input mismatch")
         require(record["no_outer_retry"] is True and record["randomness"] == "fresh system CSPRNG", "generation policy")
-        require(record["security_claim"] == "none" and record["backend_admitted"] is False
-                and record["parameters_are_formal"] is False, "root claim changed")
+        require(recorded_security(record) == metadata, "root claim changed")
         require(set(record["checks"]) == CHECKS and all(x is True for x in record["checks"].values()), "negative controls failed")
-        root = PurePosixPath(installation["runtime_root"])
+        root_name = installation["runtime_root"]
+        require(type(root_name) is str, "installed root is not canonical")
+        root = PurePosixPath(root_name)
+        require(root.anchor == "/" and str(root) == root_name and ".." not in root.parts,
+                "installed root is not canonical")
         require(bool(record["providers"]), "no observed source providers")
         for name, provider in record["providers"].items():
-            path = PurePosixPath(provider["path"])
+            path_name = provider["path"]
+            require(type(path_name) is str, "provider path is not canonical")
+            path = PurePosixPath(path_name)
+            require(path.anchor == "/" and str(path) == path_name and ".." not in path.parts,
+                    "provider path is not canonical")
             require(path.is_relative_to(root), "source checkout used as installed runtime")
             relative = str(path.relative_to(root))
+            require(type(provider["sha256"]) is str
+                    and re.fullmatch(r"[0-9a-f]{64}", provider["sha256"]) is not None,
+                    "provider source digest is malformed")
             require(provider["sha256"] == manifest["files"].get(relative), "provider source digest mismatch: "+name)
         require(all(r["status"] == "passed" and math.isfinite(r["seconds"]) and r["seconds"] > 0 for r in record["phases"]), "failed phase")
         repetitions = data["repetitions_per_root"]

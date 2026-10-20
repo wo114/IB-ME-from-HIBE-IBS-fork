@@ -2,6 +2,7 @@
 from copy import deepcopy
 import json
 from pathlib import Path
+from pathlib import PurePosixPath
 
 import pytest
 
@@ -25,6 +26,59 @@ def test_actual_B_receipt_and_single_preparation_per_root():
     data, installation, manifest = inputs("B")
     result = validate_batch(data, installation, manifest)
     assert result["encrypt"]["median_root_speedup"] > 0
+
+
+def test_current_security_snapshot_keeps_the_same_math_and_observations():
+    from ibme.core.security import security_fields
+    from experiments.research.backend_optimization_probe import expected_suite
+
+    data, installation, manifest = deepcopy(inputs())
+    current = expected_suite("A")
+    data.update(security_fields(current.to_dict()))
+    for record in data["records"]:
+        record.update(security_fields(current.to_dict()), suite=current.to_dict(), suite_digest=current.digest)
+    result = validate_batch(data, installation, manifest)
+    original, _, _ = inputs()
+    assert result == validate_batch(original, installation, manifest)
+    # The fixture on disk remains the original historical execution snapshot.
+    assert original["security_claim"] == "none"
+
+
+@pytest.mark.parametrize("field,value", (("backend_admitted", 0), ("parameters_are_formal", 1),
+    ("security_claim", "NIST-5"), ("security_claim", "project-admitted")))
+def test_mixed_or_unrecognized_security_snapshots_are_rejected(field, value):
+    data, installation, manifest = deepcopy(inputs())
+    data[field] = value
+    with pytest.raises(ValueError, match="security"):
+        validate_batch(data, installation, manifest)
+
+
+@pytest.mark.parametrize("spelling", ("parent", "dot", "double-slash"))
+def test_noncanonical_provider_paths_are_rejected_even_with_matching_manifest(spelling):
+    data, installation, manifest = deepcopy(inputs())
+    provider = next(iter(data["records"][0]["providers"].values()))
+    root = installation["runtime_root"]
+    relative = str(PurePosixPath(provider["path"]).relative_to(root))
+    separator = {"parent": "/../checkout/", "dot": "/./", "double-slash": "//"}[spelling]
+    provider["path"] = root+separator+relative
+    changed_relative = str(PurePosixPath(provider["path"]).relative_to(root))
+    manifest["files"][changed_relative] = provider["sha256"]
+    with pytest.raises(ValueError, match="canonical"):
+        validate_batch(data, installation, manifest)
+
+
+@pytest.mark.parametrize("bad_digest", (None, "not-a-source-digest"))
+def test_matching_malformed_provider_digests_cannot_certify_a_source(bad_digest):
+    data, installation, manifest = deepcopy(inputs())
+    first = next(iter(data["records"][0]["providers"].values()))
+    path = first["path"]
+    for record in data["records"]:
+        for provider in record["providers"].values():
+            if provider["path"] == path:
+                provider["sha256"] = bad_digest
+    manifest["files"][str(PurePosixPath(path).relative_to(installation["runtime_root"]))] = bad_digest
+    with pytest.raises(ValueError, match="source digest"):
+        validate_batch(data, installation, manifest)
 
 
 @pytest.mark.parametrize("tamper", ("failure", "provider", "count", "summary", "suite", "roots"))

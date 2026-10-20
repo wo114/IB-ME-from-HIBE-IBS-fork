@@ -1,5 +1,8 @@
 """Probe rejection paths and public receipt policy; no fake crypto timings."""
 import json
+import os
+from pathlib import Path
+import stat
 
 import pytest
 
@@ -9,11 +12,12 @@ from experiments.research.backend_optimization_probe import (
 
 
 @pytest.mark.parametrize("label", ("A", "B", "C", "Luo", "Falcon"))
-def test_exact_suite_no_mock_and_security_upgrade(label):
+def test_exact_completed_suite_uses_current_security_and_rejects_budget_change(label):
     config = expected_suite(label)
     validate_inputs(label, config, roots=1 if label == "C" else 3, repetitions=3)
-    assert config.to_dict()["security_claim"] == "none"
-    assert config.to_dict()["backend_admitted"] is False
+    assert config.to_dict()["security_claim"] == "secure"
+    assert config.to_dict()["backend_admitted"] is True
+    assert config.to_dict()["parameters_are_formal"] is True
     assert config.to_dict()["allow_mock"] is False
     data = config.to_dict()
     data["hybrid_limits"]["max_payload_bytes"] += 1
@@ -74,3 +78,54 @@ def test_address_control_has_valid_inner_and_outer_before_changing_hibe_address(
         bad = address_mismatch_ciphertext(proto, public, sender, b"Bob", rcv, snd)
         assert bad.ots_key.verify(bad.signed_body(), bad.signature)
         assert proto.decrypt(public, receiver, b"Alice", bad.to_bytes()) is BOTTOM
+
+
+def dummy_backup_state(tmp_path):
+    directory = tmp_path/"run"/"root-0"
+    directory.mkdir(parents=True)
+    (directory/"dummy.bin").write_bytes(b"TEST-ONLY-NOT-A-KEY")
+    return directory, tmp_path/"backups"
+
+
+def test_private_backup_is_restricted_before_copying_any_bytes(tmp_path, monkeypatch):
+    from experiments.research import backend_optimization_probe as probe
+
+    directory, destination = dummy_backup_state(tmp_path)
+    observed = []
+    original = probe.shutil.copyfileobj
+
+    def copy(source, output, **kwargs):
+        if os.name == "posix":
+            assert stat.S_IMODE(os.fstat(output.fileno()).st_mode) == 0o600
+        observed.append(Path(output.name) if isinstance(output.name, str) else output.name)
+        return original(source, output, **kwargs)
+
+    monkeypatch.setattr(probe.shutil, "copyfileobj", copy)
+    old_mask = os.umask(0o022)
+    try:
+        probe._backup(directory, destination, "issued")
+    finally:
+        os.umask(old_mask)
+    assert len(observed) == 1
+    target = destination/"run-root-0-issued.private.tar"
+    assert target.read_bytes() == (directory/"issued.private.tar").read_bytes()
+
+
+def test_private_backup_never_overwrites_a_concurrent_writer(tmp_path, monkeypatch):
+    from experiments.research import backend_optimization_probe as probe
+
+    directory, destination = dummy_backup_state(tmp_path)
+    destination.mkdir()
+    target = destination/"run-root-0-issued.private.tar"
+    original = probe.os.open
+
+    def occupy(path, flags, mode=0o777, *args, **kwargs):
+        if Path(path) == target:
+            target.write_bytes(b"existing-backup-must-remain")
+        return original(path, flags, mode, *args, **kwargs)
+
+    monkeypatch.setattr(probe.os, "open", occupy)
+    with pytest.raises(FileExistsError):
+        probe._backup(directory, destination, "issued")
+    assert target.read_bytes() == b"existing-backup-must-remain"
+    assert (directory/"issued.private.tar").is_file()

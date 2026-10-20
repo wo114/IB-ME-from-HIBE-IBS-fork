@@ -1,0 +1,48 @@
+{
+  "schema": "IBME-A09-NATIVE-PROVENANCE/1",
+  "status": "passed",
+  "scope": "independent post-run public metadata and binary digest query; not embedded worker capture",
+  "source_commit": "85a93e2a1243d141b5febd153223a91f44e8159e",
+  "receipt": {
+    "path": "docs/research/2026-10-19-primary-random-batch/receipt.json",
+    "sha256": "21f1bb84052004749dc172e396328f683ae46290011fd6cee7cc0e1b31b88de9"
+  },
+  "environment": {
+    "cpu": "Intel(R) Xeon(R) Silver 4216 CPU @ 2.10GHz",
+    "platform": "Linux-6.18.56-x86_64-with-glibc2.44",
+    "sage": "10.9",
+    "python": "3.14.7",
+    "compiler": "gcc (GCC) 16.2.0",
+    "dependency_provider": "Nix: GMP 6.3.0, MPFR 4.2.2, MPC 1.4.1, OpenSSL 3.5.8"
+  },
+  "latte": {
+    "abi": "IBME-LATTE3-COEFF-1",
+    "source_id": "4a17a037c266ba982a027ff7fedffe0d391c9fe7fb2c5f8a0326b4ab67393414",
+    "binary_sha256": "f73a24b6d88d54cdef058800aa4e0e81691198a1a41ad42583da7cb9d4d8aaa9",
+    "n": 1024,
+    "q": 68718428161,
+    "flags": [
+      "-O2",
+      "-march=native",
+      "-fwrapv"
+    ],
+    "post_link_rpath_relocation": true
+  },
+  "mldsa44": {
+    "abi": 1,
+    "source_id": "ae5dc5f80d49157633cf8aeb5895e1dc91a298311adc5181d99a17e8cfb14337",
+    "binary_sha256": "9f0f8cdd67ba035784719f2003a41b3f2cc7599a0f8a550859a868a3d3378957",
+    "mode": 2,
+    "public_key_bytes": 1312,
+    "secret_key_bytes": 2560,
+    "signature_bytes": 2420,
+    "nonce_attempt_limit": 16384,
+    "source_patch_count": 0
+  },
+  "claims": {
+    "security_claim": "none",
+    "backend_admitted": false,
+    "parameters_are_formal": false,
+    "post_run_query_is_security_proof": false
+  }
+}
