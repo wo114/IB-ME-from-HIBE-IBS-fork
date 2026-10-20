@@ -6,7 +6,6 @@ No Q>2gamma or additional raw/user norm cap is imposed. Resource limits
 are explicit operational limits, not claims of original security bounds.
 """
 from fractions import Fraction
-from dataclasses import asdict
 
 from ibme.core.randomness import SecureRandom
 from ibme.core.errors import EncodingError, SerializationError
@@ -19,7 +18,7 @@ from .paper_objects import (
     _identity, _message,
 )
 from .paper_samplef import PaperSampleF, WitnessGeometryError
-from .paper_samplef import PaperScalarOptions, PaperSeriesOptions
+from .paper_samplef import PaperSeriesOptions
 from .structured_geometry import master_operator, signature_operator
 from .structured_execution import GadgetRecurrence, sampler_profile, _norm
 from .wide_scalar import WideScalarGaussian
@@ -77,13 +76,6 @@ class Backend:
         # published cryptographic inputs. The certificate checks the resulting
         # error; no width, norm or trapdoor support changes with these settings.
         _unused, self.scalar_options = sampler_profile("query-bounded")
-        # The paper series already admits 8192 terms, whose exact-center bound
-        # includes 2*terms bits.  The old scalar 8192-bit reserve could reject
-        # such a fixed, positive witness before any sample.  Keep the witness
-        # and all Gaussian parameters; explicitly enlarge only this paper
-        # arithmetic reserve rather than redrawing the root or skipping gates.
-        self.scalar_options = PaperScalarOptions(**{**asdict(self.scalar_options),
-                                                    "rational_bits": 32768})
         self.series_options = PaperSeriesOptions(precision_bits=768, ticket_bits=512,
             vector_dyadic_bits=256, series_error_bits=160, max_terms=8192,
             aggregate_abort_bits=192, max_ring_products=1000000)

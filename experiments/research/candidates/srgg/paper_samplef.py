@@ -30,31 +30,11 @@ from .convolution_bridge import center_normalizer_certificate
 from .psf_bridge import _upper
 from .structured_geometry import StructuredGeometry
 from .structured_samplef import SeriesOptions, _bounded, _fraction, series_certificate
-from .wide_scalar import WideScalarGaussian, WideScalarOptions
+from .wide_scalar import WideScalarGaussian
 
 
 class WitnessGeometryError(ValueError):
     """The fixed witness has a certified nonpositive residual direction."""
-
-
-@dataclass(frozen=True)
-class PaperScalarOptions(WideScalarOptions):
-    """Paper-only arithmetic reserve for the existing 8192-term series cap.
-
-    The base wide-scalar profile keeps its 8192-bit cap.  This opt-in reserve
-    changes input/work admission only, retaining the same finite Gaussian law,
-    widths, precision, tail, mass, trial and entropy bounds.
-    """
-    rational_bits: int = 32768
-
-    def __post_init__(self):
-        _bounded(self.rational_bits, "paper scalar rational_bits", 128, 32768)
-        ordinary = {item.name: getattr(self, item.name) for item in fields(WideScalarOptions)}
-        ordinary["rational_bits"] = min(self.rational_bits, 8192)
-        checked = WideScalarOptions(**ordinary)
-        for item in fields(WideScalarOptions):
-            if item.name != "rational_bits":
-                object.__setattr__(self, item.name, getattr(checked, item.name))
 
 
 @dataclass(frozen=True)
