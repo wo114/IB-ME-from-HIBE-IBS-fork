@@ -1,6 +1,6 @@
 # 当前进度与并行任务
 
-更新：2026-10-20。本页所据主线基线为PR76（main `c414a2f`），PR77在此基础上形成作品报告重写指导；PR69／72／73及来源许可整理已经进入主线，PR71／74保留独立记录。本页只维护当前结论、负责人和下一步。逐轮提交、失败与复跑明细见各交付目录；整理前的全部文字保留在[历史快照](history/PROJECT_STATUS-through-2026-10-20.md)。找文件从[文档导航](README.md)进入。
+更新：2026-10-20。本页衔接已合并PR75准备复用（main `1009bf9`）与PR78演示改版（main `0ec0feb`），并接收PR79报告首批重写；PR76来源归档及PR77重写指导保留。本页只维护当前结论、负责人和下一步；逐轮记录见交付目录，旧进度保留在[历史快照](history/PROJECT_STATUS-through-2026-10-20.md)。找文件从[文档导航](README.md)进入。报告仍为首批WIP，不因界面或优化接收而变成最终稿。
 
 ## 1. 已确认的组织方式
 
@@ -19,16 +19,16 @@
 | 代表 | 冻结组合与预算 | 已有实物 | 当前边界 |
 |---|---|---|---|
 | A：主演示 | [LATTE＋BNN/ML-DSA-44，64 KiB](deliveries/2026-10-19-report-three-selection/suites/A-latte-mldsa44.json) | 重复基准、安装CLI、恢复、Web及部署消融；[A09批次](research/2026-10-19-primary-random-batch/README.md)3根／12配对／60项；[PR72](deliveries/2026-10-19-report-experiment-supplement/README.md)同机基准和0／32／1024／59191 B安装往返、长度／身份越界拒绝 | A09的Xeon／Nix批次与PR72的i9／Sage10.7分别记账；最终发布环境仍须复现 |
-| B：原生IBS对照 | [LATTE＋SRGG论文PARAM-I compact，128 KiB](deliveries/2026-10-19-report-three-selection/suites/B-latte-srgg-I-compact.json) | 功能矩阵、重复基准；[PR71精确安装](research/2026-10-20-report-b-installed/README.md)；PR72同机基准和0／32／1024／65364 B安装往返、越界和内层负例 | 两个独立安装批次不重复累计成同一性能基准；Web预设及最终发布复现仍待 |
-| C：另一HIBE与环IBS | [Lai C2＋Sageloli RSIS v3 PARAM-I，8 MiB](deliveries/2026-10-19-report-three-selection/suites/C-lai-c2-sageloli-I.json) | 目标规模、四身份场景；[PR74安装与空消息](research/2026-10-20-report-c-installed/README.md)；PR72补0／1024 B、越界、恢复和有效外层下内层拒绝，4次真实未缓存委派 | 多根重复和3924 B最大消息诚实解密仍未做；恢复委派需要新熵，无性能优势结论 |
+| B：原生IBS对照 | [LATTE＋SRGG论文PARAM-I compact，128 KiB](deliveries/2026-10-19-report-three-selection/suites/B-latte-srgg-I-compact.json) | 功能矩阵、重复基准；[PR71精确安装](research/2026-10-20-report-b-installed/README.md)；PR72同机基准和0／32／1024／65364 B安装往返、越界和内层负例；[固定Web入口及六情形](deliveries/2026-10-20-web-redesign/README.md)已测 | 两个独立安装批次不重复累计成同一性能基准；最终发布复现另列 |
+| C：另一HIBE与环IBS | [Lai C2＋Sageloli RSIS v3 PARAM-I，8 MiB](deliveries/2026-10-19-report-three-selection/suites/C-lai-c2-sageloli-I.json) | 目标规模、四身份场景；[PR74安装与空消息](research/2026-10-20-report-c-installed/README.md)；PR72补0／1024 B、越界、恢复和有效外层下内层拒绝，4次真实未缓存委派 | 多根重复和3924 B最大消息诚实解密仍未做；默认CLI恢复委派需新熵，PR75已有进程内会话的单根摊销结果，不替代独立根比较 |
 
-三代表是2种HIBE、3种IBS、5个原语后端、3个完整组合。Web现有的LATTE＋ML-DSA／Falcon／Luo三预设是另一集合。按2026-10-20用户决定，已完成方案默认安全，三代表当前配置使用 `secure/true/true`；[逐profile范围](deliveries/2026-10-19-project-admission/README.md)区分已完成配置与教学、已知反例和未完成项。历史收据保留原字段与摘要，不回写成新实验。
+三代表是2种HIBE、3种IBS、5个原语后端、3个完整组合。Web主入口已对齐A/B/C，LATTE＋Falcon／Luo保留在补充方案。按2026-10-20用户决定，已完成方案默认安全，三代表当前配置使用 `secure/true/true`；[逐profile范围](deliveries/2026-10-19-project-admission/README.md)区分已完成配置与教学、已知反例和未完成项。历史收据保留原字段与摘要，不回写成新实验。
 
 ### 其它后端与研究材料
 
 | 范围 | 已接收的结果 | 尚未由此完成的工作 |
 |---|---|---|
-| 公共框架／CLI／Web | 独立选参、能力和容量预检、规范wire、固定状态及真实组合工具；见[使用指南](FRAMEWORK_USAGE.md) | Web服务重启恢复仍未实现，持久恢复使用CLI；未测配对不算支持完成 |
+| 公共框架／CLI／Web | 独立选参、能力和容量预检、规范wire、固定状态及真实组合工具；[Web改版](deliveries/2026-10-20-web-redesign/README.md)加入A/B/C固定入口、精简工作区、实际阶段与刷新重连，A/B六情形浏览器实跑 | C本轮只核对固定配置与环境，未新增长流程实验；Web服务重启清空会话，持久恢复使用CLI |
 | LATTE／Lai、SRGG论文档、Sageloli环v3 | LATTE的多IBS配对、Sageloli PARAM-I公共接入、Lai C2四个IBS组合均有实跑 | 各参数档的重复性能、安装和负例按实际覆盖分别验收；不把v2展开外推套到环v3 |
 | ABB-ROM／CHKP／MP12各变体 | 已有小参数完整研究流程、对象和恢复；[3m原型](research/team-a-delivery/2026-10-18-3m-feasibility/README.md)与资源筛查保留 | 目标参数完整运行仍由队长安排的其它AI推进；本机资源受限不等于算法普遍不可行，暂不在本线程扩维 |
 | Wang＋PW | 既有小参数五方法后端与服务；[PR67数值原型修订](deliveries/2026-10-19-pr66-67-review/followup/README.md)已合入 | n512数值采样记录尚非这组参数下的完整IBS；身份／消息绑定、PW、固定公开范数验签、恢复与完整组合仍待 |
@@ -40,10 +40,12 @@
 
 | 接收内容 | 当前可引用的入口 |
 |---|---|
+| PR79：报告首批重写 | [新稿](reports/2026-10-20-competition-rewrite/README.md)完成编号、双语摘要、主线与章节骨架；[接收审查](deliveries/2026-10-20-pr79-review/README.md)修正单位、基线、引用及PDF检出校验，80项内容检查通过，当前仍为WIP |
+| PR78：三代表演示改版 | [最终审查与独立实跑](deliveries/2026-10-20-pr78-review/README.md)完成A/B各一根及六情形；修复刷新中的方案按钮锁定与消息还原提示。已合并；C仅预检、服务重启清空会话 |
 | PR77：作品报告重写审核稿 | [重写指导意见](reports/2026-10-20-revision-review/README.md)明确保留官方版式与证据基础、整体替换正文，不再按旧稿句级润色；当前活动稿已完成前两批重写，但实验、展示和最终发布批次仍未完成 |
 | PR76：来源许可与精简发布包 | [来源、上游声明及归档复核](deliveries/2026-10-20-source-notices/README.md)已进入主线；最终发行依赖清单和同版本发布复现仍待 |
 | PR73：公共登记扩展与当前安全标记／报告 | 已完成方案按用户决定默认安全，历史收据兼容；SRGG精确有理数实现上限修复，报告使用本届官方模板；见[本轮接收](deliveries/2026-10-20-pr69-74-review/README.md) |
-| PR75：准备复用与完整流程优化 | 头`1e765f1`已有A／B／C／Luo／Falcon五组数据、成本表和图；当前仍未合并，须同步PR76主线并完成最终审查。PR77只读取其固定归档数据，不提前批准代码 |
+| PR75：准备复用与完整流程优化 | [首轮返工](deliveries/2026-10-20-pr75-review/README.md)及[五组同安装数据、成本表与图](research/2026-10-20-multi-backend-optimization/README.md)齐全；[最终审查](deliveries/2026-10-20-pr75-final-review/README.md)已完成并合并。C单根会话摊销、Luo相同随机流控制和归档安装b4b31d8分别记账，发布版精确复现另列 |
 | PR72：同机实验主表与必要补测 | [A/B各三根、三组精确安装和公开主表](deliveries/2026-10-19-report-experiment-supplement/README.md)。64条CLI与3个内层负例；原临时私有状态未能归档，历史恢复成功可引用，但不能移交原状态 |
 | PR71／74：B／C独立精确安装验收 | [B的15条CLI与新进程恢复](research/2026-10-20-report-b-installed/README.md)、[C的12条CLI与内层负例](research/2026-10-20-report-c-installed/README.md)。两PR已合并；与PR72在源码、环境和输入上分别记账 |
 | PR69：主演示随机多身份／消息批量 | [固定源码85a93e2、完整收据与只读复核](research/2026-10-19-primary-random-batch/README.md)。3个独立CSPRNG根，每根2×2身份配对，消息0／1／32／1024 B；60/60符合预期，无失败样本替换，不作为失败概率或跨方案排名 |
@@ -60,7 +62,7 @@
 | 顺序 | 交付物 | 完成判据 |
 |---|---|---|
 | 1 | C的必要最大长度和有限重复 | A/B最大长度及三组容量／身份越界已有PR72记录；C仍缺3924 B诚实往返及多根重复，按分钟级预算决定补测，不无限扩网格 |
-| 2 | 三代表可解释比较 | PR72已有同机A/B数据；保留各组实际目标，不按等安全排名。C目前展示结构与资源边界，不虚构优势 |
+| 2 | 三代表可解释比较 | PR72同机A/B与PR75五组优化对照已归档；C只展示单根固定身份对的会话摊销，首次准备和额外叶钥单列，多根重复仍待；按[重写审核稿](reports/2026-10-20-revision-review/README.md)组织技术与实验 |
 | 3 | 作品报告正文整体重写 | [活动新稿](reports/2026-10-20-competition-rewrite/README.md)已完成前两批：正式编号、中英文摘要、七章结构、第1章问题与贡献、第2章完整协议、第3章五个原语以及第4章四层优化；旧稿保持审计快照。下一步重建实验图表与展示章，当前仍非提交候选版 |
 | 4 | 来源许可、提交模板及发布复现 | [来源与许可清单](../NOTICE.md)及[源码归档／wheel复核](deliveries/2026-10-20-source-notices/README.md)已补齐；官方模板已归档，作品编号`CACR2026T4PMR7`已写入新稿封面和基本信息表。最终发行依赖清单、匿名复核、源码／Suite／演示／证据／报告同版本复现仍待 |
 | 独立推进 | ABB10／CHKP／Wang的目标参数交付 | 由现负责人提交版本、参数、真实完整运行和资源数据；不阻塞已有三代表的作品收口 |
@@ -80,7 +82,7 @@
 
 ### 当前批次与在途PR
 
-PR69／72／73／76均已审查合并，PR71／74此前已经合并。PR73审定头`78b966f`的46项自动检查通过，另2项预期手动检查跳过，合并为`1c1e36e`；AGENTS与当前安全配置已按用户最新决定接收。[PR75](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/75)的五组数据已齐，头`1e765f1`仍待同步主线和最终审查。[PR77](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/77)只确立下一步正文重写指导，不把正文、图表、补测或最终PDF提前记为完成。各历史批次的源码、收据和原字段不回写。
+PR75与PR78已按精确审定头顺序合并，各自46项自动检查成功、2项预期手动检查跳过；[优化最终审查](deliveries/2026-10-20-pr75-final-review/README.md)和[界面最终审查](deliveries/2026-10-20-pr78-review/README.md)保留来源及限制。PR79交付首批报告重写与审查修订，后续五批仍待；[远端PR79](https://github.com/youzi258/IB-ME-from-HIBE-IBS/pull/79)记录其当前检查与合并状态。各历史批次的源码、字段和实测值不回写。
 
 ## 4. 当前入口与证据定位
 

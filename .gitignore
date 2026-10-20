@@ -46,3 +46,7 @@ isis_forged_z.json
 # Local and CI JUnit reports
 test-results/
 ci-results/
+
+# Local browser inspection state and screenshots
+.playwright-cli/
+output/playwright/

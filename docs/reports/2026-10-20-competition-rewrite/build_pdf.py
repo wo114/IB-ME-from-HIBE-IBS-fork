@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
 from pathlib import Path
 import shutil
 import subprocess
@@ -30,6 +32,7 @@ def main() -> None:
     engine = shutil.which(engine) or str(Path(engine).expanduser().resolve())
     name = Path(engine).stem.lower()
 
+    source_digest = hashlib.sha256(SOURCE.read_bytes()).hexdigest()
     with tempfile.TemporaryDirectory(prefix="ibme-report-rewrite-") as build:
         if name == "tectonic":
             command = [engine, "--keep-logs", "--outdir", build, SOURCE.name]
@@ -61,8 +64,22 @@ def main() -> None:
         built_pdf = Path(build) / SOURCE.with_suffix(".pdf").name
         if not built_pdf.is_file() or not built_pdf.read_bytes().startswith(b"%PDF-"):
             raise RuntimeError("engine did not produce a valid PDF")
+        if hashlib.sha256(SOURCE.read_bytes()).hexdigest() != source_digest:
+            raise RuntimeError("LaTeX source changed during compilation")
         target = SOURCE.with_suffix(".pdf")
         shutil.copyfile(built_pdf, target)
+        manifest = {
+            "schema": "IBME-COMPETITION-REPORT-BUILD/1",
+            "source": SOURCE.name,
+            "source_sha256": source_digest,
+            "pdf": target.name,
+            "pdf_sha256": hashlib.sha256(target.read_bytes()).hexdigest(),
+            "engine": name,
+        }
+        (HERE / "build-manifest.json").write_text(
+            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8", newline="\n",
+        )
         print(target)
 
 

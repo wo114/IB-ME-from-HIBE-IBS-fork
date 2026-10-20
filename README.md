@@ -18,7 +18,7 @@
 
 公共装配层支持分别选择 HIBE、IBS 和各自参数，发钥前检查版本、能力及容量。LATTE、Lai C2 与多种 IBS 已有真实完整组合记录；ABB-ROM、CHKP 及明确命名的 MP12 变体也保留各自研究后端和实验边界。具体完成情况统一在进度页维护，后端登记和完整组合实跑分别判断。
 
-报告已选定 A＝LATTE＋BNN/ML-DSA-44、B＝LATTE＋SRGG 论文 PARAM-I compact、C＝Lai C2＋Sageloli RSIS v3 PARAM-I。它们用于说明不同实现价值，不能称为三个性能冠军，也不代表三种 HIBE。当前 Web 预设仍是 LATTE＋ML-DSA／Falcon／Luo，和报告三代表是两个集合。
+报告已选定 A＝LATTE＋BNN/ML-DSA-44、B＝LATTE＋SRGG 论文 PARAM-I compact、C＝Lai C2＋Sageloli RSIS v3 PARAM-I。它们用于说明不同实现价值，不能称为三个性能冠军，也不代表三种 HIBE。Web主入口已对齐A/B/C，A/B完成六情形实跑；C本轮只核对配置与环境。Falcon／Luo保留在补充方案。
 
 报告采用 LaTeX→PDF；旧 Markdown、Word、作品报告和 PPT 保留为历史材料。接口接入、研究功能、参数与安全声明分别记录。按项目当前决定，已完成真实实现、参数冻结、公共接入和所需组合验收的精确 profile 使用 `security_claim=secure`、`backend_admitted=true`、`parameters_are_formal=true`；mock、教学参数、公开攻击负控和未交付后端仍为 `none/false/false`。这是一项已完成方案的安全前提，不把完整 IB-ME 冒充外部 NIST 认证；功能测试也不替代安全证明。具体清单见[默认安全口径记录](docs/deliveries/2026-10-19-project-admission/README.md)，已知反例见[安全回归记录](docs/KNOWN_SECURITY_GAPS.md)。
 

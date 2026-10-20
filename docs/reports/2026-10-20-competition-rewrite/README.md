@@ -22,21 +22,27 @@
 
 ## 构建与检查
 
-在仓库根目录使用本机配置运行：
+在仓库根目录使用Python 3运行；通过`--engine`指定本机Tectonic或XeLaTeX。`git ibme-run`只是原开发机别名，移交不依赖它：
 
 ```text
-git ibme-run python3 docs/reports/2026-10-20-competition-rewrite/check_report.py
-git ibme-run python3 docs/reports/2026-10-20-competition-rewrite/build_pdf.py
-git ibme-run python3 docs/reports/2026-10-20-competition-rewrite/check_report.py --require-pdf
+python3 docs/reports/2026-10-20-competition-rewrite/check_report.py
+python3 docs/reports/2026-10-20-competition-rewrite/build_pdf.py
+python3 docs/reports/2026-10-20-competition-rewrite/check_report.py --require-pdf
 ```
 
 `--submission-ready`在当前阶段必须失败并指出只完成前两批；不能因为PDF能编译就把它标为最终稿。
 
-## 后续批次
+## 后续四批
 
-1. 重建完整实验章和图表；在最终采用前同步准备复用分支的审查结论。
+1. 重建完整实验章和图表；PR75已经合并，按其固定归档数据与模型边界整合。
 2. 视预算补C的3924 B诚实往返与有限独立根；若不补则保持明确限制。
-3. 使用最终三代表界面生成真实截图，并完成同版本安装与恢复展示。
+3. 使用真实A/B页面及C的实际执行入口整理演示，并完成同版本安装与恢复展示。
 4. 统一引文、来源、匿名和排版，逐页检查后才生成提交候选PDF。
 
 报告正文不得出现Git提交、内部字段或开发往返；这些信息只保留在本说明、审核记录和支撑材料中。
+
+## 本轮接收修订
+
+[PR79审查](../../deliveries/2026-10-20-pr79-review/README.md)修正了KiB单位、部署基线、身份匹配公式、会话状态及Web展示范围，补入相关工作引用和同机实验条件；时间表取自原始主表并按三位有效数字排版。在该首批审查基础上，第二批已经展开完整协议、五个原语和四层优化，当前PDF为29页A4；实验和展示章节仍待继续重写。
+
+`build_pdf.py`生成[构建摘要](build-manifest.json)，`check_report.py --require-pdf`核对源稿与PDF精确摘要，不再根据Git检出时间判定过期。当前80项通过；将PDF文件时间设为早于源稿后仍通过，解决原检查器在新检出环境的1/67误报。`--submission-ready`仍只因后续五批未完成而失败（1/81），这不是可上传的最终报告。

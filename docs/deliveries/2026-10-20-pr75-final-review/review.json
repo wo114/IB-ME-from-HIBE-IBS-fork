@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-20",
+  "pr": 75,
+  "submitted_head": "1e765f1bd9e6661dd611ba1c895e74c8b83a3d3b",
+  "main_received": "1112ea721a7218acca2e11de01536e9e4318e0a9",
+  "tested_source": "2ad045dea3594022cc75fe96f1e45185fc8cf534",
+  "decision": "code and evidence acceptable; exact final head CI and guarded merge still pending",
+  "review_scope": [
+    "final delta since 0198f54",
+    "complete certificate statement and fresh message verification",
+    "SRGG frozen research files and fresh sampling entropy",
+    "explicit receiver session binding and lifecycle",
+    "NTT matrix keyword compatibility",
+    "all five fixed-installation batches and separate controlled replay",
+    "mainline notice and report-rewrite integration"
+  ],
+  "tests": {
+    "environment": "WSL ~/miniconda3/envs/sage; PYTHONPATH=src:.; PYTEST_DISABLE_PLUGIN_AUTOLOAD=1; OMP_NUM_THREADS=OPENBLAS_NUM_THREADS=1",
+    "selection": "tests/test_backend_optimization_probe.py tests/test_backend_optimization_receipts.py tests/test_cert_certificate_cache.py tests/test_prepared_receiver.py tests/test_srgg_paper_plan_cache.py tests/test_luo_module_math.py tests/test_luo_module_backend.py tests/test_luo_module_codec.py tests/test_ci_catalog.py",
+    "passed": 237,
+    "failed": 0,
+    "skipped": 0
+  },
+  "read_only": {
+    "five_batches": "consistent",
+    "luo_replay": "consistent; original three roots reused",
+    "python_sources_matched_to_declared_git": 495,
+    "frozen_srgg_research_source_vs_7caaff4": "identical",
+    "private_experimental_state_opened": false,
+    "large_parameter_experiments_rerun": false
+  },
+  "limitations": [
+    "archived performance installation remains b4b31d8; not relabeled as the current release",
+    "C has one root and prepared-session costs, not a replacement for stateless multi-root benchmarking",
+    "Luo fresh-random main batch did not show stable throughput gain",
+    "final release reproduction remains separate"
+  ],
+  "files": {
+    "evidence/optimization-verified.json": "7ff0ce91b06da2ca387ea06388a1f71333c16616ce5175ba323c51898ad4a255",
+    "evidence/regression.xml": "60a338102429aaa13fd24b89f9c0064aa58836a67d78c61b84c1cfdcddbb12a6"
+  },
+  "evidence_hash_scope": "canonical bytes stored in Git; checkout line endings may differ"
+}
