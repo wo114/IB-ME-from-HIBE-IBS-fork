@@ -34,20 +34,18 @@
 \vspace{5mm}
 {\LARGE\bfseries 身份基匹配加密通用设计与优化实现\par}
 \vspace{18mm}
-{\Large 研究报告初稿\par}
+{\Large 研究报告（工作稿）\par}
 \vspace{4mm}
-{\large LaTeX 迁移版\par}
+{\large LaTeX／PDF 主稿\par}
 \vspace{14mm}
 {\large IB-ME项目组\par}
 \vspace{4mm}
 {\large 2026年10月20日\par}
 \vfill
 \begin{minipage}{0.92\textwidth}
-本版接收 PR66 的 Foo-Li 来源绑定和数值修订，保留七章正文、十一张表、六幅图及十四项文献。正文的候选状态和完整基线统计沿用原稿固定版本，后续成稿以本 LaTeX 文件为编辑入口。
+本稿已经按冻结选择统一正文：A 为 LATTE-3＋BNN/ML-DSA-44，B 为 LATTE-3＋SRGG PARAM-I compact，C 为 Lai C2＋Sageloli RSIS v3 PARAM-I。旧 LATTE＋ML-DSA／Falcon／Luo 三组重复数据仅作为辅助工程基线，不再称为最终三代表。
 
-报告代表现已由 PR68 冻结为 LATTE/ML-DSA-44、LATTE/SRGG PARAM-I compact、Lai C2/Sageloli RSIS v3 PARAM-I。正文中的 LATTE/ML-DSA、Falcon、Luo 三组是历史重复基线，不能与新三代表混称。正文的状态更新和必要补测将在后续成稿中收口。
-
-三组代表不要求统一达到128位。各部件分别记录实际参数、论文目标、模型与实现限制；论文目标数值不自动成为完整 IB-ME 的安全等级。
+三组分别保留实际参数、论文目标、模型、样本边界和实现限制，不要求统一达到128位，也不进行跨目标速度排名。三组精确 profile 已获项目内部准入；该口径不等同于完整 IB-ME 获得外部 NIST 认证。
 \end{minipage}
 \end{titlepage}
 \pagenumbering{roman}
@@ -59,9 +57,11 @@
 
 本作品采用 Wang 等提出的两层匿名分层身份基加密与身份基签名通用构造，建立 HIBE、IBS 与协议装配相互分离的软件框架。系统把接收身份置于 HIBE 第一层，把发送身份置于第二层，并使用 IBS 认证接收身份与消息。针对原语消息容量与应用载荷之间的差异，实现以32字节种子为入口的混合加密；针对原始密文表示可能存在的可修改空间，实现绑定完整内层密文字节的一次性签名包装。统一配置、规范序列化、固定发钥服务和状态加载机制用于支持多实例切换与新进程恢复。
 
-截至本稿基点，19条候选路线中已有3种 HIBE 和10种 IBS 的独立完整研究后端；该数量不等于13套完整 IB-ME 系统。本文重点分析 LATTE 分别与 BNN认证转换下的 ML-DSA-44、Falcon-512以及 Luo 模格 IBS 组成的三组完整系统。三组均已完成3套独立系统状态、9对热运行加解密和9次恢复后解密。在双方原始身份各64字节、应用消息32字节的归档实验中，热加密中位数为0.211125、0.200346、0.364461秒，热解密为0.280116、0.249274、0.229220秒。另对第一组完成同参数部署消融，将运行副本从 Windows 挂载目录移至 WSL 文件系统后，完整热加密与解密中位数由206.087和258.640毫秒降至10.921和56.360毫秒。该收益来自本机部署与文件访问开销，不能解释为格密码算法本身获得相同倍数的加速。
+本文冻结三组具有不同说明价值的完整系统。A 是可现场演示的工程基线，在3个独立根、9对热运行中，加密与解密中位数为0.211125和0.280116秒。B 保持同一LATTE HIBE，换用原生SRGG论文PARAM-I IBS；3个独立根、9对热运行的中位数为7.594920和0.201444秒。C 同时换用Lai C2 HIBE和Sageloli环SIS IBS，单根功能批次中一次加密为98.972055秒，一次诚实解密为424.980337秒，其中实际委派为393.037574秒。A、B、C的机器、线程及样本结构不同，这些数值逐组披露而不计算跨组加速比。
 
-作品已形成命令行与网页演示，覆盖合法匹配、身份错配、密文修改和持久状态恢复。理论说明引用原文，并沿用项目所选算法安全、HIBE具有身份匿名性的工程工作前提。原文未明确给出的性质作为工作假设说明；功能和性能实验不替代安全证明。当前组合保持研究执行状态，不授予整体系统 NIST 安全等级。最终三代表尚未锁定，高维目标参数运行及部分原语接入仍未完成。
+另对A完成同参数部署消融，将运行副本从 Windows 挂载目录移至 WSL 文件系统后，完整热加密与解密中位数由206.087和258.640毫秒降至10.921和56.360毫秒。该收益来自本机部署与文件访问开销，不能解释为格密码算法本身获得相同倍数的加速。
+
+作品已形成命令行与网页演示，覆盖合法匹配、身份错配、密文修改和持久状态恢复。理论说明引用原文，并沿用项目所选算法安全、HIBE具有身份匿名性的工程工作前提。三组精确参数 profile 当前为 project-admitted/true/true；这是项目依据论文引用、参数冻结和工程验收作出的内部准入，不是新的安全证明，也不授予完整系统外部 NIST 等级。尚待收口的是B、C精确配置的安装验收、必要消息边界、同发布版本复现及来源许可材料。
 
 关键词：身份基匹配加密；格密码；分层身份基加密；身份基签名；可复现评测
 
@@ -102,10 +102,10 @@
 \endlastfoot
 系统建立与双方发钥 & 统一 Setup、skgen、rkgen；三组完整收据 & 已有实际运行 \\
 双向身份匹配 & 合法匹配及三类错配；Web与CLI验收 & 已有实际运行 \\
-至少一种 LWE与SIS 路线的完整实例化 & CHKP研究HIBE与Luo等接线已有；见E06与目录 & 研究参数功能成立，不能由此声称目标参数达标 \\
+多类格路线的完整实例化 & LATTE＋ML-DSA、LATTE＋SRGG、Lai C2＋Sageloli环SIS均有完整运行 & 2种HIBE、3种IBS、3个冻结组合；见E15、E16 \\
 非法身份与篡改拒绝 & IBS绑定、BYTEAUTH、严格解析及负向场景 & 已有功能证据；理论按引用与工作假设说明 \\
 多方案切换 & 独立组件接口、配置、默认登记与预检 & 部分候选仅为单体后端 \\
-时间尺寸内存与对比 & 三组重复基线、C64B补充、部署消融 & 已有数据；最终三代表未选定 \\
+时间尺寸内存与对比 & A、B重复基准，C目标规模单根运行；另有旧三组基线与部署消融 & 三代表已选定；不同环境数据不作等安全排名 \\
 \end{longtable}
 \endgroup
 表中“完整实例化”包含实际调用对应原语及公共协议，不以 mock 或接口形状代替密码运算。“目标参数达标”则涉及实际版本、参数依据、容量和部署条件，需要单独结论。两个层次同时保留，便于评审判断项目已经实现什么、还欠缺什么。
@@ -186,7 +186,7 @@ BYTEAUTH层使用新生成的 Lamport 一次性签名密钥认证完整内部密
 
 项目于2026年10月18日确认工程前提：按所选论文算法具备所需安全性、HIBE具有身份匿名性继续研发。原文已明确给出的性质作为引用，未明确给出的部分标明工作假设。例如本稿不把LATTE的普通机密性结论直接改写为已在本项目证明的身份匿名性。该区分用于说明设计依据，不另设基础证明工程作为实现前置任务。
 
-实际参数、采样与已知失败仍须如实报告。当前展示组合的安全元数据为 security\_claim=none、backend\_admitted=false、parameters\_are\_formal=false。它们表示项目没有为完整组合授予正式安全等级，不表示底层所有参数都只是教学小参数。相反，已知公开可伪造的具体调试配置不能凭工作假设进入安全比较主表。
+实际参数、采样与已知失败仍须如实报告。项目于2026年10月19日进一步决定：完成真实实现、参数冻结、公共接入和所需组合验收的精确 profile 使用 security\_claim=project-admitted、backend\_admitted=true、parameters\_are\_formal=true。A、B、C均在该清单中；这是项目内部准入，不把完整组合改写为外部标准认证。mock、教学档、已知公开攻击负控、仅数值投影和未交付后端继续保持none/false/false。[E17]
 
 \chapter{多算法实例化与参数选择}
 \begingroup
@@ -196,10 +196,10 @@ BYTEAUTH层使用新生成的 Lamport 一次性签名密钥认证完整内部密
 
 候选选择同时考虑原文与实现版本能否对应、是否具有真实采样与签验链、输入容量能否容纳封装后的签名消息、是否支持规范保存和恢复，以及本机可承担的时间和内存。某个算法的高维目标难以运行时，仍保留其资源研究价值，但不能用小维度实验补足目标运行数量。
 
-截至基点，8条HIBE路线中3条、11条IBS路线中10条具有独立完整研究后端。默认框架登记6种IBS；Foo-Li、Yu2026及Sageloli两条路线虽有完整单体实现，尚未完成默认入口与真实HIBE组合。SRGG存在已配对的默认小参数实现和独立论文参数实现，两者不能共享实际接入结论。附录A逐项列出19条路线。
+截至本稿更新，公共registry已经登记LATTE、Lai、ABB-ROM、CHKP及明确命名的MP12变体，并登记Luo、SRGG默认档与论文档、Sageloli环v3、认证转换型ML-DSA/Falcon及Wang-PW等IBS。登记、运行时可用、精确profile准入和完整组合实跑分别记录；不能用其中一列替代其它列。附录A按19条论文路线列出当前状态。
 
-\section{当前三组完整展示配置}
-本文使用的三组基线共享LATTE-3/COSAC-FIX HIBE、Hybrid、BYTEAUTH和单写者状态策略，变化部分是IBS。LATTE参数为N=1024、q=68718428161、seed32模式；实际配置最多2个接收父身份、每父2个发送子身份，内部身份上限86字节。此容量是当前配置限制，不能把它写成无限用户系统。[E01-E04]
+\section{冻结的三组报告代表}
+三组均使用Hybrid、BYTEAUTH和单写者状态策略，但不再只更换IBS：A、B共享LATTE-3/COSAC-FIX，C使用Lai C2。外部身份上限均为64字节，Hybrid内层身份为86字节，底层HIBE只加密32字节种子。载荷预算是内部协议预算，不等于应用消息容量。[E15]
 
 \begingroup
 \small
@@ -207,12 +207,12 @@ BYTEAUTH层使用新生成的 Lamport 一次性签名密钥认证完整内部密
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.24\tableavail}>{\raggedright\arraybackslash}p{0.27\tableavail}>{\raggedright\arraybackslash}p{0.25\tableavail}>{\raggedright\arraybackslash}p{0.24\tableavail}@{}}
 \caption{展示配置与用途}\\
 \toprule
-\rowcolor{black!8} 配置简称 & IBS与编码 & 主要用途 & 当前边界 \\
+\rowcolor{black!8} 代表 & 精确组合 & 主要用途 & 容量与边界 \\
 \midrule
 \endfirsthead
 \multicolumn{4}{l}{\small 表\thetable\quad 续表}\\
 \toprule
-\rowcolor{black!8} 配置简称 & IBS与编码 & 主要用途 & 当前边界 \\
+\rowcolor{black!8} 代表 & 精确组合 & 主要用途 & 容量与边界 \\
 \midrule
 \endhead
 \midrule
@@ -220,34 +220,36 @@ BYTEAUTH层使用新生成的 Lamport 一次性签名密钥认证完整内部密
 \endfoot
 \bottomrule
 \endlastfoot
-MLDSA & BNN认证转换加ML-DSA-44 reference & 当前主演示底座候选，便于对应底层标准与向量 & 完整组合仍为研究配置 \\
-Falcon & BNN认证转换加Falcon-padded-512 reference & 紧凑性工程对照 & 不是FN-DSA或FIPS206实现声明 \\
-Luo & 原生Luo模格IBS compact & 原生IBS与认证转换的结构对照 & 与前两组安全目标未统一 \\
+A & LATTE-3＋BNN/ML-DSA-44 reference & 主演示、安装与恢复基线 & 64KiB载荷预算；应用消息上限59191B \\
+B & LATTE-3＋SRGG PARAM-I compact & 原生模块格IBS与无损编码 & 128KiB载荷预算；应用消息上限65364B \\
+C & Lai C2＋Sageloli RSIS v3 PARAM-I & 另一HIBE与原生环IBS目标规模 & 8MiB载荷预算；应用消息上限3924B；分钟级解密 \\
 \end{longtable}
 \endgroup
-MLDSA与Falcon配置分别允许64字节身份、最多16个IBS身份、65536字节IBS消息输入。该输入上限须与Hybrid及协议额外字段共同检查，不能直接当作应用消息最大长度。认证转换中的完整签名包含用户公钥、机构证书与消息签名，不能只引用底层普通签名大小。[11-13]
+A、B的LATTE参数为N=1024、q=68718428161、seed32模式，最多2个接收父身份、每父2个发送子身份。A的认证转换签名包含用户公钥、机构证书与消息签名，不能用底层ML-DSA单个签名大小代替完整IBS尺寸。[4,11,12]
 
-Luo默认模格研究配置采用N=256、k=11、l=10、q=274877844481、\ensuremath{\eta}=1、\ensuremath{\kappa}=64、\(\gamma_1\)=125440、\(\gamma_2\)=31470387200、\(\gamma_3\)=15270991360、dropped\_bits=28。Extract与Sign重试上限各1024，IBS消息输入上限4096字节。参数来源、实际Suite及完整字段保存在附录B对应的机器可读证据中。[5,E04]
+B采用SRGG论文PARAM-I：n=512、rank=2、p=16383、base=31、digits=2、Q=15744063，并冻结factor1和表格标准差解释。原文标称目标100 bit，并列出量子密钥恢复／伪造95／93 bit；这里只引用作者口径，不把它改写为完整IBME的统一安全等级。[6,E15]
 
-三组可用于比较系统组件的具体工程代价。由于安全目标尚未统一，本稿不按时间排序选出“最安全且最快”的方案，也不将共用一个HIBE的三组配置描述成已经满足多类HIBE最终代表要求。
+C采用Lai C2的n=2048、q=274877976577、k=39、l=2，与Sageloli PARAM-I的d=2048、k=65、l=132、q=\(3^{65}\)组合。该配置真实完成目标规模完整运行，但密钥、密文和委派成本高，定位是结构覆盖与资源边界而非性能冠军。[10,15,E16]
+
+三组的选择依据是已有完整运行、参数与源码可追溯、避开已知攻击调试档，并分别提供主演示、原生IBS和另一HIBE的解释价值。安全目标、机器与样本边界不同，因此本文逐组报告，不计算“最安全且最快”的总排名。旧ML-DSA／Falcon／Luo三组重复基线继续作为辅助对照，不再占用最终代表名额。
 
 \section{原生IBS的已完成范围}
 Luo矩阵版与模格版均有研究实现。模格版是当前Luo工程主线，已完成规范对象、签名编码、固定身份服务及真实组合。显式C64B变体调整\(\gamma_1\)、\(\gamma_2\)、\(\gamma_3\)与重试上限，已有LATTE完整基准；它仍是同一种IBS的参数变体，不新增算法数量。其应用消息容量上限3924字节与IBS输入4096字节分开记录。[E05]
 
 Wang基本IBS加Pan-Wagner转换已经具有真实MP12采样、身份盐和消息盐、完整签验以及保存恢复链，默认入口已有LATTE实际配对记录。[1,7,E06] 当前已配对的q17调试配置具有公开伪造问题，不能作为安全主展示参数。完整实现与安全参数可用是两项独立结论。
 
-SRGG已经形成完整研究IBS及论文参数三档独立运行。其工作包括相关扰动采样、Schur部分处理、原像生成、挑战与完整签验。最新compact编码不改变原签名对象，可对公钥、主秘密、身份密钥与签名进行无损存储压缩。独立论文参数路线尚未登记默认入口，也没有继承默认小参数路线的HIBE配对结果。[6,E07]
+SRGG已经形成完整研究IBS及论文参数三档独立运行。其工作包括相关扰动采样、Schur部分处理、原像生成、挑战与完整签验。compact编码不改变原签名对象，可对公钥、主秘密、身份密钥与签名进行无损存储压缩。论文参数路线现已作为\texttt{srgg2025-paper}登记，PARAM-I compact与LATTE组成代表B，并有精确128KiB Suite的34项功能检查和三根重复基准；默认小参数路线的旧结果仍不自动继承。[6,E07,E15]
 
-Foo-Li、Yu2026与Sageloli-SIS、Sageloli-RSIS已有完整单体研究后端。其中Sageloli实现覆盖H1/H2、盐、矩阵或环上的采样与签验、固定发钥及恢复；其环版v3执行域已按论文两组大参数完成Setup、全列发钥、签验与恢复的独立实跑，未接入默认入口。[E14]Yu当前实现的消息容量仅1至4字节，无法容纳公共构造实际签名输入，预检应拒绝该组合。Xie-NTRU路线已有修订研究核，但还不是共同IBSBackend。本文不把组件、数学探针或取得的通用NTRU工具计算为完整IBS。[8-10,E08]
+Foo-Li、Yu2026与Sageloli-SIS、Sageloli-RSIS已有完整单体研究后端。其中Sageloli实现覆盖H1/H2、盐、矩阵或环上的采样与签验、固定发钥及恢复；环版v3已作为\texttt{sageloli-rsis}登记，论文PARAM-I／II获项目准入。PARAM-I先与LATTE完成安装恢复桥接，再与Lai C2组成代表C并完成真实完整运行。[E14,E16] Yu当前实现的消息容量仅1至4字节，无法容纳公共构造实际签名输入，预检应拒绝该组合。Xie-NTRU路线已有修订研究核，但还不是共同IBSBackend。本文不把组件、数学探针或取得的通用NTRU工具计算为完整IBS。[8-10,E08]
 
 \section{HIBE资源研究与目标规模}
-CHKP研究实现需要明确原稿版本。项目现有3m叶布局与出版版2m比较对象不同，不能把两种布局的参数与定理混用。高基数MP12结构化种子KEM组件已完成根、父、256个叶和32字节种子路径，但目前不是公共HIBEBackend，也未接入Hybrid、CLI或完整IBME。[2,14,E09]
+CHKP研究实现需要明确原稿版本。项目现有3m叶布局与出版版2m比较对象不同，不能把两种布局的参数与定理混用。高基数MP12结构化种子KEM组件已完成根、父、256个叶和32字节种子路径；相关研究变体已有明确命名的公共后端，但目标参数完整运行仍未交付，不能把小参数接线当作出版版目标。[2,14,E09]
 
 已有n=2、4、8且q约93比特的有界运行，用于验证算术、委派、编码和恢复。n=8的父生成约4.15秒、256叶约44.78秒、观测RSS约225MiB。目标n=4096未生成密钥；资源投影中的父陷门约9GiB、探测载荷约19.197GiB均为模型估算，不是测量结果。更大机器或不同表示可能改变可部署性，因此不能从当前环境限制推出算法普遍不可行。
 
 ABB最新紧边界候选n=8224、模数约180比特、噪声参数721，公开模型给出的完整基表示字节下界为473331337067574字节，32字节原始密文为52296768512字节。该批只做公开算术与成本比较，尚无目标密钥和完整运行。估计器中根SIS没有有限估计值，含义为该模型未给出有限成本，不能写作“无限安全”。[3,E10]
 
-这些研究说明参数选择与表示成本会直接影响完整组合。它们可以支持后续方案选择，却不能把目标规模候选写成已经实现、运行或已被淘汰的最终方案。
+这些研究说明参数选择与表示成本会直接影响完整组合。它们可作为未选路线的资源证据，却不能覆盖已冻结的A、B、C，也不能把仅有投影的候选写成已经实现、运行或已被淘汰的最终方案。
 
 \section{原生IBS参数研究与目标规模（Foo-Li）}
 Foo-Li后端已具备五方法、固定发钥与恢复的完整单体实现，但本稿按E13已核对的ACISP会议版与作者机构开放版记录使用论文的渐近充分条件，未据此宣称已检索所有可能的扩展稿；所核对版本未给出可直接复用的数值实例，与Sageloli论文列出两组数值点的方式不同。[8,E13] 因此该路线的具体参数只能由实现方从论文充分条件推导。当前可运行的q=3、n=1教学配置存在公开伪造，不能作为参数代表。
@@ -282,7 +284,7 @@ Foo-Li后端已具备五方法、固定发钥与恢复的完整单体实现，�
 
 按E13公钥估计排序的最小候选为\(q=2^{127}-1\)、n=4096、\ensuremath{\bar m}=520208，公钥紧凑比特打包估计约63GiB，经典core-SVP估计129.94、量子117.93比特；本批没有同时达到经典与量子128的候选。该候选未生成目标密钥，且超过现后端执行门。其余主密钥、用户私钥和签名的目标尺寸需在明确表示和计算公式下另行核算，不作为本稿已测数据。
 
-作为资源示例，E14的Sageloli环版PARAM-I公钥序列化实测约3.35MiB、发钥约85秒、新建进程峰值约1.36GiB；Foo-Li上述约63GiB则是尚未运行候选的公钥打包估计。两种方案的安全模型、参数和统计口径不同，不能把这两个点写成同安全级性能排名或整条路线的固有代价，也不以本机内存判断算法不可行。core-SVP是启发式估计；本批数据与原始实现的none/false/false声明保持不变。
+作为资源示例，E14的Sageloli环版PARAM-I公钥序列化实测约3.35MiB、发钥约85秒、新建进程峰值约1.36GiB；Foo-Li上述约63GiB则是尚未运行候选的公钥打包估计。两种方案的安全模型、参数和统计口径不同，不能把这两个点写成同安全级性能排名或整条路线的固有代价，也不以本机内存判断算法不可行。core-SVP是启发式估计；Sageloli PARAM-I当前为项目准入profile，Foo-Li未运行候选仍为none/false/false。
 
 \par\endgroup
 \chapter{系统实现与关键技术}
@@ -296,7 +298,9 @@ Foo-Li后端已具备五方法、固定发钥与恢复的完整单体实现，�
 \end{figure}
 公共Suite绑定算法版本、两组原语参数、签名格式、包装及状态策略。相同的算法名称但不同参数、编码或上下文不能静默混用。装配预检还要计入身份编码和BYTEAUTH内部承诺产生的额外字节，发现容量不足时在发起长计算前明确拒绝。
 
-源码中的研究后端不会因为实现了接口就自动出现在网页预设中。网页只公开已经验收的三组配置；其余原语保留CLI、测试或研究入口。此设计使用户看见的选项与实际可运行证据保持对应。
+新算法在自身registration模块提供显式provider，返回完整BackendSpec；调用方可在独立registry中原子加入一个或一组HIBE／IBS描述符，不必复制协议或修改中央注册表。任一描述符不完整或ID重复时整批拒绝，不留下半注册状态。Suite JSON只能选择已经登记的ID，不能携带Python导入路径；CLI的签名格式也由所选IBS描述符校验，而不是维护固定算法白名单。
+
+源码中的研究后端不会因为实现了接口就自动出现在网页预设中。网页当前公开LATTE＋ML-DSA／Falcon／Luo三个交互预设，其中只有ML-DSA对应代表A；报告代表B、C因运行时间和资源边界通过CLI、冻结Suite及预运行收据展示。此设计避免分钟级组合阻塞现场页面，也防止把Web集合误写成最终三代表。
 
 \section{规范编码与错误处理}
 身份、消息和签名使用域分隔及长度前缀编码。解码器验证对象种类、版本、字段数量、尺寸上限和规范表示，并拒绝截断、追加及重复字段。模q系数、向量维度和环参数由对应后端检查，不能仅凭能够反序列化便进入密码运算。
@@ -326,11 +330,11 @@ LATTE及认证型签名适配器调用原生程序，运行前核对固定源码
 
 \chapter{实验设计结果与分析}
 \section{数据来源与实验问题}
-本章整理仓库已经归档的实验，不为撰稿重新生成密钥，也不把本次文档生成计为新的密码学试验。每张表对应固定公开JSON与源码版本。实验回答四个问题：完整协议是否正确处理匹配与拒绝；首次、热运行和恢复的成本分别是多少；不同IBS对完整时间与尺寸有何影响；部署位置改动能否在相同密码工作下减少完整操作耗时。
+本章整理仓库已经归档的实验，不为撰稿重新生成密钥，也不把本次文档生成计为新的密码学试验。每张表对应固定公开JSON与源码版本。实验回答四个问题：冻结组合是否完成匹配与拒绝；A、B重复运行及C目标规模运行的实际成本是多少；完整wire和状态尺寸处于什么量级；部署位置改动能否在相同密码工作下减少完整操作耗时。
 
-三组完整基线使用Intel Core Ultra9 275HX、WSL2、Sage10.9、Python3.13.14，OMP线程数4、OpenBLAS线程数1。双方原始身份各64字节、内部各86字节，应用消息32字节，HIBE种子32字节。每组3套独立CSPRNG系统状态，每套3对热运行，共9对；再由3个新进程完成共9次恢复后解密。[E01-E04]
+A使用Intel Core Ultra9 275HX、Sage10.9／Python3.13.14、OMP4／BLAS1；B使用i9-14900HX、Sage10.7／Python3.12.13、OMP4／BLAS1。二者均为3套独立CSPRNG系统状态、9对热运行和9次恢复后解密。C使用Ultra9 275HX、Sage10.9／Python3.13.14、OMP1／BLAS1，四个IBS组合共享1个Lai根与2个一级钥；所选C只有1次加密和每种身份情形1次解密。三组均使用64字节外部身份和32字节应用消息。[E15,E16]
 
-冷状态指新的Python进程，保留操作系统页缓存和已构建原生程序，不是断电或清空所有缓存后的启动。热运行复用各自状态，不把9次观察当成9套独立密钥。首次解密包含目标叶生成，后续热解密复用已有叶状态。10毫秒进程树RSS是观测统计，可能漏掉短峰或重复计共享页；本稿不把它当成精确物理峰值或置信区间。
+冷状态指新的Python进程，保留操作系统页缓存和已构建原生程序，不是断电或清空所有缓存后的启动。热运行复用各自状态，不把9次观察当成9套独立密钥。10毫秒进程树RSS可能漏掉短峰或重复计共享页；C还分别记录准备阶段进程树采样和解密进程内核生命周期高水位。不同口径不拼接成统一排名。
 
 \section{功能拒绝与恢复}
 \begingroup
@@ -352,30 +356,30 @@ LATTE及认证型签名适配器调用原生程序，运行前核对固定源码
 \endfoot
 \bottomrule
 \endlastfoot
-发送与接收均匹配 & 原消息逐字节恢复 & 三组重复基线及Web与CLI验收 \\
-仅发送身份错配 & BOTTOM & 三组Web场景与CLI负向记录 \\
+发送与接收均匹配 & 原消息逐字节恢复 & A的Web／安装CLI，B的34项功能矩阵，C的真实完整解密 \\
+仅发送身份错配 & BOTTOM & A的Web／CLI，B功能矩阵，C实际委派后拒绝 \\
 仅接收身份错配 & BOTTOM & 同上 \\
 双方身份错配 & BOTTOM & 同上 \\
-修改截断追加或重复密文 & 解析失败或密码学拒绝 & 完整wire与CLI验收 \\
-固定状态加载与再次解密 & 无重新发钥且消息一致 & 每组9次恢复解密 \\
+修改截断追加或重复密文 & 解析失败或密码学拒绝 & A、B完整wire验收；C已有包装与独立IBS负例 \\
+固定状态加载与再次解密 & 不重新发放既有身份钥且消息一致 & A、B各9次恢复解密；C已有对象恢复，精确安装流程待补 \\
 服务异常 & 明确执行失败 & 不纳入拒绝成功统计 \\
 \end{longtable}
 \endgroup
-网页三组预设18项核心场景已验收；独立CLI完成15步生命周期与新进程零熵恢复。网页刷新可以重连临时会话，但服务重启会丢失网页会话，持久恢复能力由CLI状态路径提供。不能从网页刷新仍有效推断服务器重启恢复已经由网页实现。[E12]
+网页的LATTE＋ML-DSA／Falcon／Luo三个辅助预设已有18项核心场景；A另有安装CLI生命周期和新进程零熵恢复。网页刷新可以重连临时会话，但服务重启会丢失网页会话，持久恢复能力由CLI状态路径提供。B的精确128KiB安装CLI、C的精确安装恢复以及“有效外层认证但无效内层签名”仍是发布收口项，不能由其它Suite继承。[E12,E15]
 
-\section{完整生命周期时间}
+\section{三代表完整运行观察}
 \begingroup
 \small
 \setlength{\tableavail}{\dimexpr\textwidth-6\tabcolsep\relax}
-\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.34\tableavail}>{\raggedright\arraybackslash}p{0.22\tableavail}>{\raggedright\arraybackslash}p{0.22\tableavail}>{\raggedright\arraybackslash}p{0.22\tableavail}@{}}
-\caption{三组完整IBME的时间中位数 单位秒}\\
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.22\tableavail}>{\raggedright\arraybackslash}p{0.28\tableavail}>{\raggedright\arraybackslash}p{0.25\tableavail}>{\raggedright\arraybackslash}p{0.25\tableavail}@{}}
+\caption{冻结三代表的完整协议观测}\\
 \toprule
-\rowcolor{black!8} 操作 & MLDSA & Falcon & Luo \\
+\rowcolor{black!8} 代表 & 样本边界 & 完整加密／解密（秒） & 完整密文wire（字节） \\
 \midrule
 \endfirsthead
 \multicolumn{4}{l}{\small 表\thetable\quad 续表}\\
 \toprule
-\rowcolor{black!8} 操作 & MLDSA & Falcon & Luo \\
+\rowcolor{black!8} 代表 & 样本边界 & 完整加密／解密（秒） & 完整密文wire（字节） \\
 \midrule
 \endhead
 \midrule
@@ -383,39 +387,33 @@ LATTE及认证型签名适配器调用原生程序，运行前核对固定源码
 \endfoot
 \bottomrule
 \endlastfoot
-Setup & 0.984492 & 0.911282 & 0.964105 \\
-发送发钥 & 0.273598 & 0.160366 & 0.318922 \\
-接收发钥 & 0.754343 & 0.511102 & 0.472760 \\
-首次加密 & 0.224485 & 0.217907 & 0.609756 \\
-首次解密含叶生成 & 0.403997 & 0.368917 & 0.382824 \\
-热加密 & 0.211125 & 0.200346 & 0.364461 \\
-热解密 & 0.280116 & 0.249274 & 0.229220 \\
-对象恢复 & 0.665062 & 0.674278 & 0.779928 \\
-恢复后解密 & 0.281654 & 0.247483 & 0.234768 \\
+A & 3根、9对热运行；中位数 & 0.211125／0.280116 & 142051--142146 \\
+B & 3根、9对热运行；中位数 & 7.594920／0.201444 & 149191--149291 \\
+C & 1个共享HIBE根；单次观察 & 98.972055／424.980337 & 4555436 \\
 \end{longtable}
 \endgroup
-Setup、双方发钥、首次加密、首次解密及对象恢复各3次，热加解密与恢复后解密各9次。导入与构建运行时不混入上述单操作。首次解密和热解密存在状态差异，因此应分别列出。表中结果描述当前具体配置的观察，不作跨安全目标的速度排名。
+表5只把三组放在同一位置说明量级，不构成统一统计比较。A与B的数值是热运行中位数，C是一次目标规模观察且解密包含393.037574秒的真实Lai委派；A、B、C的机器和线程设置也不同。C的结构覆盖价值不能改写为性能优势，A、B的中位数也不能与C单次值计算加速比。
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth,height=0.52\textheight,keepaspectratio]{figures/baseline.png}
-\caption{三组完整系统热运行观察}
+\caption{旧LATTE三IBS辅助基线的热运行观察}
 \end{figure}
-图4逐点保留9次热运行观察，并以短横线表示中位数。各点来自3套系统状态内重复调用，不能用于宣称低概率失败界或大规模用户吞吐保证。首次和恢复成本仍以表5为准。
+图4保留ML-DSA、Falcon和Luo三组旧辅助基线的9次热运行观察，并以短横线表示中位数。它用于分析固定LATTE下的工程差异，不代表新的A、B、C，也不能用于宣称低概率失败界或大规模用户吞吐保证。
 
 \section{完整尺寸与内存}
 \begingroup
 \small
 \setlength{\tableavail}{\dimexpr\textwidth-6\tabcolsep\relax}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.34\tableavail}>{\raggedright\arraybackslash}p{0.22\tableavail}>{\raggedright\arraybackslash}p{0.22\tableavail}>{\raggedright\arraybackslash}p{0.22\tableavail}@{}}
-\caption{完整wire及持久对象尺寸 单位字节}\\
+\caption{冻结三代表的完整wire及对象尺寸 单位字节}\\
 \toprule
-\rowcolor{black!8} 对象 & MLDSA & Falcon & Luo \\
+\rowcolor{black!8} 对象 & A & B & C \\
 \midrule
 \endfirsthead
 \multicolumn{4}{l}{\small 表\thetable\quad 续表}\\
 \toprule
-\rowcolor{black!8} 对象 & MLDSA & Falcon & Luo \\
+\rowcolor{black!8} 对象 & A & B & C \\
 \midrule
 \endhead
 \midrule
@@ -423,16 +421,16 @@ Setup、双方发钥、首次加密、首次解密及对象恢复各3次，热�
 \endfoot
 \bottomrule
 \endlastfoot
-完整密文 & 142051-142146 & 138150-138207 & 151876-151955 \\
-公开状态 & 14352-14392 & 13973-14020 & 260819-260851 \\
-主秘密状态 & 177557-177671 & 172047-172371 & 522253-522339 \\
-发送状态 & 8050-8050 & 4195-4195 & 313813-313813 \\
-接收状态 & 128017-128098 & 128078-128230 & 128166-128243 \\
+完整密文 & 142051--142146 & 149191--149291 & 4555436 \\
+公开状态 & 14352--14392 & 47204--47274 & 5132798 \\
+主秘密状态 & 177557--177671 & 268017--268246 & 160558447 \\
+发送状态 & 8050 & 84153--84245 & 144089680 \\
+接收状态 & 128017--128098 & 128126--128195 & 20439584 \\
 \end{longtable}
 \endgroup
-这里的对象为收据记录的序列化状态，包含对应封装信息，不能直接等同于论文中的数学向量长度。完整密文已包含HIBE胶囊、混合载荷、IBS内容、一次性认证与公共框架字段，不能以底层ML-DSA或Falcon单个签名大小替代。
+这里的对象为收据记录的序列化状态，包含对应封装信息，不能直接等同于论文中的数学向量长度。完整密文已包含HIBE胶囊、混合载荷、IBS内容、一次性认证与公共框架字段，不能以底层普通签名或单个格向量大小替代。
 
-三组进程树RSS最大观测分别约458.00、457.80、470.43MiB。它们支持说明该批实际运行的资源量级，但不同进程寿命、共享页和短时峰值会影响解释。密文与状态范围来自不同独立根和操作时点，不能把每列最小值拼接成一套真实存在的“最佳系统”。
+A、B进程树RSS采样最大值分别为480243712和506789888字节。C的诚实解密进程内核生命周期高水位为1248882688字节，准备阶段进程树采样达到3015589888字节；两种C口径不能互相替代。不同进程寿命、共享页和短时峰值会影响解释，表中不同根的最小值也不能拼接成一套真实存在的“最佳系统”。
 
 \section{Luo显式C64B补充}
 另有一组LATTE与Luo-C64B compact的完整运行，采用相同64字节身份和32字节应用消息、3套独立系统状态、9对热运行与9次恢复解密。热加密与解密中位数为0.548812和0.227047秒，完整wire为152225至152269字节，进程树RSS观测494772224字节。[E05]
@@ -506,16 +504,16 @@ PARAM II & 51117 & 19288 & 同上 \\
 PARAM III & 67076 & 26264 & 同上 \\
 \end{longtable}
 \endgroup
-编码前后没有修改签名方程、采样、参数或默认服务。文件变小带来传输与落盘收益，但完整API可能因编码增加耗时。该实验尚无真实HIBE配对，不能将表8差值直接从完整IBME密文中扣除，亦不能将单体时间与另一台机器上的完整系统时间排序。
+编码前后没有修改签名方程、采样、参数或默认服务。文件变小带来传输与落盘收益，但完整API可能因编码增加耗时。后续代表B已经把PARAM-I compact与LATTE真实配对，完整密文为149191至149291字节；reference完整密文为171097至171231字节。两批不是同一随机根的配对样本，不能把差值写成计时加速，也不能将单体时间与另一台机器上的完整系统时间排序。
 
 \section{局限与待补实验}
-当前完整重复基线只使用32字节应用消息，不能据此声称已经评测所有消息长度或满容量场景。下一版应针对最终主展示配置，先预检容量，再按需要补1KiB及边界输入，避免对所有历史参数进行无目的重跑。当前用户数也受LATTE两父、每父两子的配置限制，大规模并发和多写者一致性未在本稿验证。
+三代表现有性能收据均使用32字节应用消息，不能据此声称已经评测所有消息长度或满容量场景。后续只围绕冻结Suite补必要长度与边界：A收口随机批次和同发布版本干净环境复现，B补精确128KiB安装CLI／wheel，C补精确安装恢复、空消息或必要边界及有效外层认证下的内层签名负例。C每次诚实解密为分钟级，重复测量须设置时间盒。
 
-待接收的HIBE成果应先完成一次真实组合生命周期和恢复，再决定是否纳入同条件测量。安全目标不同的配置可分别展示成本和用途，但最终选择理由必须对应真实优势及其代价，不能仅凭“低通信”“高频”“多用户”标签指定赢家。
+当前用户数还受LATTE两父、每父两子、Sageloli最多两个已发身份等具体profile限制；大规模并发和多写者一致性未在本稿验证。三组安全目标和环境不同，可分别展示成本与用途，但不能仅凭“低通信”“高频”“多用户”标签指定赢家，也不能把C的单根运行冒充重复性能基准。
 
 \chapter{应用展示与技术贡献}
 \section{原型使用流程}
-网页入口复用公共API，提供已验收三组预设。演示先展示实际算法、参数、身份长度与状态，再由机构生成系统和双方密钥；发送者指定接收身份并加密，接收者指定期望发送身份后解密。随后分别修改发送身份、接收身份和密文字节，观察明确拒绝。页面导出的结果来自实际执行，不使用预填耗时冒充测量。[E12]
+网页入口复用公共API，提供LATTE＋ML-DSA、Falcon、Luo三个已验收的交互预设。演示先展示实际算法、参数、身份长度与状态，再由机构生成系统和双方密钥；发送者指定接收身份并加密，接收者指定期望发送身份后解密。随后分别修改发送身份、接收身份和密文字节，观察明确拒绝。页面导出的结果来自实际执行，不使用预填耗时冒充测量。报告代表A可直接用于该流程；B、C通过CLI、冻结配置和预运行收据展示。[E12,E15]
 
 \begin{figure}[htbp]
 \centering
@@ -524,12 +522,12 @@ PARAM III & 67076 & 26264 & 同上 \\
 \end{figure}
 图6从2026年10月18日验收原图裁取加密与合法匹配区域，未改动其中内容，不是本次重新运行截图。截图用于说明应用流程，截图中的单次耗时不替代第5章重复实验。
 
-命令行提供独立持久状态与恢复流程，可在新进程中加载原状态继续解密。网页为单个临时会话，服务重启后需重新建立；这两个入口的状态能力分别解释。网页当前只展示LATTE组合，不能据此宣称所有13个研究后端均可在界面任意切换。
+命令行提供独立持久状态与恢复流程，可在新进程中加载原状态继续解密。网页为单个临时会话，服务重启后需重新建立；这两个入口的状态能力分别解释。网页当前只展示LATTE组合，不能据此宣称所有已登记后端均可在界面任意切换。
 
 \section{模块化实例化贡献}
-作品把原语选参、对象编码与公共协议装配分开，使同一双向匹配流程可以复用不同IBS。真实结果包含认证转换型与原生模格IBS的完整系统，以及其他研究后端的独立实现。其价值在于把多篇论文方案整理成具有共同契约、容量预检与可比较收据的原型，而不是把算法名称放入一个未实现的下拉框。
+作品把原语选参、对象编码与公共协议装配分开，使同一双向匹配流程可以复用不同HIBE和IBS。真实结果同时包含LATTE与Lai两种HIBE、认证转换型ML-DSA以及SRGG、Sageloli两种原生IBS。其价值在于把多篇论文方案整理成具有共同契约、容量预检与可核查收据的原型，而不是把算法名称放入一个未实现的下拉框。
 
-支撑材料为公共接口、真实接线验收、三组参数卡和完整系统收据。当前代价包括原生依赖、不同输入上限及研究参数限制；单体后端向默认入口的接入仍有欠项。该贡献属于系统设计和实现，理论构造按文献署名。
+支撑材料为公共接口、真实接线验收、三组冻结Suite和完整系统收据。显式provider接口允许新算法在自己的registration模块提供BackendSpec，并原子扩展调用方registry；Suite JSON不能导入代码，stock CLI和Web仍由项目固定清单控制。当前代价包括原生依赖、不同输入上限和运行时差异。该贡献属于系统设计和实现，理论构造按文献署名。
 
 \section{完整流程与状态可靠性贡献}
 论文中的一次诚实加解密不直接给出软件重启、重复发钥、配置混用和非规范wire的处理。作品通过规范编码、内部承诺与外部一次性认证、固定身份状态和提交后发布机制，将这些条件形成可检查行为。
@@ -539,14 +537,14 @@ PARAM III & 67076 & 26264 & 同上 \\
 \section{资源与实现优化贡献}
 完整系统剖析识别了原生适配器内容校验在跨文件系统访问中的实际成本。保持校验和密码工作后，采用固定wheel的WSL副本取得完整API改进，并通过Windows wheel消融区分“打包”与“位置”两项因素。这一结果具有明确输入、样本组织、版本和计时边界，可按公开工具复核。[E11]
 
-SRGG无损编码与CHKP高基数组件分别提供存储表示和资源可行性方面的研究结果。它们与上述完整系统优化处在不同层级：SRGG未配对，高基数组件未形成完整公共后端，目标规模仅有投影。本文保留这些实物与限制，不将它们合并成一个没有测量依据的“联合加速倍数”。
+SRGG无损编码与CHKP高基数组件分别提供存储表示和资源可行性方面的研究结果。SRGG PARAM-I compact现已进入代表B；高基数组件及部分CHKP／ABB目标规模仍是独立资源研究。本文保留层级差异，不将编码压缩、部署位置优化和参数投影合并成一个没有测量依据的“联合加速倍数”。
 
 \chapter{总结与后续工作}
-本作品已实现两层HIBE与IBS共同装配的IBME研究框架，形成3种HIBE和10种IBS的独立完整研究后端，并完成多个真实配对。当前重点三组LATTE完整组合具有重复加解密、持久状态、恢复、尺寸和资源收据；网页与CLI均有实际验收。完整系统部署消融说明，在相同密码配置下消除本机文件访问热点，可以明显降低热操作耗时。
+本作品已实现两层HIBE与IBS共同装配的IBME框架，并冻结A＝LATTE＋BNN/ML-DSA-44、B＝LATTE＋SRGG PARAM-I compact、C＝Lai C2＋Sageloli RSIS v3 PARAM-I三组报告代表。A具备成熟的Web、安装CLI和重复基准；B展示同一HIBE下原生模块格IBS及无损编码；C展示另一HIBE与环IBS的目标规模完整运行。三组精确profile均获项目内部准入，已知不安全调试档仍被排除。
 
-下一版研究报告应首先接收在途HIBE成果并形成有证据的最终三代表选择，补齐必要消息长度试验，统一第三方来源许可，并按本届模板整理封面、匿名信息与页数。报告中的参数表、图、截图和公开收据应绑定同一冻结版本；仍未实现的路线和目标参数运行继续明确列出。
+当前数据同时说明工程代价：A适合现场交互，B的发送发钥和加密更慢，C的密钥、密文和委派开销显著，不适合等待式现场演示。完整系统部署消融还表明，在密码参数不变时消除本机跨文件系统访问热点可以降低热操作耗时；该结论不外推为算法本身加速。
 
-大规模目标密钥、完整高基数HIBE接入、部分IBS默认登记、跨安全目标的可比选择和多用户部署仍是后续工作。已知不安全调试配置保留为历史或负向试验对象，不进入安全展示结论。当前原型的算法来源、工作假设与实际运行范围已经能够分别说明；最终提交应在这些事实基础上成稿。
+成稿前剩余工作集中在证据收口而不是重新选三组：补B的精确128KiB安装验收、C的安装恢复与内层签名负例、必要消息边界和受预算约束的重复测量；随后统一第三方来源许可、本届模板、匿名信息和页数，并在同一发布版本重新编译和逐页检查PDF。ABB、CHKP与Wang目标参数可独立推进，但不阻塞三代表报告收口。
 
 \appendix
 \chapter{候选路线与实现状态}
@@ -571,12 +569,12 @@ SRGG无损编码与CHKP高基数组件分别提供存储表示和资源可行性
 \endlastfoot
 CHKP ROM & 有 & 真实委派和完整接线已有；目标高维另列 \\
 ABB ROM & 有 & 可运行研究实例；目标资源与选参另列 \\
-LATTE & 有 & 已有三组重复完整基线与Web演示 \\
+LATTE & 有 & seed32／framed32项目准入；代表A、B及多组辅助完整运行 \\
 GKR2025 & 无 & 暂缓路线 \\
 Zhang2020 & 无 & 工具与原稿核验，不是完整后端 \\
 ABB标准模型选择性版本 & 无 & 不以ROM版本替代，暂缓 \\
 CHKP标准模型版本 & 无 & 不以ROM版本替代，暂缓 \\
-Lai理想格HIBE & 无 & 原文与工具已归档，完整后端未交付 \\
+Lai理想格HIBE & 有 & C2目标profile项目准入；与四种IBS完整配对，代表C采用Sageloli \\
 \end{longtable}
 \endgroup
 \Needspace{30\baselineskip}
@@ -602,10 +600,10 @@ Lai理想格HIBE & 无 & 原文与工具已归档，完整后端未交付 \\
 Luo矩阵版 & 有 & 已登记；研究参数，不恢复不合格参数凑代表 \\
 Luo模格版 & 有 & 已登记，LATTE与CHKP接线；默认与C64B分别记录 \\
 Wang基本IBS加PW & 有 & 已登记，LATTE接线；q17调试档可公开伪造 \\
-SRGG2025 & 有 & 默认小参数已登记配对；独立论文参数路线尚未接入 \\
+SRGG2025 & 有 & 默认小参数与论文参数分ID登记；PARAM-I／II／III项目准入，代表B采用PARAM-I compact \\
 Yu2026 & 有 & 未默认登记；1至4字节输入不足公共构造 \\
 Sageloli SIS & 有 & 未默认登记，未真实HIBE配对 \\
-Sageloli RSIS & 有 & 未默认登记，未真实HIBE配对；环版v3已按论文两点独立实跑[E14] \\
+Sageloli RSIS & 有 & 环版v3已登记；PARAM-I／II项目准入，已有LATTE桥接与Lai C2代表C[E14,E16] \\
 Foo-Li & 有 & 未默认登记，未真实HIBE配对；论文无数值参数，候选目标推导见3.5节与E13 \\
 BNN加ML-DSA & 有 & 已登记，多参数LATTE配对；参数档不另计算法 \\
 BNN加Falcon & 有 & 已登记，512与1024配对；参数档不另计算法 \\
@@ -615,10 +613,13 @@ Xie NTRU IBS & 无 & 修订研究核，尚非共同IBSBackend \\
 MP12研究变体、高基数参数、编码变化及同算法参数档不另计一篇独立方案。以上状态按当前目录和后续已合入交付共同确定；目录中的旧日期说明保留为历史证据，不能覆盖较新交付。已知不安全调试参数具体记录在E08，不能从某个调试配置的公开伪造推广到整篇论文算法。
 
 \chapter{参数与公开证据索引}
-本稿图4、表5、表6从E04比较JSON和参数卡生成，图5与表7从E11消融JSON生成，表3按明确的q、g和最小\ensuremath{\bar m}选择从E13逐点结果生成。生成时同时记录输入文件SHA及完整Suite于 report-facts.json。正文使用归档实测值，文档生成不会调用任何密码采样或打开运行私钥。
+三代表配置、容量和逐组观测以E15的selection.json为当前机器入口；A、B原重复收据和C目标规模收据保持原始Suite摘要，E15同时保存准入更新后的当前摘要与原evidence摘要。图4及旧辅助表来自E04比较JSON，部署消融来自E11，表3按明确的q、g和最小\ensuremath{\bar m}从E13逐点结果生成。正文使用归档实测值，文档生成不会调用任何密码采样或打开运行私钥。
 
 \begingroup
 \small
+\renewcommand{\arraystretch}{1.08}
+\setlength{\LTpre}{5pt}
+\setlength{\LTpost}{5pt}
 \setlength{\tableavail}{\dimexpr\textwidth-4\tabcolsep\relax}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.09\tableavail}>{\raggedright\arraybackslash}p{0.55\tableavail}>{\raggedright\arraybackslash}p{0.36\tableavail}@{}}
 \caption{公开证据索引}\\
@@ -650,6 +651,9 @@ E11 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764
 E12 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/deliveries/2026-10-18-demo-acceptance/README.md}{演示实际验收}与\href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/deliveries/2026-10-19-pr-review/README.md}{后续审查} & Web与CLI及判定修订 \\
 E13 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-19-parameters/FooLi%E5%8F%82%E6%95%B0%E6%94%B9%E8%BF%9B%E6%90%9C%E7%B4%A2%E4%B8%8E128bit%E7%9B%AE%E6%A0%87%E5%8D%A1.md}{Foo-Li参数改进搜索}与\href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/2026-10-19-parameters/fooli-improvement-search.json}{逐点结果} & 有限网格预筛、模型估计与候选目标卡 \\
 E14 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/docs/research/team-b-delivery/2026-10-19-sageloli-ring-target/README_zh-CN.md}{Sageloli环版论文参数实跑} & 论文两点独立实跑与边界 \\
+E15 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/main/docs/deliveries/2026-10-19-report-three-selection/README.md}{三代表选择、冻结Suite与机器记录} & A／B／C参数、容量、摘要、观测及剩余验收 \\
+E16 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/main/docs/research/2026-10-19-lai-c2-combinations/README.md}{Lai C2四组合完整收据}与\href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/main/docs/research/2026-10-19-sageloli-ring-integration/README.md}{Sageloli公共接入} & C的目标规模完整运行与LATTE桥接 \\
+E17 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/main/docs/deliveries/2026-10-19-project-admission/README.md}{项目准入清单} & 精确profile准入与负控排除边界 \\
 \end{longtable}
 \endgroup
 本版直接编辑本目录的LaTeX源文件；执行build\_pdf.py导出PDF，编译时读取figures目录的六张已归档图片。重画历史图表仍按build\_report.py的公开统计输入进行。密码学复跑与文稿编译分别执行，不打开运行私钥。
@@ -658,6 +662,8 @@ E14 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764
 
 \chapter*{参考文献}
 \addcontentsline{toc}{chapter}{参考文献}
+\begingroup
+\setlength{\parskip}{2pt}
 \begingroup\small\noindent [1] Yuejun Wang, Baocang Wang, Qiqi Lai, Yu Zhan. Identity-based Matchmaking Encryption with Stronger Security and Instantiation on Lattices. Theoretical Computer Science. DOI 10.1016/j.tcs.2024.115048. 固定本地稿见 papers/2022\_identity\_matchmaking\_wang.pdf，Construction 1及相关图表。\par\endgroup
 
 \begingroup\small\noindent [2] David Cash, Dennis Hofheinz, Eike Kiltz, Chris Peikert. Bonsai Trees, or How to Delegate a Lattice Basis. EUROCRYPT 2010，固定作者全文2011年6月14日版，\S{}5。\par\endgroup
@@ -686,6 +692,9 @@ E14 & \href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764
 
 \begingroup\small\noindent [14] Daniele Micciancio, Chris Peikert. Trapdoors for Lattices Simpler Tighter Faster Smaller. EUROCRYPT 2012，固定本地2011年9月14日作者稿。\par\endgroup
 
+\begingroup\small\noindent [15] Russell W. F. Lai, Henry K. F. Cheung, Sherman S. M. Chow. Trapdoors for Ideal Lattices with Applications. Inscrypt 2014, LNCS 8957:239--256, 2015. DOI 10.1007/978-3-319-16745-9\_14. 本文使用本地归档的完整PDF及\S{}5.1--5.2与Theorem 10。\par\endgroup
+
 以上文献的归档版本与文件指纹以\href{https://github.com/youzi258/IB-ME-from-HIBE-IBS/blob/db086c70aa04764c663e7d7039b59767cc12fe94/papers/index.md}{论文库索引}为准。正式成稿还需统一文献格式并完成第三方代码与许可证清单；当前引用不替代该清单。
+\par\endgroup
 
 \end{document}
