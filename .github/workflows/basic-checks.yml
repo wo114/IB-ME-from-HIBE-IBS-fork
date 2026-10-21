@@ -97,7 +97,7 @@ jobs:
         if: ${{ matrix.id == 'wang-pw' }}
         run: |
           apt-get update -qq
-          apt-get install -y --no-install-recommends g++ libmpfr-dev libgmp-dev libssl-dev
+          apt-get install -y --no-install-recommends git g++ libmpfr-dev libgmp-dev libssl-dev
       - name: Build Wang-PW target native sampler
         if: ${{ matrix.id == 'wang-pw' }}
         run: |

@@ -20,9 +20,10 @@ q=17 小参数后端并存，不改变其对象格式或历史反例。目标规
   作为该主档的采样或性能证据。
 - 参数快照包含尺寸、模数、采样宽度、公开范数门限、盐长度、入口容量、
   有限采样与资源限制。所有对象绑定同一完整快照。
-- `security_claim=none`、`backend_admitted=false`、
-  `parameters_are_formal=false`。目标规模、完整接口和真实运行分别记录，
-  不把它们升级为 NIST 类别或正式安全准入。
+- 已完成的冻结 `s0-4` 主档按用户确认前提在当前registry登记为
+  `security_claim=secure`、`backend_admitted=true`、`parameters_are_formal=true`。
+  `debug-small` 和旧q17不继承该声明；历史Suite及原语wire中的旧字段保留兼容。
+  约115位量子安全是项目工作假设，不是本次实测成本或NIST类别。
 
 依照项目 AGENTS，以引用论文已有性质和参数条件为前提推进；不新增
 完整安全归约、hybrid 或 s0=2 的有限实例证明任务。实际算法差异、

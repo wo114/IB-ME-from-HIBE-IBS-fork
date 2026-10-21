@@ -9,7 +9,7 @@ from ibme.ibs.wang_pw_target.native import build_native
 
 
 @pytest.fixture
-def state(tmp_path, monkeypatch):
+def state(tmp_path, monkeypatch, wang_debug_cli_runtime):
     native = build_native()
     monkeypatch.setenv("IBME_WANG_PW_TARGET_NATIVE", str(native))
     directory = tmp_path / "state"

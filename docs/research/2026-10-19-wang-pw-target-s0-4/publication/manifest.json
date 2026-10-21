@@ -6,8 +6,8 @@
   "files": [
     {
       "path": ".github/workflows/basic-checks.yml",
-      "bytes": 5784,
-      "sha256": "14d9ec4b96f761c15fd438d20dd4cb4c208cf425d182394b3d5c61833b64c8e5"
+      "bytes": 5788,
+      "sha256": "170c219214a5f6b772b88c29314ac21f632d8f09a6551e38195c1474d639952a"
     },
     {
       "path": "IMPLEMENTATION_SPEC.md",
@@ -31,18 +31,33 @@
     },
     {
       "path": "docs/deliveries/2026-10-21-pr84-review/README.md",
-      "bytes": 3350,
-      "sha256": "584bb4a6783cea77013d758914004de599c67b0152d23124bbd0d6352b02a6b0"
+      "bytes": 5614,
+      "sha256": "8786031640720737e32049bae5c870ef13f25b358360485cc6d7884151ad1b10"
+    },
+    {
+      "path": "docs/deliveries/2026-10-21-pr84-review/current-profile-regression.xml",
+      "bytes": 17740,
+      "sha256": "d55f599f179f2b21030e8e7f8c79d0d03c014cb929dd07b67039bd53f3300915"
     },
     {
       "path": "docs/deliveries/2026-10-21-pr84-review/validation.json",
-      "bytes": 5486,
-      "sha256": "fc80f7b83ae5dc2cf735ce35ef5ebad0cbf6b339688627e9eb1118694760adae"
+      "bytes": 12921,
+      "sha256": "aef9e67032ca538da2aca16422d4f490991df37dc734291239123cae3c366069"
+    },
+    {
+      "path": "docs/deliveries/2026-10-21-pr84-review/wang-pw-route.json",
+      "bytes": 32645,
+      "sha256": "4776abd797320ae05ef5e4ad4d55cba944456babcec2239c37c747260634d2ba"
+    },
+    {
+      "path": "docs/deliveries/2026-10-21-pr84-review/wang-pw-route.xml",
+      "bytes": 203006,
+      "sha256": "f6373152c1d925a26944d9d592b6f87823093140aa94b435733b9e77f57add88"
     },
     {
       "path": "docs/research/2026-10-19-wang-pw-target-s0-4/PUBLICATION_zh-CN.md",
-      "bytes": 6184,
-      "sha256": "4c63f020ebd6a1d0d9d9224eab87c5be4939cebe5256f929f6680391b664349c"
+      "bytes": 6420,
+      "sha256": "7545df5c67f8114bb3ed84a826744a1eed41cdd9c722bdc86d0373926657449a"
     },
     {
       "path": "docs/research/2026-10-19-wang-pw-target-s0-4/README_zh-CN.md",
@@ -1041,13 +1056,13 @@
     },
     {
       "path": "docs/research/team-b-delivery/2026-10-20-wang-pw-target/parameter-map.md",
-      "bytes": 13257,
-      "sha256": "33292c71297e9bd552b28692dfec69fbfcd7887d23d74e1c48b74039e8767b65"
+      "bytes": 13691,
+      "sha256": "a33933495f3f9ab63b6fa4fac32941c262cc569a45b63943dfeedba81958179a"
     },
     {
       "path": "docs/specs/wang-pw-target-ibs.md",
-      "bytes": 8574,
-      "sha256": "41c3884c42aef6e19049a229e8cb4fa2213295f0fdcba6c6a381ef365faba5c5"
+      "bytes": 8725,
+      "sha256": "4a6cb1ed9529f8d8ec4d7b68be0c0b0ccd76c7d8dbdf167c78f77fcd7a84ee46"
     },
     {
       "path": "experiments/research/wang_pw_target/README.md",
@@ -1131,8 +1146,8 @@
     },
     {
       "path": "src/ibme/assembly/registry.py",
-      "bytes": 32493,
-      "sha256": "2c0079d45627c0fa4e2b2a176dfd193b77b35f14ab1f3aa752a112a728a01483"
+      "bytes": 32774,
+      "sha256": "8962f66bcfd2aaf1d66233cd1380338e3b808cfabec5ff19e6bcc26b00c40389"
     },
     {
       "path": "src/ibme/cli.py",
@@ -1205,9 +1220,24 @@
       "sha256": "93dd67215ff071f62dc9c74e3f78178e41486bd9b324ef09c3c67b036ee0f17c"
     },
     {
+      "path": "tests/conftest.py",
+      "bytes": 854,
+      "sha256": "b978e20a95ce7d27c9506dee7f69dfb316c871765872a113ecb4e302d90614a7"
+    },
+    {
+      "path": "tests/test_ci_catalog.py",
+      "bytes": 7365,
+      "sha256": "0b6f69870f101449cb566c6e7d755d7f8bd456d2a9f70306a260fcd81fb9fca5"
+    },
+    {
       "path": "tests/test_cli_role_import.py",
       "bytes": 27623,
       "sha256": "2b65e5ee75879723e7835c01d5e5357a252fd0ccb3788aa6c1018d74176ebb6d"
+    },
+    {
+      "path": "tests/test_project_admission.py",
+      "bytes": 5500,
+      "sha256": "521e546c871758095624a918b937fb865610f48317613544ed4bcb9d77bdfc82"
     },
     {
       "path": "tests/test_wang_pw_target_adoption.py",
@@ -1221,13 +1251,13 @@
     },
     {
       "path": "tests/test_wang_pw_target_backend.py",
-      "bytes": 5023,
-      "sha256": "b81b1b5fe81d0a5653a9a11c05f0b6ec81b969a77c20e7f9f32dcc1049f2dbde"
+      "bytes": 5835,
+      "sha256": "6ecf20c29568828cc68bf11c8c828ea8c10cbff720f0ff22cdba145c0fffd542"
     },
     {
       "path": "tests/test_wang_pw_target_cli.py",
-      "bytes": 2414,
-      "sha256": "e182b116d539118a6671456dbdc1793cfdb8fa9d1041bbd9d916ebce1f90a7a8"
+      "bytes": 2438,
+      "sha256": "b16af42c648b58838a83b635267200397cf5baa42400fef302491b98eb37471d"
     },
     {
       "path": "tests/test_wang_pw_target_combination.py",
@@ -1316,8 +1346,8 @@
     },
     {
       "path": "tests/test_wang_pw_target_registration.py",
-      "bytes": 11673,
-      "sha256": "7430dc00f37bc41f7964dc2fe1d72d9f628e8f6b138a6e1a6b480cc2bb4c7530"
+      "bytes": 13430,
+      "sha256": "0ff60c734df012d3a83464a79191dfbb184f2e4c2f575a01ae610b943c7ecebf"
     },
     {
       "path": "tests/test_wang_pw_target_reused_cli.py",
@@ -1346,8 +1376,8 @@
     },
     {
       "path": "tests/test_wang_pw_target_service.py",
-      "bytes": 23045,
-      "sha256": "97b2aaec1f1f8767cacd167ac56467cdb393b7dc0036ac7cacef53eb4669bf92"
+      "bytes": 23635,
+      "sha256": "219f137a56244d81fb3a15c529e124047f6f11e1b07fe7966b082156d1a1f664"
     }
   ]
 }

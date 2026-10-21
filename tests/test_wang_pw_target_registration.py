@@ -81,6 +81,39 @@ assert 'ibme.ibs.wang_pw_target.engine' not in sys.modules
     assert result.returncode == 0, result.stderr
 
 
+def test_completed_target_security_is_profile_scoped_and_preserves_legacy_suite():
+    registry = default_registry()
+    registry = BackendRegistry(tuple(
+        replace(registry.get(role, name), validate_environment=lambda: None)
+        for role, name in (("hibe", "latte"), ("ibs", "wang-pw-target"))))
+    spec = registry.get("ibs", "wang-pw-target")
+    assert spec.security_claim == "secure" and spec.backend_admitted
+    assert spec.formal_parameter_presets == ("s0-4",)
+
+    def suite(preset):
+        return make_suite(hibe="latte", ibs="wang-pw-target", ibs_params=preset,
+                          transport="hybrid", registry=registry,
+                          hybrid_limits=dict(limits(), backend_id="latte3-cosac-fix-v1"))
+
+    target = suite("s0-4")
+    report = validate_suite(target, registry=registry)
+    assert report.ok, report.errors
+    assert report.metadata["security_claim"] == "secure"
+    assert report.metadata["backend_admitted"] and report.metadata["parameters_are_formal"]
+    assert report.metadata["preflight_only"] and not report.metadata["combination_tested"]
+    debug = validate_suite(suite("debug-small"), registry=registry)
+    assert debug.ok, debug.errors
+    assert debug.metadata["security_claim"] == "none"
+    assert not debug.metadata["backend_admitted"] and not debug.metadata["parameters_are_formal"]
+    legacy = dict(target.to_dict(), security_claim="none", backend_admitted=False,
+                  parameters_are_formal=False)
+    restored = SuiteConfig.from_dict(legacy)
+    assert restored.to_dict() == legacy
+    historical = validate_suite(restored, registry=registry)
+    assert historical.ok, historical.errors
+    assert historical.metadata["security_claim"] == "none"
+
+
 @pytest.mark.parametrize("preset", ["s0-4", "debug-small"])
 def test_complete_parameter_snapshot_roundtrip_and_hybrid_capacity(preset):
     registry = static_registry()
@@ -177,7 +210,7 @@ def test_cli_check_reports_complete_explicit_target_selection(monkeypatch, capsy
 
 @pytest.mark.parametrize("replace_completed", [False, True], ids=["before-replace", "after-replace"])
 def test_target_cli_interrupted_sender_publication_blocks_retry(
-        tmp_path, monkeypatch, capsys, replace_completed):
+        tmp_path, monkeypatch, capsys, replace_completed, wang_debug_cli_runtime):
     """An uncertain key publication must block even an existing-key cache hit."""
     from ibme import cli
     from ibme.cli_state import master_pending_path

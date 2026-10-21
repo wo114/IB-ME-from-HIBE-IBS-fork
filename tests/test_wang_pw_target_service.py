@@ -451,15 +451,20 @@ def test_hard_process_exit_keeps_pending_and_prevents_resampling(issuer, tmp_pat
                     reason="real lifecycle requires an explicitly prebuilt target native library")
 def test_real_sampler_fixed_service_sign_restore_and_sign_again(tmp_path):
     from ibme.ibs.wang_pw_target import Backend
+    from ibme.core.randomness import DeterministicRandom
+
+    def backend(seed):
+        return Backend(rng=DeterministicRandom(seed), test_only=True)
+
     params = replace(small_params(), threads=1)
-    issuer = FixedIssuer(tmp_path / "real", Backend())
+    issuer = FixedIssuer(tmp_path / "real", backend(b"target-lifecycle"))
     public = issuer.initialize(params, max_users=1)
     key = issuer.key_extract(IDENTITY)
-    signature = Backend().sign(key, b"real-service")
+    signature = backend(b"standalone-signer").sign(key, b"real-service")
     assert Backend().verify(public, IDENTITY, b"real-service", signature)
     restored = FixedIssuer(issuer.path, NoSampling()).key_extract(IDENTITY)
     assert restored.to_bytes() == key.to_bytes()
-    second = Backend().sign(restored, b"after-restart")
+    second = backend(b"service-after-restart").sign(restored, b"after-restart")
     assert Backend().verify(public, IDENTITY, b"after-restart", second)
     assert not Backend().verify(public, b"Bob", b"after-restart", second)
     assert not Backend().verify(public, IDENTITY, b"changed", second)
@@ -469,7 +474,7 @@ _REAL_SERVICE_CHILD = r'''
 import hashlib,json,os,secrets,sys
 from contextlib import ExitStack
 from unittest.mock import patch
-from ibme.core.randomness import SecureRandom
+from ibme.core.randomness import SecureRandom,DeterministicRandom
 from ibme.ibs.wang_pw_target import Backend
 from ibme.ibs.wang_pw_target import backend,native
 from ibme.ibs.wang_pw_target.service import FixedIssuer
@@ -494,7 +499,9 @@ with ExitStack() as stack:
                              (native,('_library','draw_gaussian','draw_gaussian_batch','sample_gpv'))):
             for name in names:
                 stack.enter_context(patch.object(module,name,forbidden))
-    issuer=FixedIssuer(path,Backend())
+    issuer_backend=(Backend() if mode=='cached' else
+                    Backend(rng=DeterministicRandom(b'real-service-issuance'),test_only=True))
+    issuer=FixedIssuer(path,issuer_backend)
     key=issuer.key_extract(b'Alice')
     public=issuer.public_key()
     report={'key_digest':hashlib.sha256(key.to_bytes()).hexdigest(),
@@ -502,7 +509,7 @@ with ExitStack() as stack:
     if mode=='cached':
         report['entropy_or_sampling_calls']=len(attempts)
     if mode=='sign':
-        signer=Backend()
+        signer=Backend(rng=DeterministicRandom(b'standalone-signer'),test_only=True)
         signature=signer.sign(key,b'restored-service-child')
         report.update(verified=signer.verify(public,b'Alice',b'restored-service-child',signature),
                       wrong_identity_rejected=not signer.verify(public,b'Bob',b'restored-service-child',signature),
@@ -520,8 +527,10 @@ def test_real_service_child_first_issuance_zero_entropy_restart_and_restored_sig
     with their explicitly algebraic fixture, not native-sampler crash behavior.
     """
     from ibme.ibs.wang_pw_target import Backend
+    from ibme.core.randomness import DeterministicRandom
 
-    issuer = FixedIssuer(tmp_path / "real-process-service", Backend())
+    issuer = FixedIssuer(tmp_path / "real-process-service",
+                         Backend(rng=DeterministicRandom(b"target-lifecycle"), test_only=True))
     public = issuer.initialize(replace(small_params(), threads=1), max_users=1)
     root = Path(__file__).resolve().parents[1]
     environment = {**os.environ, "PYTHONPATH": os.pathsep.join((str(root / "src"), str(root)))}

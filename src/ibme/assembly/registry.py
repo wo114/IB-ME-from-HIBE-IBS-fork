@@ -428,7 +428,10 @@ def _wang_pw_target_spec():
         default_preset=lambda transport: "s0-4",
         validate_configuration=_wang_pw_target_configuration,
         validate_environment=_wang_pw_target_environment,
-        reason="s0=4 discrete-Gaussian MP12 SampleD (perturbation); debug-small is unsafe; no security admission")
+        reason="completed s0=4 discrete-Gaussian MP12 SampleD backend; debug-small is unsafe",
+        security_claim=COMPLETED_SECURITY_CLAIM, backend_admitted=True,
+        formal_parameter_presets=("s0-4",),
+        admission_basis="selected Wang/Pan-Wagner papers, user-confirmed completed target profile and approximately 115-bit quantum working premise; not a new attack-cost measurement")
 
 
 def _srgg_spec():

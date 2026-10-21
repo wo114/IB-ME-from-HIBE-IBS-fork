@@ -91,6 +91,28 @@ def test_production_and_test_randomness_are_explicitly_separated():
     assert Backend().test_only is False
 
 
+def test_setup_outside_fixed_root_gate_aborts_without_reroll(monkeypatch):
+    from ibme.ibs.wang_pw_target import backend as module
+    from ibme.ibs.wang_pw_target.native import SamplingError
+
+    params = small_params(threads=2)
+    backend = Backend(rng=DeterministicRandom(b"target-lifecycle"), test_only=True)
+    original = module.gram_schmidt
+    attempts = []
+
+    def outside_gate(basis):
+        attempts.append(1)
+        star, norms, _ = original(basis)
+        return star, norms, params.root_gs_limit + 1
+
+    monkeypatch.setattr(module, "gram_schmidt", outside_gate)
+    with pytest.raises(SamplingError, match="fixed public gate") as caught:
+        backend.setup(params)
+    assert caught.value.public_reason == "numerical-gs-gate"
+    assert attempts == [1]
+    assert backend._root is None
+
+
 def test_exact_q32_limb_product_and_large_user_trapdoor_basis():
     rng = np.random.default_rng(719)
     q = 4294967291

@@ -22,7 +22,7 @@
 | PW外层 | 身份盐、消息盐、内部身份哈希及内部消息哈希均256 bit | 四个预言机域分隔，外层盐与基础H1/H2职责分开；不得认为256位字段直接赋予IBS 256位安全性。 |
 | debug档 | `n=2/4`，q允许17/257或主档q，根宽度仍4，其他维数按同式派生 | `small_params()`默认n2/q257，仅运行真实算法与负例，不用于安全强度结论。小模数下不声称签名阈值满足SIS非平凡性。 |
 | 失败与资源 | Setup/Extract/Sign默认各1次，threads16 | 失败明确报告，无隐式重抽。完整快照包含threads；`math_context`只是排除线程数的数学配置比较辅助函数。当前H1/H2绑定完整规范公钥摘要（含threads）；不得给既有密钥改线程快照后声称同一哈希上下文。 |
-| 固定安全元数据 | `none/false/false/null` | 分别为security_claim、backend_admitted、parameters_are_formal、nist_security_category。 |
+| 当前安全元数据与历史快照 | registry精确`s0-4`为`secure/true/true/null`；原语wire及历史审计字段保留`none/false/false/null` | 分别为security_claim、backend_admitted、parameters_are_formal、nist_security_category。按用户确认的已完成方案前提登记；debug、旧q17及历史Suite不回写，不新增NIST类别或攻击成本测量。 |
 
 乘数8的有限工程参考是普通一维平滑充分界
 `eta_Z(epsilon) <= sqrt(log(2+2/epsilon)/pi)`：给每次坐标抽样分配误差后，再检查实际调用总量与目标预算。它不是根公钥近均匀性的证明，不替代原文G-trapdoor前提，也不认证MPFR尾部/CDF误差。根采样、委派、签名、重试各自的抽样量与累计预算应以最终引擎回执为准。
@@ -60,7 +60,7 @@ beta_SIS = ceil(sqrt(1+L_Rhat²) * (ceil(B_verify)+B_reference)).
 
 `params.reduction_sis_parameters(...)` 只做这项整数上界换算，不提供缺失的统一谱范数界或分布定理。输入是经说明的统一界，不能填一条根/签名的实测范数。若 `beta_SIS>=q`，`q*e_i` 已是平凡SIS解，正式参数候选应拒绝；研究功能实验仍可进行并保留安全元数据。本档没有据此声称通过123.5或128 bit目标。PR67的单样本estimator数字不能迁移成本档结论。
 
-冻结正式候选前仍需：实际采样与用户GS门回执；有限精度/截断/尾概率和调用总量；原文模拟矩阵谱范数界的来源映射；按正确beta、根列数m、固定estimator版本/成本模型/全部有限攻击重估；公开失败/重试预算及多根资源实测。这里只核对论文前提、参数与实现，不另补安全性证明。
+已完成的冻结`s0-4`按用户确认的前提使用，当前registry状态如上。实际采样与用户GS门、有限精度/截断/尾概率和调用总量、原文模拟矩阵谱范数界的来源、正确beta下的完整攻击成本以及多根资源数据，仍按已有回执和具体限制分别记录；下文条件筛查不替代这些结果。未取得的数值不补写为已测得，不以这些未认证项重新要求基础证明或将实现交付改回未完成。
 
 ## 廉价参数审计入口与当前数值结果
 
@@ -68,7 +68,7 @@ beta_SIS = ceil(sqrt(1+L_Rhat²) * (ceil(B_verify)+B_reference)).
 
 主档的精确整数验签平方阈值为 `3458764513820540928`，向上整数范数界为 `1859775394`。真实论文SIS β仍为null：当前没有同时交付有来源的统一参考签名范数界与模拟Rhat谱范数界。若按论文通常使用的相同参考包络 `B_reference=ceil(B_verify)`，即使乐观取投影谱界1，仍得到 `beta=5260239171 >= q=4294967291`。这个**已配置参考包络**因此落入平凡SIS区，不能作为正式参数。此结论不声称一切更紧的参考包络都不可能；若另给有来源的、更紧包络，必须明确重审其条件。
 
-显式提供 `measured['uniform_bounds']={reference_norm_bound: 整数, simulation_spectral_bound: 整数, source: 来源文本}` 时，审计才做相应β换算；它仍不认证调用者的来源。缺任一项则真实β保持null。无论换算是否落在非平凡区，安全标记均不提升，也不新增安全证明。
+显式提供 `measured['uniform_bounds']={reference_norm_bound: 整数, simulation_spectral_bound: 整数, source: 来源文本}` 时，审计才做相应β换算；它仍不认证调用者的来源。缺任一项则真实β保持null。无论换算是否落在非平凡区，审计工具均不修改原语wire或历史字段，也不新增安全证明；当前registry的精确已完成配置独立按已确认前提登记。
 
 `audit()`的estimator库存尊重`IBME_ESTIMATOR_DIR`显式绝对路径；显式空值、缺失或错误目录报告不可用，不静默回退。未指定时才检查仓库`test-results/lattice-estimator`及`~/lattice-estimator`。库存只读取源码/版本信息，不导入、运行estimator或消费熵；源码文件存在与版本匹配、环境可导入和实际执行分别报告。不能直接假设PR67旧默认路径存在。
 
